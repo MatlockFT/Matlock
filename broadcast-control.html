@@ -10,7 +10,7 @@ permalink: /broadcast/control/
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>Matlock Fight Channel — Control Room</title>
-  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20260930-loop-1">
+  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20260930-workflow-2">
 </head>
 <body class="mfc-control-body">
   <main class="mfc-control" data-mfc-control data-auth-base="https://mmamatlock-writer-auth.netlify.app">
@@ -56,11 +56,20 @@ permalink: /broadcast/control/
     </section>
 
     <div class="mfc-control-workspace" data-control-workspace hidden>
-      <section class="mfc-workflow-guide" aria-label="Continuous loop setup">
-        <strong>Build your continuous channel</strong>
+      <section class="mfc-recovery-panel" data-recovery-panel hidden aria-label="Recover unsaved draft">
+        <div><strong>Recover unsaved work</strong><p data-recovery-detail></p></div>
+        <div class="mfc-add-row"><button type="button" class="mfc-button" data-restore-recovery>Restore to Preview</button><button type="button" class="mfc-button mfc-button-ghost" data-discard-recovery>Discard backup</button></div>
+      </section>
+      <div class="mfc-draft-tools">
+        <div class="mfc-add-row"><button type="button" class="mfc-button mfc-button-small mfc-button-ghost" data-undo disabled title="Undo a playlist edit (Ctrl/⌘+Z outside text fields)">Undo</button><button type="button" class="mfc-button mfc-button-small mfc-button-ghost" data-redo disabled title="Redo a playlist edit (Ctrl/⌘+Shift+Z outside text fields)">Redo</button></div>
+        <p data-recovery-status role="status">Save Draft to keep your changes.</p>
+      </div>
+      <details class="mfc-readiness" data-readiness><summary data-readiness-summary>Checking loop settings…</summary><ul data-readiness-list></ul><p>Checks cover links and timing. Listen to Preview to check playback and your mix.</p></details>
+      <details class="mfc-workflow-guide" aria-label="Continuous loop setup">
+        <summary>Build your continuous channel — setup guide</summary>
         <p>1. Upload videos and songs in Media. 2. Arrange the visual loop and music bed. 3. Listen in Preview, then Take Preview Live. Both playlists repeat automatically.</p>
         <p>Save Draft stores your work without changing the live feed. Keep the live feed open on the playback device and click Sound On there once; the dashboard itself does not send a stream to another platform.</p>
-      </section>
+      </details>
       <nav class="mfc-workspace-tabs" role="tablist" aria-label="Broadcast Control workspaces">
         <button type="button" id="workspace-tab-rundown" class="mfc-workspace-tab is-active" role="tab" aria-selected="true" aria-controls="workspace-panel-rundown" data-workspace-tab="rundown">
           <span>Rundown</span><b data-workspace-count="rundown">0</b>
@@ -191,7 +200,7 @@ permalink: /broadcast/control/
             <p>Drop multiple files here. MP4 (H.264 video + AAC sound) and MP3 or M4A audio are recommended. WebM, M4V, WAV, OGG, Opus, AAC and FLAC are accepted when your browser can read them. Each file must be under 2 GiB. Files are not converted.</p>
             <p>Music stored in an MP4/WebM can be uploaded with <strong>Upload Songs</strong> on the Audio tab. Use direct media links; YouTube/watch pages are not dependable music sources for an unattended loop.</p>
             <label><input type="checkbox" data-upload-auto-add checked> Add successful uploads to the draft loop automatically</label>
-            <button type="button" class="mfc-button mfc-button-small" data-library-add-all>Add all unused media to draft</button>
+            <div class="mfc-library-bulk"><button type="button" class="mfc-button mfc-button-small" data-library-add-all>Add all unused media to draft</button><button type="button" class="mfc-button mfc-button-small mfc-button-ghost" data-library-stop hidden>Stop adding after this file</button><output data-library-add-status aria-live="polite"></output></div>
           </div>
           <div class="mfc-library-toolbar">
             <label class="mfc-field mfc-library-search">
@@ -223,6 +232,7 @@ permalink: /broadcast/control/
           <div class="mfc-video-library" data-video-library-list>
             <p class="mfc-empty">Loading uploaded media…</p>
           </div>
+          <nav class="mfc-library-pages" data-library-pages aria-label="Media library pages" hidden><button type="button" class="mfc-button mfc-button-small mfc-button-ghost" data-library-prev>Previous</button><span data-library-page-label role="status"></span><button type="button" class="mfc-button mfc-button-small mfc-button-ghost" data-library-next>Next</button></nav>
         </section>
       </section>
 
@@ -371,6 +381,6 @@ permalink: /broadcast/control/
     <div class="mfc-toast" data-toast role="status" aria-live="polite" hidden></div>
   </main>
 
-  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-loop-1" defer></script>
+  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-workflow-2" defer></script>
 </body>
 </html>

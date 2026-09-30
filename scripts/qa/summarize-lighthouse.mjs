@@ -43,7 +43,7 @@ const median = values => {
 const samples = files.map(file => {
     const lhr = JSON.parse(readFileSync(resolve(reportDir, file), 'utf8'));
     const rawPage = basename(file, '.json');
-    const page = rawPage.replace(/-\\d+$/, '');
+    const page = rawPage.replace(/-\d+$/, '');
     return {
         page,
         score: lhr.categories?.performance?.score,
@@ -76,6 +76,9 @@ const rows = [...grouped.entries()]
 
 const failuresFor = row => {
     const failures = [];
+    for (const key of ['score', 'lcp', 'tbt', 'cls']) {
+        if (!Number.isFinite(row[key])) failures.push(`Missing ${key} metric`);
+    }
     if (Number.isFinite(row.score) && row.score < limits.score) failures.push(`Perf ${display(row.score, 'score')} < 70`);
     if (Number.isFinite(row.lcp) && row.lcp > limits.lcp) failures.push(`LCP ${display(row.lcp)} > 4.00 s`);
     if (Number.isFinite(row.tbt) && row.tbt > limits.tbtHard) failures.push(`TBT ${display(row.tbt)} > ${display(limits.tbtHard)} hard ceiling`);

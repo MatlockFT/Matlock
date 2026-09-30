@@ -7,6 +7,8 @@
   const SESSION_LOGIN_KEY = 'matlock-writer:server-login';
   const STATE_API_PATH = '/contents/assets/uploads/broadcast.json';
   const WORKSPACE_KEY = 'matlock-broadcast-control:workspace';
+  const RECOVERY_PREFIX = 'matlock-broadcast-control:recovery:';
+  const LIBRARY_PAGE_SIZE = 40;
   const CHUNK_BYTES = Math.floor(3.5 * 1024 * 1024);
   const STATUS_POLL_MS = 1400;
   const STATUS_TIMEOUT_MS = 20 * 60 * 1000;
@@ -84,11 +86,21 @@
   let videoLibraryLoading = false;
   let previewStartedAt = new Date().toISOString();
   let editVersion = 0;
+  let history = [];
+  let historyIndex = 0;
+  let historyInput = null;
+  let historyTime = 0;
+  let recoveryKey = '';
+  let pendingRecovery = null;
+  let recoveryTimer = 0;
+  let libraryPage = 0;
+  let stopLibraryAdd = false;
   let uploadRunning = false;
   let stopUploads = false;
   let previewMonitorAudio = false;
   let programMonitorAudio = false;
   const videoDurationCache = new Map();
+  const mediaRequests = new WeakMap();
 
   const clone = value => JSON.parse(JSON.stringify(value));
   const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || 0));
@@ -286,6 +298,10 @@
     saveDraftButton.disabled = !sessionId || !working || !dirty || busy;
     takeLiveButton.disabled = !sessionId || !working || busy;
     if (reloadStateButton) reloadStateButton.disabled = !sessionId || busy;
+    app.querySelector('[data-undo]').disabled = !sessionId || busy || historyIndex <= 0;
+    app.querySelector('[data-redo]').disabled = !sessionId || busy || historyIndex >= history.length - 1;
+    app.querySelector('[data-restore-recovery]').disabled = busy;
+    app.querySelector('[data-discard-recovery]').disabled = busy;
   }
 
   function setDirty(value = true) {
@@ -295,6 +311,7 @@
       draftStatus.dataset.dirty = dirty ? 'true' : 'false';
     }
     syncActionButtons();
+    scheduleRecovery();
   }
 
   function setBusy(action = '') {
@@ -342,6 +359,7 @@
     try {
       const response = await fetch(`${authBase}/api/writer/session`, {
         method: 'GET',
+        signal: AbortSignal.timeout(20000),
         mode: 'cors',
         cache: 'no-store',
         headers: { Accept: 'application/json', 'X-Writer-Session': id }
@@ -405,6 +423,7 @@
     if (!sessionId) throw new Error('Sign in with GitHub first.');
     const response = await fetch(`${authBase}/api/writer/github?path=${encodeURIComponent(apiPath)}`, {
       ...options,
+      signal: options.signal || AbortSignal.timeout(45000),
       mode: 'cors',
       cache: 'no-store',
       headers: {
@@ -458,7 +477,7 @@
     return channel;
   }
 
-  async function loadState() {
+  async function loadState({ offerRecovery = true } = {}) {
     const remote = await githubRequest(`${STATE_API_PATH}?ref=main`);
     stateSha = remote.sha || '';
     const parsed = JSON.parse(decodeBase64Utf8(remote.content || 'e30='));
@@ -467,20 +486,147 @@
     if (!working.startedAt) working.startedAt = new Date().toISOString();
     selectedProgramId = working.program[0]?.id || '';
     selectedMusicId = working.music[0]?.id || '';
+    history = [draftSnapshot()]; historyIndex = 0; historyInput = null;
+    pendingRecovery = offerRecovery ? readRecovery() : null;
+    if (!offerRecovery) localWrite(recoveryKey, '');
     renderAll();
+    setDirty(false);
+    renderRecovery();
     let repaired = false;
     for (const item of [...working.program, ...working.music]) {
       const key = item.mediaUrl ? 'mediaUrl' : 'url';
       if (!String(item[key] || '').startsWith('https://api.github.com/')) continue;
+      const original = item[key];
+      const current = () => [...working.program, ...working.music].includes(item) && item[key] === original;
       try {
-        item[key] = await resolveMediaUrl(item[key]);
-        item.duration = await probeUrlDuration(item[key], item.type === 'video' ? 'video' : 'audio');
-        repaired = true;
-      } catch (error) { item.duration = 0; repaired = true; showToast(error.message, 8500); }
+        const url = await resolveMediaUrl(original);
+        const duration = await probeUrlDuration(url, item.type === 'video' ? 'video' : 'audio');
+        if (!current()) continue;
+        item[key] = url; item.duration = duration; repaired = true;
+      } catch (error) { if (current()) { item.duration = 0; repaired = true; showToast(error.message, 8500); } }
     }
     if (repaired) { renderAll(); markDirty(); showToast('Repaired old media links in the draft. Review and save before taking live.', 8500); }
     if (working.music.some(track => youtubeVideoId(track.url))) showToast('This draft contains YouTube music. Replace it with an uploaded song or direct audio file before taking live.', 10000);
     void loadVideoLibrary({ quiet: true });
+  }
+
+
+  function draftSnapshot(channel = working) {
+    if (!channel) return '';
+    const { revision, updatedAt, startedAt, ...content } = normalizedChannel(channel);
+    return JSON.stringify(content);
+  }
+
+  function savedSnapshot() { return draftSnapshot(fullState?.draft || fullState?.live); }
+
+  function recordHistory() {
+    const snapshot = draftSnapshot();
+    if (history[historyIndex] === snapshot) return;
+    const active = document.activeElement;
+    const input = active?.matches('input, textarea') ? active : null;
+    const group = input && input === historyInput && Date.now() - historyTime < 750 && historyIndex > 0 && historyIndex === history.length - 1;
+    history = history.slice(0, historyIndex + 1);
+    if (group) history[historyIndex] = snapshot;
+    else { history.push(snapshot); if (history.length > 60) history.shift(); historyIndex = history.length - 1; }
+    historyInput = input; historyTime = Date.now();
+  }
+
+  function navigateHistory(delta) {
+    if (!sessionId || busyAction || uploadRunning || !working) return;
+    const next = historyIndex + delta;
+    if (next < 0 || next >= history.length) return;
+    historyIndex = next; historyInput = null;
+    working = normalizedChannel(JSON.parse(history[next]));
+    selectedProgramId = working.program.some(row => row.id === selectedProgramId) ? selectedProgramId : working.program[0]?.id || '';
+    selectedMusicId = working.music.some(row => row.id === selectedMusicId) ? selectedMusicId : working.music[0]?.id || '';
+    editVersion += 1;
+    renderAll(); setDirty(draftSnapshot() !== savedSnapshot());
+  }
+
+  function readRecovery() {
+    if (!recoveryKey) return null;
+    try {
+      const backup = JSON.parse(localRead(recoveryKey) || 'null');
+      if (!backup || backup.version !== 1 || !Array.isArray(backup.channel?.program) || !Array.isArray(backup.channel?.music)) return null;
+      if (draftSnapshot(backup.channel) === savedSnapshot()) { localWrite(recoveryKey, ''); return null; }
+      return backup;
+    } catch { return null; }
+  }
+
+  function renderRecovery() {
+    const panel = app.querySelector('[data-recovery-panel]');
+    panel.hidden = !pendingRecovery;
+    if (pendingRecovery) {
+      const date = new Date(pendingRecovery.savedAt).toLocaleString();
+      app.querySelector('[data-recovery-detail]').textContent = 'Unsaved work from ' + date + '. ' + (pendingRecovery.baseSha !== stateSha ? 'The saved draft has changed since this backup. Restoring replaces only your local preview; review it before saving.' : 'Restore it to Preview or discard the backup.');
+    }
+  }
+
+  function persistRecovery() {
+    window.clearTimeout(recoveryTimer);
+    const status = app.querySelector('[data-recovery-status]');
+    if (!working || !recoveryKey) return;
+    if (pendingRecovery) { status.textContent = 'Choose Restore or Discard above to enable local recovery.'; return; }
+    try {
+      if (!dirty) { localStorage.removeItem(recoveryKey); status.textContent = 'Draft saved to your account.'; return; }
+      localStorage.setItem(recoveryKey, JSON.stringify({ version: 1, baseSha: stateSha, savedAt: new Date().toISOString(), channel: working }));
+      status.textContent = 'Unsaved draft backed up in this browser. Save Draft to store it in your account.';
+    } catch { status.textContent = 'Local recovery unavailable. Save Draft to keep your changes.'; }
+  }
+
+  function scheduleRecovery() {
+    window.clearTimeout(recoveryTimer);
+    recoveryTimer = window.setTimeout(persistRecovery, 250);
+  }
+
+  app.querySelector('[data-undo]').addEventListener('click', () => navigateHistory(-1));
+  app.querySelector('[data-redo]').addEventListener('click', () => navigateHistory(1));
+  app.querySelector('[data-restore-recovery]').addEventListener('click', () => {
+    if (!pendingRecovery || busyAction || uploadRunning) return;
+    if (dirty && !window.confirm('Replace current unsaved Preview edits with the recovered draft?')) return;
+    working = normalizedChannel(pendingRecovery.channel); pendingRecovery = null;
+    selectedProgramId = working.program[0]?.id || ''; selectedMusicId = working.music[0]?.id || '';
+    renderRecovery(); renderAll(); markDirty();
+    showToast('Recovered into Preview. Review it, then Save Draft. Program is unchanged.');
+  });
+  app.querySelector('[data-discard-recovery]').addEventListener('click', () => {
+    if (busyAction || uploadRunning) return;
+    pendingRecovery = null; localWrite(recoveryKey, ''); renderRecovery(); persistRecovery();
+  });
+  window.addEventListener('pagehide', persistRecovery);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) persistRecovery(); });
+
+  function readinessIssues() {
+    const issues = [];
+    for (const [kind, items] of [['program', working?.program || []], ['music', working?.music || []]]) {
+      items.forEach((item, index) => {
+        const reasons = [];
+        if (!Number.isFinite(Number(item.duration)) || Number(item.duration) <= 0) reasons.push('set a valid duration');
+        const needsMedia = kind === 'music' || ['video', 'image'].includes(item.type);
+        const url = kind === 'music' ? item.url : item.mediaUrl;
+        if (needsMedia && !url) reasons.push('add a file or URL');
+        else if (url && !isDirectUrl(url)) reasons.push('replace the page/API link with a direct file');
+        if (reasons.length) issues.push({ kind, id: item.id, title: item.title || (kind === 'music' ? 'Track ' : 'Block ') + (index + 1), reasons });
+      });
+    }
+    return issues;
+  }
+
+  function renderReadiness() {
+    const issues = readinessIssues();
+    const summary = app.querySelector('[data-readiness-summary]');
+    summary.textContent = issues.length ? issues.length + ' item' + (issues.length === 1 ? '' : 's') + ' to fix before Take Live' : working?.program?.length ? 'Loop settings ready — check Preview before Take Live' : 'Empty rundown — Program will show standby';
+    summary.dataset.ready = issues.length ? 'false' : 'true';
+    const list = app.querySelector('[data-readiness-list]'); list.replaceChildren();
+    for (const issue of issues) {
+      const row = document.createElement('li');
+      row.append(smallButton(issue.title + ': ' + issue.reasons.join('; '), () => {
+        activateWorkspace(issue.kind === 'music' ? 'audio' : 'rundown');
+        if (issue.kind === 'music') { selectedMusicId = issue.id; renderMusic(); musicFields.querySelector('input')?.focus(); }
+        else { selectedProgramId = issue.id; renderProgram(); programFields.querySelector('input')?.focus(); }
+      }, 'mfc-text-button'));
+      list.append(row);
+    }
   }
 
   function totalProgramDuration() {
@@ -494,8 +640,9 @@
   function markDirty() {
     if (!working) return;
     editVersion += 1;
+    recordHistory();
     working.updatedAt = new Date().toISOString();
-    setDirty(true);
+    setDirty(draftSnapshot() !== savedSnapshot());
     renderSummary();
     postPreview();
   }
@@ -521,6 +668,7 @@
       ? new Date(liveStamp).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
       : 'Standby';
     updateWorkspaceCounts();
+    renderReadiness();
   }
 
   function displayVideoName(name) {
@@ -544,7 +692,8 @@
       updatedAt: asset?.updatedAt || asset?.updated_at || null,
       downloadCount: Number(asset?.downloadCount ?? asset?.download_count) || 0,
       releaseId: Number(asset?.releaseId || release?.id) || null,
-      releaseTag: String(asset?.releaseTag || release?.tag_name || '')
+      releaseTag: String(asset?.releaseTag || release?.tag_name || ''),
+      duration: positive(asset?.duration)
     };
   }
 
@@ -687,6 +836,13 @@
         if (sort === 'name') return displayVideoName(a.name).localeCompare(displayVideoName(b.name));
         return String(b.createdAt || '').localeCompare(String(a.createdAt || ''));
       });
+    const pageCount = Math.max(1, Math.ceil(visible.length / LIBRARY_PAGE_SIZE));
+    libraryPage = Math.max(0, Math.min(libraryPage, pageCount - 1));
+    const pager = app.querySelector('[data-library-pages]'); pager.hidden = visible.length <= LIBRARY_PAGE_SIZE;
+    app.querySelector('[data-library-page-label]').textContent = 'Page ' + (libraryPage + 1) + ' of ' + pageCount;
+    app.querySelector('[data-library-prev]').disabled = libraryPage === 0;
+    app.querySelector('[data-library-next]').disabled = libraryPage >= pageCount - 1;
+    const pageAssets = visible.slice(libraryPage * LIBRARY_PAGE_SIZE, (libraryPage + 1) * LIBRARY_PAGE_SIZE);
     const totalBytes = videoLibraryAssets.reduce((sum, asset) => sum + (Number(asset.size) || 0), 0);
     const mode = videoLibraryReadOnly ? ' · public index fallback' : '';
     videoLibrarySummary.textContent = videoLibraryLoading
@@ -710,7 +866,7 @@
       return;
     }
   
-    for (const asset of visible) {
+    for (const asset of pageAssets) {
       const usage = videoUsage(asset);
       const row = document.createElement('article');
       row.className = `mfc-video-asset${usage.live ? ' is-live' : ''}`;
@@ -763,7 +919,7 @@
       const copyButton = smallButton('Copy URL', async () => {
         try {
           await navigator.clipboard.writeText(asset.url);
-          showToast('Video URL copied.');
+          showToast('Media URL copied.');
         } catch {
           showToast(asset.url, 9000);
         }
@@ -828,7 +984,7 @@
     for (let page = 1; page <= 3; page += 1) {
       const response = await fetch(`https://api.github.com/repos/MatlockFT/Matlock/releases?per_page=100&page=${page}`, {
         headers: { Accept: 'application/vnd.github+json' },
-        cache: 'no-store'
+        cache: 'no-store', signal: AbortSignal.timeout(30000)
       });
       if (!response.ok) throw new Error(`GitHub video library returned ${response.status}.`);
       const releases = await response.json();
@@ -837,7 +993,7 @@
         if (!String(release?.tag_name || '').startsWith('writer-media-')) continue;
         const releaseAssets = [];
         for (let assetPage = 1; ; assetPage += 1) {
-          const result = await fetch('https://api.github.com/repos/MatlockFT/Matlock/releases/' + release.id + '/assets?per_page=100&page=' + assetPage, { headers: { Accept: 'application/vnd.github+json' } });
+          const result = await fetch('https://api.github.com/repos/MatlockFT/Matlock/releases/' + release.id + '/assets?per_page=100&page=' + assetPage, { headers: { Accept: 'application/vnd.github+json' }, signal: AbortSignal.timeout(30000) });
           if (!result.ok) throw new Error('Could not load all media assets (' + result.status + ').');
           const rows = await result.json();
           releaseAssets.push(...rows);
@@ -1155,20 +1311,28 @@
         wide: true,
         live: false,
         onChange: async value => {
-          try { item.mediaUrl = await resolveMediaUrl(value.trim()); } catch (error) { return showToast(error.message, 8500); }
-          if (item.type === 'video' && item.mediaUrl) {
-            item.duration = 0;
+          const request = {}; mediaRequests.set(item, request);
+          const current = () => working.program.includes(item) && mediaRequests.get(item) === request;
+          let url;
+          try { url = await resolveMediaUrl(value.trim()); }
+          catch (error) { if (current()) showToast(error.message, 8500); return; }
+          if (!current()) return;
+          item.mediaUrl = url;
+          if (item.type === 'video') item.duration = 0;
+          markDirty();
+          if (item.type === 'video' && url) {
             try {
-              item.duration = await probeUrlDuration(item.mediaUrl, 'video');
-              showToast(`Video duration detected: ${fmt(item.duration)}`);
+              const duration = await probeUrlDuration(url, 'video');
+              if (!current() || item.mediaUrl !== url) return;
+              item.duration = duration;
+              showToast('Video duration detected: ' + fmt(duration));
             } catch {
-              showToast('Could not read video duration from that URL. Upload the file or try another direct media URL.', 7000);
+              if (!current()) return;
+              showToast('Could not read video duration. Upload the file or enter its duration manually.', 7000);
             }
           }
-          renderProgram();
-          renderProgramEditor();
-          markDirty();
-          if (item.type === 'video') renderVideoLibrary();
+          if (!current()) return;
+          renderProgram(); markDirty(); renderVideoLibrary();
         }
       });
       form.append(mediaField.wrap);
@@ -1199,7 +1363,10 @@
           if (videoUploadBusy) return;
           redetectButton.disabled = true;
           try {
-            item.duration = await probeUrlDuration(item.mediaUrl, 'video');
+            const url = item.mediaUrl;
+            const duration = await probeUrlDuration(url, 'video');
+            if (!working.program.includes(item) || item.mediaUrl !== url) return;
+            item.duration = duration;
             renderProgram();
             renderProgramEditor();
             markDirty();
@@ -1438,26 +1605,25 @@
       wide: true,
       live: false,
       onChange: async value => {
-        try { track.url = await resolveMediaUrl(value.trim()); } catch (error) { return showToast(error.message, 8500); }
-        track.duration = 0;
-        const youtubeId = youtubeVideoId(track.url);
-        if (youtubeId) {
-          track.sourceType = 'youtube';
-          track.youtubeId = youtubeId;
-          track.duration = 0;
-          showToast('Use an uploaded song or a direct audio file for continuous music. YouTube links cannot be taken live.', 8500);
-        } else {
-          delete track.sourceType;
-          delete track.youtubeId;
-          try {
-            if (track.url) track.duration = await probeUrlDuration(track.url);
-          } catch {
-            showToast('Could not read duration from that host. Set the duration manually.', 6500);
-          }
-        }
-        renderMusic();
-        renderMusicEditor();
+        const request = {}; mediaRequests.set(track, request);
+        const current = () => working.music.includes(track) && mediaRequests.get(track) === request;
+        let url;
+        try { url = await resolveMediaUrl(value.trim()); }
+        catch (error) { if (current()) showToast(error.message, 8500); return; }
+        if (!current()) return;
+        track.url = url; track.duration = 0;
+        delete track.sourceType; delete track.youtubeId;
         markDirty();
+        try {
+          const duration = url ? await probeUrlDuration(url, 'audio') : 0;
+          if (!current() || track.url !== url) return;
+          track.duration = duration;
+        } catch {
+          if (!current()) return;
+          showToast('Could not read duration. Check the direct file or enter its duration manually.', 6500);
+        }
+        if (!current()) return;
+        renderMusic(); markDirty();
       }
     });
     const durationField = field('Duration (min:sec)', 'duration', {
@@ -1506,7 +1672,10 @@
       if (!track.url) return showToast('Add an audio URL first.');
       if (youtubeVideoId(track.url)) return showToast('Replace this YouTube link with an uploaded song or direct media URL.');
       try {
-        track.duration = await probeUrlDuration(track.url, 'audio');
+        const url = track.url;
+        const duration = await probeUrlDuration(url, 'audio');
+        if (!working.music.includes(track) || track.url !== url) return;
+        track.duration = duration;
         renderMusic();
         renderMusicEditor();
         markDirty();
@@ -1605,7 +1774,6 @@
     renderAudioSettings();
     tickerInput.value = (working.ticker || []).join('\n');
     renderTickerPreview();
-    setDirty(false);
     renderVideoLibrary();
     postPreview();
   }
@@ -1660,25 +1828,12 @@
   function validateWorkingForLive() {
     if (!working) return false;
     const program = Array.isArray(working.program) ? working.program : [];
-    const invalid = [...program, ...(working.music || [])].find(item => !Number.isFinite(Number(item.duration)) || Number(item.duration) <= 0);
-    if (invalid) { showToast('Cannot Take Live: read or enter a valid duration for ' + (invalid.title || 'every item') + '.', 8500); return false; }
-    const badMusic = (working.music || []).find(track => !track.url || youtubeVideoId(track.url) || !isDirectUrl(track.url));
-    const badMedia = program.find(item => item.mediaUrl && !isDirectUrl(item.mediaUrl));
-    if (badMusic || badMedia) { showToast('Cannot Take Live: replace YouTube, API, or page links with playable direct media files.', 8500); return false; }
-    const missingMedia = program.filter(item =>
-      ['image', 'video'].includes(String(item?.type || '').toLowerCase())
-      && !String(item?.mediaUrl || '').trim()
-    );
-    if (missingMedia.length) {
-      showToast(`Cannot Take Live: ${missingMedia.length} media block${missingMedia.length === 1 ? ' is' : 's are'} missing a file or URL.`, 8500);
-      return false;
-    }
-    const invalidVideo = program.find(item =>
-      String(item?.type || '').toLowerCase() === 'video'
-      && positive(item?.duration) <= 0
-    );
-    if (invalidVideo) {
-      showToast('Cannot Take Live: a video block has no valid duration.', 8500);
+    const issues = readinessIssues();
+    if (issues.length) {
+      renderReadiness();
+      app.querySelector('[data-readiness]').open = true;
+      app.querySelector('[data-readiness]').scrollIntoView({ block: 'center', behavior: 'smooth' });
+      showToast('Cannot Take Live: ' + issues[0].title + ' — ' + issues[0].reasons.join('; ') + '.', 8500);
       return false;
     }
     if (!program.length) {
@@ -1732,7 +1887,7 @@
     reloadStateButton.textContent = 'Reloading…';
     liveStatus.textContent = 'Reloading broadcast…';
     try {
-      await loadState();
+      await loadState({ offerRecovery: false });
       authPanel.hidden = true;
       workspace.hidden = false;
       showToast('Broadcast state reloaded.');
@@ -1781,7 +1936,7 @@
     if (!value) return '';
     const url = new URL(value, location.origin);
     if (url.hostname === 'api.github.com' && /^\/repos\/MatlockFT\/Matlock\/releases\/assets\/\d+$/i.test(url.pathname)) {
-      const response = await fetch(url.href, { headers: { Accept: 'application/vnd.github+json' } });
+      const response = await fetch(url.href, { headers: { Accept: 'application/vnd.github+json' }, signal: AbortSignal.timeout(20000) });
       if (!response.ok) throw new Error('Could not resolve this GitHub asset. Choose it from Media instead.');
       const data = await response.json();
       if (!data.browser_download_url) throw new Error('This GitHub asset has no playable download URL.');
@@ -1926,34 +2081,34 @@
     }
   }
 
-  function rememberAsset(asset, duration) {
+  function rememberAsset(asset, duration, { render = true, changed = true } = {}) {
     asset.duration = duration;
     videoDurationCache.set(asset.url, duration);
     working.mediaLibrary = [...(working.mediaLibrary || []).filter(row => row.url !== asset.url), asset];
     videoLibraryAssets = [...videoLibraryAssets.filter(row => row.url !== asset.url), asset];
-    markDirty();
-    renderVideoLibrary();
+    if (changed) markDirty();
+    if (render) renderVideoLibrary();
   }
 
-  async function addAssetToDraft(asset, targetItem = null) {
+  async function addAssetToDraft(asset, targetItem = null, { render = true } = {}) {
     const kind = assetKind(asset);
     const duration = knownVideoDuration(asset.url) || Number(asset.duration) || await probeUrlDuration(asset.url, kind);
     if (!Number.isFinite(duration) || duration <= 0) throw new Error('Read a valid media duration before adding this file.');
-    rememberAsset(asset, duration);
+    rememberAsset(asset, duration, { render: false, changed: false });
     if (kind === 'audio') {
       const track = { id: uid('music'), title: displayVideoName(asset.name), url: asset.url, duration, gainDb: 0, fadeIn: 0, fadeOut: 0 };
       working.music.push(track);
       selectedMusicId = track.id;
-      renderMusic();
+      if (render) renderMusic();
     } else {
       const item = { id: targetItem?.id || uid('program'), type: 'video', header: 'MMA VIDEO', eyebrow: 'VIDEO', title: displayVideoName(asset.name), mediaUrl: asset.url, duration, videoAudio: true };
       if (targetItem && working.program.includes(targetItem)) Object.assign(targetItem, item);
       else working.program.push(item);
       selectedProgramId = item.id;
-      renderProgram();
+      if (render) renderProgram();
     }
     markDirty();
-    renderVideoLibrary();
+    if (render) renderVideoLibrary();
   }
 
   async function uploadFiles(fileList, forceKind = '', targetItem = null) {
@@ -2013,24 +2168,41 @@
 
   app.querySelector('[data-cancel-uploads]').addEventListener('click', () => { stopUploads = true; });
   app.querySelector('[data-preview-restart]').addEventListener('click', () => { previewStartedAt = new Date().toISOString(); postPreview(); });
+  app.querySelector('[data-library-stop]').addEventListener('click', () => { stopLibraryAdd = true; });
   app.querySelector('[data-library-add-all]').addEventListener('click', async event => {
-    const button = event.currentTarget;
+    const button = event.currentTarget, stop = app.querySelector('[data-library-stop]');
     if (uploadRunning || busyAction) return showToast('Wait for the current operation to finish.');
-    button.disabled = true;
+    const assets = videoLibraryAssets.filter(asset => !videoUsage(asset).draft);
+    button.disabled = true; stop.hidden = false; stopLibraryAdd = false;
     setBusy('library');
-    const failures = [];
-    for (const asset of videoLibraryAssets.filter(asset => !videoUsage(asset).draft)) {
-      try { await addAssetToDraft(asset); } catch { failures.push(displayVideoName(asset.name)); }
+    const failures = []; let added = 0;
+    try {
+      for (const [index, asset] of assets.entries()) {
+        if (stopLibraryAdd || !sessionId) break;
+        app.querySelector('[data-library-add-status]').textContent = 'Adding ' + (index + 1) + ' of ' + assets.length + '…';
+        try { await addAssetToDraft(asset, null, { render: false }); added += 1; }
+        catch { failures.push(displayVideoName(asset.name)); }
+        await new Promise(resolve => window.setTimeout(resolve, 0));
+      }
+    } finally {
+      button.disabled = false; stop.hidden = true;
+      app.querySelector('[data-library-add-status]').textContent = added + ' of ' + assets.length + ' files added.';
+      setBusy(''); renderAll(); persistRecovery();
     }
-    button.disabled = false;
-    setBusy('');
-    showToast(failures.length ? 'Could not read: ' + failures.join(', ') + '. Other files were added.' : 'Unused media added to the draft loop.', 8500);
+    showToast(added + ' files added.' + (stopLibraryAdd ? ' Stopped; remaining files stay in the library.' : '') + (failures.length ? ' Could not read ' + failures.length + ': ' + failures.slice(0, 4).join(', ') + '. Try these individually.' : ''), 9000);
   });
 
   function bindVideoLibraryHandlers() {
-    videoLibrarySearch?.addEventListener('input', renderVideoLibrary);
-    videoLibraryFilter?.addEventListener('change', renderVideoLibrary);
-    videoLibrarySort?.addEventListener('change', renderVideoLibrary);
+    const resetPage = () => { libraryPage = 0; renderVideoLibrary(); };
+    videoLibrarySearch?.addEventListener('input', resetPage);
+    videoLibraryFilter?.addEventListener('change', resetPage);
+    videoLibrarySort?.addEventListener('change', resetPage);
+    for (const [selector, delta] of [['[data-library-prev]', -1], ['[data-library-next]', 1]]) {
+      app.querySelector(selector).addEventListener('click', () => {
+        libraryPage += delta; renderVideoLibrary();
+        videoLibraryPanel.scrollIntoView({ block: 'start' });
+      });
+    }
   
     videoLibraryRefreshButton?.addEventListener('click', () => {
       void loadVideoLibrary();
@@ -2135,9 +2307,11 @@
   renderMonitorAudioButtons();
 
   document.addEventListener('keydown', event => {
-    if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 's') return;
-    event.preventDefault();
-    if (!saveDraftButton.disabled) void saveDraft();
+    if (!(event.ctrlKey || event.metaKey)) return;
+    const key = event.key.toLowerCase();
+    if (key === 's') { event.preventDefault(); if (!saveDraftButton.disabled) void saveDraft(); return; }
+    if (event.target?.closest('input, textarea, select, [contenteditable="true"]') || app.querySelector('dialog[open]')) return;
+    if (key === 'z' || key === 'y') { event.preventDefault(); navigateHistory(key === 'y' || event.shiftKey ? 1 : -1); }
   });
 
   async function startWorkspace({ preserveWorking = false } = {}) {
@@ -2153,6 +2327,7 @@
     }
 
     const login = valid.login || localRead(SESSION_LOGIN_KEY) || 'GitHub';
+    recoveryKey = RECOVERY_PREFIX + login.toLowerCase();
     authPanel.hidden = true;
     workspace.hidden = false;
     if (authStatus) authStatus.textContent = login;
@@ -2184,6 +2359,7 @@
 
   window.addEventListener('beforeunload', event => {
     if (!dirty && !uploadRunning) return;
+    persistRecovery();
     event.preventDefault();
     event.returnValue = '';
   });

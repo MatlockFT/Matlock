@@ -174,3 +174,156 @@ test('blocked monitor audio has a visible recovery control instead of falsely sa
   await expect(sound).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('[data-preview-audio]')).toHaveAttribute('aria-pressed', 'true');
 });
+
+test('unsaved draft survives refresh, restores only Preview, and clears its backup after save', async ({ page }) => {
+  await page.goto(fixture.origin + '/broadcast/control/');
+  await page.getByRole('tab', { name: /Graphics/ }).click();
+  await page.locator('[data-ticker-input]').fill('Recovered local ticker');
+  await expect(page.locator('[data-recovery-status]')).toContainText('backed up');
+  await page.reload();
+  await expect(page.locator('[data-recovery-panel]')).toBeVisible();
+  expect(fixture.controls.writes).toBe(0);
+  await page.locator('[data-restore-recovery]').click();
+  await expect(page.locator('[data-ticker-input]')).toHaveValue('Recovered local ticker');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
+  expect(fixture.state.live.ticker[0]).toBe('LOCAL TEST PREVIEW');
+  await page.locator('[data-save-draft]').click();
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
+  await expect(page.locator('[data-recovery-status]')).toContainText('saved to your account');
+  await page.reload();
+  await expect(page.locator('[data-recovery-panel]')).toBeHidden();
+  await expect(page.locator('[data-ticker-input]')).toHaveValue('Recovered local ticker');
+});
+
+test('recovery warns when remote changed and explicit Reload discards local edits', async ({ page }) => {
+  await page.goto(fixture.origin + '/broadcast/control/');
+  await page.getByRole('tab', { name: /Graphics/ }).click();
+  await page.locator('[data-ticker-input]').fill('Local work');
+  await expect(page.locator('[data-recovery-status]')).toContainText('backed up');
+  fixture.state.draft.ticker = ['New remote draft'];
+  fixture.state = structuredClone(fixture.state);
+  await page.reload();
+  await expect(page.locator('[data-recovery-panel]')).toBeVisible();
+  await expect(page.locator('[data-recovery-detail]')).toContainText('saved draft has changed');
+  await page.locator('[data-discard-recovery]').click();
+  await expect(page.locator('[data-ticker-input]')).toHaveValue('New remote draft');
+  await page.locator('[data-ticker-input]').fill('Discard this local work');
+  page.once('dialog', dialog => dialog.accept());
+  await page.locator('[data-reload-state]').click();
+  await expect(page.locator('[data-ticker-input]')).toHaveValue('New remote draft');
+  await expect(page.locator('[data-recovery-panel]')).toBeHidden();
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
+});
+
+test('undo and redo restore removed blocks and preserve saved-state tracking', async ({ page }) => {
+  await page.goto(fixture.origin + '/broadcast/control/');
+  await expect(page.locator('[data-undo]')).toBeDisabled();
+  await page.locator('[data-add-program="headline"]').click();
+  await expect(page.locator('[data-program-id]')).toHaveCount(2);
+  await page.locator('[data-save-draft]').click();
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
+  await page.locator('[data-delete-program]').click();
+  await expect(page.locator('[data-program-id]')).toHaveCount(1);
+  await page.locator('[data-undo]').click();
+  await expect(page.locator('[data-program-id]')).toHaveCount(2);
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
+  await page.locator('[data-redo]').click();
+  await expect(page.locator('[data-program-id]')).toHaveCount(1);
+  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
+  await page.locator('[data-undo]').click();
+  await page.locator('[data-add-program="results"]').click();
+  await expect(page.locator('[data-redo]')).toBeDisabled();
+  expect(fixture.state.live.program.length).toBe(1);
+});
+
+test('large library pages remain searchable and bulk add covers every page', async ({ page }) => {
+  for (let index = 0; index < 85; index++) fixture.assets.push({
+    id: index + 1, name: `broadcast-audio-Song-${String(index).padStart(3, '0')}.wav`,
+    url: fixture.origin + `/fixtures/tone.wav?track=${index}`, duration: 2, size: 32044
+  });
+  await page.goto(fixture.origin + '/broadcast/control/');
+  await page.getByRole('tab', { name: /Media/ }).click();
+  await expect(page.locator('.mfc-video-asset')).toHaveCount(40);
+  await expect(page.locator('[data-library-page-label]')).toHaveText('Page 1 of 3');
+  await page.locator('[data-library-next]').click();
+  await expect(page.locator('[data-library-page-label]')).toHaveText('Page 2 of 3');
+  await page.locator('[data-video-library-search]').fill('Song 084');
+  await expect(page.locator('.mfc-video-asset')).toHaveCount(1);
+  await expect(page.locator('.mfc-video-asset-title')).toHaveText('Song 084');
+  await page.locator('[data-video-library-search]').fill('');
+  await expect(page.locator('[data-library-page-label]')).toHaveText('Page 1 of 3');
+  await page.locator('[data-library-add-all]').click();
+  await expect(page.locator('[data-music-id]')).toHaveCount(85);
+  await expect(page.locator('[data-save-draft]')).toBeEnabled();
+  await page.locator('[data-save-draft]').click();
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
+  expect(fixture.state.draft.music.length).toBe(85);
+});
+
+test('readiness lists all incomplete media and jumps to the matching inspector', async ({ page }) => {
+  fixture.state.draft.program.push({ id: 'missing-video', type: 'video', title: 'Missing clip', duration: 0, mediaUrl: '' });
+  fixture.state.draft.music.push({ id: 'missing-song', title: 'Missing song', duration: 0, url: '' });
+  await page.goto(fixture.origin + '/broadcast/control/');
+  await expect(page.locator('[data-readiness-summary]')).toContainText('2 items to fix');
+  await page.locator('[data-take-live]').click();
+  await expect(page.locator('[data-readiness-list] li')).toHaveCount(2);
+  expect(fixture.controls.writes).toBe(0);
+  await page.getByRole('button', { name: /^Missing song:/ }).click();
+  await expect(page.locator('[data-workspace-tab="audio"]')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('[data-music-editor-title]')).toHaveText('Missing song');
+});
+
+test('late metadata cannot overwrite an undone media URL edit', async ({ page }) => {
+  fixture.state.draft.program = [{ id: 'clip', type: 'video', title: 'Clip', mediaUrl: fixture.origin + '/fixtures/tone.wav', duration: 2 }];
+  let release;
+  const gate = new Promise(resolve => { release = resolve; });
+  await page.route('**/fixtures/other.wav', async route => { await gate; await route.continue(); });
+  await page.goto(fixture.origin + '/broadcast/control/');
+  const url = page.locator('[data-program-fields]').getByLabel('Video URL');
+  await url.fill(fixture.origin + '/fixtures/other.wav');
+  await url.press('Tab');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
+  await page.locator('[data-undo]').click();
+  release();
+  await expect(page.locator('[data-program-fields]').getByLabel('Video URL')).toHaveValue(fixture.origin + '/fixtures/tone.wav');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
+  // Allow the old read to complete, then verify it did not generate a new edit.
+  await page.waitForTimeout(500);
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
+  await expect(page.locator('[data-redo]')).toBeEnabled();
+});
+
+test('local storage failure does not stop editing or saving', async ({ page }) => {
+  await page.addInitScript(() => {
+    const original = Storage.prototype.setItem;
+    Storage.prototype.setItem = function (key, value) {
+      if (key.startsWith('matlock-broadcast-control:recovery:')) throw new DOMException('Storage full', 'QuotaExceededError');
+      return original.call(this, key, value);
+    };
+  });
+  await page.goto(fixture.origin + '/broadcast/control/');
+  await page.getByRole('tab', { name: /Graphics/ }).click();
+  await page.locator('[data-ticker-input]').fill('Still save this');
+  await expect(page.locator('[data-recovery-status]')).toContainText('Local recovery unavailable');
+  await page.locator('[data-save-draft]').click();
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
+  expect(fixture.state.draft.ticker).toEqual(['Still save this']);
+});
+
+test('stop bulk add keeps successful items and leaves remaining files unused', async ({ page }) => {
+  for (let index = 0; index < 80; index++) fixture.assets.push({
+    id: index + 1, name: `broadcast-audio-Track-${index}.wav`,
+    url: fixture.origin + `/fixtures/tone.wav?track=${index}`, duration: 2
+  });
+  await page.goto(fixture.origin + '/broadcast/control/');
+  await page.getByRole('tab', { name: /Media/ }).click();
+  await expect(page.locator('.mfc-video-asset')).toHaveCount(40);
+  await page.locator('[data-library-add-all]').click();
+  await page.locator('[data-library-stop]').click();
+  await expect(page.locator('[data-library-stop]')).toBeHidden();
+  await expect(page.locator('[data-save-draft]')).toBeEnabled();
+  const added = await page.locator('[data-music-id]').count();
+  expect(added).toBeGreaterThan(0);
+  expect(added).toBeLessThan(80);
+  await expect(page.locator('[data-toast]')).toContainText('remaining files stay in the library');
+});

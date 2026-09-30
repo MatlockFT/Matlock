@@ -47,6 +47,11 @@ jobs:
       - name: Check GitHub Actions organization
         run: npm run check:workflows
 
+      - name: Validate browser audit tooling
+        run: |
+          node --check scripts/qa/site-visual-smoke.spec.cjs
+          node --test scripts/qa/summarize-lighthouse.test.mjs
+
       - name: Check media pipeline separation
         run: npm run check:media
 
