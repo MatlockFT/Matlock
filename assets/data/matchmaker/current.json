@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-30T16:50:26.800Z"
+      "checkedAt": "2026-09-30T21:20:48.341Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-30T16:50:50.756Z",
+      "checkedAt": "2026-09-30T21:21:17.305Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -30993,13 +30993,7 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Marcus McGhee",
-        "opponentId": "marcus-mcghee"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -212265,8 +212259,8 @@
         "event": "Silva vs Cong",
         "date": "2026-10-03",
         "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Benardo Sopaj",
-        "opponentId": "benardo-sopaj"
+        "opponent": "Anthony Romero",
+        "opponentId": "anthony-romero"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -257542,7 +257536,7 @@
     {
       "id": "pete-rodriguez",
       "name": "Pete Rodriguez",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/pete-rodriguez",
       "aliases": [
         "pete-rodriguez"
@@ -257706,9 +257700,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-09-28T11:35:11.102Z"
+        "checkedAt": "2026-09-30T21:20:48.341Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/pete-rodriguez",
@@ -348725,7 +348719,7 @@
   ],
   "coverage": {
     "profileFailures": 29,
-    "activeFighters": 999,
+    "activeFighters": 998,
     "participantHistoriesRequested": 230,
     "verifiedParticipantHistories": 230,
     "ufcStatsNameMisses": 0,
