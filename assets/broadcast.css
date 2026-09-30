@@ -396,7 +396,7 @@ body {
   border-radius: 2px;
   background: rgba(9,12,28,.72);
   color: #fff7df;
-  font: 800 clamp(.38rem, .84vw, .78rem)/1 Arial, Helvetica, sans-serif;
+  font: 700 clamp(.38rem, .84vw, .78rem)/1 var(--mfc-type-bold);
   letter-spacing: .08em;
   cursor: pointer;
   text-shadow: 1px 1px #000;
