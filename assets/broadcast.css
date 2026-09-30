@@ -142,11 +142,25 @@ body {
 
 .mfc-logo span {
   display: block;
+  width: 100%;
   font-family: "MFC Akzidenz Bold", "Arial Narrow", Arial, sans-serif;
-  font-size: clamp(.48rem, 1.95cqw, 1.02rem);
   font-weight: 700;
   line-height: .88;
-  letter-spacing: -.035em;
+  letter-spacing: -.045em;
+  text-align: center;
+}
+
+.mfc-logo span:nth-child(1) {
+  font-size: clamp(.66rem, 2.65cqw, 1.34rem);
+}
+
+.mfc-logo span:nth-child(2) {
+  font-size: clamp(.78rem, 3.18cqw, 1.62rem);
+}
+
+.mfc-logo span:nth-child(3) {
+  font-size: clamp(.90rem, 3.72cqw, 1.88rem);
+  line-height: .84;
 }
 
 .mfc-header-copy {
