@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T08:11:47.766Z",
+  "updatedAt": "2026-09-30T08:14:52.486Z",
   "draft": {
-    "revision": "draft-1790755907766",
-    "updatedAt": "2026-09-30T08:11:47.766Z",
+    "revision": "draft-1790756092486",
+    "updatedAt": "2026-09-30T08:14:52.486Z",
     "startedAt": "2026-09-30T04:00:00.000Z",
     "program": [
       {
@@ -14,7 +14,8 @@
         "title": "VIDEO",
         "mediaUrl": "https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-09/broadcast-video-Heavyweight-Shit-20260930081014576.mp4",
         "duration": 63.296567,
-        "videoAudio": true
+        "videoAudio": true,
+        "musicBehavior": "duck"
       }
     ],
     "music": [
