@@ -193,12 +193,12 @@ body {
 .mfc-header-copy strong {
   display: block;
   overflow: hidden;
-  font-family: var(--mfc-type-weather-info);
-  font-size: clamp(.91rem, 3.82cqw, 1.94rem);
+  font-family: var(--mfc-type-weather-display);
+  font-size: clamp(1.02rem, 3.95cqw, 2rem);
   font-weight: 400;
-  line-height: 1.04;
+  line-height: 1;
   letter-spacing: 0;
-  word-spacing: .015em;
+  word-spacing: 0;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -243,7 +243,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  padding: 4.0% 3.7% 3.7%;
+  padding: 4.8% 3.2% 3.8%;
   background:
     linear-gradient(180deg, rgba(43,57,101,.985) 0%, rgba(33,47,88,.99) 18%, rgba(24,35,71,.995) 100%);
   border-top: 1px solid rgba(177,190,219,.28);
@@ -256,56 +256,56 @@ body {
 }
 
 .mfc-eyebrow {
-  margin: 0 0 2.9%;
-  font-family: var(--mfc-type-weather-info);
-  font-size: clamp(.55rem, 2.32cqw, 1.15rem);
+  margin: 0 0 2.55%;
+  font-family: var(--mfc-type-weather-display);
+  font-size: clamp(.82rem, 3.72cqw, 1.86rem);
   font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: .006em;
-  word-spacing: .025em;
+  line-height: 1;
+  letter-spacing: 0;
+  word-spacing: 0;
   text-transform: uppercase;
   text-shadow:
-    .045em .055em 0 var(--mfc-shadow),
-    .08em .085em .02em rgba(0,0,0,.40),
-    -.012em 0 rgba(98,142,255,.15),
-    .012em 0 rgba(255,118,103,.11);
+    .042em .052em 0 var(--mfc-shadow),
+    .075em .082em .018em rgba(0,0,0,.39),
+    -.01em 0 rgba(98,142,255,.13),
+    .01em 0 rgba(255,118,103,.10);
 }
 
 .mfc-title {
-  max-width: 91%;
+  max-width: 92%;
   margin: 0;
   font-family: var(--mfc-type-weather-display);
-  font-size: clamp(1.03rem, 4.25cqw, 2.15rem);
+  font-size: clamp(1.05rem, 4.08cqw, 2.06rem);
   font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: .004em;
-  word-spacing: .025em;
+  line-height: 1.04;
+  letter-spacing: 0;
+  word-spacing: 0;
   text-transform: uppercase;
   text-shadow:
-    .045em .055em 0 var(--mfc-shadow),
-    .082em .09em .02em rgba(0,0,0,.42),
-    -.012em 0 rgba(98,140,255,.14),
-    .012em 0 rgba(255,112,98,.10),
-    0 0 .02em rgba(255,255,255,.16);
+    .042em .052em 0 var(--mfc-shadow),
+    .076em .084em .018em rgba(0,0,0,.40),
+    -.01em 0 rgba(98,140,255,.13),
+    .01em 0 rgba(255,112,98,.09),
+    0 0 .018em rgba(255,255,255,.14);
   text-wrap: balance;
 }
 
 .mfc-body-copy {
-  max-width: 92%;
-  margin: 4.0% 0 0;
+  max-width: 94%;
+  margin: 3.7% 0 0;
   font-family: var(--mfc-type-weather-display);
-  font-size: clamp(.67rem, 3.05cqw, 1.54rem);
+  font-size: clamp(.80rem, 3.88cqw, 1.94rem);
   font-weight: 400;
-  line-height: 1.38;
-  letter-spacing: .003em;
-  word-spacing: .035em;
+  line-height: 1.55;
+  letter-spacing: 0;
+  word-spacing: 0;
   text-transform: uppercase;
   white-space: pre-line;
   text-shadow:
     .04em .05em 0 var(--mfc-shadow),
-    .075em .082em .018em rgba(0,0,0,.39),
-    -.01em 0 rgba(95,139,255,.12),
-    .01em 0 rgba(255,113,100,.09);
+    .072em .078em .016em rgba(0,0,0,.38),
+    -.01em 0 rgba(95,139,255,.11),
+    .01em 0 rgba(255,113,100,.08);
 }
 
 .mfc-image,
@@ -358,13 +358,13 @@ body {
   grid-template-columns: 1fr 1fr;
   align-items: center;
   height: 43%;
-  padding: .45% 10.5% 0;
+  padding: .35% 11.2% 0;
   font-family: var(--mfc-type-weather-small);
-  font-size: clamp(.46rem, 2.18cqw, 1.04rem);
+  font-size: clamp(.90rem, 4.95cqw, 2.42rem);
   font-weight: 400;
   line-height: 1;
-  letter-spacing: .004em;
-  word-spacing: .02em;
+  letter-spacing: 0;
+  word-spacing: 0;
   white-space: nowrap;
 }
 
@@ -403,19 +403,19 @@ body {
 .mfc-ticker-track span {
   flex: 0 0 auto;
   padding-right: 12cqw;
-  padding-left: 44cqw;
+  padding-left: 45.5cqw;
   font-family: var(--mfc-type-weather-info);
-  font-size: clamp(.53rem, 2.62cqw, 1.28rem);
+  font-size: clamp(.86rem, 4.80cqw, 2.35rem);
   font-weight: 400;
-  line-height: 1.06;
-  letter-spacing: .002em;
-  word-spacing: .035em;
+  line-height: 1;
+  letter-spacing: 0;
+  word-spacing: 0;
   white-space: nowrap;
   text-shadow:
     .04em .05em 0 #05050b,
-    .072em .078em .016em rgba(0,0,0,.40),
-    -.01em 0 rgba(94,138,255,.11),
-    .01em 0 rgba(255,113,98,.08);
+    .07em .076em .016em rgba(0,0,0,.39),
+    -.01em 0 rgba(94,138,255,.10),
+    .01em 0 rgba(255,113,98,.07);
 }
 
 .mfc-sound {
