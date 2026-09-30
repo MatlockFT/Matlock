@@ -121,11 +121,11 @@ body {
   margin-top: -.8%;
   margin-bottom: -.8%;
   padding: 1.25% 1.35% .95%;
-  border: clamp(2px, .34vw, 4px) solid rgba(218,216,232,.88);
+  border: clamp(2px, .38vw, 4px) solid rgba(220,220,233,.92);
   border-radius: 15% / 18%;
   background:
     linear-gradient(145deg, rgba(255,255,255,.10), transparent 28%),
-    linear-gradient(180deg, #3a3787 0%, #292d78 42%, #1d255f 100%);
+    linear-gradient(180deg, #343675 0%, #252d68 44%, #1a2458 100%);
   box-shadow:
     .52vw .55vw .10vw rgba(11, 10, 25, .72),
     inset .22vw .25vw .62vw rgba(255,255,255,.15),
@@ -144,23 +144,11 @@ body {
   display: block;
   width: 100%;
   font-family: "MFC Akzidenz Bold", "Arial Narrow", Arial, sans-serif;
+  font-size: clamp(.60rem, 2.50cqw, 1.26rem);
   font-weight: 700;
-  line-height: .88;
-  letter-spacing: -.045em;
+  line-height: .82;
+  letter-spacing: -.05em;
   text-align: center;
-}
-
-.mfc-logo span:nth-child(1) {
-  font-size: clamp(.66rem, 2.65cqw, 1.34rem);
-}
-
-.mfc-logo span:nth-child(2) {
-  font-size: clamp(.78rem, 3.18cqw, 1.62rem);
-}
-
-.mfc-logo span:nth-child(3) {
-  font-size: clamp(.90rem, 3.72cqw, 1.88rem);
-  line-height: .84;
 }
 
 .mfc-header-copy {
