@@ -930,8 +930,10 @@
           try {
             const duration = await probeFileDuration(file);
             const url = await uploadMediaFile(file, 'video');
+            videoDurationCache.set(url, duration);
             item.mediaUrl = url;
             item.duration = duration;
+            void loadVideoLibrary({ quiet: true });
             showToast('Video uploaded and added to the program.');
             renderProgram();
             renderProgramEditor();
@@ -1337,6 +1339,7 @@
       setDirty(false);
       showToast('Broadcast draft saved.');
       renderSummary();
+      renderVideoLibrary();
     } catch (error) {
       if (error.status === 409) showToast('Broadcast state changed remotely. Use Reload State, then try again.', 8500);
       else showToast(`Could not save draft: ${error.message}`, 8500);
@@ -1370,6 +1373,7 @@
       setDirty(false);
       showToast('New programming is live. Existing viewers will sync automatically.');
       renderSummary();
+      renderVideoLibrary();
     } catch (error) {
       if (error.status === 409) showToast('Broadcast state changed remotely. Use Reload State, then try again.', 8500);
       else showToast(`Could not take broadcast live: ${error.message}`, 8500);
@@ -1682,6 +1686,7 @@
     if (preserveWorking && working) {
       renderSummary();
       setDirty(true);
+      void loadVideoLibrary({ quiet: true });
       showToast('Signed back in. Unsaved changes were preserved.');
       return;
     }
