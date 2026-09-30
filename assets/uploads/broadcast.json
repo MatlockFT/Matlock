@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T21:08:21.980Z",
+  "updatedAt": "2026-09-30T21:37:39.236Z",
   "draft": {
-    "revision": "draft-1790802501980",
-    "updatedAt": "2026-09-30T21:08:21.980Z",
+    "revision": "draft-1790804259236",
+    "updatedAt": "2026-09-30T21:37:39.236Z",
     "startedAt": "2026-09-30T04:00:00.000Z",
     "program": [
       {
@@ -31,7 +31,7 @@
       {
         "id": "news-c20e2907",
         "type": "youtube",
-        "title": "Payton Talbott Wanted Sean O'Malley White House Fight, Reacts To Raoni Barcelos, More | MMA Fighting",
+        "title": "Payton Talbott Wanted Sean O'Malley White House Fight, Reacts To Raoni Barcelos, More",
         "body": "",
         "eyebrow": "MMA Fighting",
         "header": "MMA NEWS",
@@ -54,6 +54,33 @@
         "duration": 20,
         "source": "Uncrowned",
         "sourceUrl": "https://sports.yahoo.com/articles/raoni-barcelos-released-hospital-scary-165947974.html"
+      },
+      {
+        "id": "news-d1c5c896",
+        "type": "headline",
+        "title": "Two Charged With Perjury Over Evidence in Conor McGregor’s Failed Nikita Hand Appeal",
+        "body": "Two former neighbours of Nikita Hand have been charged with perjury over sworn statements Conor McGregor sought to use in his failed civil appeal.",
+        "eyebrow": "LowKick MMA",
+        "header": "MMA NEWS",
+        "duration": 20,
+        "source": "LowKick MMA",
+        "sourceUrl": "https://www.lowkickmma.com/two-charged-perjury-conor-mcgregor-fail-hand-appeal/"
+      },
+      {
+        "id": "news-c43cf343",
+        "type": "youtube",
+        "title": "UFC 332 Embedded: Vlog Series - Episode 3",
+        "body": "",
+        "eyebrow": "UFC",
+        "header": "MMA NEWS",
+        "duration": 504,
+        "source": "UFC",
+        "sourceUrl": "https://www.youtube.com/watch?v=Wq3a5WinZwU",
+        "mediaUrl": "https://www.youtube.com/watch?v=Wq3a5WinZwU",
+        "youtubeId": "Wq3a5WinZwU",
+        "sourceDuration": 504,
+        "videoAudio": true,
+        "musicBehavior": "duck"
       }
     ],
     "music": [
@@ -69,7 +96,9 @@
     ],
     "ticker": [
       "Onosato Overcomes Late Wobble To Win Yusho",
-      "Jose Aldo advises Conor McGregor to undergo ‘dietary re-education’ before taking another UFC fight"
+      "Jose Aldo advises Conor McGregor to undergo ‘dietary re-education’ before taking another UFC fight",
+      "Canelo Alvarez set for WBC super middleweight title fight in October",
+      "UFC Headed Back to Sydney, Australia in Feb. 2027"
     ],
     "audio": {
       "master": 0.91,
