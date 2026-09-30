@@ -1574,6 +1574,51 @@
     throw new Error('Media upload timed out.');
   }
 
+  function bindVideoLibraryHandlers() {
+    videoLibrarySearch?.addEventListener('input', renderVideoLibrary);
+  
+    videoLibraryRefreshButton?.addEventListener('click', () => {
+      void loadVideoLibrary();
+    });
+  
+    videoPreviewDialog?.addEventListener('close', () => {
+      if (!videoPreviewPlayer) return;
+      videoPreviewPlayer.pause();
+      videoPreviewPlayer.removeAttribute('src');
+      videoPreviewPlayer.load();
+    });
+  
+    videoLibraryUploadInput?.addEventListener('change', async () => {
+      const files = Array.from(videoLibraryUploadInput.files || []);
+      if (!files.length || videoLibraryUploadInput.disabled) return;
+      videoLibraryUploadInput.disabled = true;
+      if (videoLibraryRefreshButton) videoLibraryRefreshButton.disabled = true;
+      try {
+        let completed = 0;
+        for (let index = 0; index < files.length; index += 1) {
+          const file = files[index];
+          setUploadProgress(1, `Reading ${file.name}… (${index + 1}/${files.length})`);
+          const duration = await probeFileDuration(file);
+          const url = await uploadMediaFile(file, 'video');
+          videoDurationCache.set(url, duration);
+          completed += 1;
+        }
+        await loadVideoLibrary({ quiet: true });
+        showToast(`${completed} video${completed === 1 ? '' : 's'} uploaded to the Video Library.`);
+      } catch (error) {
+        showToast(`Video library upload failed: ${error.message}`, 9000);
+        void loadVideoLibrary({ quiet: true });
+      } finally {
+        videoLibraryUploadInput.value = '';
+        videoLibraryUploadInput.disabled = false;
+        if (videoLibraryRefreshButton) videoLibraryRefreshButton.disabled = false;
+        window.setTimeout(clearUploadProgress, 900);
+      }
+    });
+  }
+
+  bindVideoLibraryHandlers();
+
   musicUploadInput.addEventListener('change', async () => {
     const files = Array.from(musicUploadInput.files || []);
     if (!files.length || musicUploadInput.disabled) return;
