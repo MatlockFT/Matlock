@@ -1,14 +1,43 @@
+/*
+  WeatherSTAR XL typography roles, pinned to the same font files used by the
+  Mist Weather Media recreation. These are loaded remotely so the Fight
+  Channel does not redistribute the font binaries from this repository.
+*/
 @font-face {
-  font-family: "Standard";
-  src: url("/assets/fonts/standard/standard-book.woff2") format("woff2");
+  font-family: "MFC Akzidenz Bold";
+  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AkzidenzGroteskBE-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MFC Akzidenz Condensed";
+  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AkzidenzGroteskBE-Cn.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Standard";
-  src: url("/assets/fonts/standard/standard-bold.woff2") format("woff2");
+  font-family: "MFC Akzidenz Medium";
+  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AkzidenzGroteskBE-Md.otf") format("opentype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MFC Akzidenz Medium Extended";
+  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AkzidenzGroteskBEMediumExtended.otf") format("opentype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MFC Helvetica Neue Bold Condensed";
+  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/HelveticaNeueLT-BoldCond.otf") format("opentype");
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -25,7 +54,10 @@
   --mfc-gold: #c88c32;
   --mfc-gold-deep: #7a4d21;
   --mfc-line: rgba(212, 222, 255, .34);
-  --mfc-type: "Standard", "Helvetica Neue", Arial, sans-serif;
+  --mfc-type: "MFC Akzidenz Medium", "Helvetica Neue", Arial, sans-serif;
+  --mfc-type-bold: "MFC Akzidenz Bold", "Arial Narrow", Arial, sans-serif;
+  --mfc-type-condensed: "MFC Helvetica Neue Bold Condensed", "MFC Akzidenz Condensed", "Arial Narrow", sans-serif;
+  --mfc-type-extended: "MFC Akzidenz Medium Extended", "MFC Akzidenz Medium", Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -106,7 +138,7 @@ body {
 
 .mfc-logo span {
   display: block;
-  font-family: var(--mfc-type);
+  font-family: var(--mfc-type-bold);
   font-size: clamp(.54rem, 2.25vw, 2.15rem);
   font-weight: 900;
   line-height: .86;
@@ -136,7 +168,7 @@ body {
 .mfc-header-kicker {
   display: block;
   margin-bottom: .35%;
-  font-family: var(--mfc-type);
+  font-family: var(--mfc-type-bold);
   font-size: clamp(.34rem, .9vw, .86rem);
   font-weight: 800;
   letter-spacing: .14em;
@@ -144,6 +176,7 @@ body {
 
 .mfc-header-copy strong {
   display: block;
+  font-family: var(--mfc-type-bold);
   overflow: hidden;
   font-size: clamp(.84rem, 3.25vw, 3rem);
   line-height: .9;
@@ -183,6 +216,7 @@ body {
 
 .mfc-eyebrow {
   margin: 0 0 2.1%;
+  font-family: var(--mfc-type-bold);
   font-size: clamp(.55rem, 1.55vw, 1.45rem);
   font-weight: 700;
   line-height: 1;
@@ -195,6 +229,7 @@ body {
 
 .mfc-title {
   max-width: 92%;
+  font-family: var(--mfc-type-bold);
   margin: 0;
   font-size: clamp(1.15rem, 4.2vw, 4rem);
   font-weight: 700;
@@ -209,6 +244,7 @@ body {
 
 .mfc-body-copy {
   max-width: 93%;
+  font-family: var(--mfc-type-condensed);
   margin: 3.1% 0 0;
   font-size: clamp(.7rem, 2.15vw, 2.05rem);
   font-weight: 700;
@@ -244,6 +280,7 @@ body {
 
 .mfc-info {
   position: absolute;
+  font-family: var(--mfc-type-extended);
   z-index: 4;
   left: 8%;
   right: 8%;
@@ -311,7 +348,7 @@ body {
   padding: 0 1.4%;
   background: linear-gradient(180deg, #cf9136, #995d25);
   color: #171019;
-  font-family: var(--mfc-type);
+  font-family: var(--mfc-type-bold);
   font-size: clamp(.42rem, 1.05vw, 1rem);
   font-weight: 900;
   letter-spacing: .11em;
@@ -337,6 +374,7 @@ body {
 
 .mfc-ticker-track span {
   flex: 0 0 auto;
+  font-family: var(--mfc-type-condensed);
   padding-right: 4.5rem;
   font-size: clamp(.47rem, 1.15vw, 1.08rem);
   font-weight: 700;
