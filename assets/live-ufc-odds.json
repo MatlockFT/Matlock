@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T15:24:00.645Z",
+  "generated_at": "2026-09-30T20:16:47.077Z",
   "source": "UFC.com + BestFightOdds",
   "events": [
     {
@@ -106,16 +106,16 @@
           ]
         },
         {
-          "source": "BestFightOdds",
-          "provider": "FanDuel",
+          "source": "UFC.com",
+          "provider": "UFC.com",
           "fighters": [
             {
               "name": "Marcus McGhee",
               "moneyline": "-150"
             },
             {
-              "name": "Benardo Sopaj",
-              "moneyline": "+118"
+              "name": "Anthony Romero",
+              "moneyline": "+125"
             }
           ]
         },
@@ -152,6 +152,20 @@
           "provider": "FanDuel",
           "fighters": [
             {
+              "name": "Jacobe Smith",
+              "moneyline": "-1000"
+            },
+            {
+              "name": "Bruce Whitehead",
+              "moneyline": "+560"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
               "name": "Rafael Dos Anjos",
               "moneyline": "+200"
             },
@@ -172,20 +186,6 @@
             {
               "name": "Ismail Naurdiev",
               "moneyline": "-140"
-            }
-          ]
-        },
-        {
-          "source": "BestFightOdds",
-          "provider": "FanDuel",
-          "fighters": [
-            {
-              "name": "Jacobe Smith",
-              "moneyline": "-1000"
-            },
-            {
-              "name": "Bruce Whitehead",
-              "moneyline": "+560"
             }
           ]
         },

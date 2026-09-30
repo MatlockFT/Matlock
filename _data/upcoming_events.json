@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-30T15:24:06.422Z",
+  "generated_at": "2026-09-30T20:17:01.399Z",
   "events": [
     {
       "id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
@@ -522,7 +522,7 @@
             {
               "order": 8,
               "label": "",
-              "weight_class": "Bantamweight Bout",
+              "weight_class": "Featherweight Bout",
               "fighters": [
                 {
                   "name": "Marcus McGhee",
@@ -533,16 +533,14 @@
                   "moneyline": "-150"
                 },
                 {
-                  "name": "Benardo Sopaj",
-                  "initials": "BS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/6/SOPAJ_BENARDO_L_03-02.png?itok=fxyt7hIc",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+118"
+                  "name": "Anthony Romero",
+                  "initials": "AR",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": "",
+                  "moneyline": "+125"
                 }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
+              ]
             },
             {
               "order": 9,
@@ -604,6 +602,31 @@
             {
               "order": 11,
               "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Jacobe Smith",
+                  "initials": "JS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/SMITH_JACOBE_L_02-21.png?itok=sBX3a4YZ",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-1000"
+                },
+                {
+                  "name": "Bruce Whitehead",
+                  "initials": "BW",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": "",
+                  "moneyline": "+560"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
+            {
+              "order": 12,
+              "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
                 {
@@ -627,7 +650,7 @@
               "odds_provider": "FanDuel"
             },
             {
-              "order": 12,
+              "order": 13,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -646,31 +669,6 @@
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": "-140"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 13,
-              "label": "",
-              "weight_class": "Welterweight Bout",
-              "fighters": [
-                {
-                  "name": "Jacobe Smith",
-                  "initials": "JS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/SMITH_JACOBE_L_02-21.png?itok=sBX3a4YZ",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-1000"
-                },
-                {
-                  "name": "Bruce Whitehead",
-                  "initials": "BW",
-                  "image": "",
-                  "image_source": "",
-                  "image_framing": "",
-                  "moneyline": "+560"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -2881,14 +2879,14 @@
       "starts_at": "",
       "expires_at": "",
       "venue": "Venue TBA",
-      "broadcast": "UFC Fight Pass",
+      "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
       "updated_label": "September 30, 2026",
       "sections": [
         {
           "kind": "main",
           "title": "Main Card",
-          "time": "Time TBA",
+          "time": "1:00 PM ET",
           "bouts": [
             {
               "order": 1,

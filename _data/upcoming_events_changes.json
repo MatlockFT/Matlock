@@ -1,7 +1,106 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-30T15:26:41.508Z",
+  "generated_at": "2026-09-30T20:18:57.242Z",
   "changes": [
+    {
+      "id": "2026-09-30T20:18:57.242Z|ufc-332-2026-10-03-fight-card|bout_moved|1",
+      "at": "2026-09-30T20:18:57.242Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Jacobe Smith vs Bruce Whitehead moved on Silva vs Cong.",
+      "details": {
+        "from_order": 13,
+        "to_order": 11,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-09-30T20:18:57.242Z|ufc-332-2026-10-03-fight-card|bout_moved|2",
+      "at": "2026-09-30T20:18:57.242Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Rafael Dos Anjos vs Alexander Hernandez moved on Silva vs Cong.",
+      "details": {
+        "from_order": 11,
+        "to_order": 12,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-09-30T20:18:57.242Z|ufc-332-2026-10-03-fight-card|bout_moved|3",
+      "at": "2026-09-30T20:18:57.242Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Marvin Vettori vs Ismail Naurdiev moved on Silva vs Cong.",
+      "details": {
+        "from_order": 12,
+        "to_order": 13,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-09-30T20:18:57.242Z|ufc-332-2026-10-03-fight-card|bout_changed|4",
+      "at": "2026-09-30T20:18:57.242Z",
+      "type": "bout_changed",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Marcus McGhee vs Benardo Sopaj changed to Marcus McGhee vs Anthony Romero on Silva vs Cong.",
+      "details": {
+        "order": 8,
+        "section": "Prelims",
+        "from": [
+          "Marcus McGhee",
+          "Benardo Sopaj"
+        ],
+        "to": [
+          "Marcus McGhee",
+          "Anthony Romero"
+        ]
+      }
+    },
+    {
+      "id": "2026-09-30T20:18:57.242Z|ufc-fight-night-2026-11-21-fight-card|broadcast_changed|5",
+      "at": "2026-09-30T20:18:57.242Z",
+      "type": "broadcast_changed",
+      "event_id": "ufc-fight-night-2026-11-21-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Procházka vs Stirling",
+      "event_date": "2026-11-21",
+      "summary": "UFC Fight Night Procházka vs Stirling: broadcast changed.",
+      "details": {
+        "from": "UFC Fight Pass",
+        "to": "Paramount+ · UFC Fight Pass"
+      }
+    },
+    {
+      "id": "2026-09-30T20:18:57.242Z|ufc-fight-night-2026-11-21-fight-card|start_time_changed|6",
+      "at": "2026-09-30T20:18:57.242Z",
+      "type": "start_time_changed",
+      "event_id": "ufc-fight-night-2026-11-21-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Procházka vs Stirling",
+      "event_date": "2026-11-21",
+      "summary": "UFC Fight Night Procházka vs Stirling: Main Card start time changed.",
+      "details": {
+        "section": "Main Card",
+        "from": "Time TBA",
+        "to": "1:00 PM ET"
+      }
+    },
     {
       "id": "2026-09-30T15:26:41.508Z|dwcs-season-10-week-9-2026-10-06|event_added|1",
       "at": "2026-09-30T15:26:41.508Z",
@@ -4637,102 +4736,6 @@
         "to_order": 3,
         "from_section": "Main Card",
         "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|15",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Khaos Williams vs Roberto Soldic moved on Silva vs Cong.",
-      "details": {
-        "from_order": 3,
-        "to_order": 4,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|16",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Ateba Gautier vs Roman Kopylov moved on Silva vs Cong.",
-      "details": {
-        "from_order": 4,
-        "to_order": 5,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|17",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Imanol Rodriguez vs Alden Coria moved on Silva vs Cong.",
-      "details": {
-        "from_order": 5,
-        "to_order": 6,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|18",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Damian Pinas vs Andrey Pulyaev moved on Silva vs Cong.",
-      "details": {
-        "from_order": 6,
-        "to_order": 7,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|19",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Marcus McGhee vs Benardo Sopaj moved on Silva vs Cong.",
-      "details": {
-        "from_order": 7,
-        "to_order": 8,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|20",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Johnny Walker vs Mick Parkin moved on Silva vs Cong.",
-      "details": {
-        "from_order": 9,
-        "to_order": 9,
-        "from_section": "Main Card",
-        "to_section": "Early Prelims"
       }
     }
   ]
