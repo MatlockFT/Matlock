@@ -1596,6 +1596,7 @@
     videoPreviewDialog?.addEventListener('close', () => {
       if (!videoPreviewPlayer) return;
       videoPreviewPlayer.pause();
+      videoPreviewPlayer.onloadedmetadata = null;
       videoPreviewPlayer.removeAttribute('src');
       videoPreviewPlayer.load();
     });
