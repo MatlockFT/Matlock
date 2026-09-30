@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T08:11:17.380Z",
+  "updatedAt": "2026-09-30T08:11:47.766Z",
   "draft": {
-    "revision": "draft-1790755877380",
-    "updatedAt": "2026-09-30T08:11:17.380Z",
+    "revision": "draft-1790755907766",
+    "updatedAt": "2026-09-30T08:11:47.766Z",
     "startedAt": "2026-09-30T04:00:00.000Z",
     "program": [
       {
@@ -17,7 +17,17 @@
         "videoAudio": true
       }
     ],
-    "music": [],
+    "music": [
+      {
+        "id": "music-38fb1ab2",
+        "title": "Remote track",
+        "url": "https://youtu.be/T5umkDLypsw?si=Bc2OHbajrDbJiMS-",
+        "duration": 180,
+        "gainDb": 0,
+        "fadeIn": 1.5,
+        "fadeOut": 2
+      }
+    ],
     "ticker": [
       "DWCS WEEK 8 RESULTS AND HIGHLIGHTS",
       "UFC 332 COVERAGE",
@@ -35,21 +45,32 @@
     }
   },
   "live": {
-    "revision": "live-1790748176493",
-    "updatedAt": "2026-09-30T06:02:56.493Z",
-    "startedAt": "2026-09-30T06:02:56.493Z",
+    "revision": "live-1790755907766",
+    "updatedAt": "2026-09-30T08:11:47.766Z",
+    "startedAt": "2026-09-30T08:11:47.766Z",
     "program": [
       {
-        "id": "dwcs-week-8",
-        "type": "headline",
-        "header": "YOUR FIGHT FORECAST",
-        "eyebrow": "TONIGHT",
-        "title": "DWCS WEEK 8",
-        "body": "RESULTS, HIGHLIGHTS AND FIGHT-BY-FIGHT NOTES\\nFROM MATLOCK.",
-        "duration": 20
+        "id": "program-a2d5009f",
+        "type": "video",
+        "header": "MMA VIDEO",
+        "eyebrow": "VIDEO",
+        "title": "VIDEO",
+        "mediaUrl": "https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-09/broadcast-video-Heavyweight-Shit-20260930081014576.mp4",
+        "duration": 63.296567,
+        "videoAudio": true
       }
     ],
-    "music": [],
+    "music": [
+      {
+        "id": "music-38fb1ab2",
+        "title": "Remote track",
+        "url": "https://youtu.be/T5umkDLypsw?si=Bc2OHbajrDbJiMS-",
+        "duration": 180,
+        "gainDb": 0,
+        "fadeIn": 1.5,
+        "fadeOut": 2
+      }
+    ],
     "ticker": [
       "DWCS WEEK 8 RESULTS AND HIGHLIGHTS",
       "UFC 332 COVERAGE",
