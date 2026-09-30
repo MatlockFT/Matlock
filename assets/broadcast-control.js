@@ -15,8 +15,10 @@
   const signInButton = app.querySelector('[data-sign-in]');
   const saveDraftButton = app.querySelector('[data-save-draft]');
   const takeLiveButton = app.querySelector('[data-take-live]');
+  const reloadStateButton = app.querySelector('[data-reload-state]');
   const liveStatus = app.querySelector('[data-live-status]');
   const authStatus = app.querySelector('[data-auth-status]');
+  const draftStatus = app.querySelector('[data-draft-status]');
   const loopTotal = app.querySelector('[data-loop-total]');
   const previewNow = app.querySelector('[data-preview-now]');
   const previewDuration = app.querySelector('[data-preview-duration]');
@@ -52,7 +54,10 @@
   let draggingProgramId = '';
   let draggingMusicId = '';
   let popup = null;
+  let popupWatch = 0;
   let toastTimer = 0;
+  let dirty = false;
+  let busyAction = '';
 
   const clone = value => JSON.parse(JSON.stringify(value));
   const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || 0));
@@ -78,6 +83,44 @@
     toast.textContent = message;
     toast.hidden = false;
     toastTimer = window.setTimeout(() => { toast.hidden = true; }, ms);
+  }
+
+  function syncActionButtons() {
+    const busy = Boolean(busyAction);
+    saveDraftButton.disabled = !working || !dirty || busy;
+    takeLiveButton.disabled = !working || busy;
+    if (reloadStateButton) reloadStateButton.disabled = !sessionId || busy;
+  }
+
+  function setDirty(value = true) {
+    dirty = Boolean(value);
+    if (draftStatus) {
+      draftStatus.textContent = dirty ? 'Unsaved changes' : 'Draft saved';
+      draftStatus.dataset.dirty = dirty ? 'true' : 'false';
+    }
+    syncActionButtons();
+  }
+
+  function setBusy(action = '') {
+    busyAction = action;
+    syncActionButtons();
+  }
+
+  function expireSession() {
+    sessionId = '';
+    localWrite(SESSION_ID_KEY, '');
+    authPanel.hidden = false;
+    workspace.hidden = true;
+    liveStatus.textContent = 'Sign in required';
+    if (authStatus) authStatus.textContent = 'GitHub: session expired';
+    syncActionButtons();
+  }
+
+  function resetSignInUi() {
+    window.clearInterval(popupWatch);
+    popupWatch = 0;
+    signInButton.disabled = false;
+    signInButton.textContent = 'Sign in with GitHub';
   }
 
   function setUploadProgress(percent, label) {
@@ -119,9 +162,26 @@
       showToast('Writer auth bridge is unavailable.');
       return;
     }
+    if (popup && !popup.closed) {
+      popup.focus();
+      showToast('GitHub sign-in is already open.');
+      return;
+    }
     const url = `${authBase}/auth/github/start?origin=${encodeURIComponent(location.origin)}`;
+    signInButton.disabled = true;
+    signInButton.textContent = 'Waiting for GitHub…';
     popup = window.open(url, 'matlock-broadcast-github-auth', 'popup=yes,width=720,height=820,resizable=yes,scrollbars=yes');
-    if (!popup) showToast('Allow popups for this page and try again.');
+    if (!popup) {
+      resetSignInUi();
+      showToast('Allow popups for this page and try again.');
+      return;
+    }
+    popupWatch = window.setInterval(() => {
+      if (!popup || popup.closed) {
+        popup = null;
+        resetSignInUi();
+      }
+    }, 500);
   }
 
   window.addEventListener('message', async event => {
@@ -130,6 +190,7 @@
     if (!message || message.type !== 'matlock-writer-github-auth') return;
     if (popup && !popup.closed) popup.close();
     popup = null;
+    resetSignInUi();
 
     if (!message.ok || !message.sessionId) {
       showToast(message.error || 'GitHub sign-in did not complete.', 7000);
@@ -139,7 +200,7 @@
     localWrite(SESSION_ID_KEY, message.sessionId);
     localWrite(SESSION_LOGIN_KEY, message.login || 'GitHub user');
     sessionId = message.sessionId;
-    await startWorkspace();
+    await startWorkspace({ preserveWorking: Boolean(working && dirty) });
   });
 
   signInButton.addEventListener('click', beginSignIn);
@@ -158,11 +219,7 @@
     });
     const data = await response.json().catch(() => ({}));
     if (!response.ok) {
-      if (response.status === 401) {
-        localWrite(SESSION_ID_KEY, '');
-        sessionId = '';
-        if (authStatus) authStatus.textContent = 'GitHub: session expired';
-      }
+      if (response.status === 401) expireSession();
       const error = new Error(data.message || data.error || `${response.status} ${response.statusText}`);
       error.status = response.status;
       throw error;
@@ -228,6 +285,7 @@
   function markDirty() {
     if (!working) return;
     working.updatedAt = new Date().toISOString();
+    setDirty(true);
     renderSummary();
     postPreview();
   }
@@ -340,6 +398,7 @@
         draggingProgramId = item.id;
         block.classList.add('is-dragging');
         event.dataTransfer.effectAllowed = 'move';
+        event.dataTransfer.setData('text/plain', item.id);
       });
       block.addEventListener('dragend', () => {
         draggingProgramId = '';
@@ -599,8 +658,11 @@
       }
     }
 
+    const programIndex = working.program.findIndex(row => row.id === item.id);
     const moveLeft = smallButton('← Move left', () => moveProgram(item.id, -1), 'mfc-button-ghost');
     const moveRight = smallButton('Move right →', () => moveProgram(item.id, 1), 'mfc-button-ghost');
+    moveLeft.disabled = programIndex <= 0;
+    moveRight.disabled = programIndex < 0 || programIndex >= working.program.length - 1;
     form.append(buttonRow(moveLeft, moveRight));
     programFields.append(form);
   }
@@ -618,8 +680,10 @@
   deleteProgramButton.addEventListener('click', () => {
     const item = currentProgram();
     if (!item) return;
-    working.program = working.program.filter(row => row.id !== item.id);
-    selectedProgramId = working.program[0]?.id || '';
+    const index = working.program.findIndex(row => row.id === item.id);
+    if (index < 0) return;
+    working.program.splice(index, 1);
+    selectedProgramId = working.program[Math.min(index, working.program.length - 1)]?.id || '';
     renderProgram();
     markDirty();
   });
@@ -687,10 +751,19 @@
         renderMusic();
         renderMusicEditor();
       });
+      block.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          selectedMusicId = track.id;
+          renderMusic();
+          renderMusicEditor();
+        }
+      });
       block.addEventListener('dragstart', event => {
         draggingMusicId = track.id;
         block.classList.add('is-dragging');
         event.dataTransfer.effectAllowed = 'move';
+        event.dataTransfer.setData('text/plain', track.id);
       });
       block.addEventListener('dragend', () => {
         draggingMusicId = '';
@@ -810,8 +883,11 @@
         showToast('Could not read duration from that URL.', 6500);
       }
     }, 'mfc-button-ghost');
+    const musicIndex = working.music.findIndex(row => row.id === track.id);
     const moveLeft = smallButton('← Move left', () => moveMusic(track.id, -1), 'mfc-button-ghost');
     const moveRight = smallButton('Move right →', () => moveMusic(track.id, 1), 'mfc-button-ghost');
+    moveLeft.disabled = musicIndex <= 0;
+    moveRight.disabled = musicIndex < 0 || musicIndex >= working.music.length - 1;
 
     form.append(titleField.wrap, urlField.wrap, durationField.wrap, gainField.wrap, fadeInField.wrap, fadeOutField.wrap, buttonRow(detectButton, moveLeft, moveRight));
     musicFields.append(form);
@@ -830,8 +906,10 @@
   deleteMusicButton.addEventListener('click', () => {
     const item = currentMusic();
     if (!item) return;
-    working.music = working.music.filter(row => row.id !== item.id);
-    selectedMusicId = working.music[0]?.id || '';
+    const index = working.music.findIndex(row => row.id === item.id);
+    if (index < 0) return;
+    working.music.splice(index, 1);
+    selectedMusicId = working.music[Math.min(index, working.music.length - 1)]?.id || '';
     renderMusic();
     markDirty();
   });
@@ -885,8 +963,7 @@
     renderMusic();
     renderAudioSettings();
     tickerInput.value = (working.ticker || []).join('\n');
-    saveDraftButton.disabled = false;
-    takeLiveButton.disabled = false;
+    setDirty(false);
     postPreview();
   }
 
@@ -907,8 +984,10 @@
   }
 
   async function saveDraft() {
-    saveDraftButton.disabled = true;
-    takeLiveButton.disabled = true;
+    if (!working || !dirty || busyAction) return;
+    const originalLabel = saveDraftButton.textContent;
+    setBusy('save');
+    saveDraftButton.textContent = 'Saving…';
     try {
       const now = new Date().toISOString();
       working.updatedAt = now;
@@ -920,20 +999,23 @@
         draft: clone(working)
       };
       await writeState(fullState, 'Update broadcast draft [skip ci]');
+      setDirty(false);
       showToast('Broadcast draft saved.');
       renderSummary();
     } catch (error) {
-      if (error.status === 409) showToast('Broadcast state changed remotely. Reload this page before saving again.', 8500);
+      if (error.status === 409) showToast('Broadcast state changed remotely. Use Reload State, then try again.', 8500);
       else showToast(`Could not save draft: ${error.message}`, 8500);
     } finally {
-      saveDraftButton.disabled = false;
-      takeLiveButton.disabled = false;
+      saveDraftButton.textContent = originalLabel;
+      setBusy('');
     }
   }
 
   async function takeLive() {
-    saveDraftButton.disabled = true;
-    takeLiveButton.disabled = true;
+    if (!working || busyAction) return;
+    const originalLabel = takeLiveButton.textContent;
+    setBusy('live');
+    takeLiveButton.textContent = 'Taking Live…';
     try {
       const now = new Date().toISOString();
       working.updatedAt = now;
@@ -950,19 +1032,45 @@
         live
       };
       await writeState(fullState, 'Take broadcast programming live [skip ci]');
+      setDirty(false);
       showToast('New programming is live. Existing viewers will sync automatically.');
       renderSummary();
     } catch (error) {
-      if (error.status === 409) showToast('Broadcast state changed remotely. Reload this page before taking it live.', 8500);
+      if (error.status === 409) showToast('Broadcast state changed remotely. Use Reload State, then try again.', 8500);
       else showToast(`Could not take broadcast live: ${error.message}`, 8500);
     } finally {
-      saveDraftButton.disabled = false;
-      takeLiveButton.disabled = false;
+      takeLiveButton.textContent = originalLabel;
+      setBusy('');
+    }
+  }
+
+  async function reloadState() {
+    if (!sessionId || busyAction) return;
+    if (dirty && !window.confirm('Discard unsaved Broadcast Control changes and reload the saved draft?')) return;
+    const originalLabel = reloadStateButton.textContent;
+    setBusy('reload');
+    reloadStateButton.textContent = 'Reloading…';
+    liveStatus.textContent = 'Reloading broadcast…';
+    try {
+      await loadState();
+      authPanel.hidden = true;
+      workspace.hidden = false;
+      showToast('Broadcast state reloaded.');
+    } catch (error) {
+      if (error.status === 401) expireSession();
+      else {
+        liveStatus.textContent = 'Broadcast load failed';
+        showToast(`Could not reload broadcast state: ${error.message}`, 9000);
+      }
+    } finally {
+      reloadStateButton.textContent = originalLabel;
+      setBusy('');
     }
   }
 
   saveDraftButton.addEventListener('click', saveDraft);
   takeLiveButton.addEventListener('click', takeLive);
+  reloadStateButton?.addEventListener('click', reloadState);
 
   function probeMedia(element) {
     return new Promise((resolve, reject) => {
@@ -1028,7 +1136,9 @@
       'audio/wav': 'wav',
       'audio/x-wav': 'wav',
       'audio/ogg': 'ogg',
+      'audio/opus': 'opus',
       'audio/flac': 'flac',
+      'audio/x-flac': 'flac',
       'video/mp4': 'mp4',
       'video/webm': 'webm',
       'video/x-m4v': 'm4v'
@@ -1059,7 +1169,12 @@
       }
     });
     const data = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(data.error || data.message || `${response.status} ${response.statusText}`);
+    if (!response.ok) {
+      if (response.status === 401) expireSession();
+      const error = new Error(data.error || data.message || `${response.status} ${response.statusText}`);
+      error.status = response.status;
+      throw error;
+    }
     return data;
   }
 
@@ -1161,33 +1276,53 @@
   confirmMusicUrlButton.addEventListener('click', async () => {
     const url = musicUrlInput.value.trim();
     if (!url) return showToast('Enter a direct audio URL.');
+    if (!musicUrlInput.checkValidity()) {
+      musicUrlInput.reportValidity();
+      return;
+    }
+    const originalLabel = confirmMusicUrlButton.textContent;
+    confirmMusicUrlButton.disabled = true;
+    confirmMusicUrlButton.textContent = 'Checking…';
     let duration = 180;
     try {
-      duration = await probeUrlDuration(url, 'audio');
-    } catch {
-      showToast('Track added, but the host did not expose its duration. Set the duration manually.', 6500);
+      try {
+        duration = await probeUrlDuration(url, 'audio');
+      } catch {
+        showToast('Track added, but the host did not expose its duration. Set the duration manually.', 6500);
+      }
+      const track = {
+        id: uid('music'),
+        title: musicUrlTitleInput.value.trim() || 'Remote track',
+        url,
+        duration,
+        gainDb: 0,
+        fadeIn: 1.5,
+        fadeOut: 2
+      };
+      working.music.push(track);
+      selectedMusicId = track.id;
+      urlDialog.close();
+      renderMusic();
+      markDirty();
+    } finally {
+      confirmMusicUrlButton.disabled = false;
+      confirmMusicUrlButton.textContent = originalLabel;
     }
-    const track = {
-      id: uid('music'),
-      title: musicUrlTitleInput.value.trim() || 'Remote track',
-      url,
-      duration,
-      gainDb: 0,
-      fadeIn: 1.5,
-      fadeOut: 2
-    };
-    working.music.push(track);
-    selectedMusicId = track.id;
-    urlDialog.close();
-    renderMusic();
-    markDirty();
   });
+
+  for (const input of [musicUrlInput, musicUrlTitleInput]) {
+    input.addEventListener('keydown', event => {
+      if (event.key !== 'Enter') return;
+      event.preventDefault();
+      if (!confirmMusicUrlButton.disabled) confirmMusicUrlButton.click();
+    });
+  }
 
   previewFrame.addEventListener('load', () => {
     window.setTimeout(postPreview, 150);
   });
 
-  async function startWorkspace() {
+  async function startWorkspace({ preserveWorking = false } = {}) {
     const valid = await verifySession(sessionId);
     if (!valid) {
       sessionId = '';
@@ -1202,8 +1337,15 @@
     const login = valid.login || localRead(SESSION_LOGIN_KEY) || 'GitHub';
     authPanel.hidden = true;
     workspace.hidden = false;
-    liveStatus.textContent = 'Loading broadcast…';
     if (authStatus) authStatus.textContent = `GitHub: ${login}`;
+    if (preserveWorking && working) {
+      renderSummary();
+      setDirty(true);
+      showToast('Signed back in. Unsaved changes were preserved.');
+      return;
+    }
+
+    liveStatus.textContent = 'Loading broadcast…';
     try {
       await loadState();
     } catch (error) {
@@ -1219,6 +1361,12 @@
       showToast(`Could not load broadcast state: ${error.message}`, 9000);
     }
   }
+
+  window.addEventListener('beforeunload', event => {
+    if (!dirty) return;
+    event.preventDefault();
+    event.returnValue = '';
+  });
 
   sessionId = localRead(SESSION_ID_KEY);
   if (sessionId) startWorkspace();
