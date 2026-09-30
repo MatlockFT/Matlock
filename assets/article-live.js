@@ -3,7 +3,7 @@
   const body = document.getElementById('article-content');
   if (!article || !body) return;
 
-  const FEED = 'https://mmamatlock-writer-auth.netlify.app/api/live-writer';
+  const FEED = 'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/runtime/live-writer.json';
   const sourcePath = String(article.dataset.writerSourcePath || '');
   const pagePath = location.pathname;
   const titleNode = document.getElementById('post-title');
@@ -220,7 +220,7 @@
 
   function nextDelay(live) {
     if (document.hidden) return 12000;
-    if (sameArticle(live) && live.active) return 1500;
+    if (sameArticle(live) && live.active) return 2500;
     if (sameArticle(live) && live.hold) return 5000;
     return 12000;
   }
@@ -229,15 +229,14 @@
     if (stopped) return;
     let live = null;
     try {
-      const response = await fetch(FEED + '?path=' + encodeURIComponent(pagePath) + '&live=' + Date.now(), {
+      const response = await fetch(FEED + '?live=' + Date.now(), {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',
         headers: { Accept: 'application/json' }
       });
       if (!response.ok) throw new Error('Live feed unavailable.');
-      const data = await response.json();
-      live = data.live || null;
+      live = await response.json();
       render(live);
     } catch {
       // Published article remains usable if the live transport is temporarily unavailable.
