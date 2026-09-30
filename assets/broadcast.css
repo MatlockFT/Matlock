@@ -330,6 +330,7 @@ body {
   border: 0;
   background: #090b13;
   object-fit: cover;
+  filter: saturate(.86) contrast(.94) brightness(.96) blur(.12px);
 }
 
 .mfc-program-panel.has-media::after {
@@ -464,7 +465,7 @@ body {
   flex: 0 0 auto;
   font-family: "Courier New", Courier, monospace;
   padding-right: 5.2rem;
-  padding-left: 8vw;
+  padding-left: 22vw;
   font-size: clamp(.48rem, 1.08vw, .86rem);
   font-weight: 700;
   line-height: 1;
@@ -595,6 +596,19 @@ body {
     inset 0 0 7vw rgba(0,0,0,.17);
 }
 
+.mfc-crt-glass::before {
+  position: absolute;
+  left: -1%;
+  right: -1%;
+  top: 23%;
+  height: 1.4%;
+  content: "";
+  background: linear-gradient(180deg, transparent, rgba(225,234,255,.028), transparent);
+  filter: blur(.35px);
+  opacity: .75;
+  animation: mfc-horizontal-wobble 11s steps(4, end) infinite;
+}
+
 .mfc-crt-glass::after {
   position: absolute;
   inset: 0;
@@ -651,6 +665,13 @@ body {
 @keyframes mfc-crt-breathe {
   0%, 100% { opacity: .72; }
   50% { opacity: .92; }
+}
+
+@keyframes mfc-horizontal-wobble {
+  0%, 100% { transform: translate(0, 0); opacity: .45; }
+  26% { transform: translate(.7px, 13vh); opacity: .72; }
+  51% { transform: translate(-.45px, 31vh); opacity: .38; }
+  77% { transform: translate(.35px, 49vh); opacity: .62; }
 }
 
 @media (prefers-reduced-motion: reduce) {
