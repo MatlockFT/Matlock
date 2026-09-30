@@ -41,6 +41,7 @@
   let activeMusic = musicA;
   let standbyMusic = musicB;
   let lastPoll = 0;
+  let previewOverride = false;
 
   try { soundEnabled = localStorage.getItem(SOUND_KEY) === 'on'; } catch {}
 
@@ -227,6 +228,43 @@
     }
   }
 
+  function musicPosition(tracks, elapsed) {
+    if (!tracks.length) return null;
+    const globalCrossfade = clamp(channel?.audio?.crossfade ?? 2.5, 0, 12);
+    const overlaps = tracks.map((track, index) => {
+      if (tracks.length < 2) return 0;
+      const next = tracks[(index + 1) % tracks.length];
+      return Math.min(
+        globalCrossfade,
+        positive(track.duration) * .45,
+        positive(next.duration) * .45
+      );
+    });
+    const slots = tracks.map((track, index) => Math.max(.05, positive(track.duration) - overlaps[index]));
+    const total = slots.reduce((sum, value) => sum + value, 0);
+    const position = mod(elapsed, total);
+    let cursor = 0;
+    let index = 0;
+    for (; index < tracks.length; index += 1) {
+      if (position < cursor + slots[index] || index === tracks.length - 1) break;
+      cursor += slots[index];
+    }
+    const local = Math.max(0, position - cursor);
+    const previousIndex = (index - 1 + tracks.length) % tracks.length;
+    const incomingOverlap = overlaps[previousIndex];
+    const previous = tracks[previousIndex];
+    return {
+      item: tracks[index],
+      index,
+      local,
+      total,
+      previous,
+      previousIndex,
+      incomingOverlap,
+      previousLocal: Math.max(0, positive(previous.duration) - incomingOverlap + local)
+    };
+  }
+
   function syncMusic(elapsed, programItem, deltaSeconds) {
     const tracks = musicItems();
     if (!soundEnabled || !tracks.length) {
@@ -237,9 +275,10 @@
       return;
     }
 
-    const pos = timelinePosition(tracks, elapsed);
-    const track = pos.item;
+    const pos = musicPosition(tracks, elapsed);
+    const track = pos?.item;
     if (!track) return;
+
     const trackId = String(track.id || track.url);
     if (trackId !== currentMusicId) {
       currentMusicId = trackId;
@@ -249,18 +288,16 @@
     }
 
     ensureAudioSource(activeMusic, track, pos.local);
-    const crossfade = clamp(channel?.audio?.crossfade ?? 2.5, 0, 12);
-    const remaining = Math.max(0, positive(track.duration) - pos.local);
-    const nextTrack = tracks[(pos.index + 1) % tracks.length];
-    const inCrossfade = crossfade > 0 && remaining < crossfade && tracks.length > 1;
-    let fadeA = 1;
-    let fadeB = 0;
+
+    const inCrossfade = tracks.length > 1
+      && pos.incomingOverlap > 0
+      && pos.local < pos.incomingOverlap;
+    const crossfadeProgress = inCrossfade
+      ? clamp(pos.local / pos.incomingOverlap, 0, 1)
+      : 1;
 
     if (inCrossfade) {
-      const progress = clamp(1 - remaining / crossfade, 0, 1);
-      fadeA = 1 - progress;
-      fadeB = progress;
-      ensureAudioSource(standbyMusic, nextTrack, progress * crossfade);
+      ensureAudioSource(standbyMusic, pos.previous, pos.previousLocal);
       standbyMusic.play().catch(() => {});
     } else {
       standbyMusic.volume = 0;
@@ -275,20 +312,25 @@
     if (!Number.isFinite(musicLevel) || musicLevel <= 0) musicLevel = desiredDuck;
     else musicLevel += (desiredDuck - musicLevel) * clamp(speed, 0, 1);
 
+    const remaining = Math.max(0, positive(track.duration) - pos.local);
     const fadeIn = Math.max(0, Number(track.fadeIn) || 0);
     const fadeOut = Math.max(0, Number(track.fadeOut) || 0);
-    const trackFadeIn = fadeIn > 0 ? clamp(pos.local / fadeIn, 0, 1) : 1;
-    const trackFadeOut = fadeOut > 0 ? clamp(remaining / fadeOut, 0, 1) : 1;
-    const trackEnvelope = Math.min(trackFadeIn, trackFadeOut);
+    const ownFadeIn = fadeIn > 0 ? clamp(pos.local / fadeIn, 0, 1) : 1;
+    const ownFadeOut = fadeOut > 0 ? clamp(remaining / fadeOut, 0, 1) : 1;
+    const currentEnvelope = Math.min(ownFadeIn, ownFadeOut, crossfadeProgress);
 
-    const nextFadeIn = Math.max(0, Number(nextTrack?.fadeIn) || 0);
-    const nextLocal = inCrossfade ? Math.max(0, crossfade - remaining) : 0;
-    const nextEnvelope = nextFadeIn > 0 ? clamp(nextLocal / nextFadeIn, 0, 1) : 1;
+    let previousEnvelope = 0;
+    if (inCrossfade) {
+      const previousRemaining = Math.max(0, positive(pos.previous.duration) - pos.previousLocal);
+      const previousFadeOut = Math.max(0, Number(pos.previous.fadeOut) || 0);
+      const ownPreviousFade = previousFadeOut > 0
+        ? clamp(previousRemaining / previousFadeOut, 0, 1)
+        : 1;
+      previousEnvelope = Math.min(ownPreviousFade, 1 - crossfadeProgress);
+    }
 
-    const aVolume = clamp(baseMusicVolume(track) * musicLevel * fadeA * trackEnvelope, 0, 1);
-    const bVolume = clamp(baseMusicVolume(nextTrack) * musicLevel * fadeB * nextEnvelope, 0, 1);
-    activeMusic.volume = aVolume;
-    standbyMusic.volume = bVolume;
+    activeMusic.volume = clamp(baseMusicVolume(track) * musicLevel * currentEnvelope, 0, 1);
+    standbyMusic.volume = clamp(baseMusicVolume(pos.previous) * musicLevel * previousEnvelope, 0, 1);
     activeMusic.play().catch(() => {});
   }
 
@@ -321,6 +363,7 @@
   async function loadState() {
     let next = null;
     let lastError = null;
+    if (useDraft && previewOverride) return;
     for (const url of STATE_URLS) {
       try {
         const joiner = url.includes('?') ? '&' : '?';
@@ -354,6 +397,7 @@
     if (!useDraft || event.origin !== location.origin) return;
     const message = event.data;
     if (!message || message.type !== 'matlock-broadcast-preview' || !message.channel) return;
+    previewOverride = true;
     channel = message.channel;
     if (!channel.startedAt) channel.startedAt = new Date().toISOString();
     revision = `preview-${Date.now()}`;
