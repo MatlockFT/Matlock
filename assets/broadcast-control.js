@@ -189,7 +189,7 @@
   function setDirty(value = true) {
     dirty = Boolean(value);
     if (draftStatus) {
-      draftStatus.textContent = dirty ? 'Unsaved changes' : 'Draft saved';
+      draftStatus.textContent = dirty ? 'Unsaved' : 'Saved';
       draftStatus.dataset.dirty = dirty ? 'true' : 'false';
     }
     syncActionButtons();
@@ -206,7 +206,7 @@
     authPanel.hidden = false;
     workspace.hidden = true;
     liveStatus.textContent = 'Sign in required';
-    if (authStatus) authStatus.textContent = 'GitHub: session expired';
+    if (authStatus) authStatus.textContent = 'Session expired';
     syncActionButtons();
   }
 
@@ -1832,14 +1832,14 @@
       authPanel.hidden = false;
       workspace.hidden = true;
       liveStatus.textContent = 'Sign in required';
-      if (authStatus) authStatus.textContent = 'GitHub: signed out';
+      if (authStatus) authStatus.textContent = 'Signed out';
       return;
     }
 
     const login = valid.login || localRead(SESSION_LOGIN_KEY) || 'GitHub';
     authPanel.hidden = true;
     workspace.hidden = false;
-    if (authStatus) authStatus.textContent = `GitHub: ${login}`;
+    if (authStatus) authStatus.textContent = login;
     syncActionButtons();
     if (preserveWorking && working) {
       renderSummary();
@@ -1857,7 +1857,7 @@
       if (error.status === 401) {
         authPanel.hidden = false;
         liveStatus.textContent = 'Sign in required';
-        if (authStatus) authStatus.textContent = 'GitHub: session expired';
+        if (authStatus) authStatus.textContent = 'Session expired';
       } else {
         authPanel.hidden = true;
         liveStatus.textContent = 'Broadcast load failed';
@@ -1881,6 +1881,6 @@
     authPanel.hidden = false;
     workspace.hidden = true;
     liveStatus.textContent = 'Sign in required';
-    if (authStatus) authStatus.textContent = 'GitHub: signed out';
+    if (authStatus) authStatus.textContent = 'Signed out';
   }
 })();
