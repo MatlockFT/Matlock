@@ -24,7 +24,10 @@
   const soundButton = root.querySelector('[data-mfc-sound]');
   const musicA = document.querySelector('[data-mfc-music-a]');
   const musicB = document.querySelector('[data-mfc-music-b]');
-  const STATE_URL = '/assets/data/broadcast.json';
+  const STATE_URLS = [
+    'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/data/broadcast.json',
+    '/assets/data/broadcast.json'
+  ];
   const SOUND_KEY = 'matlock-fight-channel:sound';
 
   let state = null;
@@ -306,9 +309,20 @@
   }
 
   async function loadState() {
-    const response = await fetch(`${STATE_URL}?t=${Date.now()}`, { cache: 'no-store' });
-    if (!response.ok) throw new Error(`Broadcast state ${response.status}`);
-    const next = await response.json();
+    let next = null;
+    let lastError = null;
+    for (const url of STATE_URLS) {
+      try {
+        const joiner = url.includes('?') ? '&' : '?';
+        const response = await fetch(`${url}${joiner}t=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Broadcast state ${response.status}`);
+        next = await response.json();
+        break;
+      } catch (error) {
+        lastError = error;
+      }
+    }
+    if (!next) throw lastError || new Error('Broadcast state unavailable.');
     const selected = useDraft ? next.draft : next.live;
     if (!selected) throw new Error('Broadcast state is empty.');
     const nextRevision = String(selected.revision || selected.updatedAt || next.updatedAt || '');
@@ -325,6 +339,19 @@
       channel = selected;
     }
   }
+
+  window.addEventListener('message', event => {
+    if (!useDraft || event.origin !== location.origin) return;
+    const message = event.data;
+    if (!message || message.type !== 'matlock-broadcast-preview' || !message.channel) return;
+    channel = message.channel;
+    if (!channel.startedAt) channel.startedAt = new Date().toISOString();
+    revision = `preview-${Date.now()}`;
+    currentProgramId = '';
+    currentMusicId = '';
+    renderTicker();
+    syncProgram();
+  });
 
   soundButton.addEventListener('click', () => {
     setSoundState(!soundEnabled);
