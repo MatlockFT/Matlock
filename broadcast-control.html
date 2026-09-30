@@ -10,7 +10,7 @@ permalink: /broadcast/control/
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>Matlock Fight Channel — Control Room</title>
-  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20260930-workflow-2">
+  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20260930-news-1">
 </head>
 <body class="mfc-control-body">
   <main class="mfc-control" data-mfc-control data-auth-base="https://mmamatlock-writer-auth.netlify.app">
@@ -74,6 +74,7 @@ permalink: /broadcast/control/
         <button type="button" id="workspace-tab-rundown" class="mfc-workspace-tab is-active" role="tab" aria-selected="true" aria-controls="workspace-panel-rundown" data-workspace-tab="rundown">
           <span>Rundown</span><b data-workspace-count="rundown">0</b>
         </button>
+        <button type="button" id="workspace-tab-news" class="mfc-workspace-tab" role="tab" aria-selected="false" aria-controls="workspace-panel-news" data-workspace-tab="news"><span>News Pool</span><b data-workspace-count="news">0</b></button>
         <button type="button" id="workspace-tab-media" class="mfc-workspace-tab" role="tab" aria-selected="false" aria-controls="workspace-panel-media" data-workspace-tab="media">
           <span>Media</span><b data-workspace-count="media">0</b>
         </button>
@@ -84,6 +85,24 @@ permalink: /broadcast/control/
           <span>Graphics</span><b data-workspace-count="graphics">0</b>
         </button>
       </nav>
+
+      <section id="workspace-panel-news" class="mfc-workspace-panel" role="tabpanel" aria-labelledby="workspace-tab-news" data-workspace-panel="news" hidden>
+        <section class="mfc-panel mfc-news-pool">
+          <div class="mfc-panel-head"><div><span class="mfc-control-eyebrow">Discover &amp; curate</span><h2>MMA News Pool</h2></div><button type="button" class="mfc-button" data-news-refresh>Refresh</button></div>
+          <p>Add articles and full-length videos to Preview. Review, Save Draft, then Take Preview Live.</p>
+          <details class="mfc-media-guide"><summary>Sources, Shorts &amp; playback</summary><p>Videos over 3 minutes only, to exclude Shorts. Headlines use a short excerpt with source credit. YouTube videos play visibly in the feed; availability and autoplay depend on YouTube and your browser.</p></details>
+          <div class="mfc-news-filters">
+            <label class="mfc-field"><span>Search news</span><input type="search" data-news-search placeholder="Fighter, event, topic…"></label>
+            <label class="mfc-field"><span>Content</span><select data-news-kind><option value="all">Articles &amp; videos</option><option value="article">Articles</option><option value="video">YouTube videos</option></select></label>
+            <label class="mfc-field"><span>Source</span><select data-news-source><option value="">All sources</option></select></label>
+            <label class="mfc-news-unused"><input type="checkbox" data-news-unused> Hide items in draft</label>
+          </div>
+          <p data-news-status role="status">Open this tab to load recent news.</p>
+          <p data-news-results></p>
+          <div class="mfc-news-list" data-news-list></div>
+          <button type="button" class="mfc-button mfc-button-ghost" data-news-more hidden>Show more</button>
+        </section>
+      </section>
 
       <div class="mfc-upload-progress mfc-global-upload" data-upload-progress hidden>
         <div><span data-upload-label>Uploading…</span><strong data-upload-percent>0%</strong></div>
@@ -378,9 +397,16 @@ permalink: /broadcast/control/
       </form>
     </dialog>
 
+    <dialog class="mfc-dialog mfc-news-preview" data-news-preview aria-labelledby="news-preview-title">
+      <header><strong id="news-preview-title" data-news-preview-title>Video preview</strong><button type="button" data-news-preview-close aria-label="Close video preview">×</button></header>
+      <div data-news-preview-body></div>
+      <p>Check playback here before adding. The owner may restrict embedding in some locations.</p>
+    </dialog>
     <div class="mfc-toast" data-toast role="status" aria-live="polite" hidden></div>
   </main>
 
-  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-workflow-2" defer></script>
+  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-news-1" defer></script>
+  <script src="{{ '/assets/broadcast-news-pool.js' | relative_url }}?v=20260930-news-1" defer></script>
 </body>
 </html>
+

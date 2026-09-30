@@ -51,6 +51,7 @@ jobs:
         run: |
           node --check scripts/qa/site-visual-smoke.spec.cjs
           node --test scripts/qa/summarize-lighthouse.test.mjs
+          node --test scripts/news/build-broadcast-videos.test.mjs
 
       - name: Check media pipeline separation
         run: npm run check:media

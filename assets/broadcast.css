@@ -316,6 +316,12 @@ body {
     .01em 0 rgba(255,113,100,.08);
 }
 
+.mfc-youtube { position: absolute; inset: 0; width: 100%; height: 100%; background: #090b13; }
+.mfc-youtube iframe { width: 100%; height: 100%; display: block; border: 0; }
+.mfc-program-panel.has-youtube::after { display: none; }
+/* Compact monitors give the official player the complete screen, keeping controls usable. */
+.mfc-screen.is-compact-youtube .mfc-program { inset: 0; width: 100%; height: 100%; z-index: 9; }
+
 .mfc-image,
 .mfc-video {
   position: absolute;

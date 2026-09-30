@@ -27,12 +27,25 @@ function initialState(origin) {
 async function startServer(port = 0) {
   let origin, state, revision = 1;
   const media = new Map(), assets = [], uploads = new Map();
-  const controls = { failSaves: false, saveDelay: 0, chunkFailures: 0, writes: 0 };
+  const controls = { failSaves: false, saveDelay: 0, chunkFailures: 0, writes: 0, newsFailure: false };
+  const news = { version: 1, generatedAt: new Date().toISOString(), stories: [
+    { id: 'article-1', title: 'Local fighter returns for title fight', source: 'MMA Fighting', url: 'https://example.com/title-fight', excerpt: 'A short, attributed news excerpt.', publishedAt: new Date().toISOString() },
+    { id: 'article-2', title: 'Local UFC event announced', source: 'MMA Junkie', url: 'https://example.com/event', excerpt: 'An event update.', publishedAt: new Date().toISOString() }
+  ] };
+  const videos = { version: 1, generatedAt: new Date().toISOString(), sources: [{ name: 'MMA Fighting', status: 'ready' }], videos: [
+    { id: 'abcdefghijk', title: 'Local fighter full interview', source: 'MMA Fighting', url: 'https://www.youtube.com/watch?v=abcdefghijk', duration: 300, publishedAt: new Date().toISOString() },
+    { id: 'short123456', title: 'Short clip', source: 'MMA Fighting', url: 'https://www.youtube.com/watch?v=short123456', duration: 180 },
+    { id: 'short654321', title: 'Explicit Short', source: 'MMA Fighting', url: 'https://www.youtube.com/shorts/short654321', duration: 400 }
+  ] };
   const server = http.createServer(async (req, res) => {
     const url = new URL(req.url, origin);
     const chunks = []; for await (const chunk of req) chunks.push(chunk);
     const body = Buffer.concat(chunks);
     function json(data, status = 200) { res.writeHead(status, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(data)); }
+    if (/\/(?:news-fixture\/|assets\/data\/)(mma-news|broadcast-news-videos)\.json$/.test(url.pathname)) {
+      if (controls.newsFailure) return json({ error: 'offline' }, 503);
+      return json(url.pathname.includes('broadcast-news-videos') ? videos : news);
+    }
     if (url.pathname === '/api/writer/session') return json({ ok: true, login: 'Local preview' });
     if (url.pathname === '/api/writer/github') {
       if (req.method === 'GET') return json({ sha: String(revision), content: Buffer.from(JSON.stringify(state)).toString('base64') });
@@ -87,12 +100,13 @@ async function startServer(port = 0) {
         .replace('</head>', `<script>localStorage.setItem('matlock-writer:server-session','local-test-session');</script></head>`));
     }
     if (file === 'assets/broadcast.js') data = Buffer.from(data.toString().replaceAll('https://raw.githubusercontent.com/MatlockFT/Matlock/main', origin));
+    if (file === 'assets/broadcast-news-pool.js') data = Buffer.from(data.toString().replaceAll('https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/', origin + '/news-fixture/'));
     res.writeHead(200, { 'Content-Type': ({ '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css' })[ext] || 'application/octet-stream' }); res.end(data);
   });
   await new Promise(resolve => server.listen(port, '127.0.0.1', resolve));
   origin = `http://127.0.0.1:${server.address().port}`;
   state = initialState(origin);
-  return { origin, server, controls, assets, media, get state() { return state; }, set state(value) { state = value; revision++; }, close: () => new Promise(resolve => server.close(resolve)) };
+  return { origin, server, controls, assets, media, news, videos, get state() { return state; }, set state(value) { state = value; revision++; }, close: () => new Promise(resolve => server.close(resolve)) };
 }
 
 module.exports = { startServer, wav };
