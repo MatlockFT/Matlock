@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-29T20:36:55.884Z"
+      "checkedAt": "2026-09-29T23:58:34.076Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-29T20:37:22.493Z",
+      "checkedAt": "2026-09-29T23:59:02.053Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -13543,9 +13543,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Daria Zhelezniakova",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -14846,9 +14848,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "RJ Harris",
+        "opponentId": "rj-harris"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -15980,9 +15984,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Gabriel Lorenco",
+        "opponentId": "gabriel-lorenco"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -20230,9 +20236,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Kai Kamaka III",
+        "opponentId": "kai-kamaka-iii"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -21304,9 +21312,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Azamat Bekoev",
+        "opponentId": "azamat-bekoev"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -27929,9 +27939,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Lucas Brennan",
+        "opponentId": "lucas-brennan"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -28922,9 +28934,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Andre Petroski",
+        "opponentId": "andre-petroski"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -33527,9 +33541,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Lucas Fernando",
+        "opponentId": "lucas-fernando"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -42115,9 +42131,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Felipe Franco",
+        "opponentId": "felipe-franco"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -49051,9 +49069,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Randy Brown",
+        "opponentId": "randy-brown"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -80857,9 +80877,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Elijah Smith",
+        "opponentId": "elijah-smith"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -100561,9 +100583,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Davey Grant",
+        "opponentId": "davey-grant"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -102981,9 +103005,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Melissa Gatto",
+        "opponentId": "melissa-gatto"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -105436,9 +105462,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Jean-Paul Lebosnoyani",
+        "opponentId": "jean-paul-lebosnoyani"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -105883,9 +105911,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Brendson Ribeiro",
+        "opponentId": "brendson-ribeiro"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -107199,9 +107229,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Gaston Bolanos",
+        "opponentId": "gaston-bolanos"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -107543,9 +107575,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Ismael Bonfim",
+        "opponentId": "ismael-bonfim"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -109125,9 +109159,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Alvin Hines",
+        "opponentId": "alvin-hines"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -109673,9 +109709,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Karine Silva",
+        "opponentId": "karine-silva"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -110381,9 +110419,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Francis Marshall",
+        "opponentId": "francis-marshall"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -112456,9 +112496,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Julius Walker",
+        "opponentId": "julius-walker"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -126636,9 +126678,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Francisco Prado",
+        "opponentId": "francisco-prado"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -132440,9 +132484,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Matheus Camilo",
+        "opponentId": "matheus-camilo"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -142385,9 +142431,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Farman Hasanov",
+        "opponentId": "farman-hasanov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -143911,9 +143959,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Julian Erosa",
+        "opponentId": "julian-erosa"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -162068,9 +162118,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "José Souza",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -163069,9 +163121,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Murtazali Magomedov",
+        "opponentId": "murtazali-magomedov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -170120,9 +170174,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "JeongYeong Lee",
+        "opponentId": "jeongyeong-lee"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -171577,9 +171633,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Gerald Meerschaert",
+        "opponentId": "gerald-meerschaert"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -174708,9 +174766,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Andre Fili",
+        "opponentId": "andre-fili"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -177248,9 +177308,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Gabriella Fernandes",
+        "opponentId": "gabriella-fernandes"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -183061,9 +183123,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Loopy Godinez",
+        "opponentId": "loopy-godinez"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -193992,9 +194056,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Niko Price",
+        "opponentId": "niko-price"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -197710,9 +197776,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Ketlen Souza",
+        "opponentId": "ketlen-souza"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -199255,9 +199323,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Yana Santos",
+        "opponentId": "yana-santos"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -199484,9 +199554,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Austin Bashi",
+        "opponentId": "austin-bashi"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -199600,9 +199672,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Billy Elekana",
+        "opponentId": "billy-elekana"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -205416,9 +205490,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Otari Tanzilovi",
+        "opponentId": "otari-tanzilovi"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -207796,9 +207872,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Wes Schultz",
+        "opponentId": "wes-schultz"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -218856,9 +218934,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Jai Herbert",
+        "opponentId": "jai-herbert"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -223091,9 +223171,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Ernesta Kareckaitė",
+        "opponentId": "ernesta-kareckaite"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -238047,9 +238129,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Jose Delano",
+        "opponentId": "jose-delano"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -249137,9 +249221,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Leon Shahbazyan",
+        "opponentId": "leon-shahbazyan"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -250221,9 +250307,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Priscila Cachoeira",
+        "opponentId": "priscila-cachoeira"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -253271,9 +253359,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Keiichiro Nakamura",
+        "opponentId": "keiichiro-nakamura"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -253513,9 +253603,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Malcolm Wellmaker",
+        "opponentId": "malcolm-wellmaker"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -259598,9 +259690,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Talita Alencar",
+        "opponentId": "talita-alencar"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -260905,9 +260999,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Nina Milošević",
+        "opponentId": "nina-milosevic"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -267565,9 +267661,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Carlos Leal",
+        "opponentId": "carlos-leal"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -275033,9 +275131,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Allen Frye Jr.",
+        "opponentId": "allen-frye-jr"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -279559,9 +279659,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Theodor Berggren",
+        "opponentId": "theodor-berggren"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -292154,9 +292256,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Wellington Turman",
+        "opponentId": "wellington-turman"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -306376,9 +306480,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Piera Rodriguez",
+        "opponentId": "piera-rodriguez"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -308287,9 +308393,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Virna Jandiroba",
+        "opponentId": "virna-jandiroba"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -310621,9 +310729,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Rodrigo Sezinando",
+        "opponentId": "rodrigo-sezinando"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -325861,9 +325971,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Tatiana Suarez",
+        "opponentId": "tatiana-suarez"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -328803,9 +328915,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Seokhyeon Ko",
+        "opponentId": "seokhyeon-ko"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -329110,9 +329224,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Mantas Kondratavičius",
+        "opponentId": "mantas-kondratavicius"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -332327,9 +332443,11 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Luana Santos",
+        "opponentId": "luana-santos"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
