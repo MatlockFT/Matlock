@@ -33,6 +33,7 @@
   const programFields = app.querySelector('[data-program-fields]');
   const programEditorTitle = app.querySelector('[data-program-editor-title]');
   const deleteProgramButton = app.querySelector('[data-delete-program]');
+  const videoLibraryPanel = app.querySelector('[data-video-library-panel]');
   const videoLibraryList = app.querySelector('[data-video-library-list]');
   const videoLibrarySummary = app.querySelector('[data-video-library-summary]');
   const videoLibrarySearch = app.querySelector('[data-video-library-search]');
@@ -1706,6 +1707,40 @@
     throw new Error('Media upload timed out.');
   }
 
+  async function uploadVideoFiles(fileList) {
+    const files = Array.from(fileList || []).filter(file =>
+      String(file.type || '').startsWith('video/')
+      || /\.(?:mp4|m4v|webm)$/i.test(String(file.name || ''))
+    );
+    if (!files.length) return showToast('Drop or choose MP4, WebM or M4V video files.', 6500);
+    if (videoLibraryUploadInput.disabled) return showToast('Wait for the current video upload to finish.');
+
+    videoLibraryUploadInput.disabled = true;
+    if (videoLibraryRefreshButton) videoLibraryRefreshButton.disabled = true;
+    try {
+      let completed = 0;
+      for (let index = 0; index < files.length; index += 1) {
+        const file = files[index];
+        setUploadProgress(1, `Reading ${file.name}… (${index + 1}/${files.length})`);
+        const duration = await probeFileDuration(file);
+        const url = await uploadMediaFile(file, 'video');
+        videoDurationCache.set(url, duration);
+        completed += 1;
+      }
+      await loadVideoLibrary({ quiet: true });
+      showToast(`${completed} video${completed === 1 ? '' : 's'} uploaded to the Media pool.`);
+    } catch (error) {
+      showToast(`Video upload failed: ${error.message}`, 9000);
+      void loadVideoLibrary({ quiet: true });
+    } finally {
+      videoLibraryUploadInput.value = '';
+      videoLibraryUploadInput.disabled = false;
+      if (videoLibraryRefreshButton) videoLibraryRefreshButton.disabled = false;
+      videoLibraryPanel?.classList.remove('is-drop-target');
+      window.setTimeout(clearUploadProgress, 900);
+    }
+  }
+
   function bindVideoLibraryHandlers() {
     videoLibrarySearch?.addEventListener('input', renderVideoLibrary);
     videoLibraryFilter?.addEventListener('change', renderVideoLibrary);
@@ -1723,33 +1758,34 @@
       videoPreviewPlayer.load();
     });
   
-    videoLibraryUploadInput?.addEventListener('change', async () => {
-      const files = Array.from(videoLibraryUploadInput.files || []);
-      if (!files.length || videoLibraryUploadInput.disabled) return;
-      videoLibraryUploadInput.disabled = true;
-      if (videoLibraryRefreshButton) videoLibraryRefreshButton.disabled = true;
-      try {
-        let completed = 0;
-        for (let index = 0; index < files.length; index += 1) {
-          const file = files[index];
-          setUploadProgress(1, `Reading ${file.name}… (${index + 1}/${files.length})`);
-          const duration = await probeFileDuration(file);
-          const url = await uploadMediaFile(file, 'video');
-          videoDurationCache.set(url, duration);
-          completed += 1;
-        }
-        await loadVideoLibrary({ quiet: true });
-        showToast(`${completed} video${completed === 1 ? '' : 's'} uploaded to the Video Library.`);
-      } catch (error) {
-        showToast(`Video library upload failed: ${error.message}`, 9000);
-        void loadVideoLibrary({ quiet: true });
-      } finally {
-        videoLibraryUploadInput.value = '';
-        videoLibraryUploadInput.disabled = false;
-        if (videoLibraryRefreshButton) videoLibraryRefreshButton.disabled = false;
-        window.setTimeout(clearUploadProgress, 900);
-      }
+    videoLibraryUploadInput?.addEventListener('change', () => {
+      void uploadVideoFiles(videoLibraryUploadInput.files);
     });
+
+    if (videoLibraryPanel) {
+      const hasFiles = event => Array.from(event.dataTransfer?.types || []).includes('Files');
+      videoLibraryPanel.addEventListener('dragenter', event => {
+        if (!hasFiles(event)) return;
+        event.preventDefault();
+        videoLibraryPanel.classList.add('is-drop-target');
+      });
+      videoLibraryPanel.addEventListener('dragover', event => {
+        if (!hasFiles(event)) return;
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'copy';
+        videoLibraryPanel.classList.add('is-drop-target');
+      });
+      videoLibraryPanel.addEventListener('dragleave', event => {
+        if (event.relatedTarget && videoLibraryPanel.contains(event.relatedTarget)) return;
+        videoLibraryPanel.classList.remove('is-drop-target');
+      });
+      videoLibraryPanel.addEventListener('drop', event => {
+        if (!hasFiles(event)) return;
+        event.preventDefault();
+        videoLibraryPanel.classList.remove('is-drop-target');
+        void uploadVideoFiles(event.dataTransfer.files);
+      });
+    }
   }
 
   bindVideoLibraryHandlers();
