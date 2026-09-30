@@ -383,7 +383,6 @@
     working.updatedAt = new Date().toISOString();
     setDirty(true);
     renderSummary();
-    renderVideoLibrary();
     postPreview();
   }
 
@@ -626,6 +625,7 @@
         renderProgram();
         renderProgramEditor();
         markDirty();
+        renderVideoLibrary();
         requestAnimationFrame(() => { programTrack.scrollLeft = programTrack.scrollWidth; });
         addButton.textContent = original;
         showToast('Video added to the draft program.');
@@ -1014,6 +1014,7 @@
           renderProgram();
           renderProgramEditor();
           markDirty();
+          if (item.type === 'video') renderVideoLibrary();
         }
       });
       form.append(mediaField.wrap);
@@ -1068,6 +1069,7 @@
             renderProgram();
             renderProgramEditor();
             markDirty();
+            renderVideoLibrary();
           } catch (error) {
             showToast(`Video upload failed: ${error.message}`, 9000);
           } finally {
@@ -1153,6 +1155,7 @@
     selectedProgramId = working.program[Math.min(index, working.program.length - 1)]?.id || '';
     renderProgram();
     markDirty();
+    renderVideoLibrary();
   });
 
   app.querySelectorAll('[data-add-program]').forEach(button => {
@@ -1171,6 +1174,7 @@
       selectedProgramId = item.id;
       renderProgram();
       markDirty();
+      renderVideoLibrary();
       requestAnimationFrame(() => { programTrack.scrollLeft = programTrack.scrollWidth; });
     });
   });
@@ -1433,6 +1437,7 @@
     tickerInput.value = (working.ticker || []).join('\n');
     renderTickerPreview();
     setDirty(false);
+    renderVideoLibrary();
     postPreview();
   }
 
