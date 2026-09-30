@@ -5,6 +5,8 @@
   const authBase = String(app.dataset.authBase || '').replace(/\/$/, '');
   const SESSION_ID_KEY = 'matlock-writer:server-session';
   const SESSION_LOGIN_KEY = 'matlock-writer:server-login';
+  const AUTH_ERROR_KEY = 'matlock-broadcast:auth-error';
+  const AUTH_RETURN_PATH = '/broadcast/auth/';
   const STATE_API_PATH = '/contents/assets/data/broadcast.json';
   const CHUNK_BYTES = Math.floor(3.5 * 1024 * 1024);
   const STATUS_POLL_MS = 1400;
@@ -51,6 +53,8 @@
   let draggingProgramId = '';
   let draggingMusicId = '';
   let popup = null;
+  let popupWatch = 0;
+  let authAttemptSession = '';
   let toastTimer = 0;
 
   const clone = value => JSON.parse(JSON.stringify(value));
@@ -113,22 +117,72 @@
     }
   }
 
+  function stopPopupWatch() {
+    window.clearInterval(popupWatch);
+    popupWatch = 0;
+  }
+
+  async function acceptStoredSession() {
+    const stored = localRead(SESSION_ID_KEY);
+    if (!stored || stored === authAttemptSession) return false;
+    stopPopupWatch();
+    sessionId = stored;
+    signInButton.disabled = false;
+    await startWorkspace();
+    return true;
+  }
+
   function beginSignIn() {
     if (!authBase) {
       showToast('Writer auth bridge is unavailable.');
       return;
     }
-    const url = `${authBase}/auth/github/start?origin=${encodeURIComponent(location.origin)}`;
+
+    authAttemptSession = localRead(SESSION_ID_KEY);
+    localWrite(AUTH_ERROR_KEY, '');
+    stopPopupWatch();
+
+    const url = `${authBase}/auth/github/start?origin=${encodeURIComponent(location.origin)}&return=${encodeURIComponent(AUTH_RETURN_PATH)}`;
     popup = window.open(url, 'matlock-broadcast-github-auth', 'popup=yes,width=720,height=820,resizable=yes,scrollbars=yes');
-    if (!popup) showToast('Allow popups for this page and try again.');
+    if (!popup) {
+      showToast('Allow popups for this page and try again.');
+      return;
+    }
+
+    signInButton.disabled = true;
+    liveStatus.textContent = 'Waiting for GitHub authorization…';
+
+    popupWatch = window.setInterval(async () => {
+      if (await acceptStoredSession()) return;
+
+      const authError = localRead(AUTH_ERROR_KEY);
+      if (authError) {
+        localWrite(AUTH_ERROR_KEY, '');
+        stopPopupWatch();
+        signInButton.disabled = false;
+        liveStatus.textContent = 'Sign in required';
+        showToast(authError, 9000);
+        return;
+      }
+
+      if (popup && popup.closed) {
+        stopPopupWatch();
+        popup = null;
+        signInButton.disabled = false;
+        liveStatus.textContent = 'Sign in required';
+        showToast('GitHub authorization window closed before Broadcast Control received a session.', 7000);
+      }
+    }, 300);
   }
 
   window.addEventListener('message', async event => {
-    if (event.origin !== authOrigin()) return;
+    if (event.origin !== authOrigin() && event.origin !== location.origin) return;
     const message = event.data;
     if (!message || message.type !== 'matlock-writer-github-auth') return;
+    stopPopupWatch();
     if (popup && !popup.closed) popup.close();
     popup = null;
+    signInButton.disabled = false;
 
     if (!message.ok || !message.sessionId) {
       showToast(message.error || 'GitHub sign-in did not complete.', 7000);
@@ -137,6 +191,7 @@
 
     localWrite(SESSION_ID_KEY, message.sessionId);
     localWrite(SESSION_LOGIN_KEY, message.login || 'GitHub user');
+    localWrite(AUTH_ERROR_KEY, '');
     sessionId = message.sessionId;
     await startWorkspace();
   });
@@ -1192,6 +1247,7 @@
       localWrite(SESSION_ID_KEY, '');
       authPanel.hidden = false;
       workspace.hidden = true;
+      signInButton.disabled = false;
       liveStatus.textContent = 'Sign in required';
       return;
     }
@@ -1204,7 +1260,9 @@
     } catch (error) {
       workspace.hidden = true;
       authPanel.hidden = false;
-      showToast(`Could not load broadcast state: ${error.message}`, 9000);
+      signInButton.disabled = false;
+      liveStatus.textContent = 'Signed in, broadcast data failed to load';
+      showToast(`GitHub sign-in worked, but Broadcast Control could not load its state: ${error.message}`, 9000);
     }
   }
 

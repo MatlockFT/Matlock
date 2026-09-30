@@ -1,0 +1,67 @@
+---
+layout: null
+sitemap: false
+permalink: /broadcast/auth/
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Broadcast Control — GitHub sign-in</title>
+  <style>
+    html{color-scheme:dark;background:#08090b;color:#f4f4ef;font-family:Arial,Helvetica,sans-serif}
+    body{min-height:100vh;margin:0;display:grid;place-items:center}
+    main{width:min(520px,calc(100% - 2rem));padding:1.4rem;border:1px solid #2e333c;background:#111318}
+    p{margin:.45rem 0;color:#aeb4bd;line-height:1.5}
+    strong{display:block;font-size:1.05rem}
+  </style>
+</head>
+<body>
+  <main>
+    <strong data-auth-title>Finishing GitHub sign-in…</strong>
+    <p data-auth-copy>You can close this window after authorization completes.</p>
+  </main>
+  <script>
+  (() => {
+    const SESSION_ID_KEY = 'matlock-writer:server-session';
+    const SESSION_LOGIN_KEY = 'matlock-writer:server-login';
+    const ERROR_KEY = 'matlock-broadcast:auth-error';
+    const params = new URLSearchParams(location.hash.slice(1));
+    const ok = params.get('ok') === '1';
+    const sessionId = params.get('sessionId') || '';
+    const login = params.get('login') || 'GitHub user';
+    const error = params.get('error') || 'GitHub sign-in did not complete.';
+    const title = document.querySelector('[data-auth-title]');
+    const copy = document.querySelector('[data-auth-copy]');
+
+    let payload;
+    if (ok && sessionId) {
+      try {
+        localStorage.setItem(SESSION_ID_KEY, sessionId);
+        localStorage.setItem(SESSION_LOGIN_KEY, login);
+        localStorage.removeItem(ERROR_KEY);
+      } catch {}
+      payload = { type: 'matlock-writer-github-auth', ok: true, sessionId, login, repo: params.get('repo') || '' };
+      title.textContent = 'GitHub authorization complete';
+      copy.textContent = 'Returning to Broadcast Control…';
+    } else {
+      try { localStorage.setItem(ERROR_KEY, error); } catch {}
+      payload = { type: 'matlock-writer-github-auth', ok: false, error };
+      title.textContent = 'GitHub sign-in failed';
+      copy.textContent = error;
+    }
+
+    try {
+      if (window.opener && !window.opener.closed) window.opener.postMessage(payload, location.origin);
+    } catch {}
+
+    history.replaceState(null, '', location.pathname);
+    setTimeout(() => {
+      try { window.close(); } catch {}
+    }, ok ? 300 : 2200);
+  })();
+  </script>
+</body>
+</html>
