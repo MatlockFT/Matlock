@@ -2210,8 +2210,14 @@ body:has([data-globe-home]) .site-theme-toggle-knob {
     display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
+    overflow: hidden;
     border: 1px solid #151515;
     background: #050506;
+    scrollbar-width: none;
+}
+
+.v3-broadcast-frame::-webkit-scrollbar {
+    display: none;
 }
 
 @media (min-width: 1051px) {
