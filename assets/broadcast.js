@@ -9,6 +9,12 @@
   if (monitorMode) document.body.dataset.mfcMonitor = 'true';
 
   const screen = root.querySelector('[data-mfc-screen]');
+  function scalePlayer() {
+    const embedded = document.body.dataset.mfcEmbed === 'true';
+    const scale = embedded ? Math.min(innerWidth / 640, innerHeight / 480) : Math.min(innerWidth, 760) / 640;
+    root.style.setProperty('--mfc-player-scale', String(scale));
+  }
+  scalePlayer();
   const header = root.querySelector('[data-mfc-header]');
   const eyebrow = root.querySelector('[data-mfc-eyebrow]');
   const title = root.querySelector('[data-mfc-title]');
@@ -229,6 +235,21 @@
     apply(low); return low;
   }
 
+  const inkContext = document.createElement('canvas').getContext('2d');
+  function centerTextInk(node) {
+    if (!inkContext) return;
+    const style = getComputedStyle(node);
+    inkContext.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    const before = getComputedStyle(node, '::before').content;
+    const prefix = before && before !== 'none' && before !== 'normal' ? before.slice(1, -1) : '';
+    // A stable footer baseline prevents the clock from moving as digits change.
+    const metrics = inkContext.measureText(node === clockNode ? '12:00:00 PM' : prefix + node.textContent);
+    // Center the visible glyphs, accounting for the retro fonts' unusual baselines.
+    const shift = (metrics.actualBoundingBoxAscent - metrics.actualBoundingBoxDescent
+      - metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent) / 2;
+    node.style.setProperty('--mfc-ink-shift', Number.isFinite(shift) ? shift + 'px' : '0px');
+  }
+
   function showCopyPage(position) {
     if (!copyLayout || copyLayout.key !== currentProgramId || copy.hidden) return;
     const index = Math.min(copyLayout.pages.length - 1, Math.floor(position.local / Math.max(1, positive(position.item?.duration)) * copyLayout.pages.length));
@@ -242,9 +263,11 @@
     header.style.fontSize = '';
     const headerBox = header.parentElement, headerStyle = getComputedStyle(headerBox);
     const headerHeight = headerBox.clientHeight - parseFloat(headerStyle.paddingTop) - parseFloat(headerStyle.paddingBottom);
-    const headerWidth = headerBox.clientWidth - parseFloat(headerStyle.paddingLeft) - parseFloat(headerStyle.paddingRight);
-    largestFit(1, parseFloat(getComputedStyle(header).fontSize), size => { header.style.fontSize = size + 'px'; },
-      () => header.scrollWidth <= headerWidth + .5 && header.getBoundingClientRect().height <= headerHeight + .5);
+    largestFit(1, parseFloat(getComputedStyle(header).fontSize), size => { header.style.fontSize = size + 'px'; centerTextInk(header); },
+      () => header.scrollWidth <= header.clientWidth + 1
+        && Math.max(header.scrollHeight, parseFloat(getComputedStyle(header).height))
+          + 2 * Math.abs(parseFloat(header.style.getPropertyValue('--mfc-ink-shift')) || 0) <= headerHeight - 1);
+    [header, dateNode, clockNode, ticker, tickerClone].forEach(centerTextInk);
     if (copy.hidden || !copy.clientHeight) { copyLayout = null; return; }
     title.style.fontSize = ''; eyebrow.style.fontSize = ''; bodyCopy.style.fontSize = '';
     copyPage.hidden = true;
@@ -255,7 +278,7 @@
     largestFit(.05, 1, scale => {
       title.style.fontSize = titleSize * scale + 'px'; eyebrow.style.fontSize = eyebrowSize * scale + 'px';
     }, () => {
-      const titleHeight = title.getBoundingClientRect().height, eyebrowHeight = eyebrow.getBoundingClientRect().height;
+      const titleHeight = title.offsetHeight, eyebrowHeight = eyebrow.offsetHeight;
       return titleHeight + eyebrowHeight <= copy.clientHeight * (fullBody ? .42 : .88)
         && title.scrollWidth <= title.clientWidth + 1 && eyebrow.scrollWidth <= eyebrow.clientWidth + 1;
     });
@@ -303,7 +326,7 @@
     if (fitFrame) return;
     fitFrame = requestAnimationFrame(() => { fitFrame = 0; fitBroadcastCopy(); });
   }
-  window.addEventListener('resize', () => { setMediaMode(timelinePosition(programItems(), rawElapsed()).item?.type || 'headline'); scheduleCopyFit(); });
+  window.addEventListener('resize', () => { scalePlayer(); setMediaMode(timelinePosition(programItems(), rawElapsed()).item?.type || 'headline'); scheduleCopyFit(); });
   new ResizeObserver(scheduleCopyFit).observe(panel);
   document.fonts?.ready.then(scheduleCopyFit);
   document.fonts?.addEventListener('loadingdone', scheduleCopyFit);
@@ -554,6 +577,7 @@
       minute: '2-digit',
       second: '2-digit'
     }).format(now).toUpperCase();
+    [dateNode, clockNode].forEach(centerTextInk);
   }
 
   function setSoundState(enabled) {

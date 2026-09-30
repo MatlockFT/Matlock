@@ -13,6 +13,7 @@ function setText(body, options = {}) {
   return item;
 }
 async function assertFits(page) {
+  await page.evaluate(async () => { await document.fonts.ready; await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))); });
   const geometry = await page.evaluate(() => {
     const panel = document.querySelector('[data-mfc-panel]').getBoundingClientRect();
     const header = document.querySelector('[data-mfc-header]'), headerBox = header.parentElement.getBoundingClientRect();
@@ -22,9 +23,9 @@ async function assertFits(page) {
         overflowX: node.scrollWidth > node.clientWidth + 1, overflowY: node.scrollHeight > node.clientHeight + 1 };
     });
     const box = header.getBoundingClientRect();
-    return { fields, headerFits: box.left >= headerBox.left && box.right <= headerBox.right + 1 && box.top >= headerBox.top && box.bottom <= headerBox.bottom + 1 && header.scrollWidth <= header.clientWidth + 1 };
+    return { fields, headerBounds: { box: box.toJSON(), parent: headerBox.toJSON(), scrollWidth: header.scrollWidth, clientWidth: header.clientWidth }, headerFits: box.left >= headerBox.left && box.right <= headerBox.right + 1 && box.top >= headerBox.top && box.bottom <= headerBox.bottom + 1 && header.scrollWidth <= header.clientWidth + 1 };
   });
-  expect(geometry.headerFits).toBe(true);
+  expect(geometry.headerFits, JSON.stringify(geometry.headerBounds)).toBe(true);
   for (const field of geometry.fields) expect(field, field.name).toMatchObject({ inPanel: true, overflowX: false, overflowY: false });
 }
 
@@ -86,4 +87,68 @@ test('resize, hidden monitor recovery and edits recompute layout; inspector sugg
   await page.locator('[data-program-fields]').getByLabel('Title', { exact: true }).fill('Resized title');
   await expect(preview.locator('[data-mfc-title]')).toHaveText('RESIZED TITLE');
   expect(fixture.controls.writes).toBe(0);
+});
+
+test('Control, homepage-sized embeds, narrow monitors and wide hosts share one composition and page count', async ({ page }) => {
+  setText('Complete news text with fighter names and results. '.repeat(65), { duration: 600 });
+  async function composition(locator) {
+    return locator.evaluate(screen => {
+      const stage = screen.getBoundingClientRect();
+      const keys = ['header', 'eyebrow', 'title', 'body', 'date', 'clock'];
+      return { ratio: stage.width / stage.height, pages: screen.querySelector('[data-mfc-copy-page]').textContent,
+        fields: keys.map(key => {
+          const node = screen.querySelector('[data-mfc-' + key + ']'), box = node.getBoundingClientRect();
+          return { key, font: getComputedStyle(node).fontSize, left: (box.left - stage.left) / stage.width,
+            top: (box.top - stage.top) / stage.height, width: box.width / stage.width, height: box.height / stage.height };
+        }) };
+    });
+  }
+  await page.setViewportSize({ width: 1440, height: 900 }); await page.goto(fixture.origin + '/broadcast/control/');
+  const preview = page.frameLocator('[data-preview-frame]');
+  await expect(preview.locator('[data-mfc-copy-page]')).toBeVisible();
+  const reference = await composition(preview.locator('[data-mfc-screen]'));
+  for (const viewport of [{ width: 640, height: 480 }, { width: 390, height: 844 }, { width: 300, height: 225 }, { width: 900, height: 300 }, { width: 1440, height: 900, standalone: true }]) {
+    await page.setViewportSize(viewport); await page.goto(fixture.origin + '/broadcast/?' + (viewport.standalone ? '' : 'embed=1'));
+    await expect(page.locator('[data-mfc-copy-page]')).toBeVisible();
+    const actual = await composition(page.locator('[data-mfc-screen]'));
+    expect(actual.ratio).toBeCloseTo(4 / 3, 5); expect(actual.pages).toBe(reference.pages);
+    actual.fields.forEach((field, index) => {
+      expect(field.font, field.key).toBe(reference.fields[index].font);
+      for (const dimension of ['left', 'top', 'width', 'height']) expect(field[dimension], field.key + ' ' + dimension).toBeCloseTo(reference.fields[index][dimension], 4);
+    });
+    const placement = await page.locator('[data-mfc-screen]').evaluate(node => {
+      const box = node.getBoundingClientRect(); return { left: box.left, top: box.top, right: box.right, bottom: box.bottom, width: innerWidth, height: innerHeight };
+    });
+    expect(placement.left).toBeGreaterThanOrEqual(-1); expect(placement.top).toBeGreaterThanOrEqual(-1);
+    expect(placement.right).toBeLessThanOrEqual(placement.width + 1); expect(placement.bottom).toBeLessThanOrEqual(placement.height + 1);
+    await assertFits(page);
+  }
+});
+
+test('short and wrapped banner labels retain the same visible-glyph center; footer rows stay separate', async ({ page }) => {
+  for (const header of ['I', 'DWCS RESULTS', 'THE LATEST FIGHT RESULTS AND NEWS FROM AROUND THE WORLD']) {
+    setText('Fight news details.', { header, duration: 600 });
+    await page.setViewportSize({ width: 640, height: 480 }); await page.goto(fixture.origin + '/broadcast/?embed=1');
+    await expect.poll(() => page.locator('[data-mfc-header]').evaluate(node => Boolean(node.style.fontSize))).toBe(true);
+    await assertFits(page);
+    const alignment = await page.evaluate(() => {
+      const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d');
+      const inkBox = node => {
+        const style = getComputedStyle(node), box = node.getBoundingClientRect();
+        ctx.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`; const m = ctx.measureText(node.textContent);
+        const shift = (m.fontBoundingBoxAscent - m.fontBoundingBoxDescent - m.actualBoundingBoxAscent + m.actualBoundingBoxDescent) / 2;
+        const center = (box.top + box.bottom) / 2 + shift;
+        return { center, top: center - (m.actualBoundingBoxAscent + m.actualBoundingBoxDescent) / 2, bottom: center + (m.actualBoundingBoxAscent + m.actualBoundingBoxDescent) / 2 };
+      };
+      const banner = document.querySelector('.mfc-header-copy').getBoundingClientRect(), row = document.querySelector('.mfc-lower-status').getBoundingClientRect();
+      const headerInk = inkBox(document.querySelector('[data-mfc-header]'));
+      const date = inkBox(document.querySelector('[data-mfc-date]')), clock = inkBox(document.querySelector('[data-mfc-clock]'));
+      const crawl = document.querySelector('.mfc-lower-crawl').getBoundingClientRect();
+      return { headerError: Math.abs(headerInk.center - (banner.top + banner.bottom) / 2),
+        dateError: Math.abs(date.center - (row.top + row.bottom) / 2), clockError: Math.abs(clock.center - (row.top + row.bottom) / 2),
+        footerSeparated: date.bottom < crawl.top && clock.bottom < crawl.top };
+    });
+    expect(alignment.headerError, JSON.stringify(alignment)).toBeLessThan(1); expect(alignment.dateError, JSON.stringify(alignment)).toBeLessThan(1); expect(alignment.clockError, JSON.stringify(alignment)).toBeLessThan(1);
+    expect(alignment.footerSeparated).toBe(true); await assertFits(page);
+  }
 });
