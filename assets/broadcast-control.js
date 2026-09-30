@@ -16,6 +16,7 @@
   const saveDraftButton = app.querySelector('[data-save-draft]');
   const takeLiveButton = app.querySelector('[data-take-live]');
   const liveStatus = app.querySelector('[data-live-status]');
+  const authStatus = app.querySelector('[data-auth-status]');
   const loopTotal = app.querySelector('[data-loop-total]');
   const previewNow = app.querySelector('[data-preview-now]');
   const previewDuration = app.querySelector('[data-preview-duration]');
@@ -160,6 +161,7 @@
       if (response.status === 401) {
         localWrite(SESSION_ID_KEY, '');
         sessionId = '';
+        if (authStatus) authStatus.textContent = 'GitHub: session expired';
       }
       const error = new Error(data.message || data.error || `${response.status} ${response.statusText}`);
       error.status = response.status;
@@ -1193,17 +1195,27 @@
       authPanel.hidden = false;
       workspace.hidden = true;
       liveStatus.textContent = 'Sign in required';
+      if (authStatus) authStatus.textContent = 'GitHub: signed out';
       return;
     }
 
+    const login = valid.login || localRead(SESSION_LOGIN_KEY) || 'GitHub';
     authPanel.hidden = true;
     workspace.hidden = false;
-    liveStatus.textContent = `Connected as ${valid.login || localRead(SESSION_LOGIN_KEY) || 'GitHub'}`;
+    liveStatus.textContent = 'Loading broadcast…';
+    if (authStatus) authStatus.textContent = `GitHub: ${login}`;
     try {
       await loadState();
     } catch (error) {
       workspace.hidden = true;
-      authPanel.hidden = false;
+      if (error.status === 401) {
+        authPanel.hidden = false;
+        liveStatus.textContent = 'Sign in required';
+        if (authStatus) authStatus.textContent = 'GitHub: session expired';
+      } else {
+        authPanel.hidden = true;
+        liveStatus.textContent = 'Broadcast load failed';
+      }
       showToast(`Could not load broadcast state: ${error.message}`, 9000);
     }
   }
@@ -1214,5 +1226,6 @@
     authPanel.hidden = false;
     workspace.hidden = true;
     liveStatus.textContent = 'Sign in required';
+    if (authStatus) authStatus.textContent = 'GitHub: signed out';
   }
 })();
