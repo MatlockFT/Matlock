@@ -731,6 +731,33 @@
     }
   }
 
+
+
+  function currentLiveProgramId() {
+    const live = fullState?.live;
+    const items = Array.isArray(live?.program) ? live.program.filter(item => positive(item.duration) > 0) : [];
+    if (!items.length) return '';
+    const stamp = Date.parse(live.startedAt || live.updatedAt || '');
+    if (!Number.isFinite(stamp)) return String(items[0]?.id || '');
+    const total = items.reduce((sum, item) => sum + positive(item.duration), 0);
+    if (total <= 0) return '';
+    const elapsed = Math.max(0, (Date.now() - stamp) / 1000);
+    const position = ((elapsed % total) + total) % total;
+    let cursor = 0;
+    for (const item of items) {
+      cursor += positive(item.duration);
+      if (position < cursor) return String(item.id || '');
+    }
+    return String(items[0]?.id || '');
+  }
+
+  function updateOnAirRundown() {
+    if (!programTrack) return;
+    const liveId = currentLiveProgramId();
+    programTrack.querySelectorAll('[data-program-id]').forEach(block => {
+      block.classList.toggle('is-on-air', Boolean(liveId) && block.dataset.programId === liveId);
+    });
+  }
   function blockWidth(duration, min = 118, scale = 4.4, max = 460) {
     return Math.max(min, Math.min(max, positive(duration) * scale));
   }
@@ -771,7 +798,7 @@
 
       const kind = document.createElement('span');
       kind.className = 'mfc-timeline-kind';
-      kind.textContent = String(item.type || 'headline').toUpperCase();
+      kind.textContent = `${String(index + 1).padStart(2, '0')} · ${String(item.type || 'headline').toUpperCase()}`;
 
       const blockTitle = document.createElement('strong');
       blockTitle.className = 'mfc-timeline-title';
@@ -843,6 +870,7 @@
     });
 
     renderProgramEditor();
+    updateOnAirRundown();
   }
 
   function field(label, key, options = {}) {
@@ -1874,6 +1902,7 @@
 
   bindWorkspaceTabs();
   activateWorkspace(localRead(WORKSPACE_KEY) || 'rundown');
+  window.setInterval(updateOnAirRundown, 1000);
 
   sessionId = localRead(SESSION_ID_KEY);
   if (sessionId) startWorkspace();
