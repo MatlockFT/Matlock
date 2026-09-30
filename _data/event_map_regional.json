@@ -1129,6 +1129,36 @@
       "longitude": -119.2921
     },
     {
+      "id": "sherdog-ccc-34-colorado-combat-club-34-2026-10-30-westminster",
+      "promotion": "CCC",
+      "promotion_key": "sherdog_discovery",
+      "title": "CCC 34: Colorado Combat Club 34",
+      "date": "2026-10-30",
+      "venue": "Rodeo Convention Center",
+      "location": "Westminster, CO",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/CCC-34-Colorado-Combat-Club-34-114514",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-fierce-fc-53-fierce-fighting-championship-53-2026-10-30-idaho-falls",
+      "promotion": "Fierce FC",
+      "promotion_key": "sherdog_discovery",
+      "title": "Fierce FC 53: Fierce Fighting Championship 53",
+      "date": "2026-10-30",
+      "venue": "Mountain America Center",
+      "location": "Idaho Falls, ID",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Fierce-FC-53-Fierce-Fighting-Championship-53-114622",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "lfa_official-lfa-245-khamzaev-vs-prescendo-2026-10-30",
       "promotion": "LFA",
       "promotion_key": "lfa_official",
@@ -1142,15 +1172,30 @@
       "level": "professional",
       "source_key": "lfa_official",
       "source_label": "Legacy Fighting Alliance",
-      "latitude": 43.0962,
-      "longitude": -79.0377,
       "main_event": {
         "fighters": [
           "Khamzaev",
           "Prescendo"
         ]
       },
+      "latitude": 43.0962,
+      "longitude": -79.0377,
       "poster_url": "https://www.lfa.com/wp-content/uploads/2026/09/LFA-245-Standard-Poster-Web.png"
+    },
+    {
+      "id": "sherdog-wxc-102-warrior-xtreme-combat-2026-10-30-flint",
+      "promotion": "WXC",
+      "promotion_key": "sherdog_discovery",
+      "title": "WXC 102: Warrior Xtreme Combat",
+      "date": "2026-10-30",
+      "venue": "Dort Financial Center",
+      "location": "Flint, MI",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/WXC-102-Warrior-Xtreme-Combat-114125",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
     },
     {
       "id": "florida_commission-combat-night-2026-11-07",
