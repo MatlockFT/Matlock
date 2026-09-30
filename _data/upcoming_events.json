@@ -1,122 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-30T08:43:25.457Z",
+  "generated_at": "2026-09-30T15:24:06.422Z",
   "events": [
-    {
-      "id": "dwcs-season-10-week-8-2026-09-29",
-      "promotion_key": "dwcs",
-      "promotion": "DWCS",
-      "title": "Season 10 · Week 8",
-      "date": "2026-09-29",
-      "date_label": "Tuesday · September 29, 2026",
-      "venue": "Meta APEX · Las Vegas, Nevada",
-      "broadcast": "Paramount+",
-      "official_url": "https://www.ufc.com/dwcs#season-10-week-8",
-      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-8-112634",
-      "updated_label": "September 30, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Fight Card",
-          "time": "8:00 PM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Lightweight",
-              "fighters": [
-                {
-                  "name": "George Staines",
-                  "initials": "GS",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1721599386staines.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Loai Abushaar",
-                  "initials": "LA",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1767728957loaiabushaar.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Heavyweight",
-              "fighters": [
-                {
-                  "name": "Adama Diop",
-                  "initials": "AD",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1772148782Diop-ceinture.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Zaurbek Sabanov",
-                  "initials": "ZS",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1717954841FpL_RstXEAMCzSH.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Featherweight",
-              "fighters": [
-                {
-                  "name": "Ian Escuza",
-                  "initials": "IE",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1782490998ianescuza.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Luca Borando",
-                  "initials": "LB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1709567492luca-borando-1280x720.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Strawweight",
-              "fighters": [
-                {
-                  "name": "Aieza Ramos Bertolso",
-                  "initials": "ARB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1768269758IMG_2302.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Camila Reynoso",
-                  "initials": "CR",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1730210572reynoso.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "city": "Las Vegas",
-      "state": "NV",
-      "state_code": "NV",
-      "country": "US",
-      "location": "Las Vegas, NV",
-      "latitude": 36.1699,
-      "longitude": -115.1398,
-      "location_source": "venue-text",
-      "location_precision": "city"
-    },
     {
       "id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "promotion_key": "rizin",
@@ -463,7 +348,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/SILVA_NATALIA_L_01-24.png?itok=A5iY_ScW",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-210"
+                  "moneyline": "-215"
                 },
                 {
                   "name": "Wang Cong",
@@ -471,7 +356,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/CONG_WANG_L_02-07.png?itok=LBnTljRc",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+162"
+                  "moneyline": "+164"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -488,7 +373,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/FIGUEIREDO_DEIVESON_L_10-11.png?itok=arHv-wVH",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+430"
+                  "moneyline": "+420"
                 },
                 {
                   "name": "Payton Talbott",
@@ -496,7 +381,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/TALBOTT_PAYTON_L_06-28.png?itok=SCY_KVRR",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-670"
+                  "moneyline": "-650"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -513,7 +398,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/GREEN_KING_L_07-11.png?itok=VfpfdCUg",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+196"
+                  "moneyline": "+200"
                 },
                 {
                   "name": "Esteban Ribovics",
@@ -521,7 +406,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/RIBOVICS_ESTEBAN_L_05-11.png?itok=sQBu-_E0",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-260"
+                  "moneyline": "-265"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -538,7 +423,7 @@
                   "image": "",
                   "image_source": "",
                   "image_framing": "",
-                  "moneyline": "-340"
+                  "moneyline": "-330"
                 },
                 {
                   "name": "Khaos Williams",
@@ -546,7 +431,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/WILLIAMS_KHAOS_L_06-07.png?itok=tv-XQtv9",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+250"
+                  "moneyline": "+240"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -563,7 +448,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/GAUTIER_ATEBA_L_05-09.png?itok=dydh3iVk",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-205"
+                  "moneyline": "-235"
                 },
                 {
                   "name": "Roman Kopylov",
@@ -571,7 +456,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/KOPYLOV_ROMAN_L_05-09.png?itok=Lc4htX8o",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+158"
+                  "moneyline": "+180"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -595,7 +480,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/RODRIGUEZ_IMANOL_L_02-28.png?itok=_Y1p2V-L",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-172"
+                  "moneyline": "-174"
                 },
                 {
                   "name": "Alden Coria",
@@ -603,7 +488,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CORIA_ALDEN_L_07-18.png?itok=lobuZB80",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+134"
+                  "moneyline": "+136"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -620,7 +505,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/PINAS_DAMIAN_L_07-11.png?itok=y63owkBX",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-520"
+                  "moneyline": "-530"
                 },
                 {
                   "name": "Andrey Pulyaev",
@@ -628,7 +513,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/PULYAEV_ANDREY_R_03-22.png?itok=jWF656q7",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+350"
+                  "moneyline": "+360"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -819,6 +704,142 @@
           ]
         }
       ]
+    },
+    {
+      "id": "dwcs-season-10-week-9-2026-10-06",
+      "promotion_key": "dwcs",
+      "promotion": "DWCS",
+      "title": "Season 10 · Week 9",
+      "date": "2026-10-06",
+      "date_label": "Tuesday · October 6, 2026",
+      "venue": "Meta APEX · Las Vegas, Nevada",
+      "broadcast": "Paramount+",
+      "official_url": "https://www.ufc.com/dwcs#season-10-week-9",
+      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-9-112635",
+      "updated_label": "September 30, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "8:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Salhahuddin Everett",
+                  "initials": "SE",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250824024424_Salhahuddin_Everett.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ozzy Martin",
+                  "initials": "OM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1784768551Ozzy_Martin.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Light Heavyweight",
+              "fighters": [
+                {
+                  "name": "Preston LaGrange",
+                  "initials": "PL",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260119122600_Preston_LaGrange.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Nell Ariano",
+                  "initials": "NA",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1712067268IMG-3578.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Flyweight",
+              "fighters": [
+                {
+                  "name": "Roque Conceicao Moreira Junior",
+                  "initials": "RCM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1755138057roquejunior.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Alexander Chavez",
+                  "initials": "AC",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1769462541alexanderchavez.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Bantamweight",
+              "fighters": [
+                {
+                  "name": "Alivia Bierley",
+                  "initials": "AB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20240922055057_Alivia_Bierley.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Summer Onley",
+                  "initials": "SO",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1724164164onley.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Bantamweight",
+              "fighters": [
+                {
+                  "name": "Ryuho Miyaguchi",
+                  "initials": "RM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260528101828_Ryuho_Miyaguchi.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Mateus Soares",
+                  "initials": "MS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732773864soares.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "city": "Las Vegas",
+      "state": "NV",
+      "state_code": "NV",
+      "country": "US",
+      "location": "Las Vegas, NV",
+      "latitude": 36.1699,
+      "longitude": -115.1398,
+      "location_source": "venue-text",
+      "location_precision": "city"
     },
     {
       "id": "ufc-fight-night-2026-10-10-fight-card",

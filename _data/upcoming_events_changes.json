@@ -1,7 +1,37 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-30T02:14:13.827Z",
+  "generated_at": "2026-09-30T15:26:41.508Z",
   "changes": [
+    {
+      "id": "2026-09-30T15:26:41.508Z|dwcs-season-10-week-9-2026-10-06|event_added|1",
+      "at": "2026-09-30T15:26:41.508Z",
+      "type": "event_added",
+      "event_id": "dwcs-season-10-week-9-2026-10-06",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 9",
+      "event_date": "2026-10-06",
+      "summary": "DWCS Season 10 · Week 9 added to Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "Meta APEX · Las Vegas, Nevada",
+        "date": "2026-10-06"
+      }
+    },
+    {
+      "id": "2026-09-30T15:26:41.508Z|dwcs-season-10-week-8-2026-09-29|event_removed|2",
+      "at": "2026-09-30T15:26:41.508Z",
+      "type": "event_removed",
+      "event_id": "dwcs-season-10-week-8-2026-09-29",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 8",
+      "event_date": "2026-09-29",
+      "summary": "DWCS Season 10 · Week 8 removed from Upcoming Events.",
+      "details": {
+        "bout_count": 4,
+        "venue": "Meta APEX · Las Vegas, Nevada",
+        "date": "2026-09-29"
+      }
+    },
     {
       "id": "2026-09-30T02:14:13.827Z|ufc-fight-night-2026-11-21-fight-card|title_changed|1",
       "at": "2026-09-30T02:14:13.827Z",
@@ -4701,38 +4731,6 @@
       "details": {
         "from_order": 9,
         "to_order": 9,
-        "from_section": "Main Card",
-        "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|21",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Rafael Dos Anjos vs Alexander Hernandez moved on Silva vs Cong.",
-      "details": {
-        "from_order": 10,
-        "to_order": 10,
-        "from_section": "Main Card",
-        "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|22",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Marvin Vettori vs Ismail Naurdiev moved on Silva vs Cong.",
-      "details": {
-        "from_order": 11,
-        "to_order": 11,
         "from_section": "Main Card",
         "to_section": "Early Prelims"
       }
