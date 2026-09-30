@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-29T23:12:37.545Z",
+  "generated_at": "2026-09-30T02:13:04.364Z",
   "events": [
     {
       "id": "dwcs-season-10-week-8-2026-09-29",
@@ -47,16 +47,16 @@
               "weight_class": "Heavyweight",
               "fighters": [
                 {
-                  "name": "Zaurbek Sabanov",
-                  "initials": "ZS",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1717954841FpL_RstXEAMCzSH.jpeg",
+                  "name": "Adama Diop",
+                  "initials": "AD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1772148782Diop-ceinture.png",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 },
                 {
-                  "name": "Adama Diop",
-                  "initials": "AD",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1772148782Diop-ceinture.png",
+                  "name": "Zaurbek Sabanov",
+                  "initials": "ZS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1717954841FpL_RstXEAMCzSH.jpeg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -68,16 +68,16 @@
               "weight_class": "Featherweight",
               "fighters": [
                 {
-                  "name": "Luca Borando",
-                  "initials": "LB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1709567492luca-borando-1280x720.jpg",
+                  "name": "Ian Escuza",
+                  "initials": "IE",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1782490998ianescuza.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 },
                 {
-                  "name": "Ian Escuza",
-                  "initials": "IE",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1782490998ianescuza.jpg",
+                  "name": "Luca Borando",
+                  "initials": "LB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1709567492luca-borando-1280x720.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -89,16 +89,16 @@
               "weight_class": "Strawweight",
               "fighters": [
                 {
-                  "name": "Camila Reynoso",
-                  "initials": "CR",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1730210572reynoso.jpg",
+                  "name": "Aieza Ramos Bertolso",
+                  "initials": "ARB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1768269758IMG_2302.jpeg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 },
                 {
-                  "name": "Aieza Ramos Bertolso",
-                  "initials": "ARB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1768269758IMG_2302.jpeg",
+                  "name": "Camila Reynoso",
+                  "initials": "CR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1730210572reynoso.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -2854,7 +2854,7 @@
       "id": "ufc-fight-night-2026-11-21-fight-card",
       "promotion_key": "ufc",
       "promotion": "UFC Fight Night",
-      "title": "Cannonier vs Aliskerov",
+      "title": "Procházka vs Stirling",
       "date": "2026-11-21",
       "date_label": "Saturday · November 21, 2026",
       "starts_at": "",
@@ -2872,6 +2872,75 @@
             {
               "order": 1,
               "label": "Main Event",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Jiří Procházka",
+                  "initials": "JP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/PROCHAZKA_JIRI_L_04-11.png?itok=kzDQfMFd",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Navajo Stirling",
+                  "initials": "NS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/STIRLING_NAVAJO_L_03-28.png?itok=BVUQTbQ5",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Aljamain Sterling",
+                  "initials": "AS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/STERLING_ALJAMAIN_L_04-25.png?itok=lJPFybAO",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Kevin Vallejos",
+                  "initials": "KV",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/VALLEJOS_KEVIN_R_12-13.png?itok=-h2gdx6Y",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Dan Hooker",
+                  "initials": "DH",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/HOOKER_DAN_L_09-05.png?itok=cLfQlP6e",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Brian Ortega",
+                  "initials": "BO",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/ORTEGA_BRIAN_L_08-23.png?itok=OQf_S2Es",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
                 {
@@ -2893,8 +2962,31 @@
               ]
             },
             {
-              "order": 2,
-              "label": "Co-Main Event",
+              "order": 5,
+              "label": "",
+              "weight_class": "Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Shamil Gaziev",
+                  "initials": "SG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/GAZIEV_SHAMIL_L_05-02.png?itok=VAF3kcSW",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Tallison Teixeira",
+                  "initials": "TT",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/TEIXEIRA_TALLISON_R_07-12.png?itok=vtmFVu5M",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
                 {
@@ -2916,7 +3008,7 @@
               ]
             },
             {
-              "order": 3,
+              "order": 7,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -2939,7 +3031,7 @@
               ]
             },
             {
-              "order": 4,
+              "order": 8,
               "label": "",
               "weight_class": "Flyweight Bout",
               "fighters": [
@@ -2962,7 +3054,7 @@
               ]
             },
             {
-              "order": 5,
+              "order": 9,
               "label": "",
               "weight_class": "Flyweight Bout",
               "fighters": [
