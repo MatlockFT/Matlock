@@ -301,3 +301,22 @@ jobs:
 
       - name: Check search and AdSense readiness
         run: npm run check:search
+
+  publish-pages:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build-and-check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+    steps:
+      - name: Request publication of the verified site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          current="$(gh api "repos/${{ github.repository }}/pages/builds/latest" --jq 'select(.status == "built") | .commit' 2>/dev/null || true)"
+          if [ "$current" = "$GITHUB_SHA" ]; then
+            echo "This revision is already published."
+          else
+            gh api --method POST "repos/${{ github.repository }}/pages/builds" --jq '.status'
+          fi
