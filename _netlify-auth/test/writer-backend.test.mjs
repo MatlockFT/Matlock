@@ -12,6 +12,7 @@ import {
   isStaleStatus,
   parseStatusKey,
   sanitizeAssetName,
+  validateMediaMetadata,
   validateVideoMetadata
 } from '../netlify/functions/_writer-media.mjs';
 
@@ -23,6 +24,8 @@ test('Writer GitHub proxy only allows scoped article and upload paths', () => {
   assert.equal(allowedPath('/contents/assets/uploads/example.webp', 'PUT'), true);
   assert.equal(allowedPath('/contents/assets/uploads/example.webp', 'DELETE'), false);
   assert.equal(allowedPath('/contents/assets/uploads/articles/2026/09/article-slug/cover.webp', 'PUT'), true);
+  assert.equal(allowedPath('/contents/assets/data/broadcast.json?ref=main', 'GET'), true);
+  assert.equal(allowedPath('/contents/assets/data/broadcast.json', 'PUT'), true);
   assert.equal(allowedPath('/repos/MatlockFT/Matlock/actions', 'GET'), false);
   assert.equal(allowedPath('/contents/_config.yml', 'PUT'), false);
   assert.equal(allowedPath('/contents/_posts/../../_config.yml', 'PUT'), false);
@@ -99,6 +102,24 @@ test('Video metadata validation enforces extension, MIME, size and chunk count',
     fileType: 'video/mp4',
     chunkCount: 1
   }), /chunk count is too small/);
+});
+
+test('Broadcast media metadata accepts common audio formats', () => {
+  const valid = validateMediaMetadata({
+    assetName: 'Weather Groove.mp3',
+    fileSize: 8 * 1024 * 1024,
+    fileType: 'audio/mpeg',
+    chunkCount: 3
+  });
+  assert.equal(valid.assetName, 'Weather-Groove.mp3');
+  assert.equal(valid.ext, 'mp3');
+
+  assert.throws(() => validateVideoMetadata({
+    assetName: 'Weather Groove.mp3',
+    fileSize: 8 * 1024 * 1024,
+    fileType: 'audio/mpeg',
+    chunkCount: 3
+  }), /MP4, WebM or M4V/);
 });
 
 test('Media status cleanup parsing and TTLs are deterministic', () => {
