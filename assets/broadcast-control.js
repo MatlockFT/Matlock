@@ -5,7 +5,7 @@
   const authBase = String(app.dataset.authBase || '').replace(/\/$/, '');
   const SESSION_ID_KEY = 'matlock-writer:server-session';
   const SESSION_LOGIN_KEY = 'matlock-writer:server-login';
-  const STATE_API_PATH = '/contents/assets/data/broadcast.json';
+  const STATE_API_PATH = '/contents/assets/uploads/broadcast.json';
   const CHUNK_BYTES = Math.floor(3.5 * 1024 * 1024);
   const STATUS_POLL_MS = 1400;
   const STATUS_TIMEOUT_MS = 20 * 60 * 1000;
