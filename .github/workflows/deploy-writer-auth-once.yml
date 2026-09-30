@@ -34,7 +34,7 @@ jobs:
           NETLIFY_SITE_ID: 7321d7b0-10c2-4ce8-a885-2fbdfdd6a623
         run: |
           if [ -z "${NETLIFY_AUTH_TOKEN:-}" ]; then
-            echo "NETLIFY_AUTH_TOKEN repository secret is not configured; skipping backend deploy."
-            exit 0
+            echo "::error title=Writer backend deploy blocked::Repository secret NETLIFY_AUTH_TOKEN is not configured. The Writer auth backend cannot publish new functions until this secret is added."
+            exit 1
           fi
           npx -y netlify-cli@latest deploy --build --prod --site "$NETLIFY_SITE_ID" --auth "$NETLIFY_AUTH_TOKEN"
