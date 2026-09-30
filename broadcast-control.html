@@ -10,7 +10,7 @@ permalink: /broadcast/control/
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>Matlock Fight Channel — Control Room</title>
-  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20260930-5">
+  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20260930-6">
 </head>
 <body class="mfc-control-body">
   <main class="mfc-control" data-mfc-control data-auth-base="https://mmamatlock-writer-auth.netlify.app">
@@ -125,6 +125,36 @@ permalink: /broadcast/control/
           </div>
         </section>
 
+        <section class="mfc-panel mfc-video-library-panel" data-video-library-panel>
+          <div class="mfc-panel-head mfc-panel-head-wide">
+            <div>
+              <span>Video assets</span>
+              <strong>Video Library</strong>
+            </div>
+            <div class="mfc-add-row">
+              <label class="mfc-button mfc-button-small mfc-file-button">
+                + Upload videos
+                <input type="file" accept="video/mp4,video/webm,video/x-m4v,.mp4,.webm,.m4v" data-video-library-upload multiple hidden>
+              </label>
+              <button type="button" class="mfc-button mfc-button-small mfc-button-ghost" data-video-library-refresh>Refresh</button>
+            </div>
+          </div>
+          <div class="mfc-library-toolbar">
+            <label class="mfc-field">
+              <span>Find uploaded video</span>
+              <input type="search" data-video-library-search placeholder="Search video library">
+            </label>
+            <p data-video-library-summary>Loading uploaded videos…</p>
+          </div>
+          <div class="mfc-video-library" data-video-library-list>
+            <p class="mfc-empty">Loading uploaded videos…</p>
+          </div>
+          <div class="mfc-upload-progress" data-upload-progress hidden>
+            <div><span data-upload-label>Uploading…</span><strong data-upload-percent>0%</strong></div>
+            <progress max="100" value="0" data-upload-meter></progress>
+          </div>
+        </section>
+
         <section class="mfc-panel mfc-music-panel">
           <div class="mfc-panel-head mfc-panel-head-wide">
             <div>
@@ -141,10 +171,6 @@ permalink: /broadcast/control/
           </div>
 
           <div class="mfc-linear-track mfc-music-track" data-music-track aria-label="Music playlist"></div>
-          <div class="mfc-upload-progress" data-upload-progress hidden>
-            <div><span data-upload-label>Uploading…</span><strong data-upload-percent>0%</strong></div>
-            <progress max="100" value="0" data-upload-meter></progress>
-          </div>
         </section>
 
         <section class="mfc-panel" data-music-editor>
@@ -175,6 +201,17 @@ permalink: /broadcast/control/
       </section>
     </div>
 
+    <dialog class="mfc-dialog mfc-video-preview-dialog" data-video-preview-dialog>
+      <form method="dialog">
+        <header><strong data-video-preview-title>Video preview</strong><button value="cancel" aria-label="Close">×</button></header>
+        <div class="mfc-video-preview-body">
+          <video controls playsinline preload="metadata" data-video-preview-player></video>
+          <p data-video-preview-meta></p>
+        </div>
+        <footer><button value="cancel" class="mfc-button mfc-button-ghost">Close</button></footer>
+      </form>
+    </dialog>
+
     <dialog class="mfc-dialog" data-url-dialog>
       <form method="dialog">
         <header><strong>Add music from URL</strong><button value="cancel" aria-label="Close">×</button></header>
@@ -190,6 +227,6 @@ permalink: /broadcast/control/
     <div class="mfc-toast" data-toast role="status" aria-live="polite" hidden></div>
   </main>
 
-  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-5" defer></script>
+  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-6" defer></script>
 </body>
 </html>
