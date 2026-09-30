@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "Standard";
+  src: url("/assets/fonts/standard/standard-book.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Standard";
+  src: url("/assets/fonts/standard/standard-bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
   --mfc-ink: #f7f5e8;
@@ -9,6 +25,7 @@
   --mfc-gold: #c88c32;
   --mfc-gold-deep: #7a4d21;
   --mfc-line: rgba(212, 222, 255, .34);
+  --mfc-type: "Standard", "Helvetica Neue", Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -23,7 +40,7 @@ body {
 .mfc-body {
   display: grid;
   place-items: start center;
-  font-family: "Courier New", Courier, monospace;
+  font-family: var(--mfc-type);
 }
 
 .mfc-shell {
@@ -89,7 +106,7 @@ body {
 
 .mfc-logo span {
   display: block;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--mfc-type);
   font-size: clamp(.54rem, 2.25vw, 2.15rem);
   font-weight: 900;
   line-height: .86;
@@ -119,7 +136,7 @@ body {
 .mfc-header-kicker {
   display: block;
   margin-bottom: .35%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--mfc-type);
   font-size: clamp(.34rem, .9vw, .86rem);
   font-weight: 800;
   letter-spacing: .14em;
@@ -294,7 +311,7 @@ body {
   padding: 0 1.4%;
   background: linear-gradient(180deg, #cf9136, #995d25);
   color: #171019;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--mfc-type);
   font-size: clamp(.42rem, 1.05vw, 1rem);
   font-weight: 900;
   letter-spacing: .11em;
