@@ -10,24 +10,37 @@ permalink: /broadcast/control/
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>Matlock Fight Channel — Control Room</title>
-  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20260930-7">
+  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20260930-8">
 </head>
 <body class="mfc-control-body">
   <main class="mfc-control" data-mfc-control data-auth-base="https://mmamatlock-writer-auth.netlify.app">
     <header class="mfc-control-topbar">
-      <div>
+      <div class="mfc-brand-block">
         <p class="mfc-control-eyebrow">Matlock Fight Channel</p>
         <h1>Broadcast Control</h1>
       </div>
-      <div class="mfc-control-status">
-        <span class="mfc-onair-dot" aria-hidden="true"></span>
-        <strong data-live-status>Checking broadcast…</strong>
-        <span data-auth-status>GitHub: checking…</span>
-        <span data-draft-status data-dirty="false">Draft saved</span>
-        <span data-loop-total>Loop 00:00</span>
+
+      <div class="mfc-control-status" aria-label="Broadcast status">
+        <div class="mfc-status-cell mfc-status-cell-live">
+          <span class="mfc-status-label"><i class="mfc-onair-dot" aria-hidden="true"></i> On Air</span>
+          <strong data-live-status>Checking broadcast…</strong>
+        </div>
+        <div class="mfc-status-cell">
+          <span class="mfc-status-label">Session</span>
+          <strong data-auth-status>GitHub: checking…</strong>
+        </div>
+        <div class="mfc-status-cell">
+          <span class="mfc-status-label">Draft</span>
+          <strong data-draft-status data-dirty="false">Draft saved</strong>
+        </div>
+        <div class="mfc-status-cell">
+          <span class="mfc-status-label">Rundown</span>
+          <strong data-loop-total>Loop 00:00</strong>
+        </div>
       </div>
+
       <div class="mfc-control-actions">
-        <button type="button" class="mfc-button mfc-button-ghost" data-reload-state disabled>Reload State</button>
+        <button type="button" class="mfc-button mfc-button-ghost" data-reload-state disabled>Reload</button>
         <button type="button" class="mfc-button mfc-button-ghost" data-save-draft disabled>Save Draft</button>
         <button type="button" class="mfc-button mfc-button-live" data-take-live disabled>Take Live</button>
       </div>
@@ -35,169 +48,272 @@ permalink: /broadcast/control/
 
     <section class="mfc-auth-panel" data-auth-panel>
       <div>
+        <span class="mfc-auth-kicker">Control room locked</span>
         <strong>GitHub sign-in required</strong>
-        <p>This control room uses the same secure Writer session as the article editor.</p>
+        <p>Broadcast Control uses the same secure Writer session as the article editor.</p>
       </div>
       <button type="button" class="mfc-button" data-sign-in>Sign in with GitHub</button>
     </section>
 
-    <div class="mfc-control-grid" data-control-workspace hidden>
-      <aside class="mfc-monitor-column">
-        <section class="mfc-panel">
-          <div class="mfc-panel-head">
-            <div>
-              <span>Monitor</span>
-              <strong>Draft preview</strong>
+    <div class="mfc-control-workspace" data-control-workspace hidden>
+      <nav class="mfc-workspace-tabs" role="tablist" aria-label="Broadcast Control workspaces">
+        <button type="button" id="workspace-tab-rundown" class="mfc-workspace-tab is-active" role="tab" aria-selected="true" aria-controls="workspace-panel-rundown" data-workspace-tab="rundown">
+          <span>Rundown</span><b data-workspace-count="rundown">0</b>
+        </button>
+        <button type="button" id="workspace-tab-media" class="mfc-workspace-tab" role="tab" aria-selected="false" aria-controls="workspace-panel-media" data-workspace-tab="media">
+          <span>Media</span><b data-workspace-count="media">0</b>
+        </button>
+        <button type="button" id="workspace-tab-audio" class="mfc-workspace-tab" role="tab" aria-selected="false" aria-controls="workspace-panel-audio" data-workspace-tab="audio">
+          <span>Audio</span><b data-workspace-count="audio">0</b>
+        </button>
+        <button type="button" id="workspace-tab-graphics" class="mfc-workspace-tab" role="tab" aria-selected="false" aria-controls="workspace-panel-graphics" data-workspace-tab="graphics">
+          <span>Graphics</span><b data-workspace-count="graphics">0</b>
+        </button>
+      </nav>
+
+      <div class="mfc-upload-progress mfc-global-upload" data-upload-progress hidden>
+        <div><span data-upload-label>Uploading…</span><strong data-upload-percent>0%</strong></div>
+        <progress max="100" value="0" data-upload-meter></progress>
+      </div>
+
+      <section id="workspace-panel-rundown" class="mfc-workspace-panel is-active" role="tabpanel" aria-labelledby="workspace-tab-rundown" data-workspace-panel="rundown">
+        <section class="mfc-monitor-wall" aria-label="Program and preview monitors">
+          <article class="mfc-monitor mfc-monitor-preview">
+            <header class="mfc-monitor-header">
+              <div>
+                <span class="mfc-monitor-tally" aria-hidden="true"></span>
+                <span>Preview</span>
+              </div>
+              <strong>Draft output</strong>
+            </header>
+            <div class="mfc-monitor-frame">
+              <iframe data-preview-frame src="{{ '/broadcast/' | relative_url }}?mode=draft&embed=1&monitor=1" title="Broadcast draft preview" allow="autoplay"></iframe>
             </div>
-            <a href="{{ '/broadcast/' | relative_url }}" target="_blank" rel="noopener">Open live feed</a>
-          </div>
-          <div class="mfc-monitor-frame">
-            <iframe src="{{ '/broadcast/' | relative_url }}?mode=draft&embed=1" title="Broadcast draft preview" allow="autoplay"></iframe>
-          </div>
-          <div class="mfc-monitor-readout">
-            <span data-preview-now>Draft loop</span>
-            <span data-preview-duration>00:00</span>
-          </div>
+            <footer class="mfc-monitor-readout">
+              <span data-preview-now>Draft loop</span>
+              <span data-preview-duration>00:00</span>
+            </footer>
+          </article>
+
+          <article class="mfc-monitor mfc-monitor-program">
+            <header class="mfc-monitor-header">
+              <div>
+                <span class="mfc-monitor-tally" aria-hidden="true"></span>
+                <span>Program</span>
+              </div>
+              <a href="{{ '/broadcast/' | relative_url }}" target="_blank" rel="noopener">Open live feed ↗</a>
+            </header>
+            <div class="mfc-monitor-frame">
+              <iframe data-program-frame src="{{ '/broadcast/' | relative_url }}?embed=1&monitor=1" title="Live broadcast monitor" allow="autoplay"></iframe>
+            </div>
+            <footer class="mfc-monitor-readout">
+              <span>Live output monitor</span>
+              <span>Muted locally</span>
+            </footer>
+          </article>
         </section>
 
-        <section class="mfc-panel mfc-mixer">
-          <div class="mfc-panel-head">
-            <div>
-              <span>Sound</span>
-              <strong>Master mixer</strong>
+        <div class="mfc-rundown-layout">
+          <section class="mfc-panel mfc-timeline-panel">
+            <div class="mfc-panel-head mfc-panel-head-wide">
+              <div>
+                <span>Rundown</span>
+                <strong>Visual loop</strong>
+              </div>
+              <div class="mfc-add-row" aria-label="Add program item">
+                <button type="button" class="mfc-button mfc-button-small" data-add-program="headline">+ Headline</button>
+                <button type="button" class="mfc-button mfc-button-small" data-add-program="results">+ Results</button>
+                <button type="button" class="mfc-button mfc-button-small" data-add-program="event">+ Event</button>
+                <button type="button" class="mfc-button mfc-button-small" data-add-program="image">+ Image</button>
+                <button type="button" class="mfc-button mfc-button-small" data-add-program="video">+ Video</button>
+                <button type="button" class="mfc-button mfc-button-small" data-add-program="breaking">+ Breaking</button>
+              </div>
             </div>
-          </div>
-          <div class="mfc-mixer-grid">
-            <label><span>Master</span><input type="range" min="0" max="1" step=".01" data-audio-setting="master"><output data-audio-output="master"></output></label>
-            <label><span>Music</span><input type="range" min="0" max="1" step=".01" data-audio-setting="music"><output data-audio-output="music"></output></label>
-            <label><span>Video</span><input type="range" min="0" max="1" step=".01" data-audio-setting="video"><output data-audio-output="video"></output></label>
-          </div>
 
-          <div class="mfc-audio-options">
-            <label>
-              <span>Music during video</span>
-              <select data-audio-setting="videoMusic">
-                <option value="duck">Duck</option>
-                <option value="keep">Keep playing</option>
-                <option value="mute">Mute</option>
-              </select>
-            </label>
-            <label><span>Duck to</span><input type="number" min="0" max="100" step="1" data-audio-percent="duckLevel"><b>%</b></label>
-            <label><span>Attack</span><input type="number" min=".05" max="10" step=".05" data-audio-setting="duckAttack"><b>sec</b></label>
-            <label><span>Restore</span><input type="number" min=".05" max="10" step=".05" data-audio-setting="duckRelease"><b>sec</b></label>
-            <label><span>Song crossfade</span><input type="number" min="0" max="12" step=".1" data-audio-setting="crossfade"><b>sec</b></label>
-          </div>
-        </section>
-      </aside>
+            <div class="mfc-time-ruler" aria-hidden="true" data-program-ruler></div>
+            <div class="mfc-linear-track" data-program-track aria-label="Program loop"></div>
+            <p class="mfc-track-help">Drag blocks to reorder. Preview updates immediately; viewers change only when you Take Live.</p>
+          </section>
 
-      <section class="mfc-editor-column">
-        <section class="mfc-panel mfc-timeline-panel">
-          <div class="mfc-panel-head mfc-panel-head-wide">
-            <div>
-              <span>Program</span>
-              <strong>Visual loop</strong>
+          <section class="mfc-panel mfc-inspector-panel" data-program-editor>
+            <div class="mfc-panel-head">
+              <div>
+                <span>Inspector</span>
+                <strong data-program-editor-title>Choose a block above</strong>
+              </div>
+              <button type="button" class="mfc-text-button mfc-danger" data-delete-program hidden>Remove</button>
             </div>
-            <div class="mfc-add-row">
-              <button type="button" class="mfc-button mfc-button-small" data-add-program="headline">+ Headline</button>
-              <button type="button" class="mfc-button mfc-button-small" data-add-program="results">+ Results</button>
-              <button type="button" class="mfc-button mfc-button-small" data-add-program="event">+ Event</button>
-              <button type="button" class="mfc-button mfc-button-small" data-add-program="image">+ Image</button>
-              <button type="button" class="mfc-button mfc-button-small" data-add-program="video">+ Video</button>
-              <button type="button" class="mfc-button mfc-button-small" data-add-program="breaking">+ Breaking</button>
+            <div class="mfc-selected-editor" data-program-fields>
+              <p class="mfc-empty">Select a rundown block to edit its content, timing and media settings.</p>
             </div>
-          </div>
+          </section>
+        </div>
+      </section>
 
-          <div class="mfc-time-ruler" aria-hidden="true" data-program-ruler></div>
-          <div class="mfc-linear-track" data-program-track aria-label="Program loop"></div>
-          <p class="mfc-track-help">Drag blocks left or right to reorder. Change a non-video duration directly on its block.</p>
-        </section>
-
-        <section class="mfc-panel" data-program-editor>
-          <div class="mfc-panel-head">
-            <div>
-              <span>Selected program item</span>
-              <strong data-program-editor-title>Choose a block above</strong>
-            </div>
-            <button type="button" class="mfc-text-button mfc-danger" data-delete-program hidden>Remove</button>
-          </div>
-          <div class="mfc-selected-editor" data-program-fields>
-            <p class="mfc-empty">Select a program block to edit it.</p>
-          </div>
-        </section>
-
+      <section id="workspace-panel-media" class="mfc-workspace-panel" role="tabpanel" aria-labelledby="workspace-tab-media" data-workspace-panel="media" hidden>
         <section class="mfc-panel mfc-video-library-panel" data-video-library-panel>
           <div class="mfc-panel-head mfc-panel-head-wide">
             <div>
-              <span>Video assets</span>
+              <span>Media pool</span>
               <strong>Video Library</strong>
             </div>
             <div class="mfc-add-row">
               <label class="mfc-button mfc-button-small mfc-file-button">
-                + Upload videos
+                + Upload Videos
                 <input type="file" accept="video/mp4,video/webm,video/x-m4v,.mp4,.webm,.m4v" data-video-library-upload multiple hidden>
               </label>
               <button type="button" class="mfc-button mfc-button-small mfc-button-ghost" data-video-library-refresh>Refresh</button>
             </div>
           </div>
+
           <div class="mfc-library-toolbar">
+            <label class="mfc-field mfc-library-search">
+              <span>Search</span>
+              <input type="search" data-video-library-search placeholder="Find an uploaded video">
+            </label>
             <label class="mfc-field">
-              <span>Find uploaded video</span>
-              <input type="search" data-video-library-search placeholder="Search video library">
+              <span>Show</span>
+              <select data-video-library-filter>
+                <option value="all">All videos</option>
+                <option value="active">In programming</option>
+                <option value="live">Live broadcast</option>
+                <option value="unused">Unused</option>
+              </select>
+            </label>
+            <label class="mfc-field">
+              <span>Sort</span>
+              <select data-video-library-sort>
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
+                <option value="largest">Largest first</option>
+                <option value="smallest">Smallest first</option>
+                <option value="name">Name</option>
+              </select>
             </label>
             <p data-video-library-summary>Loading uploaded videos…</p>
           </div>
+
           <div class="mfc-video-library" data-video-library-list>
             <p class="mfc-empty">Loading uploaded videos…</p>
           </div>
-          <div class="mfc-upload-progress" data-upload-progress hidden>
-            <div><span data-upload-label>Uploading…</span><strong data-upload-percent>0%</strong></div>
-            <progress max="100" value="0" data-upload-meter></progress>
-          </div>
         </section>
+      </section>
 
-        <section class="mfc-panel mfc-music-panel">
-          <div class="mfc-panel-head mfc-panel-head-wide">
-            <div>
-              <span>Music bed</span>
-              <strong>Continuous playlist</strong>
+      <section id="workspace-panel-audio" class="mfc-workspace-panel" role="tabpanel" aria-labelledby="workspace-tab-audio" data-workspace-panel="audio" hidden>
+        <div class="mfc-audio-layout">
+          <section class="mfc-panel mfc-mixer">
+            <div class="mfc-panel-head">
+              <div>
+                <span>Audio desk</span>
+                <strong>Master mixer</strong>
+              </div>
+              <span class="mfc-panel-note">Draft settings</span>
             </div>
-            <div class="mfc-add-row">
-              <label class="mfc-button mfc-button-small mfc-file-button">
-                + Upload songs
-                <input type="file" accept="audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/wav,audio/x-wav,audio/ogg,audio/flac,.mp3,.m4a,.aac,.wav,.ogg,.opus,.flac" data-music-upload multiple hidden>
+
+            <div class="mfc-mixer-grid">
+              <label class="mfc-channel-strip">
+                <span>Master</span>
+                <output data-audio-output="master"></output>
+                <input type="range" min="0" max="1" step=".01" data-audio-setting="master">
               </label>
-              <button type="button" class="mfc-button mfc-button-small" data-add-music-url>+ Music URL</button>
+              <label class="mfc-channel-strip">
+                <span>Music</span>
+                <output data-audio-output="music"></output>
+                <input type="range" min="0" max="1" step=".01" data-audio-setting="music">
+              </label>
+              <label class="mfc-channel-strip">
+                <span>Video</span>
+                <output data-audio-output="video"></output>
+                <input type="range" min="0" max="1" step=".01" data-audio-setting="video">
+              </label>
             </div>
-          </div>
 
-          <div class="mfc-linear-track mfc-music-track" data-music-track aria-label="Music playlist"></div>
-        </section>
-
-        <section class="mfc-panel" data-music-editor>
-          <div class="mfc-panel-head">
-            <div>
-              <span>Selected song</span>
-              <strong data-music-editor-title>Choose a song above</strong>
+            <div class="mfc-audio-options">
+              <label>
+                <span>Music during video</span>
+                <select data-audio-setting="videoMusic">
+                  <option value="duck">Duck</option>
+                  <option value="keep">Keep playing</option>
+                  <option value="mute">Mute</option>
+                </select>
+              </label>
+              <label><span>Duck to</span><input type="number" min="0" max="100" step="1" data-audio-percent="duckLevel"><b>%</b></label>
+              <label><span>Attack</span><input type="number" min=".05" max="10" step=".05" data-audio-setting="duckAttack"><b>sec</b></label>
+              <label><span>Restore</span><input type="number" min=".05" max="10" step=".05" data-audio-setting="duckRelease"><b>sec</b></label>
+              <label><span>Crossfade</span><input type="number" min="0" max="12" step=".1" data-audio-setting="crossfade"><b>sec</b></label>
             </div>
-            <button type="button" class="mfc-text-button mfc-danger" data-delete-music hidden>Remove</button>
-          </div>
-          <div class="mfc-selected-editor" data-music-fields>
-            <p class="mfc-empty">Add or select a song to edit gain, fades and duration.</p>
-          </div>
-        </section>
+          </section>
 
-        <section class="mfc-panel">
-          <div class="mfc-panel-head">
-            <div>
-              <span>Persistent layer</span>
-              <strong>Scrolling ticker</strong>
-            </div>
+          <div class="mfc-audio-programming">
+            <section class="mfc-panel mfc-music-panel">
+              <div class="mfc-panel-head mfc-panel-head-wide">
+                <div>
+                  <span>Audio cues</span>
+                  <strong>Continuous music bed</strong>
+                </div>
+                <div class="mfc-add-row">
+                  <label class="mfc-button mfc-button-small mfc-file-button">
+                    + Upload Songs
+                    <input type="file" accept="audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/wav,audio/x-wav,audio/ogg,audio/flac,.mp3,.m4a,.aac,.wav,.ogg,.opus,.flac" data-music-upload multiple hidden>
+                  </label>
+                  <button type="button" class="mfc-button mfc-button-small" data-add-music-url>+ Music URL</button>
+                </div>
+              </div>
+              <div class="mfc-linear-track mfc-music-track" data-music-track aria-label="Music playlist"></div>
+            </section>
+
+            <section class="mfc-panel" data-music-editor>
+              <div class="mfc-panel-head">
+                <div>
+                  <span>Track inspector</span>
+                  <strong data-music-editor-title>Choose a song above</strong>
+                </div>
+                <button type="button" class="mfc-text-button mfc-danger" data-delete-music hidden>Remove</button>
+              </div>
+              <div class="mfc-selected-editor" data-music-fields>
+                <p class="mfc-empty">Add or select a song to edit gain, fades and duration.</p>
+              </div>
+            </section>
           </div>
-          <label class="mfc-field">
-            <span>One item per line</span>
-            <textarea rows="5" data-ticker-input placeholder="Headline one&#10;Headline two&#10;Headline three"></textarea>
-          </label>
-        </section>
+        </div>
+      </section>
+
+      <section id="workspace-panel-graphics" class="mfc-workspace-panel" role="tabpanel" aria-labelledby="workspace-tab-graphics" data-workspace-panel="graphics" hidden>
+        <div class="mfc-graphics-layout">
+          <section class="mfc-panel">
+            <div class="mfc-panel-head">
+              <div>
+                <span>Persistent layer</span>
+                <strong>Scrolling ticker</strong>
+              </div>
+              <span class="mfc-panel-note">One item per line</span>
+            </div>
+            <div class="mfc-graphics-editor">
+              <label class="mfc-field">
+                <span>Ticker items</span>
+                <textarea rows="12" data-ticker-input placeholder="Headline one&#10;Headline two&#10;Headline three"></textarea>
+              </label>
+              <p>Blank lines are ignored. The crawl loops continuously beneath every rundown item.</p>
+            </div>
+          </section>
+
+          <section class="mfc-panel mfc-ticker-monitor">
+            <div class="mfc-panel-head">
+              <div>
+                <span>Preview</span>
+                <strong>Ticker crawl</strong>
+              </div>
+            </div>
+            <div class="mfc-ticker-preview">
+              <span class="mfc-ticker-preview-label">MATLOCK</span>
+              <div><span data-ticker-preview>NO TICKER ITEMS</span></div>
+            </div>
+            <div class="mfc-graphics-notes">
+              <strong>Persistent overlay</strong>
+              <p>This layer remains active across headlines, results, images and video blocks. Save Draft stores the change; Take Live sends it to viewers.</p>
+            </div>
+          </section>
+        </div>
       </section>
     </div>
 
@@ -227,6 +343,6 @@ permalink: /broadcast/control/
     <div class="mfc-toast" data-toast role="status" aria-live="polite" hidden></div>
   </main>
 
-  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-7" defer></script>
+  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-8" defer></script>
 </body>
 </html>
