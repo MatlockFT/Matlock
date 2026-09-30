@@ -135,10 +135,10 @@ body {
 .mfc-logo span {
   display: block;
   font-family: var(--mfc-type-bold);
-  font-size: clamp(.48rem, 1.95vw, 1.55rem);
-  font-weight: 900;
-  line-height: .88;
-  letter-spacing: -.035em;
+  font-size: clamp(.47rem, 1.85cqw, .94rem);
+  font-weight: 400;
+  line-height: .94;
+  letter-spacing: .002em;
 }
 
 .mfc-header-copy {
@@ -187,23 +187,18 @@ body {
 }
 
 .mfc-header-kicker {
-  display: block;
-  margin-bottom: .1%;
-  font-family: var(--mfc-type-weather-small);
-  font-size: clamp(.31rem, 1.45cqw, .70rem);
-  font-weight: 400;
-  letter-spacing: 0;
-  opacity: .72;
+  display: none;
 }
 
 .mfc-header-copy strong {
   display: block;
   overflow: hidden;
   font-family: var(--mfc-type-weather-info);
-  font-size: clamp(.94rem, 4.05cqw, 2.05rem);
+  font-size: clamp(.91rem, 3.82cqw, 1.94rem);
   font-weight: 400;
-  line-height: .94;
-  letter-spacing: -.012em;
+  line-height: 1.04;
+  letter-spacing: 0;
+  word-spacing: .015em;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -248,7 +243,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  padding: 3.1% 5.2% 3.4%;
+  padding: 4.0% 3.7% 3.7%;
   background:
     linear-gradient(180deg, rgba(43,57,101,.985) 0%, rgba(33,47,88,.99) 18%, rgba(24,35,71,.995) 100%);
   border-top: 1px solid rgba(177,190,219,.28);
@@ -261,12 +256,13 @@ body {
 }
 
 .mfc-eyebrow {
-  margin: 0 0 2.4%;
+  margin: 0 0 2.9%;
   font-family: var(--mfc-type-weather-info);
-  font-size: clamp(.58rem, 2.55cqw, 1.26rem);
+  font-size: clamp(.55rem, 2.32cqw, 1.15rem);
   font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0;
+  line-height: 1.08;
+  letter-spacing: .006em;
+  word-spacing: .025em;
   text-transform: uppercase;
   text-shadow:
     .045em .055em 0 var(--mfc-shadow),
@@ -276,13 +272,14 @@ body {
 }
 
 .mfc-title {
-  max-width: 93%;
+  max-width: 91%;
   margin: 0;
   font-family: var(--mfc-type-weather-display);
-  font-size: clamp(1.08rem, 4.65cqw, 2.35rem);
+  font-size: clamp(1.03rem, 4.25cqw, 2.15rem);
   font-weight: 400;
-  line-height: 1;
-  letter-spacing: -.012em;
+  line-height: 1.08;
+  letter-spacing: .004em;
+  word-spacing: .025em;
   text-transform: uppercase;
   text-shadow:
     .045em .055em 0 var(--mfc-shadow),
@@ -294,13 +291,14 @@ body {
 }
 
 .mfc-body-copy {
-  max-width: 94%;
-  margin: 3.5% 0 0;
+  max-width: 92%;
+  margin: 4.0% 0 0;
   font-family: var(--mfc-type-weather-display);
-  font-size: clamp(.70rem, 3.30cqw, 1.66rem);
+  font-size: clamp(.67rem, 3.05cqw, 1.54rem);
   font-weight: 400;
-  line-height: 1.22;
-  letter-spacing: -.008em;
+  line-height: 1.38;
+  letter-spacing: .003em;
+  word-spacing: .035em;
   text-transform: uppercase;
   white-space: pre-line;
   text-shadow:
@@ -360,11 +358,13 @@ body {
   grid-template-columns: 1fr 1fr;
   align-items: center;
   height: 43%;
-  padding: .55% 4.25% 0;
+  padding: .45% 10.5% 0;
   font-family: var(--mfc-type-weather-small);
-  font-size: clamp(.48rem, 2.42cqw, 1.16rem);
+  font-size: clamp(.46rem, 2.18cqw, 1.04rem);
   font-weight: 400;
-  letter-spacing: 0;
+  line-height: 1;
+  letter-spacing: .004em;
+  word-spacing: .02em;
   white-space: nowrap;
 }
 
@@ -402,13 +402,14 @@ body {
 
 .mfc-ticker-track span {
   flex: 0 0 auto;
-  padding-right: 5.2rem;
-  padding-left: 22cqw;
+  padding-right: 12cqw;
+  padding-left: 44cqw;
   font-family: var(--mfc-type-weather-info);
-  font-size: clamp(.56rem, 2.90cqw, 1.42rem);
+  font-size: clamp(.53rem, 2.62cqw, 1.28rem);
   font-weight: 400;
-  line-height: 1;
-  letter-spacing: -.008em;
+  line-height: 1.06;
+  letter-spacing: .002em;
+  word-spacing: .035em;
   white-space: nowrap;
   text-shadow:
     .04em .05em 0 #05050b,
