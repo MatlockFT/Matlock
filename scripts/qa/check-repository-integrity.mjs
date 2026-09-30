@@ -13,6 +13,7 @@ const SAME_ORIGIN_VIDEO_COMPATIBILITY_EXCEPTIONS = new Set([
 const ARTICLE_UPLOAD = /^assets\/uploads\/articles\/\d{4}\/(?:0[1-9]|1[0-2])\/[a-z0-9][a-z0-9-]*\/[^/]+\.(?:png|jpe?g|webp|gif|avif|svg)$/i;
 const RUNTIME_UPLOADS = new Set([
   'assets/uploads/runtime/live-writer.json',
+  'assets/uploads/runtime/broadcast-media-delete.json',
   // Compatibility bridge for Broadcast Control while the separately deployed Writer backend
   // still permits the uploads namespace but has not yet deployed the scoped assets/data path.
   'assets/uploads/broadcast.json'
