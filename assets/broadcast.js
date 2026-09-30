@@ -25,6 +25,8 @@
   const musicA = document.querySelector('[data-mfc-music-a]');
   const musicB = document.querySelector('[data-mfc-music-b]');
   const STATE_URLS = [
+    'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/broadcast.json',
+    '/assets/uploads/broadcast.json',
     'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/data/broadcast.json',
     '/assets/data/broadcast.json'
   ];
