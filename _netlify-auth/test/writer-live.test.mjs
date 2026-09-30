@@ -5,6 +5,8 @@ import { publicLiveRecord, validateLivePayload } from '../netlify/functions/_wri
 
 test('live writer payload keeps rendered preview and trims title', () => {
   const result = validateLivePayload({
+    sourcePath: '_posts/2026-09-29-ufc-live-notes.md',
+    publicPath: '/2026/09/29/ufc-live-notes.html',
     title: '  UFC live notes  ',
     html: '<p>Round one</p>',
     text: 'Round one'
@@ -18,13 +20,18 @@ test('live writer payload keeps rendered preview and trims title', () => {
 test('public live record exposes a stable offline default', () => {
   assert.deepEqual(publicLiveRecord(null), {
     active: false,
-    title: 'Live notes',
+    hold: false,
+    sourcePath: '',
+    publicPath: '',
+    title: '',
+    description: '',
     html: '',
     text: '',
     author: 'Matlock',
     startedAt: null,
     updatedAt: null,
     endedAt: null,
+    publishedAt: null,
     version: 0
   });
 });
