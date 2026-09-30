@@ -61,19 +61,43 @@
 html,
 body {
   margin: 0;
+  width: 100%;
   min-height: 100%;
+  overflow: hidden;
   background: #050506;
 }
 
 .mfc-body {
   display: grid;
+  width: 100%;
+  min-height: 0;
   place-items: start center;
+  overflow: hidden;
   font-family: var(--mfc-type);
 }
 
 .mfc-shell {
   width: min(100%, 760px);
+  max-width: 100%;
   margin: 0 auto;
+  overflow: hidden;
+}
+
+.mfc-body[data-mfc-embed="true"] {
+  height: 100vh;
+  min-height: 0;
+}
+
+.mfc-body[data-mfc-embed="true"] .mfc-shell,
+.mfc-body[data-mfc-embed="true"] .mfc-screen {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: 100%;
+}
+
+.mfc-body[data-mfc-embed="true"] .mfc-screen {
+  aspect-ratio: auto;
 }
 
 .mfc-screen {
