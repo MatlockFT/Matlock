@@ -43,6 +43,35 @@
   font-display: swap;
 }
 
+/*
+  These three faces are the modified WeatherSTAR XL recreation fonts used for
+  the lighter, narrower information screens and LDL readouts. Keeping them as
+  separate families prevents the browser from synthesizing extra bold weight.
+*/
+@font-face {
+  font-family: "MFC AG Bold Extended";
+  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AG-BoldEx_degree_spaced.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MFC AKZID Medium Extended";
+  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AKZID_SmallCaps_MdEx.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MFC Akzidenz Tabular Condensed";
+  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AkzidenzTabularBE-Cn.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
   --mfc-ink: #ecebdc;
@@ -59,6 +88,9 @@
   --mfc-type-bold: "MFC Akzidenz Bold", "Arial Narrow", Arial, sans-serif;
   --mfc-type-condensed: "MFC Helvetica Neue Bold Condensed", "MFC Akzidenz Condensed", "Arial Narrow", sans-serif;
   --mfc-type-extended: "MFC Akzidenz Medium Extended", "MFC Akzidenz Medium", Arial, sans-serif;
+  --mfc-type-weather-display: "MFC AG Bold Extended", "MFC Akzidenz Medium Extended", "Arial Narrow", sans-serif;
+  --mfc-type-weather-info: "MFC AKZID Medium Extended", "MFC Akzidenz Medium Extended", "Arial Narrow", sans-serif;
+  --mfc-type-weather-tabular: "MFC Akzidenz Tabular Condensed", "MFC Akzidenz Condensed", "Arial Narrow", sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -99,6 +131,7 @@ body {
     inset 0 0 92px rgba(0,0,0,.23),
     0 0 1px rgba(240,245,255,.08);
   color: var(--mfc-ink);
+  container-type: inline-size;
   filter: saturate(.84) contrast(.96) brightness(.98) blur(.12px);
 }
 
@@ -199,22 +232,22 @@ body {
 
 .mfc-header-kicker {
   display: block;
-  margin-bottom: .2%;
-  font-family: var(--mfc-type-condensed);
-  font-size: clamp(.28rem, .64vw, .52rem);
-  font-weight: 700;
-  letter-spacing: .19em;
+  margin-bottom: .15%;
+  font-family: var(--mfc-type-weather-info);
+  font-size: clamp(.31rem, 1.18cqw, .58rem);
+  font-weight: 400;
+  letter-spacing: .055em;
   opacity: .72;
 }
 
 .mfc-header-copy strong {
   display: block;
   overflow: hidden;
-  font-family: var(--mfc-type-bold);
-  font-size: clamp(.84rem, 3.25vw, 3rem);
-  font-weight: 700;
-  line-height: .9;
-  letter-spacing: -.04em;
+  font-family: var(--mfc-type-weather-display);
+  font-size: clamp(.9rem, 3.75cqw, 1.9rem);
+  font-weight: 400;
+  line-height: .92;
+  letter-spacing: -.022em;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -272,53 +305,53 @@ body {
 }
 
 .mfc-eyebrow {
-  margin: 0 0 2.1%;
-  font-family: var(--mfc-type-bold);
-  font-size: clamp(.55rem, 1.55vw, 1.2rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: .04em;
+  margin: 0 0 2.35%;
+  font-family: var(--mfc-type-weather-info);
+  font-size: clamp(.56rem, 2.35cqw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -.018em;
   text-transform: uppercase;
   text-shadow:
-    .10em .12em 0 var(--mfc-shadow),
-    .16em .17em .03em rgba(0,0,0,.46),
-    -.02em 0 rgba(98,142,255,.20),
-    .02em 0 rgba(255,118,103,.16);
+    .045em .055em 0 var(--mfc-shadow),
+    .085em .09em .025em rgba(0,0,0,.42),
+    -.014em 0 rgba(98,142,255,.17),
+    .014em 0 rgba(255,118,103,.13);
 }
 
 .mfc-title {
-  max-width: 92%;
+  max-width: 93%;
   margin: 0;
-  font-family: var(--mfc-type-bold);
-  font-size: clamp(1.15rem, 4.2vw, 4rem);
-  font-weight: 700;
-  line-height: .98;
-  letter-spacing: -.045em;
+  font-family: var(--mfc-type-weather-display);
+  font-size: clamp(1.05rem, 4.25cqw, 2.15rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -.025em;
   text-transform: uppercase;
   text-shadow:
-    .10em .12em 0 var(--mfc-shadow),
-    .17em .18em .035em rgba(0,0,0,.48),
-    -.024em 0 rgba(98,140,255,.18),
-    .024em 0 rgba(255,112,98,.14),
-    0 0 .035em rgba(255,255,255,.24);
+    .05em .06em 0 var(--mfc-shadow),
+    .095em .105em .025em rgba(0,0,0,.44),
+    -.014em 0 rgba(98,140,255,.16),
+    .014em 0 rgba(255,112,98,.12),
+    0 0 .025em rgba(255,255,255,.18);
   text-wrap: balance;
 }
 
 .mfc-body-copy {
-  max-width: 93%;
-  margin: 3.1% 0 0;
-  font-family: var(--mfc-type-condensed);
-  font-size: clamp(.7rem, 2.15vw, 2.05rem);
-  font-weight: 700;
-  line-height: 1.18;
-  letter-spacing: -.035em;
+  max-width: 94%;
+  margin: 3.6% 0 0;
+  font-family: var(--mfc-type-weather-info);
+  font-size: clamp(.68rem, 3.0cqw, 1.52rem);
+  font-weight: 400;
+  line-height: 1.28;
+  letter-spacing: -.018em;
   text-transform: uppercase;
   white-space: pre-line;
   text-shadow:
-    .10em .11em 0 var(--mfc-shadow),
-    .15em .16em .03em rgba(0,0,0,.45),
-    -.02em 0 rgba(95,139,255,.16),
-    .02em 0 rgba(255,113,100,.12);
+    .045em .055em 0 var(--mfc-shadow),
+    .085em .09em .022em rgba(0,0,0,.41),
+    -.012em 0 rgba(95,139,255,.14),
+    .012em 0 rgba(255,113,100,.10);
 }
 
 .mfc-image,
@@ -372,10 +405,10 @@ body {
   align-items: center;
   height: 43%;
   padding: .55% 4.25% 0;
-  font-family: var(--mfc-type-extended);
-  font-size: clamp(.46rem, 1.28vw, 1rem);
-  font-weight: 700;
-  letter-spacing: .035em;
+  font-family: var(--mfc-type-weather-info);
+  font-size: clamp(.48rem, 2.22cqw, 1.08rem);
+  font-weight: 400;
+  letter-spacing: -.018em;
   white-space: nowrap;
 }
 
@@ -417,18 +450,18 @@ body {
 .mfc-ticker-track span {
   flex: 0 0 auto;
   padding-right: 5.2rem;
-  padding-left: 22vw;
-  font-family: "Courier New", Courier, monospace;
-  font-size: clamp(.50rem, 1.13vw, .90rem);
+  padding-left: 22cqw;
+  font-family: var(--mfc-type-condensed);
+  font-size: clamp(.55rem, 2.75cqw, 1.34rem);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: .015em;
+  letter-spacing: -.022em;
   white-space: nowrap;
   text-shadow:
-    .09em .10em 0 #05050b,
-    .14em .14em .03em rgba(0,0,0,.44),
-    -.018em 0 rgba(94,138,255,.14),
-    .018em 0 rgba(255,113,98,.10);
+    .04em .05em 0 #05050b,
+    .075em .08em .018em rgba(0,0,0,.42),
+    -.012em 0 rgba(94,138,255,.12),
+    .012em 0 rgba(255,113,98,.09);
 }
 
 .mfc-sound {
