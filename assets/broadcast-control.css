@@ -103,6 +103,16 @@ select {
   color: var(--ctl-muted);
 }
 
+.mfc-control-status [data-draft-status] {
+  padding-left: .55rem;
+  border-left: 1px solid var(--ctl-line);
+  color: #8db99f;
+}
+
+.mfc-control-status [data-draft-status][data-dirty="true"] {
+  color: #e9b15f;
+}
+
 .mfc-onair-dot {
   width: 9px;
   height: 9px;
