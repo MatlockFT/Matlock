@@ -18,6 +18,8 @@ export default async function handler(request) {
 
   const url = new URL(request.url);
   const writerOrigin = url.searchParams.get('origin') || '';
+  const requestedReturnPath = url.searchParams.get('return') || '';
+  const returnPath = requestedReturnPath === '/broadcast/auth/' ? requestedReturnPath : '';
   if (!isAllowedOrigin(writerOrigin)) {
     return new Response('Writer origin is not allowed.', { status: 403, headers: securityHeaders() });
   }
@@ -34,6 +36,7 @@ export default async function handler(request) {
     state,
     verifier,
     origin: new URL(writerOrigin).origin,
+    returnPath,
     redirectUri,
     repositoryId: REPO_ID,
     createdAt: Date.now()
