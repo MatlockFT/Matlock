@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T18:01:30.084Z",
+  "updatedAt": "2026-09-30T20:13:59.011Z",
   "draft": {
-    "revision": "draft-1790791290084",
-    "updatedAt": "2026-09-30T18:01:30.084Z",
+    "revision": "draft-1790799239011",
+    "updatedAt": "2026-09-30T20:13:59.011Z",
     "startedAt": "2026-09-30T04:00:00.000Z",
     "program": [
       {
@@ -15,6 +15,24 @@
         "mediaUrl": "https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-09/broadcast-video-Dana-Signs-Fart-20260930165957226.mp4",
         "duration": 54.788067,
         "videoAudio": true
+      },
+      {
+        "id": "program-2292493f",
+        "type": "headline",
+        "header": "DWCS REsults",
+        "eyebrow": "DWCS Week 8 Results",
+        "title": "123",
+        "body": "Aieza Ramos Bertolso def. Camila Reynoso — Submission (Inverted D’Arce Choke), R1 3:02\nIan Escuza def. Luca Borando — KO/TKO (Knees and Punches), R1 0:32\nAdama Diop def. Zaurbek Sabanov — KO/TKO (Punches), R2 2:13\nGeorge Staines def. Loai Abushaar — KO/TKO (Slam and Punches), R1 1:01",
+        "duration": 60
+      },
+      {
+        "id": "program-3e130877",
+        "type": "image",
+        "header": "MMA NEWS",
+        "eyebrow": "PHOTO",
+        "title": "IMAGE",
+        "mediaUrl": "https://mmamatlock.com/assets/generated/posts/2026/09/dwcs-week-8/dwcs-1600.webp",
+        "duration": 20
       }
     ],
     "music": [
@@ -28,27 +46,22 @@
         "fadeOut": 2
       }
     ],
-    "ticker": [
-      "Aieza Ramos Bertolso def. Camila Reynoso — Submission (Inverted D’Arce Choke), R1 3:02",
-      "Ian Escuza def. Luca Borando — KO/TKO (Knees and Punches), R1 0:32",
-      "Adama Diop def. Zaurbek Sabanov — KO/TKO (Punches), R2 2:13",
-      "George Staines def. Loai Abushaar — KO/TKO (Slam and Punches), R1 1:01"
-    ],
+    "ticker": [],
     "audio": {
       "master": 0.91,
-      "music": 0.61,
+      "music": 1,
       "video": 1,
       "videoMusic": "duck",
-      "duckLevel": 0.18,
+      "duckLevel": 0.06,
       "duckAttack": 0.4,
       "duckRelease": 1.5,
       "crossfade": 2.5
     }
   },
   "live": {
-    "revision": "live-1790791290085",
-    "updatedAt": "2026-09-30T18:01:30.084Z",
-    "startedAt": "2026-09-30T18:01:30.084Z",
+    "revision": "live-1790799239011",
+    "updatedAt": "2026-09-30T20:13:59.011Z",
+    "startedAt": "2026-09-30T20:13:59.011Z",
     "program": [
       {
         "id": "program-96b4c380",
@@ -59,6 +72,24 @@
         "mediaUrl": "https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-09/broadcast-video-Dana-Signs-Fart-20260930165957226.mp4",
         "duration": 54.788067,
         "videoAudio": true
+      },
+      {
+        "id": "program-2292493f",
+        "type": "headline",
+        "header": "DWCS REsults",
+        "eyebrow": "DWCS Week 8 Results",
+        "title": "123",
+        "body": "Aieza Ramos Bertolso def. Camila Reynoso — Submission (Inverted D’Arce Choke), R1 3:02\nIan Escuza def. Luca Borando — KO/TKO (Knees and Punches), R1 0:32\nAdama Diop def. Zaurbek Sabanov — KO/TKO (Punches), R2 2:13\nGeorge Staines def. Loai Abushaar — KO/TKO (Slam and Punches), R1 1:01",
+        "duration": 60
+      },
+      {
+        "id": "program-3e130877",
+        "type": "image",
+        "header": "MMA NEWS",
+        "eyebrow": "PHOTO",
+        "title": "IMAGE",
+        "mediaUrl": "https://mmamatlock.com/assets/generated/posts/2026/09/dwcs-week-8/dwcs-1600.webp",
+        "duration": 20
       }
     ],
     "music": [
@@ -72,18 +103,13 @@
         "fadeOut": 2
       }
     ],
-    "ticker": [
-      "Aieza Ramos Bertolso def. Camila Reynoso — Submission (Inverted D’Arce Choke), R1 3:02",
-      "Ian Escuza def. Luca Borando — KO/TKO (Knees and Punches), R1 0:32",
-      "Adama Diop def. Zaurbek Sabanov — KO/TKO (Punches), R2 2:13",
-      "George Staines def. Loai Abushaar — KO/TKO (Slam and Punches), R1 1:01"
-    ],
+    "ticker": [],
     "audio": {
       "master": 0.91,
-      "music": 0.61,
+      "music": 1,
       "video": 1,
       "videoMusic": "duck",
-      "duckLevel": 0.18,
+      "duckLevel": 0.06,
       "duckAttack": 0.4,
       "duckRelease": 1.5,
       "crossfade": 2.5
