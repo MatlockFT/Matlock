@@ -101,6 +101,30 @@
   let programMonitorAudio = false;
   const videoDurationCache = new Map();
   const mediaRequests = new WeakMap();
+  const textLayouts = new Map();
+
+  function renderTextFitHint() {
+    const hint = programFields.querySelector('[data-text-fit-hint]');
+    const item = currentProgram();
+    if (!hint || !item) return;
+    const layout = textLayouts.get(item.id);
+    const suggest = programFields.querySelector('[data-text-fit-duration]');
+    if (!layout || layout.signature !== JSON.stringify([item.type, item.title || '', item.eyebrow || '', item.header || '', item.body || ''])) {
+      hint.textContent = String(item.body || '').length + ' body characters. Preview this item to check its layout.';
+      if (suggest) suggest.hidden = true;
+      return;
+    }
+    hint.textContent = layout.characters + ' body characters · ' + layout.pages + ' page' + (layout.pages === 1 ? '' : 's')
+      + ' in this Preview · ' + (positive(item.duration) / layout.pages).toFixed(1) + ' seconds per page.'
+      + (positive(item.duration) < layout.suggestedDuration ? ' Suggested reading time: ' + layout.suggestedDuration + ' seconds.' : '')
+      + (layout.smallHeading ? ' Shorten the title for larger text.' : '');
+    if (suggest) suggest.hidden = positive(item.duration) >= layout.suggestedDuration;
+  }
+
+  window.addEventListener('message', event => {
+    if (event.origin !== location.origin || event.source !== previewFrame?.contentWindow || event.data?.type !== 'matlock-broadcast-layout') return;
+    textLayouts.set(event.data.itemId, event.data); renderTextFitHint();
+  });
 
   const clone = value => JSON.parse(JSON.stringify(value));
   const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || 0));
@@ -1345,6 +1369,14 @@
         }
       });
       form.append(bodyField.wrap, durationField.wrap);
+      const hint = document.createElement('p'); hint.className = 'mfc-field-note mfc-field-wide'; hint.dataset.textFitHint = '';
+      const suggest = smallButton('Use suggested reading time', () => {
+        const layout = textLayouts.get(item.id);
+        if (!layout || !working.program.includes(item)) return;
+        item.duration = clamp(layout.suggestedDuration, 1, 3600); renderProgram(); markDirty();
+      }, 'mfc-button-ghost');
+      suggest.dataset.textFitDuration = ''; suggest.hidden = true;
+      form.append(hint, buttonRow(suggest));
     }
 
     if (item.sourceUrl) {
@@ -1520,6 +1552,7 @@
     moveRight.disabled = programIndex < 0 || programIndex >= working.program.length - 1;
     form.append(buttonRow(moveLeft, moveRight));
     programFields.append(form);
+    renderTextFitHint();
   }
 
   function moveProgram(id, delta) {
