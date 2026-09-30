@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T08:14:52.486Z",
+  "updatedAt": "2026-09-30T08:20:17.458Z",
   "draft": {
-    "revision": "draft-1790756092486",
-    "updatedAt": "2026-09-30T08:14:52.486Z",
+    "revision": "draft-1790756417458",
+    "updatedAt": "2026-09-30T08:20:17.458Z",
     "startedAt": "2026-09-30T04:00:00.000Z",
     "program": [
       {
@@ -30,12 +30,13 @@
       }
     ],
     "ticker": [
-      "DWCS WEEK 8 RESULTS AND HIGHLIGHTS",
-      "UFC 332 COVERAGE",
-      "MATLOCK FIGHT CHANNEL IS NOW ON THE AIR"
+      "Aieza Ramos Bertolso def. Camila Reynoso — Submission (Inverted D’Arce Choke), R1 3:02",
+      "Ian Escuza def. Luca Borando — KO/TKO (Knees and Punches), R1 0:32",
+      "Adama Diop def. Zaurbek Sabanov — KO/TKO (Punches), R2 2:13",
+      "George Staines def. Loai Abushaar — KO/TKO (Slam and Punches), R1 1:01"
     ],
     "audio": {
-      "master": 1,
+      "master": 0.91,
       "music": 0.72,
       "video": 1,
       "videoMusic": "duck",
@@ -46,9 +47,9 @@
     }
   },
   "live": {
-    "revision": "live-1790755907766",
-    "updatedAt": "2026-09-30T08:11:47.766Z",
-    "startedAt": "2026-09-30T08:11:47.766Z",
+    "revision": "live-1790756417458",
+    "updatedAt": "2026-09-30T08:20:17.458Z",
+    "startedAt": "2026-09-30T08:20:17.458Z",
     "program": [
       {
         "id": "program-a2d5009f",
@@ -58,7 +59,8 @@
         "title": "VIDEO",
         "mediaUrl": "https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-09/broadcast-video-Heavyweight-Shit-20260930081014576.mp4",
         "duration": 63.296567,
-        "videoAudio": true
+        "videoAudio": true,
+        "musicBehavior": "duck"
       }
     ],
     "music": [
@@ -73,12 +75,13 @@
       }
     ],
     "ticker": [
-      "DWCS WEEK 8 RESULTS AND HIGHLIGHTS",
-      "UFC 332 COVERAGE",
-      "MATLOCK FIGHT CHANNEL IS NOW ON THE AIR"
+      "Aieza Ramos Bertolso def. Camila Reynoso — Submission (Inverted D’Arce Choke), R1 3:02",
+      "Ian Escuza def. Luca Borando — KO/TKO (Knees and Punches), R1 0:32",
+      "Adama Diop def. Zaurbek Sabanov — KO/TKO (Punches), R2 2:13",
+      "George Staines def. Loai Abushaar — KO/TKO (Slam and Punches), R1 1:01"
     ],
     "audio": {
-      "master": 1,
+      "master": 0.91,
       "music": 0.72,
       "video": 1,
       "videoMusic": "duck",
