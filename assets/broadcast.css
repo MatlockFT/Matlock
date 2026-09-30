@@ -401,7 +401,7 @@ body {
 .mfc-lower-status {
   position: relative;
   display: grid;
-  grid-template-columns: 32% 34% 34%;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   height: 43%;
   padding: .55% 4.25% 0;
@@ -419,14 +419,11 @@ body {
 
 .mfc-lower-status [data-mfc-clock] {
   grid-column: 2;
-  justify-self: center;
+  justify-self: end;
 }
 
 .mfc-lower-status [data-mfc-progress] {
-  grid-column: 3;
-  justify-self: end;
-  font-size: .72em;
-  opacity: .70;
+  display: none !important;
 }
 
 .mfc-lower-crawl {
