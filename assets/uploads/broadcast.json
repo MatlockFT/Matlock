@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T08:20:17.458Z",
+  "updatedAt": "2026-09-30T08:26:43.299Z",
   "draft": {
-    "revision": "draft-1790756417458",
-    "updatedAt": "2026-09-30T08:20:17.458Z",
+    "revision": "draft-1790756803299",
+    "updatedAt": "2026-09-30T08:26:43.299Z",
     "startedAt": "2026-09-30T04:00:00.000Z",
     "program": [
       {
@@ -16,6 +16,36 @@
         "duration": 63.296567,
         "videoAudio": true,
         "musicBehavior": "duck"
+      },
+      {
+        "id": "program-f88a66e4",
+        "type": "video",
+        "header": "MMA VIDEO",
+        "eyebrow": "VIDEO",
+        "title": "Dana Signs Fart",
+        "mediaUrl": "https://api.github.com/repos/MatlockFT/Matlock/releases/assets/600408009",
+        "duration": 30,
+        "videoAudio": true
+      },
+      {
+        "id": "program-0bf1652b",
+        "type": "video",
+        "header": "MMA VIDEO",
+        "eyebrow": "VIDEO",
+        "title": "Wint",
+        "mediaUrl": "https://api.github.com/repos/MatlockFT/Matlock/releases/assets/600407196",
+        "duration": 30,
+        "videoAudio": true
+      },
+      {
+        "id": "program-75235186",
+        "type": "video",
+        "header": "MMA VIDEO",
+        "eyebrow": "VIDEO",
+        "title": "Heavyweight Shit",
+        "mediaUrl": "https://api.github.com/repos/MatlockFT/Matlock/releases/assets/600381314",
+        "duration": 30,
+        "videoAudio": true
       }
     ],
     "music": [
@@ -37,7 +67,7 @@
     ],
     "audio": {
       "master": 0.91,
-      "music": 0.72,
+      "music": 0.61,
       "video": 1,
       "videoMusic": "duck",
       "duckLevel": 0.18,
@@ -47,9 +77,9 @@
     }
   },
   "live": {
-    "revision": "live-1790756417458",
-    "updatedAt": "2026-09-30T08:20:17.458Z",
-    "startedAt": "2026-09-30T08:20:17.458Z",
+    "revision": "live-1790756803299",
+    "updatedAt": "2026-09-30T08:26:43.299Z",
+    "startedAt": "2026-09-30T08:26:43.299Z",
     "program": [
       {
         "id": "program-a2d5009f",
@@ -61,6 +91,36 @@
         "duration": 63.296567,
         "videoAudio": true,
         "musicBehavior": "duck"
+      },
+      {
+        "id": "program-f88a66e4",
+        "type": "video",
+        "header": "MMA VIDEO",
+        "eyebrow": "VIDEO",
+        "title": "Dana Signs Fart",
+        "mediaUrl": "https://api.github.com/repos/MatlockFT/Matlock/releases/assets/600408009",
+        "duration": 30,
+        "videoAudio": true
+      },
+      {
+        "id": "program-0bf1652b",
+        "type": "video",
+        "header": "MMA VIDEO",
+        "eyebrow": "VIDEO",
+        "title": "Wint",
+        "mediaUrl": "https://api.github.com/repos/MatlockFT/Matlock/releases/assets/600407196",
+        "duration": 30,
+        "videoAudio": true
+      },
+      {
+        "id": "program-75235186",
+        "type": "video",
+        "header": "MMA VIDEO",
+        "eyebrow": "VIDEO",
+        "title": "Heavyweight Shit",
+        "mediaUrl": "https://api.github.com/repos/MatlockFT/Matlock/releases/assets/600381314",
+        "duration": 30,
+        "videoAudio": true
       }
     ],
     "music": [
@@ -82,7 +142,7 @@
     ],
     "audio": {
       "master": 0.91,
-      "music": 0.72,
+      "music": 0.61,
       "video": 1,
       "videoMusic": "duck",
       "duckLevel": 0.18,
