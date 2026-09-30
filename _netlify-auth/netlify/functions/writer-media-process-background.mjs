@@ -8,7 +8,7 @@ import {
   statusKey,
   uploadScope,
   validUploadId,
-  validateVideoMetadata
+  validateMediaMetadata
 } from './_writer-media.mjs';
 
 function releaseTag() {
@@ -32,7 +32,7 @@ async function ensureRelease(token) {
         tag_name: tag,
         target_commitish: 'main',
         name: `Website media · ${tag.replace('writer-media-', '')}`,
-        body: 'Article media uploaded automatically by MMA Matlock Writer. Do not delete assets that are embedded in published articles.',
+        body: 'Website media uploaded automatically by MMA Matlock Writer and Broadcast Control. Do not delete assets that are embedded in published articles or broadcast playlists.',
         draft: false,
         prerelease: true
       })
@@ -58,7 +58,7 @@ function chunkStream(store, scope, uploadId, chunkCount) {
       }
       try {
         const data = await store.get(chunkKey(scope, uploadId, index), { type: 'arrayBuffer', consistency: 'strong' });
-        if (!data) throw new Error(`Missing staged video chunk ${index + 1} of ${chunkCount}.`);
+        if (!data) throw new Error(`Missing staged media chunk ${index + 1} of ${chunkCount}.`);
         index += 1;
         controller.enqueue(new Uint8Array(data));
       } catch (error) {
@@ -74,7 +74,7 @@ async function verifyChunks(store, scope, uploadId, chunkCount, fileSize) {
     const entry = await store.getMetadata(chunkKey(scope, uploadId, index), { consistency: 'strong' });
     const chunkSize = Number(entry?.metadata?.chunkSize);
     if (!entry || !Number.isFinite(chunkSize) || chunkSize < 1) {
-      throw new Error(`Missing staged video chunk ${index + 1} of ${chunkCount}.`);
+      throw new Error(`Missing staged media chunk ${index + 1} of ${chunkCount}.`);
     }
     stagedBytes += chunkSize;
   }
@@ -117,7 +117,7 @@ export default async function handler(request) {
 
   let meta;
   try {
-    meta = validateVideoMetadata({
+    meta = validateMediaMetadata({
       assetName: body?.assetName,
       fileSize: body?.fileSize,
       fileType: body?.fileType,
