@@ -116,10 +116,36 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
     }
   ];
   const deletedAssetIds = [];
+  let deleteQueueSha = '';
 
   await page.addInitScript(() => {
     localStorage.setItem('matlock-writer:server-session', 'broadcast-smoke-session');
     localStorage.setItem('matlock-writer:server-login', 'MatlockFT');
+  });
+
+  await page.route('https://api.github.com/repos/MatlockFT/Matlock/releases?**', async route => {
+    const assets = libraryAssets.map(asset => ({
+      id: asset.id,
+      name: asset.name,
+      browser_download_url: asset.url,
+      size: asset.size,
+      content_type: asset.contentType,
+      created_at: asset.createdAt,
+      updated_at: asset.createdAt,
+      download_count: asset.downloadCount
+    }));
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify([
+        {
+          id: 10,
+          tag_name: 'writer-media-2026-09',
+          name: 'Website media · 2026-09',
+          assets
+        }
+      ])
+    });
   });
 
   await page.route(`${AUTH_ORIGIN}/**`, async route => {
@@ -192,6 +218,40 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
           })
         });
       }
+
+      if (apiPath === '/contents/assets/uploads/runtime/broadcast-media-delete.json?ref=main' && method === 'GET') {
+        if (!deleteQueueSha) {
+          return route.fulfill({
+            status: 404,
+            headers,
+            body: JSON.stringify({ message: 'Not Found' })
+          });
+        }
+        return route.fulfill({
+          status: 200,
+          headers,
+          body: JSON.stringify({
+            sha: deleteQueueSha,
+            content: encodeBase64(JSON.stringify({ assetId: deletedAssetIds.at(-1) || null }))
+          })
+        });
+      }
+
+      if (apiPath === '/contents/assets/uploads/runtime/broadcast-media-delete.json' && method === 'PUT') {
+        const payload = request.postDataJSON();
+        const requestBody = JSON.parse(decodeBase64(payload.content));
+        deletedAssetIds.push(requestBody.assetId);
+        libraryAssets = libraryAssets.filter(asset => asset.id !== requestBody.assetId);
+        deleteQueueSha = 'd'.repeat(40);
+        return route.fulfill({
+          status: 200,
+          headers,
+          body: JSON.stringify({
+            content: { path: 'assets/uploads/runtime/broadcast-media-delete.json', sha: deleteQueueSha },
+            commit: { sha: 'delete-request-1' }
+          })
+        });
+      }
     }
 
     return route.fulfill({
@@ -212,6 +272,12 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   await expect(page.locator('[data-reload-state]')).toBeEnabled();
   await expect(page.locator('[data-workspace-tab="rundown"]')).toHaveAttribute('aria-selected', 'true');
   await expect(page.locator('[data-workspace-panel="media"]')).toBeHidden();
+  await expect(page.locator('[data-preview-audio]')).toHaveAttribute('aria-pressed', 'false');
+  await page.click('[data-preview-audio]');
+  await expect(page.locator('[data-preview-audio]')).toHaveAttribute('aria-pressed', 'true');
+  await page.click('[data-program-audio]');
+  await expect(page.locator('[data-program-audio]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-preview-audio]')).toHaveAttribute('aria-pressed', 'false');
 
   await page.click('[data-workspace-tab="media"]');
   await expect(page.locator('[data-workspace-panel="media"]')).toBeVisible();
@@ -303,6 +369,14 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   await expect(page.locator('[data-url-dialog]')).toBeVisible();
   await page.locator('[data-url-dialog] button[value="cancel"]').last().click();
   await expect(page.locator('[data-url-dialog]')).toBeHidden();
+
+  await page.click('[data-add-music-url]');
+  await page.fill('[data-music-url]', 'https://youtu.be/T5umkDLypsw?si=smoke');
+  await page.fill('[data-music-url-title]', 'YouTube Smoke Track');
+  await page.click('[data-confirm-music-url]');
+  await expect(page.locator('[data-url-dialog]')).toBeHidden();
+  await expect(page.locator('[data-music-track] [data-music-id]')).toHaveCount(3);
+  await expect(page.locator('[data-music-track] [data-music-id]').last()).toContainText('YouTube Smoke Track');
 
   expect(pageErrors).toEqual([]);
 });
