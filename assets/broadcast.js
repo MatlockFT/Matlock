@@ -4,7 +4,9 @@
 
   const params = new URLSearchParams(location.search);
   const useDraft = params.get('mode') === 'draft' || params.get('preview') === 'draft';
+  const monitorMode = params.get('monitor') === '1';
   if (params.get('embed') === '1') document.body.dataset.mfcEmbed = 'true';
+  if (monitorMode) document.body.dataset.mfcMonitor = 'true';
 
   const screen = root.querySelector('[data-mfc-screen]');
   const header = root.querySelector('[data-mfc-header]');
@@ -46,6 +48,8 @@
   let previewOverride = false;
 
   try { soundEnabled = localStorage.getItem(SOUND_KEY) === 'on'; } catch {}
+  if (monitorMode) soundEnabled = false;
+  if (monitorMode && soundButton) soundButton.hidden = true;
 
   const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || 0));
   const positive = value => Math.max(0, Number(value) || 0);
@@ -352,7 +356,9 @@
 
   function setSoundState(enabled) {
     soundEnabled = Boolean(enabled);
-    try { localStorage.setItem(SOUND_KEY, soundEnabled ? 'on' : 'off'); } catch {}
+    if (!monitorMode) {
+      try { localStorage.setItem(SOUND_KEY, soundEnabled ? 'on' : 'off'); } catch {}
+    }
     soundButton.textContent = soundEnabled ? 'SOUND ON' : 'SOUND OFF';
     soundButton.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
     if (!soundEnabled) {
@@ -410,6 +416,7 @@
   });
 
   soundButton.addEventListener('click', () => {
+    if (monitorMode) return;
     setSoundState(!soundEnabled);
     const { elapsed, position } = syncProgram();
     syncMusic(elapsed, position.item, .05);
