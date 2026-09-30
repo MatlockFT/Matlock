@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T20:13:59.011Z",
+  "updatedAt": "2026-09-30T20:16:40.001Z",
   "draft": {
-    "revision": "draft-1790799239011",
-    "updatedAt": "2026-09-30T20:13:59.011Z",
+    "revision": "draft-1790799400001",
+    "updatedAt": "2026-09-30T20:16:40.001Z",
     "startedAt": "2026-09-30T04:00:00.000Z",
     "program": [
       {
@@ -49,19 +49,19 @@
     "ticker": [],
     "audio": {
       "master": 0.91,
-      "music": 1,
+      "music": 0.51,
       "video": 1,
       "videoMusic": "duck",
-      "duckLevel": 0.06,
+      "duckLevel": 0.15,
       "duckAttack": 0.4,
       "duckRelease": 1.5,
       "crossfade": 2.5
     }
   },
   "live": {
-    "revision": "live-1790799239011",
-    "updatedAt": "2026-09-30T20:13:59.011Z",
-    "startedAt": "2026-09-30T20:13:59.011Z",
+    "revision": "live-1790799400001",
+    "updatedAt": "2026-09-30T20:16:40.001Z",
+    "startedAt": "2026-09-30T20:16:40.001Z",
     "program": [
       {
         "id": "program-96b4c380",
@@ -106,10 +106,10 @@
     "ticker": [],
     "audio": {
       "master": 0.91,
-      "music": 1,
+      "music": 0.51,
       "video": 1,
       "videoMusic": "duck",
-      "duckLevel": 0.06,
+      "duckLevel": 0.15,
       "duckAttack": 0.4,
       "duckRelease": 1.5,
       "crossfade": 2.5
