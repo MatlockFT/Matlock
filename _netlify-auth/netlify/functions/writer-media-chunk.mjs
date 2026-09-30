@@ -7,7 +7,7 @@ import {
   setStatus,
   uploadScope,
   validUploadId,
-  validateVideoMetadata
+  validateMediaMetadata
 } from './_writer-media.mjs';
 
 export default async function handler(request) {
@@ -56,7 +56,7 @@ export default async function handler(request) {
 
   let meta;
   try {
-    meta = validateVideoMetadata({
+    meta = validateMediaMetadata({
       assetName: request.headers.get('x-asset-name'),
       fileSize: request.headers.get('x-file-size'),
       fileType: request.headers.get('x-file-type'),
@@ -72,7 +72,7 @@ export default async function handler(request) {
 
   const bytes = await request.arrayBuffer();
   if (!bytes.byteLength || bytes.byteLength > MAX_CHUNK_BYTES) {
-    return Response.json({ ok: false, error: 'Video chunk is too large.' }, { status: 413, headers });
+    return Response.json({ ok: false, error: 'Media chunk is too large.' }, { status: 413, headers });
   }
 
   const scope = uploadScope(sessionId);

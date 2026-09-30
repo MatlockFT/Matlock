@@ -15,6 +15,18 @@ const VIDEO_TYPES = new Map([
   ['webm', new Set(['video/webm', 'application/octet-stream'])]
 ]);
 
+const AUDIO_TYPES = new Map([
+  ['mp3', new Set(['audio/mpeg', 'audio/mp3', 'application/octet-stream'])],
+  ['m4a', new Set(['audio/mp4', 'audio/x-m4a', 'application/octet-stream'])],
+  ['aac', new Set(['audio/aac', 'audio/mp4', 'application/octet-stream'])],
+  ['wav', new Set(['audio/wav', 'audio/x-wav', 'application/octet-stream'])],
+  ['ogg', new Set(['audio/ogg', 'application/ogg', 'application/octet-stream'])],
+  ['opus', new Set(['audio/ogg', 'audio/opus', 'application/octet-stream'])],
+  ['flac', new Set(['audio/flac', 'audio/x-flac', 'application/octet-stream'])]
+]);
+
+const MEDIA_TYPES = new Map([...VIDEO_TYPES, ...AUDIO_TYPES]);
+
 export function writerSessionId(request) {
   return request.headers.get('x-writer-session') || '';
 }
@@ -41,30 +53,42 @@ export function sanitizeAssetName(value) {
     .slice(0, 180);
 }
 
-export function validateVideoMetadata({ assetName, fileSize, fileType, chunkCount = null }) {
+function validateMetadata({ assetName, fileSize, fileType, chunkCount = null }, acceptedTypes, invalidTypeMessage) {
   const safeName = sanitizeAssetName(assetName);
   const size = Number(fileSize);
   const type = String(fileType || 'application/octet-stream').toLowerCase().trim() || 'application/octet-stream';
   const ext = safeName.toLowerCase().match(/\.([a-z0-9]+)$/)?.[1] || '';
 
-  if (!safeName || !VIDEO_TYPES.has(ext)) throw new Error('Use an MP4, WebM or M4V video.');
+  if (!safeName || !acceptedTypes.has(ext)) throw new Error(invalidTypeMessage);
   if (!Number.isFinite(size) || size < 1 || size >= MAX_VIDEO_BYTES) {
-    throw new Error('Video file size is invalid or exceeds GitHub Release limits.');
+    throw new Error('Media file size is invalid or exceeds GitHub Release limits.');
   }
-  if (!VIDEO_TYPES.get(ext).has(type)) throw new Error('Video MIME type does not match the file extension.');
+  if (!acceptedTypes.get(ext).has(type)) throw new Error('Media MIME type does not match the file extension.');
 
   let chunks = null;
   if (chunkCount !== null && chunkCount !== undefined) {
     chunks = Number(chunkCount);
     if (!Number.isInteger(chunks) || chunks < 1 || chunks > MAX_VIDEO_CHUNKS) {
-      throw new Error('Video chunk count is invalid.');
+      throw new Error('Media chunk count is invalid.');
     }
     if (chunks * MAX_CHUNK_BYTES < size) {
-      throw new Error('Video chunk count is too small for the declared file size.');
+      throw new Error('Media chunk count is too small for the declared file size.');
     }
   }
 
   return { assetName: safeName, fileSize: size, fileType: type, ext, chunkCount: chunks };
+}
+
+export function validateMediaMetadata(meta) {
+  return validateMetadata(
+    meta,
+    MEDIA_TYPES,
+    'Use MP4, WebM or M4V video, or MP3, M4A, AAC, WAV, OGG, Opus or FLAC audio.'
+  );
+}
+
+export function validateVideoMetadata(meta) {
+  return validateMetadata(meta, VIDEO_TYPES, 'Use an MP4, WebM or M4V video.');
 }
 
 export function chunkKey(scope, uploadId, index) {

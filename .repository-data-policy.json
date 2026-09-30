@@ -562,6 +562,26 @@
       "safeToRegenerate": true,
       "safeToDeleteFromRepository": false,
       "publicContract": false
+    },
+    {
+      "id": "fight-channel-runtime-state",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/broadcast.json"
+      ],
+      "lifecycle": "operational-state",
+      "owner": "broadcast",
+      "producers": [
+        "broadcast-control.html"
+      ],
+      "consumers": [
+        "broadcast.html",
+        "assets/broadcast.js",
+        "index.html"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
     }
   ]
 }

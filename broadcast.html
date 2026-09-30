@@ -1,0 +1,71 @@
+---
+layout: null
+sitemap: false
+permalink: /broadcast/
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Matlock Fight Channel</title>
+  <link rel="stylesheet" href="{{ '/assets/broadcast.css' | relative_url }}">
+</head>
+<body class="mfc-body">
+  <main class="mfc-shell" data-mfc-root aria-label="Matlock Fight Channel">
+    <section class="mfc-screen" data-mfc-screen>
+      <header class="mfc-header">
+        <div class="mfc-logo" aria-label="Matlock Fight Channel">
+          <span>MATLOCK</span>
+          <span>FIGHT</span>
+          <span>CHANNEL</span>
+        </div>
+        <div class="mfc-header-copy">
+          <span class="mfc-header-kicker">MMA NEWS NETWORK</span>
+          <strong data-mfc-header>YOUR FIGHT FORECAST</strong>
+        </div>
+      </header>
+
+      <div class="mfc-program">
+        <div class="mfc-program-panel" data-mfc-panel>
+          <p class="mfc-eyebrow" data-mfc-eyebrow>MATLOCK FIGHT CHANNEL</p>
+          <h1 class="mfc-title" data-mfc-title>LOADING BROADCAST...</h1>
+          <p class="mfc-body-copy" data-mfc-body>Stand by.</p>
+          <img class="mfc-image" data-mfc-image alt="" hidden>
+          <video class="mfc-video" data-mfc-video playsinline preload="auto" hidden></video>
+        </div>
+      </div>
+
+      <div class="mfc-info">
+        <div class="mfc-info-top">
+          <span data-mfc-date>MON SEP 29</span>
+          <span data-mfc-clock>11:09:00 PM</span>
+        </div>
+        <div class="mfc-info-bottom">
+          <span data-mfc-now>NOW: MMA NEWS</span>
+          <span data-mfc-progress>00:00 / 00:20</span>
+        </div>
+      </div>
+
+      <div class="mfc-ticker" aria-label="MMA news ticker">
+        <div class="mfc-ticker-label">NEWS</div>
+        <div class="mfc-ticker-viewport">
+          <div class="mfc-ticker-track" data-mfc-ticker-track>
+            <span data-mfc-ticker>MATLOCK FIGHT CHANNEL • MMA NEWS • RESULTS • BREAKDOWNS</span>
+            <span aria-hidden="true" data-mfc-ticker-clone>MATLOCK FIGHT CHANNEL • MMA NEWS • RESULTS • BREAKDOWNS</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="mfc-sound" type="button" data-mfc-sound aria-pressed="false">SOUND OFF</button>
+      <div class="mfc-noise" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <audio data-mfc-music-a preload="auto"></audio>
+  <audio data-mfc-music-b preload="auto"></audio>
+
+  <script src="{{ '/assets/broadcast.js' | relative_url }}" defer></script>
+</body>
+</html>

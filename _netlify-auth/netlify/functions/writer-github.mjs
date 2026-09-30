@@ -19,12 +19,14 @@ export function allowedPath(path, method) {
     if (/^\/contents\/_posts(?:\?ref=main)?$/.test(value)) return true;
     if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md(?:\?ref=(?:main|[0-9a-f]{40}))?$/.test(value)) return true;
     if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+(?:\?ref=main)?$/.test(value)) return true;
+    if (/^\/contents\/assets\/data\/broadcast\.json(?:\?ref=main)?$/.test(value)) return true;
     if (/^\/commits\?path=_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md&per_page=(?:[1-9]|1\d|20)$/.test(value)) return true;
     return false;
   }
   if (method === 'PUT') {
     if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md$/.test(value)) return true;
     if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+$/.test(value)) return true;
+    if (value === '/contents/assets/data/broadcast.json') return true;
   }
   if (method === 'DELETE') {
     if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md$/.test(value)) return true;
@@ -46,8 +48,15 @@ export function validateWriteBody(apiPath, body) {
   const bytes = Math.ceil(body.content.length * 0.75);
   const repoPath = contentPathFromApiPath(apiPath);
   const isUpload = repoPath.startsWith('assets/uploads/');
+  const isBroadcast = repoPath === 'assets/data/broadcast.json';
   const limit = isUpload ? 6 * 1024 * 1024 : 2 * 1024 * 1024;
-  if (bytes > limit) throw new Error(isUpload ? 'Uploaded image is too large after optimization.' : 'Article file is too large.');
+  if (bytes > limit) {
+    throw new Error(isUpload
+      ? 'Uploaded image is too large after optimization.'
+      : isBroadcast
+        ? 'Broadcast state is too large.'
+        : 'Article file is too large.');
+  }
 }
 
 export function validateDeleteBody(apiPath, body) {
