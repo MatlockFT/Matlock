@@ -15,7 +15,7 @@ import {
   validateMediaMetadata,
   validateVideoMetadata
 } from '../netlify/functions/_writer-media.mjs';
-import { broadcastVideoUsage, isBroadcastVideoAsset, isManagedMediaRelease } from '../netlify/functions/writer-media-library.mjs';
+import { broadcastVideoUsage, isBroadcastVideoAsset, isBroadcastAudioAsset, isManagedMediaRelease } from '../netlify/functions/writer-media-library.mjs';
 
 test('Writer GitHub proxy only allows scoped article and upload paths', () => {
   assert.equal(allowedPath('/contents/_posts?ref=main', 'GET'), true);
@@ -183,6 +183,14 @@ test('Broadcast video usage guard finds saved draft and live references', () => 
   state.live.program.push({ type: 'video', mediaUrl: url });
   assert.deepEqual(broadcastVideoUsage(state, url), { draft: true, live: true });
   assert.deepEqual(broadcastVideoUsage(state, ''), { draft: false, live: false });
+});
+
+test('Broadcast music library includes audio and music uploaded in video containers', () => {
+  for (const extension of ['mp3', 'm4a', 'wav', 'ogg', 'opus', 'flac', 'aac', 'mp4', 'webm']) {
+    assert.equal(isBroadcastAudioAsset({ name: `broadcast-audio-theme.${extension}` }), true);
+  }
+  assert.equal(isBroadcastAudioAsset({ name: 'writer-audio-private.mp3' }), false);
+  assert.equal(isBroadcastAudioAsset({ name: 'broadcast-audio-file.exe' }), false);
 });
 
 

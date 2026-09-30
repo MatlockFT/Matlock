@@ -35,6 +35,8 @@ on:
       - "assets/broadcast.js"
       - "assets/broadcast.css"
       - "scripts/writer/broadcast-control-smoke.spec.cjs"
+      - "scripts/writer/broadcast-loop.spec.cjs"
+      - "scripts/writer/broadcast-test-server.cjs"
       - "scripts/writer/writer-smoke.spec.cjs"
       - "scripts/writer/writer-fighter-autofill-smoke.spec.cjs"
       - "scripts/writer/writer-wordtools-smoke.spec.cjs"
@@ -76,6 +78,8 @@ on:
       - "assets/broadcast.js"
       - "assets/broadcast.css"
       - "scripts/writer/broadcast-control-smoke.spec.cjs"
+      - "scripts/writer/broadcast-loop.spec.cjs"
+      - "scripts/writer/broadcast-test-server.cjs"
       - "scripts/writer/writer-smoke.spec.cjs"
       - "scripts/writer/writer-fighter-autofill-smoke.spec.cjs"
       - "scripts/writer/writer-wordtools-smoke.spec.cjs"
@@ -133,6 +137,12 @@ jobs:
       - name: Run Writer backend tests
         working-directory: _netlify-auth
         run: npm test
+
+      - name: Test broadcast uploads and continuous playback locally
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+          npx playwright test scripts/writer/broadcast-loop.spec.cjs --workers=1 --reporter=line
 
   production-smoke:
     if: github.event_name != 'pull_request'

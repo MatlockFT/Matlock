@@ -26,8 +26,6 @@
   const soundButton = root.querySelector('[data-mfc-sound]');
   const musicA = document.querySelector('[data-mfc-music-a]');
   const musicB = document.querySelector('[data-mfc-music-b]');
-  const youtubeSlots = new Map();
-  let youtubeApiPromise = null;
   const STATE_URLS = [
     'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/broadcast.json',
     '/assets/uploads/broadcast.json',
@@ -48,6 +46,58 @@
   let standbyMusic = musicB;
   let lastPoll = 0;
   let previewOverride = false;
+  const failedMedia = new Map();
+  const pendingPlay = new WeakSet();
+  const waitingSince = new WeakMap();
+  let soundBlocked = false;
+  const playbackStatus = root.querySelector('[data-mfc-playback-status]');
+
+  function reportPlayback(message, blocked = false) {
+    if (playbackStatus) { playbackStatus.textContent = message; playbackStatus.hidden = !message; }
+    if (monitorMode && window.parent !== window) window.parent.postMessage({ type: 'matlock-broadcast-playback-status', message, soundEnabled, blocked }, location.origin);
+  }
+
+  function sourceAvailable(url) {
+    return Boolean(url) && !(failedMedia.get(url) > Date.now());
+  }
+
+  function failMedia(element) {
+    const url = element.dataset.source || element.dataset.mediaUrl;
+    if (!url || failedMedia.get(url) > Date.now()) return;
+    failedMedia.set(url, Date.now() + 60000);
+    waitingSince.delete(element);
+    element.pause();
+    reportPlayback('A file could not play. Continuing with available content; retrying in one minute.');
+    currentProgramId = '';
+    currentMusicId = '';
+  }
+
+  function safePlay(element) {
+    if (!element.paused || pendingPlay.has(element)) return;
+    const source = element.src;
+    pendingPlay.add(element);
+    element.play().catch(error => {
+      if (element.src !== source) return;
+      if (error.name === 'NotAllowedError') {
+        soundBlocked = true;
+        setSoundState(false);
+        soundButton.hidden = false;
+        soundButton.textContent = 'CLICK TO ENABLE SOUND';
+        reportPlayback('Click Sound On in this player to enable audio.', true);
+      } else if (error.name !== 'AbortError') failMedia(element);
+    }).finally(() => pendingPlay.delete(element));
+  }
+
+  for (const element of [video, musicA, musicB]) {
+    element.addEventListener('error', () => failMedia(element));
+    element.addEventListener('waiting', () => { if (!waitingSince.has(element)) waitingSince.set(element, Date.now()); });
+    element.addEventListener('playing', () => { waitingSince.delete(element); if (!soundBlocked) reportPlayback(''); });
+  }
+  image.addEventListener('error', () => {
+    if (image.dataset.source) failedMedia.set(image.dataset.source, Date.now() + 60000);
+    currentProgramId = '';
+    reportPlayback('An image could not load. Continuing the loop.');
+  });
 
   try { soundEnabled = localStorage.getItem(SOUND_KEY) === 'on'; } catch {}
   if (monitorMode) soundEnabled = false;
@@ -71,152 +121,9 @@
     return '';
   }
 
-  function loadYouTubeApi() {
-    if (window.YT?.Player) return Promise.resolve(window.YT);
-    if (youtubeApiPromise) return youtubeApiPromise;
-    youtubeApiPromise = new Promise((resolve, reject) => {
-      const previousReady = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => {
-        try { previousReady?.(); } catch {}
-        if (window.YT?.Player) resolve(window.YT);
-        else reject(new Error('YouTube player API did not initialize.'));
-      };
-      let script = document.querySelector('script[data-mfc-youtube-api]');
-      if (!script) {
-        script = document.createElement('script');
-        script.src = 'https://www.youtube.com/iframe_api';
-        script.async = true;
-        script.dataset.mfcYoutubeApi = 'true';
-        script.onerror = () => reject(new Error('Could not load the YouTube player API.'));
-        document.head.append(script);
-      }
-      window.setTimeout(() => {
-        if (window.YT?.Player) resolve(window.YT);
-      }, 2500);
-    });
-    return youtubeApiPromise;
-  }
-
-  function youtubeSlotFor(element) {
-    if (youtubeSlots.has(element)) return youtubeSlots.get(element);
-    const host = document.createElement('div');
-    host.setAttribute('aria-hidden', 'true');
-    host.style.position = 'fixed';
-    host.style.width = '200px';
-    host.style.height = '200px';
-    host.style.left = '-10000px';
-    host.style.top = '-10000px';
-    host.style.pointerEvents = 'none';
-    document.body.append(host);
-    const slot = {
-      host,
-      player: null,
-      ready: false,
-      videoId: '',
-      desiredTime: 0,
-      desiredVolume: 0,
-      desiredPlay: false,
-      loadingId: ''
-    };
-    youtubeSlots.set(element, slot);
-    return slot;
-  }
-
-  function applyYouTubeSlot(slot) {
-    if (!slot?.ready || !slot.player) return;
-    try { slot.player.setVolume(Math.round(clamp(slot.desiredVolume, 0, 1) * 100)); } catch {}
-    try {
-      const current = Number(slot.player.getCurrentTime?.());
-      if (!Number.isFinite(current) || Math.abs(current - slot.desiredTime) > 1.2) {
-        slot.player.seekTo(Math.max(0, slot.desiredTime), true);
-      }
-    } catch {}
-    try {
-      if (slot.desiredPlay) slot.player.playVideo();
-      else slot.player.pauseVideo();
-    } catch {}
-  }
-
-  function prepareYouTubeSlot(element, videoId, targetTime) {
-    const slot = youtubeSlotFor(element);
-    slot.desiredTime = Math.max(0, Number(targetTime) || 0);
-    if (slot.videoId === videoId && slot.player) {
-      applyYouTubeSlot(slot);
-      return slot;
-    }
-    slot.videoId = videoId;
-    slot.ready = false;
-
-    loadYouTubeApi().then(YT => {
-      if (slot.videoId !== videoId) return;
-      if (!slot.player) {
-        slot.player = new YT.Player(slot.host, {
-          width: '200',
-          height: '200',
-          videoId,
-          playerVars: {
-            controls: 0,
-            playsinline: 1,
-            rel: 0,
-            origin: location.origin
-          },
-          events: {
-            onReady: event => {
-              slot.ready = true;
-              slot.loadingId = videoId;
-              try { event.target.cueVideoById({ videoId, startSeconds: slot.desiredTime }); } catch {}
-              window.setTimeout(() => applyYouTubeSlot(slot), 80);
-            },
-            onError: () => {
-              slot.ready = false;
-            }
-          }
-        });
-      } else {
-        try {
-          slot.player.cueVideoById({ videoId, startSeconds: slot.desiredTime });
-          slot.ready = true;
-          slot.loadingId = videoId;
-          window.setTimeout(() => applyYouTubeSlot(slot), 80);
-        } catch {}
-      }
-    }).catch(() => {});
-    return slot;
-  }
-
-  function setSlotVolume(element, value) {
-    const volume = clamp(value, 0, 1);
-    if (element.dataset.youtube === 'true') {
-      const slot = youtubeSlots.get(element);
-      if (slot) {
-        slot.desiredVolume = volume;
-        applyYouTubeSlot(slot);
-      }
-    } else {
-      element.volume = volume;
-    }
-  }
-
-  function playSlot(element) {
-    if (element.dataset.youtube === 'true') {
-      const slot = youtubeSlots.get(element);
-      if (slot) {
-        slot.desiredPlay = true;
-        applyYouTubeSlot(slot);
-      }
-    } else {
-      element.play().catch(() => {});
-    }
-  }
-
-  function pauseSlot(element) {
-    element.pause();
-    const slot = youtubeSlots.get(element);
-    if (slot) {
-      slot.desiredPlay = false;
-      applyYouTubeSlot(slot);
-    }
-  }
+  function setSlotVolume(element, value) { element.volume = clamp(value, 0, 1); }
+  function playSlot(element) { safePlay(element); }
+  function pauseSlot(element) { element.pause(); waitingSince.delete(element); }
 
   function fmt(seconds) {
     const value = Math.max(0, Math.floor(Number(seconds) || 0));
@@ -226,11 +133,11 @@
   }
 
   function programItems() {
-    return Array.isArray(channel?.program) ? channel.program.filter(item => positive(item.duration) > 0) : [];
+    return Array.isArray(channel?.program) ? channel.program.filter(item => positive(item.duration) > 0 && (!['video', 'image'].includes(item.type) || sourceAvailable(item.mediaUrl))) : [];
   }
 
   function musicItems() {
-    return Array.isArray(channel?.music) ? channel.music.filter(item => item?.url && positive(item.duration) > 0) : [];
+    return Array.isArray(channel?.music) ? channel.music.filter(item => sourceAvailable(item?.url) && !youtubeVideoId(item.url) && !item.youtubeId && positive(item.duration) > 0) : [];
   }
 
   function timelinePosition(items, elapsed) {
@@ -320,19 +227,21 @@
 
     if (kind === 'image') {
       const url = String(item.mediaUrl || '');
-      if (url && image.src !== new URL(url, location.href).href) image.src = url;
+      if (url && (image.dataset.source !== url || !image.naturalWidth)) { image.dataset.source = url; image.src = url; }
       image.alt = String(item.alt || item.title || 'MMA news image');
     }
 
     if (kind === 'video') {
       const url = String(item.mediaUrl || '');
-      if (url && video.dataset.source !== url) {
+      if (url && (video.dataset.source !== url || video.error)) {
+        waitingSince.delete(video);
+        video.pause();
         video.dataset.source = url;
         video.src = url;
         video.load();
       }
       video.muted = !soundEnabled || item.videoAudio === false;
-      video.volume = clamp(channel?.audio?.video ?? 1, 0, 1);
+      video.volume = clamp(channel?.audio?.master ?? 1, 0, 1) * clamp(channel?.audio?.video ?? 1, 0, 1);
     }
   }
 
@@ -340,7 +249,7 @@
     const elapsed = rawElapsed();
     const position = timelinePosition(programItems(), elapsed);
     const item = position.item;
-    const id = String(item?.id || `${position.index}`);
+    const id = JSON.stringify(item || null);
     if (id !== currentProgramId) {
       currentProgramId = id;
       renderProgramItem(item);
@@ -350,16 +259,15 @@
     else progressNode.textContent = '00:00 / 00:00';
 
     if (item?.type === 'video' && item.mediaUrl) {
-      const duration = positive(item.duration);
-      const target = duration > 0 ? Math.min(position.local, Math.max(0, duration - .08)) : position.local;
+      const mediaDuration = Number.isFinite(video.duration) && video.duration > 0 ? video.duration : positive(item.duration);
+      const target = mediaDuration > 0 ? mod(position.local, mediaDuration) : position.local;
       if (Number.isFinite(video.duration) && Math.abs((video.currentTime || 0) - target) > .8) {
         try { video.currentTime = target; } catch {}
       }
       video.muted = !soundEnabled || item.videoAudio === false;
-      video.play().catch(() => {});
-    } else if (!video.paused) {
-      video.pause();
-    }
+      video.volume = clamp(channel?.audio?.master ?? 1, 0, 1) * clamp(channel?.audio?.video ?? 1, 0, 1);
+      safePlay(video);
+    } else { video.pause(); waitingSince.delete(video); }
 
     return { elapsed, position };
   }
@@ -387,34 +295,17 @@
 
   function ensureAudioSource(element, track, targetTime) {
     if (!track?.url) return;
-    const trackId = String(track.id || track.url);
-    const youtubeId = String(track.youtubeId || youtubeVideoId(track.url) || '');
-
-    if (youtubeId) {
-      element.dataset.trackId = trackId;
-      element.dataset.youtubeId = youtubeId;
-      element.dataset.youtube = 'true';
+    const trackId = String(track.id || '') + ':' + track.url;
+    if ((element.dataset.trackId !== trackId || element.error)) {
+      waitingSince.delete(element);
       element.pause();
-      prepareYouTubeSlot(element, youtubeId, targetTime);
-      return;
-    }
-
-    if (element.dataset.youtube === 'true') {
-      const slot = youtubeSlots.get(element);
-      if (slot) {
-        slot.desiredPlay = false;
-        applyYouTubeSlot(slot);
-      }
-      delete element.dataset.youtube;
-      delete element.dataset.youtubeId;
-    }
-    if (element.dataset.trackId !== trackId) {
       element.dataset.trackId = trackId;
+      element.dataset.mediaUrl = track.url;
       element.src = track.url;
       element.load();
     }
     if (Number.isFinite(element.duration) && Math.abs((element.currentTime || 0) - targetTime) > 1.1) {
-      try { element.currentTime = Math.max(0, Math.min(targetTime, element.duration - .05)); } catch {}
+      try { element.currentTime = Math.max(0, mod(targetTime, element.duration)); } catch {}
     }
   }
 
@@ -499,7 +390,7 @@
     const release = Math.max(.05, Number(channel?.audio?.duckRelease) || 1.5);
     const towardDown = desiredDuck < musicLevel;
     const speed = deltaSeconds / (towardDown ? attack : release);
-    if (!Number.isFinite(musicLevel) || musicLevel <= 0) musicLevel = desiredDuck;
+    if (!Number.isFinite(musicLevel)) musicLevel = desiredDuck;
     else musicLevel += (desiredDuck - musicLevel) * clamp(speed, 0, 1);
 
     const remaining = Math.max(0, positive(track.duration) - pos.local);
@@ -540,10 +431,12 @@
 
   function setSoundState(enabled) {
     soundEnabled = Boolean(enabled);
+    if (soundEnabled) soundBlocked = false;
     if (!monitorMode) {
       try { localStorage.setItem(SOUND_KEY, soundEnabled ? 'on' : 'off'); } catch {}
     }
     soundButton.textContent = soundEnabled ? 'SOUND ON' : 'SOUND OFF';
+    reportPlayback('');
     soundButton.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
     if (!soundEnabled) {
       pauseSlot(musicA);
@@ -559,7 +452,7 @@
     for (const url of STATE_URLS) {
       try {
         const joiner = url.includes('?') ? '&' : '?';
-        const response = await fetch(`${url}${joiner}t=${Date.now()}`, { cache: 'no-store' });
+        const response = await fetch(`${url}${joiner}t=${Date.now()}`, { cache: 'no-store', signal: AbortSignal.timeout(8000) });
         if (!response.ok) throw new Error(`Broadcast state ${response.status}`);
         next = await response.json();
         break;
@@ -568,6 +461,7 @@
       }
     }
     if (!next) throw lastError || new Error('Broadcast state unavailable.');
+    if (useDraft && previewOverride) return;
     const selected = useDraft ? next.draft : next.live;
     if (!selected) throw new Error('Broadcast state is empty.');
     const nextRevision = String(selected.revision || selected.updatedAt || next.updatedAt || '');
@@ -578,15 +472,17 @@
       currentProgramId = '';
       currentMusicId = '';
       musicLevel = duckTarget(null);
+      failedMedia.clear();
       renderTicker();
       syncProgram();
+      if ((channel.music || []).some(track => youtubeVideoId(track.url) || track.youtubeId)) reportPlayback('Replace YouTube music with an uploaded song or a direct audio file in Broadcast Control.');
     } else {
       channel = selected;
     }
   }
 
   window.addEventListener('message', event => {
-    if (event.origin !== location.origin) return;
+    if (event.origin !== location.origin || event.source !== window.parent) return;
     const message = event.data;
     if (!message) return;
 
@@ -602,20 +498,23 @@
     channel = message.channel;
     if (!channel.startedAt) channel.startedAt = new Date().toISOString();
     revision = `preview-${Date.now()}`;
-    currentProgramId = '';
-    currentMusicId = '';
     renderTicker();
     syncProgram();
   });
 
   soundButton.addEventListener('click', () => {
-    if (monitorMode) return;
     setSoundState(!soundEnabled);
     const { elapsed, position } = syncProgram();
     syncMusic(elapsed, position.item, .05);
   });
 
-  void loadYouTubeApi();
+  // Called synchronously by the same-origin controller's Listen click so the
+  // user activation is available to media.play(), unlike a later message task.
+  window.matlockBroadcastSetSound = enabled => {
+    setSoundState(enabled);
+    const { elapsed, position } = syncProgram();
+    syncMusic(elapsed, position.item, .05);
+  };
   setSoundState(soundEnabled);
   updateClock();
 
@@ -629,6 +528,9 @@
     const deltaSeconds = Math.max(.016, Math.min(.5, (now - lastTickAt) / 1000));
     lastTickAt = now;
     updateClock();
+    for (const element of [video, musicA, musicB]) {
+      if (waitingSince.has(element) && Date.now() - waitingSince.get(element) > 15000 && !element.paused) failMedia(element);
+    }
     if (!channel) return;
     const { elapsed, position } = syncProgram();
     syncMusic(elapsed, position.item, deltaSeconds);

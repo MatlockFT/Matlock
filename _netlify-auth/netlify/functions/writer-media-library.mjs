@@ -18,6 +18,10 @@ export function isBroadcastVideoAsset(asset) {
     && (type.startsWith('video/') || /\.(?:mp4|m4v|webm)$/i.test(name));
 }
 
+export function isBroadcastAudioAsset(asset) {
+  return /^broadcast-audio-.*\.(?:mp3|m4a|aac|wav|ogg|opus|flac|mp4|m4v|webm)$/i.test(String(asset?.name || ''));
+}
+
 export function broadcastVideoUsage(state, url) {
   const target = String(url || '');
   const usage = { draft: false, live: false };
@@ -72,11 +76,11 @@ async function listReleaseAssets(token, release) {
   return assets;
 }
 
-async function listBroadcastVideos(token) {
+async function listBroadcastVideos(token, includeAudio = false) {
   const releases = await listManagedReleases(token);
   const groups = await Promise.all(releases.map(async release => {
     const assets = await listReleaseAssets(token, release);
-    return assets.filter(isBroadcastVideoAsset).map(asset => shapeAsset(asset, release));
+    return assets.filter(asset => isBroadcastVideoAsset(asset) || (includeAudio && isBroadcastAudioAsset(asset))).map(asset => shapeAsset(asset, release));
   }));
   return groups.flat().sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
 }
@@ -134,9 +138,10 @@ export default async function handler(request) {
 
   if (request.method === 'GET') {
     try {
-      const assets = await listBroadcastVideos(session.token);
+      const assets = await listBroadcastVideos(session.token, true);
       return Response.json({
         ok: true,
+        mediaKinds: ['video', 'audio'],
         assets,
         count: assets.length,
         totalBytes: assets.reduce((sum, asset) => sum + (Number(asset.size) || 0), 0)

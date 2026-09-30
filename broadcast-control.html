@@ -10,7 +10,7 @@ permalink: /broadcast/control/
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>Matlock Fight Channel — Control Room</title>
-  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20260930-20">
+  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20260930-loop-1">
 </head>
 <body class="mfc-control-body">
   <main class="mfc-control" data-mfc-control data-auth-base="https://mmamatlock-writer-auth.netlify.app">
@@ -56,6 +56,11 @@ permalink: /broadcast/control/
     </section>
 
     <div class="mfc-control-workspace" data-control-workspace hidden>
+      <section class="mfc-workflow-guide" aria-label="Continuous loop setup">
+        <strong>Build your continuous channel</strong>
+        <p>1. Upload videos and songs in Media. 2. Arrange the visual loop and music bed. 3. Listen in Preview, then Take Preview Live. Both playlists repeat automatically.</p>
+        <p>Save Draft stores your work without changing the live feed. Keep the live feed open on the playback device and click Sound On there once; the dashboard itself does not send a stream to another platform.</p>
+      </section>
       <nav class="mfc-workspace-tabs" role="tablist" aria-label="Broadcast Control workspaces">
         <button type="button" id="workspace-tab-rundown" class="mfc-workspace-tab is-active" role="tab" aria-selected="true" aria-controls="workspace-panel-rundown" data-workspace-tab="rundown">
           <span>Rundown</span><b data-workspace-count="rundown">0</b>
@@ -76,6 +81,10 @@ permalink: /broadcast/control/
         <progress max="100" value="0" data-upload-meter></progress>
       </div>
 
+      <section class="mfc-upload-queue mfc-panel" data-upload-queue hidden aria-label="Upload queue">
+        <div class="mfc-panel-head"><strong>Uploads</strong><button type="button" class="mfc-button mfc-button-small" data-cancel-uploads>Stop after current file</button></div>
+        <ol data-upload-results aria-live="polite"></ol>
+      </section>
       <section id="workspace-panel-rundown" class="mfc-workspace-panel is-active" role="tabpanel" aria-labelledby="workspace-tab-rundown" data-workspace-panel="rundown">
         <section class="mfc-monitor-wall" aria-label="Program and preview monitors">
           <article class="mfc-monitor mfc-monitor-preview">
@@ -95,7 +104,7 @@ permalink: /broadcast/control/
                 <span data-preview-now>Draft loop</span>
               </div>
               <div class="mfc-monitor-footer-actions">
-                <span data-preview-duration>00:00</span>
+                <span data-preview-duration>00:00</span><button type="button" class="mfc-monitor-audio" data-preview-restart>Restart preview</button>
                 <button type="button" class="mfc-monitor-audio" data-preview-audio aria-pressed="false">Listen</button>
               </div>
             </footer>
@@ -167,26 +176,32 @@ permalink: /broadcast/control/
           <div class="mfc-panel-head mfc-panel-head-wide">
             <div>
               <span>Media pool</span>
-              <strong>Video Library</strong>
+              <strong>Video &amp; Music Library</strong>
             </div>
             <div class="mfc-add-row">
-              <label class="mfc-button mfc-button-small mfc-file-button">
-                + Upload Videos
-                <input type="file" accept="video/mp4,video/webm,video/x-m4v,.mp4,.webm,.m4v" data-video-library-upload multiple hidden>
+              <label class="mfc-button mfc-button-small mfc-file-button" role="button" tabindex="0">
+                + Upload Media
+                <input type="file" accept=".mp4,.webm,.m4v,.mp3,.m4a,.aac,.wav,.ogg,.opus,.flac" data-video-library-upload multiple hidden>
               </label>
               <button type="button" class="mfc-button mfc-button-small mfc-button-ghost" data-video-library-refresh>Refresh</button>
             </div>
           </div>
 
+          <div class="mfc-media-guide">
+            <p>Drop multiple files here. MP4 (H.264 video + AAC sound) and MP3 or M4A audio are recommended. WebM, M4V, WAV, OGG, Opus, AAC and FLAC are accepted when your browser can read them. Each file must be under 2 GiB. Files are not converted.</p>
+            <p>Music stored in an MP4/WebM can be uploaded with <strong>Upload Songs</strong> on the Audio tab. Use direct media links; YouTube/watch pages are not dependable music sources for an unattended loop.</p>
+            <label><input type="checkbox" data-upload-auto-add checked> Add successful uploads to the draft loop automatically</label>
+            <button type="button" class="mfc-button mfc-button-small" data-library-add-all>Add all unused media to draft</button>
+          </div>
           <div class="mfc-library-toolbar">
             <label class="mfc-field mfc-library-search">
               <span>Search</span>
-              <input type="search" data-video-library-search placeholder="Find an uploaded video">
+              <input type="search" data-video-library-search placeholder="Find a video or song">
             </label>
             <label class="mfc-field">
               <span>Show</span>
               <select data-video-library-filter>
-                <option value="all">All videos</option>
+                <option value="all">All media</option><option value="video">Videos</option><option value="audio">Music</option>
                 <option value="active">In programming</option>
                 <option value="live">Live broadcast</option>
                 <option value="unused">Unused</option>
@@ -202,11 +217,11 @@ permalink: /broadcast/control/
                 <option value="name">Name</option>
               </select>
             </label>
-            <p data-video-library-summary>Loading uploaded videos…</p>
+            <p data-video-library-summary>Loading uploaded media…</p>
           </div>
 
           <div class="mfc-video-library" data-video-library-list>
-            <p class="mfc-empty">Loading uploaded videos…</p>
+            <p class="mfc-empty">Loading uploaded media…</p>
           </div>
         </section>
       </section>
@@ -264,14 +279,14 @@ permalink: /broadcast/control/
                   <strong>Continuous music bed</strong>
                 </div>
                 <div class="mfc-add-row">
-                  <label class="mfc-button mfc-button-small mfc-file-button">
+                  <label class="mfc-button mfc-button-small mfc-file-button" role="button" tabindex="0">
                     + Upload Songs
-                    <input type="file" accept="audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/wav,audio/x-wav,audio/ogg,audio/flac,.mp3,.m4a,.aac,.wav,.ogg,.opus,.flac" data-music-upload multiple hidden>
+                    <input type="file" accept="audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/wav,audio/x-wav,audio/ogg,audio/flac,.mp3,.m4a,.aac,.wav,.ogg,.opus,.flac,.mp4,.m4v,.webm" data-music-upload multiple hidden>
                   </label>
                   <button type="button" class="mfc-button mfc-button-small" data-add-music-url>+ Music URL</button>
                 </div>
               </div>
-              <div class="mfc-linear-track mfc-music-track" data-music-track aria-label="Music playlist"></div>
+              <p class="mfc-track-help">Music loops independently of the visual rundown. Duck lowers it under a video’s sound; Mute silences it during that video; Keep leaves both audible. Listen affects only this browser.</p><div class="mfc-linear-track mfc-music-track" data-music-track aria-label="Music playlist"></div>
             </section>
 
             <section class="mfc-panel" data-music-editor>
@@ -331,31 +346,31 @@ permalink: /broadcast/control/
 
     <dialog class="mfc-dialog mfc-video-preview-dialog" data-video-preview-dialog>
       <form method="dialog">
-        <header><strong data-video-preview-title>Video preview</strong><button value="cancel" aria-label="Close">×</button></header>
+        <header><strong data-video-preview-title>Video preview</strong><button value="cancel" formnovalidate aria-label="Close">×</button></header>
         <div class="mfc-video-preview-body">
           <video controls playsinline preload="metadata" data-video-preview-player></video>
           <p data-video-preview-meta></p>
         </div>
-        <footer><button value="cancel" class="mfc-button mfc-button-ghost">Close</button></footer>
+        <footer><button value="cancel" formnovalidate class="mfc-button mfc-button-ghost">Close</button></footer>
       </form>
     </dialog>
 
     <dialog class="mfc-dialog" data-url-dialog>
       <form method="dialog">
-        <header><strong>Add music from URL</strong><button value="cancel" aria-label="Close">×</button></header>
+        <header><strong>Add music from URL</strong><button value="cancel" formnovalidate aria-label="Close">×</button></header>
         <div class="mfc-dialog-body">
-          <label class="mfc-field"><span>Audio URL</span><input type="url" data-music-url placeholder="Direct audio URL or YouTube link"></label>
+          <label class="mfc-field"><span>Audio URL</span><input type="url" data-music-url placeholder="https://example.com/music.mp3"></label>
           <label class="mfc-field"><span>Title</span><input type="text" data-music-url-title placeholder="Track title"></label>
-          <label class="mfc-field"><span>Duration (min:sec)</span><input type="text" inputmode="numeric" data-music-url-duration value="3:00" placeholder="3:30"></label>
-          <p>Direct audio files can detect their own length. For YouTube, enter the video length as min:sec so the music timeline stays in sync.</p>
+          <label class="mfc-field"><span>Duration (min:sec)</span><input type="text" inputmode="numeric" data-music-url-duration placeholder="Detected automatically"></label>
+          <p>A playable direct file is required. Duration is read automatically. Optionally enter a shorter min:sec length to trim the track. For music in a video file, use Upload Songs.</p>
         </div>
-        <footer><button value="cancel" class="mfc-button mfc-button-ghost">Cancel</button><button type="button" class="mfc-button" data-confirm-music-url>Add Track</button></footer>
+        <footer><button value="cancel" formnovalidate class="mfc-button mfc-button-ghost">Cancel</button><button type="button" class="mfc-button" data-confirm-music-url>Add Track</button></footer>
       </form>
     </dialog>
 
     <div class="mfc-toast" data-toast role="status" aria-live="polite" hidden></div>
   </main>
 
-  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-20" defer></script>
+  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-loop-1" defer></script>
 </body>
 </html>

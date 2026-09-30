@@ -82,6 +82,10 @@
   let videoLibraryAssets = [];
   let videoLibraryReadOnly = false;
   let videoLibraryLoading = false;
+  let previewStartedAt = new Date().toISOString();
+  let editVersion = 0;
+  let uploadRunning = false;
+  let stopUploads = false;
   let previewMonitorAudio = false;
   let programMonitorAudio = false;
   const videoDurationCache = new Map();
@@ -218,11 +222,33 @@
 
   function postMonitorSound(frame, enabled) {
     if (!frame?.contentWindow) return;
+    try {
+      if (typeof frame.contentWindow.matlockBroadcastSetSound === 'function') { frame.contentWindow.matlockBroadcastSetSound(Boolean(enabled)); return; }
+    } catch {}
     frame.contentWindow.postMessage({
       type: 'matlock-broadcast-monitor-sound',
       enabled: Boolean(enabled)
     }, location.origin);
   }
+
+  window.addEventListener('message', event => {
+    if (event.origin !== location.origin || event.data?.type !== 'matlock-broadcast-playback-status') return;
+    if (![previewFrame?.contentWindow, programFrame?.contentWindow].includes(event.source)) return;
+    const fromPreview = event.source === previewFrame?.contentWindow;
+    if (fromPreview) previewMonitorAudio = Boolean(event.data.soundEnabled);
+    else programMonitorAudio = Boolean(event.data.soundEnabled);
+    if (previewMonitorAudio && programMonitorAudio) {
+      if (fromPreview) { programMonitorAudio = false; postMonitorSound(programFrame, false); }
+      else { previewMonitorAudio = false; postMonitorSound(previewFrame, false); }
+    }
+    renderMonitorAudioButtons();
+    if (event.data.blocked) {
+      if (event.source === previewFrame?.contentWindow) previewMonitorAudio = false;
+      else programMonitorAudio = false;
+      renderMonitorAudioButtons();
+      showToast('Your browser blocked audio. Click Sound On inside the player once.', 8000);
+    }
+  });
 
   function renderMonitorAudioButtons() {
     if (previewAudioButton) {
@@ -240,6 +266,9 @@
 
   function setMonitorAudio(target, enabled) {
     const next = Boolean(enabled);
+    if (next) {
+      app.querySelectorAll('audio, video').forEach(media => media.pause());
+    }
     if (target === 'preview') {
       previewMonitorAudio = next;
       if (next) programMonitorAudio = false;
@@ -253,7 +282,7 @@
   }
 
   function syncActionButtons() {
-    const busy = Boolean(busyAction);
+    const busy = Boolean(busyAction) || uploadRunning;
     saveDraftButton.disabled = !sessionId || !working || !dirty || busy;
     takeLiveButton.disabled = !sessionId || !working || busy;
     if (reloadStateButton) reloadStateButton.disabled = !sessionId || busy;
@@ -439,6 +468,18 @@
     selectedProgramId = working.program[0]?.id || '';
     selectedMusicId = working.music[0]?.id || '';
     renderAll();
+    let repaired = false;
+    for (const item of [...working.program, ...working.music]) {
+      const key = item.mediaUrl ? 'mediaUrl' : 'url';
+      if (!String(item[key] || '').startsWith('https://api.github.com/')) continue;
+      try {
+        item[key] = await resolveMediaUrl(item[key]);
+        item.duration = await probeUrlDuration(item[key], item.type === 'video' ? 'video' : 'audio');
+        repaired = true;
+      } catch (error) { item.duration = 0; repaired = true; showToast(error.message, 8500); }
+    }
+    if (repaired) { renderAll(); markDirty(); showToast('Repaired old media links in the draft. Review and save before taking live.', 8500); }
+    if (working.music.some(track => youtubeVideoId(track.url))) showToast('This draft contains YouTube music. Replace it with an uploaded song or direct audio file before taking live.', 10000);
     void loadVideoLibrary({ quiet: true });
   }
 
@@ -452,6 +493,7 @@
 
   function markDirty() {
     if (!working) return;
+    editVersion += 1;
     working.updatedAt = new Date().toISOString();
     setDirty(true);
     renderSummary();
@@ -461,7 +503,7 @@
   function postPreview() {
     if (!previewFrame?.contentWindow || !working) return;
     const channel = clone(working);
-    channel.startedAt = new Date().toISOString();
+    channel.startedAt = previewStartedAt;
     previewFrame.contentWindow.postMessage({
       type: 'matlock-broadcast-preview',
       channel
@@ -483,9 +525,9 @@
 
   function displayVideoName(name) {
     return String(name || 'Uploaded video')
-      .replace(/^broadcast-video-/i, '')
-      .replace(/-\d{17}(?=\.(?:mp4|m4v|webm)$)/i, '')
-      .replace(/\.(?:mp4|m4v|webm)$/i, '')
+      .replace(/^broadcast-(?:video|audio)-/i, '')
+      .replace(/-\d{17}(?=\.(?:mp4|m4v|webm|mp3|m4a|aac|wav|ogg|opus|flac)$)/i, '')
+      .replace(/\.(?:mp4|m4v|webm|mp3|m4a|aac|wav|ogg|opus|flac)$/i, '')
       .replace(/[-_]+/g, ' ')
       .replace(/\s+/g, ' ')
       .trim() || 'Uploaded video';
@@ -506,26 +548,26 @@
     };
   }
 
+  function assetKind(asset) {
+    return /^broadcast-audio-/i.test(asset?.name || '') ? 'audio' : 'video';
+  }
+
   function isBroadcastVideoAsset(asset) {
-    const name = String(asset?.name || '').toLowerCase();
-    const type = String(asset?.contentType || asset?.content_type || '').toLowerCase();
-    return name.startsWith('broadcast-video-')
-      && (type.startsWith('video/') || /\.(?:mp4|m4v|webm)$/i.test(name));
+    return /^broadcast-(?:video|audio)-.*\.(?:mp4|m4v|webm|mp3|m4a|aac|wav|ogg|opus|flac)$/i.test(asset?.name || '');
   }
 
   function programUsesVideo(program, url) {
     const target = String(url || '');
     return Boolean(target) && Array.isArray(program) && program.some(item =>
-      String(item?.type || '').toLowerCase() === 'video'
-      && String(item?.mediaUrl || '') === target
+      String(item?.mediaUrl || item?.url || '') === target
     );
   }
 
   function videoUsage(asset) {
     const url = String(asset?.url || '');
-    const draft = programUsesVideo(working?.program, url);
-    const savedDraft = programUsesVideo(fullState?.draft?.program, url);
-    const live = programUsesVideo(fullState?.live?.program, url);
+    const draft = programUsesVideo([...(working?.program || []), ...(working?.music || [])], url);
+    const savedDraft = programUsesVideo([...(fullState?.draft?.program || []), ...(fullState?.draft?.music || [])], url);
+    const live = programUsesVideo([...(fullState?.live?.program || []), ...(fullState?.live?.music || [])], url);
     return {
       draft,
       savedDraft: savedDraft && !draft,
@@ -540,9 +582,8 @@
     if (Number.isFinite(cached) && cached > 0) return cached;
     const channels = [working, fullState?.draft, fullState?.live];
     for (const channel of channels) {
-      const item = (channel?.program || []).find(row =>
-        String(row?.type || '').toLowerCase() === 'video'
-        && String(row?.mediaUrl || '') === target
+      const item = [...(channel?.mediaLibrary || []), ...(channel?.program || []), ...(channel?.music || [])].find(row =>
+        String(row?.mediaUrl || row?.url || '') === target
       );
       const duration = Number(item?.duration);
       if (Number.isFinite(duration) && duration > 0) return duration;
@@ -578,6 +619,8 @@
       videoPreviewMeta.textContent = `${formatBytes(asset.size)} · ${fmt(duration)} · ${uploaded}${states ? ` · ${states}` : ''}`;
       renderVideoLibrary();
     };
+    setMonitorAudio('preview', false);
+    setMonitorAudio('program', false);
     videoPreviewPlayer.src = asset.url;
     videoPreviewDialog.showModal();
   }
@@ -609,33 +652,6 @@
     });
   }
 
-  function removeVideoReferences(url) {
-    const target = String(url || '');
-    if (!target) return { draft: false, live: false };
-    let draft = false;
-    let live = false;
-    if (working?.program) {
-      const before = working.program.length;
-      working.program = working.program.filter(item => String(item?.mediaUrl || '') !== target);
-      draft = working.program.length !== before;
-    }
-    if (fullState?.draft?.program) {
-      fullState.draft.program = fullState.draft.program.filter(item => String(item?.mediaUrl || '') !== target);
-    }
-    if (fullState?.live?.program) {
-      const before = fullState.live.program.length;
-      fullState.live.program = fullState.live.program.filter(item => String(item?.mediaUrl || '') !== target);
-      live = fullState.live.program.length !== before;
-      if (live) {
-        const now = new Date().toISOString();
-        fullState.live.startedAt = now;
-        fullState.live.updatedAt = now;
-        fullState.live.revision = `live-${Date.now()}`;
-      }
-    }
-    return { draft, live };
-  }
-
   async function waitForVideoDeletion(assetId, timeoutMs = 90000) {
     const started = Date.now();
     while (Date.now() - started < timeoutMs) {
@@ -657,6 +673,7 @@
       .filter(asset => {
         if (query && !displayVideoName(asset.name).toLowerCase().includes(query) && !String(asset.name || '').toLowerCase().includes(query)) return false;
         const usage = videoUsage(asset);
+        if (filter === 'video' || filter === 'audio') return assetKind(asset) === filter;
         if (filter === 'active') return usage.blocked;
         if (filter === 'live') return usage.live;
         if (filter === 'unused') return !usage.blocked;
@@ -673,22 +690,22 @@
     const totalBytes = videoLibraryAssets.reduce((sum, asset) => sum + (Number(asset.size) || 0), 0);
     const mode = videoLibraryReadOnly ? ' · public index fallback' : '';
     videoLibrarySummary.textContent = videoLibraryLoading
-      ? 'Loading video library…'
-      : `${visible.length === videoLibraryAssets.length ? videoLibraryAssets.length : `${visible.length} of ${videoLibraryAssets.length}`} video${videoLibraryAssets.length === 1 ? '' : 's'} · ${formatBytes(totalBytes)}${mode}`;
+      ? 'Loading media library…'
+      : `${visible.length === videoLibraryAssets.length ? videoLibraryAssets.length : `${visible.length} of ${videoLibraryAssets.length}`} media file${videoLibraryAssets.length === 1 ? '' : 's'} · ${formatBytes(totalBytes)}${mode}`;
     updateWorkspaceCounts();
   
     videoLibraryList.replaceChildren();
     if (videoLibraryLoading && !videoLibraryAssets.length) {
       const empty = document.createElement('p');
       empty.className = 'mfc-empty';
-      empty.textContent = 'Loading uploaded videos…';
+      empty.textContent = 'Loading uploaded media…';
       videoLibraryList.append(empty);
       return;
     }
     if (!visible.length) {
       const empty = document.createElement('p');
       empty.className = 'mfc-empty';
-      empty.textContent = (query || filter !== 'all') ? 'No uploaded videos match the current search or filter.' : 'No Broadcast Control videos have been uploaded yet.';
+      empty.textContent = (query || filter !== 'all') ? 'No uploaded media match the current search or filter.' : 'Upload videos and music to start your loop.';
       videoLibraryList.append(empty);
       return;
     }
@@ -710,6 +727,7 @@
       const uploaded = asset.createdAt ? new Date(asset.createdAt).toLocaleDateString() : 'Unknown date';
       const duration = knownVideoDuration(asset.url);
       const parts = [
+        assetKind(asset) === 'audio' ? 'Music' : 'Video',
         formatBytes(asset.size),
         duration ? fmt(duration) : '',
         uploaded,
@@ -733,42 +751,15 @@
       actions.className = 'mfc-video-asset-actions';
   
       const previewButton = smallButton('Preview', () => openVideoPreview(asset), 'mfc-button-ghost');
-      const addButton = smallButton('Add to Program', async () => {
-        if (!working) return;
-        const original = addButton.textContent;
+      const addButton = smallButton(assetKind(asset) === 'audio' ? 'Add to Music' : 'Add to Program', async () => {
+        if (busyAction || uploadRunning) return showToast('Wait for the current operation to finish.');
         addButton.disabled = true;
-        addButton.textContent = 'Adding…';
-        let duration = knownVideoDuration(asset.url);
-        if (!duration) {
-          try {
-            duration = await probeUrlDuration(asset.url, 'video');
-            videoDurationCache.set(asset.url, duration);
-          } catch {
-            duration = 30;
-            showToast('Video added with a 30-second fallback duration. Use Read duration in the selected video block if needed.', 7500);
-          }
-        }
-        const item = {
-          id: uid('program'),
-          type: 'video',
-          header: 'MMA VIDEO',
-          eyebrow: 'VIDEO',
-          title: displayVideoName(asset.name),
-          mediaUrl: asset.url,
-          duration,
-          videoAudio: true
-        };
-        working.program.push(item);
-        selectedProgramId = item.id;
-        renderProgram();
-        renderProgramEditor();
-        markDirty();
-        renderVideoLibrary();
-        requestAnimationFrame(() => { programTrack.scrollLeft = programTrack.scrollWidth; });
-        addButton.textContent = original;
-        showToast('Video added to the draft program.');
+        setBusy('library');
+        try { await addAssetToDraft(asset); showToast('Added to the draft loop.'); }
+        catch (error) { showToast(error.message, 9000); }
+        finally { addButton.disabled = false; setBusy(''); }
       });
-  
+
       const copyButton = smallButton('Copy URL', async () => {
         try {
           await navigator.clipboard.writeText(asset.url);
@@ -782,8 +773,10 @@
         if (!asset.releaseTag) return;
         window.open(`https://github.com/MatlockFT/Matlock/releases/tag/${encodeURIComponent(asset.releaseTag)}`, '_blank', 'noopener,noreferrer');
       }, 'mfc-button-ghost');
+      releaseButton.hidden = !asset.releaseTag;
 
       const deleteButton = smallButton('Delete', async () => {
+        if (busyAction || uploadRunning) return showToast('Wait for the current operation to finish.');
         const currentUsage = videoUsage(asset);
         const warning = currentUsage.blocked
           ? `"${displayVideoName(asset.name)}" is currently referenced by ${[
@@ -791,34 +784,21 @@
               currentUsage.draft || currentUsage.savedDraft ? 'the draft' : ''
             ].filter(Boolean).join(' and ')}. Delete it anyway? It will be removed from those rundowns first.`
           : `Permanently delete "${displayVideoName(asset.name)}"? This cannot be undone.`;
+        if (currentUsage.blocked) return showToast('Remove this media from saved and live programming before deleting it.');
         if (!window.confirm(warning)) return;
 
         deleteButton.disabled = true;
         deleteButton.textContent = 'Deleting…';
         try {
-          if (currentUsage.blocked) {
-            const removed = removeVideoReferences(asset.url);
-            const now = new Date().toISOString();
-            working.updatedAt = now;
-            working.revision = `draft-${Date.now()}`;
-            fullState = {
-              ...(fullState || {}),
-              version: 1,
-              updatedAt: now,
-              draft: clone(working)
-            };
-            await writeState(fullState, 'Remove deleted video from broadcast programming [skip ci]');
-            setDirty(false);
-            renderProgram();
-            renderSummary();
-            if (removed.live) refreshProgramMonitor();
-          }
-
           await queueBroadcastVideoDelete(asset);
           showToast('Delete queued. GitHub is removing the uploaded video…', 9000);
           const removed = await waitForVideoDeletion(asset.id);
           if (removed) {
             videoLibraryAssets = videoLibraryAssets.filter(row => row.id !== asset.id);
+            for (const channel of [working, fullState?.draft, fullState?.live]) {
+              if (channel?.mediaLibrary) channel.mediaLibrary = channel.mediaLibrary.filter(row => row.url !== asset.url);
+            }
+            markDirty();
             renderVideoLibrary();
             showToast('Uploaded video deleted permanently.');
           } else {
@@ -832,8 +812,9 @@
           deleteButton.textContent = 'Delete';
         }
       }, 'mfc-button-ghost mfc-danger');
-      deleteButton.disabled = !asset.id;
-      if (usage.blocked) deleteButton.title = 'Deleting will first remove this video from draft/live programming.';
+      deleteButton.disabled = !asset.id || usage.blocked;
+      deleteButton.hidden = assetKind(asset) === 'audio';
+      if (usage.blocked) deleteButton.title = 'Remove from the draft, save, and take that change live before deleting the file.';
       else deleteButton.title = 'Permanently delete this uploaded video.';
   
       actions.append(previewButton, addButton, copyButton, releaseButton, deleteButton);
@@ -854,7 +835,15 @@
       if (!Array.isArray(releases) || !releases.length) break;
       for (const release of releases) {
         if (!String(release?.tag_name || '').startsWith('writer-media-')) continue;
-        for (const raw of release.assets || []) {
+        const releaseAssets = [];
+        for (let assetPage = 1; ; assetPage += 1) {
+          const result = await fetch('https://api.github.com/repos/MatlockFT/Matlock/releases/' + release.id + '/assets?per_page=100&page=' + assetPage, { headers: { Accept: 'application/vnd.github+json' } });
+          if (!result.ok) throw new Error('Could not load all media assets (' + result.status + ').');
+          const rows = await result.json();
+          releaseAssets.push(...rows);
+          if (rows.length < 100) break;
+        }
+        for (const raw of releaseAssets) {
           const asset = normalizedLibraryAsset(raw, release);
           if (isBroadcastVideoAsset(asset)) assets.push(asset);
         }
@@ -875,6 +864,11 @@
         videoLibraryAssets = Array.isArray(data.assets)
           ? data.assets.map(asset => normalizedLibraryAsset(asset)).filter(isBroadcastVideoAsset)
           : [];
+        // Compatibility with the older video-only auth bridge during rollout.
+        if (!data.mediaKinds?.includes('audio')) {
+          const publicAssets = await fetchPublicVideoLibrary();
+          videoLibraryAssets = [...new Map([...videoLibraryAssets, ...publicAssets].map(asset => [asset.url, asset])).values()];
+        }
         videoLibraryReadOnly = false;
       } catch (error) {
         if (error.status === 401 || !sessionId) throw error;
@@ -883,15 +877,15 @@
         if (!quiet) showToast('Video library loaded from GitHub’s public index. Delete still works through the cleanup queue.', 7000);
       }
     } catch (error) {
-      if (!quiet) showToast(`Could not load video library: ${error.message}`, 8000);
+      showToast(`Could not load media library: ${error.message}. You can retry Refresh.`, 8000);
     } finally {
       videoLibraryLoading = false;
       if (videoLibraryRefreshButton) videoLibraryRefreshButton.disabled = false;
+      const remembered = [...(working?.mediaLibrary || [])];
+      videoLibraryAssets = [...new Map([...remembered, ...videoLibraryAssets].map(asset => [asset.url, asset])).values()];
       renderVideoLibrary();
     }
   }
-
-
 
   function currentLiveProgramId() {
     const live = fullState?.live;
@@ -967,7 +961,7 @@
       const duration = document.createElement('div');
       duration.className = 'mfc-timeline-duration';
       if (item.type === 'video') {
-        duration.textContent = `${fmt(item.duration)} AUTO`;
+        duration.textContent = positive(item.duration) ? fmt(item.duration) : 'NEEDS DURATION';
       } else {
         const input = document.createElement('input');
         input.type = 'number';
@@ -1161,8 +1155,9 @@
         wide: true,
         live: false,
         onChange: async value => {
-          item.mediaUrl = value.trim();
+          try { item.mediaUrl = await resolveMediaUrl(value.trim()); } catch (error) { return showToast(error.message, 8500); }
           if (item.type === 'video' && item.mediaUrl) {
+            item.duration = 0;
             try {
               item.duration = await probeUrlDuration(item.mediaUrl, 'video');
               showToast(`Video duration detected: ${fmt(item.duration)}`);
@@ -1180,14 +1175,20 @@
 
       if (item.type === 'video') {
         const durationField = field('Video duration', 'duration', {
-          value: fmt(item.duration),
-          readOnly: true
+          value: positive(item.duration) ? fmtInput(item.duration) : '',
+          placeholder: 'Read duration first',
+          live: false,
+          onChange: (value, input) => {
+            const seconds = parseDurationInput(value);
+            if (!Number.isFinite(seconds) || seconds <= 0 || seconds > 86400) { input.value = fmtInput(item.duration); return showToast('Enter a valid min:sec duration.'); }
+            item.duration = seconds; renderProgram(); markDirty();
+          }
         });
         form.append(durationField.wrap);
 
         const upload = document.createElement('input');
         upload.type = 'file';
-        upload.accept = 'video/mp4,video/webm,video/x-m4v,.mp4,.webm,.m4v';
+        upload.accept = '.mp4,.webm,.m4v';
         upload.hidden = true;
         let videoUploadBusy = false;
         const uploadButton = smallButton('Upload video', () => {
@@ -1209,36 +1210,9 @@
             redetectButton.disabled = false;
           }
         });
-        upload.addEventListener('change', async () => {
-          const file = upload.files?.[0];
-          if (!file || videoUploadBusy) return;
-          videoUploadBusy = true;
-          uploadButton.disabled = true;
-          redetectButton.disabled = true;
-          const uploadLabel = uploadButton.textContent;
-          uploadButton.textContent = 'Uploading…';
-          try {
-            const duration = await probeFileDuration(file);
-            const url = await uploadMediaFile(file, 'video');
-            videoDurationCache.set(url, duration);
-            item.mediaUrl = url;
-            item.duration = duration;
-            void loadVideoLibrary({ quiet: true });
-            showToast('Video uploaded and added to the program.');
-            renderProgram();
-            renderProgramEditor();
-            markDirty();
-            renderVideoLibrary();
-          } catch (error) {
-            showToast(`Video upload failed: ${error.message}`, 9000);
-          } finally {
-            videoUploadBusy = false;
-            uploadButton.disabled = false;
-            redetectButton.disabled = false;
-            uploadButton.textContent = uploadLabel;
-            upload.value = '';
-            clearUploadProgress();
-          }
+        upload.addEventListener('change', () => {
+          void uploadFiles(upload.files, 'video', item);
+          upload.value = '';
         });
         const controls = buttonRow(uploadButton, redetectButton, upload);
         form.append(controls);
@@ -1286,6 +1260,17 @@
       }
     }
 
+    if (item.type === 'image') {
+      form.append(field('Image duration (seconds)', 'duration', { type: 'number', min: 1, max: 3600, value: item.duration || 20, live: false,
+        onChange: value => { item.duration = clamp(value, 1, 3600); renderProgram(); markDirty(); } }).wrap);
+    }
+    const playSelected = smallButton('Preview this item', () => {
+      const index = working.program.indexOf(item);
+      const offset = working.program.slice(0, index).reduce((sum, row) => sum + positive(row.duration), 0);
+      previewStartedAt = new Date(Date.now() - offset * 1000).toISOString();
+      postPreview();
+    }, 'mfc-button-ghost');
+    form.append(buttonRow(playSelected));
     const programIndex = working.program.findIndex(row => row.id === item.id);
     const moveLeft = smallButton('← Move left', () => moveProgram(item.id, -1), 'mfc-button-ghost');
     const moveRight = smallButton('Move right →', () => moveProgram(item.id, 1), 'mfc-button-ghost');
@@ -1325,7 +1310,7 @@
         results: { header: 'FIGHT RESULTS', eyebrow: 'RESULTS', title: 'FIGHT RESULT', body: 'WINNER • METHOD • ROUND', duration: 18 },
         event: { header: 'UPCOMING FIGHTS', eyebrow: 'NEXT EVENT', title: 'UPCOMING EVENT', body: 'DATE • VENUE • MAIN EVENT', duration: 18 },
         image: { header: 'MMA NEWS', eyebrow: 'PHOTO', title: 'IMAGE', mediaUrl: '', duration: 20 },
-        video: { header: 'MMA VIDEO', eyebrow: 'VIDEO', title: 'VIDEO', mediaUrl: '', duration: 30, videoAudio: true },
+        video: { header: 'MMA VIDEO', eyebrow: 'VIDEO', title: 'VIDEO', mediaUrl: '', duration: 0, videoAudio: true },
         breaking: { header: 'BREAKING NEWS', eyebrow: 'BREAKING', title: 'BREAKING NEWS', body: 'ADD THE UPDATE HERE.', duration: 20 }
       };
       const item = { id: uid('program'), type, ...(defaults[type] || defaults.headline) };
@@ -1453,13 +1438,14 @@
       wide: true,
       live: false,
       onChange: async value => {
-        track.url = value.trim();
+        try { track.url = await resolveMediaUrl(value.trim()); } catch (error) { return showToast(error.message, 8500); }
+        track.duration = 0;
         const youtubeId = youtubeVideoId(track.url);
         if (youtubeId) {
           track.sourceType = 'youtube';
           track.youtubeId = youtubeId;
-          if (!positive(track.duration)) track.duration = 180;
-          showToast('YouTube source recognized. Set the track duration to match the video length.');
+          track.duration = 0;
+          showToast('Use an uploaded song or a direct audio file for continuous music. YouTube links cannot be taken live.', 8500);
         } else {
           delete track.sourceType;
           delete track.youtubeId;
@@ -1476,14 +1462,14 @@
     });
     const durationField = field('Duration (min:sec)', 'duration', {
       type: 'text',
-      value: fmtInput(Math.max(1, Number(track.duration) || 180)),
+      value: positive(track.duration) ? fmtInput(track.duration) : '',
       placeholder: '3:30',
       live: false,
       onChange: (value, input) => {
         const seconds = parseDurationInput(value);
         if (!Number.isFinite(seconds) || seconds < 1 || seconds > 86400) {
           showToast('Use min:sec for duration, for example 3:30.', 5500);
-          input.value = fmtInput(track.duration || 180);
+          input.value = positive(track.duration) ? fmtInput(track.duration) : '';
           return;
         }
         track.duration = seconds;
@@ -1518,7 +1504,7 @@
     });
     const detectButton = smallButton('Read duration from file', async () => {
       if (!track.url) return showToast('Add an audio URL first.');
-      if (youtubeVideoId(track.url)) return showToast('YouTube does not expose duration as a direct audio file here. Set the duration field manually.');
+      if (youtubeVideoId(track.url)) return showToast('Replace this YouTube link with an uploaded song or direct media URL.');
       try {
         track.duration = await probeUrlDuration(track.url, 'audio');
         renderMusic();
@@ -1529,6 +1515,14 @@
         showToast('Could not read duration from that URL.', 6500);
       }
     }, 'mfc-button-ghost');
+    const audition = document.createElement('audio');
+    audition.controls = true;
+    audition.preload = 'none';
+    audition.src = track.url || '';
+    audition.className = 'mfc-track-audition';
+    audition.setAttribute('aria-label', 'Audition selected music');
+    audition.addEventListener('play', () => { setMonitorAudio('preview', false); setMonitorAudio('program', false); });
+    form.append(audition);
     const musicIndex = working.music.findIndex(row => row.id === track.id);
     const moveLeft = smallButton('← Move left', () => moveMusic(track.id, -1), 'mfc-button-ghost');
     const moveRight = smallButton('Move right →', () => moveMusic(track.id, 1), 'mfc-button-ghost');
@@ -1633,22 +1627,24 @@
   }
 
   async function saveDraft() {
-    if (!working || !dirty || busyAction) return;
+    if (!working || !dirty || busyAction || uploadRunning) return;
     const originalLabel = saveDraftButton.textContent;
+    const savingVersion = editVersion;
     setBusy('save');
     saveDraftButton.textContent = 'Saving…';
     try {
       const now = new Date().toISOString();
       working.updatedAt = now;
       working.revision = `draft-${Date.now()}`;
-      fullState = {
+      const nextState = {
         ...(fullState || {}),
         version: 1,
         updatedAt: now,
         draft: clone(working)
       };
-      await writeState(fullState, 'Update broadcast draft [skip ci]');
-      setDirty(false);
+      await writeState(nextState, 'Update broadcast draft [skip ci]');
+      fullState = nextState;
+      setDirty(editVersion !== savingVersion);
       showToast('Broadcast draft saved.');
       renderSummary();
       renderVideoLibrary();
@@ -1664,6 +1660,11 @@
   function validateWorkingForLive() {
     if (!working) return false;
     const program = Array.isArray(working.program) ? working.program : [];
+    const invalid = [...program, ...(working.music || [])].find(item => !Number.isFinite(Number(item.duration)) || Number(item.duration) <= 0);
+    if (invalid) { showToast('Cannot Take Live: read or enter a valid duration for ' + (invalid.title || 'every item') + '.', 8500); return false; }
+    const badMusic = (working.music || []).find(track => !track.url || youtubeVideoId(track.url) || !isDirectUrl(track.url));
+    const badMedia = program.find(item => item.mediaUrl && !isDirectUrl(item.mediaUrl));
+    if (badMusic || badMedia) { showToast('Cannot Take Live: replace YouTube, API, or page links with playable direct media files.', 8500); return false; }
     const missingMedia = program.filter(item =>
       ['image', 'video'].includes(String(item?.type || '').toLowerCase())
       && !String(item?.mediaUrl || '').trim()
@@ -1687,8 +1688,9 @@
   }
 
   async function takeLive() {
-    if (!working || busyAction || !validateWorkingForLive()) return;
+    if (!working || busyAction || uploadRunning || !validateWorkingForLive()) return;
     const originalLabel = takeLiveButton.textContent;
+    const savingVersion = editVersion;
     setBusy('live');
     takeLiveButton.textContent = 'Taking Live…';
     try {
@@ -1699,15 +1701,16 @@
       live.startedAt = now;
       live.updatedAt = now;
       live.revision = `live-${Date.now()}`;
-      fullState = {
+      const nextState = {
         ...(fullState || {}),
         version: 1,
         updatedAt: now,
         draft: clone(working),
         live
       };
-      await writeState(fullState, 'Take broadcast programming live [skip ci]');
-      setDirty(false);
+      await writeState(nextState, 'Take broadcast programming live [skip ci]');
+      fullState = nextState;
+      setDirty(editVersion !== savingVersion);
       showToast('Preview is now live on Program. Existing viewers will sync automatically.');
       renderSummary();
       renderVideoLibrary();
@@ -1722,7 +1725,7 @@
   }
 
   async function reloadState() {
-    if (!sessionId || busyAction) return;
+    if (!sessionId || busyAction || uploadRunning) return;
     if (dirty && !window.confirm('Discard unsaved Broadcast Control changes and reload the saved draft?')) return;
     const originalLabel = reloadStateButton.textContent;
     setBusy('reload');
@@ -1751,56 +1754,55 @@
 
   function probeMedia(element) {
     return new Promise((resolve, reject) => {
-      let settled = false;
-      const clean = () => {
-        element.removeEventListener('loadedmetadata', loaded);
-        element.removeEventListener('error', failed);
-      };
-      const loaded = () => {
-        if (settled) return;
-        settled = true;
-        clean();
+      const finish = error => {
+        clearTimeout(timer);
+        element.onloadedmetadata = element.onerror = null;
         const duration = Number(element.duration);
-        if (!Number.isFinite(duration) || duration <= 0) reject(new Error('Media duration unavailable.'));
+        if (error || !Number.isFinite(duration) || duration <= 0) reject(new Error('Cannot read playable media. Export MP4 with H.264/AAC or MP3/M4A audio, then retry.'));
         else resolve(duration);
       };
-      const failed = () => {
-        if (settled) return;
-        settled = true;
-        clean();
-        reject(new Error('Could not load media metadata.'));
-      };
-      element.addEventListener('loadedmetadata', loaded, { once: true });
-      element.addEventListener('error', failed, { once: true });
-      window.setTimeout(failed, 12000);
+      const timer = window.setTimeout(() => finish(true), 20000);
+      element.onloadedmetadata = () => finish(false);
+      element.onerror = () => finish(true);
       element.load();
     });
   }
 
-  async function probeUrlDuration(url, kind = 'auto') {
-    const tag = kind === 'video' || kind === 'audio'
-      ? kind
-      : /\.(?:mp4|m4v|webm)(?:[?#].*)?$/i.test(url) ? 'video' : 'audio';
-    const element = document.createElement(tag);
+  function isDirectUrl(value) {
+    try {
+      const url = new URL(value, location.origin);
+      return ['http:', 'https:'].includes(url.protocol) && !youtubeVideoId(value)
+        && !(url.hostname === 'api.github.com' && /\/releases\/assets\//.test(url.pathname))
+        && !(url.hostname === 'github.com' && !url.pathname.includes('/releases/download/') && !url.pathname.includes('/raw/'));
+    } catch { return false; }
+  }
+
+  async function resolveMediaUrl(value) {
+    if (!value) return '';
+    const url = new URL(value, location.origin);
+    if (url.hostname === 'api.github.com' && /^\/repos\/MatlockFT\/Matlock\/releases\/assets\/\d+$/i.test(url.pathname)) {
+      const response = await fetch(url.href, { headers: { Accept: 'application/vnd.github+json' } });
+      if (!response.ok) throw new Error('Could not resolve this GitHub asset. Choose it from Media instead.');
+      const data = await response.json();
+      if (!data.browser_download_url) throw new Error('This GitHub asset has no playable download URL.');
+      return data.browser_download_url;
+    }
+    if (!isDirectUrl(value)) throw new Error('Use a direct media file URL or upload the file. YouTube/watch pages are not media files.');
+    return url.href;
+  }
+
+  async function probeUrlDuration(url, kind = 'audio') {
+    const element = document.createElement(kind === 'video' ? 'video' : 'audio');
     element.preload = 'metadata';
     element.src = url;
-    const duration = await probeMedia(element);
-    element.removeAttribute('src');
-    element.load();
-    return duration;
+    try { return await probeMedia(element); }
+    finally { element.removeAttribute('src'); element.load(); }
   }
 
   async function probeFileDuration(file) {
     const url = URL.createObjectURL(file);
-    const tag = file.type.startsWith('video/') ? 'video' : 'audio';
-    const element = document.createElement(tag);
-    element.preload = 'metadata';
-    element.src = url;
-    try {
-      return await probeMedia(element);
-    } finally {
-      URL.revokeObjectURL(url);
-    }
+    try { return await probeUrlDuration(url, /\.(mp4|m4v|webm)$/i.test(file.name) ? 'video' : 'audio'); }
+    finally { URL.revokeObjectURL(url); }
   }
 
   function safeExtension(file) {
@@ -1837,6 +1839,7 @@
     if (!sessionId) throw new Error('Sign in with GitHub first.');
     const response = await fetch(`${authBase}${path}`, {
       ...options,
+      signal: options.signal || AbortSignal.timeout(65000),
       mode: 'cors',
       cache: 'no-store',
       headers: {
@@ -1860,6 +1863,7 @@
     if (file.size >= 2 * 1024 * 1024 * 1024) throw new Error('GitHub Release assets must be smaller than 2 GiB.');
     const uploadId = uid('upload').replace(/-/g, '');
     const assetName = mediaAssetName(file, kind);
+    const fileType = ({ mp4: 'video/mp4', m4v: 'video/mp4', webm: 'video/webm', mp3: 'audio/mpeg', m4a: 'audio/mp4', aac: 'audio/aac', wav: 'audio/wav', ogg: 'audio/ogg', opus: 'audio/opus', flac: 'audio/flac' })[safeExtension(file)] || file.type || 'application/octet-stream';
     const chunkCount = Math.ceil(file.size / CHUNK_BYTES);
     let uploaded = 0;
 
@@ -1867,7 +1871,7 @@
       const start = index * CHUNK_BYTES;
       const end = Math.min(file.size, start + CHUNK_BYTES);
       const chunk = file.slice(start, end);
-      await mediaBridge('/api/writer/media-chunk', {
+      await retryMediaBridge('/api/writer/media-chunk', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/octet-stream',
@@ -1875,7 +1879,7 @@
           'X-Chunk-Index': String(index),
           'X-Chunk-Count': String(chunkCount),
           'X-File-Size': String(file.size),
-          'X-File-Type': file.type || 'application/octet-stream',
+          'X-File-Type': fileType,
           'X-Asset-Name': assetName
         },
         body: chunk
@@ -1893,16 +1897,16 @@
         assetName,
         chunkCount,
         fileSize: file.size,
-        fileType: file.type || 'application/octet-stream'
+        fileType: fileType
       })
     });
 
     const started = Date.now();
     while (Date.now() - started < STATUS_TIMEOUT_MS) {
-      const status = await mediaBridge(`/api/writer/media-status?uploadId=${encodeURIComponent(uploadId)}`);
+      const status = await retryMediaBridge(`/api/writer/media-status?uploadId=${encodeURIComponent(uploadId)}`);
       if (status.state === 'complete' && status.url) {
         setUploadProgress(100, `${file.name} uploaded.`);
-        return status.url;
+        return { url: status.url, name: assetName, id: Number(status.assetId) || 0, size: file.size, contentType: fileType, createdAt: new Date().toISOString() };
       }
       if (status.state === 'error') throw new Error(status.error || 'GitHub Release upload failed.');
       if (status.state === 'publishing') setUploadProgress(94, `Publishing ${file.name}…`);
@@ -1912,39 +1916,116 @@
     throw new Error('Media upload timed out.');
   }
 
-  async function uploadVideoFiles(fileList) {
-    const files = Array.from(fileList || []).filter(file =>
-      String(file.type || '').startsWith('video/')
-      || /\.(?:mp4|m4v|webm)$/i.test(String(file.name || ''))
-    );
-    if (!files.length) return showToast('Drop or choose MP4, WebM or M4V video files.', 6500);
-    if (videoLibraryUploadInput.disabled) return showToast('Wait for the current video upload to finish.');
-
-    videoLibraryUploadInput.disabled = true;
-    if (videoLibraryRefreshButton) videoLibraryRefreshButton.disabled = true;
-    try {
-      let completed = 0;
-      for (let index = 0; index < files.length; index += 1) {
-        const file = files[index];
-        setUploadProgress(1, `Reading ${file.name}… (${index + 1}/${files.length})`);
-        const duration = await probeFileDuration(file);
-        const url = await uploadMediaFile(file, 'video');
-        videoDurationCache.set(url, duration);
-        completed += 1;
+  async function retryMediaBridge(path, options) {
+    for (let attempt = 0; ; attempt += 1) {
+      try { return await mediaBridge(path, { ...options, signal: AbortSignal.timeout(60000) }); }
+      catch (error) {
+        if (attempt >= 2 || (error.status && error.status !== 429 && error.status < 500)) throw error;
+        await new Promise(resolve => setTimeout(resolve, 800 * 2 ** attempt));
       }
-      await loadVideoLibrary({ quiet: true });
-      showToast(`${completed} video${completed === 1 ? '' : 's'} uploaded to the Media pool.`);
-    } catch (error) {
-      showToast(`Video upload failed: ${error.message}`, 9000);
-      void loadVideoLibrary({ quiet: true });
-    } finally {
-      videoLibraryUploadInput.value = '';
-      videoLibraryUploadInput.disabled = false;
-      if (videoLibraryRefreshButton) videoLibraryRefreshButton.disabled = false;
-      videoLibraryPanel?.classList.remove('is-drop-target');
-      window.setTimeout(clearUploadProgress, 900);
     }
   }
+
+  function rememberAsset(asset, duration) {
+    asset.duration = duration;
+    videoDurationCache.set(asset.url, duration);
+    working.mediaLibrary = [...(working.mediaLibrary || []).filter(row => row.url !== asset.url), asset];
+    videoLibraryAssets = [...videoLibraryAssets.filter(row => row.url !== asset.url), asset];
+    markDirty();
+    renderVideoLibrary();
+  }
+
+  async function addAssetToDraft(asset, targetItem = null) {
+    const kind = assetKind(asset);
+    const duration = knownVideoDuration(asset.url) || Number(asset.duration) || await probeUrlDuration(asset.url, kind);
+    if (!Number.isFinite(duration) || duration <= 0) throw new Error('Read a valid media duration before adding this file.');
+    rememberAsset(asset, duration);
+    if (kind === 'audio') {
+      const track = { id: uid('music'), title: displayVideoName(asset.name), url: asset.url, duration, gainDb: 0, fadeIn: 0, fadeOut: 0 };
+      working.music.push(track);
+      selectedMusicId = track.id;
+      renderMusic();
+    } else {
+      const item = { id: targetItem?.id || uid('program'), type: 'video', header: 'MMA VIDEO', eyebrow: 'VIDEO', title: displayVideoName(asset.name), mediaUrl: asset.url, duration, videoAudio: true };
+      if (targetItem && working.program.includes(targetItem)) Object.assign(targetItem, item);
+      else working.program.push(item);
+      selectedProgramId = item.id;
+      renderProgram();
+    }
+    markDirty();
+    renderVideoLibrary();
+  }
+
+  async function uploadFiles(fileList, forceKind = '', targetItem = null) {
+    if (uploadRunning || busyAction) return showToast('Wait for the current upload or save to finish.');
+    const files = Array.from(fileList || []);
+    if (!files.length || !working) return;
+    uploadRunning = true;
+    stopUploads = false;
+    syncActionButtons();
+    const queue = app.querySelector('[data-upload-queue]');
+    const results = app.querySelector('[data-upload-results]');
+    const cancel = app.querySelector('[data-cancel-uploads]');
+    queue.hidden = false;
+    cancel.disabled = false;
+    results.replaceChildren();
+    const rows = files.map(file => {
+      const row = document.createElement('li');
+      row.textContent = file.name + ' — Waiting';
+      results.append(row);
+      return row;
+    });
+    let completed = 0;
+    const autoAdd = targetItem || forceKind === 'audio' || app.querySelector('[data-upload-auto-add]').checked;
+    try {
+      for (let index = 0; index < files.length; index += 1) {
+        const file = files[index], row = rows[index];
+        if (stopUploads || !sessionId) { row.textContent = file.name + ' — Not uploaded'; continue; }
+        try {
+          const ext = safeExtension(file);
+          if (!['mp4','m4v','webm','mp3','m4a','aac','wav','ogg','opus','flac'].includes(ext)) throw new Error('Unsupported format. Use MP4/WebM video or MP3/M4A audio.');
+          if (!file.size || file.size >= 2 * 1024 ** 3) throw new Error('Choose a non-empty file under 2 GiB.');
+          const kind = forceKind || (['mp4','m4v','webm'].includes(ext) ? 'video' : 'audio');
+          if (kind === 'video' && !['mp4','m4v','webm'].includes(ext)) throw new Error('Choose an MP4, M4V or WebM video.');
+          row.textContent = file.name + ' — Checking duration and format…';
+          const duration = await probeFileDuration(file);
+          row.textContent = file.name + ' — Uploading (' + fmt(duration) + ')…';
+          const asset = await uploadMediaFile(file, kind);
+          rememberAsset(asset, duration);
+          if (autoAdd) await addAssetToDraft(asset, targetItem);
+          completed += 1;
+          row.textContent = file.name + (autoAdd ? ' — Ready in draft · ' : ' — Ready in library · ') + fmt(duration);
+        } catch (error) {
+          row.textContent = file.name + ' — ' + error.message + ' ';
+          row.append(smallButton('Retry', () => void uploadFiles([file], forceKind, targetItem), 'mfc-button-ghost'));
+        }
+      }
+      showToast(completed + ' of ' + files.length + ' uploaded. Review the queue, then Save Draft or Take Preview Live.', 8000);
+    } finally {
+      uploadRunning = false;
+      cancel.disabled = true;
+      syncActionButtons();
+      clearUploadProgress();
+      videoLibraryUploadInput.value = '';
+      musicUploadInput.value = '';
+    }
+  }
+
+  app.querySelector('[data-cancel-uploads]').addEventListener('click', () => { stopUploads = true; });
+  app.querySelector('[data-preview-restart]').addEventListener('click', () => { previewStartedAt = new Date().toISOString(); postPreview(); });
+  app.querySelector('[data-library-add-all]').addEventListener('click', async event => {
+    const button = event.currentTarget;
+    if (uploadRunning || busyAction) return showToast('Wait for the current operation to finish.');
+    button.disabled = true;
+    setBusy('library');
+    const failures = [];
+    for (const asset of videoLibraryAssets.filter(asset => !videoUsage(asset).draft)) {
+      try { await addAssetToDraft(asset); } catch { failures.push(displayVideoName(asset.name)); }
+    }
+    button.disabled = false;
+    setBusy('');
+    showToast(failures.length ? 'Could not read: ' + failures.join(', ') + '. Other files were added.' : 'Unused media added to the draft loop.', 8500);
+  });
 
   function bindVideoLibraryHandlers() {
     videoLibrarySearch?.addEventListener('input', renderVideoLibrary);
@@ -1964,7 +2045,7 @@
     });
   
     videoLibraryUploadInput?.addEventListener('change', () => {
-      void uploadVideoFiles(videoLibraryUploadInput.files);
+      void uploadFiles(videoLibraryUploadInput.files);
     });
 
     if (videoLibraryPanel) {
@@ -1988,103 +2069,40 @@
         if (!hasFiles(event)) return;
         event.preventDefault();
         videoLibraryPanel.classList.remove('is-drop-target');
-        void uploadVideoFiles(event.dataTransfer.files);
+        void uploadFiles(event.dataTransfer.files);
       });
     }
   }
 
   bindVideoLibraryHandlers();
 
-  musicUploadInput.addEventListener('change', async () => {
-    const files = Array.from(musicUploadInput.files || []);
-    if (!files.length || musicUploadInput.disabled) return;
-    musicUploadInput.disabled = true;
-    addMusicUrlButton.disabled = true;
-    try {
-      for (let index = 0; index < files.length; index += 1) {
-        const file = files[index];
-        setUploadProgress(1, `Reading ${file.name}… (${index + 1}/${files.length})`);
-        const duration = await probeFileDuration(file);
-        const url = await uploadMediaFile(file, 'audio');
-        const track = {
-          id: uid('music'),
-          title: String(file.name || 'Track').replace(/\.[^.]+$/, ''),
-          url,
-          duration,
-          gainDb: 0,
-          fadeIn: 1.5,
-          fadeOut: 2
-        };
-        working.music.push(track);
-        selectedMusicId = track.id;
-        renderMusic();
-        markDirty();
-      }
-      showToast(`${files.length} song${files.length === 1 ? '' : 's'} added to the music bed.`);
-    } catch (error) {
-      showToast(`Music upload failed: ${error.message}`, 9000);
-    } finally {
-      musicUploadInput.value = '';
-      musicUploadInput.disabled = false;
-      addMusicUrlButton.disabled = false;
-      window.setTimeout(clearUploadProgress, 900);
-    }
-  });
+  musicUploadInput.addEventListener('change', () => { void uploadFiles(musicUploadInput.files, 'audio'); });
 
   addMusicUrlButton.addEventListener('click', () => {
     if (musicUploadInput.disabled) return showToast('Wait for the current media upload to finish.');
     musicUrlInput.value = '';
     musicUrlTitleInput.value = '';
-    if (musicUrlDurationInput) musicUrlDurationInput.value = '3:00';
+    if (musicUrlDurationInput) musicUrlDurationInput.value = '';
     urlDialog.showModal();
   });
 
   confirmMusicUrlButton.addEventListener('click', async () => {
-    const url = musicUrlInput.value.trim();
-    if (!url) return showToast('Enter an audio URL or YouTube link.');
-    if (!musicUrlInput.checkValidity()) {
-      musicUrlInput.reportValidity();
-      return;
-    }
-    const typedDuration = parseDurationInput(musicUrlDurationInput?.value || '');
-    if (!Number.isFinite(typedDuration) || typedDuration < 1 || typedDuration > 86400) {
-      showToast('Enter duration as min:sec, for example 3:30.', 5500);
-      musicUrlDurationInput?.focus();
-      return;
-    }
-    const originalLabel = confirmMusicUrlButton.textContent;
+    if (!musicUrlInput.reportValidity() || !musicUrlInput.value.trim()) return;
     confirmMusicUrlButton.disabled = true;
     confirmMusicUrlButton.textContent = 'Checking…';
-    let duration = typedDuration;
-    const youtubeId = youtubeVideoId(url);
     try {
-      if (!youtubeId) {
-        try {
-          duration = await probeUrlDuration(url, 'audio');
-        } catch {
-          showToast('Track added using the duration you entered because the host did not expose its duration.', 6500);
-        }
-      }
-      const track = {
-        id: uid('music'),
-        title: musicUrlTitleInput.value.trim() || (youtubeId ? 'YouTube audio' : 'Remote track'),
-        url,
-        duration,
-        ...(youtubeId ? { sourceType: 'youtube', youtubeId } : {}),
-        gainDb: 0,
-        fadeIn: 1.5,
-        fadeOut: 2
-      };
+      const url = await resolveMediaUrl(musicUrlInput.value.trim());
+      const detected = await probeUrlDuration(url, 'audio');
+      const typed = musicUrlDurationInput.value.trim();
+      const duration = typed ? parseDurationInput(typed) : detected;
+      if (!Number.isFinite(duration) || duration <= 0 || duration > detected + 0.5) throw new Error('Duration must be positive and no longer than the file (' + fmt(detected) + ').');
+      const track = { id: uid('music'), title: musicUrlTitleInput.value.trim() || decodeURIComponent(new URL(url).pathname.split('/').pop()).replace(/\.[^.]+$/, '') || 'Music', url, duration, gainDb: 0, fadeIn: 0, fadeOut: 0 };
       working.music.push(track);
       selectedMusicId = track.id;
-      urlDialog.close();
-      renderMusic();
-      markDirty();
-      if (youtubeId) showToast(`YouTube audio added at ${fmtInput(duration)}. Use Listen in Preview to audition it.`, 7000);
-    } finally {
-      confirmMusicUrlButton.disabled = false;
-      confirmMusicUrlButton.textContent = originalLabel;
-    }
+      urlDialog.close(); renderMusic(); markDirty();
+      showToast('Music added · ' + fmt(duration));
+    } catch (error) { showToast(error.message, 9000); }
+    finally { confirmMusicUrlButton.disabled = false; confirmMusicUrlButton.textContent = 'Add Track'; }
   });
 
   for (const input of [musicUrlInput, musicUrlTitleInput, musicUrlDurationInput].filter(Boolean)) {
@@ -2165,12 +2183,19 @@
   }
 
   window.addEventListener('beforeunload', event => {
-    if (!dirty) return;
+    if (!dirty && !uploadRunning) return;
     event.preventDefault();
     event.returnValue = '';
   });
 
   bindWorkspaceTabs();
+  app.querySelectorAll('.mfc-file-button').forEach(label => {
+    label.addEventListener('keydown', event => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      label.querySelector('input[type="file"]')?.click();
+    });
+  });
   activateWorkspace(localRead(WORKSPACE_KEY) || 'rundown');
   window.setInterval(updateOnAirRundown, 1000);
 

@@ -681,3 +681,5 @@ body[data-mfc-embed="true"] .mfc-screen {
 body[data-mfc-embed="true"] .mfc-sound {
   min-height: 20px;
 }
+
+.mfc-playback-status { position: absolute; z-index: 30; left: 5%; right: 5%; bottom: 15%; padding: .8em; background: #171717ee; color: #fff; font: 14px/1.4 system-ui, sans-serif; }

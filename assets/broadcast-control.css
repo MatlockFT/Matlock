@@ -1541,3 +1541,13 @@ label.mfc-button {
     margin: 0 10px 10px;
   }
 }
+
+.mfc-workflow-guide, .mfc-media-guide { padding: 14px 18px; line-height: 1.6; border: 1px solid var(--ctl-line); background: var(--ctl-panel); }
+.mfc-workflow-guide p, .mfc-media-guide p { margin: 6px 0; max-width: 110ch; color: var(--ctl-muted); }
+.mfc-media-guide label { display: block; margin: 12px 0; }
+.mfc-upload-queue ol { padding: 0 18px 12px 38px; max-height: 260px; overflow: auto; }
+.mfc-upload-queue li { padding: 7px 0; overflow-wrap: anywhere; }
+.mfc-track-audition { width: 100%; grid-column: 1 / -1; }
+.mfc-video-asset-title, .mfc-media-guide { overflow-wrap: anywhere; }
+.mfc-monitor-footer-actions { flex-wrap: wrap; }
+@media (max-width: 780px) { .mfc-button, .mfc-monitor-audio, .mfc-text-button { min-height: 44px; } }
