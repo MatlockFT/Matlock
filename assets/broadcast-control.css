@@ -179,6 +179,11 @@ select {
   justify-content: center;
 }
 
+.mfc-file-button:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: .42;
+}
+
 .mfc-text-button {
   border: 0;
   background: transparent;
