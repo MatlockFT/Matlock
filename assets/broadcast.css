@@ -209,9 +209,9 @@ body {
 
 .mfc-header-copy strong {
   display: block;
-  font-family: var(--mfc-type-bold);
   overflow: hidden;
-  font-size: clamp(.84rem, 3.25vw, 2.7rem);
+  font-family: var(--mfc-type-bold);
+  font-size: clamp(.84rem, 3.25vw, 3rem);
   font-weight: 700;
   line-height: .9;
   letter-spacing: -.04em;
@@ -288,9 +288,9 @@ body {
 
 .mfc-title {
   max-width: 92%;
-  font-family: var(--mfc-type-bold);
   margin: 0;
-  font-size: clamp(1.15rem, 4.2vw, 3.35rem);
+  font-family: var(--mfc-type-bold);
+  font-size: clamp(1.15rem, 4.2vw, 4rem);
   font-weight: 700;
   line-height: .98;
   letter-spacing: -.045em;
@@ -306,9 +306,9 @@ body {
 
 .mfc-body-copy {
   max-width: 93%;
-  font-family: var(--mfc-type-condensed);
   margin: 3.1% 0 0;
-  font-size: clamp(.7rem, 2.15vw, 1.72rem);
+  font-family: var(--mfc-type-condensed);
+  font-size: clamp(.7rem, 2.15vw, 2.05rem);
   font-weight: 700;
   line-height: 1.18;
   letter-spacing: -.035em;
@@ -345,7 +345,7 @@ body {
 
 .mfc-lower-third {
   position: absolute;
-  z-index: 6;
+  z-index: 7;
   left: 0;
   right: 0;
   bottom: 0;
@@ -353,10 +353,11 @@ body {
   overflow: hidden;
   border-top: clamp(1px, .19vw, 2px) solid rgba(7,9,25,.92);
   background:
-    linear-gradient(180deg, #31416e 0%, #293961 44%, #222f55 70%, #1c274a 100%);
+    linear-gradient(180deg, #31416e 0%, #2b3a63 36%, #26345d 62%, #202c52 100%);
   box-shadow:
-    inset 0 .18vw 0 rgba(154,170,203,.20),
+    inset 0 .18vw 0 rgba(154,170,203,.22),
     inset 0 -.20vw .42vw rgba(0,0,0,.22);
+  color: #e9e9df;
   text-shadow:
     .095em .11em 0 var(--mfc-shadow),
     .14em .15em .03em rgba(0,0,0,.42),
@@ -364,75 +365,41 @@ body {
     .018em 0 rgba(255,118,101,.10);
 }
 
-.mfc-info {
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 46%;
-  padding: .75% 4.25% 0;
-  background: transparent;
-  font-family: var(--mfc-type-extended);
-}
-
-.mfc-info-top,
-.mfc-info-bottom {
-  white-space: nowrap;
-}
-
-.mfc-info-top {
+.mfc-lower-status {
+  position: relative;
   display: grid;
   grid-template-columns: 32% 34% 34%;
   align-items: center;
-  min-height: 100%;
-  font-size: clamp(.46rem, 1.26vw, .98rem);
+  height: 43%;
+  padding: .55% 4.25% 0;
+  font-family: var(--mfc-type-extended);
+  font-size: clamp(.46rem, 1.28vw, 1rem);
   font-weight: 700;
   letter-spacing: .035em;
+  white-space: nowrap;
 }
 
-.mfc-info-top span:first-child {
+.mfc-lower-status [data-mfc-date] {
   grid-column: 1;
   justify-self: start;
 }
 
-.mfc-info-top span:last-child {
+.mfc-lower-status [data-mfc-clock] {
   grid-column: 2;
   justify-self: center;
 }
 
-.mfc-info-bottom {
-  position: absolute;
-  top: 24%;
-  right: 4.25%;
-  display: flex;
-  justify-content: flex-end;
-  margin: 0;
-  font-size: clamp(.36rem, .86vw, .68rem);
-  font-weight: 700;
-  opacity: .72;
+.mfc-lower-status [data-mfc-progress] {
+  grid-column: 3;
+  justify-self: end;
+  font-size: .72em;
+  opacity: .70;
 }
 
-.mfc-info-bottom span:first-child {
-  display: none;
-}
-
-.mfc-info-bottom span:last-child {
-  flex: 0 0 auto;
-}
-
-.mfc-ticker {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 54%;
-  display: block;
-  background: transparent;
-  color: #e9e9df;
-  overflow: hidden;
-}
-
-.mfc-ticker-viewport {
+.mfc-lower-crawl {
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: 57%;
   overflow: hidden;
 }
 
@@ -449,9 +416,9 @@ body {
 
 .mfc-ticker-track span {
   flex: 0 0 auto;
-  font-family: "Courier New", Courier, monospace;
   padding-right: 5.2rem;
   padding-left: 22vw;
+  font-family: "Courier New", Courier, monospace;
   font-size: clamp(.50rem, 1.13vw, .90rem);
   font-weight: 700;
   line-height: 1;
