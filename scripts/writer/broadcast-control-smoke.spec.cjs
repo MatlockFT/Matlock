@@ -1,12 +1,12 @@
 const { test, expect } = require('@playwright/test');
 
 const BASE = process.env.BROADCAST_CONTROL_BASE_URL || 'https://mmamatlock.com/broadcast/control/';
-const AUTH_ORIGIN = 'https://mmamatlock-writer-auth.netlify.app';
+const AUTH_ORIGIN = process.env.BROADCAST_CONTROL_AUTH_ORIGIN || 'https://mmamatlock-writer-auth.netlify.app';
 
 function corsHeaders() {
   return {
     'content-type': 'application/json; charset=utf-8',
-    'access-control-allow-origin': 'https://mmamatlock.com',
+    'access-control-allow-origin': new URL(BASE).origin,
     'access-control-allow-methods': 'GET,PUT,DELETE,OPTIONS',
     'access-control-allow-headers': 'accept,content-type,x-writer-session'
   };
@@ -148,7 +148,13 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
     });
   });
 
-  await page.route(`${AUTH_ORIGIN}/**`, async route => {
+  await page.route('https://api.github.com/repos/MatlockFT/Matlock/releases/*/assets?**', route => route.fulfill({
+    status: 200,
+    contentType: 'application/json',
+    body: JSON.stringify(libraryAssets.map(asset => ({ ...asset, browser_download_url: asset.url, content_type: asset.contentType })))
+  }));
+
+  await page.route(`${AUTH_ORIGIN}/api/**`, async route => {
     const request = route.request();
     const url = new URL(request.url());
     const method = request.method();
@@ -173,6 +179,7 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
           headers,
           body: JSON.stringify({
             ok: true,
+            mediaKinds: ['video', 'audio'],
             assets: libraryAssets,
             count: libraryAssets.length,
             totalBytes: libraryAssets.reduce((sum, asset) => sum + asset.size, 0)
@@ -285,22 +292,22 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
 
   const libraryRows = page.locator('[data-video-library-list] .mfc-video-asset');
   await expect(libraryRows).toHaveCount(2);
-  await expect(page.locator('[data-video-library-summary]')).toContainText('2 videos');
+  await expect(page.locator('[data-video-library-summary]')).toContainText('2 media files');
   await page.selectOption('[data-video-library-filter]', 'unused');
   await expect(libraryRows).toHaveCount(1);
-  await expect(libraryRows.first()).toContainText('UNUSED');
+  await expect(libraryRows.first()).toContainText(/unused/i);
   await page.selectOption('[data-video-library-filter]', 'all');
   await expect(libraryRows).toHaveCount(2);
 
   const unusedRow = libraryRows.filter({ hasText: 'unused clip' });
-  await expect(unusedRow).toContainText('UNUSED');
+  await expect(unusedRow).toContainText(/unused/i);
   page.once('dialog', dialog => dialog.accept());
   await unusedRow.getByRole('button', { name: 'Delete' }).click();
   await expect(libraryRows).toHaveCount(1);
   expect(deletedAssetIds).toEqual([102]);
 
   const reusableRow = libraryRows.filter({ hasText: 'library reuse' });
-  await expect(reusableRow).toContainText('LIVE');
+  await expect(reusableRow).toContainText(/live/i);
   await reusableRow.getByRole('button', { name: 'Add to Program' }).click();
 
   const programBlocks = page.locator('[data-program-track] [data-program-id]');
@@ -375,10 +382,9 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   await page.fill('[data-music-url-title]', 'YouTube Smoke Track');
   await page.fill('[data-music-url-duration]', '4:05');
   await page.click('[data-confirm-music-url]');
-  await expect(page.locator('[data-url-dialog]')).toBeHidden();
-  await expect(page.locator('[data-music-track] [data-music-id]')).toHaveCount(3);
-  await expect(page.locator('[data-music-track] [data-music-id]').last()).toContainText('YouTube Smoke Track');
-  await expect(page.locator('[data-music-track] [data-music-id]').last()).toContainText('04:05');
+  await expect(page.locator('[data-url-dialog]')).toBeVisible();
+  await expect(page.locator('[data-toast]')).toContainText('direct media');
+  await expect(page.locator('[data-music-track] [data-music-id]')).toHaveCount(2);
 
   expect(pageErrors).toEqual([]);
 });
