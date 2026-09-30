@@ -7,7 +7,7 @@ function corsHeaders() {
   return {
     'content-type': 'application/json; charset=utf-8',
     'access-control-allow-origin': 'https://mmamatlock.com',
-    'access-control-allow-methods': 'GET,PUT,OPTIONS',
+    'access-control-allow-methods': 'GET,PUT,DELETE,OPTIONS',
     'access-control-allow-headers': 'accept,content-type,x-writer-session'
   };
 }
@@ -64,11 +64,22 @@ function initialState() {
     ticker: ['SMOKE ONE', 'SMOKE TWO'],
     audio
   };
+  const live = { ...JSON.parse(JSON.stringify(channel)), revision: 'live-smoke' };
+  live.program.push({
+    id: 'live-library-video',
+    type: 'video',
+    header: 'MMA VIDEO',
+    eyebrow: 'VIDEO',
+    title: 'LIBRARY REUSE',
+    mediaUrl: 'https://example.com/broadcast-video-library-reuse.mp4',
+    duration: 33,
+    videoAudio: true
+  });
   return {
     version: 1,
     updatedAt: channel.updatedAt,
     draft: JSON.parse(JSON.stringify(channel)),
-    live: { ...JSON.parse(JSON.stringify(channel)), revision: 'live-smoke' }
+    live
   };
 }
 
@@ -80,6 +91,31 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   let remoteState = initialState();
   let remoteSha = '1111111111111111111111111111111111111111';
   let writes = 0;
+  let libraryAssets = [
+    {
+      id: 101,
+      name: 'broadcast-video-library-reuse-20260930050000000.mp4',
+      url: 'https://example.com/broadcast-video-library-reuse.mp4',
+      size: 25 * 1024 * 1024,
+      contentType: 'video/mp4',
+      createdAt: '2026-09-30T05:00:00.000Z',
+      downloadCount: 2,
+      releaseId: 10,
+      releaseTag: 'writer-media-2026-09'
+    },
+    {
+      id: 102,
+      name: 'broadcast-video-unused-clip-20260930051000000.mp4',
+      url: 'https://example.com/broadcast-video-unused-clip.mp4',
+      size: 12 * 1024 * 1024,
+      contentType: 'video/mp4',
+      createdAt: '2026-09-30T05:10:00.000Z',
+      downloadCount: 0,
+      releaseId: 10,
+      releaseTag: 'writer-media-2026-09'
+    }
+  ];
+  const deletedAssetIds = [];
 
   await page.addInitScript(() => {
     localStorage.setItem('matlock-writer:server-session', 'broadcast-smoke-session');
@@ -102,6 +138,31 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
         headers,
         body: JSON.stringify({ ok: true, login: 'MatlockFT' })
       });
+    }
+
+    if (url.pathname === '/api/writer/media-library') {
+      if (method === 'GET') {
+        return route.fulfill({
+          status: 200,
+          headers,
+          body: JSON.stringify({
+            ok: true,
+            assets: libraryAssets,
+            count: libraryAssets.length,
+            totalBytes: libraryAssets.reduce((sum, asset) => sum + asset.size, 0)
+          })
+        });
+      }
+      if (method === 'DELETE') {
+        const payload = request.postDataJSON();
+        deletedAssetIds.push(payload.assetId);
+        libraryAssets = libraryAssets.filter(asset => asset.id !== payload.assetId);
+        return route.fulfill({
+          status: 200,
+          headers,
+          body: JSON.stringify({ ok: true, assetId: payload.assetId })
+        });
+      }
     }
 
     if (url.pathname === '/api/writer/github') {
@@ -150,7 +211,30 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   await expect(page.locator('[data-take-live]')).toBeEnabled();
   await expect(page.locator('[data-reload-state]')).toBeEnabled();
 
+  const libraryRows = page.locator('[data-video-library-list] .mfc-video-asset');
+  await expect(libraryRows).toHaveCount(2);
+  await expect(page.locator('[data-video-library-summary]')).toContainText('2 videos');
+
+  const unusedRow = libraryRows.filter({ hasText: 'unused clip' });
+  await expect(unusedRow).toContainText('UNUSED');
+  page.once('dialog', dialog => dialog.accept());
+  await unusedRow.getByRole('button', { name: 'Delete' }).click();
+  await expect(libraryRows).toHaveCount(1);
+  expect(deletedAssetIds).toEqual([102]);
+
+  const reusableRow = libraryRows.filter({ hasText: 'library reuse' });
+  await expect(reusableRow).toContainText('LIVE');
+  await reusableRow.getByRole('button', { name: 'Add to Program' }).click();
+
   const programBlocks = page.locator('[data-program-track] [data-program-id]');
+  await expect(programBlocks).toHaveCount(3);
+  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved changes');
+
+  page.once('dialog', dialog => dialog.accept());
+  await page.click('[data-reload-state]');
+  await expect(programBlocks).toHaveCount(2);
+  await expect(page.locator('[data-draft-status]')).toHaveText('Draft saved');
+
   await expect(programBlocks).toHaveCount(2);
   await expect(page.locator('[data-program-fields] button', { hasText: '← Move left' })).toBeDisabled();
   await expect(page.locator('[data-program-fields] button', { hasText: 'Move right →' })).toBeEnabled();
