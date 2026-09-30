@@ -15,6 +15,7 @@ import {
   validateMediaMetadata,
   validateVideoMetadata
 } from '../netlify/functions/_writer-media.mjs';
+import { broadcastVideoUsage, isBroadcastVideoAsset, isManagedMediaRelease } from '../netlify/functions/writer-media-library.mjs';
 
 test('Writer GitHub proxy only allows scoped article and upload paths', () => {
   assert.equal(allowedPath('/contents/_posts?ref=main', 'GET'), true);
@@ -142,6 +143,46 @@ test('Media status cleanup parsing and TTLs are deterministic', () => {
 
 test('Asset names are reduced to release-safe characters', () => {
   assert.equal(sanitizeAssetName('  weird / fight clip (1).mp4  '), 'weird-fight-clip-1-.mp4');
+});
+
+
+test('Broadcast video library only exposes managed broadcast video release assets', () => {
+  assert.equal(isManagedMediaRelease({ tag_name: 'writer-media-2026-09' }), true);
+  assert.equal(isManagedMediaRelease({ tag_name: 'v1.0.0' }), false);
+
+  assert.equal(isBroadcastVideoAsset({
+    name: 'broadcast-video-main-event-20260930050000000.mp4',
+    content_type: 'video/mp4'
+  }), true);
+  assert.equal(isBroadcastVideoAsset({
+    name: 'broadcast-audio-theme-20260930050000000.mp3',
+    content_type: 'audio/mpeg'
+  }), false);
+  assert.equal(isBroadcastVideoAsset({
+    name: 'writer-video-article-clip.mp4',
+    content_type: 'video/mp4'
+  }), false);
+});
+
+test('Broadcast video usage guard finds saved draft and live references', () => {
+  const url = 'https://github.com/example/video.mp4';
+  const state = {
+    draft: {
+      program: [
+        { type: 'headline', title: 'A' },
+        { type: 'video', mediaUrl: url }
+      ]
+    },
+    live: {
+      program: [
+        { type: 'video', mediaUrl: 'https://github.com/example/other.mp4' }
+      ]
+    }
+  };
+  assert.deepEqual(broadcastVideoUsage(state, url), { draft: true, live: false });
+  state.live.program.push({ type: 'video', mediaUrl: url });
+  assert.deepEqual(broadcastVideoUsage(state, url), { draft: true, live: true });
+  assert.deepEqual(broadcastVideoUsage(state, ''), { draft: false, live: false });
 });
 
 
