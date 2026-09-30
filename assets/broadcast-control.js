@@ -109,6 +109,20 @@
     return `${size.toFixed(digits)} ${units[unit]}`;
   };
 
+  function youtubeVideoId(value) {
+    try {
+      const url = new URL(String(value || '').trim());
+      const host = url.hostname.replace(/^www\./, '').toLowerCase();
+      if (host === 'youtu.be') return url.pathname.split('/').filter(Boolean)[0] || '';
+      if (host === 'youtube.com' || host.endsWith('.youtube.com')) {
+        if (url.pathname === '/watch') return url.searchParams.get('v') || '';
+        const match = url.pathname.match(/^\/(?:embed|shorts|live)\/([A-Za-z0-9_-]{6,})/);
+        return match?.[1] || '';
+      }
+    } catch {}
+    return '';
+  }
+
   function localRead(key) {
     try { return localStorage.getItem(key) || ''; } catch { return ''; }
   }
@@ -551,6 +565,72 @@
     videoPreviewDialog.showModal();
   }
 
+  async function queueBroadcastVideoDelete(asset) {
+    const path = '/contents/assets/uploads/runtime/broadcast-media-delete.json';
+    let sha = '';
+    try {
+      const current = await githubRequest(`${path}?ref=main`);
+      sha = current.sha || '';
+    } catch (error) {
+      if (error.status !== 404) throw error;
+    }
+    const request = {
+      assetId: Number(asset.id),
+      name: String(asset.name || ''),
+      url: String(asset.url || ''),
+      requestedAt: new Date().toISOString()
+    };
+    await githubRequest(path, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'Delete Broadcast Control video asset [skip ci]',
+        content: encodeBase64Utf8(JSON.stringify(request, null, 2) + '\n'),
+        branch: 'main',
+        ...(sha ? { sha } : {})
+      })
+    });
+  }
+
+  function removeVideoReferences(url) {
+    const target = String(url || '');
+    if (!target) return { draft: false, live: false };
+    let draft = false;
+    let live = false;
+    if (working?.program) {
+      const before = working.program.length;
+      working.program = working.program.filter(item => String(item?.mediaUrl || '') !== target);
+      draft = working.program.length !== before;
+    }
+    if (fullState?.draft?.program) {
+      fullState.draft.program = fullState.draft.program.filter(item => String(item?.mediaUrl || '') !== target);
+    }
+    if (fullState?.live?.program) {
+      const before = fullState.live.program.length;
+      fullState.live.program = fullState.live.program.filter(item => String(item?.mediaUrl || '') !== target);
+      live = fullState.live.program.length !== before;
+      if (live) {
+        const now = new Date().toISOString();
+        fullState.live.startedAt = now;
+        fullState.live.updatedAt = now;
+        fullState.live.revision = `live-${Date.now()}`;
+      }
+    }
+    return { draft, live };
+  }
+
+  async function waitForVideoDeletion(assetId, timeoutMs = 90000) {
+    const started = Date.now();
+    while (Date.now() - started < timeoutMs) {
+      await new Promise(resolve => window.setTimeout(resolve, 2500));
+      try {
+        const assets = await fetchPublicVideoLibrary();
+        if (!assets.some(asset => asset.id === assetId)) return true;
+      } catch {}
+    }
+    return false;
+  }
+
   function renderVideoLibrary() {
     if (!videoLibraryList || !videoLibrarySummary) return;
     const query = String(videoLibrarySearch?.value || '').trim().toLowerCase();
@@ -688,35 +768,56 @@
 
       const deleteButton = smallButton('Delete', async () => {
         const currentUsage = videoUsage(asset);
-        if (currentUsage.blocked) {
-          showToast('Remove this video from draft/live programming and save the draft before deleting the uploaded file.', 8000);
-          return;
-        }
-        if (videoLibraryReadOnly) {
-          showToast('Permanent delete is temporarily unavailable because the authenticated media-library backend is not live yet.', 8000);
-          return;
-        }
-        if (!window.confirm(`Permanently delete "${displayVideoName(asset.name)}" from GitHub Releases? This cannot be undone.`)) return;
+        const warning = currentUsage.blocked
+          ? `"${displayVideoName(asset.name)}" is currently referenced by ${[
+              currentUsage.live ? 'the live Program' : '',
+              currentUsage.draft || currentUsage.savedDraft ? 'the draft' : ''
+            ].filter(Boolean).join(' and ')}. Delete it anyway? It will be removed from those rundowns first.`
+          : `Permanently delete "${displayVideoName(asset.name)}"? This cannot be undone.`;
+        if (!window.confirm(warning)) return;
+
         deleteButton.disabled = true;
         deleteButton.textContent = 'Deleting…';
         try {
-          await mediaBridge('/api/writer/media-library', {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ assetId: asset.id })
-          });
-          videoLibraryAssets = videoLibraryAssets.filter(row => row.id !== asset.id);
-          renderVideoLibrary();
-          showToast('Uploaded video deleted permanently.');
+          if (currentUsage.blocked) {
+            const removed = removeVideoReferences(asset.url);
+            const now = new Date().toISOString();
+            working.updatedAt = now;
+            working.revision = `draft-${Date.now()}`;
+            fullState = {
+              ...(fullState || {}),
+              version: 1,
+              updatedAt: now,
+              draft: clone(working)
+            };
+            await writeState(fullState, 'Remove deleted video from broadcast programming [skip ci]');
+            setDirty(false);
+            renderProgram();
+            renderSummary();
+            if (removed.live) refreshProgramMonitor();
+          }
+
+          await queueBroadcastVideoDelete(asset);
+          showToast('Delete queued. GitHub is removing the uploaded video…', 9000);
+          const removed = await waitForVideoDeletion(asset.id);
+          if (removed) {
+            videoLibraryAssets = videoLibraryAssets.filter(row => row.id !== asset.id);
+            renderVideoLibrary();
+            showToast('Uploaded video deleted permanently.');
+          } else {
+            showToast('Delete was queued, but GitHub is still processing it. Refresh Media in a moment.', 9000);
+            deleteButton.disabled = false;
+            deleteButton.textContent = 'Delete';
+          }
         } catch (error) {
           showToast(`Could not delete video: ${error.message}`, 9000);
           deleteButton.disabled = false;
           deleteButton.textContent = 'Delete';
         }
       }, 'mfc-button-ghost mfc-danger');
-      deleteButton.disabled = usage.blocked || videoLibraryReadOnly;
-      if (usage.blocked) deleteButton.title = 'Remove the video from all saved/live programming before deleting the file.';
-      else if (videoLibraryReadOnly) deleteButton.title = 'Permanent delete requires the authenticated media-library backend.';
+      deleteButton.disabled = !asset.id;
+      if (usage.blocked) deleteButton.title = 'Deleting will first remove this video from draft/live programming.';
+      else deleteButton.title = 'Permanently delete this uploaded video.';
   
       actions.append(previewButton, addButton, copyButton, releaseButton, deleteButton);
       row.append(main, actions);
@@ -1336,10 +1437,20 @@
       live: false,
       onChange: async value => {
         track.url = value.trim();
-        try {
-          if (track.url) track.duration = await probeUrlDuration(track.url);
-        } catch {
-          showToast('Could not read duration from that host. Set the duration manually.', 6500);
+        const youtubeId = youtubeVideoId(track.url);
+        if (youtubeId) {
+          track.sourceType = 'youtube';
+          track.youtubeId = youtubeId;
+          if (!positive(track.duration)) track.duration = 180;
+          showToast('YouTube source recognized. Set the track duration to match the video length.');
+        } else {
+          delete track.sourceType;
+          delete track.youtubeId;
+          try {
+            if (track.url) track.duration = await probeUrlDuration(track.url);
+          } catch {
+            showToast('Could not read duration from that host. Set the duration manually.', 6500);
+          }
         }
         renderMusic();
         renderMusicEditor();
@@ -1384,7 +1495,8 @@
       onChange: value => { track.fadeOut = clamp(value, 0, 30); markDirty(); }
     });
     const detectButton = smallButton('Read duration from file', async () => {
-      if (!track.url) return showToast('Add a direct audio URL first.');
+      if (!track.url) return showToast('Add an audio URL first.');
+      if (youtubeVideoId(track.url)) return showToast('YouTube does not expose duration as a direct audio file here. Set the duration field manually.');
       try {
         track.duration = await probeUrlDuration(track.url, 'audio');
         renderMusic();
@@ -1906,7 +2018,7 @@
 
   confirmMusicUrlButton.addEventListener('click', async () => {
     const url = musicUrlInput.value.trim();
-    if (!url) return showToast('Enter a direct audio URL.');
+    if (!url) return showToast('Enter an audio URL or YouTube link.');
     if (!musicUrlInput.checkValidity()) {
       musicUrlInput.reportValidity();
       return;
@@ -1915,17 +2027,21 @@
     confirmMusicUrlButton.disabled = true;
     confirmMusicUrlButton.textContent = 'Checking…';
     let duration = 180;
+    const youtubeId = youtubeVideoId(url);
     try {
-      try {
-        duration = await probeUrlDuration(url, 'audio');
-      } catch {
-        showToast('Track added, but the host did not expose its duration. Set the duration manually.', 6500);
+      if (!youtubeId) {
+        try {
+          duration = await probeUrlDuration(url, 'audio');
+        } catch {
+          showToast('Track added, but the host did not expose its duration. Set the duration manually.', 6500);
+        }
       }
       const track = {
         id: uid('music'),
-        title: musicUrlTitleInput.value.trim() || 'Remote track',
+        title: musicUrlTitleInput.value.trim() || (youtubeId ? 'YouTube audio' : 'Remote track'),
         url,
         duration,
+        ...(youtubeId ? { sourceType: 'youtube', youtubeId } : {}),
         gainDb: 0,
         fadeIn: 1.5,
         fadeOut: 2
@@ -1935,6 +2051,7 @@
       urlDialog.close();
       renderMusic();
       markDirty();
+      if (youtubeId) showToast('YouTube audio added. Set its duration to match the source before going live.', 7000);
     } finally {
       confirmMusicUrlButton.disabled = false;
       confirmMusicUrlButton.textContent = originalLabel;
