@@ -444,7 +444,8 @@
       onChange: value => {
         item.title = value;
         programEditorTitle.textContent = value || 'Untitled';
-        renderProgram();
+        const node = programTrack.querySelector(`[data-program-id="${item.id}"] .mfc-timeline-title`);
+        if (node) node.textContent = value || String(item.type || 'Program').toUpperCase();
         markDirty();
       }
     });
@@ -474,6 +475,7 @@
         min: 1,
         max: 3600,
         step: 1,
+        live: false,
         onChange: value => {
           item.duration = clamp(value, 1, 3600);
           renderProgram();
@@ -494,7 +496,7 @@
           item.mediaUrl = value.trim();
           if (item.type === 'video' && item.mediaUrl) {
             try {
-              item.duration = await probeUrlDuration(item.mediaUrl);
+              item.duration = await probeUrlDuration(item.mediaUrl, 'video');
               showToast(`Video duration detected: ${fmt(item.duration)}`);
             } catch {
               showToast('Could not read video duration from that URL. Upload the file or try another direct media URL.', 7000);
@@ -541,7 +543,7 @@
         const redetectButton = smallButton('Read duration', async () => {
           if (!item.mediaUrl) return showToast('Add a direct video URL first.');
           try {
-            item.duration = await probeUrlDuration(item.mediaUrl);
+            item.duration = await probeUrlDuration(item.mediaUrl, 'video');
             renderProgram();
             renderProgramEditor();
             markDirty();
@@ -735,7 +737,8 @@
       onChange: value => {
         track.title = value;
         musicEditorTitle.textContent = value || 'Untitled track';
-        renderMusic();
+        const node = musicTrack.querySelector(`[data-music-id="${track.id}"] .mfc-timeline-title`);
+        if (node) node.textContent = value || 'Untitled track';
         markDirty();
       }
     });
@@ -762,6 +765,7 @@
       min: 1,
       max: 86400,
       step: .1,
+      live: false,
       onChange: value => {
         track.duration = clamp(value, 1, 86400);
         renderMusic();
@@ -795,7 +799,7 @@
     const detectButton = smallButton('Read duration from file', async () => {
       if (!track.url) return showToast('Add a direct audio URL first.');
       try {
-        track.duration = await probeUrlDuration(track.url);
+        track.duration = await probeUrlDuration(track.url, 'audio');
         renderMusic();
         renderMusicEditor();
         markDirty();
@@ -986,8 +990,10 @@
     });
   }
 
-  async function probeUrlDuration(url) {
-    const tag = /\.(?:mp4|m4v|webm)(?:[?#].*)?$/i.test(url) ? 'video' : 'audio';
+  async function probeUrlDuration(url, kind = 'auto') {
+    const tag = kind === 'video' || kind === 'audio'
+      ? kind
+      : /\.(?:mp4|m4v|webm)(?:[?#].*)?$/i.test(url) ? 'video' : 'audio';
     const element = document.createElement(tag);
     element.preload = 'metadata';
     element.src = url;
@@ -1155,7 +1161,7 @@
     if (!url) return showToast('Enter a direct audio URL.');
     let duration = 180;
     try {
-      duration = await probeUrlDuration(url);
+      duration = await probeUrlDuration(url, 'audio');
     } catch {
       showToast('Track added, but the host did not expose its duration. Set the duration manually.', 6500);
     }
