@@ -38,9 +38,11 @@ The library displays 40 files per page. Search, filtering and sorting cover the 
 
 ## Text layout and long bodies
 
+The player uses a single 640 × 480 composition based on the Control monitor. The homepage, public feed and other embeds scale that same 4:3 stage, including typography, spacing and body pages. Embeds in a different aspect ratio are centered with space around the stage instead of stretching it. Gold-band labels and footer text use the actual font metrics for alignment; clock digits share a stable baseline.
+
 Title, eyebrow and header band fit their available space automatically on every text block, including manual headlines, results, events and breaking news. The body wraps long words/URLs and fits at a readable size. When it is too long for one screen, **PAGE 1 / N** appears and the body advances through complete pages over the block's existing duration. No characters are discarded. The title, eyebrow and header remain visible on each page; pages restart when the block repeats. Layout recalculates when the monitor size changes, fonts load or text is edited.
 
-The text inspector shows the body character count, the current Preview's page count, seconds per page and suggested reading time. **Use suggested reading time** adjusts the draft duration when more time is needed. Shorter headings make larger text possible. Preview and Program can have different page counts when their screens have different sizes. These layout changes do not alter your saved text or publish a new rundown.
+The text inspector shows the body character count, the current Preview's page count, seconds per page and suggested reading time. **Use suggested reading time** adjusts the draft duration when more time is needed. Shorter headings make larger text possible. Preview and Program use the same page layout for the same content at every display size. These layout changes do not alter your saved text or publish a new rundown.
 
 ## Audio behavior
 
