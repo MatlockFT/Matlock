@@ -87,8 +87,8 @@
 
   function syncActionButtons() {
     const busy = Boolean(busyAction);
-    saveDraftButton.disabled = !working || !dirty || busy;
-    takeLiveButton.disabled = !working || busy;
+    saveDraftButton.disabled = !sessionId || !working || !dirty || busy;
+    takeLiveButton.disabled = !sessionId || !working || busy;
     if (reloadStateButton) reloadStateButton.disabled = !sessionId || busy;
   }
 
@@ -581,9 +581,34 @@
         upload.type = 'file';
         upload.accept = 'video/mp4,video/webm,video/x-m4v,.mp4,.webm,.m4v';
         upload.hidden = true;
+        let videoUploadBusy = false;
+        const uploadButton = smallButton('Upload video', () => {
+          if (!videoUploadBusy) upload.click();
+        });
+        const redetectButton = smallButton('Read duration', async () => {
+          if (!item.mediaUrl) return showToast('Add a direct video URL first.');
+          if (videoUploadBusy) return;
+          redetectButton.disabled = true;
+          try {
+            item.duration = await probeUrlDuration(item.mediaUrl, 'video');
+            renderProgram();
+            renderProgramEditor();
+            markDirty();
+            showToast(`Video duration detected: ${fmt(item.duration)}`);
+          } catch {
+            showToast('Could not read the duration from that URL.', 6500);
+          } finally {
+            redetectButton.disabled = false;
+          }
+        });
         upload.addEventListener('change', async () => {
           const file = upload.files?.[0];
-          if (!file) return;
+          if (!file || videoUploadBusy) return;
+          videoUploadBusy = true;
+          uploadButton.disabled = true;
+          redetectButton.disabled = true;
+          const uploadLabel = uploadButton.textContent;
+          uploadButton.textContent = 'Uploading…';
           try {
             const duration = await probeFileDuration(file);
             const url = await uploadMediaFile(file, 'video');
@@ -596,20 +621,12 @@
           } catch (error) {
             showToast(`Video upload failed: ${error.message}`, 9000);
           } finally {
+            videoUploadBusy = false;
+            uploadButton.disabled = false;
+            redetectButton.disabled = false;
+            uploadButton.textContent = uploadLabel;
             upload.value = '';
             clearUploadProgress();
-          }
-        });
-        const uploadButton = smallButton('Upload video', () => upload.click());
-        const redetectButton = smallButton('Read duration', async () => {
-          if (!item.mediaUrl) return showToast('Add a direct video URL first.');
-          try {
-            item.duration = await probeUrlDuration(item.mediaUrl, 'video');
-            renderProgram();
-            renderProgramEditor();
-            markDirty();
-          } catch {
-            showToast('Could not read the duration from that URL.', 6500);
           }
         });
         const controls = buttonRow(uploadButton, redetectButton, upload);
@@ -1237,7 +1254,9 @@
 
   musicUploadInput.addEventListener('change', async () => {
     const files = Array.from(musicUploadInput.files || []);
-    if (!files.length) return;
+    if (!files.length || musicUploadInput.disabled) return;
+    musicUploadInput.disabled = true;
+    addMusicUrlButton.disabled = true;
     try {
       for (let index = 0; index < files.length; index += 1) {
         const file = files[index];
@@ -1263,11 +1282,14 @@
       showToast(`Music upload failed: ${error.message}`, 9000);
     } finally {
       musicUploadInput.value = '';
+      musicUploadInput.disabled = false;
+      addMusicUrlButton.disabled = false;
       window.setTimeout(clearUploadProgress, 900);
     }
   });
 
   addMusicUrlButton.addEventListener('click', () => {
+    if (musicUploadInput.disabled) return showToast('Wait for the current media upload to finish.');
     musicUrlInput.value = '';
     musicUrlTitleInput.value = '';
     urlDialog.showModal();
@@ -1338,6 +1360,7 @@
     authPanel.hidden = true;
     workspace.hidden = false;
     if (authStatus) authStatus.textContent = `GitHub: ${login}`;
+    syncActionButtons();
     if (preserveWorking && working) {
       renderSummary();
       setDirty(true);
