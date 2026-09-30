@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-09-28T16:59:22.005Z",
-  "builtAt": "2026-09-30T00:33:41.426Z",
+  "builtAt": "2026-09-30T06:50:13.594Z",
   "mirrorThrough": "2026-09-26",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -1894,7 +1894,7 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-02/TOPURIA_ALEKSANDRE_R_02-08.png?itok=v-giNC1x",
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Santiago Luna",
@@ -1975,7 +1975,7 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/COSTA_ALESSANDRO_L_07-11.png?itok=okElYxK7",
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Amir Albazi",
@@ -3614,7 +3614,13 @@
       "recordOutsideUfc": "8-0-0",
       "rank": 4,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/STERLING_ALJAMAIN_L_04-25.png?itok=lJPFybAO",
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Kevin Vallejos",
+        "opponentId": "kevin-vallejos"
+      },
       "checkedAt": "2026-09-28T16:59:24.757Z",
       "ufcStatsId": "cb696ebfb6598724",
       "sourceUrl": "https://ufcstats.com/fighter-details/cb696ebfb6598724",
@@ -4378,7 +4384,7 @@
       "rank": 9,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/ALBAZI_AMIR_L_02-07.png?itok=eWJL3Orf",
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Alessandro Costa",
@@ -6507,7 +6513,7 @@
       "rank": 7,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ALMABAYEV_ASU_L_06-27.png?itok=Y0SjNrdV",
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Kyoji Horiguchi",
@@ -9912,7 +9918,13 @@
       "recordOutsideUfc": "8-0-0",
       "rank": 13,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/ORTEGA_BRIAN_L_08-23.png?itok=OQf_S2Es",
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Dan Hooker",
+        "opponentId": "dan-hooker"
+      },
       "checkedAt": "2026-09-28T16:59:25.040Z",
       "ufcStatsId": "def8166ff24bd237",
       "sourceUrl": "https://ufcstats.com/fighter-details/def8166ff24bd237",
@@ -17086,7 +17098,13 @@
       "recordOutsideUfc": "10-4-0",
       "rank": 13,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/HOOKER_DAN_L_09-05.png?itok=cLfQlP6e",
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Brian Ortega",
+        "opponentId": "brian-ortega"
+      },
       "checkedAt": "2026-09-28T16:59:25.355Z",
       "ufcStatsId": "193b9d1858bc4df3",
       "sourceUrl": "https://ufcstats.com/fighter-details/193b9d1858bc4df3",
@@ -29711,7 +29729,7 @@
       "rank": 13,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ALISKEROV_IKRAM_L_06-27.png?itok=3ij01m2a",
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Jared Cannonier",
@@ -32327,7 +32345,7 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/MATTHEWS_JAKE_L_05-30.png?itok=kYM4Kq87",
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Tahir Abdullayev",
@@ -33519,7 +33537,7 @@
       "rank": 11,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CANNONIER_JARED_L_07-18.png?itok=_lep6e-l",
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Ikram Aliskerov",
@@ -35464,7 +35482,13 @@
       "recordOutsideUfc": "26-3-1",
       "rank": 2,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/PROCHAZKA_JIRI_L_04-11.png?itok=kzDQfMFd",
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Navajo Stirling",
+        "opponentId": "navajo-stirling"
+      },
       "checkedAt": "2026-09-28T16:59:26.265Z",
       "ufcStatsId": "009341ed974bad72",
       "sourceUrl": "https://ufcstats.com/fighter-details/009341ed974bad72",
@@ -43517,7 +43541,13 @@
       "recordOutsideUfc": "13-1-0",
       "rank": 9,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/VALLEJOS_KEVIN_R_12-13.png?itok=-h2gdx6Y",
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Aljamain Sterling",
+        "opponentId": "aljamain-sterling"
+      },
       "checkedAt": "2026-09-28T16:59:26.643Z",
       "ufcStatsId": "239d8e5359022f3b",
       "sourceUrl": "https://ufcstats.com/fighter-details/239d8e5359022f3b",
@@ -44974,7 +45004,7 @@
       "rank": 5,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/HORIGUCHI_KYOJI_R_11-22.png?itok=Dn6SxnwP",
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Asu Almabayev",
@@ -58356,7 +58386,13 @@
       "recordOutsideUfc": "5-0-0",
       "rank": 5,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/STIRLING_NAVAJO_L_03-28.png?itok=BVUQTbQ5",
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Jiří Procházka",
+        "opponentId": "jiri-prochazka"
+      },
       "checkedAt": "2026-09-28T16:59:27.405Z",
       "ufcStatsId": "b4b496ec2197ee3e",
       "sourceUrl": "https://ufcstats.com/fighter-details/b4b496ec2197ee3e",
@@ -69053,7 +69089,7 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/LUNA_SANTIAGO_L_02-28.png?itok=zdTFJx55",
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Aleksandre Topuria",
@@ -70764,7 +70800,13 @@
       "recordOutsideUfc": "11-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/GAZIEV_SHAMIL_L_05-02.png?itok=VAF3kcSW",
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Tallison Teixeira",
+        "opponentId": "tallison-teixeira"
+      },
       "checkedAt": "2026-09-28T16:59:28.040Z",
       "ufcStatsId": "6747ccd6d1acd266",
       "sourceUrl": "https://ufcstats.com/fighter-details/6747ccd6d1acd266",
@@ -73622,7 +73664,7 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ABDULLAYEV_TAHIR_L_06-27.png?itok=OjpS2GZ7",
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Jake Matthews",
@@ -74179,7 +74221,13 @@
       "recordOutsideUfc": "7-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/TEIXEIRA_TALLISON_R_07-12.png?itok=vtmFVu5M",
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Shamil Gaziev",
+        "opponentId": "shamil-gaziev"
+      },
       "checkedAt": "2026-09-26T11:42:39.911Z",
       "ufcStatsId": "17923f676f100e16",
       "sourceUrl": "https://ufcstats.com/fighter-details/17923f676f100e16",
