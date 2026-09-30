@@ -4,6 +4,14 @@
   broadcast uses Star4000 rather than an Akzidenz/Helvetica approximation.
 */
 @font-face {
+  font-family: "MFC Akzidenz Bold";
+  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AkzidenzGroteskBE-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "MFC Star4000";
   src: url("https://cdn.jsdelivr.net/gh/vbguyny/ws4kp@065688b6ee9a5aa93578e1e3e95b3ecce07d16ce/Fonts/Star4000.ttf") format("truetype");
   font-style: normal;
@@ -134,11 +142,11 @@ body {
 
 .mfc-logo span {
   display: block;
-  font-family: var(--mfc-type-bold);
-  font-size: clamp(.47rem, 1.85cqw, .94rem);
-  font-weight: 400;
-  line-height: .94;
-  letter-spacing: .002em;
+  font-family: "MFC Akzidenz Bold", "Arial Narrow", Arial, sans-serif;
+  font-size: clamp(.48rem, 1.95cqw, 1.02rem);
+  font-weight: 700;
+  line-height: .88;
+  letter-spacing: -.035em;
 }
 
 .mfc-header-copy {
