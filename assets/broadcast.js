@@ -26,6 +26,7 @@
   const soundButton = root.querySelector('[data-mfc-sound]');
   const musicA = document.querySelector('[data-mfc-music-a]');
   const musicB = document.querySelector('[data-mfc-music-b]');
+  const youtubeSlots = new Map();
   const STATE_URLS = [
     'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/broadcast.json',
     '/assets/uploads/broadcast.json',
@@ -54,6 +55,70 @@
   const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || 0));
   const positive = value => Math.max(0, Number(value) || 0);
   const mod = (value, size) => size > 0 ? ((value % size) + size) % size : 0;
+
+  function youtubeVideoId(value) {
+    try {
+      const url = new URL(String(value || '').trim());
+      const host = url.hostname.replace(/^www\./, '').toLowerCase();
+      if (host === 'youtu.be') return url.pathname.split('/').filter(Boolean)[0] || '';
+      if (host === 'youtube.com' || host.endsWith('.youtube.com')) {
+        if (url.pathname === '/watch') return url.searchParams.get('v') || '';
+        const match = url.pathname.match(/^\/(?:embed|shorts|live)\/([A-Za-z0-9_-]{6,})/);
+        return match?.[1] || '';
+      }
+    } catch {}
+    return '';
+  }
+
+  function youtubeFrameFor(element) {
+    if (youtubeSlots.has(element)) return youtubeSlots.get(element);
+    const frame = document.createElement('iframe');
+    frame.setAttribute('allow', 'autoplay');
+    frame.setAttribute('title', 'YouTube audio source');
+    frame.tabIndex = -1;
+    frame.style.position = 'fixed';
+    frame.style.width = '1px';
+    frame.style.height = '1px';
+    frame.style.left = '-9999px';
+    frame.style.top = '-9999px';
+    frame.style.opacity = '0';
+    frame.style.pointerEvents = 'none';
+    document.body.append(frame);
+    youtubeSlots.set(element, frame);
+    return frame;
+  }
+
+  function youtubeCommand(frame, func, args = []) {
+    if (!frame?.contentWindow) return;
+    frame.contentWindow.postMessage(JSON.stringify({
+      event: 'command',
+      func,
+      args
+    }), 'https://www.youtube.com');
+  }
+
+  function setSlotVolume(element, value) {
+    const volume = clamp(value, 0, 1);
+    if (element.dataset.youtube === 'true') {
+      youtubeCommand(youtubeSlots.get(element), 'setVolume', [Math.round(volume * 100)]);
+    } else {
+      element.volume = volume;
+    }
+  }
+
+  function playSlot(element) {
+    if (element.dataset.youtube === 'true') {
+      youtubeCommand(youtubeSlots.get(element), 'playVideo');
+    } else {
+      element.play().catch(() => {});
+    }
+  }
+
+  function pauseSlot(element) {
+    element.pause();
+    const frame = youtubeSlots.get(element);
+    if (frame) youtubeCommand(frame, 'pauseVideo');
+  }
 
   function fmt(seconds) {
     const value = Math.max(0, Math.floor(Number(seconds) || 0));
@@ -224,8 +289,34 @@
 
   function ensureAudioSource(element, track, targetTime) {
     if (!track?.url) return;
-    if (element.dataset.trackId !== String(track.id || track.url)) {
-      element.dataset.trackId = String(track.id || track.url);
+    const trackId = String(track.id || track.url);
+    const youtubeId = String(track.youtubeId || youtubeVideoId(track.url) || '');
+
+    if (youtubeId) {
+      const frame = youtubeFrameFor(element);
+      const changed = element.dataset.trackId !== trackId || element.dataset.youtubeId !== youtubeId;
+      element.dataset.trackId = trackId;
+      element.dataset.youtubeId = youtubeId;
+      element.dataset.youtube = 'true';
+      element.pause();
+      if (changed) {
+        frame.onload = () => {
+          youtubeCommand(frame, 'seekTo', [Math.max(0, targetTime), true]);
+          if (soundEnabled) youtubeCommand(frame, 'playVideo');
+        };
+        frame.src = `https://www.youtube.com/embed/${encodeURIComponent(youtubeId)}?enablejsapi=1&origin=${encodeURIComponent(location.origin)}&playsinline=1&controls=0&rel=0&modestbranding=1`;
+      }
+      return;
+    }
+
+    if (element.dataset.youtube === 'true') {
+      const frame = youtubeSlots.get(element);
+      if (frame) youtubeCommand(frame, 'pauseVideo');
+      delete element.dataset.youtube;
+      delete element.dataset.youtubeId;
+    }
+    if (element.dataset.trackId !== trackId) {
+      element.dataset.trackId = trackId;
       element.src = track.url;
       element.load();
     }
@@ -274,10 +365,10 @@
   function syncMusic(elapsed, programItem, deltaSeconds) {
     const tracks = musicItems();
     if (!soundEnabled || !tracks.length) {
-      musicA.volume = 0;
-      musicB.volume = 0;
-      musicA.pause();
-      musicB.pause();
+      setSlotVolume(musicA, 0);
+      setSlotVolume(musicB, 0);
+      pauseSlot(musicA);
+      pauseSlot(musicB);
       return;
     }
 
@@ -304,10 +395,10 @@
 
     if (inCrossfade) {
       ensureAudioSource(standbyMusic, pos.previous, pos.previousLocal);
-      standbyMusic.play().catch(() => {});
+      playSlot(standbyMusic);
     } else {
-      standbyMusic.volume = 0;
-      standbyMusic.pause();
+      setSlotVolume(standbyMusic, 0);
+      pauseSlot(standbyMusic);
     }
 
     const desiredDuck = duckTarget(programItem);
@@ -335,9 +426,9 @@
       previousEnvelope = Math.min(ownPreviousFade, 1 - crossfadeProgress);
     }
 
-    activeMusic.volume = clamp(baseMusicVolume(track) * musicLevel * currentEnvelope, 0, 1);
-    standbyMusic.volume = clamp(baseMusicVolume(pos.previous) * musicLevel * previousEnvelope, 0, 1);
-    activeMusic.play().catch(() => {});
+    setSlotVolume(activeMusic, clamp(baseMusicVolume(track) * musicLevel * currentEnvelope, 0, 1));
+    setSlotVolume(standbyMusic, clamp(baseMusicVolume(pos.previous) * musicLevel * previousEnvelope, 0, 1));
+    playSlot(activeMusic);
   }
 
   function updateClock() {
@@ -362,8 +453,8 @@
     soundButton.textContent = soundEnabled ? 'SOUND ON' : 'SOUND OFF';
     soundButton.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
     if (!soundEnabled) {
-      musicA.pause();
-      musicB.pause();
+      pauseSlot(musicA);
+      pauseSlot(musicB);
       video.muted = true;
     }
   }
