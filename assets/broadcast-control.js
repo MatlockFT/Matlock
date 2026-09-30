@@ -28,6 +28,15 @@
   const programFields = app.querySelector('[data-program-fields]');
   const programEditorTitle = app.querySelector('[data-program-editor-title]');
   const deleteProgramButton = app.querySelector('[data-delete-program]');
+  const videoLibraryList = app.querySelector('[data-video-library-list]');
+  const videoLibrarySummary = app.querySelector('[data-video-library-summary]');
+  const videoLibrarySearch = app.querySelector('[data-video-library-search]');
+  const videoLibraryRefreshButton = app.querySelector('[data-video-library-refresh]');
+  const videoLibraryUploadInput = app.querySelector('[data-video-library-upload]');
+  const videoPreviewDialog = app.querySelector('[data-video-preview-dialog]');
+  const videoPreviewTitle = app.querySelector('[data-video-preview-title]');
+  const videoPreviewPlayer = app.querySelector('[data-video-preview-player]');
+  const videoPreviewMeta = app.querySelector('[data-video-preview-meta]');
   const musicTrack = app.querySelector('[data-music-track]');
   const musicFields = app.querySelector('[data-music-fields]');
   const musicEditorTitle = app.querySelector('[data-music-editor-title]');
@@ -58,6 +67,10 @@
   let toastTimer = 0;
   let dirty = false;
   let busyAction = '';
+  let videoLibraryAssets = [];
+  let videoLibraryReadOnly = false;
+  let videoLibraryLoading = false;
+  const videoDurationCache = new Map();
 
   const clone = value => JSON.parse(JSON.stringify(value));
   const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || 0));
@@ -68,6 +81,19 @@
     const m = Math.floor(total / 60);
     const s = total % 60;
     return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  };
+  const formatBytes = bytes => {
+    const value = Math.max(0, Number(bytes) || 0);
+    if (value < 1024) return `${Math.round(value)} B`;
+    const units = ['KB', 'MB', 'GB', 'TB'];
+    let size = value / 1024;
+    let unit = 0;
+    while (size >= 1024 && unit < units.length - 1) {
+      size /= 1024;
+      unit += 1;
+    }
+    const digits = size >= 100 ? 0 : size >= 10 ? 1 : 2;
+    return `${size.toFixed(digits)} ${units[unit]}`;
   };
 
   function localRead(key) {
@@ -272,6 +298,7 @@
     selectedProgramId = working.program[0]?.id || '';
     selectedMusicId = working.music[0]?.id || '';
     renderAll();
+    void loadVideoLibrary({ quiet: true });
   }
 
   function totalProgramDuration() {
@@ -287,6 +314,7 @@
     working.updatedAt = new Date().toISOString();
     setDirty(true);
     renderSummary();
+    renderVideoLibrary();
     postPreview();
   }
 
