@@ -340,6 +340,296 @@
       : 'Live';
   }
 
+  function displayVideoName(name) {
+    return String(name || 'Uploaded video')
+      .replace(/^broadcast-video-/i, '')
+      .replace(/-\d{17}(?=\.(?:mp4|m4v|webm)$)/i, '')
+      .replace(/\.(?:mp4|m4v|webm)$/i, '')
+      .replace(/[-_]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim() || 'Uploaded video';
+  }
+
+  function normalizedLibraryAsset(asset, release = {}) {
+    return {
+      id: Number(asset?.id) || 0,
+      name: String(asset?.name || ''),
+      url: String(asset?.url || asset?.browser_download_url || ''),
+      size: Number(asset?.size) || 0,
+      contentType: String(asset?.contentType || asset?.content_type || ''),
+      createdAt: asset?.createdAt || asset?.created_at || null,
+      updatedAt: asset?.updatedAt || asset?.updated_at || null,
+      downloadCount: Number(asset?.downloadCount ?? asset?.download_count) || 0,
+      releaseId: Number(asset?.releaseId || release?.id) || null,
+      releaseTag: String(asset?.releaseTag || release?.tag_name || '')
+    };
+  }
+
+  function isBroadcastVideoAsset(asset) {
+    const name = String(asset?.name || '').toLowerCase();
+    const type = String(asset?.contentType || asset?.content_type || '').toLowerCase();
+    return name.startsWith('broadcast-video-')
+      && (type.startsWith('video/') || /\.(?:mp4|m4v|webm)$/i.test(name));
+  }
+
+  function programUsesVideo(program, url) {
+    const target = String(url || '');
+    return Boolean(target) && Array.isArray(program) && program.some(item =>
+      String(item?.type || '').toLowerCase() === 'video'
+      && String(item?.mediaUrl || '') === target
+    );
+  }
+
+  function videoUsage(asset) {
+    const url = String(asset?.url || '');
+    const draft = programUsesVideo(working?.program, url);
+    const savedDraft = programUsesVideo(fullState?.draft?.program, url);
+    const live = programUsesVideo(fullState?.live?.program, url);
+    return {
+      draft,
+      savedDraft: savedDraft && !draft,
+      live,
+      blocked: draft || savedDraft || live
+    };
+  }
+
+  function knownVideoDuration(url) {
+    const target = String(url || '');
+    const cached = Number(videoDurationCache.get(target));
+    if (Number.isFinite(cached) && cached > 0) return cached;
+    const channels = [working, fullState?.draft, fullState?.live];
+    for (const channel of channels) {
+      const item = (channel?.program || []).find(row =>
+        String(row?.type || '').toLowerCase() === 'video'
+        && String(row?.mediaUrl || '') === target
+      );
+      const duration = Number(item?.duration);
+      if (Number.isFinite(duration) && duration > 0) return duration;
+    }
+    return 0;
+  }
+
+  function badge(text, state) {
+    const node = document.createElement('span');
+    node.className = 'mfc-video-badge';
+    node.dataset.state = state;
+    node.textContent = text;
+    return node;
+  }
+
+  function openVideoPreview(asset) {
+    if (!videoPreviewDialog || !videoPreviewPlayer) return;
+    videoPreviewTitle.textContent = displayVideoName(asset.name);
+    const usage = videoUsage(asset);
+    const states = [
+      usage.live ? 'LIVE' : '',
+      usage.draft ? 'DRAFT' : '',
+      usage.savedDraft ? 'SAVED DRAFT' : '',
+      !usage.blocked ? 'UNUSED' : ''
+    ].filter(Boolean).join(' · ');
+    const uploaded = asset.createdAt ? new Date(asset.createdAt).toLocaleString() : 'Unknown upload date';
+    videoPreviewMeta.textContent = `${formatBytes(asset.size)} · ${uploaded}${states ? ` · ${states}` : ''}`;
+    videoPreviewPlayer.src = asset.url;
+    videoPreviewDialog.showModal();
+  }
+
+  function renderVideoLibrary() {
+    if (!videoLibraryList || !videoLibrarySummary) return;
+    const query = String(videoLibrarySearch?.value || '').trim().toLowerCase();
+    const visible = videoLibraryAssets.filter(asset =>
+      !query
+      || displayVideoName(asset.name).toLowerCase().includes(query)
+      || String(asset.name || '').toLowerCase().includes(query)
+    );
+    const totalBytes = videoLibraryAssets.reduce((sum, asset) => sum + (Number(asset.size) || 0), 0);
+    const mode = videoLibraryReadOnly ? ' · read-only fallback' : '';
+    videoLibrarySummary.textContent = videoLibraryLoading
+      ? 'Loading video library…'
+      : `${videoLibraryAssets.length} video${videoLibraryAssets.length === 1 ? '' : 's'} · ${formatBytes(totalBytes)}${mode}`;
+  
+    videoLibraryList.replaceChildren();
+    if (videoLibraryLoading && !videoLibraryAssets.length) {
+      const empty = document.createElement('p');
+      empty.className = 'mfc-empty';
+      empty.textContent = 'Loading uploaded videos…';
+      videoLibraryList.append(empty);
+      return;
+    }
+    if (!visible.length) {
+      const empty = document.createElement('p');
+      empty.className = 'mfc-empty';
+      empty.textContent = query ? 'No uploaded videos match that search.' : 'No Broadcast Control videos have been uploaded yet.';
+      videoLibraryList.append(empty);
+      return;
+    }
+  
+    for (const asset of visible) {
+      const usage = videoUsage(asset);
+      const row = document.createElement('article');
+      row.className = `mfc-video-asset${usage.live ? ' is-live' : ''}`;
+  
+      const main = document.createElement('div');
+      main.className = 'mfc-video-asset-main';
+      const title = document.createElement('strong');
+      title.className = 'mfc-video-asset-title';
+      title.textContent = displayVideoName(asset.name);
+      title.title = asset.name;
+  
+      const meta = document.createElement('div');
+      meta.className = 'mfc-video-asset-meta';
+      const uploaded = asset.createdAt ? new Date(asset.createdAt).toLocaleDateString() : 'Unknown date';
+      meta.append(
+        document.createTextNode(formatBytes(asset.size)),
+        document.createTextNode('•'),
+        document.createTextNode(uploaded),
+        document.createTextNode('•'),
+        document.createTextNode(`${asset.downloadCount || 0} download${asset.downloadCount === 1 ? '' : 's'}`)
+      );
+  
+      const badges = document.createElement('div');
+      badges.className = 'mfc-video-asset-badges';
+      if (usage.live) badges.append(badge('Live', 'live'));
+      if (usage.draft) badges.append(badge('Draft', 'draft'));
+      if (usage.savedDraft) badges.append(badge('Saved draft', 'saved'));
+      if (!usage.blocked) badges.append(badge('Unused', 'unused'));
+  
+      main.append(title, meta, badges);
+  
+      const actions = document.createElement('div');
+      actions.className = 'mfc-video-asset-actions';
+  
+      const previewButton = smallButton('Preview', () => openVideoPreview(asset), 'mfc-button-ghost');
+      const addButton = smallButton('Add to Program', async () => {
+        if (!working) return;
+        const original = addButton.textContent;
+        addButton.disabled = true;
+        addButton.textContent = 'Adding…';
+        let duration = knownVideoDuration(asset.url);
+        if (!duration) {
+          try {
+            duration = await probeUrlDuration(asset.url, 'video');
+            videoDurationCache.set(asset.url, duration);
+          } catch {
+            duration = 30;
+            showToast('Video added with a 30-second fallback duration. Use Read duration in the selected video block if needed.', 7500);
+          }
+        }
+        const item = {
+          id: uid('program'),
+          type: 'video',
+          header: 'MMA VIDEO',
+          eyebrow: 'VIDEO',
+          title: displayVideoName(asset.name),
+          mediaUrl: asset.url,
+          duration,
+          videoAudio: true
+        };
+        working.program.push(item);
+        selectedProgramId = item.id;
+        renderProgram();
+        renderProgramEditor();
+        markDirty();
+        requestAnimationFrame(() => { programTrack.scrollLeft = programTrack.scrollWidth; });
+        addButton.textContent = original;
+        showToast('Video added to the draft program.');
+      });
+  
+      const copyButton = smallButton('Copy URL', async () => {
+        try {
+          await navigator.clipboard.writeText(asset.url);
+          showToast('Video URL copied.');
+        } catch {
+          showToast(asset.url, 9000);
+        }
+      }, 'mfc-button-ghost');
+  
+      const deleteButton = smallButton('Delete', async () => {
+        const currentUsage = videoUsage(asset);
+        if (currentUsage.blocked) {
+          showToast('Remove this video from draft/live programming and save the draft before deleting the uploaded file.', 8000);
+          return;
+        }
+        if (videoLibraryReadOnly) {
+          showToast('Permanent delete is temporarily unavailable because the authenticated media-library backend is not live yet.', 8000);
+          return;
+        }
+        if (!window.confirm(`Permanently delete "${displayVideoName(asset.name)}" from GitHub Releases? This cannot be undone.`)) return;
+        deleteButton.disabled = true;
+        deleteButton.textContent = 'Deleting…';
+        try {
+          await mediaBridge('/api/writer/media-library', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ assetId: asset.id })
+          });
+          videoLibraryAssets = videoLibraryAssets.filter(row => row.id !== asset.id);
+          renderVideoLibrary();
+          showToast('Uploaded video deleted permanently.');
+        } catch (error) {
+          showToast(`Could not delete video: ${error.message}`, 9000);
+          deleteButton.disabled = false;
+          deleteButton.textContent = 'Delete';
+        }
+      }, 'mfc-button-ghost mfc-danger');
+      deleteButton.disabled = usage.blocked || videoLibraryReadOnly;
+      if (usage.blocked) deleteButton.title = 'Remove the video from all saved/live programming before deleting the file.';
+      else if (videoLibraryReadOnly) deleteButton.title = 'Permanent delete requires the authenticated media-library backend.';
+  
+      actions.append(previewButton, addButton, copyButton, deleteButton);
+      row.append(main, actions);
+      videoLibraryList.append(row);
+    }
+  }
+
+  async function fetchPublicVideoLibrary() {
+    const assets = [];
+    for (let page = 1; page <= 3; page += 1) {
+      const response = await fetch(`https://api.github.com/repos/MatlockFT/Matlock/releases?per_page=100&page=${page}`, {
+        headers: { Accept: 'application/vnd.github+json' },
+        cache: 'no-store'
+      });
+      if (!response.ok) throw new Error(`GitHub video library returned ${response.status}.`);
+      const releases = await response.json();
+      if (!Array.isArray(releases) || !releases.length) break;
+      for (const release of releases) {
+        if (!String(release?.tag_name || '').startsWith('writer-media-')) continue;
+        for (const raw of release.assets || []) {
+          const asset = normalizedLibraryAsset(raw, release);
+          if (isBroadcastVideoAsset(asset)) assets.push(asset);
+        }
+      }
+      if (releases.length < 100) break;
+    }
+    return assets.sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
+  }
+
+  async function loadVideoLibrary({ quiet = false } = {}) {
+    if (!videoLibraryList || videoLibraryLoading || !sessionId) return;
+    videoLibraryLoading = true;
+    if (videoLibraryRefreshButton) videoLibraryRefreshButton.disabled = true;
+    renderVideoLibrary();
+    try {
+      try {
+        const data = await mediaBridge('/api/writer/media-library');
+        videoLibraryAssets = Array.isArray(data.assets)
+          ? data.assets.map(asset => normalizedLibraryAsset(asset)).filter(isBroadcastVideoAsset)
+          : [];
+        videoLibraryReadOnly = false;
+      } catch (error) {
+        if (error.status === 401 || !sessionId) throw error;
+        videoLibraryAssets = await fetchPublicVideoLibrary();
+        videoLibraryReadOnly = true;
+        if (!quiet) showToast('Video library loaded in read-only fallback mode. Reuse and preview still work.', 7000);
+      }
+    } catch (error) {
+      if (!quiet) showToast(`Could not load video library: ${error.message}`, 8000);
+    } finally {
+      videoLibraryLoading = false;
+      if (videoLibraryRefreshButton) videoLibraryRefreshButton.disabled = false;
+      renderVideoLibrary();
+    }
+  }
+
   function blockWidth(duration, min = 118, scale = 4.4, max = 460) {
     return Math.max(min, Math.min(max, positive(duration) * scale));
   }
