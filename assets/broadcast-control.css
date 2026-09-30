@@ -670,6 +670,24 @@ label.mfc-button {
   outline-offset: 1px;
 }
 
+.mfc-timeline-block.is-on-air {
+  box-shadow: inset 4px 0 0 var(--ctl-live), 0 0 0 1px rgba(227,77,80,.16);
+}
+
+.mfc-timeline-block.is-on-air::after {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  padding: 2px 4px;
+  border: 1px solid #93494c;
+  background: #4a2427;
+  color: #f4b3b5;
+  font-size: .43rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  content: "ON AIR";
+}
+
 .mfc-timeline-block.is-dragging {
   opacity: .42;
 }
