@@ -575,6 +575,17 @@ label.mfc-button {
   overflow: hidden;
 }
 
+.mfc-video-library-panel.is-drop-target {
+  outline: 2px solid var(--ctl-accent);
+  outline-offset: -2px;
+}
+
+.mfc-video-library-panel.is-drop-target .mfc-video-library {
+  background:
+    linear-gradient(rgba(217,138,66,.08), rgba(217,138,66,.08)),
+    #0b0e11;
+}
+
 .mfc-time-ruler {
   display: flex;
   align-items: end;
