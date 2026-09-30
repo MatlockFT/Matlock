@@ -36,6 +36,7 @@ on:
       - "assets/broadcast-news-pool.js"
       - "assets/broadcast-youtube.js"
       - "scripts/writer/broadcast-news-pool.spec.cjs"
+      - "scripts/writer/broadcast-text-fit.spec.cjs"
       - "assets/broadcast.css"
       - "scripts/writer/broadcast-control-smoke.spec.cjs"
       - "scripts/writer/broadcast-loop.spec.cjs"
@@ -82,6 +83,7 @@ on:
       - "assets/broadcast-news-pool.js"
       - "assets/broadcast-youtube.js"
       - "scripts/writer/broadcast-news-pool.spec.cjs"
+      - "scripts/writer/broadcast-text-fit.spec.cjs"
       - "assets/broadcast.css"
       - "scripts/writer/broadcast-control-smoke.spec.cjs"
       - "scripts/writer/broadcast-loop.spec.cjs"
@@ -150,7 +152,7 @@ jobs:
         run: |
           npm install --no-save --no-package-lock --ignore-scripts @playwright/test@1.55.0
           npx playwright install --with-deps chromium
-          npx playwright test scripts/writer/broadcast-loop.spec.cjs scripts/writer/broadcast-news-pool.spec.cjs --workers=1 --reporter=line
+          npx playwright test scripts/writer/broadcast-loop.spec.cjs scripts/writer/broadcast-news-pool.spec.cjs scripts/writer/broadcast-text-fit.spec.cjs --workers=1 --reporter=line
 
   production-smoke:
     if: github.event_name != 'pull_request'

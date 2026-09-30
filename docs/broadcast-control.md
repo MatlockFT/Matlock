@@ -36,6 +36,12 @@ The library displays 40 files per page. Search, filtering and sorting cover the 
 - New direct music URLs must load successfully before being added. YouTube music is excluded from continuous playback and blocks Take Live until replaced. Older drafts are preserved and display a warning; upload the audio file or use a playable direct URL.
 - Video duration can be read again or entered as min:sec; image duration is editable in seconds. Missing or invalid durations block Take Live rather than silently using 30 seconds or three minutes.
 
+## Text layout and long bodies
+
+Title, eyebrow and header band fit their available space automatically on every text block, including manual headlines, results, events and breaking news. The body wraps long words/URLs and fits at a readable size. When it is too long for one screen, **PAGE 1 / N** appears and the body advances through complete pages over the block's existing duration. No characters are discarded. The title, eyebrow and header remain visible on each page; pages restart when the block repeats. Layout recalculates when the monitor size changes, fonts load or text is edited.
+
+The text inspector shows the body character count, the current Preview's page count, seconds per page and suggested reading time. **Use suggested reading time** adjusts the draft duration when more time is needed. Shorter headings make larger text possible. Preview and Program can have different page counts when their screens have different sizes. These layout changes do not alter your saved text or publish a new rundown.
+
 ## Audio behavior
 
 Master affects video and music. Video controls original clip sound; Music controls the music bed. **Duck** lowers music to the selected percentage when video sound is enabled; **Mute** silences the music during that video; **Keep playing** mixes both. A muted video does not duck the music. Per-video choices override the global setting. Crossfade overlaps adjacent music tracks; fades can also be adjusted per track.

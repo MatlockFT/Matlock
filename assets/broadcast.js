@@ -13,6 +13,10 @@
   const eyebrow = root.querySelector('[data-mfc-eyebrow]');
   const title = root.querySelector('[data-mfc-title]');
   const bodyCopy = root.querySelector('[data-mfc-body]');
+  const copy = root.querySelector('[data-mfc-copy]');
+  const copyPage = root.querySelector('[data-mfc-copy-page]');
+  let copyLayout = null;
+  let fitFrame = 0;
   const image = root.querySelector('[data-mfc-image]');
   const video = root.querySelector('[data-mfc-video]');
   const panel = root.querySelector('[data-mfc-panel]');
@@ -211,20 +215,98 @@
     eyebrow.hidden = isVideo || isImage || isYoutube;
     title.hidden = isVideo || isImage || isYoutube;
     bodyCopy.hidden = isVideo || isImage || isYoutube;
+    copy.hidden = isVideo || isImage || isYoutube;
   }
-  window.addEventListener('resize', () => setMediaMode(timelinePosition(programItems(), rawElapsed()).item?.type || 'headline'));
 
-  function fitNewsCopy() {
-    title.style.fontSize = ''; bodyCopy.style.fontSize = '';
+  function largestFit(minimum, maximum, apply, fits) {
+    apply(maximum);
+    if (fits()) return maximum;
+    let low = minimum, high = maximum;
+    for (let step = 0; step < 10; step++) {
+      const middle = (low + high) / 2; apply(middle);
+      if (fits()) low = middle; else high = middle;
+    }
+    apply(low); return low;
+  }
+
+  function showCopyPage(position) {
+    if (!copyLayout || copyLayout.key !== currentProgramId || copy.hidden) return;
+    const index = Math.min(copyLayout.pages.length - 1, Math.floor(position.local / Math.max(1, positive(position.item?.duration)) * copyLayout.pages.length));
+    if (index === copyLayout.index) return;
+    copyLayout.index = index; bodyCopy.textContent = copyLayout.pages[index];
+    copyPage.textContent = 'PAGE ' + (index + 1) + ' / ' + copyLayout.pages.length;
+  }
+
+  function fitBroadcastCopy() {
+    if (!panel.clientWidth || !panel.clientHeight) return;
+    header.style.fontSize = '';
+    const headerBox = header.parentElement, headerStyle = getComputedStyle(headerBox);
+    const headerHeight = headerBox.clientHeight - parseFloat(headerStyle.paddingTop) - parseFloat(headerStyle.paddingBottom);
+    const headerWidth = headerBox.clientWidth - parseFloat(headerStyle.paddingLeft) - parseFloat(headerStyle.paddingRight);
+    largestFit(1, parseFloat(getComputedStyle(header).fontSize), size => { header.style.fontSize = size + 'px'; },
+      () => header.scrollWidth <= headerWidth + .5 && header.getBoundingClientRect().height <= headerHeight + .5);
+    if (copy.hidden || !copy.clientHeight) { copyLayout = null; return; }
+    title.style.fontSize = ''; eyebrow.style.fontSize = ''; bodyCopy.style.fontSize = '';
+    copyPage.hidden = true;
     const item = timelinePosition(programItems(), rawElapsed()).item;
-    if (!item?.sourceUrl || ['video', 'youtube', 'image'].includes(item.type)) return;
-    let titleSize = parseFloat(getComputedStyle(title).fontSize), bodySize = parseFloat(getComputedStyle(bodyCopy).fontSize);
-    for (let step = 0; step < 20 && panel.scrollHeight > panel.clientHeight + 1; step++) {
-      titleSize = Math.max(9, titleSize * .94); bodySize = Math.max(9, bodySize * .94);
-      title.style.fontSize = titleSize + 'px'; bodyCopy.style.fontSize = bodySize + 'px';
+    const fullBody = item ? String(item.body || '') : bodyCopy.textContent;
+    bodyCopy.textContent = fullBody;
+    const titleSize = parseFloat(getComputedStyle(title).fontSize), eyebrowSize = parseFloat(getComputedStyle(eyebrow).fontSize);
+    largestFit(.05, 1, scale => {
+      title.style.fontSize = titleSize * scale + 'px'; eyebrow.style.fontSize = eyebrowSize * scale + 'px';
+    }, () => {
+      const titleHeight = title.getBoundingClientRect().height, eyebrowHeight = eyebrow.getBoundingClientRect().height;
+      return titleHeight + eyebrowHeight <= copy.clientHeight * (fullBody ? .42 : .88)
+        && title.scrollWidth <= title.clientWidth + 1 && eyebrow.scrollWidth <= eyebrow.clientWidth + 1;
+    });
+    const baseBodySize = parseFloat(getComputedStyle(bodyCopy).fontSize);
+    const minimumBodySize = Math.min(baseBodySize, Math.max(9, Math.min(16, screen.clientWidth * .029)));
+    largestFit(minimumBodySize, baseBodySize, size => { bodyCopy.style.fontSize = size + 'px'; },
+      () => bodyCopy.scrollHeight <= bodyCopy.clientHeight + 1 && bodyCopy.scrollWidth <= bodyCopy.clientWidth + 1);
+    const pages = [];
+    if (bodyCopy.scrollHeight <= bodyCopy.clientHeight + 1 && bodyCopy.scrollWidth <= bodyCopy.clientWidth + 1) pages.push(fullBody);
+    else {
+      copyPage.hidden = false; copyPage.textContent = 'PAGE 1 / 2';
+      let remaining = fullBody;
+      while (remaining.length) {
+        let low = 0, high = remaining.length;
+        // Measure actual rendered lines, including paragraphs and unbroken URLs.
+        while (low < high) {
+          const middle = Math.ceil((low + high) / 2); bodyCopy.textContent = remaining.slice(0, middle);
+          if (bodyCopy.scrollHeight <= bodyCopy.clientHeight + 1 && bodyCopy.scrollWidth <= bodyCopy.clientWidth + 1) low = middle;
+          else high = middle - 1;
+        }
+        let end = Math.max(1, low);
+        if (end < remaining.length) {
+          const boundary = remaining.slice(0, end).search(/\s+\S*$/);
+          if (boundary > end * .5) end = boundary + 1;
+          // Never split a surrogate pair (emoji) across pages.
+          if (end > 1 && /[\uD800-\uDBFF]/.test(remaining[end - 1]) && /[\uDC00-\uDFFF]/.test(remaining[end])) end--;
+        }
+        pages.push(remaining.slice(0, end)); remaining = remaining.slice(end);
+      }
+    }
+    copyLayout = { key: currentProgramId, pages, index: -1 };
+    copyPage.hidden = pages.length < 2;
+    showCopyPage(timelinePosition(programItems(), rawElapsed()));
+    if (monitorMode && window.parent !== window && item) {
+      window.parent.postMessage({ type: 'matlock-broadcast-layout', itemId: item.id, pages: pages.length,
+        signature: JSON.stringify([item.type, item.title || '', item.eyebrow || '', item.header || '', item.body || '']),
+        characters: fullBody.length, secondsPerPage: positive(item.duration) / pages.length,
+        suggestedDuration: Math.max(pages.length * 8, Math.ceil(fullBody.split(/\s+/).filter(Boolean).length / 2)),
+        smallHeading: parseFloat(getComputedStyle(title).fontSize) < Math.max(9, screen.clientWidth * .018)
+      }, location.origin);
     }
   }
-  window.addEventListener('resize', fitNewsCopy);
+
+  function scheduleCopyFit() {
+    if (fitFrame) return;
+    fitFrame = requestAnimationFrame(() => { fitFrame = 0; fitBroadcastCopy(); });
+  }
+  window.addEventListener('resize', () => { setMediaMode(timelinePosition(programItems(), rawElapsed()).item?.type || 'headline'); scheduleCopyFit(); });
+  new ResizeObserver(scheduleCopyFit).observe(panel);
+  document.fonts?.ready.then(scheduleCopyFit);
+  document.fonts?.addEventListener('loadingdone', scheduleCopyFit);
 
   function renderProgramItem(item) {
     if (!item) {
@@ -235,6 +317,7 @@
       title.textContent = 'NO PROGRAMMING';
       bodyCopy.textContent = 'Add items in the broadcast control room.';
       nowNode.textContent = 'NOW: STANDBY';
+      copyLayout = null; scheduleCopyFit();
       return;
     }
 
@@ -262,7 +345,7 @@
     title.textContent = String(item.title || 'MATLOCK FIGHT CHANNEL').toUpperCase();
     bodyCopy.textContent = String(item.body || '');
     nowNode.textContent = `NOW: ${String(item.title || kind).toUpperCase()}`;
-    requestAnimationFrame(fitNewsCopy);
+    copyLayout = null; scheduleCopyFit();
 
     if (kind === 'image') {
       const url = String(item.mediaUrl || '');
@@ -296,6 +379,7 @@
 
     if (item) progressNode.textContent = `${fmt(position.local)} / ${fmt(item.duration)}`;
     else progressNode.textContent = '00:00 / 00:00';
+    showCopyPage(position);
 
     if (item?.type === 'video' && item.mediaUrl) {
       const mediaDuration = Number.isFinite(video.duration) && video.duration > 0 ? video.duration : positive(item.duration);
