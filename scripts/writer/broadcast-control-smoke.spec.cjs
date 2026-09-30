@@ -205,8 +205,8 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
 
   await expect(page.locator('[data-control-workspace]')).toBeVisible();
   await expect(page.locator('[data-auth-panel]')).toBeHidden();
-  await expect(page.locator('[data-auth-status]')).toHaveText('GitHub: MatlockFT');
-  await expect(page.locator('[data-draft-status]')).toHaveText('Draft saved');
+  await expect(page.locator('[data-auth-status]')).toHaveText('MatlockFT');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
   await expect(page.locator('[data-save-draft]')).toBeDisabled();
   await expect(page.locator('[data-take-live]')).toBeEnabled();
   await expect(page.locator('[data-reload-state]')).toBeEnabled();
@@ -239,12 +239,12 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
 
   const programBlocks = page.locator('[data-program-track] [data-program-id]');
   await expect(programBlocks).toHaveCount(3);
-  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved changes');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
 
   page.once('dialog', dialog => dialog.accept());
   await page.click('[data-reload-state]');
   await expect(programBlocks).toHaveCount(2);
-  await expect(page.locator('[data-draft-status]')).toHaveText('Draft saved');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
 
   await page.click('[data-workspace-tab="rundown"]');
   await expect(page.locator('[data-workspace-panel="rundown"]')).toBeVisible();
@@ -257,7 +257,7 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
 
   await page.click('[data-add-program="headline"]');
   await expect(programBlocks).toHaveCount(3);
-  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved changes');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
   await expect(page.locator('[data-save-draft]')).toBeEnabled();
   await expect(page.locator('[data-program-fields] button', { hasText: 'Move right →' })).toBeDisabled();
 
@@ -267,28 +267,28 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
 
   await page.click('[data-save-draft]');
   await expect.poll(() => writes).toBe(1);
-  await expect(page.locator('[data-draft-status]')).toHaveText('Draft saved');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
   await expect(page.locator('[data-save-draft]')).toBeDisabled();
 
   await page.click('[data-workspace-tab="graphics"]');
   await page.fill('[data-ticker-input]', 'SMOKE LIVE ONE\nSMOKE LIVE TWO');
   await expect(page.locator('[data-ticker-preview]')).toContainText('SMOKE LIVE ONE');
-  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved changes');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
   await page.click('[data-take-live]');
   await expect.poll(() => writes).toBe(2);
-  await expect(page.locator('[data-draft-status]')).toHaveText('Draft saved');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
   expect(remoteState.live.ticker).toEqual(['SMOKE LIVE ONE', 'SMOKE LIVE TWO']);
   expect(remoteState.live.program.at(-1).title).toBe('UPDATED SMOKE HEADLINE');
 
   await page.click('[data-workspace-tab="rundown"]');
   await page.click('[data-add-program="breaking"]');
   await expect(programBlocks).toHaveCount(4);
-  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved changes');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
 
   page.once('dialog', dialog => dialog.accept());
   await page.click('[data-reload-state]');
   await expect(programBlocks).toHaveCount(3);
-  await expect(page.locator('[data-draft-status]')).toHaveText('Draft saved');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
 
   await page.click('[data-workspace-tab="audio"]');
   await expect(page.locator('[data-workspace-panel="audio"]')).toBeVisible();
