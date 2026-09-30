@@ -23,6 +23,31 @@
   --ctl-tabs-h: 46px;
 }
 
+.mfc-news-pool { padding: 20px; }
+.mfc-news-pool h2 { margin: 5px 0; font-size: 22px; }
+.mfc-news-pool > p { color: var(--ctl-muted); line-height: 1.5; }
+.mfc-news-filters { display: grid; grid-template-columns: minmax(200px, 2fr) 1fr 1fr; gap: 14px; margin: 20px 0; }
+.mfc-news-unused { grid-column: 1 / -1; color: var(--ctl-muted); display: flex; gap: 8px; align-items: center; min-height: 32px; }
+.mfc-news-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 18px 0; }
+.mfc-news-card { min-width: 0; border: 1px solid var(--ctl-line); border-radius: 6px; overflow: hidden; background: var(--ctl-panel-2); display: flex; flex-direction: column; }
+.mfc-news-card > img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--ctl-bg); }
+.mfc-news-card-content { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+.mfc-news-card h3 { font-size: 18px; line-height: 1.4; margin: 0; overflow-wrap: anywhere; }
+.mfc-news-card p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--ctl-muted); }
+.mfc-news-card .mfc-news-meta { font-size: 11px; color: var(--ctl-accent); }
+.mfc-news-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: auto; padding-top: 10px; }
+.mfc-news-actions a, .mfc-editor-form > a { color: var(--ctl-accent); font-size: 13px; overflow-wrap: anywhere; }
+.mfc-news-preview { width: min(860px, calc(100vw - 24px)); max-width: calc(100vw - 24px); padding: 18px; }
+.mfc-news-preview header { display: flex; gap: 16px; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.mfc-news-preview iframe { width: 100%; height: max(200px, min(55vh, 440px)); border: 0; display: block; }
+.mfc-news-preview p { color: var(--ctl-muted); font-size: 13px; line-height: 1.5; }
+@media (max-width: 1100px) { .mfc-news-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) {
+  .mfc-news-pool { padding: 14px; }
+  .mfc-news-filters, .mfc-news-list { grid-template-columns: 1fr; }
+  .mfc-news-actions button { min-height: 42px; }
+}
+
 * {
   box-sizing: border-box;
 }

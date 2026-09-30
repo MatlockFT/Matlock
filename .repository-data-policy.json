@@ -400,6 +400,18 @@
       "publicContract": true
     },
     {
+      "id": "broadcast-news-video-runtime",
+      "storage": "public-runtime",
+      "paths": ["assets/data/broadcast-news-videos.json"],
+      "lifecycle": "generated-public-runtime",
+      "owner": "news",
+      "producers": ["scripts/news/build-broadcast-videos.mjs"],
+      "consumers": ["assets/broadcast-news-pool.js", "broadcast-control.html"],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
       "id": "otd-primary-runtime",
       "storage": "public-runtime",
       "paths": [

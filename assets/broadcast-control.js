@@ -179,7 +179,7 @@
       graphics: working?.ticker?.length || 0
     };
     app.querySelectorAll('[data-workspace-count]').forEach(node => {
-      node.textContent = String(counts[node.dataset.workspaceCount] || 0);
+      if (node.dataset.workspaceCount in counts) node.textContent = String(counts[node.dataset.workspaceCount] || 0);
     });
   }
 
@@ -191,6 +191,11 @@
       tab.setAttribute('aria-selected', active ? 'true' : 'false');
       tab.tabIndex = active ? 0 : -1;
       if (active && focus) tab.focus();
+      if (active) {
+        const nav = tab.parentElement;
+        const bounds = tab.getBoundingClientRect(), parentBounds = nav.getBoundingClientRect();
+        if (bounds.left < parentBounds.left || bounds.right > parentBounds.right) nav.scrollLeft += bounds.left - parentBounds.left;
+      }
     });
     workspacePanels.forEach(panel => {
       const active = panel.dataset.workspacePanel === target;
@@ -596,16 +601,54 @@
   window.addEventListener('pagehide', persistRecovery);
   document.addEventListener('visibilitychange', () => { if (document.hidden) persistRecovery(); });
 
+  function validNewsVideo(item) {
+    return /^[A-Za-z0-9_-]{11}$/.test(item.youtubeId || '')
+      && item.mediaUrl === 'https://www.youtube.com/watch?v=' + item.youtubeId
+      && Number(item.sourceDuration) > 180 && Number(item.sourceDuration) <= 86400
+      && Number(item.duration) > 0 && Number(item.duration) <= Number(item.sourceDuration);
+  }
+
+  // The news browser receives only draft membership and a narrowly scoped add action.
+  window.matlockBroadcastNews = {
+    snapshot: () => ({ program: (working?.program || []).map(item => ({ sourceUrl: item.sourceUrl, mediaUrl: item.mediaUrl })), ticker: [...(working?.ticker || [])] }),
+    add: (news, target) => {
+      if (!working || busyAction || uploadRunning) { showToast('Wait for the current action to finish.'); return false; }
+      let url;
+      try { url = new URL(news.url); if (!['https:', 'http:'].includes(url.protocol)) return false; } catch { return false; }
+      const title = String(news.title || '').trim().slice(0, 240);
+      const source = String(news.source || 'MMA news').slice(0, 80);
+      if (!title) return false;
+      if (target === 'ticker' && news.kind === 'article') {
+        const text = title + ' — ' + source;
+        if (working.ticker.includes(text)) return false;
+        working.ticker.push(text); tickerInput.value = working.ticker.join('\n'); renderTickerPreview();
+      } else {
+        if (working.program.some(item => item.sourceUrl === url.href || item.mediaUrl === url.href)) return false;
+        const item = { id: uid('news'), type: 'headline', title, body: String(news.excerpt || '').slice(0, 220),
+          eyebrow: source, header: 'MMA NEWS', duration: 20, source, sourceUrl: url.href };
+        if (news.kind === 'video') {
+          Object.assign(item, { type: 'youtube', mediaUrl: url.href, youtubeId: news.id,
+            duration: Number(news.duration), sourceDuration: Number(news.duration), videoAudio: true, musicBehavior: 'duck' });
+          if (!validNewsVideo(item) || /#shorts\b/i.test(title)) { showToast('Choose a video over three minutes from News Pool.'); return false; }
+        } else if (news.kind !== 'article') return false;
+        working.program.push(item); selectedProgramId = item.id; renderProgram();
+      }
+      markDirty(); showToast('Added to Preview. Review in Rundown, then Save Draft.'); return true;
+    }
+  };
+
   function readinessIssues() {
     const issues = [];
     for (const [kind, items] of [['program', working?.program || []], ['music', working?.music || []]]) {
       items.forEach((item, index) => {
         const reasons = [];
         if (!Number.isFinite(Number(item.duration)) || Number(item.duration) <= 0) reasons.push('set a valid duration');
-        const needsMedia = kind === 'music' || ['video', 'image'].includes(item.type);
+        const needsMedia = kind === 'music' || ['video', 'image', 'youtube'].includes(item.type);
         const url = kind === 'music' ? item.url : item.mediaUrl;
         if (needsMedia && !url) reasons.push('add a file or URL');
-        else if (url && !isDirectUrl(url)) reasons.push('replace the page/API link with a direct file');
+        else if (kind === 'program' && item.type === 'youtube') {
+          if (!validNewsVideo(item)) reasons.push('choose a non-Short video from News Pool');
+        } else if (url && !isDirectUrl(url)) reasons.push('replace the page/API link with a direct file');
         if (reasons.length) issues.push({ kind, id: item.id, title: item.title || (kind === 'music' ? 'Track ' : 'Block ') + (index + 1), reasons });
       });
     }
@@ -669,6 +712,7 @@
       : 'Standby';
     updateWorkspaceCounts();
     renderReadiness();
+    app.dispatchEvent(new Event('matlock-broadcast-draft-change'));
   }
 
   function displayVideoName(name) {
@@ -1116,7 +1160,7 @@
 
       const duration = document.createElement('div');
       duration.className = 'mfc-timeline-duration';
-      if (item.type === 'video') {
+      if (item.type === 'video' || item.type === 'youtube') {
         duration.textContent = positive(item.duration) ? fmt(item.duration) : 'NEEDS DURATION';
       } else {
         const input = document.createElement('input');
@@ -1280,7 +1324,7 @@
 
     form.append(titleField.wrap, eyebrowField.wrap, headerField.wrap);
 
-    if (!['image', 'video'].includes(item.type)) {
+    if (!['image', 'video', 'youtube'].includes(item.type)) {
       const bodyField = field('Body', 'body', {
         type: 'textarea',
         value: item.body || '',
@@ -1303,6 +1347,37 @@
       form.append(bodyField.wrap, durationField.wrap);
     }
 
+    if (item.sourceUrl) {
+      const source = document.createElement('a');
+      try {
+        const url = new URL(item.sourceUrl);
+        if (['https:', 'http:'].includes(url.protocol)) {
+          source.href = url.href; source.target = '_blank'; source.rel = 'noopener noreferrer';
+          source.textContent = 'Original source: ' + (item.source || 'Open source'); form.append(source);
+        }
+      } catch {}
+    }
+    if (item.type === 'youtube') {
+      form.append(field('Playback duration (min:sec)', 'duration', {
+        value: fmtInput(item.duration), live: false,
+        onChange: (value, input) => {
+          const seconds = parseDurationInput(value);
+          if (!Number.isFinite(seconds) || seconds <= 0 || seconds > item.sourceDuration) {
+            input.value = fmtInput(item.duration); return showToast('Use a duration between 1 second and the original video length.');
+          }
+          item.duration = seconds; renderProgram(); markDirty();
+        }
+      }).wrap);
+      form.append(field('Video audio', 'videoAudio', { type: 'select', value: item.videoAudio === false ? 'off' : 'on',
+        options: [{ value: 'on', label: 'Use video audio' }, { value: 'off', label: 'Mute video audio' }],
+        onChange: value => { item.videoAudio = value !== 'off'; markDirty(); } }).wrap);
+      form.append(field('Music during this video', 'musicBehavior', { type: 'select', value: item.musicBehavior || 'duck',
+        options: [{ value: 'duck', label: 'Duck music' }, { value: 'mute', label: 'Mute music' }, { value: 'keep', label: 'Keep music playing' }],
+        onChange: value => { item.musicBehavior = value; markDirty(); } }).wrap);
+      const note = document.createElement('p'); note.className = 'mfc-field-note';
+      note.textContent = 'Original video: ' + fmt(item.sourceDuration) + '. Plays from the beginning; shorten the duration to trim the end. YouTube may restrict embedding or autoplay. Unavailable videos are skipped.';
+      form.append(note);
+    }
     if (item.type === 'image' || item.type === 'video') {
       const mediaField = field(item.type === 'video' ? 'Video URL' : 'Image URL', 'mediaUrl', {
         type: 'url',

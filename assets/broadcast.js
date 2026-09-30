@@ -16,6 +16,7 @@
   const image = root.querySelector('[data-mfc-image]');
   const video = root.querySelector('[data-mfc-video]');
   const panel = root.querySelector('[data-mfc-panel]');
+  const youtubeHost = root.querySelector('[data-mfc-youtube]');
   const dateNode = root.querySelector('[data-mfc-date]');
   const clockNode = root.querySelector('[data-mfc-clock]');
   const nowNode = root.querySelector('[data-mfc-now]');
@@ -51,6 +52,18 @@
   const waitingSince = new WeakMap();
   let soundBlocked = false;
   const playbackStatus = root.querySelector('[data-mfc-playback-status]');
+  const youtube = youtubeHost && window.matlockYoutubePlayer?.(youtubeHost, {
+    error: url => {
+      failedMedia.set(url, Date.now() + 60000); currentProgramId = '';
+      reportPlayback('A YouTube video is unavailable. Continuing with available content; retrying in one minute.');
+    },
+    blocked: () => {
+      soundBlocked = true; setSoundState(false); soundButton.hidden = false;
+      soundButton.textContent = 'CLICK TO ENABLE SOUND';
+      reportPlayback('YouTube autoplay was blocked. Click Sound On or the video play button.', true);
+    },
+    playing: () => { if (!soundBlocked) reportPlayback(''); }
+  });
 
   function reportPlayback(message, blocked = false) {
     if (playbackStatus) { playbackStatus.textContent = message; playbackStatus.hidden = !message; }
@@ -133,7 +146,10 @@
   }
 
   function programItems() {
-    return Array.isArray(channel?.program) ? channel.program.filter(item => positive(item.duration) > 0 && (!['video', 'image'].includes(item.type) || sourceAvailable(item.mediaUrl))) : [];
+    return Array.isArray(channel?.program) ? channel.program.filter(item => positive(item.duration) > 0
+      && (item.type !== 'youtube' || (youtube && /^[A-Za-z0-9_-]{11}$/.test(item.youtubeId || '')
+        && item.mediaUrl === 'https://www.youtube.com/watch?v=' + item.youtubeId && positive(item.sourceDuration) > 180 && positive(item.duration) <= positive(item.sourceDuration)))
+      && (!['video', 'image', 'youtube'].includes(item.type) || sourceAvailable(item.mediaUrl))) : [];
   }
 
   function musicItems() {
@@ -180,13 +196,35 @@
   function setMediaMode(kind) {
     const isVideo = kind === 'video';
     const isImage = kind === 'image';
+    const isYoutube = kind === 'youtube';
+    youtubeHost.hidden = !isYoutube;
+    if (!isYoutube) youtube?.stop();
+    screen.classList.remove('is-compact-youtube');
+    if (isYoutube) {
+      const bounds = panel.getBoundingClientRect();
+      screen.classList.toggle('is-compact-youtube', bounds.width < 200 || bounds.height < 200);
+    }
+    panel.classList.toggle('has-youtube', isYoutube);
     video.hidden = !isVideo;
     image.hidden = !isImage;
-    panel.classList.toggle('has-media', isVideo || isImage);
-    eyebrow.hidden = isVideo || isImage;
-    title.hidden = isVideo || isImage;
-    bodyCopy.hidden = isVideo || isImage;
+    panel.classList.toggle('has-media', isVideo || isImage || isYoutube);
+    eyebrow.hidden = isVideo || isImage || isYoutube;
+    title.hidden = isVideo || isImage || isYoutube;
+    bodyCopy.hidden = isVideo || isImage || isYoutube;
   }
+  window.addEventListener('resize', () => setMediaMode(timelinePosition(programItems(), rawElapsed()).item?.type || 'headline'));
+
+  function fitNewsCopy() {
+    title.style.fontSize = ''; bodyCopy.style.fontSize = '';
+    const item = timelinePosition(programItems(), rawElapsed()).item;
+    if (!item?.sourceUrl || ['video', 'youtube', 'image'].includes(item.type)) return;
+    let titleSize = parseFloat(getComputedStyle(title).fontSize), bodySize = parseFloat(getComputedStyle(bodyCopy).fontSize);
+    for (let step = 0; step < 20 && panel.scrollHeight > panel.clientHeight + 1; step++) {
+      titleSize = Math.max(9, titleSize * .94); bodySize = Math.max(9, bodySize * .94);
+      title.style.fontSize = titleSize + 'px'; bodyCopy.style.fontSize = bodySize + 'px';
+    }
+  }
+  window.addEventListener('resize', fitNewsCopy);
 
   function renderProgramItem(item) {
     if (!item) {
@@ -224,6 +262,7 @@
     title.textContent = String(item.title || 'MATLOCK FIGHT CHANNEL').toUpperCase();
     bodyCopy.textContent = String(item.body || '');
     nowNode.textContent = `NOW: ${String(item.title || kind).toUpperCase()}`;
+    requestAnimationFrame(fitNewsCopy);
 
     if (kind === 'image') {
       const url = String(item.mediaUrl || '');
@@ -269,6 +308,10 @@
       safePlay(video);
     } else { video.pause(); waitingSince.delete(video); }
 
+    if (item?.type === 'youtube') youtube.sync({ id: item.youtubeId, url: item.mediaUrl, time: position.local,
+      muted: !soundEnabled || item.videoAudio === false,
+      volume: Math.round(clamp(channel?.audio?.master ?? 1, 0, 1) * clamp(channel?.audio?.video ?? 1, 0, 1) * 100) });
+
     return { elapsed, position };
   }
 
@@ -279,7 +322,7 @@
   }
 
   function duckTarget(programItem) {
-    if (!programItem || programItem.type !== 'video' || programItem.videoAudio === false) return 1;
+    if (!programItem || !['video', 'youtube'].includes(programItem.type) || programItem.videoAudio === false) return 1;
     const mode = String(programItem.musicBehavior || channel?.audio?.videoMusic || 'duck').toLowerCase();
     if (mode === 'mute') return 0;
     if (mode === 'keep' || mode === 'keep-playing') return 1;
@@ -431,6 +474,7 @@
 
   function setSoundState(enabled) {
     soundEnabled = Boolean(enabled);
+    youtube?.sound(soundEnabled && timelinePosition(programItems(), rawElapsed()).item?.videoAudio !== false);
     if (soundEnabled) soundBlocked = false;
     if (!monitorMode) {
       try { localStorage.setItem(SOUND_KEY, soundEnabled ? 'on' : 'off'); } catch {}
