@@ -1481,8 +1481,33 @@
     }
   }
 
+  function validateWorkingForLive() {
+    if (!working) return false;
+    const program = Array.isArray(working.program) ? working.program : [];
+    const missingMedia = program.filter(item =>
+      ['image', 'video'].includes(String(item?.type || '').toLowerCase())
+      && !String(item?.mediaUrl || '').trim()
+    );
+    if (missingMedia.length) {
+      showToast(`Cannot Take Live: ${missingMedia.length} media block${missingMedia.length === 1 ? ' is' : 's are'} missing a file or URL.`, 8500);
+      return false;
+    }
+    const invalidVideo = program.find(item =>
+      String(item?.type || '').toLowerCase() === 'video'
+      && positive(item?.duration) <= 0
+    );
+    if (invalidVideo) {
+      showToast('Cannot Take Live: a video block has no valid duration.', 8500);
+      return false;
+    }
+    if (!program.length) {
+      return window.confirm('The rundown is empty. Take an empty standby program live?');
+    }
+    return true;
+  }
+
   async function takeLive() {
-    if (!working || busyAction) return;
+    if (!working || busyAction || !validateWorkingForLive()) return;
     const originalLabel = takeLiveButton.textContent;
     setBusy('live');
     takeLiveButton.textContent = 'Taking Live…';
