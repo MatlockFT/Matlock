@@ -2046,11 +2046,16 @@
       musicUrlInput.reportValidity();
       return;
     }
+    const typedDuration = parseDurationInput(musicUrlDurationInput?.value || '');
+    if (!Number.isFinite(typedDuration) || typedDuration < 1 || typedDuration > 86400) {
+      showToast('Enter duration as min:sec, for example 3:30.', 5500);
+      musicUrlDurationInput?.focus();
+      return;
+    }
     const originalLabel = confirmMusicUrlButton.textContent;
     confirmMusicUrlButton.disabled = true;
     confirmMusicUrlButton.textContent = 'Checking…';
-    const typedDuration = parseDurationInput(musicUrlDurationInput?.value || '3:00');
-    let duration = Number.isFinite(typedDuration) && typedDuration > 0 ? typedDuration : 180;
+    let duration = typedDuration;
     const youtubeId = youtubeVideoId(url);
     try {
       if (!youtubeId) {
