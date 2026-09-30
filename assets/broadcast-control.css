@@ -43,6 +43,10 @@ select {
   padding: 0;
 }
 
+.mfc-control [hidden] {
+  display: none !important;
+}
+
 .mfc-control {
   width: min(1800px, 100%);
   margin: 0 auto;
@@ -91,6 +95,12 @@ select {
 
 .mfc-control-status strong {
   color: var(--ctl-text);
+}
+
+.mfc-auth-status {
+  padding-left: .55rem;
+  border-left: 1px solid var(--ctl-line);
+  color: var(--ctl-muted);
 }
 
 .mfc-onair-dot {
