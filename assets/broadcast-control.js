@@ -25,6 +25,9 @@
   const previewDuration = app.querySelector('[data-preview-duration]');
   const previewFrame = app.querySelector('[data-preview-frame]');
   const programFrame = app.querySelector('[data-program-frame]');
+  const previewAudioButton = app.querySelector('[data-preview-audio]');
+  const programAudioButton = app.querySelector('[data-program-audio]');
+  const programAudioStatus = app.querySelector('[data-program-audio-status]');
   const workspaceTabs = Array.from(app.querySelectorAll('[data-workspace-tab]'));
   const workspacePanels = Array.from(app.querySelectorAll('[data-workspace-panel]'));
   const tickerPreview = app.querySelector('[data-ticker-preview]');
@@ -78,6 +81,8 @@
   let videoLibraryAssets = [];
   let videoLibraryReadOnly = false;
   let videoLibraryLoading = false;
+  let previewMonitorAudio = false;
+  let programMonitorAudio = false;
   const videoDurationCache = new Map();
 
   const clone = value => JSON.parse(JSON.stringify(value));
@@ -178,6 +183,42 @@
       url.searchParams.set('refresh', String(Date.now()));
       programFrame.src = url.href;
     } catch {}
+  }
+
+  function postMonitorSound(frame, enabled) {
+    if (!frame?.contentWindow) return;
+    frame.contentWindow.postMessage({
+      type: 'matlock-broadcast-monitor-sound',
+      enabled: Boolean(enabled)
+    }, location.origin);
+  }
+
+  function renderMonitorAudioButtons() {
+    if (previewAudioButton) {
+      previewAudioButton.setAttribute('aria-pressed', previewMonitorAudio ? 'true' : 'false');
+      previewAudioButton.textContent = previewMonitorAudio ? 'Listening' : 'Listen';
+    }
+    if (programAudioButton) {
+      programAudioButton.setAttribute('aria-pressed', programMonitorAudio ? 'true' : 'false');
+      programAudioButton.textContent = programMonitorAudio ? 'Listening' : 'Listen';
+    }
+    if (programAudioStatus) {
+      programAudioStatus.textContent = programMonitorAudio ? 'Program audio enabled' : 'Audio muted locally';
+    }
+  }
+
+  function setMonitorAudio(target, enabled) {
+    const next = Boolean(enabled);
+    if (target === 'preview') {
+      previewMonitorAudio = next;
+      if (next) programMonitorAudio = false;
+    } else {
+      programMonitorAudio = next;
+      if (next) previewMonitorAudio = false;
+    }
+    postMonitorSound(previewFrame, previewMonitorAudio);
+    postMonitorSound(programFrame, programMonitorAudio);
+    renderMonitorAudioButtons();
   }
 
   function syncActionButtons() {
@@ -389,7 +430,7 @@
   function postPreview() {
     if (!previewFrame?.contentWindow || !working) return;
     const channel = clone(working);
-    if (!channel.startedAt) channel.startedAt = new Date().toISOString();
+    channel.startedAt = new Date().toISOString();
     previewFrame.contentWindow.postMessage({
       type: 'matlock-broadcast-preview',
       channel
@@ -1909,8 +1950,25 @@
   }
 
   previewFrame?.addEventListener('load', () => {
-    window.setTimeout(postPreview, 150);
+    window.setTimeout(() => {
+      postPreview();
+      postMonitorSound(previewFrame, previewMonitorAudio);
+    }, 150);
   });
+
+  programFrame?.addEventListener('load', () => {
+    window.setTimeout(() => postMonitorSound(programFrame, programMonitorAudio), 150);
+  });
+
+  previewAudioButton?.addEventListener('click', () => {
+    setMonitorAudio('preview', !previewMonitorAudio);
+  });
+
+  programAudioButton?.addEventListener('click', () => {
+    setMonitorAudio('program', !programMonitorAudio);
+  });
+
+  renderMonitorAudioButtons();
 
   document.addEventListener('keydown', event => {
     if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 's') return;
