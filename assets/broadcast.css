@@ -320,8 +320,13 @@ body {
 
 .mfc-info-bottom span:first-child {
   min-width: 0;
+  flex: 1 1 auto;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.mfc-info-bottom span:last-child {
+  flex: 0 0 auto;
 }
 
 .mfc-ticker {
