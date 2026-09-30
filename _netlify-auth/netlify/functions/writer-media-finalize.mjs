@@ -1,5 +1,5 @@
 import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
-import { mediaStore, requireWriterSession, setStatus, uploadScope, validUploadId, validateVideoMetadata } from './_writer-media.mjs';
+import { mediaStore, requireWriterSession, setStatus, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
 
 export default async function handler(request) {
   const origin = normalizeOrigin(request.headers.get('origin'));
@@ -33,7 +33,7 @@ export default async function handler(request) {
 
   let meta;
   try {
-    meta = validateVideoMetadata({
+    meta = validateMediaMetadata({
       assetName: body?.assetName,
       fileSize: body?.fileSize,
       fileType: body?.fileType,
