@@ -220,7 +220,7 @@ body {
   font-family: var(--mfc-type-weather-display);
   font-size: clamp(.88rem, 3.35cqw, 1.7rem);
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.5;
   letter-spacing: -.006em;
   word-spacing: 0;
   white-space: normal;
@@ -271,7 +271,7 @@ body {
   font-family: var(--mfc-type-weather-display);
   font-size: clamp(.55rem, 2.4cqw, 1.18rem);
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.35;
   letter-spacing: 0;
   word-spacing: 0;
   text-transform: uppercase;
@@ -290,7 +290,7 @@ body {
   font-family: var(--mfc-type-weather-display);
   font-size: clamp(1.05rem, 4.08cqw, 2.06rem);
   font-weight: 400;
-  line-height: 1.04;
+  line-height: 1.35;
   letter-spacing: 0;
   word-spacing: 0;
   text-transform: uppercase;
