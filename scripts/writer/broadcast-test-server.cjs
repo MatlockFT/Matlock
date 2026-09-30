@@ -92,7 +92,7 @@ async function startServer(port = 0) {
   await new Promise(resolve => server.listen(port, '127.0.0.1', resolve));
   origin = `http://127.0.0.1:${server.address().port}`;
   state = initialState(origin);
-  return { origin, server, controls, assets, media, get state() { return state; }, set state(value) { state = value; }, close: () => new Promise(resolve => server.close(resolve)) };
+  return { origin, server, controls, assets, media, get state() { return state; }, set state(value) { state = value; revision++; }, close: () => new Promise(resolve => server.close(resolve)) };
 }
 
 module.exports = { startServer, wav };

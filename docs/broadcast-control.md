@@ -7,6 +7,16 @@
 5. In **Audio**, arrange the independent repeating music playlist. **Upload Songs** also accepts music in an MP4/M4V/WebM container and uses its sound only. Preview a track with the audio player in its inspector, or use **Listen** to hear the complete mix.
 6. **Save Draft** stores the playlists and uploaded metadata without changing the broadcast. **Take Preview Live** saves the draft and restarts the public loop with it. Open `/broadcast/` on the playback device and enable sound once. Existing viewers poll for changes approximately every 12 seconds.
 
+## Recovery, editing and large libraries
+
+Unsaved edits are backed up in this browser under your GitHub account. After a refresh, use **Restore to Preview** to recover them or **Discard backup** to keep the saved draft. Recovery never changes Program. Review a recovered draft before saving, especially if the saved state changed since the backup. Browser backups are local to this device and can be lost when browser storage is cleared; Save Draft stores your work in the account. Files that have not finished uploading cannot be recovered.
+
+**Undo** and **Redo** restore up to 60 recent edit states, including removed or reordered items. Typing is grouped into short edit sequences. The shortcuts are Ctrl/⌘+Z and Ctrl/⌘+Shift+Z outside text fields; inside a text field, the browser retains its normal text undo. These controls change Preview only. They do not undo an upload, delete, or Take Live operation.
+
+The readiness list shows every item with a missing duration or media link. Click an issue to open that item's inspector. These are configuration checks; use Preview and Listen to check the files and mix before taking the loop live.
+
+The library displays 40 files per page. Search, filtering and sorting cover the entire library. **Add all unused media to draft** also covers all pages and shows progress; **Stop adding after this file** keeps the files already added and leaves the rest in the library.
+
 ## Formats and links
 
 - Recommended video: MP4 containing H.264 video and AAC audio. WebM and M4V are also accepted if the browser can read them.
