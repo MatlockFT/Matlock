@@ -4,7 +4,7 @@ import { requireWriterSession } from './_writer-media.mjs';
 
 const RELEASE_PREFIX = 'writer-media-';
 const BROADCAST_VIDEO_PREFIX = 'broadcast-video-';
-const MAX_RELEASES = 12;
+const MAX_RELEASES = 36;
 const MAX_ASSET_PAGES = 5;
 
 export function isManagedMediaRelease(release) {
@@ -153,13 +153,14 @@ export default async function handler(request) {
   }
 
   try {
-    const asset = await githubJson(session.token, `/releases/assets/${assetId}`);
-    if (!isBroadcastVideoAsset(asset)) {
-      return jsonError('Only Broadcast Control video uploads can be deleted here.', 403, headers);
+    const library = await listBroadcastVideos(session.token);
+    const asset = library.find(item => item.id === assetId);
+    if (!asset) {
+      return jsonError('That Broadcast Control video was not found in the managed media releases.', 404, headers);
     }
 
     const state = await loadBroadcastState(session.token);
-    const usage = broadcastVideoUsage(state, asset.browser_download_url);
+    const usage = broadcastVideoUsage(state, asset.url);
     if (usage.draft || usage.live) {
       const places = [usage.draft ? 'draft' : '', usage.live ? 'live broadcast' : ''].filter(Boolean).join(' and ');
       return jsonError(`This video is still used by the ${places}. Remove it from programming and save the state before deleting it permanently.`, 409, headers, { usage });
