@@ -428,7 +428,15 @@
       !usage.blocked ? 'UNUSED' : ''
     ].filter(Boolean).join(' · ');
     const uploaded = asset.createdAt ? new Date(asset.createdAt).toLocaleString() : 'Unknown upload date';
-    videoPreviewMeta.textContent = `${formatBytes(asset.size)} · ${uploaded}${states ? ` · ${states}` : ''}`;
+    const knownDuration = knownVideoDuration(asset.url);
+    videoPreviewMeta.textContent = `${formatBytes(asset.size)}${knownDuration ? ` · ${fmt(knownDuration)}` : ''} · ${uploaded}${states ? ` · ${states}` : ''}`;
+    videoPreviewPlayer.onloadedmetadata = () => {
+      const duration = Number(videoPreviewPlayer.duration);
+      if (!Number.isFinite(duration) || duration <= 0) return;
+      videoDurationCache.set(asset.url, duration);
+      videoPreviewMeta.textContent = `${formatBytes(asset.size)} · ${fmt(duration)} · ${uploaded}${states ? ` · ${states}` : ''}`;
+      renderVideoLibrary();
+    };
     videoPreviewPlayer.src = asset.url;
     videoPreviewDialog.showModal();
   }
@@ -478,13 +486,17 @@
       const meta = document.createElement('div');
       meta.className = 'mfc-video-asset-meta';
       const uploaded = asset.createdAt ? new Date(asset.createdAt).toLocaleDateString() : 'Unknown date';
-      meta.append(
-        document.createTextNode(formatBytes(asset.size)),
-        document.createTextNode('•'),
-        document.createTextNode(uploaded),
-        document.createTextNode('•'),
-        document.createTextNode(`${asset.downloadCount || 0} download${asset.downloadCount === 1 ? '' : 's'}`)
-      );
+      const duration = knownVideoDuration(asset.url);
+      const parts = [
+        formatBytes(asset.size),
+        duration ? fmt(duration) : '',
+        uploaded,
+        `${asset.downloadCount || 0} download${asset.downloadCount === 1 ? '' : 's'}`
+      ].filter(Boolean);
+      parts.forEach((part, index) => {
+        if (index) meta.append(document.createTextNode('•'));
+        meta.append(document.createTextNode(part));
+      });
   
       const badges = document.createElement('div');
       badges.className = 'mfc-video-asset-badges';
