@@ -22,8 +22,10 @@
   if (!authBase || !editor || !titleInput || !filenameInput || !preview || !toggleButton || !panel || !startButton || !endButton) return;
 
   const SESSION_ID_KEY = 'matlock-writer:server-session';
-  const LIVE_ENDPOINT = authBase + '/api/writer/live';
-  const MIN_AUTO_PUSH_MS = 2500;
+  const LIVE_REPO_PATH = 'assets/uploads/runtime/live-writer.json';
+  const LIVE_API_PATH = '/contents/' + LIVE_REPO_PATH;
+  const MIN_AUTO_PUSH_MS = 5000;
+  let liveFileSha = '';
   let active = false;
   let syncTimer = 0;
   let syncing = false;
@@ -101,30 +103,79 @@
     else setPanelStatus('Not live', 'idle');
   }
 
-  async function liveRequest(method, payload) {
+  async function githubRequest(method, apiPath, body) {
     const id = sessionId();
     if (!id) throw new Error('Sign in with GitHub first. Live Writer uses your secure Writer session.');
 
-    const response = await fetch(LIVE_ENDPOINT, {
+    const response = await fetch(authBase + '/api/writer/github?path=' + encodeURIComponent(apiPath), {
       method,
       mode: 'cors',
       cache: 'no-store',
       headers: {
-        Accept: 'application/json',
+        Accept: 'application/vnd.github+json',
         'X-Writer-Session': id,
-        ...(payload ? { 'Content-Type': 'application/json' } : {})
+        ...(body ? { 'Content-Type': 'application/json' } : {})
       },
-      ...(payload ? { body: JSON.stringify(payload) } : {})
+      ...(body ? { body: JSON.stringify(body) } : {})
     });
 
     const data = await response.json().catch(() => ({}));
     if (response.status === 401) window.dispatchEvent(new CustomEvent('matlock-writer:auth-expired'));
-    if (!response.ok || !data.ok) {
-      const error = new Error(data.error || 'Live Writer request failed.');
+    if (!response.ok) {
+      const error = new Error(data.message || 'Live Writer request failed.');
       error.status = response.status;
       throw error;
     }
-    return data.live || null;
+    return data;
+  }
+
+  function encodeBase64Utf8(value) {
+    const bytes = new TextEncoder().encode(String(value || ''));
+    let binary = '';
+    const chunk = 0x8000;
+    for (let i = 0; i < bytes.length; i += chunk) {
+      binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
+    }
+    return btoa(binary);
+  }
+
+  async function readLiveRecord() {
+    try {
+      const data = await githubRequest('GET', LIVE_API_PATH + '?ref=main');
+      liveFileSha = data.sha || '';
+      const encoded = String(data.content || '').replace(/\s+/g, '');
+      if (!encoded) return null;
+      const binary = atob(encoded);
+      const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+      return JSON.parse(new TextDecoder().decode(bytes));
+    } catch (error) {
+      if (error.status === 404) {
+        liveFileSha = '';
+        return null;
+      }
+      throw error;
+    }
+  }
+
+  async function writeLiveRecord(record, { retry = true, message = '' } = {}) {
+    const body = {
+      message: message || (record.active ? 'Update live article [skip ci]' : record.hold ? 'End live article [skip ci]' : 'Clear live article [skip ci]'),
+      content: encodeBase64Utf8(JSON.stringify(record)),
+      branch: 'main',
+      ...(liveFileSha ? { sha: liveFileSha } : {})
+    };
+
+    try {
+      const data = await githubRequest('PUT', LIVE_API_PATH, body);
+      liveFileSha = data?.content?.sha || liveFileSha;
+      return record;
+    } catch (error) {
+      if (retry && (error.status === 409 || error.status === 422)) {
+        await readLiveRecord();
+        return writeLiveRecord(record, { retry: false, message });
+      }
+      throw error;
+    }
   }
 
   function unwrap(node) {
@@ -219,7 +270,7 @@
     syncing = true;
     setSyncState('Updating article…', 'working');
     try {
-      const live = await liveRequest('PUT', data);
+      const live = await writeLiveRecord(data);
       lastSent = signature(live || data);
       lastPushAt = Date.now();
       setSyncState('Readers have the latest version.', 'success');
@@ -282,7 +333,7 @@
 
     setSyncState('Checking this article…', 'working');
     try {
-      const live = await liveRequest('GET');
+      const live = await readLiveRecord();
       active = Boolean(live?.active && sameTarget(live, target));
       updateControls();
       if (active) {
@@ -318,7 +369,7 @@
     setSyncState('Starting live updates on ' + target.publicPath + '…', 'working');
     try {
       active = true;
-      const live = await liveRequest('PUT', snapshot({ isActive: true, hold: false }));
+      const live = await writeLiveRecord(snapshot({ isActive: true, hold: false }), { message: 'Start live article [skip ci]' });
       lastSent = signature(live);
       lastPushAt = Date.now();
       attachLiveListeners();
@@ -337,7 +388,7 @@
     endButton.disabled = true;
     setSyncState('Ending live updates…', 'working');
     try {
-      await liveRequest('PUT', snapshot({ isActive: false, hold: true }));
+      await writeLiveRecord(snapshot({ isActive: false, hold: true }), { message: 'End live article [skip ci]' });
       active = false;
       detachLiveListeners();
       updateControls();
@@ -353,14 +404,14 @@
     const target = currentTarget();
     if (!target) return;
     try {
-      const previous = await liveRequest('GET');
+      const previous = await readLiveRecord();
       if (!sameTarget(previous, target)) return;
-      await liveRequest('PUT', snapshot({
+      await writeLiveRecord(snapshot({
         isActive: false,
         hold: false,
         previous,
         publishedAt: new Date().toISOString()
-      }));
+      }), { message: 'Clear live article after publish [skip ci]' });
       active = false;
       detachLiveListeners();
       updateControls();
