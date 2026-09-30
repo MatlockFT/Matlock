@@ -10,7 +10,7 @@ permalink: /broadcast/control/
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>Matlock Fight Channel — Control Room</title>
-  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20260930-12">
+  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20260930-13">
 </head>
 <body class="mfc-control-body">
   <main class="mfc-control" data-mfc-control data-auth-base="https://mmamatlock-writer-auth.netlify.app">
@@ -40,9 +40,9 @@ permalink: /broadcast/control/
       </div>
 
       <div class="mfc-control-actions">
-        <button type="button" class="mfc-button mfc-button-ghost" data-reload-state disabled>Reload</button>
-        <button type="button" class="mfc-button mfc-button-ghost" data-save-draft disabled>Save Draft</button>
-        <button type="button" class="mfc-button mfc-button-live" data-take-live disabled>Take Live</button>
+        <button type="button" class="mfc-button mfc-button-ghost" data-reload-state title="Reload the saved broadcast state" disabled>Reload</button>
+        <button type="button" class="mfc-button mfc-button-ghost" data-save-draft aria-keyshortcuts="Control+S Meta+S" title="Save draft (Ctrl/⌘+S)" disabled>Save Draft</button>
+        <button type="button" class="mfc-button mfc-button-live" data-take-live title="Publish the current rundown to viewers" disabled>Take Live</button>
       </div>
     </header>
 
@@ -343,6 +343,6 @@ permalink: /broadcast/control/
     <div class="mfc-toast" data-toast role="status" aria-live="polite" hidden></div>
   </main>
 
-  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-12" defer></script>
+  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-13" defer></script>
 </body>
 </html>
