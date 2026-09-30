@@ -1,0 +1,363 @@
+(() => {
+  const root = document.querySelector('[data-mfc-root]');
+  if (!root) return;
+
+  const params = new URLSearchParams(location.search);
+  const useDraft = params.get('mode') === 'draft' || params.get('preview') === 'draft';
+  if (params.get('embed') === '1') document.body.dataset.mfcEmbed = 'true';
+
+  const screen = root.querySelector('[data-mfc-screen]');
+  const header = root.querySelector('[data-mfc-header]');
+  const eyebrow = root.querySelector('[data-mfc-eyebrow]');
+  const title = root.querySelector('[data-mfc-title]');
+  const bodyCopy = root.querySelector('[data-mfc-body]');
+  const image = root.querySelector('[data-mfc-image]');
+  const video = root.querySelector('[data-mfc-video]');
+  const panel = root.querySelector('[data-mfc-panel]');
+  const dateNode = root.querySelector('[data-mfc-date]');
+  const clockNode = root.querySelector('[data-mfc-clock]');
+  const nowNode = root.querySelector('[data-mfc-now]');
+  const progressNode = root.querySelector('[data-mfc-progress]');
+  const ticker = root.querySelector('[data-mfc-ticker]');
+  const tickerClone = root.querySelector('[data-mfc-ticker-clone]');
+  const tickerTrack = root.querySelector('[data-mfc-ticker-track]');
+  const soundButton = root.querySelector('[data-mfc-sound]');
+  const musicA = document.querySelector('[data-mfc-music-a]');
+  const musicB = document.querySelector('[data-mfc-music-b]');
+  const STATE_URL = '/assets/data/broadcast.json';
+  const SOUND_KEY = 'matlock-fight-channel:sound';
+
+  let state = null;
+  let channel = null;
+  let revision = '';
+  let currentProgramId = '';
+  let currentMusicId = '';
+  let lastTickAt = performance.now();
+  let musicLevel = 0;
+  let soundEnabled = false;
+  let activeMusic = musicA;
+  let standbyMusic = musicB;
+  let lastPoll = 0;
+
+  try { soundEnabled = localStorage.getItem(SOUND_KEY) === 'on'; } catch {}
+
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || 0));
+  const positive = value => Math.max(0, Number(value) || 0);
+  const mod = (value, size) => size > 0 ? ((value % size) + size) % size : 0;
+
+  function fmt(seconds) {
+    const value = Math.max(0, Math.floor(Number(seconds) || 0));
+    const m = Math.floor(value / 60);
+    const s = value % 60;
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }
+
+  function programItems() {
+    return Array.isArray(channel?.program) ? channel.program.filter(item => positive(item.duration) > 0) : [];
+  }
+
+  function musicItems() {
+    return Array.isArray(channel?.music) ? channel.music.filter(item => item?.url && positive(item.duration) > 0) : [];
+  }
+
+  function timelinePosition(items, elapsed) {
+    const total = items.reduce((sum, item) => sum + positive(item.duration), 0);
+    if (!items.length || total <= 0) return { item: null, index: -1, local: 0, total, position: 0 };
+    const position = mod(elapsed, total);
+    let cursor = 0;
+    for (let index = 0; index < items.length; index += 1) {
+      const duration = positive(items[index].duration);
+      if (position < cursor + duration || index === items.length - 1) {
+        return { item: items[index], index, local: Math.max(0, position - cursor), total, position };
+      }
+      cursor += duration;
+    }
+    return { item: items[0], index: 0, local: 0, total, position: 0 };
+  }
+
+  function rawElapsed() {
+    if (!channel) return 0;
+    const stamp = Date.parse(channel.startedAt || channel.updatedAt || '');
+    if (!Number.isFinite(stamp)) return 0;
+    return Math.max(0, (Date.now() - stamp) / 1000);
+  }
+
+  function textForTicker() {
+    const entries = Array.isArray(channel?.ticker)
+      ? channel.ticker.map(value => String(value || '').trim()).filter(Boolean)
+      : String(channel?.ticker || '').split('|').map(value => value.trim()).filter(Boolean);
+    return (entries.length ? entries : ['MATLOCK FIGHT CHANNEL', 'MMA NEWS', 'RESULTS', 'BREAKDOWNS']).join('   •   ');
+  }
+
+  function renderTicker() {
+    const text = textForTicker();
+    ticker.textContent = text;
+    tickerClone.textContent = text;
+    const seconds = clamp(text.length * .16, 24, 110);
+    tickerTrack.style.setProperty('--mfc-ticker-seconds', `${seconds}s`);
+  }
+
+  function setMediaMode(kind) {
+    const isVideo = kind === 'video';
+    const isImage = kind === 'image';
+    video.hidden = !isVideo;
+    image.hidden = !isImage;
+    panel.classList.toggle('has-media', isVideo || isImage);
+    eyebrow.hidden = isVideo || isImage;
+    title.hidden = isVideo || isImage;
+    bodyCopy.hidden = isVideo || isImage;
+  }
+
+  function renderProgramItem(item) {
+    if (!item) {
+      setMediaMode('headline');
+      screen.dataset.kind = 'headline';
+      header.textContent = 'YOUR FIGHT FORECAST';
+      eyebrow.textContent = 'MATLOCK FIGHT CHANNEL';
+      title.textContent = 'NO PROGRAMMING';
+      bodyCopy.textContent = 'Add items in the broadcast control room.';
+      nowNode.textContent = 'NOW: STANDBY';
+      return;
+    }
+
+    const kind = String(item.type || 'headline').toLowerCase();
+    screen.dataset.kind = kind;
+    setMediaMode(kind);
+    header.textContent = String(item.header || item.section || ({
+      headline: 'YOUR FIGHT FORECAST',
+      results: 'FIGHT RESULTS',
+      event: 'UPCOMING FIGHTS',
+      breaking: 'BREAKING NEWS',
+      image: 'MMA NEWS',
+      video: 'MMA VIDEO'
+    }[kind] || 'MMA NEWS')).toUpperCase();
+
+    eyebrow.textContent = String(item.eyebrow || ({
+      headline: 'LATEST',
+      results: 'RESULTS',
+      event: 'NEXT EVENT',
+      breaking: 'BREAKING',
+      image: 'PHOTO',
+      video: 'VIDEO'
+    }[kind] || 'MATLOCK FIGHT CHANNEL')).toUpperCase();
+
+    title.textContent = String(item.title || 'MATLOCK FIGHT CHANNEL').toUpperCase();
+    bodyCopy.textContent = String(item.body || '');
+    nowNode.textContent = `NOW: ${String(item.title || kind).toUpperCase()}`;
+
+    if (kind === 'image') {
+      const url = String(item.mediaUrl || '');
+      if (url && image.src !== new URL(url, location.href).href) image.src = url;
+      image.alt = String(item.alt || item.title || 'MMA news image');
+    }
+
+    if (kind === 'video') {
+      const url = String(item.mediaUrl || '');
+      if (url && video.dataset.source !== url) {
+        video.dataset.source = url;
+        video.src = url;
+        video.load();
+      }
+      video.muted = !soundEnabled || item.videoAudio === false;
+      video.volume = clamp(channel?.audio?.video ?? 1, 0, 1);
+    }
+  }
+
+  function syncProgram() {
+    const elapsed = rawElapsed();
+    const position = timelinePosition(programItems(), elapsed);
+    const item = position.item;
+    const id = String(item?.id || `${position.index}`);
+    if (id !== currentProgramId) {
+      currentProgramId = id;
+      renderProgramItem(item);
+    }
+
+    if (item) progressNode.textContent = `${fmt(position.local)} / ${fmt(item.duration)}`;
+    else progressNode.textContent = '00:00 / 00:00';
+
+    if (item?.type === 'video' && item.mediaUrl) {
+      const duration = positive(item.duration);
+      const target = duration > 0 ? Math.min(position.local, Math.max(0, duration - .08)) : position.local;
+      if (Number.isFinite(video.duration) && Math.abs((video.currentTime || 0) - target) > .8) {
+        try { video.currentTime = target; } catch {}
+      }
+      video.muted = !soundEnabled || item.videoAudio === false;
+      video.play().catch(() => {});
+    } else if (!video.paused) {
+      video.pause();
+    }
+
+    return { elapsed, position };
+  }
+
+  function dbGain(db) {
+    const value = Number(db);
+    if (!Number.isFinite(value)) return 1;
+    return Math.pow(10, value / 20);
+  }
+
+  function duckTarget(programItem) {
+    if (!programItem || programItem.type !== 'video' || programItem.videoAudio === false) return 1;
+    const mode = String(programItem.musicBehavior || channel?.audio?.videoMusic || 'duck').toLowerCase();
+    if (mode === 'mute') return 0;
+    if (mode === 'keep' || mode === 'keep-playing') return 1;
+    const perItem = Number(programItem.duckLevel);
+    return clamp(Number.isFinite(perItem) ? perItem : (channel?.audio?.duckLevel ?? .18), 0, 1);
+  }
+
+  function baseMusicVolume(track) {
+    return clamp(channel?.audio?.master ?? 1, 0, 1)
+      * clamp(channel?.audio?.music ?? .72, 0, 1)
+      * clamp(dbGain(track?.gainDb ?? 0), 0, 2);
+  }
+
+  function ensureAudioSource(element, track, targetTime) {
+    if (!track?.url) return;
+    if (element.dataset.trackId !== String(track.id || track.url)) {
+      element.dataset.trackId = String(track.id || track.url);
+      element.src = track.url;
+      element.load();
+    }
+    if (Number.isFinite(element.duration) && Math.abs((element.currentTime || 0) - targetTime) > 1.1) {
+      try { element.currentTime = Math.max(0, Math.min(targetTime, element.duration - .05)); } catch {}
+    }
+  }
+
+  function syncMusic(elapsed, programItem, deltaSeconds) {
+    const tracks = musicItems();
+    if (!soundEnabled || !tracks.length) {
+      musicA.volume = 0;
+      musicB.volume = 0;
+      musicA.pause();
+      musicB.pause();
+      return;
+    }
+
+    const pos = timelinePosition(tracks, elapsed);
+    const track = pos.item;
+    if (!track) return;
+    const trackId = String(track.id || track.url);
+    if (trackId !== currentMusicId) {
+      currentMusicId = trackId;
+      const swap = activeMusic;
+      activeMusic = standbyMusic;
+      standbyMusic = swap;
+    }
+
+    ensureAudioSource(activeMusic, track, pos.local);
+    const crossfade = clamp(channel?.audio?.crossfade ?? 2.5, 0, 12);
+    const remaining = Math.max(0, positive(track.duration) - pos.local);
+    const nextTrack = tracks[(pos.index + 1) % tracks.length];
+    const inCrossfade = crossfade > 0 && remaining < crossfade && tracks.length > 1;
+    let fadeA = 1;
+    let fadeB = 0;
+
+    if (inCrossfade) {
+      const progress = clamp(1 - remaining / crossfade, 0, 1);
+      fadeA = 1 - progress;
+      fadeB = progress;
+      ensureAudioSource(standbyMusic, nextTrack, progress * crossfade);
+      standbyMusic.play().catch(() => {});
+    } else {
+      standbyMusic.volume = 0;
+      standbyMusic.pause();
+    }
+
+    const desiredDuck = duckTarget(programItem);
+    const attack = Math.max(.05, Number(channel?.audio?.duckAttack) || .4);
+    const release = Math.max(.05, Number(channel?.audio?.duckRelease) || 1.5);
+    const towardDown = desiredDuck < musicLevel;
+    const speed = deltaSeconds / (towardDown ? attack : release);
+    if (!Number.isFinite(musicLevel) || musicLevel <= 0) musicLevel = desiredDuck;
+    else musicLevel += (desiredDuck - musicLevel) * clamp(speed, 0, 1);
+
+    const aVolume = clamp(baseMusicVolume(track) * musicLevel * fadeA, 0, 1);
+    const bVolume = clamp(baseMusicVolume(nextTrack) * musicLevel * fadeB, 0, 1);
+    activeMusic.volume = aVolume;
+    standbyMusic.volume = bVolume;
+    activeMusic.play().catch(() => {});
+  }
+
+  function updateClock() {
+    const now = new Date();
+    dateNode.textContent = new Intl.DateTimeFormat('en-US', {
+      weekday: 'short',
+      month: 'short',
+      day: '2-digit'
+    }).format(now).toUpperCase();
+    clockNode.textContent = new Intl.DateTimeFormat('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit'
+    }).format(now).toUpperCase();
+  }
+
+  function setSoundState(enabled) {
+    soundEnabled = Boolean(enabled);
+    try { localStorage.setItem(SOUND_KEY, soundEnabled ? 'on' : 'off'); } catch {}
+    soundButton.textContent = soundEnabled ? 'SOUND ON' : 'SOUND OFF';
+    soundButton.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
+    if (!soundEnabled) {
+      musicA.pause();
+      musicB.pause();
+      video.muted = true;
+    }
+  }
+
+  async function loadState() {
+    const response = await fetch(`${STATE_URL}?t=${Date.now()}`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`Broadcast state ${response.status}`);
+    const next = await response.json();
+    const selected = useDraft ? next.draft : next.live;
+    if (!selected) throw new Error('Broadcast state is empty.');
+    const nextRevision = String(selected.revision || selected.updatedAt || next.updatedAt || '');
+    state = next;
+    if (nextRevision !== revision) {
+      revision = nextRevision;
+      channel = selected;
+      currentProgramId = '';
+      currentMusicId = '';
+      musicLevel = duckTarget(null);
+      renderTicker();
+      syncProgram();
+    } else {
+      channel = selected;
+    }
+  }
+
+  soundButton.addEventListener('click', () => {
+    setSoundState(!soundEnabled);
+    const { elapsed, position } = syncProgram();
+    syncMusic(elapsed, position.item, .05);
+  });
+
+  setSoundState(soundEnabled);
+  updateClock();
+
+  loadState().catch(() => {
+    title.textContent = 'BROADCAST OFFLINE';
+    bodyCopy.textContent = 'THE CHANNEL WILL RETURN SHORTLY.';
+  });
+
+  window.setInterval(() => {
+    const now = performance.now();
+    const deltaSeconds = Math.max(.016, Math.min(.5, (now - lastTickAt) / 1000));
+    lastTickAt = now;
+    updateClock();
+    if (!channel) return;
+    const { elapsed, position } = syncProgram();
+    syncMusic(elapsed, position.item, deltaSeconds);
+  }, 250);
+
+  window.setInterval(() => {
+    loadState().catch(() => {});
+  }, 12000);
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      lastTickAt = performance.now();
+      loadState().catch(() => {});
+    }
+  });
+})();
