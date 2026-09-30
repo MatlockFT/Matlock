@@ -555,6 +555,11 @@
         }
       }, 'mfc-button-ghost');
   
+      const releaseButton = smallButton('GitHub Release', () => {
+        if (!asset.releaseTag) return;
+        window.open(`https://github.com/MatlockFT/Matlock/releases/tag/${encodeURIComponent(asset.releaseTag)}`, '_blank', 'noopener,noreferrer');
+      }, 'mfc-button-ghost');
+
       const deleteButton = smallButton('Delete', async () => {
         const currentUsage = videoUsage(asset);
         if (currentUsage.blocked) {
@@ -587,7 +592,7 @@
       if (usage.blocked) deleteButton.title = 'Remove the video from all saved/live programming before deleting the file.';
       else if (videoLibraryReadOnly) deleteButton.title = 'Permanent delete requires the authenticated media-library backend.';
   
-      actions.append(previewButton, addButton, copyButton, deleteButton);
+      actions.append(previewButton, addButton, copyButton, releaseButton, deleteButton);
       row.append(main, actions);
       videoLibraryList.append(row);
     }
