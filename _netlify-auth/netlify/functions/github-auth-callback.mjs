@@ -2,6 +2,7 @@ import {
   COOKIE_NAME,
   REPO_ID,
   callbackUrl,
+  clearSessionCookie,
   decodeSession,
   getAppConfig,
   isAllowedOrigin,
@@ -12,6 +13,32 @@ import {
   verifyGitHubToken
 } from './_github-auth.mjs';
 import { createWriterSession } from './_writer-session.mjs';
+
+function completionResponse({ session, payload, status = 200 }) {
+  if (session?.returnPath === '/broadcast/auth/' && isAllowedOrigin(session.origin)) {
+    const target = new URL(session.returnPath, session.origin);
+    const params = new URLSearchParams();
+    params.set('ok', payload?.ok ? '1' : '0');
+    if (payload?.sessionId) params.set('sessionId', payload.sessionId);
+    if (payload?.login) params.set('login', payload.login);
+    if (payload?.repo) params.set('repo', payload.repo);
+    if (payload?.error) params.set('error', payload.error);
+    target.hash = params.toString();
+    return new Response(null, {
+      status: 302,
+      headers: securityHeaders({
+        Location: target.toString(),
+        'Set-Cookie': clearSessionCookie()
+      })
+    });
+  }
+
+  return popupResponse({
+    origin: session?.origin || 'https://mmamatlock.com',
+    payload,
+    status
+  });
+}
 
 export default async function handler(request) {
   if (request.method !== 'GET') {
@@ -35,32 +62,32 @@ export default async function handler(request) {
   const session = decodeSession(cookies[COOKIE_NAME] || '', stateSecret(appConfig));
 
   if (!session || !isAllowedOrigin(session.origin)) {
-    return popupResponse({
-      origin: session?.origin || 'https://mmamatlock.com',
+    return completionResponse({
+      session,
       payload: { ok: false, error: 'The GitHub sign-in session expired or could not be verified.' },
       status: 400
     });
   }
 
   if (Date.now() - Number(session.createdAt || 0) > 10 * 60 * 1000) {
-    return popupResponse({
-      origin: session.origin,
+    return completionResponse({
+      session,
       payload: { ok: false, error: 'The GitHub sign-in session expired. Please try again.' },
       status: 400
     });
   }
 
   if (githubError) {
-    return popupResponse({
-      origin: session.origin,
+    return completionResponse({
+      session,
       payload: { ok: false, error: `GitHub authorization was not completed: ${githubError}.` },
       status: 400
     });
   }
 
   if (!code || !returnedState || returnedState !== session.state) {
-    return popupResponse({
-      origin: session.origin,
+    return completionResponse({
+      session,
       payload: { ok: false, error: 'GitHub returned an invalid authorization response.' },
       status: 400
     });
@@ -105,8 +132,8 @@ export default async function handler(request) {
       refreshTokenExpiresIn: tokenData.refresh_token_expires_in || null
     });
 
-    return popupResponse({
-      origin: session.origin,
+    return completionResponse({
+      session,
       payload: {
         ok: true,
         sessionId: writerSessionId,
@@ -115,8 +142,8 @@ export default async function handler(request) {
       }
     });
   } catch (error) {
-    return popupResponse({
-      origin: session.origin,
+    return completionResponse({
+      session,
       payload: { ok: false, error: error?.message || 'GitHub sign-in failed.' },
       status: 400
     });
