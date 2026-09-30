@@ -1,0 +1,51 @@
+name: Delete Broadcast Media Asset
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/uploads/runtime/broadcast-media-delete.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: broadcast-media-delete
+  cancel-in-progress: false
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate and delete requested asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          request="assets/uploads/runtime/broadcast-media-delete.json"
+          asset_id="$(jq -r '.assetId // empty' "$request")"
+          requested_name="$(jq -r '.name // empty' "$request")"
+
+          if ! [[ "$asset_id" =~ ^[0-9]+$ ]]; then
+            echo "::error::Invalid Broadcast Control asset id."
+            exit 1
+          fi
+
+          asset_json="$(gh api "repos/${GITHUB_REPOSITORY}/releases/assets/${asset_id}")"
+          actual_name="$(jq -r '.name // empty' <<<"$asset_json")"
+
+          if [[ "$actual_name" != broadcast-video-* ]]; then
+            echo "::error::Refusing to delete non-Broadcast-Control asset: $actual_name"
+            exit 1
+          fi
+
+          if [[ -n "$requested_name" && "$requested_name" != "$actual_name" ]]; then
+            echo "::error::Asset name mismatch. Requested '$requested_name', found '$actual_name'."
+            exit 1
+          fi
+
+          gh api --method DELETE "repos/${GITHUB_REPOSITORY}/releases/assets/${asset_id}"
+          echo "Deleted release asset $asset_id ($actual_name)."
