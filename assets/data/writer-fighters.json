@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-09-28T16:59:22.005Z",
-  "builtAt": "2026-09-29T20:56:32.051Z",
+  "builtAt": "2026-09-30T00:33:41.426Z",
   "mirrorThrough": "2026-09-26",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -3484,9 +3484,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/PEREIRA_ALICE_L_04-04.png?itok=971jtgjZ",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Daria Zhelezniakova",
+        "opponentId": null
       },
       "checkedAt": "2026-09-26T11:42:32.108Z",
       "ufcStatsId": "81d2c551886bd5a1",
@@ -3758,9 +3760,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/FRYE_ALLEN_L_12-13.png?itok=JTD8nXM0",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "RJ Harris",
+        "opponentId": "rj-harris"
       },
       "checkedAt": "2026-09-26T11:42:32.179Z",
       "ufcStatsId": "73a78713bd899f4c",
@@ -3972,9 +3976,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/HINES_ALVIN_R_06-28.png?itok=4Yj9bfkr",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Gabriel Lorenco",
+        "opponentId": "gabriel-lorenco"
       },
       "checkedAt": "2026-09-26T11:42:32.189Z",
       "ufcStatsId": "ab2a4b5e04dc5fe9",
@@ -4662,9 +4668,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/FILI_ANDRE_L_03-14.png?itok=Zud7jwf3",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Kai Kamaka III",
+        "opponentId": "kai-kamaka-iii"
       },
       "checkedAt": "2026-09-26T11:42:32.205Z",
       "ufcStatsId": "8fd808923cffff82",
@@ -4876,9 +4884,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Azamat Bekoev",
+        "opponentId": "azamat-bekoev"
       },
       "checkedAt": "2026-09-26T11:42:32.225Z",
       "ufcStatsId": "5f61780fe5e9b6d0",
@@ -6734,9 +6744,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/BASHI_AUSTIN_L_07-18.png?itok=ICEox51M",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Lucas Brennan",
+        "opponentId": "lucas-brennan"
       },
       "checkedAt": "2026-09-26T11:42:32.371Z",
       "ufcStatsId": "d3f89fa685bd8420",
@@ -7138,9 +7150,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BEKOEV_AZAMAT_L_04-04.png?itok=a6lk_o5N",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Andre Petroski",
+        "opponentId": "andre-petroski"
       },
       "checkedAt": "2026-09-26T11:42:32.470Z",
       "ufcStatsId": "3bc3f60b21cddc6a",
@@ -8192,9 +8206,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/ELEKANA_BILLY_L_01-31.png?itok=l0IviRUv",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Lucas Fernando",
+        "opponentId": "lucas-fernando"
       },
       "checkedAt": "2026-09-26T11:42:32.524Z",
       "ufcStatsId": "07a74004d964c7f4",
@@ -9786,9 +9802,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-02/RIBEIRO_BRENDSON_L_02-17.png?itok=T2HXVKsB",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Felipe Franco",
+        "opponentId": "felipe-franco"
       },
       "checkedAt": "2026-09-26T11:42:32.728Z",
       "ufcStatsId": "49edd0d90f60fb7d",
@@ -11319,9 +11337,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/LEAL_CARLOS_L_10-26.png?itok=ZJxDU-p0",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Randy Brown",
+        "opponentId": "randy-brown"
       },
       "checkedAt": "2026-09-26T11:42:32.833Z",
       "ufcStatsId": "28d421729451c8ca",
@@ -18591,9 +18611,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/GRANT_DAVEY_L_04-25.png?itok=eXuCU5Cp",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Elijah Smith",
+        "opponentId": "elijah-smith"
       },
       "checkedAt": "2026-09-26T11:42:34.281Z",
       "ufcStatsId": "113df4fde64735c6",
@@ -22850,9 +22872,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/SMITH_ELIJAH_L_03-14.png?itok=3MoxFy9W",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Davey Grant",
+        "opponentId": "davey-grant"
       },
       "checkedAt": "2026-09-26T11:42:34.698Z",
       "ufcStatsId": "7478b7f959ba61f5",
@@ -23720,9 +23744,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/9/KARECKAITE_ERNESTA_L_01-11.png?itok=1zansFiR",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Melissa Gatto",
+        "opponentId": "melissa-gatto"
       },
       "checkedAt": "2026-09-26T11:42:34.795Z",
       "ufcStatsId": "e4faa79383c9f214",
@@ -24603,9 +24629,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/HASANOV_FARMAN_L_06-27.png?itok=_Ex8iG6f",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Jean-Paul Lebosnoyani",
+        "opponentId": "jean-paul-lebosnoyani"
       },
       "checkedAt": "2026-09-26T11:42:34.897Z",
       "ufcStatsId": "c88f8a9c1ea7165d",
@@ -24777,9 +24805,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/FRANCO_FELIPE_R_03-21.png?itok=B1SXaZg8",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Brendson Ribeiro",
+        "opponentId": "brendson-ribeiro"
       },
       "checkedAt": "2026-09-26T11:42:34.902Z",
       "ufcStatsId": "e564146b9cf6dbef",
@@ -25296,9 +25326,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MARSHALL_FRANCIS_L_04-25.png?itok=Dz7HMd3L",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Gaston Bolanos",
+        "opponentId": "gaston-bolanos"
       },
       "checkedAt": "2026-09-26T11:42:34.939Z",
       "ufcStatsId": "5d495dec23d7c68e",
@@ -25405,9 +25437,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/PRADO_FRANCISCO_L_07-19.png?itok=DtuntsjN",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Ismael Bonfim",
+        "opponentId": "ismael-bonfim"
       },
       "checkedAt": "2026-09-26T11:42:34.933Z",
       "ufcStatsId": "3920d0cc288f9b0d",
@@ -25978,9 +26012,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/LORENCO_GABRIEL_L_09-01.png?itok=NdbmVc1d",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Alvin Hines",
+        "opponentId": "alvin-hines"
       },
       "checkedAt": "2026-09-26T11:42:35.030Z",
       "ufcStatsId": "e3fc6c1fab298561",
@@ -26117,9 +26153,11 @@
       "rank": 14,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/FERNANDES_GABRIELLA_L_08-09.png?itok=sUYuxLOm",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Karine Silva",
+        "opponentId": "karine-silva"
       },
       "checkedAt": "2026-09-28T16:59:25.770Z",
       "ufcStatsId": "a6eb54ae17a551be",
@@ -26405,9 +26443,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/BOLANOS_GASTON_L_06-20.png?itok=WvUQBhDT",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Francis Marshall",
+        "opponentId": "francis-marshall"
       },
       "checkedAt": "2026-09-26T11:42:35.086Z",
       "ufcStatsId": "96924b0019b3aff1",
@@ -26754,9 +26794,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/MEERSCHAERT_GERALD_L_08-16.png?itok=ZSkiqY23",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Julius Walker",
+        "opponentId": "julius-walker"
       },
       "checkedAt": "2026-09-26T11:42:35.103Z",
       "ufcStatsId": "6ac9bc2953c47345",
@@ -30496,9 +30538,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/BONFIM_ISMAEL_L_07-25.png?itok=HPyzWmnE",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Francisco Prado",
+        "opponentId": "francisco-prado"
       },
       "checkedAt": "2026-09-26T11:42:35.443Z",
       "ufcStatsId": "eb393afdbe3293d5",
@@ -31987,9 +32031,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/HERBERT_JAI_L_03-22.png?itok=dCAcIrpk",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Matheus Camilo",
+        "opponentId": "matheus-camilo"
       },
       "checkedAt": "2026-09-26T11:42:35.703Z",
       "ufcStatsId": "4c88a1db5a46c6a4",
@@ -34026,9 +34072,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/LEBOSNOYANI_JEAN-PAUL_R_02-21.png?itok=FM_JbPj8",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Farman Hasanov",
+        "opponentId": "farman-hasanov"
       },
       "checkedAt": "2026-09-26T11:42:35.886Z",
       "ufcStatsId": "a3dda21be645be93",
@@ -34455,9 +34503,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/LEE_JEONGYEONG_L_03-07.png?itok=Znq_QNLd",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Julian Erosa",
+        "opponentId": "julian-erosa"
       },
       "checkedAt": "2026-09-26T11:42:35.924Z",
       "ufcStatsId": "d008d785f6347dc2",
@@ -37366,9 +37416,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/PARSONS_JONNY_L_07-22.png?itok=r2aeVJ95",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "José Souza",
+        "opponentId": null
       },
       "checkedAt": "2026-09-26T11:42:36.207Z",
       "ufcStatsId": "2975297f505e9447",
@@ -37739,9 +37791,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/DELANO_JOSE_L_04-04.png?itok=yx6OJq5I",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Murtazali Magomedov",
+        "opponentId": "murtazali-magomedov"
       },
       "checkedAt": "2026-09-26T11:42:36.267Z",
       "ufcStatsId": "d7c4956d61ae76a9",
@@ -39838,9 +39892,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/EROSA_JULIAN_L_03-28.png?itok=QBTJINN6",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "JeongYeong Lee",
+        "opponentId": "jeongyeong-lee"
       },
       "checkedAt": "2026-09-26T11:42:36.408Z",
       "ufcStatsId": "902ec2cc48c8ae8a",
@@ -40268,9 +40324,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/WALKER_JULIUS_L_08-09.png?itok=U6ZUMaBd",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Gerald Meerschaert",
+        "opponentId": "gerald-meerschaert"
       },
       "checkedAt": "2026-09-26T11:42:36.485Z",
       "ufcStatsId": "6add18754930182b",
@@ -41117,9 +41175,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/KAMAKA_KAI_L_04-04.png?itok=608oMHfq",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Andre Fili",
+        "opponentId": "andre-fili"
       },
       "checkedAt": "2026-09-26T11:42:36.604Z",
       "ufcStatsId": "eee0ef3e2b14816b",
@@ -41656,9 +41716,11 @@
       "rank": 11,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/SILVA_KARINE_L_08-16.png?itok=6JdZdcEV",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Gabriella Fernandes",
+        "opponentId": "gabriella-fernandes"
       },
       "checkedAt": "2026-09-28T16:59:26.565Z",
       "ufcStatsId": "9d62c2d8ee151f08",
@@ -42869,9 +42931,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/SOUZA_KETLEN_L_06-06.png?itok=6jQmx9wf",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Loopy Godinez",
+        "opponentId": "loopy-godinez"
       },
       "checkedAt": "2026-09-26T11:42:36.718Z",
       "ufcStatsId": "8bd4200561c77a62",
@@ -45461,9 +45525,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/SHAHBAZYAN_LEON_L_06-20.png?itok=ToSA3_7-",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Niko Price",
+        "opponentId": "niko-price"
       },
       "checkedAt": "2026-09-26T11:42:36.997Z",
       "ufcStatsId": "9eed2bcc9e0b92af",
@@ -46378,9 +46444,11 @@
       "rank": 8,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/GODINEZ_LOOPY_L_03-29.png?itok=GYu4a1a8",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Ketlen Souza",
+        "opponentId": "ketlen-souza"
       },
       "checkedAt": "2026-09-28T16:59:26.784Z",
       "ufcStatsId": "8e5d953bdb9ae5e7",
@@ -46974,9 +47042,11 @@
       "rank": 7,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/SANTOS_LUANA_L_05-17.png?itok=F9R3I5g7",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Yana Santos",
+        "opponentId": "yana-santos"
       },
       "checkedAt": "2026-09-28T16:59:26.835Z",
       "ufcStatsId": "5078e1dacf9d25f4",
@@ -47195,9 +47265,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BRENNAN_LUCAS_R_04-25.png?itok=ajTVXdf5",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Austin Bashi",
+        "opponentId": "austin-bashi"
       },
       "checkedAt": "2026-09-26T11:42:37.221Z",
       "ufcStatsId": "33a8708747b7f943",
@@ -47264,9 +47336,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/FERNANDO_LUCAS_R_08-15.png?itok=T9Ij6iMO",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Billy Elekana",
+        "opponentId": "billy-elekana"
       },
       "checkedAt": "2026-09-28T16:59:26.856Z",
       "ufcStatsId": "3df223aeaacecf3f",
@@ -48974,9 +49048,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/WELLMAKER_MALCOM_L_05-16.png?itok=5FHWs2Te",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Otari Tanzilovi",
+        "opponentId": "otari-tanzilovi"
       },
       "checkedAt": "2026-09-26T11:42:37.414Z",
       "ufcStatsId": "2e45d08b3f2f02c8",
@@ -49814,9 +49890,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Wes Schultz",
+        "opponentId": "wes-schultz"
       },
       "checkedAt": "2026-09-26T11:42:37.527Z",
       "ufcStatsId": "3cc506f115cbb9d5",
@@ -52560,9 +52638,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/CAMILO_MATHEUS_R.png?itok=YPpivJ_i",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Jai Herbert",
+        "opponentId": "jai-herbert"
       },
       "checkedAt": "2026-09-26T11:42:37.850Z",
       "ufcStatsId": "72f890c5d421e705",
@@ -53475,9 +53555,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-03/GATTO_MELISSA_L_07-01.png?itok=xSfep8cI",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Ernesta Kareckaitė",
+        "opponentId": "ernesta-kareckaite"
       },
       "checkedAt": "2026-09-26T11:42:37.896Z",
       "ufcStatsId": "a4a80dd7336ffd59",
@@ -57174,9 +57256,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/MAGOMEDOV_MURTAZLI_R_06-20.png?itok=wXAJELZD",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Jose Delano",
+        "opponentId": "jose-delano"
       },
       "checkedAt": "2026-09-26T11:42:38.326Z",
       "ufcStatsId": "d436f5d55156a521",
@@ -59235,9 +59319,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/PRICE_NIKO_L_06-28.png?itok=pV3E99ve",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Leon Shahbazyan",
+        "opponentId": "leon-shahbazyan"
       },
       "checkedAt": "2026-09-26T11:42:38.545Z",
       "ufcStatsId": "d8da10db80131bec",
@@ -59619,9 +59705,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/MILOSEVIC_NINA_L_08-01.png?itok=6zq_3wtV",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Priscila Cachoeira",
+        "opponentId": "priscila-cachoeira"
       },
       "checkedAt": "2026-09-28T16:59:27.458Z",
       "ufcStatsId": "eabece0edc2d62ca",
@@ -60504,9 +60592,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/SCHMID_OLLIE_R_05-02.png?itok=yb6L6zTk",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Keiichiro Nakamura",
+        "opponentId": "keiichiro-nakamura"
       },
       "checkedAt": "2026-09-26T11:42:38.604Z",
       "ufcStatsId": "b701f095e6ccb149",
@@ -60653,9 +60743,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/TANZILOVI_OTARI_R_06-20.png?itok=0A7J24BS",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Malcolm Wellmaker",
+        "opponentId": "malcolm-wellmaker"
       },
       "checkedAt": "2026-09-26T11:42:38.645Z",
       "ufcStatsId": "b9124c308671e303",
@@ -62359,9 +62451,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/RODRIGUEZ_PIERA_L_03-14.png?itok=UDMKBpY8",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Talita Alencar",
+        "opponentId": "talita-alencar"
       },
       "checkedAt": "2026-09-26T11:42:38.783Z",
       "ufcStatsId": "e375cb5caf4717b6",
@@ -62613,9 +62707,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/CACHOEIRA_PRISCILA_L_06-06.png?itok=FFiYkCQu",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Nina Milošević",
+        "opponentId": "nina-milosevic"
       },
       "checkedAt": "2026-09-26T11:42:38.809Z",
       "ufcStatsId": "b1e5bcaad32a3cac",
@@ -64068,9 +64164,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-04/BROWN_RANDY_L_04-26.png?itok=alaUuEEQ",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Carlos Leal",
+        "opponentId": "carlos-leal"
       },
       "checkedAt": "2026-09-26T11:42:38.953Z",
       "ufcStatsId": "c6aee362c7a7d482",
@@ -65917,9 +66015,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/HARRIS_RJ_L_07-18.png?itok=688ZICwh",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Allen Frye Jr.",
+        "opponentId": "allen-frye-jr"
       },
       "checkedAt": "2026-09-26T11:42:39.187Z",
       "ufcStatsId": "e03187ec8b5b6abc",
@@ -67043,9 +67143,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/SEZINANDO_RODRIGO_L_09-13.png?itok=tmb-7P2Y",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Theodor Berggren",
+        "opponentId": "theodor-berggren"
       },
       "checkedAt": "2026-09-26T11:42:39.285Z",
       "ufcStatsId": "c06d6b18862f9a53",
@@ -70027,9 +70129,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/KO_SEOKHYEON_L_06-21.png?itok=QRZ7e0tm",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Wellington Turman",
+        "opponentId": "wellington-turman"
       },
       "checkedAt": "2026-09-26T11:42:39.511Z",
       "ufcStatsId": "4a07b1988477502c",
@@ -73965,9 +74069,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/ALENCAR_TALITA_L_04-25.png?itok=onBqiGWH",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Piera Rodriguez",
+        "opponentId": "piera-rodriguez"
       },
       "checkedAt": "2026-09-26T11:42:39.905Z",
       "ufcStatsId": "d35298b6df168456",
@@ -74465,9 +74571,11 @@
       "rank": 2,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/SUAREZ_TATIANA_L_04-11.png?itok=hkAiQqtr",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Virna Jandiroba",
+        "opponentId": "virna-jandiroba"
       },
       "checkedAt": "2026-09-28T16:59:28.255Z",
       "ufcStatsId": "b08012bbe542592a",
@@ -75164,9 +75272,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/BERGGREN_THEODOR_R_06-27.png?itok=OcKsL0Tw",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Rodrigo Sezinando",
+        "opponentId": "rodrigo-sezinando"
       },
       "checkedAt": "2026-09-26T11:42:40.043Z",
       "ufcStatsId": "feef5f8f5629e5e7",
@@ -78874,9 +78984,11 @@
       "rank": 3,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/JANDIROBA_VIRNA_L_04-04.png?itok=AL1UZCHe",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Tatiana Suarez",
+        "opponentId": "tatiana-suarez"
       },
       "checkedAt": "2026-09-28T16:59:28.455Z",
       "ufcStatsId": "7dda2cf308f24a02",
@@ -79489,9 +79601,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-11/TURMAN_WELLINGTON_L_12-02.png?itok=icqJ0amp",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Seokhyeon Ko",
+        "opponentId": "seokhyeon-ko"
       },
       "checkedAt": "2026-09-26T11:42:40.395Z",
       "ufcStatsId": "4dcfb28c011c11b2",
@@ -79632,9 +79746,11 @@
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/SCHULTZ_WESLEY_L_08-22.png?itok=1WjwlRQ3",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Mantas Kondratavičius",
+        "opponentId": "mantas-kondratavicius"
       },
       "checkedAt": "2026-09-28T16:59:28.493Z",
       "ufcStatsId": "b4443fae47e7eb9d",
@@ -80385,9 +80501,11 @@
       "rank": 6,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/SANTOS_YANA_L_05-03.png?itok=pkR_XniN",
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Moicano vs Nolan",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Luana Santos",
+        "opponentId": "luana-santos"
       },
       "checkedAt": "2026-09-28T16:59:28.550Z",
       "ufcStatsId": "3143bf892608139a",
