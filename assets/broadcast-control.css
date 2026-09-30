@@ -226,7 +226,7 @@ label.mfc-button {
 }
 
 .mfc-button-live {
-  min-width: 98px;
+  min-width: 132px;
   border-color: #a94447;
   background: linear-gradient(#9a3337, #79272a);
   color: #fff;
@@ -556,11 +556,64 @@ label.mfc-button {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  min-height: 34px;
+  min-height: 42px;
   padding: 6px 10px;
   border-top: 1px solid #20252b;
   color: #8c949f;
   font: 700 .59rem/1.2 ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
+.mfc-monitor-readout > div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.mfc-monitor-readout strong {
+  color: #cfd4da;
+  font-size: .56rem;
+  letter-spacing: .07em;
+}
+
+.mfc-monitor-preview .mfc-monitor-readout strong {
+  color: #e2bf75;
+}
+
+.mfc-monitor-program .mfc-monitor-readout strong {
+  color: #ef9294;
+}
+
+.mfc-monitor-footer-actions {
+  display: flex !important;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: end;
+  gap: 8px !important;
+}
+
+.mfc-monitor-audio {
+  min-height: 26px;
+  padding: 4px 8px;
+  border: 1px solid #424b57;
+  border-radius: 3px;
+  background: #15191e;
+  color: #aab2bc;
+  font: 800 .53rem/1 ui-monospace, "SFMono-Regular", Consolas, monospace;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.mfc-monitor-audio:hover,
+.mfc-monitor-audio:focus-visible {
+  border-color: #697482;
+  color: #fff;
+  outline: none;
+}
+
+.mfc-monitor-audio[aria-pressed="true"] {
+  border-color: #5e8f70;
+  background: #20372a;
+  color: #b8dfc5;
 }
 
 .mfc-rundown-layout {
