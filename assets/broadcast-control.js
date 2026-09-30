@@ -6,6 +6,7 @@
   const SESSION_ID_KEY = 'matlock-writer:server-session';
   const SESSION_LOGIN_KEY = 'matlock-writer:server-login';
   const STATE_API_PATH = '/contents/assets/uploads/broadcast.json';
+  const WORKSPACE_KEY = 'matlock-broadcast-control:workspace';
   const CHUNK_BYTES = Math.floor(3.5 * 1024 * 1024);
   const STATUS_POLL_MS = 1400;
   const STATUS_TIMEOUT_MS = 20 * 60 * 1000;
@@ -22,7 +23,11 @@
   const loopTotal = app.querySelector('[data-loop-total]');
   const previewNow = app.querySelector('[data-preview-now]');
   const previewDuration = app.querySelector('[data-preview-duration]');
-  const previewFrame = app.querySelector('.mfc-monitor-frame iframe');
+  const previewFrame = app.querySelector('[data-preview-frame]');
+  const programFrame = app.querySelector('[data-program-frame]');
+  const workspaceTabs = Array.from(app.querySelectorAll('[data-workspace-tab]'));
+  const workspacePanels = Array.from(app.querySelectorAll('[data-workspace-panel]'));
+  const tickerPreview = app.querySelector('[data-ticker-preview]');
   const programTrack = app.querySelector('[data-program-track]');
   const programRuler = app.querySelector('[data-program-ruler]');
   const programFields = app.querySelector('[data-program-fields]');
@@ -31,6 +36,8 @@
   const videoLibraryList = app.querySelector('[data-video-library-list]');
   const videoLibrarySummary = app.querySelector('[data-video-library-summary]');
   const videoLibrarySearch = app.querySelector('[data-video-library-search]');
+  const videoLibraryFilter = app.querySelector('[data-video-library-filter]');
+  const videoLibrarySort = app.querySelector('[data-video-library-sort]');
   const videoLibraryRefreshButton = app.querySelector('[data-video-library-refresh]');
   const videoLibraryUploadInput = app.querySelector('[data-video-library-upload]');
   const videoPreviewDialog = app.querySelector('[data-video-preview-dialog]');
@@ -109,6 +116,67 @@
     toast.textContent = message;
     toast.hidden = false;
     toastTimer = window.setTimeout(() => { toast.hidden = true; }, ms);
+  }
+
+  function updateWorkspaceCounts() {
+    const counts = {
+      rundown: working?.program?.length || 0,
+      media: videoLibraryAssets.length,
+      audio: working?.music?.length || 0,
+      graphics: working?.ticker?.length || 0
+    };
+    app.querySelectorAll('[data-workspace-count]').forEach(node => {
+      node.textContent = String(counts[node.dataset.workspaceCount] || 0);
+    });
+  }
+
+  function activateWorkspace(name, { focus = false } = {}) {
+    const target = workspacePanels.some(panel => panel.dataset.workspacePanel === name) ? name : 'rundown';
+    workspaceTabs.forEach(tab => {
+      const active = tab.dataset.workspaceTab === target;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      tab.tabIndex = active ? 0 : -1;
+      if (active && focus) tab.focus();
+    });
+    workspacePanels.forEach(panel => {
+      const active = panel.dataset.workspacePanel === target;
+      panel.hidden = !active;
+      panel.classList.toggle('is-active', active);
+    });
+    localWrite(WORKSPACE_KEY, target);
+    if (target === 'rundown') window.setTimeout(postPreview, 50);
+  }
+
+  function bindWorkspaceTabs() {
+    workspaceTabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activateWorkspace(tab.dataset.workspaceTab));
+      tab.addEventListener('keydown', event => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        let next = index;
+        if (event.key === 'ArrowLeft') next = (index - 1 + workspaceTabs.length) % workspaceTabs.length;
+        if (event.key === 'ArrowRight') next = (index + 1) % workspaceTabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = workspaceTabs.length - 1;
+        activateWorkspace(workspaceTabs[next].dataset.workspaceTab, { focus: true });
+      });
+    });
+  }
+
+  function renderTickerPreview() {
+    if (!tickerPreview) return;
+    const entries = Array.isArray(working?.ticker) ? working.ticker.filter(Boolean) : [];
+    tickerPreview.textContent = entries.length ? entries.join('   •   ') : 'NO TICKER ITEMS';
+  }
+
+  function refreshProgramMonitor() {
+    if (!programFrame?.src) return;
+    try {
+      const url = new URL(programFrame.src, location.href);
+      url.searchParams.set('refresh', String(Date.now()));
+      programFrame.src = url.href;
+    } catch {}
   }
 
   function syncActionButtons() {
@@ -332,12 +400,13 @@
     const total = totalProgramDuration();
     loopTotal.textContent = `Loop ${fmt(total)}`;
     previewDuration.textContent = fmt(total);
-    previewNow.textContent = `${working?.program?.length || 0} program item${working?.program?.length === 1 ? '' : 's'} · ${working?.music?.length || 0} song${working?.music?.length === 1 ? '' : 's'}`;
+    previewNow.textContent = `${working?.program?.length || 0} item${working?.program?.length === 1 ? '' : 's'} · ${working?.music?.length || 0} audio cue${working?.music?.length === 1 ? '' : 's'}`;
 
     const liveStamp = fullState?.live?.updatedAt || fullState?.live?.startedAt || '';
     liveStatus.textContent = liveStamp
-      ? `Live · ${new Date(liveStamp).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
-      : 'Live';
+      ? new Date(liveStamp).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+      : 'Standby';
+    updateWorkspaceCounts();
   }
 
   function displayVideoName(name) {
@@ -444,16 +513,31 @@
   function renderVideoLibrary() {
     if (!videoLibraryList || !videoLibrarySummary) return;
     const query = String(videoLibrarySearch?.value || '').trim().toLowerCase();
-    const visible = videoLibraryAssets.filter(asset =>
-      !query
-      || displayVideoName(asset.name).toLowerCase().includes(query)
-      || String(asset.name || '').toLowerCase().includes(query)
-    );
+    const filter = String(videoLibraryFilter?.value || 'all');
+    const sort = String(videoLibrarySort?.value || 'newest');
+    const visible = videoLibraryAssets
+      .filter(asset => {
+        if (query && !displayVideoName(asset.name).toLowerCase().includes(query) && !String(asset.name || '').toLowerCase().includes(query)) return false;
+        const usage = videoUsage(asset);
+        if (filter === 'active') return usage.blocked;
+        if (filter === 'live') return usage.live;
+        if (filter === 'unused') return !usage.blocked;
+        return true;
+      })
+      .slice()
+      .sort((a, b) => {
+        if (sort === 'oldest') return String(a.createdAt || '').localeCompare(String(b.createdAt || ''));
+        if (sort === 'largest') return (Number(b.size) || 0) - (Number(a.size) || 0);
+        if (sort === 'smallest') return (Number(a.size) || 0) - (Number(b.size) || 0);
+        if (sort === 'name') return displayVideoName(a.name).localeCompare(displayVideoName(b.name));
+        return String(b.createdAt || '').localeCompare(String(a.createdAt || ''));
+      });
     const totalBytes = videoLibraryAssets.reduce((sum, asset) => sum + (Number(asset.size) || 0), 0);
     const mode = videoLibraryReadOnly ? ' · read-only fallback' : '';
     videoLibrarySummary.textContent = videoLibraryLoading
       ? 'Loading video library…'
-      : `${videoLibraryAssets.length} video${videoLibraryAssets.length === 1 ? '' : 's'} · ${formatBytes(totalBytes)}${mode}`;
+      : `${visible.length === videoLibraryAssets.length ? videoLibraryAssets.length : `${visible.length} of ${videoLibraryAssets.length}`} video${videoLibraryAssets.length === 1 ? '' : 's'} · ${formatBytes(totalBytes)}${mode}`;
+    updateWorkspaceCounts();
   
     videoLibraryList.replaceChildren();
     if (videoLibraryLoading && !videoLibraryAssets.length) {
@@ -466,7 +550,7 @@
     if (!visible.length) {
       const empty = document.createElement('p');
       empty.className = 'mfc-empty';
-      empty.textContent = query ? 'No uploaded videos match that search.' : 'No Broadcast Control videos have been uploaded yet.';
+      empty.textContent = (query || filter !== 'all') ? 'No uploaded videos match the current search or filter.' : 'No Broadcast Control videos have been uploaded yet.';
       videoLibraryList.append(empty);
       return;
     }
@@ -1308,6 +1392,7 @@
   tickerInput.addEventListener('input', () => {
     if (!working) return;
     working.ticker = tickerInput.value.split('\n').map(value => value.trim()).filter(Boolean);
+    renderTickerPreview();
     markDirty();
   });
 
@@ -1317,6 +1402,7 @@
     renderMusic();
     renderAudioSettings();
     tickerInput.value = (working.ticker || []).join('\n');
+    renderTickerPreview();
     setDirty(false);
     postPreview();
   }
@@ -1391,6 +1477,7 @@
       showToast('New programming is live. Existing viewers will sync automatically.');
       renderSummary();
       renderVideoLibrary();
+      refreshProgramMonitor();
     } catch (error) {
       if (error.status === 409) showToast('Broadcast state changed remotely. Use Reload State, then try again.', 8500);
       else showToast(`Could not take broadcast live: ${error.message}`, 8500);
@@ -1593,6 +1680,8 @@
 
   function bindVideoLibraryHandlers() {
     videoLibrarySearch?.addEventListener('input', renderVideoLibrary);
+    videoLibraryFilter?.addEventListener('change', renderVideoLibrary);
+    videoLibrarySort?.addEventListener('change', renderVideoLibrary);
   
     videoLibraryRefreshButton?.addEventListener('click', () => {
       void loadVideoLibrary();
@@ -1725,8 +1814,14 @@
     });
   }
 
-  previewFrame.addEventListener('load', () => {
+  previewFrame?.addEventListener('load', () => {
     window.setTimeout(postPreview, 150);
+  });
+
+  document.addEventListener('keydown', event => {
+    if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 's') return;
+    event.preventDefault();
+    if (!saveDraftButton.disabled) void saveDraft();
   });
 
   async function startWorkspace({ preserveWorking = false } = {}) {
@@ -1776,6 +1871,9 @@
     event.preventDefault();
     event.returnValue = '';
   });
+
+  bindWorkspaceTabs();
+  activateWorkspace(localRead(WORKSPACE_KEY) || 'rundown');
 
   sessionId = localRead(SESSION_ID_KEY);
   if (sessionId) startWorkspace();
