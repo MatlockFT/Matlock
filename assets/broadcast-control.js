@@ -584,7 +584,7 @@
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        message: 'Delete Broadcast Control video asset [skip ci]',
+        message: 'Delete Broadcast Control video asset',
         content: encodeBase64Utf8(JSON.stringify(request, null, 2) + '\n'),
         branch: 'main',
         ...(sha ? { sha } : {})
