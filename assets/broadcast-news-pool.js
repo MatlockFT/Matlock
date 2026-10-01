@@ -63,7 +63,7 @@
       const stamp = Date.parse(item.publishedAt);
       const date = Number.isFinite(stamp) ? new Date(stamp).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : item.publishedText || 'Date unavailable';
       const japanLabel = item.language === 'ja'
-        ? 'JP · ' + (item.translation?.mode === 'literal-machine' ? 'literal MT · ' : 'original · ')
+        ? 'JP · ' + (String(item.translation?.mode || '').startsWith('literal-machine') ? 'literal MT · ' : 'original · ')
         : '';
       meta.textContent = japanLabel + (item.kind === 'video' ? 'YouTube · ' + Math.floor(item.duration / 60) + ':' + String(item.duration % 60).padStart(2, '0') + ' · ' : 'Article · ')
         + item.source + ' · ' + date + (item.publishedAtEstimated ? ' (approx.)' : '') + (item.cached ? ' · cached' : '');
