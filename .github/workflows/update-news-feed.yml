@@ -12,6 +12,7 @@ on:
       - "scripts/news/build-news-feed.mjs"
       - "scripts/news/build-broadcast-videos.mjs"
       - "scripts/news/build-japan-mma-news.mjs"
+      - "scripts/news/japan-mma-glossary.json"
       - "scripts/news/dedupe-news-headlines.mjs"
       - "scripts/news/check-news-data.mjs"
       - "assets/data/news-lead-override.json"
