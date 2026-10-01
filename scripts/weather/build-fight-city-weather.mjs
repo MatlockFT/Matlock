@@ -9,6 +9,32 @@ const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
 const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || 0));
 const round = value => Number.isFinite(Number(value)) ? Math.round(Number(value)) : null;
 
+const REGIONAL_CITIES = [
+  ['Seattle',47.6062,-122.3321],['Portland',45.5234,-122.6762],['Spokane',47.6597,-117.4291],
+  ['Boise',43.6135,-116.2034],['Idaho Falls',43.4666,-112.0341],['Helena',46.5927,-112.0361],
+  ['Reno',39.4986,-119.7681],['Sacramento',38.5816,-121.4944],['San Francisco',37.7749,-122.4194],
+  ['Fresno',36.7378,-119.7871],['Los Angeles',34.0522,-118.2437],['San Diego',32.7157,-117.1611],
+  ['Las Vegas',36.1699,-115.1398],['Phoenix',33.4484,-112.0740],['Flagstaff',35.1983,-111.6513],
+  ['Tucson',32.2226,-110.9747],['Salt Lake City',40.7608,-111.8910],['Ogden',41.2230,-111.9738],
+  ['Provo',40.2338,-111.6585],['Logan',41.73698,-111.83384],['Park City',40.6461,-111.4980],
+  ['Richfield',38.7725,-112.0841],['St. George',37.0965,-113.5684],['Grand Junction',39.0639,-108.5506],
+  ['Denver',39.7392,-104.9903],['Cheyenne',41.1400,-104.8202],['Albuquerque',35.0844,-106.6504],
+  ['Santa Fe',35.6870,-105.9378],['El Paso',31.7619,-106.4850],['Amarillo',35.2220,-101.8313],
+  ['Dallas',32.7767,-96.7970],['Austin',30.2672,-97.7431],['San Antonio',29.4241,-98.4936],
+  ['Houston',29.7604,-95.3698],['Oklahoma City',35.4676,-97.5164],['Tulsa',36.1540,-95.9928],
+  ['Kansas City',39.0997,-94.5786],['Omaha',41.2565,-95.9345],['Wichita',37.6872,-97.3301],
+  ['Minneapolis',44.9778,-93.2650],['Des Moines',41.5868,-93.6250],['St. Louis',38.6270,-90.1994],
+  ['Chicago',41.8781,-87.6298],['Milwaukee',43.0389,-87.9065],['Detroit',42.3314,-83.0458],
+  ['Indianapolis',39.7684,-86.1581],['Cincinnati',39.1031,-84.5120],['Cleveland',41.4993,-81.6944],
+  ['Columbus',39.9612,-82.9988],['Pittsburgh',40.4406,-79.9959],['Nashville',36.1627,-86.7816],
+  ['Louisville',38.2527,-85.7585],['Atlanta',33.7490,-84.3880],['Charlotte',35.2271,-80.8431],
+  ['Raleigh',35.7796,-78.6382],['Washington DC',38.9072,-77.0369],['Baltimore',39.2904,-76.6122],
+  ['Philadelphia',39.9526,-75.1652],['New York',40.7128,-74.0060],['Boston',42.3601,-71.0589],
+  ['Buffalo',42.8864,-78.8784],['Syracuse',43.0481,-76.1474],['Orlando',28.5383,-81.3792],
+  ['Tampa',27.9506,-82.4572],['Miami',25.7617,-80.1918],['Jacksonville',30.3322,-81.6557],
+  ['New Orleans',29.9511,-90.0715],['Memphis',35.1495,-90.0490],['Birmingham',33.5186,-86.8104]
+].map(([name, latitude, longitude]) => ({ name, latitude, longitude }));
+
 async function fetchJson(url) {
   const response = await fetch(url, {
     headers: { 'user-agent': UA, accept: 'application/json,*/*' },
@@ -215,6 +241,109 @@ function formatSunTime(value, timezone) {
   return `${hour}:${minute} ${suffix}`;
 }
 
+function weatherStarMapCrop(latitude, longitude) {
+  const imageWidth = 2550;
+  const imageHeight = 1600;
+  const cropHeight = 360;
+  const cropWidth = cropHeight * (640 / 367);
+  const centerX = (127.5 + Number(longitude)) * 41.775;
+  const centerY = (50.5 - Number(latitude)) * 55.2;
+  const sourceX = clamp(centerX - cropWidth / 2, 0, imageWidth - cropWidth);
+  const sourceY = clamp(centerY - cropHeight / 2, 0, imageHeight - cropHeight);
+  const maxLatitude = 50.5 - sourceY / 55.2;
+  const minLatitude = 50.5 - (sourceY + cropHeight) / 55.2;
+  const minLongitude = (((sourceX * -1) / 41.775) + 127.5) * -1;
+  const maxLongitude = ((((sourceX + cropWidth) * -1) / 41.775) + 127.5) * -1;
+  return {
+    imageWidth,
+    imageHeight,
+    sourceX,
+    sourceY,
+    sourceWidth: cropWidth,
+    sourceHeight: cropHeight,
+    minLatitude,
+    maxLatitude,
+    minLongitude,
+    maxLongitude
+  };
+}
+
+function regionalDistance(a, b) {
+  const latScale = 69;
+  const lonScale = 69 * Math.cos(((Number(a.latitude) + Number(b.latitude)) / 2) * Math.PI / 180);
+  const dy = (Number(a.latitude) - Number(b.latitude)) * latScale;
+  const dx = (Number(a.longitude) - Number(b.longitude)) * lonScale;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+async function buildRegionalForecast(location, eventDate) {
+  const lat = Number(location.latitude);
+  const lon = Number(location.longitude);
+  if (!(lat >= 24 && lat <= 50.5 && lon >= -127.5 && lon <= -66)) return null;
+
+  const crop = weatherStarMapCrop(lat, lon);
+  const eventCity = {
+    name: clean(location.city) || 'Fight City',
+    latitude: lat,
+    longitude: lon,
+    fightCity: true
+  };
+
+  const candidates = REGIONAL_CITIES
+    .filter(city =>
+      city.latitude >= crop.minLatitude && city.latitude <= crop.maxLatitude &&
+      city.longitude >= crop.minLongitude && city.longitude <= crop.maxLongitude
+    )
+    .sort((a, b) => regionalDistance(a, eventCity) - regionalDistance(b, eventCity));
+
+  const chosen = [eventCity];
+  for (const city of candidates) {
+    if (city.name.toLowerCase() === eventCity.name.toLowerCase()) continue;
+    if (chosen.some(existing => regionalDistance(existing, city) < 55)) continue;
+    chosen.push(city);
+    if (chosen.length >= 7) break;
+  }
+
+  const rows = await Promise.all(chosen.map(async city => {
+    try {
+      const url = new URL('https://api.open-meteo.com/v1/forecast');
+      url.searchParams.set('latitude', String(city.latitude));
+      url.searchParams.set('longitude', String(city.longitude));
+      url.searchParams.set('timezone', 'auto');
+      url.searchParams.set('temperature_unit', 'fahrenheit');
+      url.searchParams.set('start_date', eventDate);
+      url.searchParams.set('end_date', eventDate);
+      url.searchParams.set('daily', 'weather_code,temperature_2m_max,temperature_2m_min');
+      const response = await fetchJson(url.href);
+      const weatherCode = Number(response.daily?.weather_code?.[0]);
+      return {
+        ...city,
+        high: round(response.daily?.temperature_2m_max?.[0]),
+        low: round(response.daily?.temperature_2m_min?.[0]),
+        weatherCode,
+        condition: condition(weatherCode, 1),
+        x: clamp((city.longitude - crop.minLongitude) / (crop.maxLongitude - crop.minLongitude) * 100, 2, 98),
+        y: clamp((crop.maxLatitude - city.latitude) / (crop.maxLatitude - crop.minLatitude) * 100, 4, 96)
+      };
+    } catch (error) {
+      console.warn(`Regional forecast unavailable for ${city.name}: ${error.message}`);
+      return null;
+    }
+  }));
+
+  const cities = rows.filter(Boolean);
+  return cities.length < 2 ? null : {
+    date: eventDate,
+    day: new Intl.DateTimeFormat('en-US', {
+      timeZone: 'UTC',
+      weekday: 'long'
+    }).format(new Date(`${eventDate}T12:00:00Z`)),
+    basemapUrl: 'https://cdn.jsdelivr.net/gh/vbguyny/ws4kp@065688b6ee9a5aa93578e1e3e95b3ecce07d16ce/Images/Basemap2.png',
+    crop,
+    cities
+  };
+}
+
 function narrativeFightDay(event, daily, fightHour) {
   const cond = condition(daily.weatherCode, 1);
   const wind = fightHour?.windSpeed != null ? `${compass(fightHour.windDirection)} WINDS ${Math.max(1, round(fightHour.windSpeed))} MPH` : '';
@@ -283,6 +412,7 @@ const dailyRows = (forecast.daily?.time || []).map((date, i) => ({
 
 const fightDay = eventDayIndex >= 0 ? dailyRows[eventDayIndex] : dailyRows[0];
 fightDay.timezone = timezone;
+const regional = await buildRegionalForecast(location, event.date);
 const fightHour = fightIndex >= 0 ? {
   time: forecast.hourly.time[fightIndex],
   temperature: round(forecast.hourly.temperature_2m?.[fightIndex]),
@@ -330,7 +460,7 @@ const current = {
 };
 
 const output = {
-  version: 1,
+  version: 2,
   generatedAt: new Date().toISOString(),
   event: {
     id: event.id,
@@ -360,6 +490,7 @@ const output = {
     moon: moonPhaseForDate(event.date)
   },
   daily: dailyRows.slice(0, 7),
+  regional,
   radar,
   source: {
     forecast: 'Open-Meteo',
