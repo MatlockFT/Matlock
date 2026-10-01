@@ -23,11 +23,19 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Confirm ffmpeg tools
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install bundled ffmpeg
         run: |
-          command -v ffmpeg
-          command -v ffprobe
-          ffmpeg -version | head -n 2
+          python -m pip install --disable-pip-version-check imageio-ffmpeg==0.6.0
+          echo "FFMPEG_BIN=$(python -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())')" >> "$GITHUB_ENV"
+
+      - name: Confirm ffmpeg
+        run: |
+          "$FFMPEG_BIN" -version | head -n 2
 
       - name: Download uploaded source
         run: |
@@ -35,15 +43,13 @@ jobs:
           test -s source.mp4
           ls -lh source.mp4
 
-      - name: Inspect source codecs
+      - name: Inspect source and decode one frame
         run: |
-          ffprobe -hide_banner -v error \
-            -show_entries stream=index,codec_name,codec_long_name,codec_type,profile,pix_fmt,width,height,r_frame_rate:format=duration,size,format_name \
-            -of json source.mp4
+          "$FFMPEG_BIN" -hide_banner -i source.mp4 -map 0:v:0 -frames:v 1 -f null -
 
       - name: Transcode to browser-safe MP4
         run: |
-          ffmpeg -hide_banner -y -i source.mp4 \
+          "$FFMPEG_BIN" -hide_banner -y -i source.mp4 \
             -map 0:v:0 -map 0:a? \
             -c:v libx264 -preset fast -crf 20 \
             -pix_fmt yuv420p -profile:v high -level 4.1 \
@@ -53,9 +59,8 @@ jobs:
 
       - name: Verify repaired file
         run: |
-          ffprobe -hide_banner -v error \
-            -show_entries stream=index,codec_name,codec_long_name,codec_type,profile,pix_fmt,width,height,r_frame_rate:format=duration,size,format_name \
-            -of json "$TARGET_NAME"
+          "$FFMPEG_BIN" -hide_banner -i "$TARGET_NAME" -map 0:v:0 -frames:v 1 -f null -
+          ls -lh "$TARGET_NAME"
 
       - name: Upload repaired video
         run: |
