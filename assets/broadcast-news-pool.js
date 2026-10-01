@@ -17,7 +17,7 @@
     { name: 'Japanese MMA', key: 'japan', kind: 'article', file: 'japan-mma-news.json', fallback: false, items: data => data.stories || [] },
     { name: 'Videos', key: 'videos', kind: 'video', file: 'broadcast-news-videos.json', fallback: true, items: data => data.videos || [] }
   ];
-  let entries = [], loaded = false, loading = false, limit = 24, lastRefresh = 0, lastSnapshotGeneratedAt = 0;
+  let entries = [], loaded = false, loading = false, limit = 24, lastRefresh = 0, lastSnapshotGeneratedAt = 0, lastLoadSuccessCount = 0;
   const safeUrl = value => {
     try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) ? url.href : ''; } catch { return ''; }
   };
@@ -121,9 +121,11 @@
 
       const notices = [];
       let newestGeneratedAt = 0;
+      let successCount = 0;
 
       results.forEach((result, index) => {
         if (result.status === 'fulfilled') {
+          successCount += 1;
           const { feed, data, fallback, age, rows } = result.value;
           newestGeneratedAt = Math.max(newestGeneratedAt, Date.parse(data.generatedAt) || 0);
           entries = entries.filter(item => item.pool !== feed.key);
@@ -146,6 +148,7 @@
 
       loaded = true;
       lastRefresh = Date.now();
+      lastLoadSuccessCount = successCount;
       lastSnapshotGeneratedAt = Math.max(lastSnapshotGeneratedAt, newestGeneratedAt);
       status.textContent = notices.join(' • ');
       render();
@@ -185,6 +188,10 @@
           message: 'Collector running… waiting for newly generated news data.',
           keepRefreshDisabled: true
         });
+        if (!lastLoadSuccessCount) {
+          status.textContent = 'News sources are temporarily unavailable. Keeping previously loaded items; the refresh request was still sent.';
+          return;
+        }
         if (generatedAt > previousGeneratedAt && generatedAt >= requestedAt - 1000) {
           status.textContent = 'Fresh news loaded · ' + new Date(generatedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
           return;
