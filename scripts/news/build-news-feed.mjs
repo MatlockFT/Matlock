@@ -1117,6 +1117,23 @@ function argumentValue(name) {
     return index >= 0 ? process.argv[index + 1] : "";
 }
 
+async function editorialLeadOverride() {
+    try {
+        const data = JSON.parse(
+            await readFile(resolve("assets/data/news-lead-override.json"), "utf8")
+        );
+        const url = safeUrl(data?.url);
+        const until = Date.parse(data?.until || "");
+
+        if (!url) return null;
+        if (Number.isFinite(until) && until <= Date.now()) return null;
+
+        return { url, until: Number.isFinite(until) ? new Date(until).toISOString() : "" };
+    } catch {
+        return null;
+    }
+}
+
 async function previousImageMap() {
     const requested = argumentValue("--previous");
     if (!requested) return new Map();
@@ -1214,8 +1231,30 @@ const clusters = clusterStories(stories);
 const rankedClusters = [...clusters].sort(
     (first, second) => topStoryScore(second) - topStoryScore(first)
 );
-const topCluster = rankedClusters[0];
-const topStory = publicStory(topCluster);
+let topCluster = rankedClusters[0];
+let topStoryCluster = topCluster;
+const leadOverride = await editorialLeadOverride();
+
+if (leadOverride?.url) {
+    for (const cluster of clusters) {
+        const pinnedStory = cluster.stories.find(
+            story => safeUrl(story.url) === leadOverride.url
+        );
+        if (!pinnedStory) continue;
+
+        topCluster = cluster;
+        topStoryCluster = {
+            ...cluster,
+            representative: pinnedStory
+        };
+        console.log(
+            `Editorial lead override: ${pinnedStory.source} — ${pinnedStory.title}`
+        );
+        break;
+    }
+}
+
+const topStory = publicStory(topStoryCluster);
 const latest = clusters
     .filter(cluster => cluster !== topCluster)
     .sort((first, second) =>
@@ -1229,7 +1268,7 @@ const publicStories = [topStory, ...latest];
 const previousImages = await previousImageMap();
 await enrichStoryImages(publicStories, previousImages);
 await enrichStoryContexts(publicStories);
-await selectEfficientLeadImage(topStory, topCluster, previousImages);
+await selectEfficientLeadImage(topStory, topStoryCluster, previousImages);
 
 const output = {
     version: 1,
