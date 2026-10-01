@@ -18,7 +18,7 @@ pinned: false
 listing_visibility: normal
 spoiler_warning: false
 preserve_line_breaks: true
-published: false
+published: true
 ---
 
 The discussion around banning the low-line side kick may be the hottest it has ever been. It's always been controversial, but usually the argument comes from a loud minority, burns for a few days, and eventually disappears without anything actually changing.
@@ -59,31 +59,25 @@ In 2009, there wasn't enough data to ban it. Seventeen years later, when asked f
 
 What things?
 
-That insurance comment is interesting, especially because fight night insurance can be messy. Fighters have talked before about entering fights already hurt and using event coverage afterward to get injuries treated. [Cub Swanson has described exactly that kind of situation from earlier in his career](https://sports.yahoo.com/mma/article/let-the-body-keep-the-score-mma-injuries-surgeries-lessons-learned-the-hard-way-cub-swanson-235829954.html). So if insurance claims are part of Foster's reasoning, I'd at least like to know what those claims actually show.
-
-But that's almost beside the larger point.
-
-In 2009, Foster said there wasn't enough data. Seventeen years later, where is it?
+That insurance comment is interesting, especially because fight night insurance can be messy. Fighters have talked before about entering fights already hurt and using event coverage afterward to get injuries treated. [Cub Swanson has described exactly that kind of situation from earlier in his career](https://sports.yahoo.com/mma/article/let-the-body-keep-the-score-mma-injuries-surgeries-lessons-learned-the-hard-way-cub-swanson-235829954.html). So if insurance claims are part of Foster's reasoning, why?
 
 His argument now seems to be less about evidence showing the technique is unusually dangerous and more about what he personally believes the acceptable level of risk should be.
 
 He says these injuries can have lifelong consequences and fighters have short careers. You only have to fail to defend the kick once. If you're using it to manage distance, you can use a teep instead. He also believes some fighters are throwing it specifically to hyperextend the knee and damage the ligaments.
 
-That last point is laughable because you can make up the same bullshit argument about a jab. A jab can measure distance, but it can also break a jaw, crack an orbital and, in MMA, send a finger or thumb right into an eyeball. Hands up, chin down, move your head... and maybe your leg, too.
+That last point is laughable.
 
-Even so, I can make sense of Foster's argument. I'm just not at all convinced by it.
+I can understand what Foster is getting at. I'm just not at all convinced by it.
 
 He says you only have to be wrong once defending this kick and you could end up with a serious injury. That's true, but you only have to be wrong once defending a lot of things in MMA. If this particular mistake carries some uniquely unacceptable amount of risk, I'd like to see the evidence establishing that.
 
-He also distinguishes the kick from heel hooks and kneebars because a fighter can tap before a submission destroys the joint. Andy may not realize this, but a fighter can submit at any time, whether that's physically with a tap or verbally. A fighter could feel those oblique kicks hitting his knee and decide, not today, Satan, and tap before taking any more damage.
+He also distinguishes the kick from heel hooks and kneebars because a fighter can tap before a submission destroys the joint. Andy may not realize this, but a fighter can submit at any time, whether that's physically with a tap or verbally. A fighter could feel those oblique kicks hitting their knee and tap before taking any more damage.
 
-Is a fighter going to take one low-line side kick and immediately submit because their knee hurts? Probably not.
-
-But fighters don't always tap to submissions either.
+Is a fighter going to take one low-line side kick and immediately submit because their knee hurts? Probably not. Fighters don't always tap to submissions either.
 
 [Tim Sylvia didn't tap when Frank Mir broke his arm at UFC 48](https://www.ufc.com/news/10-best-ufc-heavyweight-title-fights-stipe-jones-lesnar-cormier). [Antônio Rodrigo Nogueira didn't tap before Mir's kimura broke his arm at UFC 140](https://www.ufc.com/news/minotauro-nogueira-and-art-never-giving). [Jamahal Hill had his arm dislocated by Paul Craig at UFC 263 and, rather than submit, actually pushed it back into place and continued trying to fight](https://www.ufc.com/news/foes-friends-paul-craig-and-jahamal-hill-ufc-263).
 
-The option to tap certainly makes a submission different from a strike, but it doesn't guarantee a fighter avoids injury. Fighters are stubborn. They try to escape. They misjudge how much danger they're in. Sometimes the damage happens before they decide they've had enough.
+The option to tap certainly doesn't guarantee a fighter avoids injury. Fighters are stubborn. They try to escape. They misjudge how much danger they're in. Sometimes the damage happens before they decide they've had enough.
 
 So I don't think "you can tap to a heel hook" by itself explains why one technique represents an acceptable risk to a fighter's knee and the other doesn't.
 
@@ -104,3 +98,5 @@ Maybe Foster has information that hasn't been made public. Maybe doctors working
 But if that's the case, show us.
 
 Foster's position in 2009 was that there wasn't enough data to take this technique away from professional fighters. If we're going to do it now, I want to know what happened during the last 17 years that changed his mind.
+
+Maybe we'll find out soon.
