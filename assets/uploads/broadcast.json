@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-01T03:37:22.444Z",
+  "updatedAt": "2026-10-01T03:53:29.838Z",
   "draft": {
-    "revision": "draft-1790825842444",
-    "updatedAt": "2026-10-01T03:37:22.444Z",
+    "revision": "draft-1790826809838",
+    "updatedAt": "2026-10-01T03:53:29.838Z",
     "startedAt": "2026-09-30T04:00:00.000Z",
     "program": [
       {
@@ -95,7 +95,8 @@
       "duckAttack": 0.4,
       "duckRelease": 1.5,
       "crossfade": 2.5
-    }
+    },
+    "tickerSpeed": 0.6
   },
   "live": {
     "revision": "live-1790825842445",
