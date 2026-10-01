@@ -35,6 +35,13 @@
 .mfc-news-card h3 { font-size: 18px; line-height: 1.4; margin: 0; overflow-wrap: anywhere; }
 .mfc-news-card p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--ctl-muted); }
 .mfc-news-card .mfc-news-meta { font-size: 11px; color: var(--ctl-accent); }
+.mfc-news-card .mfc-news-original {
+  padding-top: 2px;
+  color: #aab1bb;
+  font-size: 12px;
+  line-height: 1.45;
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", Arial, sans-serif;
+}
 .mfc-news-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: auto; padding-top: 10px; }
 .mfc-news-actions a, .mfc-editor-form > a { color: var(--ctl-accent); font-size: 13px; overflow-wrap: anywhere; }
 .mfc-news-preview { width: min(860px, calc(100vw - 24px)); max-width: calc(100vw - 24px); padding: 18px; }
