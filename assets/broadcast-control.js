@@ -1493,7 +1493,7 @@
 
     form.append(titleField.wrap, eyebrowField.wrap, headerField.wrap);
 
-    if (!['image', 'video', 'youtube'].includes(item.type)) {
+    if (!['image', 'video', 'youtube', 'weather'].includes(item.type)) {
       const bodyField = field('Body', 'body', {
         type: 'textarea',
         value: item.body || '',
@@ -1522,6 +1522,26 @@
       }, 'mfc-button-ghost');
       suggest.dataset.textFitDuration = ''; suggest.hidden = true;
       form.append(hint, buttonRow(suggest));
+    }
+
+    if (item.type === 'weather') {
+      const durationField = field('Segment duration (seconds)', 'duration', {
+        type: 'number',
+        value: Math.max(24, Math.round(positive(item.duration) || 48)),
+        min: 24,
+        max: 180,
+        step: 4,
+        live: false,
+        onChange: value => {
+          item.duration = clamp(value, 24, 180);
+          renderProgram();
+          markDirty();
+        }
+      });
+      const note = document.createElement('p');
+      note.className = 'mfc-field-note mfc-field-wide';
+      note.textContent = 'This block automatically follows the next current UFC event and loads shared live weather, fight-day forecast, extended outlook and radar data. No manual city entry is required.';
+      form.append(durationField.wrap, note);
     }
 
     if (item.sourceUrl) {
@@ -1729,6 +1749,7 @@
         headline: { header: 'YOUR FIGHT FORECAST', eyebrow: 'LATEST', title: 'NEW HEADLINE', body: 'ADD THE STORY HERE.', duration: 20 },
         results: { header: 'FIGHT RESULTS', eyebrow: 'RESULTS', title: 'FIGHT RESULT', body: 'WINNER • METHOD • ROUND', duration: 18 },
         event: { header: 'UPCOMING FIGHTS', eyebrow: 'NEXT EVENT', title: 'UPCOMING EVENT', body: 'DATE • VENUE • MAIN EVENT', duration: 18 },
+        weather: { header: 'FIGHT CITY FORECAST', eyebrow: 'LOCAL WEATHER', title: 'FIGHT CITY FORECAST', duration: 48 },
         image: { header: 'MMA NEWS', eyebrow: 'PHOTO', title: 'IMAGE', mediaUrl: '', duration: 20 },
         video: { header: 'MMA VIDEO', eyebrow: 'VIDEO', title: 'VIDEO', mediaUrl: '', duration: 0, videoAudio: true },
         breaking: { header: 'BREAKING NEWS', eyebrow: 'BREAKING', title: 'BREAKING NEWS', body: 'ADD THE UPDATE HERE.', duration: 20 }
