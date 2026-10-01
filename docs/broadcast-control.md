@@ -33,7 +33,7 @@ The library displays 40 files per page. Search, filtering and sorting cover the 
 - Recommended music: MP3 or M4A/AAC. WAV, OGG, Opus and FLAC can also be used where the browser supports them.
 - Each file must be non-empty and smaller than 2 GiB. The existing upload service stores media in GitHub Releases. It does **not** transcode files. A familiar extension does not guarantee a supported codec.
 - Use a direct media file URL, not a watch page, sharing page, or GitHub asset-details API URL. The editor resolves this repository's GitHub asset-details URLs to download URLs and reads their duration when repairing an old draft.
-- New direct music URLs must load successfully before being added. YouTube music is excluded from continuous playback and blocks Take Live until replaced. Older drafts are preserved and display a warning; upload the audio file or use a playable direct URL.
+- Direct music URLs can be added even when the remote host does not expose enough metadata for automatic duration detection. Enter the track length as min:sec when needed. MP3, M4A/AAC, WAV, OGG, Opus and FLAC are supported where the browser can play them; MP4/M4V/WebM may also be used as audio containers. YouTube/watch pages are excluded from the continuous music bed because they are page embeds rather than direct audio files.
 - Video duration can be read again or entered as min:sec; image duration is editable in seconds. Missing or invalid durations block Take Live rather than silently using 30 seconds or three minutes.
 
 ## Text layout and long bodies
