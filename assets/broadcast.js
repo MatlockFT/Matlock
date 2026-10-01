@@ -46,6 +46,30 @@
     '/assets/data/broadcast.json'
   ];
   const SOUND_KEY = 'matlock-fight-channel:sound';
+  let clockOffsetMs = 0;
+
+  function synchronizedNowMs() {
+    return Date.now() + clockOffsetMs;
+  }
+
+  async function syncNetworkClock() {
+    const startedAt = Date.now();
+    try {
+      const response = await fetch(`${location.pathname}?clock=${startedAt}`, {
+        method: 'HEAD',
+        cache: 'no-store',
+        signal: AbortSignal.timeout(5000)
+      });
+      const receivedAt = Date.now();
+      const serverTime = Date.parse(response.headers.get('date') || '');
+      if (!response.ok || !Number.isFinite(serverTime)) return false;
+      const midpoint = (startedAt + receivedAt) / 2;
+      clockOffsetMs = serverTime - midpoint;
+      return true;
+    } catch {
+      return false;
+    }
+  }
 
   let state = null;
   let channel = null;
@@ -216,7 +240,7 @@
     if (!channel) return 0;
     const stamp = Date.parse(channel.startedAt || channel.updatedAt || '');
     if (!Number.isFinite(stamp)) return 0;
-    return Math.max(0, (Date.now() - stamp) / 1000);
+    return Math.max(0, (synchronizedNowMs() - stamp) / 1000);
   }
 
   function textForTicker() {
@@ -680,8 +704,9 @@
   }
 
   function updateClock() {
-    const now = new Date();
-    const index = Math.floor(Date.now() / WORLD_CLOCK_ROTATE_MS) % WORLD_CLOCKS.length;
+    const nowMs = synchronizedNowMs();
+    const now = new Date(nowMs);
+    const index = Math.floor(nowMs / WORLD_CLOCK_ROTATE_MS) % WORLD_CLOCKS.length;
     const clock = WORLD_CLOCKS[Math.max(0, index)] || WORLD_CLOCKS[0];
     dateNode.textContent = new Intl.DateTimeFormat('en-US', {
       timeZone: clock.zone,
@@ -810,13 +835,17 @@
   setSoundState(soundEnabled);
   updateClock();
 
-  loadState()
-    .then(revealBroadcast)
-    .catch(() => {
-      title.textContent = 'BROADCAST OFFLINE';
-      bodyCopy.textContent = 'THE CHANNEL WILL RETURN SHORTLY.';
-      revealBroadcast();
-    });
+  async function initializeBroadcast() {
+    await syncNetworkClock();
+    await loadState();
+    await revealBroadcast();
+  }
+
+  initializeBroadcast().catch(() => {
+    title.textContent = 'BROADCAST OFFLINE';
+    bodyCopy.textContent = 'THE CHANNEL WILL RETURN SHORTLY.';
+    revealBroadcast();
+  });
 
   window.setInterval(() => {
     const now = performance.now();
@@ -835,10 +864,24 @@
     loadState().catch(() => {});
   }, 12000);
 
+  window.setInterval(() => {
+    syncNetworkClock().then(() => {
+      if (!channel) return;
+      updateClock();
+      syncProgram();
+      scheduleTickerMetrics({ restart: true });
+    });
+  }, 300000);
+
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) {
       lastTickAt = performance.now();
-      loadState().catch(() => {});
+      Promise.allSettled([syncNetworkClock(), loadState()]).then(() => {
+        if (!channel) return;
+        updateClock();
+        syncProgram();
+        scheduleTickerMetrics({ restart: true });
+      });
     }
   });
 })();
