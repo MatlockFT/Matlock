@@ -48,7 +48,7 @@ async function startServer(port = 0) {
     }
   ] };
   const fightCityWeather = {
-    version: 1,
+    version: 2,
     generatedAt: new Date().toISOString(),
     event: {
       id: 'ufc-test-weather',
@@ -102,6 +102,29 @@ async function startServer(port = 0) {
       { date: '2026-10-04', day: 'SUN', high: 82, low: 63, precipProbability: 20, condition: { label: 'Partly Cloudy', icon: 'partlyCloudy' } },
       { date: '2026-10-05', day: 'MON', high: 74, low: 56, precipProbability: 30, condition: { label: 'Rain', icon: 'rain' } }
     ],
+    almanac: {
+      date: '2026-10-03',
+      sunrise: '7:26 AM',
+      sunset: '7:05 PM',
+      moon: { label: 'Last Quarter', icon: 'Last-Quarter.gif' }
+    },
+    regional: {
+      date: '2026-10-03',
+      day: 'Saturday',
+      basemapUrl: 'https://cdn.jsdelivr.net/gh/vbguyny/ws4kp@065688b6ee9a5aa93578e1e3e95b3ecce07d16ce/Images/Basemap2.png',
+      crop: {
+        imageWidth: 2550, imageHeight: 1600, sourceX: 340, sourceY: 292,
+        sourceWidth: 628, sourceHeight: 360,
+        minLatitude: 37.98, maxLatitude: 44.5, minLongitude: -119.36, maxLongitude: -104.33
+      },
+      cities: [
+        { name: 'Salt Lake City', latitude: 40.7608, longitude: -111.8910, fightCity: true, high: 84, low: 69, x: 49.7, y: 57.3, condition: { label: 'Cloudy', icon: 'cloudy' } },
+        { name: 'Boise', latitude: 43.6135, longitude: -116.2034, high: 76, low: 52, x: 21.0, y: 13.6, condition: { label: 'Sunny', icon: 'sunny' } },
+        { name: 'Reno', latitude: 39.4986, longitude: -119.7681, high: 79, low: 48, x: 4.0, y: 76.8, condition: { label: 'Sunny', icon: 'sunny' } },
+        { name: 'Grand Junction', latitude: 39.0639, longitude: -108.5506, high: 82, low: 56, x: 72.0, y: 83.5, condition: { label: 'Partly Cloudy', icon: 'partlyCloudy' } },
+        { name: 'Idaho Falls', latitude: 43.4666, longitude: -112.0341, high: 72, low: 44, x: 48.7, y: 15.9, condition: { label: 'Sunny', icon: 'sunny' } }
+      ]
+    },
     radar: null,
     source: { forecast: 'Open-Meteo', radar: '' }
   };
