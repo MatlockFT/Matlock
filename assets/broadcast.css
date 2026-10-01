@@ -1079,3 +1079,64 @@ body {
 .mfc-program-panel.has-weather::after {
   display: none;
 }
+
+
+.mfc-wx-almanac-grid {
+  display: grid;
+  grid-template-columns: 56% 44%;
+  align-items: center;
+  height: 78%;
+  padding: 5% 5% 3%;
+}
+
+.mfc-wx-sun-data {
+  display: flex;
+  flex-direction: column;
+  gap: 10%;
+  padding-left: 3%;
+  font-size: 3.75cqw;
+  line-height: 1.05;
+  text-transform: none;
+}
+
+.mfc-wx-sun-data p {
+  margin: 0;
+}
+
+.mfc-wx-sun-data b {
+  color: #f0d047;
+  font-weight: 400;
+}
+
+.mfc-wx-almanac-note {
+  color: #cfd8ea;
+  font-size: 2.05cqw;
+  text-transform: uppercase;
+}
+
+.mfc-wx-moon-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 2.7cqw;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: none;
+}
+
+.mfc-wx-moon-data strong {
+  color: #efe8d3;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.mfc-wx-moon {
+  width: 13cqw;
+  height: 13cqw;
+  object-fit: contain;
+  margin: 6% 0 4%;
+  image-rendering: auto;
+  filter: saturate(.9) contrast(1.04) blur(.02cqw);
+}
