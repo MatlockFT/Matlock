@@ -382,9 +382,9 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   await page.fill('[data-music-url-title]', 'YouTube Smoke Track');
   await page.fill('[data-music-url-duration]', '4:05');
   await page.click('[data-confirm-music-url]');
-  await expect(page.locator('[data-url-dialog]')).toBeVisible();
-  await expect(page.locator('[data-toast]')).toContainText('direct media');
-  await expect(page.locator('[data-music-track] [data-music-id]')).toHaveCount(2);
+  await expect(page.locator('[data-url-dialog]')).toBeHidden();
+  await expect(page.locator('[data-toast]')).toContainText('YouTube music added');
+  await expect(page.locator('[data-music-track] [data-music-id]')).toHaveCount(3);
 
   expect(pageErrors).toEqual([]);
 });
