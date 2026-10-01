@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-01T05:53:10.922Z",
+  "generatedAt": "2026-10-01T06:19:43.102Z",
   "event": {
     "id": "ufc-332-2026-10-03-fight-card",
     "promotion": "UFC 332",
@@ -17,20 +17,22 @@
     "startLocal": "6:00 PM MDT"
   },
   "current": {
-    "observedAt": "2026-09-30T23:45",
-    "temperature": 60,
+    "observedAt": "2026-10-01T00:15",
+    "temperature": 61,
     "feelsLike": 56,
     "humidity": 40,
+    "dewpoint": 36,
+    "visibilityMiles": 98,
     "weatherCode": 0,
     "condition": {
       "label": "Clear",
       "icon": "clear"
     },
     "cloudCover": 0,
-    "pressure": 1009.8,
-    "windSpeed": 3,
-    "windDirection": 5,
-    "windGust": 4,
+    "pressure": 1009.6,
+    "windSpeed": 4,
+    "windDirection": 45,
+    "windGust": 5,
     "precipitation": 0
   },
   "fightDay": {
@@ -80,24 +82,6 @@
     }
   },
   "daily": [
-    {
-      "date": "2026-09-30",
-      "day": "WED",
-      "weatherCode": 0,
-      "condition": {
-        "label": "Sunny",
-        "icon": "sunny"
-      },
-      "high": 76,
-      "low": 51,
-      "precipProbability": 1,
-      "precip": 0,
-      "windMax": 10,
-      "gustMax": 13,
-      "windDirection": 336,
-      "sunrise": "2026-09-30T07:23",
-      "sunset": "2026-09-30T19:10"
-    },
     {
       "date": "2026-10-01",
       "day": "THU",
@@ -206,6 +190,24 @@
       "windDirection": 302,
       "sunrise": "2026-10-06T07:29",
       "sunset": "2026-10-06T19:01"
+    },
+    {
+      "date": "2026-10-07",
+      "day": "WED",
+      "weatherCode": 0,
+      "condition": {
+        "label": "Sunny",
+        "icon": "sunny"
+      },
+      "high": 86,
+      "low": 67,
+      "precipProbability": 0,
+      "precip": 0,
+      "windMax": 7,
+      "gustMax": 8,
+      "windDirection": 42,
+      "sunrise": "2026-10-07T07:30",
+      "sunset": "2026-10-07T18:59"
     }
   ],
   "regional": {
@@ -269,20 +271,6 @@
         "y": 80.48695999999994
       },
       {
-        "name": "Idaho Falls",
-        "latitude": 43.4666,
-        "longitude": -112.0341,
-        "high": 79,
-        "low": 50,
-        "weatherCode": 0,
-        "condition": {
-          "label": "Sunny",
-          "icon": "sunny"
-        },
-        "x": 49.04810748860685,
-        "y": 11
-      },
-      {
         "name": "Grand Junction",
         "latitude": 39.0639,
         "longitude": -108.5506,
@@ -327,9 +315,9 @@
     ]
   },
   "radar": {
-    "generatedAt": "2026-10-01T05:50:23.000Z",
-    "frameTime": "2026-10-01T05:50:00.000Z",
-    "tileUrl": "https://tilecache.rainviewer.com/v2/radar/aca0859df3e4/512/5/40.76078/-111.89105/2/0_1.png",
+    "generatedAt": "2026-10-01T06:15:27.000Z",
+    "frameTime": "2026-10-01T06:10:00.000Z",
+    "tileUrl": "https://tilecache.rainviewer.com/v2/radar/d7cd4796995f/512/5/40.76078/-111.89105/2/0_1.png",
     "attribution": "RainViewer"
   },
   "source": {
