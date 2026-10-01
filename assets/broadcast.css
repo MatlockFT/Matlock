@@ -2049,9 +2049,9 @@ body {
 
 .mfc-wx-sun-data p {
   display: grid;
-  grid-template-columns: 12.1cqw minmax(0, 1fr);
+  grid-template-columns: max-content minmax(0, 1fr);
   align-items: baseline;
-  column-gap: 1.05cqw;
+  column-gap: 1.2cqw;
   min-width: 0;
   margin: 0;
   overflow: visible;
@@ -2081,8 +2081,8 @@ body {
 }
 
 .mfc-wx-almanac-note {
-  grid-template-columns: 9.7cqw minmax(0, 1fr) !important;
-  column-gap: 1.05cqw !important;
+  grid-template-columns: max-content minmax(0, 1fr) !important;
+  column-gap: 1.2cqw !important;
   margin-top: 1.05cqw !important;
   font-size: 1.58cqw !important;
 }
