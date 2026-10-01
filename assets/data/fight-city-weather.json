@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-01T05:36:36.904Z",
+  "generatedAt": "2026-10-01T05:43:15.218Z",
   "event": {
     "id": "ufc-332-2026-10-03-fight-card",
     "promotion": "UFC 332",
@@ -69,6 +69,15 @@
       "windGust": 7
     },
     "narrative": "SATURDAY...CLOUDY. HIGH 84. NW WINDS 7 MPH. CHANCE OF PRECIPITATION 0 PERCENT."
+  },
+  "almanac": {
+    "date": "2026-10-03",
+    "sunrise": "7:26 AM",
+    "sunset": "7:05 PM",
+    "moon": {
+      "label": "Last Quarter",
+      "icon": "Last-Quarter.gif"
+    }
   },
   "daily": [
     {
@@ -200,9 +209,9 @@
     }
   ],
   "radar": {
-    "generatedAt": "2026-10-01T05:35:26.000Z",
-    "frameTime": "2026-10-01T05:30:00.000Z",
-    "tileUrl": "https://tilecache.rainviewer.com/v2/radar/8b4298106d61/512/5/40.76078/-111.89105/2/0_1.png",
+    "generatedAt": "2026-10-01T05:40:23.000Z",
+    "frameTime": "2026-10-01T05:40:00.000Z",
+    "tileUrl": "https://tilecache.rainviewer.com/v2/radar/045f42e5f63b/512/5/40.76078/-111.89105/2/0_1.png",
     "attribution": "RainViewer"
   },
   "source": {
