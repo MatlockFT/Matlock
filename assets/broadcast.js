@@ -94,6 +94,7 @@
   const pendingPlay = new WeakSet();
   const waitingSince = new WeakMap();
   const measuredMusicDurations = new Map();
+  let musicScheduleCache = null;
   let soundBlocked = false;
   const youtube = youtubeHost && window.matlockYoutubePlayer?.(youtubeHost, {
     error: url => {
@@ -649,38 +650,171 @@
     playSlot(element);
   }
 
+  function musicRepeatMode() {
+    return String(channel?.audio?.musicRepeat || 'shuffle').toLowerCase() === 'fixed' ? 'fixed' : 'shuffle';
+  }
+
+  function musicRepeatKey(track) {
+    return String(track?.url || track?.id || '');
+  }
+
+  function musicSeed(value) {
+    let hash = 2166136261;
+    const text = String(value || '');
+    for (let index = 0; index < text.length; index += 1) {
+      hash ^= text.charCodeAt(index);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function musicRandom(seedState) {
+    let value = seedState.value += 0x6D2B79F5;
+    value = Math.imul(value ^ value >>> 15, value | 1);
+    value ^= value + Math.imul(value ^ value >>> 7, value | 61);
+    return ((value ^ value >>> 14) >>> 0) / 4294967296;
+  }
+
+  function musicCycleOrder(tracks, cycleIndex, previousOrder) {
+    const order = tracks.slice();
+    if (cycleIndex === 0 || musicRepeatMode() === 'fixed' || order.length < 2) return order;
+
+    const seedState = {
+      value: musicSeed([
+        channel?.startedAt || channel?.updatedAt || '',
+        tracks.map(musicTrackKey).join('|'),
+        cycleIndex
+      ].join('::'))
+    };
+
+    for (let index = order.length - 1; index > 0; index -= 1) {
+      const swap = Math.floor(musicRandom(seedState) * (index + 1));
+      [order[index], order[swap]] = [order[swap], order[index]];
+    }
+
+    const previousLast = previousOrder?.[previousOrder.length - 1];
+    if (previousLast && musicRepeatKey(order[0]) === musicRepeatKey(previousLast)) {
+      const swap = order.findIndex((track, index) => index > 0 && musicRepeatKey(track) !== musicRepeatKey(previousLast));
+      if (swap > 0) [order[0], order[swap]] = [order[swap], order[0]];
+    }
+
+    if (order.length > 2 && previousOrder?.length === order.length
+        && order.every((track, index) => musicTrackKey(track) === musicTrackKey(previousOrder[index]))) {
+      [order[1], order[2]] = [order[2], order[1]];
+    }
+
+    return order;
+  }
+
+  function musicTransitionOverlap(first, second) {
+    if (!first || !second || musicRepeatKey(first) === musicRepeatKey(second)) return 0;
+    const globalCrossfade = clamp(channel?.audio?.crossfade ?? 2.5, 0, 12);
+    return Math.min(globalCrossfade, musicDuration(first) * .45, musicDuration(second) * .45);
+  }
+
+  function musicScheduleSignature(tracks) {
+    return JSON.stringify([
+      channel?.startedAt || channel?.updatedAt || '',
+      musicRepeatMode(),
+      clamp(channel?.audio?.crossfade ?? 2.5, 0, 12),
+      tracks.map(track => [musicTrackKey(track), musicDuration(track)])
+    ]);
+  }
+
+  function ensureMusicCycle(cache, tracks, cycleIndex) {
+    while (cache.cycles.length <= cycleIndex) {
+      const index = cache.cycles.length;
+      const previous = cache.cycles[index - 1] || null;
+      cache.cycles.push(musicCycleOrder(tracks, index, previous));
+    }
+  }
+
+  function appendMusicCycle(cache, tracks, cycleIndex) {
+    ensureMusicCycle(cache, tracks, cycleIndex + 1);
+    const order = cache.cycles[cycleIndex];
+    const nextOrder = cache.cycles[cycleIndex + 1];
+
+    for (let index = 0; index < order.length; index += 1) {
+      const item = order[index];
+      const previousEntry = cache.entries[cache.entries.length - 1] || null;
+      const previous = previousEntry?.item || null;
+      const next = index < order.length - 1 ? order[index + 1] : nextOrder[0] || null;
+      const duration = musicDuration(item);
+      const incomingOverlap = previous ? musicTransitionOverlap(previous, item) : 0;
+      const outgoingOverlap = next ? musicTransitionOverlap(item, next) : 0;
+      const start = cache.end;
+      const end = start + Math.max(.05, duration - outgoingOverlap);
+
+      cache.entries.push({
+        item,
+        index,
+        cycleIndex,
+        start,
+        end,
+        duration,
+        previous,
+        previousDuration: previous ? musicDuration(previous) : 0,
+        incomingOverlap,
+        next
+      });
+      cache.end = end;
+    }
+
+    cache.builtCycles = cycleIndex + 1;
+  }
+
   function musicPosition(tracks, elapsed) {
     if (!tracks.length) return null;
-    const globalCrossfade = clamp(channel?.audio?.crossfade ?? 2.5, 0, 12);
-    const durations = tracks.map(musicDuration);
-    const overlaps = tracks.map((track, index) => {
-      if (tracks.length < 2) return 0;
-      const nextIndex = (index + 1) % tracks.length;
-      return Math.min(globalCrossfade, durations[index] * .45, durations[nextIndex] * .45);
-    });
-    const slots = durations.map((duration, index) => Math.max(.05, duration - overlaps[index]));
-    const total = slots.reduce((sum, value) => sum + value, 0);
-    const position = mod(elapsed, total);
-    let cursor = 0;
-    let index = 0;
-    for (; index < tracks.length; index += 1) {
-      if (position < cursor + slots[index] || index === tracks.length - 1) break;
-      cursor += slots[index];
+    const signature = musicScheduleSignature(tracks);
+    if (!musicScheduleCache || musicScheduleCache.signature !== signature) {
+      musicScheduleCache = {
+        signature,
+        cycles: [],
+        entries: [],
+        end: 0,
+        builtCycles: 0
+      };
     }
-    const local = Math.max(0, position - cursor);
-    const previousIndex = (index - 1 + tracks.length) % tracks.length;
-    const incomingOverlap = overlaps[previousIndex];
-    const previous = tracks[previousIndex];
+
+    const target = Math.max(0, elapsed);
+    let guard = 0;
+    while (musicScheduleCache.end <= target && guard < 5000) {
+      appendMusicCycle(musicScheduleCache, tracks, musicScheduleCache.builtCycles);
+      guard += 1;
+    }
+
+    const entries = musicScheduleCache.entries;
+    if (!entries.length) return null;
+    let low = 0;
+    let high = entries.length - 1;
+    while (low < high) {
+      const middle = Math.floor((low + high) / 2);
+      if (target < entries[middle].end) high = middle;
+      else low = middle + 1;
+    }
+
+    const entry = entries[Math.min(low, entries.length - 1)];
+    const local = Math.max(0, target - entry.start);
     return {
-      item: tracks[index], index, local, total, durations, overlaps,
-      previous, previousIndex, incomingOverlap,
-      previousLocal: Math.max(0, durations[previousIndex] - incomingOverlap + local)
+      item: entry.item,
+      index: entry.index,
+      cycleIndex: entry.cycleIndex,
+      local,
+      total: entry.end,
+      duration: entry.duration,
+      previous: entry.previous,
+      previousDuration: entry.previousDuration,
+      incomingOverlap: entry.incomingOverlap,
+      previousLocal: entry.previous
+        ? Math.max(0, entry.previousDuration - entry.incomingOverlap + local)
+        : 0,
+      next: entry.next
     };
   }
 
   function primeNextMusicTrack(tracks, position, inCrossfade) {
     if (inCrossfade || tracks.length < 2 || !standbyMusic) return;
-    const next = tracks[(position.index + 1) % tracks.length];
+    const next = position.next;
     if (!next || youtubeMusicId(next)) return;
     ensureAudioSource(standbyMusic, next, 0);
   }
@@ -727,7 +861,7 @@
     if (!Number.isFinite(musicLevel)) musicLevel = desiredDuck;
     else musicLevel += (desiredDuck - musicLevel) * clamp(speed, 0, 1);
 
-    const currentDuration = pos.durations?.[pos.index] || musicDuration(track);
+    const currentDuration = pos.duration || musicDuration(track);
     const remaining = Math.max(0, currentDuration - pos.local);
     const fadeIn = Math.max(0, Number(track.fadeIn) || 0);
     const fadeOut = Math.max(0, Number(track.fadeOut) || 0);
@@ -738,7 +872,7 @@
 
     let previousVolume = 0;
     if (inCrossfade) {
-      const previousDuration = pos.durations?.[pos.previousIndex] || musicDuration(pos.previous);
+      const previousDuration = pos.previousDuration || musicDuration(pos.previous);
       const previousRemaining = Math.max(0, previousDuration - pos.previousLocal);
       const previousFadeOut = Math.max(0, Number(pos.previous.fadeOut) || 0);
       const ownPreviousFade = previousFadeOut > 0
