@@ -1827,3 +1827,50 @@ body {
   overflow-y: visible;
   line-height: 1.12;
 }
+
+
+/* Fight City text ink clipping guard v4 */
+.mfc-wx-page-title,
+.mfc-wx-eventline,
+.mfc-wx-eventline strong,
+.mfc-wx-eventline span,
+.mfc-wx-current-right p > span,
+.mfc-wx-current-right p > b,
+.mfc-wx-fightday-copy p {
+  overflow: visible;
+}
+
+.mfc-wx-page-title {
+  max-height: none;
+  padding-top: .18cqw;
+  padding-bottom: .22cqw;
+}
+
+.mfc-wx-eventline {
+  padding-top: .12cqw;
+  padding-bottom: .2cqw;
+}
+
+.mfc-wx-current-right p,
+.mfc-wx-current-right p > span,
+.mfc-wx-current-right p > b {
+  line-height: 1.14;
+}
+
+.mfc-wx-fightday-copy p {
+  padding-top: .12cqw;
+  padding-bottom: .2cqw;
+}
+
+.mfc-wx-day > strong,
+.mfc-wx-day-condition,
+.mfc-wx-day-temp,
+.mfc-wx-day small,
+.mfc-wx-radar-city,
+.mfc-wx-radar-time,
+.mfc-wx-moon-data,
+.mfc-wx-moon-data strong,
+.mfc-wx-moon-data span {
+  overflow: visible;
+  line-height: 1.12;
+}
