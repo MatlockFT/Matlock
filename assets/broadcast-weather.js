@@ -67,6 +67,10 @@
 
   function currentScreen() {
     const row = data.current || {};
+    const pressure = n(row.pressure) == null ? '—' : (Number(row.pressure) * 0.02953).toFixed(2) + ' IN.';
+    const stat = (label, value) =>
+      '<p><span>' + esc(label) + '</span><b>' + esc(value) + '</b></p>';
+
     return '<div class="mfc-wx-page mfc-wx-current">'
       + '<div class="mfc-wx-page-title">Current Conditions</div>'
       + eventLine()
@@ -74,13 +78,13 @@
       + '<div class="mfc-wx-current-left"><div class="mfc-wx-big-temp">' + whole(row.temperature) + '°</div>'
       + '<div class="mfc-wx-condition">' + esc(weatherLabel(row)) + '</div>'
       + iconSvg(row.condition?.icon || 'partlyCloudy', true)
-      + '<div class="mfc-wx-wind">WIND ' + esc(compass(row.windDirection)) + ' ' + whole(row.windSpeed) + '</div></div>'
+      + '<div class="mfc-wx-wind">WIND ' + esc(compass(row.windDirection)) + ' ' + whole(row.windSpeed) + ' MPH</div></div>'
       + '<div class="mfc-wx-current-right">'
-      + '<p>HUMIDITY: <b>' + whole(row.humidity) + '%</b></p>'
-      + '<p>FEELS LIKE: <b>' + whole(row.feelsLike) + '°</b></p>'
-      + '<p>PRESSURE: <b>' + (n(row.pressure) == null ? '—' : (Number(row.pressure) * 0.02953).toFixed(2) + ' IN.') + '</b></p>'
-      + '<p>CLOUD COVER: <b>' + whole(row.cloudCover) + '%</b></p>'
-      + '<p>WIND GUST: <b>' + whole(row.windGust) + ' MPH</b></p>'
+      + stat('HUMIDITY:', whole(row.humidity) + '%')
+      + stat('FEELS LIKE:', whole(row.feelsLike) + '°')
+      + stat('PRESSURE:', pressure)
+      + stat('CLOUD COVER:', whole(row.cloudCover) + '%')
+      + stat('WIND GUST:', whole(row.windGust) + ' MPH')
       + '</div></div></div>';
   }
 
@@ -89,20 +93,24 @@
     const hour = day.atEvent || {};
     const event = data.event || {};
     const when = event.date ? new Intl.DateTimeFormat('en-US', {
-      weekday: 'long', month: 'short', day: 'numeric', timeZone: event.timezone || 'UTC'
+      weekday: 'short', month: 'short', day: 'numeric', timeZone: event.timezone || 'UTC'
     }).format(new Date(event.date + 'T12:00:00Z')).toUpperCase() : 'FIGHT DAY';
+
     return '<div class="mfc-wx-page mfc-wx-fightday">'
-      + '<div class="mfc-wx-page-title">Forecast For ' + esc(when) + '</div>'
+      + '<div class="mfc-wx-page-title">Fight Day Forecast</div>'
+      + '<div class="mfc-wx-page-subtitle">' + esc(when) + '</div>'
       + eventLine()
       + '<div class="mfc-wx-fightday-main">'
       + '<div class="mfc-wx-fightday-icon">' + iconSvg(day.condition?.icon || 'partlyCloudy', true) + '</div>'
       + '<div class="mfc-wx-fightday-copy"><div class="mfc-wx-fightday-condition">' + esc(weatherLabel(day)) + '</div>'
       + '<div class="mfc-wx-hi-lo"><span>HIGH <b>' + whole(day.high) + '°</b></span><span>LOW <b>' + whole(day.low) + '°</b></span></div>'
       + '<p>' + esc(day.narrative || '') + '</p></div></div>'
-      + '<div class="mfc-wx-fight-time"><span>MAIN CARD ' + esc(event.startLocal || '') + '</span>'
-      + '<b>' + whole(hour.temperature) + '° · ' + esc(hour.condition?.label || weatherLabel(day)) + '</b>'
-      + '<span>PRECIP ' + whole(hour.precipProbability ?? day.precipProbability) + '% · WIND ' + esc(compass(hour.windDirection ?? day.windDirection)) + ' ' + whole(hour.windSpeed ?? day.windMax) + ' MPH</span></div>'
-      + '</div>';
+      + '<div class="mfc-wx-fight-time">'
+      + '<span class="mfc-wx-fight-time-slot"><small>MAIN CARD</small><strong>' + esc(event.startLocal || '') + '</strong></span>'
+      + '<span class="mfc-wx-fight-time-slot is-temp"><b>' + whole(hour.temperature) + '°</b><strong>' + esc(hour.condition?.label || weatherLabel(day)) + '</strong></span>'
+      + '<span class="mfc-wx-fight-time-slot"><small>PRECIP</small><strong>' + whole(hour.precipProbability ?? day.precipProbability) + '%</strong></span>'
+      + '<span class="mfc-wx-fight-time-slot"><small>WIND</small><strong>' + esc(compass(hour.windDirection ?? day.windDirection)) + ' ' + whole(hour.windSpeed ?? day.windMax) + ' MPH</strong></span>'
+      + '</div></div>';
   }
 
   function extendedScreen() {
@@ -121,6 +129,35 @@
       + '</div></div>';
   }
 
+  function chooseRegionalCities(cities, limit = 5) {
+    const rows = Array.isArray(cities) ? cities.filter(city => Number.isFinite(Number(city.x)) && Number.isFinite(Number(city.y))) : [];
+    if (rows.length <= limit) return rows;
+
+    const fightCity = rows.find(city => city.fightCity) || rows[0];
+    const chosen = [fightCity];
+    const remaining = rows.filter(city => city !== fightCity);
+
+    while (chosen.length < limit && remaining.length) {
+      let bestIndex = 0;
+      let bestScore = -1;
+      remaining.forEach((city, index) => {
+        const nearest = Math.min(...chosen.map(other => {
+          const dx = Number(city.x) - Number(other.x);
+          const dy = Number(city.y) - Number(other.y);
+          return Math.sqrt(dx * dx + dy * dy);
+        }));
+        const edgePenalty = Math.min(Number(city.x), 100 - Number(city.x), Number(city.y), 100 - Number(city.y));
+        const score = nearest + Math.min(12, edgePenalty * .35);
+        if (score > bestScore) {
+          bestScore = score;
+          bestIndex = index;
+        }
+      });
+      chosen.push(remaining.splice(bestIndex, 1)[0]);
+    }
+    return chosen;
+  }
+
   function regionalScreen() {
     const regional = data.regional;
     if (!regional?.crop || !Array.isArray(regional.cities) || regional.cities.length < 2) return extendedScreen();
@@ -131,7 +168,7 @@
     const mapLeft = -Number(crop.sourceX) / Number(crop.sourceWidth) * 100;
     const mapTop = -Number(crop.sourceY) / Number(crop.sourceHeight) * 100;
 
-    const cities = regional.cities.map(city => {
+    const cities = chooseRegionalCities(regional.cities, 5).map(city => {
       const fightClass = city.fightCity ? ' is-fight-city' : '';
       return '<div class="mfc-wx-map-city' + fightClass + '" style="left:' + Number(city.x).toFixed(2) + '%;top:' + Number(city.y).toFixed(2) + '%">'
         + '<span class="mfc-wx-map-city-name">' + esc(city.name) + '</span>'
@@ -143,7 +180,8 @@
     }).join('');
 
     return '<div class="mfc-wx-page mfc-wx-regional">'
-      + '<div class="mfc-wx-page-title">Forecast For ' + esc(String(regional.day || 'Fight Day')) + '</div>'
+      + '<div class="mfc-wx-page-title">Regional Forecast</div>'
+      + '<div class="mfc-wx-page-subtitle">' + esc(String(regional.day || 'Fight Day').toUpperCase()) + '</div>'
       + eventLine()
       + '<div class="mfc-wx-regional-map">'
       + '<img class="mfc-wx-regional-basemap" src="' + esc(regional.basemapUrl || '') + '" alt="" '
