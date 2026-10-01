@@ -20,7 +20,7 @@ permalink: /broadcast/
       visibility: hidden;
     }
   </style>
-  <link rel="stylesheet" href="{{ '/assets/broadcast.css' | relative_url }}?v=20261001-sync-2">
+  <link rel="stylesheet" href="{{ '/assets/broadcast.css' | relative_url }}?v=20261001-fight-city-1">
 </head>
 <body class="mfc-body">
   <main class="mfc-shell" data-mfc-root aria-label="Matlock Fight Channel">
@@ -49,6 +49,12 @@ permalink: /broadcast/
           <img class="mfc-image" data-mfc-image alt="" hidden>
           <video class="mfc-video" data-mfc-video playsinline preload="auto" hidden></video>
           <div class="mfc-youtube" data-mfc-youtube hidden></div>
+          <section class="mfc-weather" data-mfc-weather hidden aria-label="Fight City Forecast">
+            <div class="mfc-weather-screen" data-mfc-weather-screen>
+              <div class="mfc-weather-loading">FIGHT CITY FORECAST<br>LOADING LOCAL WEATHER...</div>
+            </div>
+            <small class="mfc-weather-source" data-mfc-weather-source></small>
+          </section>
         </div>
       </div>
 
@@ -80,8 +86,9 @@ permalink: /broadcast/
   <div class="mfc-youtube-audio-host" data-mfc-music-youtube-a aria-hidden="true"></div>
   <div class="mfc-youtube-audio-host" data-mfc-music-youtube-b aria-hidden="true"></div>
 
-  <script src="{{ '/assets/broadcast-youtube.js' | relative_url }}?v=20261001-sync-2" defer></script>
-  <script src="{{ '/assets/broadcast.js' | relative_url }}?v=20261001-sync-2" defer></script>
+  <script src="{{ '/assets/broadcast-youtube.js' | relative_url }}?v=20261001-fight-city-1" defer></script>
+  <script src="{{ '/assets/broadcast-weather.js' | relative_url }}?v=20261001-fight-city-1" defer></script>
+  <script src="{{ '/assets/broadcast.js' | relative_url }}?v=20261001-fight-city-1" defer></script>
 </body>
 </html>
 
