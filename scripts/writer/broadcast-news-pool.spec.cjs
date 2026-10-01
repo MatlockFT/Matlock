@@ -258,6 +258,18 @@ test('Fight City Forecast renders shared local weather in the live program', asy
   await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Current Conditions');
   await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Salt Lake City');
   await expect(page.locator('[data-mfc-weather-screen]')).toContainText('61°');
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('DEWPOINT:34°');
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('VISIBILITY:10 MI.');
+  await expect(page.locator('.mfc-wx-current-stats p')).toHaveCount(6);
+  const currentLayout = await page.evaluate(() => {
+    const left = document.querySelector('.mfc-wx-current-left')?.getBoundingClientRect();
+    const right = document.querySelector('.mfc-wx-current-right')?.getBoundingClientRect();
+    const city = document.querySelector('.mfc-wx-current-city')?.getBoundingClientRect();
+    const stats = document.querySelector('.mfc-wx-current-stats')?.getBoundingClientRect();
+    return { left, right, city, stats };
+  });
+  expect(currentLayout.left.right).toBeLessThanOrEqual(currentLayout.right.left + 1);
+  expect(currentLayout.city.bottom).toBeLessThanOrEqual(currentLayout.stats.top + 2);
   await expect(page.locator('[data-mfc-weather-source]')).toContainText('OPEN-METEO');
 });
 
