@@ -687,20 +687,7 @@
   }
 
   function renderReadiness() {
-    const issues = readinessIssues();
-    const summary = app.querySelector('[data-readiness-summary]');
-    summary.textContent = issues.length ? issues.length + ' item' + (issues.length === 1 ? '' : 's') + ' to fix before Take Live' : working?.program?.length ? 'Loop settings ready — check Preview before Take Live' : 'Empty rundown — Program will show standby';
-    summary.dataset.ready = issues.length ? 'false' : 'true';
-    const list = app.querySelector('[data-readiness-list]'); list.replaceChildren();
-    for (const issue of issues) {
-      const row = document.createElement('li');
-      row.append(smallButton(issue.title + ': ' + issue.reasons.join('; '), () => {
-        activateWorkspace(issue.kind === 'music' ? 'audio' : 'rundown');
-        if (issue.kind === 'music') { selectedMusicId = issue.id; renderMusic(); musicFields.querySelector('input')?.focus(); }
-        else { selectedProgramId = issue.id; renderProgram(); programFields.querySelector('input')?.focus(); }
-      }, 'mfc-text-button'));
-      list.append(row);
-    }
+    return readinessIssues();
   }
 
   function totalProgramDuration() {
@@ -1985,10 +1972,16 @@
     const program = Array.isArray(working.program) ? working.program : [];
     const issues = readinessIssues();
     if (issues.length) {
-      renderReadiness();
-      app.querySelector('[data-readiness]').open = true;
-      app.querySelector('[data-readiness]').scrollIntoView({ block: 'center', behavior: 'smooth' });
-      showToast('Cannot Take Live: ' + issues[0].title + ' — ' + issues[0].reasons.join('; ') + '.', 8500);
+      const first = issues[0];
+      activateWorkspace(first.kind === 'music' ? 'audio' : 'rundown');
+      if (first.kind === 'music') {
+        selectedMusicId = first.id;
+        renderMusic();
+      } else {
+        selectedProgramId = first.id;
+        renderProgram();
+      }
+      showToast('Cannot Take Live: ' + first.title + ' — ' + first.reasons.join('; ') + '.', 8500);
       return false;
     }
     if (!program.length) {
