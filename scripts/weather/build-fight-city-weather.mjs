@@ -184,6 +184,37 @@ function formatLocalTime(iso, timezone) {
   }).format(new Date(iso)).toUpperCase();
 }
 
+function moonPhaseForDate(isoDate) {
+  const dayMs = 86400000;
+  const synodicMonth = 29.53058867;
+  // Known new moon near J2000: 2000-01-06 18:14 UTC.
+  const epoch = Date.parse('2000-01-06T18:14:00Z');
+  const target = Date.parse(`${isoDate}T12:00:00Z`);
+  const age = ((target - epoch) / dayMs % synodicMonth + synodicMonth) % synodicMonth;
+  const fraction = age / synodicMonth;
+
+  if (fraction < .0625 || fraction >= .9375) return { label: 'New Moon', icon: 'New-Moon.gif' };
+  if (fraction < .1875) return { label: 'Waxing Crescent', icon: 'New-Moon.gif' };
+  if (fraction < .3125) return { label: 'First Quarter', icon: 'First-Quarter.gif' };
+  if (fraction < .4375) return { label: 'Waxing Gibbous', icon: 'Full-Moon.gif' };
+  if (fraction < .5625) return { label: 'Full Moon', icon: 'Full-Moon.gif' };
+  if (fraction < .6875) return { label: 'Waning Gibbous', icon: 'Full-Moon.gif' };
+  if (fraction < .8125) return { label: 'Last Quarter', icon: 'Last-Quarter.gif' };
+  return { label: 'Waning Crescent', icon: 'New-Moon.gif' };
+}
+
+function formatSunTime(value, timezone) {
+  if (!value) return '';
+  // Open-Meteo returns local wall-clock timestamps because timezone=auto.
+  const match = String(value).match(/T(\d{2}):(\d{2})/);
+  if (!match) return '';
+  let hour = Number(match[1]);
+  const minute = match[2];
+  const suffix = hour >= 12 ? 'PM' : 'AM';
+  hour = hour % 12 || 12;
+  return `${hour}:${minute} ${suffix}`;
+}
+
 function narrativeFightDay(event, daily, fightHour) {
   const cond = condition(daily.weatherCode, 1);
   const wind = fightHour?.windSpeed != null ? `${compass(fightHour.windDirection)} WINDS ${Math.max(1, round(fightHour.windSpeed))} MPH` : '';
@@ -321,6 +352,12 @@ const output = {
     ...fightDay,
     atEvent: fightHour,
     narrative: narrativeFightDay(event, fightDay, fightHour)
+  },
+  almanac: {
+    date: event.date,
+    sunrise: formatSunTime(fightDay?.sunrise, timezone),
+    sunset: formatSunTime(fightDay?.sunset, timezone),
+    moon: moonPhaseForDate(event.date)
   },
   daily: dailyRows.slice(0, 7),
   radar,
