@@ -65,6 +65,25 @@
     return '<div class="mfc-wx-eventline"><strong>' + esc(event.promotion || 'UFC') + ' ' + esc(event.title || '') + '</strong><span>' + esc(event.venue || place) + '</span></div>';
   }
 
+  function fitWeatherSingleLine(node, minimumScale = .7) {
+    if (!node) return;
+    node.style.fontSize = '';
+    const base = parseFloat(getComputedStyle(node).fontSize) || 16;
+    const available = Math.max(1, node.clientWidth);
+    const required = Math.max(1, node.scrollWidth);
+    if (required <= available) return;
+    const scale = Math.max(minimumScale, Math.min(1, (available / required) * .97));
+    node.style.fontSize = (base * scale) + 'px';
+  }
+
+  function fitWeatherHeader() {
+    requestAnimationFrame(() => {
+      fitWeatherSingleLine(screen.querySelector('.mfc-wx-page-title'), .76);
+      fitWeatherSingleLine(screen.querySelector('.mfc-wx-eventline strong'), .72);
+      fitWeatherSingleLine(screen.querySelector('.mfc-wx-eventline span'), .76);
+    });
+  }
+
   function currentScreen() {
     const row = data.current || {};
     const pressure = n(row.pressure) == null ? '—' : (Number(row.pressure) * 0.02953).toFixed(2) + ' IN.';
@@ -288,6 +307,7 @@
     if (key !== renderKey) {
       renderKey = key;
       screen.innerHTML = pageFor(name);
+      fitWeatherHeader();
       source.textContent = 'FORECAST: OPEN-METEO'
         + (name === 'regional' ? ' · MAP: WEATHERSTAR 4000+' : '')
         + (name === 'radar' && data.radar ? ' · RADAR: RAINVIEWER' : '');
