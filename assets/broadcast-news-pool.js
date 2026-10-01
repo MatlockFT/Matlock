@@ -17,7 +17,7 @@
     { name: 'Japanese MMA', key: 'japan', kind: 'article', file: 'japan-mma-news.json', fallback: false, items: data => data.stories || [] },
     { name: 'Videos', key: 'videos', kind: 'video', file: 'broadcast-news-videos.json', fallback: true, items: data => data.videos || [] }
   ];
-  let entries = [], loaded = false, loading = false, limit = 24, lastRefresh = 0;
+  let entries = [], loaded = false, loading = false, limit = 24, lastRefresh = 0, lastSnapshotGeneratedAt = 0;
   const safeUrl = value => {
     try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) ? url.href : ''; } catch { return ''; }
   };
@@ -98,44 +98,111 @@
     if (!response.ok) throw new Error('HTTP ' + response.status);
     const data = await response.json(); if (!data.generatedAt || data.version !== 1) throw new Error('Invalid snapshot'); return data;
   }
-  async function load() {
-    if (loading) return;
-    loading = true; refresh.disabled = true; status.textContent = 'Refreshing articles, Japanese MMA and YouTube videos…';
-    const results = await Promise.allSettled(feeds.map(async feed => {
-      let data, fallback = false;
-      try {
-        data = await fetchJson(liveBase + feed.file);
-      } catch (error) {
-        if (!feed.fallback) throw error;
-        data = await fetchJson('/assets/data/' + feed.file);
-        fallback = true;
-      }
-      const age = Date.now() - Date.parse(data.generatedAt);
-      const rows = feed.items(data).filter(item => item.title && safeUrl(item.url) && (feed.kind !== 'video' || validVideo(item)));
-      return { feed, data, fallback, age, rows };
-    }));
-    const notices = [];
-    results.forEach((result, index) => {
-      if (result.status === 'fulfilled') {
-        const { feed, data, fallback, age, rows } = result.value;
-        entries = entries.filter(item => item.pool !== feed.key);
-        entries.push(...rows.map(item => ({ ...item, pool: feed.key, kind: feed.kind, source: String(item.source || 'MMA news') })));
-        notices.push(feed.name + ': ' + rows.length + ' · updated ' + new Date(data.generatedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
-          + (fallback ? ' · saved fallback' : '') + (age > 3600000 ? ' · older snapshot' : ''));
-        const unavailable = (data.sources || []).filter(source => source.status === 'unavailable' || source.status === 'cached');
-        if (unavailable.length) notices.push('Some sources could not refresh: ' + unavailable.map(source => source.name).join(', '));
-      } else notices.push(feeds[index].name + ' unavailable. Keeping previously loaded items; try Refresh.');
-    });
-    entries = [...new Map(entries.map(item => [item.url, item])).values()];
-    entries.sort((a, b) => (Date.parse(b.publishedAt) || 0) - (Date.parse(a.publishedAt) || 0));
-    const selectedSource = source.value;
-    source.replaceChildren(new Option('All sources', ''));
-    [...new Set(entries.map(item => item.source))].sort().forEach(value => source.add(new Option(value, value)));
-    if ([...source.options].some(option => option.value === selectedSource)) source.value = selectedSource;
-    loaded = true; loading = false; lastRefresh = Date.now(); refresh.disabled = false; status.textContent = notices.join(' • '); render();
+  async function load({ message = 'Refreshing articles, Japanese MMA and YouTube videos…', keepRefreshDisabled = false } = {}) {
+    if (loading) return lastSnapshotGeneratedAt;
+    loading = true;
+    refresh.disabled = true;
+    status.textContent = message;
+
+    try {
+      const results = await Promise.allSettled(feeds.map(async feed => {
+        let data, fallback = false;
+        try {
+          data = await fetchJson(liveBase + feed.file);
+        } catch (error) {
+          if (!feed.fallback) throw error;
+          data = await fetchJson('/assets/data/' + feed.file);
+          fallback = true;
+        }
+        const age = Date.now() - Date.parse(data.generatedAt);
+        const rows = feed.items(data).filter(item => item.title && safeUrl(item.url) && (feed.kind !== 'video' || validVideo(item)));
+        return { feed, data, fallback, age, rows };
+      }));
+
+      const notices = [];
+      let newestGeneratedAt = 0;
+
+      results.forEach((result, index) => {
+        if (result.status === 'fulfilled') {
+          const { feed, data, fallback, age, rows } = result.value;
+          newestGeneratedAt = Math.max(newestGeneratedAt, Date.parse(data.generatedAt) || 0);
+          entries = entries.filter(item => item.pool !== feed.key);
+          entries.push(...rows.map(item => ({ ...item, pool: feed.key, kind: feed.kind, source: String(item.source || 'MMA news') })));
+          notices.push(feed.name + ': ' + rows.length + ' · updated ' + new Date(data.generatedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+            + (fallback ? ' · saved fallback' : '') + (age > 3600000 ? ' · older snapshot' : ''));
+          const unavailable = (data.sources || []).filter(source => source.status === 'unavailable' || source.status === 'cached');
+          if (unavailable.length) notices.push('Some sources could not refresh: ' + unavailable.map(source => source.name).join(', '));
+        } else {
+          notices.push(feeds[index].name + ' unavailable. Keeping previously loaded items; try Refresh.');
+        }
+      });
+
+      entries = [...new Map(entries.map(item => [item.url, item])).values()];
+      entries.sort((a, b) => (Date.parse(b.publishedAt) || 0) - (Date.parse(a.publishedAt) || 0));
+      const selectedSource = source.value;
+      source.replaceChildren(new Option('All sources', ''));
+      [...new Set(entries.map(item => item.source))].sort().forEach(value => source.add(new Option(value, value)));
+      if ([...source.options].some(option => option.value === selectedSource)) source.value = selectedSource;
+
+      loaded = true;
+      lastRefresh = Date.now();
+      lastSnapshotGeneratedAt = Math.max(lastSnapshotGeneratedAt, newestGeneratedAt);
+      status.textContent = notices.join(' • ');
+      render();
+      return newestGeneratedAt;
+    } finally {
+      loading = false;
+      if (!keepRefreshDisabled) refresh.disabled = false;
+    }
   }
+
+  async function manualRefresh() {
+    if (loading || refresh.disabled) return;
+    const originalLabel = refresh.textContent;
+    const previousGeneratedAt = lastSnapshotGeneratedAt;
+
+    refresh.disabled = true;
+    refresh.textContent = 'Refreshing…';
+    status.textContent = 'Requesting a fresh news collection…';
+
+    try {
+      const bridge = window.matlockBroadcastNewsRefresh;
+      if (!bridge?.request) {
+        await load({ message: 'Reloading the latest published news snapshots…', keepRefreshDisabled: true });
+        status.textContent += ' • Collector trigger unavailable, so only the published snapshot was reloaded.';
+        return;
+      }
+
+      const request = await bridge.request();
+      const requestedAt = Date.parse(request?.requestedAt || '') || Date.now();
+      const deadline = Date.now() + 150000;
+      let attempt = 0;
+
+      while (Date.now() < deadline) {
+        await new Promise(resolve => window.setTimeout(resolve, attempt ? 4000 : 2500));
+        attempt += 1;
+        const generatedAt = await load({
+          message: 'Collector running… waiting for newly generated news data.',
+          keepRefreshDisabled: true
+        });
+        if (generatedAt > previousGeneratedAt && generatedAt >= requestedAt - 1000) {
+          status.textContent = 'Fresh news loaded · ' + new Date(generatedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+          return;
+        }
+      }
+
+      status.textContent = 'News refresh was requested, but the collector is still running. The pool will pick up the new snapshot automatically.';
+    } catch (error) {
+      status.textContent = 'Could not force a news rebuild: ' + (error?.message || error) + '. Reloading the latest published snapshot instead.';
+      await load({ message: status.textContent, keepRefreshDisabled: true });
+    } finally {
+      refresh.textContent = originalLabel;
+      refresh.disabled = false;
+    }
+  }
+
   [search, kind, source, unused].forEach(input => input.addEventListener('input', () => { limit = 24; render(); }));
-  refresh.addEventListener('click', load); more.addEventListener('click', () => { limit += 24; render(); });
+  refresh.addEventListener('click', manualRefresh); more.addEventListener('click', () => { limit += 24; render(); });
   dialog.addEventListener('close', () => dialog.querySelector('[data-news-preview-body]').replaceChildren());
   dialog.querySelector('[data-news-preview-close]').addEventListener('click', () => dialog.close());
   app.addEventListener('matlock-broadcast-draft-change', () => { if (!panel.hidden) render(); });
