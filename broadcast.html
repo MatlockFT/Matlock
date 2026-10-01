@@ -4,13 +4,23 @@ sitemap: false
 permalink: /broadcast/
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" class="mfc-booting">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>Matlock Fight Channel</title>
-  <link rel="stylesheet" href="{{ '/assets/broadcast.css' | relative_url }}?v=20261001-ticker-loop-1">
+  <style>
+    html,
+    body {
+      margin: 0;
+      background: #050506;
+    }
+    html.mfc-booting .mfc-shell {
+      visibility: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="{{ '/assets/broadcast.css' | relative_url }}?v=20261001-sync-1">
 </head>
 <body class="mfc-body">
   <main class="mfc-shell" data-mfc-root aria-label="Matlock Fight Channel">
@@ -70,8 +80,8 @@ permalink: /broadcast/
   <div class="mfc-youtube-audio-host" data-mfc-music-youtube-a aria-hidden="true"></div>
   <div class="mfc-youtube-audio-host" data-mfc-music-youtube-b aria-hidden="true"></div>
 
-  <script src="{{ '/assets/broadcast-youtube.js' | relative_url }}?v=20261001-ticker-loop-1" defer></script>
-  <script src="{{ '/assets/broadcast.js' | relative_url }}?v=20261001-ticker-loop-1" defer></script>
+  <script src="{{ '/assets/broadcast-youtube.js' | relative_url }}?v=20261001-sync-1" defer></script>
+  <script src="{{ '/assets/broadcast.js' | relative_url }}?v=20261001-sync-1" defer></script>
 </body>
 </html>
 
