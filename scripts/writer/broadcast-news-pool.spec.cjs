@@ -373,6 +373,13 @@ test('Fight City weather layouts keep titles, event slug and content in separate
     node.scrollWidth > node.clientWidth + 1 || node.scrollHeight > node.clientHeight + 1
   );
   expect(footerOverflow).toBe(false);
+  const fightTempInk = await page.locator('.mfc-wx-fight-time-slot.is-temp b').evaluate(node => {
+    const r = node.getBoundingClientRect();
+    const parent = node.closest('.mfc-wx-fight-time').getBoundingClientRect();
+    return { top:r.top,bottom:r.bottom,parentTop:parent.top,parentBottom:parent.bottom };
+  });
+  expect(fightTempInk.top).toBeGreaterThanOrEqual(fightTempInk.parentTop - 1);
+  expect(fightTempInk.bottom).toBeLessThanOrEqual(fightTempInk.parentBottom + 1);
 
   await showAt(22, 'layout-extended');
   await expectHeaderClear();
@@ -380,13 +387,25 @@ test('Fight City weather layouts keep titles, event slug and content in separate
 
   await showAt(32, 'layout-regional');
   await expectHeaderClear();
-  const cityRects = await page.locator('.mfc-wx-map-city').evaluateAll(nodes =>
-    nodes.map(node => {
+  const regionalLayout = await page.evaluate(() => {
+    const map = document.querySelector('.mfc-wx-regional-map')?.getBoundingClientRect();
+    const cities = [...document.querySelectorAll('.mfc-wx-map-city')].map(node => {
       const r = node.getBoundingClientRect();
-      return { left:r.left,right:r.right,top:r.top,bottom:r.bottom };
-    })
-  );
+      return { left:r.left,right:r.right,top:r.top,bottom:r.bottom,text:node.textContent };
+    });
+    return {
+      map: map && { left:map.left,right:map.right,top:map.top,bottom:map.bottom },
+      cities
+    };
+  });
+  const cityRects = regionalLayout.cities;
   expect(cityRects.length).toBeLessThanOrEqual(5);
+  for (const city of cityRects) {
+    expect(city.left).toBeGreaterThanOrEqual(regionalLayout.map.left - 1);
+    expect(city.right).toBeLessThanOrEqual(regionalLayout.map.right + 1);
+    expect(city.top).toBeGreaterThanOrEqual(regionalLayout.map.top - 1);
+    expect(city.bottom).toBeLessThanOrEqual(regionalLayout.map.bottom + 1);
+  }
   for (let i = 0; i < cityRects.length; i += 1) {
     for (let j = i + 1; j < cityRects.length; j += 1) {
       const a = cityRects[i], b = cityRects[j];
