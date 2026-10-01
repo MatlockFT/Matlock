@@ -8,6 +8,7 @@
   const STATE_API_PATH = '/contents/assets/uploads/broadcast.json';
   const NEWS_REFRESH_API_PATH = '/contents/assets/data/news-refresh-trigger.json';
   const WORKSPACE_KEY = 'matlock-broadcast-control:workspace';
+  const PROGRAM_ZOOM_KEY = 'matlock-broadcast-control:timeline-zoom';
   const RECOVERY_PREFIX = 'matlock-broadcast-control:recovery:';
   const LIBRARY_PAGE_SIZE = 40;
   const CHUNK_BYTES = Math.floor(3.5 * 1024 * 1024);
@@ -41,6 +42,12 @@
   const tickerPreviewClock = app.querySelector('[data-ticker-preview-clock]');
   const programTrack = app.querySelector('[data-program-track]');
   const programRuler = app.querySelector('[data-program-ruler]');
+  const programZoomInput = app.querySelector('[data-program-zoom]');
+  const programZoomOutput = app.querySelector('[data-program-zoom-output]');
+  const programZoomOutButton = app.querySelector('[data-program-zoom-out]');
+  const programZoomInButton = app.querySelector('[data-program-zoom-in]');
+  const programZoomResetButton = app.querySelector('[data-program-zoom-reset]');
+  const programZoomFitButton = app.querySelector('[data-program-zoom-fit]');
   const programFields = app.querySelector('[data-program-fields]');
   const programEditorTitle = app.querySelector('[data-program-editor-title]');
   const deleteProgramButton = app.querySelector('[data-delete-program]');
@@ -84,6 +91,9 @@
   let selectedMusicId = '';
   let draggingProgramId = '';
   let draggingMusicId = '';
+  let programZoom = 1;
+  let programDrag = null;
+  let lastProgramDragAt = 0;
   let popup = null;
   let popupWatch = 0;
   let toastTimer = 0;
@@ -138,6 +148,7 @@
   const clone = value => JSON.parse(JSON.stringify(value));
   const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || 0));
   const positive = value => Math.max(0, Number(value) || 0);
+  programZoom = clamp(parseFloat(localRead(PROGRAM_ZOOM_KEY)) || 1, .35, 2.2);
   const uid = prefix => `${prefix}-${window.crypto?.randomUUID ? window.crypto.randomUUID().slice(0, 8) : Math.random().toString(36).slice(2, 10)}`;
   const fmt = seconds => {
     const total = Math.max(0, Math.round(Number(seconds) || 0));
@@ -1305,8 +1316,46 @@
     return Math.max(min, Math.min(max, positive(duration) * scale));
   }
 
+  function syncProgramZoomControls() {
+    const percent = Math.round(programZoom * 100);
+    if (programZoomInput) programZoomInput.value = String(percent);
+    if (programZoomOutput) programZoomOutput.textContent = percent + '%';
+    if (programRuler) programRuler.style.setProperty('--timeline-zoom', String(programZoom));
+    if (programTrack) {
+      programTrack.style.setProperty('--timeline-zoom', String(programZoom));
+      programTrack.classList.toggle('is-compact', programZoom < .65);
+    }
+  }
+
+  function setProgramZoom(value, { persist = true } = {}) {
+    const next = clamp(value, .35, 2.2);
+    if (Math.abs(next - programZoom) < .001) {
+      syncProgramZoomControls();
+      return;
+    }
+    const center = programTrack ? (programTrack.scrollLeft + programTrack.clientWidth / 2) / Math.max(1, programTrack.scrollWidth) : .5;
+    programZoom = next;
+    if (persist) localWrite(PROGRAM_ZOOM_KEY, String(programZoom));
+    if (working) renderProgram();
+    else syncProgramZoomControls();
+    if (programTrack) {
+      requestAnimationFrame(() => {
+        programTrack.scrollLeft = Math.max(0, center * programTrack.scrollWidth - programTrack.clientWidth / 2);
+      });
+    }
+  }
+
+  function fitProgramZoom() {
+    if (!working?.program?.length || !programTrack) return setProgramZoom(1);
+    const available = Math.max(180, programTrack.clientWidth - 20);
+    const baseWidth = working.program.reduce((sum, item) => sum + blockWidth(item.duration), 0)
+      + Math.max(0, working.program.length - 1) * 5;
+    setProgramZoom(baseWidth > 0 ? available / baseWidth : 1);
+  }
+
   function setRuler() {
     const total = totalProgramDuration();
+    syncProgramZoomControls();
     if (!total) {
       programRuler.textContent = '00:00';
       return;
@@ -1314,6 +1363,85 @@
     const marks = [0, .25, .5, .75, 1].map(fraction => fmt(total * fraction));
     programRuler.innerHTML = marks.map((mark, index) => `<span style="margin-left:${index ? 'auto' : '0'}">${mark}</span>`).join('');
   }
+
+  function programDragStart(event, block, item) {
+    if (event.button !== 0 || event.isPrimary === false) return;
+    if (event.target.closest('input, button, a, select, textarea, label')) return;
+    programDrag = {
+      id: item.id,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      active: false,
+      block,
+      originalOrder: working.program.map(row => row.id)
+    };
+    try { block.setPointerCapture(event.pointerId); } catch {}
+  }
+
+  function programDragMove(event) {
+    const drag = programDrag;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    if (!drag.active) {
+      if (Math.hypot(event.clientX - drag.startX, event.clientY - drag.startY) < 6) return;
+      drag.active = true;
+      draggingProgramId = drag.id;
+      drag.block.classList.add('is-dragging');
+      drag.block.setAttribute('aria-grabbed', 'true');
+      programTrack.classList.add('is-reordering');
+    }
+
+    event.preventDefault();
+    const trackRect = programTrack.getBoundingClientRect();
+    const edge = 54;
+    if (event.clientX < trackRect.left + edge) {
+      programTrack.scrollLeft -= Math.max(8, (trackRect.left + edge - event.clientX) * .38);
+    } else if (event.clientX > trackRect.right - edge) {
+      programTrack.scrollLeft += Math.max(8, (event.clientX - (trackRect.right - edge)) * .38);
+    }
+
+    const candidates = [...programTrack.querySelectorAll('[data-program-id]')].filter(node => node !== drag.block);
+    const before = candidates.find(node => {
+      const rect = node.getBoundingClientRect();
+      return event.clientX < rect.left + rect.width / 2;
+    });
+    if (before) programTrack.insertBefore(drag.block, before);
+    else programTrack.append(drag.block);
+  }
+
+  function programDragEnd(event, cancelled = false) {
+    const drag = programDrag;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    programDrag = null;
+    try { drag.block.releasePointerCapture(event.pointerId); } catch {}
+    drag.block.classList.remove('is-dragging');
+    drag.block.setAttribute('aria-grabbed', 'false');
+    programTrack.classList.remove('is-reordering');
+    draggingProgramId = '';
+
+    if (!drag.active) return;
+    lastProgramDragAt = Date.now();
+    if (cancelled) {
+      renderProgram();
+      return;
+    }
+
+    const order = [...programTrack.querySelectorAll('[data-program-id]')].map(node => node.dataset.programId);
+    const changed = order.some((id, index) => id !== drag.originalOrder[index]);
+    if (!changed) return;
+
+    const byId = new Map(working.program.map(item => [item.id, item]));
+    working.program = order.map(id => byId.get(id)).filter(Boolean);
+    selectedProgramId = drag.id;
+    renderProgram();
+    markDirty();
+  }
+
+  programZoomInput?.addEventListener('input', () => setProgramZoom(Number(programZoomInput.value) / 100));
+  programZoomOutButton?.addEventListener('click', () => setProgramZoom(programZoom - .1));
+  programZoomInButton?.addEventListener('click', () => setProgramZoom(programZoom + .1));
+  programZoomResetButton?.addEventListener('click', () => setProgramZoom(1));
+  programZoomFitButton?.addEventListener('click', fitProgramZoom);
 
   function renderProgram() {
     programTrack.replaceChildren();
@@ -1335,9 +1463,10 @@
       if (item.id === selectedProgramId) block.classList.add('is-selected');
       block.dataset.programId = item.id;
       block.dataset.type = item.type || 'headline';
-      block.draggable = true;
+      block.draggable = false;
       block.tabIndex = 0;
-      block.style.setProperty('--block-width', `${blockWidth(item.duration)}px`);
+      block.setAttribute('aria-grabbed', 'false');
+      block.style.setProperty('--block-width', `${Math.max(68, blockWidth(item.duration) * programZoom)}px`);
 
       const kind = document.createElement('span');
       kind.className = 'mfc-timeline-kind';
@@ -1371,6 +1500,7 @@
 
       block.append(kind, blockTitle, duration);
       block.addEventListener('click', () => {
+        if (Date.now() - lastProgramDragAt < 250) return;
         selectedProgramId = item.id;
         renderProgram();
         renderProgramEditor();
@@ -1385,31 +1515,10 @@
           postPreview();
         }
       });
-      block.addEventListener('dragstart', event => {
-        draggingProgramId = item.id;
-        block.classList.add('is-dragging');
-        event.dataTransfer.effectAllowed = 'move';
-        event.dataTransfer.setData('text/plain', item.id);
-      });
-      block.addEventListener('dragend', () => {
-        draggingProgramId = '';
-        block.classList.remove('is-dragging');
-      });
-      block.addEventListener('dragover', event => {
-        event.preventDefault();
-        event.dataTransfer.dropEffect = 'move';
-      });
-      block.addEventListener('drop', event => {
-        event.preventDefault();
-        if (!draggingProgramId || draggingProgramId === item.id) return;
-        const from = working.program.findIndex(row => row.id === draggingProgramId);
-        const to = working.program.findIndex(row => row.id === item.id);
-        if (from < 0 || to < 0) return;
-        const [moved] = working.program.splice(from, 1);
-        working.program.splice(to, 0, moved);
-        renderProgram();
-        markDirty();
-      });
+      block.addEventListener('pointerdown', event => programDragStart(event, block, item));
+      block.addEventListener('pointermove', programDragMove);
+      block.addEventListener('pointerup', event => programDragEnd(event));
+      block.addEventListener('pointercancel', event => programDragEnd(event, true));
 
       programTrack.append(block);
     });
