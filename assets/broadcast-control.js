@@ -585,6 +585,24 @@
     return btoa(binary);
   }
 
+  async function sharedNowIso() {
+    const startedAt = Date.now();
+    try {
+      const response = await fetch(`${location.pathname}?clock=${startedAt}`, {
+        method: 'HEAD',
+        cache: 'no-store',
+        signal: AbortSignal.timeout(5000)
+      });
+      const receivedAt = Date.now();
+      const serverTime = Date.parse(response.headers.get('date') || '');
+      if (!response.ok || !Number.isFinite(serverTime)) throw new Error('server clock unavailable');
+      const midpoint = (startedAt + receivedAt) / 2;
+      return new Date(receivedAt + (serverTime - midpoint)).toISOString();
+    } catch {
+      return new Date().toISOString();
+    }
+  }
+
   async function requestNewsRefresh() {
     let sha = '';
     try {
@@ -2072,7 +2090,7 @@
     setBusy('save');
     saveDraftButton.textContent = 'Saving…';
     try {
-      const now = new Date().toISOString();
+      const now = await sharedNowIso();
       working.updatedAt = now;
       working.revision = `draft-${Date.now()}`;
       const nextState = {
