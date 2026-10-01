@@ -673,3 +673,409 @@ body {
   opacity: 0;
   pointer-events: none;
 }
+
+
+/* Fight City Forecast — WeatherSTAR 4000-inspired local forecast package. */
+.mfc-weather {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, #e96321 0 5.5%, #5f3d73 8%, #24396e 13%, #263967 87%, #7a4f71 92%, #f06c1f 100%);
+  color: #eeeeea;
+  font-family: var(--mfc-type-weather-display);
+  text-transform: uppercase;
+}
+
+.mfc-weather[hidden] { display: none; }
+
+.mfc-weather::before {
+  position: absolute;
+  inset: 3.2% 6.2% 5.5%;
+  content: "";
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(64,91,147,.96), rgba(30,48,91,.99) 12%, rgba(26,42,83,.995) 100%);
+  border-top: .28cqw solid rgba(134,166,221,.62);
+  border-right: .20cqw solid rgba(122,148,198,.38);
+  border-bottom: .23cqw solid rgba(7,12,37,.78);
+  border-left: .22cqw solid rgba(75,102,162,.7);
+  box-shadow:
+    inset .32cqw .35cqw .85cqw rgba(116,155,220,.15),
+    inset -.4cqw -.38cqw .9cqw rgba(3,8,30,.42),
+    .28cqw .32cqw .35cqw rgba(0,0,0,.34);
+}
+
+.mfc-weather-screen {
+  position: absolute;
+  z-index: 2;
+  inset: 3.2% 6.2% 5.5%;
+  overflow: hidden;
+}
+
+.mfc-weather-source {
+  position: absolute;
+  z-index: 3;
+  right: 7%;
+  bottom: 1.3%;
+  color: rgba(236,236,226,.68);
+  font: 400 clamp(5px, .9cqw, 8px)/1 Arial, sans-serif;
+  letter-spacing: .03em;
+}
+
+.mfc-weather-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-size: 4.2cqw;
+  line-height: 1.45;
+}
+
+.mfc-wx-page {
+  position: absolute;
+  inset: 0;
+  padding: 2.4% 3.5% 2.8%;
+  text-shadow:
+    .055em .065em 0 #080812,
+    .105em .115em .02em rgba(0,0,0,.58),
+    -.012em 0 rgba(114,157,255,.15),
+    .012em 0 rgba(255,124,99,.10);
+}
+
+.mfc-wx-page-title {
+  min-height: 13%;
+  display: flex;
+  align-items: center;
+  color: #efe9d5;
+  font-size: 4.4cqw;
+  line-height: 1.05;
+  text-transform: none;
+}
+
+.mfc-wx-eventline {
+  position: absolute;
+  top: 2.8%;
+  right: 3.5%;
+  max-width: 49%;
+  text-align: right;
+  font-size: 1.75cqw;
+  line-height: 1.22;
+  color: #ddd9c5;
+}
+
+.mfc-wx-eventline strong,
+.mfc-wx-eventline span {
+  display: block;
+}
+
+.mfc-wx-eventline strong {
+  color: #f0c645;
+  font-size: 2.05cqw;
+}
+
+.mfc-wx-current-grid {
+  display: grid;
+  grid-template-columns: 46% 54%;
+  height: 84%;
+  padding-top: 2%;
+}
+
+.mfc-wx-current-left {
+  position: relative;
+  text-align: center;
+  padding-top: 2%;
+}
+
+.mfc-wx-big-temp {
+  position: absolute;
+  top: 1%;
+  left: 7%;
+  font-size: 8.7cqw;
+  line-height: .95;
+}
+
+.mfc-wx-condition {
+  position: absolute;
+  top: 19%;
+  left: 2%;
+  width: 96%;
+  font-size: 3.8cqw;
+  line-height: 1;
+  text-transform: none;
+}
+
+.mfc-wx-icon {
+  width: 8.4cqw;
+  height: 8.4cqw;
+  filter: saturate(.88) contrast(.98) blur(.03cqw);
+  overflow: visible;
+}
+
+.mfc-wx-icon.is-large {
+  width: 17.2cqw;
+  height: 17.2cqw;
+}
+
+.mfc-wx-current-left .mfc-wx-icon {
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mfc-wx-wind {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 7%;
+  font-size: 3.25cqw;
+  line-height: 1;
+}
+
+.mfc-wx-current-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5.3%;
+  padding: 8% 3% 3% 5%;
+  font-size: 3.1cqw;
+  line-height: 1;
+  text-transform: none;
+}
+
+.mfc-wx-current-right p {
+  display: flex;
+  justify-content: space-between;
+  gap: 4%;
+  margin: 0;
+}
+
+.mfc-wx-current-right b {
+  color: #efe9d5;
+  font-weight: 400;
+  text-align: right;
+}
+
+.mfc-wx-fightday-main {
+  display: grid;
+  grid-template-columns: 34% 66%;
+  height: 60%;
+  margin-top: 1%;
+}
+
+.mfc-wx-fightday-icon {
+  display: grid;
+  place-items: center;
+}
+
+.mfc-wx-fightday-copy {
+  padding: 2% 2% 0 0;
+}
+
+.mfc-wx-fightday-condition {
+  color: #f0d04b;
+  font-size: 4.2cqw;
+  line-height: 1;
+  text-transform: none;
+}
+
+.mfc-wx-hi-lo {
+  display: flex;
+  gap: 10%;
+  margin: 4% 0 4%;
+  font-size: 3.2cqw;
+}
+
+.mfc-wx-hi-lo b {
+  color: #f3d340;
+  font-size: 4.5cqw;
+  font-weight: 400;
+}
+
+.mfc-wx-fightday-copy p {
+  margin: 0;
+  font-size: 2.55cqw;
+  line-height: 1.34;
+  text-transform: uppercase;
+}
+
+.mfc-wx-fight-time {
+  display: grid;
+  grid-template-columns: 1.2fr .85fr 1.5fr;
+  align-items: center;
+  gap: 2%;
+  min-height: 17%;
+  margin: 0 1.5%;
+  padding: 1.8% 2.2%;
+  border-top: .16cqw solid rgba(187,205,232,.62);
+  border-bottom: .16cqw solid rgba(7,12,37,.7);
+  background: linear-gradient(180deg, rgba(47,68,118,.82), rgba(30,47,88,.86));
+  font-size: 2.15cqw;
+  line-height: 1.1;
+}
+
+.mfc-wx-fight-time b {
+  color: #f2d13f;
+  font-size: 3.4cqw;
+  font-weight: 400;
+  text-align: center;
+}
+
+.mfc-wx-days {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.2%;
+  height: 78%;
+  margin-top: 1.2%;
+}
+
+.mfc-wx-day {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3% 1%;
+  border-left: .11cqw solid rgba(145,167,207,.22);
+  background: rgba(16,29,66,.10);
+}
+
+.mfc-wx-day:first-child { border-left: 0; }
+
+.mfc-wx-day.is-fight-day {
+  background: linear-gradient(180deg, rgba(122,91,21,.28), rgba(34,50,91,.18));
+  box-shadow: inset 0 0 0 .17cqw rgba(242,199,56,.36);
+}
+
+.mfc-wx-day > strong {
+  min-height: 13%;
+  color: #efe9d5;
+  font-size: 2.25cqw;
+  font-weight: 400;
+}
+
+.mfc-wx-day.is-fight-day > strong {
+  color: #f2ca3f;
+  font-size: 1.85cqw;
+}
+
+.mfc-wx-day .mfc-wx-icon {
+  margin: 4% 0 2%;
+}
+
+.mfc-wx-day-condition {
+  min-height: 18%;
+  max-width: 100%;
+  font-size: 1.65cqw;
+  line-height: 1.05;
+  text-align: center;
+  text-transform: none;
+}
+
+.mfc-wx-day-temp {
+  margin-top: auto;
+  font-size: 2.7cqw;
+}
+
+.mfc-wx-day-temp b {
+  color: #f0c938;
+  font-size: 3.5cqw;
+  font-weight: 400;
+}
+
+.mfc-wx-day small {
+  margin-top: 4%;
+  font-size: 1.35cqw;
+  color: #cbd5e5;
+}
+
+.mfc-wx-radar-map {
+  position: relative;
+  height: 70%;
+  margin: 1% 1% 0;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, transparent 49.6%, rgba(10,16,35,.55) 49.8% 50.2%, transparent 50.4%),
+    linear-gradient(0deg, transparent 49.6%, rgba(10,16,35,.55) 49.8% 50.2%, transparent 50.4%),
+    #777b80;
+  border: .15cqw solid rgba(20,23,36,.82);
+  filter: saturate(.9) contrast(1.06);
+}
+
+.mfc-wx-radar-grid {
+  position: absolute;
+  inset: 0;
+  opacity: .34;
+  background:
+    repeating-linear-gradient(27deg, transparent 0 8%, rgba(38,41,46,.52) 8.2% 8.5%, transparent 8.7% 17%),
+    repeating-linear-gradient(121deg, transparent 0 11%, rgba(38,41,46,.5) 11.2% 11.5%, transparent 11.7% 23%);
+}
+
+.mfc-wx-radar-map img {
+  position: absolute;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  opacity: .88;
+  mix-blend-mode: screen;
+  filter: saturate(1.1) contrast(1.28);
+}
+
+.mfc-wx-radar-city {
+  position: absolute;
+  left: 50%;
+  top: 49%;
+  transform: translate(-50%, -50%);
+  color: #f0eee1;
+  font-size: 2.7cqw;
+  white-space: nowrap;
+}
+
+.mfc-wx-radar-city i {
+  display: inline-block;
+  width: .9cqw;
+  height: .9cqw;
+  margin-right: .8cqw;
+  border-radius: 50%;
+  background: #111;
+  box-shadow: 0 0 0 .22cqw #efefea;
+}
+
+.mfc-wx-radar-key {
+  position: absolute;
+  top: 2.5%;
+  right: 2.5%;
+  display: flex;
+  align-items: center;
+  gap: .3cqw;
+  padding: .6cqw .8cqw;
+  background: rgba(28,35,55,.75);
+  font-size: 1.25cqw;
+}
+
+.mfc-wx-radar-key b {
+  width: 1.5cqw;
+  height: 1.2cqw;
+  background: #3ccc39;
+}
+.mfc-wx-radar-key b:nth-of-type(2) { background: #d6e735; }
+.mfc-wx-radar-key b:nth-of-type(3) { background: #f4a52a; }
+.mfc-wx-radar-key b:nth-of-type(4) { background: #dc3a2d; }
+
+.mfc-wx-radar-time {
+  margin-top: 1%;
+  text-align: center;
+  font-size: 2.1cqw;
+}
+
+.mfc-program-panel.has-weather {
+  padding: 0;
+}
+
+.mfc-program-panel.has-weather::after {
+  display: none;
+}
