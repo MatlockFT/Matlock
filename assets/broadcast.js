@@ -275,12 +275,7 @@
     const fullBody = item ? String(item.body || '') : bodyCopy.textContent;
     bodyCopy.textContent = fullBody;
     const titleSize = parseFloat(getComputedStyle(title).fontSize), eyebrowSize = parseFloat(getComputedStyle(eyebrow).fontSize);
-    const titleLineHeight = parseFloat(getComputedStyle(title).lineHeight) || titleSize;
-    const titleLinesAtBase = Math.max(1, Math.round(title.offsetHeight / titleLineHeight));
-    const titleScaleCap = fullBody
-      ? (titleLinesAtBase >= 4 ? .64 : titleLinesAtBase === 3 ? .72 : titleLinesAtBase === 2 ? .82 : 1)
-      : 1;
-    largestFit(.05, titleScaleCap, scale => {
+    largestFit(.05, 1, scale => {
       title.style.fontSize = titleSize * scale + 'px'; eyebrow.style.fontSize = eyebrowSize * scale + 'px';
     }, () => {
       const titleHeight = title.offsetHeight, eyebrowHeight = eyebrow.offsetHeight;
