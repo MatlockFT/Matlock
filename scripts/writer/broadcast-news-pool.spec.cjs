@@ -32,7 +32,7 @@ async function openPool(page) {
 
 test('articles and full-length videos are searchable and filterable; Shorts never enter pool', async ({ page }) => {
   await openPool(page);
-  await expect(page.locator('[data-news-status]')).toContainText('Videos: 1');
+  await expect(page.locator('[data-news-status]')).toMatchText(/4 items · updated/);
   await expect(page.locator('[data-news-list]')).not.toContainText('Short clip');
   await page.locator('[data-news-kind]').selectOption('video');
   await expect(page.locator('.mfc-news-card')).toHaveCount(1);
