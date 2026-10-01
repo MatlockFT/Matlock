@@ -488,6 +488,10 @@ body {
   cursor: pointer;
   opacity: .78;
   pointer-events: auto;
+  font-size: 0;
+  line-height: 0;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .mfc-sound svg {
@@ -704,7 +708,7 @@ body {
   }
 }
 
-.mfc-playback-status { position: absolute; z-index: 30; left: 5%; right: 5%; bottom: 15%; padding: .8em; background: #171717ee; color: #fff; font: 14px/1.4 system-ui, sans-serif; }
+.mfc-playback-status { display: none !important; }
 
 
 .mfc-youtube-audio-host {

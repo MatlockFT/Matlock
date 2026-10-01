@@ -92,7 +92,6 @@
   const pendingPlay = new WeakSet();
   const waitingSince = new WeakMap();
   let soundBlocked = false;
-  const playbackStatus = root.querySelector('[data-mfc-playback-status]');
   const youtube = youtubeHost && window.matlockYoutubePlayer?.(youtubeHost, {
     error: url => {
       failedMedia.set(url, Date.now() + 60000); currentProgramId = '';
@@ -100,7 +99,6 @@
     },
     blocked: () => {
       soundBlocked = true; setSoundState(false); soundButton.hidden = false;
-      soundButton.textContent = 'CLICK TO ENABLE SOUND';
       reportPlayback('YouTube autoplay was blocked. Click Sound On or the video play button.', true);
     },
     playing: () => { if (!soundBlocked) reportPlayback(''); }
@@ -117,7 +115,6 @@
         soundBlocked = true;
         setSoundState(false);
         soundButton.hidden = false;
-        soundButton.textContent = 'CLICK TO ENABLE SOUND';
         reportPlayback('YouTube blocked background audio. Click Sound On to enable it.', true);
       },
       playing: () => { if (!soundBlocked) reportPlayback(''); }
@@ -130,7 +127,6 @@
   standbyMusicYoutube = musicYoutubeB;
 
   function reportPlayback(message, blocked = false) {
-    if (playbackStatus) { playbackStatus.textContent = message; playbackStatus.hidden = !message; }
     if (monitorMode && window.parent !== window) window.parent.postMessage({ type: 'matlock-broadcast-playback-status', message, soundEnabled, blocked }, location.origin);
   }
 
@@ -159,7 +155,6 @@
         soundBlocked = true;
         setSoundState(false);
         soundButton.hidden = false;
-        soundButton.textContent = 'CLICK TO ENABLE SOUND';
         reportPlayback('Click Sound On in this player to enable audio.', true);
       } else if (error.name !== 'AbortError') failMedia(element);
     }).finally(() => pendingPlay.delete(element));
