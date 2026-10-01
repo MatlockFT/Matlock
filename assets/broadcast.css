@@ -454,7 +454,7 @@ body {
 
 .mfc-ticker-track span {
   flex: 0 0 auto;
-  padding-right: 8cqw;
+  padding-right: 0;
   font-family: var(--mfc-type-weather-info);
   font-size: 4.3cqw;
   font-weight: 400;
@@ -2302,4 +2302,30 @@ body {
 .mfc-wx-current-right {
   padding-top: 2.2%;
   padding-bottom: 4.5%;
+}
+
+
+/* Continuous crawl boundary and explicit fight-city hierarchy */
+.mfc-wx-eventline .mfc-wx-event-city,
+.mfc-wx-eventline .mfc-wx-event-venue {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mfc-wx-eventline .mfc-wx-event-city {
+  margin-top: .12cqw;
+  color: #efe9d5;
+  font-family: var(--mfc-type-weather-display);
+  font-size: 1.34cqw;
+  line-height: 1.05;
+}
+
+.mfc-wx-eventline .mfc-wx-event-venue {
+  margin-top: .06cqw;
+  color: #cfd3da;
+  font-family: var(--mfc-type-weather-info);
+  font-size: 1.08cqw;
+  line-height: 1.02;
 }
