@@ -6,6 +6,7 @@
   const SESSION_ID_KEY = 'matlock-writer:server-session';
   const SESSION_LOGIN_KEY = 'matlock-writer:server-login';
   const STATE_API_PATH = '/contents/assets/uploads/broadcast.json';
+  const NEWS_REFRESH_API_PATH = '/contents/assets/data/news-refresh-trigger.json';
   const WORKSPACE_KEY = 'matlock-broadcast-control:workspace';
   const RECOVERY_PREFIX = 'matlock-broadcast-control:recovery:';
   const LIBRARY_PAGE_SIZE = 40;
@@ -491,6 +492,42 @@
     }
     return btoa(binary);
   }
+
+  async function requestNewsRefresh() {
+    let sha = '';
+    try {
+      const current = await githubRequest(`${NEWS_REFRESH_API_PATH}?ref=main`);
+      sha = current.sha || '';
+    } catch (error) {
+      if (error.status !== 404) throw error;
+    }
+
+    const requestedAt = new Date().toISOString();
+    const payload = {
+      requestedAt,
+      requestedBy: localRead(SESSION_LOGIN_KEY) || 'Broadcast Control',
+      nonce: typeof crypto?.randomUUID === 'function'
+        ? crypto.randomUUID()
+        : `news-${Date.now()}-${Math.random().toString(36).slice(2)}`
+    };
+
+    await githubRequest(NEWS_REFRESH_API_PATH, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'Refresh MMA news data from Broadcast Control',
+        content: encodeBase64Utf8(JSON.stringify(payload, null, 2) + '\n'),
+        branch: 'main',
+        ...(sha ? { sha } : {})
+      })
+    });
+
+    return { requestedAt };
+  }
+
+  window.matlockBroadcastNewsRefresh = {
+    request: requestNewsRefresh
+  };
 
   function normalizedChannel(value) {
     const channel = value && typeof value === 'object' ? clone(value) : {};
