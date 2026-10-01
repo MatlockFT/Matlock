@@ -688,6 +688,57 @@ label.mfc-button {
     #0b0e11;
 }
 
+.mfc-timeline-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 6px 10px;
+  border-top: 1px solid #20252b;
+  border-bottom: 1px solid #20252b;
+  background: #101419;
+}
+
+.mfc-timeline-toolbar-label {
+  flex: 0 0 auto;
+  color: #8f98a3;
+  font-size: .56rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.mfc-timeline-toolbar input[type="range"] {
+  width: min(210px, 28vw);
+  min-width: 90px;
+  accent-color: var(--ctl-accent);
+}
+
+.mfc-timeline-toolbar output {
+  min-width: 38px;
+  color: #d8dde3;
+  font: 800 .58rem/1 ui-monospace, "SFMono-Regular", Consolas, monospace;
+  text-align: right;
+}
+
+.mfc-timeline-zoom-button {
+  width: 30px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid #46505b;
+  border-radius: 3px;
+  background: #171c22;
+  color: #eef1f4;
+  font: 900 1rem/1 Arial, sans-serif;
+  cursor: pointer;
+}
+
+.mfc-timeline-zoom-button:hover,
+.mfc-timeline-zoom-button:focus-visible {
+  border-color: #727e8c;
+  background: #202730;
+}
+
 .mfc-time-ruler {
   display: flex;
   align-items: end;
@@ -695,7 +746,7 @@ label.mfc-button {
   padding: 7px 11px 0;
   border-bottom: 1px solid #20252b;
   background:
-    repeating-linear-gradient(90deg, transparent 0 39px, rgba(255,255,255,.025) 39px 40px),
+    repeating-linear-gradient(90deg, transparent 0 calc(40px * var(--timeline-zoom, 1) - 1px), rgba(255,255,255,.025) calc(40px * var(--timeline-zoom, 1) - 1px) calc(40px * var(--timeline-zoom, 1))),
     #0c0f12;
   color: #636b75;
   font: 700 .54rem/1 ui-monospace, "SFMono-Regular", Consolas, monospace;
@@ -725,8 +776,8 @@ label.mfc-button {
 .mfc-timeline-block {
   position: relative;
   flex: 0 0 var(--block-width, 160px);
-  min-width: 112px;
-  max-width: 460px;
+  min-width: 68px;
+  max-width: 1012px;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 5px;
@@ -739,6 +790,7 @@ label.mfc-button {
   text-align: left;
   cursor: grab;
   user-select: none;
+  touch-action: pan-y;
 }
 
 .mfc-timeline-block:hover {
@@ -802,7 +854,42 @@ label.mfc-button {
 }
 
 .mfc-timeline-block.is-dragging {
-  opacity: .42;
+  z-index: 4;
+  opacity: .68;
+  cursor: grabbing;
+  outline: 2px solid #d7dde4;
+  outline-offset: -2px;
+}
+
+.mfc-linear-track.is-reordering {
+  cursor: grabbing;
+}
+
+.mfc-linear-track.is-reordering .mfc-timeline-block:not(.is-dragging) {
+  transition: transform 90ms ease, border-color 90ms ease;
+}
+
+.mfc-linear-track.is-compact .mfc-timeline-block {
+  padding: 6px;
+}
+
+.mfc-linear-track.is-compact .mfc-timeline-kind {
+  font-size: .42rem;
+  letter-spacing: .05em;
+}
+
+.mfc-linear-track.is-compact .mfc-timeline-title {
+  font-size: .63rem;
+}
+
+.mfc-linear-track.is-compact .mfc-timeline-duration {
+  gap: 3px;
+  font-size: .5rem;
+}
+
+.mfc-linear-track.is-compact .mfc-timeline-duration input {
+  width: 39px;
+  padding-inline: 3px;
 }
 
 .mfc-timeline-kind {
@@ -1443,6 +1530,15 @@ label.mfc-button {
 
   .mfc-status-cell {
     padding-inline: 8px;
+  }
+
+  .mfc-timeline-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .mfc-timeline-toolbar input[type="range"] {
+    flex: 1 1 120px;
+    width: auto;
   }
 
   .mfc-rundown-layout {
