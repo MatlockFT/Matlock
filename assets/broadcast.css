@@ -1652,3 +1652,178 @@ body {
   margin-top: .8%;
   font-size: 1.72cqw;
 }
+
+
+/* Fight City ink-safe spacing v3 */
+
+/* Fight Day footer: WeatherSTAR glyphs overhang their line box, so do not clip them. */
+.mfc-wx-fight-time {
+  min-height: 19%;
+  margin-top: .7%;
+  padding: 1.4% 1.7% 1.25%;
+  overflow: visible;
+}
+
+.mfc-wx-fight-time-slot {
+  gap: .38cqw;
+  overflow: visible;
+  padding: .18cqw 0 .12cqw;
+}
+
+.mfc-wx-fight-time-slot small,
+.mfc-wx-fight-time-slot strong,
+.mfc-wx-fight-time-slot.is-temp b {
+  overflow: visible;
+  line-height: 1.12;
+  text-overflow: clip;
+}
+
+.mfc-wx-fight-time-slot.is-temp {
+  justify-content: center;
+}
+
+.mfc-wx-fight-time-slot.is-temp b {
+  font-size: 2.8cqw;
+  line-height: 1.08;
+}
+
+.mfc-wx-fight-time-slot.is-temp strong {
+  font-size: 1.45cqw;
+}
+
+.mfc-wx-fightday-main {
+  height: 53%;
+}
+
+.mfc-wx-fightday-copy p {
+  line-height: 1.27;
+}
+
+/* Extended forecast: lock high / slash / low into a real row. */
+.mfc-wx-day-temp {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: baseline;
+  gap: .55cqw;
+  width: 86%;
+  margin-top: auto;
+  line-height: 1.08;
+}
+
+.mfc-wx-day-temp b,
+.mfc-wx-day-temp em,
+.mfc-wx-day-temp i {
+  display: block;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.08;
+  white-space: nowrap;
+}
+
+.mfc-wx-day-temp b {
+  justify-self: end;
+}
+
+.mfc-wx-day-temp em {
+  justify-self: start;
+  color: #efeee5;
+  font-size: 2.55cqw;
+}
+
+.mfc-wx-day-temp i {
+  color: #efeee5;
+  font-size: 2.3cqw;
+}
+
+/* Regional map labels: change the anchor direction near map edges instead of clipping half the box. */
+.mfc-wx-map-city {
+  overflow: visible;
+}
+
+.mfc-wx-map-city.is-top-edge {
+  transform: translate(-50%, 0);
+}
+
+.mfc-wx-map-city.is-bottom-edge {
+  transform: translate(-50%, -100%);
+}
+
+.mfc-wx-map-city.is-left-edge {
+  transform: translate(0, -50%);
+}
+
+.mfc-wx-map-city.is-right-edge {
+  transform: translate(-100%, -50%);
+}
+
+.mfc-wx-map-city.is-top-edge.is-left-edge {
+  transform: translate(0, 0);
+}
+
+.mfc-wx-map-city.is-top-edge.is-right-edge {
+  transform: translate(-100%, 0);
+}
+
+.mfc-wx-map-city.is-bottom-edge.is-left-edge {
+  transform: translate(0, -100%);
+}
+
+.mfc-wx-map-city.is-bottom-edge.is-right-edge {
+  transform: translate(-100%, -100%);
+}
+
+.mfc-wx-map-city-name,
+.mfc-wx-map-city-weather,
+.mfc-wx-map-city-weather b {
+  overflow: visible;
+  line-height: 1.12;
+}
+
+/* Almanac: proper two-column rows, with ink-safe line height. */
+.mfc-wx-sun-data {
+  gap: 10%;
+  font-size: 2.5cqw;
+  line-height: 1.12;
+}
+
+.mfc-wx-sun-data p {
+  display: grid;
+  grid-template-columns: 9.8cqw 1fr;
+  align-items: baseline;
+  gap: .8cqw;
+  overflow: visible;
+  line-height: 1.12;
+}
+
+.mfc-wx-sun-data p > span,
+.mfc-wx-sun-data p > b {
+  display: block;
+  overflow: visible;
+  line-height: 1.12;
+  white-space: nowrap;
+}
+
+.mfc-wx-sun-data p > b {
+  color: #f0d047;
+  text-align: left;
+}
+
+.mfc-wx-almanac-note {
+  grid-template-columns: 7.6cqw 1fr !important;
+  font-size: 1.62cqw !important;
+}
+
+.mfc-wx-almanac-note b {
+  color: #efeee5 !important;
+  font-size: 1.72cqw;
+}
+
+/* Give title/subtitle ink a little vertical breathing room without growing the header. */
+.mfc-wx-page-title,
+.mfc-wx-page-subtitle,
+.mfc-wx-eventline,
+.mfc-wx-eventline strong,
+.mfc-wx-eventline span {
+  overflow-y: visible;
+  line-height: 1.12;
+}
