@@ -11,7 +11,8 @@
   const screen = root.querySelector('[data-mfc-screen]');
   function scalePlayer() {
     const embedded = document.body.dataset.mfcEmbed === 'true';
-    const scale = embedded ? Math.min(innerWidth / 640, innerHeight / 480) : Math.min(innerWidth, 760) / 640;
+    const maxScale = embedded ? Infinity : 760 / 640;
+    const scale = Math.max(.01, Math.min(innerWidth / 640, innerHeight / 480, maxScale));
     root.style.setProperty('--mfc-player-scale', String(scale));
   }
   scalePlayer();
@@ -747,7 +748,9 @@
     if (!monitorMode) {
       try { localStorage.setItem(SOUND_KEY, soundEnabled ? 'on' : 'off'); } catch {}
     }
-    soundButton.textContent = soundEnabled ? 'SOUND ON' : 'SOUND OFF';
+    const soundLabel = soundEnabled ? 'Mute broadcast' : 'Unmute broadcast';
+    soundButton.setAttribute('aria-label', soundLabel);
+    soundButton.setAttribute('title', soundLabel);
     reportPlayback('');
     soundButton.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
     if (!soundEnabled) {
