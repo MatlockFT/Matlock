@@ -275,11 +275,16 @@
     const fullBody = item ? String(item.body || '') : bodyCopy.textContent;
     bodyCopy.textContent = fullBody;
     const titleSize = parseFloat(getComputedStyle(title).fontSize), eyebrowSize = parseFloat(getComputedStyle(eyebrow).fontSize);
-    largestFit(.05, 1, scale => {
+    const titleLineHeight = parseFloat(getComputedStyle(title).lineHeight) || titleSize;
+    const titleLinesAtBase = Math.max(1, Math.round(title.offsetHeight / titleLineHeight));
+    const titleScaleCap = fullBody
+      ? (titleLinesAtBase >= 4 ? .64 : titleLinesAtBase === 3 ? .72 : titleLinesAtBase === 2 ? .82 : 1)
+      : 1;
+    largestFit(.05, titleScaleCap, scale => {
       title.style.fontSize = titleSize * scale + 'px'; eyebrow.style.fontSize = eyebrowSize * scale + 'px';
     }, () => {
       const titleHeight = title.offsetHeight, eyebrowHeight = eyebrow.offsetHeight;
-      return titleHeight + eyebrowHeight <= copy.clientHeight * (fullBody ? .30 : .88)
+      return titleHeight + eyebrowHeight <= copy.clientHeight * (fullBody ? .42 : .88)
         && title.scrollWidth <= title.clientWidth + 1 && eyebrow.scrollWidth <= eyebrow.clientWidth + 1;
     });
     const baseBodySize = parseFloat(getComputedStyle(bodyCopy).fontSize);
