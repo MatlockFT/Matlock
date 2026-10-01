@@ -119,28 +119,34 @@
         return { feed, data, fallback, age, rows };
       }));
 
-      const notices = [];
+      const warnings = [];
       let newestGeneratedAt = 0;
+      let oldestGeneratedAt = Infinity;
       let successCount = 0;
 
       results.forEach((result, index) => {
         if (result.status === 'fulfilled') {
           successCount += 1;
           const { feed, data, fallback, age, rows } = result.value;
-          newestGeneratedAt = Math.max(newestGeneratedAt, Date.parse(data.generatedAt) || 0);
+          const generatedAt = Date.parse(data.generatedAt) || 0;
+          newestGeneratedAt = Math.max(newestGeneratedAt, generatedAt);
+          if (generatedAt) oldestGeneratedAt = Math.min(oldestGeneratedAt, generatedAt);
           entries = entries.filter(item => item.pool !== feed.key);
           entries.push(...rows.map(item => ({ ...item, pool: feed.key, kind: feed.kind, source: String(item.source || 'MMA news') })));
-          notices.push(feed.name + ': ' + rows.length + ' · updated ' + new Date(data.generatedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
-            + (fallback ? ' · saved fallback' : '') + (age > 3600000 ? ' · older snapshot' : ''));
+          if (fallback) warnings.push(feed.name + ' is using a saved fallback');
+          if (age > 20 * 60 * 1000) warnings.push(feed.name + ' snapshot is stale');
           const unavailable = (data.sources || []).filter(source => source.status === 'unavailable' || source.status === 'cached');
-          if (unavailable.length) notices.push('Some sources could not refresh: ' + unavailable.map(source => source.name).join(', '));
+          if (unavailable.length) warnings.push('Some sources could not refresh: ' + unavailable.map(source => source.name).join(', '));
         } else {
-          notices.push(feeds[index].name + ' unavailable. Keeping previously loaded items; try Refresh.');
+          warnings.push(feeds[index].name + ' unavailable. Keeping previously loaded items.');
         }
       });
 
       entries = [...new Map(entries.map(item => [item.url, item])).values()];
-      entries.sort((a, b) => (Date.parse(b.publishedAt) || 0) - (Date.parse(a.publishedAt) || 0));
+      const itemTimestamp = item => Date.parse(item.publishedAt || item.checkedAt || '') || 0;
+      entries.sort((a, b) => itemTimestamp(b) - itemTimestamp(a)
+        || (Date.parse(b.checkedAt || '') || 0) - (Date.parse(a.checkedAt || '') || 0)
+        || String(a.title || '').localeCompare(String(b.title || '')));
       const selectedSource = source.value;
       source.replaceChildren(new Option('All sources', ''));
       [...new Set(entries.map(item => item.source))].sort().forEach(value => source.add(new Option(value, value)));
@@ -150,7 +156,14 @@
       lastRefresh = Date.now();
       lastLoadSuccessCount = successCount;
       lastSnapshotGeneratedAt = Math.max(lastSnapshotGeneratedAt, newestGeneratedAt);
-      status.textContent = notices.join(' • ');
+      const updatedLabel = newestGeneratedAt
+        ? new Date(newestGeneratedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+        : 'unknown';
+      const stale = oldestGeneratedAt !== Infinity && Date.now() - oldestGeneratedAt > 20 * 60 * 1000;
+      status.textContent = entries.length + ' items · updated ' + updatedLabel
+        + (stale ? ' · stale' : '')
+        + (warnings.length ? ' · refresh issue' : '');
+      status.title = warnings.join(' • ');
       render();
       return newestGeneratedAt;
     } finally {
