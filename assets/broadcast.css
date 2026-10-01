@@ -1140,3 +1140,131 @@ body {
   image-rendering: auto;
   filter: saturate(.9) contrast(1.04) blur(.02cqw);
 }
+
+
+.mfc-wx-regional {
+  padding-bottom: 1.5%;
+}
+
+.mfc-wx-regional-map {
+  position: relative;
+  height: 73%;
+  margin: .8% 1.2% 0;
+  overflow: hidden;
+  background: #77787a;
+  border-top: .15cqw solid rgba(210,216,224,.46);
+  border-right: .15cqw solid rgba(14,17,27,.72);
+  border-bottom: .2cqw solid rgba(6,8,18,.88);
+  border-left: .15cqw solid rgba(31,36,51,.66);
+  box-shadow:
+    inset .18cqw .18cqw .35cqw rgba(255,255,255,.08),
+    inset -.22cqw -.2cqw .42cqw rgba(0,0,0,.28);
+}
+
+.mfc-wx-regional-basemap {
+  position: absolute;
+  max-width: none;
+  max-height: none;
+  object-fit: fill;
+  image-rendering: auto;
+  filter: grayscale(.15) saturate(.68) contrast(1.03) brightness(.82) sepia(.03);
+  transform: translateZ(0);
+}
+
+.mfc-wx-regional-map::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,.018) 3px 4px),
+    linear-gradient(180deg, rgba(50,58,76,.08), rgba(12,17,31,.12));
+  mix-blend-mode: multiply;
+}
+
+.mfc-wx-map-city {
+  position: absolute;
+  z-index: 2;
+  min-width: 8.5cqw;
+  transform: translate(-50%, -50%);
+  color: #efeee6;
+  text-align: center;
+  text-shadow:
+    .065em .075em 0 #09090f,
+    .12em .13em .025em rgba(0,0,0,.7);
+  white-space: nowrap;
+}
+
+.mfc-wx-map-city-name {
+  display: block;
+  margin-bottom: -.15cqw;
+  font-family: var(--mfc-type-weather-display);
+  font-size: 2.15cqw;
+  line-height: .95;
+  text-transform: none;
+}
+
+.mfc-wx-map-city-weather {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .15cqw;
+  min-height: 4.1cqw;
+}
+
+.mfc-wx-map-city-weather b {
+  color: #f2d329;
+  font-family: var(--mfc-type-weather-display);
+  font-size: 3.25cqw;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.mfc-wx-map-city .mfc-wx-icon {
+  width: 4.8cqw;
+  height: 4.8cqw;
+  margin: 0;
+  object-fit: contain;
+  filter: saturate(.86) contrast(1.05) drop-shadow(.12cqw .12cqw 0 #11111a);
+}
+
+.mfc-wx-map-city.is-fight-city {
+  z-index: 4;
+}
+
+.mfc-wx-map-city.is-fight-city .mfc-wx-map-city-name {
+  color: #fff5cf;
+  font-size: 2.45cqw;
+}
+
+.mfc-wx-map-city.is-fight-city .mfc-wx-map-city-weather b {
+  color: #ffd82e;
+  font-size: 3.7cqw;
+}
+
+.mfc-wx-map-city.is-fight-city::before {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 1.15cqw;
+  height: 1.15cqw;
+  content: "";
+  border: .22cqw solid #f0eee0;
+  border-radius: 50%;
+  background: #17171a;
+  transform: translate(-50%, -50%);
+  box-shadow: .1cqw .12cqw 0 rgba(0,0,0,.7);
+  opacity: .88;
+}
+
+.mfc-wx-regional-footer {
+  height: 9%;
+  display: flex;
+  align-items: center;
+  padding: 0 3%;
+  border-top: .16cqw solid rgba(210,220,238,.54);
+  background: linear-gradient(180deg, rgba(49,66,111,.88), rgba(32,48,88,.92));
+  font-family: var(--mfc-type-weather-info);
+  font-size: 2.25cqw;
+  line-height: 1;
+}
