@@ -696,6 +696,7 @@
       second: '2-digit'
     }).format(now).toUpperCase();
     const zone = zoneAbbreviation(now, clock.zone, clock.label);
+    clockNode.dataset.zone = clock.zone;
     clockNode.textContent = zone ? `${time} ${zone}` : time;
     [dateNode, clockNode].forEach(centerTextInk);
   }
