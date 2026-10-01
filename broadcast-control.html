@@ -391,7 +391,7 @@ permalink: /broadcast/control/
           <label class="mfc-field"><span>Audio URL</span><input type="url" data-music-url placeholder="https://example.com/music.mp3"></label>
           <label class="mfc-field"><span>Title</span><input type="text" data-music-url-title placeholder="Track title"></label>
           <label class="mfc-field"><span>Duration (min:sec)</span><input type="text" inputmode="numeric" data-music-url-duration placeholder="Detected automatically"></label>
-          <p>Paste a direct media URL. MP3, M4A/AAC, WAV, OGG, Opus and FLAC are supported where your browser can play them; MP4/M4V/WebM can also carry audio. Duration is detected when possible. If a host blocks metadata detection, enter the track length as min:sec and the URL can still be used.</p>
+          <p>Paste a YouTube link or direct media URL. YouTube audio plays through the embedded YouTube player; MP3, M4A/AAC, WAV, OGG, Opus and FLAC are supported where your browser can play them, and MP4/M4V/WebM can also carry audio. Duration is detected automatically when possible.</p>
         </div>
         <footer><button value="cancel" formnovalidate class="mfc-button mfc-button-ghost">Cancel</button><button type="button" class="mfc-button" data-confirm-music-url>Add Track</button></footer>
       </form>
@@ -405,7 +405,8 @@ permalink: /broadcast/control/
     <div class="mfc-toast" data-toast role="status" aria-live="polite" hidden></div>
   </main>
 
-  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20261001-music-url-1" defer></script>
+  <script src="{{ '/assets/broadcast-youtube.js' | relative_url }}?v=20261001-youtube-music-1" defer></script>
+  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20261001-youtube-music-1" defer></script>
   <script src="{{ '/assets/broadcast-news-pool.js' | relative_url }}?v=20260930-news-1" defer></script>
 </body>
 </html>
