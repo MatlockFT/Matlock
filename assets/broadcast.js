@@ -37,6 +37,8 @@
   const soundButton = root.querySelector('[data-mfc-sound]');
   const musicA = document.querySelector('[data-mfc-music-a]');
   const musicB = document.querySelector('[data-mfc-music-b]');
+  const musicYoutubeHostA = document.querySelector('[data-mfc-music-youtube-a]');
+  const musicYoutubeHostB = document.querySelector('[data-mfc-music-youtube-b]');
   const STATE_URLS = [
     'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/broadcast.json',
     '/assets/uploads/broadcast.json',
@@ -55,6 +57,8 @@
   let soundEnabled = false;
   let activeMusic = musicA;
   let standbyMusic = musicB;
+  let activeMusicYoutube = null;
+  let standbyMusicYoutube = null;
   let lastPoll = 0;
   let previewOverride = false;
   const failedMedia = new Map();
@@ -74,6 +78,29 @@
     },
     playing: () => { if (!soundBlocked) reportPlayback(''); }
   });
+
+  function createMusicYoutube(host) {
+    return host && window.matlockYoutubePlayer?.(host, {
+      error: url => {
+        failedMedia.set(url, Date.now() + 60000);
+        currentMusicId = '';
+        reportPlayback('A YouTube music track is unavailable. Continuing with available music; retrying in one minute.');
+      },
+      blocked: () => {
+        soundBlocked = true;
+        setSoundState(false);
+        soundButton.hidden = false;
+        soundButton.textContent = 'CLICK TO ENABLE SOUND';
+        reportPlayback('YouTube blocked background audio. Click Sound On to enable it.', true);
+      },
+      playing: () => { if (!soundBlocked) reportPlayback(''); }
+    });
+  }
+
+  const musicYoutubeA = createMusicYoutube(musicYoutubeHostA);
+  const musicYoutubeB = createMusicYoutube(musicYoutubeHostB);
+  activeMusicYoutube = musicYoutubeA;
+  standbyMusicYoutube = musicYoutubeB;
 
   function reportPlayback(message, blocked = false) {
     if (playbackStatus) { playbackStatus.textContent = message; playbackStatus.hidden = !message; }
@@ -163,7 +190,11 @@
   }
 
   function musicItems() {
-    return Array.isArray(channel?.music) ? channel.music.filter(item => sourceAvailable(item?.url) && !youtubeVideoId(item.url) && !item.youtubeId && positive(item.duration) > 0) : [];
+    return Array.isArray(channel?.music) ? channel.music.filter(item => {
+      if (!sourceAvailable(item?.url) || positive(item.duration) <= 0) return false;
+      const youtubeId = String(item.youtubeId || youtubeVideoId(item.url) || '');
+      return !youtubeId || Boolean(musicYoutubeA && musicYoutubeB);
+    }) : [];
   }
 
   function timelinePosition(items, elapsed) {
@@ -459,6 +490,38 @@
     }
   }
 
+  function youtubeMusicId(track) {
+    return String(track?.youtubeId || youtubeVideoId(track?.url) || '');
+  }
+
+  function stopMusicSlot(element, youtubePlayer) {
+    setSlotVolume(element, 0);
+    pauseSlot(element);
+    youtubePlayer?.stop();
+  }
+
+  function syncMusicSlot(element, youtubePlayer, track, targetTime, volume) {
+    const level = clamp(volume, 0, 1);
+    const youtubeId = youtubeMusicId(track);
+    if (youtubeId) {
+      setSlotVolume(element, 0);
+      pauseSlot(element);
+      youtubePlayer?.sync({
+        id: youtubeId,
+        url: track.url,
+        time: Math.max(0, targetTime),
+        muted: !soundEnabled || level <= .001,
+        volume: Math.round(level * 100)
+      });
+      return;
+    }
+
+    youtubePlayer?.stop();
+    ensureAudioSource(element, track, targetTime);
+    setSlotVolume(element, level);
+    playSlot(element);
+  }
+
   function musicPosition(tracks, elapsed) {
     if (!tracks.length) return null;
     const globalCrossfade = clamp(channel?.audio?.crossfade ?? 2.5, 0, 12);
@@ -499,10 +562,8 @@
   function syncMusic(elapsed, programItem, deltaSeconds) {
     const tracks = musicItems();
     if (!soundEnabled || !tracks.length) {
-      setSlotVolume(musicA, 0);
-      setSlotVolume(musicB, 0);
-      pauseSlot(musicA);
-      pauseSlot(musicB);
+      stopMusicSlot(musicA, musicYoutubeA);
+      stopMusicSlot(musicB, musicYoutubeB);
       return;
     }
 
@@ -513,12 +574,13 @@
     const trackId = String(track.id || track.url);
     if (trackId !== currentMusicId) {
       currentMusicId = trackId;
-      const swap = activeMusic;
+      const audioSwap = activeMusic;
       activeMusic = standbyMusic;
-      standbyMusic = swap;
+      standbyMusic = audioSwap;
+      const youtubeSwap = activeMusicYoutube;
+      activeMusicYoutube = standbyMusicYoutube;
+      standbyMusicYoutube = youtubeSwap;
     }
-
-    ensureAudioSource(activeMusic, track, pos.local);
 
     const inCrossfade = tracks.length > 1
       && pos.incomingOverlap > 0
@@ -526,14 +588,6 @@
     const crossfadeProgress = inCrossfade
       ? clamp(pos.local / pos.incomingOverlap, 0, 1)
       : 1;
-
-    if (inCrossfade) {
-      ensureAudioSource(standbyMusic, pos.previous, pos.previousLocal);
-      playSlot(standbyMusic);
-    } else {
-      setSlotVolume(standbyMusic, 0);
-      pauseSlot(standbyMusic);
-    }
 
     const desiredDuck = duckTarget(programItem);
     const attack = Math.max(.05, Number(channel?.audio?.duckAttack) || .4);
@@ -549,20 +603,22 @@
     const ownFadeIn = fadeIn > 0 ? clamp(pos.local / fadeIn, 0, 1) : 1;
     const ownFadeOut = fadeOut > 0 ? clamp(remaining / fadeOut, 0, 1) : 1;
     const currentEnvelope = Math.min(ownFadeIn, ownFadeOut, crossfadeProgress);
+    const currentVolume = clamp(baseMusicVolume(track) * musicLevel * currentEnvelope, 0, 1);
 
-    let previousEnvelope = 0;
+    let previousVolume = 0;
     if (inCrossfade) {
       const previousRemaining = Math.max(0, positive(pos.previous.duration) - pos.previousLocal);
       const previousFadeOut = Math.max(0, Number(pos.previous.fadeOut) || 0);
       const ownPreviousFade = previousFadeOut > 0
         ? clamp(previousRemaining / previousFadeOut, 0, 1)
         : 1;
-      previousEnvelope = Math.min(ownPreviousFade, 1 - crossfadeProgress);
+      const previousEnvelope = Math.min(ownPreviousFade, 1 - crossfadeProgress);
+      previousVolume = clamp(baseMusicVolume(pos.previous) * musicLevel * previousEnvelope, 0, 1);
     }
 
-    setSlotVolume(activeMusic, clamp(baseMusicVolume(track) * musicLevel * currentEnvelope, 0, 1));
-    setSlotVolume(standbyMusic, clamp(baseMusicVolume(pos.previous) * musicLevel * previousEnvelope, 0, 1));
-    playSlot(activeMusic);
+    syncMusicSlot(activeMusic, activeMusicYoutube, track, pos.local, currentVolume);
+    if (inCrossfade) syncMusicSlot(standbyMusic, standbyMusicYoutube, pos.previous, pos.previousLocal, previousVolume);
+    else stopMusicSlot(standbyMusic, standbyMusicYoutube);
   }
 
   const WORLD_CLOCKS = [
@@ -613,6 +669,8 @@
   function setSoundState(enabled) {
     soundEnabled = Boolean(enabled);
     youtube?.sound(soundEnabled && timelinePosition(programItems(), rawElapsed()).item?.videoAudio !== false);
+    musicYoutubeA?.sound(soundEnabled);
+    musicYoutubeB?.sound(soundEnabled);
     if (soundEnabled) soundBlocked = false;
     if (!monitorMode) {
       try { localStorage.setItem(SOUND_KEY, soundEnabled ? 'on' : 'off'); } catch {}
@@ -621,8 +679,8 @@
     reportPlayback('');
     soundButton.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
     if (!soundEnabled) {
-      pauseSlot(musicA);
-      pauseSlot(musicB);
+      stopMusicSlot(musicA, musicYoutubeA);
+      stopMusicSlot(musicB, musicYoutubeB);
       video.muted = true;
     }
   }
@@ -657,7 +715,6 @@
       failedMedia.clear();
       renderTicker();
       syncProgram();
-      if ((channel.music || []).some(track => youtubeVideoId(track.url) || track.youtubeId)) reportPlayback('Replace YouTube music with an uploaded song or a direct audio file in Broadcast Control.');
     } else {
       channel = selected;
     }
