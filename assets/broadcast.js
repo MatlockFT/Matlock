@@ -279,7 +279,7 @@
       title.style.fontSize = titleSize * scale + 'px'; eyebrow.style.fontSize = eyebrowSize * scale + 'px';
     }, () => {
       const titleHeight = title.offsetHeight, eyebrowHeight = eyebrow.offsetHeight;
-      return titleHeight + eyebrowHeight <= copy.clientHeight * (fullBody ? .34 : .88)
+      return titleHeight + eyebrowHeight <= copy.clientHeight * (fullBody ? .30 : .88)
         && title.scrollWidth <= title.clientWidth + 1 && eyebrow.scrollWidth <= eyebrow.clientWidth + 1;
     });
     const baseBodySize = parseFloat(getComputedStyle(bodyCopy).fontSize);
