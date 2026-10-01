@@ -12,7 +12,8 @@
   function scalePlayer() {
     const embedded = document.body.dataset.mfcEmbed === 'true';
     const maxScale = embedded ? Infinity : 760 / 640;
-    const scale = Math.max(.01, Math.min(innerWidth / 640, innerHeight / 480, maxScale));
+    const verticalScale = embedded ? innerHeight / 480 : innerHeight / 560;
+    const scale = Math.max(.01, Math.min(innerWidth / 640, verticalScale, maxScale));
     root.style.setProperty('--mfc-player-scale', String(scale));
   }
   scalePlayer();
