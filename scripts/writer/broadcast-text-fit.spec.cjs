@@ -154,33 +154,24 @@ test('short and wrapped banner labels retain the same visible-glyph center; foot
 });
 
 
-test('wrapped story headlines scale down while short headlines keep the full display size', async ({ page }) => {
-  const body = 'Short story context that leaves plenty of room below the headline.';
-  setText(body, { title: 'SHORT FIGHT NEWS', duration: 600 });
+test('body copy remains visually unclipped when a wrapped headline reduces its flex box', async ({ page }) => {
+  setText(
+    'Two former neighbours of Nikita Hand have been charged with perjury over sworn statements Conor McGregor sought to use in his failed civil appeal.',
+    {
+      title: 'Two charged with perjury over evidence in Conor McGregor’s failed Nikita Hand appeal',
+      eyebrow: 'LowKick MMA',
+      duration: 600
+    }
+  );
   await page.setViewportSize({ width: 640, height: 480 });
   await page.goto(fixture.origin + '/broadcast/?embed=1');
-  await expect(page.locator('[data-mfc-title]')).toHaveText('SHORT FIGHT NEWS');
-  await expect.poll(() => page.locator('[data-mfc-title]').evaluate(node => Boolean(node.style.fontSize))).toBe(true);
-  const short = await page.locator('[data-mfc-title]').evaluate(node => ({
-    size: parseFloat(getComputedStyle(node).fontSize),
-    lineHeight: parseFloat(getComputedStyle(node).lineHeight),
-    height: node.offsetHeight
-  }));
-  expect(Math.round(short.height / short.lineHeight)).toBe(1);
-
-  setText(body, {
-    title: 'Two charged with perjury over evidence in Conor McGregor’s failed Nikita Hand appeal',
-    duration: 600
-  });
-  await page.reload();
   await expect(page.locator('[data-mfc-title]')).toContainText('TWO CHARGED WITH PERJURY');
   await expect.poll(() => page.locator('[data-mfc-title]').evaluate(node => Boolean(node.style.fontSize))).toBe(true);
-  const long = await page.locator('[data-mfc-title]').evaluate(node => ({
-    size: parseFloat(getComputedStyle(node).fontSize),
-    lineHeight: parseFloat(getComputedStyle(node).lineHeight),
-    height: node.offsetHeight
+  const bodyOverflow = await page.locator('[data-mfc-body]').evaluate(node => ({
+    overflow: getComputedStyle(node).overflow,
+    overflowY: getComputedStyle(node).overflowY
   }));
-  expect(Math.round(long.height / long.lineHeight)).toBeGreaterThanOrEqual(2);
-  expect(long.size).toBeLessThan(short.size * .9);
+  expect(bodyOverflow.overflow).toBe('visible');
+  expect(bodyOverflow.overflowY).toBe('visible');
   await assertFits(page);
 });
