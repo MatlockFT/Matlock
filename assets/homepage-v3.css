@@ -2357,3 +2357,65 @@ body:has([data-globe-home]) .site-theme-toggle-knob {
         transform: none !important;
     }
 }
+
+
+/* Homepage broadcast: passive TV with only a small audio control. */
+.v3-broadcast-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #050506;
+}
+
+.v3-broadcast-player .v3-broadcast-frame {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    pointer-events: none;
+    user-select: none;
+}
+
+.v3-broadcast-audio {
+    position: absolute;
+    right: .38rem;
+    bottom: .38rem;
+    z-index: 3;
+    display: grid;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 50%;
+    background: rgba(8,8,9,.62);
+    color: #fff;
+    box-shadow: 0 1px 5px rgba(0,0,0,.32);
+    cursor: pointer;
+    font: 400 13px/1 system-ui, sans-serif;
+    opacity: .72;
+    transition: opacity .15s ease, background-color .15s ease, border-color .15s ease;
+}
+
+.v3-broadcast-audio:hover,
+.v3-broadcast-audio:focus-visible,
+.v3-broadcast-audio[aria-pressed="true"] {
+    opacity: 1;
+    background: rgba(8,8,9,.82);
+    border-color: rgba(255,255,255,.55);
+}
+
+.v3-broadcast-audio:focus-visible {
+    outline: 2px solid var(--v3-red);
+    outline-offset: 2px;
+}
+
+@media (max-width: 780px) {
+    .v3-broadcast-audio {
+        right: .3rem;
+        bottom: .3rem;
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+    }
+}
