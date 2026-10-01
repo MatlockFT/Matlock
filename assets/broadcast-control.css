@@ -1299,9 +1299,9 @@ label.mfc-button {
 }
 
 .mfc-ticker-preview-track {
+  --mfc-ticker-preview-distance: -640px;
   display: flex;
   width: max-content;
-  min-width: 200%;
   height: 100%;
   align-items: center;
   will-change: transform;
@@ -1310,8 +1310,7 @@ label.mfc-button {
 
 .mfc-ticker-preview-track span {
   flex: 0 0 auto;
-  padding-right: 12cqw;
-  padding-left: 45.5cqw;
+  padding-right: 8cqw;
   font-family: "MFC Star4000", Arial, sans-serif;
   font-size: 4.3cqw;
   font-weight: 400;
@@ -1328,7 +1327,7 @@ label.mfc-button {
 
 @keyframes mfc-ticker-preview-crawl {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(var(--mfc-ticker-preview-distance)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
