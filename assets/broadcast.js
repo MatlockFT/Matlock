@@ -565,18 +565,48 @@
     playSlot(activeMusic);
   }
 
+  const WORLD_CLOCKS = [
+    { zone: 'America/Chicago' },
+    { zone: 'America/New_York' },
+    { zone: 'America/Los_Angeles' },
+    { zone: 'Europe/London' },
+    { zone: 'Asia/Tokyo', label: 'JST' },
+    { zone: 'Australia/Sydney' }
+  ];
+  const WORLD_CLOCK_ROTATE_MS = 8000;
+  const worldClockStartedAt = Date.now();
+
+  function zoneAbbreviation(now, zone, fallback = '') {
+    if (fallback) return fallback;
+    try {
+      const part = new Intl.DateTimeFormat('en-US', {
+        timeZone: zone,
+        timeZoneName: 'short'
+      }).formatToParts(now).find(row => row.type === 'timeZoneName');
+      return String(part?.value || '').toUpperCase();
+    } catch {
+      return '';
+    }
+  }
+
   function updateClock() {
     const now = new Date();
+    const index = Math.floor((Date.now() - worldClockStartedAt) / WORLD_CLOCK_ROTATE_MS) % WORLD_CLOCKS.length;
+    const clock = WORLD_CLOCKS[Math.max(0, index)] || WORLD_CLOCKS[0];
     dateNode.textContent = new Intl.DateTimeFormat('en-US', {
+      timeZone: clock.zone,
       weekday: 'short',
       month: 'short',
       day: '2-digit'
     }).format(now).toUpperCase();
-    clockNode.textContent = new Intl.DateTimeFormat('en-US', {
+    const time = new Intl.DateTimeFormat('en-US', {
+      timeZone: clock.zone,
       hour: 'numeric',
       minute: '2-digit',
       second: '2-digit'
     }).format(now).toUpperCase();
+    const zone = zoneAbbreviation(now, clock.zone, clock.label);
+    clockNode.textContent = zone ? `${time} ${zone}` : time;
     [dateNode, clockNode].forEach(centerTextInk);
   }
 
