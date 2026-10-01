@@ -47,6 +47,64 @@ async function startServer(port = 0) {
       publishedAt: new Date().toISOString()
     }
   ] };
+  const fightCityWeather = {
+    version: 1,
+    generatedAt: new Date().toISOString(),
+    event: {
+      id: 'ufc-test-weather',
+      promotion: 'UFC TEST',
+      title: 'Fighter vs Fighter',
+      date: '2026-10-03',
+      venue: 'Delta Center',
+      city: 'Salt Lake City',
+      state: 'UT',
+      country: 'United States',
+      latitude: 40.7608,
+      longitude: -111.8910,
+      timezone: 'America/Denver',
+      startIso: '2026-10-03T20:00:00-04:00',
+      startLocal: '6:00 PM MDT'
+    },
+    current: {
+      temperature: 61,
+      feelsLike: 58,
+      humidity: 38,
+      condition: { label: 'Clear', icon: 'clear' },
+      cloudCover: 0,
+      pressure: 1009.6,
+      windSpeed: 3,
+      windDirection: 5,
+      windGust: 5
+    },
+    fightDay: {
+      date: '2026-10-03',
+      day: 'SAT',
+      condition: { label: 'Cloudy', icon: 'cloudy' },
+      high: 84,
+      low: 69,
+      precipProbability: 10,
+      windMax: 9,
+      windDirection: 337,
+      narrative: 'SATURDAY...CLOUDY. HIGH 84. NORTH WINDS 5 TO 10 MPH.',
+      atEvent: {
+        time: '2026-10-03T18:00',
+        temperature: 78,
+        precipProbability: 10,
+        windSpeed: 6,
+        windDirection: 330,
+        condition: { label: 'Cloudy', icon: 'cloudy' }
+      }
+    },
+    daily: [
+      { date: '2026-10-01', day: 'THU', high: 80, low: 49, precipProbability: 0, condition: { label: 'Sunny', icon: 'sunny' } },
+      { date: '2026-10-02', day: 'FRI', high: 88, low: 55, precipProbability: 0, condition: { label: 'Sunny', icon: 'sunny' } },
+      { date: '2026-10-03', day: 'SAT', high: 84, low: 69, precipProbability: 10, condition: { label: 'Cloudy', icon: 'cloudy' } },
+      { date: '2026-10-04', day: 'SUN', high: 82, low: 63, precipProbability: 20, condition: { label: 'Partly Cloudy', icon: 'partlyCloudy' } },
+      { date: '2026-10-05', day: 'MON', high: 74, low: 56, precipProbability: 30, condition: { label: 'Rain', icon: 'rain' } }
+    ],
+    radar: null,
+    source: { forecast: 'Open-Meteo', radar: '' }
+  };
   const videos = { version: 1, generatedAt: new Date().toISOString(), sources: [{ name: 'MMA Fighting', status: 'ready' }], videos: [
     { id: 'abcdefghijk', title: 'Local fighter full interview', source: 'MMA Fighting', url: 'https://www.youtube.com/watch?v=abcdefghijk', duration: 300, publishedAt: new Date().toISOString() },
     { id: 'short123456', title: 'Short clip', source: 'MMA Fighting', url: 'https://www.youtube.com/watch?v=short123456', duration: 180 },
@@ -57,10 +115,11 @@ async function startServer(port = 0) {
     const chunks = []; for await (const chunk of req) chunks.push(chunk);
     const body = Buffer.concat(chunks);
     function json(data, status = 200) { res.writeHead(status, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(data)); }
-    if (/\/(?:news-fixture\/|assets\/data\/)(mma-news|japan-mma-news|broadcast-news-videos)\.json$/.test(url.pathname)) {
+    if (/\/(?:news-fixture\/|assets\/data\/)(mma-news|japan-mma-news|broadcast-news-videos|fight-city-weather)\.json$/.test(url.pathname)) {
       if (controls.newsFailure) return json({ error: 'offline' }, 503);
       if (url.pathname.includes('broadcast-news-videos')) return json(videos);
       if (url.pathname.includes('japan-mma-news')) return json(japanNews);
+      if (url.pathname.includes('fight-city-weather')) return json(fightCityWeather);
       return json(news);
     }
     if (url.pathname === '/api/writer/session') return json({ ok: true, login: 'Local preview' });
@@ -140,12 +199,13 @@ async function startServer(port = 0) {
     }
     if (file === 'assets/broadcast.js') data = Buffer.from(data.toString().replaceAll('https://raw.githubusercontent.com/MatlockFT/Matlock/main', origin));
     if (file === 'assets/broadcast-news-pool.js') data = Buffer.from(data.toString().replaceAll('https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/', origin + '/news-fixture/'));
+    if (file === 'assets/broadcast-weather.js') data = Buffer.from(data.toString().replaceAll('https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/', origin + '/news-fixture/'));
     res.writeHead(200, { 'Content-Type': ({ '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css' })[ext] || 'application/octet-stream' }); res.end(data);
   });
   await new Promise(resolve => server.listen(port, '127.0.0.1', resolve));
   origin = `http://127.0.0.1:${server.address().port}`;
   state = initialState(origin);
-  return { origin, server, controls, assets, media, news, japanNews, videos, get state() { return state; }, set state(value) { state = value; revision++; }, close: () => new Promise(resolve => server.close(resolve)) };
+  return { origin, server, controls, assets, media, news, japanNews, fightCityWeather, videos, get state() { return state; }, set state(value) { state = value; revision++; }, close: () => new Promise(resolve => server.close(resolve)) };
 }
 
 module.exports = { startServer, wav };
