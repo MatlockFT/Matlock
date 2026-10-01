@@ -64,6 +64,7 @@
   const videoPreviewPlayer = app.querySelector('[data-video-preview-player]');
   const videoPreviewMeta = app.querySelector('[data-video-preview-meta]');
   const musicTrack = app.querySelector('[data-music-track]');
+  const musicSummary = app.querySelector('[data-music-summary]');
   const musicFields = app.querySelector('[data-music-fields]');
   const musicEditorTitle = app.querySelector('[data-music-editor-title]');
   const deleteMusicButton = app.querySelector('[data-delete-music]');
@@ -670,6 +671,7 @@
       duckAttack: .4,
       duckRelease: 1.5,
       crossfade: 2.5,
+      musicRepeat: 'shuffle',
       ...(channel.audio || {})
     };
     return channel;
@@ -1904,6 +1906,14 @@
 
   function renderMusic() {
     musicTrack.replaceChildren();
+    if (musicSummary) {
+      const usable = working.music.filter(track => positive(track.duration) > 0 && track.url);
+      const total = usable.reduce((sum, track) => sum + positive(track.duration), 0);
+      const repeat = working.audio?.musicRepeat === 'fixed' ? 'fixed repeat' : 'shuffle on repeat';
+      musicSummary.textContent = usable.length
+        ? usable.length + ' song' + (usable.length === 1 ? '' : 's') + ' · ' + fmt(total) + ' · ' + repeat + '.'
+        : 'No playable songs loaded.';
+    }
 
     if (!working.music.length) {
       const empty = document.createElement('p');
