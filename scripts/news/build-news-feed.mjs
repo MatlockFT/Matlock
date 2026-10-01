@@ -1051,11 +1051,13 @@ function topStoryScore(cluster) {
     const story = cluster.representative;
     const ageHours =
         Math.max(0, Date.now() - Date.parse(story.publishedAt)) / 3600000;
-    const freshness = Math.max(0, 72 - ageHours);
-    const coverage = (
+    const freshness = Math.max(0, 96 - ageHours * 4);
+    const relatedSourceCount = Math.max(
+        0,
         new Set(cluster.stories.map(entry => entry.source)).size - 1
-    ) * 55;
-    const prominence = Math.max(0, 22 - story.feedRank * 2);
+    );
+    const coverage = Math.min(18, relatedSourceCount * 6);
+    const prominence = Math.max(0, 18 - story.feedRank * 1.5);
 
     return freshness + coverage + prominence + story.sourcePriority;
 }
