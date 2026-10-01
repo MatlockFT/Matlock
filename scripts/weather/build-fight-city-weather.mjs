@@ -392,6 +392,10 @@ const forecast = await fetchJson(forecastUrl.href);
 const timezone = clean(forecast.timezone) || 'UTC';
 const currentCode = condition(forecast.current?.weather_code, forecast.current?.is_day);
 const fightStart = eventStartIso(event);
+const currentHourKey = String(forecast.current?.time || '').slice(0, 13);
+const currentHourIndex = (forecast.hourly?.time || []).findIndex(value =>
+  String(value || '').slice(0, 13) === currentHourKey
+);
 const fightIndex = nearestHourly(forecast.hourly, fightStart, forecast.utc_offset_seconds);
 const eventDayIndex = (forecast.daily?.time || []).indexOf(event.date);
 const dailyRows = (forecast.daily?.time || []).map((date, i) => ({
@@ -449,6 +453,10 @@ const current = {
   temperature: round(forecast.current?.temperature_2m),
   feelsLike: round(forecast.current?.apparent_temperature),
   humidity: round(forecast.current?.relative_humidity_2m),
+  dewpoint: currentHourIndex >= 0 ? round(forecast.hourly?.dew_point_2m?.[currentHourIndex]) : null,
+  visibilityMiles: currentHourIndex >= 0
+    ? round((Number(forecast.hourly?.visibility?.[currentHourIndex]) || 0) / 1609.344)
+    : null,
   weatherCode: Number(forecast.current?.weather_code),
   condition: currentCode,
   cloudCover: round(forecast.current?.cloud_cover),
