@@ -2175,3 +2175,51 @@ body {
   line-height: 1.12;
   white-space: nowrap;
 }
+
+
+/* Extended Forecast final tightening v6 */
+.mfc-wx-extended .mfc-wx-days {
+  height: 77%;
+  margin-top: 1%;
+}
+
+.mfc-wx-extended .mfc-wx-day {
+  padding-top: 1.8%;
+  padding-bottom: 1.8%;
+}
+
+.mfc-wx-extended .mfc-wx-day > strong {
+  min-height: 10%;
+}
+
+.mfc-wx-extended .mfc-wx-day .mfc-wx-icon {
+  margin-top: 3%;
+  margin-bottom: .6%;
+}
+
+.mfc-wx-extended .mfc-wx-day-condition {
+  min-height: 12%;
+}
+
+.mfc-wx-extended .mfc-wx-day-temp {
+  width: 82%;
+  margin-top: 9.2cqw;
+  gap: .32cqw;
+}
+
+.mfc-wx-extended .mfc-wx-day-temp b {
+  font-size: 3.05cqw;
+}
+
+.mfc-wx-extended .mfc-wx-day-temp em {
+  font-size: 2.45cqw;
+}
+
+.mfc-wx-extended .mfc-wx-day-temp i {
+  font-size: 2.15cqw;
+}
+
+.mfc-wx-extended .mfc-wx-day small {
+  margin-top: 1.8%;
+  font-size: 1.14cqw;
+}
