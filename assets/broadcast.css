@@ -495,8 +495,13 @@ body {
   overflow: visible;
 }
 
+.mfc-body:not([data-mfc-controls="true"]) .mfc-sound,
 .mfc-body[data-mfc-embed="true"] .mfc-sound {
   display: none;
+}
+
+.mfc-body[data-mfc-controls="true"]:not([data-mfc-embed="true"]) .mfc-sound {
+  display: grid;
 }
 
 .mfc-sound svg {
