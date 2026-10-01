@@ -2232,3 +2232,74 @@ body {
   margin-top: 1.8%;
   font-size: 1.14cqw;
 }
+
+
+/* Current Conditions spacing pass v6
+   Keep the header, temperature, condition, icon and wind in distinct lanes. */
+.mfc-wx-current .mfc-wx-page-title {
+  width: 52%;
+  min-height: 11.5%;
+  max-height: 11.5%;
+  align-items: flex-start;
+  padding-top: .35cqw;
+  font-size: 3.0cqw;
+  line-height: 1.02;
+}
+
+.mfc-wx-current-grid {
+  height: 80.5%;
+  padding-top: 2.8%;
+}
+
+.mfc-wx-current-left {
+  display: grid;
+  grid-template-rows: 24% 11% 47% 18%;
+  align-items: stretch;
+  justify-items: center;
+  padding: 0 3% 2.5% 0;
+}
+
+.mfc-wx-big-temp {
+  align-self: center;
+  justify-self: center;
+  margin: 0;
+  font-size: 7.25cqw;
+  line-height: .92;
+}
+
+.mfc-wx-condition {
+  align-self: center;
+  justify-self: center;
+  margin: 0;
+  font-size: 2.8cqw;
+  line-height: 1;
+}
+
+.mfc-wx-current-icon {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+}
+
+.mfc-wx-current-left .mfc-wx-icon,
+.mfc-wx-current-left .mfc-wx-icon.is-large {
+  width: 12.6cqw;
+  height: 12.6cqw;
+  margin: 0;
+  object-fit: contain;
+}
+
+.mfc-wx-wind {
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  margin: 0;
+  font-size: 2.12cqw;
+  line-height: 1;
+}
+
+.mfc-wx-current-right {
+  padding-top: 2.2%;
+  padding-bottom: 4.5%;
+}
