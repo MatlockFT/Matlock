@@ -13,6 +13,7 @@ on:
       - "scripts/news/build-broadcast-videos.mjs"
       - "scripts/news/dedupe-news-headlines.mjs"
       - "scripts/news/check-news-data.mjs"
+      - "assets/data/news-lead-override.json"
   schedule:
     - cron: "2-57/5 * * * *"
 
