@@ -121,6 +121,7 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   await page.addInitScript(() => {
     localStorage.setItem('matlock-writer:server-session', 'broadcast-smoke-session');
     localStorage.setItem('matlock-writer:server-login', 'MatlockFT');
+    localStorage.removeItem('matlock-broadcast-control:timeline-zoom');
   });
 
   await page.route('https://api.github.com/repos/MatlockFT/Matlock/releases?**', async route => {
@@ -324,6 +325,32 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   await expect(programBlocks).toHaveCount(2);
   await expect(page.locator('[data-program-fields] button', { hasText: '← Move left' })).toBeDisabled();
   await expect(page.locator('[data-program-fields] button', { hasText: 'Move right →' })).toBeEnabled();
+
+  const zoom = page.locator('[data-program-zoom]');
+  const zoomOutput = page.locator('[data-program-zoom-output]');
+  await expect(zoomOutput).toHaveText('100%');
+  const width100 = await programBlocks.first().evaluate(node => node.getBoundingClientRect().width);
+  await zoom.fill('50');
+  await expect(zoomOutput).toHaveText('50%');
+  const width50 = await programBlocks.first().evaluate(node => node.getBoundingClientRect().width);
+  expect(width50).toBeLessThan(width100);
+  await page.click('[data-program-zoom-reset]');
+  await expect(zoomOutput).toHaveText('100%');
+
+  const firstBox = await programBlocks.nth(0).boundingBox();
+  const secondBox = await programBlocks.nth(1).boundingBox();
+  await page.mouse.move(firstBox.x + firstBox.width / 2, firstBox.y + firstBox.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(secondBox.x + secondBox.width - 4, secondBox.y + secondBox.height / 2, { steps: 6 });
+  await page.mouse.up();
+  await expect(programBlocks.nth(0)).toContainText('SMOKE RESULT');
+  await expect(programBlocks.nth(1)).toContainText('SMOKE HEADLINE');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
+
+  page.once('dialog', dialog => dialog.accept());
+  await page.click('[data-reload-state]');
+  await expect(programBlocks.nth(0)).toContainText('SMOKE HEADLINE');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
 
   const musicBlocks = page.locator('[data-music-track] [data-music-id]');
   await expect(musicBlocks).toHaveCount(2);
