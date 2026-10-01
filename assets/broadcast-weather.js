@@ -47,6 +47,13 @@
     return '<img class="mfc-wx-icon' + (large ? ' is-large' : '') + '" src="' + WEATHERSTAR_ICON_BASE + file + '" alt="">';
   }
 
+  function moonIcon(file) {
+    const safe = ['New-Moon.gif', 'First-Quarter.gif', 'Full-Moon.gif', 'Last-Quarter.gif'].includes(file)
+      ? file
+      : 'New-Moon.gif';
+    return '<img class="mfc-wx-moon" src="' + WEATHERSTAR_ICON_BASE + safe + '" alt="">';
+  }
+
   function weatherLabel(row) {
     return row?.condition?.label || 'Variable';
   }
@@ -114,6 +121,21 @@
       + '</div></div>';
   }
 
+  function almanacScreen() {
+    const row = data.almanac || {};
+    return '<div class="mfc-wx-page mfc-wx-almanac">'
+      + '<div class="mfc-wx-page-title">Almanac</div>'
+      + eventLine()
+      + '<div class="mfc-wx-almanac-grid">'
+      + '<div class="mfc-wx-sun-data"><p>SUNRISE: <b>' + esc(row.sunrise || '—') + '</b></p>'
+      + '<p>SUNSET: <b>' + esc(row.sunset || '—') + '</b></p>'
+      + '<p class="mfc-wx-almanac-note">FIGHT DAY · ' + esc(data.event?.city || '') + '</p></div>'
+      + '<div class="mfc-wx-moon-data"><strong>MOON DATA:</strong>'
+      + moonIcon(row.moon?.icon)
+      + '<span>' + esc(row.moon?.label || 'Moon Phase') + '</span></div>'
+      + '</div></div>';
+  }
+
   function radarScreen() {
     const radar = data.radar;
     if (!radar?.tileUrl) return fightDayScreen();
@@ -129,13 +151,14 @@
 
   function pageNames() {
     return data?.radar?.tileUrl
-      ? ['current', 'fightday', 'extended', 'radar']
-      : ['current', 'fightday', 'extended'];
+      ? ['current', 'fightday', 'extended', 'almanac', 'radar']
+      : ['current', 'fightday', 'extended', 'almanac'];
   }
 
   function pageFor(name) {
     if (name === 'fightday') return fightDayScreen();
     if (name === 'extended') return extendedScreen();
+    if (name === 'almanac') return almanacScreen();
     if (name === 'radar') return radarScreen();
     return currentScreen();
   }
