@@ -5,6 +5,8 @@
   const newsList = root.querySelector('[data-v3-news-list]');
   const trendingRail = root.querySelector('[data-v3-trending]');
   const historyBox = root.querySelector('[data-v3-history]');
+  const broadcastFrame = root.querySelector('.v3-broadcast-frame');
+  const broadcastAudioButton = root.querySelector('[data-v3-broadcast-audio]');
 
   const setupStickyShell = () => {
     const header = document.querySelector('.site-header');
@@ -39,6 +41,55 @@
     window.addEventListener('resize', syncRailHeight, { passive: true });
     adoptTicker();
     requestAnimationFrame(syncRailHeight);
+  };
+
+  const setupBroadcastAudio = () => {
+    if (!broadcastFrame || !broadcastAudioButton) return;
+
+    let enabled = false;
+    const icon = broadcastAudioButton.querySelector('span');
+
+    const render = () => {
+      broadcastAudioButton.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+      broadcastAudioButton.setAttribute('aria-label', enabled ? 'Mute broadcast audio' : 'Turn broadcast audio on');
+      broadcastAudioButton.title = enabled ? 'Mute audio' : 'Turn audio on';
+      if (icon) icon.textContent = enabled ? '🔊' : '🔇';
+    };
+
+    const apply = next => {
+      enabled = Boolean(next);
+      render();
+      try {
+        if (typeof broadcastFrame.contentWindow?.matlockBroadcastSetSound === 'function') {
+          broadcastFrame.contentWindow.matlockBroadcastSetSound(enabled);
+          return;
+        }
+      } catch {}
+      broadcastFrame.contentWindow?.postMessage({
+        type: 'matlock-broadcast-monitor-sound',
+        enabled
+      }, location.origin);
+    };
+
+    broadcastAudioButton.addEventListener('click', () => apply(!enabled));
+
+    broadcastFrame.addEventListener('load', () => {
+      enabled = false;
+      render();
+      window.setTimeout(() => apply(false), 150);
+    });
+
+    window.addEventListener('message', event => {
+      if (
+        event.origin !== location.origin ||
+        event.source !== broadcastFrame.contentWindow ||
+        event.data?.type !== 'matlock-broadcast-playback-status'
+      ) return;
+      enabled = Boolean(event.data.soundEnabled) && !event.data.blocked;
+      render();
+    });
+
+    render();
   };
 
   const setupThemeTransition = () => {
@@ -333,6 +384,7 @@
   const start = () => {
     setupStickyShell();
     setupThemeTransition();
+    setupBroadcastAudio();
     loadNews();
     window.setTimeout(loadHistory, 100);
   };
