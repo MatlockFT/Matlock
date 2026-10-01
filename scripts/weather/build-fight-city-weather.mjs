@@ -322,8 +322,8 @@ async function buildRegionalForecast(location, eventDate) {
         low: round(response.daily?.temperature_2m_min?.[0]),
         weatherCode,
         condition: condition(weatherCode, 1),
-        x: clamp((city.longitude - crop.minLongitude) / (crop.maxLongitude - crop.minLongitude) * 100, 2, 98),
-        y: clamp((crop.maxLatitude - city.latitude) / (crop.maxLatitude - crop.minLatitude) * 100, 4, 96)
+        x: clamp((city.longitude - crop.minLongitude) / (crop.maxLongitude - crop.minLongitude) * 100, 8, 92),
+        y: clamp((crop.maxLatitude - city.latitude) / (crop.maxLatitude - crop.minLatitude) * 100, 11, 89)
       };
     } catch (error) {
       console.warn(`Regional forecast unavailable for ${city.name}: ${error.message}`);
