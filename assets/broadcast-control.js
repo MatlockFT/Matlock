@@ -666,7 +666,7 @@
     for (const [kind, items] of [['program', working?.program || []], ['music', working?.music || []]]) {
       items.forEach((item, index) => {
         const reasons = [];
-        if (!Number.isFinite(Number(item.duration)) || Number(item.duration) <= 0) reasons.push('set a valid duration');
+        if (!Number.isFinite(Number(item.duration)) || Number(item.duration) <= 0) reasons.push('set duration in min:sec');
         const needsMedia = kind === 'music' || ['video', 'image', 'youtube'].includes(item.type);
         const url = kind === 'music' ? item.url : item.mediaUrl;
         if (needsMedia && !url) reasons.push('add a file or URL');
@@ -2369,20 +2369,57 @@
   confirmMusicUrlButton.addEventListener('click', async () => {
     if (!musicUrlInput.reportValidity() || !musicUrlInput.value.trim()) return;
     confirmMusicUrlButton.disabled = true;
-    confirmMusicUrlButton.textContent = 'Checking…';
+    confirmMusicUrlButton.textContent = 'Adding…';
     try {
       const url = await resolveMediaUrl(musicUrlInput.value.trim());
-      const detected = await probeUrlDuration(url, 'audio');
       const typed = musicUrlDurationInput.value.trim();
-      const duration = typed ? parseDurationInput(typed) : detected;
-      if (!Number.isFinite(duration) || duration <= 0 || duration > detected + 0.5) throw new Error('Duration must be positive and no longer than the file (' + fmt(detected) + ').');
-      const track = { id: uid('music'), title: musicUrlTitleInput.value.trim() || decodeURIComponent(new URL(url).pathname.split('/').pop()).replace(/\.[^.]+$/, '') || 'Music', url, duration, gainDb: 0, fadeIn: 0, fadeOut: 0 };
+      let duration = 0;
+      let detected = 0;
+
+      if (typed) {
+        duration = parseDurationInput(typed);
+        if (!Number.isFinite(duration) || duration <= 0) throw new Error('Enter duration as min:sec, for example 3:42.');
+      } else {
+        confirmMusicUrlButton.textContent = 'Checking…';
+        try {
+          detected = await probeUrlDuration(url, 'audio');
+          duration = detected;
+        } catch {
+          duration = 0;
+        }
+      }
+
+      const filename = (() => {
+        try { return decodeURIComponent(new URL(url).pathname.split('/').pop() || '').replace(/\.[^.]+$/, ''); }
+        catch { return ''; }
+      })();
+      const track = {
+        id: uid('music'),
+        title: musicUrlTitleInput.value.trim() || filename || 'Music',
+        url,
+        duration,
+        gainDb: 0,
+        fadeIn: 0,
+        fadeOut: 0
+      };
       working.music.push(track);
       selectedMusicId = track.id;
-      urlDialog.close(); renderMusic(); markDirty();
-      showToast('Music added · ' + fmt(duration));
-    } catch (error) { showToast(error.message, 9000); }
-    finally { confirmMusicUrlButton.disabled = false; confirmMusicUrlButton.textContent = 'Add Track'; }
+      urlDialog.close();
+      renderMusic();
+      markDirty();
+
+      if (duration > 0) {
+        showToast('Music URL added · ' + fmt(duration));
+      } else {
+        renderMusicEditor();
+        showToast('Music URL added. Duration could not be detected, so enter the track length in min:sec before Take Live.', 10000);
+      }
+    } catch (error) {
+      showToast(error.message, 9000);
+    } finally {
+      confirmMusicUrlButton.disabled = false;
+      confirmMusicUrlButton.textContent = 'Add Track';
+    }
   });
 
   for (const input of [musicUrlInput, musicUrlTitleInput, musicUrlDurationInput].filter(Boolean)) {
