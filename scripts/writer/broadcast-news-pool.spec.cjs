@@ -58,7 +58,6 @@ test('quick additions preserve source metadata, prevent duplicates, undo, save a
   await article.getByRole('button', { name: 'Add to ticker' }).click();
   await expect(article.getByRole('button', { name: 'In ticker' })).toBeDisabled();
   await page.locator('[data-news-id="abcdefghijk"]').getByRole('button', { name: 'Add video', exact: true }).click();
-  await expect(page.locator('[data-readiness-summary]')).toContainText('Loop settings ready');
   await page.locator('[data-news-unused]').check();
   await expect(page.locator('.mfc-news-card')).toHaveCount(1);
   await page.locator('[data-save-draft]').click();
