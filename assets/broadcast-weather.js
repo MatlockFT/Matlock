@@ -241,7 +241,9 @@
     if (key !== renderKey) {
       renderKey = key;
       screen.innerHTML = pageFor(name);
-      source.textContent = 'FORECAST: OPEN-METEO' + (name === 'radar' && data.radar ? ' · RADAR: RAINVIEWER' : '');
+      source.textContent = 'FORECAST: OPEN-METEO'
+        + (name === 'regional' ? ' · MAP: WEATHERSTAR 4000+' : '')
+        + (name === 'radar' && data.radar ? ' · RADAR: RAINVIEWER' : '');
     }
   }
 
