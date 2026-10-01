@@ -93,6 +93,7 @@
   let videoLibraryReadOnly = false;
   let videoLibraryLoading = false;
   let previewStartedAt = new Date().toISOString();
+  let previewProgramId = '';
   let editVersion = 0;
   let history = [];
   let historyIndex = 0;
@@ -859,8 +860,27 @@
     postPreview();
   }
 
+  function selectedProgramOffset() {
+    if (!working?.program?.length || !selectedProgramId) return 0;
+    let offset = 0;
+    for (const item of working.program) {
+      if (item.id === selectedProgramId) return offset;
+      offset += positive(item.duration);
+    }
+    return 0;
+  }
+
   function postPreview() {
     if (!previewFrame?.contentWindow || !working) return;
+
+    // Preview behaves like an actual preview bus: choosing a rundown block
+    // cues that block immediately instead of making the editor wait for the
+    // continuously running draft loop to eventually reach it.
+    if (selectedProgramId && selectedProgramId !== previewProgramId) {
+      previewProgramId = selectedProgramId;
+      previewStartedAt = new Date(Date.now() - selectedProgramOffset() * 1000).toISOString();
+    }
+
     const channel = clone(working);
     channel.startedAt = previewStartedAt;
     previewFrame.contentWindow.postMessage({
@@ -1354,6 +1374,7 @@
         selectedProgramId = item.id;
         renderProgram();
         renderProgramEditor();
+        postPreview();
       });
       block.addEventListener('keydown', event => {
         if (event.key === 'Enter' || event.key === ' ') {
@@ -1361,6 +1382,7 @@
           selectedProgramId = item.id;
           renderProgram();
           renderProgramEditor();
+          postPreview();
         }
       });
       block.addEventListener('dragstart', event => {
@@ -2287,6 +2309,36 @@
     finally { URL.revokeObjectURL(url); }
   }
 
+  async function verifyVideoFrame(file) {
+    const url = URL.createObjectURL(file);
+    const element = document.createElement('video');
+    element.muted = true;
+    element.playsInline = true;
+    element.preload = 'auto';
+    element.src = url;
+    try {
+      await new Promise((resolve, reject) => {
+        let settled = false;
+        const finish = error => {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          element.onloadeddata = element.onerror = null;
+          if (error) reject(new Error('This video container opens, but the browser cannot decode a video frame. Export MP4 with H.264 video and AAC audio, then upload it again.'));
+          else resolve();
+        };
+        const timer = window.setTimeout(() => finish(true), 20000);
+        element.onloadeddata = () => finish(false);
+        element.onerror = () => finish(true);
+        element.load();
+      });
+    } finally {
+      element.removeAttribute('src');
+      element.load();
+      URL.revokeObjectURL(url);
+    }
+  }
+
   function safeExtension(file) {
     const fromName = String(file.name || '').match(/\.([A-Za-z0-9]+)$/)?.[1]?.toLowerCase() || '';
     return fromName || ({
@@ -2471,6 +2523,10 @@
           if (kind === 'video' && !['mp4','m4v','webm'].includes(ext)) throw new Error('Choose an MP4, M4V or WebM video.');
           row.textContent = file.name + ' — Checking duration and format…';
           const duration = await probeFileDuration(file);
+          if (kind === 'video') {
+            row.textContent = file.name + ' — Checking video playback…';
+            await verifyVideoFrame(file);
+          }
           row.textContent = file.name + ' — Uploading (' + fmt(duration) + ')…';
           const asset = await uploadMediaFile(file, kind);
           rememberAsset(asset, duration);
