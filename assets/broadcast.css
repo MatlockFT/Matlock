@@ -1268,3 +1268,387 @@ body {
   font-size: 2.25cqw;
   line-height: 1;
 }
+
+
+/* Fight City layout stabilization v2 */
+
+/* Reserve a real header lane on every weather screen. */
+.mfc-wx-page {
+  padding: 2.2% 3.7% 2.4%;
+}
+
+.mfc-wx-page-title {
+  width: 57%;
+  min-height: 10.5%;
+  max-height: 10.5%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: #efe9d5;
+  font-size: 3.55cqw;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.mfc-wx-page-subtitle {
+  position: absolute;
+  top: 11.7%;
+  left: 3.7%;
+  width: 40%;
+  color: #d7d9d9;
+  font-family: var(--mfc-type-weather-info);
+  font-size: 1.75cqw;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.mfc-wx-eventline {
+  top: 3.1%;
+  right: 3.7%;
+  width: 34%;
+  max-width: 34%;
+  overflow: hidden;
+  font-size: 1.25cqw;
+  line-height: 1.12;
+  white-space: nowrap;
+}
+
+.mfc-wx-eventline strong {
+  overflow: hidden;
+  color: #f0c645;
+  font-size: 1.58cqw;
+  line-height: 1.08;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mfc-wx-eventline span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Current Conditions */
+.mfc-wx-current-grid {
+  grid-template-columns: 43% 57%;
+  height: 83%;
+  padding-top: 1.5%;
+}
+
+.mfc-wx-current-left {
+  padding-top: 0;
+}
+
+.mfc-wx-big-temp {
+  top: 1%;
+  left: 7%;
+  font-size: 7.9cqw;
+  line-height: .9;
+}
+
+.mfc-wx-condition {
+  top: 20%;
+  left: 4%;
+  width: 92%;
+  font-size: 3.05cqw;
+  line-height: 1;
+}
+
+.mfc-wx-current-left .mfc-wx-icon {
+  top: 34%;
+  width: 14.8cqw;
+  height: 14.8cqw;
+}
+
+.mfc-wx-wind {
+  bottom: 7%;
+  font-size: 2.35cqw;
+  line-height: 1;
+}
+
+.mfc-wx-current-right {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  gap: 0;
+  justify-content: initial;
+  align-content: center;
+  padding: 8% 2% 8% 7%;
+  font-size: 2.45cqw;
+  line-height: 1;
+}
+
+.mfc-wx-current-right p {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4%;
+  min-width: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.mfc-wx-current-right p > span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mfc-wx-current-right b {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* Fight Day */
+.mfc-wx-fightday .mfc-wx-page-title,
+.mfc-wx-regional .mfc-wx-page-title {
+  font-size: 3.35cqw;
+}
+
+.mfc-wx-fightday-main {
+  grid-template-columns: 32% 68%;
+  height: 55%;
+  margin-top: 5.2%;
+}
+
+.mfc-wx-fightday-icon .mfc-wx-icon.is-large {
+  width: 14.5cqw;
+  height: 14.5cqw;
+}
+
+.mfc-wx-fightday-copy {
+  min-width: 0;
+  padding: 1% 2.5% 0 1%;
+}
+
+.mfc-wx-fightday-condition {
+  font-size: 3.45cqw;
+  line-height: 1;
+}
+
+.mfc-wx-hi-lo {
+  justify-content: flex-start;
+  gap: 11%;
+  margin: 2.5% 0 2.7%;
+  font-size: 2.25cqw;
+  white-space: nowrap;
+}
+
+.mfc-wx-hi-lo b {
+  font-size: 3.65cqw;
+}
+
+.mfc-wx-fightday-copy p {
+  max-width: 98%;
+  margin: 0;
+  overflow: hidden;
+  font-size: 1.92cqw;
+  line-height: 1.22;
+}
+
+.mfc-wx-fight-time {
+  grid-template-columns: 1.25fr .9fr .7fr 1.2fr;
+  gap: 1%;
+  min-height: 17%;
+  margin: 1.2% 1.2% 0;
+  padding: 1% 1.7%;
+  font-size: 1.5cqw;
+}
+
+.mfc-wx-fight-time-slot {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .32cqw;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mfc-wx-fight-time-slot small {
+  color: #d8deea;
+  font-family: var(--mfc-type-weather-info);
+  font-size: 1.12cqw;
+  line-height: 1;
+}
+
+.mfc-wx-fight-time-slot strong {
+  overflow: hidden;
+  color: #f0eee4;
+  font-size: 1.62cqw;
+  font-weight: 400;
+  line-height: 1;
+  text-overflow: ellipsis;
+}
+
+.mfc-wx-fight-time-slot.is-temp {
+  align-items: center;
+  text-align: center;
+}
+
+.mfc-wx-fight-time-slot.is-temp b {
+  color: #f2d13f;
+  font-size: 3.05cqw;
+  font-weight: 400;
+  line-height: .88;
+}
+
+/* Extended Forecast */
+.mfc-wx-extended .mfc-wx-page-title {
+  font-size: 3.45cqw;
+}
+
+.mfc-wx-days {
+  height: 80%;
+  margin-top: 1.4%;
+  gap: .7%;
+}
+
+.mfc-wx-day {
+  padding: 2.2% 1%;
+}
+
+.mfc-wx-day > strong {
+  min-height: 11%;
+  font-size: 1.95cqw;
+}
+
+.mfc-wx-day.is-fight-day > strong {
+  font-size: 1.55cqw;
+}
+
+.mfc-wx-day .mfc-wx-icon {
+  width: 7.6cqw;
+  height: 7.6cqw;
+  margin: 4% 0 1%;
+}
+
+.mfc-wx-day-condition {
+  min-height: 15%;
+  font-size: 1.42cqw;
+}
+
+.mfc-wx-day-temp {
+  font-size: 2.28cqw;
+}
+
+.mfc-wx-day-temp b {
+  font-size: 3.15cqw;
+}
+
+.mfc-wx-day small {
+  font-size: 1.18cqw;
+}
+
+/* Regional Forecast */
+.mfc-wx-regional-map {
+  height: 66%;
+  margin: 5.2% 1.2% 0;
+}
+
+.mfc-wx-map-city {
+  min-width: 6.7cqw;
+}
+
+.mfc-wx-map-city-name {
+  font-size: 1.55cqw;
+  line-height: .95;
+}
+
+.mfc-wx-map-city-weather {
+  gap: .05cqw;
+  min-height: 3.4cqw;
+}
+
+.mfc-wx-map-city-weather b {
+  font-size: 2.45cqw;
+}
+
+.mfc-wx-map-city .mfc-wx-icon {
+  width: 3.65cqw;
+  height: 3.65cqw;
+}
+
+.mfc-wx-map-city.is-fight-city .mfc-wx-map-city-name {
+  font-size: 1.82cqw;
+}
+
+.mfc-wx-map-city.is-fight-city .mfc-wx-map-city-weather b {
+  font-size: 2.85cqw;
+}
+
+.mfc-wx-map-city.is-fight-city::before {
+  width: .72cqw;
+  height: .72cqw;
+  border-width: .14cqw;
+}
+
+.mfc-wx-regional-footer {
+  height: 7.5%;
+  padding: 0 2.3%;
+  font-size: 1.75cqw;
+}
+
+/* Almanac */
+.mfc-wx-almanac .mfc-wx-page-title {
+  font-size: 3.55cqw;
+}
+
+.mfc-wx-almanac-grid {
+  grid-template-columns: 54% 46%;
+  height: 80%;
+  padding: 6.5% 5.5% 2.5%;
+}
+
+.mfc-wx-sun-data {
+  gap: 8%;
+  padding-left: 1%;
+  font-size: 2.72cqw;
+  line-height: 1;
+}
+
+.mfc-wx-sun-data p {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.mfc-wx-sun-data b {
+  display: inline;
+  white-space: nowrap;
+}
+
+.mfc-wx-almanac-note {
+  font-size: 1.72cqw;
+}
+
+.mfc-wx-moon-data {
+  font-size: 2.1cqw;
+}
+
+.mfc-wx-moon {
+  width: 10.8cqw;
+  height: 10.8cqw;
+  margin: 5% 0 3%;
+}
+
+/* Radar */
+.mfc-wx-radar .mfc-wx-page-title {
+  font-size: 3.45cqw;
+}
+
+.mfc-wx-radar-map {
+  height: 67%;
+  margin: 2% 1.5% 0;
+}
+
+.mfc-wx-radar-city {
+  font-size: 2.15cqw;
+}
+
+.mfc-wx-radar-key {
+  font-size: 1.05cqw;
+}
+
+.mfc-wx-radar-time {
+  margin-top: .8%;
+  font-size: 1.72cqw;
+}
