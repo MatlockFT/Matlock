@@ -226,14 +226,40 @@
     return (entries.length ? entries : ['MATLOCK FIGHT CHANNEL', 'MMA NEWS', 'RESULTS', 'BREAKDOWNS']).join('   •   ');
   }
 
+  let tickerMeasureFrame = 0;
+
+  function updateTickerMetrics({ restart = false } = {}) {
+    if (!tickerTrack || !ticker) return;
+    const speed = clamp(Number(channel?.tickerSpeed) || 1, .4, 2.5);
+    const sequenceWidth = Math.max(1, ticker.offsetWidth);
+    const stageWidth = Math.max(1, screen?.clientWidth || 640);
+    const pixelsPerSecond = Math.max(1, stageWidth * .15 * speed);
+    const seconds = clamp(sequenceWidth / pixelsPerSecond, 8, 300);
+
+    tickerTrack.style.setProperty('--mfc-ticker-distance', `-${sequenceWidth}px`);
+    tickerTrack.style.setProperty('--mfc-ticker-seconds', `${seconds}s`);
+
+    if (restart) {
+      tickerTrack.style.animation = 'none';
+      void tickerTrack.offsetWidth;
+      tickerTrack.style.removeProperty('animation');
+    }
+  }
+
+  function scheduleTickerMetrics(options = {}) {
+    if (tickerMeasureFrame) cancelAnimationFrame(tickerMeasureFrame);
+    tickerMeasureFrame = requestAnimationFrame(() => {
+      tickerMeasureFrame = 0;
+      updateTickerMetrics(options);
+    });
+  }
+
   function renderTicker() {
     const text = textForTicker();
-    ticker.textContent = text;
-    tickerClone.textContent = text;
-    const speed = clamp(Number(channel?.tickerSpeed) || 1, .4, 2.5);
-    const baseSeconds = clamp(text.length * .16, 24, 110);
-    const seconds = clamp(baseSeconds / speed, 8, 300);
-    tickerTrack.style.setProperty('--mfc-ticker-seconds', `${seconds}s`);
+    const loopText = `${text}   •   `;
+    ticker.textContent = loopText;
+    tickerClone.textContent = loopText;
+    scheduleTickerMetrics({ restart: true });
   }
 
   function setMediaMode(kind) {
@@ -359,10 +385,15 @@
     if (fitFrame) return;
     fitFrame = requestAnimationFrame(() => { fitFrame = 0; fitBroadcastCopy(); });
   }
-  window.addEventListener('resize', () => { scalePlayer(); setMediaMode(timelinePosition(programItems(), rawElapsed()).item?.type || 'headline'); scheduleCopyFit(); });
+  window.addEventListener('resize', () => {
+    scalePlayer();
+    setMediaMode(timelinePosition(programItems(), rawElapsed()).item?.type || 'headline');
+    scheduleCopyFit();
+    scheduleTickerMetrics();
+  });
   new ResizeObserver(scheduleCopyFit).observe(panel);
-  document.fonts?.ready.then(scheduleCopyFit);
-  document.fonts?.addEventListener('loadingdone', scheduleCopyFit);
+  document.fonts?.ready.then(() => { scheduleCopyFit(); scheduleTickerMetrics({ restart: true }); });
+  document.fonts?.addEventListener('loadingdone', () => { scheduleCopyFit(); scheduleTickerMetrics({ restart: true }); });
 
   function renderProgramItem(item) {
     if (!item) {
