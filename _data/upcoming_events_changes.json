@@ -1,7 +1,49 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-30T20:18:57.242Z",
+  "generated_at": "2026-10-01T22:04:25.123Z",
   "changes": [
+    {
+      "id": "2026-10-01T22:04:25.123Z|ufc-332-2026-10-03-fight-card|portrait_added|1",
+      "at": "2026-10-01T22:04:25.123Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Roberto Soldić portrait added.",
+      "details": {
+        "fighter": "Roberto Soldić",
+        "source": "ufc"
+      }
+    },
+    {
+      "id": "2026-10-01T22:04:25.123Z|ufc-332-2026-10-03-fight-card|portrait_added|2",
+      "at": "2026-10-01T22:04:25.123Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Anthony Romero portrait added.",
+      "details": {
+        "fighter": "Anthony Romero",
+        "source": "ufc"
+      }
+    },
+    {
+      "id": "2026-10-01T22:04:25.123Z|ufc-332-2026-10-03-fight-card|portrait_added|3",
+      "at": "2026-10-01T22:04:25.123Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Lucas Armand portrait added.",
+      "details": {
+        "fighter": "Lucas Armand",
+        "source": "ufc"
+      }
+    },
     {
       "id": "2026-09-30T20:18:57.242Z|ufc-332-2026-10-03-fight-card|bout_moved|1",
       "at": "2026-09-30T20:18:57.242Z",
@@ -4688,54 +4730,6 @@
         "to_order": 9,
         "from_section": "Main Card",
         "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|12",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Norma Dumont vs Ailin Perez moved on Jr. vs Barcelos.",
-      "details": {
-        "from_order": 10,
-        "to_order": 10,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|13",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Vanessa Demopoulos vs Yazmin Jauregui moved on Jr. vs Barcelos.",
-      "details": {
-        "from_order": 11,
-        "to_order": 11,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|14",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "King Green vs Esteban Ribovics moved on Silva vs Cong.",
-      "details": {
-        "from_order": 8,
-        "to_order": 3,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
       }
     }
   ]
