@@ -345,9 +345,14 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
 
   await page.click('[data-workspace-tab="graphics"]');
   await page.fill('[data-ticker-input]', 'SMOKE LIVE ONE\nSMOKE LIVE TWO');
+  await expect(page.locator('[data-ticker-preview]')).toContainText('SMOKE LIVE ONE');
+  await expect(page.locator('[data-ticker-preview-clone]')).toContainText('SMOKE LIVE TWO');
+  const previewDuration100 = await page.locator('[data-ticker-preview-track]').evaluate(node => parseFloat(getComputedStyle(node).animationDuration));
   await page.locator('[data-ticker-speed]').fill('175');
   await expect(page.locator('[data-ticker-speed-output]')).toHaveText('175%');
-  await expect(page.locator('[data-ticker-preview]')).toContainText('SMOKE LIVE ONE');
+  const previewDuration175 = await page.locator('[data-ticker-preview-track]').evaluate(node => parseFloat(getComputedStyle(node).animationDuration));
+  expect(previewDuration175).toBeLessThan(previewDuration100);
+  expect(previewDuration175).toBeCloseTo(previewDuration100 / 1.75, 1);
   await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
   await page.click('[data-take-live]');
   await expect.poll(() => writes).toBe(2);
