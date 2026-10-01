@@ -263,7 +263,6 @@
     { zone: 'Asia/Tokyo', label: 'JST' },
     { zone: 'Australia/Sydney' }
   ];
-  const tickerPreviewClockStartedAt = Date.now();
 
   function tickerPreviewZoneAbbreviation(now, zone, fallback = '') {
     if (fallback) return fallback;
@@ -281,7 +280,7 @@
   function renderTickerPreviewClock() {
     if (!tickerPreviewDate || !tickerPreviewClock) return;
     const now = new Date();
-    const index = Math.floor((Date.now() - tickerPreviewClockStartedAt) / 8000) % TICKER_PREVIEW_CLOCKS.length;
+    const index = Math.floor(Date.now() / 8000) % TICKER_PREVIEW_CLOCKS.length;
     const clock = TICKER_PREVIEW_CLOCKS[Math.max(0, index)] || TICKER_PREVIEW_CLOCKS[0];
 
     tickerPreviewDate.textContent = new Intl.DateTimeFormat('en-US', {
