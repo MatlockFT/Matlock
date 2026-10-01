@@ -310,7 +310,7 @@ permalink: /broadcast/control/
                 <div class="mfc-add-row">
                   <label class="mfc-button mfc-button-small mfc-file-button" role="button" tabindex="0">
                     + Upload Songs
-                    <input type="file" accept="audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/wav,audio/x-wav,audio/ogg,audio/flac,.mp3,.m4a,.aac,.wav,.ogg,.opus,.flac,.mp4,.m4v,.webm" data-music-upload multiple hidden>
+                    <input type="file" accept="audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/wav,audio/x-wav,audio/ogg,audio/opus,audio/flac,audio/x-flac,.mp3,.m4a,.aac,.wav,.ogg,.opus,.flac,.mp4,.m4v,.webm" data-music-upload multiple hidden>
                   </label>
                   <button type="button" class="mfc-button mfc-button-small" data-add-music-url>+ Music URL</button>
                 </div>
@@ -391,7 +391,7 @@ permalink: /broadcast/control/
           <label class="mfc-field"><span>Audio URL</span><input type="url" data-music-url placeholder="https://example.com/music.mp3"></label>
           <label class="mfc-field"><span>Title</span><input type="text" data-music-url-title placeholder="Track title"></label>
           <label class="mfc-field"><span>Duration (min:sec)</span><input type="text" inputmode="numeric" data-music-url-duration placeholder="Detected automatically"></label>
-          <p>A playable direct file is required. Duration is read automatically. Optionally enter a shorter min:sec length to trim the track. For music in a video file, use Upload Songs.</p>
+          <p>Paste a direct media URL. MP3, M4A/AAC, WAV, OGG, Opus and FLAC are supported where your browser can play them; MP4/M4V/WebM can also carry audio. Duration is detected when possible. If a host blocks metadata detection, enter the track length as min:sec and the URL can still be used.</p>
         </div>
         <footer><button value="cancel" formnovalidate class="mfc-button mfc-button-ghost">Cancel</button><button type="button" class="mfc-button" data-confirm-music-url>Add Track</button></footer>
       </form>
@@ -405,7 +405,7 @@ permalink: /broadcast/control/
     <div class="mfc-toast" data-toast role="status" aria-live="polite" hidden></div>
   </main>
 
-  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20260930-fit-1" defer></script>
+  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20261001-music-url-1" defer></script>
   <script src="{{ '/assets/broadcast-news-pool.js' | relative_url }}?v=20260930-news-1" defer></script>
 </body>
 </html>
