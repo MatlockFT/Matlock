@@ -236,8 +236,10 @@
     const pixelsPerSecond = Math.max(1, stageWidth * .15 * speed);
     const seconds = clamp(sequenceWidth / pixelsPerSecond, 8, 300);
 
+    const phase = seconds > 0 ? mod(rawElapsed(), seconds) : 0;
     tickerTrack.style.setProperty('--mfc-ticker-distance', `-${sequenceWidth}px`);
     tickerTrack.style.setProperty('--mfc-ticker-seconds', `${seconds}s`);
+    tickerTrack.style.setProperty('--mfc-ticker-phase', `-${phase}s`);
 
     if (restart) {
       tickerTrack.style.animation = 'none';
@@ -663,7 +665,6 @@
     { zone: 'Australia/Sydney' }
   ];
   const WORLD_CLOCK_ROTATE_MS = 8000;
-  const worldClockStartedAt = Date.now();
 
   function zoneAbbreviation(now, zone, fallback = '') {
     if (fallback) return fallback;
@@ -680,7 +681,7 @@
 
   function updateClock() {
     const now = new Date();
-    const index = Math.floor((Date.now() - worldClockStartedAt) / WORLD_CLOCK_ROTATE_MS) % WORLD_CLOCKS.length;
+    const index = Math.floor(Date.now() / WORLD_CLOCK_ROTATE_MS) % WORLD_CLOCKS.length;
     const clock = WORLD_CLOCKS[Math.max(0, index)] || WORLD_CLOCKS[0];
     dateNode.textContent = new Intl.DateTimeFormat('en-US', {
       timeZone: clock.zone,
@@ -787,13 +788,34 @@
     const { elapsed, position } = syncProgram();
     syncMusic(elapsed, position.item, .05);
   };
+  let broadcastRevealed = false;
+
+  async function revealBroadcast() {
+    if (broadcastRevealed) return;
+    broadcastRevealed = true;
+
+    try { await document.fonts?.ready; } catch {}
+    if (channel) {
+      syncProgram();
+      fitBroadcastCopy();
+      updateTickerMetrics({ restart: true });
+    }
+    updateClock();
+
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    document.documentElement.classList.remove('mfc-booting');
+  }
+
   setSoundState(soundEnabled);
   updateClock();
 
-  loadState().catch(() => {
-    title.textContent = 'BROADCAST OFFLINE';
-    bodyCopy.textContent = 'THE CHANNEL WILL RETURN SHORTLY.';
-  });
+  loadState()
+    .then(revealBroadcast)
+    .catch(() => {
+      title.textContent = 'BROADCAST OFFLINE';
+      bodyCopy.textContent = 'THE CHANNEL WILL RETURN SHORTLY.';
+      revealBroadcast();
+    });
 
   window.setInterval(() => {
     const now = performance.now();
