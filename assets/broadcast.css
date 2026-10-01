@@ -2327,3 +2327,60 @@ body {
   font-size: 1.08cqw;
   line-height: 1.02;
 }
+
+
+/* Fight City event header v7: two rows only, with reserved vertical lanes.
+   No child is allowed to bleed into another row. */
+.mfc-wx-eventline,
+.mfc-wx-current .mfc-wx-eventline {
+  position: absolute;
+  top: 2.75%;
+  right: 3.7%;
+  width: 38%;
+  max-width: 38%;
+  height: 10.6%;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  align-content: stretch;
+  align-items: center;
+  row-gap: .48cqw;
+  box-sizing: border-box;
+  padding: 0;
+  overflow: hidden !important;
+  color: #ddd9c5;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.mfc-wx-eventline strong,
+.mfc-wx-eventline .mfc-wx-event-detail {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden !important;
+  line-height: 1 !important;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.mfc-wx-eventline strong {
+  align-self: end;
+  color: #f0c645;
+  font-family: var(--mfc-type-weather-display);
+  font-size: 1.62cqw;
+}
+
+.mfc-wx-eventline .mfc-wx-event-detail {
+  align-self: start;
+  color: #e4e1d5;
+  font-family: var(--mfc-type-weather-info);
+  font-size: 1.13cqw;
+}
+
+/* Retire the former three-line city/venue rules. */
+.mfc-wx-eventline .mfc-wx-event-city,
+.mfc-wx-eventline .mfc-wx-event-venue {
+  display: none !important;
+}

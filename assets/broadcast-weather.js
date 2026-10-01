@@ -63,12 +63,12 @@
     const event = data.event;
     const place = [event.city, event.state || event.country].filter(Boolean).join(', ') || 'LOCATION TBA';
     const venue = String(event.venue || '').trim();
+    const detail = venue && venue.toLowerCase() !== place.toLowerCase()
+      ? place + ' • ' + venue
+      : place;
     return '<div class="mfc-wx-eventline">'
       + '<strong>' + esc(event.promotion || 'UFC') + ' ' + esc(event.title || '') + '</strong>'
-      + '<span class="mfc-wx-event-city">' + esc(place) + '</span>'
-      + (venue && venue.toLowerCase() !== place.toLowerCase()
-        ? '<span class="mfc-wx-event-venue">' + esc(venue) + '</span>'
-        : '')
+      + '<span class="mfc-wx-event-detail">' + esc(detail) + '</span>'
       + '</div>';
   }
 
@@ -86,8 +86,8 @@
   function fitWeatherHeader() {
     requestAnimationFrame(() => {
       fitWeatherSingleLine(screen.querySelector('.mfc-wx-page-title'), .76);
-      fitWeatherSingleLine(screen.querySelector('.mfc-wx-eventline strong'), .72);
-      fitWeatherSingleLine(screen.querySelector('.mfc-wx-eventline span'), .76);
+      fitWeatherSingleLine(screen.querySelector('.mfc-wx-eventline strong'), .66);
+      fitWeatherSingleLine(screen.querySelector('.mfc-wx-event-detail'), .58);
     });
   }
 
