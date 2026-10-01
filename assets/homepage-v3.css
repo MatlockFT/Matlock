@@ -2274,3 +2274,86 @@ body:has([data-globe-home]) .site-theme-toggle-knob {
         order: 4;
     }
 }
+
+
+/* =========================================================
+   HOMEPAGE HEADLINE WIDTH + TRENDING HOVER REVEAL
+   ========================================================= */
+
+/* Let the lead headline use the width of its actual column instead of forcing
+   short newspaper-style measures that create unnecessary empty space. */
+.v3-lead h1 {
+    max-width: 100%;
+}
+
+/* The trending rail keeps five compact desktop slots. Long titles are clipped
+   inside the slot, then glide far enough on hover/focus to reveal the rest. */
+.v3-trending-text {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (min-width: 781px) {
+    .v3-trending-links {
+        gap: 0;
+        overflow: hidden;
+    }
+
+    .v3-trending-links a {
+        position: relative;
+        display: block;
+        min-width: 0;
+        max-width: none;
+        flex: 1 1 0;
+        padding: 0 .75rem;
+        overflow: hidden;
+        box-sizing: border-box;
+        text-overflow: clip;
+        white-space: nowrap;
+    }
+
+    .v3-trending-links a:first-child {
+        padding-left: 0;
+    }
+
+    .v3-trending-links a:last-child {
+        padding-right: 0;
+    }
+
+    .v3-trending-text {
+        display: inline-block;
+        min-width: max-content;
+        overflow: visible;
+        text-overflow: clip;
+        transform: translateX(0);
+        transition: transform .18s ease;
+        will-change: transform;
+    }
+
+    .v3-trending-links a.is-overflowing:hover .v3-trending-text,
+    .v3-trending-links a.is-overflowing:focus-visible .v3-trending-text {
+        transform: translateX(calc(-1 * var(--trend-shift, 0px)));
+        transition: transform var(--trend-duration, 2.6s) linear .28s;
+    }
+
+    .v3-trending-separator {
+        flex: 0 0 auto;
+        margin: 0 .1rem;
+    }
+}
+
+@media (max-width: 780px) {
+    .v3-lead h1 {
+        max-width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .v3-trending-text {
+        transition: none !important;
+        transform: none !important;
+    }
+}
