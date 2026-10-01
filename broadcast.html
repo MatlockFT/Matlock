@@ -20,7 +20,7 @@ permalink: /broadcast/
       visibility: hidden;
     }
   </style>
-  <link rel="stylesheet" href="{{ '/assets/broadcast.css' | relative_url }}?v=20261001-static-player-2">
+  <link rel="stylesheet" href="{{ '/assets/broadcast.css' | relative_url }}?v=20261001-static-player-3">
 </head>
 <body class="mfc-body">
   <main class="mfc-shell" data-mfc-root aria-label="Matlock Fight Channel">
@@ -73,6 +73,11 @@ permalink: /broadcast/
         </div>
       </div>
 
+      <div class="mfc-noise" aria-hidden="true"></div>
+      <div class="mfc-crt-scanlines" aria-hidden="true"></div>
+      <div class="mfc-crt-glass" aria-hidden="true"></div>
+    </section>
+
       <button class="mfc-sound" type="button" data-mfc-sound aria-pressed="false" aria-label="Unmute broadcast" title="Unmute broadcast">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path class="mfc-sound-speaker" d="M4 9h4l5-4v14l-5-4H4z"></path>
@@ -80,10 +85,6 @@ permalink: /broadcast/
           <path class="mfc-sound-muted" d="M16.5 9l4 6M20.5 9l-4 6"></path>
         </svg>
       </button>
-      <div class="mfc-noise" aria-hidden="true"></div>
-      <div class="mfc-crt-scanlines" aria-hidden="true"></div>
-      <div class="mfc-crt-glass" aria-hidden="true"></div>
-    </section>
   </main>
 
   <audio data-mfc-music-a preload="auto"></audio>
@@ -93,7 +94,7 @@ permalink: /broadcast/
 
   <script src="{{ '/assets/broadcast-youtube.js' | relative_url }}?v=20261001-fight-city-11" defer></script>
   <script src="{{ '/assets/broadcast-weather.js' | relative_url }}?v=20261001-fight-city-11" defer></script>
-  <script src="{{ '/assets/broadcast.js' | relative_url }}?v=20261001-static-player-2" defer></script>
+  <script src="{{ '/assets/broadcast.js' | relative_url }}?v=20261001-static-player-3" defer></script>
 </body>
 </html>
 
