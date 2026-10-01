@@ -233,6 +233,81 @@ test('complete five-item ticker sequence loops without a dead zone', async ({ pa
   expect(metrics.duration).toBeGreaterThan(8);
 });
 
+test('Fight City Forecast renders shared local weather in the live program', async ({ page }) => {
+  fixture.state = {
+    ...fixture.state,
+    live: {
+      ...fixture.state.live,
+      revision: 'fight-city-weather-test',
+      startedAt: new Date().toISOString(),
+      program: [{
+        id: 'fight-city-test',
+        type: 'weather',
+        header: 'FIGHT CITY FORECAST',
+        eyebrow: 'LOCAL WEATHER',
+        title: 'FIGHT CITY FORECAST',
+        duration: 48
+      }]
+    }
+  };
+
+  await page.goto(fixture.origin + '/broadcast/');
+  await expect(page.locator('[data-mfc-weather]')).toBeVisible();
+  await expect(page.locator('[data-mfc-copy]')).toBeHidden();
+  await expect(page.locator('[data-mfc-header]')).toHaveText('FIGHT CITY FORECAST');
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Current Conditions');
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Salt Lake City');
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('61°');
+  await expect(page.locator('[data-mfc-weather-source]')).toContainText('OPEN-METEO');
+});
+
+test('Fight City Forecast advances to fight-day and extended screens on the shared timeline', async ({ page }) => {
+  const startedAt = new Date(Date.now() - 17000).toISOString();
+  fixture.state = {
+    ...fixture.state,
+    live: {
+      ...fixture.state.live,
+      revision: 'fight-city-pages-test',
+      startedAt,
+      program: [{
+        id: 'fight-city-pages',
+        type: 'weather',
+        header: 'FIGHT CITY FORECAST',
+        eyebrow: 'LOCAL WEATHER',
+        title: 'FIGHT CITY FORECAST',
+        duration: 48
+      }]
+    }
+  };
+
+  await page.goto(fixture.origin + '/broadcast/');
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Forecast For');
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('MAIN CARD 6:00 PM MDT');
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('HIGH 84°');
+
+  fixture.state = {
+    ...fixture.state,
+    live: {
+      ...fixture.state.live,
+      revision: 'fight-city-extended-test',
+      startedAt: new Date(Date.now() - 33000).toISOString()
+    }
+  };
+  await page.reload();
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Extended Forecast');
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('FIGHT DAY');
+});
+
+test('Broadcast Control can add a Fight City Forecast block without manual city entry', async ({ page }) => {
+  await page.goto(fixture.origin + '/broadcast/control/');
+  await page.getByRole('button', { name: '+ Fight City' }).click();
+  const item = fixture.state.draft?.program;
+  await expect(page.locator('[data-program-editor-title]')).toHaveText('FIGHT CITY FORECAST');
+  await expect(page.locator('[data-program-fields]')).toContainText('automatically follows the next current UFC event');
+  await expect(page.locator('[data-program-fields] input[type="number"]')).toHaveValue('48');
+  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
+});
+
 test('visible YouTube player loops, uses mixer volume, reports autoplay blocks and skips failed embeds', async ({ page }) => {
   const item = { id: 'youtube-test', type: 'youtube', title: 'Test interview', youtubeId: 'abcdefghijk', mediaUrl: 'https://www.youtube.com/watch?v=abcdefghijk', sourceDuration: 300, duration: 2, videoAudio: true };
   fixture.state = { ...fixture.state, live: { ...fixture.state.live, program: [item], startedAt: new Date().toISOString() } };
