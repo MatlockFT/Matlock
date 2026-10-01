@@ -1320,7 +1320,10 @@
     const percent = Math.round(programZoom * 100);
     if (programZoomInput) programZoomInput.value = String(percent);
     if (programZoomOutput) programZoomOutput.textContent = percent + '%';
-    if (programRuler) programRuler.style.setProperty('--timeline-zoom', String(programZoom));
+    if (programRuler) {
+      programRuler.style.setProperty('--timeline-zoom', String(programZoom));
+      programRuler.style.setProperty('--timeline-tick', (40 * programZoom).toFixed(1) + 'px');
+    }
     if (programTrack) {
       programTrack.style.setProperty('--timeline-zoom', String(programZoom));
       programTrack.classList.toggle('is-compact', programZoom < .65);
