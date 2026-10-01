@@ -72,8 +72,26 @@ jobs:
           --output /tmp/japan-mma-news.json
           --previous-url https://raw.githubusercontent.com/${{ github.repository }}/live-news-data/japan-mma-news.json
 
+      - name: Reuse previous Fight City Forecast
+        run: >-
+          curl -fsSL
+          "https://raw.githubusercontent.com/${{ github.repository }}/live-news-data/fight-city-weather.json"
+          -o /tmp/fight-city-weather.previous.json
+          || true
+
       - name: Build Fight City Forecast
-        run: node scripts/weather/build-fight-city-weather.mjs --output /tmp/fight-city-weather.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check scripts/weather/build-fight-city-weather.mjs
+          if ! node scripts/weather/build-fight-city-weather.mjs --output /tmp/fight-city-weather.json; then
+            if [ -s /tmp/fight-city-weather.previous.json ]; then
+              echo "Fight City weather refresh failed; preserving previous shared snapshot."
+              cp /tmp/fight-city-weather.previous.json /tmp/fight-city-weather.json
+            else
+              exit 1
+            fi
+          fi
 
       - name: Collect full-length MMA YouTube videos
         run: >-
