@@ -345,12 +345,15 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
 
   await page.click('[data-workspace-tab="graphics"]');
   await page.fill('[data-ticker-input]', 'SMOKE LIVE ONE\nSMOKE LIVE TWO');
+  await page.locator('[data-ticker-speed]').fill('175');
+  await expect(page.locator('[data-ticker-speed-output]')).toHaveText('175%');
   await expect(page.locator('[data-ticker-preview]')).toContainText('SMOKE LIVE ONE');
   await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
   await page.click('[data-take-live]');
   await expect.poll(() => writes).toBe(2);
   await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
   expect(remoteState.live.ticker).toEqual(['SMOKE LIVE ONE', 'SMOKE LIVE TWO']);
+  expect(remoteState.live.tickerSpeed).toBe(1.75);
   expect(remoteState.live.program.at(-1).title).toBe('UPDATED SMOKE HEADLINE');
 
   await page.click('[data-workspace-tab="rundown"]');
