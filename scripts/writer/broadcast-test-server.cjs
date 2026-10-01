@@ -27,7 +27,7 @@ function initialState(origin) {
 async function startServer(port = 0) {
   let origin, state, revision = 1;
   const media = new Map(), assets = [], uploads = new Map();
-  const controls = { failSaves: false, saveDelay: 0, chunkFailures: 0, writes: 0, newsFailure: false };
+  const controls = { failSaves: false, saveDelay: 0, chunkFailures: 0, writes: 0, newsFailure: false, newsRefreshes: 0 };
   const news = { version: 1, generatedAt: new Date().toISOString(), stories: [
     { id: 'article-1', title: 'Local fighter returns for title fight', source: 'MMA Fighting', url: 'https://example.com/title-fight', excerpt: 'A short, attributed news excerpt.', publishedAt: new Date().toISOString() },
     { id: 'article-2', title: 'Local UFC event announced', source: 'MMA Junkie', url: 'https://example.com/event', excerpt: 'An event update.', publishedAt: new Date().toISOString() }
@@ -65,6 +65,28 @@ async function startServer(port = 0) {
     }
     if (url.pathname === '/api/writer/session') return json({ ok: true, login: 'Local preview' });
     if (url.pathname === '/api/writer/github') {
+      const apiPath = url.searchParams.get('path') || '';
+      const newsRefreshRequest = apiPath.includes('/contents/assets/data/news-refresh-trigger.json');
+
+      if (newsRefreshRequest) {
+        if (req.method === 'GET') {
+          return json({
+            sha: 'news-refresh-' + String(revision),
+            content: Buffer.from(JSON.stringify({ requestedAt: '1970-01-01T00:00:00.000Z' })).toString('base64')
+          });
+        }
+
+        const requestBody = JSON.parse(body);
+        const payload = JSON.parse(Buffer.from(requestBody.content, 'base64').toString('utf8'));
+        controls.newsRefreshes++;
+        revision++;
+        const generatedAt = new Date(Math.max(Date.now() + 1000, Date.parse(payload.requestedAt || '') + 1000)).toISOString();
+        news.generatedAt = generatedAt;
+        japanNews.generatedAt = generatedAt;
+        videos.generatedAt = generatedAt;
+        return json({ content: { sha: 'news-refresh-' + String(revision) } });
+      }
+
       if (req.method === 'GET') return json({ sha: String(revision), content: Buffer.from(JSON.stringify(state)).toString('base64') });
       if (controls.saveDelay) await new Promise(r => setTimeout(r, controls.saveDelay));
       if (controls.failSaves) return json({ message: 'Simulated save conflict' }, 409);
