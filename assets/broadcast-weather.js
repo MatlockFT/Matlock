@@ -121,6 +121,39 @@
       + '</div></div>';
   }
 
+  function regionalScreen() {
+    const regional = data.regional;
+    if (!regional?.crop || !Array.isArray(regional.cities) || regional.cities.length < 2) return extendedScreen();
+
+    const crop = regional.crop;
+    const mapWidth = Number(crop.imageWidth) / Number(crop.sourceWidth) * 100;
+    const mapHeight = Number(crop.imageHeight) / Number(crop.sourceHeight) * 100;
+    const mapLeft = -Number(crop.sourceX) / Number(crop.sourceWidth) * 100;
+    const mapTop = -Number(crop.sourceY) / Number(crop.sourceHeight) * 100;
+
+    const cities = regional.cities.map(city => {
+      const fightClass = city.fightCity ? ' is-fight-city' : '';
+      return '<div class="mfc-wx-map-city' + fightClass + '" style="left:' + Number(city.x).toFixed(2) + '%;top:' + Number(city.y).toFixed(2) + '%">'
+        + '<span class="mfc-wx-map-city-name">' + esc(city.name) + '</span>'
+        + '<span class="mfc-wx-map-city-weather">'
+        + '<b>' + whole(city.high) + '°</b>'
+        + iconSvg(city.condition?.icon || 'partlyCloudy')
+        + '</span>'
+        + '</div>';
+    }).join('');
+
+    return '<div class="mfc-wx-page mfc-wx-regional">'
+      + '<div class="mfc-wx-page-title">Forecast For ' + esc(String(regional.day || 'Fight Day')) + '</div>'
+      + eventLine()
+      + '<div class="mfc-wx-regional-map">'
+      + '<img class="mfc-wx-regional-basemap" src="' + esc(regional.basemapUrl || '') + '" alt="" '
+      + 'style="width:' + mapWidth.toFixed(3) + '%;height:' + mapHeight.toFixed(3) + '%;left:' + mapLeft.toFixed(3) + '%;top:' + mapTop.toFixed(3) + '%">'
+      + cities
+      + '</div>'
+      + '<div class="mfc-wx-regional-footer">FIGHT DAY REGIONAL OUTLOOK</div>'
+      + '</div>';
+  }
+
   function almanacScreen() {
     const row = data.almanac || {};
     return '<div class="mfc-wx-page mfc-wx-almanac">'
@@ -150,14 +183,16 @@
   }
 
   function pageNames() {
-    return data?.radar?.tileUrl
-      ? ['current', 'fightday', 'extended', 'almanac', 'radar']
+    const middle = data?.regional?.cities?.length >= 2
+      ? ['current', 'fightday', 'extended', 'regional', 'almanac']
       : ['current', 'fightday', 'extended', 'almanac'];
+    return data?.radar?.tileUrl ? [...middle, 'radar'] : middle;
   }
 
   function pageFor(name) {
     if (name === 'fightday') return fightDayScreen();
     if (name === 'extended') return extendedScreen();
+    if (name === 'regional') return regionalScreen();
     if (name === 'almanac') return almanacScreen();
     if (name === 'radar') return radarScreen();
     return currentScreen();
