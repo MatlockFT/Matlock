@@ -114,6 +114,45 @@ test('visible YouTube player loops, uses mixer volume, reports autoplay blocks a
   expect(await page.evaluate(() => window.__yt.players[0].state)).toBe(2);
 });
 
+test('YouTube link can supply the hidden continuous music bed', async ({ page }) => {
+  const music = [{
+    id: 'youtube-music',
+    title: 'YouTube music',
+    url: 'https://youtu.be/Busn5uUtBrs',
+    youtubeId: 'Busn5uUtBrs',
+    sourceType: 'youtube',
+    duration: 240,
+    gainDb: 0,
+    fadeIn: 0,
+    fadeOut: 0
+  }];
+  fixture.state = {
+    ...fixture.state,
+    live: {
+      ...fixture.state.live,
+      revision: 'youtube-music-test',
+      program: [fixture.state.live.program[0]],
+      music,
+      startedAt: new Date().toISOString()
+    }
+  };
+
+  await page.goto(fixture.origin + '/broadcast/');
+  await expect(page.locator('[data-mfc-sound]')).toHaveAttribute('aria-pressed', 'false');
+  await page.locator('[data-mfc-sound]').click();
+
+  await expect.poll(() => page.evaluate(() => window.__yt?.players.length || 0)).toBe(1);
+  await expect.poll(() => page.evaluate(() => window.__yt.players[0].loads[0]?.videoId)).toBe('Busn5uUtBrs');
+  await expect.poll(() => page.evaluate(() => window.__yt.players[0].muted)).toBe(false);
+  expect(await page.evaluate(() => window.__yt.players[0].volume)).toBe(30);
+
+  const hidden = await page.locator('[data-mfc-music-youtube-b]').evaluate(node => {
+    const style = getComputedStyle(node);
+    return style.opacity === '0' && parseFloat(style.left) < -1000;
+  });
+  expect(hidden).toBe(true);
+});
+
 test('YouTube news can be trimmed, muted and taken live; blocked SDK falls through to other content', async ({ page }) => {
   await openPool(page);
   await page.locator('[data-news-id="abcdefghijk"]').getByRole('button', { name: 'Add video', exact: true }).click();
