@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { XMLParser } from "fast-xml-parser";
 
@@ -29,6 +29,42 @@ const parser = new XMLParser({
   textNodeName: "#text",
   trimValues: true
 });
+
+async function loadGlossary() {
+  try {
+    const data = JSON.parse(
+      await readFile(resolve("scripts/news/japan-mma-glossary.json"), "utf8")
+    );
+    return Object.entries(data)
+      .filter(([ja, en]) => ja && en)
+      .sort((a, b) => b[0].length - a[0].length);
+  } catch {
+    return [];
+  }
+}
+
+const NAME_GLOSSARY = await loadGlossary();
+
+function protectGlossary(value) {
+  let text = String(value || "");
+  const replacements = [];
+  NAME_GLOSSARY.forEach(([ja, en], index) => {
+    if (!text.includes(ja)) return;
+    const token = `ZXQMMA${index}QXZ`;
+    text = text.split(ja).join(token);
+    replacements.push([token, en]);
+  });
+  return { text, replacements };
+}
+
+function restoreGlossary(value, replacements) {
+  let text = String(value || "");
+  for (const [token, english] of replacements || []) {
+    text = text.split(token).join(english);
+    text = text.split(token.toLowerCase()).join(english);
+  }
+  return text;
+}
 
 const asArray = value => value == null ? [] : Array.isArray(value) ? value : [value];
 
@@ -149,12 +185,13 @@ async function googleLiteralTranslate(value) {
   const original = plainText(value);
   if (!original || !containsJapanese(original)) return original;
 
+  const protectedText = protectGlossary(original);
   const url = new URL("https://translate.googleapis.com/translate_a/single");
   url.searchParams.set("client", "gtx");
   url.searchParams.set("sl", "ja");
   url.searchParams.set("tl", "en");
   url.searchParams.set("dt", "t");
-  url.searchParams.set("q", original);
+  url.searchParams.set("q", protectedText.text);
 
   const response = await fetch(url, {
     headers: {
@@ -167,7 +204,8 @@ async function googleLiteralTranslate(value) {
   if (!response.ok) throw new Error(`translation HTTP ${response.status}`);
   const data = await response.json();
   const translated = asArray(data?.[0]).map(part => String(part?.[0] || "")).join("");
-  return normalizedTranslation(translated) || original;
+  const restored = restoreGlossary(translated, protectedText.replacements);
+  return normalizedTranslation(restored) || original;
 }
 
 async function previousMap(url) {
@@ -230,8 +268,9 @@ async function translateStory(story, previous) {
     excerpt,
     translation: {
       language: "ja",
-      mode: translated ? "literal-machine" : "original-fallback",
-      originalPreserved: true
+      mode: translated ? "literal-machine+mma-glossary" : "original-fallback",
+      originalPreserved: true,
+      glossaryProtected: translated
     }
   };
 }
@@ -322,7 +361,7 @@ const output = {
   version: 1,
   generatedAt: new Date().toISOString(),
   language: "ja",
-  translationPolicy: "Literal English machine translation with the original Japanese title and excerpt preserved on every item. If translation fails, the original Japanese is shown rather than guessed.",
+  translationPolicy: "Literal English machine translation with a Japanese MMA proper-name glossary applied before translation. The original Japanese title and excerpt are preserved on every item. If translation fails, the original Japanese is shown rather than guessed.",
   sources,
   stories
 };
