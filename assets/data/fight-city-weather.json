@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "generatedAt": "2026-10-01T05:43:15.218Z",
+  "version": 2,
+  "generatedAt": "2026-10-01T05:53:10.922Z",
   "event": {
     "id": "ufc-332-2026-10-03-fight-card",
     "promotion": "UFC 332",
@@ -17,9 +17,9 @@
     "startLocal": "6:00 PM MDT"
   },
   "current": {
-    "observedAt": "2026-09-30T23:30",
-    "temperature": 61,
-    "feelsLike": 57,
+    "observedAt": "2026-09-30T23:45",
+    "temperature": 60,
+    "feelsLike": 56,
     "humidity": 40,
     "weatherCode": 0,
     "condition": {
@@ -27,10 +27,10 @@
       "icon": "clear"
     },
     "cloudCover": 0,
-    "pressure": 1009.9,
+    "pressure": 1009.8,
     "windSpeed": 3,
-    "windDirection": 4,
-    "windGust": 3,
+    "windDirection": 5,
+    "windGust": 4,
     "precipitation": 0
   },
   "fightDay": {
@@ -41,13 +41,13 @@
       "label": "Cloudy",
       "icon": "cloudy"
     },
-    "high": 84,
+    "high": 85,
     "low": 69,
     "precipProbability": 0,
     "precip": 0,
     "windMax": 9,
-    "gustMax": 8,
-    "windDirection": 337,
+    "gustMax": 10,
+    "windDirection": 334,
     "sunrise": "2026-10-03T07:26",
     "sunset": "2026-10-03T19:05",
     "timezone": "America/Denver",
@@ -65,10 +65,10 @@
       "visibilityMiles": 49,
       "pressure": 1008.8,
       "windSpeed": 7,
-      "windDirection": 312,
+      "windDirection": 322,
       "windGust": 7
     },
-    "narrative": "SATURDAY...CLOUDY. HIGH 84. NW WINDS 7 MPH. CHANCE OF PRECIPITATION 0 PERCENT."
+    "narrative": "SATURDAY...CLOUDY. HIGH 85. NW WINDS 7 MPH. CHANCE OF PRECIPITATION 0 PERCENT."
   },
   "almanac": {
     "date": "2026-10-03",
@@ -112,7 +112,7 @@
       "precip": 0,
       "windMax": 7,
       "gustMax": 8,
-      "windDirection": 332,
+      "windDirection": 337,
       "sunrise": "2026-10-01T07:24",
       "sunset": "2026-10-01T19:09"
     },
@@ -130,7 +130,7 @@
       "precip": 0,
       "windMax": 10,
       "gustMax": 14,
-      "windDirection": 180,
+      "windDirection": 179,
       "sunrise": "2026-10-02T07:25",
       "sunset": "2026-10-02T19:07"
     },
@@ -142,13 +142,13 @@
         "label": "Cloudy",
         "icon": "cloudy"
       },
-      "high": 84,
+      "high": 85,
       "low": 69,
       "precipProbability": 0,
       "precip": 0,
       "windMax": 9,
-      "gustMax": 8,
-      "windDirection": 337,
+      "gustMax": 10,
+      "windDirection": 334,
       "sunrise": "2026-10-03T07:26",
       "sunset": "2026-10-03T19:05",
       "timezone": "America/Denver"
@@ -156,62 +156,180 @@
     {
       "date": "2026-10-04",
       "day": "SUN",
-      "weatherCode": 1,
+      "weatherCode": 3,
       "condition": {
-        "label": "Partly Cloudy",
-        "icon": "partlyCloudy"
+        "label": "Cloudy",
+        "icon": "cloudy"
       },
-      "high": 87,
-      "low": 67,
+      "high": 88,
+      "low": 68,
       "precipProbability": 0,
       "precip": 0,
-      "windMax": 9,
-      "gustMax": 7,
-      "windDirection": 357,
+      "windMax": 8,
+      "gustMax": 8,
+      "windDirection": 26,
       "sunrise": "2026-10-04T07:27",
       "sunset": "2026-10-04T19:04"
     },
     {
       "date": "2026-10-05",
       "day": "MON",
-      "weatherCode": 51,
+      "weatherCode": 53,
       "condition": {
         "label": "Drizzle",
         "icon": "rain"
       },
-      "high": 84,
+      "high": 87,
       "low": 71,
       "precipProbability": 3,
-      "precip": 0.024,
+      "precip": 0.043,
       "windMax": 11,
-      "gustMax": 20,
-      "windDirection": 169,
+      "gustMax": 19,
+      "windDirection": 162,
       "sunrise": "2026-10-05T07:28",
       "sunset": "2026-10-05T19:02"
     },
     {
       "date": "2026-10-06",
       "day": "TUE",
-      "weatherCode": 1,
+      "weatherCode": 51,
       "condition": {
-        "label": "Partly Cloudy",
-        "icon": "partlyCloudy"
+        "label": "Drizzle",
+        "icon": "rain"
       },
       "high": 82,
-      "low": 66,
+      "low": 67,
       "precipProbability": 3,
-      "precip": 0,
-      "windMax": 9,
-      "gustMax": 15,
-      "windDirection": 260,
+      "precip": 0.004,
+      "windMax": 10,
+      "gustMax": 11,
+      "windDirection": 302,
       "sunrise": "2026-10-06T07:29",
       "sunset": "2026-10-06T19:01"
     }
   ],
+  "regional": {
+    "date": "2026-10-03",
+    "day": "Saturday",
+    "basemapUrl": "https://cdn.jsdelivr.net/gh/vbguyny/ws4kp@065688b6ee9a5aa93578e1e3e95b3ecce07d16ce/Images/Basemap2.png",
+    "crop": {
+      "imageWidth": 2550,
+      "imageHeight": 1600,
+      "sourceX": 338.1674284843321,
+      "sourceY": 357.60494400000016,
+      "sourceWidth": 627.7929155313351,
+      "sourceHeight": 360,
+      "minLatitude": 37.499910434782606,
+      "maxLatitude": 44.02164956521739,
+      "minLongitude": -119.40502864190707,
+      "maxLongitude": -104.37707135809295
+    },
+    "cities": [
+      {
+        "name": "Salt Lake City",
+        "latitude": 40.76078,
+        "longitude": -111.89105,
+        "fightCity": true,
+        "high": 85,
+        "low": 69,
+        "weatherCode": 3,
+        "condition": {
+          "label": "Cloudy",
+          "icon": "cloudy"
+        },
+        "x": 50,
+        "y": 50
+      },
+      {
+        "name": "Logan",
+        "latitude": 41.73698,
+        "longitude": -111.83384,
+        "high": 84,
+        "low": 61,
+        "weatherCode": 3,
+        "condition": {
+          "label": "Cloudy",
+          "icon": "cloudy"
+        },
+        "x": 50.38069046191415,
+        "y": 35.031599999999905
+      },
+      {
+        "name": "Richfield",
+        "latitude": 38.7725,
+        "longitude": -112.0841,
+        "high": 83,
+        "low": 62,
+        "weatherCode": 3,
+        "condition": {
+          "label": "Cloudy",
+          "icon": "cloudy"
+        },
+        "x": 48.71539427246094,
+        "y": 80.48695999999994
+      },
+      {
+        "name": "Idaho Falls",
+        "latitude": 43.4666,
+        "longitude": -112.0341,
+        "high": 79,
+        "low": 50,
+        "weatherCode": 0,
+        "condition": {
+          "label": "Sunny",
+          "icon": "sunny"
+        },
+        "x": 49.04810748860685,
+        "y": 11
+      },
+      {
+        "name": "Grand Junction",
+        "latitude": 39.0639,
+        "longitude": -108.5506,
+        "high": 84,
+        "low": 64,
+        "weatherCode": 3,
+        "condition": {
+          "label": "Cloudy",
+          "icon": "cloudy"
+        },
+        "x": 72.22823725748701,
+        "y": 76.01882666666667
+      },
+      {
+        "name": "Boise",
+        "latitude": 43.6135,
+        "longitude": -116.2034,
+        "high": 84,
+        "low": 62,
+        "weatherCode": 0,
+        "condition": {
+          "label": "Sunny",
+          "icon": "sunny"
+        },
+        "x": 21.304483247070326,
+        "y": 11
+      },
+      {
+        "name": "Cheyenne",
+        "latitude": 41.14,
+        "longitude": -104.8202,
+        "high": 76,
+        "low": 51,
+        "weatherCode": 3,
+        "condition": {
+          "label": "Cloudy",
+          "icon": "cloudy"
+        },
+        "x": 92,
+        "y": 44.18529333333328
+      }
+    ]
+  },
   "radar": {
-    "generatedAt": "2026-10-01T05:40:23.000Z",
-    "frameTime": "2026-10-01T05:40:00.000Z",
-    "tileUrl": "https://tilecache.rainviewer.com/v2/radar/045f42e5f63b/512/5/40.76078/-111.89105/2/0_1.png",
+    "generatedAt": "2026-10-01T05:50:23.000Z",
+    "frameTime": "2026-10-01T05:50:00.000Z",
+    "tileUrl": "https://tilecache.rainviewer.com/v2/radar/aca0859df3e4/512/5/40.76078/-111.89105/2/0_1.png",
     "attribution": "RainViewer"
   },
   "source": {
