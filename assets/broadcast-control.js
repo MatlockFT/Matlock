@@ -535,7 +535,6 @@
       } catch (error) { if (current()) { item.duration = 0; repaired = true; showToast(error.message, 8500); } }
     }
     if (repaired) { renderAll(); markDirty(); showToast('Repaired old media links in the draft. Review and save before taking live.', 8500); }
-    if (working.music.some(track => youtubeVideoId(track.url))) showToast('This draft contains YouTube music. Replace it with an uploaded song or direct audio file before taking live.', 10000);
     void loadVideoLibrary({ quiet: true });
   }
 
@@ -672,6 +671,8 @@
         if (needsMedia && !url) reasons.push('add a file or URL');
         else if (kind === 'program' && item.type === 'youtube') {
           if (!validNewsVideo(item)) reasons.push('choose a non-Short video from News Pool');
+        } else if (kind === 'music' && youtubeVideoId(url)) {
+          if (!String(item.youtubeId || youtubeVideoId(url))) reasons.push('use a valid YouTube video link');
         } else if (url && !isDirectUrl(url)) reasons.push('replace the page/API link with a direct file');
         if (reasons.length) issues.push({ kind, id: item.id, title: item.title || (kind === 'music' ? 'Track ' : 'Block ') + (index + 1), reasons });
       });
@@ -2062,6 +2063,13 @@
     finally { element.removeAttribute('src'); element.load(); }
   }
 
+  async function probeYoutubeUrl(value) {
+    const id = youtubeVideoId(value);
+    if (!id) throw new Error('That is not a valid YouTube video URL.');
+    if (typeof window.matlockYoutubeProbe !== 'function') throw new Error('YouTube player is still loading. Try again in a moment.');
+    return window.matlockYoutubeProbe(id);
+  }
+
   async function probeFileDuration(file) {
     const url = URL.createObjectURL(file);
     try { return await probeUrlDuration(url, /\.(mp4|m4v|webm)$/i.test(file.name) ? 'video' : 'audio'); }
@@ -2371,21 +2379,39 @@
     confirmMusicUrlButton.disabled = true;
     confirmMusicUrlButton.textContent = 'Adding…';
     try {
-      const url = await resolveMediaUrl(musicUrlInput.value.trim());
+      const raw = musicUrlInput.value.trim();
       const typed = musicUrlDurationInput.value.trim();
+      const youtubeId = youtubeVideoId(raw);
+      let url = '';
       let duration = 0;
-      let detected = 0;
+      let detectedTitle = '';
 
-      if (typed) {
-        duration = parseDurationInput(typed);
-        if (!Number.isFinite(duration) || duration <= 0) throw new Error('Enter duration as min:sec, for example 3:42.');
+      if (youtubeId) {
+        url = new URL(raw).href;
+        if (typed) {
+          duration = parseDurationInput(typed);
+          if (!Number.isFinite(duration) || duration <= 0) throw new Error('Enter duration as min:sec, for example 3:42.');
+        }
+
+        if (!duration || !musicUrlTitleInput.value.trim()) {
+          confirmMusicUrlButton.textContent = 'Reading YouTube…';
+          try {
+            const metadata = await probeYoutubeUrl(url);
+            if (!duration) duration = Number(metadata.duration) || 0;
+            detectedTitle = String(metadata.title || '');
+          } catch (error) {
+            if (!duration) showToast(error.message + ' You can still add it by entering the song length in min:sec.', 9500);
+          }
+        }
       } else {
-        confirmMusicUrlButton.textContent = 'Checking…';
-        try {
-          detected = await probeUrlDuration(url, 'audio');
-          duration = detected;
-        } catch {
-          duration = 0;
+        url = await resolveMediaUrl(raw);
+        if (typed) {
+          duration = parseDurationInput(typed);
+          if (!Number.isFinite(duration) || duration <= 0) throw new Error('Enter duration as min:sec, for example 3:42.');
+        } else {
+          confirmMusicUrlButton.textContent = 'Checking…';
+          try { duration = await probeUrlDuration(url, 'audio'); }
+          catch { duration = 0; }
         }
       }
 
@@ -2395,12 +2421,13 @@
       })();
       const track = {
         id: uid('music'),
-        title: musicUrlTitleInput.value.trim() || filename || 'Music',
+        title: musicUrlTitleInput.value.trim() || detectedTitle || filename || (youtubeId ? 'YouTube music' : 'Music'),
         url,
         duration,
         gainDb: 0,
         fadeIn: 0,
-        fadeOut: 0
+        fadeOut: 0,
+        ...(youtubeId ? { sourceType: 'youtube', youtubeId } : {})
       };
       working.music.push(track);
       selectedMusicId = track.id;
@@ -2409,10 +2436,10 @@
       markDirty();
 
       if (duration > 0) {
-        showToast('Music URL added · ' + fmt(duration));
+        showToast((youtubeId ? 'YouTube music added · ' : 'Music URL added · ') + fmt(duration));
       } else {
         renderMusicEditor();
-        showToast('Music URL added. Duration could not be detected, so enter the track length in min:sec before Take Live.', 10000);
+        showToast((youtubeId ? 'YouTube link added. ' : 'Music URL added. ') + 'Enter the track length in min:sec before Take Live.', 10000);
       }
     } catch (error) {
       showToast(error.message, 9000);
