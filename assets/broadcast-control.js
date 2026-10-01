@@ -55,6 +55,8 @@
   const musicEditorTitle = app.querySelector('[data-music-editor-title]');
   const deleteMusicButton = app.querySelector('[data-delete-music]');
   const tickerInput = app.querySelector('[data-ticker-input]');
+  const tickerSpeedInput = app.querySelector('[data-ticker-speed]');
+  const tickerSpeedOutput = app.querySelector('[data-ticker-speed-output]');
   const musicUploadInput = app.querySelector('[data-music-upload]');
   const addMusicUrlButton = app.querySelector('[data-add-music-url]');
   const urlDialog = app.querySelector('[data-url-dialog]');
@@ -250,6 +252,9 @@
     if (!tickerPreview) return;
     const entries = Array.isArray(working?.ticker) ? working.ticker.filter(Boolean) : [];
     tickerPreview.textContent = entries.length ? entries.join('   •   ') : 'NO TICKER ITEMS';
+    const speed = clamp(Number(working?.tickerSpeed) || 1, .4, 2.5);
+    if (tickerSpeedInput) tickerSpeedInput.value = String(Math.round(speed * 100));
+    if (tickerSpeedOutput) tickerSpeedOutput.textContent = Math.round(speed * 100) + '%';
   }
 
   function refreshProgramMonitor() {
@@ -492,6 +497,7 @@
     channel.program = Array.isArray(channel.program) ? channel.program : [];
     channel.music = Array.isArray(channel.music) ? channel.music : [];
     channel.ticker = Array.isArray(channel.ticker) ? channel.ticker : [];
+    channel.tickerSpeed = clamp(Number(channel.tickerSpeed) || 1, .4, 2.5);
     channel.audio = {
       master: 1,
       music: .72,
@@ -1906,6 +1912,13 @@
     if (!working) return;
     working.ticker = tickerInput.value.split('\n').map(value => value.trim()).filter(Boolean);
     renderTickerPreview();
+    markDirty();
+  });
+
+  tickerSpeedInput?.addEventListener('input', () => {
+    if (!working) return;
+    working.tickerSpeed = clamp(Number(tickerSpeedInput.value) / 100, .4, 2.5);
+    if (tickerSpeedOutput) tickerSpeedOutput.textContent = Math.round(working.tickerSpeed * 100) + '%';
     markDirty();
   });
 
