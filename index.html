@@ -121,14 +121,28 @@ page_scripts:
           <h2 id="v3-broadcast-title">Matlock Fight Channel</h2>
           <a href="{{ '/broadcast/' | relative_url }}" target="_blank" rel="noopener">Open</a>
         </div>
-        <iframe
-          class="v3-broadcast-frame"
-          src="{{ '/broadcast/' | relative_url }}?embed=1&v=20260930-align-1"
-          title="Matlock Fight Channel"
-          allow="autoplay"
-          loading="eager"
-          scrolling="no"
-        ></iframe>
+        <div class="v3-broadcast-player">
+          <iframe
+            class="v3-broadcast-frame"
+            src="{{ '/broadcast/' | relative_url }}?embed=1&monitor=1&v=20261001-passive-1"
+            title="Matlock Fight Channel"
+            allow="autoplay"
+            loading="eager"
+            scrolling="no"
+            tabindex="-1"
+            aria-hidden="true"
+          ></iframe>
+          <button
+            type="button"
+            class="v3-broadcast-audio"
+            data-v3-broadcast-audio
+            aria-label="Turn broadcast audio on"
+            aria-pressed="false"
+            title="Turn audio on"
+          >
+            <span aria-hidden="true">🔇</span>
+          </button>
+        </div>
       </section>
 
       <aside class="v3-right-rail" aria-labelledby="v3-latest-title">
