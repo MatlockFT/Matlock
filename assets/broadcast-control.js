@@ -1708,7 +1708,7 @@
         markDirty();
       }
     });
-    const urlField = field('Audio URL', 'url', {
+    const urlField = field('Audio / YouTube URL', 'url', {
       type: 'url',
       value: track.url || '',
       wide: true,
@@ -1716,23 +1716,43 @@
       onChange: async value => {
         const request = {}; mediaRequests.set(track, request);
         const current = () => working.music.includes(track) && mediaRequests.get(track) === request;
-        let url;
-        try { url = await resolveMediaUrl(value.trim()); }
-        catch (error) { if (current()) showToast(error.message, 8500); return; }
-        if (!current()) return;
-        track.url = url; track.duration = 0;
-        delete track.sourceType; delete track.youtubeId;
-        markDirty();
+        const raw = value.trim();
+        const youtubeId = youtubeVideoId(raw);
+        let url = '';
         try {
-          const duration = url ? await probeUrlDuration(url, 'audio') : 0;
-          if (!current() || track.url !== url) return;
-          track.duration = duration;
-        } catch {
-          if (!current()) return;
-          showToast('Could not read duration. Check the direct file or enter its duration manually.', 6500);
+          url = youtubeId ? new URL(raw).href : await resolveMediaUrl(raw);
+        } catch (error) {
+          if (current()) showToast(error.message, 8500);
+          return;
         }
         if (!current()) return;
-        renderMusic(); markDirty();
+
+        track.url = url;
+        track.duration = 0;
+        if (youtubeId) {
+          track.sourceType = 'youtube';
+          track.youtubeId = youtubeId;
+        } else {
+          delete track.sourceType;
+          delete track.youtubeId;
+        }
+        markDirty();
+
+        try {
+          const metadata = youtubeId ? await probeYoutubeUrl(url) : { duration: await probeUrlDuration(url, 'audio') };
+          if (!current() || track.url !== url) return;
+          track.duration = Number(metadata.duration) || 0;
+          if (youtubeId && !track.title && metadata.title) track.title = String(metadata.title);
+        } catch {
+          if (!current()) return;
+          showToast(youtubeId
+            ? 'Could not read this YouTube duration. Enter the song length manually.'
+            : 'Could not read duration. Check the direct file or enter its duration manually.', 6500);
+        }
+        if (!current()) return;
+        renderMusic();
+        renderMusicEditor();
+        markDirty();
       }
     });
     const durationField = field('Duration (min:sec)', 'duration', {
@@ -1777,30 +1797,43 @@
       step: .1,
       onChange: value => { track.fadeOut = clamp(value, 0, 30); markDirty(); }
     });
-    const detectButton = smallButton('Read duration from file', async () => {
-      if (!track.url) return showToast('Add an audio URL first.');
-      if (youtubeVideoId(track.url)) return showToast('Replace this YouTube link with an uploaded song or direct media URL.');
+    const detectButton = smallButton('Read duration', async () => {
+      if (!track.url) return showToast('Add an audio or YouTube URL first.');
       try {
         const url = track.url;
-        const duration = await probeUrlDuration(url, 'audio');
+        const youtubeId = String(track.youtubeId || youtubeVideoId(url) || '');
+        const metadata = youtubeId ? await probeYoutubeUrl(url) : { duration: await probeUrlDuration(url, 'audio') };
         if (!working.music.includes(track) || track.url !== url) return;
-        track.duration = duration;
+        track.duration = Number(metadata.duration) || 0;
+        if (youtubeId) {
+          track.sourceType = 'youtube';
+          track.youtubeId = youtubeId;
+          if ((!track.title || track.title === 'YouTube music') && metadata.title) track.title = String(metadata.title);
+        }
         renderMusic();
         renderMusicEditor();
         markDirty();
         showToast(`Duration detected: ${fmt(track.duration)}`);
       } catch {
-        showToast('Could not read duration from that URL.', 6500);
+        showToast('Could not read duration from that source. Enter the track length manually.', 6500);
       }
     }, 'mfc-button-ghost');
-    const audition = document.createElement('audio');
-    audition.controls = true;
-    audition.preload = 'none';
-    audition.src = track.url || '';
-    audition.className = 'mfc-track-audition';
-    audition.setAttribute('aria-label', 'Audition selected music');
-    audition.addEventListener('play', () => { setMonitorAudio('preview', false); setMonitorAudio('program', false); });
-    form.append(audition);
+
+    if (youtubeVideoId(track.url) || track.youtubeId) {
+      const auditionNote = document.createElement('p');
+      auditionNote.className = 'mfc-track-help';
+      auditionNote.textContent = 'YouTube audio plays through the Preview and Program monitors. Turn Listen on to audition this track in context.';
+      form.append(auditionNote);
+    } else {
+      const audition = document.createElement('audio');
+      audition.controls = true;
+      audition.preload = 'none';
+      audition.src = track.url || '';
+      audition.className = 'mfc-track-audition';
+      audition.setAttribute('aria-label', 'Audition selected music');
+      audition.addEventListener('play', () => { setMonitorAudio('preview', false); setMonitorAudio('program', false); });
+      form.append(audition);
+    }
     const musicIndex = working.music.findIndex(row => row.id === track.id);
     const moveLeft = smallButton('← Move left', () => moveMusic(track.id, -1), 'mfc-button-ghost');
     const moveRight = smallButton('Move right →', () => moveMusic(track.id, 1), 'mfc-button-ghost');
