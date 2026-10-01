@@ -64,7 +64,8 @@
       const serverTime = Date.parse(response.headers.get('date') || '');
       if (!response.ok || !Number.isFinite(serverTime)) return false;
       const midpoint = (startedAt + receivedAt) / 2;
-      clockOffsetMs = serverTime - midpoint;
+      const estimatedOffset = (serverTime + 500) - midpoint;
+      clockOffsetMs = Math.abs(estimatedOffset) >= 2000 ? estimatedOffset : 0;
       return true;
     } catch {
       return false;
