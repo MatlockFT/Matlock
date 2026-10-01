@@ -34,6 +34,10 @@
   const workspaceTabs = Array.from(app.querySelectorAll('[data-workspace-tab]'));
   const workspacePanels = Array.from(app.querySelectorAll('[data-workspace-panel]'));
   const tickerPreview = app.querySelector('[data-ticker-preview]');
+  const tickerPreviewClone = app.querySelector('[data-ticker-preview-clone]');
+  const tickerPreviewTrack = app.querySelector('[data-ticker-preview-track]');
+  const tickerPreviewDate = app.querySelector('[data-ticker-preview-date]');
+  const tickerPreviewClock = app.querySelector('[data-ticker-preview-clock]');
   const programTrack = app.querySelector('[data-program-track]');
   const programRuler = app.querySelector('[data-program-ruler]');
   const programFields = app.querySelector('[data-program-fields]');
@@ -249,14 +253,72 @@
     });
   }
 
+  const TICKER_PREVIEW_CLOCKS = [
+    { zone: 'America/Chicago' },
+    { zone: 'America/New_York' },
+    { zone: 'America/Los_Angeles' },
+    { zone: 'Europe/London' },
+    { zone: 'Asia/Tokyo', label: 'JST' },
+    { zone: 'Australia/Sydney' }
+  ];
+  const tickerPreviewClockStartedAt = Date.now();
+
+  function tickerPreviewZoneAbbreviation(now, zone, fallback = '') {
+    if (fallback) return fallback;
+    try {
+      const part = new Intl.DateTimeFormat('en-US', {
+        timeZone: zone,
+        timeZoneName: 'short'
+      }).formatToParts(now).find(row => row.type === 'timeZoneName');
+      return String(part?.value || '').toUpperCase();
+    } catch {
+      return '';
+    }
+  }
+
+  function renderTickerPreviewClock() {
+    if (!tickerPreviewDate || !tickerPreviewClock) return;
+    const now = new Date();
+    const index = Math.floor((Date.now() - tickerPreviewClockStartedAt) / 8000) % TICKER_PREVIEW_CLOCKS.length;
+    const clock = TICKER_PREVIEW_CLOCKS[Math.max(0, index)] || TICKER_PREVIEW_CLOCKS[0];
+
+    tickerPreviewDate.textContent = new Intl.DateTimeFormat('en-US', {
+      timeZone: clock.zone,
+      weekday: 'short',
+      month: 'short',
+      day: '2-digit'
+    }).format(now).toUpperCase();
+
+    const time = new Intl.DateTimeFormat('en-US', {
+      timeZone: clock.zone,
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit'
+    }).format(now).toUpperCase();
+    const zone = tickerPreviewZoneAbbreviation(now, clock.zone, clock.label);
+    tickerPreviewClock.textContent = zone ? time + ' ' + zone : time;
+  }
+
   function renderTickerPreview() {
     if (!tickerPreview) return;
-    const entries = Array.isArray(working?.ticker) ? working.ticker.filter(Boolean) : [];
-    tickerPreview.textContent = entries.length ? entries.join('   •   ') : 'NO TICKER ITEMS';
+    const entries = Array.isArray(working?.ticker)
+      ? working.ticker.map(value => String(value || '').trim()).filter(Boolean)
+      : [];
+    const text = (entries.length ? entries : ['MATLOCK FIGHT CHANNEL', 'MMA NEWS', 'RESULTS', 'BREAKDOWNS']).join('   •   ');
+    tickerPreview.textContent = text;
+    if (tickerPreviewClone) tickerPreviewClone.textContent = text;
+
     const speed = clamp(Number(working?.tickerSpeed) || 1, .4, 2.5);
+    const baseSeconds = clamp(text.length * .16, 24, 110);
+    const seconds = clamp(baseSeconds / speed, 8, 300);
+    if (tickerPreviewTrack) tickerPreviewTrack.style.setProperty('--mfc-ticker-preview-seconds', seconds + 's');
+
     if (tickerSpeedInput) tickerSpeedInput.value = String(Math.round(speed * 100));
     if (tickerSpeedOutput) tickerSpeedOutput.textContent = Math.round(speed * 100) + '%';
+    renderTickerPreviewClock();
   }
+
+  setInterval(renderTickerPreviewClock, 1000);
 
   function refreshProgramMonitor() {
     if (!programFrame?.src) return;
@@ -1942,7 +2004,7 @@
   tickerSpeedInput?.addEventListener('input', () => {
     if (!working) return;
     working.tickerSpeed = clamp(Number(tickerSpeedInput.value) / 100, .4, 2.5);
-    if (tickerSpeedOutput) tickerSpeedOutput.textContent = Math.round(working.tickerSpeed * 100) + '%';
+    renderTickerPreview();
     markDirty();
   });
 
