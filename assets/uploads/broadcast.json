@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-01T03:53:29.838Z",
+  "updatedAt": "2026-10-01T03:53:34.655Z",
   "draft": {
-    "revision": "draft-1790826809838",
-    "updatedAt": "2026-10-01T03:53:29.838Z",
+    "revision": "draft-1790826814655",
+    "updatedAt": "2026-10-01T03:53:34.655Z",
     "startedAt": "2026-09-30T04:00:00.000Z",
     "program": [
       {
@@ -99,9 +99,9 @@
     "tickerSpeed": 0.6
   },
   "live": {
-    "revision": "live-1790825842445",
-    "updatedAt": "2026-10-01T03:37:22.444Z",
-    "startedAt": "2026-10-01T03:37:22.444Z",
+    "revision": "live-1790826814655",
+    "updatedAt": "2026-10-01T03:53:34.655Z",
+    "startedAt": "2026-10-01T03:53:34.655Z",
     "program": [
       {
         "id": "news-3d2f17cd",
@@ -192,6 +192,7 @@
       "duckAttack": 0.4,
       "duckRelease": 1.5,
       "crossfade": 2.5
-    }
+    },
+    "tickerSpeed": 0.6
   }
 }
