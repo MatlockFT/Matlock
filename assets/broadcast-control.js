@@ -236,6 +236,7 @@
     });
     localWrite(WORKSPACE_KEY, target);
     if (target === 'rundown') window.setTimeout(postPreview, 50);
+    if (target === 'graphics') window.setTimeout(() => scheduleTickerPreviewMetrics({ restart: true }), 50);
   }
 
   function bindWorkspaceTabs() {
