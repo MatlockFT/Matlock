@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-01T05:06:32.404Z",
+  "updatedAt": "2026-10-01T05:36:00.000Z",
   "draft": {
-    "revision": "draft-1790831192404",
-    "updatedAt": "2026-10-01T05:06:32.404Z",
+    "revision": "draft-fight-city-20261001-1",
+    "updatedAt": "2026-10-01T05:36:00.000Z",
     "startedAt": "2026-09-30T04:00:00.000Z",
     "program": [
       {
@@ -60,6 +60,14 @@
         "duration": 60,
         "source": "Sherdog",
         "sourceUrl": "https://www.sherdog.com/news/news/Payton-Talbott-says-he-reinvented-himself-ahead-of-UFC-332-203028"
+      },
+      {
+        "id": "fight-city-forecast",
+        "type": "weather",
+        "header": "FIGHT CITY FORECAST",
+        "eyebrow": "LOCAL WEATHER",
+        "title": "FIGHT CITY FORECAST",
+        "duration": 48
       },
       {
         "id": "news-0181e3f5",
@@ -144,8 +152,8 @@
     "tickerSpeed": 0.4
   },
   "live": {
-    "revision": "live-1790831192404",
-    "updatedAt": "2026-10-01T05:06:32.404Z",
+    "revision": "live-fight-city-20261001-1",
+    "updatedAt": "2026-10-01T05:36:00.000Z",
     "startedAt": "2026-10-01T05:06:32.404Z",
     "program": [
       {
@@ -202,6 +210,14 @@
         "duration": 60,
         "source": "Sherdog",
         "sourceUrl": "https://www.sherdog.com/news/news/Payton-Talbott-says-he-reinvented-himself-ahead-of-UFC-332-203028"
+      },
+      {
+        "id": "fight-city-forecast",
+        "type": "weather",
+        "header": "FIGHT CITY FORECAST",
+        "eyebrow": "LOCAL WEATHER",
+        "title": "FIGHT CITY FORECAST",
+        "duration": 48
       },
       {
         "id": "news-0181e3f5",
