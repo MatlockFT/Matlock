@@ -2199,6 +2199,7 @@
         const output = app.querySelector(`[data-audio-output="${key}"]`);
         if (output) output.textContent = `${Math.round(Number(input.value) * 100)}%`;
       }
+      if (key === 'musicRepeat') renderMusic();
       markDirty();
     });
   });
