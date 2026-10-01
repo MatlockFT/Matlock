@@ -1,0 +1,212 @@
+{
+  "version": 1,
+  "generatedAt": "2026-10-01T05:36:36.904Z",
+  "event": {
+    "id": "ufc-332-2026-10-03-fight-card",
+    "promotion": "UFC 332",
+    "title": "Silva vs Cong",
+    "date": "2026-10-03",
+    "venue": "Delta Center",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "country": "United States",
+    "latitude": 40.76078,
+    "longitude": -111.89105,
+    "timezone": "America/Denver",
+    "startIso": "2026-10-03T20:00:00-04:00",
+    "startLocal": "6:00 PM MDT"
+  },
+  "current": {
+    "observedAt": "2026-09-30T23:30",
+    "temperature": 61,
+    "feelsLike": 57,
+    "humidity": 40,
+    "weatherCode": 0,
+    "condition": {
+      "label": "Clear",
+      "icon": "clear"
+    },
+    "cloudCover": 0,
+    "pressure": 1009.9,
+    "windSpeed": 3,
+    "windDirection": 4,
+    "windGust": 3,
+    "precipitation": 0
+  },
+  "fightDay": {
+    "date": "2026-10-03",
+    "day": "SAT",
+    "weatherCode": 3,
+    "condition": {
+      "label": "Cloudy",
+      "icon": "cloudy"
+    },
+    "high": 84,
+    "low": 69,
+    "precipProbability": 0,
+    "precip": 0,
+    "windMax": 9,
+    "gustMax": 8,
+    "windDirection": 337,
+    "sunrise": "2026-10-03T07:26",
+    "sunset": "2026-10-03T19:05",
+    "timezone": "America/Denver",
+    "atEvent": {
+      "time": "2026-10-03T18:00",
+      "temperature": 81,
+      "humidity": 19,
+      "dewpoint": 35,
+      "precipProbability": 0,
+      "weatherCode": 0,
+      "condition": {
+        "label": "Sunny",
+        "icon": "sunny"
+      },
+      "visibilityMiles": 49,
+      "pressure": 1008.8,
+      "windSpeed": 7,
+      "windDirection": 312,
+      "windGust": 7
+    },
+    "narrative": "SATURDAY...CLOUDY. HIGH 84. NW WINDS 7 MPH. CHANCE OF PRECIPITATION 0 PERCENT."
+  },
+  "daily": [
+    {
+      "date": "2026-09-30",
+      "day": "WED",
+      "weatherCode": 0,
+      "condition": {
+        "label": "Sunny",
+        "icon": "sunny"
+      },
+      "high": 76,
+      "low": 51,
+      "precipProbability": 1,
+      "precip": 0,
+      "windMax": 10,
+      "gustMax": 13,
+      "windDirection": 336,
+      "sunrise": "2026-09-30T07:23",
+      "sunset": "2026-09-30T19:10"
+    },
+    {
+      "date": "2026-10-01",
+      "day": "THU",
+      "weatherCode": 0,
+      "condition": {
+        "label": "Sunny",
+        "icon": "sunny"
+      },
+      "high": 80,
+      "low": 49,
+      "precipProbability": 0,
+      "precip": 0,
+      "windMax": 7,
+      "gustMax": 8,
+      "windDirection": 332,
+      "sunrise": "2026-10-01T07:24",
+      "sunset": "2026-10-01T19:09"
+    },
+    {
+      "date": "2026-10-02",
+      "day": "FRI",
+      "weatherCode": 3,
+      "condition": {
+        "label": "Cloudy",
+        "icon": "cloudy"
+      },
+      "high": 88,
+      "low": 55,
+      "precipProbability": 0,
+      "precip": 0,
+      "windMax": 10,
+      "gustMax": 14,
+      "windDirection": 180,
+      "sunrise": "2026-10-02T07:25",
+      "sunset": "2026-10-02T19:07"
+    },
+    {
+      "date": "2026-10-03",
+      "day": "SAT",
+      "weatherCode": 3,
+      "condition": {
+        "label": "Cloudy",
+        "icon": "cloudy"
+      },
+      "high": 84,
+      "low": 69,
+      "precipProbability": 0,
+      "precip": 0,
+      "windMax": 9,
+      "gustMax": 8,
+      "windDirection": 337,
+      "sunrise": "2026-10-03T07:26",
+      "sunset": "2026-10-03T19:05",
+      "timezone": "America/Denver"
+    },
+    {
+      "date": "2026-10-04",
+      "day": "SUN",
+      "weatherCode": 1,
+      "condition": {
+        "label": "Partly Cloudy",
+        "icon": "partlyCloudy"
+      },
+      "high": 87,
+      "low": 67,
+      "precipProbability": 0,
+      "precip": 0,
+      "windMax": 9,
+      "gustMax": 7,
+      "windDirection": 357,
+      "sunrise": "2026-10-04T07:27",
+      "sunset": "2026-10-04T19:04"
+    },
+    {
+      "date": "2026-10-05",
+      "day": "MON",
+      "weatherCode": 51,
+      "condition": {
+        "label": "Drizzle",
+        "icon": "rain"
+      },
+      "high": 84,
+      "low": 71,
+      "precipProbability": 3,
+      "precip": 0.024,
+      "windMax": 11,
+      "gustMax": 20,
+      "windDirection": 169,
+      "sunrise": "2026-10-05T07:28",
+      "sunset": "2026-10-05T19:02"
+    },
+    {
+      "date": "2026-10-06",
+      "day": "TUE",
+      "weatherCode": 1,
+      "condition": {
+        "label": "Partly Cloudy",
+        "icon": "partlyCloudy"
+      },
+      "high": 82,
+      "low": 66,
+      "precipProbability": 3,
+      "precip": 0,
+      "windMax": 9,
+      "gustMax": 15,
+      "windDirection": 260,
+      "sunrise": "2026-10-06T07:29",
+      "sunset": "2026-10-06T19:01"
+    }
+  ],
+  "radar": {
+    "generatedAt": "2026-10-01T05:35:26.000Z",
+    "frameTime": "2026-10-01T05:30:00.000Z",
+    "tileUrl": "https://tilecache.rainviewer.com/v2/radar/8b4298106d61/512/5/40.76078/-111.89105/2/0_1.png",
+    "attribution": "RainViewer"
+  },
+  "source": {
+    "forecast": "Open-Meteo",
+    "radar": "RainViewer"
+  }
+}
