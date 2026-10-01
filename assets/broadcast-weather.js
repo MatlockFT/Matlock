@@ -29,22 +29,22 @@
     return points[Math.round((((Number(degrees) || 0) % 360) / 22.5)) % 16];
   };
 
+  const WEATHERSTAR_ICON_BASE = 'https://cdn.jsdelivr.net/gh/vbguyny/ws4kp@065688b6ee9a5aa93578e1e3e95b3ecce07d16ce/Images/2/';
+  const WEATHERSTAR_ICONS = {
+    clear: 'Clear.gif',
+    sunny: 'Sunny.gif',
+    cloudy: 'Cloudy.gif',
+    fog: 'Fog.gif',
+    partlyCloudy: 'Partly-Cloudy.gif',
+    rain: 'Rain.gif',
+    showers: 'Shower.gif',
+    thunderstorm: 'Thunderstorm.gif',
+    snow: 'Heavy-Snow.gif'
+  };
+
   function iconSvg(name, large = false) {
-    const cls = large ? 'mfc-wx-icon is-large' : 'mfc-wx-icon';
-    const cloud = '<path d="M27 54c-10 0-17-6-17-15 0-8 6-14 15-15 3-11 12-17 23-17 11 0 20 6 24 17 9 1 15 7 15 15 0 9-7 15-17 15H27Z" fill="#d8d8d4" stroke="#101018" stroke-width="4"/><path d="M23 38c8-2 12-7 14-15 7 3 10 7 12 13 7-4 14-5 22-2" fill="none" stroke="#f2f2ef" stroke-width="3" opacity=".8"/>';
-    const sun = '<circle cx="48" cy="38" r="14" fill="#ffd21b" stroke="#101018" stroke-width="4"/><g stroke="#101018" stroke-width="4"><path d="M48 10v11M48 55v11M20 38h11M65 38h11M28 18l8 8M60 50l8 8M28 58l8-8M60 26l8-8"/></g>';
-    const rain = '<g stroke="#101018" stroke-width="5"><path d="M31 60l-7 18" stroke="#3e9be8"/><path d="M48 60l-7 18" stroke="#3e9be8"/><path d="M65 60l-7 18" stroke="#3e9be8"/></g>';
-    const snow = '<g fill="#eaf5ff" stroke="#101018" stroke-width="2"><text x="24" y="79" font-size="24" font-family="Arial">✱</text><text x="55" y="73" font-size="20" font-family="Arial">✱</text></g>';
-    const bolt = '<path d="M53 55 42 75h10l-5 17 21-26H57l8-11Z" fill="#ffd51f" stroke="#101018" stroke-width="3"/>';
-    const stars = '<circle cx="27" cy="24" r="3" fill="#fff"/><circle cx="68" cy="18" r="2.5" fill="#fff"/><path d="M48 11a22 22 0 1 0 20 31A26 26 0 0 1 48 11Z" fill="#f4f2de" stroke="#101018" stroke-width="4"/>';
-    let body = cloud;
-    if (name === 'sunny') body = sun;
-    else if (name === 'clear') body = stars;
-    else if (name === 'partlyCloudy') body = sun + '<g transform="translate(7 14)">' + cloud + '</g>';
-    else if (name === 'rain') body = cloud + rain;
-    else if (name === 'thunderstorm') body = cloud + rain + bolt;
-    else if (name === 'snow') body = cloud + snow;
-    return '<svg class="' + cls + '" viewBox="0 0 96 96" aria-hidden="true">' + body + '</svg>';
+    const file = WEATHERSTAR_ICONS[name] || WEATHERSTAR_ICONS.partlyCloudy;
+    return '<img class="mfc-wx-icon' + (large ? ' is-large' : '') + '" src="' + WEATHERSTAR_ICON_BASE + file + '" alt="">';
   }
 
   function weatherLabel(row) {
