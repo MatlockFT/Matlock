@@ -112,6 +112,78 @@ test('mobile pool has no horizontal overflow and preview is at least 200 pixels 
   expect(box.width).toBeGreaterThanOrEqual(200); expect(box.height).toBeGreaterThanOrEqual(200);
 });
 
+test('late viewers join the same live program, ticker phase and world-clock zone', async ({ browser }) => {
+  fixture.state = {
+    ...fixture.state,
+    live: {
+      ...fixture.state.live,
+      revision: 'global-sync-test',
+      startedAt: new Date(Date.now() - 15000).toISOString(),
+      updatedAt: new Date().toISOString(),
+      program: [
+        { id: 'sync-a', type: 'headline', title: 'SYNC A', body: 'First block', duration: 10 },
+        { id: 'sync-b', type: 'headline', title: 'SYNC B', body: 'Second block', duration: 10 },
+        { id: 'sync-c', type: 'headline', title: 'SYNC C', body: 'Third block', duration: 10 }
+      ],
+      ticker: [
+        'ONE',
+        'TWO',
+        'THREE',
+        'FOUR',
+        'FIVE'
+      ],
+      tickerSpeed: 1
+    }
+  };
+
+  const context = await browser.newContext();
+  const first = await context.newPage();
+  await first.goto(fixture.origin + '/broadcast/');
+  await expect(first.locator('html')).not.toHaveClass(/mfc-booting/);
+  await expect(first.locator('[data-mfc-title]')).toHaveText('SYNC B');
+
+  await first.waitForTimeout(1200);
+  const second = await context.newPage();
+  await second.goto(fixture.origin + '/broadcast/');
+  await expect(second.locator('html')).not.toHaveClass(/mfc-booting/);
+  await expect(second.locator('[data-mfc-title]')).toHaveText('SYNC B');
+
+  const [firstState, secondState] = await Promise.all([first, second].map(page => page.evaluate(() => {
+    const track = document.querySelector('[data-mfc-ticker-track]');
+    const clock = document.querySelector('[data-mfc-clock]');
+    const transform = new DOMMatrixReadOnly(getComputedStyle(track).transform);
+    return {
+      x: transform.m41,
+      delay: parseFloat(getComputedStyle(track).animationDelay),
+      duration: parseFloat(getComputedStyle(track).animationDuration),
+      zone: clock.dataset.zone
+    };
+  })));
+
+  expect(firstState.delay).toBeLessThan(0);
+  expect(secondState.delay).toBeLessThan(0);
+  expect(firstState.duration).toBeGreaterThan(0);
+  expect(secondState.duration).toBeCloseTo(firstState.duration, 1);
+  expect(Math.abs(firstState.x - secondState.x)).toBeLessThan(24);
+  expect(secondState.zone).toBe(firstState.zone);
+
+  await context.close();
+});
+
+test('broadcast remains hidden until live state and WeatherSTAR fonts are ready', async ({ page }) => {
+  await page.route('**/assets/uploads/broadcast.json*', async route => {
+    await new Promise(resolve => setTimeout(resolve, 500));
+    await route.continue();
+  });
+
+  const navigation = page.goto(fixture.origin + '/broadcast/', { waitUntil: 'domcontentloaded' });
+  await navigation;
+  await expect(page.locator('html')).toHaveClass(/mfc-booting/);
+  await expect(page.locator('[data-mfc-root]')).toHaveCSS('visibility', 'hidden');
+  await expect(page.locator('html')).not.toHaveClass(/mfc-booting/, { timeout: 10000 });
+  await expect(page.locator('[data-mfc-root]')).toHaveCSS('visibility', 'visible');
+});
+
 test('complete five-item ticker sequence loops without a dead zone', async ({ page }) => {
   const ticker = [
     'Onosato Overcomes Late Wobble To Win Yusho',
