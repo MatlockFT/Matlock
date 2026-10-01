@@ -32,7 +32,7 @@ test('batch upload continues after a bad file, retries chunks, auto-populates an
   await expect(page.locator('[data-music-id]')).toHaveCount(2); // no accidental duplicates
 });
 
-test('library-only upload can be reused and direct URLs detect duration; YouTube is rejected', async ({ page }) => {
+test('music URLs accept manual duration when metadata is unavailable, auto-detect when possible, and reject YouTube pages', async ({ page }) => {
   await page.goto(fixture.origin + '/broadcast/control/');
   await page.getByRole('tab', { name: /Media/ }).click();
   await page.locator('[data-upload-auto-add]').uncheck();
@@ -41,19 +41,30 @@ test('library-only upload can be reused and direct URLs detect duration; YouTube
   await expect(page.locator('[data-music-id]')).toHaveCount(0);
   await page.getByRole('button', { name: 'Add to Music' }).click();
   await expect(page.locator('[data-music-id]')).toHaveCount(1);
+
   await page.getByRole('tab', { name: /Audio/ }).click();
   await page.locator('[data-add-music-url]').click();
   await page.locator('[data-music-url]').fill('https://youtu.be/T5umkDLypsw');
   await page.locator('[data-confirm-music-url]').click();
   await expect(page.locator('[data-url-dialog]')).toBeVisible();
   await expect(page.locator('[data-toast]')).toContainText('direct media');
-  await page.locator('[data-music-url]').fill(fixture.origin + '/fixtures/tone.wav');
+
+  await page.locator('[data-music-url]').fill('https://cdn.example.test/music-bed.mp3');
+  await page.locator('[data-music-url-duration]').fill('3:15');
   await page.locator('[data-confirm-music-url]').click();
   await expect(page.locator('[data-url-dialog]')).toBeHidden();
   await expect(page.locator('[data-music-id]')).toHaveCount(2);
+
+  await page.locator('[data-add-music-url]').click();
+  await page.locator('[data-music-url]').fill(fixture.origin + '/fixtures/tone.wav');
+  await page.locator('[data-confirm-music-url]').click();
+  await expect(page.locator('[data-url-dialog]')).toBeHidden();
+  await expect(page.locator('[data-music-id]')).toHaveCount(3);
+
   await page.locator('[data-take-live]').click();
-  await expect.poll(() => fixture.state.live.music.length).toBe(2);
-  expect(fixture.state.live.music[1].duration).toBe(2);
+  await expect.poll(() => fixture.state.live.music.length).toBe(3);
+  expect(fixture.state.live.music[1]).toMatchObject({ url: 'https://cdn.example.test/music-bed.mp3', duration: 195 });
+  expect(fixture.state.live.music[2].duration).toBe(2);
 });
 
 test('failed Take Live never changes Program, and edits made during Save remain unsaved', async ({ page }) => {
