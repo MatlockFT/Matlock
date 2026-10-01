@@ -426,12 +426,14 @@ body {
 .mfc-ticker-track {
   --mfc-ticker-seconds: 34s;
   --mfc-ticker-distance: -640px;
+  --mfc-ticker-phase: 0s;
   display: flex;
   width: max-content;
   height: 100%;
   align-items: center;
   will-change: transform;
   animation: mfc-crawl var(--mfc-ticker-seconds) linear infinite;
+  animation-delay: var(--mfc-ticker-phase);
 }
 
 .mfc-ticker-track span {
