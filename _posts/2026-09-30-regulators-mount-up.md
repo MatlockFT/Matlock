@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Regulators! Mount Up."
+title: "Regulators, mount up!"
 description: Andy Foster vs. The Oblique Kick
 date: 2026-09-30
 category: Opinion
