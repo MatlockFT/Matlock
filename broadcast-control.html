@@ -302,6 +302,13 @@ permalink: /broadcast/control/
               <label><span>Attack</span><input type="number" min=".05" max="10" step=".05" data-audio-setting="duckAttack"><b>sec</b></label>
               <label><span>Restore</span><input type="number" min=".05" max="10" step=".05" data-audio-setting="duckRelease"><b>sec</b></label>
               <label><span>Crossfade</span><input type="number" min="0" max="12" step=".1" data-audio-setting="crossfade"><b>sec</b></label>
+              <label>
+                <span>Playlist repeat</span>
+                <select data-audio-setting="musicRepeat">
+                  <option value="shuffle">Shuffle each pass</option>
+                  <option value="fixed">Repeat same order</option>
+                </select>
+              </label>
             </div>
           </section>
 
@@ -320,7 +327,7 @@ permalink: /broadcast/control/
                   <button type="button" class="mfc-button mfc-button-small" data-add-music-url>+ Music URL</button>
                 </div>
               </div>
-              <p class="mfc-track-help">Music loops independently of the visual rundown. Duck lowers it under a video’s sound; Mute silences it during that video; Keep leaves both audible. Listen affects only this browser.</p><div class="mfc-linear-track mfc-music-track" data-music-track aria-label="Music playlist"></div>
+              <p class="mfc-track-help"><strong data-music-summary>No songs loaded.</strong> Music runs independently of the visual rundown. The first pass follows your order above; Shuffle each pass reshuffles only after every usable song has played once. Listen affects only this browser.</p><div class="mfc-linear-track mfc-music-track" data-music-track aria-label="Music playlist"></div>
             </section>
 
             <section class="mfc-panel" data-music-editor>
