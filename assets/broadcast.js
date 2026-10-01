@@ -5,14 +5,19 @@
   const params = new URLSearchParams(location.search);
   const useDraft = params.get('mode') === 'draft' || params.get('preview') === 'draft';
   const monitorMode = params.get('monitor') === '1';
+  const controlsMode = params.get('controls') === '1';
   if (params.get('embed') === '1') document.body.dataset.mfcEmbed = 'true';
   if (monitorMode) document.body.dataset.mfcMonitor = 'true';
+  if (controlsMode) document.body.dataset.mfcControls = 'true';
 
   const screen = root.querySelector('[data-mfc-screen]');
   function scalePlayer() {
     const embedded = document.body.dataset.mfcEmbed === 'true';
-    const maxScale = embedded ? Infinity : 760 / 640;
-    const verticalScale = embedded ? innerHeight / 480 : innerHeight / 560;
+    const controls = document.body.dataset.mfcControls === 'true';
+    // The default /broadcast/ feed is OBS-clean: scale the 640x480 stage against
+    // the full browser-source canvas with no room reserved for external controls.
+    const maxScale = (embedded || !controls) ? Infinity : 760 / 640;
+    const verticalScale = (controls && !embedded) ? innerHeight / 560 : innerHeight / 480;
     const scale = Math.max(.01, Math.min(innerWidth / 640, verticalScale, maxScale));
     root.style.setProperty('--mfc-player-scale', String(scale));
   }
