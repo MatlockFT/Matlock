@@ -597,7 +597,11 @@
       const serverTime = Date.parse(response.headers.get('date') || '');
       if (!response.ok || !Number.isFinite(serverTime)) throw new Error('server clock unavailable');
       const midpoint = (startedAt + receivedAt) / 2;
-      return new Date(receivedAt + (serverTime - midpoint)).toISOString();
+      const estimatedOffset = (serverTime + 500) - midpoint;
+      const correctedNow = Math.abs(estimatedOffset) >= 2000
+        ? receivedAt + estimatedOffset
+        : receivedAt;
+      return new Date(correctedNow).toISOString();
     } catch {
       return new Date().toISOString();
     }
