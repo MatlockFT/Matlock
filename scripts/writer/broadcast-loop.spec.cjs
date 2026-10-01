@@ -115,7 +115,7 @@ test('preview keeps its clock during edits, with explicit restart and selected-i
 test('video uses master volume, source replacement reloads, and broken media does not stop the loop', async ({ page }) => {
   const live = fixture.state.live;
   live.program = [{ id: 'video', type: 'video', title: 'Video', mediaUrl: fixture.origin + '/fixtures/tone.wav', duration: 2 }];
-  await page.goto(fixture.origin + '/broadcast/');
+  await page.goto(fixture.origin + '/broadcast/?controls=1');
   await expect(page.locator('video')).toHaveJSProperty('volume', 0.4);
   await page.locator('[data-mfc-sound]').click();
   await expect(page.locator('video')).toHaveJSProperty('muted', false);
@@ -192,7 +192,7 @@ test('music uses the arranged first pass, then shuffles complete passes without 
   channel.startedAt = new Date().toISOString();
   fixture.state.live = channel;
 
-  await page.goto(fixture.origin + '/broadcast/');
+  await page.goto(fixture.origin + '/broadcast/?controls=1');
   await page.locator('[data-mfc-sound]').click();
   await expect(page.locator('[data-mfc-sound]')).toHaveAttribute('aria-pressed', 'true');
 
