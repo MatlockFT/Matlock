@@ -450,7 +450,7 @@ test('visible YouTube player loops, uses mixer volume, reports autoplay blocks a
   const item = { id: 'youtube-test', type: 'youtube', title: 'Test interview', youtubeId: 'abcdefghijk', mediaUrl: 'https://www.youtube.com/watch?v=abcdefghijk', sourceDuration: 300, duration: 2, videoAudio: true };
   fixture.state = { ...fixture.state, live: { ...fixture.state.live, program: [item], startedAt: new Date().toISOString() } };
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto(fixture.origin + '/broadcast/');
+  await page.goto(fixture.origin + '/broadcast/?controls=1');
   await expect(page.locator('[data-mfc-youtube] iframe')).toBeVisible();
   await expect.poll(() => page.evaluate(() => window.__yt?.players[0]?.loads.length)).toBe(1);
   await expect.poll(() => page.evaluate(() => window.__yt.players[0].seeks.length), { timeout: 6000 }).toBeGreaterThan(0);
@@ -490,7 +490,7 @@ test('YouTube link can supply the hidden continuous music bed', async ({ page })
     }
   };
 
-  await page.goto(fixture.origin + '/broadcast/');
+  await page.goto(fixture.origin + '/broadcast/?controls=1');
   await expect(page.locator('[data-mfc-sound]')).toHaveAttribute('aria-pressed', 'false');
   await page.locator('[data-mfc-sound]').click();
 
