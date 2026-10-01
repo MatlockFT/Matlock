@@ -27,7 +27,7 @@ test.afterEach(async () => fixture.close());
 async function openPool(page) {
   await page.goto(fixture.origin + '/broadcast/control/');
   await page.getByRole('tab', { name: /News Pool/ }).click();
-  await expect(page.locator('.mfc-news-card')).toHaveCount(3);
+  await expect(page.locator('.mfc-news-card')).toHaveCount(4);
 }
 
 test('articles and full-length videos are searchable and filterable; Shorts never enter pool', async ({ page }) => {
@@ -47,6 +47,17 @@ test('articles and full-length videos are searchable and filterable; Shorts neve
   expect(await page.locator('.mfc-news-card a').getAttribute('href')).toBe('https://example.com/event');
 });
 
+test('Japanese MMA keeps the original headline visible beside the literal English translation', async ({ page }) => {
+  await openPool(page);
+  const card = page.locator('[data-news-id="jp-article-1"]');
+  await expect(card).toContainText('RIZIN title fight announced for Nagasaki');
+  await expect(card.locator('.mfc-news-original')).toHaveText('RIZIN長崎大会でタイトル戦が決定');
+  await expect(card.locator('.mfc-news-meta')).toContainText('JP · literal MT');
+  await page.locator('[data-news-search]').fill('長崎大会');
+  await expect(page.locator('.mfc-news-card')).toHaveCount(1);
+  await expect(page.locator('[data-news-source]')).toContainText('MMAPLANET');
+});
+
 test('quick additions preserve source metadata, prevent duplicates, undo, save and reload without publishing', async ({ page }) => {
   await openPool(page);
   const article = page.locator('[data-news-id="article-1"]');
@@ -59,7 +70,7 @@ test('quick additions preserve source metadata, prevent duplicates, undo, save a
   await expect(article.getByRole('button', { name: 'In ticker' })).toBeDisabled();
   await page.locator('[data-news-id="abcdefghijk"]').getByRole('button', { name: 'Add video', exact: true }).click();
   await page.locator('[data-news-unused]').check();
-  await expect(page.locator('.mfc-news-card')).toHaveCount(1);
+  await expect(page.locator('.mfc-news-card')).toHaveCount(2);
   await page.locator('[data-save-draft]').click();
   await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
   expect(fixture.state.draft.program).toHaveLength(3); expect(fixture.state.live.program).toHaveLength(1);
@@ -81,7 +92,7 @@ test('refresh failure retains loaded items; video preview stops when closed', as
   fixture.controls.newsFailure = true;
   await page.locator('[data-news-refresh]').click();
   await expect(page.locator('[data-news-status]')).toContainText('Keeping previously loaded items');
-  await expect(page.locator('.mfc-news-card')).toHaveCount(3);
+  await expect(page.locator('.mfc-news-card')).toHaveCount(4);
 });
 
 test('mobile pool has no horizontal overflow and preview is at least 200 pixels tall', async ({ page }) => {
