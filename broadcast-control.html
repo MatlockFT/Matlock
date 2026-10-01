@@ -10,7 +10,7 @@ permalink: /broadcast/control/
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>Matlock Fight Channel — Control Room</title>
-  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20261001-japan-news-1">
+  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20261001-ticker-preview-1">
 </head>
 <body class="mfc-control-body">
   <main class="mfc-control" data-mfc-control data-auth-base="https://mmamatlock-writer-auth.netlify.app">
@@ -359,9 +359,17 @@ permalink: /broadcast/control/
                 <strong>Ticker crawl</strong>
               </div>
             </div>
-            <div class="mfc-ticker-preview">
-              <span class="mfc-ticker-preview-label">MATLOCK</span>
-              <div><span data-ticker-preview>NO TICKER ITEMS</span></div>
+            <div class="mfc-ticker-preview" data-ticker-preview-stage>
+              <div class="mfc-ticker-preview-status">
+                <span data-ticker-preview-date>WED SEP 30</span>
+                <span data-ticker-preview-clock>11:49:00 PM CDT</span>
+              </div>
+              <div class="mfc-ticker-preview-crawl">
+                <div class="mfc-ticker-preview-track" data-ticker-preview-track>
+                  <span data-ticker-preview>NO TICKER ITEMS</span>
+                  <span data-ticker-preview-clone aria-hidden="true">NO TICKER ITEMS</span>
+                </div>
+              </div>
             </div>
             <div class="mfc-graphics-notes">
               <strong>Persistent overlay</strong>
@@ -405,7 +413,7 @@ permalink: /broadcast/control/
   </main>
 
   <script src="{{ '/assets/broadcast-youtube.js' | relative_url }}?v=20261001-ticker-speed-1" defer></script>
-  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20261001-news-refresh-1" defer></script>
+  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20261001-ticker-preview-1" defer></script>
   <script src="{{ '/assets/broadcast-news-pool.js' | relative_url }}?v=20261001-news-refresh-1" defer></script>
 </body>
 </html>
