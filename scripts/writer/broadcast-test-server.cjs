@@ -32,6 +32,21 @@ async function startServer(port = 0) {
     { id: 'article-1', title: 'Local fighter returns for title fight', source: 'MMA Fighting', url: 'https://example.com/title-fight', excerpt: 'A short, attributed news excerpt.', publishedAt: new Date().toISOString() },
     { id: 'article-2', title: 'Local UFC event announced', source: 'MMA Junkie', url: 'https://example.com/event', excerpt: 'An event update.', publishedAt: new Date().toISOString() }
   ] };
+  const japanNews = { version: 1, generatedAt: new Date().toISOString(), language: 'ja', sources: [{ name: 'MMAPLANET', status: 'ok' }], stories: [
+    {
+      id: 'jp-article-1',
+      title: 'RIZIN title fight announced for Nagasaki',
+      originalTitle: 'RIZIN長崎大会でタイトル戦が決定',
+      source: 'MMAPLANET',
+      sourceUrl: 'https://mmaplanet.jp/',
+      url: 'https://example.jp/rizin-nagasaki',
+      excerpt: 'A title fight has been announced for the upcoming RIZIN event in Nagasaki.',
+      originalExcerpt: '長崎で開催されるRIZIN大会のタイトル戦が発表された。',
+      language: 'ja',
+      translation: { language: 'ja', mode: 'literal-machine', originalPreserved: true },
+      publishedAt: new Date().toISOString()
+    }
+  ] };
   const videos = { version: 1, generatedAt: new Date().toISOString(), sources: [{ name: 'MMA Fighting', status: 'ready' }], videos: [
     { id: 'abcdefghijk', title: 'Local fighter full interview', source: 'MMA Fighting', url: 'https://www.youtube.com/watch?v=abcdefghijk', duration: 300, publishedAt: new Date().toISOString() },
     { id: 'short123456', title: 'Short clip', source: 'MMA Fighting', url: 'https://www.youtube.com/watch?v=short123456', duration: 180 },
@@ -42,9 +57,11 @@ async function startServer(port = 0) {
     const chunks = []; for await (const chunk of req) chunks.push(chunk);
     const body = Buffer.concat(chunks);
     function json(data, status = 200) { res.writeHead(status, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(data)); }
-    if (/\/(?:news-fixture\/|assets\/data\/)(mma-news|broadcast-news-videos)\.json$/.test(url.pathname)) {
+    if (/\/(?:news-fixture\/|assets\/data\/)(mma-news|japan-mma-news|broadcast-news-videos)\.json$/.test(url.pathname)) {
       if (controls.newsFailure) return json({ error: 'offline' }, 503);
-      return json(url.pathname.includes('broadcast-news-videos') ? videos : news);
+      if (url.pathname.includes('broadcast-news-videos')) return json(videos);
+      if (url.pathname.includes('japan-mma-news')) return json(japanNews);
+      return json(news);
     }
     if (url.pathname === '/api/writer/session') return json({ ok: true, login: 'Local preview' });
     if (url.pathname === '/api/writer/github') {
@@ -106,7 +123,7 @@ async function startServer(port = 0) {
   await new Promise(resolve => server.listen(port, '127.0.0.1', resolve));
   origin = `http://127.0.0.1:${server.address().port}`;
   state = initialState(origin);
-  return { origin, server, controls, assets, media, news, videos, get state() { return state; }, set state(value) { state = value; revision++; }, close: () => new Promise(resolve => server.close(resolve)) };
+  return { origin, server, controls, assets, media, news, japanNews, videos, get state() { return state; }, set state(value) { state = value; revision++; }, close: () => new Promise(resolve => server.close(resolve)) };
 }
 
 module.exports = { startServer, wav };
