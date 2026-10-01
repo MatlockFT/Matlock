@@ -112,6 +112,55 @@ test('mobile pool has no horizontal overflow and preview is at least 200 pixels 
   expect(box.width).toBeGreaterThanOrEqual(200); expect(box.height).toBeGreaterThanOrEqual(200);
 });
 
+test('complete five-item ticker sequence loops without a dead zone', async ({ page }) => {
+  const ticker = [
+    'Onosato Overcomes Late Wobble To Win Yusho',
+    'Jose Aldo advises Conor McGregor to undergo ‘dietary re-education’ before taking another UFC fight',
+    'Canelo Alvarez set for WBC super middleweight title fight in October',
+    'UFC Headed Back to Sydney, Australia in Feb. 2027',
+    'UFC 332’s King Green names BMF title as ‘ultimate honor’: ‘I wanna earn my shot’'
+  ];
+  fixture.state = {
+    ...fixture.state,
+    live: {
+      ...fixture.state.live,
+      revision: 'ticker-five-item-test',
+      ticker,
+      tickerSpeed: .4,
+      startedAt: new Date().toISOString()
+    }
+  };
+
+  await page.goto(fixture.origin + '/broadcast/');
+  const first = page.locator('[data-mfc-ticker]');
+  const clone = page.locator('[data-mfc-ticker-clone]');
+  await expect(first).toContainText(ticker[0]);
+  await expect(first).toContainText(ticker[4]);
+  await expect(clone).toContainText(ticker[2]);
+
+  const metrics = await page.evaluate(() => {
+    const first = document.querySelector('[data-mfc-ticker]');
+    const clone = document.querySelector('[data-mfc-ticker-clone]');
+    const track = document.querySelector('[data-mfc-ticker-track]');
+    const firstBox = first.getBoundingClientRect();
+    const cloneBox = clone.getBoundingClientRect();
+    const style = getComputedStyle(track);
+    return {
+      sequenceWidth: first.offsetWidth,
+      cloneGap: Math.abs(cloneBox.left - firstBox.right),
+      distance: Math.abs(parseFloat(style.getPropertyValue('--mfc-ticker-distance'))),
+      duration: parseFloat(style.animationDuration),
+      paddingRight: parseFloat(getComputedStyle(first).paddingRight),
+      stageWidth: document.querySelector('[data-mfc-screen]').clientWidth
+    };
+  });
+
+  expect(metrics.cloneGap).toBeLessThan(1.5);
+  expect(metrics.distance).toBeCloseTo(metrics.sequenceWidth, 0);
+  expect(metrics.paddingRight).toBeLessThan(metrics.stageWidth * .1);
+  expect(metrics.duration).toBeGreaterThan(8);
+});
+
 test('visible YouTube player loops, uses mixer volume, reports autoplay blocks and skips failed embeds', async ({ page }) => {
   const item = { id: 'youtube-test', type: 'youtube', title: 'Test interview', youtubeId: 'abcdefghijk', mediaUrl: 'https://www.youtube.com/watch?v=abcdefghijk', sourceDuration: 300, duration: 2, videoAudio: true };
   fixture.state = { ...fixture.state, live: { ...fixture.state.live, program: [item], startedAt: new Date().toISOString() } };
