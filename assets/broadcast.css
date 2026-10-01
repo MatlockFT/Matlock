@@ -2026,3 +2026,108 @@ body {
     font-size: 2.18cqw;
   }
 }
+
+
+/* Almanac focused layout v6 */
+.mfc-wx-almanac-grid {
+  grid-template-columns: 52% 48%;
+  height: 80%;
+  padding: 7.2% 5.5% 3.5%;
+  align-items: center;
+}
+
+.mfc-wx-sun-data {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  align-content: center;
+  gap: .72cqw;
+  min-width: 0;
+  padding: 0 1.5% 0 2.5%;
+  font-size: 2.28cqw;
+  line-height: 1.12;
+}
+
+.mfc-wx-sun-data p {
+  display: grid;
+  grid-template-columns: 12.1cqw minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: 1.05cqw;
+  min-width: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: 1.12;
+  white-space: nowrap;
+}
+
+.mfc-wx-sun-data p > span,
+.mfc-wx-sun-data p > b {
+  display: block;
+  min-width: 0;
+  overflow: visible;
+  line-height: 1.12;
+  white-space: nowrap;
+}
+
+.mfc-wx-sun-data p > span {
+  justify-self: start;
+  color: #efeee5;
+}
+
+.mfc-wx-sun-data p > b {
+  justify-self: start;
+  color: #f0d047;
+  font-weight: 400;
+  text-align: left;
+}
+
+.mfc-wx-almanac-note {
+  grid-template-columns: 9.7cqw minmax(0, 1fr) !important;
+  column-gap: 1.05cqw !important;
+  margin-top: 1.05cqw !important;
+  font-size: 1.58cqw !important;
+}
+
+.mfc-wx-almanac-note > span,
+.mfc-wx-almanac-note > b {
+  font-size: 1.58cqw !important;
+  line-height: 1.14 !important;
+}
+
+.mfc-wx-almanac-note > b {
+  color: #efeee5 !important;
+}
+
+.mfc-wx-moon-data {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  justify-items: center;
+  align-content: center;
+  row-gap: .75cqw;
+  height: 100%;
+  min-width: 0;
+  padding: 1% 0 0 3%;
+  font-size: 1.9cqw;
+  line-height: 1.12;
+  text-align: center;
+}
+
+.mfc-wx-moon-data strong {
+  color: #efe8d3;
+  font-size: 2.05cqw;
+  font-weight: 400;
+  line-height: 1.12;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.mfc-wx-moon {
+  width: 10.6cqw;
+  height: 10.6cqw;
+  margin: .35cqw 0 .15cqw;
+}
+
+.mfc-wx-moon-data > span {
+  font-size: 1.92cqw;
+  line-height: 1.12;
+  white-space: nowrap;
+}
