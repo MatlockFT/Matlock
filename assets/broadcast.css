@@ -291,9 +291,9 @@ body {
   overflow-wrap: anywhere;
   margin: 0;
   font-family: var(--mfc-type-weather-display);
-  font-size: clamp(.92rem, 3.35cqw, 1.72rem);
+  font-size: clamp(1.05rem, 4.08cqw, 2.06rem);
   font-weight: 400;
-  line-height: 1.24;
+  line-height: 1.5;
   letter-spacing: 0;
   word-spacing: 0;
   text-transform: uppercase;
@@ -312,7 +312,7 @@ body {
   min-height: 0;
   overflow: hidden;
   overflow-wrap: anywhere;
-  margin: 2.8% 0 0;
+  margin: 3.7% 0 0;
   font-family: var(--mfc-type-weather-display);
   font-size: clamp(.65rem, 3.3cqw, 1.66rem);
   font-weight: 400;
