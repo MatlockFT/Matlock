@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-01T13:57:00.936Z"
+      "checkedAt": "2026-10-01T19:22:34.281Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-01T13:57:24.388Z",
+      "checkedAt": "2026-10-01T19:23:00.717Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -34874,7 +34874,7 @@
     {
       "id": "bobby-green",
       "name": "Bobby Green",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/bobby-green",
       "aliases": [
         "bobby-green"
@@ -36078,15 +36078,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": {
-        "event": "UFC 332",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
-      },
+      "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-09-28T11:35:11.102Z"
+        "checkedAt": "2026-10-01T19:22:34.281Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/bobby-green",
@@ -348719,7 +348715,7 @@
   ],
   "coverage": {
     "profileFailures": 29,
-    "activeFighters": 998,
+    "activeFighters": 997,
     "participantHistoriesRequested": 230,
     "verifiedParticipantHistories": 230,
     "ufcStatsNameMisses": 0,
