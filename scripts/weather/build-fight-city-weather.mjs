@@ -142,9 +142,11 @@ function condition(code, isDay = 1) {
   const c = Number(code);
   if (c === 0) return { label: isDay ? 'Sunny' : 'Clear', icon: isDay ? 'sunny' : 'clear' };
   if ([1, 2].includes(c)) return { label: 'Partly Cloudy', icon: 'partlyCloudy' };
-  if (c === 3 || [45, 48].includes(c)) return { label: c === 3 ? 'Cloudy' : 'Fog', icon: 'cloudy' };
+  if (c === 3) return { label: 'Cloudy', icon: 'cloudy' };
+  if ([45, 48].includes(c)) return { label: 'Fog', icon: 'fog' };
   if ([51, 53, 55, 56, 57].includes(c)) return { label: 'Drizzle', icon: 'rain' };
-  if ([61, 63, 65, 66, 67, 80, 81, 82].includes(c)) return { label: c >= 80 ? 'Showers' : 'Rain', icon: 'rain' };
+  if ([61, 63, 65, 66, 67].includes(c)) return { label: 'Rain', icon: 'rain' };
+  if ([80, 81, 82].includes(c)) return { label: 'Showers', icon: 'showers' };
   if ([71, 73, 75, 77, 85, 86].includes(c)) return { label: c >= 75 ? 'Heavy Snow' : 'Snow', icon: 'snow' };
   if ([95, 96, 99].includes(c)) return { label: 'Thunderstorms', icon: 'thunderstorm' };
   return { label: 'Variable', icon: 'partlyCloudy' };
