@@ -11,6 +11,7 @@ on:
       - "package-lock.json"
       - "scripts/news/build-news-feed.mjs"
       - "scripts/news/build-broadcast-videos.mjs"
+      - "scripts/news/build-japan-mma-news.mjs"
       - "scripts/news/dedupe-news-headlines.mjs"
       - "scripts/news/check-news-data.mjs"
       - "assets/data/news-lead-override.json"
@@ -61,6 +62,12 @@ jobs:
       - name: Validate generated news
         run: npm run check:news -- /tmp/mma-news.json
 
+      - name: Collect Japanese MMA stories
+        run: >-
+          node scripts/news/build-japan-mma-news.mjs
+          --output /tmp/japan-mma-news.json
+          --previous-url https://raw.githubusercontent.com/${{ github.repository }}/live-news-data/japan-mma-news.json
+
       - name: Collect full-length MMA YouTube videos
         run: >-
           node scripts/news/build-broadcast-videos.mjs
@@ -78,7 +85,8 @@ jobs:
           git rm -rf . >/dev/null 2>&1 || true
           cp /tmp/mma-news.json mma-news.json
           cp /tmp/broadcast-news-videos.json broadcast-news-videos.json
-          git add mma-news.json broadcast-news-videos.json
+          cp /tmp/japan-mma-news.json japan-mma-news.json
+          git add mma-news.json broadcast-news-videos.json japan-mma-news.json
           git commit -m "Refresh MMA news data"
           git push --force origin HEAD:live-news-data
 
