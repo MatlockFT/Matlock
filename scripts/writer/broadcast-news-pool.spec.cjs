@@ -281,7 +281,7 @@ test('Fight City Forecast advances through fight-day, extended and regional scre
   };
 
   await page.goto(fixture.origin + '/broadcast/');
-  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Forecast For');
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Fight Day Forecast');
   await expect(page.locator('[data-mfc-weather-screen]')).toContainText('MAIN CARD 6:00 PM MDT');
   await expect(page.locator('[data-mfc-weather-screen]')).toContainText('HIGH 84°');
 
@@ -306,11 +306,103 @@ test('Fight City Forecast advances through fight-day, extended and regional scre
     }
   };
   await page.reload();
-  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Forecast For Saturday');
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Regional Forecast');
   await expect(page.locator('.mfc-wx-regional-map')).toBeVisible();
   await expect(page.locator('.mfc-wx-map-city')).toHaveCount(5);
   await expect(page.locator('.mfc-wx-map-city.is-fight-city')).toContainText('Salt Lake City');
   await expect(page.locator('.mfc-wx-map-city.is-fight-city')).toContainText('84°');
+});
+
+test('Fight City weather layouts keep titles, event slug and content in separate lanes', async ({ page }) => {
+  async function showAt(seconds, revision) {
+    fixture.state = {
+      ...fixture.state,
+      live: {
+        ...fixture.state.live,
+        revision,
+        startedAt: new Date(Date.now() - seconds * 1000).toISOString(),
+        program: [{
+          id: 'fight-city-layout',
+          type: 'weather',
+          header: 'FIGHT CITY FORECAST',
+          eyebrow: 'LOCAL WEATHER',
+          title: 'FIGHT CITY FORECAST',
+          duration: 48
+        }]
+      }
+    };
+    await page.reload();
+    await expect(page.locator('[data-mfc-weather]')).toBeVisible();
+  }
+
+  function overlaps(a, b) {
+    return a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+  }
+
+  async function expectHeaderClear() {
+    const layout = await page.evaluate(() => {
+      const title = document.querySelector('.mfc-wx-page-title')?.getBoundingClientRect();
+      const event = document.querySelector('.mfc-wx-eventline')?.getBoundingClientRect();
+      const screen = document.querySelector('[data-mfc-weather-screen]')?.getBoundingClientRect();
+      return {
+        title: title && { left:title.left,right:title.right,top:title.top,bottom:title.bottom },
+        event: event && { left:event.left,right:event.right,top:event.top,bottom:event.bottom },
+        screen: screen && { left:screen.left,right:screen.right,top:screen.top,bottom:screen.bottom }
+      };
+    });
+    expect(layout.title).toBeTruthy();
+    expect(layout.event).toBeTruthy();
+    expect(overlaps(layout.title, layout.event)).toBe(false);
+    expect(layout.title.left).toBeGreaterThanOrEqual(layout.screen.left);
+    expect(layout.event.right).toBeLessThanOrEqual(layout.screen.right + 1);
+  }
+
+  await page.goto(fixture.origin + '/broadcast/');
+  await showAt(1, 'layout-current');
+  await expectHeaderClear();
+  const statRows = await page.locator('.mfc-wx-current-right p').evaluateAll(rows =>
+    rows.map(row => ({ h: row.getBoundingClientRect().height, text: row.textContent }))
+  );
+  expect(statRows).toHaveLength(5);
+  expect(statRows.find(row => row.text.includes('PRESSURE'))?.text).toContain('IN.');
+
+  await showAt(13, 'layout-fightday');
+  await expectHeaderClear();
+  await expect(page.locator('.mfc-wx-fight-time-slot')).toHaveCount(4);
+  const footerOverflow = await page.locator('.mfc-wx-fight-time').evaluate(node =>
+    node.scrollWidth > node.clientWidth + 1 || node.scrollHeight > node.clientHeight + 1
+  );
+  expect(footerOverflow).toBe(false);
+
+  await showAt(22, 'layout-extended');
+  await expectHeaderClear();
+  await expect(page.locator('.mfc-wx-day')).toHaveCount(5);
+
+  await showAt(32, 'layout-regional');
+  await expectHeaderClear();
+  const cityRects = await page.locator('.mfc-wx-map-city').evaluateAll(nodes =>
+    nodes.map(node => {
+      const r = node.getBoundingClientRect();
+      return { left:r.left,right:r.right,top:r.top,bottom:r.bottom };
+    })
+  );
+  expect(cityRects.length).toBeLessThanOrEqual(5);
+  for (let i = 0; i < cityRects.length; i += 1) {
+    for (let j = i + 1; j < cityRects.length; j += 1) {
+      const a = cityRects[i], b = cityRects[j];
+      const width = Math.max(0, Math.min(a.right,b.right) - Math.max(a.left,b.left));
+      const height = Math.max(0, Math.min(a.bottom,b.bottom) - Math.max(a.top,b.top));
+      expect(width * height).toBeLessThan(120);
+    }
+  }
+
+  await showAt(42, 'layout-almanac');
+  await expectHeaderClear();
+  const sunrise = await page.locator('.mfc-wx-sun-data p').first().evaluate(node => ({
+    scrollWidth: node.scrollWidth, clientWidth: node.clientWidth, scrollHeight: node.scrollHeight, clientHeight: node.clientHeight
+  }));
+  expect(sunrise.scrollWidth).toBeLessThanOrEqual(sunrise.clientWidth + 1);
+  expect(sunrise.scrollHeight).toBeLessThanOrEqual(sunrise.clientHeight + 1);
 });
 
 test('Broadcast Control can add a Fight City Forecast block without manual city entry', async ({ page }) => {
