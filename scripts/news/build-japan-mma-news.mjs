@@ -233,7 +233,8 @@ async function translateStory(story, previous) {
   if (
     cached?.originalTitle === story.originalTitle &&
     cached?.title &&
-    cached?.translation?.language === "ja"
+    cached?.translation?.language === "ja" &&
+    Number(cached?.translation?.version) === 2
   ) {
     return {
       ...story,
@@ -268,6 +269,7 @@ async function translateStory(story, previous) {
     excerpt,
     translation: {
       language: "ja",
+      version: 2,
       mode: translated ? "literal-machine+mma-glossary" : "original-fallback",
       originalPreserved: true,
       glossaryProtected: translated
