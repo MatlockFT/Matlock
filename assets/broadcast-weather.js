@@ -61,8 +61,15 @@
   function eventLine() {
     if (!data?.event) return '';
     const event = data.event;
-    const place = [event.city, event.state || event.country].filter(Boolean).join(', ');
-    return '<div class="mfc-wx-eventline"><strong>' + esc(event.promotion || 'UFC') + ' ' + esc(event.title || '') + '</strong><span>' + esc(event.venue || place) + '</span></div>';
+    const place = [event.city, event.state || event.country].filter(Boolean).join(', ') || 'LOCATION TBA';
+    const venue = String(event.venue || '').trim();
+    return '<div class="mfc-wx-eventline">'
+      + '<strong>' + esc(event.promotion || 'UFC') + ' ' + esc(event.title || '') + '</strong>'
+      + '<span class="mfc-wx-event-city">' + esc(place) + '</span>'
+      + (venue && venue.toLowerCase() !== place.toLowerCase()
+        ? '<span class="mfc-wx-event-venue">' + esc(venue) + '</span>'
+        : '')
+      + '</div>';
   }
 
   function fitWeatherSingleLine(node, minimumScale = .7) {
