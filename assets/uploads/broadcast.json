@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-01T07:10:45.844Z",
+  "updatedAt": "2026-10-01T07:20:35.900Z",
   "draft": {
-    "revision": "draft-1790838645844",
-    "updatedAt": "2026-10-01T07:10:45.844Z",
+    "revision": "draft-1790839235900",
+    "updatedAt": "2026-10-01T07:20:35.900Z",
     "startedAt": "2026-09-30T04:00:00.000Z",
     "program": [
       {
@@ -145,6 +145,16 @@
         "duration": 60,
         "source": "Uncrowned",
         "sourceUrl": "https://sports.yahoo.com/articles/aljamain-sterling-given-one-hour-221926636.html"
+      },
+      {
+        "id": "program-3ab38964",
+        "type": "video",
+        "header": "MMA VIDEO",
+        "eyebrow": "VIDEO",
+        "title": "Video by titos.cantina",
+        "mediaUrl": "https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/broadcast-video-Video-by-titos.cantina-20261001072003475.mp4",
+        "duration": 247.875,
+        "videoAudio": true
       }
     ],
     "music": [
@@ -221,7 +231,18 @@
       "duckRelease": 1.5,
       "crossfade": 2.5
     },
-    "tickerSpeed": 0.4
+    "tickerSpeed": 0.4,
+    "mediaLibrary": [
+      {
+        "url": "https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/broadcast-video-Video-by-titos.cantina-20261001072003475.mp4",
+        "name": "broadcast-video-Video-by-titos.cantina-20261001072003475.mp4",
+        "id": 602687498,
+        "size": 68067711,
+        "contentType": "video/mp4",
+        "createdAt": "2026-10-01T07:20:31.748Z",
+        "duration": 247.875
+      }
+    ]
   },
   "live": {
     "revision": "live-1790838645844",
