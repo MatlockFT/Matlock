@@ -1,0 +1,40 @@
+name: MMA news feed watchdog
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "6,26,46 * * * *"
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: mma-news-watchdog
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Dispatch news refresh if snapshot is stale
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          generated="$(
+            gh api "repos/${{ github.repository }}/contents/mma-news.json?ref=live-news-data" --jq '.content'               | tr -d '\n'               | base64 --decode               | jq -r '.generatedAt // empty'
+          )"
+          stamp="$(date -u -d "$generated" +%s 2>/dev/null || echo 0)"
+          now="$(date -u +%s)"
+          age=$((now - stamp))
+
+          if [ "$stamp" -gt 0 ] && [ "$age" -lt 1200 ]; then
+            echo "News snapshot is fresh: $generated"
+            exit 0
+          fi
+
+          echo "News snapshot is stale or missing: ${generated:-unknown}"
+          gh workflow run update-news-feed.yml --ref main
