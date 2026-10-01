@@ -1,0 +1,62 @@
+name: Repair broadcast video compatibility v2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/repair-broadcast-video-v2.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      SOURCE_URL: "https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/broadcast-video-Video-by-titos.cantina-20261001072003475.mp4"
+      RELEASE_TAG: "writer-media-2026-10"
+      TARGET_NAME: "broadcast-video-Video-by-titos.cantina-20261001072003475-h264.mp4"
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Confirm ffmpeg tools
+        run: |
+          command -v ffmpeg
+          command -v ffprobe
+          ffmpeg -version | head -n 2
+
+      - name: Download uploaded source
+        run: |
+          curl -L --fail --retry 3 --retry-delay 2 "$SOURCE_URL" -o source.mp4
+          test -s source.mp4
+          ls -lh source.mp4
+
+      - name: Inspect source codecs
+        run: |
+          ffprobe -hide_banner -v error \
+            -show_entries stream=index,codec_name,codec_long_name,codec_type,profile,pix_fmt,width,height,r_frame_rate:format=duration,size,format_name \
+            -of json source.mp4
+
+      - name: Transcode to browser-safe MP4
+        run: |
+          ffmpeg -hide_banner -y -i source.mp4 \
+            -map 0:v:0 -map 0:a? \
+            -c:v libx264 -preset fast -crf 20 \
+            -pix_fmt yuv420p -profile:v high -level 4.1 \
+            -c:a aac -b:a 160k \
+            -movflags +faststart \
+            "$TARGET_NAME"
+
+      - name: Verify repaired file
+        run: |
+          ffprobe -hide_banner -v error \
+            -show_entries stream=index,codec_name,codec_long_name,codec_type,profile,pix_fmt,width,height,r_frame_rate:format=duration,size,format_name \
+            -of json "$TARGET_NAME"
+
+      - name: Upload repaired video
+        run: |
+          gh release upload "$RELEASE_TAG" "$TARGET_NAME" --clobber
