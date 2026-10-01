@@ -27,6 +27,7 @@
   let fitFrame = 0;
   const image = root.querySelector('[data-mfc-image]');
   const video = root.querySelector('[data-mfc-video]');
+  if (video) video.loop = true;
   const panel = root.querySelector('[data-mfc-panel]');
   const youtubeHost = root.querySelector('[data-mfc-youtube]');
   const weatherPanel = root.querySelector('[data-mfc-weather]');
@@ -92,6 +93,7 @@
   const failedMedia = new Map();
   const pendingPlay = new WeakSet();
   const waitingSince = new WeakMap();
+  const measuredMusicDurations = new Map();
   let soundBlocked = false;
   const youtube = youtubeHost && window.matlockYoutubePlayer?.(youtubeHost, {
     error: url => {
@@ -165,6 +167,15 @@
     element.addEventListener('error', () => failMedia(element));
     element.addEventListener('waiting', () => { if (!waitingSince.has(element)) waitingSince.set(element, Date.now()); });
     element.addEventListener('playing', () => { waitingSince.delete(element); if (!soundBlocked) reportPlayback(''); });
+    if (element === musicA || element === musicB) {
+      const rememberDuration = () => {
+        const key = element.dataset.trackId;
+        const duration = Number(element.duration);
+        if (key && Number.isFinite(duration) && duration > .25) measuredMusicDurations.set(key, duration);
+      };
+      element.addEventListener('loadedmetadata', rememberDuration);
+      element.addEventListener('durationchange', rememberDuration);
+    }
   }
   image.addEventListener('error', () => {
     if (image.dataset.source) failedMedia.set(image.dataset.source, Date.now() + 60000);
@@ -212,9 +223,19 @@
       && (!['video', 'image', 'youtube'].includes(item.type) || sourceAvailable(item.mediaUrl))) : [];
   }
 
+  function musicTrackKey(track) {
+    return String(track?.id || '') + ':' + String(track?.url || '');
+  }
+
+  function musicDuration(track) {
+    const measured = measuredMusicDurations.get(musicTrackKey(track));
+    if (Number.isFinite(measured) && measured > .25) return measured;
+    return positive(track?.sourceDuration || track?.duration);
+  }
+
   function musicItems() {
     return Array.isArray(channel?.music) ? channel.music.filter(item => {
-      if (!sourceAvailable(item?.url) || positive(item.duration) <= 0) return false;
+      if (!sourceAvailable(item?.url) || musicDuration(item) <= 0) return false;
       const youtubeId = String(item.youtubeId || youtubeVideoId(item.url) || '');
       return !youtubeId || Boolean(musicYoutubeA && musicYoutubeB);
     }) : [];
@@ -250,9 +271,25 @@
   }
 
   let tickerMeasureFrame = 0;
+  let tickerBaseLoop = '';
+
+  function ensureTickerCoverage() {
+    if (!ticker || !tickerClone || !tickerBaseLoop) return;
+    ticker.textContent = tickerBaseLoop;
+    tickerClone.textContent = tickerBaseLoop;
+    const stageWidth = Math.max(1, screen?.clientWidth || 640);
+    const baseWidth = Math.max(1, ticker.offsetWidth);
+    if (baseWidth < stageWidth * 1.35) {
+      const repeats = Math.max(2, Math.ceil((stageWidth * 1.35) / baseWidth));
+      const expanded = tickerBaseLoop.repeat(repeats);
+      ticker.textContent = expanded;
+      tickerClone.textContent = expanded;
+    }
+  }
 
   function updateTickerMetrics({ restart = false } = {}) {
     if (!tickerTrack || !ticker) return;
+    ensureTickerCoverage();
     const speed = clamp(Number(channel?.tickerSpeed) || 1, .4, 2.5);
     const sequenceWidth = Math.max(1, ticker.offsetWidth);
     const stageWidth = Math.max(1, screen?.clientWidth || 640);
@@ -260,9 +297,9 @@
     const seconds = clamp(sequenceWidth / pixelsPerSecond, 8, 300);
 
     const phase = seconds > 0 ? mod(rawElapsed(), seconds) : 0;
-    tickerTrack.style.setProperty('--mfc-ticker-distance', `-${sequenceWidth}px`);
-    tickerTrack.style.setProperty('--mfc-ticker-seconds', `${seconds}s`);
-    tickerTrack.style.setProperty('--mfc-ticker-phase', `-${phase}s`);
+    tickerTrack.style.setProperty('--mfc-ticker-distance', '-' + sequenceWidth + 'px');
+    tickerTrack.style.setProperty('--mfc-ticker-seconds', seconds + 's');
+    tickerTrack.style.setProperty('--mfc-ticker-phase', '-' + phase + 's');
 
     if (restart) {
       tickerTrack.style.animation = 'none';
@@ -281,9 +318,8 @@
 
   function renderTicker() {
     const text = textForTicker();
-    const loopText = `${text}   •   `;
-    ticker.textContent = loopText;
-    tickerClone.textContent = loopText;
+    tickerBaseLoop = text + '   •   ';
+    ensureTickerCoverage();
     scheduleTickerMetrics({ restart: true });
   }
 
@@ -544,7 +580,7 @@
 
   function ensureAudioSource(element, track, targetTime) {
     if (!track?.url) return;
-    const trackId = String(track.id || '') + ':' + track.url;
+    const trackId = musicTrackKey(track);
     if ((element.dataset.trackId !== trackId || element.error)) {
       waitingSince.delete(element);
       element.pause();
@@ -593,16 +629,13 @@
   function musicPosition(tracks, elapsed) {
     if (!tracks.length) return null;
     const globalCrossfade = clamp(channel?.audio?.crossfade ?? 2.5, 0, 12);
+    const durations = tracks.map(musicDuration);
     const overlaps = tracks.map((track, index) => {
       if (tracks.length < 2) return 0;
-      const next = tracks[(index + 1) % tracks.length];
-      return Math.min(
-        globalCrossfade,
-        positive(track.duration) * .45,
-        positive(next.duration) * .45
-      );
+      const nextIndex = (index + 1) % tracks.length;
+      return Math.min(globalCrossfade, durations[index] * .45, durations[nextIndex] * .45);
     });
-    const slots = tracks.map((track, index) => Math.max(.05, positive(track.duration) - overlaps[index]));
+    const slots = durations.map((duration, index) => Math.max(.05, duration - overlaps[index]));
     const total = slots.reduce((sum, value) => sum + value, 0);
     const position = mod(elapsed, total);
     let cursor = 0;
@@ -616,15 +649,17 @@
     const incomingOverlap = overlaps[previousIndex];
     const previous = tracks[previousIndex];
     return {
-      item: tracks[index],
-      index,
-      local,
-      total,
-      previous,
-      previousIndex,
-      incomingOverlap,
-      previousLocal: Math.max(0, positive(previous.duration) - incomingOverlap + local)
+      item: tracks[index], index, local, total, durations, overlaps,
+      previous, previousIndex, incomingOverlap,
+      previousLocal: Math.max(0, durations[previousIndex] - incomingOverlap + local)
     };
+  }
+
+  function primeNextMusicTrack(tracks, position, inCrossfade) {
+    if (inCrossfade || tracks.length < 2 || !standbyMusic) return;
+    const next = tracks[(position.index + 1) % tracks.length];
+    if (!next || youtubeMusicId(next)) return;
+    ensureAudioSource(standbyMusic, next, 0);
   }
 
   function syncMusic(elapsed, programItem, deltaSeconds) {
@@ -656,6 +691,10 @@
     const crossfadeProgress = inCrossfade
       ? clamp(pos.local / pos.incomingOverlap, 0, 1)
       : 1;
+    const incomingBlend = inCrossfade ? Math.sin(crossfadeProgress * Math.PI / 2) : 1;
+    const outgoingBlend = inCrossfade ? Math.cos(crossfadeProgress * Math.PI / 2) : 0;
+
+    primeNextMusicTrack(tracks, pos, inCrossfade);
 
     const desiredDuck = duckTarget(programItem);
     const attack = Math.max(.05, Number(channel?.audio?.duckAttack) || .4);
@@ -665,22 +704,24 @@
     if (!Number.isFinite(musicLevel)) musicLevel = desiredDuck;
     else musicLevel += (desiredDuck - musicLevel) * clamp(speed, 0, 1);
 
-    const remaining = Math.max(0, positive(track.duration) - pos.local);
+    const currentDuration = pos.durations?.[pos.index] || musicDuration(track);
+    const remaining = Math.max(0, currentDuration - pos.local);
     const fadeIn = Math.max(0, Number(track.fadeIn) || 0);
     const fadeOut = Math.max(0, Number(track.fadeOut) || 0);
     const ownFadeIn = fadeIn > 0 ? clamp(pos.local / fadeIn, 0, 1) : 1;
     const ownFadeOut = fadeOut > 0 ? clamp(remaining / fadeOut, 0, 1) : 1;
-    const currentEnvelope = Math.min(ownFadeIn, ownFadeOut, crossfadeProgress);
+    const currentEnvelope = Math.min(ownFadeIn, ownFadeOut, incomingBlend);
     const currentVolume = clamp(baseMusicVolume(track) * musicLevel * currentEnvelope, 0, 1);
 
     let previousVolume = 0;
     if (inCrossfade) {
-      const previousRemaining = Math.max(0, positive(pos.previous.duration) - pos.previousLocal);
+      const previousDuration = pos.durations?.[pos.previousIndex] || musicDuration(pos.previous);
+      const previousRemaining = Math.max(0, previousDuration - pos.previousLocal);
       const previousFadeOut = Math.max(0, Number(pos.previous.fadeOut) || 0);
       const ownPreviousFade = previousFadeOut > 0
         ? clamp(previousRemaining / previousFadeOut, 0, 1)
         : 1;
-      const previousEnvelope = Math.min(ownPreviousFade, 1 - crossfadeProgress);
+      const previousEnvelope = Math.min(ownPreviousFade, outgoingBlend);
       previousVolume = clamp(baseMusicVolume(pos.previous) * musicLevel * previousEnvelope, 0, 1);
     }
 
