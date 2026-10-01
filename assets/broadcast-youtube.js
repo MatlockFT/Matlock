@@ -86,4 +86,68 @@
       sound(enabled) { if (desired) { desired.muted = !enabled; apply(); player?.playVideo?.(); } }
     };
   };
+
+  window.matlockYoutubeProbe = async videoId => {
+    const id = String(videoId || '').trim();
+    if (!/^[A-Za-z0-9_-]{6,}$/.test(id)) throw new Error('Invalid YouTube video ID.');
+    await api();
+
+    return new Promise((resolve, reject) => {
+      const host = document.createElement('div');
+      host.style.cssText = 'position:fixed;left:-10000px;top:0;width:2px;height:2px;opacity:0;pointer-events:none;overflow:hidden;';
+      document.body.append(host);
+
+      let player = null;
+      let settled = false;
+      let poll = 0;
+      const timeout = window.setTimeout(() => finish(new Error('Could not read this YouTube video.')), 15000);
+
+      function cleanup() {
+        window.clearTimeout(timeout);
+        window.clearInterval(poll);
+        try { player?.destroy?.(); } catch {}
+        host.remove();
+      }
+
+      function finish(error, value) {
+        if (settled) return;
+        settled = true;
+        cleanup();
+        if (error) reject(error);
+        else resolve(value);
+      }
+
+      function read() {
+        if (!player) return;
+        const duration = Number(player.getDuration?.());
+        if (!Number.isFinite(duration) || duration <= 0) return;
+        const data = player.getVideoData?.() || {};
+        finish(null, {
+          duration,
+          title: String(data.title || '').trim()
+        });
+      }
+
+      player = new YT.Player(host, {
+        host: 'https://www.youtube-nocookie.com',
+        width: '2',
+        height: '2',
+        playerVars: {
+          playsinline: 1,
+          controls: 0,
+          rel: 0,
+          origin: location.origin
+        },
+        events: {
+          onReady: event => {
+            event.target.mute?.();
+            event.target.cueVideoById?.(id);
+            poll = window.setInterval(read, 200);
+          },
+          onStateChange: read,
+          onError: () => finish(new Error('This YouTube video could not be loaded.'))
+        }
+      });
+    });
+  };
 })();
