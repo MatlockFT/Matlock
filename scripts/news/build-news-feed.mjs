@@ -391,6 +391,22 @@ function resolvedUrl(value, baseUrl) {
     }
 }
 
+function isGenericArticleImage(value) {
+    const url = safeUrl(value);
+    if (!url) return true;
+
+    try {
+        const parsed = new URL(url);
+        const haystack = decodeURIComponent(
+            (parsed.pathname + " " + parsed.search).toLowerCase()
+        );
+
+        return /(?:yahoo[_-]?default[_-]?logo|default[_-](?:social|share|logo|image)|social[_-]?default|site[_-]?logo|brand[_-]?logo|favicon|apple-touch-icon|placeholder[_-]?image|no[_-]?image)/i.test(haystack);
+    } catch {
+        return true;
+    }
+}
+
 function tagAttribute(tag, name) {
     const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const match = tag.match(
@@ -442,7 +458,7 @@ function articleImageFromHtml(html, baseUrl) {
         if (!imageKeys.has(key)) continue;
 
         const url = resolvedUrl(tagAttribute(tag, "content"), baseUrl);
-        if (url) return url;
+        if (url && !isGenericArticleImage(url)) return url;
     }
 
     for (const match of html.matchAll(/<link\b[^>]*>/gi)) {
@@ -454,7 +470,7 @@ function articleImageFromHtml(html, baseUrl) {
         if (!relationships.includes("image_src")) continue;
 
         const url = resolvedUrl(tagAttribute(tag, "href"), baseUrl);
-        if (url) return url;
+        if (url && !isGenericArticleImage(url)) return url;
     }
 
     for (
@@ -484,7 +500,7 @@ function articleImageFromHtml(html, baseUrl) {
                 }
 
                 const url = structuredArticleImage(entry.image, baseUrl);
-                if (url) return url;
+                if (url && !isGenericArticleImage(url)) return url;
             }
         } catch {
             // Some publishers include malformed or non-JSON data in this tag.
@@ -505,7 +521,8 @@ async function fetchArticleImage(story) {
         const response = await fetch(story.url, {
             headers: {
                 accept: "text/html,application/xhtml+xml;q=0.9,*/*;q=0.5",
-                "user-agent": "MMA Matlock News Aggregator/1.0 (+https://mmamatlock.com/news/)"
+                "accept-language": "en-US,en;q=0.9",
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
             },
             redirect: "follow",
             signal: controller.signal
@@ -806,7 +823,7 @@ function itemImage(item) {
 
     for (const candidate of candidates) {
         const image = imageCandidate(candidate);
-        if (image) return image;
+        if (image && !isGenericArticleImage(image)) return image;
     }
 
     const html = textValue(
@@ -819,7 +836,10 @@ function itemImage(item) {
         /<img[^>]+src=["'](https?:\/\/[^"']+)["']/i
     );
 
-    return safeUrl(imageMatch?.[1]);
+    const inlineImage = safeUrl(imageMatch?.[1]);
+    return inlineImage && !isGenericArticleImage(inlineImage)
+        ? inlineImage
+        : "";
 }
 
 function itemDate(item) {
