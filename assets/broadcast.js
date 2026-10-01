@@ -521,9 +521,27 @@
     }
   }
 
+  function preloadUpcomingVideo(items, currentIndex) {
+    if (!video || !Array.isArray(items) || items.length < 2) return;
+    for (let step = 1; step < items.length; step += 1) {
+      const candidate = items[(currentIndex + step + items.length) % items.length];
+      if (candidate?.type !== 'video' || !candidate.mediaUrl || !sourceAvailable(candidate.mediaUrl)) continue;
+      const url = String(candidate.mediaUrl);
+      if (video.dataset.source === url && !video.error) return;
+      waitingSince.delete(video);
+      video.pause();
+      video.preload = 'auto';
+      video.dataset.source = url;
+      video.src = url;
+      video.load();
+      return;
+    }
+  }
+
   function syncProgram() {
     const elapsed = rawElapsed();
-    const position = timelinePosition(programItems(), elapsed);
+    const items = programItems();
+    const position = timelinePosition(items, elapsed);
     const item = position.item;
     const id = JSON.stringify(item || null);
     if (id !== currentProgramId) {
@@ -540,6 +558,7 @@
     }
 
     if (item?.type === 'video' && item.mediaUrl) {
+      video.preload = 'auto';
       const mediaDuration = Number.isFinite(video.duration) && video.duration > 0 ? video.duration : positive(item.duration);
       const target = mediaDuration > 0 ? mod(position.local, mediaDuration) : position.local;
       if (Number.isFinite(video.duration) && Math.abs((video.currentTime || 0) - target) > .8) {
@@ -548,7 +567,11 @@
       video.muted = !soundEnabled || item.videoAudio === false;
       video.volume = clamp(channel?.audio?.master ?? 1, 0, 1) * clamp(channel?.audio?.video ?? 1, 0, 1);
       safePlay(video);
-    } else { video.pause(); waitingSince.delete(video); }
+    } else {
+      video.pause();
+      waitingSince.delete(video);
+      preloadUpcomingVideo(items, position.index);
+    }
 
     if (item?.type === 'youtube') youtube.sync({ id: item.youtubeId, url: item.mediaUrl, time: position.local,
       muted: !soundEnabled || item.videoAudio === false,
