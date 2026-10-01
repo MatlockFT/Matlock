@@ -36,6 +36,7 @@
   const tickerPreview = app.querySelector('[data-ticker-preview]');
   const tickerPreviewClone = app.querySelector('[data-ticker-preview-clone]');
   const tickerPreviewTrack = app.querySelector('[data-ticker-preview-track]');
+  const tickerPreviewStage = app.querySelector('[data-ticker-preview-stage]');
   const tickerPreviewDate = app.querySelector('[data-ticker-preview-date]');
   const tickerPreviewClock = app.querySelector('[data-ticker-preview-clock]');
   const programTrack = app.querySelector('[data-program-track]');
@@ -299,26 +300,55 @@
     tickerPreviewClock.textContent = zone ? time + ' ' + zone : time;
   }
 
+  let tickerPreviewMeasureFrame = 0;
+
+  function updateTickerPreviewMetrics({ restart = false } = {}) {
+    if (!tickerPreview || !tickerPreviewTrack || !tickerPreviewStage) return;
+    const speed = clamp(Number(working?.tickerSpeed) || 1, .4, 2.5);
+    const sequenceWidth = Math.max(1, tickerPreview.offsetWidth);
+    const stageWidth = Math.max(1, tickerPreviewStage.clientWidth || 640);
+    const pixelsPerSecond = Math.max(1, stageWidth * .15 * speed);
+    const seconds = clamp(sequenceWidth / pixelsPerSecond, 8, 300);
+
+    tickerPreviewTrack.style.setProperty('--mfc-ticker-preview-distance', '-' + sequenceWidth + 'px');
+    tickerPreviewTrack.style.setProperty('--mfc-ticker-preview-seconds', seconds + 's');
+
+    if (restart) {
+      tickerPreviewTrack.style.animation = 'none';
+      void tickerPreviewTrack.offsetWidth;
+      tickerPreviewTrack.style.removeProperty('animation');
+    }
+  }
+
+  function scheduleTickerPreviewMetrics(options = {}) {
+    if (tickerPreviewMeasureFrame) cancelAnimationFrame(tickerPreviewMeasureFrame);
+    tickerPreviewMeasureFrame = requestAnimationFrame(() => {
+      tickerPreviewMeasureFrame = 0;
+      updateTickerPreviewMetrics(options);
+    });
+  }
+
   function renderTickerPreview() {
     if (!tickerPreview) return;
     const entries = Array.isArray(working?.ticker)
       ? working.ticker.map(value => String(value || '').trim()).filter(Boolean)
       : [];
     const text = (entries.length ? entries : ['MATLOCK FIGHT CHANNEL', 'MMA NEWS', 'RESULTS', 'BREAKDOWNS']).join('   •   ');
-    tickerPreview.textContent = text;
-    if (tickerPreviewClone) tickerPreviewClone.textContent = text;
+    const loopText = text + '   •   ';
+    tickerPreview.textContent = loopText;
+    if (tickerPreviewClone) tickerPreviewClone.textContent = loopText;
 
     const speed = clamp(Number(working?.tickerSpeed) || 1, .4, 2.5);
-    const baseSeconds = clamp(text.length * .16, 24, 110);
-    const seconds = clamp(baseSeconds / speed, 8, 300);
-    if (tickerPreviewTrack) tickerPreviewTrack.style.setProperty('--mfc-ticker-preview-seconds', seconds + 's');
-
     if (tickerSpeedInput) tickerSpeedInput.value = String(Math.round(speed * 100));
     if (tickerSpeedOutput) tickerSpeedOutput.textContent = Math.round(speed * 100) + '%';
     renderTickerPreviewClock();
+    scheduleTickerPreviewMetrics({ restart: true });
   }
 
   setInterval(renderTickerPreviewClock, 1000);
+  window.addEventListener('resize', () => scheduleTickerPreviewMetrics());
+  document.fonts?.ready.then(() => scheduleTickerPreviewMetrics({ restart: true }));
+  document.fonts?.addEventListener('loadingdone', () => scheduleTickerPreviewMetrics({ restart: true }));
 
   function refreshProgramMonitor() {
     if (!programFrame?.src) return;
