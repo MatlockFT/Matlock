@@ -27,6 +27,7 @@
   const video = root.querySelector('[data-mfc-video]');
   const panel = root.querySelector('[data-mfc-panel]');
   const youtubeHost = root.querySelector('[data-mfc-youtube]');
+  const weatherPanel = root.querySelector('[data-mfc-weather]');
   const dateNode = root.querySelector('[data-mfc-date]');
   const clockNode = root.querySelector('[data-mfc-clock]');
   const nowNode = root.querySelector('[data-mfc-now]');
@@ -293,21 +294,25 @@
     const isVideo = kind === 'video';
     const isImage = kind === 'image';
     const isYoutube = kind === 'youtube';
+    const isWeather = kind === 'weather';
     youtubeHost.hidden = !isYoutube;
     if (!isYoutube) youtube?.stop();
+    if (!isWeather) window.matlockFightCityWeather?.hide?.();
     screen.classList.remove('is-compact-youtube');
     if (isYoutube) {
       const bounds = panel.getBoundingClientRect();
       screen.classList.toggle('is-compact-youtube', bounds.width < 200 || bounds.height < 200);
     }
     panel.classList.toggle('has-youtube', isYoutube);
+    panel.classList.toggle('has-weather', isWeather);
     video.hidden = !isVideo;
     image.hidden = !isImage;
+    if (weatherPanel) weatherPanel.hidden = !isWeather;
     panel.classList.toggle('has-media', isVideo || isImage || isYoutube);
-    eyebrow.hidden = isVideo || isImage || isYoutube;
-    title.hidden = isVideo || isImage || isYoutube;
-    bodyCopy.hidden = isVideo || isImage || isYoutube;
-    copy.hidden = isVideo || isImage || isYoutube;
+    eyebrow.hidden = isVideo || isImage || isYoutube || isWeather;
+    title.hidden = isVideo || isImage || isYoutube || isWeather;
+    bodyCopy.hidden = isVideo || isImage || isYoutube || isWeather;
+    copy.hidden = isVideo || isImage || isYoutube || isWeather;
   }
 
   function largestFit(minimum, maximum, apply, fits) {
@@ -444,7 +449,8 @@
       event: 'UPCOMING FIGHTS',
       breaking: 'BREAKING NEWS',
       image: 'MMA NEWS',
-      video: 'MMA VIDEO'
+      video: 'MMA VIDEO',
+      weather: 'FIGHT CITY FORECAST'
     }[kind] || 'MMA NEWS')).toUpperCase();
 
     eyebrow.textContent = String(item.eyebrow || ({
@@ -453,7 +459,8 @@
       event: 'NEXT EVENT',
       breaking: 'BREAKING',
       image: 'PHOTO',
-      video: 'VIDEO'
+      video: 'VIDEO',
+      weather: 'LOCAL WEATHER'
     }[kind] || 'MATLOCK FIGHT CHANNEL')).toUpperCase();
 
     title.textContent = String(item.title || 'MATLOCK FIGHT CHANNEL').toUpperCase();
@@ -494,6 +501,10 @@
     if (item) progressNode.textContent = `${fmt(position.local)} / ${fmt(item.duration)}`;
     else progressNode.textContent = '00:00 / 00:00';
     showCopyPage(position);
+
+    if (item?.type === 'weather') {
+      window.matlockFightCityWeather?.show?.(item, position);
+    }
 
     if (item?.type === 'video' && item.mediaUrl) {
       const mediaDuration = Number.isFinite(video.duration) && video.duration > 0 ? video.duration : positive(item.duration);
