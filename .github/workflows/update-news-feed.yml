@@ -13,6 +13,8 @@ on:
       - "scripts/news/build-broadcast-videos.mjs"
       - "scripts/news/build-japan-mma-news.mjs"
       - "scripts/news/japan-mma-glossary.json"
+      - "scripts/weather/build-fight-city-weather.mjs"
+      - "_data/upcoming_events.json"
       - "scripts/news/dedupe-news-headlines.mjs"
       - "scripts/news/check-news-data.mjs"
       - "assets/data/news-lead-override.json"
@@ -70,6 +72,9 @@ jobs:
           --output /tmp/japan-mma-news.json
           --previous-url https://raw.githubusercontent.com/${{ github.repository }}/live-news-data/japan-mma-news.json
 
+      - name: Build Fight City Forecast
+        run: node scripts/weather/build-fight-city-weather.mjs --output /tmp/fight-city-weather.json
+
       - name: Collect full-length MMA YouTube videos
         run: >-
           node scripts/news/build-broadcast-videos.mjs
@@ -88,7 +93,8 @@ jobs:
           cp /tmp/mma-news.json mma-news.json
           cp /tmp/broadcast-news-videos.json broadcast-news-videos.json
           cp /tmp/japan-mma-news.json japan-mma-news.json
-          git add mma-news.json broadcast-news-videos.json japan-mma-news.json
+          cp /tmp/fight-city-weather.json fight-city-weather.json
+          git add mma-news.json broadcast-news-videos.json japan-mma-news.json fight-city-weather.json
           git commit -m "Refresh MMA news data"
           git push --force origin HEAD:live-news-data
 
