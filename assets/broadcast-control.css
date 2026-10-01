@@ -1201,6 +1201,22 @@ label.mfc-button {
   font-size: .72rem;
 }
 
+.mfc-ticker-speed-control > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mfc-ticker-speed-control > span strong {
+  color: var(--ctl-accent);
+  font-size: .72rem;
+}
+
+.mfc-ticker-speed-control input[type="range"] {
+  width: 100%;
+}
+
 .mfc-graphics-editor p,
 .mfc-graphics-notes p {
   margin: 0;
