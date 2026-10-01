@@ -230,7 +230,9 @@
     const text = textForTicker();
     ticker.textContent = text;
     tickerClone.textContent = text;
-    const seconds = clamp(text.length * .16, 24, 110);
+    const speed = clamp(Number(channel?.tickerSpeed) || 1, .4, 2.5);
+    const baseSeconds = clamp(text.length * .16, 24, 110);
+    const seconds = clamp(baseSeconds / speed, 8, 300);
     tickerTrack.style.setProperty('--mfc-ticker-seconds', `${seconds}s`);
   }
 
