@@ -82,6 +82,15 @@ test('quick additions preserve source metadata, prevent duplicates, undo, save a
   await expect(page.locator('[data-news-id="abcdefghijk"]').getByRole('button', { name: 'In draft' })).toBeDisabled();
 });
 
+test('Refresh button requests a real news rebuild and waits for the new snapshot', async ({ page }) => {
+  await openPool(page);
+  expect(fixture.controls.newsRefreshes).toBe(0);
+  await page.locator('[data-news-refresh]').click();
+  await expect.poll(() => fixture.controls.newsRefreshes).toBe(1);
+  await expect(page.locator('[data-news-status]'), { timeout: 10000 }).toContainText('Fresh news loaded');
+  await expect(page.locator('[data-news-refresh]')).toBeEnabled();
+});
+
 test('refresh failure retains loaded items; video preview stops when closed', async ({ page }) => {
   await openPool(page);
   await page.locator('[data-news-id="abcdefghijk"]').getByRole('button', { name: 'Preview video' }).click();
