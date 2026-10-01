@@ -175,6 +175,45 @@ test('music repeats across tracks, ducks under video, restores smoothly, and obe
   await expect(page.locator('video')).toHaveJSProperty('volume', 0);
 });
 
+test('music uses the arranged first pass, then shuffles complete passes without repeating the seam', async ({ page }) => {
+  for (const [name, seconds] of [['shuffle-a.wav', .6], ['shuffle-b.wav', .6], ['shuffle-c.wav', .6]]) {
+    fixture.media.set('/fixtures/' + name, { data: wav(seconds), type: 'audio/wav' });
+  }
+
+  const channel = structuredClone(fixture.state.live);
+  channel.program = [{ id: 'bed-program', type: 'headline', title: 'Music shuffle test', body: 'Test', duration: 30 }];
+  channel.music = [
+    { id: 'a', title: 'A', url: fixture.origin + '/fixtures/shuffle-a.wav', duration: .6 },
+    { id: 'b', title: 'B', url: fixture.origin + '/fixtures/shuffle-b.wav', duration: .6 },
+    { id: 'c', title: 'C', url: fixture.origin + '/fixtures/shuffle-c.wav', duration: .6 }
+  ];
+  channel.audio.crossfade = 0;
+  channel.audio.musicRepeat = 'shuffle';
+  channel.startedAt = new Date().toISOString();
+  fixture.state.live = channel;
+
+  await page.goto(fixture.origin + '/broadcast/');
+  await page.locator('[data-mfc-sound]').click();
+  await expect(page.locator('[data-mfc-sound]')).toHaveAttribute('aria-pressed', 'true');
+
+  const seen = [];
+  for (let attempt = 0; attempt < 55 && seen.length < 7; attempt += 1) {
+    const id = await page.locator('audio').evaluateAll(nodes => {
+      const active = nodes.find(node => !node.paused && node.volume > .001 && node.dataset.trackId);
+      return active?.dataset.trackId?.split(':', 1)[0] || '';
+    });
+    if (id && seen[seen.length - 1] !== id) seen.push(id);
+    await page.waitForTimeout(100);
+  }
+
+  expect(seen.slice(0, 3)).toEqual(['a', 'b', 'c']);
+  const secondPass = seen.slice(3, 6);
+  expect([...secondPass].sort()).toEqual(['a', 'b', 'c']);
+  expect(secondPass).not.toEqual(['a', 'b', 'c']);
+  expect(secondPass[0]).not.toBe('c');
+  if (seen[6]) expect(seen[6]).not.toBe(secondPass[2]);
+});
+
 test('blocked monitor audio has a visible recovery control instead of falsely saying Listening', async ({ page }) => {
   fixture.state.draft.music = [{ id: 'bed', url: fixture.origin + '/fixtures/tone.wav', duration: 2 }];
   await page.addInitScript(() => {
