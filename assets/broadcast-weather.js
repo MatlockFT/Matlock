@@ -123,7 +123,7 @@
         + '<strong>' + esc(row.date === data.event?.date ? 'FIGHT DAY' : row.day) + '</strong>'
         + iconSvg(row.condition?.icon || 'partlyCloudy')
         + '<span class="mfc-wx-day-condition">' + esc(row.condition?.label || '') + '</span>'
-        + '<span class="mfc-wx-day-temp"><b>' + whole(row.high) + '°</b> / ' + whole(row.low) + '°</span>'
+        + '<span class="mfc-wx-day-temp"><b>' + whole(row.high) + '°</b><i>/</i><em>' + whole(row.low) + '°</em></span>'
         + '<small>' + whole(row.precipProbability) + '% PRECIP</small>'
         + '</div>').join('')
       + '</div></div>';
@@ -169,8 +169,17 @@
     const mapTop = -Number(crop.sourceY) / Number(crop.sourceHeight) * 100;
 
     const cities = chooseRegionalCities(regional.cities, 5).map(city => {
-      const fightClass = city.fightCity ? ' is-fight-city' : '';
-      return '<div class="mfc-wx-map-city' + fightClass + '" style="left:' + Number(city.x).toFixed(2) + '%;top:' + Number(city.y).toFixed(2) + '%">'
+      const x = Number(city.x);
+      const y = Number(city.y);
+      const classes = [
+        'mfc-wx-map-city',
+        city.fightCity ? 'is-fight-city' : '',
+        y <= 22 ? 'is-top-edge' : '',
+        y >= 78 ? 'is-bottom-edge' : '',
+        x <= 14 ? 'is-left-edge' : '',
+        x >= 86 ? 'is-right-edge' : ''
+      ].filter(Boolean).join(' ');
+      return '<div class="' + classes + '" style="left:' + x.toFixed(2) + '%;top:' + y.toFixed(2) + '%">'
         + '<span class="mfc-wx-map-city-name">' + esc(city.name) + '</span>'
         + '<span class="mfc-wx-map-city-weather">'
         + '<b>' + whole(city.high) + '°</b>'
@@ -198,9 +207,9 @@
       + '<div class="mfc-wx-page-title">Almanac</div>'
       + eventLine()
       + '<div class="mfc-wx-almanac-grid">'
-      + '<div class="mfc-wx-sun-data"><p>SUNRISE: <b>' + esc(row.sunrise || '—') + '</b></p>'
-      + '<p>SUNSET: <b>' + esc(row.sunset || '—') + '</b></p>'
-      + '<p class="mfc-wx-almanac-note">FIGHT DAY · ' + esc(data.event?.city || '') + '</p></div>'
+      + '<div class="mfc-wx-sun-data"><p><span>SUNRISE:</span><b>' + esc(row.sunrise || '—') + '</b></p>'
+      + '<p><span>SUNSET:</span><b>' + esc(row.sunset || '—') + '</b></p>'
+      + '<p class="mfc-wx-almanac-note"><span>FIGHT DAY</span><b>' + esc(data.event?.city || '') + '</b></p></div>'
       + '<div class="mfc-wx-moon-data"><strong>MOON DATA:</strong>'
       + moonIcon(row.moon?.icon)
       + '<span>' + esc(row.moon?.label || 'Moon Phase') + '</span></div>'
