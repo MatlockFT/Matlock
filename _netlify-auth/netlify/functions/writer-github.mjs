@@ -21,6 +21,7 @@ export function allowedPath(path, method) {
     if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md(?:\?ref=(?:main|[0-9a-f]{40}))?$/.test(value)) return true;
     if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+(?:\?ref=main)?$/.test(value)) return true;
     if (/^\/contents\/assets\/data\/broadcast\.json(?:\?ref=main)?$/.test(value)) return true;
+    if (/^\/contents\/assets\/data\/news-refresh-trigger\.json(?:\?ref=main)?$/.test(value)) return true;
     if (/^\/commits\?path=_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md&per_page=(?:[1-9]|1\d|20)$/.test(value)) return true;
     return false;
   }
@@ -28,6 +29,7 @@ export function allowedPath(path, method) {
     if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md$/.test(value)) return true;
     if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+$/.test(value)) return true;
     if (value === '/contents/assets/data/broadcast.json') return true;
+    if (value === '/contents/assets/data/news-refresh-trigger.json') return true;
   }
   if (method === 'DELETE') {
     if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md$/.test(value)) return true;
