@@ -155,12 +155,13 @@ function compass(degrees) {
   return points[Math.round((((Number(degrees) || 0) % 360) / 22.5)) % 16];
 }
 
-function nearestHourly(hourly, timestamp) {
+function nearestHourly(hourly, timestamp, utcOffsetSeconds = 0) {
   const target = Date.parse(timestamp);
   let best = -1;
   let delta = Infinity;
   for (let i = 0; i < (hourly?.time || []).length; i += 1) {
-    const stamp = Date.parse(hourly.time[i]);
+    const wallClock = Date.parse(String(hourly.time[i]) + 'Z');
+    const stamp = wallClock - (Number(utcOffsetSeconds) || 0) * 1000;
     const d = Math.abs(stamp - target);
     if (d < delta) { delta = d; best = i; }
   }
@@ -229,7 +230,7 @@ const forecast = await fetchJson(forecastUrl.href);
 const timezone = clean(forecast.timezone) || 'UTC';
 const currentCode = condition(forecast.current?.weather_code, forecast.current?.is_day);
 const fightStart = eventStartIso(event);
-const fightIndex = nearestHourly(forecast.hourly, fightStart);
+const fightIndex = nearestHourly(forecast.hourly, fightStart, forecast.utc_offset_seconds);
 const eventDayIndex = (forecast.daily?.time || []).indexOf(event.date);
 const dailyRows = (forecast.daily?.time || []).map((date, i) => ({
   date,
