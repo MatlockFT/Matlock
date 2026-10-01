@@ -69,6 +69,8 @@ async function startServer(port = 0) {
       temperature: 61,
       feelsLike: 58,
       humidity: 38,
+      dewpoint: 34,
+      visibilityMiles: 10,
       condition: { label: 'Clear', icon: 'clear' },
       cloudCover: 0,
       pressure: 1009.6,
