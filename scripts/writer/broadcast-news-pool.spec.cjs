@@ -261,7 +261,7 @@ test('Fight City Forecast renders shared local weather in the live program', asy
   await expect(page.locator('[data-mfc-weather-source]')).toContainText('OPEN-METEO');
 });
 
-test('Fight City Forecast advances to fight-day and extended screens on the shared timeline', async ({ page }) => {
+test('Fight City Forecast advances through fight-day, extended and regional screens on the shared timeline', async ({ page }) => {
   const startedAt = new Date(Date.now() - 17000).toISOString();
   fixture.state = {
     ...fixture.state,
@@ -290,12 +290,27 @@ test('Fight City Forecast advances to fight-day and extended screens on the shar
     live: {
       ...fixture.state.live,
       revision: 'fight-city-extended-test',
-      startedAt: new Date(Date.now() - 33000).toISOString()
+      startedAt: new Date(Date.now() - 26000).toISOString()
     }
   };
   await page.reload();
   await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Extended Forecast');
   await expect(page.locator('[data-mfc-weather-screen]')).toContainText('FIGHT DAY');
+
+  fixture.state = {
+    ...fixture.state,
+    live: {
+      ...fixture.state.live,
+      revision: 'fight-city-regional-test',
+      startedAt: new Date(Date.now() - 36000).toISOString()
+    }
+  };
+  await page.reload();
+  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Forecast For Saturday');
+  await expect(page.locator('.mfc-wx-regional-map')).toBeVisible();
+  await expect(page.locator('.mfc-wx-map-city')).toHaveCount(5);
+  await expect(page.locator('.mfc-wx-map-city.is-fight-city')).toContainText('Salt Lake City');
+  await expect(page.locator('.mfc-wx-map-city.is-fight-city')).toContainText('84°');
 });
 
 test('Broadcast Control can add a Fight City Forecast block without manual city entry', async ({ page }) => {
