@@ -13,8 +13,9 @@
   const dialog = app.querySelector('[data-news-preview]');
   const liveBase = 'https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/';
   const feeds = [
-    { name: 'Articles', file: 'mma-news.json', items: data => [data.topStory, ...(data.stories || [])].filter(Boolean) },
-    { name: 'Videos', file: 'broadcast-news-videos.json', items: data => data.videos || [] }
+    { name: 'Articles', key: 'articles', kind: 'article', file: 'mma-news.json', fallback: true, items: data => [data.topStory, ...(data.stories || [])].filter(Boolean) },
+    { name: 'Japanese MMA', key: 'japan', kind: 'article', file: 'japan-mma-news.json', fallback: false, items: data => data.stories || [] },
+    { name: 'Videos', key: 'videos', kind: 'video', file: 'broadcast-news-videos.json', fallback: true, items: data => data.videos || [] }
   ];
   let entries = [], loaded = false, loading = false, limit = 24, lastRefresh = 0;
   const safeUrl = value => {
@@ -45,7 +46,7 @@
     const query = search.value.trim().toLowerCase();
     const filtered = entries.filter(item => (kind.value === 'all' || item.kind === kind.value)
       && (!source.value || item.source === source.value)
-      && (!query || (item.title + ' ' + item.source + ' ' + (item.excerpt || '')).toLowerCase().includes(query))
+      && (!query || (item.title + ' ' + (item.originalTitle || '') + ' ' + item.source + ' ' + (item.excerpt || '') + ' ' + (item.originalExcerpt || '')).toLowerCase().includes(query))
       && (!unused.checked || !used(item, 'program')));
     list.replaceChildren();
     panel.querySelector('[data-news-results]').textContent = filtered.length + ' matching items';
@@ -61,10 +62,20 @@
       const meta = document.createElement('p'); meta.className = 'mfc-news-meta';
       const stamp = Date.parse(item.publishedAt);
       const date = Number.isFinite(stamp) ? new Date(stamp).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : item.publishedText || 'Date unavailable';
-      meta.textContent = (item.kind === 'video' ? 'YouTube · ' + Math.floor(item.duration / 60) + ':' + String(item.duration % 60).padStart(2, '0') + ' · ' : 'Article · ')
+      const japanLabel = item.language === 'ja'
+        ? 'JP · ' + (item.translation?.mode === 'literal-machine' ? 'literal MT · ' : 'original · ')
+        : '';
+      meta.textContent = japanLabel + (item.kind === 'video' ? 'YouTube · ' + Math.floor(item.duration / 60) + ':' + String(item.duration % 60).padStart(2, '0') + ' · ' : 'Article · ')
         + item.source + ' · ' + date + (item.publishedAtEstimated ? ' (approx.)' : '') + (item.cached ? ' · cached' : '');
       const heading = document.createElement('h3'); heading.textContent = item.title;
       content.append(meta, heading);
+      if (item.language === 'ja' && item.originalTitle && item.originalTitle !== item.title) {
+        const original = document.createElement('p');
+        original.className = 'mfc-news-original';
+        original.lang = 'ja';
+        original.textContent = item.originalTitle;
+        content.append(original);
+      }
       if (item.excerpt && item.kind === 'article') { const p = document.createElement('p'); p.textContent = item.excerpt.slice(0, 220); content.append(p); }
       const actions = document.createElement('div'); actions.className = 'mfc-news-actions';
       const inDraft = used(item, 'program');
@@ -89,26 +100,30 @@
   }
   async function load() {
     if (loading) return;
-    loading = true; refresh.disabled = true; status.textContent = 'Refreshing articles and YouTube videos…';
+    loading = true; refresh.disabled = true; status.textContent = 'Refreshing articles, Japanese MMA and YouTube videos…';
     const results = await Promise.allSettled(feeds.map(async feed => {
       let data, fallback = false;
-      try { data = await fetchJson(liveBase + feed.file); }
-      catch { data = await fetchJson('/assets/data/' + feed.file); fallback = true; }
+      try {
+        data = await fetchJson(liveBase + feed.file);
+      } catch (error) {
+        if (!feed.fallback) throw error;
+        data = await fetchJson('/assets/data/' + feed.file);
+        fallback = true;
+      }
       const age = Date.now() - Date.parse(data.generatedAt);
-      const rows = feed.items(data).filter(item => item.title && safeUrl(item.url) && (feed.name !== 'Videos' || validVideo(item)));
+      const rows = feed.items(data).filter(item => item.title && safeUrl(item.url) && (feed.kind !== 'video' || validVideo(item)));
       return { feed, data, fallback, age, rows };
     }));
     const notices = [];
     results.forEach((result, index) => {
-      const type = index ? 'video' : 'article';
       if (result.status === 'fulfilled') {
         const { feed, data, fallback, age, rows } = result.value;
-        entries = entries.filter(item => item.kind !== type);
-        entries.push(...rows.map(item => ({ ...item, kind: type, source: String(item.source || 'MMA news') })));
+        entries = entries.filter(item => item.pool !== feed.key);
+        entries.push(...rows.map(item => ({ ...item, pool: feed.key, kind: feed.kind, source: String(item.source || 'MMA news') })));
         notices.push(feed.name + ': ' + rows.length + ' · updated ' + new Date(data.generatedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
           + (fallback ? ' · saved fallback' : '') + (age > 3600000 ? ' · older snapshot' : ''));
         const unavailable = (data.sources || []).filter(source => source.status === 'unavailable' || source.status === 'cached');
-        if (unavailable.length) notices.push('Some video sources could not refresh: ' + unavailable.map(source => source.name).join(', '));
+        if (unavailable.length) notices.push('Some sources could not refresh: ' + unavailable.map(source => source.name).join(', '));
       } else notices.push(feeds[index].name + ' unavailable. Keeping previously loaded items; try Refresh.');
     });
     entries = [...new Map(entries.map(item => [item.url, item])).values()];
