@@ -1006,10 +1006,6 @@ function clusterStories(stories) {
 
 function publicStory(cluster) {
     const story = cluster.representative;
-    const imageStory = story.image
-        ? story
-        : cluster.stories.find(entry => entry.image);
-    const image = imageStory?.image || "";
     const excerpt = story.excerpt ||
         cluster.stories.find(entry => entry.excerpt)?.excerpt ||
         "";
@@ -1025,15 +1021,7 @@ function publicStory(cluster) {
         sourceUrl: story.sourceUrl,
         publishedAt: story.publishedAt,
         excerpt,
-        image,
-        ...(imageStory && imageStory.url !== story.url
-            ? {
-                imageCredit: {
-                    source: imageStory.source,
-                    url: imageStory.url
-                }
-            }
-            : {}),
+        image: story.image || "",
         coverageCount: relatedSources.length + 1,
         relatedSources
     };
@@ -1052,66 +1040,40 @@ function topStoryScore(cluster) {
     return freshness + coverage + prominence + story.sourcePriority;
 }
 
-function leadImageCandidates(cluster, topStory) {
+async function selectEfficientLeadImage(topStory, cluster, previousImages) {
     const representative = cluster.representative;
-    const candidates = [{
-        ...representative,
-        image: topStory.image,
-        imageCredit: topStory.imageCredit
-    }];
-    const seenUrls = new Set([safeUrl(representative.url)]);
-    const seenSources = new Set([representative.source]);
-    const alternatives = [...cluster.stories].sort((first, second) =>
-        second.sourcePriority - first.sourcePriority ||
-        second.publishedAt.localeCompare(first.publishedAt)
-    );
+    const representativeUrl = safeUrl(representative.url);
 
-    for (const story of alternatives) {
-        const url = safeUrl(story.url);
-        if (!url || seenUrls.has(url) || seenSources.has(story.source)) continue;
+    if (!topStory.image) {
+        const previous = previousImages.get(representativeUrl);
+        const previousMatchesSource =
+            previous?.image &&
+            (!previous.imageCredit?.source ||
+                previous.imageCredit.source === representative.source);
 
-        candidates.push({ ...story });
-        seenUrls.add(url);
-        seenSources.add(story.source);
-
-        if (candidates.length >= LEAD_IMAGE_CANDIDATE_LIMIT) break;
+        topStory.image = previousMatchesSource
+            ? previous.image
+            : await fetchArticleImage(representative);
     }
 
-    return candidates;
-}
-
-async function selectEfficientLeadImage(topStory, cluster, previousImages) {
-    const candidates = leadImageCandidates(cluster, topStory);
-
-    for (const candidate of candidates) {
-        if (!candidate.image) {
-            const previous = previousImages.get(safeUrl(candidate.url));
-            candidate.image = previous?.image || await fetchArticleImage(candidate);
-            if (previous?.imageCredit) {
-                candidate.imageCredit = previous.imageCredit;
-            }
-        }
-
-        if (!candidate.image) continue;
-
-        const size = await imageContentLength(candidate.image);
-        if (!Number.isFinite(size) || size > LEAD_IMAGE_MAX_BYTES) continue;
-
-        if (candidate.image !== topStory.image) {
-            topStory.image = candidate.image;
-            topStory.imageCredit = {
-                source: candidate.source,
-                url: candidate.url
-            };
-        }
-
-        console.log(
-            `Lead image: ${candidate.source} (${Math.ceil(size / 1024)} KB)`
+    if (!topStory.image) {
+        console.warn(
+            `Lead image: no image found for primary story from ${representative.source}`
         );
         return;
     }
 
-    console.warn("Lead image: no verified lightweight cluster alternative found");
+    delete topStory.imageCredit;
+
+    const size = await imageContentLength(topStory.image);
+    if (Number.isFinite(size)) {
+        const note = size > LEAD_IMAGE_MAX_BYTES ? " (over preferred size)" : "";
+        console.log(
+            `Lead image: ${representative.source} (${Math.ceil(size / 1024)} KB)${note}`
+        );
+    } else {
+        console.log(`Lead image: ${representative.source} (size unavailable)`);
+    }
 }
 
 function deduplicateUrls(stories) {
@@ -1167,9 +1129,12 @@ async function enrichStoryImages(stories, previousImages) {
 
         const previous = previousImages.get(safeUrl(story.url));
         if (!previous?.image) continue;
+        if (
+            previous.imageCredit?.source &&
+            previous.imageCredit.source !== story.source
+        ) continue;
 
         story.image = previous.image;
-        if (previous.imageCredit) story.imageCredit = previous.imageCredit;
         reused += 1;
     }
 
