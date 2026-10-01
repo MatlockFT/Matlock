@@ -280,17 +280,17 @@ test('large library pages remain searchable and bulk add covers every page', asy
   expect(fixture.state.draft.music.length).toBe(85);
 });
 
-test('readiness lists all incomplete media and jumps to the matching inspector', async ({ page }) => {
+test('Take Live validation stays functional without tutorial panels', async ({ page }) => {
   fixture.state.draft.program.push({ id: 'missing-video', type: 'video', title: 'Missing clip', duration: 0, mediaUrl: '' });
   fixture.state.draft.music.push({ id: 'missing-song', title: 'Missing song', duration: 0, url: '' });
   await page.goto(fixture.origin + '/broadcast/control/');
-  await expect(page.locator('[data-readiness-summary]')).toContainText('2 items to fix');
+  await expect(page.locator('[data-readiness]')).toHaveCount(0);
+  await expect(page.locator('.mfc-workflow-guide')).toHaveCount(0);
   await page.locator('[data-take-live]').click();
-  await expect(page.locator('[data-readiness-list] li')).toHaveCount(2);
   expect(fixture.controls.writes).toBe(0);
-  await page.getByRole('button', { name: /^Missing song:/ }).click();
-  await expect(page.locator('[data-workspace-tab="audio"]')).toHaveAttribute('aria-selected', 'true');
-  await expect(page.locator('[data-music-editor-title]')).toHaveText('Missing song');
+  await expect(page.locator('[data-toast]')).toContainText('Cannot Take Live: Missing clip');
+  await expect(page.locator('[data-workspace-tab="rundown"]')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('[data-program-editor-title]')).toHaveText('Missing clip');
 });
 
 test('late metadata cannot overwrite an undone media URL edit', async ({ page }) => {
