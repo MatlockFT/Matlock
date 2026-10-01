@@ -87,6 +87,10 @@
   function currentScreen() {
     const row = data.current || {};
     const pressure = n(row.pressure) == null ? '—' : (Number(row.pressure) * 0.02953).toFixed(2) + ' IN.';
+    const city = data.event?.city || 'Fight City';
+    const apparentLabel = Number(row.temperature) <= 50 && Number(row.feelsLike) < Number(row.temperature)
+      ? 'WIND CHILL:'
+      : 'FEELS LIKE:';
     const stat = (label, value) =>
       '<p><span>' + esc(label) + '</span><b>' + esc(value) + '</b></p>';
 
@@ -94,17 +98,22 @@
       + '<div class="mfc-wx-page-title">Current Conditions</div>'
       + eventLine()
       + '<div class="mfc-wx-current-grid">'
-      + '<div class="mfc-wx-current-left"><div class="mfc-wx-big-temp">' + whole(row.temperature) + '°</div>'
+      + '<div class="mfc-wx-current-left">'
+      + '<div class="mfc-wx-big-temp">' + whole(row.temperature) + '°</div>'
       + '<div class="mfc-wx-condition">' + esc(weatherLabel(row)) + '</div>'
-      + iconSvg(row.condition?.icon || 'partlyCloudy', true)
-      + '<div class="mfc-wx-wind">WIND ' + esc(compass(row.windDirection)) + ' ' + whole(row.windSpeed) + ' MPH</div></div>'
+      + '<div class="mfc-wx-current-icon">' + iconSvg(row.condition?.icon || 'partlyCloudy', true) + '</div>'
+      + '<div class="mfc-wx-wind">WIND ' + esc(compass(row.windDirection)) + ' ' + whole(row.windSpeed) + ' MPH</div>'
+      + '</div>'
       + '<div class="mfc-wx-current-right">'
+      + '<div class="mfc-wx-current-city">' + esc(city) + '</div>'
+      + '<div class="mfc-wx-current-stats">'
       + stat('HUMIDITY:', whole(row.humidity) + '%')
-      + stat('FEELS LIKE:', whole(row.feelsLike) + '°')
+      + stat('DEWPOINT:', row.dewpoint == null ? '—' : whole(row.dewpoint) + '°')
+      + stat('VISIBILITY:', row.visibilityMiles == null ? '—' : whole(row.visibilityMiles) + ' MI.')
       + stat('PRESSURE:', pressure)
-      + stat('CLOUD COVER:', whole(row.cloudCover) + '%')
+      + stat(apparentLabel, whole(row.feelsLike) + '°')
       + stat('WIND GUST:', whole(row.windGust) + ' MPH')
-      + '</div></div></div>';
+      + '</div></div></div></div>';
   }
 
   function fightDayScreen() {
