@@ -175,9 +175,18 @@ permalink: /broadcast/control/
               </div>
             </div>
 
+            <div class="mfc-timeline-toolbar" aria-label="Timeline zoom controls">
+              <span class="mfc-timeline-toolbar-label">Timeline scale</span>
+              <button type="button" class="mfc-timeline-zoom-button" data-program-zoom-out aria-label="Zoom timeline out">−</button>
+              <input type="range" min="35" max="220" step="5" value="100" data-program-zoom aria-label="Timeline zoom">
+              <button type="button" class="mfc-timeline-zoom-button" data-program-zoom-in aria-label="Zoom timeline in">+</button>
+              <output data-program-zoom-output>100%</output>
+              <button type="button" class="mfc-button mfc-button-small mfc-button-ghost" data-program-zoom-reset>100%</button>
+              <button type="button" class="mfc-button mfc-button-small mfc-button-ghost" data-program-zoom-fit>Fit</button>
+            </div>
             <div class="mfc-time-ruler" aria-hidden="true" data-program-ruler></div>
             <div class="mfc-linear-track" data-program-track aria-label="Program loop"></div>
-            <p class="mfc-track-help">Drag blocks to reorder. Preview updates immediately; viewers change only when you Take Live.</p>
+            <p class="mfc-track-help">Click and drag a block anywhere along the rundown to reorder it. Use Timeline scale or Fit when the loop gets crowded. Preview updates immediately; viewers change only when you Take Live.</p>
           </section>
 
           <section class="mfc-panel mfc-inspector-panel" data-program-editor>
