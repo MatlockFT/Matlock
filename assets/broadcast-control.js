@@ -142,8 +142,37 @@
   }
 
   window.addEventListener('message', event => {
-    if (event.origin !== location.origin || event.source !== previewFrame?.contentWindow || event.data?.type !== 'matlock-broadcast-layout') return;
-    textLayouts.set(event.data.itemId, event.data); renderTextFitHint();
+    if (event.origin !== location.origin || event.source !== previewFrame?.contentWindow) return;
+
+    if (event.data?.type === 'matlock-broadcast-layout') {
+      textLayouts.set(event.data.itemId, event.data);
+      renderTextFitHint();
+      return;
+    }
+
+    if (event.data?.type === 'matlock-broadcast-media-framing') {
+      const item = working?.program?.find(row => row.id === event.data.itemId);
+      if (!item || !['image', 'video'].includes(item.type)) return;
+      item.mediaX = clamp(event.data.mediaX, 0, 100);
+      item.mediaY = clamp(event.data.mediaY, 0, 100);
+
+      if (item.id === selectedProgramId) {
+        for (const [key, value] of [['mediaX', item.mediaX], ['mediaY', item.mediaY]]) {
+          const input = programFields.querySelector(`[data-media-framing="${key}"]`);
+          if (!input) continue;
+          input.value = String(Math.round(value));
+          const output = input.parentElement?.querySelector('output');
+          if (output) output.textContent = Math.round(value) + '%';
+        }
+      }
+
+      if (event.data.commit) markDirty();
+      else {
+        working.updatedAt = new Date().toISOString();
+        setDirty(draftSnapshot() !== savedSnapshot());
+        scheduleRecovery();
+      }
+    }
   });
 
   const clone = value => JSON.parse(JSON.stringify(value));
@@ -1591,6 +1620,7 @@
 
     const input = document.createElement('input');
     input.type = 'range';
+    if (options.key) input.dataset.mediaFraming = options.key;
     input.min = String(options.min ?? 0);
     input.max = String(options.max ?? 100);
     input.step = String(options.step ?? 1);
@@ -1802,17 +1832,17 @@
       });
 
       const zoomField = percentRangeField('Zoom', item.mediaScale == null ? 100 : item.mediaScale, {
-        min: 25, max: 300, step: 1, wide: true,
+        key: 'mediaScale', min: 25, max: 300, step: 1, wide: true,
         onInput: value => { item.mediaScale = value; postPreview(); },
         onChange: value => { item.mediaScale = value; markDirty(); }
       });
       const xField = percentRangeField('Horizontal position', item.mediaX == null ? 50 : item.mediaX, {
-        min: 0, max: 100, step: 1,
+        key: 'mediaX', min: 0, max: 100, step: 1,
         onInput: value => { item.mediaX = value; postPreview(); },
         onChange: value => { item.mediaX = value; markDirty(); }
       });
       const yField = percentRangeField('Vertical position', item.mediaY == null ? 50 : item.mediaY, {
-        min: 0, max: 100, step: 1,
+        key: 'mediaY', min: 0, max: 100, step: 1,
         onInput: value => { item.mediaY = value; postPreview(); },
         onChange: value => { item.mediaY = value; markDirty(); }
       });
@@ -1844,7 +1874,7 @@
 
       const framingNote = document.createElement('p');
       framingNote.className = 'mfc-field-note mfc-field-wide';
-      framingNote.textContent = 'Cover fills the frame and can crop. Contain keeps the entire media visible. Zoom and position are saved per rundown item and apply the same way in Preview and Live.';
+      framingNote.textContent = 'Cover fills the frame and can crop. Contain keeps the entire media visible. Zoom and position are saved per rundown item and apply the same way in Preview and Live. You can also drag the image or video directly inside Preview to reposition it.';
       form.append(framingNote);
 
       if (item.type === 'video') {
