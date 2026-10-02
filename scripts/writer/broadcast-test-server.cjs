@@ -172,6 +172,18 @@ async function startServer(port = 0) {
       }
 
       if (req.method === 'GET') return json({ sha: String(revision), content: Buffer.from(JSON.stringify(state)).toString('base64') });
+
+      if (/^\/contents\/assets\/uploads\/broadcast\/images\//.test(apiPath) && req.method === 'PUT') {
+        const requestBody = JSON.parse(body);
+        const data = Buffer.from(requestBody.content, 'base64');
+        const mediaPath = '/' + apiPath.replace(/^\/contents\//, '');
+        const ext = mediaPath.split('.').pop().toLowerCase();
+        const type = ({ png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp', gif: 'image/gif' })[ext] || 'application/octet-stream';
+        media.set(mediaPath, { data, type });
+        controls.writes++; revision++;
+        return json({ content: { sha: 'image-' + String(revision) } });
+      }
+
       if (controls.saveDelay) await new Promise(r => setTimeout(r, controls.saveDelay));
       if (controls.failSaves) return json({ message: 'Simulated save conflict' }, 409);
       state = JSON.parse(Buffer.from(JSON.parse(body).content, 'base64'));
