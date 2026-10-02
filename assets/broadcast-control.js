@@ -1575,6 +1575,39 @@
     return { wrap, input };
   }
 
+  function percentRangeField(label, value, options = {}) {
+    const wrap = document.createElement('label');
+    wrap.className = `mfc-field mfc-range-field${options.wide ? ' mfc-field-wide' : ''}`;
+
+    const labelNode = document.createElement('span');
+    labelNode.textContent = label;
+    const output = document.createElement('output');
+    const suffix = options.suffix ?? '%';
+    const format = raw => {
+      const number = Number(raw);
+      return (Number.isFinite(number) ? Math.round(number) : 0) + suffix;
+    };
+    output.textContent = format(value);
+
+    const input = document.createElement('input');
+    input.type = 'range';
+    input.min = String(options.min ?? 0);
+    input.max = String(options.max ?? 100);
+    input.step = String(options.step ?? 1);
+    input.value = String(value ?? 0);
+    input.addEventListener('input', () => {
+      output.textContent = format(input.value);
+      options.onInput?.(Number(input.value), input);
+    });
+    input.addEventListener('change', () => {
+      output.textContent = format(input.value);
+      options.onChange?.(Number(input.value), input);
+    });
+
+    wrap.append(labelNode, output, input);
+    return { wrap, input, output };
+  }
+
   function buttonRow(...buttons) {
     const row = document.createElement('div');
     row.className = 'mfc-inline-actions mfc-field-wide';
@@ -1751,6 +1784,69 @@
       });
       form.append(mediaField.wrap);
 
+      const fitField = field('Media fit', 'mediaFit', {
+        type: 'select',
+        value: item.mediaFit || (item.type === 'image' ? 'contain' : 'cover'),
+        wide: true,
+        live: false,
+        options: [
+          { value: 'cover', label: 'Cover — fill frame, crop edges' },
+          { value: 'contain', label: 'Contain — show the entire image/video' },
+          { value: 'fill', label: 'Stretch — fill frame, may distort' },
+          { value: 'none', label: 'Natural size — use original dimensions' }
+        ],
+        onChange: value => {
+          item.mediaFit = value;
+          markDirty();
+        }
+      });
+
+      const zoomField = percentRangeField('Zoom', item.mediaScale == null ? 100 : item.mediaScale, {
+        min: 25, max: 300, step: 1, wide: true,
+        onInput: value => { item.mediaScale = value; postPreview(); },
+        onChange: value => { item.mediaScale = value; markDirty(); }
+      });
+      const xField = percentRangeField('Horizontal position', item.mediaX == null ? 50 : item.mediaX, {
+        min: 0, max: 100, step: 1,
+        onInput: value => { item.mediaX = value; postPreview(); },
+        onChange: value => { item.mediaX = value; markDirty(); }
+      });
+      const yField = percentRangeField('Vertical position', item.mediaY == null ? 50 : item.mediaY, {
+        min: 0, max: 100, step: 1,
+        onInput: value => { item.mediaY = value; postPreview(); },
+        onChange: value => { item.mediaY = value; markDirty(); }
+      });
+      form.append(fitField.wrap, zoomField.wrap, xField.wrap, yField.wrap);
+
+      const setMediaPosition = (x, y) => {
+        item.mediaX = x;
+        item.mediaY = y;
+        renderProgramEditor();
+        markDirty();
+      };
+      const framingButtons = buttonRow(
+        smallButton('Left', () => setMediaPosition(0, 50), 'mfc-button-ghost'),
+        smallButton('Top', () => setMediaPosition(50, 0), 'mfc-button-ghost'),
+        smallButton('Center', () => setMediaPosition(50, 50), 'mfc-button-ghost'),
+        smallButton('Bottom', () => setMediaPosition(50, 100), 'mfc-button-ghost'),
+        smallButton('Right', () => setMediaPosition(100, 50), 'mfc-button-ghost'),
+        smallButton('Reset framing', () => {
+          item.mediaFit = item.type === 'image' ? 'contain' : 'cover';
+          item.mediaScale = 100;
+          item.mediaX = 50;
+          item.mediaY = 50;
+          renderProgramEditor();
+          markDirty();
+        }, 'mfc-button-ghost')
+      );
+      framingButtons.classList.add('mfc-media-framing-actions');
+      form.append(framingButtons);
+
+      const framingNote = document.createElement('p');
+      framingNote.className = 'mfc-field-note mfc-field-wide';
+      framingNote.textContent = 'Cover fills the frame and can crop. Contain keeps the entire media visible. Zoom and position are saved per rundown item and apply the same way in Preview and Live.';
+      form.append(framingNote);
+
       if (item.type === 'video') {
         const durationField = field('Video duration', 'duration', {
           value: positive(item.duration) ? fmtInput(item.duration) : '',
@@ -1907,8 +2003,8 @@
         results: { header: 'FIGHT RESULTS', eyebrow: 'RESULTS', title: 'FIGHT RESULT', body: 'WINNER • METHOD • ROUND', duration: 18 },
         event: { header: 'UPCOMING FIGHTS', eyebrow: 'NEXT EVENT', title: 'UPCOMING EVENT', body: 'DATE • VENUE • MAIN EVENT', duration: 18 },
         weather: { header: 'FIGHT CITY FORECAST', eyebrow: 'LOCAL WEATHER', title: 'FIGHT CITY FORECAST', duration: 48 },
-        image: { header: 'MMA NEWS', eyebrow: 'PHOTO', title: 'IMAGE', mediaUrl: '', duration: 20 },
-        video: { header: 'MMA VIDEO', eyebrow: 'VIDEO', title: 'VIDEO', mediaUrl: '', duration: 0, videoAudio: true },
+        image: { header: 'MMA NEWS', eyebrow: 'PHOTO', title: 'IMAGE', mediaUrl: '', duration: 20, mediaFit: 'contain', mediaScale: 100, mediaX: 50, mediaY: 50 },
+        video: { header: 'MMA VIDEO', eyebrow: 'VIDEO', title: 'VIDEO', mediaUrl: '', duration: 0, videoAudio: true, mediaFit: 'cover', mediaScale: 100, mediaX: 50, mediaY: 50 },
         breaking: { header: 'BREAKING NEWS', eyebrow: 'BREAKING', title: 'BREAKING NEWS', body: 'ADD THE UPDATE HERE.', duration: 20 }
       };
       const item = { id: uid('program'), type, ...(defaults[type] || defaults.headline) };
@@ -2673,7 +2769,7 @@
         item.duration = duration;
         if (!item.title || item.title === 'IMAGE') item.title = displayVideoName(asset.name);
       } else {
-        item = { id: uid('program'), type: 'image', header: 'MMA NEWS', eyebrow: 'PHOTO', title: displayVideoName(asset.name), mediaUrl: asset.url, duration };
+        item = { id: uid('program'), type: 'image', header: 'MMA NEWS', eyebrow: 'PHOTO', title: displayVideoName(asset.name), mediaUrl: asset.url, duration, mediaFit: 'contain', mediaScale: 100, mediaX: 50, mediaY: 50 };
         working.program.push(item);
       }
       selectedProgramId = item.id;
@@ -2692,7 +2788,7 @@
       selectedMusicId = track.id;
       if (render) renderMusic();
     } else {
-      const item = { id: targetItem?.id || uid('program'), type: 'video', header: 'MMA VIDEO', eyebrow: 'VIDEO', title: displayVideoName(asset.name), mediaUrl: asset.url, duration, videoAudio: true };
+      const item = { id: targetItem?.id || uid('program'), type: 'video', header: 'MMA VIDEO', eyebrow: 'VIDEO', title: displayVideoName(asset.name), mediaUrl: asset.url, duration, videoAudio: true, mediaFit: targetItem?.mediaFit || 'cover', mediaScale: targetItem?.mediaScale ?? 100, mediaX: targetItem?.mediaX ?? 50, mediaY: targetItem?.mediaY ?? 50 };
       if (targetItem && working.program.includes(targetItem)) Object.assign(targetItem, item);
       else working.program.push(item);
       selectedProgramId = item.id;
