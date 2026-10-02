@@ -2061,11 +2061,13 @@
         captionStatus.className = 'mfc-field-note mfc-field-wide';
         captionStatus.dataset.captionStatus = '';
         const captionKey = item.captionKey || captionKeyFromMedia(item);
-        captionStatus.textContent = captionKey
+        captionStatus.textContent = item.captionKey
           ? 'Captions are processing or waiting to publish.'
-          : 'Uploaded videos automatically generate captions after the upload finishes.';
+          : captionKey
+            ? 'This saved uploaded video does not have captions attached yet.'
+            : 'Uploaded videos automatically generate captions after the upload finishes.';
 
-        const captionButton = smallButton(captionKey ? 'Regenerate captions' : 'Generate captions', async () => {
+        const captionButton = smallButton(item.captionKey ? 'Regenerate captions' : 'Generate captions', async () => {
           if (busyAction || uploadRunning) return showToast('Wait for the current upload or save to finish.');
           if (!item.mediaUrl) return showToast('Upload the video first.');
           captionButton.disabled = true;
@@ -2100,9 +2102,12 @@
                 + (language ? ' · ' + language : '')
                 + '.';
               if (button) button.textContent = 'Regenerate captions';
-            } else {
+            } else if (item.captionKey) {
               note.textContent = 'Captions are processing. They will appear automatically when transcription finishes.';
               if (button) button.textContent = 'Regenerate captions';
+            } else {
+              note.textContent = 'No generated captions found for this uploaded video yet.';
+              if (button) button.textContent = 'Generate captions';
             }
           });
         }
