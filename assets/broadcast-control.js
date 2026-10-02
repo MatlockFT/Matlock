@@ -119,6 +119,7 @@
   let stopUploads = false;
   let previewMonitorAudio = false;
   let programMonitorAudio = false;
+  let programMonitorPlayhead = null;
   const videoDurationCache = new Map();
   const captionStatusCache = new Map();
   const mediaRequests = new WeakMap();
@@ -414,7 +415,19 @@
   }
 
   window.addEventListener('message', event => {
-    if (event.origin !== location.origin || event.data?.type !== 'matlock-broadcast-playback-status') return;
+    if (event.origin !== location.origin) return;
+
+    if (event.data?.type === 'matlock-broadcast-playhead') {
+      if (event.source === programFrame?.contentWindow) {
+        programMonitorPlayhead = {
+          ...event.data,
+          receivedAt: Date.now()
+        };
+      }
+      return;
+    }
+
+    if (event.data?.type !== 'matlock-broadcast-playback-status') return;
     if (![previewFrame?.contentWindow, programFrame?.contentWindow].includes(event.source)) return;
     const fromPreview = event.source === previewFrame?.contentWindow;
     if (fromPreview) previewMonitorAudio = Boolean(event.data.soundEnabled);
@@ -938,10 +951,15 @@
     previewDuration.textContent = fmt(total);
     previewNow.textContent = `${working?.program?.length || 0} item${working?.program?.length === 1 ? '' : 's'} · ${working?.music?.length || 0} audio cue${working?.music?.length === 1 ? '' : 's'}`;
 
-    const liveStamp = fullState?.live?.updatedAt || fullState?.live?.startedAt || '';
-    liveStatus.textContent = liveStamp
-      ? new Date(liveStamp).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
-      : 'Standby';
+    const queuedAt = transitionStamp(fullState?.programTransitionAt || fullState?.pendingLive?.programTransitionAt);
+    const liveStamp = resolvedLiveChannel()?.updatedAt || resolvedLiveChannel()?.startedAt || '';
+    if (fullState?.pendingLive && queuedAt > Date.now()) {
+      liveStatus.textContent = 'Queued ' + new Date(queuedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit' });
+    } else {
+      liveStatus.textContent = liveStamp
+        ? new Date(liveStamp).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+        : 'Standby';
+    }
     updateWorkspaceCounts();
     renderReadiness();
     app.dispatchEvent(new Event('matlock-broadcast-draft-change'));
@@ -1441,11 +1459,86 @@
     }
   }
 
+  function transitionStamp(value) {
+    const stamp = Date.parse(value || '');
+    return Number.isFinite(stamp) ? stamp : 0;
+  }
+
+  function resolvedLiveChannel(state = fullState, nowMs = Date.now()) {
+    const live = state?.live;
+    const pending = state?.pendingLive;
+    if (!live) return pending || null;
+    if (!pending) return live;
+
+    const programAt = transitionStamp(state.programTransitionAt || pending.programTransitionAt);
+    const musicAt = transitionStamp(state.musicTransitionAt || pending.musicTransitionAt);
+    const programReady = Boolean(programAt) && nowMs >= programAt;
+    const musicReady = Boolean(musicAt) && nowMs >= musicAt;
+
+    if (programReady && musicReady) return pending;
+    if (!programReady && !musicReady) return live;
+
+    const visual = programReady ? pending : live;
+    const audio = musicReady ? pending : live;
+    return {
+      ...visual,
+      music: Array.isArray(audio.music) ? audio.music : [],
+      musicStartedAt: audio.musicStartedAt || audio.startedAt || visual.musicStartedAt || visual.startedAt,
+      audio: {
+        ...(visual.audio || {}),
+        music: audio.audio?.music ?? visual.audio?.music,
+        crossfade: audio.audio?.crossfade ?? visual.audio?.crossfade,
+        musicRepeat: audio.audio?.musicRepeat ?? visual.audio?.musicRepeat
+      }
+    };
+  }
+
+  function nextProgramBoundarySeconds(live, nowMs = Date.now()) {
+    const items = Array.isArray(live?.program) ? live.program.filter(item => positive(item.duration) > 0) : [];
+    if (!items.length) return 0;
+    const stamp = Date.parse(live.programStartedAt || live.startedAt || live.updatedAt || '');
+    if (!Number.isFinite(stamp)) return 0;
+    const total = items.reduce((sum, item) => sum + positive(item.duration), 0);
+    if (total <= 0) return 0;
+    const elapsed = Math.max(0, (nowMs - stamp) / 1000);
+    const position = ((elapsed % total) + total) % total;
+    let cursor = 0;
+    for (const item of items) {
+      const end = cursor + positive(item.duration);
+      if (position < end) return Math.max(.05, end - position);
+      cursor = end;
+    }
+    return Math.max(.05, total - position);
+  }
+
+  function musicDeckSignature(channel) {
+    return JSON.stringify([
+      (channel?.music || []).map(track => [
+        track.id || '',
+        track.url || '',
+        positive(track.duration),
+        positive(track.sourceDuration),
+        Number(track.gainDb) || 0,
+        positive(track.fadeIn),
+        positive(track.fadeOut)
+      ]),
+      channel?.audio?.music ?? .72,
+      channel?.audio?.crossfade ?? 2.5,
+      String(channel?.audio?.musicRepeat || 'shuffle')
+    ]);
+  }
+
+  function freshProgramPlayhead() {
+    if (!programMonitorPlayhead) return null;
+    if (Date.now() - positive(programMonitorPlayhead.receivedAt) > 3000) return null;
+    return programMonitorPlayhead;
+  }
+
   function currentLiveProgramId() {
-    const live = fullState?.live;
+    const live = resolvedLiveChannel();
     const items = Array.isArray(live?.program) ? live.program.filter(item => positive(item.duration) > 0) : [];
     if (!items.length) return '';
-    const stamp = Date.parse(live.startedAt || live.updatedAt || '');
+    const stamp = Date.parse(live.programStartedAt || live.startedAt || live.updatedAt || '');
     if (!Number.isFinite(stamp)) return String(items[0]?.id || '');
     const total = items.reduce((sum, item) => sum + positive(item.duration), 0);
     if (total <= 0) return '';
@@ -2623,49 +2716,87 @@
     const originalLabel = takeLiveButton.textContent;
     const savingVersion = editVersion;
     setBusy('live');
-    takeLiveButton.textContent = 'Taking Live…';
-    try {
-      const now = new Date().toISOString();
-      const currentLive = fullState?.live;
-      const currentLiveHasTimeline = [
-        ...(Array.isArray(currentLive?.program) ? currentLive.program : []),
-        ...(Array.isArray(currentLive?.music) ? currentLive.music : [])
-      ].some(item => positive(item?.duration) > 0);
-      const currentLiveStartedAt = Date.parse(currentLive?.startedAt || '');
-      const previewTimelineStart = Number.isFinite(Date.parse(previewStartedAt))
-        ? previewStartedAt
-        : now;
-      const liveTimelineStart = currentLiveHasTimeline && Number.isFinite(currentLiveStartedAt)
-        ? currentLive.startedAt
-        : previewTimelineStart;
+    takeLiveButton.textContent = 'Queuing Live…';
 
-      working.updatedAt = now;
+    try {
+      const nowIso = await sharedNowIso();
+      const nowMs = Date.parse(nowIso);
+      const currentLive = resolvedLiveChannel(fullState, nowMs);
+      const hasRunningProgram = Array.isArray(currentLive?.program)
+        && currentLive.program.some(item => positive(item.duration) > 0);
+      const hasRunningMusic = Array.isArray(currentLive?.music)
+        && currentLive.music.some(item => positive(item.duration || item.sourceDuration) > 0);
+
+      const playhead = freshProgramPlayhead();
+      const programRemaining = hasRunningProgram
+        ? Math.max(.05, positive(playhead?.programRemaining) || nextProgramBoundarySeconds(currentLive, nowMs))
+        : 0;
+      const programTransitionAt = new Date(nowMs + programRemaining * 1000).toISOString();
+
+      const musicChanged = musicDeckSignature(currentLive) !== musicDeckSignature(working);
+      const musicRemaining = musicChanged && hasRunningMusic
+        ? Math.max(.05, positive(playhead?.musicRemaining) || 0)
+        : 0;
+      const musicTransitionAt = musicChanged && hasRunningMusic
+        ? new Date(nowMs + musicRemaining * 1000).toISOString()
+        : programTransitionAt;
+
+      working.updatedAt = nowIso;
       working.revision = `draft-${Date.now()}`;
-      const live = clone(working);
-      // Taking Preview live updates the running Program without resetting its
-      // timeline. Keeping the existing Program origin preserves the rundown,
-      // videos, ticker phase and deterministic music/shuffle position. A first
-      // Take Live falls back to the Preview playhead because no Program exists.
-      live.startedAt = liveTimelineStart;
-      live.updatedAt = now;
-      live.revision = `live-${Date.now()}`;
+
+      const pendingLive = clone(working);
+      const continuousStartedAt = currentLive?.startedAt || currentLive?.musicStartedAt || nowIso;
+      pendingLive.startedAt = continuousStartedAt;
+      pendingLive.programStartedAt = programTransitionAt;
+      pendingLive.musicStartedAt = musicChanged && hasRunningMusic
+        ? musicTransitionAt
+        : (currentLive?.musicStartedAt || currentLive?.startedAt || continuousStartedAt);
+      pendingLive.programTransitionAt = programTransitionAt;
+      pendingLive.musicTransitionAt = musicTransitionAt;
+      pendingLive.updatedAt = nowIso;
+      pendingLive.revision = `live-${Date.now()}`;
+
       const nextState = {
         ...(fullState || {}),
         version: 1,
-        updatedAt: now,
+        updatedAt: nowIso,
         draft: clone(working),
-        live
+        live: currentLive ? clone(currentLive) : clone(pendingLive),
+        pendingLive: hasRunningProgram || hasRunningMusic ? pendingLive : null,
+        programTransitionAt: hasRunningProgram ? programTransitionAt : nowIso,
+        musicTransitionAt: musicChanged && hasRunningMusic ? musicTransitionAt : (hasRunningMusic ? programTransitionAt : nowIso)
       };
-      await writeState(nextState, 'Take broadcast programming live [skip ci]');
+
+      if (!hasRunningProgram && !hasRunningMusic) {
+        nextState.live = pendingLive;
+        nextState.pendingLive = null;
+        delete nextState.programTransitionAt;
+        delete nextState.musicTransitionAt;
+      }
+
+      await writeState(nextState, 'Queue broadcast programming for clean live cut [skip ci]');
       fullState = nextState;
       setDirty(editVersion !== savingVersion);
-      showToast('Preview changes are now live on Program without restarting the running loop. Existing viewers will sync automatically.');
+
+      if (nextState.pendingLive) {
+        const programSeconds = Math.max(0, Math.round((Date.parse(programTransitionAt) - nowMs) / 1000));
+        const musicSuffix = musicChanged && hasRunningMusic
+          ? ' Music changes wait for the current song to finish.'
+          : ' Music keeps playing continuously.';
+        showToast(
+          'Queued for the next clean cut in about ' + programSeconds + 's. The current on-air block will finish first.' + musicSuffix,
+          10000
+        );
+      } else {
+        showToast('Program is live.');
+      }
+
       renderSummary();
       renderVideoLibrary();
       refreshProgramMonitor();
     } catch (error) {
       if (error.status === 409) showToast('Broadcast state changed remotely. Use Reload State, then try again.', 8500);
-      else showToast(`Could not take broadcast live: ${error.message}`, 8500);
+      else showToast(`Could not queue broadcast live: ${error.message}`, 8500);
     } finally {
       takeLiveButton.textContent = originalLabel;
       setBusy('');
