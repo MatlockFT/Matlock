@@ -1528,6 +1528,92 @@
     ]);
   }
 
+  function musicSeed(value) {
+    let hash = 2166136261;
+    const text = String(value || '');
+    for (let index = 0; index < text.length; index += 1) {
+      hash ^= text.charCodeAt(index);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function musicRandom(seedState) {
+    let value = seedState.value += 0x6D2B79F5;
+    value = Math.imul(value ^ value >>> 15, value | 1);
+    value ^= value + Math.imul(value ^ value >>> 7, value | 61);
+    return ((value ^ value >>> 14) >>> 0) / 4294967296;
+  }
+
+  function musicTrackKeyForBoundary(track) {
+    return String(track?.id || '') + ':' + String(track?.url || '');
+  }
+
+  function musicDurationForBoundary(track) {
+    return positive(track?.sourceDuration || track?.duration);
+  }
+
+  function shuffledMusicOrder(channel, tracks, cycleIndex, previousOrder) {
+    const repeat = String(channel?.audio?.musicRepeat || 'shuffle').toLowerCase();
+    const order = tracks.slice();
+    if (cycleIndex === 0 || repeat === 'fixed' || order.length < 2) return order;
+    const seedState = {
+      value: musicSeed([
+        channel?.musicStartedAt || channel?.startedAt || channel?.updatedAt || '',
+        tracks.map(musicTrackKeyForBoundary).join('|'),
+        cycleIndex
+      ].join('::'))
+    };
+    for (let index = order.length - 1; index > 0; index -= 1) {
+      const swap = Math.floor(musicRandom(seedState) * (index + 1));
+      [order[index], order[swap]] = [order[swap], order[index]];
+    }
+    const previousLast = previousOrder?.[previousOrder.length - 1];
+    if (previousLast && String(order[0]?.url || order[0]?.id || '') === String(previousLast?.url || previousLast?.id || '')) {
+      const swap = order.findIndex((track, index) => index > 0
+        && String(track?.url || track?.id || '') !== String(previousLast?.url || previousLast?.id || ''));
+      if (swap > 0) [order[0], order[swap]] = [order[swap], order[0]];
+    }
+    if (order.length > 2 && previousOrder?.length === order.length
+        && order.every((track, index) => musicTrackKeyForBoundary(track) === musicTrackKeyForBoundary(previousOrder[index]))) {
+      [order[1], order[2]] = [order[2], order[1]];
+    }
+    return order;
+  }
+
+  function nextMusicBoundarySeconds(channel, nowMs = Date.now()) {
+    const tracks = Array.isArray(channel?.music)
+      ? channel.music.filter(track => track?.url && musicDurationForBoundary(track) > 0)
+      : [];
+    if (!tracks.length) return 0;
+    const stamp = Date.parse(channel.musicStartedAt || channel.startedAt || channel.updatedAt || '');
+    if (!Number.isFinite(stamp)) return 0;
+    const elapsed = Math.max(0, (nowMs - stamp) / 1000);
+    const crossfade = clamp(channel?.audio?.crossfade ?? 2.5, 0, 12);
+
+    let cursor = 0;
+    let previousOrder = null;
+    for (let cycle = 0; cycle < 5000; cycle += 1) {
+      const order = shuffledMusicOrder(channel, tracks, cycle, previousOrder);
+      const nextOrder = shuffledMusicOrder(channel, tracks, cycle + 1, order);
+      for (let index = 0; index < order.length; index += 1) {
+        const current = order[index];
+        const next = index < order.length - 1 ? order[index + 1] : nextOrder[0];
+        const duration = musicDurationForBoundary(current);
+        const nextDuration = musicDurationForBoundary(next);
+        const overlap = next
+          ? Math.min(crossfade, duration * .45, nextDuration * .45)
+          : 0;
+        const slot = Math.max(.05, duration - overlap);
+        if (elapsed < cursor + slot) return Math.max(.05, cursor + slot - elapsed);
+        cursor += slot;
+      }
+      previousOrder = order;
+      if (cursor > elapsed + 1) break;
+    }
+    return 0;
+  }
+
   function freshProgramPlayhead() {
     if (!programMonitorPlayhead) return null;
     if (Date.now() - positive(programMonitorPlayhead.receivedAt) > 3000) return null;
@@ -2735,7 +2821,7 @@
 
       const musicChanged = musicDeckSignature(currentLive) !== musicDeckSignature(working);
       const musicRemaining = musicChanged && hasRunningMusic
-        ? Math.max(.05, positive(playhead?.musicRemaining) || 0)
+        ? Math.max(.05, positive(playhead?.musicRemaining) || nextMusicBoundarySeconds(currentLive, nowMs))
         : 0;
       const musicTransitionAt = musicChanged && hasRunningMusic
         ? new Date(nowMs + musicRemaining * 1000).toISOString()
