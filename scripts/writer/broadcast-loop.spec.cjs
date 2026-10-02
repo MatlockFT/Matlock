@@ -61,6 +61,60 @@ test('Image blocks can upload a still image and keep it in the selected draft bl
   expect(saved.duration).toBe(20);
 });
 
+test('image framing controls change fit, zoom and position in Preview and persist to draft', async ({ page }) => {
+  const png = Buffer.from(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=',
+    'base64'
+  );
+  fixture.media.set('/fixtures/framing.png', { data: png, type: 'image/png' });
+  fixture.state.draft.program = [{
+    id: 'framing-image',
+    type: 'image',
+    header: 'MMA NEWS',
+    eyebrow: 'PHOTO',
+    title: 'FRAMING TEST',
+    mediaUrl: fixture.origin + '/fixtures/framing.png',
+    duration: 20,
+    mediaFit: 'cover',
+    mediaScale: 100,
+    mediaX: 50,
+    mediaY: 50
+  }];
+
+  await page.goto(fixture.origin + '/broadcast/control/');
+  const fit = page.getByLabel('Media fit', { exact: true });
+  const zoom = page.getByLabel('Zoom', { exact: true });
+  const x = page.getByLabel('Horizontal position', { exact: true });
+  const y = page.getByLabel('Vertical position', { exact: true });
+
+  await fit.selectOption('contain');
+  await zoom.fill('150');
+  await x.fill('25');
+  await y.fill('75');
+
+  const preview = page.frameLocator('[data-preview-frame]');
+  const image = preview.locator('[data-mfc-image]');
+  await expect(image).toBeVisible();
+  await expect(image).toHaveCSS('object-fit', 'contain');
+  await expect(image).toHaveCSS('object-position', '25% 75%');
+  await expect(image).toHaveCSS('transform', /matrix\(1\.5, 0, 0, 1\.5, 0, 0\)/);
+
+  await page.locator('[data-save-draft]').click();
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
+  expect(fixture.state.draft.program[0]).toMatchObject({
+    mediaFit: 'contain',
+    mediaScale: 150,
+    mediaX: 25,
+    mediaY: 75
+  });
+
+  await page.getByRole('button', { name: 'Reset framing' }).click();
+  await expect(fit).toHaveValue('contain');
+  await expect(page.getByLabel('Zoom', { exact: true })).toHaveValue('100');
+  await expect(page.getByLabel('Horizontal position', { exact: true })).toHaveValue('50');
+  await expect(page.getByLabel('Vertical position', { exact: true })).toHaveValue('50');
+});
+
 test('music URLs accept YouTube links, manual duration fallbacks and direct media', async ({ page }) => {
   await page.goto(fixture.origin + '/broadcast/control/');
   await page.getByRole('tab', { name: /Media/ }).click();
