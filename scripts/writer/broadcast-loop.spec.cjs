@@ -167,9 +167,9 @@ test('video inspector queues caption generation and keeps captions enabled', asy
 });
 
 test('generated WebVTT captions render over uploaded video at the correct time', async ({ page }) => {
-  fixture.media.set('/assets/uploads/broadcast/captions/caption-render-test.vtt', {
-    data: Buffer.from('WEBVTT\n\n1\n00:00:00.000 --> 00:00:01.600\nTHIS IS AN AUTO CAPTION\n\n2\n00:00:01.600 --> 00:00:02.000\nSECOND LINE\n'),
-    type: 'text/vtt'
+  const captionVtt = 'WEBVTT\n\n1\n00:00:00.000 --> 00:00:01.600\nTHIS IS AN AUTO CAPTION\n\n2\n00:00:01.600 --> 00:00:02.000\nSECOND LINE\n';
+  await page.route('https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/broadcast/captions/caption-render-test.vtt*', route => {
+    route.fulfill({ status: 200, contentType: 'text/vtt', body: captionVtt });
   });
   fixture.state.draft.program = [{
     id: 'caption-render-video',
