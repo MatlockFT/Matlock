@@ -63,7 +63,7 @@ test('Image blocks can upload a still image and keep it in the selected draft bl
 
 test('image framing controls change fit, zoom and position in Preview and persist to draft', async ({ page }) => {
   const png = Buffer.from(
-    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=',
+    'iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAAFElEQVR4nGP8//8/AwwwMSABFA4Aby0DAyMYAwQAAAAASUVORK5CYII=',
     'base64'
   );
   fixture.media.set('/fixtures/framing.png', { data: png, type: 'image/png' });
@@ -98,6 +98,21 @@ test('image framing controls change fit, zoom and position in Preview and persis
   await expect(image).toHaveCSS('object-fit', 'contain');
   await expect(image).toHaveCSS('object-position', '25% 75%');
   await expect(image).toHaveCSS('transform', /matrix\(1\.5, 0, 0, 1\.5, 0, 0\)/);
+
+  await fit.selectOption('cover');
+  await zoom.fill('100');
+  const coverBase = await image.evaluate(node => Number(node.dataset.mediaBaseScale || 1));
+  expect(coverBase).toBeGreaterThan(1);
+  const coverScale = await image.evaluate(node => new DOMMatrix(getComputedStyle(node).transform).a);
+  expect(coverScale).toBeGreaterThan(1);
+
+  await zoom.fill('75');
+  const zoomedOutScale = await image.evaluate(node => new DOMMatrix(getComputedStyle(node).transform).a);
+  expect(zoomedOutScale).toBeLessThan(coverScale);
+  expect(zoomedOutScale).toBeLessThanOrEqual(1.01);
+
+  await fit.selectOption('contain');
+  await zoom.fill('150');
 
   await page.locator('[data-save-draft]').click();
   await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
