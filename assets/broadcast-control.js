@@ -69,7 +69,10 @@
   const musicFields = app.querySelector('[data-music-fields]');
   const musicEditorTitle = app.querySelector('[data-music-editor-title]');
   const deleteMusicButton = app.querySelector('[data-delete-music]');
-  const tickerInput = app.querySelector('[data-ticker-input]');
+  const tickerList = app.querySelector('[data-ticker-list]');
+  const tickerAddButton = app.querySelector('[data-ticker-add]');
+  const tickerCount = app.querySelector('[data-ticker-count]');
+  const tickerEmpty = app.querySelector('[data-ticker-empty]');
   const tickerSpeedInput = app.querySelector('[data-ticker-speed]');
   const tickerSpeedOutput = app.querySelector('[data-ticker-speed-output]');
   const musicUploadInput = app.querySelector('[data-music-upload]');
@@ -121,6 +124,7 @@
   let previewMonitorAudio = false;
   let programMonitorAudio = false;
   let programMonitorPlayhead = null;
+  let draggingTickerIndex = -1;
   const videoDurationCache = new Map();
   const captionStatusCache = new Map();
   const mediaRequests = new WeakMap();
@@ -371,6 +375,120 @@
       tickerPreviewMeasureFrame = 0;
       updateTickerPreviewMetrics(options);
     });
+  }
+
+  function renderTickerEditor({ focusIndex = -1 } = {}) {
+    if (!tickerList || !working) return;
+    const items = Array.isArray(working.ticker) ? working.ticker : [];
+    tickerList.textContent = '';
+
+    if (tickerCount) tickerCount.textContent = items.length + ' headline' + (items.length === 1 ? '' : 's');
+    if (tickerEmpty) tickerEmpty.hidden = items.length > 0;
+
+    items.forEach((value, index) => {
+      const row = document.createElement('div');
+      row.className = 'mfc-ticker-row';
+      row.draggable = true;
+      row.dataset.tickerIndex = String(index);
+
+      const handle = document.createElement('button');
+      handle.type = 'button';
+      handle.className = 'mfc-ticker-drag';
+      handle.setAttribute('aria-label', 'Drag ticker headline ' + (index + 1));
+      handle.title = 'Drag to reorder';
+      handle.textContent = '⋮⋮';
+
+      const number = document.createElement('span');
+      number.className = 'mfc-ticker-number';
+      number.textContent = String(index + 1).padStart(2, '0');
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'mfc-ticker-row-input';
+      input.value = String(value || '');
+      input.placeholder = 'Ticker headline';
+      input.setAttribute('aria-label', 'Ticker headline ' + (index + 1));
+      input.addEventListener('input', () => {
+        working.ticker[index] = input.value;
+        renderTickerPreview();
+        if (tickerCount) tickerCount.textContent = working.ticker.length + ' headline' + (working.ticker.length === 1 ? '' : 's');
+        markDirty();
+      });
+      input.addEventListener('blur', () => {
+        const trimmed = input.value.trim();
+        if (trimmed !== input.value) {
+          input.value = trimmed;
+          working.ticker[index] = trimmed;
+          renderTickerPreview();
+          markDirty();
+        }
+      });
+
+      const duplicate = smallButton('Duplicate', () => {
+        working.ticker.splice(index + 1, 0, String(working.ticker[index] || ''));
+        renderTickerEditor({ focusIndex: index + 1 });
+        renderTickerPreview();
+        markDirty();
+      }, 'mfc-button-ghost');
+      duplicate.classList.add('mfc-ticker-row-action');
+
+      const remove = smallButton('Delete', () => {
+        working.ticker.splice(index, 1);
+        renderTickerEditor({ focusIndex: Math.min(index, working.ticker.length - 1) });
+        renderTickerPreview();
+        markDirty();
+      }, 'mfc-button-ghost');
+      remove.classList.add('mfc-ticker-row-action', 'mfc-danger');
+
+      row.append(handle, number, input, duplicate, remove);
+
+      row.addEventListener('dragstart', event => {
+        draggingTickerIndex = index;
+        row.classList.add('is-dragging');
+        event.dataTransfer?.setData('text/plain', String(index));
+        if (event.dataTransfer) event.dataTransfer.effectAllowed = 'move';
+      });
+      row.addEventListener('dragend', () => {
+        draggingTickerIndex = -1;
+        tickerList.querySelectorAll('.mfc-ticker-row').forEach(node => node.classList.remove('is-dragging', 'is-drop-before', 'is-drop-after'));
+      });
+      row.addEventListener('dragover', event => {
+        if (draggingTickerIndex < 0 || draggingTickerIndex === index) return;
+        event.preventDefault();
+        const rect = row.getBoundingClientRect();
+        const after = event.clientY > rect.top + rect.height / 2;
+        row.classList.toggle('is-drop-before', !after);
+        row.classList.toggle('is-drop-after', after);
+        if (event.dataTransfer) event.dataTransfer.dropEffect = 'move';
+      });
+      row.addEventListener('dragleave', () => row.classList.remove('is-drop-before', 'is-drop-after'));
+      row.addEventListener('drop', event => {
+        event.preventDefault();
+        const from = draggingTickerIndex;
+        if (from < 0 || from === index) return;
+        const rect = row.getBoundingClientRect();
+        const after = event.clientY > rect.top + rect.height / 2;
+        const [moved] = working.ticker.splice(from, 1);
+        let target = index + (after ? 1 : 0);
+        if (from < target) target -= 1;
+        target = Math.max(0, Math.min(target, working.ticker.length));
+        working.ticker.splice(target, 0, moved);
+        draggingTickerIndex = -1;
+        renderTickerEditor({ focusIndex: target });
+        renderTickerPreview();
+        markDirty();
+      });
+
+      tickerList.append(row);
+    });
+
+    if (focusIndex >= 0) {
+      requestAnimationFrame(() => {
+        const input = tickerList.querySelectorAll('.mfc-ticker-row-input')[focusIndex];
+        input?.focus();
+        input?.select();
+      });
+    }
   }
 
   function renderTickerPreview() {
@@ -2705,9 +2823,11 @@
     });
   });
 
-  tickerInput.addEventListener('input', () => {
+  tickerAddButton?.addEventListener('click', () => {
     if (!working) return;
-    working.ticker = tickerInput.value.split('\n').map(value => value.trim()).filter(Boolean);
+    if (!Array.isArray(working.ticker)) working.ticker = [];
+    working.ticker.push('');
+    renderTickerEditor({ focusIndex: working.ticker.length - 1 });
     renderTickerPreview();
     markDirty();
   });
@@ -2724,7 +2844,7 @@
     renderProgram();
     renderMusic();
     renderAudioSettings();
-    tickerInput.value = (working.ticker || []).join('\n');
+    renderTickerEditor();
     renderTickerPreview();
     renderVideoLibrary();
     postPreview();
