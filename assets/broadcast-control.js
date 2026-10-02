@@ -1042,7 +1042,7 @@
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        message: 'Delete Broadcast Control video asset',
+        message: 'Delete Broadcast Control media asset',
         content: encodeBase64Utf8(JSON.stringify(request, null, 2) + '\n'),
         branch: 'main',
         ...(sha ? { sha } : {})
@@ -1199,7 +1199,7 @@
         deleteButton.textContent = 'Deleting…';
         try {
           await queueBroadcastVideoDelete(asset);
-          showToast('Delete queued. GitHub is removing the uploaded video…', 9000);
+          showToast('Delete queued. GitHub is removing the uploaded media…', 9000);
           const removed = await waitForVideoDeletion(asset.id);
           if (removed) {
             videoLibraryAssets = videoLibraryAssets.filter(row => row.id !== asset.id);
@@ -1208,14 +1208,14 @@
             }
             markDirty();
             renderVideoLibrary();
-            showToast('Uploaded video deleted permanently.');
+            showToast('Uploaded media deleted permanently.');
           } else {
             showToast('Delete was queued, but GitHub is still processing it. Refresh Media in a moment.', 9000);
             deleteButton.disabled = false;
             deleteButton.textContent = 'Delete';
           }
         } catch (error) {
-          showToast(`Could not delete video: ${error.message}`, 9000);
+          showToast(`Could not delete media: ${error.message}`, 9000);
           deleteButton.disabled = false;
           deleteButton.textContent = 'Delete';
         }
@@ -1223,7 +1223,7 @@
       deleteButton.disabled = !asset.id || usage.blocked;
       deleteButton.hidden = assetKind(asset) === 'audio';
       if (usage.blocked) deleteButton.title = 'Remove from the draft, save, and take that change live before deleting the file.';
-      else deleteButton.title = 'Permanently delete this uploaded video.';
+      else deleteButton.title = 'Permanently delete this uploaded media file.';
   
       actions.append(previewButton, addButton, copyButton, releaseButton, deleteButton);
       row.append(main, actions);
