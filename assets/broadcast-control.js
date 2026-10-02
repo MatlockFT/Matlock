@@ -14,6 +14,7 @@
   const CHUNK_BYTES = Math.floor(3.5 * 1024 * 1024);
   const STATUS_POLL_MS = 1400;
   const STATUS_TIMEOUT_MS = 20 * 60 * 1000;
+  const LIVE_CUT_LEAD_SECONDS = 15;
 
   const authPanel = app.querySelector('[data-auth-panel]');
   const workspace = app.querySelector('[data-control-workspace]');
@@ -1493,7 +1494,7 @@
     };
   }
 
-  function nextProgramBoundarySeconds(live, nowMs = Date.now()) {
+  function nextProgramBoundarySeconds(live, nowMs = Date.now(), minLead = LIVE_CUT_LEAD_SECONDS) {
     const items = Array.isArray(live?.program) ? live.program.filter(item => positive(item.duration) > 0) : [];
     if (!items.length) return 0;
     const stamp = Date.parse(live.programStartedAt || live.startedAt || live.updatedAt || '');
@@ -1502,13 +1503,27 @@
     if (total <= 0) return 0;
     const elapsed = Math.max(0, (nowMs - stamp) / 1000);
     const position = ((elapsed % total) + total) % total;
+
     let cursor = 0;
-    for (const item of items) {
-      const end = cursor + positive(item.duration);
-      if (position < end) return Math.max(.05, end - position);
+    let currentIndex = 0;
+    let delay = 0;
+    for (let index = 0; index < items.length; index += 1) {
+      const end = cursor + positive(items[index].duration);
+      if (position < end || index === items.length - 1) {
+        currentIndex = index;
+        delay = Math.max(.05, end - position);
+        break;
+      }
       cursor = end;
     }
-    return Math.max(.05, total - position);
+
+    let guard = 0;
+    while (delay < minLead && guard < items.length * 4) {
+      currentIndex = (currentIndex + 1) % items.length;
+      delay += positive(items[currentIndex].duration);
+      guard += 1;
+    }
+    return Math.max(.05, delay);
   }
 
   function musicDeckSignature(channel) {
@@ -1581,19 +1596,19 @@
     return order;
   }
 
-  function nextMusicBoundarySeconds(channel, nowMs = Date.now()) {
+  function nextMusicBoundaryInfo(channel, nowMs = Date.now(), minLead = LIVE_CUT_LEAD_SECONDS) {
     const tracks = Array.isArray(channel?.music)
       ? channel.music.filter(track => track?.url && musicDurationForBoundary(track) > 0)
       : [];
-    if (!tracks.length) return 0;
+    if (!tracks.length) return { seconds: 0, track: null, next: null, overlap: 0 };
     const stamp = Date.parse(channel.musicStartedAt || channel.startedAt || channel.updatedAt || '');
-    if (!Number.isFinite(stamp)) return 0;
+    if (!Number.isFinite(stamp)) return { seconds: 0, track: null, next: null, overlap: 0 };
     const elapsed = Math.max(0, (nowMs - stamp) / 1000);
     const crossfade = clamp(channel?.audio?.crossfade ?? 2.5, 0, 12);
 
     let cursor = 0;
     let previousOrder = null;
-    for (let cycle = 0; cycle < 5000; cycle += 1) {
+    for (let cycle = 0; cycle < 20000; cycle += 1) {
       const order = shuffledMusicOrder(channel, tracks, cycle, previousOrder);
       const nextOrder = shuffledMusicOrder(channel, tracks, cycle + 1, order);
       for (let index = 0; index < order.length; index += 1) {
@@ -1605,13 +1620,14 @@
           ? Math.min(crossfade, duration * .45, nextDuration * .45)
           : 0;
         const slot = Math.max(.05, duration - overlap);
-        if (elapsed < cursor + slot) return Math.max(.05, cursor + slot - elapsed);
-        cursor += slot;
+        const boundary = cursor + slot;
+        const delay = boundary - elapsed;
+        if (delay >= minLead) return { seconds: delay, track: current, next, overlap };
+        cursor = boundary;
       }
       previousOrder = order;
-      if (cursor > elapsed + 1) break;
     }
-    return 0;
+    return { seconds: 0, track: null, next: null, overlap: 0 };
   }
 
   function freshProgramPlayhead() {
@@ -2815,14 +2831,15 @@
 
       const playhead = freshProgramPlayhead();
       const programRemaining = hasRunningProgram
-        ? Math.max(.05, positive(playhead?.programRemaining) || nextProgramBoundarySeconds(currentLive, nowMs))
+        ? nextProgramBoundarySeconds(currentLive, nowMs)
         : 0;
       const programTransitionAt = new Date(nowMs + programRemaining * 1000).toISOString();
 
       const musicChanged = musicDeckSignature(currentLive) !== musicDeckSignature(working);
-      const musicRemaining = musicChanged && hasRunningMusic
-        ? Math.max(.05, positive(playhead?.musicRemaining) || nextMusicBoundarySeconds(currentLive, nowMs))
-        : 0;
+      const musicBoundary = musicChanged && hasRunningMusic
+        ? nextMusicBoundaryInfo(currentLive, nowMs)
+        : { seconds: 0, track: null, next: null, overlap: 0 };
+      const musicRemaining = musicBoundary.seconds;
       const musicTransitionAt = musicChanged && hasRunningMusic
         ? new Date(nowMs + musicRemaining * 1000).toISOString()
         : programTransitionAt;
@@ -2837,6 +2854,20 @@
       pendingLive.musicStartedAt = musicChanged && hasRunningMusic
         ? musicTransitionAt
         : (currentLive?.musicStartedAt || currentLive?.startedAt || continuousStartedAt);
+      if (musicChanged && hasRunningMusic && musicBoundary.track) {
+        pendingLive.musicTransitionFrom = clone(musicBoundary.track);
+        const incoming = pendingLive.music?.[0];
+        pendingLive.musicTransitionOverlap = incoming
+          ? Math.min(
+              clamp(currentLive?.audio?.crossfade ?? 2.5, 0, 12),
+              musicDurationForBoundary(musicBoundary.track) * .45,
+              musicDurationForBoundary(incoming) * .45
+            )
+          : 0;
+      } else {
+        delete pendingLive.musicTransitionFrom;
+        delete pendingLive.musicTransitionOverlap;
+      }
       pendingLive.programTransitionAt = programTransitionAt;
       pendingLive.musicTransitionAt = musicTransitionAt;
       pendingLive.updatedAt = nowIso;
