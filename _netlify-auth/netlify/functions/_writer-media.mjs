@@ -25,7 +25,15 @@ const AUDIO_TYPES = new Map([
   ['flac', new Set(['audio/flac', 'audio/x-flac', 'application/octet-stream'])]
 ]);
 
-const MEDIA_TYPES = new Map([...VIDEO_TYPES, ...AUDIO_TYPES]);
+const IMAGE_TYPES = new Map([
+  ['png', new Set(['image/png', 'application/octet-stream'])],
+  ['jpg', new Set(['image/jpeg', 'application/octet-stream'])],
+  ['jpeg', new Set(['image/jpeg', 'application/octet-stream'])],
+  ['webp', new Set(['image/webp', 'application/octet-stream'])],
+  ['gif', new Set(['image/gif', 'application/octet-stream'])]
+]);
+
+const MEDIA_TYPES = new Map([...VIDEO_TYPES, ...AUDIO_TYPES, ...IMAGE_TYPES]);
 
 export function writerSessionId(request) {
   return request.headers.get('x-writer-session') || '';
@@ -83,7 +91,7 @@ export function validateMediaMetadata(meta) {
   return validateMetadata(
     meta,
     MEDIA_TYPES,
-    'Use MP4, WebM or M4V video, or MP3, M4A, AAC, WAV, OGG, Opus or FLAC audio.'
+    'Use MP4, WebM or M4V video; MP3, M4A, AAC, WAV, OGG, Opus or FLAC audio; or PNG, JPG, WebP or GIF images.'
   );
 }
 
