@@ -1816,7 +1816,7 @@
 
       const fitField = field('Media fit', 'mediaFit', {
         type: 'select',
-        value: item.mediaFit || 'cover',
+        value: item.mediaFit || (item.type === 'image' ? 'contain' : 'cover'),
         wide: true,
         live: false,
         options: [
@@ -1874,7 +1874,7 @@
 
       const framingNote = document.createElement('p');
       framingNote.className = 'mfc-field-note mfc-field-wide';
-      framingNote.textContent = 'Cover fills the frame and can crop. Contain keeps the entire media visible. Zoom and position are saved per rundown item and apply the same way in Preview and Live. You can also drag the image or video directly inside Preview to reposition it.';
+      framingNote.textContent = 'Contain shows the complete source. Cover starts filled, but zooming out can now reveal the rest of the original image or video instead of scaling an already-cropped frame. Framing is saved per item, and you can drag the media directly inside Preview to reposition it.';
       form.append(framingNote);
 
       if (item.type === 'video') {
@@ -2797,6 +2797,10 @@
         item.type = 'image';
         item.mediaUrl = asset.url;
         item.duration = duration;
+        if (!item.mediaFit) item.mediaFit = 'contain';
+        if (item.mediaScale == null) item.mediaScale = 100;
+        if (item.mediaX == null) item.mediaX = 50;
+        if (item.mediaY == null) item.mediaY = 50;
         if (!item.title || item.title === 'IMAGE') item.title = displayVideoName(asset.name);
       } else {
         item = { id: uid('program'), type: 'image', header: 'MMA NEWS', eyebrow: 'PHOTO', title: displayVideoName(asset.name), mediaUrl: asset.url, duration, mediaFit: 'contain', mediaScale: 100, mediaX: 50, mediaY: 50 };
