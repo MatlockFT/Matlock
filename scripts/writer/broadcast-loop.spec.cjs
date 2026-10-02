@@ -260,7 +260,7 @@ test('failed Take Live never changes Program, and edits made during Save remain 
   expect(fixture.state.draft.ticker).toEqual(['Edit while saving']);
 });
 
-test('Take Live queues the new rundown for the next clean on-air item boundary', async ({ page }) => {
+test('Take Live lets the current loop finish and starts the new rundown at the next full wrap', async ({ page }) => {
   const runningStartedAt = new Date(Date.now() - 4_000).toISOString();
   const oldProgram = [
     { id: 'old-first', type: 'headline', title: 'OLD FIRST', body: 'Old item', duration: 10 },
@@ -295,7 +295,47 @@ test('Take Live queues the new rundown for the next clean on-air item boundary',
   const cutAt = Date.parse(fixture.state.programTransitionAt);
   expect(cutAt).toBeGreaterThan(before + 14_000);
   expect(cutAt).toBeLessThan(before + 20_000);
-  await expect(page.locator('[data-toast]')).toContainText('current on-air block will finish first');
+  await expect(page.locator('[data-toast]')).toContainText('current live loop will finish');
+});
+
+test('mid-loop changes do not send viewers back to Block 1 early', async ({ page }) => {
+  const now = Date.now();
+  const durations = [10, 10, 10, 10, 10, 10];
+  fixture.state.live = {
+    ...fixture.state.live,
+    revision: 'live-on-story-five',
+    startedAt: new Date(now - 43_000).toISOString(),
+    program: durations.map((duration, index) => ({
+      id: 'old-' + (index + 1),
+      type: 'headline',
+      title: 'OLD ' + (index + 1),
+      duration
+    })),
+    music: []
+  };
+  fixture.state.draft = {
+    ...fixture.state.draft,
+    program: durations.map((duration, index) => ({
+      id: 'new-' + (index + 1),
+      type: 'headline',
+      title: index === 3 ? 'NEW 4 EDITED' : 'NEW ' + (index + 1),
+      duration
+    })),
+    ticker: ['NEW TICKER']
+  };
+
+  await page.goto(fixture.origin + '/broadcast/control/');
+  const before = Date.now();
+  await page.locator('[data-take-live]').click();
+  await expect.poll(() => fixture.state.pendingLive?.program?.[3]?.title).toBe('NEW 4 EDITED');
+
+  // At 43s into a 60s loop, the staged version must wait for the 60s wrap.
+  const cutAt = Date.parse(fixture.state.programTransitionAt);
+  expect(cutAt).toBeGreaterThan(before + 15_000);
+  expect(cutAt).toBeLessThan(before + 22_000);
+  expect(fixture.state.live.program[4].title).toBe('OLD 5');
+  expect(fixture.state.pendingLive.program[0].title).toBe('NEW 1');
+  expect(fixture.state.pendingLive.ticker).toEqual(['NEW TICKER']);
 });
 
 test('changed music waits for its current song boundary independently of the visual cut', async ({ page }) => {
