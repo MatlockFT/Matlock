@@ -113,8 +113,14 @@
       reportPlayback('A YouTube video is unavailable. Continuing with available content; retrying in one minute.');
     },
     blocked: () => {
-      soundBlocked = true; setSoundState(false); soundButton.hidden = false;
-      reportPlayback('YouTube autoplay was blocked. Click Sound On or the video play button.', true);
+      soundBlocked = true;
+      if (!obsMode) {
+        setSoundState(false);
+        soundButton.hidden = false;
+      }
+      reportPlayback(obsMode
+        ? 'OBS browser audio playback was blocked; keeping audio armed for retry.'
+        : 'YouTube autoplay was blocked. Click the broadcast to enable sound.', true);
     },
     playing: () => { if (!soundBlocked) reportPlayback(''); }
   });
@@ -128,9 +134,13 @@
       },
       blocked: () => {
         soundBlocked = true;
-        setSoundState(false);
-        soundButton.hidden = false;
-        reportPlayback('YouTube blocked background audio. Click Sound On to enable it.', true);
+        if (!obsMode) {
+          setSoundState(false);
+          soundButton.hidden = false;
+        }
+        reportPlayback(obsMode
+          ? 'OBS browser music playback was blocked; keeping audio armed for retry.'
+          : 'Background audio was blocked. Click the broadcast to enable sound.', true);
       },
       playing: () => { if (!soundBlocked) reportPlayback(''); }
     });
@@ -1287,6 +1297,18 @@
     setSoundState(!soundEnabled);
     const { elapsed, position } = syncProgram();
     syncMusic(elapsed, position.item, .05);
+  });
+
+  function enableSoundFromGesture() {
+    if (monitorMode || soundEnabled) return;
+    setSoundState(true);
+    const { elapsed, position } = syncProgram();
+    syncMusic(elapsed, position.item, .05);
+  }
+
+  screen.addEventListener('pointerdown', enableSoundFromGesture);
+  screen.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') enableSoundFromGesture();
   });
 
   // Called synchronously by the same-origin controller's Listen click so the
