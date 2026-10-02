@@ -32,6 +32,35 @@ test('batch upload continues after a bad file, retries chunks, auto-populates an
   await expect(page.locator('[data-music-id]')).toHaveCount(2); // no accidental duplicates
 });
 
+test('Image blocks can upload a still image and keep it in the selected draft block', async ({ page }) => {
+  const png = Buffer.from(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=',
+    'base64'
+  );
+
+  await page.goto(fixture.origin + '/broadcast/control/');
+  await page.locator('[data-add-program="image"]').click();
+  await expect(page.locator('[data-program-image-upload]')).toHaveCount(1);
+
+  await page.locator('[data-program-image-upload]').setInputFiles({
+    name: 'Fight Card.png',
+    mimeType: 'image/png',
+    buffer: png
+  });
+
+  await expect(page.locator('[data-upload-results]')).toContainText('Fight Card.png — Ready in draft', { timeout: 20000 });
+  const imageUrl = page.locator('[data-program-fields]').getByLabel('Image URL', { exact: true });
+  await expect(imageUrl).toHaveValue(/broadcast-image-Fight-Card-.*\.png$/);
+  await expect(page.locator('[data-video-library-list] .mfc-video-asset')).toContainText('Image');
+
+  await page.locator('[data-save-draft]').click();
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
+  const saved = fixture.state.draft.program.at(-1);
+  expect(saved.type).toBe('image');
+  expect(saved.mediaUrl).toMatch(/broadcast-image-Fight-Card-.*\.png$/);
+  expect(saved.duration).toBe(20);
+});
+
 test('music URLs accept YouTube links, manual duration fallbacks and direct media', async ({ page }) => {
   await page.goto(fixture.origin + '/broadcast/control/');
   await page.getByRole('tab', { name: /Media/ }).click();
