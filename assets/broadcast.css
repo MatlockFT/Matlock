@@ -370,6 +370,36 @@ body {
   filter: saturate(.86) contrast(.94) brightness(.96) blur(.12px);
 }
 
+.mfc-captions {
+  position: absolute;
+  z-index: 6;
+  left: 5%;
+  right: 5%;
+  bottom: 4.5%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  text-align: center;
+}
+
+.mfc-captions[hidden] {
+  display: none;
+}
+
+.mfc-captions::before {
+  display: inline;
+  padding: .28em .48em .32em;
+  background: rgba(0,0,0,.82);
+  color: #fff;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  font: 800 clamp(13px, 3.1cqw, 21px)/1.22 Arial, Helvetica, sans-serif;
+  letter-spacing: -.01em;
+  text-shadow: 0 1px 2px rgba(0,0,0,.95);
+  white-space: pre-line;
+  content: attr(data-caption-text);
+}
+
 .mfc-program-panel.has-media::after {
   position: absolute;
   inset: 0;
