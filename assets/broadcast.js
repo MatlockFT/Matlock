@@ -1111,6 +1111,24 @@
 
     const entry = entries[Math.min(low, entries.length - 1)];
     const local = Math.max(0, target - entry.start);
+    let previous = entry.previous;
+    let previousDuration = entry.previousDuration;
+    let incomingOverlap = entry.incomingOverlap;
+    let previousLocal = previous
+      ? Math.max(0, previousDuration - incomingOverlap + local)
+      : 0;
+
+    // When a newly staged music set becomes active, crossfade out of the song
+    // that was already on air instead of cutting it at the deck handoff.
+    const transitionFrom = channel?.musicTransitionFrom;
+    const transitionOverlap = Math.max(0, Number(channel?.musicTransitionOverlap) || 0);
+    if (entry.cycleIndex === 0 && entry.index === 0 && transitionFrom && transitionOverlap > 0 && local < transitionOverlap) {
+      previous = transitionFrom;
+      previousDuration = musicDuration(transitionFrom);
+      incomingOverlap = Math.min(transitionOverlap, previousDuration * .45, entry.duration * .45);
+      previousLocal = Math.max(0, previousDuration - incomingOverlap + local);
+    }
+
     return {
       item: entry.item,
       index: entry.index,
@@ -1118,12 +1136,10 @@
       local,
       total: entry.end,
       duration: entry.duration,
-      previous: entry.previous,
-      previousDuration: entry.previousDuration,
-      incomingOverlap: entry.incomingOverlap,
-      previousLocal: entry.previous
-        ? Math.max(0, entry.previousDuration - entry.incomingOverlap + local)
-        : 0,
+      previous,
+      previousDuration,
+      incomingOverlap,
+      previousLocal,
       slotRemaining: Math.max(0, entry.end - target),
       next: entry.next
     };
@@ -1488,7 +1504,7 @@
 
   window.setInterval(() => {
     loadState().catch(() => {});
-  }, 12000);
+  }, 5000);
 
   window.setInterval(() => {
     syncNetworkClock().then(() => {
