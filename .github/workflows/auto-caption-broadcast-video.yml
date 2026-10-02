@@ -1,0 +1,119 @@
+name: Auto-caption broadcast video
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/uploads/runtime/broadcast-caption-requests/**"
+      - "scripts/broadcast/transcribe-video.py"
+      - ".github/workflows/auto-caption-broadcast-video.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  captions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Find caption request
+        id: request
+        shell: bash
+        run: |
+          set -euo pipefail
+          request="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA" | grep '^assets/uploads/runtime/broadcast-caption-requests/.*\.json$' | tail -n 1 || true)"
+          if [[ -z "$request" || ! -f "$request" ]]; then
+            echo "path=" >> "$GITHUB_OUTPUT"
+            echo "No new caption request in this commit."
+            exit 0
+          fi
+          echo "path=$request" >> "$GITHUB_OUTPUT"
+
+      - name: Read request
+        if: steps.request.outputs.path != ''
+        id: meta
+        shell: bash
+        run: |
+          set -euo pipefail
+          request="${{ steps.request.outputs.path }}"
+          key="$(jq -r '.key // empty' "$request")"
+          source_url="$(jq -r '.sourceUrl // empty' "$request")"
+          if [[ -z "$key" || -z "$source_url" ]]; then
+            echo "::error::Caption request is missing key or sourceUrl."
+            exit 1
+          fi
+          if ! [[ "$key" =~ ^[A-Za-z0-9._-]+$ ]]; then
+            echo "::error::Invalid caption key."
+            exit 1
+          fi
+          echo "key=$key" >> "$GITHUB_OUTPUT"
+          echo "source_url=$source_url" >> "$GITHUB_OUTPUT"
+          echo "vtt_path=assets/uploads/broadcast/captions/$key.vtt" >> "$GITHUB_OUTPUT"
+          echo "json_path=assets/uploads/broadcast/captions/$key.json" >> "$GITHUB_OUTPUT"
+          echo "caption_url=/assets/uploads/broadcast/captions/$key.vtt" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        if: steps.request.outputs.path != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache transcription model
+        if: steps.request.outputs.path != ''
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: broadcast-captions-faster-whisper-small-v1
+
+      - name: Install transcription engine
+        if: steps.request.outputs.path != ''
+        run: python -m pip install --disable-pip-version-check "faster-whisper==1.2.0"
+
+      - name: Download uploaded video
+        if: steps.request.outputs.path != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 --retry-delay 2 "${{ steps.meta.outputs.source_url }}" -o caption-source
+          test -s caption-source
+          ls -lh caption-source
+
+      - name: Generate WebVTT captions
+        if: steps.request.outputs.path != ''
+        run: |
+          python scripts/broadcast/transcribe-video.py \
+            --input caption-source \
+            --output-vtt "${{ steps.meta.outputs.vtt_path }}" \
+            --output-json "${{ steps.meta.outputs.json_path }}" \
+            --key "${{ steps.meta.outputs.key }}" \
+            --source-url "${{ steps.meta.outputs.source_url }}" \
+            --caption-url "${{ steps.meta.outputs.caption_url }}" \
+            --model small
+
+      - name: Commit captions
+        if: steps.request.outputs.path != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${{ steps.meta.outputs.vtt_path }}" "${{ steps.meta.outputs.json_path }}"
+          if git diff --cached --quiet; then
+            echo "Caption output is unchanged."
+            exit 0
+          fi
+          git commit -m "Add broadcast captions for ${{ steps.meta.outputs.key }}"
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+          echo "::error::Could not push generated captions after retries."
+          exit 1
