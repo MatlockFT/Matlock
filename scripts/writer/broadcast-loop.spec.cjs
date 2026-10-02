@@ -140,6 +140,61 @@ test('image framing controls change fit, zoom and position in Preview and persis
   await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
 });
 
+test('video inspector queues caption generation and keeps captions enabled', async ({ page }) => {
+  fixture.state.draft.program = [{
+    id: 'caption-video',
+    type: 'video',
+    title: 'Caption video',
+    mediaUrl: fixture.origin + '/fixtures/tone.wav',
+    duration: 2,
+    videoAudio: true,
+    captionKey: 'broadcast-video-caption-test-20261002030000000',
+    captionsEnabled: true
+  }];
+
+  await page.goto(fixture.origin + '/broadcast/control/');
+  await expect(page.getByLabel('Auto captions', { exact: true })).toHaveValue('on');
+  await page.getByRole('button', { name: 'Regenerate captions' }).click();
+  await expect.poll(() => fixture.controls.captionQueues).toBe(1);
+  await expect(page.locator('[data-caption-status]')).toContainText('Captions queued');
+  expect(fixture.captionRequests.size).toBe(1);
+  const request = [...fixture.captionRequests.values()][0].payload;
+  expect(request).toMatchObject({
+    key: 'broadcast-video-caption-test-20261002030000000',
+    sourceUrl: fixture.origin + '/fixtures/tone.wav'
+  });
+  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
+});
+
+test('generated WebVTT captions render over uploaded video at the correct time', async ({ page }) => {
+  fixture.media.set('/assets/uploads/broadcast/captions/caption-render-test.vtt', {
+    data: Buffer.from('WEBVTT\n\n1\n00:00:00.000 --> 00:00:01.600\nTHIS IS AN AUTO CAPTION\n\n2\n00:00:01.600 --> 00:00:02.000\nSECOND LINE\n'),
+    type: 'text/vtt'
+  });
+  fixture.state.draft.program = [{
+    id: 'caption-render-video',
+    type: 'video',
+    title: 'Caption render',
+    mediaUrl: fixture.origin + '/fixtures/tone.wav',
+    duration: 2,
+    videoAudio: false,
+    captionKey: 'caption-render-test',
+    captionRevision: 1,
+    captionsEnabled: true
+  }];
+  fixture.state.draft.startedAt = new Date().toISOString();
+
+  await page.goto(fixture.origin + '/broadcast/?mode=draft');
+  const captions = page.locator('[data-mfc-captions]');
+  await expect(captions).toBeVisible({ timeout: 5000 });
+  await expect(captions).toHaveAttribute('data-caption-text', /AUTO CAPTION|SECOND LINE/);
+
+  fixture.state.draft.program[0].captionsEnabled = false;
+  fixture.state.draft.revision = 'caption-off-' + Date.now();
+  await page.evaluate(channel => window.postMessage({ type: 'matlock-broadcast-preview', channel }, location.origin), fixture.state.draft);
+  await expect(captions).toBeHidden();
+});
+
 test('music URLs accept YouTube links, manual duration fallbacks and direct media', async ({ page }) => {
   await page.goto(fixture.origin + '/broadcast/control/');
   await page.getByRole('tab', { name: /Media/ }).click();
