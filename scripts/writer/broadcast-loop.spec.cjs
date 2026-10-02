@@ -291,10 +291,10 @@ test('failed Take Live never changes Program, and edits made during Save remain 
   await page.locator('.mfc-ticker-row-input').first().fill('Edit while saving');
   await expect.poll(() => fixture.controls.writes).toBe(1);
   await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
-  expect(fixture.state.draft.ticker).toEqual(['First edit']);
+  expect(fixture.state.draft.ticker).toEqual(['First edit', 'CONTINUOUS LOOP']);
   await page.locator('[data-save-draft]').click();
   await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
-  expect(fixture.state.draft.ticker).toEqual(['Edit while saving']);
+  expect(fixture.state.draft.ticker).toEqual(['Edit while saving', 'CONTINUOUS LOOP']);
 });
 
 test('Take Live lets the current loop finish and starts the new rundown at the next full wrap', async ({ page }) => {
@@ -705,7 +705,7 @@ test('local storage failure does not stop editing or saving', async ({ page }) =
   await expect(page.locator('[data-recovery-status]')).toContainText('Local recovery unavailable');
   await page.locator('[data-save-draft]').click();
   await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
-  expect(fixture.state.draft.ticker).toEqual(['Still save this']);
+  expect(fixture.state.draft.ticker).toEqual(['Still save this', 'CONTINUOUS LOOP']);
 });
 
 test('stop bulk add keeps successful items and leaves remaining files unused', async ({ page }) => {
