@@ -155,6 +155,28 @@
     if (monitorMode && window.parent !== window) window.parent.postMessage({ type: 'matlock-broadcast-playback-status', message, soundEnabled, blocked }, location.origin);
   }
 
+  let lastPlayheadReportAt = 0;
+  function reportPlayhead() {
+    if (!monitorMode || window.parent === window || !channel) return;
+    const now = performance.now();
+    if (now - lastPlayheadReportAt < 450) return;
+    lastPlayheadReportAt = now;
+
+    const program = timelinePosition(programItems(), programElapsed());
+    const music = musicPosition(musicItems(), rawElapsed());
+    window.parent.postMessage({
+      type: 'matlock-broadcast-playhead',
+      revision: String(channel.revision || ''),
+      programItemId: String(program.item?.id || ''),
+      programRemaining: program.item ? Math.max(0, positive(program.item.duration) - program.local) : 0,
+      programLocal: program.local,
+      musicTrackId: String(music?.item?.id || music?.item?.url || ''),
+      musicRemaining: music ? Math.max(0, music.slotRemaining ?? (music.duration - music.local)) : 0,
+      musicLocal: music?.local || 0,
+      sentAt: Date.now()
+    }, location.origin);
+  }
+
   function sourceAvailable(url) {
     return Boolean(url) && !(failedMedia.get(url) > Date.now());
   }
@@ -207,11 +229,11 @@
     reportPlayback('An image could not load. Continuing the loop.');
   });
   image.addEventListener('load', () => {
-    const item = timelinePosition(programItems(), rawElapsed()).item;
+    const item = timelinePosition(programItems(), programElapsed()).item;
     if (item?.type === 'image') applyMediaFraming(image, item);
   });
   video.addEventListener('loadedmetadata', () => {
-    const item = timelinePosition(programItems(), rawElapsed()).item;
+    const item = timelinePosition(programItems(), programElapsed()).item;
     if (item?.type === 'video') applyMediaFraming(video, item);
   });
 
@@ -291,11 +313,22 @@
     return { item: items[0], index: 0, local: 0, total, position: 0 };
   }
 
-  function rawElapsed() {
-    if (!channel) return 0;
-    const stamp = Date.parse(channel.startedAt || channel.updatedAt || '');
+  function elapsedFrom(value) {
+    const stamp = Date.parse(value || '');
     if (!Number.isFinite(stamp)) return 0;
     return Math.max(0, (synchronizedNowMs() - stamp) / 1000);
+  }
+
+  // The continuous clock drives music and ticker phase. Program can be cut to a
+  // new rundown at a clean item boundary without resetting the audio bed.
+  function rawElapsed() {
+    if (!channel) return 0;
+    return elapsedFrom(channel.musicStartedAt || channel.startedAt || channel.updatedAt || '');
+  }
+
+  function programElapsed() {
+    if (!channel) return 0;
+    return elapsedFrom(channel.programStartedAt || channel.startedAt || channel.updatedAt || '');
   }
 
   function textForTicker() {
@@ -441,7 +474,7 @@
       if (!response.ok) throw Object.assign(new Error('captions unavailable'), { status: response.status });
       const cues = parseVtt(await response.text());
       captionCache.set(source.cacheKey, { state: 'ready', cues });
-      if (captionSource(timelinePosition(programItems(), rawElapsed()).item)?.cacheKey === source.cacheKey) {
+      if (captionSource(timelinePosition(programItems(), programElapsed()).item)?.cacheKey === source.cacheKey) {
         currentCaptionCacheKey = source.cacheKey;
         currentCaptionCues = cues;
       }
@@ -551,7 +584,7 @@
 
     element.addEventListener('pointerdown', event => {
       if (event.button !== 0 || event.isPrimary === false) return;
-      const item = timelinePosition(programItems(), rawElapsed()).item;
+      const item = timelinePosition(programItems(), programElapsed()).item;
       if (!item || !['image', 'video'].includes(item.type)) return;
       event.preventDefault();
       const rect = panel.getBoundingClientRect();
@@ -671,7 +704,7 @@
     if (copy.hidden || !copy.clientHeight) { copyLayout = null; return; }
     title.style.fontSize = ''; eyebrow.style.fontSize = ''; bodyCopy.style.fontSize = '';
     copyPage.hidden = true;
-    const item = timelinePosition(programItems(), rawElapsed()).item;
+    const item = timelinePosition(programItems(), programElapsed()).item;
     const fullBody = item ? String(item.body || '') : bodyCopy.textContent;
     bodyCopy.textContent = fullBody;
     const titleSize = parseFloat(getComputedStyle(title).fontSize), eyebrowSize = parseFloat(getComputedStyle(eyebrow).fontSize);
@@ -711,7 +744,7 @@
     }
     copyLayout = { key: currentProgramId, pages, index: -1 };
     copyPage.hidden = pages.length < 2;
-    showCopyPage(timelinePosition(programItems(), rawElapsed()));
+    showCopyPage(timelinePosition(programItems(), programElapsed()));
     if (monitorMode && window.parent !== window && item) {
       window.parent.postMessage({ type: 'matlock-broadcast-layout', itemId: item.id, pages: pages.length,
         signature: JSON.stringify([item.type, item.title || '', item.eyebrow || '', item.header || '', item.body || '']),
@@ -728,7 +761,7 @@
   }
   window.addEventListener('resize', () => {
     scalePlayer();
-    const item = timelinePosition(programItems(), rawElapsed()).item;
+    const item = timelinePosition(programItems(), programElapsed()).item;
     setMediaMode(item?.type || 'headline');
     if (item?.type === 'image') applyMediaFraming(image, item);
     if (item?.type === 'video') applyMediaFraming(video, item);
@@ -821,9 +854,9 @@
   }
 
   function syncProgram() {
-    const elapsed = rawElapsed();
+    const programTime = programElapsed();
     const items = programItems();
-    const position = timelinePosition(items, elapsed);
+    const position = timelinePosition(items, programTime);
     const item = position.item;
     const id = JSON.stringify(item || null);
     if (id !== currentProgramId) {
@@ -861,7 +894,7 @@
       muted: !soundEnabled || item.videoAudio === false,
       volume: Math.round(clamp(channel?.audio?.master ?? 1, 0, 1) * clamp(channel?.audio?.video ?? 1, 0, 1) * 100) });
 
-    return { elapsed, position };
+    return { elapsed: rawElapsed(), programElapsed: programTime, position };
   }
 
   function dbGain(db) {
@@ -964,7 +997,7 @@
 
     const seedState = {
       value: musicSeed([
-        channel?.startedAt || channel?.updatedAt || '',
+        channel?.musicStartedAt || channel?.startedAt || channel?.updatedAt || '',
         tracks.map(musicTrackKey).join('|'),
         cycleIndex
       ].join('::'))
@@ -997,7 +1030,7 @@
 
   function musicScheduleSignature(tracks) {
     return JSON.stringify([
-      channel?.startedAt || channel?.updatedAt || '',
+      channel?.musicStartedAt || channel?.startedAt || channel?.updatedAt || '',
       musicRepeatMode(),
       clamp(channel?.audio?.crossfade ?? 2.5, 0, 12),
       tracks.map(track => [musicTrackKey(track), musicDuration(track)])
@@ -1091,6 +1124,7 @@
       previousLocal: entry.previous
         ? Math.max(0, entry.previousDuration - entry.incomingOverlap + local)
         : 0,
+      slotRemaining: Math.max(0, entry.end - target),
       next: entry.next
     };
   }
@@ -1218,7 +1252,7 @@
 
   function setSoundState(enabled) {
     soundEnabled = Boolean(enabled);
-    youtube?.sound(soundEnabled && timelinePosition(programItems(), rawElapsed()).item?.videoAudio !== false);
+    youtube?.sound(soundEnabled && timelinePosition(programItems(), programElapsed()).item?.videoAudio !== false);
     musicYoutubeA?.sound(soundEnabled);
     musicYoutubeB?.sound(soundEnabled);
     if (soundEnabled) soundBlocked = false;
@@ -1235,6 +1269,68 @@
       stopMusicSlot(musicB, musicYoutubeB);
       video.muted = true;
     }
+  }
+
+  function transitionStamp(value) {
+    const stamp = Date.parse(value || '');
+    return Number.isFinite(stamp) ? stamp : 0;
+  }
+
+  function resolvedLiveChannel(next, nowMs = synchronizedNowMs()) {
+    const live = next?.live;
+    const pending = next?.pendingLive;
+    if (!live) return pending || null;
+    if (!pending) return live;
+
+    const programAt = transitionStamp(next.programTransitionAt || pending.programTransitionAt);
+    const musicAt = transitionStamp(next.musicTransitionAt || pending.musicTransitionAt);
+    const programReady = Boolean(programAt) && nowMs >= programAt;
+    const musicReady = Boolean(musicAt) && nowMs >= musicAt;
+
+    if (programReady && musicReady) return pending;
+    if (!programReady && !musicReady) return live;
+
+    const visual = programReady ? pending : live;
+    const audio = musicReady ? pending : live;
+    const mixed = {
+      ...visual,
+      music: Array.isArray(audio.music) ? audio.music : [],
+      musicStartedAt: audio.musicStartedAt || audio.startedAt || visual.musicStartedAt || visual.startedAt,
+      audio: {
+        ...(visual.audio || {}),
+        music: audio.audio?.music ?? visual.audio?.music,
+        crossfade: audio.audio?.crossfade ?? visual.audio?.crossfade,
+        musicRepeat: audio.audio?.musicRepeat ?? visual.audio?.musicRepeat
+      }
+    };
+    mixed.revision = [
+      visual.revision || visual.updatedAt || '',
+      audio.revision || audio.updatedAt || '',
+      programReady ? 'program-new' : 'program-old',
+      musicReady ? 'music-new' : 'music-old'
+    ].join(':');
+    return mixed;
+  }
+
+  function adoptResolvedLive() {
+    if (useDraft || !state) return false;
+    const selected = resolvedLiveChannel(state);
+    if (!selected) return false;
+    const nextRevision = String(selected.revision || selected.updatedAt || state.updatedAt || '');
+    if (nextRevision === revision) {
+      channel = selected;
+      return false;
+    }
+    revision = nextRevision;
+    channel = selected;
+    currentProgramId = '';
+    currentMusicId = '';
+    musicScheduleCache = null;
+    musicLevel = duckTarget(null);
+    failedMedia.clear();
+    renderTicker();
+    syncProgram();
+    return true;
   }
 
   async function loadState() {
@@ -1254,7 +1350,7 @@
     }
     if (!next) throw lastError || new Error('Broadcast state unavailable.');
     if (useDraft && previewOverride) return;
-    const selected = useDraft ? next.draft : next.live;
+    const selected = useDraft ? next.draft : resolvedLiveChannel(next);
     if (!selected) throw new Error('Broadcast state is empty.');
     const nextRevision = String(selected.revision || selected.updatedAt || next.updatedAt || '');
     state = next;
@@ -1263,6 +1359,7 @@
       channel = selected;
       currentProgramId = '';
       currentMusicId = '';
+      musicScheduleCache = null;
       musicLevel = duckTarget(null);
       failedMedia.clear();
       renderTicker();
@@ -1360,8 +1457,10 @@
       if (waitingSince.has(element) && Date.now() - waitingSince.get(element) > 15000 && !element.paused) failMedia(element);
     }
     if (!channel) return;
+    adoptResolvedLive();
     const { elapsed, position } = syncProgram();
     syncMusic(elapsed, position.item, deltaSeconds);
+    reportPlayhead();
   }, 250);
 
   window.setInterval(() => {
