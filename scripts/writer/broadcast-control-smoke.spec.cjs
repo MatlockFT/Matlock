@@ -371,7 +371,10 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   await expect(page.locator('[data-save-draft]')).toBeDisabled();
 
   await page.click('[data-workspace-tab="graphics"]');
-  await page.fill('[data-ticker-input]', 'SMOKE LIVE ONE\nSMOKE LIVE TWO');
+  const tickerRows = page.locator('.mfc-ticker-row-input');
+  await expect(tickerRows).toHaveCount(2);
+  await tickerRows.nth(0).fill('SMOKE LIVE ONE');
+  await tickerRows.nth(1).fill('SMOKE LIVE TWO');
   await expect(page.locator('[data-ticker-preview]')).toContainText('SMOKE LIVE ONE');
   await expect(page.locator('[data-ticker-preview-clone]')).toContainText('SMOKE LIVE TWO');
   const previewDuration100 = await page.locator('[data-ticker-preview-track]').evaluate(node => parseFloat(getComputedStyle(node).animationDuration));
