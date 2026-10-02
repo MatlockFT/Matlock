@@ -260,6 +260,28 @@ test('failed Take Live never changes Program, and edits made during Save remain 
   expect(fixture.state.draft.ticker).toEqual(['Edit while saving']);
 });
 
+test('Take Live updates Program without restarting the running loop clock', async ({ page }) => {
+  const runningStartedAt = new Date(Date.now() - 47_000).toISOString();
+  fixture.state.live.startedAt = runningStartedAt;
+  fixture.state.live.revision = 'live-running-loop';
+  fixture.state.draft.program = [
+    { id: 'first', type: 'headline', title: 'FIRST', body: 'First item', duration: 30 },
+    { id: 'second', type: 'headline', title: 'SECOND', body: 'Second item', duration: 30 }
+  ];
+
+  await page.goto(fixture.origin + '/broadcast/control/');
+  await page.locator('[data-program-id="second"]').click();
+  await page.getByRole('button', { name: 'Preview this item' }).click();
+
+  // Preview is deliberately cued to a different playhead. Taking it live must
+  // update the Program content without replacing Program's existing loop clock.
+  await page.locator('[data-take-live]').click();
+  await expect.poll(() => fixture.state.live.revision).not.toBe('live-running-loop');
+  expect(fixture.state.live.startedAt).toBe(runningStartedAt);
+  expect(fixture.state.live.program.map(item => item.id)).toEqual(['first', 'second']);
+  await expect(page.locator('[data-toast]')).toContainText('without restarting the running loop');
+});
+
 test('preview keeps its clock during edits, with explicit restart and selected-item preview', async ({ page }) => {
   await page.goto(fixture.origin + '/broadcast/control/');
   const preview = page.frameLocator('[data-preview-frame]');
