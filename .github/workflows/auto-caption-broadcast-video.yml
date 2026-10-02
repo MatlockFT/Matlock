@@ -93,7 +93,8 @@ jobs:
             --key "${{ steps.meta.outputs.key }}" \
             --source-url "${{ steps.meta.outputs.source_url }}" \
             --caption-url "${{ steps.meta.outputs.caption_url }}" \
-            --model small
+            --model small \
+            --prompt "$(jq -r '.context // .assetName // ""' "${{ steps.request.outputs.path }}")"
 
       - name: Commit captions
         if: steps.request.outputs.path != ''
