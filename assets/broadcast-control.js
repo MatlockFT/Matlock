@@ -918,10 +918,10 @@
   }
 
   function displayVideoName(name) {
-    return String(name || 'Uploaded video')
-      .replace(/^broadcast-(?:video|audio)-/i, '')
-      .replace(/-\d{17}(?=\.(?:mp4|m4v|webm|mp3|m4a|aac|wav|ogg|opus|flac)$)/i, '')
-      .replace(/\.(?:mp4|m4v|webm|mp3|m4a|aac|wav|ogg|opus|flac)$/i, '')
+    return String(name || 'Uploaded media')
+      .replace(/^broadcast-(?:video|audio|image)-/i, '')
+      .replace(/-\d{17}(?=\.(?:mp4|m4v|webm|mp3|m4a|aac|wav|ogg|opus|flac|png|jpe?g|webp|gif)$)/i, '')
+      .replace(/\.(?:mp4|m4v|webm|mp3|m4a|aac|wav|ogg|opus|flac|png|jpe?g|webp|gif)$/i, '')
       .replace(/[-_]+/g, ' ')
       .replace(/\s+/g, ' ')
       .trim() || 'Uploaded video';
@@ -1110,7 +1110,7 @@
     if (!visible.length) {
       const empty = document.createElement('p');
       empty.className = 'mfc-empty';
-      empty.textContent = (query || filter !== 'all') ? 'No uploaded media match the current search or filter.' : 'Upload videos and music to start your loop.';
+      empty.textContent = (query || filter !== 'all') ? 'No uploaded media match the current search or filter.' : 'Upload videos, music or images to start your loop.';
       videoLibraryList.append(empty);
       return;
     }
@@ -2540,6 +2540,49 @@
     return data;
   }
 
+  async function fileBase64(file) {
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    let binary = '';
+    for (let index = 0; index < bytes.length; index += 0x8000) {
+      binary += String.fromCharCode(...bytes.subarray(index, index + 0x8000));
+    }
+    return btoa(binary);
+  }
+
+  async function uploadBroadcastImageFile(file) {
+    if (!file?.size) throw new Error('Choose an image file.');
+    if (file.size > 6 * 1024 * 1024) throw new Error('Image uploads must be 6 MB or smaller.');
+    const ext = safeExtension(file);
+    if (!['png', 'jpg', 'jpeg', 'webp', 'gif'].includes(ext)) throw new Error('Choose a PNG, JPG, WebP or GIF image.');
+
+    const assetName = mediaAssetName(file, 'image');
+    const now = new Date();
+    const year = String(now.getUTCFullYear());
+    const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+    const repoPath = `assets/uploads/broadcast/images/${year}/${month}/${assetName}`;
+    setUploadProgress(20, `Preparing ${file.name}…`);
+    const content = await fileBase64(file);
+    setUploadProgress(65, `Uploading ${file.name}…`);
+    await githubRequest('/contents/' + repoPath, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'Upload Broadcast Control image',
+        content,
+        branch: 'main'
+      })
+    });
+    setUploadProgress(100, `${file.name} uploaded.`);
+    return {
+      url: 'https://raw.githubusercontent.com/MatlockFT/Matlock/main/' + repoPath,
+      name: assetName,
+      id: 0,
+      size: file.size,
+      contentType: file.type || ({ png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp', gif: 'image/gif' })[ext] || 'application/octet-stream',
+      createdAt: new Date().toISOString()
+    };
+  }
+
   async function uploadMediaFile(file, kind) {
     if (!file?.size) throw new Error('Choose a media file.');
     if (file.size >= 2 * 1024 * 1024 * 1024) throw new Error('GitHub Release assets must be smaller than 2 GiB.');
@@ -2707,7 +2750,9 @@
           }
 
           row.textContent = file.name + ' — Uploading' + (duration ? ' (' + fmt(duration) + ')' : '') + '…';
-          const asset = await uploadMediaFile(file, kind);
+          const asset = kind === 'image'
+            ? await uploadBroadcastImageFile(file)
+            : await uploadMediaFile(file, kind);
           rememberAsset(asset, duration);
           if (autoAdd) await addAssetToDraft(asset, targetItem);
           completed += 1;
