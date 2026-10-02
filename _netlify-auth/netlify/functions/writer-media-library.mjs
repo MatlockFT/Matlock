@@ -4,6 +4,7 @@ import { requireWriterSession } from './_writer-media.mjs';
 
 const RELEASE_PREFIX = 'writer-media-';
 const BROADCAST_VIDEO_PREFIX = 'broadcast-video-';
+const BROADCAST_IMAGE_PREFIX = 'broadcast-image-';
 const MAX_RELEASES = 36;
 const MAX_ASSET_PAGES = 5;
 
@@ -20,6 +21,13 @@ export function isBroadcastVideoAsset(asset) {
 
 export function isBroadcastAudioAsset(asset) {
   return /^broadcast-audio-.*\.(?:mp3|m4a|aac|wav|ogg|opus|flac|mp4|m4v|webm)$/i.test(String(asset?.name || ''));
+}
+
+export function isBroadcastImageAsset(asset) {
+  const name = String(asset?.name || '').toLowerCase();
+  const type = String(asset?.content_type || '').toLowerCase();
+  return name.startsWith(BROADCAST_IMAGE_PREFIX)
+    && (type.startsWith('image/') || /\.(?:png|jpe?g|webp|gif)$/i.test(name));
 }
 
 export function broadcastVideoUsage(state, url) {
@@ -76,11 +84,13 @@ async function listReleaseAssets(token, release) {
   return assets;
 }
 
-async function listBroadcastVideos(token, includeAudio = false) {
+async function listBroadcastMedia(token, includeAudio = false, includeImages = false) {
   const releases = await listManagedReleases(token);
   const groups = await Promise.all(releases.map(async release => {
     const assets = await listReleaseAssets(token, release);
-    return assets.filter(asset => isBroadcastVideoAsset(asset) || (includeAudio && isBroadcastAudioAsset(asset))).map(asset => shapeAsset(asset, release));
+    return assets.filter(asset => isBroadcastVideoAsset(asset)
+      || (includeAudio && isBroadcastAudioAsset(asset))
+      || (includeImages && isBroadcastImageAsset(asset))).map(asset => shapeAsset(asset, release));
   }));
   return groups.flat().sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
 }
@@ -138,10 +148,10 @@ export default async function handler(request) {
 
   if (request.method === 'GET') {
     try {
-      const assets = await listBroadcastVideos(session.token, true);
+      const assets = await listBroadcastMedia(session.token, true, true);
       return Response.json({
         ok: true,
-        mediaKinds: ['video', 'audio'],
+        mediaKinds: ['video', 'audio', 'image'],
         assets,
         count: assets.length,
         totalBytes: assets.reduce((sum, asset) => sum + (Number(asset.size) || 0), 0)
@@ -158,23 +168,23 @@ export default async function handler(request) {
   }
 
   try {
-    const library = await listBroadcastVideos(session.token);
+    const library = await listBroadcastMedia(session.token, true, true);
     const asset = library.find(item => item.id === assetId);
     if (!asset) {
-      return jsonError('That Broadcast Control video was not found in the managed media releases.', 404, headers);
+      return jsonError('That Broadcast Control media file was not found in the managed media releases.', 404, headers);
     }
 
     const state = await loadBroadcastState(session.token);
     const usage = broadcastVideoUsage(state, asset.url);
     if (usage.draft || usage.live) {
       const places = [usage.draft ? 'draft' : '', usage.live ? 'live broadcast' : ''].filter(Boolean).join(' and ');
-      return jsonError(`This video is still used by the ${places}. Remove it from programming and save the state before deleting it permanently.`, 409, headers, { usage });
+      return jsonError(`This media file is still used by the ${places}. Remove it from programming and save the state before deleting it permanently.`, 409, headers, { usage });
     }
 
     const response = await githubRepoFetch(session.token, `/releases/assets/${assetId}`, { method: 'DELETE' });
     if (response.status !== 204) {
       const data = await response.json().catch(() => ({}));
-      throw Object.assign(new Error(data?.message || `GitHub returned ${response.status} while deleting the video.`), { status: response.status });
+      throw Object.assign(new Error(data?.message || `GitHub returned ${response.status} while deleting the media file.`), { status: response.status });
     }
 
     return Response.json({ ok: true, assetId }, { status: 200, headers });
