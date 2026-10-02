@@ -348,6 +348,69 @@
     element.style.transform = 'scale(' + (framing.scale / 100) + ')';
   }
 
+  function installMediaFramingDrag(element) {
+    if (!monitorMode || !element) return;
+    element.style.cursor = 'grab';
+    element.style.touchAction = 'none';
+    let drag = null;
+
+    const send = (item, commit) => {
+      if (!item || window.parent === window) return;
+      window.parent.postMessage({
+        type: 'matlock-broadcast-media-framing',
+        itemId: item.id,
+        mediaX: clamp(item.mediaX == null ? 50 : item.mediaX, 0, 100),
+        mediaY: clamp(item.mediaY == null ? 50 : item.mediaY, 0, 100),
+        commit: Boolean(commit)
+      }, location.origin);
+    };
+
+    element.addEventListener('pointerdown', event => {
+      if (event.button !== 0 || event.isPrimary === false) return;
+      const item = timelinePosition(programItems(), rawElapsed()).item;
+      if (!item || !['image', 'video'].includes(item.type)) return;
+      event.preventDefault();
+      const rect = panel.getBoundingClientRect();
+      drag = {
+        item,
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        width: Math.max(1, rect.width),
+        height: Math.max(1, rect.height),
+        mediaX: clamp(item.mediaX == null ? 50 : item.mediaX, 0, 100),
+        mediaY: clamp(item.mediaY == null ? 50 : item.mediaY, 0, 100)
+      };
+      element.setPointerCapture?.(event.pointerId);
+      element.style.cursor = 'grabbing';
+    });
+
+    element.addEventListener('pointermove', event => {
+      if (!drag || event.pointerId !== drag.pointerId) return;
+      event.preventDefault();
+      const dx = (event.clientX - drag.startX) / drag.width * 100;
+      const dy = (event.clientY - drag.startY) / drag.height * 100;
+      drag.item.mediaX = clamp(drag.mediaX - dx, 0, 100);
+      drag.item.mediaY = clamp(drag.mediaY - dy, 0, 100);
+      applyMediaFraming(element, drag.item);
+      send(drag.item, false);
+    });
+
+    const finish = event => {
+      if (!drag || (event?.pointerId != null && event.pointerId !== drag.pointerId)) return;
+      const item = drag.item;
+      try { element.releasePointerCapture?.(drag.pointerId); } catch {}
+      drag = null;
+      element.style.cursor = 'grab';
+      send(item, true);
+    };
+    element.addEventListener('pointerup', finish);
+    element.addEventListener('pointercancel', finish);
+  }
+
+  installMediaFramingDrag(image);
+  installMediaFramingDrag(video);
+
   function setMediaMode(kind) {
     const isVideo = kind === 'video';
     const isImage = kind === 'image';
