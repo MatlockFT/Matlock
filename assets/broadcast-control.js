@@ -2043,7 +2043,69 @@
             markDirty();
           }
         });
-        form.append(audioField.wrap, behaviorField.wrap, duckField.wrap);
+
+        const captionsField = field('Auto captions', 'captionsEnabled', {
+          type: 'select',
+          value: item.captionsEnabled === false ? 'off' : 'on',
+          options: [
+            { value: 'on', label: 'Show captions' },
+            { value: 'off', label: 'Hide captions' }
+          ],
+          onChange: value => {
+            item.captionsEnabled = value !== 'off';
+            markDirty();
+          }
+        });
+
+        const captionStatus = document.createElement('p');
+        captionStatus.className = 'mfc-field-note mfc-field-wide';
+        captionStatus.dataset.captionStatus = '';
+        const captionKey = item.captionKey || captionKeyFromMedia(item);
+        captionStatus.textContent = captionKey
+          ? 'Captions are processing or waiting to publish.'
+          : 'Uploaded videos automatically generate captions after the upload finishes.';
+
+        const captionButton = smallButton(captionKey ? 'Regenerate captions' : 'Generate captions', async () => {
+          if (busyAction || uploadRunning) return showToast('Wait for the current upload or save to finish.');
+          if (!item.mediaUrl) return showToast('Upload the video first.');
+          captionButton.disabled = true;
+          captionButton.textContent = 'Queuing…';
+          try {
+            await queueVideoCaptions(item, { force: Boolean(item.captionKey || captionKeyFromMedia(item)) });
+            markDirty();
+            captionStatus.textContent = 'Captions queued. Transcription runs automatically and will appear in Preview when ready.';
+            captionButton.textContent = 'Regenerate captions';
+            showToast('Auto captions queued. The video can stay in your rundown while transcription finishes.', 8000);
+          } catch (error) {
+            captionStatus.textContent = 'Could not queue captions: ' + error.message;
+            showToast('Could not queue captions: ' + error.message, 9000);
+          } finally {
+            captionButton.disabled = false;
+          }
+        }, 'mfc-button-ghost');
+        captionButton.dataset.captionGenerate = '';
+
+        form.append(audioField.wrap, behaviorField.wrap, duckField.wrap, captionsField.wrap, captionStatus, buttonRow(captionButton));
+
+        if (captionKey) {
+          void fetchCaptionStatus(captionKey).then(status => {
+            if (!working.program.includes(item) || currentProgram()?.id !== item.id) return;
+            const note = programFields.querySelector('[data-caption-status]');
+            const button = programFields.querySelector('[data-caption-generate]');
+            if (!note) return;
+            if (status?.state === 'ready') {
+              const language = String(status.language || '').toUpperCase();
+              note.textContent = 'Captions ready'
+                + (status.cueCount != null ? ' · ' + status.cueCount + ' cues' : '')
+                + (language ? ' · ' + language : '')
+                + '.';
+              if (button) button.textContent = 'Regenerate captions';
+            } else {
+              note.textContent = 'Captions are processing. They will appear automatically when transcription finishes.';
+              if (button) button.textContent = 'Regenerate captions';
+            }
+          });
+        }
       }
     }
 
