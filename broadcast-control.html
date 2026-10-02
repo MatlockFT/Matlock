@@ -214,14 +214,14 @@ permalink: /broadcast/control/
             <div class="mfc-add-row">
               <label class="mfc-button mfc-button-small mfc-file-button" role="button" tabindex="0">
                 + Upload Media
-                <input type="file" accept=".mp4,.webm,.m4v,.mp3,.m4a,.aac,.wav,.ogg,.opus,.flac" data-video-library-upload multiple hidden>
+                <input type="file" accept=".mp4,.webm,.m4v,.mp3,.m4a,.aac,.wav,.ogg,.opus,.flac,.png,.jpg,.jpeg,.webp,.gif,video/*,audio/*,image/*" data-video-library-upload multiple hidden>
               </label>
               <button type="button" class="mfc-button mfc-button-small mfc-button-ghost" data-video-library-refresh>Refresh</button>
             </div>
           </div>
 
           <div class="mfc-media-guide">
-            <p>Drop multiple files here. MP4 (H.264 video + AAC sound) and MP3 or M4A audio are recommended. WebM, M4V, WAV, OGG, Opus, AAC and FLAC are accepted when your browser can read them. Each file must be under 2 GiB. Files are not converted.</p>
+            <p>Drop multiple files here. MP4 (H.264 video + AAC sound) and MP3 or M4A audio are recommended. PNG, JPG, WebP and GIF images are also supported. WebM, M4V, WAV, OGG, Opus, AAC and FLAC are accepted when your browser can read them. Each file must be under 2 GiB. Files are not converted.</p>
             <p>Music stored in an MP4/WebM can be uploaded with <strong>Upload Songs</strong> on the Audio tab. You can also paste a YouTube video link in <strong>Music URL</strong>; its video stays hidden while the YouTube player supplies the music bed audio.</p>
             <label><input type="checkbox" data-upload-auto-add checked> Add successful uploads to the draft loop automatically</label>
             <div class="mfc-library-bulk"><button type="button" class="mfc-button mfc-button-small" data-library-add-all>Add all unused media to draft</button><button type="button" class="mfc-button mfc-button-small mfc-button-ghost" data-library-stop hidden>Stop adding after this file</button><output data-library-add-status aria-live="polite"></output></div>
@@ -234,7 +234,7 @@ permalink: /broadcast/control/
             <label class="mfc-field">
               <span>Show</span>
               <select data-video-library-filter>
-                <option value="all">All media</option><option value="video">Videos</option><option value="audio">Music</option>
+                <option value="all">All media</option><option value="video">Videos</option><option value="audio">Music</option><option value="image">Images</option>
                 <option value="active">In programming</option>
                 <option value="live">Live broadcast</option>
                 <option value="unused">Unused</option>
