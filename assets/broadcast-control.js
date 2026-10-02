@@ -2626,10 +2626,16 @@
     takeLiveButton.textContent = 'Taking Live…';
     try {
       const now = new Date().toISOString();
+      const previewTimelineStart = Number.isFinite(Date.parse(previewStartedAt))
+        ? previewStartedAt
+        : now;
       working.updatedAt = now;
       working.revision = `draft-${Date.now()}`;
       const live = clone(working);
-      live.startedAt = now;
+      // Taking Preview live is a bus handoff, not a restart. Preserve the
+      // Preview timeline origin so program, video, ticker and music continue
+      // from the same playhead position while the state write completes.
+      live.startedAt = previewTimelineStart;
       live.updatedAt = now;
       live.revision = `live-${Date.now()}`;
       const nextState = {
@@ -2642,7 +2648,7 @@
       await writeState(nextState, 'Take broadcast programming live [skip ci]');
       fullState = nextState;
       setDirty(editVersion !== savingVersion);
-      showToast('Preview is now live on Program. Existing viewers will sync automatically.');
+      showToast('Preview is now live on Program without restarting the loop. Existing viewers will sync automatically.');
       renderSummary();
       renderVideoLibrary();
       refreshProgramMonitor();
