@@ -2964,7 +2964,7 @@
       selectedMusicId = track.id;
       if (render) renderMusic();
     } else {
-      const item = { id: targetItem?.id || uid('program'), type: 'video', header: 'MMA VIDEO', eyebrow: 'VIDEO', title: displayVideoName(asset.name), mediaUrl: asset.url, duration, videoAudio: true, mediaFit: targetItem?.mediaFit || 'cover', mediaScale: targetItem?.mediaScale ?? 100, mediaX: targetItem?.mediaX ?? 50, mediaY: targetItem?.mediaY ?? 50, captionKey: targetItem?.captionKey || asset.captionKey || captionKeyFromMedia(asset), captionsEnabled: targetItem?.captionsEnabled ?? true, captionRevision: targetItem?.captionRevision || asset.captionRevision || 0 };
+      const item = { id: targetItem?.id || uid('program'), type: 'video', header: 'MMA VIDEO', eyebrow: 'VIDEO', title: displayVideoName(asset.name), mediaUrl: asset.url, duration, videoAudio: true, mediaFit: targetItem?.mediaFit || 'cover', mediaScale: targetItem?.mediaScale ?? 100, mediaX: targetItem?.mediaX ?? 50, mediaY: targetItem?.mediaY ?? 50, captionKey: asset.captionKey || targetItem?.captionKey || captionKeyFromMedia(asset), captionsEnabled: targetItem?.captionsEnabled ?? true, captionRevision: asset.captionRevision || targetItem?.captionRevision || 0 };
       if (targetItem && working.program.includes(targetItem)) Object.assign(targetItem, item);
       else working.program.push(item);
       selectedProgramId = item.id;
