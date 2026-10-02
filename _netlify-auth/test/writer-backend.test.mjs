@@ -15,7 +15,7 @@ import {
   validateMediaMetadata,
   validateVideoMetadata
 } from '../netlify/functions/_writer-media.mjs';
-import { broadcastVideoUsage, isBroadcastVideoAsset, isBroadcastAudioAsset, isManagedMediaRelease } from '../netlify/functions/writer-media-library.mjs';
+import { broadcastVideoUsage, isBroadcastVideoAsset, isBroadcastAudioAsset, isBroadcastImageAsset, isManagedMediaRelease } from '../netlify/functions/writer-media-library.mjs';
 
 test('Writer GitHub proxy only allows scoped article and upload paths', () => {
   assert.equal(allowedPath('/contents/_posts?ref=main', 'GET'), true);
@@ -123,6 +123,24 @@ test('Broadcast media metadata accepts common audio formats', () => {
   }), /MP4, WebM or M4V/);
 });
 
+test('Broadcast media metadata accepts common image formats', () => {
+  for (const [extension, mime] of [['png', 'image/png'], ['jpg', 'image/jpeg'], ['jpeg', 'image/jpeg'], ['webp', 'image/webp'], ['gif', 'image/gif']]) {
+    const valid = validateMediaMetadata({
+      assetName: 'Fight Graphic.' + extension,
+      fileSize: 512 * 1024,
+      fileType: mime,
+      chunkCount: 1
+    });
+    assert.equal(valid.ext, extension);
+  }
+  assert.throws(() => validateMediaMetadata({
+    assetName: 'Fight Graphic.png',
+    fileSize: 512 * 1024,
+    fileType: 'image/jpeg',
+    chunkCount: 1
+  }), /MIME type/);
+});
+
 test('Media status cleanup parsing and TTLs are deterministic', () => {
   assert.deepEqual(
     parseStatusKey('status/0123456789abcdef01234567/upload_1234567890'),
@@ -180,7 +198,7 @@ test('Broadcast video usage guard finds saved draft and live references', () => 
     }
   };
   assert.deepEqual(broadcastVideoUsage(state, url), { draft: true, live: false });
-  state.live.program.push({ type: 'video', mediaUrl: url });
+  state.live.program.push({ type: 'image', mediaUrl: url });
   assert.deepEqual(broadcastVideoUsage(state, url), { draft: true, live: true });
   assert.deepEqual(broadcastVideoUsage(state, ''), { draft: false, live: false });
 });
@@ -191,6 +209,17 @@ test('Broadcast music library includes audio and music uploaded in video contain
   }
   assert.equal(isBroadcastAudioAsset({ name: 'writer-audio-private.mp3' }), false);
   assert.equal(isBroadcastAudioAsset({ name: 'broadcast-audio-file.exe' }), false);
+});
+
+test('Broadcast image library recognizes managed still-image assets', () => {
+  for (const extension of ['png', 'jpg', 'jpeg', 'webp', 'gif']) {
+    assert.equal(isBroadcastImageAsset({
+      name: `broadcast-image-fight-card.${extension}`,
+      content_type: extension === 'png' ? 'image/png' : 'image/jpeg'
+    }), true);
+  }
+  assert.equal(isBroadcastImageAsset({ name: 'writer-image-private.png', content_type: 'image/png' }), false);
+  assert.equal(isBroadcastImageAsset({ name: 'broadcast-image-file.exe', content_type: 'image/png' }), false);
 });
 
 
