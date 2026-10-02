@@ -27,7 +27,8 @@ export function isBroadcastImageAsset(asset) {
   const name = String(asset?.name || '').toLowerCase();
   const type = String(asset?.content_type || '').toLowerCase();
   return name.startsWith(BROADCAST_IMAGE_PREFIX)
-    && (type.startsWith('image/') || /\.(?:png|jpe?g|webp|gif)$/i.test(name));
+    && /\.(?:png|jpe?g|webp|gif)$/i.test(name)
+    && (!type || type.startsWith('image/'));
 }
 
 export function broadcastVideoUsage(state, url) {
