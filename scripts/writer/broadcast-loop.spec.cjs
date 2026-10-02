@@ -50,14 +50,14 @@ test('Image blocks can upload a still image and keep it in the selected draft bl
 
   await expect(page.locator('[data-upload-results]')).toContainText('Fight Card.png — Ready in draft', { timeout: 20000 });
   const imageUrl = page.locator('[data-program-fields]').getByLabel('Image URL', { exact: true });
-  await expect(imageUrl).toHaveValue(/broadcast-image-Fight-Card-.*\.png$/);
+  await expect(imageUrl).toHaveValue(/raw\.githubusercontent\.com\/MatlockFT\/Matlock\/main\/assets\/uploads\/broadcast\/images\/.*broadcast-image-Fight-Card-.*\.png$/);
   await expect(page.locator('[data-video-library-list] .mfc-video-asset')).toContainText('Image');
 
   await page.locator('[data-save-draft]').click();
   await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
   const saved = fixture.state.draft.program.at(-1);
   expect(saved.type).toBe('image');
-  expect(saved.mediaUrl).toMatch(/broadcast-image-Fight-Card-.*\.png$/);
+  expect(saved.mediaUrl).toMatch(/raw\.githubusercontent\.com\/MatlockFT\/Matlock\/main\/assets\/uploads\/broadcast\/images\/.*broadcast-image-Fight-Card-.*\.png$/);
   expect(saved.duration).toBe(20);
 });
 
