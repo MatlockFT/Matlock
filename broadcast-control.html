@@ -10,7 +10,7 @@ permalink: /broadcast/control/
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>Matlock Fight Channel — Control Room</title>
-  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20261001-smaller-monitors-1">
+  <link rel="stylesheet" href="{{ '/assets/broadcast-control.css' | relative_url }}?v=20261001-ticker-queue-1">
 </head>
 <body class="mfc-control-body">
   <main class="mfc-control" data-mfc-control data-auth-base="https://mmamatlock-writer-auth.netlify.app">
@@ -357,15 +357,20 @@ permalink: /broadcast/control/
               <span class="mfc-panel-note">One item per line</span>
             </div>
             <div class="mfc-graphics-editor">
-              <label class="mfc-field">
-                <span>Ticker items</span>
-                <textarea rows="12" data-ticker-input placeholder="Headline one&#10;Headline two&#10;Headline three"></textarea>
-              </label>
+              <div class="mfc-ticker-editor-head">
+                <div>
+                  <span>Ticker queue</span>
+                  <strong data-ticker-count>0 headlines</strong>
+                </div>
+                <button type="button" class="mfc-button mfc-button-small" data-ticker-add>+ Add headline</button>
+              </div>
+              <div class="mfc-ticker-list" data-ticker-list aria-label="Ticker headline queue"></div>
+              <p class="mfc-ticker-empty" data-ticker-empty hidden>No ticker headlines yet. Add one to start the crawl.</p>
               <label class="mfc-field mfc-ticker-speed-control">
                 <span>Ticker speed <strong data-ticker-speed-output>100%</strong></span>
                 <input type="range" min="40" max="250" step="5" value="100" data-ticker-speed aria-label="Ticker scroll speed">
               </label>
-              <p>Blank lines are ignored. The crawl loops continuously beneath every rundown item. 100% is the current default speed.</p>
+              <p>Drag headlines to reorder them. Edit each one inline, duplicate when you want a variation, or remove it. The crawl loops continuously beneath every rundown item.</p>
             </div>
           </section>
 
@@ -430,7 +435,7 @@ permalink: /broadcast/control/
   </main>
 
   <script src="{{ '/assets/broadcast-youtube.js' | relative_url }}?v=20261001-fight-city-11" defer></script>
-  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20261001-full-loop-handoff-1" defer></script>
+  <script src="{{ '/assets/broadcast-control.js' | relative_url }}?v=20261001-ticker-queue-1" defer></script>
   <script src="{{ '/assets/broadcast-news-pool.js' | relative_url }}?v=20261001-news-refresh-1" defer></script>
 </body>
 </html>
