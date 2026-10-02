@@ -168,9 +168,11 @@
       if (element.src !== source) return;
       if (error.name === 'NotAllowedError') {
         soundBlocked = true;
-        setSoundState(false);
-        soundButton.hidden = false;
-        reportPlayback('Click Sound On in this player to enable audio.', true);
+        if (!obsMode) {
+          setSoundState(false);
+          soundButton.hidden = false;
+        }
+        reportPlayback(obsMode ? 'OBS browser audio autoplay is blocked; retrying.' : 'Click Sound On in this player to enable audio.', true);
       } else if (error.name !== 'AbortError') failMedia(element);
     }).finally(() => pendingPlay.delete(element));
   }
