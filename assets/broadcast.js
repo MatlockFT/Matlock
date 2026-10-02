@@ -1271,6 +1271,22 @@
     }
   }
 
+  function liveMusicIdentity(value) {
+    return JSON.stringify([
+      value?.musicStartedAt || value?.startedAt || '',
+      value?.audio?.music ?? .72,
+      value?.audio?.crossfade ?? 2.5,
+      String(value?.audio?.musicRepeat || 'shuffle'),
+      (value?.music || []).map(track => [
+        musicTrackKey(track),
+        musicDuration(track),
+        Number(track.gainDb) || 0,
+        positive(track.fadeIn),
+        positive(track.fadeOut)
+      ])
+    ]);
+  }
+
   function transitionStamp(value) {
     const stamp = Date.parse(value || '');
     return Number.isFinite(stamp) ? stamp : 0;
@@ -1321,12 +1337,16 @@
       channel = selected;
       return false;
     }
+
+    const musicChanged = liveMusicIdentity(channel) !== liveMusicIdentity(selected);
     revision = nextRevision;
     channel = selected;
     currentProgramId = '';
-    currentMusicId = '';
-    musicScheduleCache = null;
-    musicLevel = duckTarget(null);
+    if (musicChanged) {
+      currentMusicId = '';
+      musicScheduleCache = null;
+      musicLevel = duckTarget(null);
+    }
     failedMedia.clear();
     renderTicker();
     syncProgram();
@@ -1355,12 +1375,15 @@
     const nextRevision = String(selected.revision || selected.updatedAt || next.updatedAt || '');
     state = next;
     if (nextRevision !== revision) {
+      const musicChanged = liveMusicIdentity(channel) !== liveMusicIdentity(selected);
       revision = nextRevision;
       channel = selected;
       currentProgramId = '';
-      currentMusicId = '';
-      musicScheduleCache = null;
-      musicLevel = duckTarget(null);
+      if (musicChanged) {
+        currentMusicId = '';
+        musicScheduleCache = null;
+        musicLevel = duckTarget(null);
+      }
       failedMedia.clear();
       renderTicker();
       syncProgram();
