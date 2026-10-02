@@ -1,7 +1,21 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-01T22:04:25.123Z",
+  "generated_at": "2026-10-02T07:36:44.431Z",
   "changes": [
+    {
+      "id": "2026-10-02T07:36:44.431Z|ufc-332-2026-10-03-fight-card|portrait_added|1",
+      "at": "2026-10-02T07:36:44.431Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Bruce Whitehead portrait added.",
+      "details": {
+        "fighter": "Bruce Whitehead",
+        "source": "ufc"
+      }
+    },
     {
       "id": "2026-10-01T22:04:25.123Z|ufc-332-2026-10-03-fight-card|portrait_added|1",
       "at": "2026-10-01T22:04:25.123Z",
@@ -4712,22 +4726,6 @@
       "details": {
         "from_order": 4,
         "to_order": 8,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|11",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "John Castaneda vs Alatengheili moved on Jr. vs Barcelos.",
-      "details": {
-        "from_order": 8,
-        "to_order": 9,
         "from_section": "Main Card",
         "to_section": "Prelims"
       }
