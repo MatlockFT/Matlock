@@ -995,6 +995,34 @@ label.mfc-button {
   resize: vertical;
 }
 
+.mfc-range-field {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.mfc-range-field > span {
+  grid-column: 1;
+}
+
+.mfc-range-field > output {
+  grid-column: 2;
+  min-width: 42px;
+  color: var(--ctl-accent);
+  font: 800 .61rem/1 ui-monospace, "SFMono-Regular", Consolas, monospace;
+  text-align: right;
+}
+
+.mfc-range-field > input[type="range"] {
+  grid-column: 1 / -1;
+  min-height: 28px;
+  padding: 0;
+  accent-color: var(--ctl-accent);
+}
+
+.mfc-media-framing-actions {
+  padding-top: 1px;
+}
+
 .mfc-field input:hover,
 .mfc-field textarea:hover,
 .mfc-field select:hover,
