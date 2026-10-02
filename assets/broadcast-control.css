@@ -525,7 +525,7 @@ label.mfc-button {
 
 .mfc-monitor-wall {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 660px));
+  grid-template-columns: repeat(2, minmax(0, 500px));
   justify-content: center;
   gap: 12px;
   margin-bottom: 12px;
@@ -545,9 +545,9 @@ label.mfc-button {
 }
 
 .mfc-monitor-header {
-  min-height: 42px;
-  padding-top: 7px;
-  padding-bottom: 7px;
+  min-height: 36px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .mfc-monitor-header > div {
@@ -578,13 +578,13 @@ label.mfc-button {
 
 .mfc-monitor-frame {
   position: relative;
-  padding: 7px;
+  padding: 5px;
   background: #030405;
 }
 
 .mfc-monitor-frame::after {
   position: absolute;
-  inset: 7px;
+  inset: 5px;
   border: 1px solid rgba(255,255,255,.03);
   box-shadow: inset 0 0 50px rgba(0,0,0,.22);
   pointer-events: none;
@@ -604,8 +604,8 @@ label.mfc-button {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  min-height: 42px;
-  padding: 6px 10px;
+  min-height: 36px;
+  padding: 5px 8px;
   border-top: 1px solid #20252b;
   color: #8c949f;
   font: 700 .59rem/1.2 ui-monospace, "SFMono-Regular", Consolas, monospace;
