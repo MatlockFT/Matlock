@@ -32,6 +32,7 @@
   let fitFrame = 0;
   const image = root.querySelector('[data-mfc-image]');
   const video = root.querySelector('[data-mfc-video]');
+  const captionOverlay = root.querySelector('[data-mfc-captions]');
   if (video) video.loop = true;
   const panel = root.querySelector('[data-mfc-panel]');
   const youtubeHost = root.querySelector('[data-mfc-youtube]');
@@ -99,7 +100,10 @@
   const pendingPlay = new WeakSet();
   const waitingSince = new WeakMap();
   const measuredMusicDurations = new Map();
+  const captionCache = new Map();
   let musicScheduleCache = null;
+  let currentCaptionCacheKey = '';
+  let currentCaptionCues = [];
   let soundBlocked = false;
   const youtube = youtubeHost && window.matlockYoutubePlayer?.(youtubeHost, {
     error: url => {
@@ -337,6 +341,112 @@
     scheduleTickerMetrics({ restart: true });
   }
 
+  function captionSource(item) {
+    const key = String(item?.captionKey || '').trim();
+    if (!key || item?.captionsEnabled === false) return null;
+    const revision = String(item?.captionRevision || '1');
+    return {
+      key,
+      cacheKey: key + ':' + revision,
+      url: '/assets/uploads/broadcast/captions/' + encodeURIComponent(key) + '.vtt?v=' + encodeURIComponent(revision)
+    };
+  }
+
+  function parseVttTime(value) {
+    const match = String(value || '').trim().match(/^(?:(\d+):)?(\d{2}):(\d{2})[.,](\d{3})/);
+    if (!match) return NaN;
+    return (Number(match[1] || 0) * 3600) + (Number(match[2]) * 60) + Number(match[3]) + Number(match[4]) / 1000;
+  }
+
+  function parseVtt(value) {
+    const blocks = String(value || '').replace(/^\uFEFF/, '').split(/\r?\n\r?\n+/);
+    const cues = [];
+    for (const block of blocks) {
+      const lines = block.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+      const timingIndex = lines.findIndex(line => line.includes('-->'));
+      if (timingIndex < 0) continue;
+      const [startText, endText] = lines[timingIndex].split('-->').map(part => part.trim().split(/\s+/)[0]);
+      const start = parseVttTime(startText);
+      const end = parseVttTime(endText);
+      const text = lines.slice(timingIndex + 1).join('\n')
+        .replace(/<[^>]+>/g, '')
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .trim();
+      if (Number.isFinite(start) && Number.isFinite(end) && end > start && text) cues.push({ start, end, text });
+    }
+    return cues;
+  }
+
+  function clearCaptions() {
+    currentCaptionCacheKey = '';
+    currentCaptionCues = [];
+    if (!captionOverlay) return;
+    captionOverlay.hidden = true;
+    captionOverlay.dataset.captionText = '';
+  }
+
+  async function ensureCaptions(item) {
+    const source = captionSource(item);
+    if (!source) {
+      clearCaptions();
+      return;
+    }
+
+    const cached = captionCache.get(source.cacheKey);
+    if (cached?.state === 'ready') {
+      currentCaptionCacheKey = source.cacheKey;
+      currentCaptionCues = cached.cues;
+      return;
+    }
+    if (cached?.state === 'loading' || (cached?.retryAt || 0) > Date.now()) return;
+
+    captionCache.set(source.cacheKey, { state: 'loading', cues: [] });
+    try {
+      const response = await fetch(source.url, { cache: 'no-store', signal: AbortSignal.timeout(8000) });
+      if (!response.ok) throw Object.assign(new Error('captions unavailable'), { status: response.status });
+      const cues = parseVtt(await response.text());
+      captionCache.set(source.cacheKey, { state: 'ready', cues });
+      if (captionSource(timelinePosition(programItems(), rawElapsed()).item)?.cacheKey === source.cacheKey) {
+        currentCaptionCacheKey = source.cacheKey;
+        currentCaptionCues = cues;
+      }
+    } catch (error) {
+      captionCache.set(source.cacheKey, {
+        state: 'waiting',
+        cues: [],
+        retryAt: Date.now() + (error?.status === 404 ? 30000 : 60000)
+      });
+    }
+  }
+
+  function syncCaptions(item) {
+    if (!captionOverlay || item?.type !== 'video') {
+      clearCaptions();
+      return;
+    }
+    const source = captionSource(item);
+    if (!source) {
+      clearCaptions();
+      return;
+    }
+
+    if (currentCaptionCacheKey !== source.cacheKey) {
+      currentCaptionCacheKey = source.cacheKey;
+      currentCaptionCues = captionCache.get(source.cacheKey)?.cues || [];
+      void ensureCaptions(item);
+    } else if (!currentCaptionCues.length) {
+      void ensureCaptions(item);
+    }
+
+    const time = Number(video?.currentTime) || 0;
+    const cue = currentCaptionCues.find(row => time >= row.start && time < row.end);
+    captionOverlay.dataset.captionText = cue?.text || '';
+    captionOverlay.hidden = !cue?.text;
+  }
+
   function mediaFraming(item) {
     const fallbackFit = String(item?.type || '').toLowerCase() === 'image' ? 'contain' : 'cover';
     const fit = ['cover', 'contain', 'fill', 'none'].includes(String(item?.mediaFit || '').toLowerCase())
@@ -470,6 +580,10 @@
     panel.classList.toggle('has-weather', isWeather);
     video.hidden = !isVideo;
     image.hidden = !isImage;
+    if (!isVideo && captionOverlay) {
+      captionOverlay.hidden = true;
+      captionOverlay.dataset.captionText = '';
+    }
     if (weatherPanel) weatherPanel.hidden = !isWeather;
     panel.classList.toggle('has-media', isVideo || isImage || isYoutube);
     eyebrow.hidden = isVideo || isImage || isYoutube || isWeather;
@@ -653,6 +767,7 @@
       }
       video.muted = !soundEnabled || item.videoAudio === false;
       video.volume = clamp(channel?.audio?.master ?? 1, 0, 1) * clamp(channel?.audio?.video ?? 1, 0, 1);
+      void ensureCaptions(item);
     }
   }
 
@@ -702,7 +817,9 @@
       video.muted = !soundEnabled || item.videoAudio === false;
       video.volume = clamp(channel?.audio?.master ?? 1, 0, 1) * clamp(channel?.audio?.video ?? 1, 0, 1);
       safePlay(video);
+      syncCaptions(item);
     } else {
+      clearCaptions();
       video.pause();
       waitingSince.delete(video);
       preloadUpcomingVideo(items, position.index);
