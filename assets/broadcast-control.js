@@ -120,6 +120,7 @@
   let previewMonitorAudio = false;
   let programMonitorAudio = false;
   const videoDurationCache = new Map();
+  const captionStatusCache = new Map();
   const mediaRequests = new WeakMap();
   const textLayouts = new Map();
 
@@ -970,6 +971,85 @@
       releaseTag: String(asset?.releaseTag || release?.tag_name || ''),
       duration: positive(asset?.duration)
     };
+  }
+
+  function captionKeyFromMedia(value) {
+    const explicit = String(value?.captionKey || '').trim();
+    if (explicit) return explicit.replace(/[^A-Za-z0-9._-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 120);
+
+    const name = String(value?.name || '').trim() || (() => {
+      try { return decodeURIComponent(new URL(String(value?.url || value?.mediaUrl || '')).pathname.split('/').pop() || ''); }
+      catch { return ''; }
+    })();
+    const stem = name.replace(/\.[^.]+$/, '');
+    if (!/^broadcast-video-/i.test(stem)) return '';
+    return stem.replace(/[^A-Za-z0-9._-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 120);
+  }
+
+  function captionStatusUrl(key) {
+    return 'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/broadcast/captions/'
+      + encodeURIComponent(key) + '.json';
+  }
+
+  async function fetchCaptionStatus(key, { force = false } = {}) {
+    const cleanKey = String(key || '').trim();
+    if (!cleanKey) return null;
+    const cached = captionStatusCache.get(cleanKey);
+    if (!force && cached && Date.now() - cached.checkedAt < 15000) return cached.data;
+
+    let data = null;
+    try {
+      const response = await fetch(captionStatusUrl(cleanKey) + '?t=' + Date.now(), {
+        cache: 'no-store',
+        signal: AbortSignal.timeout(8000)
+      });
+      if (response.ok) data = await response.json();
+    } catch {}
+    captionStatusCache.set(cleanKey, { checkedAt: Date.now(), data });
+    return data;
+  }
+
+  async function queueVideoCaptions(target, { force = false } = {}) {
+    const sourceUrl = String(target?.url || target?.mediaUrl || '').trim();
+    const key = captionKeyFromMedia(target);
+    if (!sourceUrl || !key) throw new Error('Upload the video first so captions have a stable media file.');
+
+    const apiPath = '/contents/assets/uploads/runtime/broadcast-caption-requests/' + key + '.json';
+    let sha = '';
+    try {
+      const current = await githubRequest(apiPath + '?ref=main');
+      sha = current.sha || '';
+    } catch (error) {
+      if (error.status !== 404) throw error;
+    }
+
+    const requestedAt = new Date().toISOString();
+    const payload = {
+      version: 1,
+      key,
+      sourceUrl,
+      assetName: String(target?.name || '').trim(),
+      requestedAt,
+      requestedBy: localRead(SESSION_LOGIN_KEY) || 'Broadcast Control',
+      force: Boolean(force)
+    };
+
+    await githubRequest(apiPath, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: (force ? 'Regenerate' : 'Generate') + ' broadcast captions',
+        content: encodeBase64Utf8(JSON.stringify(payload, null, 2) + '\n'),
+        branch: 'main',
+        ...(sha ? { sha } : {})
+      })
+    });
+
+    target.captionKey = key;
+    target.captionsEnabled = target.captionsEnabled !== false;
+    target.captionRevision = Date.now();
+    captionStatusCache.set(key, { checkedAt: Date.now(), data: { state: 'processing', requestedAt } });
+    return key;
   }
 
   function assetKind(asset) {
@@ -2034,7 +2114,7 @@
         event: { header: 'UPCOMING FIGHTS', eyebrow: 'NEXT EVENT', title: 'UPCOMING EVENT', body: 'DATE • VENUE • MAIN EVENT', duration: 18 },
         weather: { header: 'FIGHT CITY FORECAST', eyebrow: 'LOCAL WEATHER', title: 'FIGHT CITY FORECAST', duration: 48 },
         image: { header: 'MMA NEWS', eyebrow: 'PHOTO', title: 'IMAGE', mediaUrl: '', duration: 20, mediaFit: 'contain', mediaScale: 100, mediaX: 50, mediaY: 50 },
-        video: { header: 'MMA VIDEO', eyebrow: 'VIDEO', title: 'VIDEO', mediaUrl: '', duration: 0, videoAudio: true, mediaFit: 'cover', mediaScale: 100, mediaX: 50, mediaY: 50 },
+        video: { header: 'MMA VIDEO', eyebrow: 'VIDEO', title: 'VIDEO', mediaUrl: '', duration: 0, videoAudio: true, mediaFit: 'cover', mediaScale: 100, mediaX: 50, mediaY: 50, captionsEnabled: true },
         breaking: { header: 'BREAKING NEWS', eyebrow: 'BREAKING', title: 'BREAKING NEWS', body: 'ADD THE UPDATE HERE.', duration: 20 }
       };
       const item = { id: uid('program'), type, ...(defaults[type] || defaults.headline) };
@@ -2822,7 +2902,7 @@
       selectedMusicId = track.id;
       if (render) renderMusic();
     } else {
-      const item = { id: targetItem?.id || uid('program'), type: 'video', header: 'MMA VIDEO', eyebrow: 'VIDEO', title: displayVideoName(asset.name), mediaUrl: asset.url, duration, videoAudio: true, mediaFit: targetItem?.mediaFit || 'cover', mediaScale: targetItem?.mediaScale ?? 100, mediaX: targetItem?.mediaX ?? 50, mediaY: targetItem?.mediaY ?? 50 };
+      const item = { id: targetItem?.id || uid('program'), type: 'video', header: 'MMA VIDEO', eyebrow: 'VIDEO', title: displayVideoName(asset.name), mediaUrl: asset.url, duration, videoAudio: true, mediaFit: targetItem?.mediaFit || 'cover', mediaScale: targetItem?.mediaScale ?? 100, mediaX: targetItem?.mediaX ?? 50, mediaY: targetItem?.mediaY ?? 50, captionKey: targetItem?.captionKey || asset.captionKey || captionKeyFromMedia(asset), captionsEnabled: targetItem?.captionsEnabled ?? true, captionRevision: targetItem?.captionRevision || asset.captionRevision || 0 };
       if (targetItem && working.program.includes(targetItem)) Object.assign(targetItem, item);
       else working.program.push(item);
       selectedProgramId = item.id;
@@ -2883,10 +2963,25 @@
           const asset = kind === 'image'
             ? await uploadBroadcastImageFile(file)
             : await uploadMediaFile(file, kind);
+
+          let captionsQueued = false;
+          if (kind === 'video') {
+            asset.captionKey = captionKeyFromMedia(asset);
+            asset.captionsEnabled = true;
+            try {
+              await queueVideoCaptions(asset);
+              captionsQueued = true;
+            } catch (error) {
+              showToast('Video uploaded, but captions could not be queued: ' + error.message, 9000);
+            }
+          }
+
           rememberAsset(asset, duration);
           if (autoAdd) await addAssetToDraft(asset, targetItem);
           completed += 1;
-          row.textContent = file.name + (autoAdd ? ' — Ready in draft' : ' — Ready in library') + (duration ? ' · ' + fmt(duration) : '');
+          row.textContent = file.name + (autoAdd ? ' — Ready in draft' : ' — Ready in library')
+            + (duration ? ' · ' + fmt(duration) : '')
+            + (captionsQueued ? ' · captions processing' : '');
         } catch (error) {
           row.textContent = file.name + ' — ' + error.message + ' ';
           row.append(smallButton('Retry', () => void uploadFiles([file], forceKind, targetItem), 'mfc-button-ghost'));
