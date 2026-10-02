@@ -1845,6 +1845,7 @@
       const upload = document.createElement('input');
       upload.type = 'file';
       upload.accept = '.png,.jpg,.jpeg,.webp,.gif,image/png,image/jpeg,image/webp,image/gif';
+      upload.dataset.programImageUpload = '';
       upload.hidden = true;
       const uploadButton = smallButton('Upload image', () => {
         if (uploadRunning || busyAction) return showToast('Wait for the current upload or save to finish.');
