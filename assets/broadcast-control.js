@@ -977,7 +977,7 @@
       if (target === 'ticker' && news.kind === 'article') {
         const text = title + ' — ' + source;
         if (working.ticker.includes(text)) return false;
-        working.ticker.push(text); tickerInput.value = working.ticker.join('\n'); renderTickerPreview();
+        working.ticker.push(text); renderTickerEditor({ focusIndex: working.ticker.length - 1 }); renderTickerPreview();
       } else {
         if (working.program.some(item => item.sourceUrl === url.href || item.mediaUrl === url.href)) return false;
         const item = { id: uid('news'), type: 'headline', title, body: String(news.excerpt || '').slice(0, 220),
