@@ -6,9 +6,11 @@
   const useDraft = params.get('mode') === 'draft' || params.get('preview') === 'draft';
   const monitorMode = params.get('monitor') === '1';
   const controlsMode = params.get('controls') === '1';
+  const obsMode = params.get('obs') === '1';
   if (params.get('embed') === '1') document.body.dataset.mfcEmbed = 'true';
   if (monitorMode) document.body.dataset.mfcMonitor = 'true';
   if (controlsMode) document.body.dataset.mfcControls = 'true';
+  if (obsMode) document.body.dataset.mfcObs = 'true';
 
   const screen = root.querySelector('[data-mfc-screen]');
   function scalePlayer() {
@@ -202,6 +204,9 @@
   });
 
   try { soundEnabled = localStorage.getItem(SOUND_KEY) === 'on'; } catch {}
+  // OBS browser sources do not have an interactive sound button. The dedicated
+  // ?obs=1 feed starts with program and music audio enabled so OBS can route it.
+  if (obsMode) soundEnabled = true;
   if (monitorMode) soundEnabled = false;
   if (monitorMode && soundButton) soundButton.hidden = true;
 
