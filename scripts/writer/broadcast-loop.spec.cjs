@@ -239,10 +239,47 @@ test('music URLs accept YouTube links, manual duration fallbacks and direct medi
   expect(fixture.state.live.music[3].duration).toBe(2);
 });
 
+test('ticker queue supports inline editing, add, duplicate, delete and drag reorder', async ({ page }) => {
+  fixture.state.draft.ticker = ['FIRST HEADLINE', 'SECOND HEADLINE', 'THIRD HEADLINE'];
+  await page.goto(fixture.origin + '/broadcast/control/');
+  await page.getByRole('tab', { name: /Graphics/ }).click();
+
+  const rows = page.locator('.mfc-ticker-row');
+  await expect(rows).toHaveCount(3);
+  await expect(page.locator('[data-ticker-count]')).toHaveText('3 headlines');
+
+  await page.locator('.mfc-ticker-row-input').nth(1).fill('SECOND EDITED');
+  expect(fixture.state.draft.ticker[1]).toBe('SECOND HEADLINE');
+  await expect(page.locator('[data-ticker-preview]')).toContainText('SECOND EDITED');
+
+  await page.locator('[data-ticker-add]').click();
+  await expect(rows).toHaveCount(4);
+  await page.locator('.mfc-ticker-row-input').nth(3).fill('FOURTH HEADLINE');
+
+  await rows.nth(0).getByRole('button', { name: 'Duplicate' }).click();
+  await expect(rows).toHaveCount(5);
+  await expect(page.locator('.mfc-ticker-row-input').nth(1)).toHaveValue('FIRST HEADLINE');
+
+  await rows.nth(1).getByRole('button', { name: 'Delete' }).click();
+  await expect(rows).toHaveCount(4);
+
+  await rows.nth(2).dragTo(rows.nth(0));
+  await expect(page.locator('.mfc-ticker-row-input').first()).toHaveValue('THIRD HEADLINE');
+
+  await page.locator('[data-save-draft]').click();
+  await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
+  expect(fixture.state.draft.ticker).toEqual([
+    'THIRD HEADLINE',
+    'FIRST HEADLINE',
+    'SECOND EDITED',
+    'FOURTH HEADLINE'
+  ]);
+});
+
 test('failed Take Live never changes Program, and edits made during Save remain unsaved', async ({ page }) => {
   await page.goto(fixture.origin + '/broadcast/control/');
   await page.getByRole('tab', { name: /Graphics/ }).click();
-  await page.locator('[data-ticker-input]').fill('First edit');
+  await page.locator('.mfc-ticker-row-input').first().fill('First edit');
   fixture.controls.failSaves = true;
   await page.locator('[data-take-live]').click();
   await expect(page.locator('[data-toast]')).toContainText('changed remotely');
@@ -251,7 +288,7 @@ test('failed Take Live never changes Program, and edits made during Save remain 
   fixture.controls.failSaves = false;
   fixture.controls.saveDelay = 600;
   await page.locator('[data-save-draft]').click();
-  await page.locator('[data-ticker-input]').fill('Edit while saving');
+  await page.locator('.mfc-ticker-row-input').first().fill('Edit while saving');
   await expect.poll(() => fixture.controls.writes).toBe(1);
   await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
   expect(fixture.state.draft.ticker).toEqual(['First edit']);
@@ -539,13 +576,13 @@ test('blocked monitor audio has a visible recovery control instead of falsely sa
 test('unsaved draft survives refresh, restores only Preview, and clears its backup after save', async ({ page }) => {
   await page.goto(fixture.origin + '/broadcast/control/');
   await page.getByRole('tab', { name: /Graphics/ }).click();
-  await page.locator('[data-ticker-input]').fill('Recovered local ticker');
+  await page.locator('.mfc-ticker-row-input').first().fill('Recovered local ticker');
   await expect(page.locator('[data-recovery-status]')).toContainText('backed up');
   await page.reload();
   await expect(page.locator('[data-recovery-panel]')).toBeVisible();
   expect(fixture.controls.writes).toBe(0);
   await page.locator('[data-restore-recovery]').click();
-  await expect(page.locator('[data-ticker-input]')).toHaveValue('Recovered local ticker');
+  await expect(page.locator('.mfc-ticker-row-input').first()).toHaveValue('Recovered local ticker');
   await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
   expect(fixture.state.live.ticker[0]).toBe('LOCAL TEST PREVIEW');
   await page.locator('[data-save-draft]').click();
@@ -553,13 +590,13 @@ test('unsaved draft survives refresh, restores only Preview, and clears its back
   await expect(page.locator('[data-recovery-status]')).toContainText('saved to your account');
   await page.reload();
   await expect(page.locator('[data-recovery-panel]')).toBeHidden();
-  await expect(page.locator('[data-ticker-input]')).toHaveValue('Recovered local ticker');
+  await expect(page.locator('.mfc-ticker-row-input').first()).toHaveValue('Recovered local ticker');
 });
 
 test('recovery warns when remote changed and explicit Reload discards local edits', async ({ page }) => {
   await page.goto(fixture.origin + '/broadcast/control/');
   await page.getByRole('tab', { name: /Graphics/ }).click();
-  await page.locator('[data-ticker-input]').fill('Local work');
+  await page.locator('.mfc-ticker-row-input').first().fill('Local work');
   await expect(page.locator('[data-recovery-status]')).toContainText('backed up');
   fixture.state.draft.ticker = ['New remote draft'];
   fixture.state = structuredClone(fixture.state);
@@ -567,11 +604,11 @@ test('recovery warns when remote changed and explicit Reload discards local edit
   await expect(page.locator('[data-recovery-panel]')).toBeVisible();
   await expect(page.locator('[data-recovery-detail]')).toContainText('saved draft has changed');
   await page.locator('[data-discard-recovery]').click();
-  await expect(page.locator('[data-ticker-input]')).toHaveValue('New remote draft');
-  await page.locator('[data-ticker-input]').fill('Discard this local work');
+  await expect(page.locator('.mfc-ticker-row-input').first()).toHaveValue('New remote draft');
+  await page.locator('.mfc-ticker-row-input').first().fill('Discard this local work');
   page.once('dialog', dialog => dialog.accept());
   await page.locator('[data-reload-state]').click();
-  await expect(page.locator('[data-ticker-input]')).toHaveValue('New remote draft');
+  await expect(page.locator('.mfc-ticker-row-input').first()).toHaveValue('New remote draft');
   await expect(page.locator('[data-recovery-panel]')).toBeHidden();
   await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
 });
@@ -664,7 +701,7 @@ test('local storage failure does not stop editing or saving', async ({ page }) =
   });
   await page.goto(fixture.origin + '/broadcast/control/');
   await page.getByRole('tab', { name: /Graphics/ }).click();
-  await page.locator('[data-ticker-input]').fill('Still save this');
+  await page.locator('.mfc-ticker-row-input').first().fill('Still save this');
   await expect(page.locator('[data-recovery-status]')).toContainText('Local recovery unavailable');
   await page.locator('[data-save-draft]').click();
   await expect(page.locator('[data-draft-status]')).toHaveText('Saved');
