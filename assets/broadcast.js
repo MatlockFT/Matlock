@@ -348,8 +348,22 @@
     scheduleTickerMetrics({ restart: true });
   }
 
+  function derivedCaptionKey(item) {
+    const explicit = String(item?.captionKey || '').trim();
+    if (explicit) return explicit;
+    try {
+      const name = decodeURIComponent(new URL(String(item?.mediaUrl || ''), location.href).pathname.split('/').pop() || '');
+      const stem = name.replace(/\.[^.]+$/, '');
+      return /^broadcast-video-/i.test(stem)
+        ? stem.replace(/[^A-Za-z0-9._-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 120)
+        : '';
+    } catch {
+      return '';
+    }
+  }
+
   function captionSource(item) {
-    const key = String(item?.captionKey || '').trim();
+    const key = derivedCaptionKey(item);
     if (!key || item?.captionsEnabled === false) return null;
     const revision = String(item?.captionRevision || '1');
     return {
