@@ -260,27 +260,103 @@ test('failed Take Live never changes Program, and edits made during Save remain 
   expect(fixture.state.draft.ticker).toEqual(['Edit while saving']);
 });
 
-test('Take Live updates Program without restarting the running loop clock', async ({ page }) => {
-  const runningStartedAt = new Date(Date.now() - 47_000).toISOString();
-  fixture.state.live.startedAt = runningStartedAt;
-  fixture.state.live.revision = 'live-running-loop';
-  fixture.state.draft.program = [
-    { id: 'first', type: 'headline', title: 'FIRST', body: 'First item', duration: 30 },
-    { id: 'second', type: 'headline', title: 'SECOND', body: 'Second item', duration: 30 }
+test('Take Live queues the new rundown for the next clean on-air item boundary', async ({ page }) => {
+  const runningStartedAt = new Date(Date.now() - 4_000).toISOString();
+  const oldProgram = [
+    { id: 'old-first', type: 'headline', title: 'OLD FIRST', body: 'Old item', duration: 10 },
+    { id: 'old-second', type: 'headline', title: 'OLD SECOND', body: 'Old item', duration: 10 }
   ];
+  const music = [{ id: 'bed', title: 'Bed', url: fixture.origin + '/fixtures/tone.wav', duration: 30 }];
+  fixture.state.live = {
+    ...fixture.state.live,
+    revision: 'live-running-loop',
+    startedAt: runningStartedAt,
+    program: oldProgram,
+    music
+  };
+  fixture.state.draft = {
+    ...fixture.state.draft,
+    program: [
+      { id: 'new-first', type: 'headline', title: 'NEW FIRST', body: 'New item', duration: 8 },
+      { id: 'new-second', type: 'headline', title: 'NEW SECOND', body: 'New item', duration: 8 }
+    ],
+    music: structuredClone(music)
+  };
 
   await page.goto(fixture.origin + '/broadcast/control/');
-  await page.locator('[data-program-id="second"]').click();
-  await page.getByRole('button', { name: 'Preview this item' }).click();
-
-  // Preview is deliberately cued to a different playhead. Taking it live must
-  // update the Program content without replacing Program's existing loop clock.
+  const before = Date.now();
   await page.locator('[data-take-live]').click();
-  await expect.poll(() => fixture.state.live.revision).not.toBe('live-running-loop');
-  expect(fixture.state.live.startedAt).toBe(runningStartedAt);
-  expect(fixture.state.live.program.map(item => item.id)).toEqual(['first', 'second']);
-  await expect(page.locator('[data-toast]')).toContainText('without restarting the running loop');
+  await expect.poll(() => fixture.state.pendingLive?.program?.[0]?.title).toBe('NEW FIRST');
+
+  expect(fixture.state.live.program[0].title).toBe('OLD FIRST');
+  expect(fixture.state.pendingLive.programStartedAt).toBe(fixture.state.programTransitionAt);
+  expect(fixture.state.pendingLive.musicStartedAt).toBe(runningStartedAt);
+
+  const cutAt = Date.parse(fixture.state.programTransitionAt);
+  expect(cutAt).toBeGreaterThan(before + 3_500);
+  expect(cutAt).toBeLessThan(before + 8_000);
+  await expect(page.locator('[data-toast]')).toContainText('current on-air block will finish first');
 });
+
+test('changed music waits for its current song boundary independently of the visual cut', async ({ page }) => {
+  const runningStartedAt = new Date(Date.now() - 1_000).toISOString();
+  fixture.state.live = {
+    ...fixture.state.live,
+    revision: 'live-independent-decks',
+    startedAt: runningStartedAt,
+    program: [{ id: 'old-card', type: 'headline', title: 'OLD CARD', duration: 3 }],
+    music: [{ id: 'old-bed', title: 'Old bed', url: fixture.origin + '/fixtures/tone.wav', duration: 8 }],
+    audio: { ...fixture.state.live.audio, crossfade: 0, musicRepeat: 'fixed' }
+  };
+  fixture.state.draft = {
+    ...fixture.state.draft,
+    program: [{ id: 'new-card', type: 'headline', title: 'NEW CARD', duration: 3 }],
+    music: [{ id: 'new-bed', title: 'New bed', url: fixture.origin + '/fixtures/other.wav', duration: 8 }],
+    audio: { ...fixture.state.live.audio, crossfade: 0, musicRepeat: 'fixed' }
+  };
+
+  await page.goto(fixture.origin + '/broadcast/control/');
+  const before = Date.now();
+  await page.locator('[data-take-live]').click();
+  await expect.poll(() => fixture.state.pendingLive?.music?.[0]?.id).toBe('new-bed');
+
+  const programCut = Date.parse(fixture.state.programTransitionAt);
+  const musicCut = Date.parse(fixture.state.musicTransitionAt);
+  expect(programCut).toBeGreaterThan(before + 1_000);
+  expect(programCut).toBeLessThan(before + 4_500);
+  expect(musicCut).toBeGreaterThan(before + 5_000);
+  expect(musicCut).toBeGreaterThan(programCut);
+  expect(fixture.state.pendingLive.musicStartedAt).toBe(fixture.state.musicTransitionAt);
+  await expect(page.locator('[data-toast]')).toContainText('Music changes wait for the current song to finish');
+});
+
+test('public Program adopts a staged rundown automatically at its scheduled clean cut', async ({ page }) => {
+  const now = Date.now();
+  fixture.state.live = {
+    ...fixture.state.live,
+    revision: 'old-live',
+    startedAt: new Date(now - 500).toISOString(),
+    programStartedAt: new Date(now - 500).toISOString(),
+    musicStartedAt: new Date(now - 500).toISOString(),
+    program: [{ id: 'old', type: 'headline', title: 'OLD ON AIR', duration: 20 }],
+    music: []
+  };
+  fixture.state.pendingLive = {
+    ...fixture.state.live,
+    revision: 'new-live',
+    startedAt: fixture.state.live.startedAt,
+    programStartedAt: new Date(now + 900).toISOString(),
+    musicStartedAt: fixture.state.live.musicStartedAt,
+    program: [{ id: 'new', type: 'headline', title: 'NEW ON AIR', duration: 20 }]
+  };
+  fixture.state.programTransitionAt = fixture.state.pendingLive.programStartedAt;
+  fixture.state.musicTransitionAt = fixture.state.pendingLive.programStartedAt;
+
+  await page.goto(fixture.origin + '/broadcast/?controls=1');
+  await expect(page.locator('[data-mfc-title]')).toHaveText('OLD ON AIR');
+  await expect(page.locator('[data-mfc-title]')).toHaveText('NEW ON AIR', { timeout: 2500 });
+});
+
 
 test('preview keeps its clock during edits, with explicit restart and selected-item preview', async ({ page }) => {
   await page.goto(fixture.origin + '/broadcast/control/');
