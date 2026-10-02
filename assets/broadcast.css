@@ -363,6 +363,10 @@ body {
   border: 0;
   background: #090b13;
   object-fit: cover;
+  object-position: 50% 50%;
+  transform: scale(1);
+  transform-origin: 50% 50%;
+  will-change: transform;
   filter: saturate(.86) contrast(.94) brightness(.96) blur(.12px);
 }
 
