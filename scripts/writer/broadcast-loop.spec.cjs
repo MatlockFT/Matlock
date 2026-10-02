@@ -113,6 +113,16 @@ test('image framing controls change fit, zoom and position in Preview and persis
   await expect(page.getByLabel('Zoom', { exact: true })).toHaveValue('100');
   await expect(page.getByLabel('Horizontal position', { exact: true })).toHaveValue('50');
   await expect(page.getByLabel('Vertical position', { exact: true })).toHaveValue('50');
+
+  const box = await image.boundingBox();
+  expect(box).toBeTruthy();
+  await page.mouse.move(box.x + box.width * .5, box.y + box.height * .5);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width * .35, box.y + box.height * .35, { steps: 5 });
+  await page.mouse.up();
+  await expect.poll(async () => Number(await page.getByLabel('Horizontal position', { exact: true }).inputValue())).toBeGreaterThan(50);
+  await expect.poll(async () => Number(await page.getByLabel('Vertical position', { exact: true }).inputValue())).toBeGreaterThan(50);
+  await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');
 });
 
 test('music URLs accept YouTube links, manual duration fallbacks and direct media', async ({ page }) => {
