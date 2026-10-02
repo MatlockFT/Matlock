@@ -38,7 +38,7 @@ export function broadcastVideoUsage(state, url) {
   for (const key of ['draft', 'live']) {
     const program = Array.isArray(state?.[key]?.program) ? state[key].program : [];
     usage[key] = program.some(item =>
-      String(item?.type || '').toLowerCase() === 'video'
+      ['video', 'image'].includes(String(item?.type || '').toLowerCase())
       && String(item?.mediaUrl || '') === target
     );
   }
