@@ -348,7 +348,8 @@
     return {
       key,
       cacheKey: key + ':' + revision,
-      url: '/assets/uploads/broadcast/captions/' + encodeURIComponent(key) + '.vtt?v=' + encodeURIComponent(revision)
+      url: 'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/broadcast/captions/'
+        + encodeURIComponent(key) + '.vtt?v=' + encodeURIComponent(revision)
     };
   }
 
@@ -417,7 +418,7 @@
       captionCache.set(source.cacheKey, {
         state: 'waiting',
         cues: [],
-        retryAt: Date.now() + (error?.status === 404 ? 30000 : 60000)
+        retryAt: Date.now() + (error?.status === 404 ? 15000 : 45000)
       });
     }
   }
