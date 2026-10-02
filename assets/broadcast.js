@@ -329,6 +329,25 @@
     scheduleTickerMetrics({ restart: true });
   }
 
+  function mediaFraming(item) {
+    const fit = ['cover', 'contain', 'fill', 'none'].includes(String(item?.mediaFit || '').toLowerCase())
+      ? String(item.mediaFit).toLowerCase()
+      : 'cover';
+    const scale = clamp(item?.mediaScale == null ? 100 : item.mediaScale, 25, 300);
+    const x = clamp(item?.mediaX == null ? 50 : item.mediaX, 0, 100);
+    const y = clamp(item?.mediaY == null ? 50 : item.mediaY, 0, 100);
+    return { fit, scale, x, y };
+  }
+
+  function applyMediaFraming(element, item) {
+    if (!element) return;
+    const framing = mediaFraming(item);
+    element.style.objectFit = framing.fit;
+    element.style.objectPosition = framing.x + '% ' + framing.y + '%';
+    element.style.transformOrigin = framing.x + '% ' + framing.y + '%';
+    element.style.transform = 'scale(' + (framing.scale / 100) + ')';
+  }
+
   function setMediaMode(kind) {
     const isVideo = kind === 'video';
     const isImage = kind === 'image';
@@ -509,12 +528,14 @@
 
     if (kind === 'image') {
       const url = String(item.mediaUrl || '');
+      applyMediaFraming(image, item);
       if (url && (image.dataset.source !== url || !image.naturalWidth)) { image.dataset.source = url; image.src = url; }
       image.alt = String(item.alt || item.title || 'MMA news image');
     }
 
     if (kind === 'video') {
       const url = String(item.mediaUrl || '');
+      applyMediaFraming(video, item);
       if (url && (video.dataset.source !== url || video.error)) {
         waitingSince.delete(video);
         video.pause();
