@@ -37,8 +37,8 @@ jobs:
           asset_json="$(gh api "repos/${GITHUB_REPOSITORY}/releases/assets/${asset_id}")"
           actual_name="$(jq -r '.name // empty' <<<"$asset_json")"
 
-          if [[ "$actual_name" != broadcast-video-* ]]; then
-            echo "::error::Refusing to delete non-Broadcast-Control asset: $actual_name"
+          if [[ "$actual_name" != broadcast-video-* && "$actual_name" != broadcast-image-* ]]; then
+            echo "::error::Refusing to delete non-Broadcast-Control visual asset: $actual_name"
             exit 1
           fi
 
