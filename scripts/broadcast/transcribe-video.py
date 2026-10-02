@@ -20,24 +20,22 @@ def clean_text(value):
     return re.sub(r"\s+", " ", str(value or "")).strip()
 
 
-def wrap_caption(text, width=38):
-    words = clean_text(text).split()
-    if not words:
-        return ""
-    lines = []
-    line = []
-    for word in words:
-        candidate = " ".join(line + [word])
-        if line and len(candidate) > width:
-            lines.append(" ".join(line))
-            line = [word]
-        else:
-            line.append(word)
-    if line:
-        lines.append(" ".join(line))
-    if len(lines) <= 2:
-        return "\n".join(lines)
-    return "\n".join([lines[0], " ".join(lines[1:])])
+def wrap_caption(text, width=42):
+    clean = clean_text(text)
+    words = clean.split()
+    if not words or len(clean) <= width:
+        return clean
+
+    best = None
+    for index in range(1, len(words)):
+        left = " ".join(words[:index])
+        right = " ".join(words[index:])
+        overflow = max(0, len(left) - width) + max(0, len(right) - width)
+        score = overflow * 100 + abs(len(left) - len(right))
+        if best is None or score < best[0]:
+            best = (score, left, right)
+
+    return best[1] + "\n" + best[2] if best else clean
 
 
 def segment_cues(segment):
@@ -77,6 +75,7 @@ def main():
     parser.add_argument("--source-url", required=True)
     parser.add_argument("--caption-url", required=True)
     parser.add_argument("--model", default="small")
+    parser.add_argument("--prompt", default="")
     args = parser.parse_args()
 
     model = WhisperModel(args.model, device="cpu", compute_type="int8")
@@ -87,6 +86,7 @@ def main():
         word_timestamps=True,
         condition_on_previous_text=True,
         temperature=0,
+        initial_prompt=clean_text(args.prompt) or None,
     )
 
     cues = []
@@ -117,6 +117,7 @@ def main():
         "sourceUrl": args.source_url,
         "captionUrl": args.caption_url,
         "model": args.model,
+        "prompt": clean_text(args.prompt),
         "language": getattr(info, "language", "") or "",
         "languageProbability": round(float(getattr(info, "language_probability", 0) or 0), 4),
         "duration": round(float(getattr(info, "duration", 0) or 0), 3),
