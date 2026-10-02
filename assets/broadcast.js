@@ -188,6 +188,14 @@
     currentProgramId = '';
     reportPlayback('An image could not load. Continuing the loop.');
   });
+  image.addEventListener('load', () => {
+    const item = timelinePosition(programItems(), rawElapsed()).item;
+    if (item?.type === 'image') applyMediaFraming(image, item);
+  });
+  video.addEventListener('loadedmetadata', () => {
+    const item = timelinePosition(programItems(), rawElapsed()).item;
+    if (item?.type === 'video') applyMediaFraming(video, item);
+  });
 
   try { soundEnabled = localStorage.getItem(SOUND_KEY) === 'on'; } catch {}
   if (monitorMode) soundEnabled = false;
@@ -330,22 +338,56 @@
   }
 
   function mediaFraming(item) {
+    const fallbackFit = String(item?.type || '').toLowerCase() === 'image' ? 'contain' : 'cover';
     const fit = ['cover', 'contain', 'fill', 'none'].includes(String(item?.mediaFit || '').toLowerCase())
       ? String(item.mediaFit).toLowerCase()
-      : 'cover';
+      : fallbackFit;
     const scale = clamp(item?.mediaScale == null ? 100 : item.mediaScale, 25, 300);
     const x = clamp(item?.mediaX == null ? 50 : item.mediaX, 0, 100);
     const y = clamp(item?.mediaY == null ? 50 : item.mediaY, 0, 100);
     return { fit, scale, x, y };
   }
 
+  function mediaIntrinsicSize(element) {
+    if (!element) return { width: 0, height: 0 };
+    if (element.tagName === 'VIDEO') {
+      return { width: positive(element.videoWidth), height: positive(element.videoHeight) };
+    }
+    return { width: positive(element.naturalWidth), height: positive(element.naturalHeight) };
+  }
+
+  function coverScaleFor(element) {
+    const intrinsic = mediaIntrinsicSize(element);
+    const width = Math.max(1, element.clientWidth || panel?.clientWidth || 1);
+    const height = Math.max(1, element.clientHeight || panel?.clientHeight || 1);
+    if (!intrinsic.width || !intrinsic.height) return 1;
+
+    const contain = Math.min(width / intrinsic.width, height / intrinsic.height);
+    const containedWidth = intrinsic.width * contain;
+    const containedHeight = intrinsic.height * contain;
+    return Math.max(width / Math.max(1, containedWidth), height / Math.max(1, containedHeight));
+  }
+
   function applyMediaFraming(element, item) {
     if (!element) return;
     const framing = mediaFraming(item);
-    element.style.objectFit = framing.fit;
+    const userScale = framing.scale / 100;
+    let baseScale = 1;
+
+    // Keep the complete source available underneath the framing transform.
+    // Cover is produced by scaling a contained source until it fills the frame,
+    // rather than cropping first. This lets zooming back out reveal the source.
+    if (framing.fit === 'cover') {
+      element.style.objectFit = 'contain';
+      baseScale = coverScaleFor(element);
+    } else {
+      element.style.objectFit = framing.fit;
+    }
+
     element.style.objectPosition = framing.x + '% ' + framing.y + '%';
     element.style.transformOrigin = framing.x + '% ' + framing.y + '%';
-    element.style.transform = 'scale(' + (framing.scale / 100) + ')';
+    element.style.transform = 'scale(' + (baseScale * userScale) + ')';
+    element.dataset.mediaBaseScale = String(baseScale);
   }
 
   function installMediaFramingDrag(element) {
@@ -540,7 +582,10 @@
   }
   window.addEventListener('resize', () => {
     scalePlayer();
-    setMediaMode(timelinePosition(programItems(), rawElapsed()).item?.type || 'headline');
+    const item = timelinePosition(programItems(), rawElapsed()).item;
+    setMediaMode(item?.type || 'headline');
+    if (item?.type === 'image') applyMediaFraming(image, item);
+    if (item?.type === 'video') applyMediaFraming(video, item);
     scheduleCopyFit();
     scheduleTickerMetrics();
   });
