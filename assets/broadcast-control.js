@@ -1494,36 +1494,23 @@
     };
   }
 
-  function nextProgramBoundarySeconds(live, nowMs = Date.now(), minLead = LIVE_CUT_LEAD_SECONDS) {
+  function nextProgramLoopBoundarySeconds(live, nowMs = Date.now(), minLead = LIVE_CUT_LEAD_SECONDS) {
     const items = Array.isArray(live?.program) ? live.program.filter(item => positive(item.duration) > 0) : [];
     if (!items.length) return 0;
     const stamp = Date.parse(live.programStartedAt || live.startedAt || live.updatedAt || '');
     if (!Number.isFinite(stamp)) return 0;
     const total = items.reduce((sum, item) => sum + positive(item.duration), 0);
     if (total <= 0) return 0;
+
     const elapsed = Math.max(0, (nowMs - stamp) / 1000);
     const position = ((elapsed % total) + total) % total;
+    let delay = Math.max(.05, total - position);
 
-    let cursor = 0;
-    let currentIndex = 0;
-    let delay = 0;
-    for (let index = 0; index < items.length; index += 1) {
-      const end = cursor + positive(items[index].duration);
-      if (position < end || index === items.length - 1) {
-        currentIndex = index;
-        delay = Math.max(.05, end - position);
-        break;
-      }
-      cursor = end;
-    }
-
-    let guard = 0;
-    while (delay < minLead && guard < items.length * 4) {
-      currentIndex = (currentIndex + 1) % items.length;
-      delay += positive(items[currentIndex].duration);
-      guard += 1;
-    }
-    return Math.max(.05, delay);
+    // Never introduce a revised rundown in the middle of the current loop.
+    // If this wrap is too close to distribute safely, let one more complete
+    // old loop air and switch at the following last-item -> first-item wrap.
+    while (delay < minLead) delay += total;
+    return delay;
   }
 
   function musicDeckSignature(channel) {
@@ -2831,7 +2818,7 @@
 
       const playhead = freshProgramPlayhead();
       const programRemaining = hasRunningProgram
-        ? nextProgramBoundarySeconds(currentLive, nowMs)
+        ? nextProgramLoopBoundarySeconds(currentLive, nowMs)
         : 0;
       const programTransitionAt = new Date(nowMs + programRemaining * 1000).toISOString();
 
@@ -2901,7 +2888,7 @@
           ? ' Music changes wait for the current song to finish.'
           : ' Music keeps playing continuously.';
         showToast(
-          'Queued for the next clean cut in about ' + programSeconds + 's. The current on-air block will finish first.' + musicSuffix,
+          'Queued for the next full loop in about ' + programSeconds + 's. The current live loop will finish before the new version starts at Block 1.' + musicSuffix,
           10000
         );
       } else {
