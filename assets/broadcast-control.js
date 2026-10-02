@@ -1009,6 +1009,42 @@
     return data;
   }
 
+  function watchCaptionStatus(item, note, button, attempt = 0) {
+    const key = item?.captionKey || captionKeyFromMedia(item);
+    if (!key || !note?.isConnected) return;
+
+    void fetchCaptionStatus(key, { force: attempt > 0 }).then(status => {
+      if (!note.isConnected || !working?.program?.includes(item) || currentProgram()?.id !== item.id) return;
+
+      if (status?.state === 'ready') {
+        const language = String(status.language || '').toUpperCase();
+        note.textContent = 'Captions ready'
+          + (status.cueCount != null ? ' · ' + status.cueCount + ' cues' : '')
+          + (language ? ' · ' + language : '')
+          + '.';
+        if (button) button.textContent = 'Regenerate captions';
+        return;
+      }
+
+      if (status?.state === 'error') {
+        note.textContent = 'Caption generation failed' + (status.error ? ': ' + status.error : '.');
+        if (button) button.textContent = 'Retry captions';
+        return;
+      }
+
+      if (item.captionKey) {
+        note.textContent = 'Captions are processing. They will appear automatically when transcription finishes.';
+        if (button) button.textContent = 'Regenerate captions';
+        if (attempt < 90) {
+          window.setTimeout(() => watchCaptionStatus(item, note, button, attempt + 1), 10000);
+        }
+      } else {
+        note.textContent = 'No generated captions found for this uploaded video yet.';
+        if (button) button.textContent = 'Generate captions';
+      }
+    });
+  }
+
   async function queueVideoCaptions(target, { force = false } = {}) {
     const sourceUrl = String(target?.url || target?.mediaUrl || '').trim();
     const key = captionKeyFromMedia(target);
@@ -2078,6 +2114,7 @@
             markDirty();
             captionStatus.textContent = 'Captions queued. Transcription runs automatically and will appear in Preview when ready.';
             captionButton.textContent = 'Regenerate captions';
+            watchCaptionStatus(item, captionStatus, captionButton, 1);
             showToast('Auto captions queued. The video can stay in your rundown while transcription finishes.', 8000);
           } catch (error) {
             captionStatus.textContent = 'Could not queue captions: ' + error.message;
@@ -2090,28 +2127,7 @@
 
         form.append(audioField.wrap, behaviorField.wrap, duckField.wrap, captionsField.wrap, captionStatus, buttonRow(captionButton));
 
-        if (captionKey) {
-          void fetchCaptionStatus(captionKey).then(status => {
-            if (!working.program.includes(item) || currentProgram()?.id !== item.id) return;
-            const note = programFields.querySelector('[data-caption-status]');
-            const button = programFields.querySelector('[data-caption-generate]');
-            if (!note) return;
-            if (status?.state === 'ready') {
-              const language = String(status.language || '').toUpperCase();
-              note.textContent = 'Captions ready'
-                + (status.cueCount != null ? ' · ' + status.cueCount + ' cues' : '')
-                + (language ? ' · ' + language : '')
-                + '.';
-              if (button) button.textContent = 'Regenerate captions';
-            } else if (item.captionKey) {
-              note.textContent = 'Captions are processing. They will appear automatically when transcription finishes.';
-              if (button) button.textContent = 'Regenerate captions';
-            } else {
-              note.textContent = 'No generated captions found for this uploaded video yet.';
-              if (button) button.textContent = 'Generate captions';
-            }
-          });
-        }
+        if (captionKey) watchCaptionStatus(item, captionStatus, captionButton);
       }
     }
 
