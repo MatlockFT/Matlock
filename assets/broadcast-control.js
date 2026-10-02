@@ -1029,6 +1029,7 @@
       key,
       sourceUrl,
       assetName: String(target?.name || '').trim(),
+      context: String(target?.title || (target?.name ? displayVideoName(target.name) : '') || '').trim(),
       requestedAt,
       requestedBy: localRead(SESSION_LOGIN_KEY) || 'Broadcast Control',
       force: Boolean(force)
