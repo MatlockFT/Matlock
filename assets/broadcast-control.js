@@ -2626,16 +2626,27 @@
     takeLiveButton.textContent = 'Taking Live…';
     try {
       const now = new Date().toISOString();
+      const currentLive = fullState?.live;
+      const currentLiveHasTimeline = [
+        ...(Array.isArray(currentLive?.program) ? currentLive.program : []),
+        ...(Array.isArray(currentLive?.music) ? currentLive.music : [])
+      ].some(item => positive(item?.duration) > 0);
+      const currentLiveStartedAt = Date.parse(currentLive?.startedAt || '');
       const previewTimelineStart = Number.isFinite(Date.parse(previewStartedAt))
         ? previewStartedAt
         : now;
+      const liveTimelineStart = currentLiveHasTimeline && Number.isFinite(currentLiveStartedAt)
+        ? currentLive.startedAt
+        : previewTimelineStart;
+
       working.updatedAt = now;
       working.revision = `draft-${Date.now()}`;
       const live = clone(working);
-      // Taking Preview live is a bus handoff, not a restart. Preserve the
-      // Preview timeline origin so program, video, ticker and music continue
-      // from the same playhead position while the state write completes.
-      live.startedAt = previewTimelineStart;
+      // Taking Preview live updates the running Program without resetting its
+      // timeline. Keeping the existing Program origin preserves the rundown,
+      // videos, ticker phase and deterministic music/shuffle position. A first
+      // Take Live falls back to the Preview playhead because no Program exists.
+      live.startedAt = liveTimelineStart;
       live.updatedAt = now;
       live.revision = `live-${Date.now()}`;
       const nextState = {
@@ -2648,7 +2659,7 @@
       await writeState(nextState, 'Take broadcast programming live [skip ci]');
       fullState = nextState;
       setDirty(editVersion !== savingVersion);
-      showToast('Preview is now live on Program without restarting the loop. Existing viewers will sync automatically.');
+      showToast('Preview changes are now live on Program without restarting the running loop. Existing viewers will sync automatically.');
       renderSummary();
       renderVideoLibrary();
       refreshProgramMonitor();
