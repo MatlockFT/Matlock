@@ -944,11 +944,14 @@
   }
 
   function assetKind(asset) {
-    return /^broadcast-audio-/i.test(asset?.name || '') ? 'audio' : 'video';
+    const name = String(asset?.name || '');
+    if (/^broadcast-audio-/i.test(name)) return 'audio';
+    if (/^broadcast-image-/i.test(name)) return 'image';
+    return 'video';
   }
 
   function isBroadcastVideoAsset(asset) {
-    return /^broadcast-(?:video|audio)-.*\.(?:mp4|m4v|webm|mp3|m4a|aac|wav|ogg|opus|flac)$/i.test(asset?.name || '');
+    return /^broadcast-(?:video|audio|image)-.*\.(?:mp4|m4v|webm|mp3|m4a|aac|wav|ogg|opus|flac|png|jpe?g|webp|gif)$/i.test(asset?.name || '');
   }
 
   function programUsesVideo(program, url) {
@@ -1068,7 +1071,7 @@
       .filter(asset => {
         if (query && !displayVideoName(asset.name).toLowerCase().includes(query) && !String(asset.name || '').toLowerCase().includes(query)) return false;
         const usage = videoUsage(asset);
-        if (filter === 'video' || filter === 'audio') return assetKind(asset) === filter;
+        if (filter === 'video' || filter === 'audio' || filter === 'image') return assetKind(asset) === filter;
         if (filter === 'active') return usage.blocked;
         if (filter === 'live') return usage.live;
         if (filter === 'unused') return !usage.blocked;
@@ -1129,7 +1132,7 @@
       const uploaded = asset.createdAt ? new Date(asset.createdAt).toLocaleDateString() : 'Unknown date';
       const duration = knownVideoDuration(asset.url);
       const parts = [
-        assetKind(asset) === 'audio' ? 'Music' : 'Video',
+        assetKind(asset) === 'audio' ? 'Music' : assetKind(asset) === 'image' ? 'Image' : 'Video',
         formatBytes(asset.size),
         duration ? fmt(duration) : '',
         uploaded,
@@ -1152,7 +1155,10 @@
       const actions = document.createElement('div');
       actions.className = 'mfc-video-asset-actions';
   
-      const previewButton = smallButton('Preview', () => openVideoPreview(asset), 'mfc-button-ghost');
+      const previewButton = smallButton('Preview', () => {
+        if (assetKind(asset) === 'image') window.open(asset.url, '_blank', 'noopener,noreferrer');
+        else openVideoPreview(asset);
+      }, 'mfc-button-ghost');
       const addButton = smallButton(assetKind(asset) === 'audio' ? 'Add to Music' : 'Add to Program', async () => {
         if (busyAction || uploadRunning) return showToast('Wait for the current operation to finish.');
         addButton.disabled = true;
@@ -1267,7 +1273,7 @@
           ? data.assets.map(asset => normalizedLibraryAsset(asset)).filter(isBroadcastVideoAsset)
           : [];
         // Compatibility with the older video-only auth bridge during rollout.
-        if (!data.mediaKinds?.includes('audio')) {
+        if (!data.mediaKinds?.includes('audio') || !data.mediaKinds?.includes('image')) {
           const publicAssets = await fetchPublicVideoLibrary();
           videoLibraryAssets = [...new Map([...videoLibraryAssets, ...publicAssets].map(asset => [asset.url, asset])).values()];
         }
@@ -1836,6 +1842,20 @@
     }
 
     if (item.type === 'image') {
+      const upload = document.createElement('input');
+      upload.type = 'file';
+      upload.accept = '.png,.jpg,.jpeg,.webp,.gif,image/png,image/jpeg,image/webp,image/gif';
+      upload.hidden = true;
+      const uploadButton = smallButton('Upload image', () => {
+        if (uploadRunning || busyAction) return showToast('Wait for the current upload or save to finish.');
+        upload.click();
+      });
+      upload.addEventListener('change', () => {
+        void uploadFiles(upload.files, 'image', item);
+        upload.value = '';
+      });
+      form.append(buttonRow(uploadButton, upload));
+
       form.append(field('Image duration (seconds)', 'duration', { type: 'number', min: 1, max: 3600, value: item.duration || 20, live: false,
         onChange: value => { item.duration = clamp(value, 1, 3600); renderProgram(); markDirty(); } }).wrap);
     }
@@ -2477,7 +2497,11 @@
       'audio/x-flac': 'flac',
       'video/mp4': 'mp4',
       'video/webm': 'webm',
-      'video/x-m4v': 'm4v'
+      'video/x-m4v': 'm4v',
+      'image/png': 'png',
+      'image/jpeg': 'jpg',
+      'image/webp': 'webp',
+      'image/gif': 'gif'
     }[file.type] || 'bin');
   }
 
@@ -2520,7 +2544,7 @@
     if (file.size >= 2 * 1024 * 1024 * 1024) throw new Error('GitHub Release assets must be smaller than 2 GiB.');
     const uploadId = uid('upload').replace(/-/g, '');
     const assetName = mediaAssetName(file, kind);
-    const fileType = ({ mp4: 'video/mp4', m4v: 'video/mp4', webm: 'video/webm', mp3: 'audio/mpeg', m4a: 'audio/mp4', aac: 'audio/aac', wav: 'audio/wav', ogg: 'audio/ogg', opus: 'audio/opus', flac: 'audio/flac' })[safeExtension(file)] || file.type || 'application/octet-stream';
+    const fileType = ({ mp4: 'video/mp4', m4v: 'video/mp4', webm: 'video/webm', mp3: 'audio/mpeg', m4a: 'audio/mp4', aac: 'audio/aac', wav: 'audio/wav', ogg: 'audio/ogg', opus: 'audio/opus', flac: 'audio/flac', png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp', gif: 'image/gif' })[safeExtension(file)] || file.type || 'application/octet-stream';
     const chunkCount = Math.ceil(file.size / CHUNK_BYTES);
     let uploaded = 0;
 
@@ -2594,6 +2618,27 @@
 
   async function addAssetToDraft(asset, targetItem = null, { render = true } = {}) {
     const kind = assetKind(asset);
+    if (kind === 'image') {
+      const duration = Math.max(1, positive(targetItem?.duration) || 20);
+      rememberAsset(asset, 0, { render: false, changed: false });
+      let item;
+      if (targetItem && working.program.includes(targetItem)) {
+        item = targetItem;
+        item.type = 'image';
+        item.mediaUrl = asset.url;
+        item.duration = duration;
+        if (!item.title || item.title === 'IMAGE') item.title = displayVideoName(asset.name);
+      } else {
+        item = { id: uid('program'), type: 'image', header: 'MMA NEWS', eyebrow: 'PHOTO', title: displayVideoName(asset.name), mediaUrl: asset.url, duration };
+        working.program.push(item);
+      }
+      selectedProgramId = item.id;
+      if (render) renderProgram();
+      markDirty();
+      if (render) renderVideoLibrary();
+      return;
+    }
+
     const duration = knownVideoDuration(asset.url) || Number(asset.duration) || await probeUrlDuration(asset.url, kind);
     if (!Number.isFinite(duration) || duration <= 0) throw new Error('Read a valid media duration before adding this file.');
     rememberAsset(asset, duration, { render: false, changed: false });
@@ -2640,22 +2685,32 @@
         if (stopUploads || !sessionId) { row.textContent = file.name + ' — Not uploaded'; continue; }
         try {
           const ext = safeExtension(file);
-          if (!['mp4','m4v','webm','mp3','m4a','aac','wav','ogg','opus','flac'].includes(ext)) throw new Error('Unsupported format. Use MP4/WebM video or MP3/M4A audio.');
+          const videoExt = ['mp4','m4v','webm'];
+          const audioExt = ['mp3','m4a','aac','wav','ogg','opus','flac'];
+          const imageExt = ['png','jpg','jpeg','webp','gif'];
+          if (![...videoExt, ...audioExt, ...imageExt].includes(ext)) throw new Error('Unsupported format. Use video, audio, PNG, JPG, WebP or GIF.');
           if (!file.size || file.size >= 2 * 1024 ** 3) throw new Error('Choose a non-empty file under 2 GiB.');
-          const kind = forceKind || (['mp4','m4v','webm'].includes(ext) ? 'video' : 'audio');
-          if (kind === 'video' && !['mp4','m4v','webm'].includes(ext)) throw new Error('Choose an MP4, M4V or WebM video.');
-          row.textContent = file.name + ' — Checking duration and format…';
-          const duration = await probeFileDuration(file);
-          if (kind === 'video') {
-            row.textContent = file.name + ' — Checking video playback…';
-            await verifyVideoFrame(file);
+          const kind = forceKind || (videoExt.includes(ext) ? 'video' : imageExt.includes(ext) ? 'image' : 'audio');
+          if (kind === 'video' && !videoExt.includes(ext)) throw new Error('Choose an MP4, M4V or WebM video.');
+          if (kind === 'audio' && !audioExt.includes(ext)) throw new Error('Choose a supported audio file.');
+          if (kind === 'image' && !imageExt.includes(ext)) throw new Error('Choose a PNG, JPG, WebP or GIF image.');
+
+          let duration = 0;
+          if (kind !== 'image') {
+            row.textContent = file.name + ' — Checking duration and format…';
+            duration = await probeFileDuration(file);
+            if (kind === 'video') {
+              row.textContent = file.name + ' — Checking video playback…';
+              await verifyVideoFrame(file);
+            }
           }
-          row.textContent = file.name + ' — Uploading (' + fmt(duration) + ')…';
+
+          row.textContent = file.name + ' — Uploading' + (duration ? ' (' + fmt(duration) + ')' : '') + '…';
           const asset = await uploadMediaFile(file, kind);
           rememberAsset(asset, duration);
           if (autoAdd) await addAssetToDraft(asset, targetItem);
           completed += 1;
-          row.textContent = file.name + (autoAdd ? ' — Ready in draft · ' : ' — Ready in library · ') + fmt(duration);
+          row.textContent = file.name + (autoAdd ? ' — Ready in draft' : ' — Ready in library') + (duration ? ' · ' + fmt(duration) : '');
         } catch (error) {
           row.textContent = file.name + ' — ' + error.message + ' ';
           row.append(smallButton('Retry', () => void uploadFiles([file], forceKind, targetItem), 'mfc-button-ghost'));
