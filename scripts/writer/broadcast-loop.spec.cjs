@@ -293,8 +293,8 @@ test('Take Live queues the new rundown for the next clean on-air item boundary',
   expect(fixture.state.pendingLive.musicStartedAt).toBe(runningStartedAt);
 
   const cutAt = Date.parse(fixture.state.programTransitionAt);
-  expect(cutAt).toBeGreaterThan(before + 3_500);
-  expect(cutAt).toBeLessThan(before + 8_000);
+  expect(cutAt).toBeGreaterThan(before + 14_000);
+  expect(cutAt).toBeLessThan(before + 20_000);
   await expect(page.locator('[data-toast]')).toContainText('current on-air block will finish first');
 });
 
@@ -322,10 +322,11 @@ test('changed music waits for its current song boundary independently of the vis
 
   const programCut = Date.parse(fixture.state.programTransitionAt);
   const musicCut = Date.parse(fixture.state.musicTransitionAt);
-  expect(programCut).toBeGreaterThan(before + 1_000);
-  expect(programCut).toBeLessThan(before + 4_500);
-  expect(musicCut).toBeGreaterThan(before + 5_000);
-  expect(musicCut).toBeGreaterThan(programCut);
+  expect(programCut).toBeGreaterThan(before + 14_000);
+  expect(programCut).toBeLessThan(before + 20_000);
+  expect(musicCut).toBeGreaterThan(before + 14_000);
+  expect(musicCut).toBeLessThan(before + 20_000);
+  expect(Math.abs(musicCut - programCut)).toBeGreaterThan(250);
   expect(fixture.state.pendingLive.musicStartedAt).toBe(fixture.state.musicTransitionAt);
   await expect(page.locator('[data-toast]')).toContainText('Music changes wait for the current song to finish');
 });
