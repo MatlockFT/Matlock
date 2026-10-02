@@ -26,8 +26,8 @@ function initialState(origin) {
 
 async function startServer(port = 0) {
   let origin, state, revision = 1;
-  const media = new Map(), assets = [], uploads = new Map();
-  const controls = { failSaves: false, saveDelay: 0, chunkFailures: 0, writes: 0, newsFailure: false, newsRefreshes: 0 };
+  const media = new Map(), assets = [], uploads = new Map(), captionRequests = new Map();
+  const controls = { failSaves: false, saveDelay: 0, chunkFailures: 0, writes: 0, newsFailure: false, newsRefreshes: 0, captionQueues: 0 };
   const news = { version: 1, generatedAt: new Date().toISOString(), stories: [
     { id: 'article-1', title: 'Local fighter returns for title fight', source: 'MMA Fighting', url: 'https://example.com/title-fight', excerpt: 'A short, attributed news excerpt.', publishedAt: new Date().toISOString() },
     { id: 'article-2', title: 'Local UFC event announced', source: 'MMA Junkie', url: 'https://example.com/event', excerpt: 'An event update.', publishedAt: new Date().toISOString() }
@@ -151,6 +151,22 @@ async function startServer(port = 0) {
     if (url.pathname === '/api/writer/github') {
       const apiPath = url.searchParams.get('path') || '';
       const newsRefreshRequest = apiPath.includes('/contents/assets/data/news-refresh-trigger.json');
+      const captionRequest = apiPath.includes('/contents/assets/uploads/runtime/broadcast-caption-requests/');
+
+      if (captionRequest) {
+        if (req.method === 'GET') {
+          const current = captionRequests.get(apiPath);
+          if (!current) return json({ message: 'Not Found' }, 404);
+          return json({ sha: current.sha, content: Buffer.from(JSON.stringify(current.payload)).toString('base64') });
+        }
+        const requestBody = JSON.parse(body);
+        const payload = JSON.parse(Buffer.from(requestBody.content, 'base64').toString('utf8'));
+        controls.captionQueues++;
+        revision++;
+        const record = { sha: 'caption-request-' + String(revision), payload };
+        captionRequests.set(apiPath, record);
+        return json({ content: { sha: record.sha } });
+      }
 
       if (newsRefreshRequest) {
         if (req.method === 'GET') {
@@ -242,7 +258,7 @@ async function startServer(port = 0) {
   await new Promise(resolve => server.listen(port, '127.0.0.1', resolve));
   origin = `http://127.0.0.1:${server.address().port}`;
   state = initialState(origin);
-  return { origin, server, controls, assets, media, news, japanNews, fightCityWeather, videos, get state() { return state; }, set state(value) { state = value; revision++; }, close: () => new Promise(resolve => server.close(resolve)) };
+  return { origin, server, controls, assets, media, captionRequests, news, japanNews, fightCityWeather, videos, get state() { return state; }, set state(value) { state = value; revision++; }, close: () => new Promise(resolve => server.close(resolve)) };
 }
 
 module.exports = { startServer, wav };
