@@ -1816,7 +1816,7 @@
 
       const fitField = field('Media fit', 'mediaFit', {
         type: 'select',
-        value: item.mediaFit || (item.type === 'image' ? 'contain' : 'cover'),
+        value: item.mediaFit || 'cover',
         wide: true,
         live: false,
         options: [
