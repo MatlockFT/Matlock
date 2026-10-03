@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-03T20:13:34.791Z"
+      "checkedAt": "2026-10-03T23:06:27.621Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-03T20:13:55.706Z",
+      "checkedAt": "2026-10-03T23:06:52.030Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -9598,13 +9598,7 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Rafael Dos Anjos",
-        "opponentId": "rafael-dos-anjos"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -264284,13 +264278,7 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Alexander Hernandez",
-        "opponentId": "alexander-hernandez"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
