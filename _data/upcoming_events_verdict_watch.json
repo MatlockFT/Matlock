@@ -12,7 +12,7 @@
       "status": "matched",
       "verdict_event_id": "1975",
       "verdict_url": "https://verdictmma.com/event/1975",
-      "verdict_date": "2026-10-03",
+      "verdict_date": "2026-10-02",
       "local_fight_count": 14,
       "verdict_fight_count": null,
       "local_main_count": 14,
@@ -180,15 +180,15 @@
       "date": "2026-11-21",
       "title": "Procházka vs Stirling",
       "status": "matched",
-      "verdict_event_id": "1985",
-      "verdict_url": "https://verdictmma.com/event/1985",
+      "verdict_event_id": "1986",
+      "verdict_url": "https://verdictmma.com/event/1986",
       "verdict_date": "2026-11-21",
       "local_fight_count": 9,
-      "verdict_fight_count": null,
+      "verdict_fight_count": 9,
       "local_main_count": 9,
-      "verdict_main_count": null,
+      "verdict_main_count": 5,
       "local_prelim_count": 0,
-      "verdict_prelim_count": null,
+      "verdict_prelim_count": 4,
       "confirmed_local_bouts": 9
     }
   ],
@@ -282,6 +282,13 @@
         "Taichi Nakajima",
         "Tsukasa Mizoguchi"
       ]
+    },
+    {
+      "type": "date_mismatch",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "verdict_event_id": "1975",
+      "local_date": "2026-10-03",
+      "verdict_date": "2026-10-02"
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -724,6 +731,15 @@
         "Seokhyeon Ko",
         "Wellington Turman"
       ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2026-11-21-fight-card",
+      "verdict_event_id": "1986",
+      "local_main_count": 9,
+      "verdict_main_count": 5,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": 4
     }
   ]
 }
