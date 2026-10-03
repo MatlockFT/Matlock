@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-09-27T14:49:19.760Z",
+  "updatedAt": "2026-10-03T14:24:58.665Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -15350,6 +15350,13 @@
       "sourceType": "event-title",
       "wikipediaTitle": "UFC Fight Night: Rosas Jr. vs. Barcelos",
       "mainEvent": "Rosas Jr. vs. Barcelos"
+    },
+    "pfl:2026-10-02:pfl-mena-11": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-10-03T14:24:58.665Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "PFL MENA 11"
     }
   }
 }
