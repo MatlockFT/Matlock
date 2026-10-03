@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-10-03T14:25:05.887Z",
+  "updatedAt": "2026-10-03T15:11:55.301Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -1688,9 +1688,23 @@
     "bellator:2020-10-01:bellator-247": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T00:04:35.440Z",
-      "wikipediaTitle": "Bellator MMA in 2020#Bellator 247"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-10-03T15:09:38.722Z",
+      "wikipediaTitle": "Bellator MMA in 2020#Bellator 247",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2020-10-01-bellator-247-513bd8d989fb23bb.jpg",
+      "imageAlt": "Bellator 247 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/72340-bellator-milan",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/72340-bellator-milan",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "513bd8d989fb23bbabf1415217f1a531155da6a3aca18ae5e7b9f8a9dd778436",
+      "posterRegistryKey": "2020-10-01::bellator 247"
     },
     "pancrase:2006-10-01:pancrase-blow-8": {
       "strategyVersion": 6,
@@ -1876,9 +1890,23 @@
     "bellator:2012-10-05:bellator-75": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T00:04:35.440Z",
-      "wikipediaTitle": "Bellator Fighting Championships: Season Seven#Bellator 75"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-10-03T15:09:01.751Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Seven#Bellator 75",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2012-10-05-bellator-75-8ec53eed8db5da89.jpg",
+      "imageAlt": "Bellator 75 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/15029-bellator-75",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/15029-bellator-75",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "8ec53eed8db5da89fe536f07d0b3779c02f98bda1e9f49b93c3cf7f29863273c",
+      "posterRegistryKey": "2012-10-05::bellator 75"
     },
     "pancrase:2014-10-05:pancrase-261-world-slam": {
       "strategyVersion": 6,
@@ -9988,12 +10016,23 @@
     "ufc:2016-10-01:ufc-fight-night-lineker-vs-dodson": {
       "strategyVersion": 6,
       "status": "pageimage-kept",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T00:04:35.440Z",
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-10-03T15:11:55.141Z",
       "wikipediaTitle": "UFC Fight Night: Lineker vs. Dodson",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/49/UFC_portland_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "imageAlt": "UFC Fight Night: Lineker vs. Dodson event image",
-      "imageCredit": "Wikipedia"
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2016-10-01-ufc-fight-night-lineker-vs-dodson-125932356c2a0135.jpg",
+      "imageAlt": "UFC Fight Night: Lineker vs. Dodson event poster",
+      "imageCredit": "Tapology",
+      "imageStatus": "resolved",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/40949-ufc-fight-night",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/40949-ufc-fight-night",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "125932356c2a013509306308ff197836613562a2c34484df4c2820c1af77828e",
+      "posterRegistryKey": "2016-10-01::ufc fight night lineker vs dodson"
     },
     "ufc:2022-10-01:ufc-fight-night-dern-vs-yan": {
       "strategyVersion": 6,
@@ -10123,12 +10162,23 @@
     "ufc:2014-10-04:ufc-fight-night-macdonald-vs-saffiedine": {
       "strategyVersion": 6,
       "status": "pageimage-kept",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T00:04:35.440Z",
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-10-03T15:11:30.340Z",
       "wikipediaTitle": "UFC Fight Night: MacDonald vs. Saffiedine",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7e/UFC_FIGHT_NIGHT_HALIFAX_POSTER.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "imageAlt": "UFC Fight Night: MacDonald vs. Saffiedine event image",
-      "imageCredit": "Wikipedia"
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2014-10-04-ufc-fight-night-macdonald-vs-saffiedine-4a823c3cdda5483c.jpg",
+      "imageAlt": "UFC Fight Night: MacDonald vs. Saffiedine event poster",
+      "imageCredit": "Tapology",
+      "imageStatus": "resolved",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/22391-ufc-fight-night",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/22391-ufc-fight-night",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "4a823c3cdda5483c51ffb0bc952e600a5b5e40581c4d9fe198395389e5288ba4",
+      "posterRegistryKey": "2014-10-04::ufc fight night macdonald vs saffiedine"
     },
     "ufc:2014-10-04:ufc-fight-night-nelson-vs-story": {
       "strategyVersion": 6,
