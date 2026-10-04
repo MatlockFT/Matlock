@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-09-28T16:59:22.005Z",
-  "builtAt": "2026-10-04T17:39:09.417Z",
-  "mirrorThrough": "2026-09-26",
+  "builtAt": "2026-10-04T21:37:40.771Z",
+  "mirrorThrough": "2026-10-03",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
     "bios": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_tott.csv",
@@ -16,7 +16,7 @@
   },
   "coverage": {
     "fighters": 1007,
-    "withStats": 737,
+    "withStats": 740,
     "withBio": 948,
     "withCareer": 734,
     "sherdogCareer": {
@@ -1563,15 +1563,15 @@
       "name": "Alden Coria",
       "division": "Flyweight",
       "record": "13-3-0",
-      "ufcRecord": "4-0-0",
-      "recordOutsideUfc": "9-3-0",
+      "ufcRecord": "4-1-0",
+      "recordOutsideUfc": "9-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CORIA_ALDEN_L_07-18.png?itok=lobuZB80",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:31.965Z",
       "ufcStatsId": "5e9ca8dd7d783a75",
       "sourceUrl": "https://ufcstats.com/fighter-details/5e9ca8dd7d783a75",
-      "latestBoutDate": "2026-07-18",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 8\"",
@@ -1581,18 +1581,18 @@
         "dob": "Apr 24, 1998"
       },
       "stats": {
-        "slpm": "4.01",
-        "sapm": "1.98",
-        "strAccuracy": "42%",
-        "strDefense": "71%",
-        "tdAvg": "2.33",
+        "slpm": "3.85",
+        "sapm": "2.23",
+        "strAccuracy": "41%",
+        "strDefense": "69%",
+        "tdAvg": "2.19",
         "tdAccuracy": "62%",
-        "tdDefense": "60%",
-        "subAvg": "1.16",
+        "tdDefense": "57%",
+        "subAvg": "1.10",
         "sample": {
-          "fights": 4,
-          "minutes": 51.57,
-          "latestBoutDate": "2026-07-18"
+          "fights": 5,
+          "minutes": 54.75,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -2565,15 +2565,15 @@
       "name": "Alexander Hernandez",
       "division": "Lightweight",
       "record": "18-9-0",
-      "ufcRecord": "11-8-0",
-      "recordOutsideUfc": "7-1-0",
+      "ufcRecord": "12-8-0",
+      "recordOutsideUfc": "6-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/HERNANDEZ_ALEXANDER_L_09-13.png?itok=B5l45CwH",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:32.075Z",
       "ufcStatsId": "262a7d06203657e6",
       "sourceUrl": "https://ufcstats.com/fighter-details/262a7d06203657e6",
-      "latestBoutDate": "2026-04-25",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 9\"",
@@ -2583,18 +2583,18 @@
         "dob": "Oct 01, 1992"
       },
       "stats": {
-        "slpm": "4.19",
-        "sapm": "4.37",
+        "slpm": "4.20",
+        "sapm": "4.32",
         "strAccuracy": "40%",
         "strDefense": "60%",
-        "tdAvg": "1.00",
+        "tdAvg": "0.96",
         "tdAccuracy": "35%",
         "tdDefense": "69%",
-        "subAvg": "0.08",
+        "subAvg": "0.07",
         "sample": {
-          "fights": 19,
-          "minutes": 195.32,
-          "latestBoutDate": "2026-04-25"
+          "fights": 20,
+          "minutes": 203.52,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -4984,7 +4984,7 @@
       "name": "Andrey Pulyaev",
       "division": "Middleweight",
       "record": "10-3-0",
-      "ufcRecord": "1-3-0",
+      "ufcRecord": "1-4-0",
       "recordOutsideUfc": "9-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/PULYAEV_ANDREY_R_03-22.png?itok=jWF656q7",
@@ -4992,7 +4992,7 @@
       "checkedAt": "2026-09-26T11:42:32.228Z",
       "ufcStatsId": "22e07d3da1aa3475",
       "sourceUrl": "https://ufcstats.com/fighter-details/22e07d3da1aa3475",
-      "latestBoutDate": "2026-06-27",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "6' 4\"",
@@ -5002,8 +5002,8 @@
         "dob": "Sep 10, 1997"
       },
       "stats": {
-        "slpm": "2.52",
-        "sapm": "2.91",
+        "slpm": "2.54",
+        "sapm": "2.95",
         "strAccuracy": "47%",
         "strDefense": "57%",
         "tdAvg": "0.00",
@@ -5011,9 +5011,9 @@
         "tdDefense": "45%",
         "subAvg": "0.00",
         "sample": {
-          "fights": 4,
-          "minutes": 40.48,
-          "latestBoutDate": "2026-06-27"
+          "fights": 5,
+          "minutes": 41.73,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -5632,7 +5632,7 @@
       "checkedAt": "2026-09-26T11:42:32.320Z",
       "ufcStatsId": "6f81399074fcdbba",
       "sourceUrl": "https://ufcstats.com/fighter-details/6f81399074fcdbba",
-      "latestBoutDate": null,
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 11\"",
@@ -5641,7 +5641,21 @@
         "stance": "Orthodox",
         "dob": "Feb 25, 1997"
       },
-      "stats": null,
+      "stats": {
+        "slpm": "2.62",
+        "sapm": "6.85",
+        "strAccuracy": "35%",
+        "strDefense": "55%",
+        "tdAvg": "3.02",
+        "tdAccuracy": "100%",
+        "tdDefense": null,
+        "subAvg": "0.00",
+        "sample": {
+          "fights": 1,
+          "minutes": 4.97,
+          "latestBoutDate": "2026-10-03"
+        }
+      },
       "career": {
         "winsByKnockout": null,
         "winsBySubmission": null,
@@ -5664,15 +5678,15 @@
       "name": "Anthony Wint",
       "division": "Heavyweight",
       "record": "8-0-0",
-      "ufcRecord": "1-0-0",
-      "recordOutsideUfc": "7-0-0",
+      "ufcRecord": "2-0-0",
+      "recordOutsideUfc": "6-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/WINT_ANTHONY_L_08-22.png?itok=IYWOKGSa",
       "booking": null,
       "checkedAt": "2026-09-28T16:59:24.874Z",
       "ufcStatsId": "b34976c022b24568",
       "sourceUrl": "https://ufcstats.com/fighter-details/b34976c022b24568",
-      "latestBoutDate": "2026-08-22",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": null,
@@ -5682,18 +5696,18 @@
         "dob": "Sep 14, 1995"
       },
       "stats": {
-        "slpm": "1.12",
-        "sapm": "0.22",
-        "strAccuracy": "56%",
-        "strDefense": "75%",
-        "tdAvg": "3.35",
-        "tdAccuracy": "33%",
+        "slpm": "3.49",
+        "sapm": "0.41",
+        "strAccuracy": "63%",
+        "strDefense": "78%",
+        "tdAvg": "3.08",
+        "tdAccuracy": "25%",
         "tdDefense": null,
-        "subAvg": "3.35",
+        "subAvg": "3.08",
         "sample": {
-          "fights": 1,
-          "minutes": 4.48,
-          "latestBoutDate": "2026-08-22"
+          "fights": 2,
+          "minutes": 4.87,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -6595,15 +6609,15 @@
       "name": "Ateba Gautier",
       "division": "Middleweight",
       "record": "11-1-0",
-      "ufcRecord": "5-0-0",
-      "recordOutsideUfc": "6-1-0",
+      "ufcRecord": "5-1-0",
+      "recordOutsideUfc": "6-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/GAUTIER_ATEBA_L_05-09.png?itok=dydh3iVk",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:32.376Z",
       "ufcStatsId": "2f815ed5f8278ba6",
       "sourceUrl": "https://ufcstats.com/fighter-details/2f815ed5f8278ba6",
-      "latestBoutDate": "2026-05-09",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "6' 4\"",
@@ -6613,18 +6627,18 @@
         "dob": "Apr 10, 2002"
       },
       "stats": {
-        "slpm": "3.99",
-        "sapm": "3.05",
-        "strAccuracy": "38%",
-        "strDefense": "54%",
-        "tdAvg": "0.54",
+        "slpm": "3.80",
+        "sapm": "3.35",
+        "strAccuracy": "36%",
+        "strDefense": "50%",
+        "tdAvg": "0.49",
         "tdAccuracy": "100%",
         "tdDefense": "100%",
         "subAvg": "0.00",
         "sample": {
-          "fights": 5,
-          "minutes": 27.55,
-          "latestBoutDate": "2026-05-09"
+          "fights": 6,
+          "minutes": 30.75,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -8617,15 +8631,15 @@
       "name": "Bobby Green",
       "division": "Lightweight",
       "record": "36-17-1",
-      "ufcRecord": "17-12-1",
-      "recordOutsideUfc": "19-5-0",
+      "ufcRecord": "17-13-1",
+      "recordOutsideUfc": "19-4-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/GREEN_KING_L_07-11.png?itok=VfpfdCUg",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:32.597Z",
       "ufcStatsId": "887961364be5ceb3",
       "sourceUrl": "https://ufcstats.com/fighter-details/887961364be5ceb3",
-      "latestBoutDate": "2026-07-11",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 10\"",
@@ -8636,17 +8650,17 @@
       },
       "stats": {
         "slpm": "6.59",
-        "sapm": "3.70",
+        "sapm": "3.76",
         "strAccuracy": "54%",
-        "strDefense": "62%",
-        "tdAvg": "1.26",
-        "tdAccuracy": "46%",
+        "strDefense": "61%",
+        "tdAvg": "1.24",
+        "tdAccuracy": "45%",
         "tdDefense": "69%",
         "subAvg": "0.28",
         "sample": {
-          "fights": 31,
-          "minutes": 322.25,
-          "latestBoutDate": "2026-07-11"
+          "fights": 32,
+          "minutes": 326.38,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -16049,15 +16063,15 @@
       "name": "Court McGee",
       "division": "Welterweight",
       "record": "23-14-0",
-      "ufcRecord": "10-13-0",
-      "recordOutsideUfc": "13-1-0",
+      "ufcRecord": "10-14-0",
+      "recordOutsideUfc": "13-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/MCGEE_COURT_L_10-05.png?itok=CVRx8xXQ",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:33.610Z",
       "ufcStatsId": "523fa774700d7d3f",
       "sourceUrl": "https://ufcstats.com/fighter-details/523fa774700d7d3f",
-      "latestBoutDate": "2025-06-14",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 11\"",
@@ -16067,18 +16081,18 @@
         "dob": "Dec 12, 1984"
       },
       "stats": {
-        "slpm": "4.50",
-        "sapm": "3.65",
+        "slpm": "4.62",
+        "sapm": "3.88",
         "strAccuracy": "37%",
-        "strDefense": "61%",
-        "tdAvg": "1.78",
-        "tdAccuracy": "25%",
+        "strDefense": "60%",
+        "tdAvg": "1.70",
+        "tdAccuracy": "24%",
         "tdDefense": "71%",
-        "subAvg": "0.45",
+        "subAvg": "0.43",
         "sample": {
-          "fights": 24,
-          "minutes": 303.32,
-          "latestBoutDate": "2025-06-14"
+          "fights": 25,
+          "minutes": 316.75,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -16647,15 +16661,15 @@
       "name": "Damian Pinas",
       "division": "Middleweight",
       "record": "10-1-0",
-      "ufcRecord": "2-0-0",
-      "recordOutsideUfc": "8-1-0",
+      "ufcRecord": "3-0-0",
+      "recordOutsideUfc": "7-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/PINAS_DAMIAN_L_07-11.png?itok=y63owkBX",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:34.035Z",
       "ufcStatsId": "fdd22e895a70e4a8",
       "sourceUrl": "https://ufcstats.com/fighter-details/fdd22e895a70e4a8",
-      "latestBoutDate": "2026-07-11",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "6' 1\"",
@@ -16665,18 +16679,18 @@
         "dob": "Mar 12, 2002"
       },
       "stats": {
-        "slpm": "5.53",
-        "sapm": "5.53",
+        "slpm": "5.30",
+        "sapm": "5.19",
         "strAccuracy": "71%",
-        "strDefense": "37%",
+        "strDefense": "41%",
         "tdAvg": "0.00",
         "tdAccuracy": "0%",
         "tdDefense": "86%",
         "subAvg": "0.00",
         "sample": {
-          "fights": 2,
-          "minutes": 7.23,
-          "latestBoutDate": "2026-07-11"
+          "fights": 3,
+          "minutes": 8.48,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -19137,7 +19151,7 @@
       "name": "Deiveson Figueiredo",
       "division": "Bantamweight",
       "record": "25-7-1",
-      "ufcRecord": "14-7-1",
+      "ufcRecord": "14-8-1",
       "recordOutsideUfc": "11-0-0",
       "rank": 9,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/FIGUEIREDO_DEIVESON_L_10-11.png?itok=arHv-wVH",
@@ -19145,7 +19159,7 @@
       "checkedAt": "2026-09-28T16:59:25.694Z",
       "ufcStatsId": "aa72b0f831d0bfe5",
       "sourceUrl": "https://ufcstats.com/fighter-details/aa72b0f831d0bfe5",
-      "latestBoutDate": "2026-05-30",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 5\"",
@@ -19155,18 +19169,18 @@
         "dob": "Dec 18, 1987"
       },
       "stats": {
-        "slpm": "2.57",
-        "sapm": "3.43",
+        "slpm": "2.56",
+        "sapm": "3.50",
         "strAccuracy": "54%",
-        "strDefense": "50%",
-        "tdAvg": "1.61",
-        "tdAccuracy": "35%",
+        "strDefense": "49%",
+        "tdAvg": "1.60",
+        "tdAccuracy": "34%",
         "tdDefense": "57%",
-        "subAvg": "1.18",
+        "subAvg": "1.17",
         "sample": {
-          "fights": 22,
-          "minutes": 279.78,
-          "latestBoutDate": "2026-05-30"
+          "fights": 23,
+          "minutes": 281.93,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -23428,15 +23442,15 @@
       "name": "Eric Nolan",
       "division": "Welterweight",
       "record": "8-5-0",
-      "ufcRecord": "0-2-0",
-      "recordOutsideUfc": "8-3-0",
+      "ufcRecord": "1-2-0",
+      "recordOutsideUfc": "7-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/NOLAN_ERIC_R_08-16.png?itok=Lf5rUsnh",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:34.715Z",
       "ufcStatsId": "64b12fe31be7560c",
       "sourceUrl": "https://ufcstats.com/fighter-details/64b12fe31be7560c",
-      "latestBoutDate": "2026-06-27",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "6' 2\"",
@@ -23446,18 +23460,18 @@
         "dob": "Sep 13, 1997"
       },
       "stats": {
-        "slpm": "1.68",
-        "sapm": "2.59",
-        "strAccuracy": "35%",
-        "strDefense": "45%",
+        "slpm": "4.46",
+        "sapm": "4.37",
+        "strAccuracy": "45%",
+        "strDefense": "59%",
         "tdAvg": "0.00",
         "tdAccuracy": "0%",
-        "tdDefense": "44%",
+        "tdDefense": "54%",
         "subAvg": "0.00",
         "sample": {
-          "fights": 2,
-          "minutes": 22.02,
-          "latestBoutDate": "2026-06-27"
+          "fights": 3,
+          "minutes": 35.45,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -23784,15 +23798,15 @@
       "name": "Esteban Ribovics",
       "division": "Lightweight",
       "record": "16-3-0",
-      "ufcRecord": "5-3-0",
-      "recordOutsideUfc": "11-0-0",
+      "ufcRecord": "6-3-0",
+      "recordOutsideUfc": "10-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/RIBOVICS_ESTEBAN_L_05-11.png?itok=sQBu-_E0",
       "booking": null,
       "checkedAt": "2026-09-28T16:59:25.667Z",
       "ufcStatsId": "323d4ca260dfa0ba",
       "sourceUrl": "https://ufcstats.com/fighter-details/323d4ca260dfa0ba",
-      "latestBoutDate": "2026-08-15",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 10\"",
@@ -23802,18 +23816,18 @@
         "dob": "Apr 27, 1996"
       },
       "stats": {
-        "slpm": "7.41",
-        "sapm": "5.72",
+        "slpm": "7.46",
+        "sapm": "5.75",
         "strAccuracy": "44%",
         "strDefense": "54%",
-        "tdAvg": "0.33",
+        "tdAvg": "0.31",
         "tdAccuracy": "67%",
-        "tdDefense": "66%",
+        "tdDefense": "67%",
         "subAvg": "0.16",
         "sample": {
-          "fights": 8,
-          "minutes": 91.47,
-          "latestBoutDate": "2026-08-15"
+          "fights": 9,
+          "minutes": 95.6,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -29935,15 +29949,15 @@
       "name": "Imanol Rodriguez",
       "division": "Flyweight",
       "record": "7-0-0",
-      "ufcRecord": "1-0-0",
-      "recordOutsideUfc": "6-0-0",
+      "ufcRecord": "2-0-0",
+      "recordOutsideUfc": "5-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/RODRIGUEZ_IMANOL_L_02-28.png?itok=_Y1p2V-L",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:35.359Z",
       "ufcStatsId": "6e8349a0a0476d60",
       "sourceUrl": "https://ufcstats.com/fighter-details/6e8349a0a0476d60",
-      "latestBoutDate": "2026-02-28",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": null,
@@ -29953,18 +29967,18 @@
         "dob": "Nov 15, 1999"
       },
       "stats": {
-        "slpm": "4.92",
-        "sapm": "2.35",
-        "strAccuracy": "55%",
-        "strDefense": "58%",
-        "tdAvg": "1.60",
-        "tdAccuracy": "33%",
+        "slpm": "5.27",
+        "sapm": "2.07",
+        "strAccuracy": "51%",
+        "strDefense": "62%",
+        "tdAvg": "2.39",
+        "tdAccuracy": "50%",
         "tdDefense": null,
         "subAvg": "0.00",
         "sample": {
-          "fights": 1,
-          "minutes": 9.35,
-          "latestBoutDate": "2026-02-28"
+          "fights": 2,
+          "minutes": 12.53,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -30586,15 +30600,15 @@
       "name": "Ismail Naurdiev",
       "division": "Middleweight",
       "record": "25-8-0",
-      "ufcRecord": "4-3-0",
-      "recordOutsideUfc": "21-5-0",
+      "ufcRecord": "5-3-0",
+      "recordOutsideUfc": "20-5-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/NAURDIEV_ISMAIL_L_11-22.png?itok=PK0HzWkv",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:35.401Z",
       "ufcStatsId": "6a96ad1bc34fb113",
       "sourceUrl": "https://ufcstats.com/fighter-details/6a96ad1bc34fb113",
-      "latestBoutDate": "2025-11-22",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 10\"",
@@ -30604,18 +30618,18 @@
         "dob": "Aug 18, 1996"
       },
       "stats": {
-        "slpm": "3.66",
-        "sapm": "1.75",
-        "strAccuracy": "53%",
-        "strDefense": "65%",
-        "tdAvg": "1.48",
+        "slpm": "3.84",
+        "sapm": "2.22",
+        "strAccuracy": "50%",
+        "strDefense": "64%",
+        "tdAvg": "1.69",
         "tdAccuracy": "41%",
-        "tdDefense": "73%",
-        "subAvg": "0.16",
+        "tdDefense": "74%",
+        "subAvg": "0.28",
         "sample": {
-          "fights": 7,
-          "minutes": 91.43,
-          "latestBoutDate": "2025-11-22"
+          "fights": 8,
+          "minutes": 106.43,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -31581,15 +31595,15 @@
       "name": "Jacobe Smith",
       "division": "Welterweight",
       "record": "12-0-0",
-      "ufcRecord": "3-0-0",
-      "recordOutsideUfc": "9-0-0",
+      "ufcRecord": "4-0-0",
+      "recordOutsideUfc": "8-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/SMITH_JACOBE_L_02-21.png?itok=sBX3a4YZ",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:35.640Z",
       "ufcStatsId": "85497ffd934ecf7e",
       "sourceUrl": "https://ufcstats.com/fighter-details/85497ffd934ecf7e",
-      "latestBoutDate": "2026-02-21",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 10\"",
@@ -31599,18 +31613,18 @@
         "dob": "Jan 17, 1996"
       },
       "stats": {
-        "slpm": "6.85",
-        "sapm": "3.61",
+        "slpm": "6.88",
+        "sapm": "3.51",
         "strAccuracy": "63%",
-        "strDefense": "46%",
-        "tdAvg": "4.52",
-        "tdAccuracy": "100%",
+        "strDefense": "49%",
+        "tdAvg": "5.06",
+        "tdAccuracy": "83%",
         "tdDefense": "100%",
-        "subAvg": "1.13",
+        "subAvg": "1.01",
         "sample": {
-          "fights": 3,
-          "minutes": 13.28,
-          "latestBoutDate": "2026-02-21"
+          "fights": 4,
+          "minutes": 14.82,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -31629,6 +31643,16 @@
       "opponentStrength": null,
       "careerHistorySource": null,
       "recent": [
+        {
+          "result": "W",
+          "opponent": "Bruce Whitehead",
+          "date": "2026-10-03",
+          "method": "KO/TKO",
+          "round": 1,
+          "time": "1:32",
+          "event": "UFC 332: Silva vs. Wang",
+          "sourceUrl": "https://ufcstats.com/fight-details/bc35fb29afba68b9"
+        },
         {
           "result": "W",
           "opponent": "Josiah Harrell",
@@ -36892,15 +36916,15 @@
       "name": "Johnny Walker",
       "division": "Heavyweight",
       "record": "22-10-0",
-      "ufcRecord": "8-7-0",
-      "recordOutsideUfc": "14-3-0",
+      "ufcRecord": "9-7-0",
+      "recordOutsideUfc": "13-3-0",
       "rank": 13,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/WALKER_JOHNNY_L_08-23.png?itok=cy7jdBoB",
       "booking": null,
       "checkedAt": "2026-09-28T16:59:26.362Z",
       "ufcStatsId": "c21f26bbde777573",
       "sourceUrl": "https://ufcstats.com/fighter-details/c21f26bbde777573",
-      "latestBoutDate": "2026-04-11",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "6' 6\"",
@@ -36910,18 +36934,18 @@
         "dob": "Mar 30, 1992"
       },
       "stats": {
-        "slpm": "3.70",
-        "sapm": "2.91",
-        "strAccuracy": "53%",
-        "strDefense": "49%",
-        "tdAvg": "0.28",
+        "slpm": "3.79",
+        "sapm": "2.92",
+        "strAccuracy": "54%",
+        "strDefense": "48%",
+        "tdAvg": "0.27",
         "tdAccuracy": "40%",
         "tdDefense": "50%",
-        "subAvg": "0.42",
+        "subAvg": "0.40",
         "sample": {
-          "fights": 16,
-          "minutes": 108.43,
-          "latestBoutDate": "2026-04-11"
+          "fights": 17,
+          "minutes": 112.02,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -43788,15 +43812,15 @@
       "name": "Khaos Williams",
       "division": "Welterweight",
       "record": "16-5-0",
-      "ufcRecord": "7-4-0",
-      "recordOutsideUfc": "9-1-0",
+      "ufcRecord": "7-5-0",
+      "recordOutsideUfc": "9-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/WILLIAMS_KHAOS_L_06-07.png?itok=tv-XQtv9",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:36.874Z",
       "ufcStatsId": "2558ae2e5671e318",
       "sourceUrl": "https://ufcstats.com/fighter-details/2558ae2e5671e318",
-      "latestBoutDate": "2026-05-16",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "6' 0\"",
@@ -43806,18 +43830,18 @@
         "dob": "Mar 30, 1994"
       },
       "stats": {
-        "slpm": "4.97",
-        "sapm": "5.34",
-        "strAccuracy": "39%",
+        "slpm": "4.57",
+        "sapm": "5.45",
+        "strAccuracy": "38%",
         "strDefense": "41%",
         "tdAvg": "0.00",
         "tdAccuracy": "0%",
-        "tdDefense": "52%",
+        "tdDefense": "47%",
         "subAvg": "0.00",
         "sample": {
-          "fights": 11,
-          "minutes": 101.97,
-          "latestBoutDate": "2026-05-16"
+          "fights": 12,
+          "minutes": 116.97,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -47078,7 +47102,7 @@
       "name": "Lucas Armand",
       "division": "Heavyweight",
       "record": "0-0-0",
-      "ufcRecord": "0-0-0",
+      "ufcRecord": "0-1-0",
       "recordOutsideUfc": "0-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
@@ -47086,7 +47110,7 @@
       "checkedAt": "2026-09-26T11:42:37.212Z",
       "ufcStatsId": "20e04625a5395a06",
       "sourceUrl": "https://ufcstats.com/fighter-details/20e04625a5395a06",
-      "latestBoutDate": "2026-03-07",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": null,
@@ -47095,7 +47119,21 @@
         "stance": null,
         "dob": "Oct 26, 1995"
       },
-      "stats": null,
+      "stats": {
+        "slpm": "2.61",
+        "sapm": "31.30",
+        "strAccuracy": "20%",
+        "strDefense": "33%",
+        "tdAvg": "0.00",
+        "tdAccuracy": null,
+        "tdDefense": "100%",
+        "subAvg": "0.00",
+        "sample": {
+          "fights": 1,
+          "minutes": 0.38,
+          "latestBoutDate": "2026-10-03"
+        }
+      },
       "career": {
         "winsByKnockout": null,
         "winsBySubmission": null,
@@ -50766,15 +50804,15 @@
       "name": "Marcus McGhee",
       "division": "Bantamweight",
       "record": "11-2-0",
-      "ufcRecord": "5-1-0",
-      "recordOutsideUfc": "6-1-0",
+      "ufcRecord": "6-1-0",
+      "recordOutsideUfc": "5-1-0",
       "rank": 15,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/MCGHEE_MARCUS_L_06-06.png?itok=DOTo3j44",
       "booking": null,
       "checkedAt": "2026-09-28T16:59:27.031Z",
       "ufcStatsId": "c0ac37a4a1133da9",
       "sourceUrl": "https://ufcstats.com/fighter-details/c0ac37a4a1133da9",
-      "latestBoutDate": "2026-06-06",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 8\"",
@@ -50784,18 +50822,18 @@
         "dob": "May 07, 1990"
       },
       "stats": {
-        "slpm": "5.44",
-        "sapm": "3.64",
+        "slpm": "5.54",
+        "sapm": "3.57",
         "strAccuracy": "44%",
-        "strDefense": "56%",
-        "tdAvg": "0.24",
+        "strDefense": "57%",
+        "tdAvg": "0.22",
         "tdAccuracy": "11%",
-        "tdDefense": "90%",
-        "subAvg": "0.24",
+        "tdDefense": "82%",
+        "subAvg": "0.22",
         "sample": {
-          "fights": 6,
-          "minutes": 62.85,
-          "latestBoutDate": "2026-06-06"
+          "fights": 7,
+          "minutes": 67.82,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -51860,15 +51898,15 @@
       "name": "Marvin Vettori",
       "division": "Middleweight",
       "record": "19-10-1",
-      "ufcRecord": "9-8-1",
-      "recordOutsideUfc": "10-2-0",
+      "ufcRecord": "9-9-1",
+      "recordOutsideUfc": "10-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/VETTORI_MARVIN_L_12-06.png?itok=FdvoLxjF",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:37.781Z",
       "ufcStatsId": "7acbb0972e75281a",
       "sourceUrl": "https://ufcstats.com/fighter-details/7acbb0972e75281a",
-      "latestBoutDate": "2025-12-06",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "6' 0\"",
@@ -51878,18 +51916,18 @@
         "dob": "Sep 20, 1993"
       },
       "stats": {
-        "slpm": "4.74",
-        "sapm": "4.55",
-        "strAccuracy": "46%",
+        "slpm": "4.76",
+        "sapm": "4.57",
+        "strAccuracy": "45%",
         "strDefense": "56%",
-        "tdAvg": "1.41",
-        "tdAccuracy": "44%",
-        "tdDefense": "69%",
-        "subAvg": "0.39",
+        "tdAvg": "1.34",
+        "tdAccuracy": "43%",
+        "tdDefense": "67%",
+        "subAvg": "0.37",
         "sample": {
-          "fights": 18,
-          "minutes": 308.78,
-          "latestBoutDate": "2025-12-06"
+          "fights": 19,
+          "minutes": 323.78,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -54948,7 +54986,7 @@
       "name": "Mick Parkin",
       "division": "Heavyweight",
       "record": "10-1-0",
-      "ufcRecord": "4-1-0",
+      "ufcRecord": "4-2-0",
       "recordOutsideUfc": "6-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/5/PARKIN_MICK_L_07-27.png?itok=OX9b6Fw2",
@@ -54956,7 +54994,7 @@
       "checkedAt": "2026-09-26T11:42:38.087Z",
       "ufcStatsId": "0d5cc0170c1a7e71",
       "sourceUrl": "https://ufcstats.com/fighter-details/0d5cc0170c1a7e71",
-      "latestBoutDate": "2025-03-22",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "6' 4\"",
@@ -54966,18 +55004,18 @@
         "dob": "Oct 02, 1995"
       },
       "stats": {
-        "slpm": "4.73",
-        "sapm": "4.01",
+        "slpm": "4.64",
+        "sapm": "4.14",
         "strAccuracy": "50%",
-        "strDefense": "60%",
-        "tdAvg": "0.95",
+        "strDefense": "58%",
+        "tdAvg": "0.90",
         "tdAccuracy": "36%",
         "tdDefense": "75%",
         "subAvg": "0.00",
         "sample": {
-          "fights": 5,
-          "minutes": 63.38,
-          "latestBoutDate": "2025-03-22"
+          "fights": 6,
+          "minutes": 66.97,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -57821,15 +57859,15 @@
       "name": "Natalia Silva",
       "division": "Women's Flyweight",
       "record": "20-5-1",
-      "ufcRecord": "8-0-0",
-      "recordOutsideUfc": "12-5-1",
+      "ufcRecord": "9-0-0",
+      "recordOutsideUfc": "11-5-1",
       "rank": 1,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/SILVA_NATALIA_L_01-24.png?itok=A5iY_ScW",
       "booking": null,
       "checkedAt": "2026-09-28T16:59:27.434Z",
       "ufcStatsId": "262d32ebda89efc4",
       "sourceUrl": "https://ufcstats.com/fighter-details/262d32ebda89efc4",
-      "latestBoutDate": "2026-01-24",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 4\"",
@@ -57839,18 +57877,18 @@
         "dob": "Feb 03, 1997"
       },
       "stats": {
-        "slpm": "4.81",
-        "sapm": "2.36",
-        "strAccuracy": "45%",
-        "strDefense": "66%",
-        "tdAvg": "0.43",
-        "tdAccuracy": "30%",
+        "slpm": "4.72",
+        "sapm": "2.66",
+        "strAccuracy": "46%",
+        "strDefense": "63%",
+        "tdAvg": "0.70",
+        "tdAccuracy": "40%",
         "tdDefense": "90%",
         "subAvg": "0.00",
         "sample": {
-          "fights": 8,
-          "minutes": 104.42,
-          "latestBoutDate": "2026-01-24"
+          "fights": 9,
+          "minutes": 129.42,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -61740,15 +61778,15 @@
       "name": "Payton Talbott",
       "division": "Bantamweight",
       "record": "11-1-0",
-      "ufcRecord": "5-1-0",
-      "recordOutsideUfc": "6-0-0",
+      "ufcRecord": "6-1-0",
+      "recordOutsideUfc": "5-0-0",
       "rank": 11,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/TALBOTT_PAYTON_L_06-28.png?itok=SCY_KVRR",
       "booking": null,
       "checkedAt": "2026-09-28T16:59:27.612Z",
       "ufcStatsId": "6e743a33d56bdaa4",
       "sourceUrl": "https://ufcstats.com/fighter-details/6e743a33d56bdaa4",
-      "latestBoutDate": "2025-12-06",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 10\"",
@@ -61758,18 +61796,18 @@
         "dob": "Sep 09, 1998"
       },
       "stats": {
-        "slpm": "5.87",
-        "sapm": "3.00",
+        "slpm": "6.07",
+        "sapm": "2.98",
         "strAccuracy": "59%",
         "strDefense": "45%",
-        "tdAvg": "0.97",
+        "tdAvg": "0.94",
         "tdAccuracy": "50%",
-        "tdDefense": "72%",
+        "tdDefense": "73%",
         "subAvg": "0.24",
         "sample": {
-          "fights": 6,
-          "minutes": 61.63,
-          "latestBoutDate": "2025-12-06"
+          "fights": 7,
+          "minutes": 63.78,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -63177,15 +63215,15 @@
       "name": "Rafael Dos Anjos",
       "division": "Lightweight",
       "record": "32-17-0",
-      "ufcRecord": "21-14-0",
-      "recordOutsideUfc": "11-3-0",
+      "ufcRecord": "21-15-0",
+      "recordOutsideUfc": "11-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/5/DOS_ANJOS_RAFAEL_L_12-03.png?itok=5J-7Ljft",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:38.888Z",
       "ufcStatsId": "6a2f7c151031653d",
       "sourceUrl": "https://ufcstats.com/fighter-details/6a2f7c151031653d",
-      "latestBoutDate": "2024-10-26",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 8\"",
@@ -63196,17 +63234,17 @@
       },
       "stats": {
         "slpm": "3.48",
-        "sapm": "3.23",
+        "sapm": "3.25",
         "strAccuracy": "47%",
         "strDefense": "60%",
-        "tdAvg": "1.95",
+        "tdAvg": "1.92",
         "tdAccuracy": "36%",
         "tdDefense": "55%",
-        "subAvg": "0.57",
+        "subAvg": "0.56",
         "sample": {
-          "fights": 36,
-          "minutes": 523.32,
-          "latestBoutDate": "2024-10-26"
+          "fights": 37,
+          "minutes": 531.52,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -66670,7 +66708,7 @@
       "name": "Roberto Soldic",
       "division": "Welterweight",
       "record": "0-0-0",
-      "ufcRecord": "0-0-0",
+      "ufcRecord": "1-0-0",
       "recordOutsideUfc": "0-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
@@ -66678,7 +66716,7 @@
       "checkedAt": "2026-09-26T11:42:39.251Z",
       "ufcStatsId": "5a229cbd9cdd28ca",
       "sourceUrl": "https://ufcstats.com/fighter-details/5a229cbd9cdd28ca",
-      "latestBoutDate": "2025-02-20",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": null,
@@ -66687,7 +66725,21 @@
         "stance": null,
         "dob": "Jan 25, 1995"
       },
-      "stats": null,
+      "stats": {
+        "slpm": "6.27",
+        "sapm": "1.80",
+        "strAccuracy": "58%",
+        "strDefense": "75%",
+        "tdAvg": "3.00",
+        "tdAccuracy": "100%",
+        "tdDefense": null,
+        "subAvg": "0.00",
+        "sample": {
+          "fights": 1,
+          "minutes": 15,
+          "latestBoutDate": "2026-10-03"
+        }
+      },
       "career": {
         "winsByKnockout": null,
         "winsBySubmission": null,
@@ -67277,15 +67329,15 @@
       "name": "Roman Kopylov",
       "division": "Middleweight",
       "record": "15-5-0",
-      "ufcRecord": "8-5-0",
-      "recordOutsideUfc": "7-0-0",
+      "ufcRecord": "9-5-0",
+      "recordOutsideUfc": "6-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/KOPYLOV_ROMAN_L_05-09.png?itok=Lc4htX8o",
       "booking": null,
       "checkedAt": "2026-09-26T11:42:39.269Z",
       "ufcStatsId": "9d83f6da776ff7d6",
       "sourceUrl": "https://ufcstats.com/fighter-details/9d83f6da776ff7d6",
-      "latestBoutDate": "2026-05-09",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "6' 0\"",
@@ -67295,18 +67347,18 @@
         "dob": "May 04, 1991"
       },
       "stats": {
-        "slpm": "4.57",
-        "sapm": "5.00",
+        "slpm": "4.60",
+        "sapm": "4.95",
         "strAccuracy": "51%",
-        "strDefense": "54%",
-        "tdAvg": "1.05",
+        "strDefense": "55%",
+        "tdAvg": "1.03",
         "tdAccuracy": "50%",
         "tdDefense": "90%",
         "subAvg": "0.00",
         "sample": {
-          "fights": 13,
-          "minutes": 156.87,
-          "latestBoutDate": "2026-05-09"
+          "fights": 14,
+          "minutes": 160.07,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
@@ -79364,7 +79416,7 @@
       "name": "Wang Cong",
       "division": "Women's Flyweight",
       "record": "10-1-0",
-      "ufcRecord": "5-1-0",
+      "ufcRecord": "5-2-0",
       "recordOutsideUfc": "5-0-0",
       "rank": 8,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/CONG_WANG_L_02-07.png?itok=LBnTljRc",
@@ -79372,7 +79424,7 @@
       "checkedAt": "2026-09-28T16:59:28.487Z",
       "ufcStatsId": "2997e7fe3c9d3d4a",
       "sourceUrl": "https://ufcstats.com/fighter-details/2997e7fe3c9d3d4a",
-      "latestBoutDate": "2026-07-11",
+      "latestBoutDate": "2026-10-03",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": "5' 6\"",
@@ -79382,18 +79434,18 @@
         "dob": "May 15, 1992"
       },
       "stats": {
-        "slpm": "6.84",
-        "sapm": "2.82",
-        "strAccuracy": "58%",
-        "strDefense": "60%",
-        "tdAvg": "0.43",
+        "slpm": "6.07",
+        "sapm": "3.23",
+        "strAccuracy": "56%",
+        "strDefense": "57%",
+        "tdAvg": "0.32",
         "tdAccuracy": "67%",
-        "tdDefense": "86%",
-        "subAvg": "0.21",
+        "tdDefense": "79%",
+        "subAvg": "0.16",
         "sample": {
-          "fights": 6,
-          "minutes": 69.85,
-          "latestBoutDate": "2026-07-11"
+          "fights": 7,
+          "minutes": 94.85,
+          "latestBoutDate": "2026-10-03"
         }
       },
       "career": {
