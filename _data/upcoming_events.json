@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-03T23:09:50.990Z",
+  "generated_at": "2026-10-04T02:45:04.068Z",
   "events": [
     {
       "id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
@@ -373,7 +373,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/FIGUEIREDO_DEIVESON_L_10-11.png?itok=arHv-wVH",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+530"
+                  "moneyline": "+490"
                 },
                 {
                   "name": "Payton Talbott",
@@ -381,7 +381,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/TALBOTT_PAYTON_L_06-28.png?itok=SCY_KVRR",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-750"
+                  "moneyline": "-670"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -398,7 +398,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/GREEN_KING_L_07-11.png?itok=VfpfdCUg",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+166"
+                  "moneyline": "+160"
                 },
                 {
                   "name": "Esteban Ribovics",
@@ -406,7 +406,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/RIBOVICS_ESTEBAN_L_05-11.png?itok=sQBu-_E0",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-198"
+                  "moneyline": "-190"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -423,7 +423,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-10/SOLDIC_ROBERTO_L_10-03.png?itok=DNgkjsEe",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-210"
+                  "moneyline": "-220"
                 },
                 {
                   "name": "Khaos Williams",
@@ -431,7 +431,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/WILLIAMS_KHAOS_L_06-07.png?itok=tv-XQtv9",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+176"
+                  "moneyline": "+184"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -448,7 +448,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/GAUTIER_ATEBA_L_05-09.png?itok=dydh3iVk",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-240"
+                  "moneyline": "-230"
                 },
                 {
                   "name": "Roman Kopylov",
@@ -456,7 +456,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/KOPYLOV_ROMAN_L_05-09.png?itok=Lc4htX8o",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+198"
+                  "moneyline": "+190"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -480,7 +480,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/RODRIGUEZ_IMANOL_L_02-28.png?itok=_Y1p2V-L",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-142"
+                  "moneyline": "-138"
                 },
                 {
                   "name": "Alden Coria",
@@ -488,7 +488,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CORIA_ALDEN_L_07-18.png?itok=lobuZB80",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+120"
+                  "moneyline": "+118"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -629,6 +629,31 @@
             {
               "order": 12,
               "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Rafael Dos Anjos",
+                  "initials": "RDA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/5/DOS_ANJOS_RAFAEL_L_12-03.png?itok=5J-7Ljft",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+235"
+                },
+                {
+                  "name": "Alexander Hernandez",
+                  "initials": "AH",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/HERNANDEZ_ALEXANDER_L_09-13.png?itok=B5l45CwH",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-290"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
+            {
+              "order": 13,
+              "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
                 {
@@ -652,7 +677,7 @@
               "odds_provider": "FanDuel"
             },
             {
-              "order": 13,
+              "order": 14,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -1126,7 +1151,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/9/KARECKAITE_ERNESTA_L_01-11.png?itok=1zansFiR",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+136"
+                  "moneyline": "+126"
                 },
                 {
                   "name": "Melissa Gatto",
@@ -1134,7 +1159,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-03/GATTO_MELISSA_L_07-01.png?itok=xSfep8cI",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-174"
+                  "moneyline": "-162"
                 }
               ],
               "odds_source": "BestFightOdds",

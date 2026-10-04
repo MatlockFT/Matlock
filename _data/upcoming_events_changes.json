@@ -1,7 +1,54 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-03T23:11:50.404Z",
+  "generated_at": "2026-10-04T02:47:30.163Z",
   "changes": [
+    {
+      "id": "2026-10-04T02:47:30.163Z|ufc-332-2026-10-03-fight-card|bout_moved|1",
+      "at": "2026-10-04T02:47:30.163Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Marvin Vettori vs Ismail Naurdiev moved on Silva vs Cong.",
+      "details": {
+        "from_order": 12,
+        "to_order": 13,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-10-04T02:47:30.163Z|ufc-332-2026-10-03-fight-card|bout_moved|2",
+      "at": "2026-10-04T02:47:30.163Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Court McGee vs Eric Nolan moved on Silva vs Cong.",
+      "details": {
+        "from_order": 13,
+        "to_order": 14,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-10-04T02:47:30.163Z|ufc-332-2026-10-03-fight-card|bout_added|3",
+      "at": "2026-10-04T02:47:30.163Z",
+      "type": "bout_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Rafael Dos Anjos vs Alexander Hernandez added to Silva vs Cong.",
+      "details": {
+        "order": 12,
+        "section": "Early Prelims",
+        "weight_class": "Lightweight Bout"
+      }
+    },
     {
       "id": "2026-10-03T23:11:50.404Z|ufc-332-2026-10-03-fight-card|bout_moved|1",
       "at": "2026-10-03T23:11:50.404Z",
@@ -4677,54 +4724,6 @@
       "details": {
         "from_order": 6,
         "to_order": 2,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|5",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Brady Hiestand vs Rinya Nakamura moved on Jr. vs Barcelos.",
-      "details": {
-        "from_order": 7,
-        "to_order": 3,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|6",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Mehemmedeli Osmanli vs Ilimbek Akylbek Uulu moved on Jr. vs Barcelos.",
-      "details": {
-        "from_order": 3,
-        "to_order": 4,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|7",
-      "at": "2026-09-08T20:13:52.435Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Melissa Amaya vs Valesca Machado moved on Jr. vs Barcelos.",
-      "details": {
-        "from_order": 2,
-        "to_order": 5,
         "from_section": "Main Card",
         "to_section": "Main Card"
       }
