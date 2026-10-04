@@ -2,9 +2,9 @@
     const navigations = Array.from(document.querySelectorAll('[data-article-toc]'));
     const article = document.getElementById('article-content');
 
-    if (!navigations.length || !article) return;
+    if (!article) return;
 
-    const mode = navigations[0].dataset.tocMode || 'sections';
+    const mode = navigations[0]?.dataset.tocMode || 'sections';
     const directHeadings = Array.from(article.children).filter((node) => (
         node.tagName === 'H2' || node.tagName === 'H3'
     ));
