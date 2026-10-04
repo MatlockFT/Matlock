@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-09-28T16:59:22.005Z",
-  "builtAt": "2026-10-04T00:44:53.218Z",
+  "builtAt": "2026-10-04T07:01:08.781Z",
   "mirrorThrough": "2026-09-26",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -21,7 +21,7 @@
     "withCareer": 734,
     "sherdogCareer": {
       "mode": "live-on-selection",
-      "targets": 10,
+      "targets": 8,
       "resolved": 0,
       "missed": 0,
       "appliedFromCache": 0,
@@ -1567,13 +1567,7 @@
       "recordOutsideUfc": "9-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CORIA_ALDEN_L_07-18.png?itok=lobuZB80",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Imanol Rodriguez",
-        "opponentId": "imanol-rodriguez"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:31.965Z",
       "ufcStatsId": "5e9ca8dd7d783a75",
       "sourceUrl": "https://ufcstats.com/fighter-details/5e9ca8dd7d783a75",
@@ -4994,13 +4988,7 @@
       "recordOutsideUfc": "9-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/PULYAEV_ANDREY_R_03-22.png?itok=jWF656q7",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Damian Pinas",
-        "opponentId": "damian-pinas"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:32.228Z",
       "ufcStatsId": "22e07d3da1aa3475",
       "sourceUrl": "https://ufcstats.com/fighter-details/22e07d3da1aa3475",
@@ -5680,13 +5668,7 @@
       "recordOutsideUfc": "7-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/WINT_ANTHONY_L_08-22.png?itok=IYWOKGSa",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Lucas Armand",
-        "opponentId": "lucas-armand"
-      },
+      "booking": null,
       "checkedAt": "2026-09-28T16:59:24.874Z",
       "ufcStatsId": "b34976c022b24568",
       "sourceUrl": "https://ufcstats.com/fighter-details/b34976c022b24568",
@@ -6617,13 +6599,7 @@
       "recordOutsideUfc": "6-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/GAUTIER_ATEBA_L_05-09.png?itok=dydh3iVk",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Roman Kopylov",
-        "opponentId": "roman-kopylov"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:32.376Z",
       "ufcStatsId": "2f815ed5f8278ba6",
       "sourceUrl": "https://ufcstats.com/fighter-details/2f815ed5f8278ba6",
@@ -16077,13 +16053,7 @@
       "recordOutsideUfc": "13-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/MCGEE_COURT_L_10-05.png?itok=CVRx8xXQ",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Eric Nolan",
-        "opponentId": "eric-nolan"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:33.610Z",
       "ufcStatsId": "523fa774700d7d3f",
       "sourceUrl": "https://ufcstats.com/fighter-details/523fa774700d7d3f",
@@ -16681,13 +16651,7 @@
       "recordOutsideUfc": "8-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/PINAS_DAMIAN_L_07-11.png?itok=y63owkBX",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Andrey Pulyaev",
-        "opponentId": "andrey-pulyaev"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:34.035Z",
       "ufcStatsId": "fdd22e895a70e4a8",
       "sourceUrl": "https://ufcstats.com/fighter-details/fdd22e895a70e4a8",
@@ -19177,13 +19141,7 @@
       "recordOutsideUfc": "11-0-0",
       "rank": 9,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/FIGUEIREDO_DEIVESON_L_10-11.png?itok=arHv-wVH",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Payton Talbott",
-        "opponentId": "payton-talbott"
-      },
+      "booking": null,
       "checkedAt": "2026-09-28T16:59:25.694Z",
       "ufcStatsId": "aa72b0f831d0bfe5",
       "sourceUrl": "https://ufcstats.com/fighter-details/aa72b0f831d0bfe5",
@@ -23474,13 +23432,7 @@
       "recordOutsideUfc": "8-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/NOLAN_ERIC_R_08-16.png?itok=Lf5rUsnh",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Court McGee",
-        "opponentId": "court-mcgee"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:34.715Z",
       "ufcStatsId": "64b12fe31be7560c",
       "sourceUrl": "https://ufcstats.com/fighter-details/64b12fe31be7560c",
@@ -23836,13 +23788,7 @@
       "recordOutsideUfc": "11-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/RIBOVICS_ESTEBAN_L_05-11.png?itok=sQBu-_E0",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "King Green",
-        "opponentId": null
-      },
+      "booking": null,
       "checkedAt": "2026-09-28T16:59:25.667Z",
       "ufcStatsId": "323d4ca260dfa0ba",
       "sourceUrl": "https://ufcstats.com/fighter-details/323d4ca260dfa0ba",
@@ -29993,13 +29939,7 @@
       "recordOutsideUfc": "6-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/RODRIGUEZ_IMANOL_L_02-28.png?itok=_Y1p2V-L",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Alden Coria",
-        "opponentId": "alden-coria"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:35.359Z",
       "ufcStatsId": "6e8349a0a0476d60",
       "sourceUrl": "https://ufcstats.com/fighter-details/6e8349a0a0476d60",
@@ -30650,13 +30590,7 @@
       "recordOutsideUfc": "21-5-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/NAURDIEV_ISMAIL_L_11-22.png?itok=PK0HzWkv",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Marvin Vettori",
-        "opponentId": "marvin-vettori"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:35.401Z",
       "ufcStatsId": "6a96ad1bc34fb113",
       "sourceUrl": "https://ufcstats.com/fighter-details/6a96ad1bc34fb113",
@@ -31651,13 +31585,7 @@
       "recordOutsideUfc": "9-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/SMITH_JACOBE_L_02-21.png?itok=sBX3a4YZ",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Bruce Whitehead",
-        "opponentId": null
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:35.640Z",
       "ufcStatsId": "85497ffd934ecf7e",
       "sourceUrl": "https://ufcstats.com/fighter-details/85497ffd934ecf7e",
@@ -36968,13 +36896,7 @@
       "recordOutsideUfc": "14-3-0",
       "rank": 13,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/WALKER_JOHNNY_L_08-23.png?itok=cy7jdBoB",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Mick Parkin",
-        "opponentId": "mick-parkin"
-      },
+      "booking": null,
       "checkedAt": "2026-09-28T16:59:26.362Z",
       "ufcStatsId": "c21f26bbde777573",
       "sourceUrl": "https://ufcstats.com/fighter-details/c21f26bbde777573",
@@ -43870,13 +43792,7 @@
       "recordOutsideUfc": "9-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/WILLIAMS_KHAOS_L_06-07.png?itok=tv-XQtv9",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Roberto Soldić",
-        "opponentId": "roberto-soldic"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:36.874Z",
       "ufcStatsId": "2558ae2e5671e318",
       "sourceUrl": "https://ufcstats.com/fighter-details/2558ae2e5671e318",
@@ -47166,13 +47082,7 @@
       "recordOutsideUfc": "0-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Anthony Wint",
-        "opponentId": "anthony-wint"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:37.212Z",
       "ufcStatsId": "20e04625a5395a06",
       "sourceUrl": "https://ufcstats.com/fighter-details/20e04625a5395a06",
@@ -50860,13 +50770,7 @@
       "recordOutsideUfc": "6-1-0",
       "rank": 15,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/MCGHEE_MARCUS_L_06-06.png?itok=DOTo3j44",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Anthony Romero",
-        "opponentId": "anthony-romero"
-      },
+      "booking": null,
       "checkedAt": "2026-09-28T16:59:27.031Z",
       "ufcStatsId": "c0ac37a4a1133da9",
       "sourceUrl": "https://ufcstats.com/fighter-details/c0ac37a4a1133da9",
@@ -51960,13 +51864,7 @@
       "recordOutsideUfc": "10-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/VETTORI_MARVIN_L_12-06.png?itok=FdvoLxjF",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Ismail Naurdiev",
-        "opponentId": "ismail-naurdiev"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:37.781Z",
       "ufcStatsId": "7acbb0972e75281a",
       "sourceUrl": "https://ufcstats.com/fighter-details/7acbb0972e75281a",
@@ -55054,13 +54952,7 @@
       "recordOutsideUfc": "6-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/5/PARKIN_MICK_L_07-27.png?itok=OX9b6Fw2",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Johnny Walker",
-        "opponentId": "johnny-walker"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:38.087Z",
       "ufcStatsId": "0d5cc0170c1a7e71",
       "sourceUrl": "https://ufcstats.com/fighter-details/0d5cc0170c1a7e71",
@@ -57933,13 +57825,7 @@
       "recordOutsideUfc": "12-5-1",
       "rank": 1,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/SILVA_NATALIA_L_01-24.png?itok=A5iY_ScW",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Wang Cong",
-        "opponentId": "wang-cong"
-      },
+      "booking": null,
       "checkedAt": "2026-09-28T16:59:27.434Z",
       "ufcStatsId": "262d32ebda89efc4",
       "sourceUrl": "https://ufcstats.com/fighter-details/262d32ebda89efc4",
@@ -61858,13 +61744,7 @@
       "recordOutsideUfc": "6-0-0",
       "rank": 11,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/TALBOTT_PAYTON_L_06-28.png?itok=SCY_KVRR",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Deiveson Figueiredo",
-        "opponentId": "deiveson-figueiredo"
-      },
+      "booking": null,
       "checkedAt": "2026-09-28T16:59:27.612Z",
       "ufcStatsId": "6e743a33d56bdaa4",
       "sourceUrl": "https://ufcstats.com/fighter-details/6e743a33d56bdaa4",
@@ -66794,13 +66674,7 @@
       "recordOutsideUfc": "0-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Khaos Williams",
-        "opponentId": "khaos-williams"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:39.251Z",
       "ufcStatsId": "5a229cbd9cdd28ca",
       "sourceUrl": "https://ufcstats.com/fighter-details/5a229cbd9cdd28ca",
@@ -67407,13 +67281,7 @@
       "recordOutsideUfc": "7-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/KOPYLOV_ROMAN_L_05-09.png?itok=Lc4htX8o",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Ateba Gautier",
-        "opponentId": "ateba-gautier"
-      },
+      "booking": null,
       "checkedAt": "2026-09-26T11:42:39.269Z",
       "ufcStatsId": "9d83f6da776ff7d6",
       "sourceUrl": "https://ufcstats.com/fighter-details/9d83f6da776ff7d6",
@@ -79500,13 +79368,7 @@
       "recordOutsideUfc": "5-0-0",
       "rank": 8,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/CONG_WANG_L_02-07.png?itok=LBnTljRc",
-      "booking": {
-        "event": "Silva vs Cong",
-        "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Natalia Silva",
-        "opponentId": "natalia-silva"
-      },
+      "booking": null,
       "checkedAt": "2026-09-28T16:59:28.487Z",
       "ufcStatsId": "2997e7fe3c9d3d4a",
       "sourceUrl": "https://ufcstats.com/fighter-details/2997e7fe3c9d3d4a",
