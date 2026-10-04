@@ -2238,12 +2238,12 @@ body:has([data-globe-home]) .site-theme-toggle-knob {
 
     .v3-right-rail {
         grid-column: 3;
-        grid-row: 2;
-        padding-top: .25rem;
+        grid-row: 1 / span 2;
+        padding-top: .3rem;
     }
 
     .v3-right-rail .v3-news-item:nth-child(n+4) {
-        display: none;
+        display: block;
     }
 }
 
