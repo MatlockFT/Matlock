@@ -1,7 +1,7 @@
 {
   "version": 2,
   "strategyVersion": 1,
-  "updatedAt": "2026-09-23T01:06:44.349Z",
+  "updatedAt": "2026-10-04T14:58:19.702Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -1693,6 +1693,11 @@
     },
     "コシム・サルドロフ": {
       "checkedAt": "2026-09-09T16:42:13.850Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "ナチン・サット": {
+      "checkedAt": "2026-10-04T14:58:19.702Z",
       "status": "unresolved",
       "error": "No Wikidata match"
     }
@@ -10165,6 +10170,28 @@
         "status": "official-page-missing",
         "sourceUrl": "https://www.pancrase.co.jp/data/result/2026/0923.html"
       }
+    },
+    "pancrase:2026-10-04:pancrase-367": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-10-04T14:58:19.702Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2026/1004.html",
+        "rawNames": [
+          "葛西和希",
+          "ナチン・サット"
+        ],
+        "englishNames": [
+          "葛西和希",
+          "ナチン・サット"
+        ],
+        "mainEvent": "葛西和希 vs. ナチン・サット"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-10-04T14:58:19.702Z",
+        "status": "no-headliner-image"
+      }
     }
   },
   "posters": {
@@ -12715,8 +12742,16 @@
       "checkedAt": "2026-09-23T01:06:45.729Z",
       "status": "not-found",
       "sourceUrl": "https://www.pancrase.co.jp/data/result/2026/0923.html"
+    },
+    "pancrase:2026-10-04:pancrase-367": {
+      "strategyVersion": 3,
+      "checkedAt": "2026-10-04T14:59:54.745Z",
+      "status": "resolved",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2026/1004.html",
+      "imageUrl": "https://www.pancrase.co.jp/data/result/2026/img/pancrase367.jpg",
+      "imageAlt": "PANCRASE 367"
     }
   },
   "posterStrategyVersion": 3,
-  "posterUpdatedAt": "2026-09-23T01:06:45.729Z"
+  "posterUpdatedAt": "2026-10-04T14:59:54.745Z"
 }

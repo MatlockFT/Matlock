@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-10-03T14:24:58.665Z",
+  "updatedAt": "2026-10-04T14:58:19.702Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -15357,6 +15357,23 @@
       "status": "no-main-event",
       "sourceType": "wikipedia-structured",
       "wikipediaTitle": "PFL MENA 11"
+    },
+    "ufc:2026-10-03:ufc-332-silva-vs-wang": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-10-04T14:58:19.265Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 332",
+      "mainEvent": "Silva vs. Wang"
+    },
+    "pancrase:2026-10-04:pancrase-367": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-10-04T14:58:19.702Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2026/1004.html",
+      "mainEvent": "葛西和希 vs. ナチン・サット"
     }
   }
 }
