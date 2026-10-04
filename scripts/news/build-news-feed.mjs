@@ -1066,6 +1066,36 @@ async function selectEfficientLeadImage(topStory, cluster, previousImages) {
     const representative = cluster.representative;
     const representativeUrl = safeUrl(representative.url);
 
+    // Yahoo syndication occasionally supplies a malformed or poor Zenfs image.
+    // For the large lead slot, prefer a clean image from another source covering
+    // the same story when one is already available in the cluster.
+    try {
+        const currentImageHost = topStory.image ? new URL(topStory.image).hostname : "";
+        const representativeHost = representativeUrl ? new URL(representativeUrl).hostname : "";
+        const isYahooSyndicatedLead =
+            /(^|\.)sports\.yahoo\.com$/i.test(representativeHost) &&
+            /(^|\.)media\.zenfs\.com$/i.test(currentImageHost);
+
+        if (isYahooSyndicatedLead) {
+            const alternate = cluster.stories.find(story => {
+                if (!story?.image || story === representative) return false;
+                try {
+                    const host = new URL(story.image).hostname;
+                    return !/(^|\.)media\.zenfs\.com$/i.test(host) &&
+                        !isGenericArticleImage(story.image);
+                } catch {
+                    return false;
+                }
+            });
+
+            if (alternate?.image) {
+                topStory.image = alternate.image;
+            }
+        }
+    } catch {
+        // Keep the representative image if URL parsing fails.
+    }
+
     if (!topStory.image) {
         const previous = previousImages.get(representativeUrl);
         const previousMatchesSource =
