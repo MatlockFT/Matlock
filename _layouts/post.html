@@ -218,19 +218,19 @@ layout: default
                 </aside>
             {% endif %}
 
-            {% if page.show_toc %}
-                <section class="article-picks-summary" data-article-picks hidden>
-                    <button class="article-picks-toggle" type="button" aria-expanded="false" aria-controls="article-picks-panel" data-article-picks-toggle>
-                        <span class="article-picks-heading">
-                            <strong>My Picks</strong>
-                        </span>
-                        <span class="article-picks-toggle-icon" aria-hidden="true"></span>
-                    </button>
-                    <div class="article-picks-panel" id="article-picks-panel" data-article-picks-panel hidden>
-                        <ol data-article-picks-list></ol>
-                    </div>
-                </section>
+            <section class="article-picks-summary" data-article-picks hidden>
+                <button class="article-picks-toggle" type="button" aria-expanded="false" aria-controls="article-picks-panel" data-article-picks-toggle>
+                    <span class="article-picks-heading">
+                        <strong>My Picks</strong>
+                    </span>
+                    <span class="article-picks-toggle-icon" aria-hidden="true"></span>
+                </button>
+                <div class="article-picks-panel" id="article-picks-panel" data-article-picks-panel hidden>
+                    <ol data-article-picks-list></ol>
+                </div>
+            </section>
 
+            {% if page.show_toc %}
                 <nav
                     class="article-toc article-toc-inline"
                     aria-labelledby="article-toc-title-inline"
@@ -659,9 +659,7 @@ layout: default
     </button>
 </article>
 
-{% if page.show_toc %}
-    <script src="{{ '/assets/article-toc.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
-{% endif %}
+<script src="{{ '/assets/article-toc.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
 <script src="{{ '/assets/article-rail.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
 
 <script src="{{ '/assets/article-share.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
