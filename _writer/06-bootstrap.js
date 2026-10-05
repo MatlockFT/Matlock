@@ -643,8 +643,9 @@ document.addEventListener('visibilitychange', () => {
 
 window.addEventListener('matlock-writer:auth', () => {
   setPublishingControls(true);
-  loadLibrary({ hydrate: true });
-  if (app.dataset.writerScreen === 'media') void loadMediaLibrary({ force: true });
+  void loadLibrary({ hydrate: true }).then(() => {
+    if (app.dataset.writerScreen === 'media') void loadMediaLibrary({ force: true });
+  });
 });
 window.addEventListener('matlock-writer:auth-expired', () => setPublishingControls(false));
 
