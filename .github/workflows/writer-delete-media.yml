@@ -1,0 +1,111 @@
+name: Delete Writer Media
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/uploads/.writer-media-delete-requests/*.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: writer-media-delete
+  cancel-in-progress: false
+
+jobs:
+  delete:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Process media deletion requests
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          requests=(assets/uploads/.writer-media-delete-requests/*.json)
+          if (( ${#requests[@]} == 0 )); then
+            echo "No Writer media deletion requests found."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for request in "${requests[@]}"; do
+            storage="$(jq -r '.storage // ""' "$request")"
+            kind="$(jq -r '.kind // ""' "$request")"
+
+            if [[ "$kind" != "image" && "$kind" != "video" ]]; then
+              echo "::error::Invalid media kind in $request"
+              exit 1
+            fi
+
+            if [[ "$storage" == "repository" ]]; then
+              target="$(jq -r '.path // ""' "$request")"
+              lower="${target,,}"
+              if [[ "$target" != assets/uploads/articles/* ]]; then
+                echo "::error::Refusing repository media path: $target"
+                exit 1
+              fi
+              case "$lower" in
+                *.png|*.jpg|*.jpeg|*.webp|*.gif|*.avif|*.mp4|*.m4v|*.webm|*.mov) ;;
+                *) echo "::error::Refusing unsupported media file: $target"; exit 1 ;;
+              esac
+              if [[ -f "$target" ]]; then
+                git rm -f -- "$target"
+              else
+                echo "Repository media already missing: $target"
+              fi
+
+            elif [[ "$storage" == "release" ]]; then
+              asset_id="$(jq -r '.assetId // empty' "$request")"
+              if [[ ! "$asset_id" =~ ^[0-9]+$ ]]; then
+                echo "::error::Invalid release asset ID in $request"
+                exit 1
+              fi
+
+              if asset_json="$(gh api "repos/$GITHUB_REPOSITORY/releases/assets/$asset_id" 2>/dev/null)"; then
+                asset_name="$(jq -r '.name // ""' <<<"$asset_json")"
+                asset_url="$(jq -r '.browser_download_url // ""' <<<"$asset_json")"
+                lower_name="${asset_name,,}"
+                if [[ "$asset_url" != *"/releases/download/writer-media-"* ]]; then
+                  echo "::error::Refusing release asset outside Writer media releases: $asset_name"
+                  exit 1
+                fi
+                if [[ "$lower_name" == broadcast-* ]]; then
+                  echo "::error::Refusing Broadcast Control media asset: $asset_name"
+                  exit 1
+                fi
+                case "$lower_name" in
+                  *.png|*.jpg|*.jpeg|*.webp|*.gif|*.avif|*.mp4|*.m4v|*.webm|*.mov) ;;
+                  *) echo "::error::Refusing unsupported release asset: $asset_name"; exit 1 ;;
+                esac
+                gh api --method DELETE "repos/$GITHUB_REPOSITORY/releases/assets/$asset_id"
+                echo "Deleted release asset: $asset_name"
+              else
+                echo "Release media already missing: $asset_id"
+              fi
+
+            else
+              echo "::error::Invalid media storage type in $request"
+              exit 1
+            fi
+
+            git rm -f -- "$request"
+          done
+
+          if git diff --cached --quiet; then
+            echo "No repository changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Delete Writer media"
+          git push
