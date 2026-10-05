@@ -81,8 +81,12 @@ Object.values(fields).forEach(el => {
   app.querySelectorAll('[data-insert]').forEach(button => button.addEventListener('click', () => handleSimpleInsert(button.dataset.insert)));
   app.querySelectorAll('[data-tool]').forEach(button => button.addEventListener('click', () => openTool(button.dataset.tool)));
   app.querySelector('[data-show-library]').addEventListener('click', showLibrary);
+  app.querySelector('[data-show-media-library]')?.addEventListener('click', showMediaLibrary);
   app.querySelector('[data-new-article]').addEventListener('click', () => resetNewArticle());
   app.querySelector('[data-library-new]').addEventListener('click', () => resetNewArticle());
+  app.querySelector('[data-library-media]')?.addEventListener('click', showMediaLibrary);
+  app.querySelector('[data-media-articles]')?.addEventListener('click', showLibrary);
+  app.querySelector('[data-media-refresh]')?.addEventListener('click', () => loadMediaLibrary({ force: true }));
   app.querySelector('[data-github-connect]').addEventListener('click', () => connectDialog.showModal());
   app.querySelector('[data-github-authorize]').addEventListener('click', connectGitHub);
   saveDraftButton.addEventListener('click', () => saveArticle('save'));
@@ -97,6 +101,25 @@ Object.values(fields).forEach(el => {
     renderLibrary();
     window.clearTimeout(librarySearchTimer);
     librarySearchTimer = window.setTimeout(hydrateEditedTimes, 300);
+  });
+
+  app.querySelectorAll('[data-media-filter]').forEach(button => button.addEventListener('click', () => {
+    mediaLibraryFilter = button.dataset.mediaFilter || 'all';
+    app.querySelectorAll('[data-media-filter]').forEach(btn => btn.setAttribute('aria-pressed', String(btn === button)));
+    renderMediaLibrary();
+  }));
+  mediaLibrarySearch?.addEventListener('input', renderMediaLibrary);
+  mediaLibraryList?.addEventListener('click', event => {
+    const articleButton = event.target.closest('[data-media-open-article]');
+    if (articleButton) {
+      loadArticle(articleButton.dataset.mediaOpenArticle);
+      return;
+    }
+    const deleteButton = event.target.closest('[data-media-delete]');
+    if (!deleteButton) return;
+    const card = deleteButton.closest('[data-media-key]');
+    const item = mediaLibraryEntries.find(entry => entry.key === card?.dataset.mediaKey);
+    if (item) void deleteMediaLibraryItem(item);
   });
 
   libraryList.addEventListener('click', event => {
@@ -621,6 +644,7 @@ document.addEventListener('visibilitychange', () => {
 window.addEventListener('matlock-writer:auth', () => {
   setPublishingControls(true);
   loadLibrary({ hydrate: true });
+  if (app.dataset.writerScreen === 'media') void loadMediaLibrary({ force: true });
 });
 window.addEventListener('matlock-writer:auth-expired', () => setPublishingControls(false));
 
@@ -636,6 +660,7 @@ window.addEventListener('matlock-writer:auth-expired', () => setPublishingContro
     const params = new URLSearchParams(location.search);
     const path = params.get('path');
     const wantsNew = params.get('new') === '1';
+    const wantsMedia = params.get('media') === '1';
 
     if (fromPopState && dirty) {
       persistLocalAutosave();
@@ -651,6 +676,11 @@ window.addEventListener('matlock-writer:auth-expired', () => setPublishingContro
       if (!resumeLocalNewDraft({ updateRoute: false })) {
         resetNewArticle({ updateRoute: false, allowExistingLocal: true });
       }
+      return;
+    }
+
+    if (wantsMedia) {
+      showMediaLibrary({ updateRoute: false });
       return;
     }
 
