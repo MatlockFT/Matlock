@@ -32,6 +32,7 @@ page_scripts:
     <div class="writer-top-actions">
       <div class="writer-top-secondary">
         <button class="writer-button writer-button-subtle" type="button" data-show-library>Library</button>
+        <button class="writer-button writer-button-subtle" type="button" data-show-media-library>Media</button>
         <button class="writer-button writer-button-subtle" type="button" data-new-article>New</button>
         <button class="writer-button writer-button-subtle writer-live-trigger" type="button" data-live-writer-toggle data-state="idle" aria-pressed="false" aria-expanded="false" aria-controls="writer-live-panel">Live</button>
         <button class="writer-button writer-button-subtle" type="button" data-github-connect data-connected="false" title="Connect GitHub">GitHub</button>
@@ -88,7 +89,10 @@ page_scripts:
         <h2>Library</h2>
         <p>Drafts, scheduled posts and published articles in one place.</p>
       </div>
-      <button class="writer-button writer-button-primary" type="button" data-library-new>New article</button>
+      <div class="writer-library-header-actions">
+        <button class="writer-button writer-button-subtle" type="button" data-library-media>Media library</button>
+        <button class="writer-button writer-button-primary" type="button" data-library-new>New article</button>
+      </div>
     </header>
 
     <div class="writer-library-controls">
@@ -113,6 +117,44 @@ page_scripts:
 
     <div class="writer-library-list" data-library-list>
       <div class="writer-library-empty">Loading article library…</div>
+    </div>
+  </section>
+
+  <section class="writer-library writer-media-library" data-media-library-view hidden>
+    <header class="writer-library-header">
+      <div>
+        <p class="eyebrow">Uploads</p>
+        <h2>Media</h2>
+        <p>See every article image and video, where it is used, and uploads that are no longer tied to anything.</p>
+      </div>
+      <div class="writer-library-header-actions">
+        <button class="writer-button writer-button-subtle" type="button" data-media-refresh>Refresh</button>
+        <button class="writer-button writer-button-primary" type="button" data-media-articles>Articles</button>
+      </div>
+    </header>
+
+    <div class="writer-library-controls">
+      <label class="writer-library-search">
+        <span class="writer-sr-only">Search media</span>
+        <input type="search" data-media-library-search placeholder="Search filename or article">
+      </label>
+      <div class="writer-segmented" aria-label="Media filter">
+        <button type="button" data-media-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-media-filter="image" aria-pressed="false">Images</button>
+        <button type="button" data-media-filter="video" aria-pressed="false">Videos</button>
+        <button type="button" data-media-filter="unused" aria-pressed="false">Unused</button>
+      </div>
+    </div>
+
+    <div class="writer-library-stats" data-media-library-stats>
+      <span><strong>—</strong> total</span>
+      <span><strong>—</strong> images</span>
+      <span><strong>—</strong> videos</span>
+      <span><strong>—</strong> unused</span>
+    </div>
+
+    <div class="writer-media-library-grid" data-media-library-list>
+      <div class="writer-library-empty">Connect GitHub to scan your uploaded media.</div>
     </div>
   </section>
 
