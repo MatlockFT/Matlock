@@ -200,6 +200,7 @@ async function githubFetch(path, options = {}, requireAuth = false) {
     const url = new URL('/write/', location.origin);
     if (mode === 'new') url.searchParams.set('new', '1');
     if (mode === 'article' && path) url.searchParams.set('path', path);
+    if (mode === 'media') url.searchParams.set('media', '1');
     return url.pathname + url.search;
   }
 
@@ -213,8 +214,9 @@ async function githubFetch(path, options = {}, requireAuth = false) {
   function setWriterScreen(screen) {
     app.dataset.writerScreen = screen;
     const editing = screen === 'editor';
-    libraryView.hidden = editing;
+    libraryView.hidden = screen !== 'library';
     editorView.hidden = !editing;
+    if (mediaLibraryView) mediaLibraryView.hidden = screen !== 'media';
     setPublishingControls(Boolean(githubCredential));
   }
 
@@ -395,7 +397,7 @@ function scheduleAutosave() {
           sha: item.sha,
           title: item.name.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/i,'').replace(/-/g,' '),
           date: item.name.slice(0,10),
-          category: '', tags: [], imagePath: '', status: 'unknown', publishAt: '', editedAt: ''
+          category: '', tags: [], imagePath: '', status: 'unknown', publishAt: '', editedAt: '', mediaRefs: []
         };
       });
       renderLibrary();
@@ -408,7 +410,7 @@ function scheduleAutosave() {
   async function hydrateLibrary() {
     if (!libraryEntries.length || !githubCredential) return;
     const cache = loadLibraryCache();
-    const needs = libraryEntries.filter(entry => !cache[entry.path] || cache[entry.path].sha !== entry.sha || cache[entry.path].status === 'unknown');
+    const needs = libraryEntries.filter(entry => !cache[entry.path] || cache[entry.path].sha !== entry.sha || cache[entry.path].status === 'unknown' || !Array.isArray(cache[entry.path].mediaRefs));
     if (!needs.length) { renderLibrary(); hydrateEditedTimes(); return; }
 
     await mapLimit(needs, 6, async entry => {
@@ -429,7 +431,8 @@ function scheduleAutosave() {
           imagePath: image.path || '',
           status: articleStatus(m),
           publishAt: m.publish_at || '',
-          editedAt: cache[entry.path]?.editedAt || ''
+          editedAt: cache[entry.path]?.editedAt || '',
+          mediaRefs: collectArticleMediaRefs({ imagePath: image.path || '', body: parsed.body || '' })
         };
         cache[entry.path] = summary;
         const idx = libraryEntries.findIndex(item => item.path === entry.path);
@@ -498,6 +501,10 @@ function scheduleAutosave() {
       tags: Object.prototype.hasOwnProperty.call(local, 'tags') ? localTags : entry.tags,
       imagePath: Object.prototype.hasOwnProperty.call(local, 'imagePath') ? local.imagePath : entry.imagePath,
       publishAt: Object.prototype.hasOwnProperty.call(local, 'publishAt') ? local.publishAt : entry.publishAt,
+      mediaRefs: collectArticleMediaRefs({
+        imagePath: Object.prototype.hasOwnProperty.call(local, 'imagePath') ? local.imagePath : entry.imagePath,
+        body: Object.prototype.hasOwnProperty.call(local, 'body') ? local.body : ''
+      }),
       hasLocalChanges: true,
       localSavedAt: local.savedAt || 0
     };
