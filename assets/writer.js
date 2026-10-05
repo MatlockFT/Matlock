@@ -4967,13 +4967,139 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     }).join('');
   }
 
+  function mediaKindFromName(name, contentType = '') {
+    const lowerName = String(name || '').toLowerCase();
+    const lowerType = String(contentType || '').toLowerCase();
+    if (lowerType.startsWith('image/') || /\.(?:png|jpe?g|webp|gif|avif)$/i.test(lowerName)) return 'image';
+    if (lowerType.startsWith('video/') || /\.(?:mp4|m4v|webm|mov)$/i.test(lowerName)) return 'video';
+    return '';
+  }
+
+  async function publicRepoJson(path) {
+    let response;
+    try {
+      response = await fetch('https://api.github.com/repos/' + repo + path, {
+        mode: 'cors',
+        cache: 'no-store',
+        headers: {
+          Accept: 'application/vnd.github+json',
+          'X-GitHub-Api-Version': '2022-11-28'
+        }
+      });
+    } catch {
+      throw new Error('Could not reach GitHub to scan uploaded media.');
+    }
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const remaining = response.headers.get('x-ratelimit-remaining');
+      if (response.status === 403 && remaining === '0') {
+        throw new Error('GitHub temporarily rate-limited the media scan. Try Refresh again in a few minutes.');
+      }
+      throw new Error(data?.message || ('GitHub returned ' + response.status + ' while scanning media.'));
+    }
+    return data;
+  }
+
+  async function scanArticleMedia() {
+    const [tree, releases] = await Promise.all([
+      publicRepoJson('/git/trees/main?recursive=1'),
+      publicRepoJson('/releases?per_page=100')
+    ]);
+
+    if (tree?.truncated) throw new Error('GitHub returned an incomplete repository scan. Try Refresh again.');
+
+    const repositoryAssets = (Array.isArray(tree?.tree) ? tree.tree : [])
+      .filter(item => item?.type === 'blob' && String(item.path || '').startsWith('assets/uploads/articles/'))
+      .map(item => {
+        const kind = mediaKindFromName(item.path);
+        if (!kind) return null;
+        const path = String(item.path);
+        return {
+          id: path,
+          key: 'repository:' + path,
+          storage: 'repository',
+          kind,
+          name: path.split('/').pop() || path,
+          path,
+          url: '/' + path,
+          size: Number(item.size) || 0,
+          contentType: kind === 'image' ? 'image/*' : 'video/*',
+          createdAt: null,
+          updatedAt: null,
+          sha: String(item.sha || '')
+        };
+      })
+      .filter(Boolean);
+
+    const releaseAssets = (Array.isArray(releases) ? releases : [])
+      .filter(release => String(release?.tag_name || '').startsWith('writer-media-'))
+      .flatMap(release => (Array.isArray(release?.assets) ? release.assets : []).map(asset => {
+        const name = String(asset?.name || '');
+        if (/^broadcast-(?:video|audio|image)-/i.test(name)) return null;
+        const kind = mediaKindFromName(name, asset?.content_type);
+        if (!kind) return null;
+        return {
+          id: Number(asset.id),
+          key: 'release:' + Number(asset.id),
+          storage: 'release',
+          kind,
+          name,
+          url: String(asset.browser_download_url || ''),
+          size: Number(asset.size) || 0,
+          contentType: String(asset.content_type || ''),
+          createdAt: asset.created_at || null,
+          updatedAt: asset.updated_at || null,
+          releaseId: Number(release.id) || null,
+          releaseTag: String(release.tag_name || '')
+        };
+      }).filter(Boolean));
+
+    return [...repositoryAssets, ...releaseAssets].sort((a, b) => {
+      const aDate = String(a.createdAt || '');
+      const bDate = String(b.createdAt || '');
+      if (aDate || bDate) return bDate.localeCompare(aDate);
+      return String(b.path || b.name || '').localeCompare(String(a.path || a.name || ''));
+    });
+  }
+
+  function mediaDeleteRequestId() {
+    if (window.crypto?.randomUUID) return window.crypto.randomUUID().replace(/-/g, '');
+    return Date.now().toString(36) + Math.random().toString(36).slice(2, 14);
+  }
+
+  async function queueMediaDeletion(item) {
+    const requestId = mediaDeleteRequestId();
+    const requestPath = 'assets/uploads/.writer-media-delete-requests/' + requestId + '.json';
+    const request = {
+      version: 1,
+      requestId,
+      requestedAt: new Date().toISOString(),
+      storage: item.storage,
+      kind: item.kind,
+      name: item.name || '',
+      assetId: item.storage === 'release' ? Number(item.id) : null,
+      path: item.storage === 'repository' ? String(item.path || '') : ''
+    };
+
+    await githubFetch('/contents/' + requestPath, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'Queue Writer media delete ' + requestId.slice(0, 8),
+        content: encodeBase64(JSON.stringify(request, null, 2)),
+        branch: 'main'
+      })
+    }, true);
+  }
+
   async function loadMediaLibrary({ force = false } = {}) {
     if (!mediaLibraryView || mediaLibraryLoading) return;
     if (mediaLibraryLoaded && !force) {
       renderMediaLibrary();
       return;
     }
-    if (!githubCredential || !writerSessionId()) {
+    if (!githubCredential) {
       mediaLibraryList.innerHTML = '<div class="writer-library-empty">Connect GitHub to load your uploaded media.</div>';
       return;
     }
@@ -4983,8 +5109,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     try {
       if (!libraryEntries.length) await loadLibrary({ hydrate: true });
       else await hydrateLibrary();
-      const data = await mediaBridgeFetch('/api/writer/article-media-library');
-      mediaLibraryEntries = Array.isArray(data.assets) ? data.assets : [];
+      mediaLibraryEntries = await scanArticleMedia();
       mediaLibraryLoaded = true;
       renderMediaLibrary();
     } catch (error) {
@@ -4995,28 +5120,21 @@ function insertBlock(text, { preserveScroll = false } = {}) {
   }
 
   async function deleteMediaLibraryItem(item) {
-    if (!item || !githubCredential || !writerSessionId()) return;
+    if (!item || !githubCredential) return;
     const usage = mediaLibraryUsage(item);
     const names = usage.map(link => link.title).filter(Boolean);
     const warning = usage.length
       ? '\n\nWARNING: this file is still referenced by ' + names.join(', ') + '. Deleting it will leave broken media in ' + (usage.length === 1 ? 'that article' : 'those articles') + '.'
       : '\n\nWriter does not currently find this file in any article.';
-    if (!window.confirm('Delete “' + (item.name || 'this media file') + '” permanently?' + warning + '\n\nThis removes the stored upload itself.')) return;
+    if (!window.confirm('Delete “' + (item.name || 'this media file') + '” permanently?' + warning + '\n\nThe deletion will be processed by GitHub in the background.')) return;
 
     try {
-      const payload = item.storage === 'release'
-        ? { storage: 'release', assetId: item.id }
-        : { storage: 'repository', path: item.path };
-      await mediaBridgeFetch('/api/writer/article-media-library', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
+      await queueMediaDeletion(item);
       mediaLibraryEntries = mediaLibraryEntries.filter(entry => entry.key !== item.key);
       renderMediaLibrary();
-      showToast('Media deleted.');
+      showToast('Media deletion queued. GitHub will remove the stored file shortly.', 6000);
     } catch (error) {
-      showToast('Could not delete media: ' + error.message, 7000);
+      showToast('Could not queue media deletion: ' + error.message, 7000);
     }
   }
 
