@@ -9,7 +9,7 @@
       "promotion": "dwcs",
       "date": "2026-10-06",
       "title": "Season 10 · Week 9",
-      "status": "event_matched_card_unreadable",
+      "status": "matched",
       "verdict_event_id": "1934",
       "verdict_url": "https://verdictmma.com/event/1934",
       "verdict_date": "2026-10-06",
@@ -19,7 +19,7 @@
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": null
+      "confirmed_local_bouts": 3
     },
     {
       "event_id": "ufc-fight-night-2026-10-10-fight-card",
@@ -159,6 +159,26 @@
     }
   ],
   "discrepancies": [
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "dwcs-season-10-week-9-2026-10-06",
+      "verdict_event_id": "1934",
+      "order": 1,
+      "fighters": [
+        "Salhahuddin Everett",
+        "Ozzy Martin"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "dwcs-season-10-week-9-2026-10-06",
+      "verdict_event_id": "1934",
+      "order": 3,
+      "fighters": [
+        "Roque Conceicao Moreira Junior",
+        "Alexander Chavez"
+      ]
+    },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
