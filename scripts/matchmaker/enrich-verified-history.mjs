@@ -106,6 +106,8 @@ function validateSupplementalFight(row) {
   if (key(statsById.get(aStatsId).name) !== key(row.aName) || key(statsById.get(bStatsId).name) !== key(row.bName)) throw new Error(`Supplemental fight names do not match UFCStats IDs: ${fightStatsId}`);
   return {
     fightStatsId,
+    aStatsId,
+    bStatsId,
     date: row.date,
     event: clean(row.event),
     competitionClass: row.competitionClass,
@@ -127,13 +129,39 @@ function validateSupplementalFight(row) {
 }
 const trackedByFightId = new Map(mirrorFights.map(fight => [fight.fightStatsId || fight.sourceUrl, fight]));
 let supplementalApplied = 0;
+let supplementalIdentityLinked = 0;
 for (const row of evidence.supplementalMeetings) {
   const fight = validateSupplementalFight(row);
   const id = fight.fightStatsId || fight.sourceUrl;
-  if (!trackedByFightId.has(id)) {
+  const existing = trackedByFightId.get(id);
+  if (!existing) {
     trackedByFightId.set(id, fight);
     supplementalApplied++;
+    continue;
   }
+
+  // Mirror fight rows carry names/results but not fighter IDs. Audited evidence may attach
+  // source-native UFCStats identities to an existing row, including when the evidence lists
+  // the two corners in the opposite order. It must never override a conflicting result.
+  const evidenceSides = new Map([
+    [key(fight.aName), { statsId: fight.aStatsId, result: fight.aResult }],
+    [key(fight.bName), { statsId: fight.bStatsId, result: fight.bResult }]
+  ]);
+  const aEvidence = evidenceSides.get(key(existing.aName));
+  const bEvidence = evidenceSides.get(key(existing.bName));
+  if (!aEvidence || !bEvidence || aEvidence.statsId === bEvidence.statsId) {
+    throw new Error(`Supplemental fight identity does not match existing mirror participants: ${id}`);
+  }
+  if (aEvidence.result !== existing.aResult || bEvidence.result !== existing.bResult) {
+    throw new Error(`Supplemental fight result conflicts with existing mirror row: ${id}`);
+  }
+  trackedByFightId.set(id, {
+    ...existing,
+    aStatsId: aEvidence.statsId,
+    bStatsId: bEvidence.statsId,
+    evidenceReason: fight.evidenceReason || null
+  });
+  supplementalIdentityLinked++;
 }
 const trackedFights = [...trackedByFightId.values()].sort((a, b) => b.date.localeCompare(a.date) || a.sourceUrl.localeCompare(b.sourceUrl));
 
@@ -196,8 +224,8 @@ function rawMeeting(fight, opponentStats, opponentName, result) {
   };
 }
 for (const fight of trackedFights) {
-  const aStats = resolveStatsName(fight.aName);
-  const bStats = resolveStatsName(fight.bName);
+  const aStats = fight.aStatsId ? statsById.get(fight.aStatsId) : resolveStatsName(fight.aName);
+  const bStats = fight.bStatsId ? statsById.get(fight.bStatsId) : resolveStatsName(fight.bName);
   const a = rawMeeting(fight, bStats, fight.bName, fight.aResult);
   const b = rawMeeting(fight, aStats, fight.aName, fight.bResult);
   if (aStats) push(rawByStatsId, aStats.id, a);
@@ -478,6 +506,10 @@ for (const fighter of data.fighters) {
   const matchedMeetings = new Set(baseReconciliation.matches.map(match => match.meeting));
   const canonicalMeetings = meetings.filter(meeting => meeting.source === 'UFC.com' || ['ufc', 'tuf'].includes(meeting.competitionClass) || matchedMeetings.has(meeting));
 
+  if (participants.has(fighter.id) && !coverageVerified) {
+    console.warn(`History diagnostic ${fighter.id}: identity=${identity?.statsId || identity?.ledgerKey || 'none'} method=${identity?.method || 'none'} duplicate=${Boolean(duplicateIdentity)} profile=[${profileUfc.map(entry => `${entry.date}:${entry.result || '?'}`).join(', ')}] meetings=[${meetings.map(meeting => `${meeting.date}:${meeting.result || '?'}:${meeting.opponentName}`).join(', ')}]`);
+  }
+
   if (!identity) {
     identityMisses++;
     if (fighter.active || participants.has(fighter.id)) missNames.push(`${fighter.name} (not-found)`);
@@ -546,7 +578,7 @@ const participantCount = participants.size;
 const activeRatio = activePopulation ? activeVerified / activePopulation : 0;
 const ledgerAliasRepairs = [...aliasRepairCountByFighter.values()].reduce((sum, count) => sum + count, 0);
 console.log(`History-v2 preflight: participants ${participantVerified}/${participantCount}; active population ${activeVerified}/${activePopulation} (${(activeRatio * 100).toFixed(1)}%).`);
-console.log(`Gap evidence: ${supplementalApplied}/${evidence.supplementalMeetings.length} supplemental UFCStats fight(s) applied; ${profileContradictionCount} impossible UFC.com profile claim(s) rejected by structured same-date evidence.`);
+console.log(`Gap evidence: ${supplementalApplied} missing fight row(s) applied; ${supplementalIdentityLinked} existing mirror fight(s) identity-linked from ${evidence.supplementalMeetings.length} audited row(s); ${profileContradictionCount} impossible UFC.com profile claim(s) rejected by structured same-date evidence.`);
 console.log(`Profile cross-check: ${sourceDiscrepancyCount} source discrepancy record(s) reconciled without letting profile prose override structured history.`);
 if (discrepancyExamples.length) console.log(`Source discrepancy examples: ${discrepancyExamples.join(' || ')}`);
 if (participantVerified !== participantCount) throw new Error(`Verified history must cover every displayed event fighter: ${participantVerified}/${participantCount}. Missing: ${participantMissNames.join(', ')}`);
@@ -565,7 +597,8 @@ data.sources.meetings = {
   mirrorFrom: mirrorEarliest,
   officialThrough: (data.events || []).map(event => event.date).sort().at(-1) || mirrorLatest,
   supplementalFightCount: supplementalApplied,
-  note: 'Canonical structured fight histories for the matchmaking roster. Stable UFCStats fighter IDs are preferred; uniquely owned UFC roster/profile aliases may recover fight rows whose UFCStats bout display name differs from the fighter directory, but only when the row reconciles a UFC.com profile bout; fight-signature and source-native ledger identity resolve remaining naming differences; audited source-native gap evidence repairs mirror transport omissions; profile prose is cross-checked but cannot override structured fight records.'
+  supplementalIdentityLinkCount: supplementalIdentityLinked,
+  note: 'Canonical structured fight histories for the matchmaking roster. Stable UFCStats fighter IDs are preferred; uniquely owned UFC roster/profile aliases may recover fight rows whose UFCStats bout display name differs from the fighter directory, but only when the row reconciles a UFC.com profile bout; fight-signature and source-native ledger identity resolve remaining naming differences; audited source-native evidence may repair mirror transport omissions or attach verified fighter IDs to existing name-only mirror rows; profile prose is cross-checked but cannot override structured fight records.'
 };
 data.coverage = {
   ...(data.coverage || {}),
@@ -584,6 +617,7 @@ data.coverage = {
   sourceDiscrepancyCount,
   profileContradictionCount,
   supplementalFightCount: supplementalApplied,
+  supplementalIdentityLinkCount: supplementalIdentityLinked,
   ledgerAliasRepairs,
   trackedFightCount: trackedFights.length,
   mirrorFightCount: mirrorFights.length,
