@@ -22,6 +22,28 @@
       "sourceUrl": "https://ufcstats.com/fight-details/58a314edcfe1d23a",
       "archiveUrl": "https://github.com/RE-Mednikov/UFC-ML-Predictor/blob/442f00724d8438b89e61cdde08c9964c2c0aacdf/data/raw_html/fighters/2f43a3e82661fa99.html",
       "reason": "The source-native UFCStats fighter page contains the Road to UFC 2.7 row, but the primary event-details mirror omits that event and therefore drops the fight during the event/date join."
+    },
+    {
+      "fightStatsId": "bed89a91da9d04c1",
+      "date": "2026-03-07",
+      "event": "UFC 326: Holloway vs. Oliveira 2",
+      "competitionClass": "ufc",
+      "aStatsId": "fe2babf95de24fb1",
+      "aName": "Raul Rosas Jr.",
+      "aResult": "W",
+      "bStatsId": "05339613bf8e9808",
+      "bName": "Rob Font",
+      "bResult": "L",
+      "weightClass": "Bantamweight Bout",
+      "method": "Decision - Unanimous",
+      "round": 3,
+      "time": "5:00",
+      "referee": "Jason Herzog",
+      "details": "Mike Bell 27 - 30.Derek Cleary 27 - 30.Ron McCarthy 27 - 30.",
+      "source": "UFCStats",
+      "sourceUrl": "https://ufcstats.com/fight-details/bed89a91da9d04c1",
+      "archiveUrl": null,
+      "reason": "The source-native UFCStats bout was previously canonicalized but is currently absent from the primary mirror join, causing Raul Rosas Jr.'s verified history to lose his March 7, 2026 win over Rob Font."
     }
   ],
   "profileContradictions": [
