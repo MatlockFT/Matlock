@@ -469,7 +469,11 @@ for (const fighter of data.fighters) {
     missing: contradictionReview.unresolved,
     discrepancies: [...baseReconciliation.discrepancies, ...contradictionReview.contradictions]
   };
-  const duplicateIdentity = identity?.statsId && canonicalByStatsId.get(identity.statsId) === null || identity?.ledgerKey && canonicalByLedgerKey.get(identity.ledgerKey) === null;
+  const duplicateIdentity = identity?.statsId
+    ? canonicalByStatsId.get(identity.statsId) === null
+    : identity?.ledgerKey
+      ? canonicalByLedgerKey.get(identity.ledgerKey) === null
+      : false;
   const coverageVerified = Boolean(identity && !duplicateIdentity && reconciliation.missing.length === 0 && (meetings.length > 0 || profileUfc.length === 0));
   const matchedMeetings = new Set(baseReconciliation.matches.map(match => match.meeting));
   const canonicalMeetings = meetings.filter(meeting => meeting.source === 'UFC.com' || ['ufc', 'tuf'].includes(meeting.competitionClass) || matchedMeetings.has(meeting));
