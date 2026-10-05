@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-10-05T17:23:18.048Z",
-  "builtAt": "2026-10-05T17:23:50.035Z",
+  "builtAt": "2026-10-05T22:44:57.665Z",
   "mirrorThrough": "2026-10-03",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -2239,7 +2239,11 @@
       "recordOutsideUfc": "3-1-0",
       "rank": 3,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/PEREIRA_ALEX_L.png?itok=AMZ6OfEA",
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "checkedAt": "2026-10-05T17:23:20.698Z",
       "ufcStatsId": "e5549c82bfb5582d",
       "sourceUrl": "https://ufcstats.com/fighter-details/e5549c82bfb5582d",
@@ -8675,7 +8679,11 @@
       "recordOutsideUfc": "3-0-0",
       "rank": 14,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/NICKAL_BO_L_06-14.png?itok=h1bBmnmS",
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "checkedAt": "2026-10-05T17:23:21.004Z",
       "ufcStatsId": "35673bf5204524ee",
       "sourceUrl": "https://ufcstats.com/fighter-details/35673bf5204524ee",
@@ -12834,7 +12842,11 @@
       "recordOutsideUfc": "14-0-0",
       "rank": 3,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/OLIVEIRA_CHARLES_L_BMFMOCK.png?itok=Up-QPLgQ",
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "checkedAt": "2026-10-05T17:23:21.234Z",
       "ufcStatsId": "07225ba28ae309b6",
       "sourceUrl": "https://ufcstats.com/fighter-details/07225ba28ae309b6",
@@ -20300,7 +20312,11 @@
       "recordOutsideUfc": "20-5-0",
       "rank": 2,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/LOPES_DIEGO_L_06-14.png?itok=UQIuHbZC",
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "checkedAt": "2026-10-05T17:23:21.557Z",
       "ufcStatsId": "f166e93d04a8c274",
       "sourceUrl": "https://ufcstats.com/fighter-details/f166e93d04a8c274",
@@ -36415,7 +36431,11 @@
       "recordOutsideUfc": "9-2-0",
       "rank": 6,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-06/PYFER_JOE_L_06-29.png?itok=sM3GEwSu",
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "checkedAt": "2026-10-05T17:23:22.348Z",
       "ufcStatsId": "c1085e1701b13eca",
       "sourceUrl": "https://ufcstats.com/fighter-details/c1085e1701b13eca",
@@ -70383,7 +70403,11 @@
       "recordOutsideUfc": "12-0-0",
       "rank": 3,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/PAVLOVICH_SERGEI_L_05-30.png?itok=4VRfER2s",
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "checkedAt": "2026-10-05T17:23:24.228Z",
       "ufcStatsId": "f14cf73e51b29254",
       "sourceUrl": "https://ufcstats.com/fighter-details/f14cf73e51b29254",
