@@ -28,7 +28,22 @@ function opponentMatch(profile, meeting) {
  */
 export function reconcileProfileHistory(profileEntries = [], meetings = [], options = {}) {
   const nearbyDays = Number(options.nearbyDays ?? 2);
-  const profiles = profileEntries.filter(entry => entry?.date);
+
+  // UFC athlete biographies can render the same bout more than once. Collapse only claims
+  // that identify the same date/result/opponent (or, when no opponent ID is available, the
+  // exact same normalized prose). This preserves legitimate tournament-era same-day fights.
+  const seenProfiles = new Set();
+  const profiles = profileEntries.filter(entry => {
+    if (!entry?.date) return false;
+    const opponentIds = [...new Set(Array.isArray(entry.opponentIds) ? entry.opponentIds.filter(Boolean) : [])].sort();
+    const identity = opponentIds.length
+      ? `opponents:${opponentIds.join('|')}`
+      : `text:${key(entry.text || '')}`;
+    const signature = `${entry.date}|${entry.result || '?'}|${identity}`;
+    if (seenProfiles.has(signature)) return false;
+    seenProfiles.add(signature);
+    return true;
+  });
   const unused = new Set(meetings.map((_, index) => index));
   const matches = [];
   const missing = [];
