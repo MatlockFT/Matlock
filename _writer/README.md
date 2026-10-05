@@ -19,6 +19,7 @@ Current source order:
 03-publishing.js
 04-editor-tools.js
 05-media.js
+06-media-library.js
 06-bootstrap.js
 ```
 
@@ -30,6 +31,7 @@ Responsibilities:
 - **publishing** — publish validation, conflict detection, save/publish/schedule lifecycle, live URLs.
 - **editor-tools** — cursor insertion, link/embed helpers, toolbar/tool routing.
 - **media** — inline image/video markup, GitHub Release video upload, image optimization/upload.
+- **media library** — visual upload inventory, article reference matching, orphan detection, preview and deletion.
 - **bootstrap** — history/export helpers, event binding, drag/drop, shortcuts, initialization.
 
 Do not edit `assets/writer.js` directly. CI runs `npm run check:frontend` and fails if the public bundle does not match these source fragments.
