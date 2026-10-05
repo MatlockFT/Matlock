@@ -38,6 +38,7 @@ const rawBundles = [
             '_writer/03-publishing.js',
             '_writer/04-editor-tools.js',
             '_writer/05-media.js',
+            '_writer/06-media-library.js',
             '_writer/06-bootstrap.js'
         ]
     }
