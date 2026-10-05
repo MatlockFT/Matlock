@@ -179,7 +179,8 @@
     mediaLibraryLoading = true;
     mediaLibraryList.innerHTML = '<div class="writer-library-empty">Scanning images, videos and article references…</div>';
     try {
-      await hydrateLibrary();
+      if (!libraryEntries.length) await loadLibrary({ hydrate: true });
+      else await hydrateLibrary();
       const data = await mediaBridgeFetch('/api/writer/article-media-library');
       mediaLibraryEntries = Array.isArray(data.assets) ? data.assets : [];
       mediaLibraryLoaded = true;
