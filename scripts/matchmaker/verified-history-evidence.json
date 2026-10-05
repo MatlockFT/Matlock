@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Audited evidence that persists across source refreshes. supplementalMeetings contains source-native UFCStats fights omitted by the primary mirror. profileContradictions records UFC.com biography claims that were observed and then disproved by structured fight evidence. Neither class may overwrite structured history without explicit source evidence.",
+  "note": "Audited evidence that persists across source refreshes. supplementalMeetings may either supply source-native UFCStats fights omitted by the primary mirror or attach verified UFCStats fighter IDs to an existing name-only mirror row. profileContradictions records UFC.com biography claims that were observed and then disproved by structured fight evidence. Evidence may enrich identity/provenance but may not silently overwrite conflicting structured results.",
   "supplementalMeetings": [
     {
       "fightStatsId": "58a314edcfe1d23a",
@@ -43,7 +43,29 @@
       "source": "UFCStats",
       "sourceUrl": "https://ufcstats.com/fight-details/bed89a91da9d04c1",
       "archiveUrl": null,
-      "reason": "The source-native UFCStats bout was previously canonicalized but is currently absent from the primary mirror join, causing Raul Rosas Jr.'s verified history to lose his March 7, 2026 win over Rob Font."
+      "reason": "The primary mirror contains this fight as a name-only row. Persist the source-native UFCStats fighter IDs so history reconciliation stays stable even when a mirrored row cannot carry fighter identity metadata."
+    },
+    {
+      "fightStatsId": "041f9b7dd3542fa6",
+      "date": "2026-10-03",
+      "event": "UFC 332: Silva vs. Wang",
+      "competitionClass": "ufc",
+      "aStatsId": "c0ac37a4a1133da9",
+      "aName": "Marcus McGhee",
+      "aResult": "W",
+      "bStatsId": "4419acb81e6f0ea4",
+      "bName": "Anthony Romero",
+      "bResult": "L",
+      "weightClass": "Featherweight Bout",
+      "method": "KO/TKO",
+      "round": 1,
+      "time": "4:58",
+      "referee": "Tyler Tomlinson",
+      "details": "Punches to Head On Ground",
+      "source": "UFCStats",
+      "sourceUrl": "https://ufcstats.com/fight-details/041f9b7dd3542fa6",
+      "archiveUrl": null,
+      "reason": "UFCStats has two fighters named Anthony Romero. This audited source-native identity link assigns the UFC 332 bout to Anthony Romero 'The Bully' (4419acb81e6f0ea4) and prevents same-name identity collisions."
     }
   ],
   "profileContradictions": [
