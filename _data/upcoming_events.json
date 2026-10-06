@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-06T08:54:49.136Z",
+  "generated_at": "2026-10-06T15:53:56.860Z",
   "events": [
     {
       "id": "dwcs-season-10-week-9-2026-10-06",
@@ -81,7 +81,7 @@
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1755138057roquejunior.png",
                   "image_source": "sherdog",
                   "image_framing": "safe",
-                  "moneyline": "+102"
+                  "moneyline": "-104"
                 },
                 {
                   "name": "Alexander Chavez",
@@ -89,7 +89,7 @@
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1769462541alexanderchavez.jpeg",
                   "image_source": "sherdog",
                   "image_framing": "safe",
-                  "moneyline": "-120"
+                  "moneyline": "-112"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -106,7 +106,7 @@
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20240922055057_Alivia_Bierley.JPG",
                   "image_source": "sherdog",
                   "image_framing": "safe",
-                  "moneyline": "+168"
+                  "moneyline": "+154"
                 },
                 {
                   "name": "Summer Onley",
@@ -114,7 +114,7 @@
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1724164164onley.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe",
-                  "moneyline": "-200"
+                  "moneyline": "-184"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -280,31 +280,6 @@
             {
               "order": 5,
               "label": "",
-              "weight_class": "Light Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Julius Walker",
-                  "initials": "JW",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/WALKER_JULIUS_L_08-09.png?itok=U6ZUMaBd",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-295"
-                },
-                {
-                  "name": "Gerald Meerschaert",
-                  "initials": "GM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/MEERSCHAERT_GERALD_L_08-16.png?itok=ZSkiqY23",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+220"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 6,
-              "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
                 {
@@ -334,6 +309,31 @@
           "title": "Prelims",
           "time": "5:00 PM ET",
           "bouts": [
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Julius Walker",
+                  "initials": "JW",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/WALKER_JULIUS_L_08-09.png?itok=U6ZUMaBd",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-295"
+                },
+                {
+                  "name": "Gerald Meerschaert",
+                  "initials": "GM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/MEERSCHAERT_GERALD_L_08-16.png?itok=ZSkiqY23",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+220"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
             {
               "order": 7,
               "label": "",
@@ -845,7 +845,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/VOLKANOVSKI_ALEXANDER_L_BELT_01-31.png?itok=hfZR81xh",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-113"
+                  "moneyline": "-105"
                 },
                 {
                   "name": "Movsar Evloev",
@@ -853,7 +853,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/EVLOEV_MOVSAR_L_03-21.png?itok=X2qAuG7T",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-113"
+                  "moneyline": "-115"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -2558,7 +2558,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/PAVLOVICH_SERGEI_L_05-30.png?itok=4VRfER2s",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-140"
+                  "moneyline": "-170"
                 },
                 {
                   "name": "Alex Pereira",
@@ -2566,7 +2566,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/PEREIRA_ALEX_L.png?itok=AMZ6OfEA",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+110"
+                  "moneyline": "+135"
                 }
               ],
               "odds_source": "BestFightOdds",
