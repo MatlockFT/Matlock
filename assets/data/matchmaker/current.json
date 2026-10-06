@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-05T21:55:45.716Z"
+      "checkedAt": "2026-10-06T02:08:56.017Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-05T21:56:08.373Z",
+      "checkedAt": "2026-10-06T02:09:18.255Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -7185,9 +7185,11 @@
         "officialThrough": "2026-10-03"
       },
       "booking": {
-        "event": "UFC 335",
+        "event": "Oliveira vs Lopes",
         "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335"
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Sergei Pavlovich",
+        "opponentId": "sergei-pavlovich"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -35244,9 +35246,11 @@
         "officialThrough": "2026-10-03"
       },
       "booking": {
-        "event": "UFC 335",
+        "event": "Oliveira vs Lopes",
         "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335"
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Joe Pyfer",
+        "opponentId": "joe-pyfer"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -55041,9 +55045,11 @@
         "officialThrough": "2026-10-03"
       },
       "booking": {
-        "event": "UFC 335",
+        "event": "Oliveira vs Lopes",
         "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335"
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Diego Lopes",
+        "opponentId": "diego-lopes"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -87923,9 +87929,11 @@
         "officialThrough": "2026-10-03"
       },
       "booking": {
-        "event": "UFC 335",
+        "event": "Oliveira vs Lopes",
         "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335"
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Charles Oliveira",
+        "opponentId": "charles-oliveira"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -156012,9 +156020,11 @@
         "officialThrough": "2026-10-03"
       },
       "booking": {
-        "event": "UFC 335",
+        "event": "Oliveira vs Lopes",
         "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335"
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Bo Nickal",
+        "opponentId": "bo-nickal"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -294209,9 +294219,11 @@
         "officialThrough": "2026-10-03"
       },
       "booking": {
-        "event": "UFC 335",
+        "event": "Oliveira vs Lopes",
         "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335"
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Alex Pereira",
+        "opponentId": "alex-pereira"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
