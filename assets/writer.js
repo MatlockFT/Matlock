@@ -358,6 +358,10 @@
   }
 
   function fullMarkdown(publishedValue = currentPublished, options = {}) {
+    // The preview is the layout authority for Writer media. Flush any visual
+    // resize/wrap changes into the Markdown source immediately before export/save
+    // so the published article cannot fall back to an older media layout.
+    flushPreviewMediaLayoutsToSource();
     const body = normalizeMarkdownDividers(bodyEditor.value).replace(/^\s+/, '');
     return `---\n${buildFrontmatter(publishedValue, options)}\n---\n\n${expandHtmlBlocks(body)}`;
   }
@@ -1119,9 +1123,22 @@
   }
 
   function mediaSourceBlockForFigure(figure) {
+    const blocks = sourceMediaBlocks();
+    const mediaId = String(figure?.dataset.writerMediaId || '').trim();
+
+    // Prefer the stable media id. Index matching is fragile when preview-only
+    // nodes or recovered embeds change the DOM order.
+    if (mediaId) {
+      const byId = blocks.find(block => {
+        const opening = block[0].match(/^<figure\b[^>]*>/i)?.[0] || '';
+        const sourceId = opening.match(/\bdata-writer-media-id=["']([^"']+)["']/i)?.[1] || '';
+        return sourceId === mediaId;
+      });
+      if (byId) return byId;
+    }
+
     const previewFigures = [...previewContent.querySelectorAll('figure.article-inline-image, figure.article-inline-video')];
     const index = previewFigures.indexOf(figure);
-    const blocks = sourceMediaBlocks();
     return index >= 0 ? (blocks[index] || null) : null;
   }
 
@@ -1223,6 +1240,30 @@
     bodyEditor.value = bodyEditor.value.slice(0, blockMatch.index) + replacementBlock + bodyEditor.value.slice(blockMatch.index + blockMatch[0].length);
     bodyEditor.dispatchEvent(new Event('input', { bubbles:true }));
     return true;
+  }
+
+  function flushPreviewMediaLayoutsToSource() {
+    if (!previewContent || !bodyEditor) return false;
+    const figures = [...previewContent.querySelectorAll('figure.article-inline-image, figure.article-inline-video')];
+    if (!figures.length) return false;
+
+    let changed = false;
+    for (const figure of figures) {
+      if (!ensurePreviewMediaIdentity(figure)) continue;
+      const blockMatch = mediaSourceBlockForFigure(figure);
+      if (!blockMatch) continue;
+
+      const opening = blockMatch[0].match(/^<figure\b[^>]*>/i)?.[0] || '';
+      if (!opening) continue;
+
+      const replacementOpening = rewriteMediaOpeningTag(opening, figure);
+      if (!replacementOpening || replacementOpening === opening) continue;
+
+      const replacementBlock = blockMatch[0].replace(opening, replacementOpening);
+      bodyEditor.value = bodyEditor.value.slice(0, blockMatch.index) + replacementBlock + bodyEditor.value.slice(blockMatch.index + blockMatch[0].length);
+      changed = true;
+    }
+    return changed;
   }
 
   function snappedMediaWidth(value, flow) {
