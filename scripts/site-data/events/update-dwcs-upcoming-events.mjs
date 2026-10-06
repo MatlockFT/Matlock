@@ -1,3 +1,4 @@
+import { readFile, writeFile } from 'node:fs/promises';
 import { dateLabel, eventIsCurrent, fighter, loadData, loadPortraitCache, mergePromotion, portraitFor, updatedLabel } from './upcoming-events-data.mjs';
 
 const SHERDOG = 'https://www.sherdog.com';
@@ -6,6 +7,13 @@ const UFC_DWCS = 'https://www.ufc.com/dwcs';
 const UA = 'Mozilla/5.0 (compatible; MMAMatlockDWCSUpdater/1.1; +https://mmamatlock.com/)';
 const SEASON = 10;
 const FIRST_DATE = new Date('2026-08-11T12:00:00Z');
+const BEST_FIGHT_ODDS = 'https://www.bestfightodds.com/';
+const LIVE_ODDS_PATH = 'assets/live-ufc-odds.json';
+const BFO_PROVIDER_NAMES = new Map([
+  [21,'FanDuel'],[22,'DraftKings'],[23,'BetMGM'],[24,'Caesars'],[25,'BetRivers'],
+  [20,'BetWay'],[26,'Unibet'],[29,'Kalshi'],[28,'Polymarket']
+]);
+const BFO_PROVIDER_PRIORITY = [21,22,23,24,25,20,26,29,28];
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const decode = (s = '') => s
@@ -42,6 +50,157 @@ async function get(url) {
     if (attempt < 3) await sleep(700 * attempt);
   }
   throw lastError;
+}
+
+
+function formatOdds(value) {
+  const raw = String(value || '').trim();
+  if (/^even$/i.test(raw)) return 'EVEN';
+  const number = Number(raw.replace(/^\+/, ''));
+  if (!Number.isFinite(number) || number === 0) return '';
+  return number > 0 ? '+' + Math.round(number) : String(Math.round(number));
+}
+
+function normalizeOddsName(value) {
+  const normalized = String(value || '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().replace(/\b(jr|sr|ii|iii|iv)\b/g, ' ')
+    .replace(/[^a-z0-9]+/g, ' ').replace(/\s+/g, ' ').trim();
+
+  const aliases = new Map([
+    ['salhahuddin everett', 'sal everett'],
+    ['sal everett', 'sal everett'],
+    ['ozzie martin', 'ozzy martin'],
+    ['ozzy martin', 'ozzy martin'],
+    ['roque conceicao moreira junior', 'roque conceicao'],
+    ['roque conceicao moreira jr', 'roque conceicao'],
+    ['roque conceicao', 'roque conceicao']
+  ]);
+  return aliases.get(normalized) || normalized;
+}
+
+function parseBestFightOddsMarkets(html) {
+  const markets = new Map();
+  for (const rowMatch of String(html || '').matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+    const row = rowMatch[1];
+    const fighterMatch = row.match(/<a\b[^>]*href=["']\/fighters\/[^"']+["'][^>]*>[\s\S]*?<span\b[^>]*class=["'][^"']*\bt-b-fcc\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/i);
+    const fighterName = text(fighterMatch?.[1] || '');
+    if (!fighterName) continue;
+    const cells = [...row.matchAll(/<td\b[^>]*data-li=["']\[(\d+),([12]),(\d+)\]["'][^>]*>([\s\S]*?)<\/td>/gi)];
+    for (const cell of cells) {
+      const providerId = Number(cell[1]);
+      const side = Number(cell[2]);
+      const matchupId = String(cell[3]);
+      const moneyline = formatOdds(text(cell[4]).match(/(?:[+-]\d{2,5}|EVEN)/i)?.[0] || '');
+      if (!moneyline) continue;
+      if (!markets.has(matchupId)) markets.set(matchupId, { fighters:{}, prices:new Map() });
+      const market = markets.get(matchupId);
+      market.fighters[side] = fighterName;
+      if (!market.prices.has(providerId)) market.prices.set(providerId, {});
+      market.prices.get(providerId)[side] = moneyline;
+    }
+  }
+
+  return [...markets.entries()].map(([matchupId, market]) => {
+    if (!market.fighters[1] || !market.fighters[2]) return null;
+    for (const providerId of BFO_PROVIDER_PRIORITY) {
+      const prices = market.prices.get(providerId);
+      if (!prices?.[1] || !prices?.[2]) continue;
+      return {
+        matchupId,
+        provider:BFO_PROVIDER_NAMES.get(providerId) || 'BestFightOdds',
+        fighters:[
+          { name:market.fighters[1], moneyline:prices[1] },
+          { name:market.fighters[2], moneyline:prices[2] }
+        ]
+      };
+    }
+    return null;
+  }).filter(Boolean);
+}
+
+function bestFightOddsPair(markets, fighterA, fighterB) {
+  const a = normalizeOddsName(fighterA);
+  const b = normalizeOddsName(fighterB);
+  for (const market of markets) {
+    const first = market.fighters?.[0];
+    const second = market.fighters?.[1];
+    if (!first || !second) continue;
+    const one = normalizeOddsName(first.name);
+    const two = normalizeOddsName(second.name);
+    if (one === a && two === b) return { a:first.moneyline, b:second.moneyline, provider:market.provider };
+    if (one === b && two === a) return { a:second.moneyline, b:first.moneyline, provider:market.provider };
+  }
+  return null;
+}
+
+async function enrichDwcsOdds(event) {
+  let html;
+  try {
+    html = await get(BEST_FIGHT_ODDS);
+  } catch (error) {
+    console.warn('DWCS BestFightOdds unavailable: ' + error.message);
+    return 0;
+  }
+
+  const markets = parseBestFightOddsMarkets(html);
+  let filled = 0;
+  for (const section of event.sections || []) {
+    for (const bout of section.bouts || []) {
+      const left = bout.fighters?.[0];
+      const right = bout.fighters?.[1];
+      if (!left?.name || !right?.name) continue;
+      const pair = bestFightOddsPair(markets, left.name, right.name);
+      if (!pair) continue;
+      left.moneyline = pair.a;
+      right.moneyline = pair.b;
+      bout.odds_source = 'BestFightOdds';
+      bout.odds_provider = pair.provider;
+      filled += 1;
+    }
+  }
+  console.log(`BestFightOdds supplied current lines for ${filled} DWCS fight(s).`);
+  return filled;
+}
+
+async function publishDwcsOdds(event) {
+  const fights = (event.sections || []).flatMap(section => (section.bouts || []).map(bout => ({
+    source:bout.odds_source || 'BestFightOdds',
+    provider:bout.odds_provider || 'BestFightOdds',
+    fighters:(bout.fighters || []).map(row => ({ name:row.name, moneyline:row.moneyline || '' }))
+  }))).filter(fight =>
+    fight.fighters.length === 2 &&
+    fight.fighters[0].moneyline &&
+    fight.fighters[1].moneyline
+  );
+
+  if (!fights.length) {
+    console.warn('DWCS live odds feed: no complete markets to publish.');
+    return;
+  }
+
+  let previousFeed = { events:[] };
+  try { previousFeed = JSON.parse(await readFile(LIVE_ODDS_PATH, 'utf8')); } catch {}
+
+  const today = new Date().toISOString().slice(0, 10);
+  const retained = (Array.isArray(previousFeed?.events) ? previousFeed.events : [])
+    .filter(item => String(item?.date || '') >= today && item?.id !== event.id);
+
+  retained.push({
+    id:event.id,
+    date:event.date,
+    official_url:event.official_url,
+    fights
+  });
+  retained.sort((a, b) => String(a.date).localeCompare(String(b.date)));
+
+  await writeFile(LIVE_ODDS_PATH, JSON.stringify({
+    generated_at:new Date().toISOString(),
+    source:'UFC.com + BestFightOdds',
+    events:retained
+  }, null, 2) + '\n');
+
+  console.log(`Published live DWCS odds for ${fights.length} fight(s).`);
 }
 
 function dateForWeek(week) {
@@ -209,4 +368,6 @@ const event = {
   sections: [{ kind: 'main', title: 'Fight Card', time: '8:00 PM ET', bouts }]
 };
 
+await enrichDwcsOdds(event);
+await publishDwcsOdds(event);
 await mergePromotion('dwcs', [event], { maxEventDrop: 0, maxBoutDrop: 2 });
