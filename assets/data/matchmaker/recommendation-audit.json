@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-10-05T17:23:18.048Z",
+  "generatedAt": "2026-10-06T18:35:51.109Z",
   "engineVersion": 2,
   "subjects": 258,
-  "publishedRecommendations": 710,
+  "publishedRecommendations": 707,
   "recommendationSlots": {
     "0": 19,
-    "1": 2,
-    "2": 3,
-    "3": 234
+    "1": 3,
+    "2": 4,
+    "3": 232
   },
   "caseCounts": {
-    "rebound-pairing": 300,
-    "rising-vs-rising": 219,
-    "step-up-vs-rebound": 76,
+    "rebound-pairing": 299,
+    "rising-vs-rising": 215,
+    "step-up-vs-rebound": 74,
     "ranking-opportunity": 44,
-    "rankings-progression": 39,
-    "divisional-sorting": 17,
-    "title-case": 8,
-    "prospect-test": 5,
-    "title-eliminator": 2
+    "rankings-progression": 41,
+    "divisional-sorting": 18,
+    "title-case": 7,
+    "prospect-test": 6,
+    "title-eliminator": 3
   },
   "confidenceCounts": {
-    "high": 657,
-    "medium": 32,
-    "low": 21
+    "high": 648,
+    "medium": 35,
+    "low": 24
   },
   "averageRecentOpponentLinkCoverage": 0.9043,
-  "sameCardRecommendations": 44,
-  "sameCardRecommendationRatio": 0.062,
-  "asymmetricTopThreeRecommendations": 233,
-  "asymmetricTopThreeRatio": 0.3282,
-  "publicPublishedRecommendations": 690,
+  "sameCardRecommendations": 45,
+  "sameCardRecommendationRatio": 0.0636,
+  "asymmetricTopThreeRecommendations": 234,
+  "asymmetricTopThreeRatio": 0.331,
+  "publicPublishedRecommendations": 683,
   "publicAsymmetricTopThreeRecommendations": 177,
-  "publicAsymmetricTopThreeRatio": 0.2565,
-  "engineGenericDivisionalSortingRecommendations": 17,
+  "publicAsymmetricTopThreeRatio": 0.2592,
+  "engineGenericDivisionalSortingRecommendations": 18,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -41,7 +41,7 @@
     "title": "UFC 332: Silva vs Wang",
     "date": "2026-10-03",
     "subjects": 28,
-    "publicRecommendations": 83,
+    "publicRecommendations": 81,
     "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
@@ -50,7 +50,7 @@
       "title": "UFC 332: Silva vs Wang",
       "date": "2026-10-03",
       "subjects": 28,
-      "publicRecommendations": 83,
+      "publicRecommendations": 81,
       "noClearMatchupSubjects": 0
     },
     {
@@ -66,7 +66,7 @@
       "title": "Crypto.com UFC 331: Van vs Pantoja 2",
       "date": "2026-09-19",
       "subjects": 24,
-      "publicRecommendations": 69,
+      "publicRecommendations": 68,
       "noClearMatchupSubjects": 0
     },
     {
@@ -74,7 +74,7 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 67,
+      "publicRecommendations": 65,
       "noClearMatchupSubjects": 1
     },
     {
@@ -82,7 +82,7 @@
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 73,
+      "publicRecommendations": 72,
       "noClearMatchupSubjects": 2
     },
     {
@@ -98,7 +98,7 @@
       "title": "UFC Fight Night: Hernandez vs Rodrigues",
       "date": "2026-08-22",
       "subjects": 26,
-      "publicRecommendations": 70,
+      "publicRecommendations": 69,
       "noClearMatchupSubjects": 2
     },
     {
@@ -128,11 +128,11 @@
   ],
   "genericExamples": [
     {
-      "event": "UFC 332: Silva vs Wang",
-      "fighter": "Natalia Silva",
-      "opponent": "Maycee Barber",
-      "score": 54,
-      "rationale": "Natalia Silva and Maycee Barber occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Raoni Barcelos",
+      "opponent": "Bryce Mitchell",
+      "score": 92,
+      "rationale": "Raoni Barcelos and Bryce Mitchell occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
@@ -145,21 +145,21 @@
       "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
       "fighter": "Ailin Perez",
       "opponent": "Jacqueline Cavalcanti",
-      "score": 49,
+      "score": 53,
       "rationale": "Ailin Perez and Jacqueline Cavalcanti occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Joseph Morales",
       "opponent": "Jose Ochoa",
-      "score": 90,
+      "score": 91,
       "rationale": "Joseph Morales and Jose Ochoa occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Alexa Grasso",
       "opponent": "Wang Cong",
-      "score": 48,
+      "score": 49,
       "rationale": "Alexa Grasso and Wang Cong occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
@@ -173,7 +173,7 @@
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Curtis Blaydes",
       "opponent": "Jon Jones",
-      "score": 54,
+      "score": 55,
       "rationale": "Curtis Blaydes and Jon Jones occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
@@ -206,17 +206,17 @@
     },
     {
       "event": "UFC Fight Night: Hooker vs Parnasse",
-      "fighter": "Klaudia Sygula",
-      "opponent": "Michelle Montague",
-      "score": 40,
-      "rationale": "Klaudia Sygula and Michelle Montague occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "fighter": "Nora Cornolle",
+      "opponent": "Miesha Tate",
+      "score": 57,
+      "rationale": "Nora Cornolle and Miesha Tate occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Hooker vs Parnasse",
       "fighter": "Klaudia Sygula",
-      "opponent": "Miesha Tate",
-      "score": 38,
-      "rationale": "Klaudia Sygula and Miesha Tate occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "opponent": "Michelle Montague",
+      "score": 40,
+      "rationale": "Klaudia Sygula and Michelle Montague occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Hooker vs Parnasse",
@@ -229,7 +229,7 @@
       "event": "UFC Fight Night: Nurmagomedov vs Song",
       "fighter": "Song Yadong",
       "opponent": "Aiemann Zahabi",
-      "score": 67,
+      "score": 55,
       "rationale": "Song Yadong and Aiemann Zahabi occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
@@ -238,6 +238,13 @@
       "opponent": "Alibi Idiris",
       "score": 92,
       "rationale": "Kevin Borjas and Alibi Idiris occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Hernandez vs Rodrigues",
+      "fighter": "Anthony Hernandez",
+      "opponent": "Nassourdine Imavov",
+      "score": 62,
+      "rationale": "Anthony Hernandez and Nassourdine Imavov occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC 330: Makhachev vs Machado Garry",
@@ -251,34 +258,9 @@
   "asymmetricExamples": [
     {
       "event": "UFC 332: Silva vs Wang",
-      "fighter": "Natalia Silva",
-      "opponent": "Maycee Barber",
-      "pairScore": 54,
-      "case": "divisional-sorting",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Casey Oneill",
-          "score": 89,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Rose Namajunas",
-          "score": 88,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Wang Cong",
-          "score": 85,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC 332: Silva vs Wang",
       "fighter": "Wang Cong",
       "opponent": "Miranda Maverick",
-      "pairScore": 78,
+      "pairScore": 77,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
@@ -293,54 +275,54 @@
           "case": "ranking-opportunity"
         },
         {
-          "opponent": "Tracy Cortez",
+          "opponent": "Regina Malpica Rivera",
           "score": 85,
-          "case": "rebound-pairing"
+          "case": "step-up-vs-rebound"
         }
       ]
     },
     {
       "event": "UFC 332: Silva vs Wang",
       "fighter": "Deiveson Figueiredo",
-      "opponent": "David Martinez",
-      "pairScore": 77,
-      "case": "step-up-vs-rebound",
+      "opponent": "Kai Asakura",
+      "pairScore": 81,
+      "case": "ranking-opportunity",
       "fighterRank": "Best match",
       "opponentTopThree": [
         {
-          "opponent": "Umar Nurmagomedov",
-          "score": 81,
-          "case": "step-up-vs-rebound"
+          "opponent": "Jean Matsumoto",
+          "score": 91,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Raul Rosas Jr.",
-          "score": 81,
-          "case": "rankings-progression"
+          "opponent": "Raoni Barcelos",
+          "score": 86,
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Aiemann Zahabi",
-          "score": 80,
-          "case": "step-up-vs-rebound"
+          "opponent": "Victor Henry",
+          "score": 86,
+          "case": "rising-vs-rising"
         }
       ]
     },
     {
       "event": "UFC 332: Silva vs Wang",
       "fighter": "Deiveson Figueiredo",
-      "opponent": "Raul Rosas Jr.",
-      "pairScore": 79,
-      "case": "step-up-vs-rebound",
+      "opponent": "Bryce Mitchell",
+      "pairScore": 80,
+      "case": "ranking-opportunity",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Payton Talbott",
-          "score": 89,
-          "case": "rankings-progression"
+          "opponent": "Montel Jackson",
+          "score": 93,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Aiemann Zahabi",
-          "score": 86,
-          "case": "step-up-vs-rebound"
+          "opponent": "Raoni Barcelos",
+          "score": 92,
+          "case": "divisional-sorting"
         },
         {
           "opponent": "Farid Basharat",
@@ -352,25 +334,25 @@
     {
       "event": "UFC 332: Silva vs Wang",
       "fighter": "Deiveson Figueiredo",
-      "opponent": "Aiemann Zahabi",
-      "pairScore": 76,
-      "case": "rebound-pairing",
+      "opponent": "Brady Hiestand",
+      "pairScore": 77,
+      "case": "ranking-opportunity",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Cory Sandhagen",
-          "score": 89,
-          "case": "rebound-pairing"
+          "opponent": "Farid Basharat",
+          "score": 85,
+          "case": "rankings-progression"
         },
         {
-          "opponent": "Payton Talbott",
-          "score": 88,
-          "case": "step-up-vs-rebound"
+          "opponent": "Heili Alateng",
+          "score": 85,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Mario Bautista",
-          "score": 86,
-          "case": "step-up-vs-rebound"
+          "opponent": "Bryce Mitchell",
+          "score": 85,
+          "case": "rising-vs-rising"
         }
       ]
     },
@@ -418,7 +400,7 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Mike Davis",
+          "opponent": "Matt Frevola",
           "score": 92,
           "case": "rebound-pairing"
         }
@@ -580,7 +562,7 @@
       "opponent": "Ismail Naurdiev",
       "pairScore": 89,
       "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
+      "fighterRank": "Best match",
       "opponentTopThree": [
         {
           "opponent": "Rodolfo Vieira",
@@ -602,23 +584,23 @@
     {
       "event": "UFC 332: Silva vs Wang",
       "fighter": "Roman Kopylov",
-      "opponent": "Shara Magomedov",
+      "opponent": "Tresean Gore",
       "pairScore": 89,
-      "case": "rankings-progression",
+      "case": "rising-vs-rising",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Bo Nickal",
-          "score": 92,
-          "case": "rankings-progression"
-        },
-        {
           "opponent": "Ismail Naurdiev",
-          "score": 90,
-          "case": "rankings-progression"
+          "score": 93,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Tresean Gore",
+          "opponent": "Jacob Malkoun",
+          "score": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Shara Magomedov",
           "score": 90,
           "case": "rankings-progression"
         }
@@ -758,8 +740,8 @@
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Alex Pereira",
-          "score": 90,
+          "opponent": "Serghei Spivac",
+          "score": 93,
           "case": "step-up-vs-rebound"
         },
         {
@@ -795,6 +777,31 @@
         {
           "opponent": "Guilherme Pat",
           "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC 332: Silva vs Wang",
+      "fighter": "Mick Parkin",
+      "opponent": "Thomas Petersen",
+      "pairScore": 81,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Kennedy Nzechukwu",
+          "score": 87,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Ryan Spann",
+          "score": 87,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Marcin Tybura",
+          "score": 86,
           "case": "rebound-pairing"
         }
       ]
