@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T02:10:15.751Z",
+  "generated_at": "2026-10-06T08:53:39.610Z",
   "source": "UFC.com + BestFightOdds",
   "events": [
     {
@@ -12,12 +12,26 @@
           "provider": "FanDuel",
           "fighters": [
             {
+              "name": "Salhahuddin Everett",
+              "moneyline": "-144"
+            },
+            {
+              "name": "Ozzy Martin",
+              "moneyline": "+122"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
               "name": "Preston LaGrange",
-              "moneyline": "+310"
+              "moneyline": "+330"
             },
             {
               "name": "Nell Ariano",
-              "moneyline": "-390"
+              "moneyline": "-420"
             }
           ]
         },
@@ -26,21 +40,7 @@
           "provider": "FanDuel",
           "fighters": [
             {
-              "name": "Ryuho Miyaguchi",
-              "moneyline": "+260"
-            },
-            {
-              "name": "Mateus Soares",
-              "moneyline": "-320"
-            }
-          ]
-        },
-        {
-          "source": "BestFightOdds",
-          "provider": "FanDuel",
-          "fighters": [
-            {
-              "name": "Roque Conceição",
+              "name": "Roque Conceicao Moreira Junior",
               "moneyline": "+102"
             },
             {
@@ -54,12 +54,12 @@
           "provider": "FanDuel",
           "fighters": [
             {
-              "name": "Salhahuddin Everett",
-              "moneyline": "-152"
+              "name": "Alivia Bierley",
+              "moneyline": "+168"
             },
             {
-              "name": "Ozzy Martin",
-              "moneyline": "+128"
+              "name": "Summer Onley",
+              "moneyline": "-200"
             }
           ]
         },
@@ -68,12 +68,12 @@
           "provider": "FanDuel",
           "fighters": [
             {
-              "name": "Alivia Bierley",
-              "moneyline": "+180"
+              "name": "Ryuho Miyaguchi",
+              "moneyline": "+280"
             },
             {
-              "name": "Summer Onley",
-              "moneyline": "-215"
+              "name": "Mateus Soares",
+              "moneyline": "-350"
             }
           ]
         }
