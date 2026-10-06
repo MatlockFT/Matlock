@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-10-05T17:23:18.048Z",
-  "builtAt": "2026-10-05T22:44:57.665Z",
+  "builtAt": "2026-10-06T03:06:40.547Z",
   "mirrorThrough": "2026-10-03",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -2240,9 +2240,11 @@
       "rank": 3,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/PEREIRA_ALEX_L.png?itok=AMZ6OfEA",
       "booking": {
-        "event": "UFC 335",
+        "event": "Oliveira vs Lopes",
         "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335"
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Sergei Pavlovich",
+        "opponentId": "sergei-pavlovich"
       },
       "checkedAt": "2026-10-05T17:23:20.698Z",
       "ufcStatsId": "e5549c82bfb5582d",
@@ -8680,9 +8682,11 @@
       "rank": 14,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/NICKAL_BO_L_06-14.png?itok=h1bBmnmS",
       "booking": {
-        "event": "UFC 335",
+        "event": "Oliveira vs Lopes",
         "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335"
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Joe Pyfer",
+        "opponentId": "joe-pyfer"
       },
       "checkedAt": "2026-10-05T17:23:21.004Z",
       "ufcStatsId": "35673bf5204524ee",
@@ -12843,9 +12847,11 @@
       "rank": 3,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/OLIVEIRA_CHARLES_L_BMFMOCK.png?itok=Up-QPLgQ",
       "booking": {
-        "event": "UFC 335",
+        "event": "Oliveira vs Lopes",
         "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335"
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Diego Lopes",
+        "opponentId": "diego-lopes"
       },
       "checkedAt": "2026-10-05T17:23:21.234Z",
       "ufcStatsId": "07225ba28ae309b6",
@@ -20313,9 +20319,11 @@
       "rank": 2,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/LOPES_DIEGO_L_06-14.png?itok=UQIuHbZC",
       "booking": {
-        "event": "UFC 335",
+        "event": "Oliveira vs Lopes",
         "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335"
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Charles Oliveira",
+        "opponentId": "charles-oliveira"
       },
       "checkedAt": "2026-10-05T17:23:21.557Z",
       "ufcStatsId": "f166e93d04a8c274",
@@ -36432,9 +36440,11 @@
       "rank": 6,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-06/PYFER_JOE_L_06-29.png?itok=sM3GEwSu",
       "booking": {
-        "event": "UFC 335",
+        "event": "Oliveira vs Lopes",
         "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335"
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Bo Nickal",
+        "opponentId": "bo-nickal"
       },
       "checkedAt": "2026-10-05T17:23:22.348Z",
       "ufcStatsId": "c1085e1701b13eca",
@@ -70404,9 +70414,11 @@
       "rank": 3,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/PAVLOVICH_SERGEI_L_05-30.png?itok=4VRfER2s",
       "booking": {
-        "event": "UFC 335",
+        "event": "Oliveira vs Lopes",
         "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335"
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Alex Pereira",
+        "opponentId": "alex-pereira"
       },
       "checkedAt": "2026-10-05T17:23:24.228Z",
       "ufcStatsId": "f14cf73e51b29254",
