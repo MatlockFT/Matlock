@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-05T21:38:08.543Z",
+  "generated_at": "2026-10-06T01:54:30.848Z",
   "events": [
     {
       "id": "dwcs-season-10-week-9-2026-10-06",
@@ -2478,6 +2478,104 @@
                   "moneyline": ""
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-335-2026-12-12-fight-card",
+      "promotion_key": "ufc",
+      "promotion": "UFC 335",
+      "title": "Oliveira vs Lopes",
+      "date": "2026-12-12",
+      "date_label": "Saturday · December 12, 2026",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
+      "official_url": "https://www.ufc.com/event/ufc-335",
+      "updated_label": "October 5, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "9:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Charles Oliveira",
+                  "initials": "CO",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/OLIVEIRA_CHARLES_L_BMFMOCK.png?itok=Up-QPLgQ",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-190"
+                },
+                {
+                  "name": "Diego Lopes",
+                  "initials": "DL",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/LOPES_DIEGO_L_06-14.png?itok=UQIuHbZC",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+145"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Caesars"
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Sergei Pavlovich",
+                  "initials": "SP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/PAVLOVICH_SERGEI_L_05-30.png?itok=4VRfER2s",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-140"
+                },
+                {
+                  "name": "Alex Pereira",
+                  "initials": "AP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/PEREIRA_ALEX_L.png?itok=AMZ6OfEA",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+110"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Caesars"
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Joe Pyfer",
+                  "initials": "JP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-06/PYFER_JOE_L_06-29.png?itok=sM3GEwSu",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-157"
+                },
+                {
+                  "name": "Bo Nickal",
+                  "initials": "BN",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/NICKAL_BO_L_06-14.png?itok=h1bBmnmS",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+125"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "BetRivers"
             }
           ]
         }

@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 9,
+    "major": 10,
     "regional": 86
   },
   "map_totals": {
     "mapped": 87,
-    "quarantined": 8
+    "quarantined": 9
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 87,
     "structured": 0,
-    "unresolved": 8
+    "unresolved": 9
   },
   "mapped_precision": {
     "city": 87
   },
-  "unresolved_count": 8,
+  "unresolved_count": 9,
   "unresolved": [
     {
       "id": "ufc-fight-night-2026-10-10-fight-card",
@@ -81,6 +81,14 @@
       "title": "Procházka vs Stirling",
       "date": "2026-11-21",
       "promotion": "UFC Fight Night",
+      "venue": "Venue TBA",
+      "dataset": "major"
+    },
+    {
+      "id": "ufc-335-2026-12-12-fight-card",
+      "title": "Oliveira vs Lopes",
+      "date": "2026-12-12",
+      "promotion": "UFC 335",
       "venue": "Venue TBA",
       "dataset": "major"
     }
@@ -170,6 +178,17 @@
       "title": "Procházka vs Stirling",
       "date": "2026-11-21",
       "promotion": "UFC Fight Night",
+      "venue": "Venue TBA",
+      "location": "",
+      "country": "",
+      "kind": "major",
+      "reason": "unresolved-us-location"
+    },
+    {
+      "id": "ufc-335-2026-12-12-fight-card",
+      "title": "Oliveira vs Lopes",
+      "date": "2026-12-12",
+      "promotion": "UFC 335",
       "venue": "Venue TBA",
       "location": "",
       "country": "",

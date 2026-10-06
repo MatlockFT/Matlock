@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-04T14:32:50.095Z",
+  "generated_at": "2026-10-06T01:55:37.267Z",
   "changes": [
+    {
+      "id": "2026-10-06T01:55:37.267Z|ufc-335-2026-12-12-fight-card|event_added|1",
+      "at": "2026-10-06T01:55:37.267Z",
+      "type": "event_added",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "UFC 335 Oliveira vs Lopes added to Upcoming Events.",
+      "details": {
+        "bout_count": 3,
+        "venue": "Venue TBA",
+        "date": "2026-12-12"
+      }
+    },
     {
       "id": "2026-10-04T14:32:50.095Z|rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03|event_removed|1",
       "at": "2026-10-04T14:32:50.095Z",
@@ -4682,22 +4697,6 @@
         "fighter": "Zevan Hunt",
         "from_source": "sherdog",
         "to_source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-09-09T17:10:17.917Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|2",
-      "at": "2026-09-09T17:10:17.917Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Buckley vs Malott",
-      "event_date": "2026-10-17",
-      "summary": "Marc-Andre Barriault vs Kyle Daukaus moved on Buckley vs Malott.",
-      "details": {
-        "from_order": 3,
-        "to_order": 5,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
       }
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T14:26:38.410Z",
+  "generated_at": "2026-10-06T01:53:18.160Z",
   "source": "UFC.com + BestFightOdds",
   "events": [
     {
@@ -249,6 +249,55 @@
             {
               "name": "Amanda Nunes",
               "moneyline": "+162"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-335-2026-12-12-fight-card",
+      "date": "2026-12-12",
+      "official_url": "https://www.ufc.com/event/ufc-335",
+      "fights": [
+        {
+          "source": "BestFightOdds",
+          "provider": "Caesars",
+          "fighters": [
+            {
+              "name": "Charles Oliveira",
+              "moneyline": "-190"
+            },
+            {
+              "name": "Diego Lopes",
+              "moneyline": "+145"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "Caesars",
+          "fighters": [
+            {
+              "name": "Sergei Pavlovich",
+              "moneyline": "-140"
+            },
+            {
+              "name": "Alex Pereira",
+              "moneyline": "+110"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "BetRivers",
+          "fighters": [
+            {
+              "name": "Joe Pyfer",
+              "moneyline": "-157"
+            },
+            {
+              "name": "Bo Nickal",
+              "moneyline": "+125"
             }
           ]
         }

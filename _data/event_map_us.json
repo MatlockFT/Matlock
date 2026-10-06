@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "source_major_generated_at": "2026-10-05T21:38:08.543Z",
+  "source_major_generated_at": "2026-10-06T01:54:30.848Z",
   "source_regional_updated_at": null,
-  "major_total": 9,
+  "major_total": 10,
   "major_mapped": 1,
   "regional_total": 86,
   "regional_mapped": 86,
-  "quarantined_count": 8,
+  "quarantined_count": 9,
   "quarantined": [
     {
       "id": "ufc-fight-night-2026-10-10-fight-card",
@@ -90,6 +90,17 @@
       "title": "Procházka vs Stirling",
       "date": "2026-11-21",
       "promotion": "UFC Fight Night",
+      "venue": "Venue TBA",
+      "location": "",
+      "country": "",
+      "kind": "major",
+      "reason": "unresolved-us-location"
+    },
+    {
+      "id": "ufc-335-2026-12-12-fight-card",
+      "title": "Oliveira vs Lopes",
+      "date": "2026-12-12",
+      "promotion": "UFC 335",
       "venue": "Venue TBA",
       "location": "",
       "country": "",
