@@ -3980,3 +3980,6 @@ html[data-theme="dark"] .post-page-v3 .article-toc-floating a.is-active{
     padding:.58rem .62rem .52rem;
   }
 }
+.post-page-v3 .article-picks-status.is-void{color:#b69a56;background:rgba(182,154,86,.11);border:1px solid rgba(182,154,86,.25)}
+.post-page-v3 .article-picks-summary.has-post-fight-results .article-picks-panel a.is-void{border-left:3px solid rgba(182,154,86,.72)}
+
