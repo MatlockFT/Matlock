@@ -1227,6 +1227,110 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     dialog.querySelector('[data-pick-method]').value = config.method || '';
     dialog.querySelector('[data-pick-round]').value = config.round || '';
     dialog.querySelector('[data-pick-note]').value = config.note || '';
+    const officialResult = dialog.querySelector('[data-pick-official-result]');
+    const outcome = dialog.querySelector('[data-pick-outcome]');
+    if (officialResult) officialResult.value = config.officialResult || '';
+    if (outcome) outcome.value = config.outcome || '';
+  }
+
+  function cleanManagedMatchupHeading(value) {
+    return String(value || '')
+      .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+      .replace(/[*_]/g, '')
+      .replace(/\s+#+\s*$/, '')
+      .trim();
+  }
+
+  function collectManagedPickRows() {
+    const rows = [];
+    let matchup = '';
+    String(bodyEditor.value || '').split(/\r?\n/).forEach(line => {
+      const heading = line.match(/^#{2,4}\s+(.+?)\s*$/);
+      if (heading) matchup = cleanManagedMatchupHeading(heading[1]);
+
+      const token = htmlTokenMatch(line);
+      if (!token) return;
+      const id = token[1];
+      const block = htmlBlocks.get(id);
+      const meta = structuredMeta(block?.code);
+      if (!meta || meta.type !== 'pick') return;
+      rows.push({
+        id,
+        matchup: matchup || String(meta.config?.matchup || '').trim() || 'Fight',
+        config: meta.config || {}
+      });
+    });
+    return rows;
+  }
+
+  function renderPicksManager() {
+    const dialog = app.querySelector('[data-picks-manager-dialog]');
+    const list = dialog?.querySelector('[data-picks-manager-list]');
+    const summary = dialog?.querySelector('[data-picks-manager-summary]');
+    if (!dialog || !list || !summary) return [];
+
+    const rows = collectManagedPickRows();
+    const graded = rows.filter(row => ['correct','incorrect'].includes(String(row.config?.outcome || '')));
+    const correct = graded.filter(row => row.config.outcome === 'correct').length;
+    summary.innerHTML = rows.length
+      ? '<strong>' + rows.length + ' picks</strong><span>' + graded.length + ' graded · ' + correct + ' correct</span>'
+      : '<strong>No picks found</strong><span>Add Matlock pick blocks to the article first.</span>';
+
+    list.innerHTML = rows.map((row, index) => {
+      const cfg = row.config || {};
+      const pickDetail = [cfg.method, cfg.round].filter(Boolean).join(' · ');
+      return '<section class="writer-picks-manager-row" data-picks-manager-row="' + escapeHtml(row.id) + '">' +
+        '<div class="writer-picks-manager-row-head"><span>Fight ' + (index + 1) + '</span><strong>' + escapeHtml(row.matchup) + '</strong></div>' +
+        '<div class="writer-picks-manager-pick"><small>Your pick</small><strong>' + escapeHtml(cfg.fighter || '—') + '</strong>' +
+          (pickDetail ? '<span>' + escapeHtml(pickDetail) + '</span>' : '') + '</div>' +
+        '<label class="writer-field writer-picks-manager-result"><span>Official result</span><input type="text" data-picks-manager-result value="' + escapeHtml(cfg.officialResult || '') + '" placeholder="Winner · Method R#"></label>' +
+        '<label class="writer-field writer-picks-manager-status"><span>Status</span><select data-picks-manager-outcome>' +
+          '<option value=""' + (!cfg.outcome ? ' selected' : '') + '>Pending</option>' +
+          '<option value="correct"' + (cfg.outcome === 'correct' ? ' selected' : '') + '>Correct</option>' +
+          '<option value="incorrect"' + (cfg.outcome === 'incorrect' ? ' selected' : '') + '>Incorrect</option>' +
+          '<option value="void"' + (cfg.outcome === 'void' ? ' selected' : '') + '>No contest / void</option>' +
+        '</select></label>' +
+      '</section>';
+    }).join('');
+
+    return rows;
+  }
+
+  function openPicksManager() {
+    const dialog = app.querySelector('[data-picks-manager-dialog]');
+    if (!dialog) return;
+    renderPicksManager();
+    dialog.showModal();
+  }
+
+  function savePicksManager() {
+    const dialog = app.querySelector('[data-picks-manager-dialog]');
+    if (!dialog) return;
+    const rows = collectManagedPickRows();
+    let changed = 0;
+
+    rows.forEach(row => {
+      const editorRow = dialog.querySelector('[data-picks-manager-row="' + CSS.escape(row.id) + '"]');
+      const block = htmlBlocks.get(row.id);
+      if (!editorRow || !block) return;
+      const meta = structuredMeta(block.code);
+      if (!meta || meta.type !== 'pick') return;
+
+      const config = {
+        ...meta.config,
+        officialResult: editorRow.querySelector('[data-picks-manager-result]')?.value.trim() || '',
+        outcome: editorRow.querySelector('[data-picks-manager-outcome]')?.value || ''
+      };
+      block.code = buildPickVisual(config);
+      block.label = 'Pick · ' + (config.fighter || 'Fighter');
+      htmlBlocks.set(row.id, block);
+      changed++;
+    });
+
+    renderHtmlBlockRail();
+    bodyEditor.dispatchEvent(new Event('input', { bubbles:true }));
+    dialog.close();
+    showToast(changed ? 'Picks and results updated.' : 'No picks to update.');
   }
 
   function resetTaleDialog(config = {}) {
@@ -1337,6 +1441,10 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       editingStructuredBlockId = '';
       resetPickDialog();
       app.querySelector('[data-pick-dialog]').showModal();
+      return;
+    }
+    if (type === 'picks-manager') {
+      openPicksManager();
       return;
     }
     const map = {
