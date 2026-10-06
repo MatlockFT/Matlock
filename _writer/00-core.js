@@ -358,6 +358,10 @@
   }
 
   function fullMarkdown(publishedValue = currentPublished, options = {}) {
+    // The preview is the layout authority for Writer media. Flush any visual
+    // resize/wrap changes into the Markdown source immediately before export/save
+    // so the published article cannot fall back to an older media layout.
+    flushPreviewMediaLayoutsToSource();
     const body = normalizeMarkdownDividers(bodyEditor.value).replace(/^\s+/, '');
     return `---\n${buildFrontmatter(publishedValue, options)}\n---\n\n${expandHtmlBlocks(body)}`;
   }
