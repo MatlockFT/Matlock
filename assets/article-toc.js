@@ -168,6 +168,7 @@
         const picksList = picksRoot.querySelector('[data-article-picks-list]');
         const picksHeading = picksRoot.querySelector('.article-picks-heading');
         const pickCards = Array.from(article.querySelectorAll('.article-pick-card')).filter((card) => !card.closest('[data-picks-summary="exclude"]'));
+        const resultsByPick = postFightResults?.picks || {};
 
         const findFightHeading = (card) => {
             const block = card.closest('[data-writer-block="pick"]') || card;
@@ -181,55 +182,111 @@
             return null;
         };
 
+        const readPickConfig = (card) => {
+            const block = card.closest('[data-writer-block="pick"]');
+            const encoded = block?.getAttribute('data-writer-config') || '';
+            if (!encoded) return {};
+            try {
+                return JSON.parse(decodeURIComponent(encoded));
+            } catch (error) {
+                console.warn('Unable to parse pick config.', error);
+                return {};
+            }
+        };
+
         if (picksToggle && picksPanel && picksList && pickCards.length) {
             picksList.replaceChildren();
 
-            const resultsByPick = postFightResults?.picks || {};
-            const hasResults = Boolean(
+            const entries = pickCards.map((card, index) => {
+                const config = readPickConfig(card);
+                const fighter = card.querySelector('.article-pick-card__fighter, .article-pick-card__main strong')?.textContent?.trim() || 'Pick ' + (index + 1);
+                const detailNode = card.querySelector('.article-pick-card__result, .article-pick-card__main span');
+                const detail = detailNode?.textContent?.trim().replace(/\s+/g, ' ') || '';
+                const heading = findFightHeading(card);
+                const matchup = String(config.matchup || '').trim() || heading?.textContent?.trim() || 'Fight ' + (index + 1);
+
+                const configuredOutcome = ['correct','incorrect','void'].includes(String(config.outcome || ''))
+                    ? String(config.outcome)
+                    : '';
+                const configuredResult = String(config.officialResult || '').trim();
+                const legacy = resultsByPick[fighter] || null;
+
+                let result = null;
+                if (configuredOutcome || configuredResult) {
+                    result = {
+                        status: configuredOutcome,
+                        correct: configuredOutcome === 'correct',
+                        result: configuredResult
+                    };
+                } else if (legacy) {
+                    result = {
+                        status: legacy.correct ? 'correct' : 'incorrect',
+                        correct: Boolean(legacy.correct),
+                        result: String(legacy.result || '').trim()
+                    };
+                }
+
+                return { card, fighter, detail, heading, matchup, result };
+            });
+
+            const gradedEntries = entries.filter((entry) => entry.result?.status === 'correct' || entry.result?.status === 'incorrect');
+            const correctCount = gradedEntries.filter((entry) => entry.result.status === 'correct').length;
+            const incorrectCount = gradedEntries.filter((entry) => entry.result.status === 'incorrect').length;
+            const voidCount = entries.filter((entry) => entry.result?.status === 'void').length;
+            const hasConfigResults = entries.some((entry) => entry.result && (entry.result.status || entry.result.result));
+            const hasLegacySummary = Boolean(
                 postFightResults &&
                 postFightResults.record &&
                 postFightResults.percentage &&
                 Object.keys(resultsByPick).length
             );
+            const hasResults = hasConfigResults || hasLegacySummary;
 
             if (hasResults) {
                 picksRoot.classList.add('has-post-fight-results');
 
-                if (picksHeading && !picksHeading.querySelector('.article-picks-heading-meta')) {
+                if (picksHeading) {
+                    picksHeading.querySelector('.article-picks-heading-meta')?.remove();
+
                     const headingMeta = document.createElement('span');
                     headingMeta.className = 'article-picks-heading-meta';
 
                     const kicker = document.createElement('span');
                     kicker.className = 'article-picks-kicker';
-                    kicker.textContent = 'Post-Fight Results';
+                    kicker.textContent = gradedEntries.length < entries.length ? 'Live Results' : 'Post-Fight Results';
 
                     const score = document.createElement('span');
                     score.className = 'article-picks-score';
-                    score.setAttribute(
-                        'aria-label',
-                        postFightResults.correct + ' correct picks out of ' + postFightResults.total
-                    );
 
                     const record = document.createElement('strong');
-                    record.textContent = postFightResults.record;
-
                     const percentage = document.createElement('span');
-                    percentage.textContent = postFightResults.percentage;
+
+                    if (hasConfigResults) {
+                        const decided = correctCount + incorrectCount;
+                        const pct = decided ? Math.round((correctCount / decided) * 100) : 0;
+                        record.textContent = correctCount + '-' + incorrectCount;
+                        percentage.textContent = pct + '% · ' + decided + '/' + entries.length + ' graded' + (voidCount ? ' · ' + voidCount + ' void' : '');
+                        score.setAttribute('aria-label', correctCount + ' correct picks, ' + incorrectCount + ' incorrect picks');
+                    } else {
+                        record.textContent = postFightResults.record;
+                        percentage.textContent = postFightResults.percentage;
+                        score.setAttribute(
+                            'aria-label',
+                            postFightResults.correct + ' correct picks out of ' + postFightResults.total
+                        );
+                    }
 
                     score.append(record, percentage);
                     headingMeta.append(kicker, score);
                     picksHeading.append(headingMeta);
                 }
+            } else {
+                picksRoot.classList.remove('has-post-fight-results');
+                picksHeading?.querySelector('.article-picks-heading-meta')?.remove();
             }
 
-            pickCards.forEach((card, index) => {
-                const fighter = card.querySelector('.article-pick-card__fighter, .article-pick-card__main strong')?.textContent?.trim() || 'Pick ' + (index + 1);
-                const detailNode = card.querySelector('.article-pick-card__result, .article-pick-card__main span');
-                const detail = detailNode?.textContent?.trim().replace(/\s+/g, ' ') || '';
-                const heading = findFightHeading(card);
-                const matchup = heading?.textContent?.trim() || 'Fight ' + (index + 1);
-                const result = resultsByPick[fighter] || null;
-
+            entries.forEach((entry) => {
+                const { fighter, detail, heading, matchup, result } = entry;
                 const item = document.createElement('li');
                 const link = document.createElement('a');
 
@@ -241,12 +298,16 @@
                 matchupLabel.textContent = matchup;
                 itemHead.append(matchupLabel);
 
-                if (result) {
+                if (result?.status) {
                     const status = document.createElement('span');
-                    status.className = 'article-picks-status ' + (result.correct ? 'is-correct' : 'is-incorrect');
-                    status.textContent = result.correct ? 'Correct' : 'Incorrect';
+                    status.className = 'article-picks-status is-' + result.status;
+                    status.textContent = result.status === 'correct'
+                        ? 'Correct'
+                        : result.status === 'incorrect'
+                            ? 'Incorrect'
+                            : 'Void';
                     itemHead.append(status);
-                    link.classList.add(result.correct ? 'is-correct' : 'is-incorrect');
+                    link.classList.add('is-' + result.status);
                 }
 
                 const pickLine = document.createElement('span');
@@ -275,7 +336,7 @@
                 pickLine.append(pickValue);
                 link.append(itemHead, pickLine);
 
-                if (result) {
+                if (result?.result) {
                     const resultLine = document.createElement('span');
                     resultLine.className = 'article-picks-result';
 
