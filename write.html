@@ -272,6 +272,7 @@ page_scripts:
             <button type="button" data-tool="stats" title="Build structured head-to-head fight stats">Stats</button>
             <button type="button" data-tool="tale" title="Build structured Tale of the Tape">Tale of Tape</button>
             <button type="button" data-tool="prediction" title="Insert styled Matlock pick">Pick</button>
+            <button type="button" data-tool="picks-manager" title="Manage all event picks and official results in one place">Picks / Results</button>
             <button type="button" data-tool="html" title="Insert or edit a self-contained HTML visual">HTML</button>
             <button type="button" class="writer-visuals-toggle" data-html-block-panel-toggle aria-expanded="false" title="Browse embedded HTML visuals" hidden>Visuals <span data-html-block-count>0</span></button>
           </div>
@@ -585,8 +586,22 @@ page_scripts:
         <label class="writer-field"><span>Method</span><select data-pick-method><option value="">No method</option><option>KO/TKO</option><option>Submission</option><option>Decision</option><option>Split Decision</option><option>Unanimous Decision</option></select></label>
         <label class="writer-field"><span>Round</span><select data-pick-round><option value="">No round</option><option>Round 1</option><option>Round 2</option><option>Round 3</option><option>Round 4</option><option>Round 5</option></select></label>
         <label class="writer-field writer-field-wide"><span>Note <small>optional</small></span><input type="text" data-pick-note placeholder="Upset lean / club-and-sub / whatever matters"></label>
+        <label class="writer-field writer-field-wide"><span>Official result <small>optional until the fight ends</small></span><input type="text" data-pick-official-result placeholder="Nell Ariano · TKO R2"></label>
+        <label class="writer-field"><span>Pick status</span><select data-pick-outcome><option value="">Pending</option><option value="correct">Correct</option><option value="incorrect">Incorrect</option><option value="void">No contest / void</option></select></label>
       </div>
       <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-pick-insert>Insert pick</button></footer>
+    </form>
+  </dialog>
+
+  <dialog class="writer-dialog writer-dialog-wide" data-picks-manager-dialog>
+    <form method="dialog">
+      <header><div><p class="eyebrow">Event module</p><h2>Picks &amp; Results</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <div class="writer-dialog-body">
+        <div class="writer-picks-manager-summary" data-picks-manager-summary></div>
+        <div class="writer-picks-manager-list" data-picks-manager-list></div>
+        <p class="writer-dialog-note">This is the single results manager for the article. Your existing pick cards stay where they are, while the public My Picks module at the top reads the official result and status from these same rows.</p>
+      </div>
+      <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-picks-manager-save>Save picks &amp; results</button></footer>
     </form>
   </dialog>
 
