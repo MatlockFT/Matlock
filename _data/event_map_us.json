@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_major_generated_at": "2026-10-07T06:37:56.938Z",
+  "source_major_generated_at": "2026-10-07T13:55:46.149Z",
   "source_regional_updated_at": null,
   "major_total": 10,
   "major_mapped": 1,
@@ -109,166 +109,6 @@
     }
   ],
   "events": [
-    {
-      "id": "dwcs-season-10-week-9-2026-10-06",
-      "promotion_key": "dwcs",
-      "promotion": "DWCS",
-      "title": "Season 10 · Week 9",
-      "date": "2026-10-06",
-      "date_label": "Tuesday · October 6, 2026",
-      "venue": "Meta APEX · Las Vegas, Nevada",
-      "broadcast": "Paramount+",
-      "official_url": "https://www.ufc.com/dwcs#season-10-week-9",
-      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-9-112635",
-      "updated_label": "October 7, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Fight Card",
-          "time": "8:00 PM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Light Heavyweight",
-              "fighters": [
-                {
-                  "name": "Preston LaGrange",
-                  "initials": "PL",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260119122600_Preston_LaGrange.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "+350"
-                },
-                {
-                  "name": "Nell Ariano",
-                  "initials": "NA",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1712067268IMG-3578.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "-450"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Welterweight",
-              "fighters": [
-                {
-                  "name": "Salhahuddin Everett",
-                  "initials": "SE",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250824024424_Salhahuddin_Everett.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "-136"
-                },
-                {
-                  "name": "Ozzy Martin",
-                  "initials": "OM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1784768551Ozzy_Martin.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "+116"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Flyweight",
-              "fighters": [
-                {
-                  "name": "Roque Conceicao Moreira Junior",
-                  "initials": "RCM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1755138057roquejunior.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "-150"
-                },
-                {
-                  "name": "Alexander Chavez",
-                  "initials": "AC",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1769462541alexanderchavez.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "+115"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Bantamweight",
-              "fighters": [
-                {
-                  "name": "Mateus Soares",
-                  "initials": "MS",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732773864soares.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "-620"
-                },
-                {
-                  "name": "Ryuho Miyaguchi",
-                  "initials": "RM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260528101828_Ryuho_Miyaguchi.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "+460"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Bantamweight",
-              "fighters": [
-                {
-                  "name": "Alivia Bierley",
-                  "initials": "AB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20240922055057_Alivia_Bierley.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "+150"
-                },
-                {
-                  "name": "Summer Onley",
-                  "initials": "SO",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1724164164onley.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "-195"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            }
-          ]
-        }
-      ],
-      "city": "Las Vegas",
-      "state": "NV",
-      "state_code": "NV",
-      "country": "US",
-      "location": "Las Vegas, NV",
-      "latitude": 36.1699,
-      "longitude": -115.1398,
-      "location_source": "venue-text",
-      "location_precision": "city",
-      "map_location_source": "venue-text",
-      "map_location_precision": "city",
-      "map_location_confidence": "city",
-      "map_dataset": "major"
-    },
     {
       "id": "sherdog-kotc-zero-mercy-2026-10-08-couer-d-alene",
       "promotion": "KOTC",
@@ -937,6 +777,146 @@
       "map_location_precision": "city",
       "map_location_confidence": "city",
       "map_dataset": "regional"
+    },
+    {
+      "id": "dwcs-season-10-week-10-2026-10-13",
+      "promotion_key": "dwcs",
+      "promotion": "DWCS",
+      "title": "Season 10 · Week 10",
+      "date": "2026-10-13",
+      "date_label": "Tuesday · October 13, 2026",
+      "venue": "Meta APEX · Las Vegas, Nevada",
+      "broadcast": "Paramount+",
+      "official_url": "https://www.ufc.com/dwcs#season-10-week-10",
+      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-10-112636",
+      "updated_label": "October 7, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "8:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "William Rentz",
+                  "initials": "WR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1782012023Will_Rentz_4df5ae7e99.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Luis Francischinelli",
+                  "initials": "LF",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1734537541IMG_3225.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Bantamweight",
+              "fighters": [
+                {
+                  "name": "Aline Pereira",
+                  "initials": "AP",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221118031232_Aline_Pereira.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Smilla Sundell",
+                  "initials": "SS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1763763628smillasundell.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Featherweight",
+              "fighters": [
+                {
+                  "name": "Ilias Bulaid",
+                  "initials": "IB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/156960664770718460_10158339556514879_1777937519321546752_o.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Erick Visconde",
+                  "initials": "EV",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732766598visconde.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Middleweight",
+              "fighters": [
+                {
+                  "name": "Douglas Lapa",
+                  "initials": "DL",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1738157097lapa.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Davi Cabral",
+                  "initials": "DC",
+                  "image": "https://www2-cdn.sherdog.com/apple-touch-icon.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Jason Asher",
+                  "initials": "JA",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260725030044_Jason_Asher.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Gregory Foster",
+                  "initials": "GF",
+                  "image": "https://www2-cdn.sherdog.com/apple-touch-icon.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "city": "Las Vegas",
+      "state": "NV",
+      "state_code": "NV",
+      "country": "US",
+      "location": "Las Vegas, NV",
+      "latitude": 36.1699,
+      "longitude": -115.1398,
+      "location_source": "venue-text",
+      "location_precision": "city",
+      "map_location_source": "venue-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
+      "map_dataset": "major"
     },
     {
       "id": "sherdog-brandrisk-016-brand-risk-promotions-2026-10-16-miami",
