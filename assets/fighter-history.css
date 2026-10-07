@@ -38,7 +38,8 @@
   touch-action: pan-y;
   z-index: 2147482000;
   width: min(760px, calc(100vw - 24px));
-  max-height: min(74vh, 620px);
+  height: min(74vh, 620px);
+  max-height: calc(100vh - 24px);
   overflow: hidden;
   background: var(--fh-surface);
   color: var(--fh-text);
@@ -150,8 +151,9 @@
 .fighter-history-popover-body {
   display: grid;
   grid-template-columns: minmax(270px, .9fr) minmax(300px, 1.1fr);
-  min-height: 330px;
-  max-height: calc(min(74vh, 620px) - 73px);
+  height: calc(100% - 73px);
+  min-height: 0;
+  max-height: none;
   overflow: hidden;
   overscroll-behavior: contain;
 }
@@ -169,6 +171,8 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
+  height: 100%;
+  box-sizing: border-box;
   border-right: 1px solid var(--fh-line);
   background:
     linear-gradient(180deg, rgba(0,0,0,.025), transparent 16%),
@@ -351,6 +355,8 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
+  height: 100%;
+  box-sizing: border-box;
   padding: 23px 23px 25px;
   background:
     radial-gradient(circle at 88% 8%, rgba(230,72,35,.10), transparent 31%),
@@ -483,7 +489,8 @@ html[data-theme="dark"] .fighter-history-detail::-webkit-scrollbar-thumb,
     top: auto !important;
     bottom: 8px;
     width: auto !important;
-    max-height: 84vh;
+    height: 84vh;
+    max-height: calc(100vh - 16px);
     border-radius: 10px;
     animation-name: fighterHistoryOpenMobile;
   }
@@ -494,8 +501,9 @@ html[data-theme="dark"] .fighter-history-detail::-webkit-scrollbar-thumb,
 
   .fighter-history-popover-body {
     display: block;
+    height: calc(100% - 73px);
     min-height: 0;
-    max-height: calc(84vh - 73px);
+    max-height: none;
     overflow-y: auto;
     overflow-x: hidden;
     overscroll-behavior: contain;
@@ -505,12 +513,14 @@ html[data-theme="dark"] .fighter-history-detail::-webkit-scrollbar-thumb,
   }
 
   .fighter-history-list {
+    height: auto;
     max-height: 43vh;
     border-right: 0;
     border-bottom: 1px solid var(--fh-line);
   }
 
   .fighter-history-detail {
+    height: auto;
     overflow: visible;
     padding: 18px 18px 22px;
   }
