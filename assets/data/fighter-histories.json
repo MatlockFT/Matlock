@@ -1,6 +1,2542 @@
 {
-  "version": 1,
+  "version": 2,
+  "event": "UFC 333",
+  "eventDate": "2026-10-24",
   "fighters": {
+    "Alexander Volkanovski": {
+      "slug": "alexander-volkanovski",
+      "name": "Alexander Volkanovski",
+      "subtitle": "Career chronology",
+      "record": "28-4",
+      "ufcRecord": "15-3-0",
+      "division": "Featherweight",
+      "items": [
+        {
+          "date": "2011",
+          "label": "Starts MMA while playing rugby",
+          "kind": "training",
+          "detail": "Volkanovski began MMA training in 2011 as conditioning while he was still playing rugby league. He had wrestled as a teenager and quickly found that the grappling background transferred. Freestyle Fighting Gym in New South Wales became his home base.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "2012-2016",
+          "label": "Regional title run leads to the UFC",
+          "kind": "milestone",
+          "detail": "He turned professional in 2012, won titles across multiple Australian and Pacific promotions and entered the UFC in 2016.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "Dec. 14, 2019",
+          "label": "WIN · Max Holloway · wins UFC title",
+          "kind": "win",
+          "detail": "Volkanovski defeated Max Holloway by unanimous decision to become UFC featherweight champion, beginning his first title reign.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "2020-2023",
+          "label": "Five successful featherweight title defenses",
+          "kind": "milestone",
+          "detail": "His first championship reign included five successful defenses before the title loss to Ilia Topuria in 2024.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "Jul 8, 2023",
+          "label": "WIN · Yair Rodriguez · TKO (Punches)",
+          "kind": "win",
+          "detail": "Alexander Volkanovski defeated Yair Rodriguez. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 21, 2023",
+          "label": "LOSS · Islam Makhachev · KO (Head Kick and Punches)",
+          "kind": "loss",
+          "detail": "Alexander Volkanovski lost to Islam Makhachev. KO (Head Kick and Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Feb 17, 2024",
+          "label": "LOSS · Ilia Topuria · KO (Punch)",
+          "kind": "loss",
+          "detail": "Alexander Volkanovski lost to Ilia Topuria. KO (Punch).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Apr 12, 2025",
+          "label": "WIN · Diego Lopes · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Alexander Volkanovski defeated Diego Lopes. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Movsar Evloev",
+          "kind": "upcoming",
+          "detail": "Alexander Volkanovski is scheduled to face Movsar Evloev at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 28-4-0, UFC 15-3-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Movsar Evloev": {
+      "slug": "movsar-evloev",
+      "name": "Movsar Evloev",
+      "subtitle": "Career chronology",
+      "record": "20-0",
+      "ufcRecord": "10-0-0",
+      "division": "Featherweight",
+      "items": [
+        {
+          "date": "2014",
+          "label": "Turns professional",
+          "kind": "milestone",
+          "detail": "Evloev began his professional MMA career in 2014 and built his early run in M-1 Global.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/movsar-evloev"
+        },
+        {
+          "date": "Pre-UFC",
+          "label": "M-1 Global bantamweight champion",
+          "kind": "milestone",
+          "detail": "Evloev became M-1 Global bantamweight champion before leaving the promotion undefeated. He moved up to featherweight when he joined the UFC.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/movsar-evloev-ready-make-his-big-move-ufc-310-featherweight"
+        },
+        {
+          "date": "2019",
+          "label": "UFC debut at featherweight",
+          "kind": "milestone",
+          "detail": "Evloev entered the UFC in 2019 at featherweight and has remained unbeaten through his first ten UFC appearances.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/movsar-evloev"
+        },
+        {
+          "date": "Current camp",
+          "label": "American Top Team",
+          "kind": "camp",
+          "detail": "Evloev currently trains at American Top Team in Coconut Creek, Florida.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/movsar-evloev-ready-make-his-big-move-ufc-310-featherweight"
+        },
+        {
+          "date": "Jun 4, 2022",
+          "label": "WIN · Dan Ige · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Movsar Evloev defeated Dan Ige. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "May 6, 2023",
+          "label": "WIN · Diego Lopes · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Movsar Evloev defeated Diego Lopes. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jan 20, 2024",
+          "label": "WIN · Arnold Allen · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Movsar Evloev defeated Arnold Allen. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Dec 7, 2024",
+          "label": "WIN · Aljamain Sterling · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Movsar Evloev defeated Aljamain Sterling. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Mar 21, 2026",
+          "label": "WIN · Lerone Murphy · Decision (Majority)",
+          "kind": "win",
+          "detail": "Movsar Evloev defeated Lerone Murphy. Decision (Majority).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Alexander Volkanovski",
+          "kind": "upcoming",
+          "detail": "Movsar Evloev is scheduled to face Alexander Volkanovski at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 20-0-0, UFC 10-0-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Petr Yan": {
+      "slug": "petr-yan",
+      "name": "Petr Yan",
+      "subtitle": "Career chronology",
+      "record": "20-5",
+      "ufcRecord": "12-4-0",
+      "division": "Bantamweight",
+      "items": [
+        {
+          "date": "Age 13",
+          "label": "Starts boxing",
+          "kind": "training",
+          "detail": "Yan began boxing at 13. After seven years in boxing, he transitioned into MMA. He later earned the Russian Master of Sport designation in boxing.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/petr-yan"
+        },
+        {
+          "date": "2016-2017",
+          "label": "ACB rivalry with Magomed Magomedov",
+          "kind": "milestone",
+          "detail": "A split-decision loss to Magomed Magomedov became the first major setback of Yan's career. He later avenged it and became ACB bantamweight champion.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/petr-yan"
+        },
+        {
+          "date": "June 2018",
+          "label": "UFC debut",
+          "kind": "milestone",
+          "detail": "Yan entered the UFC in 2018 and quickly moved into the bantamweight title picture.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/petr-yan"
+        },
+        {
+          "date": "July 12, 2020",
+          "label": "WIN · José Aldo · wins UFC title",
+          "kind": "win",
+          "detail": "Yan stopped José Aldo in the fifth round to win the vacant UFC bantamweight championship.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/petr-yan"
+        },
+        {
+          "date": "Mar. 6, 2021",
+          "label": "LOSS · Aljamain Sterling · disqualification",
+          "kind": "loss",
+          "detail": "Yan lost the UFC title by disqualification after landing an illegal knee to a grounded Aljamain Sterling.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/petr-yan"
+        },
+        {
+          "date": "Mar 11, 2023",
+          "label": "LOSS · Merab Dvalishvili · Decision (Unanimous)",
+          "kind": "loss",
+          "detail": "Petr Yan lost to Merab Dvalishvili. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Mar 9, 2024",
+          "label": "WIN · Yadong Song · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Petr Yan defeated Yadong Song. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Nov 23, 2024",
+          "label": "WIN · Deiveson Figueiredo · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Petr Yan defeated Deiveson Figueiredo. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jul 26, 2025",
+          "label": "WIN · Marcus McGhee · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Petr Yan defeated Marcus McGhee. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Dec 6, 2025",
+          "label": "WIN · Merab Dvalishvili · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Petr Yan defeated Merab Dvalishvili. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Merab Dvalishvili",
+          "kind": "upcoming",
+          "detail": "Petr Yan is scheduled to face Merab Dvalishvili at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 20-5-0, UFC 12-4-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Merab Dvalishvili": {
+      "slug": "merab-dvalishvili",
+      "name": "Merab Dvalishvili",
+      "subtitle": "Career chronology",
+      "record": "21-5",
+      "ufcRecord": "14-3-0",
+      "division": "Bantamweight",
+      "items": [
+        {
+          "date": "Childhood-2010",
+          "label": "Judo and sambo base",
+          "kind": "training",
+          "detail": "Dvalishvili spent roughly seven years training judo and sambo before transitioning to MMA in 2010.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/merab-dvalishvili"
+        },
+        {
+          "date": "2014",
+          "label": "Turns professional",
+          "kind": "milestone",
+          "detail": "He turned professional in 2014 and became a two-time Ring of Combat champion before reaching the UFC.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/merab-dvalishvili"
+        },
+        {
+          "date": "2017-2018",
+          "label": "Starts UFC career 0-2",
+          "kind": "loss",
+          "detail": "Dvalishvili lost his first two UFC fights to Frankie Saenz and Ricky Simon before beginning the run that eventually carried him to the championship.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/merab-dvalishvili"
+        },
+        {
+          "date": "UFC career",
+          "label": "Team Serra/Longo",
+          "kind": "camp",
+          "detail": "Dvalishvili developed at Serra-Longo in New York alongside fighters including Aljamain Sterling. The gym remains his listed team.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/merab-dvalishvili"
+        },
+        {
+          "date": "2024-2025",
+          "label": "Wins title and makes three defenses",
+          "kind": "milestone",
+          "detail": "Dvalishvili beat Sean O'Malley for the bantamweight title in 2024, then defended it three times in 2025 against Umar Nurmagomedov, O'Malley and Cory Sandhagen.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/merab-dvalishvili"
+        },
+        {
+          "date": "Sep 14, 2024",
+          "label": "WIN · Sean O'Malley · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Merab Dvalishvili defeated Sean O'Malley. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jan 18, 2025",
+          "label": "WIN · Umar Nurmagomedov · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Merab Dvalishvili defeated Umar Nurmagomedov. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jun 7, 2025",
+          "label": "WIN · Sean O'Malley · Submission (North-South Choke)",
+          "kind": "win",
+          "detail": "Merab Dvalishvili defeated Sean O'Malley. Submission (North-South Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 4, 2025",
+          "label": "WIN · Cory Sandhagen · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Merab Dvalishvili defeated Cory Sandhagen. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Dec 6, 2025",
+          "label": "LOSS · Petr Yan · Decision (Unanimous)",
+          "kind": "loss",
+          "detail": "Merab Dvalishvili lost to Petr Yan. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Petr Yan",
+          "kind": "upcoming",
+          "detail": "Merab Dvalishvili is scheduled to face Petr Yan at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 21-5-0, UFC 14-3-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Lone'er Kavanagh": {
+      "slug": "lone-er-kavanagh",
+      "name": "Lone'er Kavanagh",
+      "subtitle": "Career chronology",
+      "record": "10-2",
+      "ufcRecord": "3-2-0",
+      "division": "Flyweight",
+      "items": [
+        {
+          "date": "Age 8",
+          "label": "Starts kickboxing",
+          "kind": "training",
+          "detail": "Kavanagh says his mother got him into kickboxing at age eight. He became a five-time K-1 world champion and later added jiu-jitsu.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/loneer-kavanagh"
+        },
+        {
+          "date": "Pre-UFC",
+          "label": "GB Top Team development",
+          "kind": "camp",
+          "detail": "Kavanagh developed at GB Top Team in South East London under coaches including Carlton Lieu, Ash Grimshaw and Brad Pickett.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/loneer-kavanagh-ready-kick-things-gear-ufc-shanghai-flyweight"
+        },
+        {
+          "date": "Aug. 13, 2024",
+          "label": "WIN · An Tuan Ho · DWCS KO",
+          "kind": "win",
+          "detail": "A first-round knockout of An Tuan Ho on Dana White's Contender Series earned Kavanagh his UFC opportunity.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/loneer-kavanagh"
+        },
+        {
+          "date": "Nov 23, 2024",
+          "label": "WIN · Jose Ochoa · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Lone'er Kavanagh defeated Jose Ochoa. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Mar 22, 2025",
+          "label": "WIN · Felipe dos Santos · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Lone'er Kavanagh defeated Felipe dos Santos. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Aug 23, 2025",
+          "label": "LOSS · Charles Johnson · KO (Punch)",
+          "kind": "loss",
+          "detail": "Lone'er Kavanagh lost to Charles Johnson. KO (Punch).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Feb 28, 2026",
+          "label": "WIN · Brandon Moreno · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Lone'er Kavanagh defeated Brandon Moreno. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jul 11, 2026",
+          "label": "LOSS · Brandon Royval · Submission (Rear-Naked Choke)",
+          "kind": "loss",
+          "detail": "Lone'er Kavanagh lost to Brandon Royval. Submission (Rear-Naked Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Ramazan Temirov",
+          "kind": "upcoming",
+          "detail": "Lone'er Kavanagh is scheduled to face Ramazan Temirov at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 10-2-0, UFC 3-2-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Ramazan Temirov": {
+      "slug": "ramazan-temirov",
+      "name": "Ramazan Temirov",
+      "subtitle": "Career chronology",
+      "record": "20-3",
+      "ufcRecord": "3-0-0",
+      "division": "Flyweight",
+      "items": [
+        {
+          "date": "Childhood",
+          "label": "Begins martial arts training",
+          "kind": "training",
+          "detail": "Temirov says he began training as a child with the long-term goal of becoming UFC champion.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/ramazan-temirov"
+        },
+        {
+          "date": "Amateur career",
+          "label": "World, European and Asian MMA titles",
+          "kind": "milestone",
+          "detail": "Before his UFC run, Temirov won amateur MMA championships at world, European and Asian level and earned Master of Sports status in hand-to-hand fighting.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/ramazan-temirov"
+        },
+        {
+          "date": "Current camp",
+          "label": "Legion Fight Club",
+          "kind": "camp",
+          "detail": "The UFC lists Temirov as training at Legion Fight Club.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/ramazan-temirov"
+        },
+        {
+          "date": "Oct. 12, 2024",
+          "label": "WIN · C.J. Vergara · UFC debut TKO",
+          "kind": "win",
+          "detail": "Temirov stopped C.J. Vergara in the first round of his UFC debut.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/ramazan-temirov"
+        },
+        {
+          "date": "May 6, 2023",
+          "label": "WIN · Yuta Hamamoto · TKO (Punches)",
+          "kind": "win",
+          "detail": "Ramazan Temirov defeated Yuta Hamamoto. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Sep 24, 2023",
+          "label": "WIN · Takaki Soya · KO (Punches)",
+          "kind": "win",
+          "detail": "Ramazan Temirov defeated Takaki Soya. KO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 12, 2024",
+          "label": "WIN · C.J. Vergara · TKO (Punches)",
+          "kind": "win",
+          "detail": "Ramazan Temirov defeated C.J. Vergara. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Mar 1, 2025",
+          "label": "WIN · Charles Johnson · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Ramazan Temirov defeated Charles Johnson. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jul 25, 2026",
+          "label": "WIN · Steve Erceg · KO (Punch)",
+          "kind": "win",
+          "detail": "Ramazan Temirov defeated Steve Erceg. KO (Punch).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Lone'er Kavanagh",
+          "kind": "upcoming",
+          "detail": "Ramazan Temirov is scheduled to face Lone'er Kavanagh at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 20-3-0, UFC 3-0-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Alexander Volkov": {
+      "slug": "alexander-volkov",
+      "name": "Alexander Volkov",
+      "subtitle": "Career chronology",
+      "record": "40-11",
+      "ufcRecord": "14-5-0",
+      "division": "Heavyweight",
+      "items": [
+        {
+          "date": "Youth",
+          "label": "Full-contact karate base",
+          "kind": "training",
+          "detail": "Volkov began in Ashihara and Kyokushin karate, later competed in pankration and won multiple Moscow championships.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkov"
+        },
+        {
+          "date": "2009",
+          "label": "Turns professional",
+          "kind": "milestone",
+          "detail": "Volkov turned professional in 2009 and developed into one of the most experienced heavyweights of his generation.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkov"
+        },
+        {
+          "date": "Pre-UFC",
+          "label": "Bellator and M-1 champion",
+          "kind": "milestone",
+          "detail": "Before signing with the UFC, Volkov held major heavyweight titles in Bellator and M-1.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkov"
+        },
+        {
+          "date": "2016",
+          "label": "UFC debut",
+          "kind": "milestone",
+          "detail": "Volkov joined the UFC in 2016.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkov"
+        },
+        {
+          "date": "Current camp",
+          "label": "Global Fight Gym",
+          "kind": "camp",
+          "detail": "The UFC currently lists Volkov as training at Global Fight Gym.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkov"
+        },
+        {
+          "date": "Sep 9, 2023",
+          "label": "WIN · Tai Tuivasa · Submission (Ezekiel Choke)",
+          "kind": "win",
+          "detail": "Alexander Volkov defeated Tai Tuivasa. Submission (Ezekiel Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jun 22, 2024",
+          "label": "WIN · Sergei Pavlovich · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Alexander Volkov defeated Sergei Pavlovich. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Dec 7, 2024",
+          "label": "LOSS · Ciryl Gane · Decision (Split)",
+          "kind": "loss",
+          "detail": "Alexander Volkov lost to Ciryl Gane. Decision (Split).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 25, 2025",
+          "label": "WIN · Jailton Almeida · Decision (Split)",
+          "kind": "win",
+          "detail": "Alexander Volkov defeated Jailton Almeida. Decision (Split).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "May 9, 2026",
+          "label": "WIN · Waldo Cortes-Acosta · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Alexander Volkov defeated Waldo Cortes-Acosta. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Rizvan Kuniev",
+          "kind": "upcoming",
+          "detail": "Alexander Volkov is scheduled to face Rizvan Kuniev at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 40-11-0, UFC 14-5-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Rizvan Kuniev": {
+      "slug": "rizvan-kuniev",
+      "name": "Rizvan Kuniev",
+      "subtitle": "Career chronology",
+      "record": "14-3-1",
+      "ufcRecord": "2-1-0",
+      "division": "Heavyweight",
+      "items": [
+        {
+          "date": "Age 16",
+          "label": "Starts wushu sanda",
+          "kind": "training",
+          "detail": "Kuniev began wushu sanda at 16, then switched his focus to MMA around age 20 at Gorets Fight Club.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+        },
+        {
+          "date": "Pre-UFC",
+          "label": "PROFC and Eagle FC champion",
+          "kind": "milestone",
+          "detail": "Kuniev won heavyweight titles in PROFC and Eagle FC before reaching the UFC.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+        },
+        {
+          "date": "2021 & 2024",
+          "label": "Two Contender Series appearances",
+          "kind": "milestone",
+          "detail": "Kuniev first appeared on Dana White's Contender Series in 2021, then returned in 2024 and stopped Hugo Cunha.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+        },
+        {
+          "date": "2025",
+          "label": "UFC debut vs. Curtis Blaydes",
+          "kind": "loss",
+          "detail": "Kuniev made his UFC debut against Curtis Blaydes and lost a split decision, ending a long unbeaten stretch.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+        },
+        {
+          "date": "Apr 7, 2023",
+          "label": "NC · Renan Ferreira · No Contest (Overturned)",
+          "kind": "nc",
+          "detail": "Rizvan Kuniev fought Renan Ferreira. No Contest (Overturned).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Aug 20, 2024",
+          "label": "WIN · Hugo Cunha · TKO (Knee to the Body and Punches)",
+          "kind": "win",
+          "detail": "Rizvan Kuniev defeated Hugo Cunha. TKO (Knee to the Body and Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jun 21, 2025",
+          "label": "LOSS · Curtis Blaydes · Decision (Split)",
+          "kind": "loss",
+          "detail": "Rizvan Kuniev lost to Curtis Blaydes. Decision (Split).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Feb 7, 2026",
+          "label": "WIN · Jailton Almeida · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Rizvan Kuniev defeated Jailton Almeida. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jul 25, 2026",
+          "label": "WIN · Tyrell Fortune · TKO (Knees)",
+          "kind": "win",
+          "detail": "Rizvan Kuniev defeated Tyrell Fortune. TKO (Knees).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Alexander Volkov",
+          "kind": "upcoming",
+          "detail": "Rizvan Kuniev is scheduled to face Alexander Volkov at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 14-3-1, UFC 2-1-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Aaron Pico": {
+      "slug": "aaron-pico",
+      "name": "Aaron Pico",
+      "subtitle": "Career chronology",
+      "record": "14-5",
+      "ufcRecord": "1-1-0",
+      "division": "Featherweight",
+      "items": [
+        {
+          "date": "Childhood",
+          "label": "Elite wrestling and boxing upbringing",
+          "kind": "training",
+          "detail": "Pico wrestled and boxed from childhood, winning major youth wrestling and boxing titles. He became a U17 wrestling world champion and a 2016 U.S. Olympic team alternate.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/aaron-pico"
+        },
+        {
+          "date": "2017",
+          "label": "Turns pro directly into Bellator spotlight",
+          "kind": "milestone",
+          "detail": "Pico turned professional in 2017 after an elite amateur combat-sports career.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/aaron-pico"
+        },
+        {
+          "date": "May 2019",
+          "label": "Moves camp to Jackson-Wink in Albuquerque",
+          "kind": "camp",
+          "detail": "After an uneven start to his MMA career, Pico relocated to Albuquerque and moved his camp to Jackson-Wink MMA.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/news/news/Bellator-Prospect-Aaron-Pico-Moves-Training-Camp-to-JacksonWink-MMA-154147"
+        },
+        {
+          "date": "Aug. 16, 2025",
+          "label": "LOSS · Lerone Murphy · UFC debut KO",
+          "kind": "loss",
+          "detail": "Pico's UFC debut ended in a first-round knockout loss to Lerone Murphy.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/aaron-pico"
+        },
+        {
+          "date": "Apr. 11, 2026",
+          "label": "WIN · Patricio Pitbull · first UFC win",
+          "kind": "win",
+          "detail": "Pico rebounded by beating Patricio Pitbull by unanimous decision.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/aaron-pico"
+        },
+        {
+          "date": "Apr 22, 2023",
+          "label": "WIN · James Gonzalez · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Aaron Pico defeated James Gonzalez. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Sep 23, 2023",
+          "label": "WIN · Pedro Carvalho · TKO (Punches)",
+          "kind": "win",
+          "detail": "Aaron Pico defeated Pedro Carvalho. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Feb 24, 2024",
+          "label": "WIN · Henry Corrales · TKO (Punches)",
+          "kind": "win",
+          "detail": "Aaron Pico defeated Henry Corrales. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Aug 16, 2025",
+          "label": "LOSS · Lerone Murphy · KO (Spinning Back Elbow)",
+          "kind": "loss",
+          "detail": "Aaron Pico lost to Lerone Murphy. KO (Spinning Back Elbow).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Apr 11, 2026",
+          "label": "WIN · Patricio Freire · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Aaron Pico defeated Patricio Freire. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Losene Keita",
+          "kind": "upcoming",
+          "detail": "Aaron Pico is scheduled to face Losene Keita at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 14-5-0, UFC 1-1-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Losene Keita": {
+      "slug": "losene-keita",
+      "name": "Losene Keita",
+      "subtitle": "Career chronology",
+      "record": "17-2",
+      "ufcRecord": "1-1-0",
+      "division": "Featherweight",
+      "items": [
+        {
+          "date": "Early career",
+          "label": "Starts fighting to make family proud and stay out of trouble",
+          "kind": "training",
+          "detail": "Keita says he started training to make his family proud and to get out of trouble.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/losene-keita"
+        },
+        {
+          "date": "Pre-UFC",
+          "label": "WFL and OKTAGON double champion",
+          "kind": "milestone",
+          "detail": "Keita became a champion in WFL and later a two-division champion in OKTAGON before signing with the UFC.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/losene-keita"
+        },
+        {
+          "date": "Current camp",
+          "label": "Lamiro Fight Club",
+          "kind": "camp",
+          "detail": "The UFC lists Keita as training at Lamiro Fight Club.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/losene-keita"
+        },
+        {
+          "date": "Mar. 21, 2026",
+          "label": "LOSS · Nathaniel Wood · UFC debut",
+          "kind": "loss",
+          "detail": "Keita lost a split decision to Nathaniel Wood in his UFC debut.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/losene-keita"
+        },
+        {
+          "date": "Sep. 5, 2026",
+          "label": "WIN · Muhammad Naimov · first UFC win",
+          "kind": "win",
+          "detail": "Keita knocked out Muhammad Naimov in the first round for his first UFC victory.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/losene-keita"
+        },
+        {
+          "date": "Jul 20, 2024",
+          "label": "WIN · Predrag Bogdanovic · TKO (Punch to the Body)",
+          "kind": "win",
+          "detail": "Losene Keita defeated Predrag Bogdanovic. TKO (Punch to the Body).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Sep 21, 2024",
+          "label": "WIN · Mateusz Legierski · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Losene Keita defeated Mateusz Legierski. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Dec 29, 2024",
+          "label": "WIN · Ronald Paradeiser · TKO (Elbow and Punches)",
+          "kind": "win",
+          "detail": "Losene Keita defeated Ronald Paradeiser. TKO (Elbow and Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Mar 21, 2026",
+          "label": "LOSS · Nathaniel Wood · Decision (Split)",
+          "kind": "loss",
+          "detail": "Losene Keita lost to Nathaniel Wood. Decision (Split).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Sep 5, 2026",
+          "label": "WIN · Muhammadjon Naimov · KO (Punch)",
+          "kind": "win",
+          "detail": "Losene Keita defeated Muhammadjon Naimov. KO (Punch).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Aaron Pico",
+          "kind": "upcoming",
+          "detail": "Losene Keita is scheduled to face Aaron Pico at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 17-2-0, UFC 1-1-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Azamat Murzakanov": {
+      "slug": "azamat-murzakanov",
+      "name": "Azamat Murzakanov",
+      "subtitle": "Career chronology",
+      "record": "16-1",
+      "ufcRecord": "6-1-0",
+      "division": "Light Heavyweight",
+      "items": [
+        {
+          "date": "Childhood-age 18",
+          "label": "Wrestling, boxing and hand-to-hand fighting",
+          "kind": "training",
+          "detail": "Murzakanov trained in wrestling and boxing from childhood and says he fully dedicated himself to hand-to-hand fighting at 18.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/azamat-murzakanov"
+        },
+        {
+          "date": "Amateur career",
+          "label": "Eight-time hand-to-hand fighting world champion",
+          "kind": "milestone",
+          "detail": "Murzakanov built an extensive hand-to-hand fighting résumé and earned Master of Sports status.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/azamat-murzakanov"
+        },
+        {
+          "date": "Aug. 31, 2021",
+          "label": "WIN · Matheus Scheffel · DWCS KO",
+          "kind": "win",
+          "detail": "A first-round knockout of Matheus Scheffel on Contender Series led into his UFC run.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/azamat-murzakanov"
+        },
+        {
+          "date": "Current camp",
+          "label": "K Dojo Warrior Tribe",
+          "kind": "camp",
+          "detail": "The UFC lists Murzakanov as training at K Dojo Warrior Tribe.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/azamat-murzakanov"
+        },
+        {
+          "date": "Apr 15, 2023",
+          "label": "WIN · Dustin Jacoby · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Azamat Murzakanov defeated Dustin Jacoby. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Aug 3, 2024",
+          "label": "WIN · Alonzo Menifield · KO (Punches)",
+          "kind": "win",
+          "detail": "Azamat Murzakanov defeated Alonzo Menifield. KO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jun 7, 2025",
+          "label": "WIN · Brendson Ribeiro · TKO (Submission to Punches)",
+          "kind": "win",
+          "detail": "Azamat Murzakanov defeated Brendson Ribeiro. TKO (Submission to Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 25, 2025",
+          "label": "WIN · Aleksandar Rakic · TKO (Punches)",
+          "kind": "win",
+          "detail": "Azamat Murzakanov defeated Aleksandar Rakic. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Apr 11, 2026",
+          "label": "LOSS · Paulo Costa · TKO (Head Kick)",
+          "kind": "loss",
+          "detail": "Azamat Murzakanov lost to Paulo Costa. TKO (Head Kick).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Dominick Reyes",
+          "kind": "upcoming",
+          "detail": "Azamat Murzakanov is scheduled to face Dominick Reyes at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 16-1-0, UFC 6-1-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Dominick Reyes": {
+      "slug": "dominick-reyes",
+      "name": "Dominick Reyes",
+      "subtitle": "Career chronology",
+      "record": "16-5",
+      "ufcRecord": "10-5-0",
+      "division": "Light Heavyweight",
+      "items": [
+        {
+          "date": "May 2013",
+          "label": "Moves from college football into MMA",
+          "kind": "training",
+          "detail": "After finishing his college football career at Stony Brook, Reyes began MMA training in May 2013 because he was not finished with athletic competition.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/dominick-reyes"
+        },
+        {
+          "date": "2017",
+          "label": "UFC debut after unbeaten start",
+          "kind": "milestone",
+          "detail": "Reyes reached the UFC unbeaten and stopped Joachim Christensen in 29 seconds in his debut.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/dominick-reyes"
+        },
+        {
+          "date": "2020",
+          "label": "Two UFC title fights",
+          "kind": "milestone",
+          "detail": "Reyes challenged Jon Jones for the light heavyweight title in February 2020, then fought Jan Blachowicz for the vacant title later that year.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/dominick-reyes"
+        },
+        {
+          "date": "Early 2024",
+          "label": "Deep-vein thrombosis blood clots force withdrawal",
+          "kind": "injury",
+          "detail": "A calf issue led to the discovery of deep-vein thrombosis blood clots. Reyes withdrew from a scheduled Carlos Ulberg fight and described the condition as life-threatening.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/news/news/Dominick-Reyes-Reveals-Serious-Medical-Condition-That-Forced-Him-to-the-Sidelines-192492"
+        },
+        {
+          "date": "Current camp",
+          "label": "Cobra Kai Victorville",
+          "kind": "camp",
+          "detail": "The UFC currently lists Reyes as training at Cobra Kai Victorville.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/dominick-reyes"
+        },
+        {
+          "date": "Jun 8, 2024",
+          "label": "WIN · Dustin Jacoby · KO (Punches)",
+          "kind": "win",
+          "detail": "Dominick Reyes defeated Dustin Jacoby. KO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Dec 7, 2024",
+          "label": "WIN · Anthony Smith · TKO (Elbows and Punches)",
+          "kind": "win",
+          "detail": "Dominick Reyes defeated Anthony Smith. TKO (Elbows and Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Apr 12, 2025",
+          "label": "WIN · Nikita Krylov · KO (Punch)",
+          "kind": "win",
+          "detail": "Dominick Reyes defeated Nikita Krylov. KO (Punch).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Sep 27, 2025",
+          "label": "LOSS · Carlos Ulberg · KO (Punches)",
+          "kind": "loss",
+          "detail": "Dominick Reyes lost to Carlos Ulberg. KO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Apr 11, 2026",
+          "label": "WIN · Johnny Walker · Decision (Split)",
+          "kind": "win",
+          "detail": "Dominick Reyes defeated Johnny Walker. Decision (Split).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Azamat Murzakanov",
+          "kind": "upcoming",
+          "detail": "Dominick Reyes is scheduled to face Azamat Murzakanov at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 16-5-0, UFC 10-5-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Nikita Krylov": {
+      "slug": "nikita-krylov",
+      "name": "Nikita Krylov",
+      "subtitle": "Career chronology",
+      "record": "31-12",
+      "ufcRecord": "12-10-0",
+      "division": "Light Heavyweight",
+      "items": [
+        {
+          "date": "2012",
+          "label": "Turns professional and wins first 12",
+          "kind": "milestone",
+          "detail": "Krylov turned professional in 2012 and won his first 12 fights, all by first-round finish.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/nikita-krylov"
+        },
+        {
+          "date": "2013",
+          "label": "First UFC run begins",
+          "kind": "milestone",
+          "detail": "Krylov made his UFC debut in 2013 and developed a reputation as one of the division's most aggressive finishers.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/nikita-krylov"
+        },
+        {
+          "date": "2018",
+          "label": "Returns to UFC",
+          "kind": "milestone",
+          "detail": "After competing outside the promotion following 2016, Krylov returned to the UFC in 2018.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/nikita-krylov"
+        },
+        {
+          "date": "2020 camp",
+          "label": "Adds American Top Team work",
+          "kind": "camp",
+          "detail": "For a 2020 camp Krylov began in Thailand and then spent time at American Top Team in Florida, describing it as his first U.S. training camp.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/nikita-krylov-searching-perfect-balance-ufc-brasilia"
+        },
+        {
+          "date": "Current camp",
+          "label": "Fight Club No1 · Moscow",
+          "kind": "camp",
+          "detail": "The UFC currently lists Krylov with Fight Club No1 in Moscow.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/nikita-krylov"
+        },
+        {
+          "date": "Mar 11, 2023",
+          "label": "WIN · Ryan Spann · Submission (Triangle Choke)",
+          "kind": "win",
+          "detail": "Nikita Krylov defeated Ryan Spann. Submission (Triangle Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Apr 12, 2025",
+          "label": "LOSS · Dominick Reyes · KO (Punch)",
+          "kind": "loss",
+          "detail": "Nikita Krylov lost to Dominick Reyes. KO (Punch).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jul 26, 2025",
+          "label": "LOSS · Bogdan Guskov · KO (Punches)",
+          "kind": "loss",
+          "detail": "Nikita Krylov lost to Bogdan Guskov. KO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jan 24, 2026",
+          "label": "WIN · Modestas Bukauskas · KO (Punches)",
+          "kind": "win",
+          "detail": "Nikita Krylov defeated Modestas Bukauskas. KO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jul 11, 2026",
+          "label": "LOSS · Robert Whittaker · TKO (Jaw Injury)",
+          "kind": "loss",
+          "detail": "Nikita Krylov lost to Robert Whittaker. TKO (Jaw Injury).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Abdul Rakhman Yakhyaev",
+          "kind": "upcoming",
+          "detail": "Nikita Krylov is scheduled to face Abdul Rakhman Yakhyaev at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 31-12-0, UFC 12-10-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Abdul Rakhman Yakhyaev": {
+      "slug": "abdul-rakhman-yakhyaev",
+      "name": "Abdul Rakhman Yakhyaev",
+      "subtitle": "Career chronology",
+      "record": "10-0",
+      "ufcRecord": "3-0-0",
+      "division": "Light Heavyweight",
+      "items": [
+        {
+          "date": "Amateur base",
+          "label": "Combat sambo and MMA",
+          "kind": "training",
+          "detail": "Yakhyaev holds Master of Sports credentials in combat sambo and MMA and built a substantial amateur background before turning pro.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
+        },
+        {
+          "date": "2021",
+          "label": "Turns professional",
+          "kind": "milestone",
+          "detail": "Yakhyaev began his professional career in 2021.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
+        },
+        {
+          "date": "2024",
+          "label": "Wins Ares FC light heavyweight title",
+          "kind": "milestone",
+          "detail": "Yakhyaev captured the Ares FC light heavyweight championship and defended it once.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
+        },
+        {
+          "date": "Current camps",
+          "label": "MMA Nürnberg + Fight Sports Deerfield Beach",
+          "kind": "camp",
+          "detail": "Yakhyaev has trained with MMA Nürnberg in Germany and also with JZ Cavalcante at Fight Sports Deerfield Beach in Florida.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/abdul-rakhman-yakhyaev-active-successful-and-hungry-more-ufc-baku"
+        },
+        {
+          "date": "Aug. 26, 2025",
+          "label": "WIN · Alik Lorenz · earns UFC contract",
+          "kind": "win",
+          "detail": "A 30-second body-knee-and-punches finish on Contender Series earned Yakhyaev his UFC contract.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
+        },
+        {
+          "date": "Sep 26, 2024",
+          "label": "WIN · Jacky Jeanne · Submission (Rear-Naked Choke)",
+          "kind": "win",
+          "detail": "Abdul Rakhman Yakhyaev defeated Jacky Jeanne. Submission (Rear-Naked Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Aug 26, 2025",
+          "label": "WIN · Alik Lorenz · TKO (Knee to the Body and Punches)",
+          "kind": "win",
+          "detail": "Abdul Rakhman Yakhyaev defeated Alik Lorenz. TKO (Knee to the Body and Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Nov 22, 2025",
+          "label": "WIN · Raffael Cerqueira · Submission (Rear-Naked Choke)",
+          "kind": "win",
+          "detail": "Abdul Rakhman Yakhyaev defeated Raffael Cerqueira. Submission (Rear-Naked Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Apr 4, 2026",
+          "label": "WIN · Brendson Ribeiro · Submission (Rear-Naked Choke)",
+          "kind": "win",
+          "detail": "Abdul Rakhman Yakhyaev defeated Brendson Ribeiro. Submission (Rear-Naked Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jun 27, 2026",
+          "label": "WIN · Julius Walker · KO (Punches)",
+          "kind": "win",
+          "detail": "Abdul Rakhman Yakhyaev defeated Julius Walker. KO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Nikita Krylov",
+          "kind": "upcoming",
+          "detail": "Abdul Rakhman Yakhyaev is scheduled to face Nikita Krylov at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 10-0-0, UFC 3-0-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Abus Magomedov": {
+      "slug": "abus-magomedov",
+      "name": "Abus Magomedov",
+      "subtitle": "Career chronology",
+      "record": "29-7-1",
+      "ufcRecord": "5-3-0",
+      "division": "Middleweight",
+      "items": [
+        {
+          "date": "Childhood",
+          "label": "Lifelong martial arts start",
+          "kind": "training",
+          "detail": "Magomedov says he began martial arts as a child and has trained throughout his life.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abus-magomedov"
+        },
+        {
+          "date": "2010",
+          "label": "Turns professional",
+          "kind": "milestone",
+          "detail": "Magomedov began his professional MMA career in 2010.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abus-magomedov"
+        },
+        {
+          "date": "2013-2017",
+          "label": "German and Superior FC titles",
+          "kind": "milestone",
+          "detail": "Before reaching the UFC, Magomedov won German MMA and Superior FC championships at welterweight and middleweight.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abus-magomedov"
+        },
+        {
+          "date": "Sep. 3, 2022",
+          "label": "WIN · Dustin Stoltzfus · UFC debut KO",
+          "kind": "win",
+          "detail": "Magomedov needed only 19 seconds to stop Dustin Stoltzfus in his UFC debut.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abus-magomedov"
+        },
+        {
+          "date": "May 18, 2024",
+          "label": "WIN · Warlley Alves · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Abus Magomedov defeated Warlley Alves. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 26, 2024",
+          "label": "WIN · Brunno Ferreira · Submission (Arm-Triangle Choke)",
+          "kind": "win",
+          "detail": "Abus Magomedov defeated Brunno Ferreira. Submission (Arm-Triangle Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Apr 26, 2025",
+          "label": "WIN · Michel Pereira · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Abus Magomedov defeated Michel Pereira. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 4, 2025",
+          "label": "LOSS · Joe Pyfer · Submission (Face Crank)",
+          "kind": "loss",
+          "detail": "Abus Magomedov lost to Joe Pyfer. Submission (Face Crank).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jun 27, 2026",
+          "label": "WIN · Michal Oleksiejczuk · Submission (Guillotine Choke)",
+          "kind": "win",
+          "detail": "Abus Magomedov defeated Michal Oleksiejczuk. Submission (Guillotine Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Cam Rowston",
+          "kind": "upcoming",
+          "detail": "Abus Magomedov is scheduled to face Cam Rowston at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 29-7-1, UFC 5-3-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Cam Rowston": {
+      "slug": "cam-rowston",
+      "name": "Cam Rowston",
+      "subtitle": "Career chronology",
+      "record": "15-3",
+      "ufcRecord": "3-0-0",
+      "division": "Middleweight",
+      "items": [
+        {
+          "date": "2013 · age 18",
+          "label": "Starts training to change his life",
+          "kind": "training",
+          "detail": "Rowston says he began training after turning 18 to build confidence and pull himself away from heavy drinking and partying.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/cameron-rowston"
+        },
+        {
+          "date": "Pre-UFC",
+          "label": "Kickboxing and grappling titles",
+          "kind": "milestone",
+          "detail": "Rowston won two King in the Ring tournaments, a WKBF South Pacific title and an ADCC New Zealand absolute title.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/cameron-rowston"
+        },
+        {
+          "date": "Aug. 20, 2024",
+          "label": "LOSS · Torrez Finney · first DWCS attempt",
+          "kind": "loss",
+          "detail": "Rowston lost a unanimous decision to Torrez Finney on Contender Series.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/cameron-rowston"
+        },
+        {
+          "date": "Aug. 19, 2025",
+          "label": "WIN · Brandon Holmes · earns UFC contract",
+          "kind": "win",
+          "detail": "Rowston returned to Contender Series one year later and stopped Brandon Holmes to earn his contract.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/cameron-rowston"
+        },
+        {
+          "date": "Current camp",
+          "label": "City Kickboxing",
+          "kind": "camp",
+          "detail": "The UFC lists Rowston as training at City Kickboxing.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/cameron-rowston"
+        },
+        {
+          "date": "Feb 8, 2025",
+          "label": "WIN · Alfred Stoddart · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Cam Rowston defeated Alfred Stoddart. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Aug 19, 2025",
+          "label": "WIN · Brandon Holmes · TKO (Elbow and Punches)",
+          "kind": "win",
+          "detail": "Cam Rowston defeated Brandon Holmes. TKO (Elbow and Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Sep 27, 2025",
+          "label": "WIN · Andre Petroski · TKO (Punches)",
+          "kind": "win",
+          "detail": "Cam Rowston defeated Andre Petroski. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jan 31, 2026",
+          "label": "WIN · Cody Brundage · TKO (Punches)",
+          "kind": "win",
+          "detail": "Cam Rowston defeated Cody Brundage. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "May 2, 2026",
+          "label": "WIN · Robert Bryczek · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Cam Rowston defeated Robert Bryczek. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Abus Magomedov",
+          "kind": "upcoming",
+          "detail": "Cam Rowston is scheduled to face Abus Magomedov at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 15-3-0, UFC 3-0-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Grant Dawson": {
+      "slug": "grant-dawson",
+      "name": "Grant Dawson",
+      "subtitle": "Career chronology",
+      "record": "24-3-1",
+      "ufcRecord": "12-2-1",
+      "division": "Lightweight",
+      "items": [
+        {
+          "date": "2014",
+          "label": "Turns pro with Glory MMA",
+          "kind": "milestone",
+          "detail": "Dawson began his pro career with Glory MMA in Missouri under James Krause and spent his first 19 professional fights with that team.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/grant-dawson"
+        },
+        {
+          "date": "2017",
+          "label": "Dana White's Contender Series",
+          "kind": "milestone",
+          "detail": "Dawson earned his UFC opportunity through the first season of Dana White's Contender Series.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/grant-dawson"
+        },
+        {
+          "date": "Feb. 2022",
+          "label": "Leaves Glory MMA for American Top Team",
+          "kind": "camp",
+          "detail": "After his draw with Ricky Glenn, Dawson said he felt burned out in Missouri. He left the team that had guided his entire pro career and moved to Florida to join American Top Team.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/grant-dawson-feels-his-old-self-new-place-ufc-vegas-53"
+        },
+        {
+          "date": "Current camp",
+          "label": "American Top Team",
+          "kind": "camp",
+          "detail": "Dawson remains listed with American Top Team.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/grant-dawson"
+        },
+        {
+          "date": "Jun 1, 2024",
+          "label": "WIN · Joe Solecki · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Grant Dawson defeated Joe Solecki. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 12, 2024",
+          "label": "WIN · Rafa Garcia · TKO (Elbows and Punches)",
+          "kind": "win",
+          "detail": "Grant Dawson defeated Rafa Garcia. TKO (Elbows and Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jan 18, 2025",
+          "label": "WIN · Diego Ferreira · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Grant Dawson defeated Diego Ferreira. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Dec 6, 2025",
+          "label": "LOSS · Manuel Torres · TKO (Punches)",
+          "kind": "loss",
+          "detail": "Grant Dawson lost to Manuel Torres. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "May 9, 2026",
+          "label": "WIN · Mateusz Rebecki · Submission (Rear-Naked Choke)",
+          "kind": "win",
+          "detail": "Grant Dawson defeated Mateusz Rebecki. Submission (Rear-Naked Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Nurullo Aliev",
+          "kind": "upcoming",
+          "detail": "Grant Dawson is scheduled to face Nurullo Aliev at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 24-3-1, UFC 12-2-1.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Nurullo Aliev": {
+      "slug": "nurullo-aliev",
+      "name": "Nurullo Aliev",
+      "subtitle": "Career chronology",
+      "record": "12-0",
+      "ufcRecord": "4-0-0",
+      "division": "Lightweight",
+      "items": [
+        {
+          "date": "Childhood",
+          "label": "Starts training through older brothers",
+          "kind": "training",
+          "detail": "Aliev says his older brothers brought him into training when he was a child.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+        },
+        {
+          "date": "Amateur career",
+          "label": "Pankration and combat sambo titles",
+          "kind": "milestone",
+          "detail": "Aliev became a two-time world pankration champion, Asian pankration champion and Asian combat sambo champion.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+        },
+        {
+          "date": "Pre-UFC",
+          "label": "Eagle FC lightweight champion",
+          "kind": "milestone",
+          "detail": "Before joining the UFC, Aliev held the lightweight championship in Gorilla Fighting / Eagle FC.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+        },
+        {
+          "date": "Sep. 20, 2022",
+          "label": "WIN · Josh Wick · DWCS TKO",
+          "kind": "win",
+          "detail": "Aliev stopped Josh Wick on Contender Series to earn his UFC contract.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+        },
+        {
+          "date": "Feb. 25, 2023",
+          "label": "WIN · Rafael Alves · UFC debut",
+          "kind": "win",
+          "detail": "Aliev won a majority decision in his UFC debut, then went nearly two years before his next UFC appearance.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+        },
+        {
+          "date": "Sep 20, 2022",
+          "label": "WIN · Josh Wick · TKO (Punches)",
+          "kind": "win",
+          "detail": "Nurullo Aliev defeated Josh Wick. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Feb 25, 2023",
+          "label": "WIN · Rafael Alves · Decision (Majority)",
+          "kind": "win",
+          "detail": "Nurullo Aliev defeated Rafael Alves. Decision (Majority).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jan 11, 2025",
+          "label": "WIN · Joe Solecki · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Nurullo Aliev defeated Joe Solecki. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Nov 22, 2025",
+          "label": "WIN · Shaqueme Rock · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Nurullo Aliev defeated Shaqueme Rock. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jul 25, 2026",
+          "label": "WIN · Mike Davis · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Nurullo Aliev defeated Mike Davis. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Grant Dawson",
+          "kind": "upcoming",
+          "detail": "Nurullo Aliev is scheduled to face Grant Dawson at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 12-0-0, UFC 4-0-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Colby Thicknesse": {
+      "slug": "colby-thicknesse",
+      "name": "Colby Thicknesse",
+      "subtitle": "Career chronology",
+      "record": "9-1",
+      "ufcRecord": "2-1-0",
+      "division": "Bantamweight",
+      "items": [
+        {
+          "date": "Age 6",
+          "label": "Starts wrestling",
+          "kind": "training",
+          "detail": "Thicknesse says his father put him and his twin brother into wrestling at age six because they were always fighting at home.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/colby-thicknesse"
+        },
+        {
+          "date": "Teen years onward",
+          "label": "Long-term Freestyle MMA development",
+          "kind": "camp",
+          "detail": "He has trained under Joe Lopez at Freestyle MMA for more than a decade and has been a main training partner for Alexander Volkanovski since age 18.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/colby-thicknesse"
+        },
+        {
+          "date": "Pre-UFC",
+          "label": "Hex bantamweight champion",
+          "kind": "milestone",
+          "detail": "Thicknesse won the Hex bantamweight title and also built an amateur résumé that included IMMAF, kickboxing and BJJ achievements.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/colby-thicknesse"
+        },
+        {
+          "date": "Feb. 8, 2025",
+          "label": "LOSS · Aleksandre Topuria · UFC debut",
+          "kind": "loss",
+          "detail": "Thicknesse accepted his UFC debut against Aleksandre Topuria and lost a unanimous decision.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/colby-thicknesse"
+        },
+        {
+          "date": "Oct 27, 2024",
+          "label": "WIN · Norman Agcopra · Submission (Rear-Naked Choke)",
+          "kind": "win",
+          "detail": "Colby Thicknesse defeated Norman Agcopra. Submission (Rear-Naked Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Nov 23, 2024",
+          "label": "WIN · Marvin Malunes · KO (Elbows)",
+          "kind": "win",
+          "detail": "Colby Thicknesse defeated Marvin Malunes. KO (Elbows).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Feb 8, 2025",
+          "label": "LOSS · Aleksandre Topuria · Decision (Unanimous)",
+          "kind": "loss",
+          "detail": "Colby Thicknesse lost to Aleksandre Topuria. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Sep 27, 2025",
+          "label": "WIN · Josias Musasa · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Colby Thicknesse defeated Josias Musasa. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "May 2, 2026",
+          "label": "WIN · Vince Morales · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Colby Thicknesse defeated Vince Morales. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Asaf Chopurov",
+          "kind": "upcoming",
+          "detail": "Colby Thicknesse is scheduled to face Asaf Chopurov at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 9-1-0, UFC 2-1-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Asaf Chopurov": {
+      "slug": "asaf-chopurov",
+      "name": "Asaf Chopurov",
+      "subtitle": "Career chronology",
+      "record": "11-0",
+      "ufcRecord": "0-0-0",
+      "division": "Bantamweight",
+      "items": [
+        {
+          "date": "Amateur career",
+          "label": "34-1 amateur record",
+          "kind": "milestone",
+          "detail": "Chopurov entered the UFC with a reported 34-1 amateur record before building an undefeated professional run.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/news/news/UFC-signs-110-finisher-who-went-341-as-an-amateur-202944"
+        },
+        {
+          "date": "Professional career",
+          "label": "Sambo 34",
+          "kind": "camp",
+          "detail": "Sherdog lists Chopurov's association as Sambo 34. He is also a training partner of Petr Yan.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/fighter/Asaf-Chopurov-399679"
+        },
+        {
+          "date": "2025",
+          "label": "Wins UAE Warriors bantamweight title",
+          "kind": "milestone",
+          "detail": "Chopurov captured the vacant UAE Warriors bantamweight championship in 2025 and successfully defended it twice before signing with the UFC.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/news/news/UFC-signs-110-finisher-who-went-341-as-an-amateur-202944"
+        },
+        {
+          "date": "Sept. 2026",
+          "label": "Signs with UFC",
+          "kind": "milestone",
+          "detail": "The UFC signed Chopurov at 11-0 with 10 finishes, setting up his promotional debut against Colby Thicknesse at UFC 333.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/news/news/UFC-signs-110-finisher-who-went-341-as-an-amateur-202944"
+        },
+        {
+          "date": "Jan 17, 2025",
+          "label": "WIN · Wanderley Rosa Ferreira Levandovski · Submission (Rear-Naked Choke)",
+          "kind": "win",
+          "detail": "Asaf Chopurov defeated Wanderley Rosa Ferreira Levandovski. Submission (Rear-Naked Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jul 23, 2025",
+          "label": "WIN · Joao Pedro Saldanha · TKO (Submission to Punches)",
+          "kind": "win",
+          "detail": "Asaf Chopurov defeated Joao Pedro Saldanha. TKO (Submission to Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 22, 2025",
+          "label": "WIN · Demarte Pena · TKO (Retirement)",
+          "kind": "win",
+          "detail": "Asaf Chopurov defeated Demarte Pena. TKO (Retirement).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Mar 28, 2026",
+          "label": "WIN · Adriano Ramos · Submission (Rear-Naked Choke)",
+          "kind": "win",
+          "detail": "Asaf Chopurov defeated Adriano Ramos. Submission (Rear-Naked Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jul 23, 2026",
+          "label": "WIN · Reece McLaren · KO (Punch)",
+          "kind": "win",
+          "detail": "Asaf Chopurov defeated Reece McLaren. KO (Punch).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Colby Thicknesse",
+          "kind": "upcoming",
+          "detail": "Asaf Chopurov is scheduled to face Colby Thicknesse at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 11-0-0, UFC 0-0-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Jacob Malkoun": {
+      "slug": "jacob-malkoun",
+      "name": "Jacob Malkoun",
+      "subtitle": "Career chronology",
+      "record": "10-3",
+      "ufcRecord": "6-3-0",
+      "division": "Middleweight",
+      "items": [
+        {
+          "date": "Youth",
+          "label": "Starts training for fitness",
+          "kind": "training",
+          "detail": "Malkoun says his father initially put him into martial arts to get fit. He later became obsessed with improving and testing how good he could become.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/jacob-malkoun"
+        },
+        {
+          "date": "Pre-pro / early pro",
+          "label": "Gracie Jiu Jitsu Smeaton Grange",
+          "kind": "camp",
+          "detail": "Malkoun began coaching MMA classes at Gracie Smeaton Grange before his 2017 pro debut, allowing him to train and coach full time.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/jacob-malkoun"
+        },
+        {
+          "date": "Training partnership",
+          "label": "Robert Whittaker training partner",
+          "kind": "camp",
+          "detail": "Malkoun has long been a training partner of former UFC middleweight champion Robert Whittaker.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/jacob-malkoun"
+        },
+        {
+          "date": "Oct. 24, 2020",
+          "label": "LOSS · Phil Hawes · UFC debut KO",
+          "kind": "loss",
+          "detail": "Malkoun was knocked out 18 seconds into his UFC debut.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/jacob-malkoun"
+        },
+        {
+          "date": "2024-2026",
+          "label": "Nearly two-year gap between UFC fights",
+          "kind": "layoff",
+          "detail": "After beating Andre Petroski in March 2024, Malkoun did not return until January 2026. UFC described the Sydney appearance as his return after nearly two years.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/jacob-malkoun"
+        },
+        {
+          "date": "Oct 15, 2022",
+          "label": "WIN · Nick Maximov · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Jacob Malkoun defeated Nick Maximov. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Sep 23, 2023",
+          "label": "LOSS · Cody Brundage · Disqualification (Illegal Elbow)",
+          "kind": "loss",
+          "detail": "Jacob Malkoun lost to Cody Brundage. Disqualification (Illegal Elbow).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Mar 30, 2024",
+          "label": "WIN · Andre Petroski · TKO (Soccer Kick to the Body)",
+          "kind": "win",
+          "detail": "Jacob Malkoun defeated Andre Petroski. TKO (Soccer Kick to the Body).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jan 31, 2026",
+          "label": "WIN · Torrez Finney · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Jacob Malkoun defeated Torrez Finney. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "May 2, 2026",
+          "label": "WIN · Gerald Meerschaert · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Jacob Malkoun defeated Gerald Meerschaert. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Abubakar Vagaev",
+          "kind": "upcoming",
+          "detail": "Jacob Malkoun is scheduled to face Abubakar Vagaev at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 10-3-0, UFC 6-3-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Abubakar Vagaev": {
+      "slug": "abubakar-vagaev",
+      "name": "Abubakar Vagaev",
+      "subtitle": "Career chronology",
+      "record": "25-4",
+      "ufcRecord": "1-0-0",
+      "division": "Middleweight",
+      "items": [
+        {
+          "date": "Age 19-20",
+          "label": "Wrestling then MMA",
+          "kind": "training",
+          "detail": "Vagaev says he started wrestling at 19 and MMA at 20, describing combat sports as part of the tradition where he grew up.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abubakar-vagaev"
+        },
+        {
+          "date": "2017",
+          "label": "World Fighting Championship Akhmat title",
+          "kind": "milestone",
+          "detail": "Vagaev won a welterweight title under the World Fighting Championship Akhmat banner.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abubakar-vagaev"
+        },
+        {
+          "date": "2022",
+          "label": "Wins ACA welterweight title",
+          "kind": "milestone",
+          "detail": "Vagaev became ACA welterweight champion in 2022.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abubakar-vagaev"
+        },
+        {
+          "date": "Dec. 16, 2022",
+          "label": "LOSS · Vitaliy Slipenko · KO",
+          "kind": "loss",
+          "detail": "Slipenko stopped Vagaev with an elbow in the fifth round, beginning the stretch Vagaev later rebuilt from.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abubakar-vagaev"
+        },
+        {
+          "date": "Feb. 8, 2025",
+          "label": "WIN · Albert Tumenov · regains ACA title",
+          "kind": "win",
+          "detail": "Vagaev beat Albert Tumenov over five rounds to become a two-time ACA welterweight champion.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abubakar-vagaev"
+        },
+        {
+          "date": "Current camp",
+          "label": "Akhmat Fight Club",
+          "kind": "camp",
+          "detail": "The UFC lists Vagaev with Akhmat Fight Club.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/abubakar-vagaev"
+        },
+        {
+          "date": "Dec 16, 2022",
+          "label": "LOSS · Vitaliy Slipenko · KO (Elbow)",
+          "kind": "loss",
+          "detail": "Abubakar Vagaev lost to Vitaliy Slipenko. KO (Elbow).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Sep 2, 2023",
+          "label": "WIN · Michel Prazeres · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Abubakar Vagaev defeated Michel Prazeres. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Mar 9, 2024",
+          "label": "WIN · Edil Esengulov · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Abubakar Vagaev defeated Edil Esengulov. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Feb 8, 2025",
+          "label": "WIN · Albert Tumenov · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Abubakar Vagaev defeated Albert Tumenov. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jul 25, 2026",
+          "label": "WIN · Saygid Izagakhmaev · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Abubakar Vagaev defeated Saygid Izagakhmaev. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Jacob Malkoun",
+          "kind": "upcoming",
+          "detail": "Abubakar Vagaev is scheduled to face Jacob Malkoun at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 25-4-0, UFC 1-0-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Bolaji Oki": {
+      "slug": "bolaji-oki",
+      "name": "Bolaji Oki",
+      "subtitle": "Career chronology",
+      "record": "10-4",
+      "ufcRecord": "2-3-0",
+      "division": "Featherweight",
+      "items": [
+        {
+          "date": "Age 17",
+          "label": "Starts training",
+          "kind": "training",
+          "detail": "Oki says he began training at 17 because he loved competition and wanted to learn to fight.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/bolaji-oki"
+        },
+        {
+          "date": "Regional career",
+          "label": "Two-time Atomic lightweight champion",
+          "kind": "milestone",
+          "detail": "Before reaching the UFC, Oki won the Atomic lightweight title twice in Belgium.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/bolaji-oki"
+        },
+        {
+          "date": "Aug. 29, 2023",
+          "label": "WIN · Dylan Salvador · DWCS TKO",
+          "kind": "win",
+          "detail": "Oki stopped Dylan Salvador in the first round on Contender Series and earned a UFC contract.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/bolaji-oki"
+        },
+        {
+          "date": "Current camp",
+          "label": "Valon Team",
+          "kind": "camp",
+          "detail": "The UFC lists Oki as training at Valon Team.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/bolaji-oki"
+        },
+        {
+          "date": "Feb 10, 2024",
+          "label": "WIN · Timothy Cuamba · Decision (Split)",
+          "kind": "win",
+          "detail": "Bolaji Oki defeated Timothy Cuamba. Decision (Split).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Sep 28, 2024",
+          "label": "LOSS · Chris Duncan · Technical Submission (Guillotine Choke)",
+          "kind": "loss",
+          "detail": "Bolaji Oki lost to Chris Duncan. Technical Submission (Guillotine Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "May 31, 2025",
+          "label": "WIN · Michael Aswell · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Bolaji Oki defeated Michael Aswell. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Sep 6, 2025",
+          "label": "LOSS · Mason Jones · TKO (Elbows)",
+          "kind": "loss",
+          "detail": "Bolaji Oki lost to Mason Jones. TKO (Elbows).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Mar 14, 2026",
+          "label": "LOSS · Manoel Sousa · KO (Punch)",
+          "kind": "loss",
+          "detail": "Bolaji Oki lost to Manoel Sousa. KO (Punch).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Daniel Santos",
+          "kind": "upcoming",
+          "detail": "Bolaji Oki is scheduled to face Daniel Santos at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 10-4-0, UFC 2-3-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Daniel Santos": {
+      "slug": "daniel-santos",
+      "name": "Daniel Santos",
+      "subtitle": "Career chronology",
+      "record": "14-3",
+      "ufcRecord": "4-2-0",
+      "division": "Featherweight",
+      "items": [
+        {
+          "date": "2013",
+          "label": "Turns professional",
+          "kind": "milestone",
+          "detail": "Santos began his professional MMA career in 2013.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/daniel-santos"
+        },
+        {
+          "date": "UFC career",
+          "label": "Chute Boxe",
+          "kind": "camp",
+          "detail": "Santos trains at Chute Boxe and has trained alongside fighters including Charles Oliveira and Allan Nascimento.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/daniel-santos"
+        },
+        {
+          "date": "Apr. 9, 2022",
+          "label": "UFC debut",
+          "kind": "milestone",
+          "detail": "Santos entered the UFC in 2022.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/daniel-santos"
+        },
+        {
+          "date": "Oct. 1, 2022",
+          "label": "WIN · John Castaneda · first UFC win",
+          "kind": "win",
+          "detail": "After losing his UFC debut, Santos knocked out John Castaneda in the second round for his first Octagon victory.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/daniel-santos"
+        },
+        {
+          "date": "Oct 1, 2022",
+          "label": "WIN · John Castaneda · KO (Punches and Knee)",
+          "kind": "win",
+          "detail": "Daniel Santos defeated John Castaneda. KO (Punches and Knee).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jun 3, 2023",
+          "label": "WIN · Johnny Munoz Jr. · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Daniel Santos defeated Johnny Munoz Jr.. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "May 10, 2025",
+          "label": "WIN · Jeong Yeong Lee · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Daniel Santos defeated Jeong Yeong Lee. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 4, 2025",
+          "label": "WIN · Joo Sang Yoo · TKO (Punches)",
+          "kind": "win",
+          "detail": "Daniel Santos defeated Joo Sang Yoo. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "May 16, 2026",
+          "label": "LOSS · Doo Ho Choi · TKO (Punches)",
+          "kind": "loss",
+          "detail": "Daniel Santos lost to Doo Ho Choi. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Bolaji Oki",
+          "kind": "upcoming",
+          "detail": "Daniel Santos is scheduled to face Bolaji Oki at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 14-3-0, UFC 4-2-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Kody Steele": {
+      "slug": "kody-steele",
+      "name": "Kody Steele",
+      "subtitle": "Career chronology",
+      "record": "8-1",
+      "ufcRecord": "1-1-0",
+      "division": "Lightweight",
+      "items": [
+        {
+          "date": "~2013",
+          "label": "Starts with jiu-jitsu",
+          "kind": "training",
+          "detail": "Steele says he began serious training with jiu-jitsu roughly 11 years before his 2024 Contender Series appearance, then gradually added striking and MMA.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/kody-steele"
+        },
+        {
+          "date": "Grappling career",
+          "label": "BJJ black belt and Combat Jiu-Jitsu world champion",
+          "kind": "milestone",
+          "detail": "Before focusing fully on MMA, Steele built a high-level grappling résumé that included a Combat Jiu-Jitsu world title and an ADCC Trials silver medal.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/kody-steele"
+        },
+        {
+          "date": "2024",
+          "label": "Moves to Las Vegas for MMA",
+          "kind": "camp",
+          "detail": "Steele said he began putting the full MMA game together after moving to Las Vegas. The UFC lists him at Syndicate MMA.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/kody-steele"
+        },
+        {
+          "date": "DWCS 2024",
+          "label": "Opponent withdraws on fight night, bout rescheduled",
+          "kind": "layoff",
+          "detail": "Steele was initially booked for Week 5 of Contender Series, but Quemuel Ottoni withdrew on fight night. Steele returned on Week 9 and stopped Chasen Blair.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/kody-steele"
+        },
+        {
+          "date": "Sep 24, 2023",
+          "label": "WIN · Nico Echeverry · KO (Knee and Punches)",
+          "kind": "win",
+          "detail": "Kody Steele defeated Nico Echeverry. KO (Knee and Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Apr 21, 2024",
+          "label": "WIN · Alejandro Martinez · TKO (Punches)",
+          "kind": "win",
+          "detail": "Kody Steele defeated Alejandro Martinez. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 8, 2024",
+          "label": "WIN · Chasen Blair · TKO (Punches)",
+          "kind": "win",
+          "detail": "Kody Steele defeated Chasen Blair. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Feb 8, 2025",
+          "label": "LOSS · Zhu Rong · Decision (Unanimous)",
+          "kind": "loss",
+          "detail": "Kody Steele lost to Zhu Rong. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "May 2, 2026",
+          "label": "WIN · Dom Mar Fan · Submission (Inverted Heel Hook)",
+          "kind": "win",
+          "detail": "Kody Steele defeated Dom Mar Fan. Submission (Inverted Heel Hook).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Noah Gugnon",
+          "kind": "upcoming",
+          "detail": "Kody Steele is scheduled to face Noah Gugnon at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 8-1-0, UFC 1-1-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Noah Gugnon": {
+      "slug": "noah-gugnon",
+      "name": "Noah Gugnon",
+      "subtitle": "Career chronology",
+      "record": "10-2",
+      "ufcRecord": "1-0-0",
+      "division": "Lightweight",
+      "items": [
+        {
+          "date": "Oct. 29, 2021",
+          "label": "WIN · Jessy Chateauneuf · RNC R2",
+          "kind": "win",
+          "detail": "Gugnon opened his recorded professional run with a second-round rear-naked choke.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/fighter/Noah-Gugnon-236171"
+        },
+        {
+          "date": "Apr. 16, 2022",
+          "label": "WIN · Sofiane Belaid · RNC R1",
+          "kind": "win",
+          "detail": "Second straight professional submission win.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/fighter/Noah-Gugnon-236171"
+        },
+        {
+          "date": "2023",
+          "label": "Two wins, then first pro loss in Bellator",
+          "kind": "milestone",
+          "detail": "Gugnon knocked out David Hawker and Dukwach Kadimagomaev before Mark Ewen stopped him with elbows and punches at Bellator 299.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/fighter/Noah-Gugnon-236171"
+        },
+        {
+          "date": "Feb. 3, 2024",
+          "label": "LOSS · Samvel Vardanyan · decision",
+          "kind": "loss",
+          "detail": "Gugnon lost a unanimous decision, falling to 4-2 before beginning his current winning streak.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/fighter/Noah-Gugnon-236171"
+        },
+        {
+          "date": "Current camp",
+          "label": "Bulgarian Top Team",
+          "kind": "camp",
+          "detail": "Sherdog lists Gugnon's association as Bulgarian Top Team.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/fighter/Noah-Gugnon-236171"
+        },
+        {
+          "date": "Dec 7, 2024",
+          "label": "WIN · Nicolas Di Franco · TKO (Elbows)",
+          "kind": "win",
+          "detail": "Noah Gugnon defeated Nicolas Di Franco. TKO (Elbows).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Jun 14, 2025",
+          "label": "WIN · Ioan Harris · KO (Punch and Elbows)",
+          "kind": "win",
+          "detail": "Noah Gugnon defeated Ioan Harris. KO (Punch and Elbows).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 18, 2025",
+          "label": "WIN · Adrian Prisceanu · TKO (Punches)",
+          "kind": "win",
+          "detail": "Noah Gugnon defeated Adrian Prisceanu. TKO (Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Apr 3, 2026",
+          "label": "WIN · Bruno Matos de Sousa · TKO (Elbows and Punches)",
+          "kind": "win",
+          "detail": "Noah Gugnon defeated Bruno Matos de Sousa. TKO (Elbows and Punches).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Aug 1, 2026",
+          "label": "WIN · Milos Janicic · Submission (Rear-Naked Choke)",
+          "kind": "win",
+          "detail": "Noah Gugnon defeated Milos Janicic. Submission (Rear-Naked Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Kody Steele",
+          "kind": "upcoming",
+          "detail": "Noah Gugnon is scheduled to face Kody Steele at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 10-2-0, UFC 1-0-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
+    "Iasmin Lucindo": {
+      "slug": "iasmin-lucindo",
+      "name": "Iasmin Lucindo",
+      "subtitle": "Career chronology",
+      "record": "18-6",
+      "ufcRecord": "5-2-0",
+      "division": "Women's Strawweight",
+      "items": [
+        {
+          "date": "Youth",
+          "label": "Starts fighting after witnessing domestic violence",
+          "kind": "training",
+          "detail": "Lucindo says witnessing domestic violence in her family pushed her toward training, with fighting becoming a path toward a better life for her family.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/iasmin-lucindo"
+        },
+        {
+          "date": "Regional career",
+          "label": "Multiple MMA and jiu-jitsu titles",
+          "kind": "milestone",
+          "detail": "Before the UFC, Lucindo held regional MMA belts and won Brazilian and state-level jiu-jitsu honors.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/iasmin-lucindo"
+        },
+        {
+          "date": "Aug. 13, 2022",
+          "label": "UFC debut vs. Yazmin Jauregui",
+          "kind": "loss",
+          "detail": "Lucindo lost a unanimous decision in her UFC debut, then began a four-fight UFC winning streak.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/athlete/iasmin-lucindo"
+        },
+        {
+          "date": "Sept. 24, 2025",
+          "label": "Positive anti-doping sample",
+          "kind": "suspension",
+          "detail": "Lucindo tested positive for mesterolone in an out-of-competition sample. CSAD's investigation found the exposure was not intentional and was connected to compounded supplements she had obtained from a Brazilian pharmacy.",
+          "sourceLabel": "UFC / CSAD",
+          "source": "https://www.ufc.com/news/statement-iasmin-lucindo"
+        },
+        {
+          "date": "Sept. 2025-June 24, 2026",
+          "label": "Nine-month suspension",
+          "kind": "suspension",
+          "detail": "Lucindo accepted a nine-month period of ineligibility. Her scheduled December 2025 bout was removed, and the suspension concluded June 24, 2026.",
+          "sourceLabel": "UFC / CSAD",
+          "source": "https://www.ufc.com/news/statement-iasmin-lucindo"
+        },
+        {
+          "date": "Aug 12, 2023",
+          "label": "WIN · Polyana Viana · Submission (Arm-Triangle Choke)",
+          "kind": "win",
+          "detail": "Iasmin Lucindo defeated Polyana Viana. Submission (Arm-Triangle Choke).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "May 4, 2024",
+          "label": "WIN · Karolina Kowalkiewicz · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Iasmin Lucindo defeated Karolina Kowalkiewicz. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct 5, 2024",
+          "label": "WIN · Marina Rodriguez · Decision (Split)",
+          "kind": "win",
+          "detail": "Iasmin Lucindo defeated Marina Rodriguez. Decision (Split).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Mar 8, 2025",
+          "label": "LOSS · Amanda Lemos · Decision (Unanimous)",
+          "kind": "loss",
+          "detail": "Iasmin Lucindo lost to Amanda Lemos. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Aug 9, 2025",
+          "label": "WIN · Angela Hill · Decision (Unanimous)",
+          "kind": "win",
+          "detail": "Iasmin Lucindo defeated Angela Hill. Decision (Unanimous).",
+          "sourceLabel": "Current UFC 333 draft",
+          "source": ""
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · vs. Nicolle Caliari",
+          "kind": "upcoming",
+          "detail": "Iasmin Lucindo is scheduled to face Nicolle Caliari at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 18-6-0, UFC 5-2-0.",
+          "sourceLabel": "UFC 333",
+          "source": "https://www.ufc.com/event/ufc-333"
+        }
+      ]
+    },
     "Nicolle Caliari": {
       "slug": "nicolle-caliari",
       "name": "Nicolle Caliari",
