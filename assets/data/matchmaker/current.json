@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-06T20:52:36.659Z"
+      "checkedAt": "2026-10-07T00:31:18.437Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-06T20:53:01.429Z",
+      "checkedAt": "2026-10-07T00:31:42.349Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -113219,13 +113219,7 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": {
-        "event": "Buckley vs Malott",
-        "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-        "opponent": "Julien Leblanc",
-        "opponentId": "julien-leblanc"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -199470,13 +199464,7 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": {
-        "event": "Buckley vs Malott",
-        "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-        "opponent": "Javad Mahjoub",
-        "opponentId": "javad-mahjoub"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -247495,7 +247483,11 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-17",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
