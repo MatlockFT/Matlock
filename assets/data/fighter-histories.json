@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "event": "UFC 333",
   "eventDate": "2026-10-24",
   "fighters": {
@@ -122,8 +122,29 @@
           "detail": "Freestyle Fighting Gym under Joe Lopez has remained Volkanovski's home gym. He has also made regular trips to City Kickboxing in New Zealand, but has explicitly described Freestyle as the gym he intends to stay with for his career.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/alexander-volkanovski-aiming-wild-win-zombie-featherweight-title-ufc-273"
+        },
+        {
+          "date": "Mar. 2021",
+          "label": "COVID-19 forces withdrawal from Brian Ortega title defense",
+          "kind": "illness",
+          "detail": "Volkanovski tested positive for COVID-19 and was removed from his scheduled UFC 260 title defense against Brian Ortega. He later described the illness as a significant setback and used the recovery period to place more emphasis on hydration, recovery and other camp details.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/alexander-volkanovski-ready-make-statement"
+        },
+        {
+          "date": "Jan. 31, 2026",
+          "label": "WIN · Diego Lopes · successful title defense",
+          "kind": "win",
+          "detail": "In Sydney, Volkanovski beat Diego Lopes by unanimous decision for a second time, successfully defending the featherweight title he had regained in 2025.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/event/ufc-325"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Movsar Evloev": {
       "slug": "movsar-evloev",
@@ -140,14 +161,6 @@
           "detail": "Evloev began his professional MMA career in 2014 and built his early run in M-1 Global.",
           "sourceLabel": "UFC profile",
           "source": "https://www.ufc.com/athlete/movsar-evloev"
-        },
-        {
-          "date": "Pre-UFC",
-          "label": "M-1 Global bantamweight champion",
-          "kind": "milestone",
-          "detail": "Evloev became M-1 Global bantamweight champion before leaving the promotion undefeated. He moved up to featherweight when he joined the UFC.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/news/movsar-evloev-ready-make-his-big-move-ufc-310-featherweight"
         },
         {
           "date": "2019",
@@ -228,8 +241,37 @@
           "detail": "After beating Aljamain Sterling, Evloev was sidelined by a serious viral illness that repeatedly affected his cardiovascular system. He said the symptoms returned even after medical clearance and at one point he feared he might never fight again. Recovery took more than three months before he could steadily resume training, and he ultimately spent about 15 months between fights.",
           "sourceLabel": "MMA Fighting",
           "source": "https://www.mmafighting.com/ufc/471053/im-not-going-to-fight-again-movsar-evloev-reveals-how-mystery-virus-had-him-scared-for-his-future"
+        },
+        {
+          "date": "Apr. 22, 2017",
+          "label": "WIN · Alexey Nevzorov · wins interim M-1 bantamweight title",
+          "kind": "win",
+          "detail": "Evloev knocked out Alexey Nevzorov in the second round at M-1 Challenge 76 to capture the interim bantamweight championship.",
+          "sourceLabel": "M-1 Global",
+          "source": "https://m-1global.com/en/news/129-m-1-challenge-76-rezultaty-on-lain.html"
+        },
+        {
+          "date": "July 22, 2017",
+          "label": "WIN · Pavel Vitruk · becomes undisputed M-1 champion",
+          "kind": "win",
+          "detail": "Evloev beat Pavel Vitruk by unanimous decision in a five-round title unification bout to become the undisputed M-1 Challenge bantamweight champion.",
+          "sourceLabel": "Combat Press",
+          "source": "https://combatpress.com/2017/07/m-1-challenge-81-battle-in-the-mountains-6-results/"
+        },
+        {
+          "date": "2018-2019",
+          "label": "Two title defenses, then vacates M-1 belt for UFC",
+          "kind": "milestone",
+          "detail": "Evloev defended the M-1 bantamweight title against Sergey Morozov and Rafael Dias in 2018. He later vacated the belt when he left M-1 Global to sign with the UFC.",
+          "sourceLabel": "M-1 title history",
+          "source": "https://mmatoz-m1global.blogspot.com/p/bantamweight-champions.html"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Petr Yan": {
       "slug": "petr-yan",
@@ -350,8 +392,37 @@
           "detail": "Yan beat Song Yadong at UFC 299 but revealed afterward that he had suffered a ruptured ACL, torn meniscus and groin injury. He underwent surgery after the fight.",
           "sourceLabel": "Sherdog",
           "source": "https://www.sherdog.com/news/news/Petr-Yan-to-Undergo-Surgery-for-Knee-Groin-Injuries-Suffered-in-UFC-299-Victory-193008"
+        },
+        {
+          "date": "Oct. 30, 2021",
+          "label": "WIN · Cory Sandhagen · wins interim UFC title",
+          "kind": "win",
+          "detail": "After losing the undisputed title by disqualification earlier in the year, Yan beat Cory Sandhagen by unanimous decision over five rounds at UFC 267 to capture the interim bantamweight championship.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/petr-yan-fab-five-no-mercy-bantamweight-co-main-jacksonville-ufc-273"
+        },
+        {
+          "date": "Apr. 9, 2022",
+          "label": "LOSS · Aljamain Sterling · title unification split decision",
+          "kind": "loss",
+          "detail": "Yan lost a five-round split decision to Aljamain Sterling in the bantamweight title unification bout at UFC 273.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/petr-yan?page=1"
+        },
+        {
+          "date": "Oct. 22, 2022",
+          "label": "LOSS · Sean O'Malley · split decision",
+          "kind": "loss",
+          "detail": "Yan dropped a close split decision to Sean O'Malley at UFC 280. The loss became the middle result in a three-fight skid that ended with the Merab Dvalishvili defeat in March 2023.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/petr-yan?page=1"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Merab Dvalishvili": {
       "slug": "merab-dvalishvili",
@@ -465,7 +536,12 @@
           "sourceLabel": "MMA Fighting",
           "source": "https://www.mmafighting.com/ufc/480023/merab-dvalishvili-smashes-nose-in-training-refusing-surgery-until-retirement"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Lone'er Kavanagh": {
       "slug": "lone-er-kavanagh",
@@ -570,8 +646,29 @@
           "detail": "After returning from a long gap following his 2019 debut, Kavanagh went through Cage Warriors with wins over Ryan Morgan, Ander Sanchez, Davide Scarano and Shawn Marcos da Silva before getting the Contender Series call.",
           "sourceLabel": "Sherdog",
           "source": "https://www.sherdog.com/fighter/Loneer-Kavanagh-213249"
+        },
+        {
+          "date": "Aug. 23, 2025",
+          "label": "First professional loss ends long winning streak",
+          "kind": "milestone",
+          "detail": "Charles Johnson stopped Kavanagh in the second round, handing him the first loss of his professional career and ending a 10-fight winning streak that stretched back to his final amateur bout.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/get-know-loneer-kavanagh"
+        },
+        {
+          "date": "Feb. 28, 2026",
+          "label": "Short-notice Brandon Moreno main event",
+          "kind": "milestone",
+          "detail": "Kavanagh stepped in for the injured Asu Almabayev to face former champion Brandon Moreno in Mexico City. It was Kavanagh's first UFC main event and first five-round fight, and he won a unanimous decision.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/get-know-loneer-kavanagh"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Ramazan Temirov": {
       "slug": "ramazan-temirov",
@@ -630,14 +727,6 @@
           "source": "https://www.ufc.com/athlete/ramazan-temirov"
         },
         {
-          "date": "Oct 12, 2024",
-          "label": "WIN · C.J. Vergara · TKO (Punches)",
-          "kind": "win",
-          "detail": "Ramazan Temirov defeated C.J. Vergara. TKO (Punches).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/ramazan-temirov"
-        },
-        {
           "date": "Mar 1, 2025",
           "label": "WIN · Charles Johnson · Decision (Unanimous)",
           "kind": "win",
@@ -684,8 +773,29 @@
           "detail": "The armbar loss to Talgat Zhumagaliyev in September 2019 became Temirov's last defeat before the long streak that carried him through the regional scene and into the UFC.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/ramazan-temirov"
+        },
+        {
+          "date": "June-July 2025",
+          "label": "Tests positive for trimetazidine in two out-of-competition samples",
+          "kind": "suspension",
+          "detail": "CSAD reported trimetazidine in Temirov's June 12 and July 4, 2025 samples in Phuket. Temirov said the drug had been prescribed for a reported medical condition, but he had not checked its prohibited status or told his doctor he was a tested athlete.",
+          "sourceLabel": "UFC / CSAD",
+          "source": "https://www.ufc.com/news/statement-ramazonbek-temirov"
+        },
+        {
+          "date": "July 5, 2025-July 5, 2026",
+          "label": "Serves 12-month UFC anti-doping suspension",
+          "kind": "suspension",
+          "detail": "Temirov accepted a 12-month period of ineligibility. The suspension began July 5, 2025, when CSAD placed him under provisional suspension, making him eligible to return on or after July 5, 2026.",
+          "sourceLabel": "UFC / CSAD",
+          "source": "https://www.ufc.com/news/statement-ramazonbek-temirov"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Alexander Volkov": {
       "slug": "alexander-volkov",
@@ -790,8 +900,29 @@
           "detail": "Volkov began spending longer stretches living and training in Las Vegas, using the UFC Performance Institute and other local gyms to focus on wrestling, jiu-jitsu and technical development. He later credited those camp tweaks with helping his late-career run.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/constant-improvement-key-alexander-volkov-ufc-293"
+        },
+        {
+          "date": "Oct. 6, 2018",
+          "label": "LOSS · Derrick Lewis · stopped with 11 seconds left",
+          "kind": "loss",
+          "detail": "Volkov controlled most of his UFC 229 fight with Derrick Lewis but was knocked out at 4:49 of the third round. The last-second loss interrupted a six-fight winning streak and a run toward the top of the heavyweight division.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/alexander-volkov"
+        },
+        {
+          "date": "Apr. 2019",
+          "label": "Health issue forces Overeem withdrawal and longest layoff",
+          "kind": "injury",
+          "detail": "Volkov withdrew from a scheduled St. Petersburg main event with Alistair Overeem because of health issues. The absence contributed to what UFC later described as the longest layoff of his career at that point.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/alexander-volkov-my-show"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Rizvan Kuniev": {
       "slug": "rizvan-kuniev",
@@ -904,8 +1035,21 @@
           "detail": "The UFC currently lists Kuniev as training at Atletica Sports. His earlier MMA development was at Gorets Fight Club after switching from wushu sanda.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+        },
+        {
+          "date": "Mar. 2022",
+          "label": "WIN · Anthony Hamilton · submission in 77 seconds",
+          "kind": "win",
+          "detail": "Kuniev submitted UFC veteran Anthony Hamilton in 77 seconds, one of the more recognizable wins during the unbeaten stretch that preceded his UFC arrival.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Aaron Pico": {
       "slug": "aaron-pico",
@@ -980,22 +1124,6 @@
           "source": "https://www.ufc.com/athlete/aaron-pico"
         },
         {
-          "date": "Aug 16, 2025",
-          "label": "LOSS · Lerone Murphy · KO (Spinning Back Elbow)",
-          "kind": "loss",
-          "detail": "Aaron Pico lost to Lerone Murphy. KO (Spinning Back Elbow).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/aaron-pico"
-        },
-        {
-          "date": "Apr 11, 2026",
-          "label": "WIN · Patricio Freire · Decision (Unanimous)",
-          "kind": "win",
-          "detail": "Aaron Pico defeated Patricio Freire. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/aaron-pico"
-        },
-        {
           "date": "Oct. 24, 2026",
           "label": "UFC 333 · vs. Losene Keita",
           "kind": "upcoming",
@@ -1026,8 +1154,21 @@
           "detail": "After the Kennedy fight, Pico underwent surgery on the damaged shoulder before returning to competition in 2023.",
           "sourceLabel": "Jackson Wink MMA",
           "source": "https://jacksonwink.com/news/aaron-pico-and-his-rise-in-the-mma-scene"
+        },
+        {
+          "date": "2019",
+          "label": "Back-to-back knockout losses drop him to 4-3",
+          "kind": "loss",
+          "detail": "After opening his career 4-1, Pico suffered consecutive knockout losses and sat at 4-3, a major reality check for one of MMA's most heavily promoted prospects. The period overlapped with his decision to relocate to Albuquerque and rebuild at Jackson-Wink.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/where-aaron-pico-belongs-ufc-319"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Losene Keita": {
       "slug": "losene-keita",
@@ -1102,22 +1243,6 @@
           "source": "https://www.ufc.com/athlete/losene-keita"
         },
         {
-          "date": "Mar 21, 2026",
-          "label": "LOSS · Nathaniel Wood · Decision (Split)",
-          "kind": "loss",
-          "detail": "Losene Keita lost to Nathaniel Wood. Decision (Split).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/losene-keita"
-        },
-        {
-          "date": "Sep 5, 2026",
-          "label": "WIN · Muhammadjon Naimov · KO (Punch)",
-          "kind": "win",
-          "detail": "Losene Keita defeated Muhammadjon Naimov. KO (Punch).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/losene-keita"
-        },
-        {
           "date": "Oct. 24, 2026",
           "label": "UFC 333 · vs. Aaron Pico",
           "kind": "upcoming",
@@ -1157,7 +1282,12 @@
           "sourceLabel": "MMA Fighting",
           "source": "https://www.mmafighting.com/ufc/402398/ufc-paris-weigh-in-results-nassourdine-imavov-caio-borralho-official-1-main-card-fight-canceled"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Azamat Murzakanov": {
       "slug": "azamat-murzakanov",
@@ -1279,7 +1409,12 @@
           "sourceLabel": "UFC / CSAD",
           "source": "https://www.ufcespanol.com/news/statement-azamat-murzakanov-0"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Dominick Reyes": {
       "slug": "dominick-reyes",
@@ -1392,8 +1527,29 @@
           "detail": "Reyes returned after the DVT scare and nearly two years without a fight, knocking out Dustin Jacoby in the first round. It was his first victory since 2019.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/dominick-reyes-ready-prove-again-ufc-310"
+        },
+        {
+          "date": "Feb. 8, 2020",
+          "label": "LOSS · Jon Jones · first UFC title challenge",
+          "kind": "loss",
+          "detail": "Reyes challenged Jon Jones for the UFC light heavyweight title at UFC 247. Jones retained by unanimous decision after five rounds; Reyes said afterward that he believed he won the first three rounds.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/ufc-247-official-results-jones-reyes-shevchenko-chookagian?language_content_entity=en"
+        },
+        {
+          "date": "Sept. 26, 2020",
+          "label": "LOSS · Jan Blachowicz · vacant-title fight",
+          "kind": "loss",
+          "detail": "After Jones vacated the light heavyweight championship, Reyes received a second consecutive title opportunity. Jan Blachowicz stopped him in the second round at UFC 253 to win the vacant belt.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/ufc-253-adesanya-vs-costa-live-fight-island-results"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Nikita Krylov": {
       "slug": "nikita-krylov",
@@ -1420,12 +1576,12 @@
           "source": "https://www.ufc.com/athlete/nikita-krylov"
         },
         {
-          "date": "2018",
-          "label": "Returns to UFC",
+          "date": "2016-2018",
+          "label": "Leaves UFC, wins four straight outside, then returns",
           "kind": "milestone",
-          "detail": "After competing outside the promotion following 2016, Krylov returned to the UFC in 2018.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/nikita-krylov"
+          "detail": "After a 2016 loss to Misha Cirkunov, Krylov spent roughly 21 months outside the UFC and won four straight fights, all by finish. He returned to the Octagon in 2018.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/nikita-krylov-searching-perfect-balance-ufc-brasilia"
         },
         {
           "date": "2020 camp",
@@ -1498,8 +1654,29 @@
           "detail": "Krylov became ill on fight day and received fluids at the UFC APEX, but the medical team would not clear him to compete. The bout was canceled and then rebooked two weeks later, when Krylov submitted Spann.",
           "sourceLabel": "MMA Fighting",
           "source": "https://www.mmafighting.com/2023/2/25/23615087/ufc-vegas-70-loses-nikita-krylov-vs-ryan-spann-as-main-card-begins"
+        },
+        {
+          "date": "Childhood",
+          "label": "Kyokushin karate foundation",
+          "kind": "training",
+          "detail": "Krylov trained in Kyokushin karate from childhood before adding hand-to-hand combat and submission fighting. He later earned Master of Sports distinctions in multiple disciplines and won the 2013 ADCC Ukraine championship.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/nikita-krylov-new-blood-heavyweight-division"
+        },
+        {
+          "date": "2013-2014",
+          "label": "Begins UFC run at heavyweight, then drops to light heavyweight",
+          "kind": "milestone",
+          "detail": "Krylov entered the UFC as a heavyweight in 2013. After splitting his first two UFC appearances, he moved down to light heavyweight, where the bulk of his UFC career has taken place.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/nikita-krylov-searching-perfect-balance-ufc-brasilia"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Abdul Rakhman Yakhyaev": {
       "slug": "abdul-rakhman-yakhyaev",
@@ -1621,7 +1798,12 @@
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Abus Magomedov": {
       "slug": "abus-magomedov",
@@ -1726,8 +1908,29 @@
           "detail": "In only his second UFC appearance, Magomedov was placed in a five-round main event against Sean Strickland. After a competitive first round, Strickland overwhelmed him and stopped him in round two.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/abus-magomedov"
+        },
+        {
+          "date": "Long-term camp",
+          "label": "UFD Gym Düsseldorf with Ivan Hippolyte",
+          "kind": "camp",
+          "detail": "Magomedov has been a long-time member of UFD Gym in Düsseldorf. His UFC debut coverage identified Ivan Hippolyte as his coach, and UFD has been his main European training base through his PFL and UFC years.",
+          "sourceLabel": "UFC / UFD coverage",
+          "source": "https://www.ufc.com/news/abus-magomedov-wont-waste-any-time-middleweight-ufc-fight-night-paris"
+        },
+        {
+          "date": "2021-Sept. 2022",
+          "label": "Three scrapped UFC bookings delay promotional debut",
+          "kind": "layoff",
+          "detail": "After signing with the UFC, Magomedov had one planned fight in 2021 and two more in 2022 fall apart. One 2022 cancellation was specifically attributed to visa issues. He finally debuted in Paris in September 2022.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/abus-magomedov-wont-waste-any-time-middleweight-ufc-fight-night-paris"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Cam Rowston": {
       "slug": "cam-rowston",
@@ -1840,8 +2043,21 @@
           "detail": "At City Kickboxing in Auckland, Rowston has trained in the same room as Israel Adesanya, Carlos Ulberg, Dan Hooker and other UFC veterans. He credits that environment for making the jump to UFC-level competition feel familiar.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/dwcs-spotlight-cameron-rowston"
+        },
+        {
+          "date": "Aug. 2024-Aug. 2025",
+          "label": "Logs three wins between Contender Series attempts",
+          "kind": "milestone",
+          "detail": "After losing to Torrez Finney on his first Contender Series appearance, Rowston stayed deliberately active and won three fights before returning to the UFC APEX one year later. He has said that activity was necessary to make himself impossible to overlook.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/cameron-rowston-sacrifices-worth-it-ufc-perth"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Grant Dawson": {
       "slug": "grant-dawson",
@@ -1946,8 +2162,29 @@
           "detail": "Dawson's first UFC loss came when Bobby Green knocked him out 33 seconds into their main event. Dawson later described the result as too short to reveal much technically and focused on moving past the setback.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/grant-dawson-very-good-year-ufc-311"
+        },
+        {
+          "date": "High school",
+          "label": "Starts MMA training as a competitive outlet",
+          "kind": "training",
+          "detail": "Dawson says he began training while in high school because he loved competition. Before reaching the UFC he won the KCFA 145-pound professional title and later earned a black belt in jiu-jitsu.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/grant-dawson"
+        },
+        {
+          "date": "2021-2022",
+          "label": "Moves permanently from featherweight to lightweight",
+          "kind": "weight",
+          "detail": "Dawson began his UFC career 3-0 at featherweight. After moving up, lightweight became his long-term division; his UFC profile now separates the 3-0 featherweight start from his later lightweight run.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/grant-dawson"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Nurullo Aliev": {
       "slug": "nurullo-aliev",
@@ -1995,22 +2232,6 @@
           "kind": "win",
           "detail": "Aliev won a majority decision in his UFC debut, then went nearly two years before his next UFC appearance.",
           "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/nurullo-aliev"
-        },
-        {
-          "date": "Sep 20, 2022",
-          "label": "WIN · Josh Wick · TKO (Punches)",
-          "kind": "win",
-          "detail": "Nurullo Aliev defeated Josh Wick. TKO (Punches).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/nurullo-aliev"
-        },
-        {
-          "date": "Feb 25, 2023",
-          "label": "WIN · Rafael Alves · Decision (Majority)",
-          "kind": "win",
-          "detail": "Nurullo Aliev defeated Rafael Alves. Decision (Majority).",
-          "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/nurullo-aliev"
         },
         {
@@ -2068,8 +2289,21 @@
           "detail": "The leg surgery kept Aliev out for almost two years. He said the early recovery was difficult; around six months after surgery he was able to begin boxing again before eventually returning against Joe Solecki in January 2025.",
           "sourceLabel": "Cageside Press",
           "source": "https://cagesidepress.com/2025/01/12/nurullo-aliev-ufc-vegas-101-king-kong/"
+        },
+        {
+          "date": "Early pro career",
+          "label": "Competes at welterweight before settling at lightweight",
+          "kind": "weight",
+          "detail": "Aliev began his unbeaten professional run across two divisions. His UFC profile lists him at 3-0 at welterweight and 9-0 at lightweight, where he ultimately settled for his UFC run.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/nurullo-aliev"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Colby Thicknesse": {
       "slug": "colby-thicknesse",
@@ -2128,14 +2362,6 @@
           "source": "https://www.ufc.com/athlete/colby-thicknesse"
         },
         {
-          "date": "Feb 8, 2025",
-          "label": "LOSS · Aleksandre Topuria · Decision (Unanimous)",
-          "kind": "loss",
-          "detail": "Colby Thicknesse lost to Aleksandre Topuria. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/colby-thicknesse"
-        },
-        {
           "date": "Sep 27, 2025",
           "label": "WIN · Josias Musasa · Decision (Unanimous)",
           "kind": "win",
@@ -2182,8 +2408,21 @@
           "detail": "Before turning pro, Thicknesse built experience across several rulesets. His UFC profile lists IMMAF competition, national-level wrestling and jiu-jitsu results, and kickboxing success, giving him a broader base than his short professional record alone suggests.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/colby-thicknesse"
+        },
+        {
+          "date": "Sept. 17, 2022",
+          "label": "WIN · Semakadde Kakembo · survives two knockdowns",
+          "kind": "win",
+          "detail": "In his second professional fight, Thicknesse was dropped twice in the opening round by undefeated Semakadde Kakembo but recovered to win a unanimous decision. Thicknesse later identified it as the toughest fight of his career.",
+          "sourceLabel": "UFC / Sherdog",
+          "source": "https://www.ufc.com/athlete/colby-thicknesse"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Asaf Chopurov": {
       "slug": "asaf-chopurov",
@@ -2288,8 +2527,29 @@
           "detail": "Chopurov won the vacant UAE Warriors bantamweight championship against Demarte Pena, then defended it against Adriano Ramos and Reece McLaren. The McLaren defense ended by first-round knockout.",
           "sourceLabel": "UAE Warriors",
           "source": "https://www.uaewarriors.com/uae-warriors-72-live-coverage-fight-by-fight/"
+        },
+        {
+          "date": "Amateur development",
+          "label": "Sambo base expands into Muay Thai and Jeet Kune Do",
+          "kind": "training",
+          "detail": "Chopurov's core background is sambo, but UAE Warriors has described an unusually broad development path that also incorporated Muay Thai and Jeet Kune Do.",
+          "sourceLabel": "UAE Warriors",
+          "source": "https://www.uaewarriors.com/4-destinies-1-night-the-fearsome-foursome-of-uae-warriors-61/"
+        },
+        {
+          "date": "Regional career",
+          "label": "Splits camps between Moscow, Baku and Phuket",
+          "kind": "camp",
+          "detail": "During his UAE Warriors rise, Chopurov regularly split training between Moscow, Baku and Phuket. That multi-country camp structure became part of the striking-and-grappling blend he carried into his title run.",
+          "sourceLabel": "UAE Warriors",
+          "source": "https://www.uaewarriors.com/4-destinies-1-night-the-fearsome-foursome-of-uae-warriors-61/"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Jacob Malkoun": {
       "slug": "jacob-malkoun",
@@ -2328,14 +2588,6 @@
           "label": "LOSS · Phil Hawes · UFC debut KO",
           "kind": "loss",
           "detail": "Malkoun was knocked out 18 seconds into his UFC debut.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/jacob-malkoun"
-        },
-        {
-          "date": "2024-2026",
-          "label": "Nearly two-year gap between UFC fights",
-          "kind": "layoff",
-          "detail": "After beating Andre Petroski in March 2024, Malkoun did not return until January 2026. UFC described the Sydney appearance as his return after nearly two years.",
           "sourceLabel": "UFC profile",
           "source": "https://www.ufc.com/athlete/jacob-malkoun"
         },
@@ -2395,7 +2647,12 @@
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/jacob-malkoun-mamba-makes-his-return"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Abubakar Vagaev": {
       "slug": "abubakar-vagaev",
@@ -2454,14 +2711,6 @@
           "source": "https://www.ufc.com/athlete/abubakar-vagaev"
         },
         {
-          "date": "Dec 16, 2022",
-          "label": "LOSS · Vitaliy Slipenko · KO (Elbow)",
-          "kind": "loss",
-          "detail": "Abubakar Vagaev lost to Vitaliy Slipenko. KO (Elbow).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abubakar-vagaev"
-        },
-        {
           "date": "Sep 2, 2023",
           "label": "WIN · Michel Prazeres · Decision (Unanimous)",
           "kind": "win",
@@ -2474,14 +2723,6 @@
           "label": "WIN · Edil Esengulov · Decision (Unanimous)",
           "kind": "win",
           "detail": "Abubakar Vagaev defeated Edil Esengulov. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abubakar-vagaev"
-        },
-        {
-          "date": "Feb 8, 2025",
-          "label": "WIN · Albert Tumenov · Decision (Unanimous)",
-          "kind": "win",
-          "detail": "Abubakar Vagaev defeated Albert Tumenov. Decision (Unanimous).",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/abubakar-vagaev"
         },
@@ -2517,7 +2758,12 @@
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/abubakar-vagaev"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Bolaji Oki": {
       "slug": "bolaji-oki",
@@ -2623,7 +2869,12 @@
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/bolaji-oki"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Daniel Santos": {
       "slug": "daniel-santos",
@@ -2664,14 +2915,6 @@
           "detail": "After losing his UFC debut, Santos knocked out John Castaneda in the second round for his first Octagon victory.",
           "sourceLabel": "UFC profile",
           "source": "https://www.ufc.com/athlete/daniel-santos"
-        },
-        {
-          "date": "Oct 1, 2022",
-          "label": "WIN · John Castaneda · KO (Punches and Knee)",
-          "kind": "win",
-          "detail": "Daniel Santos defeated John Castaneda. KO (Punches and Knee).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/daniel-santos?page=1"
         },
         {
           "date": "Jun 3, 2023",
@@ -2736,8 +2979,21 @@
           "detail": "Santos trains at Chute Boxe Diego Lima, where his training room has included Charles Oliveira and Allan Nascimento. He describes the aggressive, pressure-heavy approach as part of the Chute Boxe identity.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/daniel-santos?page=1"
+        },
+        {
+          "date": "June 2023-May 2025",
+          "label": "Nearly two-year gap between UFC appearances",
+          "kind": "layoff",
+          "detail": "Santos did not compete between his June 2023 win over Johnny Munoz Jr. and his May 2025 return against Jeong Yeong Lee. I have not found a reliable public source identifying one specific injury as the cause, so the timeline records the inactivity without assigning a reason.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/daniel-santos?page=1"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Kody Steele": {
       "slug": "kody-steele",
@@ -2851,7 +3107,12 @@
           "sourceLabel": "UFC Fight Pass",
           "source": "https://www.ufc.com/news/fury-fcs-kody-steele-reflects-his-last-bout-ufc-fight-pass"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Noah Gugnon": {
       "slug": "noah-gugnon",
@@ -2964,8 +3225,21 @@
           "detail": "Gugnon has described his first Ares appearance as the point where the French audience really began to notice him. His Ares run became the bridge from a 4-2 record to the finishing streak that brought him to the UFC.",
           "sourceLabel": "UFC",
           "source": "https://us.ufcespanol.com/athlete/noah-gugnon"
+        },
+        {
+          "date": "Feb. 2024-Aug. 2026",
+          "label": "Six straight finishes rebuild career after 4-2 start",
+          "kind": "milestone",
+          "detail": "After a 4-2 start that included losses to Mark Ewen and Samvel Vardanyan, Gugnon put together a six-fight finishing streak to reach 10-2. The run included four knockouts/TKOs and two rear-naked chokes and carried him into the UFC.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/fighter/Noah-Gugnon-236171"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Iasmin Lucindo": {
       "slug": "iasmin-lucindo",
@@ -3070,8 +3344,29 @@
           "detail": "Lucindo turned professional at only 14 years old after beginning kickboxing and MMA for self-defense. She has openly acknowledged how unusual that starting age was.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/iasmin-lucindo-found-herself-in-the-fight-strawweight-ufc-san-diego?language_content_entity=en"
+        },
+        {
+          "date": "2023-2024",
+          "label": "Receives camp mentorship from Amanda Nunes",
+          "kind": "camp",
+          "detail": "After Lucindo's UFC debut, former two-division champion Amanda Nunes visited her during training camp. Lucindo said the sessions gave her detailed lessons on fight IQ, professionalism and how a champion approaches preparation.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/iasmin-lucindo-ready-start-building-her-own-legacy-ufc-301"
+        },
+        {
+          "date": "2021",
+          "label": "WIN · Sarah Frota · notable pre-UFC victory",
+          "kind": "win",
+          "detail": "Before signing with the UFC, Lucindo defeated UFC veteran Sarah Frota, one of the strongest résumé markers from her regional career.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/iasmin-lucindo"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     },
     "Nicolle Caliari": {
       "slug": "nicolle-caliari",
@@ -3254,10 +3549,31 @@
           "detail": "Caliari is scheduled to face Iasmin Lucindo at UFC 333 in Abu Dhabi. She enters the matchup 9-4 overall with all nine professional wins coming by stoppage.",
           "sourceLabel": "Sherdog",
           "source": "https://www.sherdog.com/fighter/Nicolle-Caliari-202195"
+        },
+        {
+          "date": "Pre-2023",
+          "label": "Leaves law school in final year to choose fighting",
+          "kind": "background",
+          "detail": "Caliari studied law but left during her final year when she felt forced to choose between school and fighting professionally. She has said her heart chose fighting.",
+          "sourceLabel": "UFC Brazil",
+          "source": "https://www.ufc.com.br/athlete/nicolle-caliari"
+        },
+        {
+          "date": "Through 2022",
+          "label": "Teaches women's Muay Thai and helps run gym business",
+          "kind": "background",
+          "detail": "Alongside her own fighting career, Caliari taught Muay Thai classes for women through 2022 and handled administrative and operational work at the gym where she trained.",
+          "sourceLabel": "UFC Brazil",
+          "source": "https://www.ufc.com.br/athlete/nicolle-caliari"
         }
-      ]
+      ],
+      "audit": {
+        "pass": 3,
+        "verifiedThrough": "2026-10-07",
+        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+      }
     }
   },
   "updatedAt": "2026-10-07",
-  "notes": "UFC 333 fighter career histories individually audited for training origin, development, camp history, injuries and layoffs, suspensions, title milestones, UFC entry and career-shaping results."
+  "notes": "Third fighter-by-fighter verification pass. Added omitted injuries/illness, anti-doping history, camp development and title chronology; semantically deduplicated repeated fight entries."
 }
