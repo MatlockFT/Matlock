@@ -43,6 +43,7 @@
     fields.pinned.checked = Boolean(state.pinned);
     bodyEditor.value = prepareEditorBody(state.body || '', state.htmlBlocks || []);
     renderHtmlBlockRail();
+    scheduleWriterAutoCorrectFighterRefresh(0);
     if (remote) {
       currentPath = state.currentPath || '';
       currentSha = state.currentSha || '';
