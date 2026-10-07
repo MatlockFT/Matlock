@@ -2015,6 +2015,7 @@
     fields.pinned.checked = Boolean(state.pinned);
     bodyEditor.value = prepareEditorBody(state.body || '', state.htmlBlocks || []);
     renderHtmlBlockRail();
+    scheduleWriterAutoCorrectFighterRefresh(0);
     if (remote) {
       currentPath = state.currentPath || '';
       currentSha = state.currentSha || '';
@@ -3472,6 +3473,283 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       return { fighter, score };
     }).filter(Boolean).sort((a,b) => a.score - b.score || a.fighter.name.localeCompare(b.fighter.name))
       .slice(0,limit).map(entry => entry.fighter);
+  }
+
+  const writerAutoCorrectKey = 'matlock-writer:autocorrect';
+  const writerAutoCorrectWords = new Map([
+    ['teh','the'],['hte','the'],['thsi','this'],['taht','that'],['adn','and'],
+    ['woudl','would'],['coudl','could'],['shoudl','should'],['waht','what'],['wiht','with'],['wtiht','with'],
+    ['becuase','because'],['becasue','because'],['definately','definitely'],['definetly','definitely'],
+    ['seperate','separate'],['recieve','receive'],['wierd','weird'],['alot','a lot'],
+    ['dont',"don't"],['doesnt',"doesn't"],['didnt',"didn't"],['cant',"can't"],['wont',"won't"],
+    ['isnt',"isn't"],['wasnt',"wasn't"],['werent',"weren't"],['couldnt',"couldn't"],
+    ['wouldnt',"wouldn't"],['shouldnt',"shouldn't"],['youre',"you're"],['theyre',"they're"],
+    ['ive',"I've"],['im',"I'm"],['weve',"we've"],['thats',"that's"],['theres',"there's"],
+    ['figher','fighter'],['figthers','fighters'],['fighers','fighters'],['strikng','striking'],
+    ['wrestlng','wrestling'],['submision','submission'],['submisson','submission'],
+    ['takedwon','takedown'],['takedwons','takedowns'],['oppnent','opponent'],['opponet','opponent'],
+    ['decison','decision'],['knockot','knockout'],['kncokout','knockout'],
+    ['cleean','clean'],['repeittiveness','repetitiveness'],['grammer','grammar'],['speling','spelling']
+  ]);
+  let writerAutoCorrectEnabled = true;
+  let writerAutoCorrectFighterTokens = [];
+  let writerAutoCorrectGlobalTokens = new Map();
+  let writerAutoCorrectFighterTimer = 0;
+  let writerAutoCorrectDirectoryIndexed = false;
+
+  function writerAutoCorrectNormalizedToken(value) {
+    return normalizeFighterLookup(value).replace(/\s+/g, '');
+  }
+
+  function writerAutoCorrectCleanName(value) {
+    return String(value || '')
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/[*_\x60]/g, '')
+      .replace(/\s+#+\s*$/, '')
+      .trim();
+  }
+
+  function writerAutoCorrectActiveNames() {
+    const names = new Set();
+    const add = value => {
+      const name = writerAutoCorrectCleanName(value);
+      if (name && name.length >= 3) names.add(name);
+    };
+
+    String(bodyEditor.value || '').split(/\r?\n/).forEach(line => {
+      const heading = line.match(/^\s*#{2,4}\s+(.+?)\s+(?:vs\.?|v\.?)\s+(.+?)\s*$/i);
+      if (!heading) return;
+      add(heading[1]);
+      add(heading[2]);
+    });
+
+    htmlBlocks.forEach(block => {
+      const meta = structuredMeta(block?.code);
+      if (!meta) return;
+      if (meta.type === 'tale') {
+        add(meta.config?.a?.name);
+        add(meta.config?.b?.name);
+      } else if (meta.type === 'stats') {
+        add(meta.config?.fighterA);
+        add(meta.config?.fighterB);
+      } else if (meta.type === 'pick') {
+        add(meta.config?.fighter);
+      }
+    });
+
+    return [...names];
+  }
+
+  function writerAutoCorrectBuildGlobalTokenIndex(directory) {
+    if (writerAutoCorrectDirectoryIndexed) return;
+    const seen = new Map();
+    (directory?.fighters || []).forEach(fighter => {
+      const tokens = String(fighter.name || '').match(/[\p{L}\p{M}'’.-]+/gu) || [];
+      tokens.forEach(token => {
+        const normalized = writerAutoCorrectNormalizedToken(token);
+        if (normalized.length < 5) return;
+        if (!seen.has(normalized)) {
+          seen.set(normalized, token);
+          return;
+        }
+        if (seen.get(normalized) !== token) seen.set(normalized, null);
+      });
+    });
+    writerAutoCorrectGlobalTokens = seen;
+    writerAutoCorrectDirectoryIndexed = true;
+  }
+
+  async function refreshWriterAutoCorrectFighters() {
+    const requested = writerAutoCorrectActiveNames();
+    let canonicalNames = requested;
+
+    try {
+      const directory = await loadWriterFighterDirectory();
+      writerAutoCorrectBuildGlobalTokenIndex(directory);
+      const exact = new Map(directory.fighters.map(fighter => [normalizeFighterLookup(fighter.name), fighter.name]));
+      canonicalNames = requested.map(name => exact.get(normalizeFighterLookup(name)) || name);
+    } catch {}
+
+    const tokens = [];
+    canonicalNames.forEach(name => {
+      const parts = String(name || '').match(/[\p{L}\p{M}'’.-]+/gu) || [];
+      parts.forEach((token, index) => {
+        const normalized = writerAutoCorrectNormalizedToken(token);
+        if (normalized.length < 4) return;
+        tokens.push({
+          canonical: token,
+          normalized,
+          surname: index === parts.length - 1,
+          fullName: name
+        });
+      });
+    });
+
+    const deduped = new Map();
+    tokens.forEach(token => {
+      const existing = deduped.get(token.normalized);
+      if (!existing || (token.surname && !existing.surname)) deduped.set(token.normalized, token);
+    });
+    writerAutoCorrectFighterTokens = [...deduped.values()];
+
+    const toggle = app.querySelector('[data-autocorrect-toggle]');
+    if (toggle) {
+      const count = canonicalNames.length;
+      toggle.title = count
+        ? 'Auto-correct common typos. Fighter-aware for ' + count + ' name' + (count === 1 ? '' : 's') + ' in this article.'
+        : 'Auto-correct common live-typing mistakes and recognize fighter names in this article.';
+    }
+  }
+
+  function scheduleWriterAutoCorrectFighterRefresh(delay = 650) {
+    window.clearTimeout(writerAutoCorrectFighterTimer);
+    writerAutoCorrectFighterTimer = window.setTimeout(refreshWriterAutoCorrectFighters, delay);
+  }
+
+  function writerAutoCorrectDistance(a, b) {
+    a = String(a || '');
+    b = String(b || '');
+    const rows = a.length + 1;
+    const cols = b.length + 1;
+    const matrix = Array.from({ length: rows }, () => Array(cols).fill(0));
+    for (let i = 0; i < rows; i++) matrix[i][0] = i;
+    for (let j = 0; j < cols; j++) matrix[0][j] = j;
+
+    for (let i = 1; i < rows; i++) {
+      for (let j = 1; j < cols; j++) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j] + 1,
+          matrix[i][j - 1] + 1,
+          matrix[i - 1][j - 1] + cost
+        );
+        if (
+          i > 1 && j > 1 &&
+          a[i - 1] === b[j - 2] &&
+          a[i - 2] === b[j - 1]
+        ) {
+          matrix[i][j] = Math.min(matrix[i][j], matrix[i - 2][j - 2] + cost);
+        }
+      }
+    }
+    return matrix[a.length][b.length];
+  }
+
+  function writerAutoCorrectCase(original, replacement) {
+    if (!replacement) return '';
+    if (original.length > 1 && original === original.toUpperCase()) return replacement.toUpperCase();
+    if (/^[A-ZÀ-ÖØ-Þ]/u.test(original)) return replacement.charAt(0).toUpperCase() + replacement.slice(1);
+    return replacement;
+  }
+
+  function writerAutoCorrectFighterReplacement(word) {
+    const normalized = writerAutoCorrectNormalizedToken(word);
+    if (!normalized || normalized.length < 4) return '';
+    const startsUpper = /^[A-ZÀ-ÖØ-Þ]/u.test(word);
+
+    const exactActive = writerAutoCorrectFighterTokens.filter(token => token.normalized === normalized);
+    if (exactActive.length === 1) {
+      const token = exactActive[0];
+      const safeLowercase = token.surname && token.canonical.length >= 7;
+      if (startsUpper || safeLowercase) return token.canonical === word ? '' : token.canonical;
+    }
+
+    if (startsUpper && normalized.length >= 5 && writerAutoCorrectGlobalTokens.has(normalized)) {
+      const canonical = writerAutoCorrectGlobalTokens.get(normalized);
+      if (canonical && canonical !== word) return canonical;
+    }
+
+    if (normalized.length < 5) return '';
+    const maxDistance = normalized.length >= 8 ? 2 : 1;
+    const candidates = writerAutoCorrectFighterTokens
+      .filter(token => startsUpper || (token.surname && token.canonical.length >= 7))
+      .map(token => ({ token, distance: writerAutoCorrectDistance(normalized, token.normalized) }))
+      .filter(item => item.distance > 0 && item.distance <= maxDistance)
+      .sort((a, b) => a.distance - b.distance || Number(b.token.surname) - Number(a.token.surname));
+
+    if (!candidates.length) return '';
+    if (candidates[1] && candidates[1].distance === candidates[0].distance && candidates[1].token.normalized !== candidates[0].token.normalized) return '';
+    return candidates[0].token.canonical;
+  }
+
+  function writerAutoCorrectSafeContext(wordStart) {
+    const before = bodyEditor.value.slice(0, wordStart);
+    const fenceCount = (before.match(/\x60\x60\x60/g) || []).length;
+    if (fenceCount % 2) return false;
+
+    const lineStart = before.lastIndexOf('\n') + 1;
+    const linePrefix = before.slice(lineStart);
+    if (/^\s*\[HTML VISUAL ·/i.test(linePrefix)) return false;
+    if (/(?:https?:\/\/|www\.|mailto:)\S*$/i.test(linePrefix)) return false;
+    if (linePrefix.lastIndexOf('](') > linePrefix.lastIndexOf(')')) return false;
+    if (linePrefix.lastIndexOf('<') > linePrefix.lastIndexOf('>')) return false;
+    if ((linePrefix.match(/\x60/g) || []).length % 2) return false;
+    return true;
+  }
+
+  function applyWriterAutoCorrect(event) {
+    if (!writerAutoCorrectEnabled || event?.isComposing) return false;
+    if (event && !['insertText','insertLineBreak','insertParagraph'].includes(event.inputType || '')) return false;
+    if (bodyEditor.selectionStart !== bodyEditor.selectionEnd) return false;
+
+    const cursor = bodyEditor.selectionStart;
+    const before = bodyEditor.value.slice(0, cursor);
+    const match = before.match(/([\p{L}\p{M}][\p{L}\p{M}'’.-]*)([\s.,!?;:)\]}]+)$/u);
+    if (!match) return false;
+
+    const word = match[1];
+    const boundary = match[2];
+    const wordEnd = cursor - boundary.length;
+    const wordStart = wordEnd - word.length;
+    if (!writerAutoCorrectSafeContext(wordStart)) return false;
+
+    const lower = word.toLowerCase();
+    let replacement = writerAutoCorrectWords.get(lower) || '';
+    if (replacement) {
+      replacement = writerAutoCorrectCase(word, replacement);
+    } else {
+      replacement = writerAutoCorrectFighterReplacement(word);
+    }
+
+    if (!replacement || replacement === word) return false;
+
+    const value = bodyEditor.value;
+    bodyEditor.value = value.slice(0, wordStart) + replacement + value.slice(wordEnd);
+    const nextCursor = cursor + replacement.length - word.length;
+    bodyEditor.setSelectionRange(nextCursor, nextCursor);
+    return true;
+  }
+
+  function setWriterAutoCorrectEnabled(enabled, { persist = true } = {}) {
+    writerAutoCorrectEnabled = Boolean(enabled);
+    const toggle = app.querySelector('[data-autocorrect-toggle]');
+    if (toggle) {
+      toggle.setAttribute('aria-pressed', String(writerAutoCorrectEnabled));
+      toggle.setAttribute('aria-label', 'Auto-correct is ' + (writerAutoCorrectEnabled ? 'on' : 'off'));
+      toggle.textContent = writerAutoCorrectEnabled ? 'Auto-correct' : 'Auto-correct off';
+    }
+    bodyEditor.setAttribute('autocorrect', writerAutoCorrectEnabled ? 'on' : 'off');
+    if (persist) {
+      try { localStorage.setItem(writerAutoCorrectKey, writerAutoCorrectEnabled ? 'on' : 'off'); } catch {}
+    }
+  }
+
+  function initializeWriterAutoCorrect() {
+    let saved = '';
+    try { saved = localStorage.getItem(writerAutoCorrectKey) || ''; } catch {}
+    setWriterAutoCorrectEnabled(saved !== 'off', { persist:false });
+
+    app.querySelector('[data-autocorrect-toggle]')?.addEventListener('click', () => {
+      setWriterAutoCorrectEnabled(!writerAutoCorrectEnabled);
+      if (writerAutoCorrectEnabled) scheduleWriterAutoCorrectFighterRefresh(0);
+    });
+
+    bodyEditor.addEventListener('input', event => {
+      applyWriterAutoCorrect(event);
+      scheduleWriterAutoCorrectFighterRefresh();
+    });
+
+    scheduleWriterAutoCorrectFighterRefresh(0);
   }
 
   function lookupStatusElement(input) {
@@ -5348,6 +5626,8 @@ function insertBlock(text, { preserveScroll = false } = {}) {
   window.clearTimeout(previewTimer);
   previewTimer = window.setTimeout(updatePreview, 45);
 }
+
+initializeWriterAutoCorrect();
 
 Object.values(fields).forEach(el => {
   el.addEventListener('input', () => {
