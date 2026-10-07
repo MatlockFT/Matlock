@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "event": "UFC 333",
   "eventDate": "2026-10-24",
   "fighters": {
@@ -11,14 +11,6 @@
       "ufcRecord": "15-3-0",
       "division": "Featherweight",
       "items": [
-        {
-          "date": "2011",
-          "label": "Starts MMA while playing rugby",
-          "kind": "training",
-          "detail": "Volkanovski began MMA training in 2011 as conditioning while he was still playing rugby league. He had wrestled as a teenager and quickly found that the grappling background transferred. Freestyle Fighting Gym in New South Wales became his home base.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
-        },
         {
           "date": "2012-2016",
           "label": "Regional title run leads to the UFC",
@@ -92,14 +84,6 @@
           "source": "https://www.ufc.com/news/volkanovski-was-natural-first-step-he-took-mma-gym"
         },
         {
-          "date": "2011",
-          "label": "Walks into Freestyle Fighting Gym under Joe Lopez",
-          "kind": "camp",
-          "detail": "Volkanovski first entered Freestyle Fighting Gym in New South Wales while using MMA as preseason conditioning for rugby. Joe Lopez became his head coach and the gym remained his home base even as Volkanovski later cross-trained in New Zealand and Thailand.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/news/volkanovski-was-natural-first-step-he-took-mma-gym"
-        },
-        {
           "date": "2019",
           "label": "Broken left hand after winning UFC title",
           "kind": "injury",
@@ -141,9 +125,9 @@
         },
         {
           "date": "2011",
-          "label": "Freestyle Fighting Gym starts as rugby conditioning",
-          "kind": "camp",
-          "detail": "Volkanovski first walked into Joe Lopez's Freestyle Fighting Gym with rugby teammates to get in shape for the upcoming season. What began as offseason conditioning quickly became the sport he wanted to pursue full time.",
+          "label": "Starts MMA at Freestyle Fighting Gym during rugby offseason",
+          "kind": "training",
+          "detail": "Volkanovski and rugby teammates first walked into Joe Lopez's Freestyle Fighting Gym to get in shape for the upcoming rugby season. He quickly discovered he had a real aptitude for grappling and decided MMA was something he wanted to pursue seriously, eventually leaving rugby to become a full-time fighter.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/joe-lopez-says-personality-clash-fuels-featherweight-champion-alexander-volkanovski-ufc-266"
         }
@@ -551,6 +535,14 @@
           "detail": "Dvalishvili broke his nose in two places during training in April 2026 and declined corrective surgery because the recovery could keep him out for around a year. He then broke it again in a wrestling match with Frankie Edgar in May.",
           "sourceLabel": "MMA Fighting",
           "source": "https://www.mmafighting.com/ufc/480023/merab-dvalishvili-smashes-nose-in-training-refusing-surgery-until-retirement"
+        },
+        {
+          "date": "Pre-UFC",
+          "label": "Construction work before full-time MMA",
+          "kind": "background",
+          "detail": "Before fighting became his full-time career, Dvalishvili worked construction. He also completed college in Georgia with a physical-education degree.",
+          "sourceLabel": "UFC",
+          "source": "https://us.ufcespanol.com/athlete/merab-dvalishvili"
         }
       ],
       "audit": {
@@ -2367,6 +2359,22 @@
           "label": "Competes at welterweight before settling at lightweight",
           "kind": "weight",
           "detail": "Aliev began his unbeaten professional run across two divisions. His UFC profile lists him at 3-0 at welterweight and 9-0 at lightweight, where he ultimately settled for his UFC run.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+        },
+        {
+          "date": "Childhood",
+          "label": "Older brothers bring him into martial arts",
+          "kind": "training",
+          "detail": "Aliev says his older brothers brought him to training when he was a child. His amateur résumé later grew into World and Asian pankration titles plus an Asian combat-sambo championship.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+        },
+        {
+          "date": "Education",
+          "label": "Studies information technology in Tajikistan",
+          "kind": "background",
+          "detail": "While building his fighting career, Aliev has also pursued a university degree in information technology in Tajikistan.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/nurullo-aliev"
         }
