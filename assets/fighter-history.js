@@ -147,6 +147,9 @@
       node.setAttribute('aria-current', selected ? 'true' : 'false');
     });
 
+    const detail = panel.querySelector('[data-fighter-history-detail]');
+    detail.dataset.kind = item.kind || 'note';
+    detail.dataset.year = String(item.date || '').match(/(?:19|20)\\d{2}/)?.[0] || '';
     panel.querySelector('[data-fighter-history-detail-date]').textContent = item.date || '';
     panel.querySelector('[data-fighter-history-detail-title]').textContent = item.label || '';
     panel.querySelector('[data-fighter-history-detail-copy]').textContent = item.detail || '';
@@ -161,8 +164,10 @@
       source.removeAttribute('href');
     }
 
+    const target = panel.querySelector('[data-fighter-history-detail]');
+    if (target) target.scrollTop = 0;
+
     if (lock) {
-      const target = panel.querySelector('[data-fighter-history-detail]');
       if (window.matchMedia('(max-width: 720px)').matches) target?.scrollIntoView?.({ block: 'nearest', behavior: 'smooth' });
     }
   }
