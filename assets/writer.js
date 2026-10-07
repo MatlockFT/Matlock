@@ -3476,6 +3476,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
   }
 
   const writerAutoCorrectKey = 'matlock-writer:autocorrect';
+  const writerAutoCorrectIgnoreKey = 'matlock-writer:autocorrect-ignore';
   const writerAutoCorrectWords = new Map([
     ['teh','the'],['hte','the'],['thsi','this'],['taht','that'],['adn','and'],
     ['woudl','would'],['coudl','could'],['shoudl','should'],['waht','what'],['wiht','with'],['wtiht','with'],
@@ -3491,15 +3492,39 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     ['decison','decision'],['knockot','knockout'],['kncokout','knockout'],
     ['cleean','clean'],['repeittiveness','repetitiveness'],['grammer','grammar'],['speling','spelling']
   ]);
+  const writerAutoCorrectMmaWords = (
+    'mma ufc pfl bellator pride rizin one fc dwcs contender apex octagon cage cagefighting ' +
+    'bjj jiu jitsu jiujitsu grappler grappling wrestler wrestling kickboxing kickboxer muay thai ' +
+    'tko ko koed knockout knockouts submission submissions subbed tapout tapout ground pound ' +
+    'groundandpound clinch clinching takedown takedowns sprawled sprawl southpaw orthodox switch ' +
+    'counterstriker counterstriking pressurefighter pressurefighting feint feints feinting jab ' +
+    'cross hook uppercut overhand calfkick legkick headkick bodykick teep oblique guillotine ' +
+    'armbar kimura americana omoplata darce anaconda triangle heelhook kneebar leglock rear naked ' +
+    'rnc scramble scrambles scrambling underhook overhook whizzer mat return cagewalk wallwalk ' +
+    'fight iq fightiq cardio gas tank gassed weightcut weighin weighins catchweight shortnotice ' +
+    'moneyline underdog favorite favoured splitdecision unanimousdecision majoritydecision no contest'
+  ).split(/\s+/);
+
   let writerAutoCorrectEnabled = true;
   let writerAutoCorrectFighterTokens = [];
   let writerAutoCorrectGlobalTokens = new Map();
   let writerAutoCorrectFighterTimer = 0;
   let writerAutoCorrectFeedbackTimer = 0;
   let writerAutoCorrectDirectoryIndexed = false;
+  let writerAutoCorrectSmart = null;
+  let writerAutoCorrectSmartPromise = null;
+  let writerAutoCorrectLastChange = null;
+  let writerAutoCorrectSuppressOnce = false;
 
   function writerAutoCorrectNormalizedToken(value) {
     return normalizeFighterLookup(value).replace(/\s+/g, '');
+  }
+
+  function writerAutoCorrectCase(original, replacement) {
+    if (!replacement) return '';
+    if (original.length > 1 && original === original.toUpperCase()) return replacement.toUpperCase();
+    if (/^[A-ZÀ-ÖØ-Þ]/u.test(original)) return replacement.charAt(0).toUpperCase() + replacement.slice(1);
+    return replacement;
   }
 
   function writerAutoCorrectCleanName(value) {
@@ -3508,6 +3533,60 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       .replace(/[*_\x60]/g, '')
       .replace(/\s+#+\s*$/, '')
       .trim();
+  }
+
+  function writerAutoCorrectIgnoredWords() {
+    try {
+      const value = JSON.parse(localStorage.getItem(writerAutoCorrectIgnoreKey) || '[]');
+      return Array.isArray(value) ? value.map(item => String(item || '').trim()).filter(Boolean) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function writerAutoCorrectRememberIgnored(word) {
+    const normalized = String(word || '').trim();
+    if (!normalized) return;
+    const current = writerAutoCorrectIgnoredWords();
+    if (!current.some(item => item.toLowerCase() === normalized.toLowerCase())) {
+      current.push(normalized);
+      try { localStorage.setItem(writerAutoCorrectIgnoreKey, JSON.stringify(current.slice(-500))); } catch {}
+    }
+    writerAutoCorrectSmart?.addWord(normalized, { personal:true, preferCanonical:true });
+  }
+
+  async function loadWriterSmartAutoCorrect() {
+    if (writerAutoCorrectSmart) return writerAutoCorrectSmart;
+    if (writerAutoCorrectSmartPromise) return writerAutoCorrectSmartPromise;
+
+    writerAutoCorrectSmartPromise = (async () => {
+      const api = window.MatlockAutocorrectEngine;
+      if (!api?.create) return null;
+      const engine = api.create();
+      await engine.init({
+        dicUrl:'/assets/data/autocorrect/en-US.dic',
+        affUrl:'/assets/data/autocorrect/en-US.aff'
+      });
+      engine.addWords(writerAutoCorrectMmaWords, { domain:true });
+      engine.addWords(writerAutoCorrectIgnoredWords(), { personal:true });
+      writerAutoCorrectSmart = engine;
+
+      const status = app.querySelector('[data-autocorrect-status]');
+      if (status && !status.textContent) status.textContent = 'Smart dictionary ready';
+      window.clearTimeout(writerAutoCorrectFeedbackTimer);
+      writerAutoCorrectFeedbackTimer = window.setTimeout(() => {
+        if (status?.textContent === 'Smart dictionary ready') status.textContent = '';
+      }, 1600);
+
+      scheduleWriterAutoCorrectFighterRefresh(0);
+      return engine;
+    })().catch(error => {
+      console.warn('Smart autocorrect dictionary failed to load.', error);
+      writerAutoCorrectSmartPromise = null;
+      return null;
+    });
+
+    return writerAutoCorrectSmartPromise;
   }
 
   function writerAutoCorrectActiveNames() {
@@ -3542,6 +3621,9 @@ function insertBlock(text, { preserveScroll = false } = {}) {
   }
 
   function writerAutoCorrectBuildGlobalTokenIndex(directory) {
+    if (writerAutoCorrectSmart) {
+      (directory?.fighters || []).forEach(fighter => writerAutoCorrectSmart.addName(fighter.name));
+    }
     if (writerAutoCorrectDirectoryIndexed) return;
     const seen = new Map();
     (directory?.fighters || []).forEach(fighter => {
@@ -3573,6 +3655,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
 
     const tokens = [];
     canonicalNames.forEach(name => {
+      writerAutoCorrectSmart?.addName(name);
       const parts = String(name || '').match(/[\p{L}\p{M}'’.-]+/gu) || [];
       parts.forEach((token, index) => {
         const normalized = writerAutoCorrectNormalizedToken(token);
@@ -3596,9 +3679,9 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     const toggle = app.querySelector('[data-autocorrect-toggle]');
     if (toggle) {
       const count = canonicalNames.length;
-      toggle.title = count
-        ? 'Auto-correct common typos. Fighter-aware for ' + count + ' name' + (count === 1 ? '' : 's') + ' in this article.'
-        : 'Auto-correct common live-typing mistakes and recognize fighter names in this article.';
+      toggle.title = writerAutoCorrectSmart
+        ? 'Smart dictionary on. Fighter-aware for ' + count + ' article name' + (count === 1 ? '' : 's') + '.'
+        : 'Auto-correct common typos and recognize fighter names in this article.';
     }
   }
 
@@ -3634,13 +3717,6 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       }
     }
     return matrix[a.length][b.length];
-  }
-
-  function writerAutoCorrectCase(original, replacement) {
-    if (!replacement) return '';
-    if (original.length > 1 && original === original.toUpperCase()) return replacement.toUpperCase();
-    if (/^[A-ZÀ-ÖØ-Þ]/u.test(original)) return replacement.charAt(0).toUpperCase() + replacement.slice(1);
-    return replacement;
   }
 
   function writerAutoCorrectFighterReplacement(word) {
@@ -3688,7 +3764,46 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     return true;
   }
 
+  function writerAutoCorrectSentenceStart(wordStart) {
+    const before = bodyEditor.value.slice(0, wordStart);
+    const trimmed = before.replace(/\s+$/, '');
+    if (!trimmed) return true;
+    return /(?:^|[.!?]\s*)$/u.test(trimmed) || /\n\s*(?:#{1,6}\s+|[-*+]\s+|\d+[.)]\s+)?$/u.test(before);
+  }
+
+  function writerAutoCorrectApplyChange(word, replacement, wordStart, wordEnd, cursor) {
+    const value = bodyEditor.value;
+    bodyEditor.value = value.slice(0, wordStart) + replacement + value.slice(wordEnd);
+    const nextCursor = cursor + replacement.length - word.length;
+    bodyEditor.setSelectionRange(nextCursor, nextCursor);
+
+    writerAutoCorrectLastChange = {
+      original:word,
+      replacement,
+      start:wordStart,
+      at:Date.now()
+    };
+    writerAutoCorrectSmart?.learnCorrection(word, replacement);
+
+    const feedback = app.querySelector('[data-autocorrect-status]');
+    if (feedback) {
+      feedback.textContent = 'Fixed ' + word + ' → ' + replacement + ' · click to undo';
+      feedback.title = 'Click to undo this correction and remember the original word.';
+      feedback.dataset.autocorrectUndo = 'true';
+      window.clearTimeout(writerAutoCorrectFeedbackTimer);
+      writerAutoCorrectFeedbackTimer = window.setTimeout(() => {
+        feedback.textContent = '';
+        feedback.title = '';
+        delete feedback.dataset.autocorrectUndo;
+      }, 4200);
+    }
+  }
+
   function applyWriterAutoCorrect(event) {
+    if (writerAutoCorrectSuppressOnce) {
+      writerAutoCorrectSuppressOnce = false;
+      return false;
+    }
     if (!writerAutoCorrectEnabled || event?.isComposing) return false;
     if (event && !['insertText','insertLineBreak','insertParagraph'].includes(event.inputType || '')) return false;
     if (bodyEditor.selectionStart !== bodyEditor.selectionEnd) return false;
@@ -3704,27 +3819,60 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     const wordStart = wordEnd - word.length;
     if (!writerAutoCorrectSafeContext(wordStart)) return false;
 
+    const ignored = writerAutoCorrectIgnoredWords();
+    if (ignored.some(item => item.toLowerCase() === word.toLowerCase())) return false;
+
     const lower = word.toLowerCase();
     let replacement = writerAutoCorrectWords.get(lower) || '';
-    if (replacement) {
-      replacement = writerAutoCorrectCase(word, replacement);
-    } else {
-      replacement = writerAutoCorrectFighterReplacement(word);
+    if (replacement) replacement = writerAutoCorrectCase(word, replacement);
+
+    if (!replacement) replacement = writerAutoCorrectFighterReplacement(word);
+
+    if (!replacement && writerAutoCorrectSmart) {
+      const sentenceStart = writerAutoCorrectSentenceStart(wordStart);
+      const capitalized = /^[A-ZÀ-ÖØ-Þ]/u.test(word);
+      const suggestion = writerAutoCorrectSmart.suggest(word, { sentenceStart, capitalized });
+      if (suggestion?.replacement) {
+        const allow = suggestion.confidence === 'high' ||
+          (!capitalized && suggestion.confidence === 'medium') ||
+          (sentenceStart && suggestion.confidence === 'medium');
+        if (allow) replacement = suggestion.replacement;
+      }
     }
 
     if (!replacement || replacement === word) return false;
+    writerAutoCorrectApplyChange(word, replacement, wordStart, wordEnd, cursor);
+    return true;
+  }
 
-    const value = bodyEditor.value;
-    bodyEditor.value = value.slice(0, wordStart) + replacement + value.slice(wordEnd);
-    const nextCursor = cursor + replacement.length - word.length;
+  function undoWriterAutoCorrect() {
+    const change = writerAutoCorrectLastChange;
+    if (!change || Date.now() - change.at > 12000) return false;
+    const current = bodyEditor.value.slice(change.start, change.start + change.replacement.length);
+    if (current !== change.replacement) return false;
+
+    const cursor = bodyEditor.selectionStart;
+    bodyEditor.value =
+      bodyEditor.value.slice(0, change.start) +
+      change.original +
+      bodyEditor.value.slice(change.start + change.replacement.length);
+
+    const delta = change.original.length - change.replacement.length;
+    const nextCursor = cursor > change.start ? Math.max(change.start + change.original.length, cursor + delta) : cursor;
     bodyEditor.setSelectionRange(nextCursor, nextCursor);
+    writerAutoCorrectRememberIgnored(change.original);
+    writerAutoCorrectSuppressOnce = true;
+    bodyEditor.dispatchEvent(new Event('input', { bubbles:true }));
 
     const feedback = app.querySelector('[data-autocorrect-status]');
     if (feedback) {
-      feedback.textContent = 'Fixed ' + word + ' → ' + replacement;
+      feedback.textContent = 'Restored ' + change.original + ' · learned as allowed';
+      feedback.title = '';
+      delete feedback.dataset.autocorrectUndo;
       window.clearTimeout(writerAutoCorrectFeedbackTimer);
-      writerAutoCorrectFeedbackTimer = window.setTimeout(() => { feedback.textContent = ''; }, 1800);
+      writerAutoCorrectFeedbackTimer = window.setTimeout(() => { feedback.textContent = ''; }, 2200);
     }
+    writerAutoCorrectLastChange = null;
     return true;
   }
 
@@ -3749,7 +3897,14 @@ function insertBlock(text, { preserveScroll = false } = {}) {
 
     app.querySelector('[data-autocorrect-toggle]')?.addEventListener('click', () => {
       setWriterAutoCorrectEnabled(!writerAutoCorrectEnabled);
-      if (writerAutoCorrectEnabled) scheduleWriterAutoCorrectFighterRefresh(0);
+      if (writerAutoCorrectEnabled) {
+        void loadWriterSmartAutoCorrect();
+        scheduleWriterAutoCorrectFighterRefresh(0);
+      }
+    });
+
+    app.querySelector('[data-autocorrect-status]')?.addEventListener('click', event => {
+      if (event.currentTarget?.dataset.autocorrectUndo === 'true') undoWriterAutoCorrect();
     });
 
     bodyEditor.addEventListener('input', event => {
@@ -3757,6 +3912,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       scheduleWriterAutoCorrectFighterRefresh();
     });
 
+    if (writerAutoCorrectEnabled) void loadWriterSmartAutoCorrect();
     scheduleWriterAutoCorrectFighterRefresh(0);
   }
 
