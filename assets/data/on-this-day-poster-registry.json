@@ -3850,7 +3850,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "Bellator 99 event poster",
-      "verifiedAt": "2026-10-06T17:16:54.758Z",
+      "verifiedAt": "2026-10-07T17:55:01.823Z",
       "manualVisualVerified": true
     },
     "2013-09-14::wsof5 arlovski vs kyle": {
@@ -3864,7 +3864,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF5: Arlovski vs. Kyle event poster",
-      "verifiedAt": "2026-10-06T17:16:54.758Z",
+      "verifiedAt": "2026-10-07T17:55:01.823Z",
       "manualVisualVerified": true
     },
     "2013-09-21::ufc 165 jones vs gustafsson": {
@@ -4086,7 +4086,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF13: Moraes vs. Bollinger event poster",
-      "verifiedAt": "2026-10-06T17:16:54.758Z",
+      "verifiedAt": "2026-10-07T17:55:01.823Z",
       "manualVisualVerified": true
     },
     "2014-09-20::ufc fight night hunt vs nelson": {
@@ -8482,9 +8482,78 @@
       "transport": "tapology-via-public-reader-v1",
       "checkedAt": "2026-10-06T17:14:48.130Z",
       "reason": "The exact event page was verified, but its only poster asset was unusable: Poster byte length 5994 is outside the safe range."
+    },
+    "2021-10-09::ufc fight night dern vs rodriguez": {
+      "key": "2021-10-09::ufc fight night dern vs rodriguez",
+      "status": "verified",
+      "sourceType": "tapology-event-poster",
+      "date": "2021-10-09",
+      "title": "UFC Fight Night: Dern vs. Rodriguez",
+      "eventTitle": "UFC Fight Night: Dern vs. Rodriguez",
+      "eventDate": "2021-10-09",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/80131-ufc-fight-night",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/80131-ufc-fight-night",
+      "originPosterUrl": "https://images.tapology.com/poster_images/80131/profile/244370654_10159688897621276_5826428476590549637_n.jpg?1633399138",
+      "posterUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2021-10-09-ufc-fight-night-dern-vs-rodriguez-79d2554c5929207a.jpg",
+      "sha256": "79d2554c5929207a76d2abefb21071b67774f30fbe2db90b49854d070319349f",
+      "width": 338,
+      "height": 488,
+      "bytes": 78865,
+      "format": "jpeg",
+      "alt": "UFC Fight Night: Dern vs. Rodriguez event poster",
+      "credit": "Tapology",
+      "confidence": 1,
+      "titleScore": 100,
+      "eventIdBound": true,
+      "discovery": "tapology-search-unique-title-date",
+      "transport": "tapology-via-public-reader-v1",
+      "verifiedAt": "2026-10-07T17:50:50.752Z"
+    },
+    "2000-07-23::pancrase trans 5": {
+      "key": "2000-07-23::pancrase trans 5",
+      "status": "verified-unavailable",
+      "date": "2000-07-23",
+      "title": "Pancrase: Trans 5",
+      "eventTitle": "Pancrase 86: Trans 5",
+      "eventDate": "2000-07-23",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/461-pancrase-86-trans-5",
+      "titleScore": 86,
+      "transport": "tapology-via-public-reader-v1",
+      "checkedAt": "2026-10-07T17:52:33.749Z",
+      "reason": "The exact Tapology event page was verified by title and date but exposes no event poster."
+    },
+    "2001-03-31::pancrase proof 2": {
+      "key": "2001-03-31::pancrase proof 2",
+      "status": "verified-unavailable",
+      "date": "2001-03-31",
+      "title": "Pancrase: Proof 2",
+      "eventTitle": "Pancrase 93: Proof 2",
+      "eventDate": "2001-03-31",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/1397-pancrase-93-proof-2",
+      "titleScore": 86,
+      "transport": "tapology-via-public-reader-v1",
+      "checkedAt": "2026-10-07T17:53:26.818Z",
+      "reason": "The exact Tapology event page was verified by title and date but exposes no event poster."
+    },
+    "2001-05-13::pancrase proof 3": {
+      "key": "2001-05-13::pancrase proof 3",
+      "status": "verified-unavailable",
+      "date": "2001-05-13",
+      "title": "Pancrase: Proof 3",
+      "eventTitle": "Pancrase 95: Proof 3",
+      "eventDate": "2001-05-13",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/442-pancrase-95-proof-3",
+      "titleScore": 86,
+      "transport": "tapology-via-public-reader-v1",
+      "checkedAt": "2026-10-07T17:53:36.548Z",
+      "reason": "The exact Tapology event page was verified by title and date but exposes no event poster."
     }
   },
-  "updatedAt": "2026-10-06T17:16:54.943Z",
+  "updatedAt": "2026-10-07T17:55:01.985Z",
   "policy": "One event-poster registry. Restore verified assignments first; new unresolved events resolve in source priority order: Tapology, Wikipedia/Wikimedia, official/archive/manual fallback.",
   "tapologyPolicy": "Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records."
 }
