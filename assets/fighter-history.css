@@ -584,6 +584,341 @@ html[data-theme="dark"] .fighter-history-detail::-webkit-scrollbar-thumb,
   }
 }
 
+
+/* Editorial timeline refinement */
+.fighter-history-popover {
+  border-radius: 14px;
+  border-color: color-mix(in srgb, var(--fh-border) 78%, var(--fh-accent));
+  box-shadow:
+    0 34px 90px rgba(0,0,0,.30),
+    0 8px 26px rgba(0,0,0,.18),
+    inset 0 0 0 1px rgba(255,255,255,.035);
+}
+
+.fighter-history-popover-head {
+  min-height: 78px;
+  padding: 13px 15px 13px 20px;
+  background:
+    linear-gradient(90deg, rgba(230,72,35,.13), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.025), transparent 65%),
+    repeating-linear-gradient(90deg, transparent 0, transparent 46px, rgba(255,255,255,.018) 47px),
+    var(--fh-surface);
+}
+
+.fighter-history-popover-head::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0 55%, rgba(230,72,35,.055) 55.2%, transparent 72%),
+    linear-gradient(180deg, transparent 0 93%, rgba(230,72,35,.08) 100%);
+  pointer-events: none;
+}
+
+.fighter-history-popover-head::after {
+  left: 20px;
+  right: 15px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--fh-accent) 0 22%, rgba(230,72,35,.18) 58%, transparent);
+  opacity: 1;
+}
+
+.fighter-history-kicker {
+  color: var(--fh-accent);
+  font-size: 8.5px;
+  letter-spacing: .22em;
+}
+
+.fighter-history-popover-head strong {
+  font-size: 20px;
+  letter-spacing: -.025em;
+}
+
+.fighter-history-popover-head small {
+  display: inline-flex;
+  width: max-content;
+  max-width: 100%;
+  margin-top: 2px;
+  padding: 3px 7px;
+  border: 1px solid var(--fh-line);
+  border-radius: 999px;
+  background: rgba(255,255,255,.025);
+  color: var(--fh-muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.fighter-history-close {
+  width: 32px;
+  height: 32px;
+  flex-basis: 32px;
+  border: 1px solid var(--fh-line);
+  background: rgba(255,255,255,.025);
+  font-size: 20px;
+}
+
+.fighter-history-close:hover,
+.fighter-history-close:focus-visible {
+  background: rgba(230,72,35,.12);
+  border-color: rgba(230,72,35,.45);
+  color: var(--fh-accent);
+  transform: rotate(0deg) scale(1.04);
+}
+
+.fighter-history-popover-body {
+  grid-template-columns: minmax(275px, .84fr) minmax(320px, 1.16fr);
+}
+
+.fighter-history-list {
+  padding: 15px 0 18px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.025), transparent 14%),
+    linear-gradient(180deg, transparent 82%, rgba(230,72,35,.035)),
+    var(--fh-surface-soft);
+}
+
+.fighter-history-list::before {
+  top: 25px;
+  bottom: 25px;
+  left: 22px;
+  width: 2px;
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(230,72,35,.45) 8%,
+      var(--fh-line) 24%,
+      var(--fh-line) 76%,
+      rgba(230,72,35,.25) 92%,
+      transparent
+    );
+}
+
+.fighter-history-item {
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 10px;
+  padding: 10px 15px 10px 11px;
+  border-left: 2px solid transparent;
+  transition:
+    background .18s ease,
+    border-color .18s ease,
+    transform .18s ease,
+    padding-left .18s ease;
+}
+
+.fighter-history-item:hover,
+.fighter-history-item:focus-visible,
+.fighter-history-item.is-active {
+  border-left-color: rgba(230,72,35,.42);
+  background:
+    linear-gradient(90deg, rgba(230,72,35,.14), rgba(230,72,35,.045) 62%, transparent);
+}
+
+.fighter-history-item:hover {
+  transform: translateX(2px);
+}
+
+.fighter-history-item.is-active {
+  border-left-color: var(--fh-accent);
+  padding-left: 13px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025), inset 0 -1px 0 rgba(255,255,255,.018);
+}
+
+.fighter-history-dot {
+  width: 11px;
+  height: 11px;
+  margin-top: 3px;
+  border-width: 2px;
+  box-shadow:
+    0 0 0 3px var(--fh-surface-soft),
+    0 0 0 4px rgba(255,255,255,.06);
+}
+
+.fighter-history-item.is-active .fighter-history-dot {
+  transform: scale(1.34);
+  box-shadow:
+    0 0 0 3px var(--fh-surface-soft),
+    0 0 0 5px rgba(230,72,35,.28),
+    0 0 18px rgba(230,72,35,.30);
+}
+
+.fighter-history-item.is-active .fighter-history-date {
+  color: var(--fh-accent);
+}
+
+.fighter-history-item-copy strong {
+  font-size: 12.25px;
+  line-height: 1.28;
+  letter-spacing: -.005em;
+}
+
+.fighter-history-date {
+  font-size: 8.5px;
+  letter-spacing: .10em;
+}
+
+.fighter-history-detail {
+  padding: 30px 30px 32px;
+  border-left: 1px solid rgba(255,255,255,.025);
+  background:
+    radial-gradient(circle at 84% 8%, rgba(230,72,35,.13), transparent 28%),
+    radial-gradient(circle at 100% 100%, rgba(230,72,35,.045), transparent 34%),
+    linear-gradient(135deg, rgba(255,255,255,.022), transparent 36%),
+    repeating-linear-gradient(0deg, transparent 0, transparent 31px, rgba(255,255,255,.018) 32px),
+    var(--fh-surface);
+}
+
+.fighter-history-detail::before {
+  top: 29px;
+  left: 0;
+  width: 4px;
+  height: 66px;
+  background: linear-gradient(180deg, var(--fh-accent), rgba(230,72,35,.08));
+  box-shadow: 0 0 18px rgba(230,72,35,.18);
+}
+
+.fighter-history-detail::after {
+  content: attr(data-year);
+  position: absolute;
+  top: 15px;
+  right: 24px;
+  font-size: clamp(58px, 7vw, 88px);
+  line-height: .85;
+  font-weight: 950;
+  letter-spacing: -.07em;
+  color: rgba(255,255,255,.035);
+  pointer-events: none;
+  user-select: none;
+}
+
+.fighter-history-detail-date {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 10px;
+  color: var(--fh-accent);
+  font-size: 9px;
+  letter-spacing: .13em;
+}
+
+.fighter-history-detail h4 {
+  position: relative;
+  z-index: 1;
+  max-width: 28ch;
+  margin-bottom: 16px;
+  font-size: clamp(22px, 2.5vw, 27px);
+  line-height: 1.08;
+  letter-spacing: -.028em;
+}
+
+.fighter-history-detail p {
+  position: relative;
+  z-index: 1;
+  max-width: 56ch;
+  font-size: 14px;
+  line-height: 1.68;
+  color: color-mix(in srgb, var(--fh-text) 91%, var(--fh-muted));
+}
+
+.fighter-history-detail a {
+  position: relative;
+  z-index: 1;
+  margin-top: 22px;
+  padding: 7px 10px;
+  border: 1px solid var(--fh-line);
+  border-radius: 4px;
+  background: rgba(255,255,255,.025);
+  color: var(--fh-text);
+  transition:
+    border-color .16s ease,
+    background .16s ease,
+    transform .16s ease;
+}
+
+.fighter-history-detail a:hover {
+  opacity: 1;
+  border-color: rgba(230,72,35,.48);
+  background: rgba(230,72,35,.09);
+  color: var(--fh-accent);
+  transform: translateX(2px);
+}
+
+.fighter-history-detail[data-kind="win"]::before {
+  background: linear-gradient(180deg, #1e9a4b, rgba(30,154,75,.08));
+}
+
+.fighter-history-detail[data-kind="loss"]::before {
+  background: linear-gradient(180deg, #b93636, rgba(185,54,54,.08));
+}
+
+.fighter-history-detail[data-kind="injury"]::before,
+.fighter-history-detail[data-kind="weight"]::before,
+.fighter-history-detail[data-kind="illness"]::before {
+  background: linear-gradient(180deg, #c18125, rgba(193,129,37,.08));
+}
+
+.fighter-history-detail[data-kind="suspension"]::before {
+  background: linear-gradient(180deg, #9454b5, rgba(148,84,181,.08));
+}
+
+.fighter-history-detail[data-kind="upcoming"]::before {
+  background: linear-gradient(180deg, var(--fh-accent), rgba(230,72,35,.08));
+}
+
+.fighter-history-detail[data-kind="camp"]::before,
+.fighter-history-detail[data-kind="training"]::before {
+  background: linear-gradient(180deg, #4778bd, rgba(71,120,189,.08));
+}
+
+.fighter-history-detail[data-kind="nc"]::before,
+.fighter-history-detail[data-kind="layoff"]::before {
+  background: linear-gradient(180deg, #777, rgba(119,119,119,.08));
+}
+
+.fighter-history-detail[data-kind="milestone"]::before,
+.fighter-history-detail[data-kind="background"]::before {
+  background: linear-gradient(180deg, #b8b8b8, rgba(184,184,184,.08));
+}
+
+@media (max-width: 720px) {
+  .fighter-history-popover {
+    border-radius: 13px;
+  }
+
+  .fighter-history-popover-head {
+    min-height: 74px;
+    padding-left: 17px;
+  }
+
+  .fighter-history-popover-head strong {
+    font-size: 18px;
+  }
+
+  .fighter-history-popover-body {
+    display: block;
+  }
+
+  .fighter-history-list {
+    padding-top: 10px;
+  }
+
+  .fighter-history-detail {
+    padding: 24px 20px 28px;
+    border-left: 0;
+    border-top: 1px solid rgba(255,255,255,.025);
+  }
+
+  .fighter-history-detail::after {
+    right: 16px;
+    font-size: 58px;
+  }
+
+  .fighter-history-detail h4 {
+    font-size: 21px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fighter-history-popover,
   .fighter-history-item,
