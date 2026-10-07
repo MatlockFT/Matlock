@@ -77,3 +77,5 @@ jobs:
           git add assets/data/writer-opponent-strength.json assets/data/writer-fighters.json _posts
           git commit -m "Refresh full-career opponent strength"
           git push origin HEAD:main
+
+# Manual UFC 333 refresh trigger
