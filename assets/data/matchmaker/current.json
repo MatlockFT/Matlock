@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-07T00:31:18.437Z"
+      "checkedAt": "2026-10-07T06:22:21.295Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-07T00:31:42.349Z",
+      "checkedAt": "2026-10-07T06:22:40.008Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -26554,13 +26554,7 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": {
-        "event": "Volkanovski vs Evloev",
-        "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333",
-        "opponent": "Aaron Pico",
-        "opponentId": "aaron-pico"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -141356,8 +141350,8 @@
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
         "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-        "opponent": "Louie Sutherland",
-        "opponentId": "louie-sutherland"
+        "opponent": "Joel Faglier",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -170945,13 +170939,7 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": {
-        "event": "Buckley vs Malott",
-        "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-        "opponent": "Gilbert Urbina",
-        "opponentId": "gilbert-urbina"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -199230,7 +199218,11 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 333",
+        "date": "2026-10-24",
+        "source": "https://www.ufc.com/event/ufc-333"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -247483,11 +247475,7 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": {
-        "event": "UFC Fight Night",
-        "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
