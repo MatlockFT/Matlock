@@ -801,13 +801,20 @@ function insertBlock(text, { preserveScroll = false } = {}) {
 
     const cursor = bodyEditor.selectionStart;
     const before = bodyEditor.value.slice(0, cursor);
-    const match = before.match(/([\p{L}\p{M}](?:[\p{L}\p{M}'’-]*[\p{L}\p{M}])?)([\s.,!?;:)\]}'’"”]+)$/u);
-    if (!match) return false;
+    const token = window.MatlockAutocorrectEngine?.extractTrailingToken?.(before) ||
+      (() => {
+        const match = before.match(/([\p{L}\p{M}](?:[\p{L}\p{M}'’-]*[\p{L}\p{M}])?)([\s.,!?;:)\]}'’"”]+)$/u);
+        if (!match) return null;
+        return {
+          word: match[1],
+          boundary: match[2],
+          wordStart: before.length - match[2].length - match[1].length,
+          wordEnd: before.length - match[2].length
+        };
+      })();
+    if (!token) return false;
 
-    const word = match[1];
-    const boundary = match[2];
-    const wordEnd = cursor - boundary.length;
-    const wordStart = wordEnd - word.length;
+    const { word, boundary, wordStart, wordEnd } = token;
     if (!writerAutoCorrectSafeContext(wordStart)) return false;
 
     const ignored = writerAutoCorrectIgnoredWords();
