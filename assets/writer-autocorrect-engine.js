@@ -160,6 +160,18 @@
     return output;
   }
 
+  function extractTrailingToken(value) {
+    const text = String(value || '');
+    const match = text.match(/([\p{L}\p{M}](?:[\p{L}\p{M}'’-]*[\p{L}\p{M}])?)([\s.,!?;:)\]}'’"”]+)$/u);
+    if (!match) return null;
+    return {
+      word: match[1],
+      boundary: match[2],
+      wordStart: text.length - match[2].length - match[1].length,
+      wordEnd: text.length - match[2].length
+    };
+  }
+
   class SmartAutocorrect {
     constructor() {
       this.ready = false;
@@ -466,6 +478,7 @@
 
   global.MatlockAutocorrectEngine = {
     create: function () { return new SmartAutocorrect(); },
-    version: '2.0.0'
+    extractTrailingToken,
+    version: '2.0.1'
   };
 })(window);
