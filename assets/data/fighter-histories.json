@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "event": "UFC 333",
   "eventDate": "2026-10-24",
   "fighters": {
@@ -2690,8 +2690,8 @@
           "date": "Feb. 8, 2025",
           "label": "WIN · Albert Tumenov · regains ACA title",
           "kind": "win",
-          "detail": "Vagaev beat Albert Tumenov over five rounds to become a two-time ACA welterweight champion.",
-          "sourceLabel": "UFC profile",
+          "detail": "Vagaev beat Albert Tumenov by unanimous decision to regain the ACA welterweight championship and become a two-time ACA champion. Vagaev himself identifies the Tumenov title fight as the key fight of his career, making it the clearest turning point before his eventual UFC move.",
+          "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/abubakar-vagaev"
         },
         {
@@ -2755,14 +2755,6 @@
           "label": "Wins first six professional fights",
           "kind": "milestone",
           "detail": "Vagaev opened his professional career with six straight wins. The run included a 2016 decision over future UFC contender Michel Pereira and led into his first major championship in 2017.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abubakar-vagaev"
-        },
-        {
-          "date": "Feb. 8, 2025",
-          "label": "Albert Tumenov rematch becomes defining career win",
-          "kind": "milestone",
-          "detail": "Vagaev identifies the Albert Tumenov title fight as the key fight of his career. The unanimous-decision win made him a two-time ACA welterweight champion and set up his eventual UFC move.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/abubakar-vagaev"
         }
@@ -3615,5 +3607,5 @@
     }
   },
   "updatedAt": "2026-10-07",
-  "notes": "Third-pass deep verification completed. Filled thin profiles, merged semantic duplicate fights, and retained only documented injuries/camp changes rather than padding timelines."
+  "notes": "Third-pass deep verification completed. Thin profiles filled, semantic duplicate fights merged, and only documented injuries/camp changes retained."
 }
