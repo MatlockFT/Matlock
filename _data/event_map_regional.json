@@ -198,6 +198,21 @@
       "main_event_note": "Headliner: Tater McSpadden"
     },
     {
+      "id": "sherdog-51fifty-fight-night-17-2026-10-10-livingston",
+      "promotion": "51Fifty",
+      "promotion_key": "sherdog_discovery",
+      "title": "51Fifty: Fight Night 17",
+      "date": "2026-10-10",
+      "venue": "51Fifty Boxing Gym",
+      "location": "Livingston, CA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/51Fifty-Fight-Night-17-114811",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "camomma-51fifty-entertainment-2026-10-10",
       "promotion": "51Fifty Entertainment",
       "promotion_key": "camomma",
@@ -251,6 +266,21 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-blue-collar-fight-club-clash-at-the-coosa-4-2026-10-10-gadsden",
+      "promotion": "Blue Collar Fight Club",
+      "promotion_key": "sherdog_discovery",
+      "title": "Blue Collar Fight Club: Clash at the Coosa 4",
+      "date": "2026-10-10",
+      "venue": "The Venue at Coosa Landing",
+      "location": "Gadsden, AL",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Blue-Collar-Fight-Club-Clash-at-the-Coosa-4-114804",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "nitro-brave-challenge-ii-10-10-2026-10-10",
       "promotion": "BRAVE CHALLENGE",
       "promotion_key": "nitro",
@@ -297,6 +327,42 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-ffc-1-freedom-fighting-championship-2026-10-10-bald-knob",
+      "promotion": "FFC",
+      "promotion_key": "sherdog_discovery",
+      "title": "FFC 1: Freedom Fighting Championship",
+      "date": "2026-10-10",
+      "venue": "Bald Knob High School",
+      "location": "Bald Knob, AR",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/FFC-1-Freedom-Fighting-Championship-114808",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-fusion-fight-league-strydom-vs-wagner-2026-10-10-great-falls",
+      "promotion": "Fusion Fight League",
+      "promotion_key": "sherdog_discovery",
+      "title": "Fusion Fight League: Strydom vs. Wagner",
+      "date": "2026-10-10",
+      "venue": "Pacific Steel and Recycling Area",
+      "location": "Great Falls, MT",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Fusion-Fight-League-Strydom-vs-Wagner-114807",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "main_event": {
+        "fighters": [
+          "Strydom",
+          "Wagner"
+        ]
+      }
+    },
+    {
       "id": "sherdog-fw-fightworld-46-2026-10-10-chester",
       "promotion": "FW",
       "promotion_key": "sherdog_discovery",
@@ -306,6 +372,21 @@
       "location": "Chester, PA",
       "broadcast": "",
       "official_url": "https://www.sherdog.com/events/FW-FightWorld-46-114374",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-nemesis-fighting-alliance-nemesis-24-2026-10-10-arnold",
+      "promotion": "Nemesis Fighting Alliance",
+      "promotion_key": "sherdog_discovery",
+      "title": "Nemesis Fighting Alliance: Nemesis 24",
+      "date": "2026-10-10",
+      "venue": "Arnold Eagles",
+      "location": "Arnold, MO",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Nemesis-Fighting-Alliance-Nemesis-24-114809",
       "regional": true,
       "level": "regional",
       "source_key": "sherdog_discovery",
@@ -342,6 +423,23 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-real-deal-championships-rdc-28-2026-10-10-bossier-city",
+      "promotion": "Real Deal Championships",
+      "promotion_key": "sherdog_discovery",
+      "title": "Real Deal Championships: RDC 28",
+      "date": "2026-10-10",
+      "venue": "Bossier City Civic Center",
+      "location": "Bossier City, LA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Real-Deal-Championships-RDC-28-114806",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "latitude": 32.516,
+      "longitude": -93.7321
+    },
+    {
       "id": "camomma-regime-fight-league-2026-10-10",
       "promotion": "Regime Fight League",
       "promotion_key": "camomma",
@@ -357,6 +455,21 @@
       "source_label": "California Amateur Mixed Martial Arts Organization",
       "latitude": 34.1706,
       "longitude": -118.8376
+    },
+    {
+      "id": "sherdog-rfl-8-regime-fight-league-muertos-and-mayhem-2026-10-10-thousand-oaks",
+      "promotion": "RFL",
+      "promotion_key": "sherdog_discovery",
+      "title": "RFL 8: Regime Fight League: Muertos and Mayhem",
+      "date": "2026-10-10",
+      "venue": "Tarantula Hill Brewing Co.",
+      "location": "Thousand Oaks, CA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/RFL-8-Regime-Fight-League-Muertos-and-Mayhem-114810",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
     },
     {
       "id": "sherdog-shamrock-fc-378-kansas-city-2026-10-10-kansas-city",
@@ -438,6 +551,42 @@
       "source_label": "Sherdog regional discovery",
       "latitude": 41.5236,
       "longitude": -90.5776
+    },
+    {
+      "id": "sherdog-fusion-fight-league-bozeman-2026-10-16-bozeman",
+      "promotion": "Fusion Fight League",
+      "promotion_key": "sherdog_discovery",
+      "title": "Fusion Fight League: Bozeman",
+      "date": "2026-10-16",
+      "venue": "Brick Breeden Fieldhouse",
+      "location": "Bozeman, MT",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Fusion-Fight-League-Bozeman-114815",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-urijah-faber-s-a1-combat-36-borshchev-vs-huseynov-2026-10-16-sacramento",
+      "promotion": "Urijah Faber's A1 Combat",
+      "promotion_key": "sherdog_discovery",
+      "title": "Urijah Faber's A1 Combat 36: Borshchev vs. Huseynov",
+      "date": "2026-10-16",
+      "venue": "Rock and Brews Cal Expo",
+      "location": "Sacramento, CA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Urijah-Fabers-A1-Combat-36-Borshchev-vs-Huseynov-114795",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "main_event": {
+        "fighters": [
+          "Borshchev",
+          "Huseynov"
+        ]
+      }
     },
     {
       "id": "sherdog-aka-59-american-kombat-alliance-2026-10-17-lake-charles",
@@ -571,6 +720,36 @@
       "longitude": -122.2711
     },
     {
+      "id": "sherdog-rcwc-halloween-brawl-9-2026-10-17-liberal",
+      "promotion": "RCWC",
+      "promotion_key": "sherdog_discovery",
+      "title": "RCWC: Halloween Brawl 9",
+      "date": "2026-10-17",
+      "venue": "Seward County Activity Center",
+      "location": "Liberal, KS",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/RCWC-Halloween-Brawl-9-114821",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-rigoro-fighting-championship-rfc-fight-night-2026-10-17-white-plains",
+      "promotion": "Rigoro Fighting Championship",
+      "promotion_key": "sherdog_discovery",
+      "title": "Rigoro Fighting Championship: RFC Fight Night",
+      "date": "2026-10-17",
+      "venue": "Westchester County Center",
+      "location": "White Plains, NY",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Rigoro-Fighting-Championship-RFC-Fight-Night-114823",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "sherdog-saarfc-31-solid-as-a-rock-fighting-championship-31-fright-night-2026-10-17-fairbanks",
       "promotion": "SAARFC",
       "promotion_key": "sherdog_discovery",
@@ -612,6 +791,21 @@
       "location": "Costa Mesa, CA",
       "broadcast": "",
       "official_url": "https://www.sherdog.com/events/FCOC-Fight-Club-OC-International-War-Games-114536",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-afc-178-alaska-fighting-championship-178-2026-10-23-anchorage",
+      "promotion": "AFC",
+      "promotion_key": "sherdog_discovery",
+      "title": "AFC 178: Alaska Fighting Championship 178",
+      "date": "2026-10-23",
+      "venue": "Sullivan Arena",
+      "location": "Anchorage, AK",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/AFC-178-Alaska-Fighting-Championship-178-114827",
       "regional": true,
       "level": "regional",
       "source_key": "sherdog_discovery",
@@ -723,15 +917,15 @@
       "source_label": "Sherdog regional discovery"
     },
     {
-      "id": "sherdog-firepower-xtreme-combat-3-mma-all-in-2026-10-24-long-beach",
+      "id": "sherdog-firepower-xtreme-combat-3-fxc-3-all-in-2026-10-24-long-beach",
       "promotion": "Firepower Xtreme Combat",
       "promotion_key": "sherdog_discovery",
-      "title": "Firepower Xtreme Combat 3: MMA All In",
+      "title": "Firepower Xtreme Combat 3: FXC 3 All In",
       "date": "2026-10-24",
       "venue": "Thunder Studios",
       "location": "Long Beach, CA",
       "broadcast": "",
-      "official_url": "https://www.sherdog.com/events/Firepower-Xtreme-Combat-3-MMA-All-In-114656",
+      "official_url": "https://www.sherdog.com/events/Firepower-Xtreme-Combat-3-FXC-3-All-In-114830",
       "regional": true,
       "level": "regional",
       "source_key": "sherdog_discovery",
@@ -1040,6 +1234,21 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-fusion-fight-league-missoula-2026-11-06-missoula",
+      "promotion": "Fusion Fight League",
+      "promotion_key": "sherdog_discovery",
+      "title": "Fusion Fight League: Missoula",
+      "date": "2026-11-06",
+      "venue": "Adams Center",
+      "location": "Missoula, MT",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Fusion-Fight-League-Missoula-114816",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "sherdog-sfc-6-samurai-fighting-championships-6-last-stand-2026-11-06-durham",
       "promotion": "SFC",
       "promotion_key": "sherdog_discovery",
@@ -1070,6 +1279,38 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-ccmma-clearwater-combat-mma-2026-11-07-suquamish",
+      "promotion": "CCMMA",
+      "promotion_key": "sherdog_discovery",
+      "title": "CCMMA: Clearwater Combat MMA",
+      "date": "2026-11-07",
+      "venue": "Clearwater River Casino Event Center",
+      "location": "Suquamish, WA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/CCMMA-Clearwater-Combat-MMA-114473",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "latitude": 47.7315,
+      "longitude": -122.5526
+    },
+    {
+      "id": "sherdog-cn-combat-night-jacksonville-2026-11-07-jacksonville",
+      "promotion": "CN",
+      "promotion_key": "sherdog_discovery",
+      "title": "CN: Combat Night: Jacksonville",
+      "date": "2026-11-07",
+      "venue": "The Prime Osborn",
+      "location": "Jacksonville, FL",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/CN-Combat-Night-Jacksonville-114618",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "florida_commission-combat-night-2026-11-07",
       "promotion": "Combat Night",
       "promotion_key": "florida_commission",
@@ -1085,6 +1326,21 @@
       "source_label": "Florida Athletic Commission",
       "latitude": 30.3322,
       "longitude": -81.6557
+    },
+    {
+      "id": "sherdog-legends-fight-series-mma-2026-11-07-florence",
+      "promotion": "Legends Fight Series",
+      "promotion_key": "sherdog_discovery",
+      "title": "Legends Fight Series: MMA",
+      "date": "2026-11-07",
+      "venue": "Turfway Park Casino",
+      "location": "Florence, KY",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Legends-Fight-Series-MMA-114542",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
     },
     {
       "id": "peak-pfc-55-brian-mitchell-vs-drako-rodriguez-2026-11-07",
@@ -1108,6 +1364,23 @@
           "Drako Rodriguez"
         ]
       }
+    },
+    {
+      "id": "sherdog-ruf-71-dia-de-los-muertos-2026-11-07-phoenix",
+      "promotion": "RUF",
+      "promotion_key": "sherdog_discovery",
+      "title": "RUF 71: Dia De Los Muertos",
+      "date": "2026-11-07",
+      "venue": "Celebrity Theatre",
+      "location": "Phoenix, AZ",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/RUF-71-Dia-De-Los-Muertos-114543",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "latitude": 33.4484,
+      "longitude": -112.074
     },
     {
       "id": "camomma-sparstar-mma-2026-11-07",
@@ -1191,22 +1464,6 @@
       "level": "pro-am",
       "source_key": "cfc_southeast",
       "source_label": "Cage Fighting Championships"
-    },
-    {
-      "id": "nitro-game-show-x-11-14-2026-11-14",
-      "promotion": "IGNITE FC",
-      "promotion_key": "nitro",
-      "title": "GAME SHOW X - 11/14",
-      "date": "2026-11-14",
-      "venue": "Stonebrooke Golf Club",
-      "location": "Shakopee, MN",
-      "broadcast": "",
-      "official_url": "https://www.nitrotickets.com/event/1311/game-show-x-1114",
-      "regional": true,
-      "level": "regional",
-      "source_key": "nitro",
-      "source_label": "Nitro Tickets",
-      "poster_url": "https://www.nitrotickets.com/storage/advertimage/1311/1788456324_nHCYI.jpg"
     },
     {
       "id": "camomma-new-money-fight-club-2026-11-14",
