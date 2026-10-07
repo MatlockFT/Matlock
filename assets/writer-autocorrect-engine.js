@@ -448,7 +448,12 @@
       if (best.distance === 2 && confidence === 'high' && !this.domainWords.has(best.word)) confidence = 'medium';
 
       return {
-        replacement: preserveCase(String(value), this.canonical.get(best.word) || best.word),
+        replacement: preserveCase(
+          String(value),
+          (this.domainWords.has(best.word) || this.personalWords.has(best.word))
+            ? (this.canonical.get(best.word) || best.word)
+            : best.word
+        ),
         normalized: best.word,
         confidence,
         score: best.score,
