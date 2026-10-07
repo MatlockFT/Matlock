@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-06T20:56:54.423Z",
+  "generated_at": "2026-10-07T00:38:47.014Z",
   "events": [
     {
       "id": "dwcs-season-10-week-9-2026-10-06",
@@ -23,31 +23,6 @@
             {
               "order": 1,
               "label": "Main Event",
-              "weight_class": "Welterweight",
-              "fighters": [
-                {
-                  "name": "Salhahuddin Everett",
-                  "initials": "SE",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250824024424_Salhahuddin_Everett.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "-130"
-                },
-                {
-                  "name": "Ozzy Martin",
-                  "initials": "OM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1784768551Ozzy_Martin.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "+110"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
               "weight_class": "Light Heavyweight",
               "fighters": [
                 {
@@ -56,7 +31,7 @@
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260119122600_Preston_LaGrange.JPG",
                   "image_source": "sherdog",
                   "image_framing": "safe",
-                  "moneyline": "+410"
+                  "moneyline": "+385"
                 },
                 {
                   "name": "Nell Ariano",
@@ -64,7 +39,32 @@
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1712067268IMG-3578.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe",
-                  "moneyline": "-550"
+                  "moneyline": "-500"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Salhahuddin Everett",
+                  "initials": "SE",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250824024424_Salhahuddin_Everett.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe",
+                  "moneyline": "-136"
+                },
+                {
+                  "name": "Ozzy Martin",
+                  "initials": "OM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1784768551Ozzy_Martin.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe",
+                  "moneyline": "+116"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -81,7 +81,7 @@
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1755138057roquejunior.png",
                   "image_source": "sherdog",
                   "image_framing": "safe",
-                  "moneyline": "-108"
+                  "moneyline": "-150"
                 },
                 {
                   "name": "Alexander Chavez",
@@ -89,7 +89,7 @@
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1769462541alexanderchavez.jpeg",
                   "image_source": "sherdog",
                   "image_framing": "safe",
-                  "moneyline": "-108"
+                  "moneyline": "+115"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -101,20 +101,20 @@
               "weight_class": "Bantamweight",
               "fighters": [
                 {
-                  "name": "Alivia Bierley",
-                  "initials": "AB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20240922055057_Alivia_Bierley.JPG",
+                  "name": "Mateus Soares",
+                  "initials": "MS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732773864soares.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe",
-                  "moneyline": "+142"
+                  "moneyline": "-620"
                 },
                 {
-                  "name": "Summer Onley",
-                  "initials": "SO",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1724164164onley.jpg",
+                  "name": "Ryuho Miyaguchi",
+                  "initials": "RM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260528101828_Ryuho_Miyaguchi.JPG",
                   "image_source": "sherdog",
                   "image_framing": "safe",
-                  "moneyline": "-168"
+                  "moneyline": "+460"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -126,20 +126,20 @@
               "weight_class": "Bantamweight",
               "fighters": [
                 {
-                  "name": "Ryuho Miyaguchi",
-                  "initials": "RM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260528101828_Ryuho_Miyaguchi.JPG",
+                  "name": "Alivia Bierley",
+                  "initials": "AB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20240922055057_Alivia_Bierley.JPG",
                   "image_source": "sherdog",
                   "image_framing": "safe",
-                  "moneyline": "+320"
+                  "moneyline": "+150"
                 },
                 {
-                  "name": "Mateus Soares",
-                  "initials": "MS",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732773864soares.jpg",
+                  "name": "Summer Onley",
+                  "initials": "SO",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1724164164onley.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe",
-                  "moneyline": "-420"
+                  "moneyline": "-195"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -687,9 +687,9 @@
                   "moneyline": ""
                 },
                 {
-                  "name": "Gilbert Urbina",
-                  "initials": "GU",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-02/URBINA_GILBERT_L_02-03.png?itok=rua26OyB",
+                  "name": "Nick Galanti",
+                  "initials": "NG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/GALANTI_NICK_R_08-25.png?itok=dbKywmYk",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -704,17 +704,17 @@
                 {
                   "name": "Javad Mahjoub",
                   "initials": "JM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": "",
                   "moneyline": ""
                 },
                 {
-                  "name": "Louie Sutherland",
-                  "initials": "LS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/SUTHERLAND_LOUIE_L_08-08.png?itok=R72s_Sj2",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
+                  "name": "Joel Faglier",
+                  "initials": "JF",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": "",
                   "moneyline": ""
                 }
               ]

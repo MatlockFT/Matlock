@@ -87,7 +87,7 @@
       "verdict_main_count": 3,
       "local_prelim_count": 0,
       "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 10
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
@@ -292,10 +292,10 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "verdict_event_id": "1936",
-      "order": 8,
+      "order": 9,
       "fighters": [
-        "Julien Leblanc",
-        "Gilbert Urbina"
+        "Javad Mahjoub",
+        "Joel Faglier"
       ]
     },
     {
@@ -306,16 +306,6 @@
       "verdict_main_count": 5,
       "local_prelim_count": 7,
       "verdict_prelim_count": 7
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "verdict_event_id": "1969",
-      "order": 6,
-      "fighters": [
-        "Nick Klein",
-        "Joseph Kropschot"
-      ]
     },
     {
       "type": "section_count_mismatch",

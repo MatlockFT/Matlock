@@ -1,7 +1,115 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-06T20:57:51.618Z",
+  "generated_at": "2026-10-07T00:39:22.309Z",
   "changes": [
+    {
+      "id": "2026-10-07T00:39:22.309Z|dwcs-season-10-week-9-2026-10-06|bout_moved|1",
+      "at": "2026-10-07T00:39:22.309Z",
+      "type": "bout_moved",
+      "event_id": "dwcs-season-10-week-9-2026-10-06",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 9",
+      "event_date": "2026-10-06",
+      "summary": "Preston LaGrange vs Nell Ariano moved on Season 10 · Week 9.",
+      "details": {
+        "from_order": 2,
+        "to_order": 1,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-10-07T00:39:22.309Z|dwcs-season-10-week-9-2026-10-06|bout_moved|2",
+      "at": "2026-10-07T00:39:22.309Z",
+      "type": "bout_moved",
+      "event_id": "dwcs-season-10-week-9-2026-10-06",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 9",
+      "event_date": "2026-10-06",
+      "summary": "Salhahuddin Everett vs Ozzy Martin moved on Season 10 · Week 9.",
+      "details": {
+        "from_order": 1,
+        "to_order": 2,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-10-07T00:39:22.309Z|dwcs-season-10-week-9-2026-10-06|bout_moved|3",
+      "at": "2026-10-07T00:39:22.309Z",
+      "type": "bout_moved",
+      "event_id": "dwcs-season-10-week-9-2026-10-06",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 9",
+      "event_date": "2026-10-06",
+      "summary": "Mateus Soares vs Ryuho Miyaguchi moved on Season 10 · Week 9.",
+      "details": {
+        "from_order": 5,
+        "to_order": 4,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-10-07T00:39:22.309Z|dwcs-season-10-week-9-2026-10-06|bout_moved|4",
+      "at": "2026-10-07T00:39:22.309Z",
+      "type": "bout_moved",
+      "event_id": "dwcs-season-10-week-9-2026-10-06",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 9",
+      "event_date": "2026-10-06",
+      "summary": "Alivia Bierley vs Summer Onley moved on Season 10 · Week 9.",
+      "details": {
+        "from_order": 4,
+        "to_order": 5,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-10-07T00:39:22.309Z|ufc-fight-night-2026-10-17-fight-card|bout_changed|5",
+      "at": "2026-10-07T00:39:22.309Z",
+      "type": "bout_changed",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Julien Leblanc vs Gilbert Urbina changed to Julien Leblanc vs Nick Galanti on Buckley vs Malott.",
+      "details": {
+        "order": 8,
+        "section": "Prelims",
+        "from": [
+          "Julien Leblanc",
+          "Gilbert Urbina"
+        ],
+        "to": [
+          "Julien Leblanc",
+          "Nick Galanti"
+        ]
+      }
+    },
+    {
+      "id": "2026-10-07T00:39:22.309Z|ufc-fight-night-2026-10-17-fight-card|bout_changed|6",
+      "at": "2026-10-07T00:39:22.309Z",
+      "type": "bout_changed",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Javad Mahjoub vs Louie Sutherland changed to Javad Mahjoub vs Joel Faglier on Buckley vs Malott.",
+      "details": {
+        "order": 9,
+        "section": "Prelims",
+        "from": [
+          "Javad Mahjoub",
+          "Louie Sutherland"
+        ],
+        "to": [
+          "Javad Mahjoub",
+          "Joel Faglier"
+        ]
+      }
+    },
     {
       "id": "2026-10-06T20:57:51.618Z|ufc-fight-night-2026-11-07-fight-card|start_time_changed|1",
       "at": "2026-10-06T20:57:51.618Z",
@@ -4608,101 +4716,6 @@
       "details": {
         "from_order": 12,
         "to_order": 13,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-11T13:41:20.742Z|noche-ufc-2026-09-12-fight-card|bout_added|11",
-      "at": "2026-09-11T13:41:20.742Z",
-      "type": "bout_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Silva vs Delgado",
-      "event_date": "2026-09-12",
-      "summary": "Manon Fiorot vs Alexa Grasso added to Silva vs Delgado.",
-      "details": {
-        "order": 4,
-        "section": "Main Card",
-        "weight_class": "Women's Flyweight Bout"
-      }
-    },
-    {
-      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|1",
-      "at": "2026-09-11T04:53:59.831Z",
-      "type": "bout_moved",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Silva vs Delgado",
-      "event_date": "2026-09-12",
-      "summary": "Waldo Cortes Acosta vs Curtis Blaydes moved on Silva vs Delgado.",
-      "details": {
-        "from_order": 5,
-        "to_order": 4,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|2",
-      "at": "2026-09-11T04:53:59.831Z",
-      "type": "bout_moved",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Silva vs Delgado",
-      "event_date": "2026-09-12",
-      "summary": "David Martinez vs Dan Ige moved on Silva vs Delgado.",
-      "details": {
-        "from_order": 6,
-        "to_order": 5,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|3",
-      "at": "2026-09-11T04:53:59.831Z",
-      "type": "bout_moved",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Silva vs Delgado",
-      "event_date": "2026-09-12",
-      "summary": "Tim Elliott vs Edgar Chairez moved on Silva vs Delgado.",
-      "details": {
-        "from_order": 7,
-        "to_order": 6,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|4",
-      "at": "2026-09-11T04:53:59.831Z",
-      "type": "bout_moved",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Silva vs Delgado",
-      "event_date": "2026-09-12",
-      "summary": "Ignacio Bahamondes vs Muslim Salikhov moved on Silva vs Delgado.",
-      "details": {
-        "from_order": 8,
-        "to_order": 7,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|5",
-      "at": "2026-09-11T04:53:59.831Z",
-      "type": "bout_moved",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Silva vs Delgado",
-      "event_date": "2026-09-12",
-      "summary": "Yousri Belgaroui vs Djorden Santos moved on Silva vs Delgado.",
-      "details": {
-        "from_order": 9,
-        "to_order": 8,
         "from_section": "Prelims",
         "to_section": "Prelims"
       }
