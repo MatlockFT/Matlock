@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "event": "UFC 333",
   "eventDate": "2026-10-24",
   "fighters": {
@@ -138,10 +138,18 @@
           "detail": "In Sydney, Volkanovski beat Diego Lopes by unanimous decision for a second time, successfully defending the featherweight title he had regained in 2025.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/event/ufc-325"
+        },
+        {
+          "date": "2011",
+          "label": "Freestyle Fighting Gym starts as rugby conditioning",
+          "kind": "camp",
+          "detail": "Volkanovski first walked into Joe Lopez's Freestyle Fighting Gym with rugby teammates to get in shape for the upcoming season. What began as offseason conditioning quickly became the sport he wanted to pursue full time.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/joe-lopez-says-personality-clash-fuels-featherweight-champion-alexander-volkanovski-ufc-266"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -265,10 +273,18 @@
           "detail": "Evloev defended the M-1 bantamweight title against Sergey Morozov and Rafael Dias in 2018. He later vacated the belt when he left M-1 Global to sign with the UFC.",
           "sourceLabel": "M-1 title history",
           "source": "https://mmatoz-m1global.blogspot.com/p/bantamweight-champions.html"
+        },
+        {
+          "date": "Education",
+          "label": "Earns degrees in computer programming and law",
+          "kind": "background",
+          "detail": "Evloev says he earned two degrees, one in computer programming and another in law, before choosing to make sports his career.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/movsar-evloev?language_content_entity=en"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -381,7 +397,7 @@
           "date": "2023-early 2024",
           "label": "Takes extended break to address old injuries",
           "kind": "injury",
-          "detail": "After losing to Merab Dvalishvili in March 2023, Yan took time away from competition. He later said he needed the break to address nagging injuries he had been carrying through previous camps.",
+          "detail": "After the March 2023 loss to Merab Dvalishvili, Yan deliberately took time away to address old injuries he had been carrying through previous camps. He described the break as useful both physically and mentally before returning to face Song Yadong.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/petr-yan-has-no-mercy"
         },
@@ -419,7 +435,7 @@
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -538,7 +554,7 @@
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -654,10 +670,26 @@
           "detail": "Kavanagh stepped in for the injured Asu Almabayev to face former champion Brandon Moreno in Mexico City. It was Kavanagh's first UFC main event and first five-round fight, and he won a unanimous decision.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/get-know-loneer-kavanagh"
+        },
+        {
+          "date": "Before turning pro",
+          "label": "Studies sports science while working as a personal trainer",
+          "kind": "background",
+          "detail": "Before his professional MMA career, Kavanagh studied sports science and worked as a coach and personal trainer. He has said that education helped him understand how to structure his preparation.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/loneer-kavanagh-theres-a-new-cat-in-town-ufc-macau"
+        },
+        {
+          "date": "Nov. 2024",
+          "label": "Arrives early for Macau debut to handle travel and time change",
+          "kind": "camp",
+          "detail": "Kavanagh had fought professionally only in England or Las Vegas before UFC Macau. He arrived early to adjust to the weather and time difference rather than treating the international travel as an afterthought.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufcespanol.com/news/loneer-kavanagh-theres-a-new-cat-in-town-ufc-macau"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -781,10 +813,18 @@
           "detail": "Temirov accepted a 12-month period of ineligibility. The suspension began July 5, 2025, when CSAD placed him under provisional suspension, making him eligible to return on or after July 5, 2026.",
           "sourceLabel": "UFC / CSAD",
           "source": "https://www.ufc.com/news/statement-ramazonbek-temirov"
+        },
+        {
+          "date": "Amateur career",
+          "label": "Wins Asian, European and World MMA championships",
+          "kind": "milestone",
+          "detail": "Temirov's amateur résumé includes MMA championships at the Asian, European and World levels. He entered the professional ranks in 2015 and eventually built the long unbeaten run that carried him to the UFC.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/ramazan-temirov"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -908,10 +948,18 @@
           "detail": "Volkov withdrew from a scheduled St. Petersburg main event with Alistair Overeem because of health issues. The absence contributed to what UFC later described as the longest layoff of his career at that point.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/alexander-volkov-my-show"
+        },
+        {
+          "date": "Career camp",
+          "label": "Global Fight Gym becomes long-term home",
+          "kind": "camp",
+          "detail": "Volkov's UFC profile lists Global Fight Gym as his current training base. His career has also included extended training blocks outside Moscow as he prepared for top-level UFC heavyweight competition.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/alexander-volkov"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -1008,7 +1056,7 @@
           "date": "Apr. 7, 2023",
           "label": "PFL win overturned after positive drug test",
           "kind": "suspension",
-          "detail": "Kuniev originally defeated Renan Ferreira by unanimous decision in the PFL, but the result was overturned to a no contest after Kuniev tested positive for multiple anabolic steroids, including drostanolone, metenolone, boldenone and 19-norandrosterone.",
+          "detail": "Kuniev's 2023 PFL win over Renan Ferreira was overturned to a no contest after he tested positive for drostanolone, metenolone, boldenone and 19-norandrosterone. The Nevada commission also cited a separate stimulant in the testing result.",
           "sourceLabel": "MMA Fighting",
           "source": "https://www.mmafighting.com/2023/6/20/23767287/rob-wilkinson-thiago-santos-5-more-pfl-fighters-suspended-fined-testing-positive-banned-substances"
         },
@@ -1016,7 +1064,7 @@
           "date": "Apr. 2023-Apr. 2024",
           "label": "One-year suspension",
           "kind": "suspension",
-          "detail": "The Nevada Athletic Commission suspended Kuniev for one year following the 2023 positive test and fined him. He became eligible to return after April 7, 2024.",
+          "detail": "The Nevada State Athletic Commission suspended Kuniev for one year and fined him $9,000. The sanction kept him out of competition until April 7, 2024, after which he returned to the Contender Series and eventually earned his UFC contract.",
           "sourceLabel": "MMA Fighting",
           "source": "https://www.mmafighting.com/2023/6/20/23767287/rob-wilkinson-thiago-santos-5-more-pfl-fighters-suspended-fined-testing-positive-banned-substances"
         },
@@ -1035,10 +1083,18 @@
           "detail": "Kuniev submitted UFC veteran Anthony Hamilton in 77 seconds, one of the more recognizable wins during the unbeaten stretch that preceded his UFC arrival.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+        },
+        {
+          "date": "2024",
+          "label": "Second Contender Series chance earns UFC contract",
+          "kind": "milestone",
+          "detail": "Kuniev failed to get a UFC contract after his first Contender Series appearance, then returned the following year and stopped Hugo Cunha at the buzzer of the first round. Dana White awarded him a contract after the second attempt.",
+          "sourceLabel": "MMA Fighting",
+          "source": "https://www.mmafighting.com/2024/8/20/24224902/dwcs-season-8-week-2-results-4-more-contracts-awarded-including-former-pfl-fighter-rizvan-kuniev"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -1154,10 +1210,18 @@
           "detail": "After opening his career 4-1, Pico suffered consecutive knockout losses and sat at 4-3, a major reality check for one of MMA's most heavily promoted prospects. The period overlapped with his decision to relocate to Albuquerque and rebuild at Jackson-Wink.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/where-aaron-pico-belongs-ufc-319"
+        },
+        {
+          "date": "May 2019",
+          "label": "Relocates to Albuquerque and joins Jackson-Wink",
+          "kind": "camp",
+          "detail": "Pico left his previous training environment and relocated to Albuquerque in 2019 to work with Jackson-Wink. He has remained there through his UFC career.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/news/news/Bellator-Prospect-Aaron-Pico-Moves-Training-Camp-to-Jackson-Wink-MMA-154147"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -1273,10 +1337,18 @@
           "detail": "Keita weighed 149 pounds for a featherweight bout with Patricio Pitbull in Paris, three pounds over the non-title limit. Pitbull declined a catchweight bout and the scheduled UFC debut was canceled.",
           "sourceLabel": "MMA Fighting",
           "source": "https://www.mmafighting.com/ufc/402398/ufc-paris-weigh-in-results-nassourdine-imavov-caio-borralho-official-1-main-card-fight-canceled"
+        },
+        {
+          "date": "2024",
+          "label": "Rony fight becomes five-round test despite being sick",
+          "kind": "milestone",
+          "detail": "Keita identifies his fight with Rony Paradeiser as one of his toughest because it was his first five-round fight in a major organization and he was sick going into it. He still won and used the experience to establish himself as a five-round fighter.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/losene-keita"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -1397,13 +1469,13 @@
           "date": "Nov. 1, 2024-May 1, 2025",
           "label": "Second anti-doping suspension",
           "kind": "suspension",
-          "detail": "CSAD found an adverse test linked to a contaminated supplement. The standard 90-day sanction was doubled to 180 days because it was Murzakanov's second anti-doping violation. A follow-up sample before notification was negative and supported his supplement timeline.",
+          "detail": "Murzakanov's second UFC anti-doping case came from an October 8, 2024 out-of-competition sample containing a low-level LGD-4033 metabolite. The source was traced to a contaminated supplement that did not list the substance, but because it was his second violation, the normal 90-day sanction was doubled to 180 days.",
           "sourceLabel": "UFC / CSAD",
-          "source": "https://www.ufcespanol.com/news/statement-azamat-murzakanov-0"
+          "source": "https://www.ufc.com/news/statement-azamat-murzakanov-0"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -1420,9 +1492,9 @@
           "date": "May 2013",
           "label": "Moves from college football into MMA",
           "kind": "training",
-          "detail": "After finishing his college football career at Stony Brook, Reyes began MMA training in May 2013 because he was not finished with athletic competition.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/dominick-reyes"
+          "detail": "Reyes played four years of football at Stony Brook, started three seasons and finished as the program's all-time leader in solo tackles. After graduating in 2013, he moved into MMA and turned professional in 2014.",
+          "sourceLabel": "Stony Brook",
+          "source": "https://stonybrookathletics.com/honors/hall-of-fame/dominick-reyes/108"
         },
         {
           "date": "2017",
@@ -1535,10 +1607,18 @@
           "detail": "After Jones vacated the light heavyweight championship, Reyes received a second consecutive title opportunity. Jan Blachowicz stopped him in the second round at UFC 253 to win the vacant belt.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/ufc-253-adesanya-vs-costa-live-fight-island-results"
+        },
+        {
+          "date": "2014-2017",
+          "label": "Works technical support while building unbeaten MMA record",
+          "kind": "background",
+          "detail": "Before the UFC became his full-time career, Reyes worked as a technical support specialist at a California high school while fighting regionally. He entered the UFC after going unbeaten through his first six professional fights.",
+          "sourceLabel": "Stony Brook",
+          "source": "https://news.stonybrook.edu/alumni/from-the-gridiron-to-the-octagon/"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -1643,7 +1723,7 @@
           "date": "Feb. 25, 2023",
           "label": "Food-borne illness cancels Ryan Spann main event",
           "kind": "injury",
-          "detail": "Krylov became ill on fight day and received fluids at the UFC APEX, but the medical team would not clear him to compete. The bout was canceled and then rebooked two weeks later, when Krylov submitted Spann.",
+          "detail": "Krylov's UFC Vegas 70 main event with Ryan Spann was canceled shortly before the card after Krylov became ill. UFC medical staff treated him with fluids at the APEX, but he was still unable to fight; the illness was later described as food-borne.",
           "sourceLabel": "MMA Fighting",
           "source": "https://www.mmafighting.com/2023/2/25/23615087/ufc-vegas-70-loses-nikita-krylov-vs-ryan-spann-as-main-card-begins"
         },
@@ -1665,7 +1745,7 @@
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -1762,7 +1842,7 @@
           "date": "Before full-time fighting",
           "label": "Works as a plumber",
           "kind": "background",
-          "detail": "Yakhyaev worked as a plumber before fighting became his full-time profession, a useful marker for how quickly his career moved from ordinary work into European regional titles and then the UFC.",
+          "detail": "Before fighting became his full-time occupation, Yakhyaev worked as a plumber. He also attended college and earned a degree in banking.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
         },
@@ -1773,10 +1853,18 @@
           "detail": "Yakhyaev made his UFC debut against Raffael Cerqueira and won by rear-naked choke, immediately carrying the finishing style from his regional career into the promotion.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
+        },
+        {
+          "date": "Amateur career",
+          "label": "Combat-sambo and MMA Master of Sports, plus NAGA title",
+          "kind": "training",
+          "detail": "Yakhyaev says he has the Master of Sports designation in combat sambo and MMA, along with a European NAGA championship. He also describes his toughest fights as his early amateur bouts, when he did not have ideal preparation.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -1900,10 +1988,18 @@
           "detail": "After signing with the UFC, Magomedov had one planned fight in 2021 and two more in 2022 fall apart. One 2022 cancellation was specifically attributed to visa issues. He finally debuted in Paris in September 2022.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/abus-magomedov-wont-waste-any-time-middleweight-ufc-fight-night-paris"
+        },
+        {
+          "date": "2021-2022",
+          "label": "Visa issue and other cancellations delay UFC debut",
+          "kind": "layoff",
+          "detail": "Magomedov was signed by the UFC but had fights with Gerald Meerschaert and Aliaskhab Khizriev fail to materialize before his Paris debut. The March 2022 Khizriev booking was specifically canceled because of visa issues, and the prolonged sequence left him waiting more than a year after signing.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/updates-ufc-fight-night-blaydes-vs-daukaus-columbus-ohio"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -1920,8 +2016,8 @@
           "date": "2013 · age 18",
           "label": "Starts training to change his life",
           "kind": "training",
-          "detail": "Rowston says he began training after turning 18 to build confidence and pull himself away from heavy drinking and partying.",
-          "sourceLabel": "UFC profile",
+          "detail": "Rowston began training in 2013, just after turning 18. He said he was drinking and partying too much and was not sure of himself; martial arts gave him structure, confidence and a reason to focus.",
+          "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/cameron-rowston"
         },
         {
@@ -2011,10 +2107,18 @@
           "detail": "Before reaching the UFC, Rowston accumulated more than 30 kickboxing fights and also won grappling honors, including an ADCC New Zealand absolute title. That experience explains why his combat-sports mileage is much deeper than his MMA record alone suggests.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/dwcs-spotlight-cameron-rowston"
+        },
+        {
+          "date": "Pre-UFC",
+          "label": "King in the Ring, WKBF and ADCC New Zealand credentials",
+          "kind": "milestone",
+          "detail": "Before the UFC, Rowston won King in the Ring tournaments at 86kg and 92kg, held the WKBF South Pacific Middleweight title and won the ADCC New Zealand absolute championship. He finished his amateur MMA career ranked No. 1 at middleweight in Australasia.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/cameron-rowston"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -2111,9 +2215,9 @@
           "date": "2017-2018",
           "label": "Potential USADA case delays UFC path, then dismissed",
           "kind": "suspension",
-          "detail": "Dawson was notified of a potential anti-doping violation after his Contender Series appearance. USADA later dismissed the case because the evidence indicated the prohibited substance was likely ingested before he entered the UFC testing program.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufcespanol.com/news/ufc-statement-grant-dawson-0"
+          "detail": "In late 2017, Dawson's sample returned an adverse finding for the long-term M3 metabolite of oral Turinabol. The UFC released him before he ever competed for the promotion, and he spent most of 2018 pursuing the case while out of competition. A later test came back negative and he was cleared to make his UFC debut in 2019.",
+          "sourceLabel": "MMA Fighting",
+          "source": "https://www.mmafighting.com/2019/3/8/18255815/how-grant-dawson-got-ufc-second-chance-after-jon-jones-like-usada-case"
         },
         {
           "date": "Oct. 7, 2023",
@@ -2138,10 +2242,18 @@
           "detail": "Dawson began his UFC career 3-0 at featherweight. After moving up, lightweight became his long-term division; his UFC profile now separates the 3-0 featherweight start from his later lightweight run.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/grant-dawson"
+        },
+        {
+          "date": "2012-2014",
+          "label": "Builds wrestling base before turning pro at 20",
+          "kind": "training",
+          "detail": "Dawson was a strong prep wrestler and chose a professional MMA path instead of college. He went 5-0 as an amateur and turned pro at age 20, winning his first nine professional fights by finish.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/grant-dawson"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -2238,9 +2350,9 @@
           "date": "Late 2023",
           "label": "Leg injury forces withdrawal and surgery",
           "kind": "injury",
-          "detail": "Aliev withdrew from a scheduled Mateusz Rebecki fight at UFC 295 because of a leg injury and subsequently underwent surgery.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/news/updates-order-ufc-295-prochazka-vs-pereira"
+          "detail": "Aliev withdrew from his scheduled UFC 295 fight with Mateusz Rebecki after suffering a leg injury in the final days before the event. He subsequently underwent surgery and did not fight again until January 2025, creating an unusually long interruption in the early part of his UFC career.",
+          "sourceLabel": "MMA Fighting / UFC",
+          "source": "https://sports.yahoo.com/nurullo-aliev-announces-ufc-295-193046754.html"
         },
         {
           "date": "2023-Jan. 2025",
@@ -2260,7 +2372,7 @@
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -2285,8 +2397,8 @@
           "date": "Teen years onward",
           "label": "Long-term Freestyle MMA development",
           "kind": "camp",
-          "detail": "He has trained under Joe Lopez at Freestyle MMA for more than a decade and has been a main training partner for Alexander Volkanovski since age 18.",
-          "sourceLabel": "UFC profile",
+          "detail": "Thicknesse says he has trained under Joe Lopez at Freestyle MMA for 12 years and has been one of Alexander Volkanovski's main training partners since he was 18. He also coached kids' classes at the gym while working security.",
+          "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/colby-thicknesse"
         },
         {
@@ -2376,10 +2488,18 @@
           "detail": "In his second professional fight, Thicknesse was dropped twice in the opening round by undefeated Semakadde Kakembo but recovered to win a unanimous decision. Thicknesse later identified it as the toughest fight of his career.",
           "sourceLabel": "UFC / Sherdog",
           "source": "https://www.ufc.com/athlete/colby-thicknesse"
+        },
+        {
+          "date": "Before full-time MMA",
+          "label": "Security guard while coaching kids at Freestyle MMA",
+          "kind": "background",
+          "detail": "Before the UFC, Thicknesse worked as a security guard while coaching the younger students at Freestyle MMA. His long relationship with the gym overlaps with his development as a main training partner for Volkanovski.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/colby-thicknesse"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -2506,7 +2626,7 @@
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -2641,7 +2761,7 @@
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -2760,7 +2880,7 @@
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -2884,10 +3004,18 @@
           "detail": "Oki's UFC profile lists Valon Team as his camp. He describes a routine built around morning running and strength work, then evening MMA technical sessions and wrestling.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/bolaji-oki"
+        },
+        {
+          "date": "Feb. 2025",
+          "label": "Trains in Paris alongside Imavov, Saint Denis and Gomis",
+          "kind": "camp",
+          "detail": "For his Paris camp, Oki trained alongside Nassourdine Imavov, Benoit Saint Denis and William Gomis. The camp gave him regular work with several UFC-level teammates rather than preparing in isolation.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/bolaji-oki-comfortable-and-ready-to-climb-ufc-paris"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -2976,9 +3104,9 @@
           "date": "2011 · age 16",
           "label": "Starts MMA after watching Anderson Silva",
           "kind": "training",
-          "detail": "Santos says he decided to train after seeing a replay of Anderson Silva celebrating in the Octagon. He wanted to feel that same emotion and began training with the goal of reaching the UFC.",
+          "detail": "Santos began training in 2011 after watching a replay of an Anderson Silva fight. Seeing Silva climb the Octagon and celebrate made Santos want to experience that moment himself. Before fighting, he lived in the countryside and worked in the field; he later accumulated 10 amateur MMA fights and 10 Muay Thai wins.",
           "sourceLabel": "UFC",
-          "source": "https://www.ufc.com.br/news/conheca-estreante-daniel-willycat-santos-ufc-273"
+          "source": "https://www.ufc.com/athlete/daniel-santos"
         },
         {
           "date": "Amateur / striking background",
@@ -3003,10 +3131,18 @@
           "detail": "Santos did not compete between his June 2023 win over Johnny Munoz Jr. and his May 2025 return against Jeong Yeong Lee. I have not found a reliable public source identifying one specific injury as the cause, so the timeline records the inactivity without assigning a reason.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/daniel-santos?page=1"
+        },
+        {
+          "date": "UFC era",
+          "label": "Trains alongside Charles Oliveira and Allan Nascimento",
+          "kind": "camp",
+          "detail": "Santos' UFC profile lists Chute Boxe as his home and notes that he trains with Charles Oliveira and Allan Nascimento, giving him regular access to high-level grappling and MMA work.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/daniel-santos"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -3141,7 +3277,7 @@
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -3265,10 +3401,26 @@
           "detail": "After a 4-2 start that included losses to Mark Ewen and Samvel Vardanyan, Gugnon put together a six-fight finishing streak to reach 10-2. The run included four knockouts/TKOs and two rear-naked chokes and carried him into the UFC.",
           "sourceLabel": "Sherdog",
           "source": "https://www.sherdog.com/fighter/Noah-Gugnon-236171"
+        },
+        {
+          "date": "Before UFC",
+          "label": "Runs an e-commerce business and works nightclub security",
+          "kind": "background",
+          "detail": "Gugnon says he did not pursue higher education, instead launching an e-commerce business after high school while also working nightclub security. He later described the UFC as the start of his real career.",
+          "sourceLabel": "UFC",
+          "source": "https://us.ufcespanol.com/athlete/noah-gugnon"
+        },
+        {
+          "date": "Training development",
+          "label": "Judo and boxing lead into BJJ, Luta Livre and MMA",
+          "kind": "training",
+          "detail": "Gugnon followed his brother into the gym, starting with judo and later boxing before moving into MMA around age 15. He now holds purple belts in BJJ and Luta Livre and is a national Pancrase champion.",
+          "sourceLabel": "UFC",
+          "source": "https://us.ufcespanol.com/athlete/noah-gugnon"
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -3309,17 +3461,17 @@
           "date": "Sept. 24, 2025",
           "label": "Positive anti-doping sample",
           "kind": "suspension",
-          "detail": "Lucindo tested positive for mesterolone in an out-of-competition sample. CSAD's investigation found the exposure was not intentional and was connected to compounded supplements she had obtained from a Brazilian pharmacy.",
+          "detail": "Lucindo tested positive for mesterolone from a September 24, 2025 out-of-competition sample. CSAD found no evidence of intentional use, and her team provided documentation showing she had obtained compounded supplements from a Brazilian pharmacy that could have been contaminated. She was removed from her December 2025 booking during the investigation.",
           "sourceLabel": "UFC / CSAD",
-          "source": "https://www.ufc.com/news/statement-iasmin-lucindo"
+          "source": "https://www.ufc.com.br/news/statement-iasmin-lucindo"
         },
         {
           "date": "Sept. 2025-June 24, 2026",
           "label": "Nine-month suspension",
           "kind": "suspension",
-          "detail": "Lucindo accepted a nine-month period of ineligibility. Her scheduled December 2025 bout was removed, and the suspension concluded June 24, 2026.",
+          "detail": "CSAD imposed a nine-month period of ineligibility beginning September 24, 2025 and ending June 24, 2026. CSAD reduced the potential sanction after finding Lucindo fully cooperative and finding evidence against intentional performance enhancement, while noting the contamination could not be conclusively proven.",
           "sourceLabel": "UFC / CSAD",
-          "source": "https://www.ufc.com/news/statement-iasmin-lucindo"
+          "source": "https://www.ufc.com.br/news/statement-iasmin-lucindo"
         },
         {
           "date": "Aug 12, 2023",
@@ -3395,7 +3547,7 @@
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
@@ -3600,12 +3752,12 @@
         }
       ],
       "audit": {
-        "pass": 3,
+        "pass": 4,
         "verifiedThrough": "2026-10-07",
         "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     }
   },
   "updatedAt": "2026-10-07",
-  "notes": "Third-pass deep verification completed. Thin profiles filled, semantic duplicate fights merged, and only documented injuries/camp changes retained."
+  "notes": "Fourth full-card verification pass. Added documented pre-MMA backgrounds, training relationships, camp changes, injury/surgery details, anti-doping specifics and meaningful career context while avoiding unsupported padding."
 }
