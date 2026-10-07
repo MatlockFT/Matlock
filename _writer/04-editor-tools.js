@@ -801,7 +801,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
 
     const cursor = bodyEditor.selectionStart;
     const before = bodyEditor.value.slice(0, cursor);
-    const match = before.match(/([\p{L}\p{M}][\p{L}\p{M}'’.-]*)([\s.,!?;:)\]}]+)$/u);
+    const match = before.match(/([\p{L}\p{M}](?:[\p{L}\p{M}'’-]*[\p{L}\p{M}])?)([\s.,!?;:)\]}'’"”]+)$/u);
     if (!match) return false;
 
     const word = match[1];
