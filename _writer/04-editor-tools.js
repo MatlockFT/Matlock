@@ -612,10 +612,12 @@ function insertBlock(text, { preserveScroll = false } = {}) {
   }
 
   function writerAutoCorrectBuildGlobalTokenIndex(directory) {
+    if (writerAutoCorrectSmart) {
+      (directory?.fighters || []).forEach(fighter => writerAutoCorrectSmart.addName(fighter.name));
+    }
     if (writerAutoCorrectDirectoryIndexed) return;
     const seen = new Map();
     (directory?.fighters || []).forEach(fighter => {
-      writerAutoCorrectSmart?.addName(fighter.name);
       const tokens = String(fighter.name || '').match(/[\p{L}\p{M}'’.-]+/gu) || [];
       tokens.forEach(token => {
         const normalized = writerAutoCorrectNormalizedToken(token);
