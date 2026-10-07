@@ -5,23 +5,6 @@
   "mode": "read-only-watchdog",
   "coverage": [
     {
-      "event_id": "dwcs-season-10-week-9-2026-10-06",
-      "promotion": "dwcs",
-      "date": "2026-10-06",
-      "title": "Season 10 · Week 9",
-      "status": "matched",
-      "verdict_event_id": "1934",
-      "verdict_url": "https://verdictmma.com/event/1934",
-      "verdict_date": "2026-10-06",
-      "local_fight_count": 5,
-      "verdict_fight_count": null,
-      "local_main_count": 5,
-      "verdict_main_count": null,
-      "local_prelim_count": 0,
-      "verdict_prelim_count": null,
-      "confirmed_local_bouts": 4
-    },
-    {
       "event_id": "ufc-fight-night-2026-10-10-fight-card",
       "promotion": "ufc",
       "date": "2026-10-10",
@@ -47,13 +30,13 @@
       "verdict_event_id": "1936",
       "verdict_url": "https://verdictmma.com/event/1936",
       "verdict_date": "2026-10-17",
-      "local_fight_count": 13,
+      "local_fight_count": 12,
       "verdict_fight_count": 12,
       "local_main_count": 6,
       "verdict_main_count": 5,
-      "local_prelim_count": 7,
+      "local_prelim_count": 6,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 11
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "ufc-333-2026-10-24-fight-card",
@@ -64,13 +47,13 @@
       "verdict_event_id": "1955",
       "verdict_url": "https://verdictmma.com/event/1955",
       "verdict_date": "2026-10-24",
-      "local_fight_count": 9,
-      "verdict_fight_count": 10,
-      "local_main_count": 5,
-      "verdict_main_count": 5,
+      "local_fight_count": 10,
+      "verdict_fight_count": 9,
+      "local_main_count": 6,
+      "verdict_main_count": 4,
       "local_prelim_count": 4,
       "verdict_prelim_count": 5,
-      "confirmed_local_bouts": 9
+      "confirmed_local_bouts": 8
     },
     {
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
@@ -178,16 +161,6 @@
   "discrepancies": [
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "dwcs-season-10-week-9-2026-10-06",
-      "verdict_event_id": "1934",
-      "order": 3,
-      "fighters": [
-        "Roque Conceicao Moreira Junior",
-        "Alexander Chavez"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
       "verdict_event_id": "1974",
       "order": 1,
@@ -259,24 +232,37 @@
       "type": "bout_count_mismatch",
       "event_id": "ufc-333-2026-10-24-fight-card",
       "verdict_event_id": "1955",
-      "local_fight_count": 9,
-      "verdict_fight_count": 10
+      "local_fight_count": 10,
+      "verdict_fight_count": 9
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "verdict_event_id": "1955",
+      "order": 10,
+      "fighters": [
+        "Arnold Allen",
+        "Aaron Pico"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "verdict_event_id": "1955",
+      "order": 5,
+      "fighters": [
+        "Aaron Pico",
+        "Losene Keita"
+      ]
     },
     {
       "type": "section_count_mismatch",
       "event_id": "ufc-333-2026-10-24-fight-card",
       "verdict_event_id": "1955",
-      "local_main_count": 5,
-      "verdict_main_count": 5,
+      "local_main_count": 6,
+      "verdict_main_count": 4,
       "local_prelim_count": 4,
       "verdict_prelim_count": 5
-    },
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "local_fight_count": 13,
-      "verdict_fight_count": 12
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -292,7 +278,7 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "verdict_event_id": "1936",
-      "order": 9,
+      "order": 8,
       "fighters": [
         "Javad Mahjoub",
         "Joel Faglier"
@@ -304,7 +290,7 @@
       "verdict_event_id": "1936",
       "local_main_count": 6,
       "verdict_main_count": 5,
-      "local_prelim_count": 7,
+      "local_prelim_count": 6,
       "verdict_prelim_count": 7
     },
     {
