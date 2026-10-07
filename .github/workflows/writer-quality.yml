@@ -7,6 +7,9 @@ on:
     paths:
       - "write.html"
       - "assets/writer.js"
+      - "assets/writer-autocorrect-engine.js"
+      - "assets/data/autocorrect/**"
+      - "scripts/writer/writer-autocorrect-smoke.cjs"
       - "_writer/**"
       - "scripts/writer/build-frontend-bundles.mjs"
       - "assets/writer-auth.js"
@@ -54,6 +57,9 @@ on:
     paths:
       - "write.html"
       - "assets/writer.js"
+      - "assets/writer-autocorrect-engine.js"
+      - "assets/data/autocorrect/**"
+      - "scripts/writer/writer-autocorrect-smoke.cjs"
       - "_writer/**"
       - "scripts/writer/build-frontend-bundles.mjs"
       - "assets/writer-auth.js"
@@ -121,6 +127,9 @@ jobs:
       - name: Check Writer browser scripts
         run: |
           node --check assets/writer.js
+          node --check assets/writer-autocorrect-engine.js
+          node --check scripts/writer/writer-autocorrect-smoke.cjs
+          node scripts/writer/writer-autocorrect-smoke.cjs
           node --check assets/writer-auth.js
           node --check assets/post-writer-actions.js
           node --check assets/writer-live.js
