@@ -123,7 +123,7 @@
     list.innerHTML = (sortedEntry.items || []).map((item, index) => {
       const kind = escapeHtml(item.kind || 'note');
       return '<li>' +
-        '<button type="button" class="fighter-history-item" data-fighter-history-item="' + index + '" data-kind="' + kind + '">' +
+        '<button type="button" class="fighter-history-item" data-fighter-history-item="' + index + '" data-kind="' + kind + '" style="--fighter-history-index:' + index + '">' +
           '<span class="fighter-history-dot" aria-hidden="true"></span>' +
           '<span class="fighter-history-item-copy">' +
             '<span class="fighter-history-date">' + escapeHtml(item.date || '') + '</span>' +
@@ -188,6 +188,7 @@
       top = Math.max(margin, Math.min(top, window.innerHeight - measured.height - margin));
     }
 
+    panel.dataset.placement = top < rect.top ? 'above' : 'below';
     panel.style.left = Math.round(left) + 'px';
     panel.style.top = Math.round(top) + 'px';
   }
