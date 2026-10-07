@@ -84,15 +84,43 @@
     return panel;
   }
 
+  function timelineSortKey(item, index) {
+    const raw = String(item?.date || '').trim();
+    const lower = raw.toLowerCase();
+    if (/current camp|current camps|ufc career/.test(lower)) return 900000 + index;
+    if (/upcoming|oct\. 24, 2026/.test(lower)) return 990000 + index;
+    const year = raw.match(/(?:19|20)\d{2}/);
+    if (year) {
+      const y = Number(year[0]);
+      const months = {jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,sept:9,oct:10,nov:11,dec:12};
+      const monthToken = raw.toLowerCase().match(/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)/)?.[1] || '';
+      const month = months[monthToken] || 0;
+      const day = Number(raw.match(/\b(\d{1,2})(?:,|\s+\d{4})/)?.[1] || 0);
+      return y * 10000 + month * 100 + day;
+    }
+    if (/childhood|youth|age\s+\d+|amateur|early career|pre-pro|professional career|regional career|grappling career|training partnership/.test(lower)) {
+      return 1000 + index;
+    }
+    if (/pre-ufc/.test(lower)) return 1500 + index;
+    return 2000 + index;
+  }
+
+  function orderedItems(entry) {
+    return (entry.items || []).map((item, index) => ({ item, index }))
+      .sort((a, b) => timelineSortKey(a.item, a.index) - timelineSortKey(b.item, b.index))
+      .map(({ item }) => item);
+  }
+
   function renderPanel(entry) {
     const shell = ensurePanel();
-    currentEntry = entry;
+    const sortedEntry = { ...entry, items: orderedItems(entry) };
+    currentEntry = sortedEntry;
 
     shell.querySelector('[data-fighter-history-name]').textContent = entry.name || '';
     shell.querySelector('[data-fighter-history-record]').textContent = entry.record ? entry.record + ' professional record' : '';
 
     const list = shell.querySelector('[data-fighter-history-list]');
-    list.innerHTML = (entry.items || []).map((item, index) => {
+    list.innerHTML = (sortedEntry.items || []).map((item, index) => {
       const kind = escapeHtml(item.kind || 'note');
       return '<li>' +
         '<button type="button" class="fighter-history-item" data-fighter-history-item="' + index + '" data-kind="' + kind + '">' +
