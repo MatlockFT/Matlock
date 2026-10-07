@@ -230,14 +230,15 @@
 
 html[data-theme="dark"] .fighter-history-popover,
 .dark-mode .fighter-history-popover,
-[data-preview-theme="dark"] ~ .fighter-history-popover {
+.fighter-history-popover.is-preview-dark {
   background: #171717;
   color: #f4f4f4;
   border-color: #4a4a4a;
 }
 
 html[data-theme="dark"] .fighter-history-popover-head,
-.dark-mode .fighter-history-popover-head {
+.dark-mode .fighter-history-popover-head,
+.fighter-history-popover.is-preview-dark .fighter-history-popover-head {
   border-color: #ececec;
 }
 
@@ -248,12 +249,17 @@ html[data-theme="dark"] .fighter-history-detail-date,
 .dark-mode .fighter-history-kicker,
 .dark-mode .fighter-history-popover-head small,
 .dark-mode .fighter-history-date,
-.dark-mode .fighter-history-detail-date {
+.dark-mode .fighter-history-detail-date,
+.fighter-history-popover.is-preview-dark .fighter-history-kicker,
+.fighter-history-popover.is-preview-dark .fighter-history-popover-head small,
+.fighter-history-popover.is-preview-dark .fighter-history-date,
+.fighter-history-popover.is-preview-dark .fighter-history-detail-date {
   color: #aaa;
 }
 
 html[data-theme="dark"] .fighter-history-list,
-.dark-mode .fighter-history-list {
+.dark-mode .fighter-history-list,
+.fighter-history-popover.is-preview-dark .fighter-history-list {
   border-color: #3b3b3b;
 }
 
@@ -262,12 +268,16 @@ html[data-theme="dark"] .fighter-history-item:focus-visible,
 html[data-theme="dark"] .fighter-history-item.is-active,
 .dark-mode .fighter-history-item:hover,
 .dark-mode .fighter-history-item:focus-visible,
-.dark-mode .fighter-history-item.is-active {
+.dark-mode .fighter-history-item.is-active,
+.fighter-history-popover.is-preview-dark .fighter-history-item:hover,
+.fighter-history-popover.is-preview-dark .fighter-history-item:focus-visible,
+.fighter-history-popover.is-preview-dark .fighter-history-item.is-active {
   background: #262626;
 }
 
 html[data-theme="dark"] .fighter-history-dot,
-.dark-mode .fighter-history-dot {
+.dark-mode .fighter-history-dot,
+.fighter-history-popover.is-preview-dark .fighter-history-dot {
   box-shadow: 0 0 0 3px #171717;
 }
 
