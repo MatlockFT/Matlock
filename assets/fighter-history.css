@@ -1,0 +1,313 @@
+.fighter-history-trigger {
+  appearance: none;
+  border: 0;
+  border-bottom: 1px dotted currentColor;
+  background: transparent;
+  color: inherit;
+  display: inline;
+  font: inherit;
+  font-weight: 700;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  cursor: help;
+  text-align: inherit;
+}
+
+.fighter-history-trigger:hover,
+.fighter-history-trigger:focus-visible {
+  border-bottom-style: solid;
+  outline: none;
+}
+
+.fighter-history-popover {
+  position: fixed;
+  z-index: 2147482000;
+  width: min(760px, calc(100vw - 24px));
+  max-height: min(70vh, 560px);
+  overflow: hidden;
+  background: #fff;
+  color: #171717;
+  border: 1px solid #b8b8b8;
+  border-radius: 6px;
+  box-shadow: 0 18px 54px rgba(0,0,0,.24);
+  font-family: inherit;
+  text-align: left;
+}
+
+.fighter-history-popover[hidden] {
+  display: none !important;
+}
+
+.fighter-history-popover-head {
+  min-height: 64px;
+  padding: 11px 14px 10px;
+  border-bottom: 2px solid #171717;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.fighter-history-popover-head > div {
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+}
+
+.fighter-history-kicker {
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: .14em;
+  font-weight: 800;
+  color: #666;
+}
+
+.fighter-history-popover-head strong {
+  font-size: 17px;
+  line-height: 1.15;
+}
+
+.fighter-history-popover-head small {
+  font-size: 11px;
+  line-height: 1.2;
+  color: #666;
+}
+
+.fighter-history-close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 25px;
+  line-height: 1;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.fighter-history-close:hover,
+.fighter-history-close:focus-visible {
+  background: rgba(0,0,0,.07);
+  outline: none;
+}
+
+.fighter-history-popover-body {
+  display: grid;
+  grid-template-columns: minmax(270px, .9fr) minmax(300px, 1.1fr);
+  min-height: 330px;
+  max-height: calc(min(70vh, 560px) - 66px);
+}
+
+.fighter-history-list {
+  list-style: none;
+  margin: 0;
+  padding: 7px 0;
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+}
+
+.fighter-history-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.fighter-history-item {
+  appearance: none;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 15px minmax(0, 1fr);
+  gap: 7px;
+  align-items: start;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  padding: 8px 12px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.fighter-history-item:hover,
+.fighter-history-item:focus-visible,
+.fighter-history-item.is-active {
+  background: #f1f1f1;
+  outline: none;
+}
+
+.fighter-history-dot {
+  width: 8px;
+  height: 8px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: #7a7a7a;
+  box-shadow: 0 0 0 3px #fff;
+  border: 1px solid #777;
+}
+
+.fighter-history-item[data-kind="win"] .fighter-history-dot {
+  background: #1e7d3e;
+  border-color: #1e7d3e;
+}
+
+.fighter-history-item[data-kind="loss"] .fighter-history-dot {
+  background: #a92c2c;
+  border-color: #a92c2c;
+}
+
+.fighter-history-item[data-kind="camp"] .fighter-history-dot,
+.fighter-history-item[data-kind="training"] .fighter-history-dot {
+  background: #2f5e9f;
+  border-color: #2f5e9f;
+}
+
+.fighter-history-item[data-kind="injury"] .fighter-history-dot,
+.fighter-history-item[data-kind="weight"] .fighter-history-dot {
+  background: #a86b18;
+  border-color: #a86b18;
+}
+
+.fighter-history-item-copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.fighter-history-date {
+  font-size: 10.5px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.fighter-history-item-copy strong {
+  font-size: 12.5px;
+  line-height: 1.28;
+  font-weight: 750;
+}
+
+.fighter-history-detail {
+  overflow-y: auto;
+  padding: 20px 20px 22px;
+}
+
+.fighter-history-detail-date {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: #6d6d6d;
+}
+
+.fighter-history-detail h4 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  line-height: 1.15;
+}
+
+.fighter-history-detail p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.fighter-history-detail a {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+html[data-theme="dark"] .fighter-history-popover,
+.dark-mode .fighter-history-popover,
+[data-preview-theme="dark"] ~ .fighter-history-popover {
+  background: #171717;
+  color: #f4f4f4;
+  border-color: #4a4a4a;
+}
+
+html[data-theme="dark"] .fighter-history-popover-head,
+.dark-mode .fighter-history-popover-head {
+  border-color: #ececec;
+}
+
+html[data-theme="dark"] .fighter-history-kicker,
+html[data-theme="dark"] .fighter-history-popover-head small,
+html[data-theme="dark"] .fighter-history-date,
+html[data-theme="dark"] .fighter-history-detail-date,
+.dark-mode .fighter-history-kicker,
+.dark-mode .fighter-history-popover-head small,
+.dark-mode .fighter-history-date,
+.dark-mode .fighter-history-detail-date {
+  color: #aaa;
+}
+
+html[data-theme="dark"] .fighter-history-list,
+.dark-mode .fighter-history-list {
+  border-color: #3b3b3b;
+}
+
+html[data-theme="dark"] .fighter-history-item:hover,
+html[data-theme="dark"] .fighter-history-item:focus-visible,
+html[data-theme="dark"] .fighter-history-item.is-active,
+.dark-mode .fighter-history-item:hover,
+.dark-mode .fighter-history-item:focus-visible,
+.dark-mode .fighter-history-item.is-active {
+  background: #262626;
+}
+
+html[data-theme="dark"] .fighter-history-dot,
+.dark-mode .fighter-history-dot {
+  box-shadow: 0 0 0 3px #171717;
+}
+
+@media (max-width: 720px) {
+  .fighter-history-popover {
+    left: 8px !important;
+    right: 8px;
+    top: auto !important;
+    bottom: 8px;
+    width: auto !important;
+    max-height: 82vh;
+    border-radius: 9px;
+  }
+
+  .fighter-history-popover-body {
+    display: block;
+    min-height: 0;
+    max-height: calc(82vh - 66px);
+    overflow-y: auto;
+  }
+
+  .fighter-history-list {
+    max-height: 42vh;
+    border-right: 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .fighter-history-detail {
+    overflow: visible;
+    padding: 16px;
+  }
+
+  .fighter-history-item {
+    padding: 9px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fighter-history-popover,
+  .fighter-history-item {
+    scroll-behavior: auto;
+  }
+}
