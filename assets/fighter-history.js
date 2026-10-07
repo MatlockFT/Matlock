@@ -87,8 +87,8 @@
   function timelineSortKey(item, index) {
     const raw = String(item?.date || '').trim();
     const lower = raw.toLowerCase();
-    if (/current camp|current camps|ufc career/.test(lower)) return 900000 + index;
-    if (/upcoming|oct\. 24, 2026/.test(lower)) return 990000 + index;
+    if (/current camp|current camps/.test(lower)) return 90000000 + index;
+    if (/upcoming|oct\. 24, 2026/.test(lower)) return 99000000 + index;
     const year = raw.match(/(?:19|20)\d{2}/);
     if (year) {
       const y = Number(year[0]);
