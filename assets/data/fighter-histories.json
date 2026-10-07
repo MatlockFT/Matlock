@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "event": "UFC 333",
   "eventDate": "2026-10-24",
   "fighters": {
@@ -603,7 +603,7 @@
           "date": "Aug 23, 2025",
           "label": "LOSS · Charles Johnson · KO (Punch)",
           "kind": "loss",
-          "detail": "Lone'er Kavanagh lost to Charles Johnson. KO (Punch).",
+          "detail": "Charles Johnson stopped Kavanagh in the second round, handing him the first loss of his professional career and snapping a 10-fight winning streak that stretched back to his final amateur bout.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/loneer-kavanagh"
         },
@@ -646,14 +646,6 @@
           "detail": "After returning from a long gap following his 2019 debut, Kavanagh went through Cage Warriors with wins over Ryan Morgan, Ander Sanchez, Davide Scarano and Shawn Marcos da Silva before getting the Contender Series call.",
           "sourceLabel": "Sherdog",
           "source": "https://www.sherdog.com/fighter/Loneer-Kavanagh-213249"
-        },
-        {
-          "date": "Aug. 23, 2025",
-          "label": "First professional loss ends long winning streak",
-          "kind": "milestone",
-          "detail": "Charles Johnson stopped Kavanagh in the second round, handing him the first loss of his professional career and ending a 10-fight winning streak that stretched back to his final amateur bout.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/news/get-know-loneer-kavanagh"
         },
         {
           "date": "Feb. 28, 2026",
@@ -706,8 +698,8 @@
           "date": "Amateur career",
           "label": "World, European and Asian MMA titles",
           "kind": "milestone",
-          "detail": "Before his UFC run, Temirov won amateur MMA championships at world, European and Asian level and earned Master of Sports status in hand-to-hand fighting.",
-          "sourceLabel": "UFC profile",
+          "detail": "Temirov's amateur résumé includes MMA championships at the Asian, European and World levels, plus a Master of Sports designation in hand-to-hand fighting. He turned professional in 2015 and later built the long winning streak that carried him to the UFC.",
+          "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/ramazan-temirov"
         },
         {
@@ -805,14 +797,6 @@
           "detail": "Temirov accepted a 12-month period of ineligibility. The suspension began July 5, 2025, when CSAD placed him under provisional suspension, making him eligible to return on or after July 5, 2026.",
           "sourceLabel": "UFC / CSAD",
           "source": "https://www.ufc.com/news/statement-ramazonbek-temirov"
-        },
-        {
-          "date": "Amateur career",
-          "label": "Wins Asian, European and World MMA championships",
-          "kind": "milestone",
-          "detail": "Temirov's amateur résumé includes MMA championships at the Asian, European and World levels. He entered the professional ranks in 2015 and eventually built the long unbeaten run that carried him to the UFC.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/ramazan-temirov"
         }
       ],
       "audit": {
@@ -1000,9 +984,9 @@
           "date": "Apr 7, 2023",
           "label": "NC · Renan Ferreira · No Contest (Overturned)",
           "kind": "nc",
-          "detail": "Rizvan Kuniev fought Renan Ferreira. No Contest (Overturned).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+          "detail": "Kuniev originally beat Renan Ferreira by unanimous decision in his 2023 PFL debut, but the Nevada State Athletic Commission overturned the result to a no contest after he tested positive for drostanolone, metenolone, boldenone and 19-norandrosterone, with a separate stimulant also appearing in the test. He served a one-year suspension and returned to competition in 2024.",
+          "sourceLabel": "MMA Fighting / Tapology",
+          "source": "https://www.mmafighting.com/2023/6/20/23767287/rob-wilkinson-thiago-santos-5-more-pfl-fighters-suspended-fined-testing-positive-banned-substances"
         },
         {
           "date": "Aug 20, 2024",
@@ -1043,14 +1027,6 @@
           "detail": "Rizvan Kuniev is scheduled to face Alexander Volkov at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 14-3-1, UFC 2-1-0.",
           "sourceLabel": "UFC 333",
           "source": "https://www.ufc.com/event/ufc-333"
-        },
-        {
-          "date": "Apr. 7, 2023",
-          "label": "PFL win overturned after positive drug test",
-          "kind": "suspension",
-          "detail": "Kuniev's 2023 PFL win over Renan Ferreira was overturned to a no contest after he tested positive for drostanolone, metenolone, boldenone and 19-norandrosterone. The Nevada commission also cited a separate stimulant in the testing result.",
-          "sourceLabel": "MMA Fighting",
-          "source": "https://www.mmafighting.com/2023/6/20/23767287/rob-wilkinson-thiago-santos-5-more-pfl-fighters-suspended-fined-testing-positive-banned-substances"
         },
         {
           "date": "Apr. 2023-Apr. 2024",
@@ -1119,9 +1095,9 @@
           "date": "May 2019",
           "label": "Moves camp to Jackson-Wink in Albuquerque",
           "kind": "camp",
-          "detail": "After an uneven start to his MMA career, Pico relocated to Albuquerque and moved his camp to Jackson-Wink MMA.",
+          "detail": "In 2019 Pico relocated to Albuquerque and joined Jackson-Wink, leaving his previous training environment to work with Greg Jackson and the gym's broader MMA team. He has remained there through his UFC career.",
           "sourceLabel": "Sherdog",
-          "source": "https://www.sherdog.com/news/news/Bellator-Prospect-Aaron-Pico-Moves-Training-Camp-to-JacksonWink-MMA-154147"
+          "source": "https://www.sherdog.com/news/news/Bellator-Prospect-Aaron-Pico-Moves-Training-Camp-to-Jackson-Wink-MMA-154147"
         },
         {
           "date": "Aug. 16, 2025",
@@ -1202,14 +1178,6 @@
           "detail": "After opening his career 4-1, Pico suffered consecutive knockout losses and sat at 4-3, a major reality check for one of MMA's most heavily promoted prospects. The period overlapped with his decision to relocate to Albuquerque and rebuild at Jackson-Wink.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/where-aaron-pico-belongs-ufc-319"
-        },
-        {
-          "date": "May 2019",
-          "label": "Relocates to Albuquerque and joins Jackson-Wink",
-          "kind": "camp",
-          "detail": "Pico left his previous training environment and relocated to Albuquerque in 2019 to work with Jackson-Wink. He has remained there through his UFC career.",
-          "sourceLabel": "Sherdog",
-          "source": "https://www.sherdog.com/news/news/Bellator-Prospect-Aaron-Pico-Moves-Training-Camp-to-Jackson-Wink-MMA-154147"
         }
       ],
       "audit": {
@@ -2096,15 +2064,7 @@
           "date": "Pre-UFC",
           "label": "30+ kickboxing fights plus grappling titles",
           "kind": "milestone",
-          "detail": "Before reaching the UFC, Rowston accumulated more than 30 kickboxing fights and also won grappling honors, including an ADCC New Zealand absolute title. That experience explains why his combat-sports mileage is much deeper than his MMA record alone suggests.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/news/dwcs-spotlight-cameron-rowston"
-        },
-        {
-          "date": "Pre-UFC",
-          "label": "King in the Ring, WKBF and ADCC New Zealand credentials",
-          "kind": "milestone",
-          "detail": "Before the UFC, Rowston won King in the Ring tournaments at 86kg and 92kg, held the WKBF South Pacific Middleweight title and won the ADCC New Zealand absolute championship. He finished his amateur MMA career ranked No. 1 at middleweight in Australasia.",
+          "detail": "Before the UFC, Rowston accumulated more than 30 kickboxing fights and won King in the Ring tournaments at 86kg and 92kg, the WKBF South Pacific Middleweight title and the ADCC New Zealand absolute championship. He finished his amateur MMA career ranked No. 1 at middleweight in Australasia.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/cameron-rowston"
         }
@@ -2262,8 +2222,8 @@
           "date": "Childhood",
           "label": "Starts training through older brothers",
           "kind": "training",
-          "detail": "Aliev says his older brothers brought him into training when he was a child.",
-          "sourceLabel": "UFC profile",
+          "detail": "Aliev says his older brothers brought him to martial-arts training when he was a child. His amateur résumé later grew into two World Pankration titles, a World Youth MMA title, two Asian Pankration titles and an Asian Combat Sambo championship.",
+          "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/nurullo-aliev"
         },
         {
@@ -2359,14 +2319,6 @@
           "label": "Competes at welterweight before settling at lightweight",
           "kind": "weight",
           "detail": "Aliev began his unbeaten professional run across two divisions. His UFC profile lists him at 3-0 at welterweight and 9-0 at lightweight, where he ultimately settled for his UFC run.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/nurullo-aliev"
-        },
-        {
-          "date": "Childhood",
-          "label": "Older brothers bring him into martial arts",
-          "kind": "training",
-          "detail": "Aliev says his older brothers brought him to training when he was a child. His amateur résumé later grew into World and Asian pankration titles plus an Asian combat-sambo championship.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/nurullo-aliev"
         },
@@ -3767,5 +3719,5 @@
     }
   },
   "updatedAt": "2026-10-07",
-  "notes": "Fourth full-card verification pass. Added documented pre-MMA backgrounds, training relationships, camp changes, injury/surgery details, anti-doping specifics and meaningful career context while avoiding unsupported padding."
+  "notes": "Fourth-pass deep audit completed. Duplicate same-event notes merged; distinct same-year career events retained."
 }
