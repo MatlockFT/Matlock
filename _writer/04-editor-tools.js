@@ -486,6 +486,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
   let writerAutoCorrectFighterTokens = [];
   let writerAutoCorrectGlobalTokens = new Map();
   let writerAutoCorrectFighterTimer = 0;
+  let writerAutoCorrectFeedbackTimer = 0;
   let writerAutoCorrectDirectoryIndexed = false;
 
   function writerAutoCorrectNormalizedToken(value) {
@@ -708,6 +709,13 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     bodyEditor.value = value.slice(0, wordStart) + replacement + value.slice(wordEnd);
     const nextCursor = cursor + replacement.length - word.length;
     bodyEditor.setSelectionRange(nextCursor, nextCursor);
+
+    const feedback = app.querySelector('[data-autocorrect-status]');
+    if (feedback) {
+      feedback.textContent = 'Fixed ' + word + ' → ' + replacement;
+      window.clearTimeout(writerAutoCorrectFeedbackTimer);
+      writerAutoCorrectFeedbackTimer = window.setTimeout(() => { feedback.textContent = ''; }, 1800);
+    }
     return true;
   }
 
