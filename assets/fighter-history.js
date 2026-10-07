@@ -178,6 +178,8 @@
     cancelClose();
     activeTrigger = trigger;
     renderPanel(entry);
+    const previewFrame = trigger.closest('[data-preview-frame]');
+    panel.classList.toggle('is-preview-dark', previewFrame?.dataset.previewTheme === 'dark');
     panel.hidden = false;
     trigger.setAttribute('aria-expanded', 'true');
     requestAnimationFrame(() => positionPanel(trigger));
