@@ -12,7 +12,9 @@ const HISTORY_ALIASES = new Map([
   ['benardo sopaj','Bernardo Sopai'],
   ['ateba gautier','Ateba Abega Gautier'],
   ['khaos williams','Kalinn Williams'],
-  ['bobby green','King Green']
+  ['bobby green','King Green'],
+  ['ramazan temirov','Ramazonbek Temirov'],
+  ['cam rowston','Cameron Rowston']
 ]);
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
