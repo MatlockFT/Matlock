@@ -5967,17 +5967,13 @@ Object.values(fields).forEach(el => {
     taleDialog.close();
   });
 
-  app.querySelector('[data-picks-manager-save]')?.addEventListener('click', savePicksManager);
-
   app.querySelector('[data-pick-insert]').addEventListener('click', () => {
     const dialog = app.querySelector('[data-pick-dialog]');
     const cfg = {
       fighter: dialog.querySelector('[data-pick-fighter]').value.trim(),
       method: dialog.querySelector('[data-pick-method]').value,
       round: dialog.querySelector('[data-pick-round]').value,
-      note: dialog.querySelector('[data-pick-note]').value.trim(),
-      officialResult: dialog.querySelector('[data-pick-official-result]')?.value.trim() || '',
-      outcome: dialog.querySelector('[data-pick-outcome]')?.value || ''
+      note: dialog.querySelector('[data-pick-note]').value.trim()
     };
     if (!cfg.fighter) { showToast('Add the fighter you are picking.'); return; }
     saveStructuredBlock('pick', 'Pick · ' + cfg.fighter, buildPickVisual(cfg));
