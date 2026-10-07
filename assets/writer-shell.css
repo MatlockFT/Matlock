@@ -1786,3 +1786,13 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
 .writer-shell .writer-preview-visual-recovery small{
   opacity:.7;
 }
+.writer-shell .writer-autocorrect-status{
+  min-width:0;
+  max-width:210px;
+  overflow:hidden;
+  color:#8fae8f;
+  font:540 10px/1 Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
