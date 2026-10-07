@@ -44,6 +44,25 @@ eval(source);
   assert.equal(engine.suggest('their'), null, 'correct words must be left alone');
   assert.equal(engine.suggest('fighter'), null, 'known MMA vocabulary must be left alone');
 
+  const minuteToken = global.MatlockAutocorrectEngine.extractTrailingToken('minute. ');
+  assert.deepEqual(
+    minuteToken,
+    { word:'minute', boundary:'. ', wordStart:0, wordEnd:6 },
+    'sentence punctuation must stay outside the spelling token'
+  );
+  assert.equal(engine.suggest(minuteToken.word), null, 'minute. must not trigger a fake minute correction');
+
+  const typoToken = global.MatlockAutocorrectEngine.extractTrailingToken('thier. ');
+  assert.equal(typoToken.word, 'thier');
+  assert.equal(typoToken.boundary, '. ');
+  const typoFix = engine.suggest(typoToken.word);
+  assert.equal(typoFix?.replacement, 'their');
+  assert.equal(
+    typoFix.replacement + typoToken.boundary,
+    'their. ',
+    'autocorrect must preserve punctuation after a corrected word'
+  );
+
   console.log('Writer smart autocorrect smoke passed with', engine.words.size, 'dictionary forms.');
 })().catch(error => {
   console.error(error);
