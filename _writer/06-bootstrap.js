@@ -43,6 +43,8 @@
   previewTimer = window.setTimeout(updatePreview, 45);
 }
 
+initializeWriterAutoCorrect();
+
 Object.values(fields).forEach(el => {
   el.addEventListener('input', () => {
     if (el === fields.filename && !currentPath) filenameTouched = true;
