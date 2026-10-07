@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-07T06:22:21.295Z"
+      "checkedAt": "2026-10-07T13:46:21.179Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-07T06:22:40.008Z",
+      "checkedAt": "2026-10-07T13:46:45.279Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -171008,7 +171008,11 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-17",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -199288,9 +199292,11 @@
         "officialThrough": "2026-10-03"
       },
       "booking": {
-        "event": "UFC 333",
+        "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Aaron Pico",
+        "opponentId": "aaron-pico"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -247544,7 +247550,11 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-17",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
