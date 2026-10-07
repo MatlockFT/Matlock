@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-10-07T00:05:45.257Z",
-  "builtAt": "2026-10-07T00:06:12.876Z",
+  "builtAt": "2026-10-07T01:38:45.107Z",
   "mirrorThrough": "2026-10-03",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -21,7 +21,7 @@
     "withCareer": 737,
     "sherdogCareer": {
       "mode": "live-on-selection",
-      "targets": 8,
+      "targets": 9,
       "resolved": 0,
       "missed": 0,
       "appliedFromCache": 0,
@@ -27265,13 +27265,7 @@
       "recordOutsideUfc": "6-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-02/URBINA_GILBERT_L_02-03.png?itok=rua26OyB",
-      "booking": {
-        "event": "Buckley vs Malott",
-        "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-        "opponent": "Julien Leblanc",
-        "opponentId": "julien-leblanc"
-      },
+      "booking": null,
       "checkedAt": "2026-10-07T00:05:49.064Z",
       "ufcStatsId": "b12fb759e02378de",
       "sourceUrl": "https://ufcstats.com/fighter-details/b12fb759e02378de",
@@ -46928,13 +46922,7 @@
       "recordOutsideUfc": "10-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/SUTHERLAND_LOUIE_L_08-08.png?itok=R72s_Sj2",
-      "booking": {
-        "event": "Buckley vs Malott",
-        "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-        "opponent": "Javad Mahjoub",
-        "opponentId": "javad-mahjoub"
-      },
+      "booking": null,
       "checkedAt": "2026-10-07T00:05:49.908Z",
       "ufcStatsId": "cdb7b38b1b357f26",
       "sourceUrl": "https://ufcstats.com/fighter-details/cdb7b38b1b357f26",
@@ -59071,7 +59059,11 @@
       "recordOutsideUfc": "1-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/GALANTI_NICK_R_08-25.png?itok=dbKywmYk",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-17",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+      },
       "checkedAt": "2026-10-05T06:38:27.307Z",
       "ufcStatsId": "",
       "sourceUrl": null,
