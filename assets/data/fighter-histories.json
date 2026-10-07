@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "event": "UFC 333",
   "eventDate": "2026-10-24",
   "fighters": {
@@ -143,7 +143,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Movsar Evloev": {
@@ -270,7 +270,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Petr Yan": {
@@ -421,7 +421,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Merab Dvalishvili": {
@@ -540,7 +540,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Lone'er Kavanagh": {
@@ -596,14 +596,6 @@
           "label": "LOSS · Charles Johnson · KO (Punch)",
           "kind": "loss",
           "detail": "Lone'er Kavanagh lost to Charles Johnson. KO (Punch).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/loneer-kavanagh"
-        },
-        {
-          "date": "Feb 28, 2026",
-          "label": "WIN · Brandon Moreno · Decision (Unanimous)",
-          "kind": "win",
-          "detail": "Lone'er Kavanagh defeated Brandon Moreno. Decision (Unanimous).",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/loneer-kavanagh"
         },
@@ -667,7 +659,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Ramazan Temirov": {
@@ -794,7 +786,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Alexander Volkov": {
@@ -921,7 +913,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Rizvan Kuniev": {
@@ -1048,7 +1040,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Aaron Pico": {
@@ -1167,7 +1159,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Losene Keita": {
@@ -1286,7 +1278,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Azamat Murzakanov": {
@@ -1413,7 +1405,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Dominick Reyes": {
@@ -1548,7 +1540,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Nikita Krylov": {
@@ -1675,7 +1667,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Abdul Rakhman Yakhyaev": {
@@ -1735,22 +1727,6 @@
           "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
         },
         {
-          "date": "Aug 26, 2025",
-          "label": "WIN · Alik Lorenz · TKO (Knee to the Body and Punches)",
-          "kind": "win",
-          "detail": "Abdul Rakhman Yakhyaev defeated Alik Lorenz. TKO (Knee to the Body and Punches).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
-        },
-        {
-          "date": "Nov 22, 2025",
-          "label": "WIN · Raffael Cerqueira · Submission (Rear-Naked Choke)",
-          "kind": "win",
-          "detail": "Abdul Rakhman Yakhyaev defeated Raffael Cerqueira. Submission (Rear-Naked Choke).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
-        },
-        {
           "date": "Apr 4, 2026",
           "label": "WIN · Brendson Ribeiro · Submission (Rear-Naked Choke)",
           "kind": "win",
@@ -1802,7 +1778,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Abus Magomedov": {
@@ -1929,7 +1905,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Cam Rowston": {
@@ -1945,14 +1921,6 @@
           "label": "Starts training to change his life",
           "kind": "training",
           "detail": "Rowston says he began training after turning 18 to build confidence and pull himself away from heavy drinking and partying.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/cameron-rowston"
-        },
-        {
-          "date": "Pre-UFC",
-          "label": "Kickboxing and grappling titles",
-          "kind": "milestone",
-          "detail": "Rowston won two King in the Ring tournaments, a WKBF South Pacific title and an ADCC New Zealand absolute title.",
           "sourceLabel": "UFC profile",
           "source": "https://www.ufc.com/athlete/cameron-rowston"
         },
@@ -1989,14 +1957,6 @@
           "source": "https://www.ufc.com/athlete/cameron-rowston"
         },
         {
-          "date": "Aug 19, 2025",
-          "label": "WIN · Brandon Holmes · TKO (Elbow and Punches)",
-          "kind": "win",
-          "detail": "Cam Rowston defeated Brandon Holmes. TKO (Elbow and Punches).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/cameron-rowston"
-        },
-        {
           "date": "Sep 27, 2025",
           "label": "WIN · Andre Petroski · TKO (Punches)",
           "kind": "win",
@@ -2029,14 +1989,6 @@
           "source": "https://www.ufc.com/event/ufc-333"
         },
         {
-          "date": "Pre-UFC",
-          "label": "More than 30 kickboxing fights",
-          "kind": "milestone",
-          "detail": "Rowston entered the UFC with extensive striking experience beyond his MMA record, saying he had accumulated more than 30 kickboxing fights along with amateur MMA and grappling competition.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/news/cam-rowston-wants-earn-your-respect-ufc-perth"
-        },
-        {
           "date": "City Kickboxing era",
           "label": "Daily work around elite UFC talent",
           "kind": "camp",
@@ -2051,12 +2003,20 @@
           "detail": "After losing to Torrez Finney on his first Contender Series appearance, Rowston stayed deliberately active and won three fights before returning to the UFC APEX one year later. He has said that activity was necessary to make himself impossible to overlook.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/cameron-rowston-sacrifices-worth-it-ufc-perth"
+        },
+        {
+          "date": "Pre-UFC",
+          "label": "30+ kickboxing fights plus grappling titles",
+          "kind": "milestone",
+          "detail": "Before reaching the UFC, Rowston accumulated more than 30 kickboxing fights and also won grappling honors, including an ADCC New Zealand absolute title. That experience explains why his combat-sports mileage is much deeper than his MMA record alone suggests.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/dwcs-spotlight-cameron-rowston"
         }
       ],
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Grant Dawson": {
@@ -2183,7 +2143,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Nurullo Aliev": {
@@ -2302,7 +2262,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Colby Thicknesse": {
@@ -2421,7 +2381,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Asaf Chopurov": {
@@ -2548,7 +2508,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Jacob Malkoun": {
@@ -2646,12 +2606,44 @@
           "detail": "After beating Andre Petroski in March 2024, Malkoun developed a significant back problem. He tried to return too early, aggravated it, later withdrew from a planned Rodolfo Vieira fight after another setback, and did not compete again until January 2026.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/news/jacob-malkoun-mamba-makes-his-return"
+        },
+        {
+          "date": "2019",
+          "label": "Wins ADCC Asia & Oceania Trials while still a purple belt",
+          "kind": "milestone",
+          "detail": "Malkoun won the 2019 ADCC Asia and Oceania qualifying tournament while still a jiu-jitsu purple belt, establishing a serious grappling credential before his UFC career.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/jacob-malkoun-found-his-confidence-middleweight-ufc-271-adesanya-whittaker-2"
+        },
+        {
+          "date": "Pre-UFC",
+          "label": "Builds 3-0 professional boxing record",
+          "kind": "milestone",
+          "detail": "Alongside MMA and grappling, Malkoun went 3-0 as a professional boxer. The boxing experience became another layer of a game that was already built around wrestling and jiu-jitsu.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/jacob-malkoun-found-his-confidence-middleweight-ufc-271-adesanya-whittaker-2"
+        },
+        {
+          "date": "2020",
+          "label": "UFC signs him at only 4-0",
+          "kind": "milestone",
+          "detail": "Malkoun struggled to find regional opponents in Australia, in part because of the shallow middleweight pool and his reputation as Robert Whittaker's long-time training partner. The UFC signed him while he was only 4-0 professionally.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/jacob-malkouns-moment-has-arrived"
+        },
+        {
+          "date": "Early career",
+          "label": "Coaching keeps him in the gym full time",
+          "kind": "background",
+          "detail": "Before his 2017 professional debut, Malkoun was offered a job coaching MMA classes at Gracie Smeaton Grange. Coaching and competing developed together and allowed him to stay in the gym full time.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/news/jacob-malkoun-learning-job-ufc-fight-night-grasso-araujo-vegas-62?language_content_entity=en"
         }
       ],
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Abubakar Vagaev": {
@@ -2757,12 +2749,28 @@
           "detail": "Vagaev's early professional run, including the Pereira win, carried him into a 2017 World Fighting Championship Akhmat title and established the wrestling-heavy style that later translated to ACA championship success.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/abubakar-vagaev"
+        },
+        {
+          "date": "2012-2017",
+          "label": "Wins first six professional fights",
+          "kind": "milestone",
+          "detail": "Vagaev opened his professional career with six straight wins. The run included a 2016 decision over future UFC contender Michel Pereira and led into his first major championship in 2017.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/abubakar-vagaev"
+        },
+        {
+          "date": "Feb. 8, 2025",
+          "label": "Albert Tumenov rematch becomes defining career win",
+          "kind": "milestone",
+          "detail": "Vagaev identifies the Albert Tumenov title fight as the key fight of his career. The unanimous-decision win made him a two-time ACA welterweight champion and set up his eventual UFC move.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/abubakar-vagaev"
         }
       ],
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Bolaji Oki": {
@@ -2868,12 +2876,28 @@
           "detail": "After losing his debut, Oki put together the regional run that eventually produced two Atomic lightweight titles and a Contender Series opportunity. The stretch reframed his career from an 0-1 start into a UFC-level prospect.",
           "sourceLabel": "UFC",
           "source": "https://www.ufc.com/athlete/bolaji-oki"
+        },
+        {
+          "date": "Before full-time fighting",
+          "label": "Works at Domino's and coaches children/private lessons",
+          "kind": "background",
+          "detail": "Before the UFC, Oki worked at Domino's Pizza while also coaching kids' classes and giving private lessons at his gym. It is useful context for the regional phase before fighting became his full-time career.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/bolaji-oki"
+        },
+        {
+          "date": "Training routine",
+          "label": "Valon Team develops MMA around striking-first style",
+          "kind": "camp",
+          "detail": "Oki's UFC profile lists Valon Team as his camp. He describes a routine built around morning running and strength work, then evening MMA technical sessions and wrestling.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/bolaji-oki"
         }
       ],
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Daniel Santos": {
@@ -2992,7 +3016,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Kody Steele": {
@@ -3106,12 +3130,28 @@
           "detail": "Steele moved to Las Vegas and deliberately spent time settling into a full MMA training environment before taking his next fight. The move marked the shift from elite grappler who fought MMA into a fighter building the complete striking-and-grappling game at Syndicate MMA.",
           "sourceLabel": "UFC Fight Pass",
           "source": "https://www.ufc.com/news/fury-fcs-kody-steele-reflects-his-last-bout-ufc-fight-pass"
+        },
+        {
+          "date": "Pre-MMA grappling career",
+          "label": "Roughly 200 grappling matches before pro MMA debut",
+          "kind": "milestone",
+          "detail": "By the time Steele approached his professional MMA debut, UFC Fight Pass estimated that he had already accumulated roughly 200 grappling matches. That volume explains why his submission game was far more developed than a normal 0-0 MMA prospect.",
+          "sourceLabel": "UFC Fight Pass",
+          "source": "https://www.ufc.com/news/dominant-grappler-kody-steele-eyes-pro-mma-debut-fury-fc-56-ufc-fight-pass"
+        },
+        {
+          "date": "Professional grappling",
+          "label": "Wins over Andy Varela, Jean-Paul Lebosnoyani and Phil Rowe",
+          "kind": "milestone",
+          "detail": "Steele continued competing in professional grappling while building his MMA career, with wins over Andy Varela, Jean-Paul Lebosnoyani and UFC veteran Phil Rowe among the results listed on his UFC profile.",
+          "sourceLabel": "UFC",
+          "source": "https://www.ufc.com/athlete/kody-steele"
         }
       ],
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Noah Gugnon": {
@@ -3238,7 +3278,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Iasmin Lucindo": {
@@ -3365,7 +3405,7 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     },
     "Nicolle Caliari": {
@@ -3570,10 +3610,10 @@
       "audit": {
         "pass": 3,
         "verifiedThrough": "2026-10-07",
-        "scope": "training origin, camp history, injuries/illness, layoffs, suspensions, title history, UFC entry, career-shaping results"
+        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
       }
     }
   },
   "updatedAt": "2026-10-07",
-  "notes": "Third fighter-by-fighter verification pass. Added omitted injuries/illness, anti-doping history, camp development and title chronology; semantically deduplicated repeated fight entries."
+  "notes": "Third-pass deep verification completed. Filled thin profiles, merged semantic duplicate fights, and retained only documented injuries/camp changes rather than padding timelines."
 }
