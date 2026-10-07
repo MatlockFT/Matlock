@@ -4,8 +4,8 @@
   "source_regional_updated_at": null,
   "major_total": 10,
   "major_mapped": 1,
-  "regional_total": 104,
-  "regional_mapped": 104,
+  "regional_total": 105,
+  "regional_mapped": 105,
   "quarantined_count": 9,
   "quarantined": [
     {
@@ -874,9 +874,9 @@
                 {
                   "name": "Davi Cabral",
                   "initials": "DC",
-                  "image": "https://www2-cdn.sherdog.com/apple-touch-icon.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
                 }
               ]
             },
@@ -895,9 +895,9 @@
                 {
                   "name": "Gregory Foster",
                   "initials": "GF",
-                  "image": "https://www2-cdn.sherdog.com/apple-touch-icon.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
                 }
               ]
             }
@@ -2590,6 +2590,40 @@
       "city": "Houston",
       "state": "TX",
       "state_code": "TX",
+      "country": "US",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
+      "map_dataset": "regional"
+    },
+    {
+      "id": "lfa_official-lfa-247-breno-vs-torres-2026-11-20",
+      "promotion": "LFA",
+      "promotion_key": "lfa_official",
+      "title": "LFA 247 – Breno vs Torres",
+      "date": "2026-11-20",
+      "venue": "Arizona Financial Theatre",
+      "location": "Phoenix, AZ",
+      "broadcast": "VICE TV",
+      "official_url": "https://www.lfa.com/event/lfa-247-breno-vs-torres/",
+      "regional": true,
+      "level": "professional",
+      "source_key": "lfa_official",
+      "source_label": "Legacy Fighting Alliance",
+      "latitude": 33.4484,
+      "longitude": -112.074,
+      "main_event": {
+        "fighters": [
+          "Breno",
+          "Torres"
+        ]
+      },
+      "poster_url": "https://www.lfa.com/wp-content/uploads/2026/10/LFA-247-Instagram-Poster.jpg",
+      "city": "Phoenix",
+      "state": "AZ",
+      "state_code": "AZ",
       "country": "US",
       "location_source": "location-text",
       "location_precision": "city",
