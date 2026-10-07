@@ -25,6 +25,8 @@
       .toLowerCase().replace(/\b(jr|sr|ii|iii|iv)\b/g,' ')
       .replace(/[^a-z0-9]+/g,' ').trim();
     if (normalized === 'king green') normalized = 'bobby green';
+    if (normalized === 'cam rowston') normalized = 'cameron rowston';
+    if (normalized === 'ramazonbek temirov') normalized = 'ramazan temirov';
     return normalized.split(' ').sort().join(' ');
   }
 
