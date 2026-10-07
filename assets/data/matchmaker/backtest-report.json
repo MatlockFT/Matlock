@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-10-07T00:05:45.257Z",
+  "generatedAt": "2026-10-07T06:25:21.085Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
@@ -8,9 +8,9 @@
   "availableCases": 574,
   "sampledCases": 120,
   "historicalUniverseCoverage": {
-    "currentDatasetFighters": 1012,
+    "currentDatasetFighters": 1013,
     "historicalOnlyFighters": 2021,
-    "combinedCandidateUniverse": 3033,
+    "combinedCandidateUniverse": 3034,
     "trackedFights": 8914,
     "fightersWithTrackedHistory": 2757,
     "unresolvedFightSides": 64,
@@ -34,7 +34,7 @@
     "maxSnapshotAgeDays": 7
   },
   "bookingStateCoverage": {
-    "ledgerEntries": 143,
+    "ledgerEntries": 144,
     "ledgerEntriesWithoutUsableFirstSeen": 0,
     "ledgerFirstSeen": "2026-09-10T20:51:09.512Z"
   },

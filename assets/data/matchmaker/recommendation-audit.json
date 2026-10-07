@@ -1,38 +1,38 @@
 {
-  "generatedAt": "2026-10-07T00:05:45.257Z",
+  "generatedAt": "2026-10-07T06:25:21.085Z",
   "engineVersion": 2,
   "subjects": 258,
-  "publishedRecommendations": 707,
+  "publishedRecommendations": 710,
   "recommendationSlots": {
-    "0": 19,
+    "0": 18,
     "1": 3,
     "2": 4,
-    "3": 232
+    "3": 233
   },
   "caseCounts": {
-    "rebound-pairing": 299,
+    "rebound-pairing": 303,
     "rising-vs-rising": 215,
-    "step-up-vs-rebound": 74,
+    "step-up-vs-rebound": 72,
     "ranking-opportunity": 44,
     "rankings-progression": 41,
     "divisional-sorting": 18,
+    "prospect-test": 7,
     "title-case": 7,
-    "prospect-test": 6,
     "title-eliminator": 3
   },
   "confidenceCounts": {
-    "high": 648,
+    "high": 651,
     "medium": 35,
     "low": 24
   },
   "averageRecentOpponentLinkCoverage": 0.9043,
-  "sameCardRecommendations": 45,
-  "sameCardRecommendationRatio": 0.0636,
-  "asymmetricTopThreeRecommendations": 234,
-  "asymmetricTopThreeRatio": 0.331,
-  "publicPublishedRecommendations": 683,
-  "publicAsymmetricTopThreeRecommendations": 177,
-  "publicAsymmetricTopThreeRatio": 0.2592,
+  "sameCardRecommendations": 42,
+  "sameCardRecommendationRatio": 0.0592,
+  "asymmetricTopThreeRecommendations": 238,
+  "asymmetricTopThreeRatio": 0.3352,
+  "publicPublishedRecommendations": 686,
+  "publicAsymmetricTopThreeRecommendations": 182,
+  "publicAsymmetricTopThreeRatio": 0.2653,
   "engineGenericDivisionalSortingRecommendations": 18,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -82,8 +82,8 @@
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 72,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 69,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-august-29-2026",
@@ -114,16 +114,16 @@
       "title": "UFC Fight Night: Gamrot vs Salkilld",
       "date": "2026-08-08",
       "subjects": 24,
-      "publicRecommendations": 60,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 63,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-august-01-2026",
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 69,
-      "noClearMatchupSubjects": 5
+      "publicRecommendations": 72,
+      "noClearMatchupSubjects": 4
     }
   ],
   "genericExamples": [
@@ -700,7 +700,7 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Terrance Chatman",
+          "opponent": "Louie Sutherland",
           "score": 94,
           "case": "rebound-pairing"
         }
@@ -709,23 +709,23 @@
     {
       "event": "UFC 332: Silva vs Wang",
       "fighter": "Lucas Armand",
-      "opponent": "Elisha Ellison",
-      "pairScore": 92,
+      "opponent": "Louie Sutherland",
+      "pairScore": 93,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Alexander Poppeck",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Guilherme Pat",
-          "score": 95,
+          "score": 94,
           "case": "rebound-pairing"
         },
         {
           "opponent": "Terrance Chatman",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Gable Steveson",
           "score": 93,
           "case": "rebound-pairing"
         }
@@ -759,10 +759,35 @@
     {
       "event": "UFC 332: Silva vs Wang",
       "fighter": "Mick Parkin",
-      "opponent": "Marcus Buchecha",
+      "opponent": "Louie Sutherland",
       "pairScore": 90,
       "case": "rebound-pairing",
       "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Alexander Poppeck",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Terrance Chatman",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Gable Steveson",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC 332: Silva vs Wang",
+      "fighter": "Mick Parkin",
+      "opponent": "Marcus Buchecha",
+      "pairScore": 90,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
           "opponent": "Alexander Poppeck",
@@ -770,12 +795,12 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Gable Steveson",
-          "score": 92,
+          "opponent": "Louie Sutherland",
+          "score": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Guilherme Pat",
+          "opponent": "Gable Steveson",
           "score": 92,
           "case": "rebound-pairing"
         }
@@ -787,7 +812,7 @@
       "opponent": "Thomas Petersen",
       "pairScore": 81,
       "case": "rebound-pairing",
-      "fighterRank": "Alternative",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Kennedy Nzechukwu",
@@ -853,31 +878,6 @@
           "opponent": "Daniel Rodriguez",
           "score": 89,
           "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "UFC 332: Silva vs Wang",
-      "fighter": "Bruce Whitehead",
-      "opponent": "Saygid Izagakhmaev",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Bassil Hafez",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Ding Meng",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Billy Goff",
-          "score": 91,
-          "case": "rebound-pairing"
         }
       ]
     }
