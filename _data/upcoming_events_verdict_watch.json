@@ -48,11 +48,11 @@
       "verdict_url": "https://verdictmma.com/event/1936",
       "verdict_date": "2026-10-17",
       "local_fight_count": 13,
-      "verdict_fight_count": 13,
+      "verdict_fight_count": 12,
       "local_main_count": 6,
       "verdict_main_count": 6,
       "local_prelim_count": 7,
-      "verdict_prelim_count": 7,
+      "verdict_prelim_count": 6,
       "confirmed_local_bouts": 11
     },
     {
@@ -302,14 +302,11 @@
       "verdict_prelim_count": 5
     },
     {
-      "type": "local_bout_not_found_on_verdict",
+      "type": "bout_count_mismatch",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "verdict_event_id": "1936",
-      "order": 10,
-      "fighters": [
-        "Jamey-Lyn Horth",
-        "Katlyn Cerminara"
-      ]
+      "local_fight_count": 13,
+      "verdict_fight_count": 12
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -320,6 +317,25 @@
         "Kyle Nelson",
         "Cristian Perez Gonzalez"
       ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "order": 9,
+      "fighters": [
+        "Javad Mahjoub",
+        "Joel Faglier"
+      ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "local_main_count": 6,
+      "verdict_main_count": 6,
+      "local_prelim_count": 7,
+      "verdict_prelim_count": 6
     },
     {
       "type": "section_count_mismatch",
