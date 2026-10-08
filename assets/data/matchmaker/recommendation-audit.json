@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T21:32:43.729Z",
+  "generatedAt": "2026-10-08T06:37:17.869Z",
   "engineVersion": 2,
   "subjects": 258,
   "publishedRecommendations": 710,
@@ -26,8 +26,8 @@
     "low": 24
   },
   "averageRecentOpponentLinkCoverage": 0.9043,
-  "sameCardRecommendations": 42,
-  "sameCardRecommendationRatio": 0.0592,
+  "sameCardRecommendations": 43,
+  "sameCardRecommendationRatio": 0.0606,
   "asymmetricTopThreeRecommendations": 239,
   "asymmetricTopThreeRatio": 0.3366,
   "publicPublishedRecommendations": 686,
@@ -590,18 +590,18 @@
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
+          "opponent": "Jacob Malkoun",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
           "opponent": "Ismail Naurdiev",
           "score": 93,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Jacob Malkoun",
-          "score": 93,
-          "case": "rising-vs-rising"
-        },
-        {
           "opponent": "Shara Magomedov",
-          "score": 90,
+          "score": 91,
           "case": "rankings-progression"
         }
       ]
@@ -841,7 +841,7 @@
       "opponentTopThree": [
         {
           "opponent": "Chidi Njokuani",
-          "score": 90,
+          "score": 91,
           "case": "rising-vs-rising"
         },
         {
@@ -866,7 +866,7 @@
       "opponentTopThree": [
         {
           "opponent": "Chidi Njokuani",
-          "score": 89,
+          "score": 90,
           "case": "rising-vs-rising"
         },
         {
