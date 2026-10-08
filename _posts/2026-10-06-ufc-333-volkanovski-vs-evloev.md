@@ -193,11 +193,11 @@ Any fighter who can fight off the back foot, counter effectively, and has even a
   </div>
 </figure>
 </section>
-Iasmin Lucindo is a top-heavy BJJ player who has really developed her striking over the years, primarily through heavy counters. She also has an affinity for jumping knees and spinning shit. Her footwork still needs some work, as she's borderline Cat Zingano from the waist down, but she has certainly improved. She's got some natural power, which was likely aided by some of those supplements she popped for.
+Iasmin Lucindo is a BJJ player who excels on top and has made considerable strides with her striking over the years, particularly when it comes to landing heavy counters. She also has a fondness for jumping knees and spinning shit. Her footwork remains a work in progress; she's borderline Cat Zingano from the waist down, although there's been noticeable improvement. Lucindo carries some natural pop, which was likely aided by a few of those supplements she popped for.
 
-Her fight IQ is pretty good, all things considered, and I believe that's what really got her the decision over Marina Rodriguez, who couldn't get out of her own way. So, if you scored that fight for Rodriguez, Lucindo is 3-2 in her last five. She doesn't seem to mind when opponents charge forward and might even prefer it, giving her opportunities to land those clubbing counters.
+Her fight IQ is pretty good, all things considered, and I reckon it played a major role in securing the decision over Marina Rodriguez, who couldn't get out of her own way. If you had Rodriguez winning that one, Lucindo sits at 3-2 across her last five outings. She's more than happy to let an opponent march forward and may even prefer it, given the opportunities to crack them with those clubbing counters.
 
-She's competent enough in the clinch to tie up and use her strength to hold position until she finds a way to get the fight to the ground, where she'll continue to work her very patient, top-heavy BJJ game. She doesn't mind holding a position for minutes on end, but as soon as her opponent makes a move from the bottom, she'll take that opportunity to advance her own position, whether that's to find something more dominant, open up opportunities for punches, or hunt for a submission.
+In the clinch, she's capable of tying opponents up and using her strength to maintain control until she can bring the action to the mat. Once there, her BJJ is patient and methodical. She's perfectly content to sit in a position for minutes at a time, but the moment her opponent starts moving underneath her, she'll use that opening to progress toward a more dominant spot, create openings for ground-and-pound, or work toward a submission.
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-6030446a" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
@@ -205,13 +205,13 @@ She's competent enough in the clinch to tie up and use her strength to hold posi
   </div>
 </figure>
 
-This fight has a high potential to be a slugfest. Neither fighter is shy about stepping into the pocket and throwing hooks. They've both been fighting these spindly, rangy strikers, so this matchup should be a bit more fun.
+This matchup has a good chance of turning into a slugfest. Neither woman is reluctant to step into the pocket and trade hooks. They've both spent time dealing with those spindly, rangy strikers, so this should offer a more entertaining change of pace.
 
-I definitely lean toward Lucindo having more power, and I think she's more mindful of range and pressure, both offensively and defensively. When they inevitably clinch up and start wrestling, I also think Lucindo will get the upper hand.
+Lucindo gets the nod from me in the power department, and she appears more conscious of distance and pressure on both sides of the exchange. Should things inevitably turn into a clinch-heavy wrestling match, I give her the edge there, too.
 
-What we have to be mindful of is Caliari's scrappiness. She's going to hunt for submissions, try for throws, and won't be afraid to stand in the pocket and throw down. So, even if it's a small percentage, Caliari can certainly find that shot or submission. But I think the more likely outcome for her is to make this an ugly, high-volume fight from start to finish, trying to wear Lucindo down through conditioning and volume and grind out a decision.
+The wildcard is Caliari's scrappiness. She'll chase submissions, hunt for throws, and gladly trade leather in close quarters. Even if the odds are slim, she's certainly capable of finding a clean shot or catching something on the ground. More plausibly, though, she'll try to turn this into a messy, high-output affair, forcing Lucindo to keep working until fatigue and sheer volume give her a path to the scorecards.
 
-Ultimately, I favor the younger, stronger, more composed fighter with the longer reach, who has also been popped for steroids, to get the victory. Lucindo has also fought the tougher competition, in my opinion. I wouldn't be surprised if Lucindo gets a KO/TKO, as I think she can do enough damage to put Caliari away. But it's WMMA at 115 pounds, so it's always safer to lean toward a decision.
+Ultimately, I favor the younger, stronger, more composed fighter with the longer reach — who also happens to have been popped for steroids. A KO/TKO wouldn't surprise me, as Lucindo could accumulate enough damage to put Caliari away. Still, this is MMA at 115 pounds, where stoppages can be difficult to predict, so a decision remains the safer pick.
 
 <section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Iasmin%20Lucindo%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Iasmin Lucindo</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Decision</span></span></div></aside>
