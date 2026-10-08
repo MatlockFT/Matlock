@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-08T17:33:07.334Z"
+      "checkedAt": "2026-10-08T22:23:35.921Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-08T17:33:33.191Z",
+      "checkedAt": "2026-10-08T22:24:01.132Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -46837,7 +46837,7 @@
     {
       "id": "cameron-rowston",
       "name": "Cameron Rowston",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/cameron-rowston",
       "aliases": [
         "cameron-rowston"
@@ -47001,15 +47001,11 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": {
-        "event": "UFC 333",
-        "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
-      },
+      "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-10-08T17:33:07.334Z"
+        "checkedAt": "2026-10-08T22:23:35.921Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/cameron-rowston",
@@ -137079,13 +137075,7 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": {
-        "event": "Buckley vs Malott",
-        "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-        "opponent": "Katlyn Cerminara",
-        "opponentId": "katlyn-cerminara"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -352442,7 +352432,7 @@
   ],
   "coverage": {
     "profileFailures": 32,
-    "activeFighters": 1010,
+    "activeFighters": 1009,
     "participantHistoriesRequested": 256,
     "verifiedParticipantHistories": 256,
     "ufcStatsNameMisses": 0,
