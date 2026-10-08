@@ -53,7 +53,7 @@
       "verdict_main_count": 6,
       "local_prelim_count": 7,
       "verdict_prelim_count": 6,
-      "confirmed_local_bouts": 11
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "ufc-333-2026-10-24-fight-card",
@@ -307,6 +307,16 @@
       "verdict_event_id": "1936",
       "local_fight_count": 13,
       "verdict_fight_count": 12
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "order": 10,
+      "fighters": [
+        "Katlyn Cerminara",
+        "Mackenzie Stiller"
+      ]
     },
     {
       "type": "local_bout_not_found_on_verdict",
