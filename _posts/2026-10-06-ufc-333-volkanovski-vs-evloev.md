@@ -137,34 +137,30 @@ published: false
 
 ## Jacob Malkoun vs. Abubakar Vagaev
 
-[HTML VISUAL · Jacob Malkoun · #3490ef78]
+
 **Jacob Malkoun** is an Australian grinder who builds his game around a very high wrestling pace and top control. His pressure striking has improved enough to make the entries less obvious, and he comes in off back-to-back decisions over Torrez Finney and Gerald Meerschaert.
 
 **Abubakar Vagaev** is a veteran, wrestling-heavy middleweight who has spent most of his career winning rounds through control. Twenty of his 25 wins have gone to decision, so he is not usually looking to force a finish. His UFC debut was a solid three-round win over Saygid Izagakhmaev.
 
-[HTML VISUAL · Jacob Malkoun vs. Abubakar Vagaev · Stats · #ac24c072]
 
 ---
 
 ## Bolaji Oki vs. Daniel Santos
 
-[HTML VISUAL · Bolaji Oki · #07a953f1]
+
 **Bolaji Oki** is a high-output striker who likes to put combinations together and work the body, but he also gives opponents a lot of chances to fire back. The pace makes him fun, but he is coming in 1-3 over his last four and has been finished in three of his four career losses.
 
 **Daniel Santos** is a Chute Boxe pressure fighter who mixes spinning attacks, kicks and knees with a useful wrestling game. He is comfortable making fights ugly and high volume, but that also means he absorbs plenty of offense. His four-fight UFC winning streak ended against Dooho Choi in May.
 
-[HTML VISUAL · Bolaji Oki vs. Daniel Santos · Stats · #2d96b61f]
 
 ---
 
 ## Kody Steele vs. Noah Gugnon
 
-[HTML VISUAL · Kody Steele · #a5a08e1c]
 **Kody Steele** is a high-level grappler with a dangerous leg-lock game and enough confidence to attack submissions immediately. The striking numbers are still rough and he absorbed a lot in his UFC debut loss, but he bounced back by heel hooking Dom Mar Fan in the first round.
 
 **Noah Gugnon** is a young finisher out of French/Bulgarian Top Team and all 10 of his wins have ended inside the distance. His UFC debut lasted one round before he submitted Milos Janicic with a rear-naked choke. The per-minute and submission rates come from just 1:21 of UFC action, so they're a tiny sample rather than a stable statistical profile.
 
-[HTML VISUAL · Kody Steele vs. Noah Gugnon · Stats · #7df649cf]
 
 ---
 
@@ -186,13 +182,12 @@ There are brief moments in fights where it seems like she has a grip on what she
 
 Any fighter who can fight off the back foot, counter effectively, and has even a little ability to break from the clinch will give Caliari problems. She's a very emotional fighter, and I'd be willing to bet she's a nightmare to coach. That being said, she seems to have made some minor improvements to her throws and positioning on the mat, though I think that's mostly because she's finally fighting at the appropriate weight class. She's also tough and can take an ass-whooping, as she showed against Judice. Here's a compilation of Caliari throughout the years. The good, the bad, and the ugly.
 
-<section class="article-html-visual">
-<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-6030446a" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-9ff372d2" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261007-165929-437.mp4" aria-label="Article video"></video>
+    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261008-172849-032.mp4" aria-label="Article video"></video>
   </div>
 </figure>
-</section>
+
 Iasmin Lucindo is a BJJ player who excels on top and has made considerable strides with her striking over the years, particularly when it comes to landing heavy counters. She also has a fondness for jumping knees and spinning shit. Her footwork remains a work in progress; she's borderline Cat Zingano from the waist down, although there's been noticeable improvement. Lucindo carries some natural pop, which was likely aided by a few of those supplements she popped for.
 
 Her fight IQ is pretty good, all things considered, and I reckon it played a major role in securing the decision over Marina Rodriguez, who couldn't get out of her own way. If you had Rodriguez winning that one, Lucindo sits at 3-2 across her last five outings. She's more than happy to let an opponent march forward and may even prefer it, given the opportunities to crack them with those clubbing counters.
