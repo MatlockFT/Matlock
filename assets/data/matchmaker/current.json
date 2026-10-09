@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-09T09:30:20.028Z"
+      "checkedAt": "2026-10-09T16:29:29.741Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-09T09:30:45.260Z",
+      "checkedAt": "2026-10-09T16:29:54.187Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -195251,7 +195251,11 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -250745,7 +250749,11 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
