@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-09T13:08:49.031Z",
+  "generated_at": "2026-10-09T18:53:26.530Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-10-10-fight-card",
@@ -206,6 +206,31 @@
             {
               "order": 8,
               "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Niko Price",
+                  "initials": "NP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/PRICE_NIKO_L_06-28.png?itok=pV3E99ve",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+120"
+                },
+                {
+                  "name": "Leon Shahbazyan",
+                  "initials": "LS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/SHAHBAZYAN_LEON_L_06-20.png?itok=ToSA3_7-",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-148"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
+            {
+              "order": 9,
+              "label": "",
               "weight_class": "Light Heavyweight Bout",
               "fighters": [
                 {
@@ -229,7 +254,7 @@
               "odds_provider": "FanDuel"
             },
             {
-              "order": 9,
+              "order": 10,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -254,7 +279,7 @@
               "odds_provider": "FanDuel"
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -277,7 +302,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
               "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [
