@@ -13,13 +13,13 @@
       "verdict_event_id": "1966",
       "verdict_url": "https://verdictmma.com/event/1966",
       "verdict_date": "2026-10-10",
-      "local_fight_count": 12,
+      "local_fight_count": 11,
       "verdict_fight_count": 12,
       "local_main_count": 5,
       "verdict_main_count": 5,
-      "local_prelim_count": 7,
+      "local_prelim_count": 6,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 12
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "dwcs-season-10-week-10-2026-10-13",
@@ -48,11 +48,11 @@
       "verdict_url": "https://verdictmma.com/event/1936",
       "verdict_date": "2026-10-17",
       "local_fight_count": 13,
-      "verdict_fight_count": 12,
+      "verdict_fight_count": 11,
       "local_main_count": 6,
       "verdict_main_count": 6,
       "local_prelim_count": 7,
-      "verdict_prelim_count": 6,
+      "verdict_prelim_count": 5,
       "confirmed_local_bouts": 10
     },
     {
@@ -303,10 +303,26 @@
     },
     {
       "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "local_fight_count": 11,
+      "verdict_fight_count": 12
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "local_main_count": 5,
+      "verdict_main_count": 5,
+      "local_prelim_count": 6,
+      "verdict_prelim_count": 7
+    },
+    {
+      "type": "bout_count_mismatch",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "verdict_event_id": "1936",
       "local_fight_count": 13,
-      "verdict_fight_count": 12
+      "verdict_fight_count": 11
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -345,7 +361,7 @@
       "local_main_count": 6,
       "verdict_main_count": 6,
       "local_prelim_count": 7,
-      "verdict_prelim_count": 6
+      "verdict_prelim_count": 5
     },
     {
       "type": "section_count_mismatch",
