@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-08T22:23:35.921Z"
+      "checkedAt": "2026-10-09T02:27:48.315Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-08T22:24:01.132Z",
+      "checkedAt": "2026-10-09T02:28:13.738Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -69323,7 +69323,7 @@
     {
       "id": "court-mcgee",
       "name": "Court McGee",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/court-mcgee",
       "aliases": [
         "court-mcgee"
@@ -70301,9 +70301,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-10-08T17:33:07.334Z"
+        "checkedAt": "2026-10-09T02:27:48.315Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/court-mcgee",
@@ -83637,7 +83637,7 @@
     {
       "id": "dennis-buzukja",
       "name": "Dennis Buzukja",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/dennis-buzukja",
       "aliases": [
         "dennis-buzukja"
@@ -83915,9 +83915,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-10-08T17:33:07.334Z"
+        "checkedAt": "2026-10-09T02:27:48.315Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/dennis-buzukja",
@@ -179429,8 +179429,8 @@
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
         "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-        "opponent": "Jamey-Lyn Horth",
-        "opponentId": "jamey-lyn-horth"
+        "opponent": "Mackenzie Stiller",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -195280,13 +195280,7 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": {
-        "event": "Allen vs Duncan",
-        "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
-        "opponent": "Niko Price",
-        "opponentId": "niko-price"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -238590,7 +238584,7 @@
     {
       "id": "muhammad-naimov",
       "name": "Muhammad Naimov",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/muhammad-naimov",
       "aliases": [
         "muhammad-naimov"
@@ -238942,9 +238936,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-10-08T17:33:07.334Z"
+        "checkedAt": "2026-10-09T02:27:48.315Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/muhammad-naimov",
@@ -250716,13 +250710,7 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": {
-        "event": "Allen vs Duncan",
-        "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
-        "opponent": "Leon Shahbazyan",
-        "opponentId": "leon-shahbazyan"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -352432,7 +352420,7 @@
   ],
   "coverage": {
     "profileFailures": 32,
-    "activeFighters": 1009,
+    "activeFighters": 1006,
     "participantHistoriesRequested": 256,
     "verifiedParticipantHistories": 256,
     "ufcStatsNameMisses": 0,
