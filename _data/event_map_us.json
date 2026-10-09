@@ -4,8 +4,8 @@
   "source_regional_updated_at": null,
   "major_total": 10,
   "major_mapped": 1,
-  "regional_total": 103,
-  "regional_mapped": 103,
+  "regional_total": 105,
+  "regional_mapped": 105,
   "quarantined_count": 9,
   "quarantined": [
     {
@@ -818,9 +818,9 @@
                 {
                   "name": "Davi Cabral",
                   "initials": "DC",
-                  "image": "https://www2-cdn.sherdog.com/apple-touch-icon.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
                 }
               ]
             },
@@ -839,9 +839,9 @@
                 {
                   "name": "Gregory Foster",
                   "initials": "GF",
-                  "image": "https://www2-cdn.sherdog.com/apple-touch-icon.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
                 }
               ]
             }
@@ -1901,6 +1901,31 @@
       "map_dataset": "regional"
     },
     {
+      "id": "sherdog-conflict-mma-73-magic-city-mayhem-2026-10-30-florence",
+      "promotion": "Conflict MMA",
+      "promotion_key": "sherdog_discovery",
+      "title": "Conflict MMA 73: Magic City Mayhem",
+      "date": "2026-10-30",
+      "venue": "SiMT Event Building",
+      "location": "Florence, SC",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Conflict-MMA-73-Magic-City-Mayhem-114871",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "city": "Florence",
+      "state": "SC",
+      "state_code": "SC",
+      "country": "US",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
+      "map_dataset": "regional"
+    },
+    {
       "id": "sherdog-fierce-fc-53-fierce-fighting-championship-53-2026-10-30-idaho-falls",
       "promotion": "Fierce FC",
       "promotion_key": "sherdog_discovery",
@@ -2024,6 +2049,31 @@
       "source_key": "sherdog_discovery",
       "source_label": "Sherdog regional discovery",
       "city": "Hammond",
+      "state": "IN",
+      "state_code": "IN",
+      "country": "US",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
+      "map_dataset": "regional"
+    },
+    {
+      "id": "sherdog-elite-fight-night-efn-31-combat-for-a-cause-2026-11-06-gary",
+      "promotion": "Elite Fight Night",
+      "promotion_key": "sherdog_discovery",
+      "title": "Elite Fight Night: EFN 31: Combat For A Cause",
+      "date": "2026-11-06",
+      "venue": "Hard Rock Casino Northern Indiana",
+      "location": "Gary, IN",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Elite-Fight-Night-EFN-31-Combat-For-A-Cause-114867",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "city": "Gary",
       "state": "IN",
       "state_code": "IN",
       "country": "US",
