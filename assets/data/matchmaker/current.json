@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-09T16:29:29.741Z"
+      "checkedAt": "2026-10-09T21:09:07.783Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-09T16:29:54.187Z",
+      "checkedAt": "2026-10-09T21:09:31.181Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -195252,9 +195252,11 @@
         "officialThrough": "2026-10-03"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Niko Price",
+        "opponentId": "niko-price"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -250750,9 +250752,11 @@
         "officialThrough": "2026-10-03"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Leon Shahbazyan",
+        "opponentId": "leon-shahbazyan"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
