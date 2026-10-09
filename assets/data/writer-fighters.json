@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-10-09T15:32:56.078Z",
-  "builtAt": "2026-10-09T16:19:41.503Z",
+  "builtAt": "2026-10-09T18:20:21.194Z",
   "mirrorThrough": "2026-10-03",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -27941,13 +27941,13 @@
         "draws": 6,
         "bouts": 28,
         "uniqueOpponents": 28,
-        "checkedAt": "2026-10-07T04:45:20.677Z",
+        "checkedAt": "2026-10-09T18:20:21.046Z",
         "complete": true
       },
       "careerHistorySource": {
         "source": "Sherdog",
         "sourceUrl": "https://www.sherdog.com/fighter/Grant-Dawson-103525",
-        "checkedAt": "2026-10-07T04:45:20.677Z",
+        "checkedAt": "2026-10-09T18:20:21.046Z",
         "complete": true
       },
       "recent": [
@@ -29810,13 +29810,13 @@
         "draws": 7,
         "bouts": 24,
         "uniqueOpponents": 21,
-        "checkedAt": "2026-10-07T04:45:20.678Z",
+        "checkedAt": "2026-10-09T18:20:21.047Z",
         "complete": true
       },
       "careerHistorySource": {
         "source": "Sherdog",
         "sourceUrl": "https://www.sherdog.com/fighter/Iasmin-Lucindo-264861",
-        "checkedAt": "2026-10-07T04:45:20.678Z",
+        "checkedAt": "2026-10-09T18:20:21.047Z",
         "complete": true
       },
       "recent": [
@@ -46213,7 +46213,11 @@
       "recordOutsideUfc": "12-4-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/SHAHBAZYAN_LEON_L_06-20.png?itok=ToSA3_7-",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-10-08T15:51:14.895Z",
       "ufcStatsId": "9eed2bcc9e0b92af",
       "sourceUrl": "https://ufcstats.com/fighter-details/9eed2bcc9e0b92af",
@@ -60026,13 +60030,13 @@
         "draws": 2,
         "bouts": 13,
         "uniqueOpponents": 13,
-        "checkedAt": "2026-10-07T04:45:20.678Z",
+        "checkedAt": "2026-10-09T18:20:21.047Z",
         "complete": true
       },
       "careerHistorySource": {
         "source": "Sherdog",
         "sourceUrl": "https://www.sherdog.com/fighter/Nicolle-Caliari-202195",
-        "checkedAt": "2026-10-07T04:45:20.678Z",
+        "checkedAt": "2026-10-09T18:20:21.047Z",
         "complete": true
       },
       "recent": [
@@ -60223,7 +60227,11 @@
       "recordOutsideUfc": "8-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/PRICE_NIKO_L_06-28.png?itok=pV3E99ve",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-10-08T15:51:16.783Z",
       "ufcStatsId": "d8da10db80131bec",
       "sourceUrl": "https://ufcstats.com/fighter-details/d8da10db80131bec",
@@ -61164,13 +61172,13 @@
         "draws": 3,
         "bouts": 12,
         "uniqueOpponents": 12,
-        "checkedAt": "2026-10-07T04:45:20.677Z",
+        "checkedAt": "2026-10-09T18:20:21.046Z",
         "complete": true
       },
       "careerHistorySource": {
         "source": "Sherdog",
         "sourceUrl": "https://www.sherdog.com/fighter/Nurullo-Aliev-274869",
-        "checkedAt": "2026-10-07T04:45:20.677Z",
+        "checkedAt": "2026-10-09T18:20:21.046Z",
         "complete": true
       },
       "recent": [
