@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-09T18:54:42.048Z",
+  "generated_at": "2026-10-09T23:04:05.049Z",
   "changes": [
+    {
+      "id": "2026-10-09T23:04:05.049Z|ufc-335-2026-12-12-fight-card|bout_added|1",
+      "at": "2026-10-09T23:04:05.049Z",
+      "type": "bout_added",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "Brandon Moreno vs Charles Johnson added to Oliveira vs Lopes.",
+      "details": {
+        "order": 4,
+        "section": "Main Card",
+        "weight_class": "Flyweight Bout"
+      }
+    },
     {
       "id": "2026-10-09T18:54:42.048Z|ufc-fight-night-2026-10-10-fight-card|bout_moved|1",
       "at": "2026-10-09T18:54:42.048Z",
@@ -4704,22 +4719,6 @@
       "details": {
         "from_order": 6,
         "to_order": 5,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-11T22:32:45.980Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|4",
-      "at": "2026-09-11T22:32:45.980Z",
-      "type": "bout_moved",
-      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
-      "promotion": "UFC",
-      "event_title": "Crypto.com UFC 331",
-      "event_date": "2026-09-19",
-      "summary": "Marlon Vera vs Charles Jourdain moved on Crypto.com UFC 331.",
-      "details": {
-        "from_order": 7,
-        "to_order": 6,
         "from_section": "Prelims",
         "to_section": "Prelims"
       }

@@ -166,9 +166,9 @@
       "verdict_event_id": "1971",
       "verdict_url": "https://verdictmma.com/event/1971",
       "verdict_date": "2026-12-12",
-      "local_fight_count": 3,
+      "local_fight_count": 4,
       "verdict_fight_count": null,
-      "local_main_count": 3,
+      "local_main_count": 4,
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
@@ -300,6 +300,16 @@
       "verdict_main_count": 4,
       "local_prelim_count": 4,
       "verdict_prelim_count": 5
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "verdict_event_id": "1971",
+      "order": 4,
+      "fighters": [
+        "Brandon Moreno",
+        "Charles Johnson"
+      ]
     },
     {
       "type": "bout_count_mismatch",
