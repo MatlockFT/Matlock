@@ -1,0 +1,341 @@
+{
+  "version": 2,
+  "generatedAt": "2026-10-04T01:57:59.780Z",
+  "event": {
+    "id": "ufc-332-2026-10-03-fight-card",
+    "promotion": "UFC 332",
+    "title": "Silva vs Cong",
+    "date": "2026-10-03",
+    "venue": "Delta Center",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "country": "United States",
+    "latitude": 40.76078,
+    "longitude": -111.89105,
+    "timezone": "America/Denver",
+    "startIso": "2026-10-03T20:00:00-04:00",
+    "startLocal": "6:00 PM MDT"
+  },
+  "current": {
+    "observedAt": "2026-10-03T19:45",
+    "temperature": 72,
+    "feelsLike": 68,
+    "humidity": 33,
+    "dewpoint": 39,
+    "visibilityMiles": 130,
+    "weatherCode": 3,
+    "condition": {
+      "label": "Cloudy",
+      "icon": "cloudy"
+    },
+    "cloudCover": 97,
+    "pressure": 1012.1,
+    "windSpeed": 5,
+    "windDirection": 313,
+    "windGust": 11,
+    "precipitation": 0
+  },
+  "fightDay": {
+    "date": "2026-10-03",
+    "day": "SAT",
+    "weatherCode": 3,
+    "condition": {
+      "label": "Cloudy",
+      "icon": "cloudy"
+    },
+    "high": 86,
+    "low": 57,
+    "precipProbability": 0,
+    "precip": 0,
+    "windMax": 9,
+    "gustMax": 10,
+    "windDirection": 218,
+    "sunrise": "2026-10-03T07:26",
+    "sunset": "2026-10-03T19:05",
+    "timezone": "America/Denver",
+    "atEvent": {
+      "time": "2026-10-03T18:00",
+      "temperature": 82,
+      "humidity": 25,
+      "dewpoint": 42,
+      "precipProbability": 0,
+      "weatherCode": 2,
+      "condition": {
+        "label": "Partly Cloudy",
+        "icon": "partlyCloudy"
+      },
+      "visibilityMiles": 141,
+      "pressure": 1011.6,
+      "windSpeed": 7,
+      "windDirection": 332,
+      "windGust": 9
+    },
+    "narrative": "SATURDAY...CLOUDY. HIGH 86. NNW WINDS 7 MPH. CHANCE OF PRECIPITATION 0 PERCENT."
+  },
+  "almanac": {
+    "date": "2026-10-03",
+    "sunrise": "7:26 AM",
+    "sunset": "7:05 PM",
+    "moon": {
+      "label": "Last Quarter",
+      "icon": "Last-Quarter.gif"
+    }
+  },
+  "daily": [
+    {
+      "date": "2026-10-03",
+      "day": "SAT",
+      "weatherCode": 3,
+      "condition": {
+        "label": "Cloudy",
+        "icon": "cloudy"
+      },
+      "high": 86,
+      "low": 57,
+      "precipProbability": 0,
+      "precip": 0,
+      "windMax": 9,
+      "gustMax": 10,
+      "windDirection": 218,
+      "sunrise": "2026-10-03T07:26",
+      "sunset": "2026-10-03T19:05",
+      "timezone": "America/Denver"
+    },
+    {
+      "date": "2026-10-04",
+      "day": "SUN",
+      "weatherCode": 0,
+      "condition": {
+        "label": "Sunny",
+        "icon": "sunny"
+      },
+      "high": 90,
+      "low": 54,
+      "precipProbability": 1,
+      "precip": 0,
+      "windMax": 8,
+      "gustMax": 11,
+      "windDirection": 223,
+      "sunrise": "2026-10-04T07:27",
+      "sunset": "2026-10-04T19:04"
+    },
+    {
+      "date": "2026-10-05",
+      "day": "MON",
+      "weatherCode": 3,
+      "condition": {
+        "label": "Cloudy",
+        "icon": "cloudy"
+      },
+      "high": 87,
+      "low": 62,
+      "precipProbability": 1,
+      "precip": 0,
+      "windMax": 9,
+      "gustMax": 13,
+      "windDirection": 163,
+      "sunrise": "2026-10-05T07:28",
+      "sunset": "2026-10-05T19:02"
+    },
+    {
+      "date": "2026-10-06",
+      "day": "TUE",
+      "weatherCode": 3,
+      "condition": {
+        "label": "Cloudy",
+        "icon": "cloudy"
+      },
+      "high": 85,
+      "low": 70,
+      "precipProbability": 1,
+      "precip": 0,
+      "windMax": 10,
+      "gustMax": 9,
+      "windDirection": 341,
+      "sunrise": "2026-10-06T07:29",
+      "sunset": "2026-10-06T19:01"
+    },
+    {
+      "date": "2026-10-07",
+      "day": "WED",
+      "weatherCode": 0,
+      "condition": {
+        "label": "Sunny",
+        "icon": "sunny"
+      },
+      "high": 84,
+      "low": 67,
+      "precipProbability": 0,
+      "precip": 0,
+      "windMax": 10,
+      "gustMax": 10,
+      "windDirection": 347,
+      "sunrise": "2026-10-07T07:30",
+      "sunset": "2026-10-07T18:59"
+    },
+    {
+      "date": "2026-10-08",
+      "day": "THU",
+      "weatherCode": 0,
+      "condition": {
+        "label": "Sunny",
+        "icon": "sunny"
+      },
+      "high": 85,
+      "low": 67,
+      "precipProbability": 0,
+      "precip": 0,
+      "windMax": 9,
+      "gustMax": 9,
+      "windDirection": 27,
+      "sunrise": "2026-10-08T07:31",
+      "sunset": "2026-10-08T18:57"
+    },
+    {
+      "date": "2026-10-09",
+      "day": "FRI",
+      "weatherCode": 0,
+      "condition": {
+        "label": "Sunny",
+        "icon": "sunny"
+      },
+      "high": 87,
+      "low": 68,
+      "precipProbability": 2,
+      "precip": 0,
+      "windMax": 9,
+      "gustMax": 14,
+      "windDirection": 158,
+      "sunrise": "2026-10-09T07:32",
+      "sunset": "2026-10-09T18:56"
+    }
+  ],
+  "regional": {
+    "date": "2026-10-03",
+    "day": "Saturday",
+    "basemapUrl": "https://cdn.jsdelivr.net/gh/vbguyny/ws4kp@065688b6ee9a5aa93578e1e3e95b3ecce07d16ce/Images/Basemap2.png",
+    "crop": {
+      "imageWidth": 2550,
+      "imageHeight": 1600,
+      "sourceX": 338.1674284843321,
+      "sourceY": 357.60494400000016,
+      "sourceWidth": 627.7929155313351,
+      "sourceHeight": 360,
+      "minLatitude": 37.499910434782606,
+      "maxLatitude": 44.02164956521739,
+      "minLongitude": -119.40502864190707,
+      "maxLongitude": -104.37707135809295
+    },
+    "cities": [
+      {
+        "name": "Salt Lake City",
+        "latitude": 40.76078,
+        "longitude": -111.89105,
+        "fightCity": true,
+        "high": 86,
+        "low": 57,
+        "weatherCode": 3,
+        "condition": {
+          "label": "Cloudy",
+          "icon": "cloudy"
+        },
+        "x": 50,
+        "y": 50
+      },
+      {
+        "name": "Logan",
+        "latitude": 41.73698,
+        "longitude": -111.83384,
+        "high": 81,
+        "low": 46,
+        "weatherCode": 3,
+        "condition": {
+          "label": "Cloudy",
+          "icon": "cloudy"
+        },
+        "x": 50.38069046191415,
+        "y": 35.031599999999905
+      },
+      {
+        "name": "Richfield",
+        "latitude": 38.7725,
+        "longitude": -112.0841,
+        "high": 85,
+        "low": 49,
+        "weatherCode": 2,
+        "condition": {
+          "label": "Partly Cloudy",
+          "icon": "partlyCloudy"
+        },
+        "x": 48.71539427246094,
+        "y": 80.48695999999994
+      },
+      {
+        "name": "Idaho Falls",
+        "latitude": 43.4666,
+        "longitude": -112.0341,
+        "high": 79,
+        "low": 42,
+        "weatherCode": 0,
+        "condition": {
+          "label": "Sunny",
+          "icon": "sunny"
+        },
+        "x": 49.04810748860685,
+        "y": 11
+      },
+      {
+        "name": "Grand Junction",
+        "latitude": 39.0639,
+        "longitude": -108.5506,
+        "high": 85,
+        "low": 52,
+        "weatherCode": 3,
+        "condition": {
+          "label": "Cloudy",
+          "icon": "cloudy"
+        },
+        "x": 72.22823725748701,
+        "y": 76.01882666666667
+      },
+      {
+        "name": "Boise",
+        "latitude": 43.6135,
+        "longitude": -116.2034,
+        "high": 85,
+        "low": 51,
+        "weatherCode": 0,
+        "condition": {
+          "label": "Sunny",
+          "icon": "sunny"
+        },
+        "x": 21.304483247070326,
+        "y": 11
+      },
+      {
+        "name": "Cheyenne",
+        "latitude": 41.14,
+        "longitude": -104.8202,
+        "high": 76,
+        "low": 46,
+        "weatherCode": 3,
+        "condition": {
+          "label": "Cloudy",
+          "icon": "cloudy"
+        },
+        "x": 92,
+        "y": 44.18529333333328
+      }
+    ]
+  },
+  "radar": {
+    "generatedAt": "2026-10-04T01:55:22.000Z",
+    "frameTime": "2026-10-04T01:50:00.000Z",
+    "tileUrl": "https://tilecache.rainviewer.com/v2/radar/c08bba081d1e/512/5/40.76078/-111.89105/2/0_1.png",
+    "attribution": "RainViewer"
+  },
+  "source": {
+    "forecast": "Open-Meteo",
+    "radar": "RainViewer"
+  }
+}
