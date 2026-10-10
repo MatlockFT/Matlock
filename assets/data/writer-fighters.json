@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-10-09T21:14:04.741Z",
-  "builtAt": "2026-10-09T21:14:44.357Z",
+  "builtAt": "2026-10-10T00:58:50.851Z",
   "mirrorThrough": "2026-10-03",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -9661,7 +9661,13 @@
       "recordOutsideUfc": "13-3-0",
       "rank": 8,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/MORENO_BRANDON_L_09-12.png?itok=tIqGDEZU",
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Charles Johnson",
+        "opponentId": "charles-johnson"
+      },
       "checkedAt": "2026-10-09T21:14:06.282Z",
       "ufcStatsId": "792be9a24df82ed6",
       "sourceUrl": "https://ufcstats.com/fighter-details/792be9a24df82ed6",
@@ -12877,7 +12883,13 @@
       "recordOutsideUfc": "11-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/JOHNSON_CHARLES_L_08-15.png?itok=0d3E5uii",
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Brandon Moreno",
+        "opponentId": "brandon-moreno"
+      },
       "checkedAt": "2026-10-09T21:14:06.522Z",
       "ufcStatsId": "814e5233e2acf2ee",
       "sourceUrl": "https://ufcstats.com/fighter-details/814e5233e2acf2ee",
