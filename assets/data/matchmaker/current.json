@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-09T21:09:07.783Z"
+      "checkedAt": "2026-10-10T00:54:45.117Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-09T21:09:31.181Z",
+      "checkedAt": "2026-10-10T00:55:05.115Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -38966,7 +38966,13 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Charles Johnson",
+        "opponentId": "charles-johnson"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -52583,7 +52589,13 @@
         "mirrorThrough": "2026-10-03",
         "officialThrough": "2026-10-03"
       },
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Brandon Moreno",
+        "opponentId": "brandon-moreno"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
