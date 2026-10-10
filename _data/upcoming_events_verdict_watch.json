@@ -65,12 +65,12 @@
       "verdict_url": "https://verdictmma.com/event/1955",
       "verdict_date": "2026-10-24",
       "local_fight_count": 10,
-      "verdict_fight_count": 9,
+      "verdict_fight_count": 10,
       "local_main_count": 6,
       "verdict_main_count": 4,
       "local_prelim_count": 4,
-      "verdict_prelim_count": 5,
-      "confirmed_local_bouts": 8
+      "verdict_prelim_count": 6,
+      "confirmed_local_bouts": 9
     },
     {
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
@@ -87,7 +87,7 @@
       "verdict_main_count": 3,
       "local_prelim_count": 0,
       "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 11
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
@@ -266,13 +266,6 @@
       "verdict_prelim_count": 7
     },
     {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "verdict_event_id": "1955",
-      "local_fight_count": 10,
-      "verdict_fight_count": 9
-    },
-    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-333-2026-10-24-fight-card",
       "verdict_event_id": "1955",
@@ -283,23 +276,13 @@
       ]
     },
     {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "verdict_event_id": "1955",
-      "order": 5,
-      "fighters": [
-        "Aaron Pico",
-        "Losene Keita"
-      ]
-    },
-    {
       "type": "section_count_mismatch",
       "event_id": "ufc-333-2026-10-24-fight-card",
       "verdict_event_id": "1955",
       "local_main_count": 6,
       "verdict_main_count": 4,
       "local_prelim_count": 4,
-      "verdict_prelim_count": 5
+      "verdict_prelim_count": 6
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -356,6 +339,16 @@
       "verdict_main_count": 6,
       "local_prelim_count": 7,
       "verdict_prelim_count": 5
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "verdict_event_id": "1969",
+      "order": 6,
+      "fighters": [
+        "Nick Klein",
+        "Joseph Kropschot"
+      ]
     },
     {
       "type": "section_count_mismatch",
