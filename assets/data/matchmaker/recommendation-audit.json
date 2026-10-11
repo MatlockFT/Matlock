@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-10-10T23:39:07.509Z",
+  "generatedAt": "2026-10-11T02:15:16.942Z",
   "engineVersion": 2,
   "subjects": 254,
-  "publishedRecommendations": 683,
+  "publishedRecommendations": 684,
   "recommendationSlots": {
     "0": 23,
     "1": 3,
-    "2": 4,
-    "3": 224
+    "2": 3,
+    "3": 225
   },
   "caseCounts": {
-    "rebound-pairing": 289,
-    "rising-vs-rising": 211,
-    "step-up-vs-rebound": 70,
-    "ranking-opportunity": 42,
+    "rebound-pairing": 291,
+    "rising-vs-rising": 213,
+    "step-up-vs-rebound": 69,
+    "ranking-opportunity": 43,
     "rankings-progression": 36,
-    "divisional-sorting": 18,
-    "prospect-test": 7,
+    "divisional-sorting": 16,
     "title-case": 7,
+    "prospect-test": 6,
     "title-eliminator": 3
   },
   "confidenceCounts": {
-    "high": 630,
+    "high": 634,
     "medium": 32,
-    "low": 21
+    "low": 18
   },
   "averageRecentOpponentLinkCoverage": 0.9046,
-  "sameCardRecommendations": 37,
-  "sameCardRecommendationRatio": 0.0542,
-  "asymmetricTopThreeRecommendations": 219,
-  "asymmetricTopThreeRatio": 0.3206,
-  "publicPublishedRecommendations": 662,
-  "publicAsymmetricTopThreeRecommendations": 168,
-  "publicAsymmetricTopThreeRatio": 0.2538,
-  "engineGenericDivisionalSortingRecommendations": 18,
+  "sameCardRecommendations": 35,
+  "sameCardRecommendationRatio": 0.0512,
+  "asymmetricTopThreeRecommendations": 224,
+  "asymmetricTopThreeRatio": 0.3275,
+  "publicPublishedRecommendations": 664,
+  "publicAsymmetricTopThreeRecommendations": 172,
+  "publicAsymmetricTopThreeRatio": 0.259,
+  "engineGenericDivisionalSortingRecommendations": 16,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -74,7 +74,7 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 22,
-      "publicRecommendations": 52,
+      "publicRecommendations": 53,
       "noClearMatchupSubjects": 2
     },
     {
@@ -82,7 +82,7 @@
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 66,
+      "publicRecommendations": 67,
       "noClearMatchupSubjects": 4
     },
     {
@@ -177,13 +177,6 @@
       "rationale": "Curtis Blaydes and Jon Jones occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Jj Aldrich",
-      "opponent": "Juliana Miller",
-      "score": 66,
-      "rationale": "Jj Aldrich and Juliana Miller occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
       "event": "UFC Fight Night: Hooker vs Parnasse",
       "fighter": "Salahdine Parnasse",
       "opponent": "Gabe Green",
@@ -206,17 +199,17 @@
     },
     {
       "event": "UFC Fight Night: Hooker vs Parnasse",
-      "fighter": "Nora Cornolle",
-      "opponent": "Miesha Tate",
-      "score": 57,
-      "rationale": "Nora Cornolle and Miesha Tate occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "fighter": "Klaudia Sygula",
+      "opponent": "Alice Pereira",
+      "score": 74,
+      "rationale": "Klaudia Sygula and Alice Pereira occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Hooker vs Parnasse",
       "fighter": "Klaudia Sygula",
-      "opponent": "Michelle Montague",
-      "score": 40,
-      "rationale": "Klaudia Sygula and Michelle Montague occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "opponent": "Dariya Zheleznyakova",
+      "score": 45,
+      "rationale": "Klaudia Sygula and Dariya Zheleznyakova occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Hooker vs Parnasse",
@@ -238,13 +231,6 @@
       "opponent": "Alibi Idiris",
       "score": 92,
       "rationale": "Kevin Borjas and Alibi Idiris occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Hernandez vs Rodrigues",
-      "fighter": "Anthony Hernandez",
-      "opponent": "Nassourdine Imavov",
-      "score": 62,
-      "rationale": "Anthony Hernandez and Nassourdine Imavov occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC 330: Makhachev vs Machado Garry",
@@ -659,6 +645,31 @@
     {
       "event": "UFC 332: Silva vs Wang",
       "fighter": "Anthony Wint",
+      "opponent": "Jose Montanha Da Silva",
+      "pairScore": 90,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Jovan Leka",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Gokhan Saricam",
+          "score": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Rj Harris",
+          "score": 93,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC 332: Silva vs Wang",
+      "fighter": "Anthony Wint",
       "opponent": "Gokhan Saricam",
       "pairScore": 89,
       "case": "rising-vs-rising",
@@ -853,31 +864,6 @@
           "opponent": "Ignacio Bahamondes",
           "score": 89,
           "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC 332: Silva vs Wang",
-      "fighter": "Jacobe Smith",
-      "opponent": "Sam Patterson",
-      "pairScore": 87,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Chidi Njokuani",
-          "score": 90,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Ignacio Bahamondes",
-          "score": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Daniel Rodriguez",
-          "score": 89,
-          "case": "ranking-opportunity"
         }
       ]
     }
