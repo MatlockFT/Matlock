@@ -1,33 +1,25 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 10,
+    "major": 9,
     "regional": 83
   },
   "map_totals": {
     "mapped": 84,
-    "quarantined": 9
+    "quarantined": 8
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 84,
     "structured": 0,
-    "unresolved": 9
+    "unresolved": 8
   },
   "mapped_precision": {
     "city": 84
   },
-  "unresolved_count": 9,
+  "unresolved_count": 8,
   "unresolved": [
-    {
-      "id": "ufc-fight-night-2026-10-10-fight-card",
-      "title": "Allen vs Duncan",
-      "date": "2026-10-10",
-      "promotion": "UFC Fight Night",
-      "venue": "Venue TBA",
-      "dataset": "major"
-    },
     {
       "id": "ufc-fight-night-2026-10-17-fight-card",
       "title": "Buckley vs Malott",
@@ -96,17 +88,6 @@
   "suspicious_count": 0,
   "suspicious": [],
   "quarantined": [
-    {
-      "id": "ufc-fight-night-2026-10-10-fight-card",
-      "title": "Allen vs Duncan",
-      "date": "2026-10-10",
-      "promotion": "UFC Fight Night",
-      "venue": "Venue TBA",
-      "location": "",
-      "country": "",
-      "kind": "major",
-      "reason": "unresolved-us-location"
-    },
     {
       "id": "ufc-fight-night-2026-10-17-fight-card",
       "title": "Buckley vs Malott",

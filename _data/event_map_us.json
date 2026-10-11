@@ -1,24 +1,13 @@
 {
   "schema_version": 1,
-  "source_major_generated_at": "2026-10-11T01:14:16.515Z",
+  "source_major_generated_at": "2026-10-11T07:21:04.871Z",
   "source_regional_updated_at": null,
-  "major_total": 10,
+  "major_total": 9,
   "major_mapped": 1,
   "regional_total": 83,
   "regional_mapped": 83,
-  "quarantined_count": 9,
+  "quarantined_count": 8,
   "quarantined": [
-    {
-      "id": "ufc-fight-night-2026-10-10-fight-card",
-      "title": "Allen vs Duncan",
-      "date": "2026-10-10",
-      "promotion": "UFC Fight Night",
-      "venue": "Venue TBA",
-      "location": "",
-      "country": "",
-      "kind": "major",
-      "reason": "unresolved-us-location"
-    },
     {
       "id": "ufc-fight-night-2026-10-17-fight-card",
       "title": "Buckley vs Malott",
@@ -147,7 +136,7 @@
       "broadcast": "Paramount+",
       "official_url": "https://www.ufc.com/dwcs#season-10-week-10",
       "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-10-112636",
-      "updated_label": "October 10, 2026",
+      "updated_label": "October 11, 2026",
       "sections": [
         {
           "kind": "main",
@@ -232,9 +221,9 @@
                 {
                   "name": "Davi Cabral",
                   "initials": "DC",
-                  "image": "",
-                  "image_source": "",
-                  "image_framing": ""
+                  "image": "https://www2-cdn.sherdog.com/apple-touch-icon.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
                 }
               ]
             },
@@ -253,9 +242,9 @@
                 {
                   "name": "Gregory Foster",
                   "initials": "GF",
-                  "image": "",
-                  "image_source": "",
-                  "image_framing": ""
+                  "image": "https://www2-cdn.sherdog.com/apple-touch-icon.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
                 }
               ]
             }
