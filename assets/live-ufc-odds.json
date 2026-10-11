@@ -1,7 +1,42 @@
 {
-  "generated_at": "2026-10-11T14:12:58.146Z",
+  "generated_at": "2026-10-11T22:49:11.154Z",
   "source": "UFC.com + BestFightOdds",
   "events": [
+    {
+      "id": "dwcs-season-10-week-10-2026-10-13",
+      "date": "2026-10-13",
+      "official_url": "https://www.ufc.com/dwcs#season-10-week-10",
+      "fights": [
+        {
+          "source": "BestFightOdds",
+          "provider": "Kalshi",
+          "fighters": [
+            {
+              "name": "Aline Pereira",
+              "moneyline": "+372"
+            },
+            {
+              "name": "Smilla Sundell",
+              "moneyline": "-405"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "Kalshi",
+          "fighters": [
+            {
+              "name": "Ilias Bulaid",
+              "moneyline": "-137"
+            },
+            {
+              "name": "Erick Visconde",
+              "moneyline": "+114"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "ufc-fight-night-2026-10-17-fight-card",
       "date": "2026-10-17",
@@ -111,11 +146,11 @@
           "fighters": [
             {
               "name": "Javad Mahjoub",
-              "moneyline": "-125"
+              "moneyline": "-120"
             },
             {
               "name": "Joel Faglier",
-              "moneyline": "+105"
+              "moneyline": "+100"
             }
           ]
         },
@@ -139,11 +174,11 @@
           "fighters": [
             {
               "name": "Chad Anheliger",
-              "moneyline": "-130"
+              "moneyline": "-120"
             },
             {
               "name": "Steven Koslow",
-              "moneyline": "+110"
+              "moneyline": "+100"
             }
           ]
         },
