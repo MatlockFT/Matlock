@@ -3850,7 +3850,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "Bellator 99 event poster",
-      "verifiedAt": "2026-10-11T15:58:36.334Z",
+      "verifiedAt": "2026-10-11T16:41:38.681Z",
       "manualVisualVerified": true
     },
     "2013-09-14::wsof5 arlovski vs kyle": {
@@ -3864,7 +3864,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF5: Arlovski vs. Kyle event poster",
-      "verifiedAt": "2026-10-11T15:58:36.334Z",
+      "verifiedAt": "2026-10-11T16:41:38.681Z",
       "manualVisualVerified": true
     },
     "2013-09-21::ufc 165 jones vs gustafsson": {
@@ -4086,7 +4086,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF13: Moraes vs. Bollinger event poster",
-      "verifiedAt": "2026-10-11T15:58:36.334Z",
+      "verifiedAt": "2026-10-11T16:41:38.681Z",
       "manualVisualVerified": true
     },
     "2014-09-20::ufc fight night hunt vs nelson": {
@@ -8795,9 +8795,63 @@
       "discovery": "tapology-search-unique-title-date",
       "transport": "tapology-via-public-reader-v1",
       "verifiedAt": "2026-10-09T17:30:02.527Z"
+    },
+    "2012-10-12::bellator 76": {
+      "key": "2012-10-12::bellator 76",
+      "status": "verified",
+      "sourceType": "tapology-event-poster",
+      "date": "2012-10-12",
+      "title": "Bellator 76",
+      "eventTitle": "Bellator 76",
+      "eventDate": "2012-10-12",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/14912-bellator-76",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/14912-bellator-76",
+      "originPosterUrl": "https://images.tapology.com/poster_images/14912/profile/Bellator%2076%20Poster.jpeg?1348963441",
+      "posterUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2012-10-12-bellator-76-7999c5c6c90aa4a2.jpg",
+      "sha256": "7999c5c6c90aa4a230f347a52d519cf6c4d0b26ca31f96addcedb5f772b7525a",
+      "width": 338,
+      "height": 520,
+      "bytes": 55595,
+      "format": "jpeg",
+      "alt": "Bellator 76 event poster",
+      "credit": "Tapology",
+      "confidence": 1,
+      "titleScore": 100,
+      "eventIdBound": true,
+      "discovery": "tapology-search-unique-title-date",
+      "transport": "tapology-via-public-reader-v1",
+      "verifiedAt": "2026-10-11T16:39:16.244Z"
+    },
+    "2013-10-11::bellator 103": {
+      "key": "2013-10-11::bellator 103",
+      "status": "verified",
+      "sourceType": "tapology-event-poster",
+      "date": "2013-10-11",
+      "title": "Bellator 103",
+      "eventTitle": "Bellator 103: Pitbull vs. Guerreiro",
+      "eventDate": "2013-10-11",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/20005-bellator-103",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/20005-bellator-103",
+      "originPosterUrl": "https://images.tapology.com/poster_images/20005/profile/Bellator_103_Pitbull_vs._Guerreiro_Poster.jpg?1380731908",
+      "posterUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2013-10-11-bellator-103-d0cacde7e183b846.jpg",
+      "sha256": "d0cacde7e183b846971120f132ec3675d25c74bfdd6f7b463bcaf8226d4feb7b",
+      "width": 338,
+      "height": 519,
+      "bytes": 50092,
+      "format": "jpeg",
+      "alt": "Bellator 103 event poster",
+      "credit": "Tapology",
+      "confidence": 1,
+      "titleScore": 99,
+      "eventIdBound": true,
+      "discovery": "tapology-search-unique-title-date",
+      "transport": "tapology-via-public-reader-v1",
+      "verifiedAt": "2026-10-11T16:39:30.372Z"
     }
   },
-  "updatedAt": "2026-10-11T15:58:36.548Z",
+  "updatedAt": "2026-10-11T16:41:38.904Z",
   "policy": "One event-poster registry. Restore verified assignments first; new unresolved events resolve in source priority order: Tapology, Wikipedia/Wikimedia, official/archive/manual fallback.",
   "tapologyPolicy": "Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records."
 }
