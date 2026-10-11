@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-10-08T16:56:02.249Z",
+  "updatedAt": "2026-10-11T15:57:01.243Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -15358,6 +15358,21 @@
       "wikipediaTitle": "List of Pancrase events",
       "sourceUrl": "https://www.pancrase.co.jp/data/result/2026/1004.html",
       "mainEvent": "葛西和希 vs. ナチン・サット"
+    },
+    "ufc:2026-10-10:ufc-fight-night-allen-vs-duncan": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-10-11T15:57:01.243Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Allen vs. Duncan",
+      "mainEvent": "Allen vs. Duncan"
+    },
+    "pfl:2026-10-10:pfl-africa-3": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-10-11T15:57:01.243Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "PFL Africa 3 (2026)"
     }
   }
 }
