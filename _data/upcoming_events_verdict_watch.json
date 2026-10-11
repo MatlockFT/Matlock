@@ -48,12 +48,12 @@
       "verdict_url": "https://verdictmma.com/event/1936",
       "verdict_date": "2026-10-17",
       "local_fight_count": 13,
-      "verdict_fight_count": 11,
+      "verdict_fight_count": 13,
       "local_main_count": 6,
       "verdict_main_count": 6,
       "local_prelim_count": 7,
-      "verdict_prelim_count": 5,
-      "confirmed_local_bouts": 10
+      "verdict_prelim_count": 7,
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "ufc-333-2026-10-24-fight-card",
@@ -104,7 +104,7 @@
       "verdict_main_count": 5,
       "local_prelim_count": 0,
       "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 13
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
@@ -295,23 +295,6 @@
       ]
     },
     {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "local_fight_count": 13,
-      "verdict_fight_count": 11
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "order": 10,
-      "fighters": [
-        "Katlyn Cerminara",
-        "Mackenzie Stiller"
-      ]
-    },
-    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "verdict_event_id": "1936",
@@ -320,25 +303,6 @@
         "Kyle Nelson",
         "Cristian Perez Gonzalez"
       ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "order": 9,
-      "fighters": [
-        "Javad Mahjoub",
-        "Joel Faglier"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "local_main_count": 6,
-      "verdict_main_count": 6,
-      "local_prelim_count": 7,
-      "verdict_prelim_count": 5
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -358,6 +322,16 @@
       "verdict_main_count": 3,
       "local_prelim_count": 0,
       "verdict_prelim_count": 8
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 9,
+      "fighters": [
+        "Jonny Parsons",
+        "José Souza"
+      ]
     },
     {
       "type": "section_count_mismatch",
