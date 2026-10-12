@@ -4,8 +4,8 @@
   "source_regional_updated_at": null,
   "major_total": 9,
   "major_mapped": 1,
-  "regional_total": 83,
-  "regional_mapped": 83,
+  "regional_total": 82,
+  "regional_mapped": 82,
   "quarantined_count": 8,
   "quarantined": [
     {
@@ -98,33 +98,6 @@
     }
   ],
   "events": [
-    {
-      "id": "camomma-sundown-fights-2026-10-11",
-      "promotion": "Sundown Fights",
-      "promotion_key": "camomma",
-      "title": "Sundown Fights",
-      "date": "2026-10-11",
-      "venue": "",
-      "location": "Los Angeles, CA",
-      "broadcast": "",
-      "official_url": "https://camomma.org/amateur-mma-events/E1899/Sundown-Fights",
-      "regional": true,
-      "level": "amateur",
-      "source_key": "camomma",
-      "source_label": "California Amateur Mixed Martial Arts Organization",
-      "latitude": 34.0522,
-      "longitude": -118.2437,
-      "city": "Los Angeles",
-      "state": "CA",
-      "state_code": "CA",
-      "country": "US",
-      "location_source": "location-text",
-      "location_precision": "city",
-      "map_location_source": "location-text",
-      "map_location_precision": "city",
-      "map_location_confidence": "city",
-      "map_dataset": "regional"
-    },
     {
       "id": "dwcs-season-10-week-10-2026-10-13",
       "promotion_key": "dwcs",
@@ -229,9 +202,9 @@
                 {
                   "name": "Davi Cabral",
                   "initials": "DC",
-                  "image": "https://www2-cdn.sherdog.com/apple-touch-icon.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
                 }
               ]
             },
@@ -250,9 +223,9 @@
                 {
                   "name": "Gregory Foster",
                   "initials": "GF",
-                  "image": "https://www2-cdn.sherdog.com/apple-touch-icon.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
                 }
               ]
             }
