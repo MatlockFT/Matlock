@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T23:13:21.975Z",
+  "generatedAt": "2026-10-12T02:28:52.091Z",
   "engineVersion": 2,
   "subjects": 282,
   "publishedRecommendations": 768,
@@ -10,10 +10,10 @@
     "3": 253
   },
   "caseCounts": {
-    "rebound-pairing": 322,
-    "rising-vs-rising": 235,
-    "step-up-vs-rebound": 81,
-    "ranking-opportunity": 43,
+    "rebound-pairing": 321,
+    "rising-vs-rising": 234,
+    "step-up-vs-rebound": 82,
+    "ranking-opportunity": 44,
     "rankings-progression": 40,
     "divisional-sorting": 27,
     "prospect-test": 9,
@@ -28,11 +28,11 @@
   "averageRecentOpponentLinkCoverage": 0.903,
   "sameCardRecommendations": 48,
   "sameCardRecommendationRatio": 0.0625,
-  "asymmetricTopThreeRecommendations": 268,
-  "asymmetricTopThreeRatio": 0.349,
+  "asymmetricTopThreeRecommendations": 270,
+  "asymmetricTopThreeRatio": 0.3516,
   "publicPublishedRecommendations": 741,
-  "publicAsymmetricTopThreeRecommendations": 208,
-  "publicAsymmetricTopThreeRatio": 0.2807,
+  "publicAsymmetricTopThreeRecommendations": 207,
+  "publicAsymmetricTopThreeRatio": 0.2794,
   "engineGenericDivisionalSortingRecommendations": 27,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -798,7 +798,7 @@
         },
         {
           "opponent": "Ignacio Bahamondes",
-          "score": 89,
+          "score": 90,
           "case": "rising-vs-rising"
         }
       ]
@@ -812,13 +812,13 @@
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Ignacio Bahamondes",
-          "score": 83,
+          "opponent": "Sam Patterson",
+          "score": 82,
           "case": "rankings-progression"
         },
         {
-          "opponent": "Sam Patterson",
-          "score": 82,
+          "opponent": "Ignacio Bahamondes",
+          "score": 83,
           "case": "rankings-progression"
         },
         {
