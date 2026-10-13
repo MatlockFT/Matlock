@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-13T18:04:27.066Z"
+      "checkedAt": "2026-10-13T22:48:23.761Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-13T18:04:53.238Z",
+      "checkedAt": "2026-10-13T22:48:51.998Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -70751,11 +70751,9 @@
         "officialThrough": "2026-10-10"
       },
       "booking": {
-        "event": "Buckley vs Malott",
+        "event": "UFC Fight Night",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-        "opponent": "Kyle Nelson",
-        "opponentId": "kyle-nelson"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -192155,8 +192153,8 @@
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
         "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-        "opponent": "Cristian Perez Gonzalez",
-        "opponentId": "cristian-perez-gonzalez"
+        "opponent": "Cristian Perez",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
