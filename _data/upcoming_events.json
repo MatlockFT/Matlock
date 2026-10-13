@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-13T07:05:42.304Z",
+  "generated_at": "2026-10-13T14:59:56.865Z",
   "events": [
     {
       "id": "dwcs-season-10-week-10-2026-10-13",
@@ -23,52 +23,6 @@
             {
               "order": 1,
               "label": "Main Event",
-              "weight_class": "Welterweight",
-              "fighters": [
-                {
-                  "name": "William Rentz",
-                  "initials": "WR",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1782012023Will_Rentz_4df5ae7e99.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Luis Francischinelli",
-                  "initials": "LF",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1734537541IMG_3225.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Bantamweight",
-              "fighters": [
-                {
-                  "name": "Aline Pereira",
-                  "initials": "AP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221118031232_Aline_Pereira.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "+520"
-                },
-                {
-                  "name": "Smilla Sundell",
-                  "initials": "SS",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1763763628smillasundell.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe",
-                  "moneyline": "-720"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 3,
-              "label": "",
               "weight_class": "Featherweight",
               "fighters": [
                 {
@@ -92,6 +46,52 @@
               "odds_provider": "FanDuel"
             },
             {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Bantamweight",
+              "fighters": [
+                {
+                  "name": "Aline Pereira",
+                  "initials": "AP",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221118031232_Aline_Pereira.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe",
+                  "moneyline": "+370"
+                },
+                {
+                  "name": "Smilla Sundell",
+                  "initials": "SS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1763763628smillasundell.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe",
+                  "moneyline": "-480"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "William Rentz",
+                  "initials": "WR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1782012023Will_Rentz_4df5ae7e99.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Luis Francischinelli",
+                  "initials": "LF",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1734537541IMG_3225.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
               "order": 4,
               "label": "",
               "weight_class": "Middleweight",
@@ -106,9 +106,9 @@
                 {
                   "name": "Davi Cabral",
                   "initials": "DC",
-                  "image": "",
-                  "image_source": "",
-                  "image_framing": ""
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1791887509vtqFeJcK1Wa1L1fQxjizZNSPBA.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
                 }
               ]
             },
@@ -127,9 +127,9 @@
                 {
                   "name": "Gregory Foster",
                   "initials": "GF",
-                  "image": "",
-                  "image_source": "",
-                  "image_framing": ""
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1791887430Screenshot_2026-10-13_062839.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
                 }
               ]
             }
