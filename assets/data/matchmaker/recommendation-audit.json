@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-10-12T18:11:25.366Z",
+  "generatedAt": "2026-10-13T02:13:54.571Z",
   "engineVersion": 2,
   "subjects": 282,
-  "publishedRecommendations": 768,
+  "publishedRecommendations": 762,
   "recommendationSlots": {
-    "0": 23,
+    "0": 25,
     "1": 3,
     "2": 3,
-    "3": 253
+    "3": 251
   },
   "caseCounts": {
-    "rebound-pairing": 321,
-    "rising-vs-rising": 234,
-    "step-up-vs-rebound": 82,
-    "ranking-opportunity": 44,
+    "rebound-pairing": 318,
+    "rising-vs-rising": 233,
+    "step-up-vs-rebound": 81,
+    "ranking-opportunity": 43,
     "rankings-progression": 40,
     "divisional-sorting": 27,
     "prospect-test": 9,
@@ -21,18 +21,18 @@
     "title-eliminator": 3
   },
   "confidenceCounts": {
-    "high": 700,
-    "medium": 38,
+    "high": 695,
+    "medium": 37,
     "low": 30
   },
   "averageRecentOpponentLinkCoverage": 0.903,
-  "sameCardRecommendations": 48,
-  "sameCardRecommendationRatio": 0.0625,
-  "asymmetricTopThreeRecommendations": 270,
-  "asymmetricTopThreeRatio": 0.3516,
-  "publicPublishedRecommendations": 741,
-  "publicAsymmetricTopThreeRecommendations": 207,
-  "publicAsymmetricTopThreeRatio": 0.2794,
+  "sameCardRecommendations": 47,
+  "sameCardRecommendationRatio": 0.0617,
+  "asymmetricTopThreeRecommendations": 260,
+  "asymmetricTopThreeRatio": 0.3412,
+  "publicPublishedRecommendations": 735,
+  "publicAsymmetricTopThreeRecommendations": 203,
+  "publicAsymmetricTopThreeRatio": 0.2762,
   "engineGenericDivisionalSortingRecommendations": 27,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -41,8 +41,8 @@
     "title": "UFC Fight Night: Allen vs Duncan",
     "date": "2026-10-10",
     "subjects": 24,
-    "publicRecommendations": 65,
-    "noClearMatchupSubjects": 1
+    "publicRecommendations": 59,
+    "noClearMatchupSubjects": 3
   },
   "eventPublicSummary": [
     {
@@ -50,8 +50,8 @@
       "title": "UFC Fight Night: Allen vs Duncan",
       "date": "2026-10-10",
       "subjects": 24,
-      "publicRecommendations": 65,
-      "noClearMatchupSubjects": 1
+      "publicRecommendations": 59,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-332",
@@ -292,37 +292,12 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Ismael Bonfim",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
           "opponent": "Claudio Puelles",
           "score": 92,
           "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Matheus Camilo",
-      "opponent": "Ismael Bonfim",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Bolaji Oki",
-          "score": 93,
-          "case": "rebound-pairing"
         },
         {
-          "opponent": "Daniel Zellhuber",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Gauge Young",
+          "opponent": "Fares Ziam",
           "score": 92,
           "case": "rebound-pairing"
         }
@@ -334,7 +309,7 @@
       "opponent": "Bolaji Oki",
       "pairScore": 91,
       "case": "rebound-pairing",
-      "fighterRank": "Another option",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
           "opponent": "Charlie Campbell",
@@ -349,6 +324,31 @@
         {
           "opponent": "Gauge Young",
           "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Matheus Camilo",
+      "opponent": "Gauge Young",
+      "pairScore": 91,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Bolaji Oki",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Charlie Campbell",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Daniel Zellhuber",
+          "score": 92,
           "case": "rebound-pairing"
         }
       ]
@@ -705,131 +705,6 @@
     },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Ismael Bonfim",
-      "opponent": "Bolaji Oki",
-      "pairScore": 93,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Charlie Campbell",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Daniel Zellhuber",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Gauge Young",
-          "score": 93,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Ismael Bonfim",
-      "opponent": "Gauge Young",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Bolaji Oki",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Charlie Campbell",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Daniel Zellhuber",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Niko Price",
-      "opponent": "Daniel Rodriguez",
-      "pairScore": 88,
-      "case": "ranking-opportunity",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Nicolas Dalby",
-          "score": 96,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Chidi Njokuani",
-          "score": 95,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Ignacio Bahamondes",
-          "score": 94,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Niko Price",
-      "opponent": "Nicolas Dalby",
-      "pairScore": 86,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Daniel Rodriguez",
-          "score": 96,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Chidi Njokuani",
-          "score": 91,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Ignacio Bahamondes",
-          "score": 90,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Niko Price",
-      "opponent": "Neil Magny",
-      "pairScore": 77,
-      "case": "rankings-progression",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Sam Patterson",
-          "score": 82,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Ignacio Bahamondes",
-          "score": 83,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Chidi Njokuani",
-          "score": 82,
-          "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Rj Harris",
       "opponent": "Alexander Poppeck",
       "pairScore": 92,
@@ -900,6 +775,131 @@
           "opponent": "Karol Rosa",
           "score": 82,
           "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Melissa Gatto",
+      "opponent": "Juliana Miller",
+      "pairScore": 84,
+      "case": "divisional-sorting",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Eduarda Moura",
+          "score": 94,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Dione Barbosa",
+          "score": 88,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Veronica Hardy",
+          "score": 85,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC 332: Silva vs Wang",
+      "fighter": "Wang Cong",
+      "opponent": "Miranda Maverick",
+      "pairScore": 77,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Casey Oneill",
+          "score": 93,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Carli Judice",
+          "score": 88,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Regina Malpica Rivera",
+          "score": 87,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC 332: Silva vs Wang",
+      "fighter": "Deiveson Figueiredo",
+      "opponent": "Kai Asakura",
+      "pairScore": 81,
+      "case": "ranking-opportunity",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Jean Matsumoto",
+          "score": 91,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Raoni Barcelos",
+          "score": 86,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Victor Henry",
+          "score": 86,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC 332: Silva vs Wang",
+      "fighter": "Deiveson Figueiredo",
+      "opponent": "Bryce Mitchell",
+      "pairScore": 80,
+      "case": "ranking-opportunity",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Montel Jackson",
+          "score": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Raoni Barcelos",
+          "score": 92,
+          "case": "divisional-sorting"
+        },
+        {
+          "opponent": "Farid Basharat",
+          "score": 86,
+          "case": "rankings-progression"
+        }
+      ]
+    },
+    {
+      "event": "UFC 332: Silva vs Wang",
+      "fighter": "Deiveson Figueiredo",
+      "opponent": "Brady Hiestand",
+      "pairScore": 77,
+      "case": "ranking-opportunity",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Farid Basharat",
+          "score": 85,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Heili Alateng",
+          "score": 85,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Bryce Mitchell",
+          "score": 85,
+          "case": "rising-vs-rising"
         }
       ]
     }
