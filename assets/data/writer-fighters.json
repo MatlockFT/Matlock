@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-10-14T05:20:48.703Z",
-  "builtAt": "2026-10-14T13:49:53.969Z",
+  "builtAt": "2026-10-14T18:43:19.478Z",
   "mirrorThrough": "2026-10-10",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -565,7 +565,11 @@
       "recordOutsideUfc": "24-4-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/VAGAEV_ABUBAKAR_L_07-25.png?itok=RfC7eTGH",
-      "booking": null,
+      "booking": {
+        "event": "UFC 333",
+        "date": "2026-10-24",
+        "source": "https://www.ufc.com/event/ufc-333"
+      },
       "checkedAt": "2026-10-11T19:41:14.659Z",
       "ufcStatsId": "f7adc1fd115f8fdd",
       "sourceUrl": "https://ufcstats.com/fighter-details/f7adc1fd115f8fdd",
@@ -11401,7 +11405,11 @@
       "recordOutsideUfc": "3-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/JUDICE_CARLI_L_08-22.png?itok=SGeZ9rwl",
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "checkedAt": "2026-10-14T05:20:50.158Z",
       "ufcStatsId": "f1ab6f37492c630a",
       "sourceUrl": "https://ufcstats.com/fighter-details/f1ab6f37492c630a",
@@ -15824,7 +15832,11 @@
       "recordOutsideUfc": "7-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/THICKNESSE_COLBY_L_05-02.png?itok=N5HTzqNl",
-      "booking": null,
+      "booking": {
+        "event": "UFC 333",
+        "date": "2026-10-24",
+        "source": "https://www.ufc.com/event/ufc-333"
+      },
       "checkedAt": "2026-10-11T19:41:15.744Z",
       "ufcStatsId": "ed7d329d7c29428d",
       "sourceUrl": "https://ufcstats.com/fighter-details/ed7d329d7c29428d",
@@ -31783,7 +31795,11 @@
       "recordOutsideUfc": "4-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MALKOUN_JACOB_L_05-02.png?itok=8P_D4zmL",
-      "booking": null,
+      "booking": {
+        "event": "UFC 333",
+        "date": "2026-10-24",
+        "source": "https://www.ufc.com/event/ufc-333"
+      },
       "checkedAt": "2026-10-11T19:41:17.023Z",
       "ufcStatsId": "d4270315cbcf2569",
       "sourceUrl": "https://ufcstats.com/fighter-details/d4270315cbcf2569",
@@ -53826,7 +53842,11 @@
       "recordOutsideUfc": "5-0-0",
       "rank": 6,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/BARBER_MAYCEE_L_12-06.png?itok=QdNfHNom",
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "checkedAt": "2026-10-14T05:20:52.696Z",
       "ufcStatsId": "6a740daf1b279661",
       "sourceUrl": "https://ufcstats.com/fighter-details/6a740daf1b279661",
