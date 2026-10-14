@@ -136,7 +136,7 @@ published: false
 </section>
 ---
 
-Aliev does everything OK but nothing I've noticed particularly great. He's scrappy and dynamic enough on the feet offensively but 
+Aliev does everything OK but nothing I've noticed particularly great. He's scrappy and dynamic enough on the feet offensively and herky-jerky movement and feints from the outside reminiscent of Khabib Nurmagomedov. 
 
 ## Colby Thicknesse vs. Asaf Chopurov
 
