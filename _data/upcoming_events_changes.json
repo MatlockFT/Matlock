@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-13T20:39:51.323Z",
+  "generated_at": "2026-10-14T14:44:54.408Z",
   "changes": [
+    {
+      "id": "2026-10-14T14:44:54.408Z|dwcs-season-10-week-10-2026-10-13|event_removed|1",
+      "at": "2026-10-14T14:44:54.408Z",
+      "type": "event_removed",
+      "event_id": "dwcs-season-10-week-10-2026-10-13",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 10",
+      "event_date": "2026-10-13",
+      "summary": "DWCS Season 10 · Week 10 removed from Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "Meta APEX · Las Vegas, Nevada",
+        "date": "2026-10-13"
+      }
+    },
     {
       "id": "2026-10-13T20:39:51.323Z|ufc-fight-night-2026-10-17-fight-card|bout_changed|1",
       "at": "2026-10-13T20:39:51.323Z",
@@ -4705,22 +4720,6 @@
         "to_order": 9,
         "from_section": "Prelims",
         "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-12T12:57:26.484Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|7",
-      "at": "2026-09-12T12:57:26.484Z",
-      "type": "bout_moved",
-      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
-      "promotion": "UFC",
-      "event_title": "Crypto.com UFC 331",
-      "event_date": "2026-09-19",
-      "summary": "Ryan Gandra vs Ozzy Diaz moved on Crypto.com UFC 331.",
-      "details": {
-        "from_order": 9,
-        "to_order": 10,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
       }
     }
   ]
