@@ -48,12 +48,12 @@
       "verdict_url": "https://verdictmma.com/event/1969",
       "verdict_date": "2026-10-31",
       "local_fight_count": 11,
-      "verdict_fight_count": 10,
+      "verdict_fight_count": 11,
       "local_main_count": 11,
-      "verdict_main_count": 3,
+      "verdict_main_count": 4,
       "local_prelim_count": 0,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 9
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
@@ -65,12 +65,12 @@
       "verdict_url": "https://verdictmma.com/event/1957",
       "verdict_date": "2026-11-07",
       "local_fight_count": 13,
-      "verdict_fight_count": 11,
-      "local_main_count": 13,
-      "verdict_main_count": 5,
-      "local_prelim_count": 0,
+      "verdict_fight_count": 13,
+      "local_main_count": 6,
+      "verdict_main_count": 7,
+      "local_prelim_count": 7,
       "verdict_prelim_count": 6,
-      "confirmed_local_bouts": 10
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
@@ -100,9 +100,9 @@
       "verdict_date": "2026-11-14",
       "local_fight_count": 12,
       "verdict_fight_count": 12,
-      "local_main_count": 12,
+      "local_main_count": 5,
       "verdict_main_count": 5,
-      "local_prelim_count": 0,
+      "local_prelim_count": 7,
       "verdict_prelim_count": 7,
       "confirmed_local_bouts": 12
     },
@@ -203,15 +203,6 @@
       ]
     },
     {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
-      "verdict_event_id": "1970",
-      "local_main_count": 12,
-      "verdict_main_count": 5,
-      "local_prelim_count": 0,
-      "verdict_prelim_count": 7
-    },
-    {
       "type": "bout_count_mismatch",
       "event_id": "ufc-333-2026-10-24-fight-card",
       "verdict_event_id": "1955",
@@ -294,13 +285,6 @@
       "verdict_prelim_count": 1
     },
     {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "verdict_event_id": "1969",
-      "local_fight_count": 11,
-      "verdict_fight_count": 10
-    },
-    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
       "verdict_event_id": "1969",
@@ -311,56 +295,19 @@
       ]
     },
     {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "verdict_event_id": "1969",
-      "order": 8,
-      "fighters": [
-        "Jean-Paul Lebosnoyani",
-        "Farman Hasanov"
-      ]
-    },
-    {
       "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
       "verdict_event_id": "1969",
       "local_main_count": 11,
-      "verdict_main_count": 3,
+      "verdict_main_count": 4,
       "local_prelim_count": 0,
       "verdict_prelim_count": 7
-    },
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "verdict_event_id": "1957",
-      "local_fight_count": 13,
-      "verdict_fight_count": 11
     },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
       "verdict_event_id": "1957",
       "order": 10,
-      "fighters": [
-        "Davey Grant",
-        "Elijah Smith"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "verdict_event_id": "1957",
-      "order": 8,
-      "fighters": [
-        "Seokhyeon Ko",
-        "Wellington Turman"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "verdict_event_id": "1957",
-      "order": 9,
       "fighters": [
         "Jonny Parsons",
         "José Souza"
@@ -370,9 +317,9 @@
       "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
       "verdict_event_id": "1957",
-      "local_main_count": 13,
-      "verdict_main_count": 5,
-      "local_prelim_count": 0,
+      "local_main_count": 6,
+      "verdict_main_count": 7,
+      "local_prelim_count": 7,
       "verdict_prelim_count": 6
     },
     {
