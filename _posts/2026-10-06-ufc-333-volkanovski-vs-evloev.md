@@ -121,7 +121,11 @@ published: false
 </section>
 **Grant Dawson** is a switch stance pressure grappler who wants to chain takedowns, take the back and keep opponents carrying his weight. His striking is functional enough to get him into the wrestling, but he can be hurt badly before the grappling gets going. He rebounded from the Manuel Torres knockout by submitting Mateusz Rebecki.
 
-
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-db61dd1d" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261014-164844-937.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
 
 **Nurullo Aliev** is an undefeated positional wrestler who is perfectly comfortable winning long stretches with fence work, takedowns and top control. He is patient and low risk, which is why all four of his UFC wins have gone to decision. This is a much more interesting wrestling matchup than most of the fights he has had so far.
 
@@ -137,6 +141,8 @@ published: false
 ---
 
 Aliev does everything OK but nothing I've noticed particularly great. He's scrappy and dynamic enough on the feet offensively and herky-jerky movement and feints from the outside reminiscent of Khabib Nurmagomedov. His striking defense leaves a lot to be desired and gets hit with is hands down quite frequently, regardless of what the striking stats say. I also noticed isn't particularly great at blocking body kicks. I guess I'm saying, there are openings for sure. He gets takedowns but sometimes his shots are pretty ugly but none of his competition has really been able to consistently thwart his attempts. They have and they've also gotten up from bottom so it's not like Aliev has a devastating ground game but it has been effective. Aliev has put himself in triangle attempts before in a couple different fights but nothing he hasn't been able to get out of or were super close to being submitted from but its still worth noting. His conditioning is pretty good but I do have questions about his conditioning in a third round against someone who puts the pace and pressure on him because sometimes he does look a little winded and slow but if he's fighting at his pace and tempo, which he usually is, then he is able to get through it without much trouble. 
+
+Grant Dawson de
 
 
 ## Colby Thicknesse vs. Asaf Chopurov
