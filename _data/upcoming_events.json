@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-14T14:43:47.159Z",
+  "generated_at": "2026-10-14T19:00:34.230Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-10-17-fight-card",
@@ -107,7 +107,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/BARRIAULT_MARC-ANDRE_L_05-10.png?itok=kJq5jhiN",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+180"
+                  "moneyline": "+176"
                 },
                 {
                   "name": "Kyle Daukaus",
@@ -115,7 +115,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/DAUKAUS_KYLE_R_06-14.png?itok=u2hBMZhV",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-235"
+                  "moneyline": "-225"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -132,7 +132,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/JOURDAIN_LOUIS_L_09-30.png?itok=hXNV4FbV",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-210"
+                  "moneyline": "-215"
                 },
                 {
                   "name": "Timmy Cuamba",
@@ -140,7 +140,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/CUAMBA_TIMOTHY_L_05-16.png?itok=QVPT-XKP",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+162"
+                  "moneyline": "+164"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -239,7 +239,7 @@
                   "image": "",
                   "image_source": "",
                   "image_framing": "",
-                  "moneyline": "-120"
+                  "moneyline": "-104"
                 },
                 {
                   "name": "Joel Faglier",
@@ -247,7 +247,7 @@
                   "image": "",
                   "image_source": "",
                   "image_framing": "",
-                  "moneyline": "-106"
+                  "moneyline": "-120"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -460,7 +460,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/VOLKOV_ALEXANDER_L_05-09.png?itok=Z7Pt4p3a",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-143"
                 },
                 {
                   "name": "Rizvan Kuniev",
@@ -468,9 +468,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/KUNIEV_RIZVAN_L_07-25.png?itok=PSzxdGmY",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+109"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Kalshi"
             },
             {
               "order": 5,
@@ -483,7 +485,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/PICO_AARON_R_08-16.png?itok=90xvvwSZ",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-112"
                 },
                 {
                   "name": "Losene Keita",
@@ -491,12 +493,14 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/KEITA_LOSENE_L_09-05.png?itok=Z3OSFQv8",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-143"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Kalshi"
             },
             {
-              "order": 10,
+              "order": 12,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -534,7 +538,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MURZAKANOV_AZAMAT_L_04-11.png?itok=mqQa9nra",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-251"
                 },
                 {
                   "name": "Dominick Reyes",
@@ -542,9 +546,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/REYES_DOMINICK_L_04-11.png?itok=7HSVtv1p",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+158"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Kalshi"
             },
             {
               "order": 7,
@@ -557,7 +563,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/KRYLOV_NIKITA_L_07-11.png?itok=G-SKEXs5",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+330"
                 },
                 {
                   "name": "Abdul Rakhman Yakhyaev",
@@ -565,9 +571,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/YAKHYAEV_ABDUL_RAKHMAN_L_06-27.png?itok=r25ouJ0s",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-459"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Kalshi"
             },
             {
               "order": 8,
@@ -580,7 +588,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/MAGOMEDOV_ABUS_L_06-27.png?itok=SLmzXjWp",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-161"
                 },
                 {
                   "name": "Cam Rowston",
@@ -588,9 +596,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/ROWSTON_CAM_L_05-02.png?itok=uqDWq0O0",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-183"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Kalshi"
             },
             {
               "order": 9,
@@ -603,12 +613,67 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/DAWSON_GRANT_L_05-09.png?itok=JuVEhRo_",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-126"
                 },
                 {
                   "name": "Nurullo Aliev",
                   "initials": "NA",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/ALIEV_NURULLO_L_07-25.png?itok=2JPUXADG",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-103"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Kalshi"
+            }
+          ]
+        },
+        {
+          "kind": "early",
+          "title": "Early Prelims",
+          "time": "10:00 AM ET",
+          "bouts": [
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Abubakar Vagaev",
+                  "initials": "AV",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/VAGAEV_ABUBAKAR_L_07-25.png?itok=RfC7eTGH",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Jacob Malkoun",
+                  "initials": "JM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MALKOUN_JACOB_L_05-02.png?itok=8P_D4zmL",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Colby Thicknesse",
+                  "initials": "CT",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/THICKNESSE_COLBY_L_05-02.png?itok=N5HTzqNl",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Asaf Chopurov",
+                  "initials": "AC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -2177,6 +2242,52 @@
                   "name": "Charles Johnson",
                   "initials": "CJ",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/JOHNSON_CHARLES_L_08-15.png?itok=0d3E5uii",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Women's Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Maycee Barber",
+                  "initials": "MB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/BARBER_MAYCEE_L_12-06.png?itok=QdNfHNom",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Carli Judice",
+                  "initials": "CJ",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/JUDICE_CARLI_L_08-22.png?itok=SGeZ9rwl",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Quentin Pasley",
+                  "initials": "QP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/PASLEY_QUENTEN_L_09-08.png?itok=IrJsCNSN",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Junior Tafa",
+                  "initials": "JT",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/TAFA_JUNIOR_L_05-02.png?itok=dLi9Oyuv",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""

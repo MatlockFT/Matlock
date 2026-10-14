@@ -30,13 +30,13 @@
       "verdict_event_id": "1955",
       "verdict_url": "https://verdictmma.com/event/1955",
       "verdict_date": "2026-10-24",
-      "local_fight_count": 10,
+      "local_fight_count": 12,
       "verdict_fight_count": 10,
       "local_main_count": 6,
       "verdict_main_count": 5,
-      "local_prelim_count": 4,
+      "local_prelim_count": 6,
       "verdict_prelim_count": 5,
-      "confirmed_local_bouts": 9
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
@@ -48,12 +48,12 @@
       "verdict_url": "https://verdictmma.com/event/1969",
       "verdict_date": "2026-10-31",
       "local_fight_count": 11,
-      "verdict_fight_count": 11,
+      "verdict_fight_count": 10,
       "local_main_count": 11,
       "verdict_main_count": 3,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 10
+      "verdict_prelim_count": 7,
+      "confirmed_local_bouts": 9
     },
     {
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
@@ -65,12 +65,12 @@
       "verdict_url": "https://verdictmma.com/event/1957",
       "verdict_date": "2026-11-07",
       "local_fight_count": 13,
-      "verdict_fight_count": 13,
+      "verdict_fight_count": 11,
       "local_main_count": 13,
       "verdict_main_count": 5,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 12
+      "verdict_prelim_count": 6,
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
@@ -132,9 +132,9 @@
       "verdict_event_id": "1971",
       "verdict_url": "https://verdictmma.com/event/1971",
       "verdict_date": "2026-12-12",
-      "local_fight_count": 4,
+      "local_fight_count": 6,
       "verdict_fight_count": 4,
-      "local_main_count": 4,
+      "local_main_count": 6,
       "verdict_main_count": 3,
       "local_prelim_count": 0,
       "verdict_prelim_count": 1,
@@ -212,10 +212,27 @@
       "verdict_prelim_count": 7
     },
     {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "verdict_event_id": "1955",
+      "local_fight_count": 12,
+      "verdict_fight_count": 10
+    },
+    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-333-2026-10-24-fight-card",
       "verdict_event_id": "1955",
       "order": 10,
+      "fighters": [
+        "Abubakar Vagaev",
+        "Jacob Malkoun"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "verdict_event_id": "1955",
+      "order": 12,
       "fighters": [
         "Arnold Allen",
         "Aaron Pico"
@@ -227,8 +244,15 @@
       "verdict_event_id": "1955",
       "local_main_count": 6,
       "verdict_main_count": 5,
-      "local_prelim_count": 4,
+      "local_prelim_count": 6,
       "verdict_prelim_count": 5
+    },
+    {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "verdict_event_id": "1971",
+      "local_fight_count": 6,
+      "verdict_fight_count": 4
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -241,13 +265,40 @@
       ]
     },
     {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "verdict_event_id": "1971",
+      "order": 5,
+      "fighters": [
+        "Maycee Barber",
+        "Carli Judice"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "verdict_event_id": "1971",
+      "order": 6,
+      "fighters": [
+        "Quentin Pasley",
+        "Junior Tafa"
+      ]
+    },
+    {
       "type": "section_count_mismatch",
       "event_id": "ufc-335-2026-12-12-fight-card",
       "verdict_event_id": "1971",
-      "local_main_count": 4,
+      "local_main_count": 6,
       "verdict_main_count": 3,
       "local_prelim_count": 0,
       "verdict_prelim_count": 1
+    },
+    {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "verdict_event_id": "1969",
+      "local_fight_count": 11,
+      "verdict_fight_count": 10
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -260,13 +311,50 @@
       ]
     },
     {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "verdict_event_id": "1969",
+      "order": 8,
+      "fighters": [
+        "Jean-Paul Lebosnoyani",
+        "Farman Hasanov"
+      ]
+    },
+    {
       "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
       "verdict_event_id": "1969",
       "local_main_count": 11,
       "verdict_main_count": 3,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 8
+      "verdict_prelim_count": 7
+    },
+    {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "local_fight_count": 13,
+      "verdict_fight_count": 11
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 10,
+      "fighters": [
+        "Davey Grant",
+        "Elijah Smith"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 8,
+      "fighters": [
+        "Seokhyeon Ko",
+        "Wellington Turman"
+      ]
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -285,7 +373,7 @@
       "local_main_count": 13,
       "verdict_main_count": 5,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 8
+      "verdict_prelim_count": 6
     },
     {
       "type": "section_count_mismatch",
