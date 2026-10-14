@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-10-14T05:20:48.703Z",
+  "generatedAt": "2026-10-14T20:19:35.986Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
@@ -34,7 +34,7 @@
     "maxSnapshotAgeDays": 7
   },
   "bookingStateCoverage": {
-    "ledgerEntries": 146,
+    "ledgerEntries": 155,
     "ledgerEntriesWithoutUsableFirstSeen": 0,
     "ledgerFirstSeen": "2026-09-10T20:51:09.512Z"
   },
