@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-14T17:30:43.451Z"
+      "checkedAt": "2026-10-14T20:55:05.743Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-14T17:31:11.037Z",
+      "checkedAt": "2026-10-14T20:55:37.137Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -173029,7 +173029,13 @@
         "mirrorThrough": "2026-10-10",
         "officialThrough": "2026-10-10"
       },
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Quentin Pasley",
+        "opponentId": "quentin-pasley"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -264286,7 +264292,13 @@
         "mirrorThrough": "2026-10-10",
         "officialThrough": "2026-10-10"
       },
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Junior Tafa",
+        "opponentId": "junior-tafa"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -316622,7 +316634,7 @@
     {
       "id": "timothy-cuamba",
       "name": "Timothy Cuamba",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/timothy-cuamba",
       "aliases": [
         "timothy-cuamba"
@@ -316860,15 +316872,11 @@
         "mirrorThrough": "2026-10-10",
         "officialThrough": "2026-10-10"
       },
-      "booking": {
-        "event": "UFC Fight Night",
-        "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
-      },
+      "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-10-14T17:30:43.451Z"
+        "checkedAt": "2026-10-14T20:55:05.743Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/timothy-cuamba",
@@ -355086,7 +355094,7 @@
   ],
   "coverage": {
     "profileFailures": 29,
-    "activeFighters": 1006,
+    "activeFighters": 1005,
     "participantHistoriesRequested": 280,
     "verifiedParticipantHistories": 280,
     "ufcStatsNameMisses": 0,
