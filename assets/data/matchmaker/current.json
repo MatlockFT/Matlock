@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-14T12:25:59.363Z"
+      "checkedAt": "2026-10-14T17:30:43.451Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-14T12:26:22.780Z",
+      "checkedAt": "2026-10-14T17:31:11.037Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -1053,7 +1053,11 @@
         "mirrorThrough": "2026-10-10",
         "officialThrough": "2026-10-10"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 333",
+        "date": "2026-10-24",
+        "source": "https://www.ufc.com/event/ufc-333"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -47948,7 +47952,11 @@
         "mirrorThrough": "2026-10-10",
         "officialThrough": "2026-10-10"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -67185,7 +67193,11 @@
         "mirrorThrough": "2026-10-10",
         "officialThrough": "2026-10-10"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 333",
+        "date": "2026-10-24",
+        "source": "https://www.ufc.com/event/ufc-333"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -130923,7 +130935,11 @@
         "mirrorThrough": "2026-10-10",
         "officialThrough": "2026-10-10"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 333",
+        "date": "2026-10-24",
+        "source": "https://www.ufc.com/event/ufc-333"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -224648,7 +224664,11 @@
         "mirrorThrough": "2026-10-10",
         "officialThrough": "2026-10-10"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
