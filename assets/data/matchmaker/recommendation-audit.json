@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-14T20:19:35.986Z",
+  "generatedAt": "2026-10-14T23:25:30.219Z",
   "engineVersion": 2,
   "subjects": 282,
   "publishedRecommendations": 759,
@@ -11,28 +11,28 @@
   },
   "caseCounts": {
     "rebound-pairing": 316,
-    "rising-vs-rising": 229,
-    "step-up-vs-rebound": 86,
+    "rising-vs-rising": 230,
+    "step-up-vs-rebound": 87,
     "ranking-opportunity": 41,
-    "rankings-progression": 39,
+    "rankings-progression": 37,
     "divisional-sorting": 28,
     "prospect-test": 9,
     "title-case": 8,
     "title-eliminator": 3
   },
   "confidenceCounts": {
-    "high": 691,
-    "medium": 37,
+    "high": 692,
+    "medium": 36,
     "low": 31
   },
   "averageRecentOpponentLinkCoverage": 0.903,
-  "sameCardRecommendations": 47,
-  "sameCardRecommendationRatio": 0.0619,
-  "asymmetricTopThreeRecommendations": 259,
-  "asymmetricTopThreeRatio": 0.3412,
+  "sameCardRecommendations": 48,
+  "sameCardRecommendationRatio": 0.0632,
+  "asymmetricTopThreeRecommendations": 258,
+  "asymmetricTopThreeRatio": 0.3399,
   "publicPublishedRecommendations": 729,
-  "publicAsymmetricTopThreeRecommendations": 202,
-  "publicAsymmetricTopThreeRatio": 0.2771,
+  "publicAsymmetricTopThreeRecommendations": 203,
+  "publicAsymmetricTopThreeRatio": 0.2785,
   "engineGenericDivisionalSortingRecommendations": 28,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -897,9 +897,9 @@
           "case": "divisional-sorting"
         },
         {
-          "opponent": "Farid Basharat",
-          "score": 86,
-          "case": "rankings-progression"
+          "opponent": "Brady Hiestand",
+          "score": 85,
+          "case": "rising-vs-rising"
         }
       ]
     }
