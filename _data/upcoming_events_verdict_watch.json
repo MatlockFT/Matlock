@@ -5,23 +5,6 @@
   "mode": "read-only-watchdog",
   "coverage": [
     {
-      "event_id": "dwcs-season-10-week-10-2026-10-13",
-      "promotion": "dwcs",
-      "date": "2026-10-13",
-      "title": "Season 10 · Week 10",
-      "status": "matched",
-      "verdict_event_id": "1935",
-      "verdict_url": "https://verdictmma.com/event/1935",
-      "verdict_date": "2026-10-13",
-      "local_fight_count": 5,
-      "verdict_fight_count": null,
-      "local_main_count": 5,
-      "verdict_main_count": null,
-      "local_prelim_count": 0,
-      "verdict_prelim_count": null,
-      "confirmed_local_bouts": 3
-    },
-    {
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "promotion": "ufc",
       "date": "2026-10-17",
@@ -159,26 +142,6 @@
     }
   ],
   "discrepancies": [
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "dwcs-season-10-week-10-2026-10-13",
-      "verdict_event_id": "1935",
-      "order": 3,
-      "fighters": [
-        "William Rentz",
-        "Luis Francischinelli"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "dwcs-season-10-week-10-2026-10-13",
-      "verdict_event_id": "1935",
-      "order": 5,
-      "fighters": [
-        "Jason Asher",
-        "Gregory Foster"
-      ]
-    },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
