@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-10-14T20:19:35.986Z",
-  "builtAt": "2026-10-14T20:20:34.701Z",
+  "builtAt": "2026-10-14T22:22:22.874Z",
   "mirrorThrough": "2026-10-10",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -21,7 +21,7 @@
     "withCareer": 741,
     "sherdogCareer": {
       "mode": "live-on-selection",
-      "targets": 7,
+      "targets": 8,
       "resolved": 0,
       "missed": 0,
       "appliedFromCache": 0,
@@ -40930,7 +40930,13 @@
       "recordOutsideUfc": "4-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/TAFA_JUNIOR_L_05-02.png?itok=dLi9Oyuv",
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Quentin Pasley",
+        "opponentId": "quentin-pasley"
+      },
       "checkedAt": "2026-10-14T20:19:51.976Z",
       "ufcStatsId": "c15fa95b9a12fde4",
       "sourceUrl": "https://ufcstats.com/fighter-details/c15fa95b9a12fde4",
@@ -63701,7 +63707,13 @@
       "recordOutsideUfc": "1-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/PASLEY_QUENTEN_L_09-08.png?itok=IrJsCNSN",
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Junior Tafa",
+        "opponentId": "junior-tafa"
+      },
       "checkedAt": "2026-10-14T20:19:59.868Z",
       "ufcStatsId": "15b1f83a90302adf",
       "sourceUrl": "https://ufcstats.com/fighter-details/15b1f83a90302adf",
@@ -76663,11 +76675,7 @@
       "recordOutsideUfc": "8-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/CUAMBA_TIMOTHY_L_05-16.png?itok=QVPT-XKP",
-      "booking": {
-        "event": "UFC Fight Night",
-        "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
-      },
+      "booking": null,
       "checkedAt": "2026-10-14T20:20:05.640Z",
       "ufcStatsId": "0e46690e55a8df75",
       "sourceUrl": "https://ufcstats.com/fighter-details/0e46690e55a8df75",
