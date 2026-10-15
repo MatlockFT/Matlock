@@ -48,6 +48,22 @@ async function existingReleaseAsset(token, release, assetName) {
   return Array.isArray(assets) ? assets.find(asset => asset.name === assetName && asset.browser_download_url) || null : null;
 }
 
+async function readChunkWithRetry(store, key) {
+  const delays = [500, 1000, 2000, 4000, 8000, 12000];
+  for (let attempt = 0; attempt <= delays.length; attempt += 1) {
+    try {
+      const data = await store.get(key, { type: 'arrayBuffer' });
+      if (data) return data;
+    } catch (error) {
+      if (attempt === delays.length) throw error;
+    }
+    if (attempt < delays.length) {
+      await new Promise(resolve => setTimeout(resolve, delays[attempt]));
+    }
+  }
+  throw new Error('A staged media chunk is not visible in Workers KV yet. Please retry publishing.');
+}
+
 function chunkStream(store, scope, uploadId, chunkCount) {
   let index = 0;
   return new ReadableStream({
@@ -57,8 +73,7 @@ function chunkStream(store, scope, uploadId, chunkCount) {
         return;
       }
       try {
-        const data = await store.get(chunkKey(scope, uploadId, index), { type: 'arrayBuffer', consistency: 'strong' });
-        if (!data) throw new Error(`Missing staged media chunk ${index + 1} of ${chunkCount}.`);
+        const data = await readChunkWithRetry(store, chunkKey(scope, uploadId, index));
         index += 1;
         controller.enqueue(new Uint8Array(data));
       } catch (error) {
@@ -69,22 +84,38 @@ function chunkStream(store, scope, uploadId, chunkCount) {
 }
 
 async function verifyChunks(store, scope, uploadId, chunkCount, fileSize) {
-  const listed = await store.list({
-    prefix: `chunks/${scope}/${uploadId}/`,
-    limit: 1000
-  });
-  const byKey = new Map((listed.blobs || []).map(entry => [entry.key, entry]));
-  let stagedBytes = 0;
+  // Workers KV is eventually consistent across locations. Retry list visibility instead
+  // of deleting a valid upload immediately if the queue consumer runs in another colo.
+  const delays = [1000, 2000, 4000, 8000, 12000, 12000, 12000];
+  for (let attempt = 0; attempt <= delays.length; attempt += 1) {
+    const listed = await store.list({
+      prefix: `chunks/${scope}/${uploadId}/`,
+      limit: 1000
+    });
+    const byKey = new Map((listed.blobs || []).map(entry => [entry.key, entry]));
+    let stagedBytes = 0;
+    let missingChunk = 0;
 
-  for (let index = 0; index < chunkCount; index += 1) {
-    const entry = byKey.get(chunkKey(scope, uploadId, index));
-    const chunkSize = Number(entry?.metadata?.chunkSize);
-    if (!entry || !Number.isFinite(chunkSize) || chunkSize < 1) {
-      throw new Error(`Missing staged media chunk ${index + 1} of ${chunkCount}.`);
+    for (let index = 0; index < chunkCount; index += 1) {
+      const entry = byKey.get(chunkKey(scope, uploadId, index));
+      const chunkSize = Number(entry?.metadata?.chunkSize);
+      if (!entry || !Number.isFinite(chunkSize) || chunkSize < 1) {
+        missingChunk = index + 1;
+        break;
+      }
+      stagedBytes += chunkSize;
     }
-    stagedBytes += chunkSize;
+
+    if (!missingChunk && stagedBytes === fileSize) return;
+    if (!missingChunk && stagedBytes !== fileSize) {
+      if (attempt === delays.length) throw new Error('Staged video size did not match the original upload.');
+    }
+    if (attempt < delays.length) {
+      await new Promise(resolve => setTimeout(resolve, delays[attempt]));
+    } else {
+      throw new Error(`Staged media chunk ${missingChunk || chunkCount} of ${chunkCount} is not visible in Workers KV yet. Please retry publishing.`);
+    }
   }
-  if (stagedBytes !== fileSize) throw new Error('Staged video size did not match the original upload.');
 }
 
 async function uploadAsset(token, release, store, scope, uploadId, meta) {
