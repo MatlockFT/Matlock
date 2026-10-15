@@ -1,0 +1,10 @@
+# Temporary migration scaffold. This deploys only to workers.dev; it does not
+# change mmamatlock.com DNS or replace the existing Netlify backend.
+name = "matlock-writer-auth"
+main = "src/index.js"
+compatibility_date = "2026-10-15"
+workers_dev = true
+
+[[kv_namespaces]]
+binding = "WRITER_SESSIONS"
+id = "bd5bdcf98ede4b81b786843b75bda90b"
