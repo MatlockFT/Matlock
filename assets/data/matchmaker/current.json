@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-15T20:29:28.839Z"
+      "checkedAt": "2026-10-15T23:12:44.138Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-15T20:29:59.214Z",
+      "checkedAt": "2026-10-15T23:13:11.689Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -48062,13 +48062,7 @@
         "mirrorThrough": "2026-10-10",
         "officialThrough": "2026-10-10"
       },
-      "booking": {
-        "event": "Oliveira vs Lopes",
-        "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335",
-        "opponent": "Maycee Barber",
-        "opponentId": "maycee-barber"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -224412,13 +224406,7 @@
         "mirrorThrough": "2026-10-10",
         "officialThrough": "2026-10-10"
       },
-      "booking": {
-        "event": "Oliveira vs Lopes",
-        "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335",
-        "opponent": "Carli Judice",
-        "opponentId": "carli-judice"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
