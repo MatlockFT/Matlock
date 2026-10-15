@@ -89,7 +89,7 @@ export default async function handler(request) {
 
     return page({
       title: 'GitHub App created',
-      body: `<p>The Writer app credentials are now stored privately in Cloudflare R2. One GitHub step remains: install the app on the repository it is allowed to edit.</p><p class="note">On GitHub choose <strong>Only select repositories</strong>, then select <strong>Matlock</strong>. Do not grant it to every repository.</p><a class="button" href="${escapeHtml(installUrl)}">Install on Matlock</a><a class="button secondary" href="${escapeHtml(settingsUrl)}">View GitHub App</a><p>After installation GitHub will send you back to the MMA Matlock Writer. Then <strong>Sign in with GitHub</strong> will work without a personal access token.</p>`
+      body: `<p>The Writer app credentials are now stored privately in Cloudflare Workers KV. One GitHub step remains: install the app on the repository it is allowed to edit.</p><p class="note">On GitHub choose <strong>Only select repositories</strong>, then select <strong>Matlock</strong>. Do not grant it to every repository.</p><a class="button" href="${escapeHtml(installUrl)}">Install on Matlock</a><a class="button secondary" href="${escapeHtml(settingsUrl)}">View GitHub App</a><p>After installation GitHub will send you back to the MMA Matlock Writer. Then <strong>Sign in with GitHub</strong> will work without a personal access token.</p>`
     });
   } catch (error) {
     return page({
