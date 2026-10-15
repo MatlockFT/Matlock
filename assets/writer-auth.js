@@ -2,7 +2,7 @@
   const app = document.querySelector('[data-writer-app]');
   if (!app) return;
 
-  const authBase = String(app.dataset.authBase || 'https://mmamatlock-writer-auth.netlify.app').replace(/\/$/, '');
+  const authBase = String(app.dataset.authBase || 'https://mmamatlock-writer-auth.fighttalkmma.workers.dev').replace(/\/$/, '');
   const originalConnectButton = app.querySelector('[data-github-connect]');
   const connectDialog = app.querySelector('[data-connect-dialog]');
   const oauthButton = app.querySelector('[data-github-oauth]');
