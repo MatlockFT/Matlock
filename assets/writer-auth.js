@@ -2,7 +2,7 @@
   const app = document.querySelector('[data-writer-app]');
   if (!app) return;
 
-  const authBase = String(app.dataset.authBase || '').replace(/\/$/, '');
+  const authBase = String(app.dataset.authBase || 'https://mmamatlock-writer-auth.netlify.app').replace(/\/$/, '');
   const originalConnectButton = app.querySelector('[data-github-connect]');
   const connectDialog = app.querySelector('[data-connect-dialog]');
   const oauthButton = app.querySelector('[data-github-oauth]');
@@ -142,15 +142,24 @@
     return false;
   }
 
-  function beginGithubSignIn() {
+  async function beginGithubSignIn() {
     if (githubStatus?.textContent?.startsWith('Connected to ')) {
       if (!connectDialog.open) connectDialog.showModal();
       setStatus(`Signed in as ${localRead(SESSION_LOGIN_KEY) || 'GitHub user'}.`, 'success');
       return;
     }
-    if (!authBase || !bridgeReady) {
-      openDialog('GitHub sign-in is not ready yet. The advanced token fallback remains available.');
-      return;
+
+    // Retry on click. Do not permanently strand the button if the first
+    // background health check was delayed, cached, or interrupted.
+    if (!bridgeReady) {
+      connectButton.disabled = true;
+      setStatus('Checking GitHub sign-in service…', 'working');
+      const ready = await checkBridge();
+      connectButton.disabled = false;
+      if (!ready) {
+        openDialog();
+        return;
+      }
     }
 
     const url = `${authBase}/auth/github/start?origin=${encodeURIComponent(location.origin)}`;
@@ -170,7 +179,7 @@
         popupWatch = 0;
         if (!tokenInput.value && !localRead(SESSION_ID_KEY)) {
           connectButton.disabled = false;
-          connectButton.textContent = 'Sign in with GitHub';
+          connectButton.textContent = 'GitHub';
           setStatus('Sign-in window closed.', '');
         }
       }
@@ -242,15 +251,28 @@
 
   async function checkBridge() {
     bridgeReady = false;
-    if (!authBase) return;
+    if (!authBase) {
+      if (!localRead(SESSION_ID_KEY) && !sessionRead(PAT_KEY)) {
+        setStatus('GitHub sign-in service URL is missing. Use the token fallback for now.', 'error');
+      }
+      return false;
+    }
     try {
       const response = await fetch(`${authBase}/auth/github/health`, { method: 'GET', mode: 'cors', cache: 'no-store', headers: { Accept: 'application/json' } });
       const data = await response.json().catch(() => ({}));
-      if (!response.ok || !data.ok || !data.configured) throw new Error('Auth bridge is not configured');
+      if (!response.ok || !data.ok || !data.configured) {
+        throw new Error(data.message || (response.status === 503
+          ? 'The GitHub App is not configured on the auth bridge.'
+          : `Auth bridge returned HTTP ${response.status}.`));
+      }
       bridgeReady = true;
       if (!localRead(SESSION_ID_KEY) && !sessionRead(PAT_KEY)) setStatus('GitHub sign-in is ready.', 'success');
-    } catch {
-      if (!localRead(SESSION_ID_KEY) && !sessionRead(PAT_KEY)) setStatus('GitHub sign-in bridge is unavailable. Advanced token fallback is still available.', '');
+      return true;
+    } catch (error) {
+      if (!localRead(SESSION_ID_KEY) && !sessionRead(PAT_KEY)) {
+        setStatus(`GitHub sign-in bridge is unavailable: ${error?.message || 'connection failed'}. Advanced token fallback is still available.`, 'error');
+      }
+      return false;
     }
   }
 
