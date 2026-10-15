@@ -108,7 +108,7 @@ for (const [path, label] of [
   if (path) await requirePath(path, label);
 }
 
-const expectedScriptGroups = ['writer', 'media', 'matchmaker', 'news', 'history', 'site-data', 'qa'];
+const expectedScriptGroups = ['writer', 'media', 'matchmaker', 'broadcast', 'weather', 'news', 'history', 'site-data', 'qa'];
 if (JSON.stringify(policy.code?.scriptGroups) !== JSON.stringify(expectedScriptGroups)) {
   errors.push('code.scriptGroups must define the Stage 5 script domains in canonical order.');
 }
