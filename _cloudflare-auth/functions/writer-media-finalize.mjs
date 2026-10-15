@@ -45,13 +45,7 @@ export default async function handler(request) {
 
   const scope = uploadScope(sessionId);
   const store = mediaStore();
-  await setStatus(store, scope, uploadId, {
-    state: 'queued',
-    chunkCount: meta.chunkCount,
-    fileSize: meta.fileSize,
-    fileType: meta.fileType,
-    assetName: meta.assetName
-  });
+
 
   const processUrl = `${new URL(request.url).origin}/api/writer/media-process`;
   const processResponse = await fetch(processUrl, {
