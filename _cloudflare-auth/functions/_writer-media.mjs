@@ -4,7 +4,7 @@ import { getWriterSession } from './_writer-session.mjs';
 
 export const MEDIA_STORE_NAME = 'matlock-writer-media-staging';
 export const MAX_CHUNK_BYTES = Math.floor(3.75 * 1024 * 1024);
-export const MAX_VIDEO_BYTES = 2 * 1024 * 1024 * 1024;
+export const MAX_VIDEO_BYTES = 512 * 1024 * 1024;
 export const MAX_VIDEO_CHUNKS = 600;
 export const ACTIVE_UPLOAD_TTL_MS = 24 * 60 * 60 * 1000;
 export const COMPLETE_STATUS_TTL_MS = 7 * 24 * 60 * 60 * 1000;
@@ -69,7 +69,7 @@ function validateMetadata({ assetName, fileSize, fileType, chunkCount = null }, 
 
   if (!safeName || !acceptedTypes.has(ext)) throw new Error(invalidTypeMessage);
   if (!Number.isFinite(size) || size < 1 || size >= MAX_VIDEO_BYTES) {
-    throw new Error('Media file size is invalid or exceeds GitHub Release limits.');
+    throw new Error('Media file size is invalid or exceeds the 512 MiB free-storage upload limit.');
   }
   if (!acceptedTypes.get(ext).has(type)) throw new Error('Media MIME type does not match the file extension.');
 

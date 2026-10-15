@@ -25,8 +25,7 @@ export default async function handler() {
   // Safety net for uploads abandoned before a status record could be written.
   const { blobs: chunks } = await store.list({ prefix: 'chunks/' });
   for (const entry of chunks) {
-    const metadata = await store.getMetadata(entry.key, { consistency: 'strong' }).catch(() => null);
-    const createdAt = Date.parse(metadata?.metadata?.createdAt || '');
+    const createdAt = Date.parse(entry?.metadata?.createdAt || '');
     if (!Number.isFinite(createdAt) || now - createdAt > ACTIVE_UPLOAD_TTL_MS) {
       await store.delete(entry.key).catch(() => {});
     }
