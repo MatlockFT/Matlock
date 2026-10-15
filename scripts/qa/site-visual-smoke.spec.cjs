@@ -262,7 +262,7 @@ test.describe('Article fight navigation and spoiler picks', () => {
 
     await picks.locator('[data-article-picks-toggle]').click();
     await expect(picks.locator('[data-article-picks-panel]')).toBeVisible();
-    await expect(picks.locator('[data-article-picks-list] li')).toHaveCount(11);
+    await expect(picks.locator('[data-article-picks-list] li')).toHaveCount(12);
     await expect(picks).toHaveClass(/has-post-fight-results/);
     await expect(picks.locator('.article-picks-score')).toContainText('8-3');
     await expect(picks.locator('.article-picks-result')).toHaveCount(11);
@@ -340,11 +340,10 @@ test.describe('UFC Vegas 121 stat-card consistency', () => {
       const order = await section.locator('.fight-compare-sleek .fc-shell > div').evaluateAll(nodes => (
         nodes.map(node => node.className).filter(Boolean)
       ));
-      expect(order.slice(0, 5)).toEqual([
+      expect(order.slice(0, 4)).toEqual([
         'fc-top',
         'fc-tale',
-        'fc-section-title fc-form-title',
-        'fc-form-wrap',
+        'fc-form-section',
         'fc-opponents'
       ]);
     }
@@ -690,19 +689,20 @@ test.describe('Homepage editorial shell', () => {
     const seasonalAccent = await page.evaluate(() => {
       const heading = document.querySelector('.v3-section-head h2');
       const trendingLabel = document.querySelector('.v3-trending > strong');
-      const wordmark = document.querySelector('.v3-wordmark');
-      const pumpkinStyle = wordmark ? getComputedStyle(wordmark, '::after') : null;
+      const pumpkin = document.querySelector('.desktop-brand-pumpkin');
+      const pumpkinImage = document.querySelector('.desktop-brand-pumpkin-icon');
+      const pumpkinStyle = pumpkin ? getComputedStyle(pumpkin) : null;
       return {
         headingColor: heading ? getComputedStyle(heading).color : null,
         trendingColor: trendingLabel ? getComputedStyle(trendingLabel).color : null,
-        pumpkinBackground: pumpkinStyle?.backgroundImage || null,
+        pumpkinSource: pumpkinImage?.getAttribute('src') || null,
         pumpkinBottom: pumpkinStyle?.bottom || null,
         pumpkinWidth: pumpkinStyle ? parseFloat(pumpkinStyle.width) : 0
       };
     });
     expect(seasonalAccent.headingColor).toBe('rgb(17, 17, 17)');
     expect(seasonalAccent.trendingColor).toBe('rgb(196, 95, 0)');
-    expect(seasonalAccent.pumpkinBackground).toContain('/assets/icons/pumpkin.svg');
+    expect(seasonalAccent.pumpkinSource).toContain('/assets/icons/pumpkin-seasonal.svg');
     expect(seasonalAccent.pumpkinBottom).not.toBe('auto');
     expect(seasonalAccent.pumpkinWidth).toBeGreaterThanOrEqual(16);
     expect(geometry.leadFont).toContain('Herkey');
