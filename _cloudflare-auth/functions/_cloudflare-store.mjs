@@ -36,6 +36,7 @@ function decodeValue(value, type = "text") {
   if (type === "blob") return new Blob([value]);
   if (type === "json") {
     if (typeof value === "string") return JSON.parse(value);
+    if (value && typeof value === "object" && !(value instanceof ArrayBuffer) && !ArrayBuffer.isView(value)) return value;
     return JSON.parse(new TextDecoder().decode(value));
   }
   return value;
