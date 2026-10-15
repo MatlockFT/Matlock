@@ -116,7 +116,7 @@ for (const imagePath of [...imagePaths].sort()) {
                 withoutEnlargement: true
             })
             .webp({
-                quality: 78,
+                quality: 70,
                 effort: 5
             })
             .toFile(outputPath);
