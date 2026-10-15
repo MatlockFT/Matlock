@@ -15,7 +15,7 @@ function storagePrefix(name) {
 }
 
 function storageKey(prefix, key) {
-  return prefix + String(key || '').replace(/^\\/+/, '');
+  return prefix + String(key || '').replace(/^\/+/, '');
 }
 
 function plainMetadata(value = {}) {
@@ -100,7 +100,7 @@ export function getStore(options = {}) {
   }
 
   async function list(listOptions = {}) {
-    const requestedPrefix = prefix + String(listOptions.prefix || '').replace(/^\\/+/, '');
+    const requestedPrefix = prefix + String(listOptions.prefix || '').replace(/^\/+/, '');
     const result = await bucket.list({
       prefix: requestedPrefix,
       ...(listOptions.cursor ? { cursor: listOptions.cursor } : {}),
