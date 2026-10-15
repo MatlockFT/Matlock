@@ -1,0 +1,47 @@
+name: Cloudflare Writer Worker quality
+
+on:
+  pull_request:
+    paths:
+      - "_cloudflare-auth/**"
+      - ".github/workflows/cloudflare-writer-check.yml"
+      - ".github/workflows/deploy-writer-cloudflare.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "_cloudflare-auth/**"
+      - ".github/workflows/cloudflare-writer-check.yml"
+      - ".github/workflows/deploy-writer-cloudflare.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloudflare-writer-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.12.0"
+
+      - name: Check Worker modules and R2 store adapter
+        run: |
+          node --check _cloudflare-auth/worker.mjs
+          node --check _cloudflare-auth/functions/_cloudflare-store.mjs
+          for file in _cloudflare-auth/functions/*.mjs; do
+            node --check "$file"
+          done
+          node --test _cloudflare-auth/test/*.test.mjs
+
+      - name: Validate Wrangler bundle without deploying
+        run: npx --yes wrangler@4 deploy --dry-run --config _cloudflare-auth/wrangler.toml

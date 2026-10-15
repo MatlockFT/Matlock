@@ -1,0 +1,31 @@
+name = "mmamatlock-writer-auth"
+main = "worker.mjs"
+compatibility_date = "2026-10-15"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+preview_urls = false
+send_metrics = false
+
+[vars]
+WRITER_ORIGINS = "https://mmamatlock.com,https://www.mmamatlock.com"
+GITHUB_REPOSITORY = "MatlockFT/Matlock"
+GITHUB_REPOSITORY_ID = "925864034"
+GITHUB_ALLOWED_LOGIN = "MatlockFT"
+
+[[r2_buckets]]
+binding = "WRITER_BUCKET"
+bucket_name = "mmamatlock-writer-store"
+
+[[queues.producers]]
+binding = "WRITER_MEDIA_QUEUE"
+queue = "mmamatlock-writer-media-process"
+
+[[queues.consumers]]
+queue = "mmamatlock-writer-media-process"
+max_batch_size = 1
+max_batch_timeout = 5
+max_retries = 3
+dead_letter_queue = "mmamatlock-writer-media-dlq"
+
+[triggers]
+crons = ["0 */6 * * *"]
