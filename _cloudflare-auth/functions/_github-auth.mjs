@@ -49,7 +49,7 @@ export async function getAppConfig() {
     const store = getStore({ name: STORE_NAME, consistency: 'strong' });
     const stored = await store.get(CONFIG_KEY, { type: 'json', consistency: 'strong' });
     if (!stored?.clientId || !stored?.clientSecret) return null;
-    return { ...stored, source: 'cloudflare-r2' };
+    return { ...stored, source: 'cloudflare-kv' };
   } catch {
     return null;
   }
