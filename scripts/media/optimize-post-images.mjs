@@ -10,6 +10,44 @@ const postOutputDirectory = join(root, 'assets', 'generated', 'posts');
 const siteOutputDirectory = join(root, 'assets', 'generated', 'site');
 const manifestPath = join(root, '_data', 'responsive_images.yml');
 const targetWidths = [480, 720, 768, 960, 1600];
+const maxResponsiveVariantBytes = 500 * 1024;
+const responsiveQualities = [70, 65, 60, 55, 50, 45, 40, 35];
+
+async function writeResponsiveVariant(sourcePath, outputPath, width) {
+    let buffer;
+    let quality;
+
+    for (const candidateQuality of responsiveQualities) {
+        buffer = await sharp(sourcePath)
+            .rotate()
+            .resize({
+                width,
+                withoutEnlargement: true
+            })
+            .webp({
+                quality: candidateQuality,
+                effort: 6
+            })
+            .toBuffer();
+        quality = candidateQuality;
+
+        if (buffer.length <= maxResponsiveVariantBytes) {
+            break;
+        }
+    }
+
+    if (!buffer || buffer.length > maxResponsiveVariantBytes) {
+        throw new Error(
+            `Responsive image exceeds 500 KB at ${width}px after quality fallback: ${outputPath} (${Math.ceil((buffer?.length ?? 0) / 1024)} KB).`
+        );
+    }
+
+    await writeFile(outputPath, buffer);
+
+    if (quality < responsiveQualities[0]) {
+        console.log(`Reduced ${width}px responsive image quality to ${quality} to stay under 500 KB.`);
+    }
+}
 
 function yamlString(value) {
     return JSON.stringify(value);
@@ -109,17 +147,7 @@ for (const imagePath of [...imagePaths].sort()) {
         const filename = `${plan.stem}-${width}.webp`;
         const outputPath = join(outputDirectory, filename);
 
-        await sharp(sourcePath)
-            .rotate()
-            .resize({
-                width,
-                withoutEnlargement: true
-            })
-            .webp({
-                quality: 70,
-                effort: 5
-            })
-            .toFile(outputPath);
+        await writeResponsiveVariant(sourcePath, outputPath, width);
 
         variants.push({
             width,
