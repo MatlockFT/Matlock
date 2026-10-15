@@ -104,6 +104,21 @@
   ],
   "events": [
     {
+      "id": "sherdog-afs-36-aries-fight-series-36-2026-10-16-knoxville",
+      "promotion": "AFS",
+      "promotion_key": "sherdog_discovery",
+      "title": "AFS 36: Aries Fight Series 36",
+      "date": "2026-10-16",
+      "venue": "Cotton Eyed Joe",
+      "location": "Knoxville, TN",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/AFS-36-Aries-Fight-Series-36-114892",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "sherdog-brandrisk-016-brand-risk-promotions-2026-10-16-miami",
       "promotion": "BrandRisk",
       "promotion_key": "sherdog_discovery",
@@ -682,7 +697,7 @@
           "Lacerda"
         ]
       },
-      "poster_url": "https://tuffnuff.com/wp-content/uploads/2026/10/TNU-158-Web-1920x1080-1.jpg",
+      "poster_url": "https://tuffnuff.com/wp-content/uploads/2026/10/TNU-158_ver2_GCB_1920x1080.jpg",
       "ticket_url": "https://www.axs.com/events/1619468/tuff-n-uff-158-tickets?skin=palmscasinoresort"
     },
     {
@@ -926,6 +941,23 @@
       "longitude": -122.5526
     },
     {
+      "id": "cffc-cffc-nextgen-5-2026-11-07",
+      "promotion": "CFFC",
+      "promotion_key": "cffc",
+      "title": "CFFC NEXTGEN 5",
+      "date": "2026-11-07",
+      "venue": "CFFC NEXTGEN 5",
+      "location": "Atlantic City, NJ",
+      "broadcast": "UFC Fight Pass",
+      "official_url": "https://cffc.tv/",
+      "regional": true,
+      "level": "professional",
+      "source_key": "cffc",
+      "source_label": "Cage Fury Fighting Championships",
+      "latitude": 39.3643,
+      "longitude": -74.4229
+    },
+    {
       "id": "sherdog-cn-combat-night-jacksonville-2026-11-07-jacksonville",
       "promotion": "CN",
       "promotion_key": "sherdog_discovery",
@@ -1096,6 +1128,66 @@
       "source_label": "Cage Fighting Championships"
     },
     {
+      "id": "sherdog-empire-promotions-immortals-collide-2026-11-14-las-cruces",
+      "promotion": "Empire Promotions",
+      "promotion_key": "sherdog_discovery",
+      "title": "Empire Promotions: Immortals Collide",
+      "date": "2026-11-14",
+      "venue": "Pan American Center",
+      "location": "Las Cruces, NM",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Empire-Promotions-Immortals-Collide-114881",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-hrmma-hardrock-mma-131-2026-11-14-bowling-green",
+      "promotion": "HRMMA",
+      "promotion_key": "sherdog_discovery",
+      "title": "HRMMA: Hardrock MMA 131",
+      "date": "2026-11-14",
+      "venue": "Holiday Inn Sloan Convention Center",
+      "location": "Bowling Green, KY",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/HRMMA-Hardrock-MMA-131-114624",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-legends-rise-2-southern-wisconsin-fight-night-2026-11-14-janesville",
+      "promotion": "Legends Rise",
+      "promotion_key": "sherdog_discovery",
+      "title": "Legends Rise 2: Southern Wisconsin Fight Night",
+      "date": "2026-11-14",
+      "venue": "Woodman's Sports & Convention Center",
+      "location": "Janesville, WI",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Legends-Rise-2-Southern-Wisconsin-Fight-Night-114544",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-nef-69-crossfire-2026-11-14-bangor",
+      "promotion": "NEF",
+      "promotion_key": "sherdog_discovery",
+      "title": "NEF 69: Crossfire",
+      "date": "2026-11-14",
+      "venue": "Cross Center",
+      "location": "Bangor, ME",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/NEF-69-Crossfire-114476",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "camomma-new-money-fight-club-2026-11-14",
       "promotion": "New Money Fight Club",
       "promotion_key": "camomma",
@@ -1113,6 +1205,21 @@
       "longitude": -122.0308
     },
     {
+      "id": "sherdog-northwest-fight-promotions-clinch-fight-club-17-2026-11-14-toppenish",
+      "promotion": "Northwest Fight Promotions",
+      "promotion_key": "sherdog_discovery",
+      "title": "Northwest Fight Promotions: Clinch Fight Club 17",
+      "date": "2026-11-14",
+      "venue": "Legends Casino",
+      "location": "Toppenish, WA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Northwest-Fight-Promotions-Clinch-Fight-Club-17-114478",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "nitro-synergy-fc-34-springfield-2026-11-14",
       "promotion": "SYNERGY FC",
       "promotion_key": "nitro",
@@ -1128,7 +1235,38 @@
       "source_label": "Nitro Tickets",
       "latitude": 37.209,
       "longitude": -93.2923,
+      "ticket_url": "https://www.nitrotickets.com/event/1328/synergy-fc-34-springfield",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1328/1790469437_Synergy.jpg"
+    },
+    {
+      "id": "sherdog-tfc-total-fight-challenge-2026-11-14-cicero",
+      "promotion": "TFC",
+      "promotion_key": "sherdog_discovery",
+      "title": "TFC: Total Fight Challenge",
+      "date": "2026-11-14",
+      "venue": "Cicero Stadium",
+      "location": "Cicero, IL",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/TFC-Total-Fight-Challenge-114625",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-tru-rev-mma-true-revelation-mma-66-2026-11-14-hedrick",
+      "promotion": "Tru Rev MMA",
+      "promotion_key": "sherdog_discovery",
+      "title": "Tru Rev MMA: True Revelation MMA 66",
+      "date": "2026-11-14",
+      "venue": "Carl Craft Center",
+      "location": "Hedrick, IA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Tru-Rev-MMA-True-Revelation-MMA-66-114477",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
     },
     {
       "id": "camomma-zhong-luo-cage-fighting-series-2026-11-14",
@@ -1290,6 +1428,21 @@
       "longitude": -118.309
     },
     {
+      "id": "cffc-cffc-162-2026-12-04",
+      "promotion": "CFFC",
+      "promotion_key": "cffc",
+      "title": "CFFC 162",
+      "date": "2026-12-04",
+      "venue": "CFFC 162",
+      "location": "Bristol, VA",
+      "broadcast": "UFC Fight Pass",
+      "official_url": "https://cffc.tv/",
+      "regional": true,
+      "level": "professional",
+      "source_key": "cffc",
+      "source_label": "Cage Fury Fighting Championships"
+    },
+    {
       "id": "nitro-wfc-197-dakota-magic-12-05-2026-12-05",
       "promotion": "World Fighting Championship",
       "promotion_key": "nitro",
@@ -1321,6 +1474,23 @@
       "source_label": "California Amateur Mixed Martial Arts Organization",
       "latitude": 36.0652,
       "longitude": -119.0168
+    },
+    {
+      "id": "fac_official-fac-37-2026-12-12",
+      "promotion": "FAC",
+      "promotion_key": "fac_official",
+      "title": "FAC 37",
+      "date": "2026-12-12",
+      "venue": "Cable Dahmer Arena",
+      "location": "Independence, MO",
+      "broadcast": "",
+      "official_url": "https://facmma.com/",
+      "regional": true,
+      "level": "professional",
+      "source_key": "fac_official",
+      "source_label": "Fighting Alliance Championship",
+      "latitude": 39.0911,
+      "longitude": -94.4155
     },
     {
       "id": "nitro-ignite-fights-115-12-12-2026-12-12",
