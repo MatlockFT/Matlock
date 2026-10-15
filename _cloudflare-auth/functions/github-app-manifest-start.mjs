@@ -67,7 +67,7 @@ ${alreadyConfigured ? `<p class="note">A GitHub App configuration already exists
 <input type="hidden" name="manifest" value="${manifestValue}">
 <button class="button" type="submit">Create GitHub App</button>
 </form>
-<p class="small">The generated client secret is returned directly to this Cloudflare Worker and stored in its private R2 bucket. It is never committed to GitHub or exposed in the Writer page.</p>
+<p class="small">The generated client secret is returned directly to this Cloudflare Worker and stored in its private Workers KV namespace. It is never committed to GitHub or exposed in the Writer page.</p>
 </main>
 </body>
 </html>`;
