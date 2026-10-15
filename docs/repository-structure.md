@@ -158,6 +158,8 @@ scripts/
   writer/
   media/
   matchmaker/
+  broadcast/
+  weather/
   news/
   history/
   site-data/
