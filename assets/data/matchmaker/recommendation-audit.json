@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-10-15T20:01:19.080Z",
+  "generatedAt": "2026-10-15T23:15:50.715Z",
   "engineVersion": 2,
   "subjects": 282,
-  "publishedRecommendations": 759,
+  "publishedRecommendations": 762,
   "recommendationSlots": {
-    "0": 26,
+    "0": 25,
     "1": 3,
     "2": 3,
-    "3": 250
+    "3": 251
   },
   "caseCounts": {
-    "rebound-pairing": 316,
-    "rising-vs-rising": 230,
-    "step-up-vs-rebound": 87,
-    "ranking-opportunity": 41,
-    "rankings-progression": 37,
-    "divisional-sorting": 28,
+    "rebound-pairing": 318,
+    "rising-vs-rising": 231,
+    "step-up-vs-rebound": 84,
+    "ranking-opportunity": 43,
+    "rankings-progression": 39,
+    "divisional-sorting": 27,
     "prospect-test": 9,
     "title-case": 8,
     "title-eliminator": 3
   },
   "confidenceCounts": {
-    "high": 692,
+    "high": 696,
     "medium": 36,
-    "low": 31
+    "low": 30
   },
   "averageRecentOpponentLinkCoverage": 0.903,
   "sameCardRecommendations": 48,
-  "sameCardRecommendationRatio": 0.0632,
-  "asymmetricTopThreeRecommendations": 259,
+  "sameCardRecommendationRatio": 0.063,
+  "asymmetricTopThreeRecommendations": 260,
   "asymmetricTopThreeRatio": 0.3412,
-  "publicPublishedRecommendations": 729,
-  "publicAsymmetricTopThreeRecommendations": 203,
-  "publicAsymmetricTopThreeRatio": 0.2785,
-  "engineGenericDivisionalSortingRecommendations": 28,
+  "publicPublishedRecommendations": 735,
+  "publicAsymmetricTopThreeRecommendations": 206,
+  "publicAsymmetricTopThreeRatio": 0.2803,
+  "engineGenericDivisionalSortingRecommendations": 27,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -41,8 +41,8 @@
     "title": "UFC Fight Night: Allen vs Duncan",
     "date": "2026-10-10",
     "subjects": 24,
-    "publicRecommendations": 58,
-    "noClearMatchupSubjects": 4
+    "publicRecommendations": 59,
+    "noClearMatchupSubjects": 3
   },
   "eventPublicSummary": [
     {
@@ -50,15 +50,15 @@
       "title": "UFC Fight Night: Allen vs Duncan",
       "date": "2026-10-10",
       "subjects": 24,
-      "publicRecommendations": 58,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 59,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-332",
       "title": "UFC 332: Silva vs Wang",
       "date": "2026-10-03",
       "subjects": 28,
-      "publicRecommendations": 77,
+      "publicRecommendations": 78,
       "noClearMatchupSubjects": 1
     },
     {
@@ -82,7 +82,7 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 63,
+      "publicRecommendations": 64,
       "noClearMatchupSubjects": 2
     },
     {
@@ -106,8 +106,8 @@
       "title": "UFC Fight Night: Hernandez vs Rodrigues",
       "date": "2026-08-22",
       "subjects": 26,
-      "publicRecommendations": 68,
-      "noClearMatchupSubjects": 3
+      "publicRecommendations": 71,
+      "noClearMatchupSubjects": 2
     },
     {
       "id": "ufc-330",
@@ -221,13 +221,6 @@
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Manon Fiorot",
-      "opponent": "Tracy Cortez",
-      "score": 59,
-      "rationale": "Manon Fiorot and Tracy Cortez occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Alexa Grasso",
       "opponent": "Wang Cong",
       "score": 49,
@@ -274,6 +267,13 @@
       "opponent": "Evan Elder",
       "score": 47,
       "rationale": "Salahdine Parnasse and Evan Elder occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Hooker vs Parnasse",
+      "fighter": "Salahdine Parnasse",
+      "opponent": "Gabe Green",
+      "score": 46,
+      "rationale": "Salahdine Parnasse and Gabe Green occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
@@ -806,48 +806,23 @@
     {
       "event": "UFC 332: Silva vs Wang",
       "fighter": "Wang Cong",
-      "opponent": "Rose Namajunas",
-      "pairScore": 73,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Manon Fiorot",
-          "score": 82,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Valentina Shevchenko",
-          "score": 76,
-          "case": "divisional-sorting"
-        },
-        {
-          "opponent": "Alexa Grasso",
-          "score": 74,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC 332: Silva vs Wang",
-      "fighter": "Wang Cong",
-      "opponent": "Regina Malpica Rivera",
+      "opponent": "Miranda Maverick",
       "pairScore": 77,
-      "case": "step-up-vs-rebound",
+      "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Miranda Maverick",
-          "score": 87,
+          "opponent": "Casey Oneill",
+          "score": 93,
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Veronica Hardy",
-          "score": 86,
-          "case": "rankings-progression"
+          "opponent": "Carli Judice",
+          "score": 88,
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Eduarda Moura",
+          "opponent": "Regina Malpica Rivera",
           "score": 87,
           "case": "step-up-vs-rebound"
         }
@@ -899,6 +874,31 @@
         {
           "opponent": "Brady Hiestand",
           "score": 85,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC 332: Silva vs Wang",
+      "fighter": "Deiveson Figueiredo",
+      "opponent": "Brady Hiestand",
+      "pairScore": 77,
+      "case": "ranking-opportunity",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Heili Alateng",
+          "score": 85,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Bryce Mitchell",
+          "score": 85,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Montel Jackson",
+          "score": 84,
           "case": "rising-vs-rising"
         }
       ]
