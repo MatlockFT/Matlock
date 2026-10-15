@@ -33,10 +33,13 @@ for (const [index, event] of (data.events || []).entries()) {
   if (!String(event.source_key || '').trim()) failures.push(`${label}: missing source_key.`);
 
   const number = eventNumber(event);
-  if (number && event.source_key && event.date) {
-    const duplicateKey = `${event.source_key}|${event.date}|#${number}`;
+  const promotion = normalize(event.promotion);
+  if (number && event.source_key && event.date && promotion) {
+    // Different promotions can legitimately hold same-numbered events on the same date.
+    // Scope this regression check to the promotion instead of treating the number as globally unique.
+    const duplicateKey = `${event.source_key}|${event.date}|${promotion}|#${number}`;
     if (numberedEventKeys.has(duplicateKey)) {
-      failures.push(`${label}: duplicate numbered event of ${numberedEventKeys.get(duplicateKey)} (${duplicateKey}).`);
+      failures.push(`${label}: duplicate numbered event of ${number} for ${event.promotion} (${duplicateKey}).`);
     } else {
       numberedEventKeys.set(duplicateKey, event.id || label);
     }
