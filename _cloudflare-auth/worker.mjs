@@ -26,7 +26,7 @@ import {
   validateMediaMetadata
 } from './functions/_writer-media.mjs';
 
-const R2_GLOBAL = '__MATLOCK_WRITER_R2_BUCKET';
+const KV_GLOBAL = '__MATLOCK_WRITER_KV';
 
 const routeHandlers = new Map([
   ['/setup/github-app', githubAppManifestStart],
@@ -48,9 +48,9 @@ const routeHandlers = new Map([
 ]);
 
 function activateStorage(env) {
-  if (!env?.WRITER_BUCKET) throw new Error('The WRITER_BUCKET R2 binding is missing.');
-  // R2 is the same account-level binding for every request to this Worker isolate.
-  globalThis[R2_GLOBAL] = env.WRITER_BUCKET;
+  if (!env?.WRITER_STORE) throw new Error('The WRITER_STORE KV binding is missing.');
+  // All logical stores are namespaced within the existing free-plan KV namespace.
+  globalThis[KV_GLOBAL] = env.WRITER_STORE;
 }
 
 function safeResponse(response) {
@@ -193,7 +193,7 @@ export default {
       const url = new URL(request.url);
       if (url.pathname === '/') return serviceIndex();
       if (url.pathname === '/__health') {
-        return Response.json({ ok: true, service: 'matlock-writer-auth', storage: 'r2', queue: Boolean(env.WRITER_MEDIA_QUEUE) }, {
+        return Response.json({ ok: true, service: 'matlock-writer-auth', storage: 'kv', queue: Boolean(env.WRITER_MEDIA_QUEUE) }, {
           headers: { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' }
         });
       }
