@@ -1,0 +1,29 @@
+name: Cloudflare Writer Migration Check
+
+on:
+  push:
+    branches:
+      - cloudflare-writer-migration
+    paths:
+      - "cloudflare-writer/**"
+      - ".github/workflows/cloudflare-writer-migration-check.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy migration scaffold
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: cloudflare-writer
+          command: deploy
