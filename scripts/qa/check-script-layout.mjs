@@ -6,6 +6,8 @@ const allowedDomains = new Set([
   'writer',
   'media',
   'matchmaker',
+  'broadcast',
+  'weather',
   'news',
   'history',
   'site-data',
