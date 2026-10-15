@@ -102,7 +102,7 @@ if (legacyManifest.version !== 1 || legacyManifest.capturedAtStage !== 9) {
 if (legacySet.size !== legacyPaths.length) errors.push('Legacy media manifest contains duplicate paths.');
 
 const currentLegacyUploads = tracked.filter(file =>
-  /^assets\\/uploads\\/[^/]+$/i.test(file) &&
+  /^assets\/uploads\/[^/]+$/i.test(file) &&
   !RUNTIME_UPLOADS.has(file)
 );
 for (const file of currentLegacyUploads) {
