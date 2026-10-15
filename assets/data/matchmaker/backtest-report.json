@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-10-14T23:25:30.219Z",
+  "generatedAt": "2026-10-15T05:07:59.172Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
@@ -9,8 +9,8 @@
   "sampledCases": 120,
   "historicalUniverseCoverage": {
     "currentDatasetFighters": 1018,
-    "historicalOnlyFighters": 2021,
-    "combinedCandidateUniverse": 3039,
+    "historicalOnlyFighters": 2022,
+    "combinedCandidateUniverse": 3040,
     "trackedFights": 8926,
     "fightersWithTrackedHistory": 2757,
     "unresolvedFightSides": 64,
@@ -19,16 +19,16 @@
   },
   "rankingSnapshotCoverage": {
     "archiveStart": "2026-09-10",
-    "archiveEnd": "2026-10-14",
-    "snapshotsAvailable": 27,
+    "archiveEnd": "2026-10-15",
+    "snapshotsAvailable": 28,
     "sampledCasesWithSnapshot": 0,
     "sampledCasesWithoutSnapshot": 120,
     "maxSnapshotAgeDays": 14
   },
   "temporalStateCoverage": {
     "archiveStart": "2026-09-15",
-    "archiveEnd": "2026-10-14",
-    "snapshotsAvailable": 20,
+    "archiveEnd": "2026-10-15",
+    "snapshotsAvailable": 21,
     "sampledCasesWithSnapshot": 0,
     "sampledCasesWithoutSnapshot": 120,
     "maxSnapshotAgeDays": 7
@@ -41,8 +41,8 @@
   "classifications": {
     "engine-ranking-miss-deep": 57,
     "future-newcomer-booking": 15,
-    "engine-top3-hit": 14,
-    "engine-ranking-miss-near": 10,
+    "engine-top3-hit": 13,
+    "engine-ranking-miss-near": 11,
     "future-division-change": 9,
     "future-opponent-division-change": 9,
     "hard-rule-disagreement": 5,
@@ -72,25 +72,25 @@
     "allScorablePairs": {
       "evaluated": 86,
       "top1": 5,
-      "top3": 14,
+      "top3": 13,
       "top8": 24,
-      "publicTop3": 11,
+      "publicTop3": 10,
       "top1Rate": 0.0581,
-      "top3Rate": 0.1628,
+      "top3Rate": 0.1512,
       "top8Rate": 0.2791,
-      "publicTop3Rate": 0.1279
+      "publicTop3Rate": 0.1163
     },
     "cleanEvaluationSet": {
       "cases": 81,
       "evaluated": 81,
       "top1": 5,
-      "top3": 14,
+      "top3": 13,
       "top8": 24,
-      "publicTop3": 11,
+      "publicTop3": 10,
       "top1Rate": 0.0617,
-      "top3Rate": 0.1728,
+      "top3Rate": 0.1605,
       "top8Rate": 0.2963,
-      "publicTop3Rate": 0.1358
+      "publicTop3Rate": 0.1235
     },
     "fullStateCleanSet": {
       "cases": 0,
@@ -208,13 +208,13 @@
     "Bantamweight": {
       "evaluated": 7,
       "top1": 0,
-      "top3": 2,
+      "top3": 1,
       "top8": 2,
-      "publicTop3": 1,
+      "publicTop3": 0,
       "top1Rate": 0,
-      "top3Rate": 0.2857,
+      "top3Rate": 0.1429,
       "top8Rate": 0.2857,
-      "publicTop3Rate": 0.1429
+      "publicTop3Rate": 0
     },
     "Heavyweight": {
       "evaluated": 9,
@@ -816,7 +816,7 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 28,
+      "engineRank": 27,
       "publicRank": null,
       "engineTopThree": [
         {
@@ -4398,7 +4398,7 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 29,
+      "engineRank": 28,
       "publicRank": null,
       "engineTopThree": [
         {
@@ -4414,7 +4414,7 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Chris Gutierrez",
+          "opponent": "Song Yadong",
           "score": 91,
           "rankingScore": 91,
           "case": "rebound-pairing"
@@ -4885,11 +4885,11 @@
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-top3-hit",
+      "classification": "engine-ranking-miss-near",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 3,
-      "publicRank": 3,
+      "engineRank": 4,
+      "publicRank": null,
       "engineTopThree": [
         {
           "opponent": "Charles Jourdain",
@@ -4904,9 +4904,9 @@
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Raul Rosas Jr.",
-          "score": 85,
-          "rankingScore": 85,
+          "opponent": "Farid Basharat",
+          "score": 86,
+          "rankingScore": 86,
           "case": "rising-vs-rising"
         }
       ],
@@ -4924,9 +4924,9 @@
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Raul Rosas Jr.",
-          "score": 85,
-          "rankingScore": 85,
+          "opponent": "Farid Basharat",
+          "score": 86,
+          "rankingScore": 86,
           "case": "rising-vs-rising"
         }
       ]
@@ -5462,7 +5462,7 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 48,
+      "engineRank": 47,
       "publicRank": null,
       "engineTopThree": [
         {
