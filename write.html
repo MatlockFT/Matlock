@@ -363,16 +363,16 @@ page_scripts:
       <header><div><p class="eyebrow">Direct publishing</p><h2>GitHub publishing</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
       <div class="writer-dialog-body">
         <div class="writer-auth-primary">
-          <p>Sign in through the MMA Matlock GitHub App. GitHub credentials stay on the Netlify auth bridge; this browser keeps only a revocable Writer session ID.</p>
+          <p>Sign in with GitHub uses the Netlify auth service, which may be offline while its monthly credits are exhausted. The fine-grained token option below connects directly to GitHub and does not depend on Netlify.</p>
           <div class="writer-inline-actions">
             <button class="writer-button writer-button-primary" type="button" data-github-oauth>Sign in with GitHub</button>
             <button class="writer-button writer-button-subtle" type="button" data-github-signout hidden>Sign out</button>
           </div>
           <p class="writer-dialog-note" data-oauth-status>Checking GitHub sign-in…</p>
         </div>
-        <details class="writer-token-fallback">
+        <details class="writer-token-fallback" open>
           <summary>Advanced fallback: fine-grained token</summary>
-          <p>Use only a fine-grained token restricted to <strong>MatlockFT/Matlock</strong> with Contents: Read and write. Manual tokens last only for the current browser session.</p>
+          <p>Create a fine-grained token restricted to <strong>MatlockFT/Matlock</strong> with Contents: Read and write, then connect it here. The token stays in this browser tab's session storage. This path supports normal article editing and publishing without Netlify; Live Writer, Broadcast Control, and staged video uploads still require the auth service.</p>
           <label class="writer-field writer-field-wide"><span>Fine-grained token</span><input type="password" data-github-token autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
           <button class="writer-button writer-button-subtle" type="button" data-github-authorize>Connect with token</button>
         </details>
