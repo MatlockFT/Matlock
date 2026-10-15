@@ -86,15 +86,21 @@ export default async function handler(request) {
       fileType: meta.fileType,
       assetName: meta.assetName,
       createdAt: new Date().toISOString()
-    }
+    },
+    // Abandoned chunks expire automatically; explicit cleanup removes them sooner.
+    expirationTtl: 24 * 60 * 60
   });
-  await setStatus(store, scope, uploadId, {
-    state: 'uploading',
-    chunkCount: meta.chunkCount,
-    fileSize: meta.fileSize,
-    fileType: meta.fileType,
-    assetName: meta.assetName
-  });
+  // Only write the shared status once during chunking. KV limits writes to the same key
+  // to one per second, and the upload UI gets its final queued status at finalize.
+  if (chunkIndex === 0) {
+    await setStatus(store, scope, uploadId, {
+      state: 'uploading',
+      chunkCount: meta.chunkCount,
+      fileSize: meta.fileSize,
+      fileType: meta.fileType,
+      assetName: meta.assetName
+    });
+  }
 
   return Response.json({ ok: true, chunkIndex, chunkSize: bytes.byteLength }, { status: 200, headers });
 }
