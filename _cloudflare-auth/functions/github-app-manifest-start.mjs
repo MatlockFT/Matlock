@@ -20,7 +20,7 @@ export default async function handler(request) {
   const webhookUrl = `${origin}/auth/github/webhook`;
 
   const manifest = {
-    name: 'MMA Matlock Writer',
+    name: 'MMA Matlock Writer Cloudflare',
     url: 'https://mmamatlock.com/write/',
     description: 'Private publishing access for the MMA Matlock Writer.',
     redirect_url: manifestCallback,
