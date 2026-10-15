@@ -389,6 +389,22 @@ test.describe('Article native sharing on mobile', () => {
     const pageErrors = [];
     page.on('pageerror', error => pageErrors.push(error.message));
 
+    // This test covers sharing and same-origin video playback, not live odds.
+    // Stub the unrelated protected API so browser-specific access checks cannot
+    // turn an otherwise healthy share/video test into a failure.
+    await page.route('https://mmamatlock-writer-auth.netlify.app/api/fight-odds**', route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        headers: {
+          'access-control-allow-origin': 'https://mmamatlock.com',
+          'access-control-allow-methods': 'GET, OPTIONS',
+          'access-control-allow-headers': 'Accept'
+        },
+        body: JSON.stringify({ ok: true, available: false, reason: 'line-not-posted', cardOdds: [] })
+      })
+    );
+
     await page.goto(targetUrl(articlePath), { waitUntil: 'domcontentloaded', timeout: 45000 });
     await expect(page.locator('[data-native-share-top]')).toBeVisible();
 
