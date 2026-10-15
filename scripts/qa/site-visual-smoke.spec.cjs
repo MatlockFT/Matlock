@@ -225,6 +225,21 @@ test.describe('Article social sharing', () => {
     const pageErrors = [];
     page.on('pageerror', error => pageErrors.push(error.message));
 
+    // Live odds are outside this share/video smoke test; keep the external
+    // protected endpoint from introducing browser-specific access-control errors.
+    await page.route('https://mmamatlock-writer-auth.netlify.app/api/fight-odds**', route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        headers: {
+          'access-control-allow-origin': 'https://mmamatlock.com',
+          'access-control-allow-methods': 'GET, OPTIONS',
+          'access-control-allow-headers': 'Accept'
+        },
+        body: JSON.stringify({ ok: true, available: false, reason: 'line-not-posted', cardOdds: [] })
+      })
+    );
+
     await page.goto(targetUrl(articlePath), { waitUntil: 'domcontentloaded', timeout: 45000 });
     await expect(page.locator('[data-native-share-top]')).toBeVisible();
     await expect(page.locator('[data-post-share]')).toBeVisible();
