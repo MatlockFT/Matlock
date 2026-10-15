@@ -49,9 +49,9 @@
       "verdict_date": "2026-10-31",
       "local_fight_count": 11,
       "verdict_fight_count": 11,
-      "local_main_count": 11,
+      "local_main_count": 4,
       "verdict_main_count": 4,
-      "local_prelim_count": 0,
+      "local_prelim_count": 7,
       "verdict_prelim_count": 7,
       "confirmed_local_bouts": 10
     },
@@ -241,26 +241,17 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
       "verdict_event_id": "1969",
-      "order": 6,
+      "order": 9,
       "fighters": [
         "Nick Klein",
         "Joseph Kropschot"
       ]
     },
     {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "verdict_event_id": "1969",
-      "local_main_count": 11,
-      "verdict_main_count": 4,
-      "local_prelim_count": 0,
-      "verdict_prelim_count": 7
-    },
-    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
       "verdict_event_id": "1957",
-      "order": 10,
+      "order": 13,
       "fighters": [
         "Jonny Parsons",
         "José Souza"

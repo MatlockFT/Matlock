@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-15T10:06:18.555Z",
+  "generated_at": "2026-10-15T14:59:08.671Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-10-17-fight-card",
@@ -107,7 +107,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/BARRIAULT_MARC-ANDRE_L_05-10.png?itok=kJq5jhiN",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+172"
+                  "moneyline": "+162"
                 },
                 {
                   "name": "Kyle Daukaus",
@@ -115,7 +115,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/DAUKAUS_KYLE_R_06-14.png?itok=u2hBMZhV",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-225"
+                  "moneyline": "-210"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -752,29 +752,6 @@
             {
               "order": 3,
               "label": "",
-              "weight_class": "Women's Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Lucia Szabova",
-                  "initials": "LS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/2022-02/womens-silhouette-RED-corner.png?itok=SXsY1AgG",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Tainara Lisboa",
-                  "initials": "TL",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/LISBOA_TAINARA_L_10-14.png?itok=ibBAzJ5i",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 4,
-              "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
                 {
@@ -796,25 +773,55 @@
               ]
             },
             {
-              "order": 5,
+              "order": 4,
               "label": "",
-              "weight_class": "Women's Strawweight Bout",
+              "weight_class": "Welterweight Bout",
               "fighters": [
                 {
-                  "name": "Talita Alencar",
-                  "initials": "TA",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/ALENCAR_TALITA_L_04-25.png?itok=onBqiGWH",
+                  "name": "Jean-Paul Lebosnoyani",
+                  "initials": "JL",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/LEBOSNOYANI_JEAN-PAUL_R_02-21.png?itok=FM_JbPj8",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+120"
+                  "moneyline": ""
                 },
                 {
-                  "name": "Piera Rodriguez",
-                  "initials": "PR",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/RODRIGUEZ_PIERA_L_03-14.png?itok=UDMKBpY8",
+                  "name": "Farman Hasanov",
+                  "initials": "FH",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/HASANOV_FARMAN_L_06-27.png?itok=_Ex8iG6f",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-145"
+                  "moneyline": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "5:00 PM ET",
+          "bouts": [
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Francis Marshall",
+                  "initials": "FM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MARSHALL_FRANCIS_L_04-25.png?itok=Dz7HMd3L",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Gaston Bolanos",
+                  "initials": "GB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/BOLANOS_GASTON_L_06-20.png?itok=WvUQBhDT",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
                 }
               ]
             },
@@ -824,17 +831,17 @@
               "weight_class": "Middleweight Bout",
               "fighters": [
                 {
-                  "name": "Nick Klein",
-                  "initials": "NK",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/KLEIN_NICK_L_08-02.png?itok=NzieeiWf",
+                  "name": "Azamat Bekoev",
+                  "initials": "AB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BEKOEV_AZAMAT_L_04-04.png?itok=a6lk_o5N",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
                 },
                 {
-                  "name": "Joseph Kropschot",
-                  "initials": "JK",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/KROPSCHOT_JOE_R_08-11.png?itok=3FsiQXS0",
+                  "name": "Andre Petroski",
+                  "initials": "AP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -867,52 +874,6 @@
             {
               "order": 8,
               "label": "",
-              "weight_class": "Welterweight Bout",
-              "fighters": [
-                {
-                  "name": "Jean-Paul Lebosnoyani",
-                  "initials": "JL",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/LEBOSNOYANI_JEAN-PAUL_R_02-21.png?itok=FM_JbPj8",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Farman Hasanov",
-                  "initials": "FH",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/HASANOV_FARMAN_L_06-27.png?itok=_Ex8iG6f",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 9,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Azamat Bekoev",
-                  "initials": "AB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BEKOEV_AZAMAT_L_04-04.png?itok=a6lk_o5N",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Andre Petroski",
-                  "initials": "AP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 10,
-              "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
                 {
@@ -934,22 +895,68 @@
               ]
             },
             {
-              "order": 11,
+              "order": 9,
               "label": "",
-              "weight_class": "Featherweight Bout",
+              "weight_class": "Middleweight Bout",
               "fighters": [
                 {
-                  "name": "Francis Marshall",
-                  "initials": "FM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MARSHALL_FRANCIS_L_04-25.png?itok=Dz7HMd3L",
+                  "name": "Nick Klein",
+                  "initials": "NK",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/KLEIN_NICK_L_08-02.png?itok=NzieeiWf",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
                 },
                 {
-                  "name": "Gaston Bolanos",
-                  "initials": "GB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/BOLANOS_GASTON_L_06-20.png?itok=WvUQBhDT",
+                  "name": "Joseph Kropschot",
+                  "initials": "JK",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/KROPSCHOT_JOE_R_08-11.png?itok=3FsiQXS0",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Women's Strawweight Bout",
+              "fighters": [
+                {
+                  "name": "Talita Alencar",
+                  "initials": "TA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/ALENCAR_TALITA_L_04-25.png?itok=onBqiGWH",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+120"
+                },
+                {
+                  "name": "Piera Rodriguez",
+                  "initials": "PR",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/RODRIGUEZ_PIERA_L_03-14.png?itok=UDMKBpY8",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-145"
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Women's Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Lucia Szabova",
+                  "initials": "LS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/2022-02/womens-silhouette-RED-corner.png?itok=SXsY1AgG",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Tainara Lisboa",
+                  "initials": "TL",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/LISBOA_TAINARA_L_10-14.png?itok=ibBAzJ5i",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -1028,20 +1035,20 @@
             {
               "order": 3,
               "label": "",
-              "weight_class": "Middleweight Bout",
+              "weight_class": "Bantamweight Bout",
               "fighters": [
                 {
-                  "name": "Mantas Kondratavičius",
-                  "initials": "MK",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
+                  "name": "Davey Grant",
+                  "initials": "DG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/GRANT_DAVEY_L_04-25.png?itok=eXuCU5Cp",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
                 },
                 {
-                  "name": "Wes Schultz",
-                  "initials": "WS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/SCHULTZ_WESLEY_L_08-22.png?itok=1WjwlRQ3",
+                  "name": "Elijah Smith",
+                  "initials": "ES",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/SMITH_ELIJAH_L_03-14.png?itok=3MoxFy9W",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -1050,29 +1057,6 @@
             },
             {
               "order": 4,
-              "label": "",
-              "weight_class": "Light Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Billy Elekana",
-                  "initials": "BE",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/ELEKANA_BILLY_L_01-31.png?itok=l0IviRUv",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Lucas Fernando",
-                  "initials": "LF",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/FERNANDO_LUCAS_R_08-15.png?itok=T9Ij6iMO",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 5,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -1095,22 +1079,45 @@
               ]
             },
             {
-              "order": 6,
+              "order": 5,
               "label": "",
-              "weight_class": "Bantamweight Bout",
+              "weight_class": "Light Heavyweight Bout",
               "fighters": [
                 {
-                  "name": "Davey Grant",
-                  "initials": "DG",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/GRANT_DAVEY_L_04-25.png?itok=eXuCU5Cp",
+                  "name": "Billy Elekana",
+                  "initials": "BE",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/ELEKANA_BILLY_L_01-31.png?itok=l0IviRUv",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
                 },
                 {
-                  "name": "Elijah Smith",
-                  "initials": "ES",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/SMITH_ELIJAH_L_03-14.png?itok=3MoxFy9W",
+                  "name": "Lucas Fernando",
+                  "initials": "LF",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/FERNANDO_LUCAS_R_08-15.png?itok=T9Ij6iMO",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Mantas Kondratavičius",
+                  "initials": "MK",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Wes Schultz",
+                  "initials": "WS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/SCHULTZ_WESLEY_L_08-22.png?itok=1WjwlRQ3",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -1127,20 +1134,20 @@
             {
               "order": 7,
               "label": "",
-              "weight_class": "Featherweight Bout",
+              "weight_class": "Heavyweight Bout",
               "fighters": [
                 {
-                  "name": "Austin Bashi",
-                  "initials": "AB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/BASHI_AUSTIN_L_07-18.png?itok=ICEox51M",
+                  "name": "Gabriel Lorenco",
+                  "initials": "GL",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/LORENCO_GABRIEL_L_09-01.png?itok=NdbmVc1d",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
                 },
                 {
-                  "name": "Lucas Brennan",
-                  "initials": "LB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BRENNAN_LUCAS_R_04-25.png?itok=ajTVXdf5",
+                  "name": "Alvin Hines",
+                  "initials": "AH",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/HINES_ALVIN_R_06-28.png?itok=4Yj9bfkr",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -1176,52 +1183,6 @@
               "weight_class": "Featherweight Bout",
               "fighters": [
                 {
-                  "name": "Keiichiro Nakamura",
-                  "initials": "KN",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/NAKAMURA_KEIICHIRO_L_01-31.png?itok=-vL6J_TE",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Ollie Schmid",
-                  "initials": "OS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/SCHMID_OLLIE_R_05-02.png?itok=yb6L6zTk",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 10,
-              "label": "",
-              "weight_class": "Welterweight Bout",
-              "fighters": [
-                {
-                  "name": "Jonny Parsons",
-                  "initials": "JP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/PARSONS_JONNY_L_07-22.png?itok=r2aeVJ95",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "José Souza",
-                  "initials": "JS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/SOUZA_JOSE_R_05-30.png?itok=-YP5UjdJ",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 11,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
                   "name": "Jose Delano",
                   "initials": "JD",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/DELANO_JOSE_L_04-04.png?itok=yx6OJq5I",
@@ -1240,22 +1201,22 @@
               ]
             },
             {
-              "order": 12,
+              "order": 10,
               "label": "",
-              "weight_class": "Heavyweight Bout",
+              "weight_class": "Featherweight Bout",
               "fighters": [
                 {
-                  "name": "Gabriel Lorenco",
-                  "initials": "GL",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/LORENCO_GABRIEL_L_09-01.png?itok=NdbmVc1d",
+                  "name": "Keiichiro Nakamura",
+                  "initials": "KN",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/NAKAMURA_KEIICHIRO_L_01-31.png?itok=-vL6J_TE",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
                 },
                 {
-                  "name": "Alvin Hines",
-                  "initials": "AH",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/HINES_ALVIN_R_06-28.png?itok=4Yj9bfkr",
+                  "name": "Ollie Schmid",
+                  "initials": "OS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/SCHMID_OLLIE_R_05-02.png?itok=yb6L6zTk",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -1263,7 +1224,30 @@
               ]
             },
             {
-              "order": 13,
+              "order": 11,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Austin Bashi",
+                  "initials": "AB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/BASHI_AUSTIN_L_07-18.png?itok=ICEox51M",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Lucas Brennan",
+                  "initials": "LB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BRENNAN_LUCAS_R_04-25.png?itok=ajTVXdf5",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 12,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -1279,6 +1263,29 @@
                   "name": "Nina Milošević",
                   "initials": "NM",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/MILOSEVIC_NINA_L_08-01.png?itok=6zq_3wtV",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 13,
+              "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Jonny Parsons",
+                  "initials": "JP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/PARSONS_JONNY_L_07-22.png?itok=r2aeVJ95",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "José Souza",
+                  "initials": "JS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/SOUZA_JOSE_R_05-30.png?itok=-YP5UjdJ",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -1753,29 +1760,6 @@
             {
               "order": 6,
               "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Drew Dober",
-                  "initials": "DD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/DOBER_DREW_L_03-07.png?itok=2b9RABZl",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Chris Duncan",
-                  "initials": "CD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/DUNCAN_CHRIS_L_07-22.png?itok=35KjIAR4",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 7,
-              "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
                 {
@@ -1797,22 +1781,22 @@
               ]
             },
             {
-              "order": 8,
+              "order": 7,
               "label": "",
-              "weight_class": "Middleweight Bout",
+              "weight_class": "Lightweight Bout",
               "fighters": [
                 {
-                  "name": "Donte Johnson",
-                  "initials": "DJ",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/JOHNSON_DONTE_L_08-15.png?itok=kCrdzqZd",
+                  "name": "Drew Dober",
+                  "initials": "DD",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/DOBER_DREW_L_03-07.png?itok=2b9RABZl",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
                 },
                 {
-                  "name": "Baisangur Susurkaev",
-                  "initials": "BS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/SUSURKAEV_BAISANGUR_L_05-09.png?itok=tUbfeTCb",
+                  "name": "Chris Duncan",
+                  "initials": "CD",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/DUNCAN_CHRIS_L_07-22.png?itok=35KjIAR4",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -1820,7 +1804,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 8,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -1836,6 +1820,29 @@
                   "name": "Terrance McKinney",
                   "initials": "TM",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/MCKINNEY_TERRANCE_L_03-28.png?itok=xOcN-WHP",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Donte Johnson",
+                  "initials": "DJ",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/JOHNSON_DONTE_L_08-15.png?itok=kCrdzqZd",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Baisangur Susurkaev",
+                  "initials": "BS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/SUSURKAEV_BAISANGUR_L_05-09.png?itok=tUbfeTCb",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
