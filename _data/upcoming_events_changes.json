@@ -1,7 +1,39 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-14T22:17:08.733Z",
+  "generated_at": "2026-10-15T05:13:01.832Z",
   "changes": [
+    {
+      "id": "2026-10-15T05:13:01.832Z|ufc-333-2026-10-24-fight-card|bout_moved|1",
+      "at": "2026-10-15T05:13:01.832Z",
+      "type": "bout_moved",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Colby Thicknesse vs Asaf Chopurov moved on Volkanovski vs Evloev.",
+      "details": {
+        "from_order": 11,
+        "to_order": 10,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-10-15T05:13:01.832Z|ufc-333-2026-10-24-fight-card|bout_moved|2",
+      "at": "2026-10-15T05:13:01.832Z",
+      "type": "bout_moved",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Abubakar Vagaev vs Jacob Malkoun moved on Volkanovski vs Evloev.",
+      "details": {
+        "from_order": 10,
+        "to_order": 11,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
     {
       "id": "2026-10-14T22:17:08.733Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|1",
       "at": "2026-10-14T22:17:08.733Z",
@@ -4684,36 +4716,6 @@
         "order": 9,
         "section": "Prelims",
         "weight_class": "Heavyweight Bout"
-      }
-    },
-    {
-      "id": "2026-09-15T15:07:47.939Z|ufc-fight-night-2026-10-31-fight-card|title_changed|1",
-      "at": "2026-09-15T15:07:47.939Z",
-      "type": "title_changed",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Moicano vs Nolan",
-      "event_date": "2026-10-31",
-      "summary": "UFC Fight Night Moicano vs Nolan: title changed.",
-      "details": {
-        "from": "Szabova vs Lisboa",
-        "to": "Moicano vs Nolan"
-      }
-    },
-    {
-      "id": "2026-09-15T15:07:47.939Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|2",
-      "at": "2026-09-15T15:07:47.939Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Moicano vs Nolan",
-      "event_date": "2026-10-31",
-      "summary": "Lucia Szabova vs Tainara Lisboa moved on Moicano vs Nolan.",
-      "details": {
-        "from_order": 1,
-        "to_order": 2,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
       }
     }
   ]
