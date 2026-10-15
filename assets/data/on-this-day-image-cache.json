@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-10-15T14:23:57.035Z",
+  "updatedAt": "2026-10-15T15:38:57.964Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -2556,16 +2556,44 @@
     "pancrase:2021-10-16:pancrase-324": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T01:18:17.620Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-10-15T15:37:07.638Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2021-10-16-pancrase-324-8e2b14e8928e569b.jpg",
+      "imageAlt": "Pancrase 324 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/81965-pancrase-324",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/81965-pancrase-324",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "8e2b14e8928e569bfed661e86a216b3de99ec3a8e5454ca6803885a4e2710d29",
+      "posterRegistryKey": "2021-10-16::pancrase 324"
     },
     "bellator:2014-10-17:bellator-129": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T01:18:17.620Z",
-      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 129"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-10-15T15:36:23.093Z",
+      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 129",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2014-10-17-bellator-129-e8647f097ebacaa4.jpg",
+      "imageAlt": "Bellator 129 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/26122-bellator-129",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/26122-bellator-129",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "e8647f097ebacaa46a645cdf8f3cdfa6accd82cd4bd2b312d8466dd6f265d3e5",
+      "posterRegistryKey": "2014-10-17::bellator 129"
     },
     "pancrase:2005-07-31:pancrase-spiral-6": {
       "strategyVersion": 6,
@@ -20244,6 +20272,24 @@
       "tapologyBinding": "direct-event-page",
       "posterSha256": "d7eeab59ef57e5e7c2f245301b729098e72e551db6a051d5079bc7b9495f7158",
       "posterRegistryKey": "2001-07-29::pride 15"
+    },
+    "pride:2001-09-24:pride-16": {
+      "checkedAt": "2026-10-15T15:38:57.804Z",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2001-09-24-pride-16-61484b2b12f2d022.jpg",
+      "imageAlt": "Pride 16 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/pride-16-beasts-from-the-east",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "sourceType": "tapology-event-poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/pride-16-beasts-from-the-east",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "61484b2b12f2d022b773a624b3230ec12b4e95116cc18362eb3901d0f6634902",
+      "posterRegistryKey": "2001-09-24::pride 16"
     }
   },
   "strategyVersion": 8,
