@@ -402,11 +402,18 @@
     {
       "id": "broadcast-news-video-runtime",
       "storage": "public-runtime",
-      "paths": ["assets/data/broadcast-news-videos.json"],
+      "paths": [
+        "assets/data/broadcast-news-videos.json"
+      ],
       "lifecycle": "generated-public-runtime",
       "owner": "news",
-      "producers": ["scripts/news/build-broadcast-videos.mjs"],
-      "consumers": ["assets/broadcast-news-pool.js", "broadcast-control.html"],
+      "producers": [
+        "scripts/news/build-broadcast-videos.mjs"
+      ],
+      "consumers": [
+        "assets/broadcast-news-pool.js",
+        "broadcast-control.html"
+      ],
       "safeToRegenerate": true,
       "safeToDeleteFromRepository": false,
       "publicContract": true
@@ -590,6 +597,101 @@
         "broadcast.html",
         "assets/broadcast.js",
         "index.html"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
+      "id": "writer-spellcheck-dictionary",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/autocorrect/README.md",
+        "assets/data/autocorrect/en-US.aff",
+        "assets/data/autocorrect/en-US.dic"
+      ],
+      "lifecycle": "vendored-runtime-assets",
+      "owner": "writer",
+      "producers": [
+        "upstream:wooorm/dictionaries/dictionary-en"
+      ],
+      "consumers": [
+        "assets/writer.js",
+        "_writer/04-editor-tools.js",
+        "scripts/writer/writer-autocorrect-smoke.cjs"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
+      "id": "fight-city-forecast-runtime",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/fight-city-weather.json"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "broadcast",
+      "producers": [
+        "scripts/weather/build-fight-city-weather.mjs",
+        ".github/workflows/update-news-feed.yml"
+      ],
+      "consumers": [
+        "assets/broadcast-weather.js"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
+      "id": "fighter-career-timelines",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/fighter-histories.json"
+      ],
+      "lifecycle": "curated-runtime-data",
+      "owner": "site",
+      "producers": [
+        "manual:reviewed-fighter-career-timeline"
+      ],
+      "consumers": [
+        "assets/fighter-history.js"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
+      "id": "news-editorial-lead-override",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/news-lead-override.json"
+      ],
+      "lifecycle": "curated-operational-input",
+      "owner": "news",
+      "producers": [
+        "manual:editorial-news-lead-selection"
+      ],
+      "consumers": [
+        "scripts/news/build-news-feed.mjs"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "news-refresh-trigger-state",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/news-refresh-trigger.json"
+      ],
+      "lifecycle": "operational-trigger-state",
+      "owner": "news",
+      "producers": [
+        "assets/broadcast-control.js"
+      ],
+      "consumers": [
+        ".github/workflows/update-news-feed.yml"
       ],
       "safeToRegenerate": false,
       "safeToDeleteFromRepository": false,
