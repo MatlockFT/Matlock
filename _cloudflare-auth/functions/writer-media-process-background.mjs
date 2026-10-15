@@ -69,9 +69,15 @@ function chunkStream(store, scope, uploadId, chunkCount) {
 }
 
 async function verifyChunks(store, scope, uploadId, chunkCount, fileSize) {
+  const listed = await store.list({
+    prefix: `chunks/${scope}/${uploadId}/`,
+    limit: 1000
+  });
+  const byKey = new Map((listed.blobs || []).map(entry => [entry.key, entry]));
   let stagedBytes = 0;
+
   for (let index = 0; index < chunkCount; index += 1) {
-    const entry = await store.getMetadata(chunkKey(scope, uploadId, index), { consistency: 'strong' });
+    const entry = byKey.get(chunkKey(scope, uploadId, index));
     const chunkSize = Number(entry?.metadata?.chunkSize);
     if (!entry || !Number.isFinite(chunkSize) || chunkSize < 1) {
       throw new Error(`Missing staged media chunk ${index + 1} of ${chunkCount}.`);
