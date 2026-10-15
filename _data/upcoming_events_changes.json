@@ -1,7 +1,35 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-15T14:59:37.266Z",
+  "generated_at": "2026-10-15T22:14:11.016Z",
   "changes": [
+    {
+      "id": "2026-10-15T22:14:11.016Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|1",
+      "at": "2026-10-15T22:14:11.016Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Javad Mahjoub portrait added.",
+      "details": {
+        "fighter": "Javad Mahjoub",
+        "source": "ufc"
+      }
+    },
+    {
+      "id": "2026-10-15T22:14:11.016Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|2",
+      "at": "2026-10-15T22:14:11.016Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Joel Faglier portrait added.",
+      "details": {
+        "fighter": "Joel Faglier",
+        "source": "ufc"
+      }
+    },
     {
       "id": "2026-10-15T14:59:37.266Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|1",
       "at": "2026-10-15T14:59:37.266Z",
@@ -4698,38 +4726,6 @@
       "details": {
         "from_order": 5,
         "to_order": 8,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-22T16:55:39.794Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|19",
-      "at": "2026-09-22T16:55:39.794Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Buckley vs Malott",
-      "event_date": "2026-10-17",
-      "summary": "Jamey-Lyn Horth vs Katlyn Cerminara moved on Buckley vs Malott.",
-      "details": {
-        "from_order": 7,
-        "to_order": 9,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-22T16:55:39.794Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|20",
-      "at": "2026-09-22T16:55:39.794Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Buckley vs Malott",
-      "event_date": "2026-10-17",
-      "summary": "Tanner Boser vs Jhonata Diniz moved on Buckley vs Malott.",
-      "details": {
-        "from_order": 8,
-        "to_order": 10,
         "from_section": "Main Card",
         "to_section": "Prelims"
       }
