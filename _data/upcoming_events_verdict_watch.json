@@ -31,12 +31,12 @@
       "verdict_url": "https://verdictmma.com/event/1955",
       "verdict_date": "2026-10-24",
       "local_fight_count": 12,
-      "verdict_fight_count": 10,
+      "verdict_fight_count": 11,
       "local_main_count": 6,
       "verdict_main_count": 5,
       "local_prelim_count": 6,
-      "verdict_prelim_count": 5,
-      "confirmed_local_bouts": 10
+      "verdict_prelim_count": 6,
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
@@ -133,12 +133,12 @@
       "verdict_url": "https://verdictmma.com/event/1971",
       "verdict_date": "2026-12-12",
       "local_fight_count": 6,
-      "verdict_fight_count": 4,
+      "verdict_fight_count": 6,
       "local_main_count": 6,
       "verdict_main_count": 3,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 1,
-      "confirmed_local_bouts": 3
+      "verdict_prelim_count": 3,
+      "confirmed_local_bouts": 6
     }
   ],
   "discrepancies": [
@@ -207,17 +207,7 @@
       "event_id": "ufc-333-2026-10-24-fight-card",
       "verdict_event_id": "1955",
       "local_fight_count": 12,
-      "verdict_fight_count": 10
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "verdict_event_id": "1955",
-      "order": 10,
-      "fighters": [
-        "Abubakar Vagaev",
-        "Jacob Malkoun"
-      ]
+      "verdict_fight_count": 11
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -236,44 +226,7 @@
       "local_main_count": 6,
       "verdict_main_count": 5,
       "local_prelim_count": 6,
-      "verdict_prelim_count": 5
-    },
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "verdict_event_id": "1971",
-      "local_fight_count": 6,
-      "verdict_fight_count": 4
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "verdict_event_id": "1971",
-      "order": 4,
-      "fighters": [
-        "Brandon Moreno",
-        "Charles Johnson"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "verdict_event_id": "1971",
-      "order": 5,
-      "fighters": [
-        "Maycee Barber",
-        "Carli Judice"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "verdict_event_id": "1971",
-      "order": 6,
-      "fighters": [
-        "Quentin Pasley",
-        "Junior Tafa"
-      ]
+      "verdict_prelim_count": 6
     },
     {
       "type": "section_count_mismatch",
@@ -282,7 +235,7 @@
       "local_main_count": 6,
       "verdict_main_count": 3,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 1
+      "verdict_prelim_count": 3
     },
     {
       "type": "local_bout_not_found_on_verdict",
