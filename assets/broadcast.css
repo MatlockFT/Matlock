@@ -536,6 +536,21 @@ body {
 
 .mfc-body[data-mfc-controls="true"]:not([data-mfc-embed="true"]) .mfc-sound {
   display: grid;
+  position: fixed;
+  top: auto;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mfc-body[data-mfc-sound-recovery="true"]:not([data-mfc-embed="true"]) .mfc-sound {
+  display: grid !important;
+  position: fixed;
+  top: auto;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
 }
 
 .mfc-sound svg {
@@ -752,7 +767,7 @@ body {
   }
 }
 
-.mfc-playback-status { display: none !important; }
+.mfc-body:not([data-mfc-controls="true"]):not([data-mfc-monitor="true"]) .mfc-playback-status { display: none !important; }
 
 
 .mfc-youtube-audio-host {
