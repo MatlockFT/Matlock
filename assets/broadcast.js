@@ -153,6 +153,8 @@
   standbyMusicYoutube = musicYoutubeB;
 
   function reportPlayback(message, blocked = false) {
+    if (blocked && !obsMode) document.body.dataset.mfcSoundRecovery = 'true';
+    else if (!message) delete document.body.dataset.mfcSoundRecovery;
     if (playbackStatus && (controlsMode || monitorMode)) {
       playbackStatus.textContent = message;
       playbackStatus.hidden = !message;
