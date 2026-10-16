@@ -76,7 +76,7 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
     });
   });
 
-  await page.route('https://mmamatlock-writer-auth.netlify.app/api/writer/fighter*', async route => {
+  await page.route('https://mmamatlock-writer-auth.fighttalkmma.workers.dev/api/writer/fighter*', async route => {
     const requestUrl = new URL(route.request().url());
     if (['Recent Opponent','Old Opponent'].includes(requestUrl.searchParams.get('name'))) {
       const opponentName=requestUrl.searchParams.get('name');
@@ -149,7 +149,7 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
     });
   });
 
-  await page.route('https://mmamatlock-writer-auth.netlify.app/**', async route => {
+  await page.route('https://mmamatlock-writer-auth.fighttalkmma.workers.dev/**', async route => {
     const url = new URL(route.request().url());
     if (url.pathname === '/api/writer/fighter') return route.fallback();
     if (url.pathname.endsWith('/auth/github/health')) {
@@ -223,7 +223,7 @@ test('Brad Tavares stays complete when the live probe fails', async ({ page }) =
   const pageErrors = [];
   page.on('pageerror', error => pageErrors.push(error.message));
 
-  await page.route('https://mmamatlock-writer-auth.netlify.app/api/writer/fighter*', async route => {
+  await page.route('https://mmamatlock-writer-auth.fighttalkmma.workers.dev/api/writer/fighter*', async route => {
     await route.fulfill({
       status: 502,
       contentType: 'application/json',
@@ -246,7 +246,7 @@ test('Brad Tavares stays complete when the live probe fails', async ({ page }) =
   );
   expect(statValues).toHaveLength(8);
   expect(statValues.every(Boolean)).toBe(true);
-  await expect(statsInput.locator('xpath=..').locator('.writer-fighter-source-status')).toContainText('Verified stats loaded');
+  await expect(statsInput.locator('xpath=..').locator('.writer-fighter-source-status')).toContainText('Verified UFCStats data loaded');
 
   await statsDialog.locator('button[value="cancel"]').first().click();
 
@@ -268,7 +268,7 @@ test('Brad Tavares stays complete when the live probe fails', async ({ page }) =
   await expect(taleRows.nth(8).locator('[data-structured-a]')).not.toHaveValue('');
   await expect(taleRows.nth(9).locator('[data-structured-a]')).not.toHaveValue('');
   await expect(taleRows.nth(10).locator('[data-structured-a]')).not.toHaveValue('');
-  await expect(taleInput.locator('xpath=..').locator('.writer-fighter-source-status')).toContainText('Verified stats loaded');
+  await expect(taleInput.locator('xpath=..').locator('.writer-fighter-source-status')).toContainText('Verified UFCStats data loaded');
 
   expect(pageErrors).toEqual([]);
 });
@@ -336,7 +336,7 @@ test('partial cached career is completed by the verified live fallback', async (
     });
   });
 
-  await page.route('https://mmamatlock-writer-auth.netlify.app/api/writer/fighter*', async route => {
+  await page.route('https://mmamatlock-writer-auth.fighttalkmma.workers.dev/api/writer/fighter*', async route => {
     await new Promise(resolve => setTimeout(resolve, 120));
     await route.fulfill({
       contentType: 'application/json',
@@ -444,7 +444,7 @@ test('fighters without a UFCStats sample show explicit N/A instead of blanks', a
     });
   });
 
-  await page.route('https://mmamatlock-writer-auth.netlify.app/api/writer/fighter*', async route => {
+  await page.route('https://mmamatlock-writer-auth.fighttalkmma.workers.dev/api/writer/fighter*', async route => {
     await route.fulfill({
       status: 502,
       contentType: 'application/json',
