@@ -25,6 +25,7 @@ on:
       - "scripts/site-data/ufc/enforce-ufc-fighter-portraits.mjs"
       - "scripts/site-data/events/check-verdict-upcoming-events.mjs"
       - "scripts/site-data/ufc/publish-fighter-portraits.mjs"
+      - "scripts/site-data/ufc/cache-picker-lcp-portrait.mjs"
       - "scripts/site-data/events/validate-upcoming-events.mjs"
       - "scripts/site-data/events/diff-upcoming-events.mjs"
   schedule:
@@ -76,6 +77,7 @@ jobs:
           node --check scripts/site-data/ufc/enforce-ufc-fighter-portraits.mjs
           node --check scripts/site-data/events/check-verdict-upcoming-events.mjs
           node --check scripts/site-data/ufc/publish-fighter-portraits.mjs
+          node --check scripts/site-data/ufc/cache-picker-lcp-portrait.mjs
           node --check scripts/site-data/events/validate-upcoming-events.mjs
           node --check scripts/site-data/events/diff-upcoming-events.mjs
 
@@ -131,11 +133,14 @@ jobs:
       - name: Publish fighter portrait cache
         run: node scripts/site-data/ufc/publish-fighter-portraits.mjs
 
+      - name: Cache first Fight Card Picker portrait on the site origin
+        run: node scripts/site-data/ufc/cache-picker-lcp-portrait.mjs
+
       - name: Commit meaningful event, map, and portrait changes
         shell: bash
         run: |
           set -euo pipefail
-          meaningful="$(git status --porcelain -- _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json assets/live-ufc-odds.json _data/event_map_us.json _data/event_map_location_report.json || true)"
+          meaningful="$(git status --porcelain -- _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json assets/live-ufc-odds.json _data/event_map_us.json _data/event_map_location_report.json _data/picker_lcp_portrait.json 'assets/data/picker-lcp-portrait-*' || true)"
           if [ -z "$meaningful" ]; then
             echo "No meaningful MMA event, map, watchdog, location, or portrait changes. Timestamp-only refresh discarded."
             exit 0
@@ -143,6 +148,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- _data/upcoming_events.json _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json assets/live-ufc-odds.json _data/event_map_us.json _data/event_map_location_report.json
+          if [ -f _data/picker_lcp_portrait.json ]; then git add -- _data/picker_lcp_portrait.json; fi
+          shopt -s nullglob
+          picker_lcp_assets=(assets/data/picker-lcp-portrait-*)
+          if [ "${#picker_lcp_assets[@]}" -gt 0 ]; then git add -- "${picker_lcp_assets[@]}"; fi
           git commit -m "Refresh upcoming MMA event data"
           git pull --rebase origin main
           git push origin HEAD:main

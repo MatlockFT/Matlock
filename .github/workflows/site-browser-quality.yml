@@ -19,6 +19,12 @@ on:
       - "_config.yml"
       - "scripts/qa/site-visual-smoke.spec.cjs"
       - "scripts/qa/summarize-lighthouse.mjs"
+      - "scripts/history/cache-on-this-day-current-lead.mjs"
+      - "scripts/site-data/ufc/cache-picker-lcp-portrait.mjs"
+      - "_data/on_this_day_current_lead.json"
+      - "_data/picker_lcp_portrait.json"
+      - "assets/data/on-this-day-current-lead-*"
+      - "assets/data/picker-lcp-portrait-*"
       - ".github/workflows/site-browser-quality.yml"
 
 permissions:

@@ -21,6 +21,7 @@ on:
       - "scripts/history/build-on-this-day-runtime.mjs"
       - "scripts/history/build-on-this-day-home.mjs"
       - "scripts/history/build-on-this-day-leads.mjs"
+      - "scripts/history/cache-on-this-day-current-lead.mjs"
       - "scripts/history/build-on-this-day-share-images.mjs"
       - "scripts/history/build-on-this-day-share-safe.mjs"
       - "scripts/media/share-title-layout.mjs"
@@ -159,6 +160,7 @@ jobs:
           node scripts/history/build-on-this-day-leads.mjs
           mkdir -p _data
           cp assets/data/on-this-day-leads.json _data/on_this_day_leads.json
+          node scripts/history/cache-on-this-day-current-lead.mjs
 
       - name: Commit current-window OTD changes
         shell: bash
@@ -173,6 +175,8 @@ jobs:
             assets/data/on-this-day-share-manifest.json
             assets/data/on-this-day-runtime
             _data/on_this_day_leads.json
+            _data/on_this_day_current_lead.json
+            assets/data/on-this-day-current-lead-*
           )
           if [ -z "$(git status --porcelain -- "${tracked_paths[@]}")" ]; then
             echo "No current-window OTD changes."
@@ -180,7 +184,11 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- "${tracked_paths[@]}"
+          git add -- assets/data/on-this-day.json assets/data/on-this-day-image-cache.json assets/data/on-this-day-poster-registry.json assets/data/on-this-day-home.json assets/data/on-this-day-leads.json assets/data/on-this-day-share-manifest.json assets/data/on-this-day-runtime _data/on_this_day_leads.json
+          if [ -f _data/on_this_day_current_lead.json ]; then git add -- _data/on_this_day_current_lead.json; fi
+          shopt -s nullglob
+          lead_assets=(assets/data/on-this-day-current-lead-*)
+          if [ "${#lead_assets[@]}" -gt 0 ]; then git add -- "${lead_assets[@]}"; fi
           git commit -m "Fast-publish current On This Day images"
           git pull --rebase origin main
           git push origin HEAD:main
