@@ -1271,7 +1271,12 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       const last5 = dialog.querySelector('[data-tale-last5="' + side + '"]');
       if (last5) last5.value = lastFiveFromRows(recent);
     }
-    populateTaleOpponentStrength(dialog,side,fighter,profile);
+    const strengthHistory = profile?.historyComplete && Array.isArray(profile.history)
+      ? profile
+      : (fighter?.historyComplete && Array.isArray(fighter.history)
+        ? { historyComplete: true, history: fighter.history }
+        : profile);
+    populateTaleOpponentStrength(dialog,side,fighter,strengthHistory);
   }
 
   function cachedSourceStateForFighter(fighter) {
