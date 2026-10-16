@@ -88,6 +88,14 @@
         {% endfor %}
     {% endif %}
 
+    {% if page.permalink == '/on-this-day/' %}
+        {% assign head_otd_key = site.time | date: "%m-%d" %}
+        {% assign head_otd_lead = site.data.on_this_day_leads.leads[head_otd_key] %}
+        {% if head_otd_lead %}
+            <link rel="preload" as="image" href="{{ head_otd_lead | escape }}" fetchpriority="high" referrerpolicy="no-referrer" data-otd-lead-preload>
+        {% endif %}
+    {% endif %}
+
     {% for resource in page.page_fetch_preloads %}
         <link rel="preload" href="{{ resource }}" as="fetch" crossorigin>
     {% endfor %}

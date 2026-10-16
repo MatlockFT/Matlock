@@ -9,6 +9,7 @@ page_preconnects:
 page_styles:
   - /assets/editorial-v3-shell.css
   - /assets/otd-share.css
+  - /assets/on-this-day-v3.css
 page_scripts:
   - /assets/editorial-v3-shell.js
   - /assets/otd-share-bootstrap.js
@@ -61,8 +62,6 @@ page_scripts:
             .catch(() => {});
     })();
 </script>
-
-<link rel="stylesheet" href="{{ '/assets/on-this-day-v3.css' | relative_url }}?v={{ site.asset_version }}" data-otd-v3-final-style>
 
 <article
     class="otd-page otd-page-v3"

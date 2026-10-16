@@ -192,6 +192,7 @@
 
     function mediaBlock(entry, row, priority = false) {
         const media = el("div", "otd-entry-media");
+        if (entry?.kind === "event") media.style.aspectRatio = "2 / 3";
         if (!entry?.imageUrl) {
             media.classList.add("is-fallback");
             media.append(
@@ -204,6 +205,10 @@
 
         media.classList.add("is-image-loading");
         const image = document.createElement("img");
+        if (entry.kind === "event") {
+            image.width = 600;
+            image.height = 900;
+        }
         image.alt = entry.imageAlt || `${entry.title || "MMA history"} image`;
         image.loading = priority ? "eager" : "lazy";
         image.decoding = "async";
