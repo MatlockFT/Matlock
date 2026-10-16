@@ -62,6 +62,8 @@ test('Image blocks can upload a still image and keep it in the selected draft bl
 });
 
 test('image framing controls change fit, zoom and position in Preview and persist to draft', async ({ page }) => {
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
   const png = Buffer.from(
     'iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAAFElEQVR4nGP8//8/AwwwMSABFA4Aby0DAyMYAwQAAAAASUVORK5CYII=',
     'base64'
@@ -85,7 +87,17 @@ test('image framing controls change fit, zoom and position in Preview and persis
   await page.getByRole('tab', { name: /Rundown/ }).click();
   const selectedImage = page.locator('[data-program-id="framing-image"]');
   await expect(selectedImage).toBeVisible();
+  console.log('FRAMING BEFORE CLICK', JSON.stringify({
+    title: await page.locator('[data-program-editor-title]').textContent(),
+    fields: await page.locator('[data-program-fields]').innerHTML(),
+    type: await selectedImage.getAttribute('data-type')
+  }));
   await selectedImage.click();
+  console.log('FRAMING AFTER CLICK', JSON.stringify({
+    title: await page.locator('[data-program-editor-title]').textContent(),
+    fields: await page.locator('[data-program-fields]').innerHTML(),
+    pageErrors
+  }));
   const fit = page.getByLabel('Media fit', { exact: true });
   const zoom = page.getByLabel('Zoom', { exact: true });
   const x = page.getByLabel('Horizontal position', { exact: true });
@@ -145,6 +157,8 @@ test('image framing controls change fit, zoom and position in Preview and persis
 });
 
 test('video inspector queues caption generation and keeps captions enabled', async ({ page }) => {
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
   fixture.state.draft.program = [{
     id: 'caption-video',
     type: 'video',
@@ -160,7 +174,17 @@ test('video inspector queues caption generation and keeps captions enabled', asy
   await page.getByRole('tab', { name: /Rundown/ }).click();
   const selectedVideo = page.locator('[data-program-id="caption-video"]');
   await expect(selectedVideo).toBeVisible();
+  console.log('CAPTION BEFORE CLICK', JSON.stringify({
+    title: await page.locator('[data-program-editor-title]').textContent(),
+    fields: await page.locator('[data-program-fields]').innerHTML(),
+    type: await selectedVideo.getAttribute('data-type')
+  }));
   await selectedVideo.click();
+  console.log('CAPTION AFTER CLICK', JSON.stringify({
+    title: await page.locator('[data-program-editor-title]').textContent(),
+    fields: await page.locator('[data-program-fields]').innerHTML(),
+    pageErrors
+  }));
   await expect(page.getByLabel('Auto captions', { exact: true })).toHaveValue('on');
   await page.getByRole('button', { name: 'Regenerate captions' }).click();
   await expect.poll(() => fixture.controls.captionQueues).toBe(1);
