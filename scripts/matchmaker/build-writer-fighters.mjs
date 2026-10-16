@@ -390,7 +390,8 @@ for (const fighter of currentFighters) {
   if (bio) withBio++;
   fighters.push({
     id: fighter.id,
-    name: fighter.name,
+    // Prefer the exact UFCStats name after the normalized identity match is verified.
+    name: mirror?.name || fighter.name,
     division: fighter.division || null,
     record: fighter.record || null,
     ufcRecord,
