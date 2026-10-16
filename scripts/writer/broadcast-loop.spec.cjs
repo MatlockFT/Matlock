@@ -82,6 +82,7 @@ test('image framing controls change fit, zoom and position in Preview and persis
   }];
 
   await page.goto(fixture.origin + '/broadcast/control/');
+  await page.getByRole('tab', { name: /Rundown/ }).click();
   const fit = page.getByLabel('Media fit', { exact: true });
   const zoom = page.getByLabel('Zoom', { exact: true });
   const x = page.getByLabel('Horizontal position', { exact: true });
@@ -153,6 +154,7 @@ test('video inspector queues caption generation and keeps captions enabled', asy
   }];
 
   await page.goto(fixture.origin + '/broadcast/control/');
+  await page.getByRole('tab', { name: /Rundown/ }).click();
   await expect(page.getByLabel('Auto captions', { exact: true })).toHaveValue('on');
   await page.getByRole('button', { name: 'Regenerate captions' }).click();
   await expect.poll(() => fixture.controls.captionQueues).toBe(1);
