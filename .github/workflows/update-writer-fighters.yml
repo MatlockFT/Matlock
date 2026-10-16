@@ -159,5 +159,14 @@ jobs:
           git add -- assets/data/writer-fighters.json
           git diff --cached --quiet && exit 0
           git commit -m "Refresh Writer fighter data"
-          git pull --rebase -X theirs origin main
-          git push origin HEAD:main
+          # Another data job may publish between rebase and push; retry that race safely.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase -X theirs origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 5 ]; then sleep "$attempt"; fi
+          done
+          echo "Unable to publish Writer fighter data after five attempts." >&2
+          exit 1
