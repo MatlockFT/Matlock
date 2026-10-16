@@ -166,7 +166,7 @@ test('video inspector queues caption generation and keeps captions enabled', asy
   await expect(captionsToggle).toHaveValue('on');
   await page.getByRole('button', { name: 'Regenerate captions' }).click();
   await expect.poll(() => fixture.controls.captionQueues).toBe(1);
-  await expect(page.locator('[data-caption-status]')).toContainText('Captions queued');
+  await expect(page.locator('[data-caption-status]')).toContainText('Captions are processing');
   expect(fixture.captionRequests.size).toBe(1);
   const request = [...fixture.captionRequests.values()][0].payload;
   expect(request).toMatchObject({

@@ -81,7 +81,7 @@
                 {% assign picker_preload_fighter = picker_preload_bout.fighters | first %}
                 {% assign picker_preload_override = site.data.fighter_portrait_overrides[picker_preload_fighter.name] %}
                 {% unless picker_preload_fighter.image == blank or picker_preload_override.mode == 'fallback' %}
-                    <link rel="preload" as="image" href="{{ picker_preload_fighter.image | escape }}" fetchpriority="high" referrerpolicy="no-referrer">
+                    <link rel="preload" as="image" href="{{ picker_preload_fighter.image | replace: 'https://ufc.com/', 'https://www.ufc.com/' | escape }}" fetchpriority="high" referrerpolicy="no-referrer">
                 {% endunless %}
                 {% break %}
             {% endif %}

@@ -2285,6 +2285,7 @@
         item.mediaX = x;
         item.mediaY = y;
         renderProgramEditor();
+        postPreview();
         markDirty();
       };
       const framingButtons = buttonRow(
@@ -2299,6 +2300,7 @@
           item.mediaX = 50;
           item.mediaY = 50;
           renderProgramEditor();
+          postPreview();
           markDirty();
         }, 'mfc-button-ghost')
       );
