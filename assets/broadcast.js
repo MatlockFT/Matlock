@@ -47,6 +47,7 @@
   const tickerClone = root.querySelector('[data-mfc-ticker-clone]');
   const tickerTrack = root.querySelector('[data-mfc-ticker-track]');
   const soundButton = root.querySelector('[data-mfc-sound]');
+  const playbackStatus = root.querySelector('[data-mfc-playback-status]');
   const musicA = document.querySelector('[data-mfc-music-a]');
   const musicB = document.querySelector('[data-mfc-music-b]');
   const musicYoutubeHostA = document.querySelector('[data-mfc-music-youtube-a]');
@@ -152,7 +153,14 @@
   standbyMusicYoutube = musicYoutubeB;
 
   function reportPlayback(message, blocked = false) {
-    if (monitorMode && window.parent !== window) window.parent.postMessage({ type: 'matlock-broadcast-playback-status', message, soundEnabled, blocked }, location.origin);
+    if (playbackStatus && (controlsMode || monitorMode)) {
+      playbackStatus.textContent = message;
+      playbackStatus.hidden = !message;
+      playbackStatus.dataset.blocked = blocked ? 'true' : 'false';
+    }
+    if (monitorMode && window.parent !== window) {
+      window.parent.postMessage({ type: 'matlock-broadcast-playback-status', message, soundEnabled, blocked }, location.origin);
+    }
   }
 
   let lastPlayheadReportAt = 0;
