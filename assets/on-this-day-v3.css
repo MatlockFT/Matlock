@@ -923,3 +923,30 @@ html.v3-theme-transitioning body:has(.otd-page-v3) .otd-share-panel {
         scroll-behavior: auto !important;
     }
 }
+
+
+/* Event posters reserve their final media dimensions before the image request
+   completes. This prevents the first history record from shifting the page. */
+.otd-page-v3 .otd-entry--event .otd-entry-media {
+    aspect-ratio: 2 / 3;
+}
+
+.otd-page-v3 .otd-entry--event .otd-entry-media.is-image-ready {
+    aspect-ratio: 2 / 3;
+}
+
+.otd-page-v3 .otd-entry--event .otd-entry-media.is-image-ready img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.otd-page-v3 .otd-entry--event .otd-entry-media.is-image-ready .otd-media-credit {
+    position: absolute;
+    right: .25rem;
+    bottom: .25rem;
+    margin: 0;
+    padding: .15rem .25rem;
+    background: var(--v3-paper-deep);
+}
