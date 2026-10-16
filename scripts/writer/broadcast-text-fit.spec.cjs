@@ -107,10 +107,18 @@ test('Control, homepage-sized embeds, narrow monitors and wide hosts share one c
   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto(fixture.origin + '/broadcast/control/');
   const preview = page.frameLocator('[data-preview-frame]');
   await expect(preview.locator('[data-mfc-copy-page]')).toBeVisible();
+  await preview.locator('[data-mfc-screen]').evaluate(async () => {
+    await document.fonts.ready;
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  });
   const reference = await composition(preview.locator('[data-mfc-screen]'));
   for (const viewport of [{ width: 640, height: 480 }, { width: 390, height: 844 }, { width: 300, height: 225 }, { width: 900, height: 300 }, { width: 1440, height: 900, standalone: true }]) {
     await page.setViewportSize(viewport); await page.goto(fixture.origin + '/broadcast/?' + (viewport.standalone ? '' : 'embed=1'));
     await expect(page.locator('[data-mfc-copy-page]')).toBeVisible();
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    });
     const actual = await composition(page.locator('[data-mfc-screen]'));
     expect(actual.ratio).toBeCloseTo(4 / 3, 5); expect(actual.pages).toBe(reference.pages);
     actual.fields.forEach((field, index) => {
@@ -118,7 +126,11 @@ test('Control, homepage-sized embeds, narrow monitors and wide hosts share one c
       for (const dimension of ['left', 'top', 'width', 'height']) {
         const scale = dimension === 'left' || dimension === 'width' ? actual.stageWidth : actual.stageHeight;
         const differencePx = Math.abs(field[dimension] - reference.fields[index][dimension]) * scale;
-        expect(differencePx, field.key + ' ' + dimension + ' pixel difference').toBeLessThanOrEqual(3);
+        expect(
+          differencePx,
+          viewport.width + 'x' + viewport.height + ' ' + field.key + ' ' + dimension +
+            ' pixel difference (actual ' + field[dimension] + ', reference ' + reference.fields[index][dimension] + ')'
+        ).toBeLessThanOrEqual(3);
       }
     });
     const placement = await page.locator('[data-mfc-screen]').evaluate(node => {
