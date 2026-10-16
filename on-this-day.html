@@ -21,12 +21,18 @@ page_scripts:
 
 {% assign otd_build_key = site.time | date: "%m-%d" %}
 {% assign otd_build_lead = site.data.on_this_day_leads.leads[otd_build_key] %}
+{% assign otd_current_lead_cache = site.data.on_this_day_current_lead %}
+{% assign otd_build_lead_local = '' %}
+{% if otd_current_lead_cache.date_key == otd_build_key and otd_current_lead_cache.source_url == otd_build_lead and otd_current_lead_cache.image_url != blank %}
+    {% assign otd_build_lead_local = otd_current_lead_cache.image_url %}
+{% endif %}
 {% assign otd_data_version = site.time | date: "%s" %}
 <script>
     (() => {
         const sessionKey = "mma-matlock:otd:last-date";
         const buildKey = "{{ otd_build_key }}";
         const buildLead = {{ otd_build_lead | jsonify }};
+        const buildLeadLocal = {{ otd_build_lead_local | jsonify }};
         const validKey = value => /^\d{2}-\d{2}$/.test(value || "");
         const preload = url => {
             if (!url) return;
@@ -60,7 +66,7 @@ page_scripts:
         window.__otdInitialDateKey = key;
 
         if (key === buildKey && buildLead) {
-            preload(buildLead);
+            preload(buildLeadLocal || buildLead);
             return;
         }
 
@@ -77,6 +83,9 @@ page_scripts:
     data-editorial-v3
     data-on-this-day
     data-mode="full"
+    data-otd-build-key="{{ otd_build_key }}"
+    data-otd-lead-source="{{ otd_build_lead | escape }}"
+    data-otd-lead-local="{{ otd_build_lead_local | escape }}"
     data-history-index-url="{{ '/assets/data/on-this-day-runtime/index.json' | relative_url }}?v={{ otd_data_version }}"
     data-history-fallback-url="{{ '/assets/data/on-this-day.json' | relative_url }}?v={{ otd_data_version }}"
 >
@@ -188,7 +197,7 @@ page_scripts:
                 <div class="otd-entry-year"></div>
                 <div class="otd-entry-media otd-entry-media--poster is-image-ready" style="aspect-ratio: 2 / 3;">
                     <img
-                        src="{{ otd_build_lead | escape }}"
+                        src="{% if otd_build_lead_local != blank %}{{ otd_build_lead_local | relative_url | escape }}{% else %}{{ otd_build_lead | escape }}{% endif %}"
                         width="600"
                         height="900"
                         loading="eager"

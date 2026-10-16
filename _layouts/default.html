@@ -79,8 +79,14 @@
                 {% assign picker_preload_bout = section.bouts | first %}
                 {% assign picker_preload_fighter = picker_preload_bout.fighters | first %}
                 {% assign picker_preload_override = site.data.fighter_portrait_overrides[picker_preload_fighter.name] %}
+                {% assign picker_lcp_cache = site.data.picker_lcp_portrait %}
+                {% assign picker_preload_source = picker_preload_fighter.image | replace: 'https://ufc.com/', 'https://www.ufc.com/' %}
                 {% unless picker_preload_fighter.image == blank or picker_preload_override.mode == 'fallback' %}
-                    <link rel="preload" as="image" href="{{ picker_preload_fighter.image | replace: 'https://ufc.com/', 'https://www.ufc.com/' | escape }}" fetchpriority="high" referrerpolicy="no-referrer">
+                    {% if picker_lcp_cache.event_id == picker_preload_event.id and picker_lcp_cache.fighter_name == picker_preload_fighter.name and picker_lcp_cache.source_url == picker_preload_source and picker_lcp_cache.image_url != blank %}
+                        <link rel="preload" as="image" href="{{ picker_lcp_cache.image_url | relative_url | escape }}" fetchpriority="high">
+                    {% else %}
+                        <link rel="preload" as="image" href="{{ picker_preload_source | escape }}" fetchpriority="high" referrerpolicy="no-referrer">
+                    {% endif %}
                 {% endunless %}
                 {% break %}
             {% endif %}
@@ -90,8 +96,13 @@
     {% if page.permalink == '/on-this-day/' %}
         {% assign head_otd_key = site.time | date: "%m-%d" %}
         {% assign head_otd_lead = site.data.on_this_day_leads.leads[head_otd_key] %}
+        {% assign head_otd_cache = site.data.on_this_day_current_lead %}
         {% if head_otd_lead %}
-            <link rel="preload" as="image" href="{{ head_otd_lead | escape }}" fetchpriority="high" referrerpolicy="no-referrer" data-otd-lead-preload>
+            {% if head_otd_cache.date_key == head_otd_key and head_otd_cache.source_url == head_otd_lead and head_otd_cache.image_url != blank %}
+                <link rel="preload" as="image" href="{{ head_otd_cache.image_url | relative_url | escape }}" fetchpriority="high" data-otd-lead-preload>
+            {% else %}
+                <link rel="preload" as="image" href="{{ head_otd_lead | escape }}" fetchpriority="high" referrerpolicy="no-referrer" data-otd-lead-preload>
+            {% endif %}
         {% endif %}
     {% endif %}
 
@@ -118,7 +129,7 @@
 
     {% assign site_tail_href = '/assets/site-tail.css' | relative_url | append: '?v=' | append: site.asset_version %}
     {% if page.defer_site_tail %}
-        <link rel="preload" href="{{ site_tail_href }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="preload" href="{{ site_tail_href }}" as="style" fetchpriority="low" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="{{ site_tail_href }}"></noscript>
     {% else %}
         <link rel="stylesheet" href="{{ site_tail_href }}">

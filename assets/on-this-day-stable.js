@@ -255,7 +255,12 @@
         image.addEventListener("error", failed, { once: true });
         media.append(image);
         if (entry.imageCredit) media.append(el("span", "otd-media-credit", entry.imageCredit));
-        image.src = String(entry.imageUrl);
+        const leadKey = String(entry.date || '').slice(5);
+        const isBuildLead = entry.kind === 'event' &&
+            leadKey === String(widget.dataset.otdBuildKey || '') &&
+            String(entry.imageUrl || '') === String(widget.dataset.otdLeadSource || '') &&
+            Boolean(widget.dataset.otdLeadLocal);
+        image.src = isBuildLead ? String(widget.dataset.otdLeadLocal) : String(entry.imageUrl);
         if (image.complete) queueMicrotask(() => image.naturalWidth ? ready() : failed());
         return media;
     }
