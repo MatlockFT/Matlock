@@ -64,6 +64,11 @@ jobs:
           if (!kavanagh.bio?.height || !kavanagh.bio?.reach || !kavanagh.stats?.slpm) {
             throw new Error("Lone'er Kavanagh's Writer Tale of Tape or stats sample is incomplete.");
           }
+          const asaf = data.fighters.find(fighter => normalizeName(fighter.name) === 'asaf chopurov');
+          if (!asaf) throw new Error('Asaf Chopurov is missing from Writer fighter data.');
+          if (asaf.ufcRecord !== '0-0-0') {
+            throw new Error("Asaf Chopurov is making his UFC debut; his UFC record must be 0-0-0, not " + asaf.ufcRecord + '.');
+          }
           const completeStats = fighter => (
             fighter.stats &&
             fighter.stats.slpm != null &&
