@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-16T18:56:58.470Z"
+      "checkedAt": "2026-10-16T21:58:29.982Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-16T18:57:34.106Z",
+      "checkedAt": "2026-10-16T21:59:09.578Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -81705,7 +81705,7 @@
     {
       "id": "david-teymur",
       "name": "David Teymur",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/david-teymur",
       "aliases": [
         "david-teymur"
@@ -81977,9 +81977,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-10-16T18:56:58.470Z"
+        "checkedAt": "2026-10-16T21:58:29.982Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/david-teymur",
@@ -355096,7 +355096,7 @@
   ],
   "coverage": {
     "profileFailures": 31,
-    "activeFighters": 1011,
+    "activeFighters": 1010,
     "participantHistoriesRequested": 280,
     "verifiedParticipantHistories": 280,
     "ufcStatsNameMisses": 0,
