@@ -587,6 +587,9 @@
 
   function installMediaFramingDrag(element) {
     if (!monitorMode || !element) return;
+    // The clean broadcast screen disables pointer events on its child layers.
+    // Re-enable them only for the interactive draft/monitor preview.
+    element.style.pointerEvents = 'auto';
     element.style.cursor = 'grab';
     element.style.touchAction = 'none';
     let drag = null;
