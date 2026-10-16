@@ -1,7 +1,70 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-15T22:14:11.016Z",
+  "generated_at": "2026-10-16T00:31:37.443Z",
   "changes": [
+    {
+      "id": "2026-10-16T00:31:37.443Z|ufc-335-2026-12-12-fight-card|bout_moved|1",
+      "at": "2026-10-16T00:31:37.443Z",
+      "type": "bout_moved",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "Brandon Moreno vs Charles Johnson moved on Oliveira vs Lopes.",
+      "details": {
+        "from_order": 4,
+        "to_order": 3,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-10-16T00:31:37.443Z|ufc-335-2026-12-12-fight-card|bout_moved|2",
+      "at": "2026-10-16T00:31:37.443Z",
+      "type": "bout_moved",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "Quentin Pasley vs Junior Tafa moved on Oliveira vs Lopes.",
+      "details": {
+        "from_order": 6,
+        "to_order": 4,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-10-16T00:31:37.443Z|ufc-335-2026-12-12-fight-card|bout_moved|3",
+      "at": "2026-10-16T00:31:37.443Z",
+      "type": "bout_moved",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "Joe Pyfer vs Bo Nickal moved on Oliveira vs Lopes.",
+      "details": {
+        "from_order": 3,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-10-16T00:31:37.443Z|ufc-335-2026-12-12-fight-card|bout_removed|4",
+      "at": "2026-10-16T00:31:37.443Z",
+      "type": "bout_removed",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "Maycee Barber vs Carli Judice removed from Oliveira vs Lopes.",
+      "details": {
+        "order": 5,
+        "section": "Main Card",
+        "weight_class": "Women's Flyweight Bout"
+      }
+    },
     {
       "id": "2026-10-15T22:14:11.016Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|1",
       "at": "2026-10-15T22:14:11.016Z",
@@ -4664,70 +4727,6 @@
         "to_order": 4,
         "from_section": "Main Card",
         "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-22T16:55:39.794Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|15",
-      "at": "2026-09-22T16:55:39.794Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Buckley vs Malott",
-      "event_date": "2026-10-17",
-      "summary": "Louis Jourdain vs Timmy Cuamba moved on Buckley vs Malott.",
-      "details": {
-        "from_order": 11,
-        "to_order": 5,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-22T16:55:39.794Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|16",
-      "at": "2026-09-22T16:55:39.794Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Buckley vs Malott",
-      "event_date": "2026-10-17",
-      "summary": "Cody Chovancek vs SuYoung You moved on Buckley vs Malott.",
-      "details": {
-        "from_order": 2,
-        "to_order": 6,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-22T16:55:39.794Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|17",
-      "at": "2026-09-22T16:55:39.794Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Buckley vs Malott",
-      "event_date": "2026-10-17",
-      "summary": "Javad Mahjoub vs Louie Sutherland moved on Buckley vs Malott.",
-      "details": {
-        "from_order": 4,
-        "to_order": 7,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-22T16:55:39.794Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|18",
-      "at": "2026-09-22T16:55:39.794Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Buckley vs Malott",
-      "event_date": "2026-10-17",
-      "summary": "Chad Anheliger vs Steven Koslow moved on Buckley vs Malott.",
-      "details": {
-        "from_order": 5,
-        "to_order": 8,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
       }
     }
   ]
