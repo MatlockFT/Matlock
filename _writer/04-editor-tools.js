@@ -426,11 +426,14 @@ function insertBlock(text, { preserveScroll = false } = {}) {
           image: fighter.image || '',
           checkedAt: fighter.checkedAt || data.generatedAt || '',
           statsBuiltAt: compact ? (data.builtAt || data.generatedAt || '') : '',
-          history: compact
-            ? (Array.isArray(fighter.recent) ? fighter.recent : [])
-            : (Array.isArray(fighter.verifiedMeetings) && fighter.verifiedMeetings.length
-              ? fighter.verifiedMeetings
-              : (Array.isArray(fighter.history) ? fighter.history : [])),
+          history: fighter.historyComplete === true && Array.isArray(fighter.history)
+            ? fighter.history
+            : (compact
+              ? (Array.isArray(fighter.recent) ? fighter.recent : [])
+              : (Array.isArray(fighter.verifiedMeetings) && fighter.verifiedMeetings.length
+                ? fighter.verifiedMeetings
+                : (Array.isArray(fighter.history) ? fighter.history : []))),
+          historyComplete: fighter.historyComplete === true && Array.isArray(fighter.history),
           booking: fighter.booking || null,
           ufcStatsId: fighter.ufcStatsId || fighter.meetingCoverage?.ufcStatsId || '',
           sourceUrl: fighter.sourceUrl || fighter.meetingCoverage?.sourceUrl || '',
