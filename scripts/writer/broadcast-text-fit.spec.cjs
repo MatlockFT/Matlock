@@ -95,7 +95,8 @@ test('Control, homepage-sized embeds, narrow monitors and wide hosts share one c
     return locator.evaluate(screen => {
       const stage = screen.getBoundingClientRect();
       const keys = ['header', 'eyebrow', 'title', 'body', 'date', 'clock'];
-      return { ratio: stage.width / stage.height, pages: screen.querySelector('[data-mfc-copy-page]').textContent,
+      return { ratio: stage.width / stage.height, stageWidth: stage.width, stageHeight: stage.height,
+        pages: screen.querySelector('[data-mfc-copy-page]').textContent,
         fields: keys.map(key => {
           const node = screen.querySelector('[data-mfc-' + key + ']'), box = node.getBoundingClientRect();
           return { key, font: getComputedStyle(node).fontSize, left: (box.left - stage.left) / stage.width,
@@ -114,7 +115,11 @@ test('Control, homepage-sized embeds, narrow monitors and wide hosts share one c
     expect(actual.ratio).toBeCloseTo(4 / 3, 5); expect(actual.pages).toBe(reference.pages);
     actual.fields.forEach((field, index) => {
       expect(field.font, field.key).toBe(reference.fields[index].font);
-      for (const dimension of ['left', 'top', 'width', 'height']) expect(field[dimension], field.key + ' ' + dimension).toBeCloseTo(reference.fields[index][dimension], 2);
+      for (const dimension of ['left', 'top', 'width', 'height']) {
+        const scale = dimension === 'left' || dimension === 'width' ? actual.stageWidth : actual.stageHeight;
+        const differencePx = Math.abs(field[dimension] - reference.fields[index][dimension]) * scale;
+        expect(differencePx, field.key + ' ' + dimension + ' pixel difference').toBeLessThanOrEqual(3);
+      }
     });
     const placement = await page.locator('[data-mfc-screen]').evaluate(node => {
       const box = node.getBoundingClientRect(); return { left: box.left, top: box.top, right: box.right, bottom: box.bottom, width: innerWidth, height: innerHeight };
