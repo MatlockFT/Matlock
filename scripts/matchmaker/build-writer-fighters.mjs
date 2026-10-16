@@ -439,7 +439,7 @@ for (const mirror of mirrorFighters.values()) {
 
   const history = resultHistoryByStatsId.get(mirror.id) || [];
   const recent = history.slice(0, 5);
-  const ufcHistory = history.filter(fight => /^(?:UFC\\b|Noche UFC\\b)/i.test(fight.event || ''));
+  const ufcHistory = history.filter(fight => /^(?:UFC\b|Noche UFC\b)/i.test(fight.event || ''));
   fighters.push({
     id: 'ufcstats-' + mirror.id,
     athleteSlug: null,
