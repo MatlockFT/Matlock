@@ -1876,7 +1876,12 @@
     programTrack.classList.remove('is-reordering');
     draggingProgramId = '';
 
-    if (!drag.active) return;
+    if (!drag.active) {
+      // Pointer capture can suppress or retarget a synthesized click in some
+      // browsers. Treat a simple pointer release as a selection as well.
+      selectProgram(working?.program?.find(item => item.id === drag.id));
+      return;
+    }
     lastProgramDragAt = Date.now();
     if (cancelled) {
       renderProgram();
