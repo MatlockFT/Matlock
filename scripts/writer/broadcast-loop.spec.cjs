@@ -467,7 +467,7 @@ test('video uses master volume, source replacement reloads, and broken media doe
   await page.waitForTimeout(4800);
   await expect(page.locator('video')).toHaveJSProperty('paused', false);
   const messages = channel => page.evaluate(channel => window.postMessage({ type: 'matlock-broadcast-preview', channel }, location.origin), channel);
-  await page.goto(fixture.origin + '/broadcast/?mode=draft');
+  await page.goto(fixture.origin + '/broadcast/?mode=draft&controls=1');
   const channel = { ...live, startedAt: new Date().toISOString(), music: [{ id: 'same-id', url: fixture.origin + '/fixtures/tone.wav', duration: 2 }] };
   await messages(channel);
   await page.locator('[data-mfc-sound]').click();
