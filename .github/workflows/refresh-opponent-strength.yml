@@ -76,9 +76,17 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/data/writer-opponent-strength.json assets/data/writer-fighters.json _posts
           git commit -m "Refresh full-career opponent strength"
-          # Matchmaker and Writer refresh workflows can update the generated files at once.
-          # Rebase against the latest main before pushing instead of losing this refresh to a race.
-          git pull --rebase -X theirs origin main
-          git push origin HEAD:main
+          # A generated-data push can race another workflow after the rebase. Retry the
+          # fetch/rebase/push sequence instead of failing on that narrow window.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase -X theirs origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 5 ]; then sleep "$attempt"; fi
+          done
+          echo "Unable to publish opponent-strength refresh after five attempts." >&2
+          exit 1
 
 # Manual UFC 333 refresh trigger
