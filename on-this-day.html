@@ -28,7 +28,14 @@ page_scripts:
         const buildLead = {{ otd_build_lead | jsonify }};
         const validKey = value => /^\d{2}-\d{2}$/.test(value || "");
         const preload = url => {
-            if (!url || document.querySelector('link[data-otd-lead-preload]')) return;
+            if (!url) return;
+            const existing = document.querySelector('link[data-otd-lead-preload]');
+            if (existing) {
+                const resolved = new URL(url, location.href).href;
+                if (existing.href !== resolved) existing.href = resolved;
+                existing.fetchPriority = "high";
+                return;
+            }
             const link = document.createElement("link");
             link.rel = "preload";
             link.as = "image";
