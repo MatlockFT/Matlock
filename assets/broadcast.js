@@ -161,7 +161,9 @@
         soundButton.hidden = false;
         soundButton.style.setProperty('display', 'grid', 'important');
       }
-    } else if (!message) {
+    } else if (!message && !soundBlocked) {
+      // A mute-state message can arrive immediately after an autoplay rejection.
+      // Preserve the recovery affordance until the user successfully enables audio.
       delete document.body.dataset.mfcSoundRecovery;
       soundButton?.style.removeProperty('display');
     }
