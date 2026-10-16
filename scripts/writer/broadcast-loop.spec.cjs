@@ -228,15 +228,16 @@ test('music URLs accept YouTube links, manual duration fallbacks and direct medi
   await expect(page.locator('[data-music-id]')).toHaveCount(4);
 
   await page.locator('[data-take-live]').click();
-  await expect.poll(() => fixture.state.live.music.length).toBe(4);
-  expect(fixture.state.live.music[1]).toMatchObject({
+  await expect.poll(() => fixture.state.pendingLive?.music?.length).toBe(4);
+  expect(fixture.state.live.music).toHaveLength(0);
+  expect(fixture.state.pendingLive.music[1]).toMatchObject({
     url: 'https://youtu.be/T5umkDLypsw',
     youtubeId: 'T5umkDLypsw',
     sourceType: 'youtube',
     duration: 252
   });
-  expect(fixture.state.live.music[2]).toMatchObject({ url: 'https://cdn.example.test/music-bed.mp3', duration: 195 });
-  expect(fixture.state.live.music[3].duration).toBe(2);
+  expect(fixture.state.pendingLive.music[2]).toMatchObject({ url: 'https://cdn.example.test/music-bed.mp3', duration: 195 });
+  expect(fixture.state.pendingLive.music[3].duration).toBe(2);
 });
 
 test('ticker queue supports inline editing, add, duplicate, delete and drag reorder', async ({ page }) => {
