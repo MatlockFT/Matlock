@@ -1000,6 +1000,13 @@
       const id = node.dataset.writerHtmlBlockId || '';
       if (id) return `html:${id}`;
     }
+    if (node.matches('.writer-preview-table-shell')) {
+      const table = node.querySelector(':scope > table[data-writer-table-index]');
+      if (table) return `table:${table.dataset.writerTableIndex || ''}`;
+    }
+    if (node.matches('table[data-writer-table-index]')) {
+      return `table:${node.dataset.writerTableIndex || ''}`;
+    }
     if (node.matches('.writer-embed[data-writer-embed-src]')) {
       return `youtube:${node.getAttribute('data-writer-embed-src') || ''}`;
     }
@@ -1062,7 +1069,34 @@
       const source = id ? (htmlBlocks.get(id)?.code || '') : '';
       return shell._writerHtmlSourceCode === source;
     }
+    if (key.startsWith('table:')) {
+      const existingTable = existing.matches?.('table[data-writer-table-index]')
+        ? existing
+        : existing.querySelector?.(':scope > table[data-writer-table-index]');
+      const nextTable = next.matches?.('table[data-writer-table-index]')
+        ? next
+        : next.querySelector?.(':scope > table[data-writer-table-index]');
+      return Boolean(existingTable && nextTable && existingTable.innerHTML === nextTable.innerHTML);
+    }
     syncPreviewMediaLayout(existing, next);
+    return true;
+  }
+
+  // Whole-paragraph replacement on every input event allows scroll anchoring to pick
+  // a different element and makes the live preview jump while text is typed.
+  function syncPreviewElement(existing, next) {
+    if (!existing || !next || existing.tagName !== next.tagName) return false;
+    if (previewEmbedKey(existing) || previewEmbedKey(next)) return false;
+
+    for (const attribute of [...existing.attributes]) {
+      if (!next.hasAttribute(attribute.name)) existing.removeAttribute(attribute.name);
+    }
+    for (const attribute of [...next.attributes]) {
+      if (existing.getAttribute(attribute.name) !== attribute.value) {
+        existing.setAttribute(attribute.name, attribute.value);
+      }
+    }
+    if (existing.innerHTML !== next.innerHTML) existing.innerHTML = next.innerHTML;
     return true;
   }
 
@@ -1092,6 +1126,12 @@
           cursor = existing.nextElementSibling;
           continue;
         }
+      }
+
+      if (cursor && !nextKey && !previewEmbedKey(cursor) &&
+          syncPreviewElement(cursor, next)) {
+        cursor = cursor.nextElementSibling;
+        continue;
       }
 
       if (cursor) {
@@ -3425,6 +3465,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
         mirrorThrough: data.mirrorThrough || '',
         fighters: (Array.isArray(data.fighters) ? data.fighters : []).map(fighter => ({
           id: fighter.id || '',
+          athleteSlug: fighter.athleteSlug || '',
           name: fighter.name || '',
           division: fighter.division || '',
           record: fighter.record || '',
@@ -4062,8 +4103,9 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     const cacheKey = fighter.ufcStatsId || fighter.id || normalizeFighterLookup(fighter.name);
     const cached = writerFighterLiveCache.get(cacheKey);
     if (cached && Date.now() - cached.savedAt < 5 * 60 * 1000) return cached.data;
+    const generatedStatsId = String(fighter.id || '').startsWith('ufcstats-');
     const query = new URLSearchParams({
-      slug:fighter.id || '',
+      slug:fighter.athleteSlug || (generatedStatsId ? '' : fighter.id || ''),
       name:fighter.name || ''
     });
     if (fighter.ufcStatsId) query.set('id',fighter.ufcStatsId);
