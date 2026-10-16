@@ -95,6 +95,16 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
   await editor.fill(body);
   await expect(page.locator('[data-preview-content] h2', { hasText: 'Target Section' })).toBeVisible();
 
+  const firstPreviewParagraph = page.locator('[data-preview-content] > p').first();
+  await firstPreviewParagraph.evaluate(el => { window.__writerStablePreviewParagraph = el; });
+  await editor.evaluate(el => { el.focus(); el.setSelectionRange(5, 5); });
+  await page.keyboard.type(' marker');
+  await expect.poll(async () => firstPreviewParagraph.textContent()).toContain('marker');
+  expect(await page.evaluate(() =>
+    window.__writerStablePreviewParagraph === document.querySelector('[data-preview-content] > p')
+  )).toBe(true);
+  await editor.fill(body);
+
   await previewPane.evaluate(el => { el.scrollTop = 0; });
   await editor.evaluate(el => {
     el.scrollTop = (el.scrollHeight - el.clientHeight) * 0.62;
