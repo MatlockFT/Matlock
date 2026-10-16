@@ -135,11 +135,38 @@ test('image framing controls change fit, zoom and position in Preview and persis
   await expect(y).toHaveValue('50');
 
   const box = await image.boundingBox();
+  const outerFrameBox = await page.locator('[data-preview-frame]').boundingBox();
   expect(box).toBeTruthy();
+  await image.evaluate(node => {
+    window.__mfcPointerTrace = [];
+    for (const type of ['pointerdown', 'pointermove', 'pointerup']) {
+      document.addEventListener(type, event => {
+        window.__mfcPointerTrace.push({
+          type, target: event.target?.tagName, targetClass: String(event.target?.className || ''),
+          x: event.clientX, y: event.clientY, button: event.button, isPrimary: event.isPrimary
+        });
+      }, true);
+    }
+  });
+  const hitTest = await image.evaluate(node => {
+    const r = node.getBoundingClientRect();
+    const x = r.left + r.width / 2, y = r.top + r.height / 2;
+    const hit = document.elementFromPoint(x, y);
+    const stack = document.elementsFromPoint(x, y).slice(0, 8).map(el => ({
+      tag: el.tagName, cls: String(el.className || ''), pe: getComputedStyle(el).pointerEvents,
+      z: getComputedStyle(el).zIndex
+    }));
+    return { rect: { x:r.x, y:r.y, width:r.width, height:r.height }, center: {x,y},
+      hit: hit ? {tag:hit.tagName, cls:String(hit.className||''), isImage:hit===node} : null,
+      stack, wrappers: [node.parentElement, node.parentElement?.parentElement].map(el => ({cls:String(el?.className||''), pe:el?getComputedStyle(el).pointerEvents:''})) };
+  });
+  console.log('MFC_POINTER_DIAGNOSTIC', JSON.stringify({box, outerFrameBox, hitTest}));
   await page.mouse.move(box.x + box.width * .5, box.y + box.height * .5);
   await page.mouse.down();
   await page.mouse.move(box.x + box.width * .35, box.y + box.height * .35, { steps: 5 });
   await page.mouse.up();
+  console.log('MFC_POINTER_TRACE', JSON.stringify(await image.evaluate(() => window.__mfcPointerTrace)));
+
 
   await expect.poll(async () => Number(await x.inputValue())).toBeGreaterThan(50);
   await expect.poll(async () => Number(await y.inputValue())).toBeGreaterThan(50);
