@@ -1378,9 +1378,13 @@ function insertBlock(text, { preserveScroll = false } = {}) {
 
   function installWriterFighterLookup(input, type, side) {
     if (!input || input.dataset.lookupReady === 'true') return;
+    const dialog = type === 'stats'
+      ? app.querySelector('[data-stats-dialog]')
+      : app.querySelector('[data-tale-dialog]');
+    const menu = lookupMenuElement(input);
+    if (!dialog || !menu) return;
     input.dataset.lookupReady = 'true';
     input.autocomplete = 'off';
-    const menu = lookupMenuElement(input);
     let matches = [];
 
     const render = async () => {
