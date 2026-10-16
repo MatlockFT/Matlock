@@ -83,6 +83,9 @@ test('image framing controls change fit, zoom and position in Preview and persis
 
   await page.goto(fixture.origin + '/broadcast/control/');
   await page.getByRole('tab', { name: /Rundown/ }).click();
+  const selectedImage = page.locator('[data-program-id="framing-image"]');
+  await expect(selectedImage).toBeVisible();
+  await selectedImage.click();
   const fit = page.getByLabel('Media fit', { exact: true });
   const zoom = page.getByLabel('Zoom', { exact: true });
   const x = page.getByLabel('Horizontal position', { exact: true });
@@ -155,6 +158,9 @@ test('video inspector queues caption generation and keeps captions enabled', asy
 
   await page.goto(fixture.origin + '/broadcast/control/');
   await page.getByRole('tab', { name: /Rundown/ }).click();
+  const selectedVideo = page.locator('[data-program-id="caption-video"]');
+  await expect(selectedVideo).toBeVisible();
+  await selectedVideo.click();
   await expect(page.getByLabel('Auto captions', { exact: true })).toHaveValue('on');
   await page.getByRole('button', { name: 'Regenerate captions' }).click();
   await expect.poll(() => fixture.controls.captionQueues).toBe(1);
@@ -500,7 +506,7 @@ test('music repeats across tracks, ducks under video, restores smoothly, and obe
   ];
   channel.audio.crossfade = 0;
   fixture.state.live = channel;
-  await page.goto(fixture.origin + '/broadcast/?mode=draft');
+  await page.goto(fixture.origin + '/broadcast/?mode=draft&controls=1');
   const send = () => page.evaluate(channel => window.postMessage({ type: 'matlock-broadcast-preview', channel }, location.origin), channel);
   await send();
   await page.locator('[data-mfc-sound]').click();

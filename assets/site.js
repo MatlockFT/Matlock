@@ -575,7 +575,14 @@
         const mobile = window.matchMedia("(max-width: 760px)");
 
         const sync = () => {
-            const visible = mobile.matches && window.scrollY > Math.max(520, window.innerHeight * 0.8);
+            // WebKit can report the scrolling element's offset before window.scrollY
+            // settles after programmatic/mobile scrolling. Read all standard offsets.
+            const scrollTop = Math.max(
+                Number(window.scrollY) || 0,
+                Number(document.documentElement?.scrollTop) || 0,
+                Number(document.body?.scrollTop) || 0
+            );
+            const visible = mobile.matches && scrollTop > Math.max(520, window.innerHeight * 0.8);
             button.hidden = !visible;
             button.classList.toggle("is-visible", visible);
         };
@@ -596,7 +603,9 @@
             });
         });
 
-        window.addEventListener("scroll", scheduleSync, { passive: true });
+        // Update directly on scroll so mobile Safari/WebKit doesn't lose a
+        // one-frame visibility update during programmatic scroll transitions.
+        window.addEventListener("scroll", sync, { passive: true });
         window.addEventListener("resize", scheduleSync);
         mobile.addEventListener?.("change", sync);
         sync();

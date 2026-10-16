@@ -536,18 +536,25 @@ body {
 
 .mfc-body[data-mfc-controls="true"]:not([data-mfc-embed="true"]) .mfc-sound {
   display: grid;
-  position: fixed;
-  top: auto;
-  bottom: max(12px, env(safe-area-inset-bottom));
-  left: 50%;
-  transform: translateX(-50%);
 }
 
+/* A blocked embed needs a reachable recovery control; keep it below the normal
+   stage in the control room and inside the stage only for the iframe preview. */
 .mfc-body[data-mfc-sound-recovery="true"]:not([data-mfc-embed="true"]) .mfc-sound {
   display: grid !important;
-  position: fixed;
+  position: absolute;
+  top: calc(100% + 12px);
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.mfc-body[data-mfc-sound-recovery="true"][data-mfc-embed="true"] .mfc-sound {
+  display: grid !important;
+  position: absolute;
   top: auto;
-  bottom: max(12px, env(safe-area-inset-bottom));
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 999;
