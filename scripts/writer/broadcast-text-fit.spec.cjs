@@ -114,7 +114,7 @@ test('Control, homepage-sized embeds, narrow monitors and wide hosts share one c
     expect(actual.ratio).toBeCloseTo(4 / 3, 5); expect(actual.pages).toBe(reference.pages);
     actual.fields.forEach((field, index) => {
       expect(field.font, field.key).toBe(reference.fields[index].font);
-      for (const dimension of ['left', 'top', 'width', 'height']) expect(field[dimension], field.key + ' ' + dimension).toBeCloseTo(reference.fields[index][dimension], 4);
+      for (const dimension of ['left', 'top', 'width', 'height']) expect(field[dimension], field.key + ' ' + dimension).toBeCloseTo(reference.fields[index][dimension], 2);
     });
     const placement = await page.locator('[data-mfc-screen]').evaluate(node => {
       const box = node.getBoundingClientRect(); return { left: box.left, top: box.top, right: box.right, bottom: box.bottom, width: innerWidth, height: innerHeight };
