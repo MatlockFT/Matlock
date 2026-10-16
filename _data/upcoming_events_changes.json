@@ -1,7 +1,21 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-16T00:31:37.443Z",
+  "generated_at": "2026-10-16T09:43:49.355Z",
   "changes": [
+    {
+      "id": "2026-10-16T09:43:49.355Z|rizin-abc-presents-rizin-55-2026-11-08|broadcast_changed|1",
+      "at": "2026-10-16T09:43:49.355Z",
+      "type": "broadcast_changed",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "promotion": "RIZIN",
+      "event_title": "『abc presents RIZIN.55』",
+      "event_date": "2026-11-08",
+      "summary": "RIZIN 『abc presents RIZIN.55』: broadcast changed.",
+      "details": {
+        "from": "RIZIN 100 CLUB",
+        "to": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV"
+      }
+    },
     {
       "id": "2026-10-16T00:31:37.443Z|ufc-335-2026-12-12-fight-card|bout_moved|1",
       "at": "2026-10-16T00:31:37.443Z",
@@ -4709,22 +4723,6 @@
       "details": {
         "from_order": 6,
         "to_order": 3,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-22T16:55:39.794Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|14",
-      "at": "2026-09-22T16:55:39.794Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Buckley vs Malott",
-      "event_date": "2026-10-17",
-      "summary": "Mandel Nallo vs Nate Landwehr moved on Buckley vs Malott.",
-      "details": {
-        "from_order": 9,
-        "to_order": 4,
         "from_section": "Main Card",
         "to_section": "Main Card"
       }
