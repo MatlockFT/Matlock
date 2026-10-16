@@ -2870,17 +2870,19 @@
     if (!working || !dirty || busyAction || uploadRunning) return;
     const originalLabel = saveDraftButton.textContent;
     const savingVersion = editVersion;
+    // Freeze the payload before the first await. Later edits must remain dirty for the next save.
+    const draftForSave = clone(working);
     setBusy('save');
     saveDraftButton.textContent = 'Saving…';
     try {
       const now = await sharedNowIso();
-      working.updatedAt = now;
-      working.revision = `draft-${Date.now()}`;
+      draftForSave.updatedAt = now;
+      draftForSave.revision = `draft-${Date.now()}`;
       const nextState = {
         ...(fullState || {}),
         version: 1,
         updatedAt: now,
-        draft: clone(working)
+        draft: draftForSave
       };
       await writeState(nextState, 'Update broadcast draft [skip ci]');
       fullState = nextState;
