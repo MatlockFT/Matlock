@@ -509,7 +509,7 @@ test("UFCStats-only fighters populate Writer stats without a fake UFC.com slug",
           recordOutsideUfc: null,
           ufcStatsId: 'bb2c3c3a466224af',
           sourceUrl: 'https://ufcstats.com/fighter-details/bb2c3c3a466224af',
-          bio: { height: '5\\' 6"', reach: '67"', dob: 'Jun 09, 1999' },
+          bio: { height: '5 ft 6 inches', reach: '67"', dob: 'Jun 09, 1999' },
           stats: {
             slpm: '4.50', sapm: '2.10', strAccuracy: '52%', strDefense: '61%',
             tdAvg: '1.25', tdAccuracy: '40%', tdDefense: '70%', subAvg: '0.25',
