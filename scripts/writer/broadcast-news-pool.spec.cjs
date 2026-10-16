@@ -294,7 +294,9 @@ test('Fight City Forecast advances through fight-day, extended and regional scre
 
   await page.goto(fixture.origin + '/broadcast/');
   await expect(page.locator('[data-mfc-weather-screen]')).toContainText('Fight Day Forecast');
-  await expect(page.locator('[data-mfc-weather-screen]')).toContainText('MAIN CARD 6:00 PM MDT');
+  const mainCardSlot = page.locator('.mfc-wx-fight-time-slot').first();
+  await expect(mainCardSlot.locator('small')).toHaveText('MAIN CARD');
+  await expect(mainCardSlot.locator('strong')).toHaveText('6:00 PM MDT');
   await expect(page.locator('[data-mfc-weather-screen]')).toContainText('HIGH 84°');
 
   fixture.state = {
@@ -375,7 +377,7 @@ test('Fight City weather layouts keep titles, event slug and content in separate
   const statRows = await page.locator('.mfc-wx-current-right p').evaluateAll(rows =>
     rows.map(row => ({ h: row.getBoundingClientRect().height, text: row.textContent }))
   );
-  expect(statRows).toHaveLength(5);
+  expect(statRows).toHaveLength(6);
   expect(statRows.find(row => row.text.includes('PRESSURE'))?.text).toContain('IN.');
 
   await showAt(13, 'layout-fightday');
@@ -514,10 +516,21 @@ test('YouTube news can be trimmed, muted and taken live; blocked SDK falls throu
   await page.getByLabel('Playback duration (min:sec)', { exact: true }).press('Tab');
   await page.getByRole('combobox', { name: 'Video audio', exact: true }).selectOption('off');
   await page.locator('[data-take-live]').click();
-  await expect.poll(() => fixture.state.live.program.length).toBe(2);
-  expect(fixture.state.live.program[1]).toMatchObject({ duration: 2, sourceDuration: 300, videoAudio: false });
-  // An unavailable SDK cannot freeze the loop on this item.
-  fixture.state = { ...fixture.state, live: { ...fixture.state.live, revision: 'sdk-fail', startedAt: new Date().toISOString(), program: [fixture.state.live.program[1], fixture.state.live.program[0]] } };
+  // Taking a rundown live is queued until the existing loop finishes.
+  await expect.poll(() => fixture.state.pendingLive?.program?.length).toBe(2);
+  const queuedProgram = fixture.state.pendingLive.program;
+  expect(queuedProgram[1]).toMatchObject({ duration: 2, sourceDuration: 300, videoAudio: false });
+  // Simulate that queued video reaching the live output; a blocked SDK must not freeze the loop.
+  fixture.state = {
+    ...fixture.state,
+    pendingLive: null,
+    live: {
+      ...fixture.state.live,
+      revision: 'sdk-fail',
+      startedAt: new Date().toISOString(),
+      program: [queuedProgram[1], fixture.state.live.program[0]]
+    }
+  };
   await page.route('https://www.youtube.com/iframe_api', route => route.abort());
   await page.goto(fixture.origin + '/broadcast/');
   await expect(page.locator('[data-mfc-title]')).toHaveText('LOCAL TEST CHANNEL');
