@@ -153,8 +153,18 @@
   standbyMusicYoutube = musicYoutubeB;
 
   function reportPlayback(message, blocked = false) {
-    if (blocked && !obsMode) document.body.dataset.mfcSoundRecovery = 'true';
-    else if (!message) delete document.body.dataset.mfcSoundRecovery;
+    if (blocked && !obsMode) {
+      document.body.dataset.mfcSoundRecovery = 'true';
+      // Reveal the recovery button even inside the fixed-size preview iframe.
+      // The CSS positions it in the right place for embedded and standalone views.
+      if (soundButton) {
+        soundButton.hidden = false;
+        soundButton.style.setProperty('display', 'grid', 'important');
+      }
+    } else if (!message) {
+      delete document.body.dataset.mfcSoundRecovery;
+      soundButton?.style.removeProperty('display');
+    }
     if (playbackStatus && (controlsMode || monitorMode)) {
       playbackStatus.textContent = message;
       playbackStatus.hidden = !message;

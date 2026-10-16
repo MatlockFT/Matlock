@@ -2072,7 +2072,14 @@
   }
 
   function currentProgram() {
-    return working?.program?.find(item => item.id === selectedProgramId) || null;
+    const items = Array.isArray(working?.program) ? working.program : [];
+    const selected = items.find(item => item.id === selectedProgramId);
+    if (selected) return selected;
+    // Recover from stale selection IDs after a refreshed/replaced draft instead of
+    // leaving the inspector blank while the rundown visibly contains items.
+    const first = items[0] || null;
+    if (first) selectedProgramId = first.id || '';
+    return first;
   }
 
   function renderProgramEditor() {
