@@ -23,7 +23,7 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
           ufcRecord: '6-1-0',
           recordOutsideUfc: '6-1-0',
           rank: 9,
-          booking: { date:'2026-10-03', opponentId:'lookup-opponent' },
+          booking: { date:'2026-11-03', opponentId:'lookup-opponent' },
           image: 'https://example.com/lookup.png',
           checkedAt: '2026-09-26T18:00:00.000Z',
           ufcStatsId: 'aaaaaaaaaaaaaaaa',
@@ -197,7 +197,7 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
   await taleA.fill('Lookup');
   await taleDialog.locator('.writer-fighter-suggestion').first().click();
   await expect(taleDialog.locator('[data-tale-last5="a"]')).toHaveValue('1-0');
-  await expect(taleA).toHaveAttribute('data-booking-date','2026-10-03');
+  await expect(taleA).toHaveAttribute('data-booking-date','2026-11-03');
 
   const taleRows = taleDialog.locator('[data-tale-row-list] .writer-comparison-row');
   await expect(taleRows).toHaveCount(11);
@@ -246,7 +246,7 @@ test('Brad Tavares stays complete when the live probe fails', async ({ page }) =
   );
   expect(statValues).toHaveLength(8);
   expect(statValues.every(Boolean)).toBe(true);
-  await expect(statsInput.locator('xpath=..').locator('.writer-fighter-source-status')).toContainText('Verified UFCStats data loaded');
+  await expect(statsInput.locator('xpath=..').locator('.writer-fighter-source-status')).toContainText('Verified stats loaded');
 
   await statsDialog.locator('button[value="cancel"]').first().click();
 
@@ -268,7 +268,7 @@ test('Brad Tavares stays complete when the live probe fails', async ({ page }) =
   await expect(taleRows.nth(8).locator('[data-structured-a]')).not.toHaveValue('');
   await expect(taleRows.nth(9).locator('[data-structured-a]')).not.toHaveValue('');
   await expect(taleRows.nth(10).locator('[data-structured-a]')).not.toHaveValue('');
-  await expect(taleInput.locator('xpath=..').locator('.writer-fighter-source-status')).toContainText('Verified UFCStats data loaded');
+  await expect(taleInput.locator('xpath=..').locator('.writer-fighter-source-status')).toContainText('Verified stats loaded');
 
   expect(pageErrors).toEqual([]);
 });
