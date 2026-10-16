@@ -127,7 +127,7 @@ function metrics(totals) {
 function countRecord(history, allowed = null) {
   const counts = { W: 0, L: 0, D: 0 };
   for (const fight of history || []) {
-    if (allowed && !allowed.has(fight.competitionClass || 'ufc')) continue;
+    if (allowed && !allowed.has(fight.competitionClass)) continue;
     if (Object.hasOwn(counts, fight.result)) counts[fight.result]++;
   }
   return counts.W + '-' + counts.L + '-' + counts.D;
@@ -439,6 +439,7 @@ for (const mirror of mirrorFighters.values()) {
 
   const history = resultHistoryByStatsId.get(mirror.id) || [];
   const recent = history.slice(0, 5);
+  const ufcHistory = history.filter(fight => /^(?:UFC\\b|Noche UFC\\b)/i.test(fight.event || ''));
   fighters.push({
     id: 'ufcstats-' + mirror.id,
     athleteSlug: null,
@@ -446,7 +447,7 @@ for (const mirror of mirrorFighters.values()) {
     division: null,
     // UFCStats only provides the UFC record; never label it as the overall pro record.
     record: null,
-    ufcRecord: countRecord(history),
+    ufcRecord: countRecord(ufcHistory),
     recordOutsideUfc: null,
     rank: null,
     image: null,
