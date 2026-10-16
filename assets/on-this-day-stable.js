@@ -170,7 +170,7 @@
 
     function applyImageMode(row, media, image) {
         if (!row || !media || !image?.naturalWidth || row.dataset.mediaModeApplied === "1") return;
-        const mode = classifyImage(image);
+        const mode = row.dataset.mediaMode === "poster" ? "poster" : classifyImage(image);
         row.classList.remove("is-media-fallback");
         row.classList.add(`is-media-${mode}`);
         media.classList.add(`otd-entry-media--${mode}`);
@@ -180,8 +180,9 @@
 
     function markFallback(row, media) {
         if (!row || !media) return;
-        media.classList.remove("is-image-loading", "is-image-ready");
+        media.classList.remove("is-image-loading", "is-image-ready", "otd-entry-media--poster", "otd-entry-media--portrait", "otd-entry-media--square", "otd-entry-media--landscape", "otd-entry-media--wide");
         media.classList.add("is-fallback");
+        row.classList.remove("is-media-poster", "is-media-portrait", "is-media-square", "is-media-landscape", "is-media-wide");
         media.removeAttribute("role");
         media.removeAttribute("tabindex");
         media.removeAttribute("aria-label");
@@ -192,7 +193,16 @@
 
     function mediaBlock(entry, row, priority = false) {
         const media = el("div", "otd-entry-media");
-        if (entry?.kind === "event") media.style.aspectRatio = "2 / 3";
+        if (entry?.kind === "event") {
+            media.style.aspectRatio = "2 / 3";
+            // Event artwork is a poster, so set its final layout class before
+            // the row enters the document instead of after its image loads.
+            if (entry.imageUrl) {
+                row.classList.add("is-media-poster");
+                row.dataset.mediaMode = "poster";
+                media.classList.add("otd-entry-media--poster");
+            }
+        }
         if (!entry?.imageUrl) {
             media.classList.add("is-fallback");
             media.append(

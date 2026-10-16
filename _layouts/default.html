@@ -67,6 +67,10 @@
         <link rel="preconnect" href="{{ origin }}" crossorigin>
     {% endfor %}
 
+    {% if page.v3_text_masthead or page.layout == "post" %}
+        <link rel="preload" href="{{ '/assets/fonts/herkey-regular-v1.woff2' | relative_url }}?v={{ site.asset_version }}" as="font" type="font/woff2" crossorigin>
+    {% endif %}
+
     {% if page.permalink == '/upcoming-events/' %}
         {% assign picker_preload_events = site.data.upcoming_events.events | concat: site.data.upcoming_events_regional.events | sort: "date" %}
         {% assign picker_preload_event = picker_preload_events | first %}
