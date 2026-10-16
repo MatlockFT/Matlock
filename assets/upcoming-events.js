@@ -3,6 +3,10 @@
     const eventList = page?.querySelector(".upcoming-events-list");
     if (!page || !eventList) return;
 
+    // Liquid already sorts event cards by date. Keep this list for pick persistence
+    // and status updates, but do not move DOM nodes during the initial render.
+    const cards = [...eventList.querySelectorAll(":scope > .upcoming-event-card")];
+
     const PICK = "is-pick";
     const H2C = "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js";
     const assetQuery = (() => {
