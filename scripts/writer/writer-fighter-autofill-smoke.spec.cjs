@@ -485,3 +485,67 @@ test('fighters without a UFCStats sample show explicit N/A instead of blanks', a
 
   expect(pageErrors).toEqual([]);
 });
+
+
+test("UFCStats-only fighters populate Writer stats without a fake UFC.com slug", async ({ page }) => {
+  test.setTimeout(45000);
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+
+  await page.route('**/assets/data/writer-fighters.json?writer-fighters=*', async route => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        schemaVersion: 1,
+        generatedAt: '2026-10-16T00:00:00.000Z',
+        builtAt: '2026-10-16T00:00:00.000Z',
+        mirrorThrough: '2026-10-15',
+        fighters: [{
+          id: 'ufcstats-bb2c3c3a466224af',
+          name: "Lone'er Kavanagh",
+          athleteSlug: null,
+          record: null,
+          ufcRecord: '3-0-0',
+          recordOutsideUfc: null,
+          ufcStatsId: 'bb2c3c3a466224af',
+          sourceUrl: 'https://ufcstats.com/fighter-details/bb2c3c3a466224af',
+          bio: { height: '5 ft 6 inches', reach: '67"', dob: 'Jun 09, 1999' },
+          stats: {
+            slpm: '4.50', sapm: '2.10', strAccuracy: '52%', strDefense: '61%',
+            tdAvg: '1.25', tdAccuracy: '40%', tdDefense: '70%', subAvg: '0.25',
+            sample: { fights: 3, minutes: 30, latestBoutDate: '2026-07-25' }
+          },
+          career: null,
+          recent: []
+        }]
+      })
+    });
+  });
+
+  await page.route('**/api/writer/fighter*', async route => {
+    const url = new URL(route.request().url());
+    expect(url.searchParams.get('id')).toBe('bb2c3c3a466224af');
+    expect(url.searchParams.get('slug')).toBe('');
+    await route.fulfill({
+      status: 502,
+      contentType: 'application/json',
+      body: JSON.stringify({ ok:false, error:'simulated live source outage' })
+    });
+  });
+
+  await page.goto(BASE, { waitUntil:'domcontentloaded' });
+  await page.click('[data-library-new]');
+  await page.click('[data-tool="stats"]');
+
+  const dialog = page.locator('[data-stats-dialog]');
+  const input = dialog.locator('[data-stats-fighter="a"]');
+  await input.fill("Lone'er Kavanagh");
+  await dialog.locator('.writer-fighter-suggestion', { hasText:"Lone'er Kavanagh" }).first().click();
+
+  const values = await dialog.locator('[data-stats-row-list] [data-structured-a]').evaluateAll(nodes =>
+    nodes.map(node => node.value.trim())
+  );
+  expect(values).toEqual(['4.50','2.10','52%','61%','1.25','40%','70%','0.25']);
+  await expect(input).toHaveValue("Lone'er Kavanagh");
+  expect(pageErrors).toEqual([]);
+});

@@ -47,10 +47,23 @@ jobs:
           if (data.schemaVersion !== 1) throw new Error('Unexpected Writer fighter schema.');
           if (!Array.isArray(data.fighters) || data.fighters.length < 500) throw new Error('Writer fighter index is implausibly small.');
           const expectedFighters = (current.fighters || []).filter(fighter => fighter.id && fighter.name);
-          if (data.fighters.length !== expectedFighters.length) {
-            throw new Error('Writer fighter directory dropped roster identities: ' + data.fighters.length + '/' + expectedFighters.length);
+          const indexedIds = new Set(data.fighters.map(fighter => fighter.id));
+          const missingCurrent = expectedFighters.filter(fighter => !indexedIds.has(fighter.id));
+          if (missingCurrent.length) {
+            throw new Error('Writer fighter directory dropped Matchmaker identities: ' + missingCurrent.map(fighter => fighter.name).join(', '));
+          }
+          if (data.fighters.length < expectedFighters.length) {
+            throw new Error('Writer fighter directory is smaller than the Matchmaker roster.');
           }
           if (!data.mirrorThrough) throw new Error('Writer fighter index is missing mirror freshness.');
+          const normalizeName = value => String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+          const kavanagh = data.fighters.find(fighter => normalizeName(fighter.name) === 'lone er kavanagh');
+          if (!kavanagh || !/^[a-f0-9]{16}$/i.test(kavanagh.ufcStatsId || '')) {
+            throw new Error("Lone'er Kavanagh is missing from Writer's UFCStats-backed lookup.");
+          }
+          if (!kavanagh.bio?.height || !kavanagh.bio?.reach || !kavanagh.stats?.slpm) {
+            throw new Error("Lone'er Kavanagh's Writer Tale of Tape or stats sample is incomplete.");
+          }
           const completeStats = fighter => (
             fighter.stats &&
             fighter.stats.slpm != null &&

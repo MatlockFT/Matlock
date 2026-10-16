@@ -416,6 +416,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
         mirrorThrough: data.mirrorThrough || '',
         fighters: (Array.isArray(data.fighters) ? data.fighters : []).map(fighter => ({
           id: fighter.id || '',
+          athleteSlug: fighter.athleteSlug || '',
           name: fighter.name || '',
           division: fighter.division || '',
           record: fighter.record || '',
@@ -1053,8 +1054,9 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     const cacheKey = fighter.ufcStatsId || fighter.id || normalizeFighterLookup(fighter.name);
     const cached = writerFighterLiveCache.get(cacheKey);
     if (cached && Date.now() - cached.savedAt < 5 * 60 * 1000) return cached.data;
+    const generatedStatsId = String(fighter.id || '').startsWith('ufcstats-');
     const query = new URLSearchParams({
-      slug:fighter.id || '',
+      slug:fighter.athleteSlug || (generatedStatsId ? '' : fighter.id || ''),
       name:fighter.name || ''
     });
     if (fighter.ufcStatsId) query.set('id',fighter.ufcStatsId);

@@ -51,3 +51,9 @@
 @media(max-width:1100px){
   .writer-splitflow-sync{display:none}
 }
+
+/* Keep the preview viewport stable while live markdown updates change block heights. */
+.writer-splitflow .writer-preview-pane,
+.writer-splitflow [data-preview-content]{
+  overflow-anchor:none;
+}

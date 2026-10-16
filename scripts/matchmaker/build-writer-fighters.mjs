@@ -349,8 +349,16 @@ for (const [id, rows] of statFights) {
 const fighters = [];
 let withStats = 0;
 let withBio = 0;
-for (const fighter of current.fighters || []) {
-  const ufcStatsId = fighter.meetingCoverage?.ufcStatsId || '';
+const currentFighters = current.fighters || [];
+const representedStatsIds = new Set(currentFighters
+  .map(fighter => fighter.meetingCoverage?.ufcStatsId || uniqueStatsId(fighter.name))
+  .filter(Boolean));
+const representedNames = new Set(currentFighters.map(fighter => key(fighter.name)).filter(Boolean));
+const mirrorThrough = eventRows.map(row => parseDate(row.DATE)).filter(Boolean).sort().at(-1) || null;
+
+for (const fighter of currentFighters) {
+  // Resolve against UFCStats even when the Matchmaker snapshot has no linked Stats ID.
+  const ufcStatsId = fighter.meetingCoverage?.ufcStatsId || uniqueStatsId(fighter.name) || '';
   const mirror = ufcStatsId ? mirrorFighters.get(ufcStatsId) : null;
   const mirrorName = mirror?.name || fighter.name;
   const stats = metrics(totalsByName.get(key(mirrorName)));
@@ -418,6 +426,55 @@ for (const fighter of current.fighters || []) {
   });
 }
 
+// UFCStats is the canonical source for the UFC roster and stats. Add known fighters
+// missing from the Matchmaker candidate universe, independent of rankings or recent activity.
+for (const mirror of mirrorFighters.values()) {
+  const nameKey = key(mirror.name);
+  if (!nameKey || representedNames.has(nameKey) || representedStatsIds.has(mirror.id)) continue;
+
+  const stats = metrics(totalsByName.get(key(mirror.name)));
+  const bio = bioById.get(mirror.id) || null;
+  if (!stats && !bio) continue;
+
+  const history = resultHistoryByStatsId.get(mirror.id) || [];
+  const recent = history.slice(0, 5);
+  fighters.push({
+    id: 'ufcstats-' + mirror.id,
+    athleteSlug: null,
+    name: mirror.name,
+    division: null,
+    // UFCStats only provides the UFC record; never label it as the overall pro record.
+    record: null,
+    ufcRecord: countRecord(history),
+    recordOutsideUfc: null,
+    rank: null,
+    image: null,
+    booking: null,
+    checkedAt: builtAt,
+    ufcStatsId: mirror.id,
+    sourceUrl: mirror.url,
+    latestBoutDate: stats?.sample?.latestBoutDate || recent[0]?.date || null,
+    mirrorThrough,
+    bio,
+    stats,
+    career: normalizedCareer(null, history, null),
+    opponentStrength: null,
+    careerHistorySource: null,
+    recent: recent.map(fight => ({
+      result: fight.result || null,
+      opponent: fight.opponent || fight.opponentName || null,
+      date: fight.date || null,
+      method: fight.method || null,
+      round: fight.round || null,
+      time: fight.time || null,
+      event: fight.event || null,
+      sourceUrl: fight.sourceUrl || null
+    }))
+  });
+  representedNames.add(nameKey);
+  representedStatsIds.add(mirror.id);
+}
+
 fighters.sort((a, b) => a.name.localeCompare(b.name));
 
 const priorityCareerFighters = fighters.filter(fighter =>
@@ -438,7 +495,6 @@ console.log('Writer live-career fallback queue: ' + JSON.stringify({
   targets: sherdogCareer.targets,
   names: priorityCareerFighters.map(fighter => fighter.name)
 }));
-const mirrorThrough = eventRows.map(row => parseDate(row.DATE)).filter(Boolean).sort().at(-1) || null;
 const withCareer = fighters.filter(fighter => completeDisplayedCareer(fighter.career)).length;
 
 const output = {
