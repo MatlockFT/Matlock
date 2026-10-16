@@ -1958,18 +1958,12 @@
       block.append(kind, blockTitle, duration);
       block.addEventListener('click', () => {
         if (Date.now() - lastProgramDragAt < 250) return;
-        selectedProgramId = item.id;
-        renderProgram();
-        renderProgramEditor();
-        postPreview();
+        selectProgram(item);
       });
       block.addEventListener('keydown', event => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
-          selectedProgramId = item.id;
-          renderProgram();
-          renderProgramEditor();
-          postPreview();
+          selectProgram(item);
         }
       });
       block.addEventListener('pointerdown', event => programDragStart(event, block, item));
@@ -2069,6 +2063,16 @@
     button.textContent = label;
     button.addEventListener('click', handler);
     return button;
+  }
+
+  function selectProgram(item) {
+    if (!item || !Array.isArray(working?.program) || !working.program.includes(item)) return;
+    selectedProgramId = item.id || '';
+    programTrack.querySelectorAll('[data-program-id]').forEach(block => {
+      block.classList.toggle('is-selected', block.dataset.programId === selectedProgramId);
+    });
+    renderProgramEditor();
+    postPreview();
   }
 
   function currentProgram() {
