@@ -20,7 +20,7 @@ permalink: /broadcast/
       visibility: hidden;
     }
   </style>
-  <link rel="stylesheet" href="{{ '/assets/broadcast.css' | relative_url }}?v=20261001-auto-captions-2">
+  <link rel="stylesheet" href="{{ '/assets/broadcast.css' | relative_url }}?v=20261016-playback-status-1">
 </head>
 <body class="mfc-body">
   <main class="mfc-shell" data-mfc-root aria-label="Matlock Fight Channel">
@@ -86,6 +86,7 @@ permalink: /broadcast/
           <path class="mfc-sound-muted" d="M16.5 9l4 6M20.5 9l-4 6"></path>
         </svg>
       </button>
+      <div class="mfc-playback-status" data-mfc-playback-status hidden role="status" aria-live="polite"></div>
   </main>
 
   <audio data-mfc-music-a preload="auto"></audio>
@@ -95,7 +96,7 @@ permalink: /broadcast/
 
   <script src="{{ '/assets/broadcast-youtube.js' | relative_url }}?v=20261001-fight-city-11" defer></script>
   <script src="{{ '/assets/broadcast-weather.js' | relative_url }}?v=20261001-weather-header-2" defer></script>
-  <script src="{{ '/assets/broadcast.js' | relative_url }}?v=20261001-seamless-live-2" defer></script>
+  <script src="{{ '/assets/broadcast.js' | relative_url }}?v=20261016-playback-status-1" defer></script>
 </body>
 </html>
 
