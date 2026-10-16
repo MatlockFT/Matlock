@@ -136,31 +136,11 @@ test('image framing controls change fit, zoom and position in Preview and persis
 
   const box = await image.boundingBox();
   expect(box).toBeTruthy();
-  await image.evaluate(node => {
-    node.dataset.testPointerDown = 'false';
-    node.dataset.testPointerMove = 'false';
-    node.addEventListener('pointerdown', () => { node.dataset.testPointerDown = 'true'; });
-    node.addEventListener('pointermove', () => { node.dataset.testPointerMove = 'true'; });
-  });
-  console.log('MFC_DRAG_BEFORE', JSON.stringify(await image.evaluate(node => {
-    const chain = [];
-    for (let current = node; current; current = current.parentElement) {
-      const style = getComputedStyle(current);
-      const rect = current.getBoundingClientRect();
-      chain.push({ tag: current.tagName, className: String(current.className || ''), pointerEvents: style.pointerEvents, display: style.display, rect: [rect.x, rect.y, rect.width, rect.height] });
-    }
-    return { search: location.search, monitor: document.body.dataset.mfcMonitor, imagePointerEvents: getComputedStyle(node).pointerEvents, chain };
-  })));
   await page.mouse.move(box.x + box.width * .5, box.y + box.height * .5);
   await page.mouse.down();
   await page.mouse.move(box.x + box.width * .35, box.y + box.height * .35, { steps: 5 });
   await page.mouse.up();
-  console.log('MFC_DRAG_AFTER', JSON.stringify({
-    iframe: await image.evaluate(node => ({ down: node.dataset.testPointerDown, move: node.dataset.testPointerMove, objectPosition: getComputedStyle(node).objectPosition, transform: getComputedStyle(node).transform })),
-    x: await x.inputValue(),
-    y: await y.inputValue(),
-    dirty: await page.locator('[data-draft-status]').textContent()
-  }));
+
   await expect.poll(async () => Number(await x.inputValue())).toBeGreaterThan(50);
   await expect.poll(async () => Number(await y.inputValue())).toBeGreaterThan(50);
   await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved');

@@ -587,8 +587,11 @@
 
   function installMediaFramingDrag(element) {
     if (!monitorMode || !element) return;
-    // The clean broadcast screen disables pointer events on its child layers.
-    // Re-enable them only for the interactive draft/monitor preview.
+    // The clean broadcast screen disables pointer events on each direct screen
+    // layer. Restore hit-testing on the program wrappers only inside the draft
+    // monitor; otherwise pointer events never reach the image/video itself.
+    panel.style.pointerEvents = 'auto';
+    if (panel.parentElement) panel.parentElement.style.pointerEvents = 'auto';
     element.style.pointerEvents = 'auto';
     element.style.cursor = 'grab';
     element.style.touchAction = 'none';
