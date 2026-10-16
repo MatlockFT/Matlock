@@ -116,10 +116,13 @@
         >
     {% endfor %}
 
-    <link
-        rel="stylesheet"
-        href="{{ '/assets/site-tail.css' | relative_url }}?v={{ site.asset_version }}"
-    >
+    {% assign site_tail_href = '/assets/site-tail.css' | relative_url | append: '?v=' | append: site.asset_version %}
+    {% if page.defer_site_tail %}
+        <link rel="preload" href="{{ site_tail_href }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="{{ site_tail_href }}"></noscript>
+    {% else %}
+        <link rel="stylesheet" href="{{ site_tail_href }}">
+    {% endif %}
     {% if page.layout == "post" %}
         <link
             rel="stylesheet"

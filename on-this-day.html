@@ -4,6 +4,7 @@ title: "On This Day in MMA History"
 description: "MMA history by date: memorable fights, title changes, signings, debuts, deaths, incidents, and other moments from across the sport."
 permalink: /on-this-day/
 v3_text_masthead: true
+defer_site_tail: true
 page_preconnects:
   - https://raw.githubusercontent.com
 page_styles:
@@ -181,6 +182,33 @@ page_scripts:
     </section>
 
     <section class="otd-v3-records" aria-label="MMA history entries">
-        <div class="otd-list" data-otd-list aria-live="polite"></div>
+        <div class="otd-list" data-otd-list aria-live="polite" aria-busy="true">
+            {% if otd_build_lead %}
+            <article class="otd-entry otd-entry--event otd-entry--lead is-media-poster otd-entry--skeleton" data-otd-skeleton aria-hidden="true">
+                <div class="otd-entry-year"></div>
+                <div class="otd-entry-media otd-entry-media--poster is-image-ready" style="aspect-ratio: 2 / 3;">
+                    <img
+                        src="{{ otd_build_lead | escape }}"
+                        width="600"
+                        height="900"
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                        referrerpolicy="no-referrer"
+                        alt=""
+                        style="display:block;width:100%;height:100%;object-fit:contain;"
+                    >
+                </div>
+                <div class="otd-entry-body">
+                    <div class="otd-entry-meta">
+                        <span class="otd-promotion">MMA HISTORY</span>
+                        <span class="otd-kind otd-kind--event">Event</span>
+                    </div>
+                    <h2 class="otd-entry-title">Loading today’s history…</h2>
+                    <p class="otd-entry-detail">Loading entries for {{ site.time | date: "%B %-d" }}.</p>
+                </div>
+            </article>
+            {% endif %}
+        </div>
     </section>
 </article>
