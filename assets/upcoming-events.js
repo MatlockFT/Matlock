@@ -28,15 +28,6 @@
         .replace(/[^a-z0-9]+/g, " ")
         .trim();
 
-    const cards = [...eventList.querySelectorAll(":scope > .upcoming-event-card")];
-    cards
-        .sort((a, b) => {
-            const aDate = a.querySelector("time[datetime]")?.getAttribute("datetime") || "9999-12-31";
-            const bDate = b.querySelector("time[datetime]")?.getAttribute("datetime") || "9999-12-31";
-            return aDate.localeCompare(bDate);
-        })
-        .forEach(card => eventList.appendChild(card));
-
     const sherdogOriginalUrl = src => {
         if (!/sherdog\.com\/image_crop\/\d+\/\d+\//i.test(src)) return "";
         return src.replace(/\/image_crop\/\d+\/\d+\//i, "/");

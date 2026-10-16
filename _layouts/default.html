@@ -67,11 +67,6 @@
         <link rel="preconnect" href="{{ origin }}" crossorigin>
     {% endfor %}
 
-    {% if page.page_styles contains '/assets/editorial-v3-shell.css' %}
-        <link rel="preload" as="style" href="{{ '/assets/homepage-v3.css' | relative_url }}?v={{ site.asset_version }}">
-        <link rel="preload" as="style" href="{{ '/assets/homepage-v3-refresh.css' | relative_url }}?v={{ site.asset_version }}">
-    {% endif %}
-
     {% if page.permalink == '/upcoming-events/' %}
         {% assign picker_preload_events = site.data.upcoming_events.events | concat: site.data.upcoming_events_regional.events | sort: "date" %}
         {% assign picker_preload_event = picker_preload_events | first %}
