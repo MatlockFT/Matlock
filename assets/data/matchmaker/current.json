@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-17T20:51:55.119Z"
+      "checkedAt": "2026-10-17T22:58:52.349Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-17T20:52:20.083Z",
+      "checkedAt": "2026-10-17T22:59:16.474Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -17815,7 +17815,9 @@
       "booking": {
         "event": "Polymarket UFC 334",
         "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334"
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Kayla Harrison",
+        "opponentId": "kayla-harrison"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -180279,7 +180281,9 @@
       "booking": {
         "event": "Polymarket UFC 334",
         "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334"
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Amanda Nunes",
+        "opponentId": "amanda-nunes"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
