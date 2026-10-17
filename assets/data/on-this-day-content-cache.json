@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-10-11T15:57:01.243Z",
+  "updatedAt": "2026-10-17T13:10:38.868Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -15373,6 +15373,21 @@
       "status": "no-main-event",
       "sourceType": "wikipedia-structured",
       "wikipediaTitle": "PFL Africa 3 (2026)"
+    },
+    "pfl:2026-10-16:pfl-chicago-carmouche-vs-bishop-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-10-17T13:10:38.868Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Chicago: Carmouche vs. Bishop 2",
+      "mainEvent": "Carmouche vs. Bishop 2"
+    },
+    "rizin:2026-10-03:rizin-landmark-16": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-10-17T13:10:38.868Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2026 in Rizin Fighting Federation"
     }
   }
 }
