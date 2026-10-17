@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T17:20:26.988Z",
+  "generated_at": "2026-10-17T19:33:13.683Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-10-17-fight-card",
@@ -107,7 +107,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/BARRIAULT_MARC-ANDRE_L_05-10.png?itok=kJq5jhiN",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+164"
+                  "moneyline": "+168"
                 },
                 {
                   "name": "Kyle Daukaus",
@@ -115,7 +115,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/DAUKAUS_KYLE_R_06-14.png?itok=u2hBMZhV",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-196"
+                  "moneyline": "-200"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -645,7 +645,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/THICKNESSE_COLBY_L_05-02.png?itok=N5HTzqNl",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+312"
+                  "moneyline": "+330"
                 },
                 {
                   "name": "Asaf Chopurov",
@@ -653,7 +653,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-491"
+                  "moneyline": "-526"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -678,7 +678,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MALKOUN_JACOB_L_05-02.png?itok=8P_D4zmL",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+145"
+                  "moneyline": "+114"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -1663,31 +1663,6 @@
             {
               "order": 2,
               "label": "Co-Main Event",
-              "weight_class": "Women's Bantamweight Title Bout",
-              "fighters": [
-                {
-                  "name": "Kayla Harrison",
-                  "initials": "KH",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/HARRISON_KAYLA_L_BELTMOCK.png?itok=goxu4s1i",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-210"
-                },
-                {
-                  "name": "Amanda Nunes",
-                  "initials": "AN",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/NUNES_AMANDA_R.png?itok=IWn0DcbC",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+162"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 3,
-              "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
                 {
@@ -1709,7 +1684,7 @@
               ]
             },
             {
-              "order": 4,
+              "order": 3,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -1732,7 +1707,7 @@
               ]
             },
             {
-              "order": 5,
+              "order": 4,
               "label": "",
               "weight_class": "Flyweight Bout",
               "fighters": [
@@ -1762,7 +1737,7 @@
           "time": "5:00 PM ET",
           "bouts": [
             {
-              "order": 6,
+              "order": 5,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -1785,7 +1760,7 @@
               ]
             },
             {
-              "order": 7,
+              "order": 6,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -1808,7 +1783,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 7,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -1831,7 +1806,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 8,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -1861,7 +1836,7 @@
           "time": "5:00 PM ET",
           "bouts": [
             {
-              "order": 10,
+              "order": 9,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -1884,7 +1859,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 10,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -1907,7 +1882,7 @@
               ]
             },
             {
-              "order": 12,
+              "order": 11,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [

@@ -98,13 +98,13 @@
       "verdict_event_id": "1970",
       "verdict_url": "https://verdictmma.com/event/1970",
       "verdict_date": "2026-11-14",
-      "local_fight_count": 12,
+      "local_fight_count": 11,
       "verdict_fight_count": 12,
-      "local_main_count": 5,
+      "local_main_count": 4,
       "verdict_main_count": 5,
       "local_prelim_count": 7,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 12
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "ufc-fight-night-2026-11-21-fight-card",
@@ -201,6 +201,22 @@
         "雑賀“ヤン坊”達也",
         "Daigo Kuramoto"
       ]
+    },
+    {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "verdict_event_id": "1970",
+      "local_fight_count": 11,
+      "verdict_fight_count": 12
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "verdict_event_id": "1970",
+      "local_main_count": 4,
+      "verdict_main_count": 5,
+      "local_prelim_count": 7,
+      "verdict_prelim_count": 7
     },
     {
       "type": "bout_count_mismatch",
