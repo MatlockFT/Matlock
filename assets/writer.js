@@ -5219,7 +5219,11 @@ function insertBlock(text, { preserveScroll = false } = {}) {
           if (['queued', 'preparing', 'publishing'].includes(status.state)) {
             return { ok: true, uploadId: payload.uploadId, state: status.state };
           }
-          if (status.state === 'error') throw new Error(status.error || 'GitHub Release upload failed.');
+          if (status.state === 'error') {
+            const error = new Error(status.error || 'GitHub Release upload failed.');
+            error.status = 409;
+            throw error;
+          }
         } catch (statusError) {
           if (statusError?.message && !retryableMediaRequestError(statusError)) throw statusError;
         }
