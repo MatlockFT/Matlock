@@ -62,7 +62,7 @@
     ].filter(Boolean).join('\n');
   }
 
-  const VIDEO_CHUNK_BYTES = 3.5 * 1024 * 1024;
+  const VIDEO_CHUNK_BYTES = 1_800_000;
   const VIDEO_STATUS_POLL_MS = 1500;
   const VIDEO_STATUS_TIMEOUT_MS = 15 * 60 * 1000;
 
