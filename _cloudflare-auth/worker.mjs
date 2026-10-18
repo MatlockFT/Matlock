@@ -16,6 +16,7 @@ import writerSession from './functions/writer-session.mjs';
 import fightOdds from './functions/fight-odds.mjs';
 import mediaProcess from './functions/writer-media-process-background.mjs';
 import mediaCleanup from './functions/writer-media-cleanup.mjs';
+import { WriterMediaStorage } from './functions/_writer-media-storage-do.mjs';
 import { getWriterSession } from './functions/_writer-session.mjs';
 import {
   mediaStore,
@@ -27,6 +28,7 @@ import {
 } from './functions/_writer-media.mjs';
 
 const KV_GLOBAL = '__MATLOCK_WRITER_KV';
+const MEDIA_STORAGE_GLOBAL = '__MATLOCK_WRITER_MEDIA_STORAGE';
 
 const routeHandlers = new Map([
   ['/setup/github-app', githubAppManifestStart],
@@ -49,8 +51,10 @@ const routeHandlers = new Map([
 
 function activateStorage(env) {
   if (!env?.WRITER_STORE) throw new Error('The WRITER_STORE KV binding is missing.');
-  // All logical stores are namespaced within the existing free-plan KV namespace.
+  if (!env?.WRITER_MEDIA_STORAGE) throw new Error('The WRITER_MEDIA_STORAGE Durable Object binding is missing.');
+  // Keep sessions/authentication in KV; stage large media in SQLite-backed Durable Objects.
   globalThis[KV_GLOBAL] = env.WRITER_STORE;
+  globalThis[MEDIA_STORAGE_GLOBAL] = env.WRITER_MEDIA_STORAGE;
 }
 
 function safeResponse(response) {
@@ -193,7 +197,7 @@ export default {
       const url = new URL(request.url);
       if (url.pathname === '/') return serviceIndex();
       if (url.pathname === '/__health') {
-        return Response.json({ ok: true, service: 'matlock-writer-auth', storage: 'kv', queue: Boolean(env.WRITER_MEDIA_QUEUE) }, {
+        return Response.json({ ok: true, service: 'matlock-writer-auth', storage: 'kv', media_storage: 'durable-objects-sqlite', queue: Boolean(env.WRITER_MEDIA_QUEUE) }, {
           headers: { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' }
         });
       }
@@ -231,3 +235,6 @@ export default {
     }
   }
 };
+
+
+export { WriterMediaStorage };
