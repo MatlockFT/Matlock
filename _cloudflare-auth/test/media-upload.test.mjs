@@ -41,6 +41,7 @@ test('abandoned and failed upload chunks are cleaned before a new upload proceed
   const failedId = 'failed_upload_123456';
   const staleId = 'stale_upload_123456';
   const freshId = 'fresh_upload_123456';
+  const orphanId = 'orphaned_upload_123456';
   const now = Date.now();
   const twoHoursAgo = new Date(now - 3 * 60 * 60 * 1000).toISOString();
   const recent = new Date(now - 60 * 1000).toISOString();
@@ -48,14 +49,16 @@ test('abandoned and failed upload chunks are cleaned before a new upload proceed
   const deletedStatuses = [];
   const statuses = new Map([
     [failedId, { state: 'error', chunkCount: 2 }],
-    [staleId, null],
-    [freshId, { state: 'queued', chunkCount: 2 }],
+    [staleId, { state: 'uploading', chunkCount: 2, updatedAt: twoHoursAgo }],
+    [freshId, { state: 'queued', chunkCount: 2, updatedAt: recent }],
+    [orphanId, null],
     [currentId, null]
   ]);
   const blobs = [
     { key: `chunks/${scope}/${failedId}/00000`, metadata: { createdAt: recent, chunkCount: '2' } },
     { key: `chunks/${scope}/${staleId}/00000`, metadata: { createdAt: twoHoursAgo, chunkCount: '2' } },
     { key: `chunks/${scope}/${freshId}/00000`, metadata: { createdAt: recent, chunkCount: '2' } },
+    { key: `chunks/${scope}/${orphanId}/00000`, metadata: { createdAt: recent, chunkCount: '2' } },
     { key: `chunks/${scope}/${currentId}/00000`, metadata: { createdAt: twoHoursAgo, chunkCount: '2' } }
   ];
   const store = {
@@ -70,13 +73,15 @@ test('abandoned and failed upload chunks are cleaned before a new upload proceed
 
   const cleaned = await cleanupAbandonedUploads(store, scope, currentId, now);
 
-  assert.equal(cleaned, 2);
+  assert.equal(cleaned, 3);
   assert.deepEqual(deletedPrefixes, [
     `chunks/${scope}/${failedId}/`,
-    `chunks/${scope}/${staleId}/`
+    `chunks/${scope}/${staleId}/`,
+    `chunks/${scope}/${orphanId}/`
   ]);
   assert.deepEqual(deletedStatuses, [
     `status/${scope}/${failedId}`,
-    `status/${scope}/${staleId}`
+    `status/${scope}/${staleId}`,
+    `status/${scope}/${orphanId}`
   ]);
 });

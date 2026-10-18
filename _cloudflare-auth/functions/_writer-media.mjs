@@ -152,7 +152,7 @@ export async function cleanupChunks(store, scope, uploadId, chunkCount) {
 }
 
 
-const ABANDONED_UPLOAD_AGE_MS = 2 * 60 * 60 * 1000;
+const ABANDONED_UPLOAD_AGE_MS = 30 * 60 * 1000;
 
 /**
  * Reclaim chunks left behind by failed or abandoned browser uploads before
@@ -186,9 +186,12 @@ export async function cleanupAbandonedUploads(store, scope, currentUploadId, now
       consistency: 'strong'
     });
     const failed = currentStatus?.state === 'error' || currentStatus?.state === 'aborted';
-    const stale = Number.isFinite(group.oldestCreatedAt)
-      && now - group.oldestCreatedAt >= ABANDONED_UPLOAD_AGE_MS;
-    if (!failed && !stale) continue;
+    const orphaned = !currentStatus;
+    const lastActivity = Date.parse(currentStatus?.updatedAt || '');
+    const activityTime = Number.isFinite(lastActivity) ? lastActivity : group.oldestCreatedAt;
+    const stale = Number.isFinite(activityTime)
+      && now - activityTime >= ABANDONED_UPLOAD_AGE_MS;
+    if (!failed && !orphaned && !stale) continue;
 
     const chunkCount = Number(currentStatus?.chunkCount) || group.chunkCount;
     await cleanupChunks(store, scope, uploadId, chunkCount);

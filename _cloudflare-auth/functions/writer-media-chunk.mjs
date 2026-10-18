@@ -7,7 +7,8 @@ import {
   uploadScope,
   validUploadId,
   validateMediaMetadata,
-  cleanupAbandonedUploads
+  cleanupAbandonedUploads,
+  setStatus
 } from './_writer-media.mjs';
 
 export default async function handler(request) {
@@ -78,6 +79,20 @@ export default async function handler(request) {
     // a complete set of temporary chunks. Reclaim them before a new upload.
     if (chunkIndex === 0) {
       await cleanupAbandonedUploads(store, scope, uploadId);
+    }
+
+    // Mark this upload as live so another new upload does not purge its chunks.
+    // Refresh activity periodically for very large files without writing a status
+    // record for every chunk.
+    if (chunkIndex === 0 || chunkIndex % 25 === 0) {
+      await setStatus(store, scope, uploadId, {
+        state: 'uploading',
+        chunkCount: meta.chunkCount,
+        fileSize: meta.fileSize,
+        fileType: meta.fileType,
+        assetName: meta.assetName,
+        receivedChunks: chunkIndex + 1
+      });
     }
 
     const bytes = await request.arrayBuffer();
