@@ -1,11 +1,12 @@
 import { createHash } from 'node:crypto';
 import { getStore } from './_cloudflare-store.mjs';
+import { createDurableObjectMediaStore } from './_writer-media-do-store.mjs';
 import { getWriterSession } from './_writer-session.mjs';
 
 export const MEDIA_STORE_NAME = 'matlock-writer-media-staging';
-export const MAX_CHUNK_BYTES = Math.floor(3.75 * 1024 * 1024);
-export const MAX_VIDEO_BYTES = 512 * 1024 * 1024;
-export const MAX_VIDEO_CHUNKS = 600;
+export const MAX_CHUNK_BYTES = 1_800_000;
+export const MAX_VIDEO_BYTES = 2 * 1024 * 1024 * 1024;
+export const MAX_VIDEO_CHUNKS = 1200;
 export const ACTIVE_UPLOAD_TTL_MS = 24 * 60 * 60 * 1000;
 export const COMPLETE_STATUS_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -69,7 +70,7 @@ function validateMetadata({ assetName, fileSize, fileType, chunkCount = null }, 
 
   if (!safeName || !acceptedTypes.has(ext)) throw new Error(invalidTypeMessage);
   if (!Number.isFinite(size) || size < 1 || size >= MAX_VIDEO_BYTES) {
-    throw new Error('Media file size is invalid or exceeds the 512 MiB free-storage upload limit.');
+    throw new Error('Media file size is invalid or exceeds the 2 GiB GitHub Release upload limit.');
   }
   if (!acceptedTypes.get(ext).has(type)) throw new Error('Media MIME type does not match the file extension.');
 
@@ -113,6 +114,10 @@ export function parseStatusKey(key) {
 }
 
 export function mediaStore() {
+  if (globalThis.__MATLOCK_WRITER_MEDIA_STORAGE) {
+    return createDurableObjectMediaStore({ name: MEDIA_STORE_NAME });
+  }
+  // Preserve the KV adapter for unit tests and local compatibility checks.
   return getStore({ name: MEDIA_STORE_NAME, consistency: 'strong' });
 }
 
@@ -136,6 +141,11 @@ export function isStaleStatus(status, now = Date.now()) {
 export async function cleanupChunks(store, scope, uploadId, chunkCount) {
   const count = Number(chunkCount);
   if (!Number.isInteger(count) || count < 1 || count > MAX_VIDEO_CHUNKS) return;
+  const prefix = `chunks/${scope}/${uploadId}/`;
+  if (typeof store.deletePrefix === 'function') {
+    await store.deletePrefix(prefix);
+    return;
+  }
   await Promise.allSettled(
     Array.from({ length: count }, (_, index) => store.delete(chunkKey(scope, uploadId, index)))
   );
