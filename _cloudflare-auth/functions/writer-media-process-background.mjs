@@ -125,24 +125,44 @@ async function uploadAsset(token, release, store, scope, uploadId, meta) {
   const uploadUrl = String(release?.upload_url || '').replace(/\{\?name,label\}$/, '');
   if (!uploadUrl) throw new Error('GitHub did not provide a Release upload URL.');
 
-  const response = await githubFetchUrl(token, `${uploadUrl}?name=${encodeURIComponent(meta.assetName)}`, {
+  // A normal ReadableStream body is sent with chunked transfer encoding in
+  // Workers; setting Content-Length in headers is ignored by the runtime.
+  // GitHub's Release asset endpoint requires the exact byte length, so pipe the
+  // staged data through FixedLengthStream. This still streams the video and
+  // never buffers the full asset in Worker memory.
+  const fixedBody = new FixedLengthStream(meta.fileSize);
+  const source = await chunkStream(store, scope, uploadId, meta.chunkCount);
+  const pumping = source.pipeTo(fixedBody.writable);
+  const uploading = githubFetchUrl(token, `${uploadUrl}?name=${encodeURIComponent(meta.assetName)}`, {
     method: 'POST',
     headers: {
-      'Content-Type': meta.fileType || 'application/octet-stream',
-      'Content-Length': String(meta.fileSize)
+      'Content-Type': meta.fileType || 'application/octet-stream'
     },
-    body: await chunkStream(store, scope, uploadId, meta.chunkCount),
+    body: fixedBody.readable,
     duplex: 'half'
   });
 
-  const data = await response.json().catch(() => ({}));
+  const [response] = await Promise.all([uploading, pumping]);
+  const responseText = await response.text().catch(() => '');
+  let data = {};
+  try {
+    data = responseText ? JSON.parse(responseText) : {};
+  } catch {
+    data = { message: responseText.trim().slice(0, 500) };
+  }
   if (response.status === 201 && data?.browser_download_url) return data;
 
   if (response.status === 422) {
     const existing = await existingReleaseAsset(token, release, meta.assetName);
     if (existing) return existing;
   }
-  throw new Error(data?.message || `GitHub Release upload failed with status ${response.status}.`);
+  const requestId = response.headers.get('x-github-request-id');
+  const detail = data?.message || responseText.trim().slice(0, 500);
+  throw new Error(
+    detail
+      ? `GitHub Release upload failed with status ${response.status}: ${detail}`
+      : `GitHub Release upload failed with status ${response.status}.${requestId ? ` GitHub request ID: ${requestId}.` : ''}`
+  );
 }
 
 export default async function handler(request) {
