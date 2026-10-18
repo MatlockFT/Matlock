@@ -166,10 +166,10 @@ export async function cleanupAbandonedUploads(store, scope, currentUploadId, now
 
   for (const entry of listing.blobs || []) {
     const key = String(entry.key || '');
-    const match = key.match(/^chunks\\/[a-f0-9]{24}\\/([A-Za-z0-9_-]{12,96})\\/\\d{5}$/);
-    if (!match) continue;
+    const parts = key.split('/');
+    if (parts.length !== 4 || parts[0] !== 'chunks' || parts[1] !== scope || !validUploadId(parts[2]) || !/^\d{5}$/.test(parts[3])) continue;
 
-    const uploadId = match[1];
+    const uploadId = parts[2];
     const createdAt = Date.parse(entry.metadata?.createdAt || entry.uploaded || '');
     const group = uploads.get(uploadId) || { oldestCreatedAt: Infinity, chunkCount: 0 };
     if (Number.isFinite(createdAt)) group.oldestCreatedAt = Math.min(group.oldestCreatedAt, createdAt);
