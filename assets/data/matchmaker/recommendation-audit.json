@@ -1,56 +1,64 @@
 {
-  "generatedAt": "2026-10-18T00:52:40.492Z",
+  "generatedAt": "2026-10-18T19:28:00.564Z",
   "engineVersion": 2,
-  "subjects": 282,
-  "publishedRecommendations": 763,
+  "subjects": 308,
+  "publishedRecommendations": 841,
   "recommendationSlots": {
     "0": 25,
-    "1": 2,
-    "2": 4,
-    "3": 251
+    "1": 3,
+    "2": 2,
+    "3": 278
   },
   "caseCounts": {
-    "rebound-pairing": 318,
-    "rising-vs-rising": 232,
-    "step-up-vs-rebound": 84,
-    "ranking-opportunity": 44,
-    "rankings-progression": 40,
-    "divisional-sorting": 23,
-    "prospect-test": 9,
-    "title-case": 9,
-    "title-eliminator": 4
+    "rebound-pairing": 349,
+    "rising-vs-rising": 260,
+    "step-up-vs-rebound": 97,
+    "ranking-opportunity": 50,
+    "rankings-progression": 41,
+    "divisional-sorting": 25,
+    "prospect-test": 8,
+    "title-case": 8,
+    "title-eliminator": 3
   },
   "confidenceCounts": {
-    "high": 702,
-    "medium": 34,
-    "low": 27
+    "high": 779,
+    "medium": 32,
+    "low": 30
   },
-  "averageRecentOpponentLinkCoverage": 0.903,
-  "sameCardRecommendations": 47,
-  "sameCardRecommendationRatio": 0.0616,
-  "asymmetricTopThreeRecommendations": 258,
-  "asymmetricTopThreeRatio": 0.3381,
-  "publicPublishedRecommendations": 737,
-  "publicAsymmetricTopThreeRecommendations": 204,
-  "publicAsymmetricTopThreeRatio": 0.2768,
-  "engineGenericDivisionalSortingRecommendations": 23,
+  "averageRecentOpponentLinkCoverage": 0.9029,
+  "sameCardRecommendations": 56,
+  "sameCardRecommendationRatio": 0.0666,
+  "asymmetricTopThreeRecommendations": 287,
+  "asymmetricTopThreeRatio": 0.3413,
+  "publicPublishedRecommendations": 814,
+  "publicAsymmetricTopThreeRecommendations": 218,
+  "publicAsymmetricTopThreeRatio": 0.2678,
+  "engineGenericDivisionalSortingRecommendations": 25,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
-    "id": "ufc-fight-night-october-10-2026",
-    "title": "UFC Fight Night: Allen vs Duncan",
-    "date": "2026-10-10",
-    "subjects": 24,
-    "publicRecommendations": 58,
-    "noClearMatchupSubjects": 3
+    "id": "ufc-fight-night-october-17-2026",
+    "title": "UFC Fight Night: Buckley vs Malott",
+    "date": "2026-10-17",
+    "subjects": 26,
+    "publicRecommendations": 78,
+    "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
+    {
+      "id": "ufc-fight-night-october-17-2026",
+      "title": "UFC Fight Night: Buckley vs Malott",
+      "date": "2026-10-17",
+      "subjects": 26,
+      "publicRecommendations": 78,
+      "noClearMatchupSubjects": 0
+    },
     {
       "id": "ufc-fight-night-october-10-2026",
       "title": "UFC Fight Night: Allen vs Duncan",
       "date": "2026-10-10",
       "subjects": 24,
-      "publicRecommendations": 58,
+      "publicRecommendations": 57,
       "noClearMatchupSubjects": 3
     },
     {
@@ -58,7 +66,7 @@
       "title": "UFC 332: Silva vs Wang",
       "date": "2026-10-03",
       "subjects": 28,
-      "publicRecommendations": 80,
+      "publicRecommendations": 79,
       "noClearMatchupSubjects": 1
     },
     {
@@ -82,7 +90,7 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 64,
+      "publicRecommendations": 65,
       "noClearMatchupSubjects": 2
     },
     {
@@ -135,6 +143,20 @@
     }
   ],
   "genericExamples": [
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Chelsea Chandler",
+      "opponent": "Dariya Zheleznyakova",
+      "score": 90,
+      "rationale": "Chelsea Chandler and Dariya Zheleznyakova occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Dariya Zheleznyakova",
+      "opponent": "Chelsea Chandler",
+      "score": 90,
+      "rationale": "Dariya Zheleznyakova and Chelsea Chandler occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Ernesta Kareckaite",
@@ -199,6 +221,13 @@
       "rationale": "Ailin Perez and Jacqueline Cavalcanti occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Ailin Perez",
+      "opponent": "Chelsea Chandler",
+      "score": 42,
+      "rationale": "Ailin Perez and Chelsea Chandler occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Joseph Morales",
       "opponent": "Jose Ochoa",
@@ -253,31 +282,535 @@
       "opponent": "Gabe Green",
       "score": 46,
       "rationale": "Salahdine Parnasse and Gabe Green occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "fighter": "Klaudia Sygula",
-      "opponent": "Alice Pereira",
-      "score": 59,
-      "rationale": "Klaudia Sygula and Alice Pereira occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "fighter": "Klaudia Sygula",
-      "opponent": "Dariya Zheleznyakova",
-      "score": 47,
-      "rationale": "Klaudia Sygula and Dariya Zheleznyakova occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "fighter": "Matthieu Letho Duclos",
-      "opponent": "Ryan Loder",
-      "score": 89,
-      "rationale": "Matthieu Letho Duclos and Ryan Loder occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
   "asymmetricExamples": [
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Mike Malott",
+      "opponent": "Daniel Rodriguez",
+      "pairScore": 87,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Nicolas Dalby",
+          "score": 96,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Chidi Njokuani",
+          "score": 95,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Ignacio Bahamondes",
+          "score": 94,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Erin Blanchfield",
+      "opponent": "Maycee Barber",
+      "pairScore": 88,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Jasmine Jasudavicius",
+          "score": 91,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Rose Namajunas",
+          "score": 89,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Casey Oneill",
+          "score": 88,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Erin Blanchfield",
+      "opponent": "Wang Cong",
+      "pairScore": 80,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Casey Oneill",
+          "score": 92,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Maycee Barber",
+          "score": 86,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Jasmine Jasudavicius",
+          "score": 86,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Kyle Nelson",
+      "opponent": "Daniel Zellhuber",
+      "pairScore": 91,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Bolaji Oki",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Claudio Puelles",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Fares Ziam",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Cristian Perez Gonzalez",
+      "opponent": "Kody Steele",
+      "pairScore": 93,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Mandel Nallo",
+          "score": 95,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Lance Gibson Jr.",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Manuel Torres",
+          "score": 94,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Timmy Cuamba",
+      "opponent": "Serhiy Sidey",
+      "pairScore": 91,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Ethyn Ewing",
+          "score": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jakub Wiklacz",
+          "score": 91,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Suyoung You",
+          "score": 91,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Timmy Cuamba",
+      "opponent": "Cody Haddon",
+      "pairScore": 89,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Jakub Wiklacz",
+          "score": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ethyn Ewing",
+          "score": 91,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Suyoung You",
+          "score": 91,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Nate Landwehr",
+      "opponent": "Kyle Nelson",
+      "pairScore": 91,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Drakkar Klose",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Fares Ziam",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Daniel Zellhuber",
+          "score": 91,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Nate Landwehr",
+      "opponent": "Matt Frevola",
+      "pairScore": 91,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Claudio Puelles",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Drakkar Klose",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Sodiq Yusuff",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Nate Landwehr",
+      "opponent": "Claudio Puelles",
+      "pairScore": 90,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Sodiq Yusuff",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Daniel Zellhuber",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Matt Frevola",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Tanner Boser",
+      "opponent": "Tyrell Fortune",
+      "pairScore": 86,
+      "case": "ranking-opportunity",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Brando Peričić",
+          "score": 92,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Johnny Walker",
+          "score": 90,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Mario Pinto",
+          "score": 90,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Jhonata Diniz",
+      "opponent": "Louie Sutherland",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Guilherme Pat",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Alexander Poppeck",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Gable Steveson",
+          "score": 94,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Jhonata Diniz",
+      "opponent": "Guilherme Pat",
+      "pairScore": 92,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Louie Sutherland",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Alexander Poppeck",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Elisha Ellison",
+          "score": 94,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Jhonata Diniz",
+      "opponent": "Marcus Buchecha",
+      "pairScore": 92,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Alexander Poppeck",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Guilherme Pat",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Javad Mahjoub",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Javad Mahjoub",
+      "opponent": "Guilherme Pat",
+      "pairScore": 94,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Louie Sutherland",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Alexander Poppeck",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Elisha Ellison",
+          "score": 94,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Katlyn Cerminara",
+      "opponent": "Eduarda Moura",
+      "pairScore": 90,
+      "case": "ranking-opportunity",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Dione Barbosa",
+          "score": 94,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Juliana Miller",
+          "score": 94,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Carli Judice",
+          "score": 90,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Chad Anheliger",
+      "opponent": "Muin Gafurov",
+      "pairScore": 90,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Toshiomi Kazama",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Cameron Saaiman",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Chang Ho Lee",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Chad Anheliger",
+      "opponent": "Toshiomi Kazama",
+      "pairScore": 90,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Muin Gafurov",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Chang Ho Lee",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "John Yannis",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Chad Anheliger",
+      "opponent": "Cameron Saaiman",
+      "pairScore": 89,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Garrett Armfield",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Muin Gafurov",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Xiao Long",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Steven Koslow",
+      "opponent": "Borislav Nikolic",
+      "pairScore": 94,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Francesco Nuzzi",
+          "score": 96,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Hector de Sousa Santiago",
+          "score": 96,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ilimbek Akylbek",
+          "score": 95,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Melissa Croden",
+      "opponent": "Michelle Montague",
+      "pairScore": 83,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Jacqueline Cavalcanti",
+          "score": 87,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Nora Cornolle",
+          "score": 86,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Karol Rosa",
+          "score": 82,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Matheus Camilo",
@@ -288,7 +821,7 @@
       "opponentTopThree": [
         {
           "opponent": "Bolaji Oki",
-          "score": 93,
+          "score": 94,
           "case": "rebound-pairing"
         },
         {
@@ -312,17 +845,17 @@
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Charlie Campbell",
+          "opponent": "Daniel Zellhuber",
           "score": 94,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Daniel Zellhuber",
+          "opponent": "Artur Minev",
           "score": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Gauge Young",
+          "opponent": "Charlie Campbell",
           "score": 93,
           "case": "rebound-pairing"
         }
@@ -356,35 +889,10 @@
     {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Jai Herbert",
-      "opponent": "Esteban Ribovics",
+      "opponent": "Jalin Turner",
       "pairScore": 91,
       "case": "rising-vs-rising",
       "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Rongzhu",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jalin Turner",
-          "score": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Joaquim Silva",
-          "score": 92,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Jai Herbert",
-      "opponent": "Jalin Turner",
-      "pairScore": 90,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Diego Ferreira",
@@ -399,506 +907,6 @@
         {
           "opponent": "Esteban Ribovics",
           "score": 92,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Loopy Godinez",
-      "opponent": "Fatima Kline",
-      "pairScore": 84,
-      "case": "rankings-progression",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Yan Xiaonan",
-          "score": 89,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Gillian Robertson",
-          "score": 87,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Alexia Thainara",
-          "score": 85,
-          "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Ketlen Souza",
-      "opponent": "Nicolle Caliari",
-      "pairScore": 87,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Sam Hughes",
-          "score": 90,
-          "case": "prospect-test"
-        },
-        {
-          "opponent": "Shanelle Dyer",
-          "score": 90,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Stephanie Bruna Luciano",
-          "score": 89,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Andre Fili",
-      "opponent": "Patricio Freire",
-      "pairScore": 85,
-      "case": "rankings-progression",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Marcus McGhee",
-          "score": 93,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Melquizael Costa",
-          "score": 93,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "David Onama",
-          "score": 90,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Andre Fili",
-      "opponent": "Marcus McGhee",
-      "pairScore": 87,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Melquizael Costa",
-          "score": 98,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "David Onama",
-          "score": 95,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Christian Rodriguez",
-          "score": 94,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Andre Fili",
-      "opponent": "David Onama",
-      "pairScore": 87,
-      "case": "ranking-opportunity",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Christian Rodriguez",
-          "score": 97,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Bogdan Grad",
-          "score": 96,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Sean Woodson",
-          "score": 96,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Kai Kamaka III",
-      "opponent": "Hyder Amil",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Ramon Taveras",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Javier Reyes",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Morgan Charriere",
-          "score": 93,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Malcolm Wellmaker",
-      "opponent": "John Yannis",
-      "pairScore": 93,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Mark Vologdin",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Mahammadali Osmanli",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Xiao Long",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Malcolm Wellmaker",
-      "opponent": "Mark Vologdin",
-      "pairScore": 93,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "John Yannis",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Mahammadali Osmanli",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Xiao Long",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Julius Walker",
-      "opponent": "Christian Edwards",
-      "pairScore": 90,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Magomed Tuchalov",
-          "score": 91,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Uran Satybaldiev",
-          "score": 91,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Dustin Jacoby",
-          "score": 90,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Gerald Meerschaert",
-      "opponent": "Felipe Franco",
-      "pairScore": 86,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Kevin Christian",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Rafael Tobias",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Ibo Aslan",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Gerald Meerschaert",
-      "opponent": "Kevin Christian",
-      "pairScore": 86,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Rafael Tobias",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Felipe Franco",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Ibo Aslan",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Gerald Meerschaert",
-      "opponent": "Rafael Tobias",
-      "pairScore": 86,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Kevin Christian",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Felipe Franco",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Ibo Aslan",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Rj Harris",
-      "opponent": "Alexander Poppeck",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Elisha Ellison",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Guilherme Pat",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Louie Sutherland",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Alice Pereira",
-      "opponent": "Chelsea Chandler",
-      "pairScore": 80,
-      "case": "rising-vs-rising",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Dariya Zheleznyakova",
-          "score": 91,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Melissa Croden",
-          "score": 90,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Nora Cornolle",
-          "score": 86,
-          "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Alice Pereira",
-      "opponent": "Melissa Croden",
-      "pairScore": 74,
-      "case": "rankings-progression",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Nora Cornolle",
-          "score": 93,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Chelsea Chandler",
-          "score": 90,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Karol Rosa",
-          "score": 86,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Alice Pereira",
-      "opponent": "Nora Cornolle",
-      "pairScore": 62,
-      "case": "rankings-progression",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Melissa Croden",
-          "score": 93,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Dariya Zheleznyakova",
-          "score": 88,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Chelsea Chandler",
-          "score": 86,
-          "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Melissa Gatto",
-      "opponent": "Juliana Miller",
-      "pairScore": 84,
-      "case": "divisional-sorting",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Eduarda Moura",
-          "score": 94,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Dione Barbosa",
-          "score": 88,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Veronica Hardy",
-          "score": 85,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC 332: Silva vs Wang",
-      "fighter": "Wang Cong",
-      "opponent": "Jasmine Jasudavicius",
-      "pairScore": 87,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Maycee Barber",
-          "score": 92,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Rose Namajunas",
-          "score": 91,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Erin Blanchfield",
-          "score": 89,
-          "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "UFC 332: Silva vs Wang",
-      "fighter": "Wang Cong",
-      "opponent": "Maycee Barber",
-      "pairScore": 84,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Jasmine Jasudavicius",
-          "score": 92,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Casey Oneill",
-          "score": 90,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Rose Namajunas",
-          "score": 88,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC 332: Silva vs Wang",
-      "fighter": "Deiveson Figueiredo",
-      "opponent": "Kai Asakura",
-      "pairScore": 81,
-      "case": "ranking-opportunity",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Jean Matsumoto",
-          "score": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Raoni Barcelos",
-          "score": 86,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Victor Henry",
-          "score": 86,
           "case": "rising-vs-rising"
         }
       ]
