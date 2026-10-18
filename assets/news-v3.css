@@ -4,7 +4,7 @@
  */
 
 .news-page-v3 {
-    width: min(calc(100% - 2rem), 1380px);
+    width: min(calc(100% - 2rem), 1880px);
     margin: 0 auto;
     padding: .8rem 0 clamp(4rem, 7vw, 7rem);
     background: var(--v3-paper);
