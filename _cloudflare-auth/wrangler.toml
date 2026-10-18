@@ -16,6 +16,14 @@ GITHUB_ALLOWED_LOGIN = "MatlockFT"
 binding = "WRITER_STORE"
 id = "bd5bdcf98ede4b81b786843b75bda90b"
 
+[[durable_objects.bindings]]
+name = "WRITER_MEDIA_STORAGE"
+class_name = "WriterMediaStorage"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["WriterMediaStorage"]
+
 [[queues.producers]]
 binding = "WRITER_MEDIA_QUEUE"
 queue = "mmamatlock-writer-media-process"

@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: "22.12.0"
 
-      - name: Check Worker modules and R2 store adapter
+      - name: Check Worker modules and Durable Objects media adapter
         run: |
           node --check _cloudflare-auth/worker.mjs
           node --check _cloudflare-auth/functions/_cloudflare-store.mjs

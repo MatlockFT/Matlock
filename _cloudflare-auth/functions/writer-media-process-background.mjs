@@ -64,7 +64,10 @@ async function readChunkWithRetry(store, key) {
   throw new Error('A staged media chunk is not visible in Workers KV yet. Please retry publishing.');
 }
 
-function chunkStream(store, scope, uploadId, chunkCount) {
+async function chunkStream(store, scope, uploadId, chunkCount) {
+  if (typeof store.streamChunks === 'function') {
+    return store.streamChunks(scope, uploadId, chunkCount);
+  }
   let index = 0;
   return new ReadableStream({
     async pull(controller) {
@@ -90,7 +93,7 @@ async function verifyChunks(store, scope, uploadId, chunkCount, fileSize) {
   for (let attempt = 0; attempt <= delays.length; attempt += 1) {
     const listed = await store.list({
       prefix: `chunks/${scope}/${uploadId}/`,
-      limit: 1000
+      limit: 2000
     });
     const byKey = new Map((listed.blobs || []).map(entry => [entry.key, entry]));
     let stagedBytes = 0;
@@ -128,7 +131,7 @@ async function uploadAsset(token, release, store, scope, uploadId, meta) {
       'Content-Type': meta.fileType || 'application/octet-stream',
       'Content-Length': String(meta.fileSize)
     },
-    body: chunkStream(store, scope, uploadId, meta.chunkCount),
+    body: await chunkStream(store, scope, uploadId, meta.chunkCount),
     duplex: 'half'
   });
 
