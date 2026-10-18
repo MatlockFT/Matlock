@@ -1,7 +1,7 @@
 import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
 import { cleanupChunks, mediaStore, requireWriterSession, setStatus, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
 
-export default async function handler(request) {
+export default async function handler(request, env) {
   const origin = normalizeOrigin(request.headers.get('origin'));
   const headers = corsHeaders(request);
 
