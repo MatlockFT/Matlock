@@ -5142,7 +5142,9 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     const data = await response.json().catch(() => ({}));
     if (!response.ok) {
       if (response.status === 401) expireGithubConnection();
-      throw new Error(data.error || data.message || `${response.status} ${response.statusText}`);
+      const error = new Error(data.error || data.message || `${response.status} ${response.statusText}`);
+      error.status = response.status;
+      throw error;
     }
     return data;
   }
@@ -5162,7 +5164,8 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     };
 
     let lastError = null;
-    for (let attempt = 0; attempt < 3; attempt += 1) {
+    const retryDelays = [500, 1000, 2000, 4000, 8000];
+    for (let attempt = 0; attempt <= retryDelays.length; attempt += 1) {
       try {
         await mediaBridgeFetch('/api/writer/media-chunk', {
           method: 'POST',
@@ -5172,7 +5175,10 @@ function insertBlock(text, { preserveScroll = false } = {}) {
         return chunk.size;
       } catch (error) {
         lastError = error;
-        if (attempt < 2) await new Promise(resolve => window.setTimeout(resolve, 350 * (attempt + 1)));
+        const retryable = !Number.isInteger(error?.status)
+          || [408, 429, 500, 502, 503, 504].includes(error.status);
+        if (!retryable || attempt >= retryDelays.length) throw error;
+        await new Promise(resolve => window.setTimeout(resolve, retryDelays[attempt]));
       }
     }
     throw lastError || new Error('Video chunk upload failed.');
@@ -5206,10 +5212,24 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     let uploaded = 0;
 
     setVideoUploadProgress(2, `Uploading video in ${chunkCount} part${chunkCount === 1 ? '' : 's'}…`);
-    for (let index = 0; index < chunkCount; index += 1) {
-      uploaded += await uploadVideoChunk(uploadId, file, assetName, index, chunkCount);
-      const percent = 5 + (uploaded / file.size) * 70;
-      setVideoUploadProgress(percent, `Uploading video… ${Math.round((uploaded / file.size) * 100)}%`);
+    try {
+      for (let index = 0; index < chunkCount; index += 1) {
+        uploaded += await uploadVideoChunk(uploadId, file, assetName, index, chunkCount);
+        const percent = 5 + (uploaded / file.size) * 70;
+        setVideoUploadProgress(percent, `Uploading video… ${Math.round((uploaded / file.size) * 100)}%`);
+      }
+    } catch (error) {
+      // A lost response can leave a chunk in storage even though the browser
+      // thinks it failed. Best-effort cleanup prevents failed attempts piling
+      // up against the account's free temporary-storage allowance.
+      try {
+        await mediaBridgeFetch('/api/writer/media-abort', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ uploadId, chunkCount })
+        });
+      } catch {}
+      throw error;
     }
 
     setVideoUploadProgress(78, 'Sending video to GitHub Releases…');
