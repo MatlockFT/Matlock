@@ -28,9 +28,20 @@ body[data-editorial-shell]:not(:has(.v3-home)) {
     color: var(--v3-ink);
 }
 
-body[data-editorial-shell]:not(:has(.v3-home)) .site-main {
+/* Editorial V3 pages own their internal measure; do not let the legacy
+   1000px site container squeeze News, archives, cards, or article layouts. */
+body[data-editorial-shell]:has([data-globe-home]) .site-main {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
     background: var(--v3-paper);
     color: var(--v3-ink);
+}
+
+html[data-theme="dark"] body[data-editorial-shell]:has([data-globe-home]) .site-main {
+    background: var(--v3-paper) !important;
+    color: var(--v3-ink) !important;
 }
 
 body.layout-post .site-main {
