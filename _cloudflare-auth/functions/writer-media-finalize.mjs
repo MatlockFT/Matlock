@@ -47,33 +47,44 @@ export default async function handler(request) {
   const store = mediaStore();
 
 
-  const processUrl = `${new URL(request.url).origin}/api/writer/media-process`;
-  const processResponse = await fetch(processUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Writer-Session': sessionId
-    },
-    body: JSON.stringify({
-      uploadId,
-      chunkCount: meta.chunkCount,
-      fileSize: meta.fileSize,
-      fileType: meta.fileType,
-      assetName: meta.assetName
-    }),
-    cache: 'no-store'
-  });
-
-  if (!processResponse.ok) {
+  if (!env?.WRITER_MEDIA_QUEUE) {
+    const error = 'Media processing queue is not configured.';
     await setStatus(store, scope, uploadId, {
       state: 'error',
-      error: 'Could not start the GitHub Release publishing job.',
+      error,
       chunkCount: meta.chunkCount,
       fileSize: meta.fileSize,
       fileType: meta.fileType,
       assetName: meta.assetName
     });
-    return Response.json({ ok: false, error: 'Could not start the GitHub Release publishing job.' }, { status: 502, headers });
+    return Response.json({ ok: false, error }, { status: 503, headers });
+  }
+
+  await setStatus(store, scope, uploadId, {
+    state: 'queued',
+    chunkCount: meta.chunkCount,
+    fileSize: meta.fileSize,
+    fileType: meta.fileType,
+    assetName: meta.assetName
+  });
+
+  try {
+    await env.WRITER_MEDIA_QUEUE.send({
+      sessionId,
+      body: { uploadId, ...meta }
+    });
+  } catch (error) {
+    console.error('Could not queue Writer media upload:', error?.message || error);
+    const message = 'Could not queue the GitHub Release publishing job. Please retry.';
+    await setStatus(store, scope, uploadId, {
+      state: 'error',
+      error: message,
+      chunkCount: meta.chunkCount,
+      fileSize: meta.fileSize,
+      fileType: meta.fileType,
+      assetName: meta.assetName
+    });
+    return Response.json({ ok: false, error: message }, { status: 502, headers });
   }
 
   return Response.json({ ok: true, uploadId, state: 'queued' }, { status: 202, headers });
