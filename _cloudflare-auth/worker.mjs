@@ -1,3 +1,4 @@
+import { isAllowedOrigin, normalizeOrigin } from './functions/_github-auth.mjs';
 import githubAppManifestCallback from './functions/github-app-manifest-callback.mjs';
 import githubAppManifestStart from './functions/github-app-manifest-start.mjs';
 import githubAuthCallback from './functions/github-auth-callback.mjs';
@@ -72,12 +73,17 @@ function safeResponse(response) {
   });
 }
 
-function jsonError(error, status = 500) {
+function jsonError(error, status = 500, request = null) {
+  const origin = normalizeOrigin(request?.headers.get('origin'));
+  const cors = isAllowedOrigin(origin)
+    ? { 'Access-Control-Allow-Origin': origin, 'Vary': 'Origin' }
+    : {};
   return Response.json(
     { ok: false, error: String(error?.message || error || 'Cloudflare Writer service error.') },
     {
       status,
       headers: {
+        ...cors,
         'Cache-Control': 'no-store',
         'X-Content-Type-Options': 'nosniff',
         'Referrer-Policy': 'no-referrer'
@@ -106,12 +112,12 @@ function serviceIndex() {
 async function enqueueMediaProcess(request, env) {
   const sessionId = request.headers.get('x-writer-session') || '';
   const session = await getWriterSession(sessionId);
-  if (!session) return jsonError('Writer session expired. Sign in again.', 401);
-  if (!env.WRITER_MEDIA_QUEUE) return jsonError('Media processing queue is not configured.', 503);
+  if (!session) return jsonError('Writer session expired. Sign in again.', 401, request);
+  if (!env.WRITER_MEDIA_QUEUE) return jsonError('Media processing queue is not configured.', 503, request);
 
   const body = await request.json().catch(() => null);
   const uploadId = validUploadId(body?.uploadId);
-  if (!uploadId) return jsonError('Invalid upload ID.', 400);
+  if (!uploadId) return jsonError('Invalid upload ID.', 400, request);
 
   let meta;
   try {
@@ -122,7 +128,7 @@ async function enqueueMediaProcess(request, env) {
       chunkCount: body?.chunkCount
     });
   } catch (error) {
-    return jsonError(error, 400);
+    return jsonError(error, 400, request);
   }
 
   try {
@@ -147,7 +153,7 @@ async function enqueueMediaProcess(request, env) {
     });
     return Response.json({ ok: true, uploadId, state: 'queued' }, { status: 202 });
   } catch (error) {
-    return jsonError(error, 502);
+    return jsonError(error, 502, request);
   }
 }
 
@@ -213,7 +219,7 @@ export default {
       return safeResponse(await handler(request, env));
     } catch (error) {
       console.error('Matlock Writer Worker request failed:', error?.message || error);
-      return jsonError(error, 500);
+      return jsonError(error, 500, request);
     }
   },
 
