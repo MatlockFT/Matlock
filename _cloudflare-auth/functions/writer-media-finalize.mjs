@@ -1,5 +1,5 @@
 import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
-import { cleanupChunks, mediaStore, requireWriterSession, setStatus, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
+import { cleanupChunks, mediaStore, requireWriterSession, setStatus, statusKey, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
 
 export default async function handler(request, env) {
   const origin = normalizeOrigin(request.headers.get('origin'));
@@ -46,6 +46,21 @@ export default async function handler(request, env) {
   const scope = uploadScope(sessionId);
   const store = mediaStore();
 
+  // The browser may retry after the server queued successfully but the response
+  // was lost. Do not enqueue the same upload twice in that case.
+  const current = await store.get(statusKey(scope, uploadId), {
+    type: 'json',
+    consistency: 'strong'
+  });
+  if (current?.state === 'complete' && current?.url) {
+    return Response.json({ ok: true, uploadId, state: 'complete', url: current.url }, { status: 200, headers });
+  }
+  if (['queued', 'preparing', 'publishing'].includes(current?.state)) {
+    return Response.json({ ok: true, uploadId, state: current.state }, { status: 202, headers });
+  }
+  if (current?.state === 'error') {
+    return Response.json({ ok: false, uploadId, state: 'error', error: current.error || 'The previous publishing attempt failed.' }, { status: 409, headers });
+  }
 
   if (!env?.WRITER_MEDIA_QUEUE) {
     const error = 'Media processing queue is not configured.';

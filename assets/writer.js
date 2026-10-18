@@ -5136,7 +5136,10 @@ function insertBlock(text, { preserveScroll = false } = {}) {
         }
       });
     } catch {
-      throw new Error('Could not reach the Writer upload bridge.');
+      const endpoint = String(path || '').split('?')[0];
+      const error = new Error(`Connection failed while contacting the Writer upload bridge (${endpoint}).`);
+      error.networkError = true;
+      throw error;
     }
 
     const data = await response.json().catch(() => ({}));
@@ -5184,10 +5187,76 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     throw lastError || new Error('Video chunk upload failed.');
   }
 
+  function retryableMediaRequestError(error) {
+    return Boolean(error?.networkError)
+      || !Number.isInteger(error?.status)
+      || [408, 429, 500, 502, 503, 504].includes(error.status);
+  }
+
+  async function finalizeVideoUpload(payload) {
+    const delays = [750, 1500, 3000, 5000, 8000];
+    let lastError = null;
+
+    for (let attempt = 0; attempt <= delays.length; attempt += 1) {
+      try {
+        return await mediaBridgeFetch('/api/writer/media-finalize', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (error) {
+        lastError = error;
+        if (!retryableMediaRequestError(error) || attempt >= delays.length) throw error;
+
+        // The server may have queued the job even when the response was lost.
+        // This status check is safe and lets us avoid treating a completed
+        // finalization as a failed upload.
+        try {
+          const status = await mediaBridgeFetch(`/api/writer/media-status?uploadId=${encodeURIComponent(payload.uploadId)}`);
+          if (status.state === 'complete' && status.url) {
+            return { ok: true, uploadId: payload.uploadId, state: 'complete', url: status.url };
+          }
+          if (['queued', 'preparing', 'publishing'].includes(status.state)) {
+            return { ok: true, uploadId: payload.uploadId, state: status.state };
+          }
+          if (status.state === 'error') {
+            const error = new Error(status.error || 'GitHub Release upload failed.');
+            error.status = 409;
+            throw error;
+          }
+        } catch (statusError) {
+          if (statusError?.message && !retryableMediaRequestError(statusError)) throw statusError;
+        }
+
+        setVideoUploadProgress(80, 'Upload received. Reconnecting to confirm publishing…');
+        await new Promise(resolve => window.setTimeout(resolve, delays[attempt]));
+      }
+    }
+
+    throw lastError || new Error('Could not confirm that GitHub accepted the video for publishing.');
+  }
+
   async function waitForVideoRelease(uploadId) {
     const started = Date.now();
+    let failedPolls = 0;
+    let lastPollError = null;
+
     while (Date.now() - started < VIDEO_STATUS_TIMEOUT_MS) {
-      const status = await mediaBridgeFetch(`/api/writer/media-status?uploadId=${encodeURIComponent(uploadId)}`);
+      let status;
+      try {
+        status = await mediaBridgeFetch(`/api/writer/media-status?uploadId=${encodeURIComponent(uploadId)}`);
+        failedPolls = 0;
+        lastPollError = null;
+      } catch (error) {
+        if (!retryableMediaRequestError(error)) throw error;
+        failedPolls += 1;
+        lastPollError = error;
+        const wait = Math.min(5000, 750 * (2 ** Math.min(failedPolls - 1, 3)));
+        setVideoUploadProgress(84, 'Video received. Connection interrupted while checking GitHub publishing; retrying…');
+        await new Promise(resolve => window.setTimeout(resolve, wait));
+        continue;
+      }
+
       if (status.state === 'complete' && status.url) return status.url;
       if (status.state === 'error') throw new Error(status.error || 'GitHub Release upload failed.');
 
@@ -5195,11 +5264,16 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       if (stage === 'queued') setVideoUploadProgress(82, 'Queued for GitHub Releases…');
       else if (stage === 'preparing') setVideoUploadProgress(86, 'Preparing GitHub Release…');
       else if (stage === 'publishing') setVideoUploadProgress(92, 'Publishing video to GitHub Releases…');
+      else if (stage === 'uploading') setVideoUploadProgress(80, 'Video received. Confirming publishing job…');
       else setVideoUploadProgress(84, 'Processing video…');
 
       await new Promise(resolve => window.setTimeout(resolve, VIDEO_STATUS_POLL_MS));
     }
-    throw new Error('GitHub Release upload timed out. Try the upload again.');
+
+    if (lastPollError) {
+      throw new Error('The video was uploaded, but the Writer could not confirm the GitHub Release result before timing out. Retry status checking before uploading the file again.');
+    }
+    throw new Error('GitHub Release upload timed out. The video may still be processing; check the media library before uploading it again.');
   }
 
   async function uploadVideoAsset(file) {
@@ -5233,16 +5307,12 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     }
 
     setVideoUploadProgress(78, 'Sending video to GitHub Releases…');
-    await mediaBridgeFetch('/api/writer/media-finalize', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        uploadId,
-        assetName,
-        chunkCount,
-        fileSize: file.size,
-        fileType: file.type || 'application/octet-stream'
-      })
+    await finalizeVideoUpload({
+      uploadId,
+      assetName,
+      chunkCount,
+      fileSize: file.size,
+      fileType: file.type || 'application/octet-stream'
     });
 
     return waitForVideoRelease(uploadId);
