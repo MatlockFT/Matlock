@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       confirmation:
-        description: "Type DEPLOY to create/update free-plan KV/Queue resources and deploy the Worker."
+        description: "Type DEPLOY to create/update free-plan KV, Queue, and Durable Objects resources and deploy the Worker."
         required: true
         type: string
   push:
