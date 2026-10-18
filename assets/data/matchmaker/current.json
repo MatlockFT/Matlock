@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-18T09:39:43.519Z"
+      "checkedAt": "2026-10-18T13:36:22.453Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-18T09:40:08.812Z",
+      "checkedAt": "2026-10-18T13:37:03.820Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -2168,7 +2168,9 @@
       "booking": {
         "event": "Polymarket UFC 334",
         "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334"
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Juan Diaz",
+        "opponentId": "juan-diaz"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -108926,9 +108928,11 @@
         "officialThrough": "2026-10-10"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Karine Silva",
+        "opponentId": "karine-silva"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -150897,13 +150901,7 @@
         "mirrorThrough": "2026-10-10",
         "officialThrough": "2026-10-10"
       },
-      "booking": {
-        "event": "Procházka vs Stirling",
-        "date": "2026-11-21",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
-        "opponent": "Navajo Stirling",
-        "opponentId": "navajo-stirling"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -168623,7 +168621,9 @@
       "booking": {
         "event": "Polymarket UFC 334",
         "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334"
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Adrian Yanez",
+        "opponentId": "adrian-yanez"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -177183,9 +177183,11 @@
         "officialThrough": "2026-10-10"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Gabriella Fernandes",
+        "opponentId": "gabriella-fernandes"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -245243,13 +245245,7 @@
         "mirrorThrough": "2026-10-10",
         "officialThrough": "2026-10-10"
       },
-      "booking": {
-        "event": "Procházka vs Stirling",
-        "date": "2026-11-21",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
-        "opponent": "Jiří Procházka",
-        "opponentId": "jiri-prochazka"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
