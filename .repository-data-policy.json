@@ -696,6 +696,81 @@
       "safeToRegenerate": false,
       "safeToDeleteFromRepository": false,
       "publicContract": true
+    },
+    {
+      "id": "otd-current-lead-build-cache",
+      "storage": "build-time",
+      "paths": [
+        "_data/on_this_day_current_lead.json"
+      ],
+      "lifecycle": "generated-build-data",
+      "owner": "history",
+      "producers": [
+        "scripts/history/cache-on-this-day-current-lead.mjs"
+      ],
+      "consumers": [
+        "on-this-day.html",
+        "scripts/history/cache-on-this-day-current-lead.mjs"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "otd-current-lead-image-cache",
+      "storage": "public-runtime",
+      "prefixes": [
+        "assets/data/on-this-day-current-lead-"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "history",
+      "producers": [
+        "scripts/history/cache-on-this-day-current-lead.mjs"
+      ],
+      "consumers": [
+        "on-this-day.html"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
+      "id": "picker-lcp-portrait-build-cache",
+      "storage": "build-time",
+      "paths": [
+        "_data/picker_lcp_portrait.json"
+      ],
+      "lifecycle": "generated-build-data",
+      "owner": "ufc",
+      "producers": [
+        "scripts/site-data/ufc/cache-picker-lcp-portrait.mjs"
+      ],
+      "consumers": [
+        "_includes/fight-card-picker-event.html",
+        "_layouts/default.html"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "picker-lcp-portrait-image-cache",
+      "storage": "public-runtime",
+      "prefixes": [
+        "assets/data/picker-lcp-portrait-"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "ufc",
+      "producers": [
+        "scripts/site-data/ufc/cache-picker-lcp-portrait.mjs"
+      ],
+      "consumers": [
+        "_includes/fight-card-picker-event.html",
+        "_layouts/default.html"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
     }
   ]
 }
