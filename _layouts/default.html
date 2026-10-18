@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% assign use_editorial_shell = true %}
 <html lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +23,7 @@
         >
     {% endif %}
 
-    {% if page.v3_text_masthead or page.layout == "post" %}
+    {% if use_editorial_shell %}
         <meta name="theme-color" content="#ffffff">
         <meta name="color-scheme" content="light dark">
         <script>
@@ -67,7 +68,7 @@
         <link rel="preconnect" href="{{ origin }}" crossorigin>
     {% endfor %}
 
-    {% if page.v3_text_masthead or page.layout == "post" %}
+    {% if use_editorial_shell %}
         <link rel="preload" href="{{ '/assets/fonts/herkey-regular-v1.woff2' | relative_url }}?v={{ site.asset_version }}" as="font" type="font/woff2" crossorigin>
     {% endif %}
 
@@ -139,11 +140,12 @@
             rel="stylesheet"
             href="{{ '/assets/media-glitch.css' | relative_url }}?v={{ site.asset_version }}"
         >
-        <link rel="stylesheet" href="{{ '/assets/editorial-v3-shell.css' | relative_url }}?v={{ site.asset_version }}">
         <link rel="stylesheet" href="{{ '/assets/post-v3.css' | relative_url }}?v={{ site.asset_version }}">
         <link rel="stylesheet" href="{{ '/assets/article-live.css' | relative_url }}?v={{ site.asset_version }}">
         <link rel="stylesheet" href="{{ '/assets/fighter-history.css' | relative_url }}?v={{ site.asset_version }}">
     {% endif %}
+
+    <link rel="stylesheet" href="{{ '/assets/editorial-v3-shell.css' | relative_url }}?v={{ site.asset_version }}">
 
     <link
         rel="stylesheet"
@@ -162,7 +164,7 @@
         href="{{ '/assets/favicon.ico' | relative_url }}"
     >
 
-    {% unless page.v3_text_masthead or page.layout == "post" %}
+    {% unless use_editorial_shell %}
         <link
             rel="preload"
             href="{{ '/assets/generated/site/header-image-480.webp' | relative_url }}"
@@ -224,13 +226,13 @@
     </noscript>
 </head>
 
-<body class="layout-{{ page.layout | default: 'default' }}">
+<body class="layout-{{ page.layout | default: 'default' }}" data-editorial-shell>
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header class="site-header">
         <div class="logo-banner">
             <a href="{{ '/' | relative_url }}" aria-label="MMA Matlock home">
-                {% if page.v3_text_masthead or page.layout == "post" %}
+                {% if use_editorial_shell %}
                     <span class="v3-wordmark-wrap">
                         <span class="v3-wordmark">MATLOCK</span>
                         <span class="desktop-brand-pumpkin" aria-hidden="true">
@@ -363,7 +365,7 @@
 
                     
 
-                    {% if page.v3_text_masthead or page.layout == "post" %}
+                    {% if use_editorial_shell %}
                         <div class="site-theme-control">
                             <button
                                 class="site-theme-toggle"
@@ -403,7 +405,7 @@
         {{ content }}
     </main>
 
-    {% if page.v3_text_masthead or page.layout == "post" %}
+    {% if use_editorial_shell %}
         <footer class="site-footer v3-footer">
             <div class="v3-footer-inner">
                 <div class="v3-footer-top">
@@ -563,9 +565,9 @@
 
     <script src="{{ '/assets/site.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
     <script src="{{ '/assets/site-ticker-bootstrap.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
+    <script src="{{ '/assets/editorial-v3-shell.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
     {% if page.layout == "post" %}
         <script src="{{ '/assets/media-glitch.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
-        <script src="{{ '/assets/editorial-v3-shell.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
         <script src="{{ '/assets/fight-portrait-crop.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
         <script src="{{ '/assets/fight-odds.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
         <script src="{{ '/assets/post-writer-actions.js' | relative_url }}?v={{ site.asset_version }}" defer></script>

@@ -1,5 +1,5 @@
 (() => {
-  const page = document.querySelector('[data-editorial-v3]');
+  const page = document.querySelector('body[data-editorial-shell]');
   if (!page) return;
 
   const setupFixedRail = () => {

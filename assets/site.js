@@ -9,7 +9,7 @@
     const themeLabel = document.querySelector("[data-theme-label]");
     const mobileNavigation = window.matchMedia("(max-width: 850px)");
     const immersiveNavigation = Boolean(document.querySelector("[data-home-flow]"));
-    const v3ThemePage = Boolean(document.querySelector("[data-globe-home]"));
+    const v3ThemePage = document.body.hasAttribute("data-editorial-shell") || Boolean(document.querySelector("[data-globe-home]"));
     const panelNavigationActive = () => mobileNavigation.matches || immersiveNavigation;
     const systemReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const pageRegions = [
@@ -36,7 +36,7 @@
     }
 
     function defaultTheme() {
-        return document.querySelector("[data-globe-home]") ? "light" : "dark";
+        return document.body.hasAttribute("data-editorial-shell") || document.querySelector("[data-globe-home]") ? "light" : "dark";
     }
 
     function dispatchDisplayChange() {
