@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-10-17T13:10:38.868Z",
+  "updatedAt": "2026-10-18T13:31:50.872Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -15388,6 +15388,14 @@
       "status": "no-main-event",
       "sourceType": "wikipedia-structured",
       "wikipediaTitle": "2026 in Rizin Fighting Federation"
+    },
+    "ufc:2026-10-17:ufc-fight-night-buckley-vs-malott": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-10-18T13:31:50.872Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Buckley vs. Malott",
+      "mainEvent": "Buckley vs. Malott"
     }
   }
 }
