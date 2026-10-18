@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-18T06:34:16.557Z",
+  "generated_at": "2026-10-18T11:41:01.663Z",
   "events": [
     {
       "id": "ufc-333-2026-10-24-fight-card",
@@ -806,6 +806,29 @@
             {
               "order": 8,
               "label": "",
+              "weight_class": "Women's Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Karine Silva",
+                  "initials": "KS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/SILVA_KARINE_L_08-16.png?itok=6JdZdcEV",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Gabriella Fernandes",
+                  "initials": "GF",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/FERNANDES_GABRIELLA_L_08-09.png?itok=sUYuxLOm",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
                 {
@@ -827,7 +850,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 10,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -850,7 +873,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -873,7 +896,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -896,7 +919,7 @@
               ]
             },
             {
-              "order": 12,
+              "order": 13,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -1507,6 +1530,29 @@
             },
             {
               "order": 11,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Adrian Yanez",
+                  "initials": "AY",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/YANEZ_ADRIAN_L_12-14.png?itok=SPA6dLRg",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Juan Diaz",
+                  "initials": "JD",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/DIAS_JUAN_R_05-16.png?itok=ii8fyksW",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 12,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
