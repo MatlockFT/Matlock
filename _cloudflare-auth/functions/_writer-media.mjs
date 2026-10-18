@@ -150,3 +150,51 @@ export async function cleanupChunks(store, scope, uploadId, chunkCount) {
     Array.from({ length: count }, (_, index) => store.delete(chunkKey(scope, uploadId, index)))
   );
 }
+
+
+const ABANDONED_UPLOAD_AGE_MS = 2 * 60 * 60 * 1000;
+
+/**
+ * Reclaim chunks left behind by failed or abandoned browser uploads before
+ * accepting another upload for the same signed-in writer. This also recovers
+ * failed finalizations from older versions that left their staged chunks in
+ * SQLite storage.
+ */
+export async function cleanupAbandonedUploads(store, scope, currentUploadId, now = Date.now()) {
+  const listing = await store.list({ prefix: `chunks/${scope}/`, limit: 5000 });
+  const uploads = new Map();
+
+  for (const entry of listing.blobs || []) {
+    const key = String(entry.key || '');
+    const match = key.match(/^chunks\\/[a-f0-9]{24}\\/([A-Za-z0-9_-]{12,96})\\/\\d{5}$/);
+    if (!match) continue;
+
+    const uploadId = match[1];
+    const createdAt = Date.parse(entry.metadata?.createdAt || entry.uploaded || '');
+    const group = uploads.get(uploadId) || { oldestCreatedAt: Infinity, chunkCount: 0 };
+    if (Number.isFinite(createdAt)) group.oldestCreatedAt = Math.min(group.oldestCreatedAt, createdAt);
+    group.chunkCount = Math.max(group.chunkCount, Number(entry.metadata?.chunkCount) || 0);
+    uploads.set(uploadId, group);
+  }
+
+  let cleaned = 0;
+  for (const [uploadId, group] of uploads) {
+    if (uploadId === currentUploadId) continue;
+
+    const currentStatus = await store.get(statusKey(scope, uploadId), {
+      type: 'json',
+      consistency: 'strong'
+    });
+    const failed = currentStatus?.state === 'error' || currentStatus?.state === 'aborted';
+    const stale = Number.isFinite(group.oldestCreatedAt)
+      && now - group.oldestCreatedAt >= ABANDONED_UPLOAD_AGE_MS;
+    if (!failed && !stale) continue;
+
+    const chunkCount = Number(currentStatus?.chunkCount) || group.chunkCount;
+    await cleanupChunks(store, scope, uploadId, chunkCount);
+    if (typeof store.delete === 'function') await store.delete(statusKey(scope, uploadId));
+    cleaned += 1;
+  }
+
+  return cleaned;
+}
