@@ -1,5 +1,5 @@
 import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
-import { mediaStore, requireWriterSession, setStatus, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
+import { cleanupChunks, mediaStore, requireWriterSession, setStatus, statusKey, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
 
 export default async function handler(request) {
   const origin = normalizeOrigin(request.headers.get('origin'));
@@ -57,6 +57,7 @@ export default async function handler(request) {
       fileType: meta.fileType,
       assetName: meta.assetName
     });
+    await cleanupChunks(store, scope, uploadId, meta.chunkCount);
     return Response.json({ ok: false, error }, { status: 503, headers });
   }
 
@@ -84,6 +85,7 @@ export default async function handler(request) {
       fileType: meta.fileType,
       assetName: meta.assetName
     });
+    await cleanupChunks(store, scope, uploadId, meta.chunkCount);
     return Response.json({ ok: false, error: message }, { status: 502, headers });
   }
 
