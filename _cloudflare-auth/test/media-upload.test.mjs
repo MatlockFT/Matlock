@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import writerMediaFinalize from '../functions/writer-media-finalize.mjs';
 import {
   MAX_CHUNK_BYTES,
   MAX_VIDEO_BYTES,
@@ -84,4 +85,9 @@ test('abandoned and failed upload chunks are cleaned before a new upload proceed
     `status/${scope}/${staleId}`,
     `status/${scope}/${orphanId}`
   ]);
+});
+
+
+test('video finalizer accepts Worker bindings for direct queue publishing', () => {
+  assert.equal(writerMediaFinalize.length, 2);
 });
