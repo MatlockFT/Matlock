@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-10-17T23:02:06.468Z",
+  "generatedAt": "2026-10-18T00:52:40.492Z",
   "engineVersion": 2,
   "subjects": 282,
-  "publishedRecommendations": 762,
+  "publishedRecommendations": 763,
   "recommendationSlots": {
     "0": 25,
-    "1": 3,
-    "2": 3,
+    "1": 2,
+    "2": 4,
     "3": 251
   },
   "caseCounts": {
     "rebound-pairing": 318,
-    "rising-vs-rising": 231,
+    "rising-vs-rising": 232,
     "step-up-vs-rebound": 84,
-    "ranking-opportunity": 43,
-    "rankings-progression": 39,
-    "divisional-sorting": 27,
+    "ranking-opportunity": 44,
+    "rankings-progression": 40,
+    "divisional-sorting": 23,
     "prospect-test": 9,
-    "title-case": 8,
-    "title-eliminator": 3
+    "title-case": 9,
+    "title-eliminator": 4
   },
   "confidenceCounts": {
-    "high": 696,
-    "medium": 36,
-    "low": 30
+    "high": 702,
+    "medium": 34,
+    "low": 27
   },
   "averageRecentOpponentLinkCoverage": 0.903,
-  "sameCardRecommendations": 48,
-  "sameCardRecommendationRatio": 0.063,
-  "asymmetricTopThreeRecommendations": 260,
-  "asymmetricTopThreeRatio": 0.3412,
-  "publicPublishedRecommendations": 735,
-  "publicAsymmetricTopThreeRecommendations": 206,
-  "publicAsymmetricTopThreeRatio": 0.2803,
-  "engineGenericDivisionalSortingRecommendations": 27,
+  "sameCardRecommendations": 47,
+  "sameCardRecommendationRatio": 0.0616,
+  "asymmetricTopThreeRecommendations": 258,
+  "asymmetricTopThreeRatio": 0.3381,
+  "publicPublishedRecommendations": 737,
+  "publicAsymmetricTopThreeRecommendations": 204,
+  "publicAsymmetricTopThreeRatio": 0.2768,
+  "engineGenericDivisionalSortingRecommendations": 23,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -41,7 +41,7 @@
     "title": "UFC Fight Night: Allen vs Duncan",
     "date": "2026-10-10",
     "subjects": 24,
-    "publicRecommendations": 59,
+    "publicRecommendations": 58,
     "noClearMatchupSubjects": 3
   },
   "eventPublicSummary": [
@@ -50,7 +50,7 @@
       "title": "UFC Fight Night: Allen vs Duncan",
       "date": "2026-10-10",
       "subjects": 24,
-      "publicRecommendations": 59,
+      "publicRecommendations": 58,
       "noClearMatchupSubjects": 3
     },
     {
@@ -58,7 +58,7 @@
       "title": "UFC 332: Silva vs Wang",
       "date": "2026-10-03",
       "subjects": 28,
-      "publicRecommendations": 78,
+      "publicRecommendations": 80,
       "noClearMatchupSubjects": 1
     },
     {
@@ -90,7 +90,7 @@
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 67,
+      "publicRecommendations": 68,
       "noClearMatchupSubjects": 4
     },
     {
@@ -135,20 +135,6 @@
     }
   ],
   "genericExamples": [
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Alice Pereira",
-      "opponent": "Klaudia Sygula",
-      "score": 59,
-      "rationale": "Alice Pereira and Klaudia Sygula occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Alice Pereira",
-      "opponent": "Melissa Mullins",
-      "score": 56,
-      "rationale": "Alice Pereira and Melissa Mullins occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Ernesta Kareckaite",
@@ -221,13 +207,6 @@
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Alexa Grasso",
-      "opponent": "Wang Cong",
-      "score": 49,
-      "rationale": "Alexa Grasso and Wang Cong occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Curtis Blaydes",
       "opponent": "Serghei Spivac",
       "score": 67,
@@ -274,6 +253,27 @@
       "opponent": "Gabe Green",
       "score": 46,
       "rationale": "Salahdine Parnasse and Gabe Green occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Hooker vs Parnasse",
+      "fighter": "Klaudia Sygula",
+      "opponent": "Alice Pereira",
+      "score": 59,
+      "rationale": "Klaudia Sygula and Alice Pereira occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Hooker vs Parnasse",
+      "fighter": "Klaudia Sygula",
+      "opponent": "Dariya Zheleznyakova",
+      "score": 47,
+      "rationale": "Klaudia Sygula and Dariya Zheleznyakova occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Hooker vs Parnasse",
+      "fighter": "Matthieu Letho Duclos",
+      "opponent": "Ryan Loder",
+      "score": 89,
+      "rationale": "Matthieu Letho Duclos and Ryan Loder occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
@@ -731,50 +731,75 @@
     {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Alice Pereira",
+      "opponent": "Chelsea Chandler",
+      "pairScore": 80,
+      "case": "rising-vs-rising",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Dariya Zheleznyakova",
+          "score": 91,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Melissa Croden",
+          "score": 90,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Nora Cornolle",
+          "score": 86,
+          "case": "rankings-progression"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Alice Pereira",
+      "opponent": "Melissa Croden",
+      "pairScore": 74,
+      "case": "rankings-progression",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Nora Cornolle",
+          "score": 93,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Chelsea Chandler",
+          "score": 90,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Karol Rosa",
+          "score": 86,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Alice Pereira",
       "opponent": "Nora Cornolle",
       "pairScore": 62,
       "case": "rankings-progression",
-      "fighterRank": "Best match",
+      "fighterRank": "Another option",
       "opponentTopThree": [
+        {
+          "opponent": "Melissa Croden",
+          "score": 93,
+          "case": "rankings-progression"
+        },
         {
           "opponent": "Dariya Zheleznyakova",
           "score": 88,
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Michelle Montague",
+          "opponent": "Chelsea Chandler",
           "score": 86,
           "case": "rankings-progression"
-        },
-        {
-          "opponent": "Norma Dumont",
-          "score": 66,
-          "case": "divisional-sorting"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Dariya Zheleznyakova",
-      "opponent": "Michelle Montague",
-      "pairScore": 72,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Jacqueline Cavalcanti",
-          "score": 87,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Nora Cornolle",
-          "score": 86,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Karol Rosa",
-          "score": 82,
-          "case": "step-up-vs-rebound"
         }
       ]
     },
@@ -806,25 +831,50 @@
     {
       "event": "UFC 332: Silva vs Wang",
       "fighter": "Wang Cong",
-      "opponent": "Miranda Maverick",
-      "pairScore": 77,
+      "opponent": "Jasmine Jasudavicius",
+      "pairScore": 87,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Maycee Barber",
+          "score": 92,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Rose Namajunas",
+          "score": 91,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Erin Blanchfield",
+          "score": 89,
+          "case": "rankings-progression"
+        }
+      ]
+    },
+    {
+      "event": "UFC 332: Silva vs Wang",
+      "fighter": "Wang Cong",
+      "opponent": "Maycee Barber",
+      "pairScore": 84,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
+          "opponent": "Jasmine Jasudavicius",
+          "score": 92,
+          "case": "step-up-vs-rebound"
+        },
+        {
           "opponent": "Casey Oneill",
-          "score": 93,
+          "score": 90,
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Carli Judice",
+          "opponent": "Rose Namajunas",
           "score": 88,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Regina Malpica Rivera",
-          "score": 87,
-          "case": "step-up-vs-rebound"
+          "case": "rebound-pairing"
         }
       ]
     },
@@ -849,56 +899,6 @@
         {
           "opponent": "Victor Henry",
           "score": 86,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC 332: Silva vs Wang",
-      "fighter": "Deiveson Figueiredo",
-      "opponent": "Bryce Mitchell",
-      "pairScore": 80,
-      "case": "ranking-opportunity",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Montel Jackson",
-          "score": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Raoni Barcelos",
-          "score": 92,
-          "case": "divisional-sorting"
-        },
-        {
-          "opponent": "Brady Hiestand",
-          "score": 85,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC 332: Silva vs Wang",
-      "fighter": "Deiveson Figueiredo",
-      "opponent": "Brady Hiestand",
-      "pairScore": 77,
-      "case": "ranking-opportunity",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Heili Alateng",
-          "score": 85,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Bryce Mitchell",
-          "score": 85,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Montel Jackson",
-          "score": 84,
           "case": "rising-vs-rising"
         }
       ]
