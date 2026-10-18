@@ -24,7 +24,27 @@ body[data-editorial-shell]:not(:has(.v3-home)) {
     --v3-serif: Georgia, "Times New Roman", Times, serif;
     --v3-sans: Arial, Helvetica, sans-serif;
     --v3-mono: "Courier New", Courier, monospace;
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+}
 
+body[data-editorial-shell]:not(:has(.v3-home)) .site-main {
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+}
+
+body.layout-post .site-main {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+}
+
+html[data-theme="dark"] body.layout-post .site-main {
+    background: var(--v3-paper) !important;
+    color: var(--v3-ink) !important;
 }
 
 body[data-editorial-shell]:not(:has(.v3-home)) .site-header {
@@ -456,6 +476,8 @@ html[data-theme="dark"] body[data-editorial-shell]:not(:has(.v3-home)) {
     --v3-rule: #3b3935;
     --v3-rule-dark: #cfcbc2;
     --v3-red: #e05258;
+    background: var(--v3-paper);
+    color: var(--v3-ink);
 
 }
 
