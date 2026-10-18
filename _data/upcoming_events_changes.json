@@ -1,7 +1,148 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-17T21:44:29.995Z",
+  "generated_at": "2026-10-18T06:34:33.623Z",
   "changes": [
+    {
+      "id": "2026-10-18T06:34:33.623Z|ufc-fight-night-2026-10-17-fight-card|event_removed|1",
+      "at": "2026-10-18T06:34:33.623Z",
+      "type": "event_removed",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "UFC Fight Night Buckley vs Malott removed from Upcoming Events.",
+      "details": {
+        "bout_count": 13,
+        "venue": "Venue TBA",
+        "date": "2026-10-17"
+      }
+    },
+    {
+      "id": "2026-10-18T06:34:33.623Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|2",
+      "at": "2026-10-18T06:34:33.623Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2026-11-07",
+      "summary": "Jose Delano vs Murtazali Magomedov moved on Bonfim vs Brady.",
+      "details": {
+        "from_order": 9,
+        "to_order": 8,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-18T06:34:33.623Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|3",
+      "at": "2026-10-18T06:34:33.623Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2026-11-07",
+      "summary": "Keiichiro Nakamura vs Ollie Schmid moved on Bonfim vs Brady.",
+      "details": {
+        "from_order": 10,
+        "to_order": 9,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-18T06:34:33.623Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|4",
+      "at": "2026-10-18T06:34:33.623Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2026-11-07",
+      "summary": "Austin Bashi vs Lucas Brennan moved on Bonfim vs Brady.",
+      "details": {
+        "from_order": 11,
+        "to_order": 10,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-18T06:34:33.623Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|5",
+      "at": "2026-10-18T06:34:33.623Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2026-11-07",
+      "summary": "Priscila Cachoeira vs Nina Milošević moved on Bonfim vs Brady.",
+      "details": {
+        "from_order": 12,
+        "to_order": 11,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-18T06:34:33.623Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|6",
+      "at": "2026-10-18T06:34:33.623Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2026-11-07",
+      "summary": "Jonny Parsons vs José Souza moved on Bonfim vs Brady.",
+      "details": {
+        "from_order": 13,
+        "to_order": 12,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-18T06:34:33.623Z|ufc-fight-night-2026-11-07-fight-card|bout_removed|7",
+      "at": "2026-10-18T06:34:33.623Z",
+      "type": "bout_removed",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2026-11-07",
+      "summary": "Karine Silva vs Gabriella Fernandes removed from Bonfim vs Brady.",
+      "details": {
+        "order": 8,
+        "section": "Prelims",
+        "weight_class": "Women's Flyweight Bout"
+      }
+    },
+    {
+      "id": "2026-10-18T06:34:33.623Z|ufc-2026-11-14-polymarket-ufc-334|bout_moved|8",
+      "at": "2026-10-18T06:34:33.623Z",
+      "type": "bout_moved",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "promotion": "UFC",
+      "event_title": "Polymarket UFC 334",
+      "event_date": "2026-11-14",
+      "summary": "Nazim Sadykhov vs Jefferson Nascimento moved on Polymarket UFC 334.",
+      "details": {
+        "from_order": 12,
+        "to_order": 11,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-10-18T06:34:33.623Z|ufc-2026-11-14-polymarket-ufc-334|bout_removed|9",
+      "at": "2026-10-18T06:34:33.623Z",
+      "type": "bout_removed",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "promotion": "UFC",
+      "event_title": "Polymarket UFC 334",
+      "event_date": "2026-11-14",
+      "summary": "Adrian Yanez vs Juan Diaz removed from Polymarket UFC 334.",
+      "details": {
+        "order": 11,
+        "section": "Early Prelims",
+        "weight_class": "Bantamweight Bout"
+      }
+    },
     {
       "id": "2026-10-17T21:44:29.995Z|ufc-2026-11-14-polymarket-ufc-334|bout_moved|1",
       "at": "2026-10-17T21:44:29.995Z",
@@ -4586,150 +4727,6 @@
         "to_order": 3,
         "from_section": "Main Card",
         "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-23T12:11:25.874Z|ufc-332-2026-10-03-fight-card|bout_moved|7",
-      "at": "2026-09-23T12:11:25.874Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Figueiredo vs Talbott",
-      "event_date": "2026-10-03",
-      "summary": "Ateba Gautier vs Roman Kopylov moved on Figueiredo vs Talbott.",
-      "details": {
-        "from_order": 5,
-        "to_order": 4,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-23T12:11:25.874Z|ufc-332-2026-10-03-fight-card|bout_moved|8",
-      "at": "2026-09-23T12:11:25.874Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Figueiredo vs Talbott",
-      "event_date": "2026-10-03",
-      "summary": "Imanol Rodriguez vs Alden Coria moved on Figueiredo vs Talbott.",
-      "details": {
-        "from_order": 6,
-        "to_order": 5,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-23T12:11:25.874Z|ufc-332-2026-10-03-fight-card|bout_moved|9",
-      "at": "2026-09-23T12:11:25.874Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Figueiredo vs Talbott",
-      "event_date": "2026-10-03",
-      "summary": "Damian Pinas vs Andrey Pulyaev moved on Figueiredo vs Talbott.",
-      "details": {
-        "from_order": 7,
-        "to_order": 6,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-23T12:11:25.874Z|ufc-332-2026-10-03-fight-card|bout_moved|10",
-      "at": "2026-09-23T12:11:25.874Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Figueiredo vs Talbott",
-      "event_date": "2026-10-03",
-      "summary": "Marcus McGhee vs Benardo Sopaj moved on Figueiredo vs Talbott.",
-      "details": {
-        "from_order": 8,
-        "to_order": 7,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-23T12:11:25.874Z|ufc-332-2026-10-03-fight-card|bout_moved|11",
-      "at": "2026-09-23T12:11:25.874Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Figueiredo vs Talbott",
-      "event_date": "2026-10-03",
-      "summary": "Anthony Wint vs Lucas Armand moved on Figueiredo vs Talbott.",
-      "details": {
-        "from_order": 9,
-        "to_order": 8,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-23T12:11:25.874Z|ufc-332-2026-10-03-fight-card|bout_moved|12",
-      "at": "2026-09-23T12:11:25.874Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Figueiredo vs Talbott",
-      "event_date": "2026-10-03",
-      "summary": "Johnny Walker vs Mick Parkin moved on Figueiredo vs Talbott.",
-      "details": {
-        "from_order": 10,
-        "to_order": 9,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-09-23T12:11:25.874Z|ufc-332-2026-10-03-fight-card|bout_moved|13",
-      "at": "2026-09-23T12:11:25.874Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Figueiredo vs Talbott",
-      "event_date": "2026-10-03",
-      "summary": "Rafael Dos Anjos vs Alexander Hernandez moved on Figueiredo vs Talbott.",
-      "details": {
-        "from_order": 11,
-        "to_order": 10,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-09-23T12:11:25.874Z|ufc-332-2026-10-03-fight-card|bout_moved|14",
-      "at": "2026-09-23T12:11:25.874Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Figueiredo vs Talbott",
-      "event_date": "2026-10-03",
-      "summary": "Marvin Vettori vs Ismail Naurdiev moved on Figueiredo vs Talbott.",
-      "details": {
-        "from_order": 12,
-        "to_order": 11,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-09-23T12:11:25.874Z|ufc-332-2026-10-03-fight-card|bout_moved|15",
-      "at": "2026-09-23T12:11:25.874Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Figueiredo vs Talbott",
-      "event_date": "2026-10-03",
-      "summary": "Court McGee vs Eric Nolan moved on Figueiredo vs Talbott.",
-      "details": {
-        "from_order": 13,
-        "to_order": 12,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
       }
     }
   ]

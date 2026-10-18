@@ -1,362 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-18T01:30:51.469Z",
+  "generated_at": "2026-10-18T06:34:16.557Z",
   "events": [
-    {
-      "id": "ufc-fight-night-2026-10-17-fight-card",
-      "promotion_key": "ufc",
-      "promotion": "UFC Fight Night",
-      "title": "Buckley vs Malott",
-      "date": "2026-10-17",
-      "date_label": "Saturday · October 17, 2026",
-      "starts_at": "",
-      "expires_at": "",
-      "venue": "Venue TBA",
-      "broadcast": "Paramount+ · UFC Fight Pass",
-      "official_url": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-      "updated_label": "October 17, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Main Card",
-          "time": "8:00 PM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Welterweight Bout",
-              "fighters": [
-                {
-                  "name": "Joaquin Buckley",
-                  "initials": "JB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/5/BUCKLEY_JOAQUIN_L_05-11.png?itok=yyjyefDC",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+108"
-                },
-                {
-                  "name": "Mike Malott",
-                  "initials": "MM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/MALOTT_MIKE_L_05-10.png?itok=d0J2-On7",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-126"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Women's Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Erin Blanchfield",
-                  "initials": "EB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/BLANCHFIELD_ERIN_L_11-15.png?itok=pwhXp_G4",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-330"
-                },
-                {
-                  "name": "Jasmine Jasudavicius",
-                  "initials": "JJ",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/JASUDAVICIUS_JASMINE_L_04-18.png?itok=brWuBeJK",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+265"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Kyle Nelson",
-                  "initials": "KN",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/NELSON_KYLE_L_10-18.png?itok=N6FSsbo_",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+275"
-                },
-                {
-                  "name": "Cristian Perez",
-                  "initials": "CP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/PEREZ_CRISTIAN_L_08-26.png?itok=LIbBOleP",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-340"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Marc-Andre Barriault",
-                  "initials": "MB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/BARRIAULT_MARC-ANDRE_L_05-10.png?itok=kJq5jhiN",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+168"
-                },
-                {
-                  "name": "Kyle Daukaus",
-                  "initials": "KD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/DAUKAUS_KYLE_R_06-14.png?itok=u2hBMZhV",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-200"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Louis Jourdain",
-                  "initials": "LJ",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/JOURDAIN_LOUIS_L_09-30.png?itok=hXNV4FbV",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-166"
-                },
-                {
-                  "name": "Timmy Cuamba",
-                  "initials": "TC",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/CUAMBA_TIMOTHY_L_05-16.png?itok=QVPT-XKP",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+140"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 6,
-              "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Mandel Nallo",
-                  "initials": "MN",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/NALLO_MANDEL_L_04-18.png?itok=7Z3AEAXw",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-290"
-                },
-                {
-                  "name": "Nate Landwehr",
-                  "initials": "NL",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/LANDWEHR_NATE_L_07-12.png?itok=yAVkr3X6",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+235"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            }
-          ]
-        },
-        {
-          "kind": "prelims",
-          "title": "Prelims",
-          "time": "5:00 PM ET",
-          "bouts": [
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Tanner Boser",
-                  "initials": "TB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BOSER_TANNER_L_04-18.png?itok=_lraVPHf",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+184"
-                },
-                {
-                  "name": "Jhonata Diniz",
-                  "initials": "JD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/DINIZ_JHONATA_L_10-11.png?itok=a7w4jLAU",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-220"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 8,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Julien Leblanc",
-                  "initials": "JL",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/LEBLANC_JULIEN_L_04-18.png?itok=zBIsz0dB",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+480"
-                },
-                {
-                  "name": "Nick Galanti",
-                  "initials": "NG",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/GALANTI_NICK_R_08-25.png?itok=dbKywmYk",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-800"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 9,
-              "label": "",
-              "weight_class": "Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Javad Mahjoub",
-                  "initials": "JM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-10/MAHJOUB_JAVAD_L_10-17.png?itok=c1rupi3B",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+112"
-                },
-                {
-                  "name": "Joel Faglier",
-                  "initials": "JF",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-10/FAGLIER_JOEL_R_10-17.png?itok=YydkpsHu",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-132"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 10,
-              "label": "",
-              "weight_class": "Women's Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Katlyn Cerminara",
-                  "initials": "KC",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/5/CERMINARA_KATLYN_L_03-09.png?itok=L1T9rkza",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-250"
-                },
-                {
-                  "name": "Mackenzie Stiller",
-                  "initials": "MS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/2022-02/womens-silhouette-RED-corner.png?itok=SXsY1AgG",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+190"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 11,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Chad Anheliger",
-                  "initials": "CA",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/ANHELIGER_CHAD_L_11-02.png?itok=ezY1YMKO",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+150"
-                },
-                {
-                  "name": "Steven Koslow",
-                  "initials": "SK",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-01/KOSLOW_STEVEN_L_12-10.png?itok=pqAG6P4G",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-178"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 12,
-              "label": "",
-              "weight_class": "Women's Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Melissa Croden",
-                  "initials": "MC",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/CRODEN_MELISSA_L_10-18.png?itok=0xkEkNiU",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-360"
-                },
-                {
-                  "name": "Chelsea Chandler",
-                  "initials": "CC",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-04/CHANDLER_CHELSEA_L_04-26.png?itok=DL0RRFId",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+290"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 13,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Cody Chovancek",
-                  "initials": "CC",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/CHOVANCEK_CODY_R_09-16.png?itok=v2G8Yooy",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-126"
-                },
-                {
-                  "name": "SuYoung You",
-                  "initials": "SY",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/YOU_SUYOUNG_L_03-15.png?itok=Mfh4XApl",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+108"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            }
-          ]
-        }
-      ]
-    },
     {
       "id": "ufc-333-2026-10-24-fight-card",
       "promotion_key": "ufc",
@@ -369,7 +14,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-333",
-      "updated_label": "October 17, 2026",
+      "updated_label": "October 18, 2026",
       "sections": [
         {
           "kind": "main",
@@ -645,7 +290,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/THICKNESSE_COLBY_L_05-02.png?itok=N5HTzqNl",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+239"
+                  "moneyline": "+350"
                 },
                 {
                   "name": "Asaf Chopurov",
@@ -653,11 +298,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-431"
+                  "moneyline": "-450"
                 }
               ],
               "odds_source": "BestFightOdds",
-              "odds_provider": "Kalshi"
+              "odds_provider": "Caesars"
             },
             {
               "order": 11,
@@ -670,7 +315,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/VAGAEV_ABUBAKAR_L_07-25.png?itok=RfC7eTGH",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-183"
+                  "moneyline": "-195"
                 },
                 {
                   "name": "Jacob Malkoun",
@@ -678,11 +323,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MALKOUN_JACOB_L_05-02.png?itok=8P_D4zmL",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+145"
+                  "moneyline": "+165"
                 }
               ],
               "odds_source": "BestFightOdds",
-              "odds_provider": "Kalshi"
+              "odds_provider": "Caesars"
             }
           ]
         }
@@ -700,7 +345,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
-      "updated_label": "October 17, 2026",
+      "updated_label": "October 18, 2026",
       "sections": [
         {
           "kind": "main",
@@ -983,7 +628,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-      "updated_label": "October 17, 2026",
+      "updated_label": "October 18, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1161,29 +806,6 @@
             {
               "order": 8,
               "label": "",
-              "weight_class": "Women's Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Karine Silva",
-                  "initials": "KS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/SILVA_KARINE_L_08-16.png?itok=6JdZdcEV",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Gabriella Fernandes",
-                  "initials": "GF",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/FERNANDES_GABRIELLA_L_08-09.png?itok=sUYuxLOm",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 9,
-              "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
                 {
@@ -1205,7 +827,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 9,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -1228,7 +850,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 10,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -1251,7 +873,7 @@
               ]
             },
             {
-              "order": 12,
+              "order": 11,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -1274,7 +896,7 @@
               ]
             },
             {
-              "order": 13,
+              "order": 12,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -1310,7 +932,7 @@
       "venue": "LaLa arena TOKYO-BAY",
       "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV",
       "official_url": "https://jp.rizinff.com/_ct/17852466",
-      "updated_label": "October 17, 2026",
+      "updated_label": "October 18, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1628,7 +1250,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-334",
-      "updated_label": "October 17, 2026",
+      "updated_label": "October 18, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1886,29 +1508,6 @@
             {
               "order": 11,
               "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Adrian Yanez",
-                  "initials": "AY",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/YANEZ_ADRIAN_L_12-14.png?itok=SPA6dLRg",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Juan Diaz",
-                  "initials": "JD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/DIAS_JUAN_R_05-16.png?itok=ii8fyksW",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 12,
-              "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
                 {
@@ -1945,7 +1544,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
-      "updated_label": "October 17, 2026",
+      "updated_label": "October 18, 2026",
       "sections": [
         {
           "kind": "main",
@@ -2175,7 +1774,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-335",
-      "updated_label": "October 17, 2026",
+      "updated_label": "October 18, 2026",
       "sections": [
         {
           "kind": "main",

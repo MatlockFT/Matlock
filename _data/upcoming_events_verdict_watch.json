@@ -5,23 +5,6 @@
   "mode": "read-only-watchdog",
   "coverage": [
     {
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "promotion": "ufc",
-      "date": "2026-10-17",
-      "title": "Buckley vs Malott",
-      "status": "matched",
-      "verdict_event_id": "1936",
-      "verdict_url": "https://verdictmma.com/event/1936",
-      "verdict_date": "2026-10-17",
-      "local_fight_count": 13,
-      "verdict_fight_count": 13,
-      "local_main_count": 6,
-      "verdict_main_count": 6,
-      "local_prelim_count": 7,
-      "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 13
-    },
-    {
       "event_id": "ufc-333-2026-10-24-fight-card",
       "promotion": "ufc",
       "date": "2026-10-24",
@@ -64,13 +47,13 @@
       "verdict_event_id": "1957",
       "verdict_url": "https://verdictmma.com/event/1957",
       "verdict_date": "2026-11-07",
-      "local_fight_count": 13,
+      "local_fight_count": 12,
       "verdict_fight_count": 13,
       "local_main_count": 6,
       "verdict_main_count": 7,
-      "local_prelim_count": 7,
+      "local_prelim_count": 6,
       "verdict_prelim_count": 6,
-      "confirmed_local_bouts": 12
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
@@ -98,13 +81,13 @@
       "verdict_event_id": "1970",
       "verdict_url": "https://verdictmma.com/event/1970",
       "verdict_date": "2026-11-14",
-      "local_fight_count": 12,
+      "local_fight_count": 11,
       "verdict_fight_count": 12,
       "local_main_count": 5,
       "verdict_main_count": 5,
-      "local_prelim_count": 7,
+      "local_prelim_count": 6,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 12
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "ufc-fight-night-2026-11-21-fight-card",
@@ -204,6 +187,22 @@
     },
     {
       "type": "bout_count_mismatch",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "verdict_event_id": "1970",
+      "local_fight_count": 11,
+      "verdict_fight_count": 12
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "verdict_event_id": "1970",
+      "local_main_count": 5,
+      "verdict_main_count": 5,
+      "local_prelim_count": 6,
+      "verdict_prelim_count": 7
+    },
+    {
+      "type": "bout_count_mismatch",
       "event_id": "ufc-333-2026-10-24-fight-card",
       "verdict_event_id": "1955",
       "local_fight_count": 12,
@@ -255,10 +254,17 @@
       ]
     },
     {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "local_fight_count": 12,
+      "verdict_fight_count": 13
+    },
+    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
       "verdict_event_id": "1957",
-      "order": 13,
+      "order": 12,
       "fighters": [
         "Jonny Parsons",
         "José Souza"
@@ -270,7 +276,7 @@
       "verdict_event_id": "1957",
       "local_main_count": 6,
       "verdict_main_count": 7,
-      "local_prelim_count": 7,
+      "local_prelim_count": 6,
       "verdict_prelim_count": 6
     },
     {
