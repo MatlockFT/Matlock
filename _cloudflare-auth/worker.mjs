@@ -208,7 +208,7 @@ export default {
       const handler = routeHandlers.get(url.pathname);
       if (!handler) return new Response('Not found', { status: 404, headers: { 'Cache-Control': 'no-store' } });
 
-      return safeResponse(await handler(request));
+      return safeResponse(await handler(request, env));
     } catch (error) {
       console.error('Matlock Writer Worker request failed:', error?.message || error);
       return jsonError(error, 500);
