@@ -2,6 +2,8 @@ import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mj
 
 import { cleanupChunks, mediaStore, requireWriterSession, setStatus, statusKey, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
 
+const MAX_AUTOMATIC_PUBLISH_ATTEMPTS = 3;
+
 function isTransientMediaError(error) {
   const status = Number(error?.status);
   if (Number.isInteger(status)) return [408, 425, 429, 500, 502, 503, 504].includes(status);
@@ -66,9 +68,24 @@ export default async function handler(request, env) {
   if (['queued', 'preparing', 'publishing'].includes(current?.state)) {
     return Response.json({ ok: true, uploadId, state: current.state }, { status: 202, headers });
   }
+  const previousAttempts = Math.max(0, Math.floor(Number(current?.publishAttempts) || 0));
+  const retryingPublish = current?.state === 'error' && Boolean(current.retryable);
   if (current?.state === 'error' && !current.retryable) {
     return Response.json({ ok: false, uploadId, state: 'error', error: current.error || 'The previous publishing attempt failed.' }, { status: 409, headers });
   }
+  if (retryingPublish && previousAttempts >= MAX_AUTOMATIC_PUBLISH_ATTEMPTS) {
+    const error = `GitHub Release publishing failed after ${MAX_AUTOMATIC_PUBLISH_ATTEMPTS} attempts. The staged video has been retained; automatic retries stopped to prevent a loop. ${String(current.error || '').trim()}`.trim();
+    await setStatus(store, scope, uploadId, {
+      ...current,
+      ...meta,
+      state: 'error',
+      error,
+      retryable: false,
+      publishAttempts: previousAttempts
+    });
+    return Response.json({ ok: false, uploadId, state: 'error', retryable: false, error }, { status: 409, headers });
+  }
+  const publishAttempt = retryingPublish ? previousAttempts + 1 : 1;
 
   if (!env?.WRITER_MEDIA_QUEUE) {
     const error = 'Media processing queue is not configured.';
@@ -89,13 +106,14 @@ export default async function handler(request, env) {
     chunkCount: meta.chunkCount,
     fileSize: meta.fileSize,
     fileType: meta.fileType,
-    assetName: meta.assetName
+    assetName: meta.assetName,
+    publishAttempts: publishAttempt
   });
 
   try {
     await env.WRITER_MEDIA_QUEUE.send({
       sessionId,
-      body: { uploadId, ...meta }
+      body: { uploadId, ...meta, publishAttempt }
     });
   } catch (error) {
     const retryable = isTransientMediaError(error);
@@ -109,7 +127,8 @@ export default async function handler(request, env) {
       chunkCount: meta.chunkCount,
       fileSize: meta.fileSize,
       fileType: meta.fileType,
-      assetName: meta.assetName
+      assetName: meta.assetName,
+      publishAttempts: publishAttempt
     });
     if (!retryable) {
       await cleanupChunks(store, scope, uploadId, meta.chunkCount);
