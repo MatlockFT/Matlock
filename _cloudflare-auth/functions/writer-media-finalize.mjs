@@ -89,14 +89,14 @@ export default async function handler(request, env) {
     current?.state === 'error'
     && !current.retryable
     && body?.manualRetry === true
-    && /automatic retries stopped to prevent a loop/i.test(String(current.error || ''))
   ) {
-    // An explicit user re-selection starts a new capped retry cycle, but only
-    // for an exhausted transient publishing failure. Preserve staged chunks.
+    // The status endpoint verifies the complete staged set before the browser
+    // asks for a manual retry. Allow the same recovery for older permanent
+    // failures that predate the current diagnostic message format.
     current = {
       ...current,
       state: 'error',
-      error: 'Manual retry requested for the retained staged video.',
+      error: 'Manual retry requested for the verified staged video.',
       retryable: true,
       publishAttempts: 0
     };
