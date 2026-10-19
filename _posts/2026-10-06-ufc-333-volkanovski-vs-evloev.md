@@ -120,7 +120,10 @@ published: false
 </section>
 Yakhyaev has done well to outright overwhelm his opponents with his speed and reaction timing to incoming punches. Opponents have to be extremely mindful of throwing out lazy jabs and backing up in straight lines because he will slip and come over the top. He does it in every fight. Take center, big kick, he'll wait for the response, slip the shot, and blast with strikes. I still very much question his wrestling capabilities against a fighter with a more well rounded game in the UFC. Luckily for Yakhyaev, light heavyweights who can wrestle at a high level are few and far between. His lone amateur loss he was outwrestled and although that was 7 years ago, we haven't seen much against formidable opposition in that area since. 
 
-Its kinda wild to see Krylov is only 34 because it seriously feels like he should be  older than that. I've been watching this dude since the start. 😭! 
+
+Its kinda wild to see Krylov is only 34 because it seriously feels like he should be  older than that. I've been watching this dude since the start. 😭! He's not looked that great lately since he was finished by Reyes, Gusgov, and Whittaker. But I gotta give him credit for eating Modestas Bukauskaus's shots, figuring him out and setting him up for a buzzer beater kayo. I also think he deserves credit for making it three rounds with Whittaker, even though he got his jaw fucked up. So I wouldn't really say his chin is *completely* shot but it does seem Krylov is on the decline. The question I have, has he declined to a level that he cannot beat someone as inexperienced as Yakyaev? 
+
+
 
 ---
 
