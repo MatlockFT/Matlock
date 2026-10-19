@@ -1,12 +1,13 @@
 import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
 
+import { cleanupChunks, mediaStore, requireWriterSession, setStatus, statusKey, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
+
 function isTransientMediaError(error) {
   const status = Number(error?.status);
   if (Number.isInteger(status)) return [408, 425, 429, 500, 502, 503, 504].includes(status);
   return /network connection lost|network error|fetch failed|failed to fetch|connection reset|connection lost|socket|timed?\s*out|temporarily unavailable/i
     .test(String(error?.message || error || ''));
 }
-import { cleanupChunks, mediaStore, requireWriterSession, setStatus, statusKey, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
 
 export default async function handler(request, env) {
   const origin = normalizeOrigin(request.headers.get('origin'));
