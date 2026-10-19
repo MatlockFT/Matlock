@@ -56,7 +56,11 @@ async function existingReleaseAsset(token, release, assetName, expectedSize = nu
   // mismatched-size asset before retrying this same upload.
   if (existing.url) {
     const removed = await githubFetchUrl(token, existing.url, { method: 'DELETE' });
-    if (removed.status === 204 || removed.status === 404) return null;
+    if (removed.status === 204 || removed.status === 404) {
+      const retry = new Error('Removed an incomplete GitHub Release asset; retrying the upload.');
+      retry.status = 503;
+      throw retry;
+    }
     throw new Error(`GitHub returned an incomplete Release asset (size ${existing.size}, expected ${expectedSize}) and it could not be removed (HTTP ${removed.status}).`);
   }
   throw new Error(`GitHub returned a Release asset with size ${existing.size}; expected ${expectedSize}.`);
