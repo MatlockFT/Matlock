@@ -21,7 +21,7 @@ export default async function handler(request) {
       status: 204,
       headers: {
         ...headers,
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': [
           'Accept',
           'Content-Type',
@@ -40,19 +40,46 @@ export default async function handler(request) {
   if (!isAllowedOrigin(origin)) {
     return Response.json({ ok: false, error: 'Origin not allowed' }, { status: 403, headers });
   }
-  if (request.method !== 'POST') {
-    return Response.json({ ok: false, error: 'Method not allowed' }, { status: 405, headers: { ...headers, Allow: 'POST, OPTIONS' } });
+  if (!['GET', 'POST'].includes(request.method)) {
+    return Response.json({ ok: false, error: 'Method not allowed' }, { status: 405, headers: { ...headers, Allow: 'GET, POST, OPTIONS' } });
   }
 
   const { id: sessionId, session } = await requireWriterSession(request);
   if (!session) return Response.json({ ok: false, error: 'Session expired' }, { status: 401, headers });
 
-  const uploadId = validUploadId(request.headers.get('x-upload-id'));
-  const chunkIndex = Number(request.headers.get('x-chunk-index'));
+  const url = new URL(request.url);
+  const statusCheck = request.method === 'GET';
+  const uploadId = validUploadId(statusCheck
+    ? url.searchParams.get('uploadId')
+    : request.headers.get('x-upload-id'));
+  const chunkIndex = Number(statusCheck
+    ? url.searchParams.get('chunkIndex')
+    : request.headers.get('x-chunk-index'));
   const rawChunkCount = Number(request.headers.get('x-chunk-count'));
 
-  if (!uploadId || !Number.isInteger(chunkIndex) || chunkIndex < 0) {
+  if (!uploadId || !Number.isInteger(chunkIndex) || chunkIndex < 0 || (statusCheck && chunkIndex >= 1200)) {
     return Response.json({ ok: false, error: 'Invalid upload chunk metadata.' }, { status: 400, headers });
+  }
+
+  const scope = uploadScope(sessionId);
+  if (statusCheck) {
+    try {
+      const entry = await mediaStore().getMetadata(chunkKey(scope, uploadId, chunkIndex));
+      const chunkSize = Number(entry?.metadata?.chunkSize || entry?.size) || 0;
+      return Response.json({
+        ok: true,
+        uploadId,
+        chunkIndex,
+        found: Boolean(entry),
+        chunkSize
+      }, { status: 200, headers });
+    } catch (error) {
+      console.error('Writer media chunk confirmation failed:', error?.message || error);
+      return Response.json({
+        ok: false,
+        error: 'Could not confirm whether the video chunk was staged.'
+      }, { status: 503, headers });
+    }
   }
 
   let meta;
@@ -70,8 +97,6 @@ export default async function handler(request) {
   if (chunkIndex >= meta.chunkCount) {
     return Response.json({ ok: false, error: 'Invalid upload chunk index.' }, { status: 400, headers });
   }
-
-  const scope = uploadScope(sessionId);
   try {
     const store = mediaStore();
 
