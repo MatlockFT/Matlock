@@ -85,6 +85,24 @@ export default async function handler(request, env) {
     };
     await setStatus(store, scope, uploadId, current);
   }
+  if (
+    current?.state === 'error'
+    && !current.retryable
+    && body?.manualRetry === true
+    && /automatic retries stopped to prevent a loop/i.test(String(current.error || ''))
+  ) {
+    // An explicit user re-selection starts a new capped retry cycle, but only
+    // for an exhausted transient publishing failure. Preserve staged chunks.
+    current = {
+      ...current,
+      state: 'error',
+      error: 'Manual retry requested for the retained staged video.',
+      retryable: true,
+      publishAttempts: 0
+    };
+    await setStatus(store, scope, uploadId, current);
+  }
+
   const previousAttempts = Math.max(0, Math.floor(Number(current?.publishAttempts) || 0));
   const retryingPublish = current?.state === 'error' && Boolean(current.retryable);
   if (current?.state === 'error' && !current.retryable) {
