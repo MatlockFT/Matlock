@@ -100,6 +100,8 @@ published: false
 </section>
 **Azamat Murzakanov** is a compact southpaw with a lot of power and a good feel for countering as opponents enter. He attacks the body well and was 6-0 in the UFC before Paulo Costa handed him his first career loss. Even at 37, his combination of power and takedown defense makes him a difficult matchup.
 - Dustin Jacoby's best work came when he switched to southpaw and in round 3. Jab heavy, kicks, and sometimes leading with the left. 
+- Generates a lot of power in tight or close range, likes to work the body. 
+- Murzakanov gets way over his skiis when throwing power looking for the heavyshot with his left hand. Major opening for counters if his opponent can find it. 
 
 
 
