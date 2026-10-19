@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-19T10:56:30.767Z",
+  "generated_at": "2026-10-19T17:26:16.126Z",
   "source": "UFC.com + BestFightOdds",
   "events": [
     {
@@ -13,11 +13,11 @@
           "fighters": [
             {
               "name": "Alexander Volkanovski",
-              "moneyline": "-115"
+              "moneyline": "-111"
             },
             {
               "name": "Movsar Evloev",
-              "moneyline": "-111"
+              "moneyline": "-115"
             }
           ]
         },
@@ -27,11 +27,25 @@
           "fighters": [
             {
               "name": "Petr Yan",
-              "moneyline": "-184"
+              "moneyline": "-178"
             },
             {
               "name": "Merab Dvalishvili",
-              "moneyline": "+142"
+              "moneyline": "+138"
+            }
+          ]
+        },
+        {
+          "source": "UFC.com",
+          "provider": "UFC.com",
+          "fighters": [
+            {
+              "name": "Lone’er Kavanagh",
+              "moneyline": "-105"
+            },
+            {
+              "name": "Ramazan Temirov",
+              "moneyline": "-115"
             }
           ]
         },
@@ -55,11 +69,11 @@
           "fighters": [
             {
               "name": "Aaron Pico",
-              "moneyline": "-120"
+              "moneyline": "-115"
             },
             {
               "name": "Losene Keita",
-              "moneyline": "-106"
+              "moneyline": "-111"
             }
           ]
         },
@@ -146,6 +160,48 @@
               "moneyline": "+162"
             }
           ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "Caesars",
+          "fighters": [
+            {
+              "name": "Bolaji Oki",
+              "moneyline": "+125"
+            },
+            {
+              "name": "Daniel Santos",
+              "moneyline": "-150"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "Caesars",
+          "fighters": [
+            {
+              "name": "Kody Steele",
+              "moneyline": "-170"
+            },
+            {
+              "name": "Noah Gugnon",
+              "moneyline": "+143"
+            }
+          ]
+        },
+        {
+          "source": "UFC.com",
+          "provider": "UFC.com",
+          "fighters": [
+            {
+              "name": "Iasmin Lucindo",
+              "moneyline": "-350"
+            },
+            {
+              "name": "Nicolle Caliari",
+              "moneyline": "+275"
+            }
+          ]
         }
       ]
     },
@@ -212,29 +268,29 @@
       "fights": [
         {
           "source": "BestFightOdds",
-          "provider": "Caesars",
+          "provider": "FanDuel",
           "fighters": [
             {
               "name": "Charles Oliveira",
-              "moneyline": "-160"
+              "moneyline": "-162"
             },
             {
               "name": "Diego Lopes",
-              "moneyline": "+125"
+              "moneyline": "+126"
             }
           ]
         },
         {
           "source": "BestFightOdds",
-          "provider": "Caesars",
+          "provider": "FanDuel",
           "fighters": [
             {
               "name": "Sergei Pavlovich",
-              "moneyline": "-210"
+              "moneyline": "-205"
             },
             {
               "name": "Alex Pereira",
-              "moneyline": "+160"
+              "moneyline": "+158"
             }
           ]
         },

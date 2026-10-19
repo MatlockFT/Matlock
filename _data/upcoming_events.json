@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-19T10:57:47.050Z",
+  "generated_at": "2026-10-19T17:27:28.762Z",
   "events": [
     {
       "id": "ufc-333-2026-10-24-fight-card",
@@ -32,7 +32,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/VOLKANOVSKI_ALEXANDER_L_BELT_01-31.png?itok=hfZR81xh",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-115"
+                  "moneyline": "-111"
                 },
                 {
                   "name": "Movsar Evloev",
@@ -40,7 +40,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/EVLOEV_MOVSAR_L_03-21.png?itok=X2qAuG7T",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-111"
+                  "moneyline": "-115"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -57,7 +57,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/YAN_PETR_L_BELT_04-09.png?itok=rEIQhNvw",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-184"
+                  "moneyline": "-178"
                 },
                 {
                   "name": "Merab Dvalishvili",
@@ -65,7 +65,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2022-08/DVALISHVILI_MERAB_L_08-20.png?itok=UNfxCucB",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+142"
+                  "moneyline": "+138"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -82,7 +82,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/KAVANAGH_LONEER_L_03-22.png?itok=TudzQ-4b",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-105"
                 },
                 {
                   "name": "Ramazan Temirov",
@@ -90,7 +90,7 @@
                   "image": "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/TEMIROV_RAMAZAN_L_10-12.png?itok=WmQP_Yk4",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-115"
                 }
               ]
             },
@@ -130,7 +130,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/PICO_AARON_R_08-16.png?itok=90xvvwSZ",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-120"
+                  "moneyline": "-115"
                 },
                 {
                   "name": "Losene Keita",
@@ -138,14 +138,14 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/KEITA_LOSENE_L_09-05.png?itok=Z3OSFQv8",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-106"
+                  "moneyline": "-111"
                 }
               ],
               "odds_source": "BestFightOdds",
               "odds_provider": "FanDuel"
             },
             {
-              "order": 12,
+              "order": 15,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -328,6 +328,79 @@
               ],
               "odds_source": "BestFightOdds",
               "odds_provider": "FanDuel"
+            },
+            {
+              "order": 12,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Bolaji Oki",
+                  "initials": "BO",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/OKI_BOLAJI_L_03-14.png?itok=Hs5udMlS",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+125"
+                },
+                {
+                  "name": "Daniel Santos",
+                  "initials": "DS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/SANTOS_DANIEL_L_10-04.png?itok=v0mSMNti",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-150"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Caesars"
+            },
+            {
+              "order": 13,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Kody Steele",
+                  "initials": "KS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-02/STEELE_KODY_R_02-08.png?itok=1eXV9YAp",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-170"
+                },
+                {
+                  "name": "Noah Gugnon",
+                  "initials": "NG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/GUGNON_NOAH_R_08-01.png?itok=llkgIODo",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+143"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Caesars"
+            },
+            {
+              "order": 14,
+              "label": "",
+              "weight_class": "Women's Strawweight Bout",
+              "fighters": [
+                {
+                  "name": "Iasmin Lucindo",
+                  "initials": "IL",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/LUCINDO_IASMIN_L_08-09.png?itok=itSnZTmA",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-350"
+                },
+                {
+                  "name": "Nicolle Caliari",
+                  "initials": "NC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/2/CALIARI_NICOLLE_L_01-11.png?itok=F6kDO8bo",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+275"
+                }
+              ]
             }
           ]
         }
@@ -1838,7 +1911,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/OLIVEIRA_CHARLES_L_BMFMOCK.png?itok=Up-QPLgQ",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-160"
+                  "moneyline": "-162"
                 },
                 {
                   "name": "Diego Lopes",
@@ -1846,11 +1919,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/LOPES_DIEGO_L_06-14.png?itok=UQIuHbZC",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+125"
+                  "moneyline": "+126"
                 }
               ],
               "odds_source": "BestFightOdds",
-              "odds_provider": "Caesars"
+              "odds_provider": "FanDuel"
             },
             {
               "order": 2,
@@ -1863,7 +1936,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/PAVLOVICH_SERGEI_L_05-30.png?itok=4VRfER2s",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-210"
+                  "moneyline": "-205"
                 },
                 {
                   "name": "Alex Pereira",
@@ -1871,11 +1944,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/PEREIRA_ALEX_L.png?itok=AMZ6OfEA",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+160"
+                  "moneyline": "+158"
                 }
               ],
               "odds_source": "BestFightOdds",
-              "odds_provider": "Caesars"
+              "odds_provider": "FanDuel"
             },
             {
               "order": 3,

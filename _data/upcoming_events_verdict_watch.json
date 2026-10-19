@@ -13,11 +13,11 @@
       "verdict_event_id": "1955",
       "verdict_url": "https://verdictmma.com/event/1955",
       "verdict_date": "2026-10-24",
-      "local_fight_count": 12,
+      "local_fight_count": 15,
       "verdict_fight_count": 11,
       "local_main_count": 6,
       "verdict_main_count": 5,
-      "local_prelim_count": 6,
+      "local_prelim_count": 9,
       "verdict_prelim_count": 6,
       "confirmed_local_bouts": 11
     },
@@ -189,7 +189,7 @@
       "type": "bout_count_mismatch",
       "event_id": "ufc-333-2026-10-24-fight-card",
       "verdict_event_id": "1955",
-      "local_fight_count": 12,
+      "local_fight_count": 15,
       "verdict_fight_count": 11
     },
     {
@@ -197,6 +197,36 @@
       "event_id": "ufc-333-2026-10-24-fight-card",
       "verdict_event_id": "1955",
       "order": 12,
+      "fighters": [
+        "Bolaji Oki",
+        "Daniel Santos"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "verdict_event_id": "1955",
+      "order": 13,
+      "fighters": [
+        "Kody Steele",
+        "Noah Gugnon"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "verdict_event_id": "1955",
+      "order": 14,
+      "fighters": [
+        "Iasmin Lucindo",
+        "Nicolle Caliari"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "verdict_event_id": "1955",
+      "order": 15,
       "fighters": [
         "Arnold Allen",
         "Aaron Pico"
@@ -208,7 +238,7 @@
       "verdict_event_id": "1955",
       "local_main_count": 6,
       "verdict_main_count": 5,
-      "local_prelim_count": 6,
+      "local_prelim_count": 9,
       "verdict_prelim_count": 6
     },
     {

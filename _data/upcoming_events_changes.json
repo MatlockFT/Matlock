@@ -1,7 +1,68 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-18T11:41:25.881Z",
+  "generated_at": "2026-10-19T17:29:09.942Z",
   "changes": [
+    {
+      "id": "2026-10-19T17:29:09.942Z|ufc-333-2026-10-24-fight-card|bout_moved|1",
+      "at": "2026-10-19T17:29:09.942Z",
+      "type": "bout_moved",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Arnold Allen vs Aaron Pico moved on Volkanovski vs Evloev.",
+      "details": {
+        "from_order": 12,
+        "to_order": 15,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-10-19T17:29:09.942Z|ufc-333-2026-10-24-fight-card|bout_added|2",
+      "at": "2026-10-19T17:29:09.942Z",
+      "type": "bout_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Bolaji Oki vs Daniel Santos added to Volkanovski vs Evloev.",
+      "details": {
+        "order": 12,
+        "section": "Early Prelims",
+        "weight_class": "Featherweight Bout"
+      }
+    },
+    {
+      "id": "2026-10-19T17:29:09.942Z|ufc-333-2026-10-24-fight-card|bout_added|3",
+      "at": "2026-10-19T17:29:09.942Z",
+      "type": "bout_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Kody Steele vs Noah Gugnon added to Volkanovski vs Evloev.",
+      "details": {
+        "order": 13,
+        "section": "Early Prelims",
+        "weight_class": "Lightweight Bout"
+      }
+    },
+    {
+      "id": "2026-10-19T17:29:09.942Z|ufc-333-2026-10-24-fight-card|bout_added|4",
+      "at": "2026-10-19T17:29:09.942Z",
+      "type": "bout_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Iasmin Lucindo vs Nicolle Caliari added to Volkanovski vs Evloev.",
+      "details": {
+        "order": 14,
+        "section": "Early Prelims",
+        "weight_class": "Women's Strawweight Bout"
+      }
+    },
     {
       "id": "2026-10-18T11:41:25.881Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|1",
       "at": "2026-10-18T11:41:25.881Z",
@@ -4668,70 +4729,6 @@
         "to_order": 9,
         "from_section": "Prelims",
         "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-23T17:16:55.614Z|ufc-332-2026-10-03-fight-card|bout_moved|10",
-      "at": "2026-09-23T17:16:55.614Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Johnny Walker vs Mick Parkin moved on Silva vs Cong.",
-      "details": {
-        "from_order": 9,
-        "to_order": 10,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-09-23T17:16:55.614Z|ufc-332-2026-10-03-fight-card|bout_moved|11",
-      "at": "2026-09-23T17:16:55.614Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Rafael Dos Anjos vs Alexander Hernandez moved on Silva vs Cong.",
-      "details": {
-        "from_order": 10,
-        "to_order": 11,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-09-23T17:16:55.614Z|ufc-332-2026-10-03-fight-card|bout_moved|12",
-      "at": "2026-09-23T17:16:55.614Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Marvin Vettori vs Ismail Naurdiev moved on Silva vs Cong.",
-      "details": {
-        "from_order": 11,
-        "to_order": 12,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-09-23T17:16:55.614Z|ufc-332-2026-10-03-fight-card|bout_moved|13",
-      "at": "2026-09-23T17:16:55.614Z",
-      "type": "bout_moved",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Court McGee vs Eric Nolan moved on Silva vs Cong.",
-      "details": {
-        "from_order": 12,
-        "to_order": 13,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
       }
     }
   ]
