@@ -3,11 +3,12 @@ import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mj
 import { cleanupChunks, mediaStore, requireWriterSession, setStatus, statusKey, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
 
 const MAX_AUTOMATIC_PUBLISH_ATTEMPTS = 3;
+const STALE_PUBLISH_STATUS_MS = 6 * 60 * 1000;
 
 function isTransientMediaError(error) {
   const status = Number(error?.status);
   if (Number.isInteger(status)) return [408, 425, 429, 500, 502, 503, 504].includes(status);
-  return /network connection lost|network error|fetch failed|failed to fetch|connection reset|connection lost|socket|timed?\s*out|temporarily unavailable/i
+  return /network connection lost|network error|fetch failed|failed to fetch|connection reset|connection lost|socket|timeout|timed?\s*out|aborted|temporarily unavailable/i
     .test(String(error?.message || error || ''));
 }
 
@@ -58,7 +59,7 @@ export default async function handler(request, env) {
 
   // The browser may retry after the server queued successfully but the response
   // was lost. Do not enqueue the same upload twice in that case.
-  const current = await store.get(statusKey(scope, uploadId), {
+  let current = await store.get(statusKey(scope, uploadId), {
     type: 'json',
     consistency: 'strong'
   });
@@ -66,7 +67,23 @@ export default async function handler(request, env) {
     return Response.json({ ok: true, uploadId, state: 'complete', url: current.url }, { status: 200, headers });
   }
   if (['queued', 'preparing', 'publishing'].includes(current?.state)) {
-    return Response.json({ ok: true, uploadId, state: current.state }, { status: 202, headers });
+    const updatedAt = Date.parse(current.updatedAt || '');
+    const age = Number.isFinite(updatedAt) ? Date.now() - updatedAt : 0;
+    if (age <= STALE_PUBLISH_STATUS_MS) {
+      return Response.json({ ok: true, uploadId, state: current.state }, { status: 202, headers });
+    }
+
+    // A worker can be terminated while a network/body stream hangs, leaving a
+    // permanent "publishing" status. Count that abandoned job as an attempt
+    // and let the staged media be queued again on the same upload ID.
+    current = {
+      ...current,
+      state: 'error',
+      error: `The previous publishing job stopped updating while ${current.state}; restarting from staged media.`,
+      retryable: true,
+      publishAttempts: Math.max(1, Math.floor(Number(current.publishAttempts) || 1))
+    };
+    await setStatus(store, scope, uploadId, current);
   }
   const previousAttempts = Math.max(0, Math.floor(Number(current?.publishAttempts) || 0));
   const retryingPublish = current?.state === 'error' && Boolean(current.retryable);
