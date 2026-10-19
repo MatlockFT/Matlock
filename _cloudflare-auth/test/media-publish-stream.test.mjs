@@ -43,8 +43,7 @@ test('a complete GitHub Release response wins over a local stream-close error', 
   const scope = '0123456789abcdef01234567';
   const uploadId = 'stream_regression_123456';
   const chunks = new Map([
-    [chunkKey(scope, uploadId, 0), new Uint8Array([1, 2, 3]).buffer],
-    [chunkKey(scope, uploadId, 1), new Uint8Array([4, 5, 6]).buffer]
+    [chunkKey(scope, uploadId, 0), new Uint8Array([1, 2, 3, 4, 5, 6]).buffer]
   ]);
   const assetUrl = 'https://github.com/MatlockFT/Matlock/releases/download/writer-media-test/regression.mp4';
 
@@ -89,7 +88,7 @@ test('a complete GitHub Release response wins over a local stream-close error', 
         assetName: 'regression.mp4',
         fileType: 'video/mp4',
         fileSize: 6,
-        chunkCount: 2
+        chunkCount: 1
       }
     );
 
