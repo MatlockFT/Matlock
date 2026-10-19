@@ -74,6 +74,69 @@ test('large drag-and-drop videos fit the Durable Objects staging chunk limits', 
   assert.equal(meta.chunkCount, count);
 });
 
+test('an explicit manual retry restarts one capped cycle without deleting staged chunks', async () => {
+  const kv = new MemoryKVNamespace();
+  globalThis.__MATLOCK_WRITER_KV = kv;
+  delete globalThis.__MATLOCK_WRITER_MEDIA_STORAGE;
+
+  try {
+    const sessionId = await createWriterSession({ token: 'test-token', login: 'MatlockFT' });
+    const scope = uploadScope(sessionId);
+    const uploadId = 'manual_retry_video_12345';
+    const store = getStore({ name: MEDIA_STORE_NAME });
+    await store.setJSON(statusKey(scope, uploadId), {
+      state: 'error',
+      retryable: false,
+      publishAttempts: 3,
+      chunkCount: 1,
+      fileSize: 4,
+      fileType: 'video/mp4',
+      assetName: 'manual-retry.mp4',
+      error: 'GitHub Release publishing failed after 3 attempts. The staged video has been retained; automatic retries stopped to prevent a loop.'
+    });
+    await store.set(chunkKey(scope, uploadId, 0), new Uint8Array([1, 2, 3, 4]).buffer, {
+      metadata: { chunkIndex: 0, chunkSize: 4, createdAt: new Date().toISOString() },
+      expirationTtl: 86400
+    });
+
+    const queued = [];
+    const response = await writerMediaFinalize(
+      new Request('https://writer.test/api/writer/media-finalize', {
+        method: 'POST',
+        headers: {
+          origin: 'https://mmamatlock.com',
+          'X-Writer-Session': sessionId,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          uploadId,
+          chunkCount: 1,
+          fileSize: 4,
+          fileType: 'video/mp4',
+          assetName: 'manual-retry.mp4',
+          manualRetry: true
+        })
+      }),
+      { WRITER_MEDIA_QUEUE: { async send(job) { queued.push(job); } } }
+    );
+
+    const body = await response.json();
+    const status = await store.get(statusKey(scope, uploadId), { type: 'json' });
+    const staged = await store.get(chunkKey(scope, uploadId, 0), { type: 'arrayBuffer' });
+    assert.equal(response.status, 202);
+    assert.equal(body.state, 'queued');
+    assert.equal(queued.length, 1);
+    assert.equal(queued[0].body.publishAttempt, 1);
+    assert.equal(status.state, 'queued');
+    assert.equal(status.publishAttempts, 1);
+    assert.deepEqual([...new Uint8Array(staged)], [1, 2, 3, 4]);
+  } finally {
+    delete globalThis.__MATLOCK_WRITER_KV;
+    delete globalThis.__MATLOCK_WRITER_MEDIA_STORAGE;
+  }
+});
+
+
 test('video finalizer requeues a publishing job whose status has gone stale', async () => {
   const kv = new MemoryKVNamespace();
   globalThis.__MATLOCK_WRITER_KV = kv;
