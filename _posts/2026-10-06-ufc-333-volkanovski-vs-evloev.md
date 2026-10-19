@@ -118,50 +118,64 @@ published: false
 <section class="article-html-visual" data-writer-block="stats" data-writer-config="%7B%22version%22%3A3%2C%22fighterA%22%3A%22Nikita%20Krylov%22%2C%22fighterB%22%3A%22Abdul-Rakhman%20Yakhyaev%22%2C%22rows%22%3A%5B%7B%22label%22%3A%22Significant%20Strikes%20%2F%20Minute%22%2C%22a%22%3A%224.38%22%2C%22b%22%3A%228.64%22%7D%2C%7B%22label%22%3A%22Sig.%20Strikes%20Absorbed%20%2F%20Minute%22%2C%22a%22%3A%222.75%22%2C%22b%22%3A%222.22%22%7D%2C%7B%22label%22%3A%22Striking%20Accuracy%22%2C%22a%22%3A%2254%25%22%2C%22b%22%3A%2268%25%22%7D%2C%7B%22label%22%3A%22Striking%20Defense%22%2C%22a%22%3A%2248%25%22%2C%22b%22%3A%2259%25%22%7D%2C%7B%22label%22%3A%22Takedowns%20%2F%2015%20Minutes%22%2C%22a%22%3A%222.19%22%2C%22b%22%3A%2211.11%22%7D%2C%7B%22label%22%3A%22Takedown%20Accuracy%22%2C%22a%22%3A%2238%25%22%2C%22b%22%3A%2275%25%22%7D%2C%7B%22label%22%3A%22Takedown%20Defense%22%2C%22a%22%3A%2253%25%22%2C%22b%22%3A%22100%25%22%7D%2C%7B%22label%22%3A%22Submission%20Attempts%20%2F%2015%22%2C%22a%22%3A%221.14%22%2C%22b%22%3A%227.4%22%7D%5D%2C%22sourceA%22%3A%7B%22fighterId%22%3A%22nikita-krylov%22%2C%22ufcStatsId%22%3A%221091d4d957141094%22%2C%22mode%22%3A%22verified-cache%22%2C%22fetchedAt%22%3A%222026-10-15T00%3A37%3A41.294Z%22%2C%22latestBoutDate%22%3A%222026-07-11%22%2C%22bookingDate%22%3A%222026-10-24%22%2C%22sourceUrl%22%3A%22https%3A%2F%2Fufcstats.com%2Ffighter-details%2F1091d4d957141094%22%7D%2C%22sourceB%22%3A%7B%22fighterId%22%3Anull%2C%22ufcStatsId%22%3Anull%2C%22mode%22%3Anull%2C%22fetchedAt%22%3Anull%2C%22latestBoutDate%22%3Anull%2C%22bookingDate%22%3Anull%2C%22sourceUrl%22%3Anull%7D%7D">
 <div class="fight-stats-sleek"><div class="fs-shell"><div class="fs-header"><div class="fs-fighter fs-fighter-left"><span class="fs-side-label">RED CORNER</span><strong>Nikita Krylov</strong></div><div class="fs-header-center"><strong>STATS</strong><i></i></div><div class="fs-fighter fs-fighter-right"><span class="fs-side-label">BLUE CORNER</span><strong>Abdul-Rakhman Yakhyaev</strong></div></div><div class="fs-section"><div class="fs-section-title"><span>Striking</span></div><div class="fs-stat-row featured"><strong>4.38</strong><span>Significant Strikes / Minute</span><strong>8.64</strong></div><div class="fs-stat-row"><strong>2.75</strong><span>Sig. Strikes Absorbed / Minute</span><strong>2.22</strong></div><div class="fs-stat-row"><strong>54%</strong><span>Striking Accuracy</span><strong>68%</strong></div><div class="fs-stat-row"><strong>48%</strong><span>Striking Defense</span><strong>59%</strong></div></div><div class="fs-section fs-section-grappling"><div class="fs-section-title"><span>Grappling</span></div><div class="fs-stat-row featured"><strong>2.19</strong><span>Takedowns / 15 Minutes</span><strong>11.11</strong></div><div class="fs-stat-row"><strong>38%</strong><span>Takedown Accuracy</span><strong>75%</strong></div><div class="fs-stat-row"><strong>53%</strong><span>Takedown Defense</span><strong>100%</strong></div><div class="fs-stat-row"><strong>1.14</strong><span>Submission Attempts / 15</span><strong>7.4</strong></div></div></div></div>
 </section>
-Yakhyaev has done well to outright overwhelm his opponents with his speed and reaction timing to incoming punches. Opponents have to be extremely mindful of throwing out lazy jabs and backing up in straight lines because he will slip and come over the top. He does it in every fight. Take center, big kick, he'll wait for the response, slip the shot, and blast with strikes. I still very much question his wrestling capabilities against a fighter with a more well rounded game in the UFC. Luckily for Yakhyaev, light heavyweights who can wrestle at a high level are few and far between. His lone amateur loss he was outwrestled and although that was 7 years ago, we haven't seen much against formidable opposition in that area since. 
+Yakhyaev has done a great job of overwhelming opponents with his speed and reaction time. Opponents have to be extremely careful about throwing lazy jabs or backing straight up because he'll slip the shot and come over the top. He does it consistently. He'll take the center, throw a big kick, wait for the response, slip the counter, and come back with a flurry of strikes.
 
+The question is how well that translates against more experienced, well-rounded opposition. I still have serious questions about his wrestling against a fighter who can match him in that department. Luckily for Yakhyaev, high-level wrestlers are few and far between at light heavyweight. His lone amateur loss came against an opponent who outwrestled him, although that was seven years ago. We haven't seen enough against formidable opposition in that area to know how much he's improved.
 
+There have been some interesting moments in his recent footage, too. Ribeiro landed a solid knee to the body as Yakhyaev blitzed into range, and he did well to avoid another rush and counter with a 1-2 while moving backward. . Yakhyaev appeared to panic and dive for an ankle on one takedown attempt.
 
-Its kinda wild to see Krylov is only 34 because it seriously feels like he should be  older than that. I've been watching this dude since the start. 😭! He's not looked that great lately since he was finished by Reyes, Gusgov, and Whittaker. But I gotta give him credit for eating Modestas Bukauskaus's shots, figuring him out and setting him up for a buzzer beater kayo. I also think he deserves credit for making it three rounds with Whittaker, even though he got his jaw fucked up. So I wouldn't really say his chin is *completely* shot but it does seem Krylov is on the decline. The question I have, has he declined to a level that he cannot beat someone as inexperienced as Yakyaev? Ribeiro landed a solid knee to the body as Yakyaev came blitzing into range, he's lucky it didn't land on his chin. (I don't think so anyway).
-
-<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-fe65759a" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
-  <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-001349-170.mp4" aria-label="Article video"></video>
-  </div>
-</figure>
-
-Ribeiro also was did well to avoid yet another blitz and counter with a 1-2 moving backwards and I think Yakhyaev went for a panic takedown attempt diving for the ankle.
-
+<section class="article-html-visual">
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-931bdefc" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
     <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-002029-557.mp4" aria-label="Article video"></video>
   </div>
 </figure>
+</section>
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-931bdefc" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-001349-170.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
 
-Lastly, Yakhyaev leaned right into a head kick! Kudos to him for trapping it, turning it into a takedown where he was able to get the RNC.
+He also leaned right into a head kick. Credit to him for trapping the kick, turning it into a takedown, and eventually securing the RNC. He's explosive and dangerous, but there are openings to exploit if you can time his entries.
 
-<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-efa19a32" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-fe65759a" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
     <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-000903-833.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
-Most of these things Krylov does, throwing knees, kicks, and straight punches. He also tries to slip and counter and end combinations with head kicks, too to they're similar in that way. HOWEVER, and this matters probably the most: Krylov has not done well fighting moving backwards. Most times, he's completely exposed and backs up in straight lines. He'll throw counters when his back is to the fence but that's about it. And those knees I just mentioned? You'll see Krylov often on one leg getting smacked in the face. Wait, one more really important thing, Krylov gets countered off his forward blitzes very often. That feeds directly into Yakyhaev's style. 
+It's kind of wild to see Krylov is only 34 because it genuinely feels like he should be older. I've been watching this dude since the beginning. 😭 He's had a rough stretch, getting stopped by Reyes and Guskov before bouncing back with a buzzer-beater KO over Modestas Bukauskas, only to get stopped by Whittaker in his most recent fight. I'll give him credit for absorbing Bukauskas's shots, figuring him out, and finding the finish with practically no time left. He also made it into the third round against Whittaker before a jaw injury forced the stoppage. So I wouldn't say his chin is completely shot, but there are legitimate concerns about his decline.
 
+The question is whether he's declined enough to lose to someone as inexperienced as Yakhyaev.
+
+Stylistically, these two have some similarities. Krylov throws knees, kicks, and straight punches. He looks to slip and counter, and he'll finish combinations with head kicks. The problem is how he handles pressure and movement going backward. Krylov often looks completely exposed while retreating in straight lines. He'll throw counters when his back is against the fence, but he hasn't consistently shown that he can defend himself effectively while moving backward in open space.
+
+Those knees are worth watching, too. Krylov will throw them while standing on one leg, leaving himself vulnerable to counters. And perhaps most importantly, he gets countered off his own forward blitzes pretty often. That feeds directly into Yakhyaev's game. If Krylov comes charging forward, he could give Yakhyaev exactly the openings he wants.
+
+<section class="article-html-visual">
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-16605304" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
     <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-004337-789.mp4" aria-label="Article video"></video>
   </div>
 </figure>
+</section>
+This fight might just be a car crash, and I can absolutely see a scenario where Krylov survives the initial onslaught. Will Yakhyaev's explosiveness and speed be enough to get him out of there in the first round? Can he drop Krylov, pounce on him, and land enough ground-and-pound to force the referee to step in?
 
-This fight might just be a car crash and I actually see a very real scenario where Krylov survives the onslaught. Will Yakhyaev's explosiveness and speed get Krylov out of there in round one? Can he drop him and pounce on him, landing enough ground and pound to get the ref to slide in and stop it? The odds indicate this is pretty much a lock. I agree that if they crash into each other, I see Yakhyaev walking away the survivor but not at -500. I don't trust him that much. Levels to the game even if Krylov hasn't looked too good lately. This might be one of those fights that if Krylov makes it our of round one, he might make the right adjustments and maybe, just maybe win the last two rounds. 
+The odds suggest Yakhyaev is practically a lock. I agree that if these two crash into each other, Yakhyaev is the more likely man to walk away with the win, but I'm not buying him at -500. I don't trust him that much. There are still levels to this game, even if Krylov hasn't looked great lately.
 
-As for the ground game, I really don't know what to make of it. I feel like Krylov should be experienced enough to defend takedowns or at least stay safe on bottom. Not sure how much success he'll have offensively but listen, the dude simply has more experience. 
+If Krylov survives the first round, things could get interesting. He might settle in, make some adjustments, and maybe, just maybe, win the final two rounds. That's a real scenario worth considering when you're looking at a price this steep.
 
-I would truly like to pick Krylov here because I'm skeptical of Yakhyaev but I can't. Krylov crashing forward, which I think he will, might just give Yakhyaev the openings he needs to drop Krylov for the TKO. But believe me, I'm watching this fight closely and my eyeball locked on those live odds.
+As for the ground game, I really don't know what to make of it. I'd expect Krylov to have enough experience to defend some takedowns or at least keep himself safe on the bottom, but experience doesn't automatically translate to effective defense. I'm not sure how much success he'll have offensively, either. Yakhyaev's explosiveness and ability to capitalize on scrambles could make things difficult.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Abdul%20Rakhman%20Yakhyaev%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
-<aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Abdul Rakhman Yakhyaev</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div></aside>
+I'd genuinely like to pick Krylov here because I'm skeptical of Yakhyaev, but I can't quite get there. I think Krylov will crash forward, and that could be exactly what Yakhyaev needs to land the counter that puts him away.
+
+Still, I'm not comfortable laying -500 on an inexperienced fighter with unanswered questions against a veteran who, for all his flaws, has been in there with some of the best in the sport. I'm picking Yakhyaev, but I'm not convinced the price reflects the actual risk.
+
+Believe me, I'll be watching this fight closely, with my eye locked on those live odds. If Krylov survives the first round and starts finding his footing, I want to see what the market does.
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Abdul%20Rakhman%20Yakhyaev%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22Yakhyaev%20is%20the%20rightful%20favorite%20but%20Krylov%20has%20a%20much%20better%20chance%20of%20winning%20than%20the%20odds%20suggest%2C%20IMO%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Abdul Rakhman Yakhyaev</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div><p class="article-pick-card__note">Yakhyaev is the rightful favorite but Krylov has a much better chance of winning than the odds suggest, IMO</p></aside>
 </section>
 ---
 
@@ -215,7 +229,7 @@ I think Cam Rowston has Neil Magny-type potential but at middleweight, however, 
 </section>
 **Grant Dawson** is a switch stance pressure grappler who wants to chain takedowns, take the back and keep opponents carrying his weight. His striking is functional enough to get him into the wrestling, but he can be hurt badly before the grappling gets going. He rebounded from the Manuel Torres knockout by submitting Mateusz Rebecki.
 
-<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-db61dd1d" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-efa19a32" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
     <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261014-164844-937.mp4" aria-label="Article video"></video>
   </div>
@@ -223,7 +237,7 @@ I think Cam Rowston has Neil Magny-type potential but at middleweight, however, 
 
 **Nurullo Aliev** is an undefeated positional wrestler who is perfectly comfortable winning long stretches with fence work, takedowns and top control. He is patient and low risk, which is why all four of his UFC wins have gone to decision. This is a much more interesting wrestling matchup than most of the fights he has had so far.
 
-<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-c830d7e3" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-16605304" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
     <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261014-120836-275.mp4" aria-label="Article video"></video>
   </div>
@@ -337,7 +351,7 @@ There are brief moments in fights where it seems like she has a grip on what she
 
 Any fighter who can fight off the back foot, counter effectively, and has even a little ability to break from the clinch will give Caliari problems. She's a very emotional fighter, and I'd be willing to bet she's a nightmare to coach. That being said, she seems to have made some minor improvements to her throws and positioning on the mat, though I think that's mostly because she's finally fighting at the appropriate weight class. She's also tough and can take an ass-whooping, as she showed against Judice. Here's a compilation of Caliari throughout the years. The good, the bad, and the ugly.
 
-<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-9ff372d2" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-db61dd1d" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
     <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261008-172849-032.mp4" aria-label="Article video"></video>
   </div>
@@ -349,7 +363,7 @@ Her fight IQ is pretty good, all things considered, and I reckon it played a maj
 
 In the clinch, she's capable of tying opponents up and using her strength to maintain control until she can bring the action to the mat. Once there, her BJJ is patient and methodical. She's perfectly content to sit in a position for minutes at a time, but the moment her opponent starts moving underneath her, she'll use that opening to progress toward a more dominant spot, create openings for ground-and-pound, or work toward a submission.
 
-<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-6030446a" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-c830d7e3" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
     <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261008-171920-834.mp4" aria-label="Article video"></video>
   </div>
