@@ -181,12 +181,12 @@ export function createDurableObjectMediaStore(options = {}) {
     if (!response.ok) throw await responseError(response, "Could not clean up staged media.");
   }
 
-  async function streamChunks(scope, uploadId, chunkCount, startIndex = 0) {
+  async function streamChunks(scope, uploadId, chunkCount, startIndex = 0, signal = null) {
     const response = await send("/stream", {
       prefix: storageKey(physicalPrefix, "chunks/" + scope + "/" + uploadId + "/"),
       count: chunkCount,
       start: startIndex
-    });
+    }, signal ? { signal } : {});
     if (!response.ok) throw await responseError(response, "Could not stream staged video.");
     if (!response.body) throw new Error("The staged video stream is empty.");
     return response.body;
