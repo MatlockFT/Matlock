@@ -74,6 +74,61 @@ test('large drag-and-drop videos fit the Durable Objects staging chunk limits', 
   assert.equal(meta.chunkCount, count);
 });
 
+test('video finalizer requeues a publishing job whose status has gone stale', async () => {
+  const kv = new MemoryKVNamespace();
+  globalThis.__MATLOCK_WRITER_KV = kv;
+  delete globalThis.__MATLOCK_WRITER_MEDIA_STORAGE;
+
+  try {
+    const sessionId = await createWriterSession({ token: 'test-token', login: 'MatlockFT' });
+    const scope = uploadScope(sessionId);
+    const uploadId = 'stale_release_upload_12345';
+    const store = getStore({ name: MEDIA_STORE_NAME });
+    await store.setJSON(statusKey(scope, uploadId), {
+      state: 'publishing',
+      publishAttempts: 1,
+      chunkCount: 1,
+      fileSize: 4,
+      fileType: 'video/mp4',
+      assetName: 'stale-video.mp4',
+      updatedAt: new Date(Date.now() - 10 * 60 * 1000).toISOString()
+    });
+    const queued = [];
+
+    const response = await writerMediaFinalize(
+      new Request('https://writer.test/api/writer/media-finalize', {
+        method: 'POST',
+        headers: {
+          origin: 'https://mmamatlock.com',
+          'X-Writer-Session': sessionId,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          uploadId,
+          chunkCount: 1,
+          fileSize: 4,
+          fileType: 'video/mp4',
+          assetName: 'stale-video.mp4'
+        })
+      }),
+      { WRITER_MEDIA_QUEUE: { async send(job) { queued.push(job); } } }
+    );
+
+    const body = await response.json();
+    const status = await store.get(statusKey(scope, uploadId), { type: 'json' });
+    assert.equal(response.status, 202);
+    assert.equal(body.state, 'queued');
+    assert.equal(queued.length, 1);
+    assert.equal(queued[0].body.publishAttempt, 2);
+    assert.equal(status.state, 'queued');
+    assert.equal(status.publishAttempts, 2);
+  } finally {
+    delete globalThis.__MATLOCK_WRITER_KV;
+    delete globalThis.__MATLOCK_WRITER_MEDIA_STORAGE;
+  }
+});
+
+
 test('video uploads retain the GitHub Release size ceiling', () => {
   assert.throws(() => validateMediaMetadata({
     assetName: 'too-large.mp4',

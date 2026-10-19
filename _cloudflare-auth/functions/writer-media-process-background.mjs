@@ -83,8 +83,12 @@ async function readChunkWithRetry(store, key) {
 }
 
 const STREAM_SEGMENT_CHUNKS = 8;
-const STREAM_SEGMENT_RETRY_DELAYS = [500, 1000, 2000, 4000, 8000];
-const RELEASE_UPLOAD_RETRY_DELAYS = [1000, 3000, 7000, 12000];
+const STREAM_SEGMENT_RETRY_DELAYS = [500, 1000];
+const STREAM_SEGMENT_TIMEOUT_MS = 30_000;
+const RELEASE_UPLOAD_TIMEOUT_MS = 4 * 60 * 1000;
+// One full-asset request per queue attempt. Cross-job retries are capped and
+// tracked in status, so hidden nested retries cannot exceed the status timeout.
+const RELEASE_UPLOAD_RETRY_DELAYS = [];
 const MAX_AUTOMATIC_PUBLISH_ATTEMPTS = 3;
 
 function mediaDelay(milliseconds) {
@@ -96,7 +100,7 @@ function isTransientMediaError(error) {
   if (Number.isInteger(status)) {
     return [408, 425, 429, 500, 502, 503, 504].includes(status);
   }
-  return /network connection lost|network error|fetch failed|failed to fetch|connection reset|connection lost|socket|timed?\s*out|temporarily unavailable/i
+  return /network connection lost|network error|fetch failed|failed to fetch|connection reset|connection lost|socket|timeout|timed?\s*out|aborted|temporarily unavailable/i
     .test(String(error?.message || error || ''));
 }
 
@@ -107,8 +111,15 @@ async function readStreamSegmentWithRetry(store, scope, uploadId, startIndex, co
   let lastError = null;
 
   for (let attempt = 0; attempt <= STREAM_SEGMENT_RETRY_DELAYS.length; attempt += 1) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => {
+      const timeoutError = new Error(`Cloudflare media-storage stream timed out after ${STREAM_SEGMENT_TIMEOUT_MS / 1000} seconds.`);
+      timeoutError.status = 504;
+      controller.abort(timeoutError);
+    }, STREAM_SEGMENT_TIMEOUT_MS);
+
     try {
-      const stream = await store.streamChunks(scope, uploadId, count, startIndex);
+      const stream = await store.streamChunks(scope, uploadId, count, startIndex, controller.signal);
       const bytes = await new Response(stream).arrayBuffer();
       if (bytes.byteLength !== expectedBytes) {
         throw new Error(
@@ -117,9 +128,13 @@ async function readStreamSegmentWithRetry(store, scope, uploadId, startIndex, co
       }
       return new Uint8Array(bytes);
     } catch (error) {
-      lastError = error;
+      lastError = controller.signal.aborted && controller.signal.reason
+        ? controller.signal.reason
+        : error;
       if (attempt >= STREAM_SEGMENT_RETRY_DELAYS.length) break;
       await mediaDelay(STREAM_SEGMENT_RETRY_DELAYS[attempt]);
+    } finally {
+      clearTimeout(timer);
     }
   }
 
@@ -217,6 +232,11 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
   const fixedBody = new FixedLengthStream(meta.fileSize);
   const source = await chunkStream(store, scope, uploadId, meta.chunkCount, meta.fileSize);
   const controller = new AbortController();
+  const timer = setTimeout(() => {
+    const timeoutError = new Error(`GitHub Release upload timed out after ${RELEASE_UPLOAD_TIMEOUT_MS / 60_000} minutes.`);
+    timeoutError.status = 504;
+    controller.abort(timeoutError);
+  }, RELEASE_UPLOAD_TIMEOUT_MS);
   let sourceError = null;
   let requestError = null;
 
@@ -241,16 +261,24 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
   try {
     [response] = await Promise.all([uploading, pumping]);
   } catch (error) {
-    controller.abort(error);
+    const reason = controller.signal.aborted && controller.signal.reason
+      ? controller.signal.reason
+      : error;
+    controller.abort(reason);
     await Promise.allSettled([uploading, pumping]);
-    const phase = error === sourceError
-      ? 'Cloudflare Durable Object media stream'
-      : error === requestError
-        ? 'GitHub Release network request'
-        : 'GitHub Release streaming pipeline';
-    const wrapped = new Error(`${phase}: ${String(error?.message || error || 'Network connection lost.')}`, { cause: error });
-    if (Number.isInteger(error?.status)) wrapped.status = error.status;
+    const phase = String(reason?.message || '').includes('GitHub Release upload timed out')
+      ? 'GitHub Release upload'
+      : error === sourceError
+        ? 'Cloudflare Durable Object media stream'
+        : error === requestError
+          ? 'GitHub Release network request'
+          : 'GitHub Release streaming pipeline';
+    const wrapped = new Error(`${phase}: ${String(reason?.message || reason || 'Network connection lost.')}`, { cause: reason });
+    if (Number.isInteger(reason?.status)) wrapped.status = reason.status;
+    else if (controller.signal.aborted) wrapped.status = 504;
     throw wrapped;
+  } finally {
+    clearTimeout(timer);
   }
 
   const responseText = await response.text().catch(() => '');

@@ -11,8 +11,12 @@ export function githubHeaders(token, extra = {}) {
 }
 
 export async function githubFetchUrl(token, url, options = {}) {
+  // Never leave a queue job waiting indefinitely for a GitHub API response.
+  // Long Release uploads supply their own, longer AbortController deadline.
+  const signal = options.signal || AbortSignal.timeout(20_000);
   return fetch(url, {
     ...options,
+    signal,
     headers: githubHeaders(token, options.headers || {}),
     cache: 'no-store'
   });

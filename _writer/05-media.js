@@ -64,7 +64,8 @@
 
   const VIDEO_CHUNK_BYTES = 1_800_000;
   const VIDEO_STATUS_POLL_MS = 1500;
-  const VIDEO_STATUS_TIMEOUT_MS = 15 * 60 * 1000;
+  const VIDEO_STATUS_TIMEOUT_MS = 20 * 60 * 1000;
+  const VIDEO_STALE_STATUS_MS = 6 * 60 * 1000;
   const VIDEO_RESUME_KEY = 'matlock-writer:video-upload-resume-v1';
 
   function videoResumeFingerprint(file) {
@@ -357,6 +358,17 @@
       }
 
       const stage = status.state || 'processing';
+      const statusUpdatedAt = Date.parse(status.updatedAt || '');
+      if (
+        retryPayload
+        && ['queued', 'preparing', 'publishing'].includes(stage)
+        && Number.isFinite(statusUpdatedAt)
+        && Date.now() - statusUpdatedAt > VIDEO_STALE_STATUS_MS
+      ) {
+        setVideoUploadProgress(82, 'Publishing job stopped responding. Restarting from staged video…');
+        await finalizeVideoUpload(retryPayload);
+        continue;
+      }
       if (stage === 'queued') setVideoUploadProgress(82, 'Queued for GitHub Releases…');
       else if (stage === 'preparing') setVideoUploadProgress(86, 'Preparing GitHub Release…');
       else if (stage === 'publishing') setVideoUploadProgress(92, 'Publishing video to GitHub Releases…');
