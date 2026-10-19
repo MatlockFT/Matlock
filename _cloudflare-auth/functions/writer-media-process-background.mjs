@@ -66,25 +66,36 @@ async function existingReleaseAsset(token, release, assetName, expectedSize = nu
   throw new Error(`GitHub returned a Release asset with size ${existing.size}; expected ${expectedSize}.`);
 }
 
-async function readChunkWithRetry(store, key) {
-  const delays = [500, 1000, 2000, 4000, 8000, 12000];
+async function readChunkWithRetry(store, key, expectedBytes = null, chunkNumber = null) {
+  const delays = [250, 500, 1000, 2000, 4000, 8000];
+  let lastError = null;
   for (let attempt = 0; attempt <= delays.length; attempt += 1) {
     try {
       const data = await store.get(key, { type: 'arrayBuffer' });
-      if (data) return data;
+      if (data) {
+        const bytes = new Uint8Array(data);
+        if (expectedBytes !== null && bytes.byteLength !== expectedBytes) {
+          throw new Error(
+            `Staged video chunk ${chunkNumber ?? key} contained ${bytes.byteLength} bytes; expected ${expectedBytes}.`
+          );
+        }
+        return data;
+      }
+      lastError = new Error(`Staged video chunk ${chunkNumber ?? key} is missing.`);
     } catch (error) {
-      if (attempt === delays.length) throw error;
+      lastError = error;
     }
     if (attempt < delays.length) {
-      await new Promise(resolve => setTimeout(resolve, delays[attempt]));
+      await mediaDelay(delays[attempt]);
     }
   }
-  throw new Error('A staged media chunk is not visible in Workers KV yet. Please retry publishing.');
+  const context = chunkNumber === null ? key : `chunk ${chunkNumber}`;
+  throw new Error(
+    `Could not read ${context} from temporary video storage after ${delays.length + 1} attempts: ${String(lastError?.message || lastError || 'No response was received.')}`,
+    { cause: lastError }
+  );
 }
 
-const STREAM_SEGMENT_CHUNKS = 5;
-const STREAM_SEGMENT_RETRY_DELAYS = [500, 1000];
-const STREAM_SEGMENT_TIMEOUT_MS = 30_000;
 const RELEASE_UPLOAD_TIMEOUT_MS = 4 * 60 * 1000;
 // One full-asset request per queue attempt. Cross-job retries are capped and
 // tracked in status, so hidden nested retries cannot exceed the status timeout.
@@ -100,87 +111,34 @@ function isTransientMediaError(error) {
   if (Number.isInteger(status)) {
     return [408, 425, 429, 500, 502, 503, 504].includes(status);
   }
-  return /network connection lost|network error|fetch failed|failed to fetch|connection reset|connection lost|socket|timeout|timed?\s*out|aborted|temporarily unavailable/i
+  return /network connection lost|network error|fetch failed|failed to fetch|connection reset|connection lost|socket|timeout|timed?\\s*out|aborted|temporarily unavailable/i
     .test(String(error?.message || error || ''));
 }
 
-async function readStreamSegmentWithRetry(store, scope, uploadId, startIndex, count, fileSize, chunkCount) {
-  const startByte = startIndex * MAX_CHUNK_BYTES;
-  const endByte = Math.min(fileSize, (startIndex + count) * MAX_CHUNK_BYTES);
-  const expectedBytes = Math.max(0, endByte - startByte);
-  let lastError = null;
-
-  for (let attempt = 0; attempt <= STREAM_SEGMENT_RETRY_DELAYS.length; attempt += 1) {
-    const controller = new AbortController();
-    const timer = setTimeout(() => {
-      const timeoutError = new Error(`Cloudflare media-storage stream timed out after ${STREAM_SEGMENT_TIMEOUT_MS / 1000} seconds.`);
-      timeoutError.status = 504;
-      controller.abort(timeoutError);
-    }, STREAM_SEGMENT_TIMEOUT_MS);
-
-    try {
-      const stream = await store.streamChunks(scope, uploadId, count, startIndex, controller.signal);
-      const bytes = await new Response(stream).arrayBuffer();
-      if (bytes.byteLength !== expectedBytes) {
-        throw new Error(
-          `Storage returned ${bytes.byteLength} bytes for video parts ${startIndex + 1}-${Math.min(startIndex + count, chunkCount)}; expected ${expectedBytes} bytes.`
-        );
-      }
-      return new Uint8Array(bytes);
-    } catch (error) {
-      lastError = controller.signal.aborted && controller.signal.reason
-        ? controller.signal.reason
-        : error;
-      if (attempt >= STREAM_SEGMENT_RETRY_DELAYS.length) break;
-      await mediaDelay(STREAM_SEGMENT_RETRY_DELAYS[attempt]);
-    } finally {
-      clearTimeout(timer);
-    }
-  }
-
-  const exhausted = new Error(
-    `Cloudflare media-storage stream failed for parts ${startIndex + 1}-${Math.min(startIndex + count, chunkCount)} of ${chunkCount} after ${STREAM_SEGMENT_RETRY_DELAYS.length + 1} attempts: ${String(lastError?.message || lastError || 'No response was received.')}`,
-    { cause: lastError }
-  );
-  if (Number.isInteger(lastError?.status)) exhausted.status = lastError.status;
-  throw exhausted;
-}
-
 async function chunkStream(store, scope, uploadId, chunkCount, fileSize) {
-  if (typeof store.streamChunks === 'function') {
-    let nextIndex = 0;
-    return new ReadableStream({
-      async pull(controller) {
-        if (nextIndex >= chunkCount) {
-          controller.close();
-          return;
-        }
-        const count = Math.min(STREAM_SEGMENT_CHUNKS, chunkCount - nextIndex);
-        try {
-          // Buffer at most 9 MB, then pass the segment to the GitHub upload.
-          // A storage-binding interruption can retry this segment alone.
-          const bytes = await readStreamSegmentWithRetry(
-            store, scope, uploadId, nextIndex, count, fileSize, chunkCount
-          );
-          nextIndex += count;
-          controller.enqueue(bytes);
-        } catch (error) {
-          controller.error(error);
-        }
-      }
-    });
-  }
-
-  let index = 0;
+  let nextIndex = 0;
   return new ReadableStream({
     async pull(controller) {
-      if (index >= chunkCount) {
+      if (nextIndex >= chunkCount) {
         controller.close();
         return;
       }
+      const index = nextIndex;
+      const expectedBytes = Math.max(
+        0,
+        Math.min(MAX_CHUNK_BYTES, fileSize - index * MAX_CHUNK_BYTES)
+      );
       try {
-        const data = await readChunkWithRetry(store, chunkKey(scope, uploadId, index));
-        index += 1;
+        // Fetch one 1.8 MB row at a time through the normal Durable Object
+        // key/value endpoint. The aggregated /stream endpoint has repeatedly
+        // failed in production with an opaque "Network connection lost".
+        const data = await readChunkWithRetry(
+          store,
+          chunkKey(scope, uploadId, index),
+          expectedBytes,
+          index + 1
+        );
+        nextIndex += 1;
         controller.enqueue(new Uint8Array(data));
       } catch (error) {
         controller.error(error);
