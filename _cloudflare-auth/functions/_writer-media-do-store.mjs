@@ -42,7 +42,9 @@ async function responseError(response, fallback) {
     const parsed = JSON.parse(body);
     message = parsed.error || parsed.message || body;
   } catch {}
-  return new Error(message || fallback || ("Media storage returned " + response.status + "."));
+  const error = new Error(message || fallback || ("Media storage returned " + response.status + "."));
+  error.status = response.status;
+  throw error;
 }
 
 export function createDurableObjectMediaStore(options = {}) {
