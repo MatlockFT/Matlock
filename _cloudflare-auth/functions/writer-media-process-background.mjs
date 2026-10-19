@@ -207,9 +207,12 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
   let requestError = null;
   let responseReceived = null;
 
+  // Close the fixed-length body normally so the outgoing request receives
+  // its end-of-body signal. Cloudflare has a production bug where this close
+  // can throw after the exact byte count; the catch below checks GitHub's
+  // response and the resulting Release asset before declaring failure.
   const pumping = source.pipeTo(fixedBody.writable, {
-    signal: controller.signal,
-    preventClose: true
+    signal: controller.signal
   }).catch(error => {
     pipelineError = error;
     throw error;
@@ -241,7 +244,7 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
     if (!responseReceived && !requestError) {
       await Promise.race([
         uploading.then(() => undefined, () => undefined),
-        mediaDelay(1500)
+        mediaDelay(12_000)
       ]);
     }
 
