@@ -5135,10 +5135,13 @@ function insertBlock(text, { preserveScroll = false } = {}) {
           ...(options.headers || {})
         }
       });
-    } catch {
+    } catch (cause) {
       const endpoint = String(path || '').split('?')[0];
-      const error = new Error(`Connection failed while contacting the Writer upload bridge (${endpoint}).`);
+      const detail = String(cause?.message || cause || 'No response was received.');
+      const error = new Error(`The Writer upload service did not return a response for ${endpoint}. Browser detail: ${detail.slice(0, 180)}`);
+      error.name = cause?.name || 'NetworkError';
       error.networkError = true;
+      error.cause = cause;
       throw error;
     }
 
@@ -5167,7 +5170,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     };
 
     let lastError = null;
-    const retryDelays = [500, 1000, 2000, 4000, 8000];
+    const retryDelays = [500, 1000, 2000, 4000, 8000, 12000, 16000];
     for (let attempt = 0; attempt <= retryDelays.length; attempt += 1) {
       try {
         await mediaBridgeFetch('/api/writer/media-chunk', {
@@ -5178,9 +5181,31 @@ function insertBlock(text, { preserveScroll = false } = {}) {
         return chunk.size;
       } catch (error) {
         lastError = error;
+
+        // A staged chunk may have committed even when the browser lost the
+        // response. Confirm that exact chunk before retrying or abandoning the
+        // entire 282 MB upload.
+        if (error?.networkError) {
+          try {
+            const confirmation = await mediaBridgeFetch(
+              `/api/writer/media-chunk?uploadId=${encodeURIComponent(uploadId)}&chunkIndex=${index}`
+            );
+            if (confirmation?.found && Number(confirmation.chunkSize) === chunk.size) {
+              return chunk.size;
+            }
+          } catch {
+            // The status check is best-effort. Continue with an idempotent retry.
+          }
+        }
+
         const retryable = !Number.isInteger(error?.status)
           || [408, 429, 500, 502, 503, 504].includes(error.status);
-        if (!retryable || attempt >= retryDelays.length) throw error;
+        if (!retryable || attempt >= retryDelays.length) {
+          const detail = String(error?.message || error || 'No response was received.');
+          throw new Error(
+            `The Writer upload service could not confirm video chunk ${index + 1} of ${count} after ${attempt + 1} attempt${attempt === 0 ? '' : 's'}. ${detail}`
+          );
+        }
         await new Promise(resolve => window.setTimeout(resolve, retryDelays[attempt]));
       }
     }
