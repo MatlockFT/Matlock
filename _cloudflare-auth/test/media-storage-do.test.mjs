@@ -8,7 +8,7 @@ class MemorySql {
   }
 
   exec(query, ...args) {
-    if (this.failOnStreamRead && /SELECT value, expires_at FROM matlock_writer_media WHERE key = \\?/i.test(query)) {
+    if (this.failOnStreamRead && /SELECT value, expires_at FROM matlock_writer_media WHERE key = \?/i.test(query)) {
       throw new Error("Simulated SQLite stream read failure.");
     }
     if (/^\s*CREATE TABLE|^\s*CREATE INDEX/i.test(query)) {
