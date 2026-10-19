@@ -163,15 +163,22 @@ export class WriterMediaStorage {
   handleStream(url) {
     const prefix = String(url.searchParams.get("prefix") || "");
     const count = Number(url.searchParams.get("count"));
-    if (!prefix || prefix.length > 4096 || !Number.isInteger(count) || count < 1 || count > 1200) {
+    const startIndex = Number(url.searchParams.get("start") || 0);
+    if (
+      !prefix || prefix.length > 4096
+      || !Number.isInteger(count) || count < 1 || count > 1200
+      || !Number.isInteger(startIndex) || startIndex < 0
+      || startIndex + count > 1200
+    ) {
       return jsonError("Invalid staged-media stream parameters.");
     }
 
-    let index = 0;
+    let index = startIndex;
+    const endIndex = startIndex + count;
     const sql = this.sql;
     const stream = new ReadableStream({
       async pull(controller) {
-        if (index >= count) {
+        if (index >= endIndex) {
           controller.close();
           return;
         }

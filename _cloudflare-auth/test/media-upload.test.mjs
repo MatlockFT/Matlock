@@ -12,6 +12,7 @@ import {
   MAX_VIDEO_BYTES,
   MAX_VIDEO_CHUNKS,
   cleanupAbandonedUploads,
+  statusKey,
   validateMediaMetadata
 } from '../functions/_writer-media.mjs';
 
@@ -137,6 +138,61 @@ test('abandoned and failed upload chunks are cleaned before a new upload proceed
 
 test('video finalizer accepts Worker bindings for direct queue publishing', () => {
   assert.equal(writerMediaFinalize.length, 2);
+});
+
+
+test('retryable publishing failures can requeue without restaging the video', async () => {
+  const kv = new MemoryKVNamespace();
+  globalThis.__MATLOCK_WRITER_KV = kv;
+  delete globalThis.__MATLOCK_WRITER_MEDIA_STORAGE;
+
+  try {
+    const sessionId = await createWriterSession({ token: 'test-token', login: 'MatlockFT' });
+    const scope = uploadScope(sessionId);
+    const uploadId = 'retry_release_upload_12345';
+    const store = getStore({ name: MEDIA_STORE_NAME });
+    await store.setJSON(statusKey(scope, uploadId), {
+      state: 'error',
+      retryable: true,
+      chunkCount: 1,
+      fileSize: 4,
+      fileType: 'video/mp4',
+      assetName: 'retry-video.mp4',
+      error: 'Network connection lost.'
+    });
+
+    const queued = [];
+    const response = await writerMediaFinalize(
+      new Request('https://writer.test/api/writer/media-finalize', {
+        method: 'POST',
+        headers: {
+          origin: 'https://mmamatlock.com',
+          'X-Writer-Session': sessionId,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          uploadId,
+          chunkCount: 1,
+          fileSize: 4,
+          fileType: 'video/mp4',
+          assetName: 'retry-video.mp4'
+        })
+      }),
+      { WRITER_MEDIA_QUEUE: { async send(job) { queued.push(job); } } }
+    );
+
+    const body = await response.json();
+    const status = await store.get(statusKey(scope, uploadId), { type: 'json' });
+    assert.equal(response.status, 202);
+    assert.equal(body.state, 'queued');
+    assert.equal(queued.length, 1);
+    assert.equal(queued[0].body.uploadId, uploadId);
+    assert.equal(status.state, 'queued');
+    assert.equal(status.retryable, undefined);
+  } finally {
+    delete globalThis.__MATLOCK_WRITER_KV;
+    delete globalThis.__MATLOCK_WRITER_MEDIA_STORAGE;
+  }
 });
 
 
