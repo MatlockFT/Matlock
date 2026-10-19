@@ -44,7 +44,7 @@ export class WriterMediaStorage {
       if (url.pathname === "/kv") return await this.handleKeyValue(request, url);
       if (url.pathname === "/list" && request.method === "GET") return this.handleList(url);
       if (url.pathname === "/delete-prefix" && request.method === "POST") return this.handleDeletePrefix(url);
-      if (url.pathname === "/stream" && request.method === "GET") return this.handleStream(url);
+      if (url.pathname === "/stream" && request.method === "GET") return await this.handleStream(url);
       if (url.pathname === "/health" && request.method === "GET") {
         return Response.json({ ok: true, storage: "durable-objects-sqlite" }, {
           headers: { "Cache-Control": "no-store" }
