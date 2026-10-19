@@ -111,11 +111,11 @@ function isTransientMediaError(error) {
   if (Number.isInteger(status)) {
     return [408, 425, 429, 500, 502, 503, 504].includes(status);
   }
-  return /network connection lost|network error|fetch failed|failed to fetch|connection reset|connection lost|socket|timeout|timed?\\s*out|aborted|temporarily unavailable/i
+  return /network connection lost|network error|fetch failed|failed to fetch|connection reset|connection lost|socket|timeout|timed?\s*out|aborted|temporarily unavailable/i
     .test(String(error?.message || error || ''));
 }
 
-async function chunkStream(store, scope, uploadId, chunkCount, fileSize) {
+async function chunkStream(store, scope, uploadId, chunkCount, fileSize, diagnostics = {}) {
   let nextIndex = 0;
   return new ReadableStream({
     async pull(controller) {
@@ -141,6 +141,7 @@ async function chunkStream(store, scope, uploadId, chunkCount, fileSize) {
         nextIndex += 1;
         controller.enqueue(new Uint8Array(data));
       } catch (error) {
+        diagnostics.error = error;
         controller.error(error);
       }
     }
@@ -188,14 +189,15 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
 
   // FixedLengthStream gives GitHub the exact Content-Length it requires.
   const fixedBody = new FixedLengthStream(meta.fileSize);
-  const source = await chunkStream(store, scope, uploadId, meta.chunkCount, meta.fileSize);
+  const sourceDiagnostics = {};
+  const source = await chunkStream(store, scope, uploadId, meta.chunkCount, meta.fileSize, sourceDiagnostics);
   const controller = new AbortController();
   const timer = setTimeout(() => {
     const timeoutError = new Error(`GitHub Release upload timed out after ${RELEASE_UPLOAD_TIMEOUT_MS / 60_000} minutes.`);
     timeoutError.status = 504;
     controller.abort(timeoutError);
   }, RELEASE_UPLOAD_TIMEOUT_MS);
-  let sourceError = null;
+  let pipelineError = null;
   let requestError = null;
 
   // Keep pipeTo from explicitly closing FixedLengthStream after the exact byte count.
@@ -207,7 +209,7 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
     signal: controller.signal,
     preventClose: true
   }).catch(error => {
-    sourceError = error;
+    pipelineError = error;
     throw error;
   });
   const uploading = githubFetchUrl(token, `${uploadUrl}?name=${encodeURIComponent(meta.assetName)}`, {
@@ -232,14 +234,18 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
       : error;
     controller.abort(reason);
     await Promise.allSettled([uploading, pumping]);
+    const sourceFailure = sourceDiagnostics.error;
     const phase = String(reason?.message || '').includes('GitHub Release upload timed out')
       ? 'GitHub Release upload'
-      : error === sourceError
-        ? 'Cloudflare Durable Object media stream'
+      : sourceFailure
+        ? 'Cloudflare staged-chunk read'
         : error === requestError
           ? 'GitHub Release network request'
-          : 'GitHub Release streaming pipeline';
-    const wrapped = new Error(`${phase}: ${String(reason?.message || reason || 'Network connection lost.')}`, { cause: reason });
+          : error === pipelineError
+            ? 'GitHub Release streaming pipeline'
+            : 'GitHub Release upload';
+    const cause = sourceFailure || (error === requestError ? requestError : error);
+    const wrapped = new Error(`${phase}: ${String(cause?.message || reason?.message || reason || 'Network connection lost.')}`, { cause });
     if (Number.isInteger(reason?.status)) wrapped.status = reason.status;
     else if (controller.signal.aborted) wrapped.status = 504;
     throw wrapped;
