@@ -85,6 +85,7 @@ async function readChunkWithRetry(store, key) {
 const STREAM_SEGMENT_CHUNKS = 8;
 const STREAM_SEGMENT_RETRY_DELAYS = [500, 1000, 2000, 4000, 8000];
 const RELEASE_UPLOAD_RETRY_DELAYS = [1000, 3000, 7000, 12000];
+const MAX_AUTOMATIC_PUBLISH_ATTEMPTS = 3;
 
 function mediaDelay(milliseconds) {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
@@ -316,6 +317,10 @@ export default async function handler(request) {
   const body = await request.json().catch(() => null);
   const uploadId = validUploadId(body?.uploadId);
   if (!uploadId) return;
+  const publishAttempt = Math.max(
+    1,
+    Math.min(MAX_AUTOMATIC_PUBLISH_ATTEMPTS, Math.floor(Number(body?.publishAttempt) || 1))
+  );
 
   let meta;
   try {
@@ -338,12 +343,20 @@ export default async function handler(request) {
     if (current?.state === 'complete' && current?.url) return;
 
     stage = 'verifying staged video chunks';
-    await setStatus(store, scope, uploadId, { state: 'preparing', ...meta });
+    await setStatus(store, scope, uploadId, {
+      state: 'preparing',
+      publishAttempts: publishAttempt,
+      ...meta
+    });
     await verifyChunks(store, scope, uploadId, meta.chunkCount, meta.fileSize);
 
     stage = 'preparing GitHub Releases';
     const release = await ensureRelease(session.token);
-    await setStatus(store, scope, uploadId, { state: 'publishing', ...meta });
+    await setStatus(store, scope, uploadId, {
+      state: 'publishing',
+      publishAttempts: publishAttempt,
+      ...meta
+    });
 
     stage = 'streaming video to GitHub Releases';
     const asset = await uploadAsset(session.token, release, store, scope, uploadId, meta);
@@ -354,24 +367,31 @@ export default async function handler(request) {
       url: asset.browser_download_url,
       assetId: asset.id,
       releaseId: release.id,
+      publishAttempts: publishAttempt,
       ...meta
     });
     await cleanupChunks(store, scope, uploadId, meta.chunkCount).catch(error => {
       console.warn('Published video, but temporary media cleanup failed:', error?.message || error);
     });
   } catch (error) {
-    const retryable = Boolean(error?.retryable) || isTransientMediaError(error);
-    const message = `Publishing failed while ${stage}: ${String(error?.message || error || 'GitHub Release upload failed.')}`;
+    const transientFailure = Boolean(error?.retryable) || isTransientMediaError(error);
+    const retryable = transientFailure && publishAttempt < MAX_AUTOMATIC_PUBLISH_ATTEMPTS;
+    const detail = String(error?.message || error || 'GitHub Release upload failed.');
+    const exhausted = transientFailure && !retryable;
+    const message = exhausted
+      ? `Publishing failed while ${stage} after ${publishAttempt} attempts. Automatic retries have stopped to prevent a loop. The staged video has been retained. ${detail}`
+      : `Publishing failed while ${stage}: ${detail}`;
     console.error(message);
     await setStatus(store, scope, uploadId, {
       state: 'error',
       error: message,
       retryable,
+      publishAttempts: publishAttempt,
       ...meta
     });
-    // Keep fully staged data for retryable runtime failures. A subsequent
-    // finalize request can enqueue it again without uploading 282 MB twice.
-    if (!retryable) await cleanupChunks(store, scope, uploadId, meta.chunkCount);
+    // Keep staged data after transient failures, including exhausted retries,
+    // so it can be inspected or manually recovered without another full upload.
+    if (!transientFailure) await cleanupChunks(store, scope, uploadId, meta.chunkCount);
   }
 }
 
