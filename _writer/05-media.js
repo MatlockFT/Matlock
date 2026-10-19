@@ -418,23 +418,29 @@
         clearVideoResume();
         return url;
       }
-      if (status.state === 'error' && status.retryable) {
-        await finalizeVideoUpload(retryPayload);
-        const url = await waitForVideoRelease(resume.uploadId, retryPayload);
-        clearVideoResume();
-        return url;
-      }
-      if (status.state === 'error' && /automatic retries stopped to prevent a loop/i.test(String(status.error || ''))) {
-        // Selecting the exact same file again is an explicit manual retry.
-        // Start one fresh, server-capped cycle with the staged chunks intact.
-        retryPayload.manualRetry = true;
+      if (status.state === 'error' && status.stagedChunksComplete === true) {
+        // Reuse the retained bytes when every staged chunk is present. A
+        // non-retryable old status needs an explicit new attempt so the current
+        // server diagnostics, rather than a stale browser message, are shown.
+        if (!status.retryable) retryPayload.manualRetry = true;
         await finalizeVideoUpload(retryPayload);
         const url = await waitForVideoRelease(resume.uploadId, retryPayload);
         clearVideoResume();
         return url;
       }
       if (status.state === 'error') {
-        throw new Error(status.error || 'The previous video publishing attempt failed. The staged video was not deleted.');
+        // Older failures can have a status record after their staged chunks
+        // have already been deleted. Do not show that stale error again: clean
+        // the old ID and restage from the File selected in this interaction.
+        try {
+          await mediaBridgeFetch('/api/writer/media-abort', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ uploadId: resume.uploadId, chunkCount })
+          });
+        } catch {}
+        clearVideoResume();
+        resume = null;
       }
       if (status.state !== 'uploading') {
         try {
