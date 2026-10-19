@@ -5410,7 +5410,19 @@ function insertBlock(text, { preserveScroll = false } = {}) {
         clearVideoResume();
         return url;
       }
-      if (status.state === 'error' || status.state !== 'uploading') {
+      if (status.state === 'error' && /automatic retries stopped to prevent a loop/i.test(String(status.error || ''))) {
+        // Selecting the exact same file again is an explicit manual retry.
+        // Start one fresh, server-capped cycle with the staged chunks intact.
+        retryPayload.manualRetry = true;
+        await finalizeVideoUpload(retryPayload);
+        const url = await waitForVideoRelease(resume.uploadId, retryPayload);
+        clearVideoResume();
+        return url;
+      }
+      if (status.state === 'error') {
+        throw new Error(status.error || 'The previous video publishing attempt failed. The staged video was not deleted.');
+      }
+      if (status.state !== 'uploading') {
         try {
           await mediaBridgeFetch('/api/writer/media-abort', {
             method: 'POST',
