@@ -116,6 +116,7 @@ function isTransientMediaError(error) {
 }
 
 const STREAM_SEGMENT_CHUNKS = 8;
+const R2_VIDEO_MIN_BYTES = 80 * 1024 * 1024;
 const STREAM_SEGMENT_RETRY_DELAYS = [500, 1000];
 const STREAM_SEGMENT_TIMEOUT_MS = 30_000;
 
@@ -370,6 +371,50 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
     clearTimeout(timer);
   }
 }
+export async function uploadAssetToR2(bucket, store, scope, uploadId, meta, publicBaseUrl = "https://mmamatlock-writer-auth.fighttalkmma.workers.dev") {
+  if (!bucket?.createMultipartUpload || !bucket?.head) {
+    throw new Error("Cloudflare R2 video storage is not configured. The large video was retained in temporary storage.");
+  }
+
+  const key = `videos/${uploadId}/${meta.assetName}`;
+  const baseUrl = String(publicBaseUrl || "https://mmamatlock-writer-auth.fighttalkmma.workers.dev").replace(/\/+$/, "");
+  const publicUrl = `${baseUrl}/media/${encodeURIComponent(uploadId)}/${encodeURIComponent(meta.assetName)}`;
+  const existing = await bucket.head(key).catch(() => null);
+  if (existing && Number(existing.size) === Number(meta.fileSize)) {
+    return { id: key, size: Number(existing.size), browser_download_url: publicUrl, storage: "cloudflare-r2" };
+  }
+
+  const multipart = await bucket.createMultipartUpload(key, {
+    httpMetadata: { contentType: meta.fileType || "application/octet-stream", cacheControl: "public, max-age=31536000, immutable" },
+    customMetadata: { assetName: meta.assetName, uploadId, source: "Matlock Writer" }
+  });
+  const parts = [];
+  let stagedBytes = 0;
+  try {
+    let startIndex = 0;
+    let partNumber = 1;
+    while (startIndex < meta.chunkCount) {
+      const count = Math.min(STREAM_SEGMENT_CHUNKS, meta.chunkCount - startIndex);
+      const bytes = await readStreamSegmentWithRetry(store, scope, uploadId, startIndex, count, meta.fileSize, meta.chunkCount);
+      parts.push(await multipart.uploadPart(partNumber, bytes));
+      stagedBytes += bytes.byteLength;
+      startIndex += count;
+      partNumber += 1;
+    }
+    if (stagedBytes !== meta.fileSize) throw new Error(`R2 received ${stagedBytes} staged bytes; expected ${meta.fileSize}.`);
+
+    const object = await multipart.complete(parts);
+    if (Number(object?.size) !== Number(meta.fileSize)) {
+      await bucket.delete(key).catch(() => {});
+      throw new Error(`R2 completed the video with ${Number(object?.size) || 0} bytes; expected ${meta.fileSize}.`);
+    }
+    return { id: key, size: Number(object.size), browser_download_url: publicUrl, storage: "cloudflare-r2" };
+  } catch (error) {
+    await multipart.abort().catch(() => {});
+    throw new Error(`Cloudflare R2 multipart upload failed after ${parts.length} of ${Math.ceil(meta.chunkCount / STREAM_SEGMENT_CHUNKS)} parts: ${String(error?.message || error || "Unknown R2 error.")}`, { cause: error });
+  }
+}
+
 async function uploadAsset(token, release, store, scope, uploadId, meta) {
   let lastError = null;
   for (let attempt = 0; attempt <= RELEASE_UPLOAD_RETRY_DELAYS.length; attempt += 1) {
@@ -401,7 +446,7 @@ async function uploadAsset(token, release, store, scope, uploadId, meta) {
   throw lastError || new Error('GitHub Release upload failed.');
 }
 
-export default async function handler(request) {
+export default async function handler(request, env = null) {
   if (request.method !== 'POST') return new Response(null, { status: 405 });
 
   const { id: sessionId, session } = await requireWriterSession(request);
@@ -443,23 +488,27 @@ export default async function handler(request) {
     });
     await verifyChunks(store, scope, uploadId, meta.chunkCount, meta.fileSize);
 
-    stage = 'preparing GitHub Releases';
-    const release = await ensureRelease(session.token);
-    await setStatus(store, scope, uploadId, {
-      state: 'publishing',
-      publishAttempts: publishAttempt,
-      ...meta
-    });
+    let release = null;
+    let asset = null;
+    await setStatus(store, scope, uploadId, { state: 'publishing', publishAttempts: publishAttempt, ...meta });
 
-    stage = 'streaming video to GitHub Releases';
-    const asset = await uploadAsset(session.token, release, store, scope, uploadId, meta);
+    if (meta.fileSize >= R2_VIDEO_MIN_BYTES) {
+      stage = 'streaming video to Cloudflare R2';
+      asset = await uploadAssetToR2(env?.WRITER_VIDEO_BUCKET, store, scope, uploadId, meta, env?.WRITER_MEDIA_PUBLIC_BASE_URL);
+    } else {
+      stage = 'preparing GitHub Releases';
+      release = await ensureRelease(session.token);
+      stage = 'streaming video to GitHub Releases';
+      asset = await uploadAsset(session.token, release, store, scope, uploadId, meta);
+    }
 
     stage = 'recording published video';
     await setStatus(store, scope, uploadId, {
       state: 'complete',
       url: asset.browser_download_url,
       assetId: asset.id,
-      releaseId: release.id,
+      releaseId: release?.id || null,
+      storage: asset.storage || 'github-releases',
       publishAttempts: publishAttempt,
       ...meta
     });

@@ -11,6 +11,7 @@ WRITER_ORIGINS = "https://mmamatlock.com,https://www.mmamatlock.com"
 GITHUB_REPOSITORY = "MatlockFT/Matlock"
 GITHUB_REPOSITORY_ID = "925864034"
 GITHUB_ALLOWED_LOGIN = "MatlockFT"
+WRITER_MEDIA_PUBLIC_BASE_URL = "https://mmamatlock-writer-auth.fighttalkmma.workers.dev"
 
 [[kv_namespaces]]
 binding = "WRITER_STORE"
@@ -37,3 +38,7 @@ dead_letter_queue = "mmamatlock-writer-media-dlq"
 
 [triggers]
 crons = ["0 */6 * * *"]
+
+[[r2_buckets]]
+binding = "WRITER_VIDEO_BUCKET"
+bucket_name = "matlock-writer-videos"

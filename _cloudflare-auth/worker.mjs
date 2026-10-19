@@ -92,6 +92,57 @@ function jsonError(error, status = 500, request = null) {
   );
 }
 
+async function servePublicVideo(request, env) {
+  const url = new URL(request.url);
+  const match = url.pathname.match(/^\/media\/([A-Za-z0-9_-]{12,96})\/([A-Za-z0-9._-]{1,180})$/);
+  const baseHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+    "Access-Control-Allow-Headers": "Range, If-None-Match, If-Modified-Since",
+    "Access-Control-Expose-Headers": "Accept-Ranges, Content-Length, Content-Range, ETag",
+    "Cache-Control": "public, max-age=31536000, immutable",
+    "X-Content-Type-Options": "nosniff",
+    "Cross-Origin-Resource-Policy": "cross-origin"
+  };
+  if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: baseHeaders });
+  if (!["GET", "HEAD"].includes(request.method)) {
+    return new Response("Method not allowed.", { status: 405, headers: { ...baseHeaders, Allow: "GET, HEAD, OPTIONS" } });
+  }
+  if (!match) return new Response("Not found.", { status: 404, headers: baseHeaders });
+  if (!env?.WRITER_VIDEO_BUCKET) return new Response("Video storage is not configured.", { status: 503, headers: baseHeaders });
+
+  const key = `videos/${match[1]}/${match[2]}`;
+  let object;
+  try {
+    object = request.method === "HEAD"
+      ? await env.WRITER_VIDEO_BUCKET.head(key)
+      : await env.WRITER_VIDEO_BUCKET.get(key, { range: request.headers });
+  } catch (error) {
+    console.error("Public R2 video read failed:", error?.message || error);
+    return new Response("Video could not be retrieved.", { status: 502, headers: baseHeaders });
+  }
+  if (!object) return new Response("Not found.", { status: 404, headers: baseHeaders });
+
+  const headers = new Headers(baseHeaders);
+  if (typeof object.writeHttpMetadata === "function") object.writeHttpMetadata(headers);
+  headers.set("Content-Type", object.httpMetadata?.contentType || "application/octet-stream");
+  if (object.httpEtag) headers.set("ETag", object.httpEtag);
+  headers.set("Accept-Ranges", "bytes");
+
+  const range = object.range;
+  const offset = Number(range?.offset);
+  const length = Number(range?.length);
+  const isRange = request.method === "GET" && Number.isSafeInteger(offset) && Number.isSafeInteger(length)
+    && offset >= 0 && length > 0 && offset + length <= Number(object.size);
+  if (isRange) {
+    headers.set("Content-Range", `bytes ${offset}-${offset + length - 1}/${object.size}`);
+    headers.set("Content-Length", String(length));
+    return safeResponse(new Response(object.body, { status: 206, headers }));
+  }
+  headers.set("Content-Length", String(Number(object.size) || 0));
+  return safeResponse(new Response(request.method === "HEAD" ? null : object.body, { status: 200, headers }));
+}
+
 function serviceIndex() {
   return new Response(
     '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Matlock Writer Auth</title><style>body{margin:0;background:#080808;color:#eee;font:16px/1.5 system-ui;min-height:100vh;display:grid;place-items:center}.card{max-width:38rem;padding:2rem;border:1px solid #333;background:#111;border-radius:12px}a{color:#eee}p{color:#aaa}</style><main class="card"><h1>Matlock Writer Auth</h1><p>Authentication and publishing service is online.</p><p><a href="/auth/github/health">Check sign-in status</a></p></main></html>',
@@ -185,7 +236,7 @@ async function consumeMediaQueue(batch, env) {
         },
         body: JSON.stringify(job.body || {})
       });
-      const response = await mediaProcess(request);
+      const response = await mediaProcess(request, env);
       if (response instanceof Response && response.status >= 500) {
         message.retry();
       } else {
@@ -204,8 +255,9 @@ export default {
       activateStorage(env);
       const url = new URL(request.url);
       if (url.pathname === '/') return serviceIndex();
+      if (url.pathname.startsWith("/media/")) return await servePublicVideo(request, env);
       if (url.pathname === '/__health') {
-        return Response.json({ ok: true, service: 'matlock-writer-auth', storage: 'kv', media_storage: 'durable-objects-sqlite', queue: Boolean(env.WRITER_MEDIA_QUEUE) }, {
+        return Response.json({ ok: true, service: 'matlock-writer-auth', storage: 'kv', media_storage: 'durable-objects-sqlite', r2_video_storage: Boolean(env.WRITER_VIDEO_BUCKET), queue: Boolean(env.WRITER_MEDIA_QUEUE) }, {
           headers: { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' }
         });
       }
@@ -245,4 +297,4 @@ export default {
 };
 
 
-export { WriterMediaStorage };
+export { WriterMediaStorage, servePublicVideo };
