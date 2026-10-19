@@ -1,13 +1,60 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import writerMediaFinalize from '../functions/writer-media-finalize.mjs';
+import writerMediaChunk from '../functions/writer-media-chunk.mjs';
+import { createWriterSession } from '../functions/_writer-session.mjs';
+import { getStore } from '../functions/_cloudflare-store.mjs';
 import {
+  MEDIA_STORE_NAME,
+  chunkKey,
+  uploadScope,
   MAX_CHUNK_BYTES,
   MAX_VIDEO_BYTES,
   MAX_VIDEO_CHUNKS,
   cleanupAbandonedUploads,
   validateMediaMetadata
 } from '../functions/_writer-media.mjs';
+
+class MemoryKVNamespace {
+  constructor() { this.entries = new Map(); }
+
+  async put(key, value, options = {}) {
+    let bytes;
+    if (typeof value === 'string') bytes = new TextEncoder().encode(value);
+    else if (value instanceof ArrayBuffer) bytes = new Uint8Array(value);
+    else if (ArrayBuffer.isView(value)) bytes = new Uint8Array(value.buffer, value.byteOffset, value.byteLength);
+    else if (value instanceof Blob) bytes = new Uint8Array(await value.arrayBuffer());
+    else throw new TypeError('Memory KV received an unsupported value type');
+    this.entries.set(key, { bytes: new Uint8Array(bytes), metadata: { ...(options.metadata || {}) } });
+  }
+
+  async get(key, options = {}) {
+    const entry = this.entries.get(key);
+    if (!entry) return null;
+    const bytes = new Uint8Array(entry.bytes);
+    const type = options.type || 'text';
+    if (type === 'arrayBuffer') return bytes.slice().buffer;
+    if (type === 'json') return JSON.parse(new TextDecoder().decode(bytes));
+    return new TextDecoder().decode(bytes);
+  }
+
+  async getWithMetadata(key, options = {}) {
+    const entry = this.entries.get(key);
+    if (!entry) return { value: null, metadata: null };
+    return { value: await this.get(key, options), metadata: { ...entry.metadata } };
+  }
+
+  async delete(key) { this.entries.delete(key); }
+
+  async list({ prefix = '', limit = 1000 } = {}) {
+    const keys = [...this.entries.keys()].filter(key => key.startsWith(prefix)).sort().slice(0, limit);
+    return {
+      keys: keys.map(name => ({ name, metadata: { ...(this.entries.get(name)?.metadata || {}) } })),
+      list_complete: true
+    };
+  }
+}
+
 
 test('large drag-and-drop videos fit the Durable Objects staging chunk limits', () => {
   assert.equal(MAX_CHUNK_BYTES, 1_800_000);
@@ -90,4 +137,40 @@ test('abandoned and failed upload chunks are cleaned before a new upload proceed
 
 test('video finalizer accepts Worker bindings for direct queue publishing', () => {
   assert.equal(writerMediaFinalize.length, 2);
+});
+
+
+test('GET chunk confirmation recognizes a chunk whose upload response was lost', async () => {
+  const kv = new MemoryKVNamespace();
+  globalThis.__MATLOCK_WRITER_KV = kv;
+  try {
+    const sessionId = await createWriterSession({ token: 'test-token', login: 'MatlockFT' });
+    const scope = uploadScope(sessionId);
+    const uploadId = 'upload_confirmed_chunk_12345';
+    const store = getStore({ name: MEDIA_STORE_NAME });
+    await store.set(chunkKey(scope, uploadId, 7), new Uint8Array([1, 2, 3, 4]).buffer, {
+      metadata: { chunkIndex: 7, chunkSize: 4, createdAt: new Date().toISOString() },
+      expirationTtl: 86400
+    });
+
+    const response = await writerMediaChunk(new Request(
+      `https://writer.test/api/writer/media-chunk?uploadId=${encodeURIComponent(uploadId)}&chunkIndex=7`,
+      {
+        method: 'GET',
+        headers: {
+          origin: 'https://mmamatlock.com',
+          'X-Writer-Session': sessionId
+        }
+      }
+    ));
+    const result = await response.json();
+    assert.equal(response.status, 200);
+    assert.equal(result.ok, true);
+    assert.equal(result.found, true);
+    assert.equal(result.chunkIndex, 7);
+    assert.equal(result.chunkSize, 4);
+  } finally {
+    delete globalThis.__MATLOCK_WRITER_KV;
+    delete globalThis.__MATLOCK_WRITER_MEDIA_STORAGE;
+  }
 });
