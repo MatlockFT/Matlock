@@ -122,10 +122,12 @@ async function readStreamSegmentWithRetry(store, scope, uploadId, startIndex, co
     }
   }
 
-  throw new Error(
+  const exhausted = new Error(
     `Cloudflare media-storage stream failed for parts ${startIndex + 1}-${Math.min(startIndex + count, chunkCount)} of ${chunkCount} after ${STREAM_SEGMENT_RETRY_DELAYS.length + 1} attempts: ${String(lastError?.message || lastError || 'No response was received.')}`,
     { cause: lastError }
   );
+  if (Number.isInteger(lastError?.status)) exhausted.status = lastError.status;
+  throw exhausted;
 }
 
 async function chunkStream(store, scope, uploadId, chunkCount, fileSize) {
