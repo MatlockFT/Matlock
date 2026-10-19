@@ -190,35 +190,34 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
   const uploadUrl = String(release?.upload_url || '').replace(/\{\?name,label\}$/, '');
   if (!uploadUrl) throw new Error('GitHub did not provide a Release upload URL.');
 
-  // GitHub's upload endpoint requires the exact Content-Length. In Cloudflare
-  // Workers, FixedLengthStream is the supported way to attach that length to
-  // a streaming request body.
+  // GitHub requires an exact Content-Length. FixedLengthStream supplies it,
+  // but Cloudflare can report a stream-close error after the expected bytes
+  // have already passed through. Do not let that local error abort GitHub's
+  // request before checking the authoritative Release response.
   const fixedBody = new FixedLengthStream(meta.fileSize);
   const sourceDiagnostics = {};
   const source = await chunkStream(store, scope, uploadId, meta.chunkCount, meta.fileSize, sourceDiagnostics);
   const controller = new AbortController();
   const timer = setTimeout(() => {
-    const timeoutError = new Error(`GitHub Release upload timed out after ${RELEASE_UPLOAD_TIMEOUT_MS / 60_000} minutes.`);
+    const timeoutError = new Error(\`GitHub Release upload timed out after \${RELEASE_UPLOAD_TIMEOUT_MS / 60_000} minutes.\`);
     timeoutError.status = 504;
     controller.abort(timeoutError);
   }, RELEASE_UPLOAD_TIMEOUT_MS);
 
   let pipelineError = null;
   let requestError = null;
-  let responseReceived = null;
 
-  // Close the fixed-length body normally so the outgoing request receives
-  // its end-of-body signal. Cloudflare has a production bug where this close
-  // can throw after the exact byte count; the catch below checks GitHub's
-  // response and the resulting Release asset before declaring failure.
   const pumping = source.pipeTo(fixedBody.writable, {
-    signal: controller.signal
+    signal: controller.signal,
+    preventClose: true
   }).catch(error => {
     pipelineError = error;
+    // Intentionally do not abort the HTTP request here. GitHub can still
+    // receive and commit the complete Content-Length body despite this error.
     throw error;
   });
 
-  const uploading = githubFetchUrl(token, `${uploadUrl}?name=${encodeURIComponent(meta.assetName)}`, {
+  const uploading = githubFetchUrl(token, \`\${uploadUrl}?name=\${encodeURIComponent(meta.assetName)}\`, {
     method: 'POST',
     headers: {
       'Content-Type': meta.fileType || 'application/octet-stream'
@@ -226,140 +225,71 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
     body: fixedBody.readable,
     duplex: 'half',
     signal: controller.signal
-  }).then(response => {
-    responseReceived = response;
-    return response;
   }).catch(error => {
     requestError = error;
     throw error;
   });
 
-  let response;
   try {
-    [response] = await Promise.all([uploading, pumping]);
-  } catch (error) {
-    // A streamed request can fail locally at the same time GitHub returns an
-    // HTTP response. Preserve that response rather than replacing it with the
-    // less informative "Network connection lost" from pipeTo.
-    if (!responseReceived && !requestError) {
-      await Promise.race([
-        uploading.then(() => undefined, () => undefined),
-        mediaDelay(12_000)
-      ]);
+    // Promise.all rejects immediately on either failure and previously caused
+    // the request to be aborted before GitHub could return its result. Wait
+    // for both sides (bounded by the upload timeout) and inspect each result.
+    const [uploadResult, pipelineResult] = await Promise.allSettled([uploading, pumping]);
+    const bytesRead = Number(sourceDiagnostics.bytesRead) || 0;
+    const chunksRead = Number(sourceDiagnostics.chunksRead) || 0;
+    const progress = \`Staged data read: \${bytesRead} of \${meta.fileSize} bytes across \${chunksRead} of \${meta.chunkCount} chunks.\`;
+
+    if (uploadResult.status === 'rejected') {
+      const cause = sourceDiagnostics.error || requestError || pipelineError || uploadResult.reason;
+      throw new Error(
+        \`GitHub Release request did not return a response: \${String(cause?.message || cause || 'Network connection lost.')}. \${progress}\`,
+        { cause }
+      );
     }
 
-    if (responseReceived) {
-      const responseText = await responseReceived.clone().text().catch(() => '');
-      let responseData = {};
-      try {
-        responseData = responseText ? JSON.parse(responseText) : {};
-      } catch {
-        responseData = { message: responseText.trim().slice(0, 500) };
-      }
-
-      if (responseReceived.status === 201 && responseData?.browser_download_url) {
-        // GitHub can finish creating the asset even if the stream's completion
-        // signal fails locally. Accept only a confirmed full-size asset.
-        if (Number(responseData.size) === meta.fileSize) {
-          controller.abort(error);
-          await Promise.allSettled([pumping]);
-          return responseData;
-        }
-
-        try {
-          const existing = await existingReleaseAsset(token, release, meta.assetName, meta.fileSize);
-          if (existing) {
-            controller.abort(error);
-            await Promise.allSettled([pumping]);
-            return existing;
-          }
-        } catch {}
-      }
-
-      if (responseReceived.status === 422) {
-        try {
-          const existing = await existingReleaseAsset(token, release, meta.assetName, meta.fileSize);
-          if (existing) {
-            controller.abort(error);
-            await Promise.allSettled([pumping]);
-            return existing;
-          }
-        } catch (assetError) {
-          if (Number.isInteger(assetError?.status)) {
-            controller.abort(error);
-            await Promise.allSettled([pumping]);
-            throw assetError;
-          }
-        }
-      }
-
-      if (!responseReceived.ok) {
-        const requestId = responseReceived.headers.get('x-github-request-id');
-        const detail = responseData?.message || responseText.trim().slice(0, 500);
-        const progress = `The stream supplied ${Number(sourceDiagnostics.bytesRead) || 0} of ${meta.fileSize} bytes from staging in ${Number(sourceDiagnostics.chunksRead) || 0} of ${meta.chunkCount} chunks.`;
-        const rejected = new Error(
-          detail
-            ? `GitHub Release upload returned HTTP ${responseReceived.status}: ${detail} ${progress}`
-            : `GitHub Release upload returned HTTP ${responseReceived.status}.${requestId ? ` GitHub request ID: ${requestId}.` : ''} ${progress}`
-        );
-        rejected.status = responseReceived.status;
-        controller.abort(rejected);
-        await Promise.allSettled([pumping]);
-        throw rejected;
-      }
+    const response = uploadResult.value;
+    const responseText = await response.text().catch(() => '');
+    let data = {};
+    try {
+      data = responseText ? JSON.parse(responseText) : {};
+    } catch {
+      data = { message: responseText.trim().slice(0, 500) };
     }
 
-    const reason = controller.signal.aborted && controller.signal.reason
-      ? controller.signal.reason
-      : error;
-    controller.abort(reason);
-    await Promise.allSettled([uploading, pumping]);
+    if (response.status === 201 && data?.browser_download_url) {
+      // GitHub is authoritative. If it reports the exact expected asset size,
+      // accept success even if Cloudflare's stream-close promise rejected.
+      if (Number(data.size) === meta.fileSize) return data;
 
-    const sourceFailure = sourceDiagnostics.error;
-    const progress = `Staged data supplied to the outbound stream: ${Number(sourceDiagnostics.bytesRead) || 0} of ${meta.fileSize} bytes, across ${Number(sourceDiagnostics.chunksRead) || 0} of ${meta.chunkCount} chunks.`;
-    const phase = String(reason?.message || '').includes('GitHub Release upload timed out')
-      ? 'GitHub Release upload'
-      : sourceFailure
-        ? 'Cloudflare staged-chunk read'
-        : error === requestError
-          ? 'GitHub Release network request'
-          : error === pipelineError
-            ? 'GitHub Release streaming pipeline'
-            : 'GitHub Release upload';
-    const cause = sourceFailure || (error === requestError ? requestError : error);
-    const wrapped = new Error(
-      `${phase}: ${String(cause?.message || reason?.message || reason || 'Network connection lost.')} ${progress}`,
-      { cause: reason }
+      const existing = await existingReleaseAsset(token, release, meta.assetName, meta.fileSize);
+      if (existing) return existing;
+      const mismatch = new Error(
+        \`GitHub created the asset but reported size \${Number(data.size) || 0}; expected \${meta.fileSize}. \${progress}\`
+      );
+      mismatch.status = 502;
+      throw mismatch;
+    }
+
+    if (response.status === 422) {
+      const existing = await existingReleaseAsset(token, release, meta.assetName, meta.fileSize);
+      if (existing) return existing;
+    }
+
+    const requestId = response.headers.get('x-github-request-id');
+    const detail = data?.message || responseText.trim().slice(0, 500);
+    const streamDetail = pipelineResult.status === 'rejected'
+      ? \` Local streaming error: \${String(pipelineError?.message || pipelineResult.reason || 'unknown stream error')}.\`
+      : '';
+    const error = new Error(
+      detail
+        ? \`GitHub Release upload returned HTTP \${response.status}: \${detail}. \${progress}\${streamDetail}\`
+        : \`GitHub Release upload returned HTTP \${response.status}.\${requestId ? \` GitHub request ID: \${requestId}.\` : ''} \${progress}\${streamDetail}\`
     );
-    if (Number.isInteger(reason?.status)) wrapped.status = reason.status;
-    else if (controller.signal.aborted) wrapped.status = 504;
-    throw wrapped;
+    error.status = response.status;
+    throw error;
   } finally {
     clearTimeout(timer);
   }
-
-  const responseText = await response.text().catch(() => '');
-  let data = {};
-  try {
-    data = responseText ? JSON.parse(responseText) : {};
-  } catch {
-    data = { message: responseText.trim().slice(0, 500) };
-  }
-  if (response.status === 201 && data?.browser_download_url) return data;
-
-  if (response.status === 422) {
-    const existing = await existingReleaseAsset(token, release, meta.assetName, meta.fileSize);
-    if (existing) return existing;
-  }
-  const requestId = response.headers.get('x-github-request-id');
-  const detail = data?.message || responseText.trim().slice(0, 500);
-  const error = new Error(
-    detail
-      ? `GitHub Release upload failed with status ${response.status}: ${detail}`
-      : `GitHub Release upload failed with status ${response.status}.${requestId ? ` GitHub request ID: ${requestId}.` : ''}`
-  );
-  error.status = response.status;
-  throw error;
 }
 async function uploadAsset(token, release, store, scope, uploadId, meta) {
   let lastError = null;
