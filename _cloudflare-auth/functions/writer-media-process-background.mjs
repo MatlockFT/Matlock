@@ -339,14 +339,30 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
     }
 
     const requestId = response.headers.get('x-github-request-id');
+    const responseOrigin = (() => {
+      try { return new URL(response.url || uploadUrl).origin; }
+      catch { return 'unknown endpoint'; }
+    })();
+    const headerDetails = [
+      ['server', response.headers.get('server')],
+      ['via', response.headers.get('via')],
+      ['cf-ray', response.headers.get('cf-ray')],
+      ['x-github-request-id', requestId],
+      ['content-type', response.headers.get('content-type')],
+      ['content-length', response.headers.get('content-length')]
+    ].filter(([, value]) => value).map(([name, value]) => `${name}=${value}`).join('; ');
     const detail = data?.message || responseText.trim().slice(0, 500);
     const streamDetail = pipelineResult.status === 'rejected'
       ? ` Local streaming error: ${String(pipelineError?.message || pipelineResult.reason || 'unknown stream error')}.`
       : '';
+    const diagnostics = [
+      `endpoint: ${responseOrigin}`,
+      `expected upload bytes: ${meta.fileSize}`,
+      `response headers: ${headerDetails || 'none exposed'}`,
+      detail ? `response body: ${String(detail).slice(0, 500)}` : ''
+    ].filter(Boolean).join('. ');
     const error = new Error(
-      detail
-        ? `GitHub Release upload returned HTTP ${response.status}: ${detail}. ${progress}${streamDetail}`
-        : `GitHub Release upload returned HTTP ${response.status}.${requestId ? ` GitHub request ID: ${requestId}.` : ''} ${progress}${streamDetail}`
+      `GitHub Release upload returned HTTP ${response.status}${response.statusText ? ` ${response.statusText}` : ''}. ${diagnostics}. ${progress}${streamDetail}`
     );
     error.status = response.status;
     throw error;
