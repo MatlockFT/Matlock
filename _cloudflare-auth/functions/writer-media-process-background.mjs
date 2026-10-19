@@ -198,7 +198,7 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
   const source = await chunkStream(store, scope, uploadId, meta.chunkCount, meta.fileSize, sourceDiagnostics);
   const controller = new AbortController();
   const timer = setTimeout(() => {
-    const timeoutError = new Error(\`GitHub Release upload timed out after \${RELEASE_UPLOAD_TIMEOUT_MS / 60_000} minutes.\`);
+    const timeoutError = new Error(`GitHub Release upload timed out after ${RELEASE_UPLOAD_TIMEOUT_MS / 60_000} minutes.`);
     timeoutError.status = 504;
     controller.abort(timeoutError);
   }, RELEASE_UPLOAD_TIMEOUT_MS);
@@ -215,7 +215,7 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
     throw error;
   });
 
-  const uploading = githubFetchUrl(token, \`\${uploadUrl}?name=\${encodeURIComponent(meta.assetName)}\`, {
+  const uploading = githubFetchUrl(token, `${uploadUrl}?name=${encodeURIComponent(meta.assetName)}`, {
     method: 'POST',
     headers: {
       'Content-Type': meta.fileType || 'application/octet-stream'
@@ -293,11 +293,11 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
       if (!responseReceived.ok) {
         const requestId = responseReceived.headers.get('x-github-request-id');
         const detail = responseData?.message || responseText.trim().slice(0, 500);
-        const progress = \`The stream supplied \${Number(sourceDiagnostics.bytesRead) || 0} of \${meta.fileSize} bytes from staging in \${Number(sourceDiagnostics.chunksRead) || 0} of \${meta.chunkCount} chunks.\`;
+        const progress = `The stream supplied ${Number(sourceDiagnostics.bytesRead) || 0} of ${meta.fileSize} bytes from staging in ${Number(sourceDiagnostics.chunksRead) || 0} of ${meta.chunkCount} chunks.`;
         const rejected = new Error(
           detail
-            ? \`GitHub Release upload returned HTTP \${responseReceived.status}: \${detail} \${progress}\`
-            : \`GitHub Release upload returned HTTP \${responseReceived.status}.\${requestId ? \` GitHub request ID: \${requestId}.\` : ''} \${progress}\`
+            ? `GitHub Release upload returned HTTP ${responseReceived.status}: ${detail} ${progress}`
+            : `GitHub Release upload returned HTTP ${responseReceived.status}.${requestId ? ` GitHub request ID: ${requestId}.` : ''} ${progress}`
         );
         rejected.status = responseReceived.status;
         controller.abort(rejected);
@@ -313,7 +313,7 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
     await Promise.allSettled([uploading, pumping]);
 
     const sourceFailure = sourceDiagnostics.error;
-    const progress = \`Staged data supplied to the outbound stream: \${Number(sourceDiagnostics.bytesRead) || 0} of \${meta.fileSize} bytes, across \${Number(sourceDiagnostics.chunksRead) || 0} of \${meta.chunkCount} chunks.\`;
+    const progress = `Staged data supplied to the outbound stream: ${Number(sourceDiagnostics.bytesRead) || 0} of ${meta.fileSize} bytes, across ${Number(sourceDiagnostics.chunksRead) || 0} of ${meta.chunkCount} chunks.`;
     const phase = String(reason?.message || '').includes('GitHub Release upload timed out')
       ? 'GitHub Release upload'
       : sourceFailure
@@ -325,7 +325,7 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
             : 'GitHub Release upload';
     const cause = sourceFailure || (error === requestError ? requestError : error);
     const wrapped = new Error(
-      \`\${phase}: \${String(cause?.message || reason?.message || reason || 'Network connection lost.')} \${progress}\`,
+      `${phase}: ${String(cause?.message || reason?.message || reason || 'Network connection lost.')} ${progress}`,
       { cause: reason }
     );
     if (Number.isInteger(reason?.status)) wrapped.status = reason.status;
@@ -352,8 +352,8 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
   const detail = data?.message || responseText.trim().slice(0, 500);
   const error = new Error(
     detail
-      ? \`GitHub Release upload failed with status \${response.status}: \${detail}\`
-      : \`GitHub Release upload failed with status \${response.status}.\${requestId ? \` GitHub request ID: \${requestId}.\` : ''}\`
+      ? `GitHub Release upload failed with status ${response.status}: ${detail}`
+      : `GitHub Release upload failed with status ${response.status}.${requestId ? ` GitHub request ID: ${requestId}.` : ''}`
   );
   error.status = response.status;
   throw error;
