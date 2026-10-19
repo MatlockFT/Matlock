@@ -308,7 +308,7 @@
           if (['queued', 'preparing', 'publishing'].includes(status.state)) {
             return { ok: true, uploadId: payload.uploadId, state: status.state };
           }
-          if (status.state === 'error') {
+          if (status.state === 'error' && !status.retryable) {
             const error = new Error(status.error || 'GitHub Release upload failed.');
             error.status = 409;
             throw error;
@@ -325,7 +325,7 @@
     throw lastError || new Error('Could not confirm that GitHub accepted the video for publishing.');
   }
 
-  async function waitForVideoRelease(uploadId) {
+  async function waitForVideoRelease(uploadId, retryPayload = null) {
     const started = Date.now();
     let failedPolls = 0;
     let lastPollError = null;
@@ -347,7 +347,14 @@
       }
 
       if (status.state === 'complete' && status.url) return status.url;
-      if (status.state === 'error') throw new Error(status.error || 'GitHub Release upload failed.');
+      if (status.state === 'error') {
+        if (status.retryable && retryPayload) {
+          setVideoUploadProgress(82, 'Publishing was interrupted. Retrying the staged video without re-uploading it…');
+          await finalizeVideoUpload(retryPayload);
+          continue;
+        }
+        throw new Error(status.error || 'GitHub Release upload failed.');
+      }
 
       const stage = status.state || 'processing';
       if (stage === 'queued') setVideoUploadProgress(82, 'Queued for GitHub Releases…');
@@ -389,6 +396,19 @@
       }
       if (['queued', 'preparing', 'publishing'].includes(status.state)) {
         const url = await waitForVideoRelease(resume.uploadId);
+        clearVideoResume();
+        return url;
+      }
+      if (status.state === 'error' && status.retryable) {
+        const retryPayload = {
+          uploadId: resume.uploadId,
+          assetName: resume.assetName,
+          chunkCount,
+          fileSize: file.size,
+          fileType: file.type || 'application/octet-stream'
+        };
+        await finalizeVideoUpload(retryPayload);
+        const url = await waitForVideoRelease(resume.uploadId, retryPayload);
         clearVideoResume();
         return url;
       }
@@ -504,15 +524,16 @@
     }
 
     setVideoUploadProgress(78, 'Sending video to GitHub Releases…');
-    await finalizeVideoUpload({
+    const finalizePayload = {
       uploadId,
       assetName,
       chunkCount,
       fileSize: file.size,
       fileType: file.type || 'application/octet-stream'
-    });
+    };
+    await finalizeVideoUpload(finalizePayload);
 
-    const url = await waitForVideoRelease(uploadId);
+    const url = await waitForVideoRelease(uploadId, finalizePayload);
     clearVideoResume();
     return url;
   }
