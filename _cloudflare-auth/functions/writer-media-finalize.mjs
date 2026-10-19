@@ -1,4 +1,11 @@
 import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
+
+function isTransientMediaError(error) {
+  const status = Number(error?.status);
+  if (Number.isInteger(status)) return [408, 425, 429, 500, 502, 503, 504].includes(status);
+  return /network connection lost|network error|fetch failed|failed to fetch|connection reset|connection lost|socket|timed?\s*out|temporarily unavailable/i
+    .test(String(error?.message || error || ''));
+}
 import { cleanupChunks, mediaStore, requireWriterSession, setStatus, statusKey, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
 
 export default async function handler(request, env) {
@@ -58,7 +65,7 @@ export default async function handler(request, env) {
   if (['queued', 'preparing', 'publishing'].includes(current?.state)) {
     return Response.json({ ok: true, uploadId, state: current.state }, { status: 202, headers });
   }
-  if (current?.state === 'error') {
+  if (current?.state === 'error' && !current.retryable) {
     return Response.json({ ok: false, uploadId, state: 'error', error: current.error || 'The previous publishing attempt failed.' }, { status: 409, headers });
   }
 
@@ -90,18 +97,23 @@ export default async function handler(request, env) {
       body: { uploadId, ...meta }
     });
   } catch (error) {
-    console.error('Could not queue Writer media upload:', error?.message || error);
-    const message = 'Could not queue the GitHub Release publishing job. Please retry.';
+    const retryable = isTransientMediaError(error);
+    const detail = String(error?.message || error || 'No response was received.');
+    const message = `Could not queue the GitHub Release publishing job: ${detail}`;
+    console.error(message);
     await setStatus(store, scope, uploadId, {
       state: 'error',
       error: message,
+      retryable,
       chunkCount: meta.chunkCount,
       fileSize: meta.fileSize,
       fileType: meta.fileType,
       assetName: meta.assetName
     });
-    await cleanupChunks(store, scope, uploadId, meta.chunkCount);
-    return Response.json({ ok: false, error: message }, { status: 502, headers });
+    if (!retryable) {
+      await cleanupChunks(store, scope, uploadId, meta.chunkCount);
+    }
+    return Response.json({ ok: false, error: message, retryable }, { status: 502, headers });
   }
 
   return Response.json({ ok: true, uploadId, state: 'queued' }, { status: 202, headers });
