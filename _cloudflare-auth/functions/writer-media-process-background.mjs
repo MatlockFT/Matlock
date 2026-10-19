@@ -240,7 +240,15 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
   let sourceError = null;
   let requestError = null;
 
-  const pumping = source.pipeTo(fixedBody.writable, { signal: controller.signal }).catch(error => {
+  // Keep pipeTo from explicitly closing FixedLengthStream after the exact byte count.
+  // Cloudflare's production runtime has a known "Network connection lost" bug
+  // on this close path even when the receiver has received the full body.
+  // GitHub receives Content-Length from FixedLengthStream and can finish once
+  // that exact number of bytes has arrived.
+  const pumping = source.pipeTo(fixedBody.writable, {
+    signal: controller.signal,
+    preventClose: true
+  }).catch(error => {
     sourceError = error;
     throw error;
   });
