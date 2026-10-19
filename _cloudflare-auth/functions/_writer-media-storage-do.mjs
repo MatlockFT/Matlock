@@ -160,53 +160,59 @@ export class WriterMediaStorage {
     return Response.json({ ok: true }, { headers: { "Cache-Control": "no-store" } });
   }
 
-  handleStream(url) {
+  async handleStream(url) {
     const prefix = String(url.searchParams.get("prefix") || "");
     const count = Number(url.searchParams.get("count"));
     const startIndex = Number(url.searchParams.get("start") || 0);
+    const maxStreamChunks = 8;
+
     if (
       !prefix || prefix.length > 4096
-      || !Number.isInteger(count) || count < 1 || count > 1200
+      || !Number.isInteger(count) || count < 1 || count > maxStreamChunks
       || !Number.isInteger(startIndex) || startIndex < 0
       || startIndex + count > 1200
     ) {
       return jsonError("Invalid staged-media stream parameters.");
     }
 
-    let index = startIndex;
-    const endIndex = startIndex + count;
-    const sql = this.sql;
-    const stream = new ReadableStream({
-      async pull(controller) {
-        if (index >= endIndex) {
-          controller.close();
-          return;
-        }
-
-        const key = prefix + String(index).padStart(5, "0");
-        try {
-          const rows = sql.exec(
-            "SELECT value, expires_at FROM matlock_writer_media WHERE key = ?",
-            key
-          ).toArray();
-          const row = rows[0];
-          const expiresAt = Number(row?.expires_at);
-          if (!row || (Number.isFinite(expiresAt) && expiresAt > 0 && expiresAt <= Date.now())) {
-            controller.error(new Error("Missing or expired staged video chunk " + (index + 1) + " of " + count + "."));
-            return;
-          }
-          controller.enqueue(bytesFromValue(row.value));
-          index += 1;
-        } catch (error) {
-          controller.error(error);
-        }
+    // Read each bounded segment completely inside the Durable Object request.
+    // Returning a live SQL-backed ReadableStream can mask a storage read error
+    // as "Network connection lost" when the caller consumes the response body.
+    // The caller requests at most eight 1.8 MB chunks (14.4 MB) per segment.
+    const chunks = [];
+    let totalBytes = 0;
+    for (let index = startIndex; index < startIndex + count; index += 1) {
+      const key = prefix + String(index).padStart(5, "0");
+      const rows = this.sql.exec(
+        "SELECT value, expires_at FROM matlock_writer_media WHERE key = ?",
+        key
+      ).toArray();
+      const row = rows[0];
+      const expiresAt = Number(row?.expires_at);
+      if (!row || (Number.isFinite(expiresAt) && expiresAt > 0 && expiresAt <= Date.now())) {
+        return jsonError("Missing or expired staged video chunk " + (index + 1) + ".", 409);
       }
-    });
 
-    return new Response(stream, {
+      const bytes = bytesFromValue(row.value);
+      if (!bytes.byteLength || bytes.byteLength > MAX_VALUE_BYTES) {
+        return jsonError("Staged video chunk " + (index + 1) + " has an invalid size.", 409);
+      }
+      chunks.push(bytes);
+      totalBytes += bytes.byteLength;
+    }
+
+    const body = new Uint8Array(totalBytes);
+    let offset = 0;
+    for (const chunk of chunks) {
+      body.set(chunk, offset);
+      offset += chunk.byteLength;
+    }
+
+    return new Response(body, {
       headers: {
         "Content-Type": "application/octet-stream",
-        "Cache-Control": "no-store"
+        "Cache-Control": "no-store",
+        "X-Store-Size": String(totalBytes)
       }
     });
   }
