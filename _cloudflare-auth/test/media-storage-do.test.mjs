@@ -8,6 +8,9 @@ class MemorySql {
   }
 
   exec(query, ...args) {
+    if (this.failOnStreamRead && /SELECT value, expires_at FROM matlock_writer_media WHERE key = \\?/i.test(query)) {
+      throw new Error("Simulated SQLite stream read failure.");
+    }
     if (/^\s*CREATE TABLE|^\s*CREATE INDEX/i.test(query)) {
       return { toArray: () => [] };
     }
@@ -81,6 +84,20 @@ test('Durable Object stream reports the exact missing chunk instead of a broken 
   assert.deepEqual(await response.json(), {
     ok: false,
     error: 'Missing or expired staged video chunk 2.'
+  });
+});
+
+test('Durable Object returns useful JSON when a SQL stream read fails', async () => {
+  const { sql, instance } = createStorage();
+  sql.failOnStreamRead = true;
+  const response = await instance.fetch(new Request(
+    'https://writer-media.internal/stream?prefix=chunks%2Fdemo%2F&count=1&start=0'
+  ));
+
+  assert.equal(response.status, 500);
+  assert.deepEqual(await response.json(), {
+    ok: false,
+    error: 'Simulated SQLite stream read failure.'
   });
 });
 
