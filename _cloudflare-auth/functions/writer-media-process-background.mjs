@@ -412,3 +412,5 @@ export default async function handler(request) {
 export const config = {
   path: '/api/writer/media-process'
 };
+
+export { uploadAssetOnce };
