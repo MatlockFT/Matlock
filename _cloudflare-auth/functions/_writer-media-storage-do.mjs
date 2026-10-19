@@ -164,7 +164,7 @@ export class WriterMediaStorage {
     const prefix = String(url.searchParams.get("prefix") || "");
     const count = Number(url.searchParams.get("count"));
     const startIndex = Number(url.searchParams.get("start") || 0);
-    const maxStreamChunks = 8;
+    const maxStreamChunks = 5;
 
     if (
       !prefix || prefix.length > 4096
@@ -178,7 +178,7 @@ export class WriterMediaStorage {
     // Read each bounded segment completely inside the Durable Object request.
     // Returning a live SQL-backed ReadableStream can mask a storage read error
     // as "Network connection lost" when the caller consumes the response body.
-    // The caller requests at most eight 1.8 MB chunks (14.4 MB) per segment.
+    // The caller requests at most five 1.8 MB chunks (9 MB) per segment.
     const chunks = [];
     let totalBytes = 0;
     for (let index = startIndex; index < startIndex + count; index += 1) {
