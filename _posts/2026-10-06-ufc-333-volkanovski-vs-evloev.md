@@ -121,13 +121,13 @@ That leaves me wondering whether Reyes can maintain his distance for three round
 
 Ribeiro was also having success at range, but Murzakanov's ability to bounce on the balls of his feet, fire lightning-fast hands, and explode into his attacks eventually put him on his ass. Reyes has more to worry about than just the overhand. Azamat can attack the body and head with his jab, work in uppercuts, and land knees. He is especially dangerous in the first round.
 
-I think Reyes has a real chance to win, but I can't trust his chin, and I think his reactions have slowed. If Reyes wins, I'll be impressed because it would mean he had an excellent game plan and stuck to it.
+I think Reyes has a real chance to win, but I can't trust his chin, and I think his reactions have slowed. Also, he has bad striking defense in general. Hands down, chin up type of stuff. 
 
-But this is a fight he *should* win. Reyes should beat this guy. Then again, we thought hat about Blachowicz, Prochazka, Spann... he was favored in all those fights. 
+But this is a fight he *should* win. Then again, we thought that about Blachowicz, Prochazka, Spann... he was favored in all those fights. 
 
 That said, I think it's a close fight. If I have to weigh Azamat's questionable cardio against Reyes' questionable chin, I'm taking Azamat's cardio. Not because his conditioning is horrendous, but because he noticeably slows down midway through the second round. He's still dangerous and explosive, but if the fight reaches that point, things should become a hell of a lot less dangerous for Reyes.
 
-I just don't think we'll see that happen.
+I just don't think we'll see that happen. Azamat knocks out Dominick Reyes with a jab and the right hand follow up will just send him to the land of wind and ghosts before he hits the mat.
 
 <section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Azamat%20Murzakanov%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Azamat Murzakanov</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div></aside>
