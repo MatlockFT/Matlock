@@ -115,33 +115,97 @@ function isTransientMediaError(error) {
     .test(String(error?.message || error || ''));
 }
 
+const STREAM_SEGMENT_CHUNKS = 8;
+const STREAM_SEGMENT_RETRY_DELAYS = [500, 1000];
+const STREAM_SEGMENT_TIMEOUT_MS = 30_000;
+
+async function readStreamSegmentWithRetry(store, scope, uploadId, startIndex, count, fileSize, chunkCount) {
+  const startByte = startIndex * MAX_CHUNK_BYTES;
+  const endByte = Math.min(fileSize, (startIndex + count) * MAX_CHUNK_BYTES);
+  const expectedBytes = Math.max(0, endByte - startByte);
+  let lastError = null;
+
+  for (let attempt = 0; attempt <= STREAM_SEGMENT_RETRY_DELAYS.length; attempt += 1) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => {
+      const error = new Error(`Cloudflare media-storage stream timed out after ${STREAM_SEGMENT_TIMEOUT_MS / 1000} seconds.`);
+      error.status = 504;
+      controller.abort(error);
+    }, STREAM_SEGMENT_TIMEOUT_MS);
+
+    try {
+      const stream = await store.streamChunks(scope, uploadId, count, startIndex, controller.signal);
+      const bytes = await new Response(stream).arrayBuffer();
+      if (bytes.byteLength !== expectedBytes) {
+        throw new Error(
+          `Storage returned ${bytes.byteLength} bytes for video parts ${startIndex + 1}-${Math.min(startIndex + count, chunkCount)}; expected ${expectedBytes} bytes.`
+        );
+      }
+      return new Uint8Array(bytes);
+    } catch (error) {
+      lastError = controller.signal.aborted && controller.signal.reason
+        ? controller.signal.reason
+        : error;
+      if (attempt >= STREAM_SEGMENT_RETRY_DELAYS.length) break;
+      await mediaDelay(STREAM_SEGMENT_RETRY_DELAYS[attempt]);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  throw new Error(
+    `Cloudflare staged-chunk read failed for parts ${startIndex + 1}-${Math.min(startIndex + count, chunkCount)} of ${chunkCount}: ${String(lastError?.message || lastError || 'No response was received.')}`,
+    { cause: lastError }
+  );
+}
+
 async function chunkStream(store, scope, uploadId, chunkCount, fileSize, diagnostics = {}) {
-  let nextIndex = 0;
+  if (typeof store.streamChunks === 'function') {
+    let nextIndex = 0;
+    return new ReadableStream({
+      async pull(controller) {
+        if (nextIndex >= chunkCount) {
+          controller.close();
+          return;
+        }
+        const startIndex = nextIndex;
+        const count = Math.min(STREAM_SEGMENT_CHUNKS, chunkCount - nextIndex);
+        try {
+          // Keep each staging request bounded, but avoid one Durable Object
+          // subrequest per 1.8 MB row. That would exhaust the Workers Free
+          // 50-subrequest limit on ordinary 282-400 MB videos.
+          const bytes = await readStreamSegmentWithRetry(
+            store, scope, uploadId, startIndex, count, fileSize, chunkCount
+          );
+          nextIndex += count;
+          diagnostics.chunksRead = (diagnostics.chunksRead || 0) + count;
+          diagnostics.bytesRead = (diagnostics.bytesRead || 0) + bytes.byteLength;
+          controller.enqueue(bytes);
+        } catch (error) {
+          diagnostics.error = error;
+          controller.error(error);
+        }
+      }
+    });
+  }
+
+  // KV-backed test/local compatibility fallback; production Durable Objects
+  // use bounded segment reads above.
+  let index = 0;
   return new ReadableStream({
     async pull(controller) {
-      if (nextIndex >= chunkCount) {
+      if (index >= chunkCount) {
         controller.close();
         return;
       }
-      const index = nextIndex;
-      const expectedBytes = Math.max(
-        0,
-        Math.min(MAX_CHUNK_BYTES, fileSize - index * MAX_CHUNK_BYTES)
-      );
+      const currentIndex = index;
+      const expectedBytes = Math.max(0, Math.min(MAX_CHUNK_BYTES, fileSize - currentIndex * MAX_CHUNK_BYTES));
       try {
-        // Fetch one 1.8 MB row at a time through the normal Durable Object
-        // key/value endpoint. The aggregated /stream endpoint has repeatedly
-        // failed in production with an opaque "Network connection lost".
-        const data = await readChunkWithRetry(
-          store,
-          chunkKey(scope, uploadId, index),
-          expectedBytes,
-          index + 1
-        );
+        const data = await readChunkWithRetry(store, chunkKey(scope, uploadId, currentIndex), expectedBytes, currentIndex + 1);
         const bytes = new Uint8Array(data);
+        index += 1;
         diagnostics.chunksRead = (diagnostics.chunksRead || 0) + 1;
         diagnostics.bytesRead = (diagnostics.bytesRead || 0) + bytes.byteLength;
-        nextIndex += 1;
         controller.enqueue(bytes);
       } catch (error) {
         diagnostics.error = error;
@@ -150,7 +214,6 @@ async function chunkStream(store, scope, uploadId, chunkCount, fileSize, diagnos
     }
   });
 }
-
 async function verifyChunks(store, scope, uploadId, chunkCount, fileSize) {
   // Workers KV is eventually consistent across locations. Retry list visibility instead
   // of deleting a valid upload immediately if the queue consumer runs in another colo.
