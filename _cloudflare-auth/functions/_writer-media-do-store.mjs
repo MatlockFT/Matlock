@@ -59,7 +59,8 @@ export function createDurableObjectMediaStore(options = {}) {
     for (const [key, value] of Object.entries(params)) {
       if (value !== undefined && value !== null) url.searchParams.set(key, String(value));
     }
-    return stub.fetch(new Request(url, init));
+    const signal = init.signal || AbortSignal.timeout(30_000);
+    return stub.fetch(new Request(url, { ...init, signal }));
   }
 
   async function set(key, value, writeOptions = {}) {
