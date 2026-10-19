@@ -199,7 +199,7 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
   const source = await chunkStream(store, scope, uploadId, meta.chunkCount, meta.fileSize, sourceDiagnostics);
   const controller = new AbortController();
   const timer = setTimeout(() => {
-    const timeoutError = new Error(\`GitHub Release upload timed out after \${RELEASE_UPLOAD_TIMEOUT_MS / 60_000} minutes.\`);
+    const timeoutError = new Error(`GitHub Release upload timed out after ${RELEASE_UPLOAD_TIMEOUT_MS / 60_000} minutes.`);
     timeoutError.status = 504;
     controller.abort(timeoutError);
   }, RELEASE_UPLOAD_TIMEOUT_MS);
@@ -217,7 +217,7 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
     throw error;
   });
 
-  const uploading = githubFetchUrl(token, \`\${uploadUrl}?name=\${encodeURIComponent(meta.assetName)}\`, {
+  const uploading = githubFetchUrl(token, `${uploadUrl}?name=${encodeURIComponent(meta.assetName)}`, {
     method: 'POST',
     headers: {
       'Content-Type': meta.fileType || 'application/octet-stream'
@@ -237,12 +237,12 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
     const [uploadResult, pipelineResult] = await Promise.allSettled([uploading, pumping]);
     const bytesRead = Number(sourceDiagnostics.bytesRead) || 0;
     const chunksRead = Number(sourceDiagnostics.chunksRead) || 0;
-    const progress = \`Staged data read: \${bytesRead} of \${meta.fileSize} bytes across \${chunksRead} of \${meta.chunkCount} chunks.\`;
+    const progress = `Staged data read: ${bytesRead} of ${meta.fileSize} bytes across ${chunksRead} of ${meta.chunkCount} chunks.`;
 
     if (uploadResult.status === 'rejected') {
       const cause = sourceDiagnostics.error || requestError || pipelineError || uploadResult.reason;
       throw new Error(
-        \`GitHub Release request did not return a response: \${String(cause?.message || cause || 'Network connection lost.')}. \${progress}\`,
+        `GitHub Release request did not return a response: ${String(cause?.message || cause || 'Network connection lost.')}. ${progress}`,
         { cause }
       );
     }
@@ -264,7 +264,7 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
       const existing = await existingReleaseAsset(token, release, meta.assetName, meta.fileSize);
       if (existing) return existing;
       const mismatch = new Error(
-        \`GitHub created the asset but reported size \${Number(data.size) || 0}; expected \${meta.fileSize}. \${progress}\`
+        `GitHub created the asset but reported size ${Number(data.size) || 0}; expected ${meta.fileSize}. ${progress}`
       );
       mismatch.status = 502;
       throw mismatch;
@@ -278,12 +278,12 @@ async function uploadAssetOnce(token, release, store, scope, uploadId, meta) {
     const requestId = response.headers.get('x-github-request-id');
     const detail = data?.message || responseText.trim().slice(0, 500);
     const streamDetail = pipelineResult.status === 'rejected'
-      ? \` Local streaming error: \${String(pipelineError?.message || pipelineResult.reason || 'unknown stream error')}.\`
+      ? ` Local streaming error: ${String(pipelineError?.message || pipelineResult.reason || 'unknown stream error')}.`
       : '';
     const error = new Error(
       detail
-        ? \`GitHub Release upload returned HTTP \${response.status}: \${detail}. \${progress}\${streamDetail}\`
-        : \`GitHub Release upload returned HTTP \${response.status}.\${requestId ? \` GitHub request ID: \${requestId}.\` : ''} \${progress}\${streamDetail}\`
+        ? `GitHub Release upload returned HTTP ${response.status}: ${detail}. ${progress}${streamDetail}`
+        : `GitHub Release upload returned HTTP ${response.status}.${requestId ? ` GitHub request ID: ${requestId}.` : ''} ${progress}${streamDetail}`
     );
     error.status = response.status;
     throw error;
