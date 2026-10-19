@@ -5051,6 +5051,49 @@ function insertBlock(text, { preserveScroll = false } = {}) {
   const VIDEO_CHUNK_BYTES = 1_800_000;
   const VIDEO_STATUS_POLL_MS = 1500;
   const VIDEO_STATUS_TIMEOUT_MS = 15 * 60 * 1000;
+  const VIDEO_RESUME_KEY = 'matlock-writer:video-upload-resume-v1';
+
+  function videoResumeFingerprint(file) {
+    return JSON.stringify({
+      session: writerSessionId(),
+      name: String(file?.name || ''),
+      size: Number(file?.size || 0),
+      lastModified: Number(file?.lastModified || 0),
+      type: String(file?.type || 'application/octet-stream')
+    });
+  }
+
+  function readVideoResume(fingerprint) {
+    try {
+      const value = JSON.parse(window.sessionStorage.getItem(VIDEO_RESUME_KEY) || 'null');
+      if (!value || value.fingerprint !== fingerprint || !validResumeUpload(value)) return null;
+      return value;
+    } catch {
+      return null;
+    }
+  }
+
+  function validResumeUpload(value) {
+    return Boolean(
+      value && /^[A-Za-z0-9_-]{12,96}$/.test(String(value.uploadId || ''))
+      && typeof value.assetName === 'string'
+      && Number.isInteger(Number(value.chunkCount))
+      && Number(value.chunkCount) > 0
+      && Number.isInteger(Number(value.nextChunkIndex))
+      && Number(value.nextChunkIndex) >= 0
+      && Number(value.nextChunkIndex) <= Number(value.chunkCount)
+    );
+  }
+
+  function saveVideoResume(value) {
+    try {
+      window.sessionStorage.setItem(VIDEO_RESUME_KEY, JSON.stringify(value));
+    } catch {}
+  }
+
+  function clearVideoResume() {
+    try { window.sessionStorage.removeItem(VIDEO_RESUME_KEY); } catch {}
+  }
 
   function videoFileInfo(file) {
     if (!file) throw new Error('Choose a video file.');
@@ -5202,9 +5245,16 @@ function insertBlock(text, { preserveScroll = false } = {}) {
           || [408, 429, 500, 502, 503, 504].includes(error.status);
         if (!retryable || attempt >= retryDelays.length) {
           const detail = String(error?.message || error || 'No response was received.');
-          throw new Error(
+          const finalError = new Error(
             `The Writer upload service could not confirm video chunk ${index + 1} of ${count} after ${attempt + 1} attempt${attempt === 0 ? '' : 's'}. ${detail}`
           );
+          // Preserve transport metadata so the caller can retain staged chunks
+          // and resume at this precise chunk rather than deleting the whole file.
+          finalError.networkError = Boolean(error?.networkError);
+          finalError.status = error?.status;
+          finalError.cause = error;
+          finalError.chunkIndex = index;
+          throw finalError;
         }
         await new Promise(resolve => window.setTimeout(resolve, retryDelays[attempt]));
       }
@@ -5305,30 +5355,138 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     videoFileInfo(file);
     if (!writerSessionId()) throw new Error('Use the normal GitHub sign-in before uploading videos.');
 
-    const uploadId = videoUploadId();
-    const assetName = videoUploadName(file).replace(/[^A-Za-z0-9._-]+/g, '-');
+    const fingerprint = videoResumeFingerprint(file);
     const chunkCount = Math.ceil(file.size / VIDEO_CHUNK_BYTES);
-    let uploaded = 0;
+    let resume = readVideoResume(fingerprint);
 
-    setVideoUploadProgress(2, `Uploading video in ${chunkCount} part${chunkCount === 1 ? '' : 's'}…`);
-    try {
-      for (let index = 0; index < chunkCount; index += 1) {
-        uploaded += await uploadVideoChunk(uploadId, file, assetName, index, chunkCount);
-        const percent = 5 + (uploaded / file.size) * 70;
-        setVideoUploadProgress(percent, `Uploading video… ${Math.round((uploaded / file.size) * 100)}%`);
+    if (resume && Number(resume.chunkCount) === chunkCount) {
+      // The earlier request may have succeeded even though the browser lost
+      // its response. Keep this upload ID and staged prefix across retries.
+      let status;
+      try {
+        status = await mediaBridgeFetch(`/api/writer/media-status?uploadId=${encodeURIComponent(resume.uploadId)}`);
+      } catch (error) {
+        throw new Error(`Could not check the previous video upload before resuming: ${error.message}`);
       }
-    } catch (error) {
-      // A lost response can leave a chunk in storage even though the browser
-      // thinks it failed. Best-effort cleanup prevents failed attempts piling
-      // up against the account's free temporary-storage allowance.
+
+      if (status.state === 'complete' && status.url) {
+        clearVideoResume();
+        return status.url;
+      }
+      if (['queued', 'preparing', 'publishing'].includes(status.state)) {
+        const url = await waitForVideoRelease(resume.uploadId);
+        clearVideoResume();
+        return url;
+      }
+      if (status.state === 'error' || status.state !== 'uploading') {
+        try {
+          await mediaBridgeFetch('/api/writer/media-abort', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ uploadId: resume.uploadId, chunkCount })
+          });
+        } catch {}
+        clearVideoResume();
+        resume = null;
+      } else if (Number(resume.nextChunkIndex) > 0) {
+        const priorIndex = Number(resume.nextChunkIndex) - 1;
+        const priorChunk = file.slice(
+          priorIndex * VIDEO_CHUNK_BYTES,
+          Math.min(file.size, (priorIndex + 1) * VIDEO_CHUNK_BYTES)
+        );
+        try {
+          const confirmation = await mediaBridgeFetch(
+            `/api/writer/media-chunk?uploadId=${encodeURIComponent(resume.uploadId)}&chunkIndex=${priorIndex}`
+          );
+          if (!confirmation?.found || Number(confirmation.chunkSize) !== priorChunk.size) {
+            throw new Error('The saved upload checkpoint is missing from temporary storage.');
+          }
+        } catch {
+          try {
+            await mediaBridgeFetch('/api/writer/media-abort', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ uploadId: resume.uploadId, chunkCount })
+            });
+          } catch {}
+          clearVideoResume();
+          resume = null;
+        }
+      }
+    } else if (resume) {
       try {
         await mediaBridgeFetch('/api/writer/media-abort', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ uploadId, chunkCount })
+          body: JSON.stringify({ uploadId: resume.uploadId, chunkCount: Number(resume.chunkCount) || chunkCount })
         });
       } catch {}
-      throw error;
+      clearVideoResume();
+      resume = null;
+    }
+
+    const uploadId = resume?.uploadId || videoUploadId();
+    const assetName = resume?.assetName || videoUploadName(file).replace(/[^A-Za-z0-9._-]+/g, '-');
+    const startIndex = resume ? Number(resume.nextChunkIndex) : 0;
+    let uploaded = Math.min(file.size, startIndex * VIDEO_CHUNK_BYTES);
+    resume = { fingerprint, uploadId, assetName, chunkCount, nextChunkIndex: startIndex };
+    saveVideoResume(resume);
+
+    setVideoUploadProgress(
+      5 + (uploaded / file.size) * 70,
+      startIndex
+        ? `Resuming video at part ${startIndex + 1} of ${chunkCount}…`
+        : `Uploading video in ${chunkCount} part${chunkCount === 1 ? '' : 's'}…`
+    );
+
+    for (let index = startIndex; index < chunkCount; index += 1) {
+      // Confirm the first unacknowledged chunk before sending it again. This
+      // covers the case where staging succeeded but the response never arrived.
+      if (index === startIndex) {
+        try {
+          const confirmation = await mediaBridgeFetch(
+            `/api/writer/media-chunk?uploadId=${encodeURIComponent(uploadId)}&chunkIndex=${index}`
+          );
+          const expectedSize = file.slice(
+            index * VIDEO_CHUNK_BYTES,
+            Math.min(file.size, (index + 1) * VIDEO_CHUNK_BYTES)
+          ).size;
+          if (confirmation?.found && Number(confirmation.chunkSize) === expectedSize) {
+            uploaded += expectedSize;
+            resume.nextChunkIndex = index + 1;
+            saveVideoResume(resume);
+            setVideoUploadProgress(
+              5 + (uploaded / file.size) * 70,
+              `Resuming video… ${Math.round((uploaded / file.size) * 100)}%`
+            );
+            continue;
+          }
+        } catch {
+          // The retry logic below performs the same check after a lost response.
+        }
+      }
+
+      try {
+        uploaded += await uploadVideoChunk(uploadId, file, assetName, index, chunkCount);
+        resume.nextChunkIndex = index + 1;
+        saveVideoResume(resume);
+        const percent = 5 + (uploaded / file.size) * 70;
+        setVideoUploadProgress(percent, `Uploading video… ${Math.round((uploaded / file.size) * 100)}%`);
+      } catch (error) {
+        // Keep the checkpoint and temporary chunks after transport failures.
+        // Selecting the same file again resumes here instead of starting over.
+        if (!error?.networkError) {
+          try {
+            await mediaBridgeFetch('/api/writer/media-abort', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ uploadId, chunkCount })
+            });
+          } catch {}
+          clearVideoResume();
+        }
+        throw error;
+      }
     }
 
     setVideoUploadProgress(78, 'Sending video to GitHub Releases…');
@@ -5340,7 +5498,9 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       fileType: file.type || 'application/octet-stream'
     });
 
-    return waitForVideoRelease(uploadId);
+    const url = await waitForVideoRelease(uploadId);
+    clearVideoResume();
+    return url;
   }
 
   async function insertInlineVideo(file, caption = '') {
