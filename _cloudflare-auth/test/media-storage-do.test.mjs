@@ -101,10 +101,10 @@ test('Durable Object returns useful JSON when a SQL stream read fails', async ()
   });
 });
 
-test('Durable Object stream caps each response at eight staging chunks', async () => {
+test('Durable Object stream caps each response at five staging chunks', async () => {
   const { instance } = createStorage();
   const response = await instance.fetch(new Request(
-    'https://writer-media.internal/stream?prefix=chunks%2Fdemo%2F&count=9&start=0'
+    'https://writer-media.internal/stream?prefix=chunks%2Fdemo%2F&count=6&start=0'
   ));
   assert.equal(response.status, 400);
   assert.match((await response.json()).error, /Invalid staged-media stream parameters/);
