@@ -121,10 +121,48 @@ published: false
 Yakhyaev has done well to outright overwhelm his opponents with his speed and reaction timing to incoming punches. Opponents have to be extremely mindful of throwing out lazy jabs and backing up in straight lines because he will slip and come over the top. He does it in every fight. Take center, big kick, he'll wait for the response, slip the shot, and blast with strikes. I still very much question his wrestling capabilities against a fighter with a more well rounded game in the UFC. Luckily for Yakhyaev, light heavyweights who can wrestle at a high level are few and far between. His lone amateur loss he was outwrestled and although that was 7 years ago, we haven't seen much against formidable opposition in that area since. 
 
 
-Its kinda wild to see Krylov is only 34 because it seriously feels like he should be  older than that. I've been watching this dude since the start. 😭! He's not looked that great lately since he was finished by Reyes, Gusgov, and Whittaker. But I gotta give him credit for eating Modestas Bukauskaus's shots, figuring him out and setting him up for a buzzer beater kayo. I also think he deserves credit for making it three rounds with Whittaker, even though he got his jaw fucked up. So I wouldn't really say his chin is *completely* shot but it does seem Krylov is on the decline. The question I have, has he declined to a level that he cannot beat someone as inexperienced as Yakyaev? 
 
+Its kinda wild to see Krylov is only 34 because it seriously feels like he should be  older than that. I've been watching this dude since the start. 😭! He's not looked that great lately since he was finished by Reyes, Gusgov, and Whittaker. But I gotta give him credit for eating Modestas Bukauskaus's shots, figuring him out and setting him up for a buzzer beater kayo. I also think he deserves credit for making it three rounds with Whittaker, even though he got his jaw fucked up. So I wouldn't really say his chin is *completely* shot but it does seem Krylov is on the decline. The question I have, has he declined to a level that he cannot beat someone as inexperienced as Yakyaev? Ribeiro landed a solid knee to the body as Yakyaev came blitzing into range, he's lucky it didn't land on his chin. (I don't think so anyway).
 
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-fe65759a" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-001349-170.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
 
+Ribeiro also was did well to avoid yet another blitz and counter with a 1-2 moving backwards and I think Yakhyaev went for a panic takedown attempt diving for the ankle.
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-931bdefc" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-002029-557.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
+
+Lastly, Yakhyaev leaned right into a head kick! Kudos to him for trapping it, turning it into a takedown where he was able to get the RNC.
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-efa19a32" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-000903-833.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
+
+Most of these things Krylov does, throwing knees, kicks, and straight punches. He also tries to slip and counter and end combinations with head kicks, too to they're similar in that way. HOWEVER, and this matters probably the most: Krylov has not done well fighting moving backwards. Most times, he's completely exposed and backs up in straight lines. He'll throw counters when his back is to the fence but that's about it. And those knees I just mentioned? You'll see Krylov often on one leg getting smacked in the face. Wait, one more really important thing, Krylov gets countered off his forward blitzes very often. That feeds directly into Yakyhaev's style. 
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-16605304" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-004337-789.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
+
+This fight might just be a car crash and I actually see a very real scenario where Krylov survives the onslaught. Will Yakhyaev's explosiveness and speed get Krylov out of there in round one? Can he drop him and pounce on him, landing enough ground and pound to get the ref to slide in and stop it? The odds indicate this is pretty much a lock. I agree that if they crash into each other, I see Yakhyaev walking away the survivor but not at -500. I don't trust him that much. Levels to the game even if Krylov hasn't looked too good lately. This might be one of those fights that if Krylov makes it our of round one, he might make the right adjustments and maybe, just maybe win the last two rounds. 
+
+As for the ground game, I really don't know what to make of it. I feel like Krylov should be experienced enough to defend takedowns or at least stay safe on bottom. Not sure how much success he'll have offensively but listen, the dude simply has more experience. 
+
+I would truly like to pick Krylov here because I'm skeptical of Yakhyaev but I can't. Krylov crashing forward, which I think he will, might just give Yakhyaev the openings he needs to drop Krylov for the TKO. But believe me, I'm watching this fight closely and my eyeball locked on those live odds.
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Abdul%20Rakhman%20Yakhyaev%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Abdul Rakhman Yakhyaev</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div></aside>
+</section>
 ---
 
 ## Abus Magomedov vs. Cam Rowston
