@@ -82,7 +82,7 @@ async function readChunkWithRetry(store, key) {
   throw new Error('A staged media chunk is not visible in Workers KV yet. Please retry publishing.');
 }
 
-const STREAM_SEGMENT_CHUNKS = 8;
+const STREAM_SEGMENT_CHUNKS = 5;
 const STREAM_SEGMENT_RETRY_DELAYS = [500, 1000];
 const STREAM_SEGMENT_TIMEOUT_MS = 30_000;
 const RELEASE_UPLOAD_TIMEOUT_MS = 4 * 60 * 1000;
@@ -157,7 +157,7 @@ async function chunkStream(store, scope, uploadId, chunkCount, fileSize) {
         }
         const count = Math.min(STREAM_SEGMENT_CHUNKS, chunkCount - nextIndex);
         try {
-          // Buffer at most 14.4 MB, then pass the segment to the GitHub upload.
+          // Buffer at most 9 MB, then pass the segment to the GitHub upload.
           // A storage-binding interruption can retry this segment alone.
           const bytes = await readStreamSegmentWithRetry(
             store, scope, uploadId, nextIndex, count, fileSize, chunkCount
