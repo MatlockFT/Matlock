@@ -1,38 +1,38 @@
 {
-  "generatedAt": "2026-10-19T15:51:23.548Z",
+  "generatedAt": "2026-10-19T21:13:39.879Z",
   "engineVersion": 2,
   "subjects": 308,
-  "publishedRecommendations": 841,
+  "publishedRecommendations": 838,
   "recommendationSlots": {
-    "0": 25,
+    "0": 26,
     "1": 3,
     "2": 2,
-    "3": 278
+    "3": 277
   },
   "caseCounts": {
-    "rebound-pairing": 349,
-    "rising-vs-rising": 260,
-    "step-up-vs-rebound": 98,
+    "rebound-pairing": 352,
+    "rising-vs-rising": 257,
+    "step-up-vs-rebound": 96,
     "ranking-opportunity": 50,
     "rankings-progression": 40,
     "divisional-sorting": 25,
-    "prospect-test": 8,
     "title-case": 8,
+    "prospect-test": 7,
     "title-eliminator": 3
   },
   "confidenceCounts": {
-    "high": 779,
+    "high": 776,
     "medium": 32,
     "low": 30
   },
   "averageRecentOpponentLinkCoverage": 0.9029,
   "sameCardRecommendations": 56,
-  "sameCardRecommendationRatio": 0.0666,
-  "asymmetricTopThreeRecommendations": 290,
-  "asymmetricTopThreeRatio": 0.3448,
-  "publicPublishedRecommendations": 814,
-  "publicAsymmetricTopThreeRecommendations": 218,
-  "publicAsymmetricTopThreeRatio": 0.2678,
+  "sameCardRecommendationRatio": 0.0668,
+  "asymmetricTopThreeRecommendations": 280,
+  "asymmetricTopThreeRatio": 0.3341,
+  "publicPublishedRecommendations": 811,
+  "publicAsymmetricTopThreeRecommendations": 208,
+  "publicAsymmetricTopThreeRatio": 0.2565,
   "engineGenericDivisionalSortingRecommendations": 25,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -138,8 +138,8 @@
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 69,
-      "noClearMatchupSubjects": 5
+      "publicRecommendations": 66,
+      "noClearMatchupSubjects": 6
     }
   ],
   "genericExamples": [
@@ -370,11 +370,6 @@
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Bolaji Oki",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
           "opponent": "Claudio Puelles",
           "score": 92,
           "case": "rebound-pairing"
@@ -383,31 +378,11 @@
           "opponent": "Fares Ziam",
           "score": 92,
           "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Cristian Perez Gonzalez",
-      "opponent": "Kody Steele",
-      "pairScore": 93,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Mandel Nallo",
-          "score": 95,
-          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Lance Gibson Jr.",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Manuel Torres",
-          "score": 94,
-          "case": "step-up-vs-rebound"
+          "opponent": "Gauge Young",
+          "score": 92,
+          "case": "rebound-pairing"
         }
       ]
     },
@@ -820,11 +795,6 @@
       "fighterRank": "Best match",
       "opponentTopThree": [
         {
-          "opponent": "Bolaji Oki",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
           "opponent": "Claudio Puelles",
           "score": 92,
           "case": "rebound-pairing"
@@ -833,30 +803,10 @@
           "opponent": "Fares Ziam",
           "score": 92,
           "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Matheus Camilo",
-      "opponent": "Bolaji Oki",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Daniel Zellhuber",
-          "score": 94,
-          "case": "rebound-pairing"
         },
         {
-          "opponent": "Artur Minev",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Charlie Campbell",
-          "score": 93,
+          "opponent": "Gauge Young",
+          "score": 92,
           "case": "rebound-pairing"
         }
       ]
@@ -867,13 +817,8 @@
       "opponent": "Gauge Young",
       "pairScore": 91,
       "case": "rebound-pairing",
-      "fighterRank": "Another option",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
-        {
-          "opponent": "Bolaji Oki",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
         {
           "opponent": "Artur Minev",
           "score": 92,
@@ -882,6 +827,36 @@
         {
           "opponent": "Charlie Campbell",
           "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Daniel Zellhuber",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Matheus Camilo",
+      "opponent": "Josiah Harrell",
+      "pairScore": 91,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Mark Choinski",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Richie Miranda",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Artur Minev",
+          "score": 91,
           "case": "rebound-pairing"
         }
       ]
@@ -907,6 +882,31 @@
         {
           "opponent": "Esteban Ribovics",
           "score": 92,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Jai Herbert",
+      "opponent": "Joaquim Silva",
+      "pairScore": 90,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Esteban Ribovics",
+          "score": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Chase Hooper",
+          "score": 91,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jalin Turner",
+          "score": 91,
           "case": "rising-vs-rising"
         }
       ]
