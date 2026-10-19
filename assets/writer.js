@@ -5380,19 +5380,19 @@ function insertBlock(text, { preserveScroll = false } = {}) {
         clearVideoResume();
         return status.url;
       }
+      const retryPayload = {
+        uploadId: resume.uploadId,
+        assetName: resume.assetName,
+        chunkCount,
+        fileSize: file.size,
+        fileType: file.type || 'application/octet-stream'
+      };
       if (['queued', 'preparing', 'publishing'].includes(status.state)) {
-        const url = await waitForVideoRelease(resume.uploadId);
+        const url = await waitForVideoRelease(resume.uploadId, retryPayload);
         clearVideoResume();
         return url;
       }
       if (status.state === 'error' && status.retryable) {
-        const retryPayload = {
-          uploadId: resume.uploadId,
-          assetName: resume.assetName,
-          chunkCount,
-          fileSize: file.size,
-          fileType: file.type || 'application/octet-stream'
-        };
         await finalizeVideoUpload(retryPayload);
         const url = await waitForVideoRelease(resume.uploadId, retryPayload);
         clearVideoResume();
