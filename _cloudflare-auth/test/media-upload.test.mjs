@@ -196,6 +196,68 @@ test('retryable publishing failures can requeue without restaging the video', as
 });
 
 
+test('video finalizer stops retrying after three publishing attempts and keeps staged chunks', async () => {
+  const kv = new MemoryKVNamespace();
+  globalThis.__MATLOCK_WRITER_KV = kv;
+  delete globalThis.__MATLOCK_WRITER_MEDIA_STORAGE;
+
+  try {
+    const sessionId = await createWriterSession({ token: 'test-token', login: 'MatlockFT' });
+    const scope = uploadScope(sessionId);
+    const uploadId = 'retry_limit_video_12345';
+    const store = getStore({ name: MEDIA_STORE_NAME });
+    await store.setJSON(statusKey(scope, uploadId), {
+      state: 'error',
+      retryable: true,
+      publishAttempts: 3,
+      chunkCount: 1,
+      fileSize: 4,
+      fileType: 'video/mp4',
+      assetName: 'retry-limit.mp4',
+      error: 'Network connection lost.'
+    });
+    await store.set(chunkKey(scope, uploadId, 0), new Uint8Array([1, 2, 3, 4]).buffer, {
+      metadata: { chunkIndex: 0, chunkSize: 4, createdAt: new Date().toISOString() },
+      expirationTtl: 86400
+    });
+
+    const queued = [];
+    const response = await writerMediaFinalize(
+      new Request('https://writer.test/api/writer/media-finalize', {
+        method: 'POST',
+        headers: {
+          origin: 'https://mmamatlock.com',
+          'X-Writer-Session': sessionId,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          uploadId,
+          chunkCount: 1,
+          fileSize: 4,
+          fileType: 'video/mp4',
+          assetName: 'retry-limit.mp4'
+        })
+      }),
+      { WRITER_MEDIA_QUEUE: { async send(job) { queued.push(job); } } }
+    );
+
+    const body = await response.json();
+    const status = await store.get(statusKey(scope, uploadId), { type: 'json' });
+    const staged = await store.get(chunkKey(scope, uploadId, 0), { type: 'arrayBuffer' });
+    assert.equal(response.status, 409);
+    assert.equal(body.retryable, false);
+    assert.match(body.error, /failed after 3 attempts/i);
+    assert.equal(status.retryable, false);
+    assert.equal(status.publishAttempts, 3);
+    assert.equal(queued.length, 0);
+    assert.deepEqual([...new Uint8Array(staged)], [1, 2, 3, 4]);
+  } finally {
+    delete globalThis.__MATLOCK_WRITER_KV;
+    delete globalThis.__MATLOCK_WRITER_MEDIA_STORAGE;
+  }
+});
+
+
 test('GET chunk confirmation recognizes a chunk whose upload response was lost', async () => {
   const kv = new MemoryKVNamespace();
   globalThis.__MATLOCK_WRITER_KV = kv;
