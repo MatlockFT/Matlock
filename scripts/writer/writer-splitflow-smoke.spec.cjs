@@ -123,7 +123,8 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
 
   await editor.fill(body);
 
-  // Editing content above the preview viewport must not move the visible article block.
+  // Browser-native scroll anchoring must keep the visible article block steady,
+  // without script-driven scrollTop corrections on every preview render.
   await previewPane.evaluate(el => {
     el.scrollTop = Math.max(0, (el.scrollHeight - el.clientHeight) * 0.7);
   });
