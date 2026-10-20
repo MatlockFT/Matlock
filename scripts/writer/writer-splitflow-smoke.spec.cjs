@@ -149,8 +149,39 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
   await page.locator('[data-preview-content] h2', { hasText: 'Target Section' }).click();
   await expect.poll(async () => editor.evaluate(el => el.selectionStart)).toBe(targetIndex);
 
+  // Position memory must restore the editor caret and both independent scroll positions.
+  await editor.focus();
+  await editor.evaluate((el, index) => {
+    el.setSelectionRange(index, index);
+    el.dispatchEvent(new Event('select', { bubbles: true }));
+    el.scrollTop = (el.scrollHeight - el.clientHeight) * 0.62;
+    el.dispatchEvent(new Event('scroll'));
+  }, targetIndex);
+  await previewPane.evaluate(el => {
+    el.scrollTop = (el.scrollHeight - el.clientHeight) * 0.43;
+    el.dispatchEvent(new Event('scroll'));
+  });
+  await page.waitForTimeout(150);
+  const savedPosition = await page.evaluate(() => {
+    const editor = document.querySelector('#writer-body');
+    const preview = document.querySelector('.writer-preview-pane');
+    return {
+      selectionStart: editor.selectionStart,
+      editorScrollTop: editor.scrollTop,
+      previewScrollTop: preview.scrollTop,
+      stored: Boolean(localStorage.getItem('matlock-writer:position:new'))
+    };
+  });
+  expect(savedPosition.stored).toBe(true);
+
   await page.reload({ waitUntil: 'domcontentloaded' });
   if (await page.locator('[data-library-view]').isVisible()) await page.click('[data-library-new]');
+  await expect(editor).toBeVisible();
+  await expect.poll(async () => editor.evaluate(el => Math.abs(el.selectionStart - savedPosition.selectionStart))).toBeLessThanOrEqual(1);
+  await expect.poll(async () => editor.evaluate(el => Math.abs(el.scrollTop - savedPosition.editorScrollTop))).toBeLessThan(6);
+  await expect.poll(async () => previewPane.evaluate(el => Math.abs(el.scrollTop - savedPosition.previewScrollTop))).toBeLessThan(10);
+  expect(await editor.evaluate(el => document.activeElement === el)).toBe(true);
+
   const moreAfterReload = page.locator('[data-writer-mode-more]');
   if (!(await moreAfterReload.evaluate(el => el.open))) await moreAfterReload.locator('summary').click();
   await expect(page.locator('button[data-writer-sync-scroll]')).toHaveCount(0);
