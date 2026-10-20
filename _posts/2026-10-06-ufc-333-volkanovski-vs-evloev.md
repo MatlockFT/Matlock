@@ -88,6 +88,8 @@ published: false
 </section>
 **Aaron Pico** is an orthodox fighter with a boxing-heavy offense and a strong wrestling background. He throws hard punches to the head and body and can mix in takedowns when he chooses to wrestle. He was knocked out by Lerone Murphy in his UFC debut but bounced back with a decision win over Patricio Pitbull, making better use of his wrestling throughout the fight.
 
+[EMBED X](https://x.com/MMAMATLOCK/status/2112462978666864976)
+
 **Losene Keita** is an orthodox striker who uses his footwork to close distance, find openings and land hard counters. He lost a close split decision to Nathaniel Wood in his UFC debut before knocking out Muhammad Naimov in the first round. His takedown defense has held up in his first two UFC fights, but he hasn't faced much sustained wrestling pressure at this level yet.
 
 [EMBED X](https://x.com/MMAMATLOCK/status/2112414715582316609)
@@ -109,7 +111,9 @@ I think a sharper striker with good footwork could give Keita problems. He moves
 
 My assessment is that Keita is an entertaining action fighter with fast hands, creative shot selection, and legitimate finishing ability. His fastball punches are dangerous, but they often miss their intended target. His defense is good without being great, and I think he'll struggle against more formidable kickers and opponents with refined footwork. He's shown decent takedown defense throughout his career, but I suspect a legitimate wrestler could exploit his explosiveness and put him on the mat. I haven't seen enough to say definitively how good or bad that part of his game is.
 
+Aaron Pico is a very, very difficult one to read. He's got skills, he's got the materials, but they're just not put together cohesively. His style is blocky and not fluid. There is this feeling of comfortability I sense when watching him. That being said, his latest fight against Pitbull certainly was the best he looked. Yes, I know... Pitbull is 40 and he spent moments in that fight just staring at Pico and letting minutes fly off the clock. Still, you could see Pico looking for comfortable on the feet and then flowing into his wrestling more fluidly. That's super nice to see because he always looked a bit skittish and that's never good for decision making. In his fight with Pitbull you can see him looking uncomfortable, reacting to everything, and swinging so heavily with all his punches, and these kicks that he launches from far out of range. But as the fight progresses, he starts using and working off his jab more - stringing combinations together nicely. That's good! It came a lot later than some of us anticipated. Pico is 30 now and his game is coming together. 
 
+What is interesting about his camp for this fight though was that he did it in Morocco with coach Roberto Barreiro. 
 
 ## Azamat Murzakanov vs. Dominick Reyes
 
