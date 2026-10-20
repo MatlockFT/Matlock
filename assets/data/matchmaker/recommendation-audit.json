@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T21:13:39.879Z",
+  "generatedAt": "2026-10-20T05:14:03.875Z",
   "engineVersion": 2,
   "subjects": 308,
   "publishedRecommendations": 838,
@@ -11,9 +11,9 @@
   },
   "caseCounts": {
     "rebound-pairing": 352,
-    "rising-vs-rising": 257,
+    "rising-vs-rising": 258,
     "step-up-vs-rebound": 96,
-    "ranking-opportunity": 50,
+    "ranking-opportunity": 49,
     "rankings-progression": 40,
     "divisional-sorting": 25,
     "title-case": 8,
@@ -21,18 +21,18 @@
     "title-eliminator": 3
   },
   "confidenceCounts": {
-    "high": 776,
-    "medium": 32,
+    "high": 775,
+    "medium": 33,
     "low": 30
   },
   "averageRecentOpponentLinkCoverage": 0.9029,
-  "sameCardRecommendations": 56,
-  "sameCardRecommendationRatio": 0.0668,
+  "sameCardRecommendations": 54,
+  "sameCardRecommendationRatio": 0.0644,
   "asymmetricTopThreeRecommendations": 280,
   "asymmetricTopThreeRatio": 0.3341,
   "publicPublishedRecommendations": 811,
-  "publicAsymmetricTopThreeRecommendations": 208,
-  "publicAsymmetricTopThreeRatio": 0.2565,
+  "publicAsymmetricTopThreeRecommendations": 211,
+  "publicAsymmetricTopThreeRatio": 0.2602,
   "engineGenericDivisionalSortingRecommendations": 25,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -203,7 +203,7 @@
       "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
       "fighter": "Raoni Barcelos",
       "opponent": "Bryce Mitchell",
-      "score": 92,
+      "score": 93,
       "rationale": "Raoni Barcelos and Bryce Mitchell occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
@@ -846,17 +846,17 @@
       "opponentTopThree": [
         {
           "opponent": "Mark Choinski",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Richie Miranda",
-          "score": 92,
+          "score": 93,
           "case": "rebound-pairing"
         },
         {
           "opponent": "Artur Minev",
-          "score": 91,
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Mitch Ramirez",
+          "score": 92,
           "case": "rebound-pairing"
         }
       ]
