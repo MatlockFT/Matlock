@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-10-20T14:28:57.718Z",
+  "updatedAt": "2026-10-20T15:42:55.301Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -7958,12 +7958,23 @@
     "pride:2006-10-21:pride-32": {
       "strategyVersion": 6,
       "status": "pageimage-kept",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T06:17:01.968Z",
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-10-20T15:40:48.830Z",
       "wikipediaTitle": "Pride 32",
-      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Public_nudity_-_Toronto_Pride_32.jpg/1280px-Public_nudity_-_Toronto_Pride_32.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "imageAlt": "Pride 32 event image",
-      "imageCredit": "Wikimedia Commons · Jim MacDonald · CC BY-SA 2.0"
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2006-10-21-pride-32-97d56ae1bdb33b3c.jpg",
+      "imageAlt": "Pride 32 event poster",
+      "imageCredit": "Tapology",
+      "imageStatus": "resolved",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/pride-32-the-real-deal",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/pride-32-the-real-deal",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "97d56ae1bdb33b3c1c460a56bcf669065d3bd96ef1e615e3620174a327cff3a3",
+      "posterRegistryKey": "2006-10-21::pride 32"
     },
     "bellator:2021-10-23:bellator-269": {
       "strategyVersion": 6,
@@ -11577,12 +11588,23 @@
     "ufc:2007-10-20:ufc-77-hostile-territory": {
       "strategyVersion": 6,
       "status": "pageimage-kept",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T01:18:17.620Z",
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-10-20T15:41:04.128Z",
       "wikipediaTitle": "UFC 77",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/8f/Ufc77_banner.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "imageAlt": "UFC 77: Hostile Territory event image",
-      "imageCredit": "Wikipedia"
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2007-10-20-ufc-77-hostile-territory-615175b188b3d520.jpg",
+      "imageAlt": "UFC 77: Hostile Territory event poster",
+      "imageCredit": "Tapology",
+      "imageStatus": "resolved",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/ufc-77-hostile-territory",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/ufc-77-hostile-territory",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "615175b188b3d5208fa2e52170d26489a628d464c1721079984ea45e61d3c7c4",
+      "posterRegistryKey": "2007-10-20::ufc 77 hostile territory"
     },
     "ufc:2016-07-30:ufc-201-lawler-vs-woodley": {
       "strategyVersion": 6,
