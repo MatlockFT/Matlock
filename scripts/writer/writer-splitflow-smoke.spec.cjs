@@ -123,6 +123,46 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
 
   await editor.fill(body);
 
+  // Editing content above the preview viewport must not move the visible article block.
+  await previewPane.evaluate(el => {
+    el.scrollTop = Math.max(0, (el.scrollHeight - el.clientHeight) * 0.7);
+  });
+  const previewAnchorBefore = await page.evaluate(() => {
+    const pane = document.querySelector('.writer-preview-pane');
+    const content = document.querySelector('[data-preview-content]');
+    const paneRect = pane.getBoundingClientRect();
+    const node = [...content.children].find(child => {
+      const rect = child.getBoundingClientRect();
+      return rect.bottom > paneRect.top + 4 && rect.top < paneRect.bottom - 4;
+    });
+    if (!node) return null;
+    window.__writerPreviewScrollAnchor = node;
+    return {
+      offset: node.getBoundingClientRect().top - paneRect.top,
+      scrollTop: pane.scrollTop,
+      text: node.textContent
+    };
+  });
+  expect(previewAnchorBefore).not.toBeNull();
+  await editor.evaluate((el, prefix) => {
+    el.value = prefix + el.value;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+  }, 'Extra introductory sentence to expand the content above the current preview viewport. '.repeat(45));
+  await page.waitForTimeout(200);
+  const previewAnchorAfter = await page.evaluate(() => {
+    const pane = document.querySelector('.writer-preview-pane');
+    const node = window.__writerPreviewScrollAnchor;
+    if (!node || !node.isConnected) return null;
+    return {
+      offset: node.getBoundingClientRect().top - pane.getBoundingClientRect().top,
+      scrollTop: pane.scrollTop
+    };
+  });
+  expect(previewAnchorAfter).not.toBeNull();
+  expect(Math.abs(previewAnchorAfter.offset - previewAnchorBefore.offset)).toBeLessThan(3);
+  expect(previewAnchorAfter.scrollTop).toBeGreaterThan(previewAnchorBefore.scrollTop + 10);
+
+  await editor.fill(body);
   await previewPane.evaluate(el => { el.scrollTop = 0; });
   await editor.evaluate(el => {
     el.scrollTop = (el.scrollHeight - el.clientHeight) * 0.62;
@@ -149,8 +189,39 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
   await page.locator('[data-preview-content] h2', { hasText: 'Target Section' }).click();
   await expect.poll(async () => editor.evaluate(el => el.selectionStart)).toBe(targetIndex);
 
+  // Position memory must restore the editor caret and both independent scroll positions.
+  await editor.focus();
+  await editor.evaluate((el, index) => {
+    el.setSelectionRange(index, index);
+    el.dispatchEvent(new Event('select', { bubbles: true }));
+    el.scrollTop = (el.scrollHeight - el.clientHeight) * 0.62;
+    el.dispatchEvent(new Event('scroll'));
+  }, targetIndex);
+  await previewPane.evaluate(el => {
+    el.scrollTop = (el.scrollHeight - el.clientHeight) * 0.43;
+    el.dispatchEvent(new Event('scroll'));
+  });
+  await page.waitForTimeout(150);
+  const savedPosition = await page.evaluate(() => {
+    const editor = document.querySelector('#writer-body');
+    const preview = document.querySelector('.writer-preview-pane');
+    return {
+      selectionStart: editor.selectionStart,
+      editorScrollTop: editor.scrollTop,
+      previewScrollTop: preview.scrollTop,
+      stored: Boolean(localStorage.getItem('matlock-writer:position:new'))
+    };
+  });
+  expect(savedPosition.stored).toBe(true);
+
   await page.reload({ waitUntil: 'domcontentloaded' });
   if (await page.locator('[data-library-view]').isVisible()) await page.click('[data-library-new]');
+  await expect(editor).toBeVisible();
+  await expect.poll(async () => editor.evaluate(el => Math.abs(el.selectionStart - savedPosition.selectionStart))).toBeLessThanOrEqual(1);
+  await expect.poll(async () => editor.evaluate(el => Math.abs(el.scrollTop - savedPosition.editorScrollTop))).toBeLessThan(6);
+  await expect.poll(async () => previewPane.evaluate(el => Math.abs(el.scrollTop - savedPosition.previewScrollTop))).toBeLessThan(10);
+  expect(await editor.evaluate(el => document.activeElement === el)).toBe(true);
+
   const moreAfterReload = page.locator('[data-writer-mode-more]');
   if (!(await moreAfterReload.evaluate(el => el.open))) await moreAfterReload.locator('summary').click();
   await expect(page.locator('button[data-writer-sync-scroll]')).toHaveCount(0);

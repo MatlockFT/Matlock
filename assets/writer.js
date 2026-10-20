@@ -1140,6 +1140,19 @@
   }
 
   function patchPreviewContent(html) {
+    const previewPane = app.querySelector('.writer-preview-pane');
+    const previewPaneRect = previewPane?.getBoundingClientRect();
+    const previewAnchorCandidates = previewPane && previewPane.clientHeight && previewPane.scrollTop > 0
+      ? [...previewContent.children].map((node, index) => {
+          const rect = node.getBoundingClientRect();
+          return {
+            node,
+            index,
+            offset: rect.top - previewPaneRect.top,
+            visible: rect.bottom > previewPaneRect.top + 2 && rect.top < previewPaneRect.bottom - 2
+          };
+        }).filter(item => item.visible)
+      : [];
     const template = document.createElement('template');
     template.innerHTML = html || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
     const nextElements = [...template.content.children];
@@ -1195,6 +1208,30 @@
     [...previewContent.childNodes].forEach(node => {
       if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) node.remove();
     });
+
+    // Live rendering can change the height of blocks above the reader's current
+    // viewport. Keep the first surviving visible block at the same screen offset
+    // so the preview does not visually jump while the user types.
+    if (previewAnchorCandidates.length && previewPane?.clientHeight) {
+      const anchor = previewAnchorCandidates.find(item =>
+        item.node.isConnected && previewContent.contains(item.node)
+      ) || [...previewAnchorCandidates].reverse().find(item =>
+        previewContent.children[item.index]
+      );
+      const anchorNode = anchor && anchor.node.isConnected && previewContent.contains(anchor.node)
+        ? anchor.node
+        : (anchor ? previewContent.children[anchor.index] : null);
+
+      if (anchorNode) {
+        const actualOffset = anchorNode.getBoundingClientRect().top - previewPane.getBoundingClientRect().top;
+        const expectedOffset = anchor.offset;
+        const delta = actualOffset - expectedOffset;
+        if (Math.abs(delta) > 1) {
+          const maxScroll = Math.max(0, previewPane.scrollHeight - previewPane.clientHeight);
+          previewPane.scrollTop = Math.max(0, Math.min(maxScroll, previewPane.scrollTop + delta));
+        }
+      }
+    }
   }
 
   function sourceMediaBlocks(text = bodyEditor.value) {
@@ -2272,11 +2309,169 @@ async function githubFetch(path, options = {}, requireAuth = false) {
     setPublishingControls(Boolean(githubCredential));
   }
 
+
+  const WRITER_POSITION_PREFIX = 'matlock-writer:position:';
+  let writerPositionSaveTimer = 0;
+  let writerPositionRestoring = false;
+  let writerEditorWasFocused = false;
+  let writerPositionMemoryInitialized = false;
+
+  const writerPreviewPane = app.querySelector('.writer-preview-pane');
+  const writerPositionRestoreFocusOnReload = (() => {
+    try { return performance.getEntriesByType('navigation')[0]?.type === 'reload'; }
+    catch { return false; }
+  })();
+
+  function writerPositionKey(path = currentPath) {
+    return WRITER_POSITION_PREFIX + encodeURIComponent(path || 'new');
+  }
+
+  function clearWriterPositionFor(path = '') {
+    try { localStorage.removeItem(writerPositionKey(path)); } catch {}
+  }
+
+  function readWriterPosition() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(writerPositionKey()) || 'null');
+      return saved && saved.version === 1 ? saved : null;
+    } catch { return null; }
+  }
+
+  function captureWriterPreviewAnchor() {
+    if (!writerPreviewPane || !previewContent || !writerPreviewPane.clientHeight) {
+      return { index: -1, offset: 0 };
+    }
+    const paneRect = writerPreviewPane.getBoundingClientRect();
+    const children = [...previewContent.children];
+    const index = children.findIndex(child => {
+      const rect = child.getBoundingClientRect();
+      return rect.bottom > paneRect.top + 8 && rect.top < paneRect.bottom - 8;
+    });
+    if (index < 0) return { index: -1, offset: 0 };
+    return {
+      index,
+      offset: children[index].getBoundingClientRect().top - paneRect.top
+    };
+  }
+
+  function saveWriterPositionNow() {
+    window.clearTimeout(writerPositionSaveTimer);
+    writerPositionSaveTimer = 0;
+    if (writerPositionRestoring || app.dataset.writerScreen !== 'editor') return;
+
+    const previous = readWriterPosition() || {};
+    const previewVisible = Boolean(writerPreviewPane?.clientHeight);
+    const anchor = previewVisible ? captureWriterPreviewAnchor() : {
+      index: Number(previous.previewAnchorIndex ?? -1),
+      offset: Number(previous.previewAnchorOffset ?? 0)
+    };
+    const saved = {
+      ...previous,
+      version: 1,
+      editorScrollTop: bodyEditor.scrollTop,
+      editorScrollLeft: bodyEditor.scrollLeft,
+      selectionStart: bodyEditor.selectionStart,
+      selectionEnd: bodyEditor.selectionEnd,
+      selectionDirection: bodyEditor.selectionDirection || 'none',
+      editorFocused: writerEditorWasFocused || document.activeElement === bodyEditor,
+      previewScrollTop: previewVisible ? writerPreviewPane.scrollTop : Number(previous.previewScrollTop) || 0,
+      previewScrollLeft: previewVisible ? writerPreviewPane.scrollLeft : Number(previous.previewScrollLeft) || 0,
+      previewAnchorIndex: anchor.index,
+      previewAnchorOffset: anchor.offset,
+      savedAt: Date.now()
+    };
+
+    try { localStorage.setItem(writerPositionKey(), JSON.stringify(saved)); } catch {}
+  }
+
+  function scheduleWriterPositionSave() {
+    if (writerPositionRestoring || app.dataset.writerScreen !== 'editor') return;
+    window.clearTimeout(writerPositionSaveTimer);
+    writerPositionSaveTimer = window.setTimeout(saveWriterPositionNow, 90);
+  }
+
+  function restoreWriterPosition() {
+    const key = writerPositionKey();
+    const saved = readWriterPosition();
+    if (!saved) return;
+
+    window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+      if (app.dataset.writerScreen !== 'editor' || writerPositionKey() !== key) return;
+      writerPositionRestoring = true;
+
+      if (saved.editorFocused && writerPositionRestoreFocusOnReload) {
+        bodyEditor.focus({ preventScroll: true });
+        writerEditorWasFocused = true;
+      }
+
+      const selectionLength = bodyEditor.value.length;
+      const start = Math.max(0, Math.min(selectionLength, Number(saved.selectionStart) || 0));
+      const end = Math.max(start, Math.min(selectionLength, Number(saved.selectionEnd) || 0));
+      try { bodyEditor.setSelectionRange(start, end, saved.selectionDirection || 'none'); } catch {}
+
+      const editorMax = Math.max(0, bodyEditor.scrollHeight - bodyEditor.clientHeight);
+      bodyEditor.scrollTop = Math.max(0, Math.min(editorMax, Number(saved.editorScrollTop) || 0));
+      bodyEditor.scrollLeft = Math.max(0, Number(saved.editorScrollLeft) || 0);
+
+      if (writerPreviewPane?.clientHeight) {
+        const previewMax = Math.max(0, writerPreviewPane.scrollHeight - writerPreviewPane.clientHeight);
+        writerPreviewPane.scrollTop = Math.max(0, Math.min(previewMax, Number(saved.previewScrollTop) || 0));
+        writerPreviewPane.scrollLeft = Math.max(0, Number(saved.previewScrollLeft) || 0);
+
+        const anchor = Number(saved.previewAnchorIndex);
+        const anchorOffset = Number(saved.previewAnchorOffset);
+        const target = Number.isInteger(anchor) ? previewContent?.children[anchor] : null;
+        if (target && Number.isFinite(anchorOffset)) {
+          const paneTop = writerPreviewPane.getBoundingClientRect().top;
+          const actualOffset = target.getBoundingClientRect().top - paneTop;
+          const delta = actualOffset - anchorOffset;
+          if (Math.abs(delta) > 1) {
+            const max = Math.max(0, writerPreviewPane.scrollHeight - writerPreviewPane.clientHeight);
+            writerPreviewPane.scrollTop = Math.max(0, Math.min(max, writerPreviewPane.scrollTop + delta));
+          }
+        }
+      }
+
+      window.requestAnimationFrame(() => { writerPositionRestoring = false; });
+    }));
+  }
+
+  function initializeWriterPositionMemory() {
+    if (writerPositionMemoryInitialized || !bodyEditor) return;
+    writerPositionMemoryInitialized = true;
+    writerEditorWasFocused = document.activeElement === bodyEditor;
+
+    bodyEditor.addEventListener('input', scheduleWriterPositionSave);
+    bodyEditor.addEventListener('keyup', scheduleWriterPositionSave);
+    bodyEditor.addEventListener('click', scheduleWriterPositionSave);
+    bodyEditor.addEventListener('select', scheduleWriterPositionSave);
+    bodyEditor.addEventListener('mouseup', scheduleWriterPositionSave);
+    bodyEditor.addEventListener('scroll', scheduleWriterPositionSave, { passive: true });
+    bodyEditor.addEventListener('focus', () => {
+      writerEditorWasFocused = true;
+      scheduleWriterPositionSave();
+    });
+    bodyEditor.addEventListener('blur', () => {
+      writerEditorWasFocused = false;
+      scheduleWriterPositionSave();
+    });
+    writerPreviewPane?.addEventListener('scroll', scheduleWriterPositionSave, { passive: true });
+    app.querySelectorAll('[data-view]').forEach(button => {
+      button.addEventListener('click', () => window.requestAnimationFrame(restoreWriterPosition));
+    });
+    window.addEventListener('beforeunload', saveWriterPositionNow);
+    window.addEventListener('pagehide', saveWriterPositionNow);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') saveWriterPositionNow();
+    });
+  }
+
   function showLibrary({ updateRoute = true, replaceRoute = false } = {}) {
     if (dirty) {
       persistLocalAutosave();
       dirty = false;
     }
+    saveWriterPositionNow();
     setWriterScreen('library');
     setSaveState('Library');
     setDocumentStatus('Library');
@@ -2292,6 +2487,7 @@ async function githubFetch(path, options = {}, requireAuth = false) {
       const mode = route || (path || currentPath ? 'article' : 'new');
       setWriterRoute(mode, { path: path || currentPath, replace: replaceRoute });
     }
+    restoreWriterPosition();
   }
 
   function localKey() { return `matlock-writer:${currentPath || 'new'}`; }
@@ -2387,6 +2583,8 @@ function scheduleAutosave() {
       showLibrary({ updateRoute: true });
       return false;
     }
+    saveWriterPositionNow();
+    clearWriterPositionFor('new');
     clearLocalFeaturedPreview();
     currentPath = '';
     currentSha = '';
@@ -2765,6 +2963,7 @@ function scheduleAutosave() {
       persistLocalAutosave();
       dirty = false;
     }
+    saveWriterPositionNow();
     clearLocalFeaturedPreview();
     setSaveState('Loading…');
     try {
@@ -6829,6 +7028,7 @@ window.addEventListener('matlock-writer:auth', () => {
 });
 window.addEventListener('matlock-writer:auth-expired', () => setPublishingControls(false));
 
+  initializeWriterPositionMemory();
   fields.date.value = today();
   fields.category.value = 'Breakdown';
   fields.imagePosition.value = 'center center';
