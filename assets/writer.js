@@ -1082,8 +1082,9 @@
     return true;
   }
 
-  // Whole-paragraph replacement on every input event allows scroll anchoring to pick
-  // a different element and makes the live preview jump while text is typed.
+  // Preserve existing inline nodes when Markdown changes. Replacing innerHTML on
+  // every keystroke reconstructs the whole paragraph's descendants and can make
+  // the live preview visibly jump as the browser recalculates layout.
   function syncPreviewElement(existing, next) {
     if (!existing || !next || existing.tagName !== next.tagName) return false;
     if (previewEmbedKey(existing) || previewEmbedKey(next)) return false;
@@ -1096,8 +1097,46 @@
         existing.setAttribute(attribute.name, attribute.value);
       }
     }
-    if (existing.innerHTML !== next.innerHTML) existing.innerHTML = next.innerHTML;
+
+    syncPreviewChildren(existing, next);
     return true;
+  }
+
+  function syncPreviewChildren(existing, next) {
+    let cursor = existing.firstChild;
+
+    for (const nextChild of [...next.childNodes]) {
+      if (cursor && cursor.nodeType === nextChild.nodeType) {
+        if (cursor.nodeType === Node.TEXT_NODE || cursor.nodeType === Node.COMMENT_NODE) {
+          if (cursor.nodeValue !== nextChild.nodeValue) cursor.nodeValue = nextChild.nodeValue;
+          cursor = cursor.nextSibling;
+          continue;
+        }
+
+        if (cursor.nodeType === Node.ELEMENT_NODE &&
+            cursor.tagName === nextChild.tagName &&
+            !previewEmbedKey(cursor) &&
+            !previewEmbedKey(nextChild)) {
+          syncPreviewElement(cursor, nextChild);
+          cursor = cursor.nextSibling;
+          continue;
+        }
+      }
+
+      const afterCurrent = cursor ? cursor.nextSibling : null;
+      if (cursor) {
+        cursor.replaceWith(nextChild);
+        cursor = afterCurrent;
+      } else {
+        existing.appendChild(nextChild);
+      }
+    }
+
+    while (cursor) {
+      const afterCurrent = cursor.nextSibling;
+      cursor.remove();
+      cursor = afterCurrent;
+    }
   }
 
   function patchPreviewContent(html) {

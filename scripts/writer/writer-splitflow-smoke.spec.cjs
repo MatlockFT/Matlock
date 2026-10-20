@@ -103,6 +103,24 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
   expect(await page.evaluate(() =>
     window.__writerStablePreviewParagraph === document.querySelector('[data-preview-content] > p')
   )).toBe(true);
+
+  // Typing inside formatted text must not recreate the preview's inline elements.
+  const inlineBody = body.replace('Opening paragraph.', 'Opening **stable paragraph**.');
+  await editor.fill(inlineBody);
+  const stableInline = page.locator('[data-preview-content] > p').first().locator('strong').first();
+  await expect(stableInline).toHaveText('stable paragraph');
+  await stableInline.evaluate(el => { window.__writerStableInline = el; });
+  const boldStart = inlineBody.indexOf('stable paragraph');
+  await editor.evaluate((el, index) => {
+    el.focus();
+    el.setSelectionRange(index, index);
+  }, boldStart);
+  await page.keyboard.type('revised ');
+  await expect(stableInline).toHaveText('revised stable paragraph');
+  expect(await page.evaluate(() =>
+    window.__writerStableInline === document.querySelector('[data-preview-content] > p strong')
+  )).toBe(true);
+
   await editor.fill(body);
 
   await previewPane.evaluate(el => { el.scrollTop = 0; });
