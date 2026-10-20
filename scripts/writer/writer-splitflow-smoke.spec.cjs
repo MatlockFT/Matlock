@@ -123,6 +123,46 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
 
   await editor.fill(body);
 
+  // Editing content above the preview viewport must not move the visible article block.
+  await previewPane.evaluate(el => {
+    el.scrollTop = Math.max(0, (el.scrollHeight - el.clientHeight) * 0.7);
+  });
+  const previewAnchorBefore = await page.evaluate(() => {
+    const pane = document.querySelector('.writer-preview-pane');
+    const content = document.querySelector('[data-preview-content]');
+    const paneRect = pane.getBoundingClientRect();
+    const node = [...content.children].find(child => {
+      const rect = child.getBoundingClientRect();
+      return rect.bottom > paneRect.top + 4 && rect.top < paneRect.bottom - 4;
+    });
+    if (!node) return null;
+    window.__writerPreviewScrollAnchor = node;
+    return {
+      offset: node.getBoundingClientRect().top - paneRect.top,
+      scrollTop: pane.scrollTop,
+      text: node.textContent
+    };
+  });
+  expect(previewAnchorBefore).not.toBeNull();
+  await editor.evaluate((el, prefix) => {
+    el.value = prefix + el.value;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+  }, 'Extra introductory sentence to expand the content above the current preview viewport. '.repeat(45));
+  await page.waitForTimeout(200);
+  const previewAnchorAfter = await page.evaluate(() => {
+    const pane = document.querySelector('.writer-preview-pane');
+    const node = window.__writerPreviewScrollAnchor;
+    if (!node || !node.isConnected) return null;
+    return {
+      offset: node.getBoundingClientRect().top - pane.getBoundingClientRect().top,
+      scrollTop: pane.scrollTop
+    };
+  });
+  expect(previewAnchorAfter).not.toBeNull();
+  expect(Math.abs(previewAnchorAfter.offset - previewAnchorBefore.offset)).toBeLessThan(3);
+  expect(previewAnchorAfter.scrollTop).toBeGreaterThan(previewAnchorBefore.scrollTop + 10);
+
+  await editor.fill(body);
   await previewPane.evaluate(el => { el.scrollTop = 0; });
   await editor.evaluate(el => {
     el.scrollTop = (el.scrollHeight - el.clientHeight) * 0.62;
