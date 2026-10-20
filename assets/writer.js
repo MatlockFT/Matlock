@@ -2469,8 +2469,6 @@ async function githubFetch(path, options = {}, requireAuth = false) {
   function resumeLocalNewDraft({ updateRoute = true, replaceRoute = false } = {}) {
     const saved = readLocalNewDraft();
     if (!saved) return false;
-    saveWriterPositionNow();
-    clearWriterPositionFor('new');
     clearLocalFeaturedPreview();
     currentPath = '';
     currentSha = '';
@@ -2548,6 +2546,8 @@ function scheduleAutosave() {
       showLibrary({ updateRoute: true });
       return false;
     }
+    saveWriterPositionNow();
+    clearWriterPositionFor('new');
     clearLocalFeaturedPreview();
     currentPath = '';
     currentSha = '';
