@@ -655,6 +655,7 @@ window.addEventListener('matlock-writer:auth', () => {
 });
 window.addEventListener('matlock-writer:auth-expired', () => setPublishingControls(false));
 
+  initializeWriterPositionMemory();
   fields.date.value = today();
   fields.category.value = 'Breakdown';
   fields.imagePosition.value = 'center center';
