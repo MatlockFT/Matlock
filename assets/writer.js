@@ -1140,6 +1140,19 @@
   }
 
   function patchPreviewContent(html) {
+    const previewPane = app.querySelector('.writer-preview-pane');
+    const previewPaneRect = previewPane?.getBoundingClientRect();
+    const previewAnchorCandidates = previewPane && previewPane.clientHeight && previewPane.scrollTop > 0
+      ? [...previewContent.children].map((node, index) => {
+          const rect = node.getBoundingClientRect();
+          return {
+            node,
+            index,
+            offset: rect.top - previewPaneRect.top,
+            visible: rect.bottom > previewPaneRect.top + 2 && rect.top < previewPaneRect.bottom - 2
+          };
+        }).filter(item => item.visible)
+      : [];
     const template = document.createElement('template');
     template.innerHTML = html || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
     const nextElements = [...template.content.children];
@@ -1195,6 +1208,30 @@
     [...previewContent.childNodes].forEach(node => {
       if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) node.remove();
     });
+
+    // Live rendering can change the height of blocks above the reader's current
+    // viewport. Keep the first surviving visible block at the same screen offset
+    // so the preview does not visually jump while the user types.
+    if (previewAnchorCandidates.length && previewPane?.clientHeight) {
+      const anchor = previewAnchorCandidates.find(item =>
+        item.node.isConnected && previewContent.contains(item.node)
+      ) || [...previewAnchorCandidates].reverse().find(item =>
+        previewContent.children[item.index]
+      );
+      const anchorNode = anchor && anchor.node.isConnected && previewContent.contains(anchor.node)
+        ? anchor.node
+        : (anchor ? previewContent.children[anchor.index] : null);
+
+      if (anchorNode) {
+        const actualOffset = anchorNode.getBoundingClientRect().top - previewPane.getBoundingClientRect().top;
+        const expectedOffset = anchor.offset;
+        const delta = actualOffset - expectedOffset;
+        if (Math.abs(delta) > 1) {
+          const maxScroll = Math.max(0, previewPane.scrollHeight - previewPane.clientHeight);
+          previewPane.scrollTop = Math.max(0, Math.min(maxScroll, previewPane.scrollTop + delta));
+        }
+      }
+    }
   }
 
   function sourceMediaBlocks(text = bodyEditor.value) {
