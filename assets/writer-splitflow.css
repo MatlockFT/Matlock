@@ -52,8 +52,8 @@
   .writer-splitflow-sync{display:none}
 }
 
-/* Keep the preview viewport stable while live markdown updates change block heights. */
+/* Let the browser hold the preview's visible reading position as text reflows. */
 .writer-splitflow .writer-preview-pane,
 .writer-splitflow [data-preview-content]{
-  overflow-anchor:none;
+  overflow-anchor:auto;
 }
