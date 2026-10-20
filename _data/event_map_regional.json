@@ -119,21 +119,6 @@
       "source_label": "Sherdog regional discovery"
     },
     {
-      "id": "sherdog-afc-178-alaska-fighting-championship-178-2026-10-23-anchorage",
-      "promotion": "AFC",
-      "promotion_key": "sherdog_discovery",
-      "title": "AFC 178: Alaska Fighting Championship 178",
-      "date": "2026-10-23",
-      "venue": "Sullivan Arena",
-      "location": "Anchorage, AK",
-      "broadcast": "",
-      "official_url": "https://www.sherdog.com/events/AFC-178-Alaska-Fighting-Championship-178-114827",
-      "regional": true,
-      "level": "regional",
-      "source_key": "sherdog_discovery",
-      "source_label": "Sherdog regional discovery"
-    },
-    {
       "id": "afc_alaska-afc-oct-23-2026-2026-10-23",
       "promotion": "Alaska Fighting Championships",
       "promotion_key": "afc_alaska",
@@ -180,14 +165,14 @@
       "level": "professional",
       "source_key": "lfa_official",
       "source_label": "Legacy Fighting Alliance",
+      "latitude": 41.4643,
+      "longitude": -71.9737,
       "main_event": {
         "fighters": [
           "Woodley",
           "Havener"
         ]
       },
-      "latitude": 41.4643,
-      "longitude": -71.9737,
       "poster_url": "https://www.lfa.com/wp-content/uploads/2026/08/LFA-244-Standard-Poster-Web.jpg"
     },
     {
@@ -297,7 +282,6 @@
       "level": "regional",
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
-      "ticket_url": "https://www.nitrotickets.com/event/1270/capitol-city-punishment-1024",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1270/1785882975_dfGzg.jpg"
     },
     {
@@ -422,7 +406,6 @@
       "level": "regional",
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
-      "ticket_url": "https://www.nitrotickets.com/event/1302/synergy-fc-33-kansas-city-1024",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1302/1788195524_cttVd.jpg"
     },
     {
@@ -441,7 +424,6 @@
       "source_label": "Nitro Tickets",
       "latitude": 46.8772,
       "longitude": -96.7898,
-      "ticket_url": "https://www.nitrotickets.com/event/1317/throne-mma-fargo",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1317/1789517745_RKOpA.jpg"
     },
     {
@@ -577,14 +559,14 @@
       "level": "professional",
       "source_key": "lfa_official",
       "source_label": "Legacy Fighting Alliance",
+      "latitude": 43.0962,
+      "longitude": -79.0377,
       "main_event": {
         "fighters": [
           "Khamzaev",
           "Prescendo"
         ]
       },
-      "latitude": 43.0962,
-      "longitude": -79.0377,
       "poster_url": "https://www.lfa.com/wp-content/uploads/2026/09/LFA-245-Standard-Poster-Web.png"
     },
     {
@@ -732,7 +714,7 @@
       "promotion_key": "florida_commission",
       "title": "Combat Night",
       "date": "2026-11-07",
-      "venue": "The Prime Osborn",
+      "venue": "",
       "location": "Jacksonville, FL",
       "broadcast": "",
       "official_url": "https://www2.myfloridalicense.com/athletic-commission/commission-upcoming-events-professional/",
@@ -1006,7 +988,6 @@
       "source_label": "Nitro Tickets",
       "latitude": 37.209,
       "longitude": -93.2923,
-      "ticket_url": "https://www.nitrotickets.com/event/1328/synergy-fc-34-springfield",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1328/1790469437_Synergy.jpg"
     },
     {
