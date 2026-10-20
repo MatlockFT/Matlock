@@ -49,6 +49,8 @@ on:
       - "scripts/writer/writer-wordtools-smoke.spec.cjs"
       - "scripts/writer/writer-layout-smoke.spec.cjs"
       - "scripts/writer/writer-splitflow-smoke.spec.cjs"
+      - "scripts/writer/writer-preview-scroll-contract.cjs"
+      - "scripts/writer/writer-preview-scroll-contract.spec.cjs"
       - "_netlify-auth/**"
       - ".github/workflows/writer-quality.yml"
   push:
@@ -99,6 +101,8 @@ on:
       - "scripts/writer/writer-wordtools-smoke.spec.cjs"
       - "scripts/writer/writer-layout-smoke.spec.cjs"
       - "scripts/writer/writer-splitflow-smoke.spec.cjs"
+      - "scripts/writer/writer-preview-scroll-contract.cjs"
+      - "scripts/writer/writer-preview-scroll-contract.spec.cjs"
       - "_netlify-auth/**"
       - ".github/workflows/writer-quality.yml"
 
@@ -123,6 +127,9 @@ jobs:
 
       - name: Check Writer source bundle
         run: node scripts/writer/build-frontend-bundles.mjs --check
+
+      - name: Enforce Writer preview scroll contract
+        run: node scripts/writer/writer-preview-scroll-contract.cjs
 
       - name: Check Writer browser scripts
         run: |
@@ -248,7 +255,7 @@ jobs:
       - name: Exercise production Writer workflow
         env:
           WRITER_BASE_URL: https://mmamatlock.com/write/
-        run: npx playwright test scripts/writer/writer-smoke.spec.cjs scripts/writer/writer-wordtools-smoke.spec.cjs scripts/writer/writer-layout-smoke.spec.cjs scripts/writer/writer-splitflow-smoke.spec.cjs --workers=1 --reporter=line
+        run: npx playwright test scripts/writer/writer-smoke.spec.cjs scripts/writer/writer-wordtools-smoke.spec.cjs scripts/writer/writer-layout-smoke.spec.cjs scripts/writer/writer-splitflow-smoke.spec.cjs scripts/writer/writer-preview-scroll-contract.spec.cjs --workers=1 --reporter=line
 
       - name: Exercise Broadcast Control workflow
         env:
