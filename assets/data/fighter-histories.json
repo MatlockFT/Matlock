@@ -12,130 +12,226 @@
       "division": "Featherweight",
       "items": [
         {
-          "date": "2012-2016",
-          "label": "Regional title run leads to the UFC",
-          "kind": "milestone",
-          "detail": "He turned professional in 2012, won titles across multiple Australian and Pacific promotions and entered the UFC in 2016.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
-        },
-        {
-          "date": "Dec. 14, 2019",
-          "label": "WIN · Max Holloway · wins UFC title",
-          "kind": "win",
-          "detail": "Volkanovski defeated Max Holloway by unanimous decision to become UFC featherweight champion, beginning his first title reign.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
-        },
-        {
-          "date": "2020-2023",
-          "label": "Five successful featherweight title defenses",
-          "kind": "milestone",
-          "detail": "His first championship reign included five successful defenses before the title loss to Ilia Topuria in 2024.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
-        },
-        {
-          "date": "Jul 8, 2023",
-          "label": "WIN · Yair Rodriguez · TKO (Punches)",
-          "kind": "win",
-          "detail": "Alexander Volkanovski defeated Yair Rodriguez. TKO (Punches).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
-        },
-        {
-          "date": "Oct 21, 2023",
-          "label": "LOSS · Islam Makhachev · KO (Head Kick and Punches)",
-          "kind": "loss",
-          "detail": "Alexander Volkanovski lost to Islam Makhachev. KO (Head Kick and Punches).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
-        },
-        {
-          "date": "Feb 17, 2024",
-          "label": "LOSS · Ilia Topuria · KO (Punch)",
-          "kind": "loss",
-          "detail": "Alexander Volkanovski lost to Ilia Topuria. KO (Punch).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
-        },
-        {
-          "date": "Apr 12, 2025",
-          "label": "WIN · Diego Lopes · Decision (Unanimous)",
-          "kind": "win",
-          "detail": "Alexander Volkanovski defeated Diego Lopes. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
-        },
-        {
-          "date": "Oct. 24, 2026",
-          "label": "UFC 333 · vs. Movsar Evloev",
-          "kind": "upcoming",
-          "detail": "Alexander Volkanovski is scheduled to face Movsar Evloev at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 28-4-0, UFC 15-3-0.",
-          "sourceLabel": "UFC 333",
-          "source": "https://www.ufc.com/event/ufc-333"
-        },
-        {
-          "date": "Teen years",
-          "label": "National-level wrestling before rugby",
+          "date": "Early 2000s (teen years)",
+          "label": "National-level wrestling before rugby league",
           "kind": "training",
-          "detail": "Before MMA, Volkanovski wrestled as a teenager and won a national championship. He then left wrestling for rugby league, where he played as a much heavier front-rower before eventually finding MMA.",
-          "sourceLabel": "UFC",
+          "detail": "Volkanovski won a national wrestling championship as a teenager, then stopped wrestling to focus on rugby league. The exact championship date is not established, so this is an approximate period.",
+          "sourceLabel": "UFC profile",
           "source": "https://www.ufc.com/news/volkanovski-was-natural-first-step-he-took-mma-gym"
         },
         {
-          "date": "2019",
-          "label": "Broken left hand after winning UFC title",
+          "date": "2011",
+          "label": "Starts MMA training with Joe Lopez",
+          "kind": "training",
+          "detail": "While playing rugby league for the Warilla Gorillas, Volkanovski went to Freestyle Fighting Gym in New South Wales to stay fit during the offseason. Joe Lopez became his longtime head coach and Freestyle remained his home base. He was playing rugby at approximately 97 kg (213 lb), well above his eventual featherweight limit.",
+          "sourceLabel": "UFC profile",
+          "source": "https://www.ufc.com/news/joe-lopez-says-personality-clash-fuels-featherweight-champion-alexander-volkanovski-ufc-266"
+        },
+        {
+          "date": "May 19, 2012",
+          "label": "WIN · Gerhard Voigt · professional MMA debut",
+          "kind": "win",
+          "detail": "Volkanovski won his first recorded professional MMA bout against Gerhard Voigt by unanimous decision at Revolution at the Roxy in Australia. He continued fighting on the Australian regional circuit.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/fighter/Alexander-Volkanovski-101527"
+        },
+        {
+          "date": "May 10, 2013",
+          "label": "LOSS · Corey Nelson · TKO (Round 3, 0:13)",
+          "kind": "loss",
+          "detail": "Nelson stopped Volkanovski early in the third round at Australian FC 5 in Melbourne. The contest was at welterweight (170 lb), two divisions above the weight at which Volkanovski would eventually win the UFC title. The May 10 local-event date may appear as May 9 in US-based databases because of time-zone differences.",
+          "sourceLabel": "MMA Fighting",
+          "source": "https://www.mmafighting.com/2020/7/9/21315973/corey-nelson-only-fighter-to-defeat-alexander-volkanovski-recalls-win-over-ufc-featherweight-champ"
+        },
+        {
+          "date": "2014–2016",
+          "label": "Regional championships and move toward featherweight",
+          "kind": "milestone",
+          "detail": "Volkanovski won multiple titles on the regional circuit, including Australian Fighting Championship and Pacific Xtreme Combat featherweight championships. He also competed at higher weight classes during his early professional career. The individual title bouts are dated separately below.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "Dec. 4, 2015",
+          "label": "WIN · Yusuke Yachi · PXC featherweight title",
+          "kind": "win",
+          "detail": "Volkanovski submitted Yusuke Yachi with a triangle choke at 3:43 of round four at PXC 50 in Guam, taking the promotion's featherweight championship.",
+          "sourceLabel": "PXC 50 results",
+          "source": "https://www.sherdog.com/events/PXC-Pacific-Xtreme-Combat-50-49511"
+        },
+        {
+          "date": "Mar. 19, 2016",
+          "label": "WIN · Jamie Mullarkey · AFC title defense",
+          "kind": "win",
+          "detail": "Volkanovski knocked out Jamie Mullarkey at 3:23 of round one at Australian FC 15, successfully defending his AFC featherweight championship.",
+          "sourceLabel": "Sherdog",
+          "source": "https://www.sherdog.com/fighter/Alexander-Volkanovski-101527"
+        },
+        {
+          "date": "Nov. 26, 2016",
+          "label": "WIN · Yusuke Kasuya · UFC debut at lightweight",
+          "kind": "win",
+          "detail": "Volkanovski made his UFC debut at UFC Fight Night 101 in Melbourne, stopping Yusuke Kasuya by TKO at 2:06 of round two. The debut was at 155 lb; he subsequently competed at featherweight. Some coverage dates the show Nov. 27 in Australia.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "Dec. 29, 2018",
+          "label": "WIN · Chad Mendes · second-round TKO",
+          "kind": "win",
+          "detail": "Volkanovski stopped former title challenger Chad Mendes with punches at 4:14 of round two at UFC 232. This was a significant step toward title contention.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "May 11, 2019",
+          "label": "WIN · José Aldo · earns title opportunity",
+          "kind": "win",
+          "detail": "Volkanovski defeated former featherweight champion José Aldo by unanimous decision at UFC 237 in Rio de Janeiro. The result helped establish him as the next challenger for Max Holloway's title.",
+          "sourceLabel": "UFC results",
+          "source": "https://www.ufc.com/news/ufc-237-results"
+        },
+        {
+          "date": "Dec. 14, 2019",
+          "label": "WIN · Max Holloway · becomes UFC champion",
+          "kind": "win",
+          "detail": "Volkanovski beat Holloway by unanimous decision at UFC 245 in Las Vegas to win the UFC featherweight championship for the first time.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "Dec. 19, 2019",
+          "label": "Reveals broken left hand after UFC 245",
           "kind": "injury",
-          "detail": "Volkanovski broke his left hand during the first Max Holloway fight at UFC 245, where he won the featherweight title. He underwent surgery after the fight.",
+          "detail": "Five days after winning the belt, Volkanovski said he had fractured his left hand during the Holloway fight and needed surgery. Surgery was scheduled for the following day; the public report is dated Dec. 19.",
           "sourceLabel": "MMA Fighting",
           "source": "https://www.mmafighting.com/2019/12/19/21029573/alexander-volkanovski-surgery-broken-hand-ufc-245-max-holloway"
         },
         {
-          "date": "July 2022",
-          "label": "Broken left thumb requires surgery",
-          "kind": "injury",
-          "detail": "Volkanovski broke his left thumb in the second round of the third Max Holloway fight at UFC 276. He still completed the five-round win, then underwent surgery and was expected to be out roughly 12 weeks.",
-          "sourceLabel": "ABC News",
-          "source": "https://abcnews.com/Sports/ufc-fighter-alexander-volkanovski-broken-thumb-12-weeks/story?id=86459848"
-        },
-        {
-          "date": "Career camp",
-          "label": "Freestyle home base, regular City Kickboxing cross-training",
-          "kind": "camp",
-          "detail": "Freestyle Fighting Gym under Joe Lopez has remained Volkanovski's home gym. He has also made regular trips to City Kickboxing in New Zealand, but has explicitly described Freestyle as the gym he intends to stay with for his career.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/news/alexander-volkanovski-aiming-wild-win-zombie-featherweight-title-ufc-273"
+          "date": "Jul. 11, 2020",
+          "label": "WIN · Max Holloway II · first title defense",
+          "kind": "win",
+          "detail": "Volkanovski retained the featherweight title by split decision over Holloway in their UFC 251 rematch in Abu Dhabi. The local event date was July 12 in the UAE.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
         },
         {
           "date": "Mar. 2021",
-          "label": "COVID-19 forces withdrawal from Brian Ortega title defense",
+          "label": "COVID-19 postpones Ortega title defense",
           "kind": "illness",
-          "detail": "Volkanovski tested positive for COVID-19 and was removed from his scheduled UFC 260 title defense against Brian Ortega. He later described the illness as a significant setback and used the recovery period to place more emphasis on hydration, recovery and other camp details.",
-          "sourceLabel": "UFC",
+          "detail": "Volkanovski tested positive for COVID-19 and withdrew from the originally scheduled UFC 260 fight with Brian Ortega. The fight was later rescheduled for September. He subsequently discussed changes to his recovery and hydration practices.",
+          "sourceLabel": "UFC interview",
           "source": "https://www.ufc.com/news/alexander-volkanovski-ready-make-statement"
         },
         {
-          "date": "Jan. 31, 2026",
-          "label": "WIN · Diego Lopes · successful title defense",
+          "date": "Sep. 25, 2021",
+          "label": "WIN · Brian Ortega · second title defense",
           "kind": "win",
-          "detail": "In Sydney, Volkanovski beat Diego Lopes by unanimous decision for a second time, successfully defending the featherweight title he had regained in 2025.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/event/ufc-325"
+          "detail": "Volkanovski defeated Ortega by unanimous decision at UFC 266, surviving dangerous guillotine and triangle choke attempts in round three and retaining his championship.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
         },
         {
-          "date": "2011",
-          "label": "Starts MMA at Freestyle Fighting Gym during rugby offseason",
-          "kind": "training",
-          "detail": "Volkanovski and rugby teammates first walked into Joe Lopez's Freestyle Fighting Gym to get in shape for the upcoming rugby season. He quickly discovered he had a real aptitude for grappling and decided MMA was something he wanted to pursue seriously, eventually leaving rugby to become a full-time fighter.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/news/joe-lopez-says-personality-clash-fuels-featherweight-champion-alexander-volkanovski-ufc-266"
+          "date": "Apr. 9, 2022",
+          "label": "WIN · Chan Sung Jung · third title defense",
+          "kind": "win",
+          "detail": "Volkanovski stopped 'The Korean Zombie' by TKO 45 seconds into the fourth round at UFC 273, retaining the featherweight title.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "Apr. 2022",
+          "label": "Clarifies camp structure: Freestyle is the home base",
+          "kind": "camp",
+          "detail": "In a UFC interview before UFC 273, Volkanovski said Joe Lopez's Freestyle Fighting Gym remained his permanent base. He also trained at City Kickboxing in New Zealand and made trips to Thailand to work with other training partners; those trips were not permanent gym changes.",
+          "sourceLabel": "UFC interview",
+          "source": "https://www.ufc.com/news/alexander-volkanovski-aiming-wild-win-zombie-featherweight-title-ufc-273"
+        },
+        {
+          "date": "Jul. 2, 2022",
+          "label": "WIN · Max Holloway III · fourth title defense",
+          "kind": "win",
+          "detail": "Volkanovski won all five rounds on the judges' scorecards in his third fight with Holloway at UFC 276, earning a unanimous decision and his fourth defense of the featherweight belt.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "Jul. 8, 2022",
+          "label": "Broken left thumb and surgery after UFC 276",
+          "kind": "injury",
+          "detail": "Volkanovski revealed he had broken his left thumb in round two against Holloway, had surgery after the fight, and expected to be sidelined for approximately 12 weeks. The news was reported July 8.",
+          "sourceLabel": "ABC News / ESPN",
+          "source": "https://abcnews.com/Sports/ufc-fighter-alexander-volkanovski-broken-thumb-12-weeks/story?id=86459848"
+        },
+        {
+          "date": "Feb. 12, 2023",
+          "label": "LOSS · Islam Makhachev · first lightweight title challenge",
+          "kind": "loss",
+          "detail": "At UFC 284 in Perth, Volkanovski moved up to lightweight and lost a competitive five-round unanimous decision to champion Islam Makhachev. This was his first attempt to become a two-division UFC champion.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "Jul. 8, 2023",
+          "label": "WIN · Yair Rodríguez · fifth title defense",
+          "kind": "win",
+          "detail": "Volkanovski stopped interim champion Yair Rodríguez by strikes at 4:19 of round three at UFC 290. This was the fifth successful defense of his first featherweight title reign.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "Oct. 21, 2023",
+          "label": "LOSS · Islam Makhachev II · short-notice knockout",
+          "kind": "loss",
+          "detail": "Volkanovski accepted the UFC 294 lightweight title rematch on roughly 11 days' notice after Charles Oliveira withdrew. Makhachev knocked him out with a head kick and follow-up punches at 3:06 of round one in Abu Dhabi.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "Feb. 17, 2024",
+          "label": "LOSS · Ilia Topuria · loses featherweight title",
+          "kind": "loss",
+          "detail": "Topuria knocked Volkanovski out at 3:32 of round two at UFC 298, ending Volkanovski's first featherweight championship reign. It was his second straight knockout defeat.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "Mar. 2024 – Apr. 2025",
+          "label": "Extended break before returning to competition",
+          "kind": "milestone",
+          "detail": "After the Topuria loss, Volkanovski did not compete again until April 2025, a roughly 14-month interval between fights. The gap followed consecutive knockout defeats to Makhachev and Topuria; an exact medical clearance timeline is not publicly established here.",
+          "sourceLabel": "UFC fighter profile",
+          "source": "https://www.ufc.com/athlete/alexander-volkanovski"
+        },
+        {
+          "date": "Apr. 12, 2025",
+          "label": "WIN · Diego Lopes · regains vacant UFC title",
+          "kind": "win",
+          "detail": "With Ilia Topuria moving up to lightweight and vacating the featherweight championship, Volkanovski beat Diego Lopes by unanimous decision at UFC 314 in Miami to become a two-time UFC featherweight champion.",
+          "sourceLabel": "Reuters",
+          "source": "https://www.reuters.com/sports/volkanovski-reclaims-featherweight-title-with-win-over-lopes-2025-04-13/"
+        },
+        {
+          "date": "Jan. 31, 2026",
+          "label": "WIN · Diego Lopes II · defends regained title",
+          "kind": "win",
+          "detail": "In Sydney at UFC 325, Volkanovski defeated Lopes again by unanimous decision (49-46, 49-46, 50-45), making the first successful defense of his second featherweight title reign.",
+          "sourceLabel": "UFC 325 results",
+          "source": "https://www.ufc.com/news/ufc-325-results-volkanovski-vs-lopes-2-main-card-highlights-winners-interviews"
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · scheduled title defense vs. Movsar Evloev",
+          "kind": "upcoming",
+          "detail": "Volkanovski is scheduled to defend the featherweight championship against unbeaten Movsar Evloev at UFC 333 at Etihad Arena in Abu Dhabi. The UFC 333 main card is scheduled to begin at 2:00 p.m. US Eastern (10:00 p.m. Abu Dhabi local time); the exact main-event walkout time is not confirmed.",
+          "sourceLabel": "UFC 333 event page",
+          "source": "https://www.ufc.com/event/ufc-333"
         }
       ],
       "audit": {
-        "pass": 4,
-        "verifiedThrough": "2026-10-07",
-        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
+        "pass": 5,
+        "verifiedThrough": "2026-10-21",
+        "scope": "youth wrestling, rugby-to-MMA transition, early professional bouts and titles, UFC debut, individual championship results, documented injuries/illness, gym history, current booking; dates and fight finish times checked against primary and MMA record sources"
       }
     },
     "Movsar Evloev": {
@@ -3718,6 +3814,6 @@
       }
     }
   },
-  "updatedAt": "2026-10-07",
+  "updatedAt": "2026-10-21",
   "notes": "Fourth-pass deep audit completed. Duplicate same-event notes merged; distinct same-year career events retained."
 }
