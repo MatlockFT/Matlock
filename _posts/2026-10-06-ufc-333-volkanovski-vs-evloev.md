@@ -84,13 +84,13 @@ Here's where I'm at: I think Kavanagh is the better mixed martial artist, but I'
 
 He reminds me of Merab, minus the relentless takedown attempts. Most opponents want to establish their jab, circle around the cage, and find their range. Temirov wants none of that. His striking accuracy is pretty poor, and that's obvious when you watch his fights. But his relentless pace and explosiveness catch opponents off guard, and he has the power to hurt them or put them away.
 
-I think the right fighter to beat Temirov needs to time him on the way in and intercept him with counters that use his forward momentum against him. He needs to lead Temirov into shots rather than simply react to the chaos. Combinations are important, too. His opponent has to be willing to take one to land three or four in return. Finally, he needs to invest in body work. If Temirov survives the opening round, the goal should be to wear him down enough to take the second and third rounds or find a late finish.
+I think the right fighter to beat Temirov needs to time him on the way in and intercept him with counters that use his forward momentum against him. He needs to lead Temirov into shots rather than react off his explosions. Combinations are important, too. His opponent has to be willing to take one to land three or four in return. Finally, he needs to invest in body work. If Temirov's opponent survives the opening round, the goal should be to wear him down enough to take the second and third rounds or find a late finish.
 
 Kavanagh might not be the perfect candidate, but he checks some of those boxes. His body kicks are excellent, particularly from southpaw. They could help him control the distance while baiting Temirov into thinking he has an opening, only to run into a straight left or check right hook.
 
 Aside from Charles Johnson, I think Kavanagh is comfortably the best fighter Temirov has faced. With all due respect to Erceg, Kavanagh is also the more technically sound and intelligent fighter, at least when we set aside his defensive lapses.
 
-Erceg leaned so far forward and stood so close to Temirov that it was bizarre. He barely used his reach or length to keep him at bay. Kavanagh can study Temirov's fight with Johnson, giving him a shared opponent to analyze, and there's also Royval's performance to draw from. Royval put Temirov under pressure, too.
+Erceg leaned so far forward and stood so close to Temirov that it was bizarre. He barely used his reach or length to keep him at bay. Kavanagh can study Temirov's fight with Johnson, giving him a shared opponent to analyze. I also think Kavanagh's fight with Royval is very good experience to draw from because Royval pressed him relentlessly and stayed in his face. Can Kavanagh learn from that and not repeat those same habits?  
 
 Some of you are probably thinking, *No way. Temirov is a freight train, and he's going to blast through Kavanagh.* Honestly, I can see that outcome just as clearly. Temirov's style is dangerous, and Kavanagh has defensive flaws that could cost him dearly.
 
