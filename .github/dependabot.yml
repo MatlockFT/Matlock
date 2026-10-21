@@ -4,3 +4,22 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    open-pull-requests-limit: 3
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+
+  - package-ecosystem: "npm"
+    directory: "/_netlify-auth"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 2
+
+  - package-ecosystem: "bundler"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 2
