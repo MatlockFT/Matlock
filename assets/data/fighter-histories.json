@@ -4343,114 +4343,202 @@
       "division": "Light Heavyweight",
       "items": [
         {
-          "date": "Amateur base",
-          "label": "Combat sambo and MMA",
+          "date": "Before full-time MMA (specific years unreported)",
+          "label": "Works as a plumber and earns banking degree",
+          "kind": "background",
+          "detail": "Before full-time MMA competition, Yakhyaev worked as a plumber and says he attended college and earned a banking degree. No school, diploma year or exact employment period is documented in his UFC questionnaire; these are background details without independently verified dates.",
+          "sourceLabel": "UFC athlete Q&A",
+          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
+        },
+        {
+          "date": "2019 (before Oct. 19; exact earlier background unreported)",
+          "label": "Combat sambo and MMA training foundation",
           "kind": "training",
-          "detail": "Yakhyaev holds Master of Sports credentials in combat sambo and MMA and built a substantial amateur background before turning pro.",
-          "sourceLabel": "UFC profile",
+          "detail": "Yakhyaev has described an amateur background in combat sambo and MMA and says he earned Russian Master of Sports designations in both disciplines. His UFC questionnaire does not provide award dates, wrestling tournament names or detailed competition results, so those are not invented.",
+          "sourceLabel": "UFC athlete questionnaire",
           "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
         },
         {
-          "date": "2021",
-          "label": "Turns professional",
+          "date": "Oct. 19, 2019",
+          "label": "AMATEUR LOSS · Kazbek Cheldiev · decision",
           "kind": "milestone",
-          "detail": "Yakhyaev began his professional career in 2021.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
+          "detail": "At the Valeri Kokov Memorial 2019 amateur MMA tournament in Nalchik, Yakhyaev lost a three-round unanimous decision to Kazbek Cheldiev. This is the only publicly indexed amateur MMA result identified here, not evidence that it was his sole amateur fight. The loss is separate from his 10-0 professional record.",
+          "sourceLabel": "Tapology amateur result",
+          "source": "https://www.tapology.com/fightcenter/bouts/469509-valeri-kokov-memorial-2019-kazbek-cheldiev-vs-abdulrakhman-yakhyaev"
         },
         {
-          "date": "2024",
-          "label": "Wins Ares FC light heavyweight title",
+          "date": "Before Nov. 2021 (exact dates unverified)",
+          "label": "Reports NAGA European grappling championship",
           "kind": "milestone",
-          "detail": "Yakhyaev captured the Ares FC light heavyweight championship and defended it once.",
-          "sourceLabel": "UFC profile",
+          "detail": "Yakhyaev's UFC questionnaire lists a European NAGA championship as a grappling credential. It does not establish the event edition, division, weight or year, so the title is described as self-reported and is not counted among his MMA victories.",
+          "sourceLabel": "UFC athlete Q&A",
           "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
         },
         {
-          "date": "Current camps",
-          "label": "MMA Nürnberg + Fight Sports Deerfield Beach",
-          "kind": "camp",
-          "detail": "Yakhyaev has trained with MMA Nürnberg in Germany and also with JZ Cavalcante at Fight Sports Deerfield Beach in Florida.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/news/abdul-rakhman-yakhyaev-active-successful-and-hungry-more-ufc-baku"
+          "date": "Nov. 12, 2021",
+          "label": "WIN · Elbek Ravshanov · professional debut, TKO R1",
+          "kind": "win",
+          "detail": "Yakhyaev made his professional MMA debut against Elbek Ravshanov at ACA Young Eagles 22, winning by TKO (punches/ground strikes) at 3:00 of round one. This was his first professional win, not a UFC debut.",
+          "sourceLabel": "Sherdog official professional results",
+          "source": "https://www.sherdog.com/fighter/AbdulRakhman-Yakhyaev-395509"
+        },
+        {
+          "date": "Jun. 25, 2022",
+          "label": "WIN · Nazhmudin Yusupov · triangle choke R2",
+          "kind": "win",
+          "detail": "At ACA Young Eagles 27, Yakhyaev submitted Nazhmudin Yusupov by triangle choke at 3:09 of round two, his second professional victory. Some databases report 3:05; the Sherdog event page and athlete record list 3:09.",
+          "sourceLabel": "Sherdog official ACA Young Eagles 27 results",
+          "source": "https://www.sherdog.com/events/ACA-YE-27-ACA-Young-Eagles-27-93494"
+        },
+        {
+          "date": "Oct. 15, 2022",
+          "label": "WIN · Mouhamadou Lamine · first-round TKO",
+          "kind": "win",
+          "detail": "Yakhyaev defeated Mouhamadou Lamine (also spelled Mohamadou Lamine) at Khan Fight 1 in Turkey via first-round TKO (punches/ground strikes). Sherdog's fight record lists 0:24, whereas some secondary databases give 0:37. The exact finish time is disputed, so the conflicting values are noted rather than presented as a universally confirmed clock.",
+          "sourceLabel": "Sherdog professional record",
+          "source": "https://www.sherdog.com/fighter/AbdulRakhman-Yakhyaev-395509"
+        },
+        {
+          "date": "Jan. 7, 2023",
+          "label": "WIN · Nikolay Kovalenko · KhanFight light heavyweight title",
+          "kind": "win",
+          "detail": "Yakhyaev beat Nikolay Kovalenko by unanimous decision after five full rounds at Khan Fight 2 in Bursa, Turkey, winning the vacant light heavyweight championship. This remains his only professional fight to go to a decision through October 2026 and his first recorded professional title victory.",
+          "sourceLabel": "Sherdog Khan Fight 2 official results",
+          "source": "https://www.sherdog.com/events/Khan-Fight-2-Blood-for-Gold-95949"
+        },
+        {
+          "date": "Jan. 7, 2023",
+          "label": "KhanFight championship becomes his first professional MMA belt",
+          "kind": "milestone",
+          "detail": "The five-round unanimous decision over Nikolay Kovalenko at Khan Fight 2 secured the vacant KhanFight light heavyweight title. It also demonstrated that he had completed a full five-round fight before reaching the UFC, an important contrast with his much shorter recent fights.",
+          "sourceLabel": "Sherdog official Khan Fight 2 title bout",
+          "source": "https://www.sherdog.com/events/Khan-Fight-2-Blood-for-Gold-95949"
+        },
+        {
+          "date": "Mar. 3, 2023 (scheduled, canceled)",
+          "label": "Proposed Arash Mardani ONE Friday Fights bout does not occur",
+          "kind": "milestone",
+          "detail": "Fight-registration sites list a canceled March 3, 2023 bout against Arash Mardani on ONE Friday Fights 7. No completed result is recorded, and the source does not establish why the booking fell through. The canceled bout does not affect his professional record.",
+          "sourceLabel": "NextKnockout fighter bout register",
+          "source": "https://www.nextknockout.com/fighters/abdul-rakhman-yakhyaev-202661"
+        },
+        {
+          "date": "Jul. 11, 2024",
+          "label": "WIN · Paulin Begai · captures ARES light heavyweight championship",
+          "kind": "win",
+          "detail": "At ARES FC 23 in Aubervilliers, France, Yakhyaev submitted Paulin Begai with a guillotine choke at 1:32 of round one to win the ARES FC light heavyweight championship, his second professional regional title.",
+          "sourceLabel": "Sherdog ARES 23 event record",
+          "source": "https://www.sherdog.com/events/Ares-23-Studio-Begai-vs-Yakhyaev-102319"
+        },
+        {
+          "date": "Jul. 11, 2024",
+          "label": "Claims ARES FC light heavyweight title",
+          "kind": "milestone",
+          "detail": "Yakhyaev captured the ARES FC light heavyweight championship by guillotine submission over Paulin Begai. His professional win and exact 1:32 first-round clock are already recorded separately on this date.",
+          "sourceLabel": "Sherdog ARES FC title bout",
+          "source": "https://www.sherdog.com/events/Ares-23-Studio-Begai-vs-Yakhyaev-102319"
+        },
+        {
+          "date": "Sep. 26, 2024",
+          "label": "WIN · Jacky Jeanne · ARES championship defense",
+          "kind": "win",
+          "detail": "Yakhyaev defended his ARES FC light heavyweight title at ARES FC 25 in Paris, submitting Jacky Jeanne by rear-naked choke at 2:23 of round one. ARES confirms the result and clock time. This was his single recorded ARES title defense before entering Dana White's Contender Series.",
+          "sourceLabel": "ARES Fighting official event report",
+          "source": "https://www.aresfighting.com/ares-25-fighting/"
+        },
+        {
+          "date": "Sep. 26, 2024",
+          "label": "Makes sole recorded successful ARES title defense",
+          "kind": "milestone",
+          "detail": "The rear-naked choke over Jacky Jeanne retained Yakhyaev's ARES light heavyweight belt. This was his sixth professional victory, and he next fought on the Contender Series nearly eleven months later.",
+          "sourceLabel": "ARES Fighting official event report",
+          "source": "https://www.aresfighting.com/ares-25-fighting/"
         },
         {
           "date": "Aug. 26, 2025",
-          "label": "WIN · Alik Lorenz · earns UFC contract",
+          "label": "WIN · Alik Lorenz · DWCS TKO and UFC contract",
           "kind": "win",
-          "detail": "A 30-second body-knee-and-punches finish on Contender Series earned Yakhyaev his UFC contract.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
-        },
-        {
-          "date": "Sep 26, 2024",
-          "label": "WIN · Jacky Jeanne · Submission (Rear-Naked Choke)",
-          "kind": "win",
-          "detail": "Abdul Rakhman Yakhyaev defeated Jacky Jeanne. Submission (Rear-Naked Choke).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
-        },
-        {
-          "date": "Apr 4, 2026",
-          "label": "WIN · Brendson Ribeiro · Submission (Rear-Naked Choke)",
-          "kind": "win",
-          "detail": "Abdul Rakhman Yakhyaev defeated Brendson Ribeiro. Submission (Rear-Naked Choke).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
-        },
-        {
-          "date": "Jun 27, 2026",
-          "label": "WIN · Julius Walker · KO (Punches)",
-          "kind": "win",
-          "detail": "Abdul Rakhman Yakhyaev defeated Julius Walker. KO (Punches).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
-        },
-        {
-          "date": "Oct. 24, 2026",
-          "label": "UFC 333 · vs. Nikita Krylov",
-          "kind": "upcoming",
-          "detail": "Abdul Rakhman Yakhyaev is scheduled to face Nikita Krylov at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 10-0-0, UFC 3-0-0.",
-          "sourceLabel": "UFC 333",
-          "source": "https://www.ufc.com/event/ufc-333"
-        },
-        {
-          "date": "Pre-UFC",
-          "label": "Wins KhanFight light heavyweight title",
-          "kind": "milestone",
-          "detail": "Before his Ares FC title run, Yakhyaev also won the KhanFight light heavyweight championship. Together with his combat-sambo and MMA amateur credentials, the regional title run established him as more than a prospect built only on an undefeated record.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
-        },
-        {
-          "date": "Before full-time fighting",
-          "label": "Works as a plumber",
-          "kind": "background",
-          "detail": "Before fighting became his full-time occupation, Yakhyaev worked as a plumber. He also attended college and earned a degree in banking.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
+          "detail": "Yakhyaev stopped Alik Lorenz with a knee to the body followed by punches at 0:30 of round one on Dana White's Contender Series Season 9, Week 3, earning a UFC contract. It counts toward his overall professional record but is not one of his three UFC Octagon victories.",
+          "sourceLabel": "UFC and Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/AbdulRakhman-Yakhyaev-395509"
         },
         {
           "date": "Nov. 22, 2025",
-          "label": "WIN · Raffael Cerqueira · UFC debut submission",
+          "label": "WIN · Raffael Cerqueira · actual UFC debut, RNC R1",
           "kind": "win",
-          "detail": "Yakhyaev made his UFC debut against Raffael Cerqueira and won by rear-naked choke, immediately carrying the finishing style from his regional career into the promotion.",
-          "sourceLabel": "UFC",
+          "detail": "At UFC Fight Night: Tsarukyan vs. Hooker in Doha, Qatar, Yakhyaev submitted Raffael Cerqueira (occasionally misspelled 'Rafael') with a rear-naked choke just 0:33 into round one. This was his actual Octagon debut and first regular UFC victory.",
+          "sourceLabel": "UFC fighter history",
           "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
         },
         {
-          "date": "Amateur career",
-          "label": "Combat-sambo and MMA Master of Sports, plus NAGA title",
-          "kind": "training",
-          "detail": "Yakhyaev says he has the Master of Sports designation in combat sambo and MMA, along with a European NAGA championship. He also describes his toughest fights as his early amateur bouts, when he did not have ideal preparation.",
-          "sourceLabel": "UFC",
+          "date": "By Jun. 2026 (original membership date unconfirmed)",
+          "label": "MMA Nürnberg base, Fight Sports Deerfield Beach training blocks",
+          "kind": "camp",
+          "detail": "UFC reported Yakhyaev training with MMA Nürnberg in Germany and also working with JZ Cavalcante at Fight Sports Deerfield Beach in Florida. Training partners mentioned included Marc-André Barriault, Thad Jean and Rafael Tobias. This is a documented two-location training arrangement, not proof of a permanent switch between the gyms.",
+          "sourceLabel": "UFC June 24, 2026 interview",
+          "source": "https://www.ufc.com/news/abdul-rakhman-yakhyaev-active-successful-and-hungry-more-ufc-baku"
+        },
+        {
+          "date": "By Jun. 2026 (biographical context)",
+          "label": "Chechen-born fighter representing Turkey",
+          "kind": "background",
+          "detail": "UFC describes Yakhyaev as Chechen-born, while athlete databases variously list a Russian birthplace and Turkish sporting affiliation. The UFC interview says he regards both Chechnya and Turkey as homes. These distinctions concern birthplace, residence and representation, not a documented date of nationality change.",
+          "sourceLabel": "UFC June 2026 interview",
+          "source": "https://www.ufc.com/news/abdul-rakhman-yakhyaev-active-successful-and-hungry-more-ufc-baku"
+        },
+        {
+          "date": "Apr. 4, 2026",
+          "label": "WIN · Brendson Ribeiro · rear-naked choke R1",
+          "kind": "win",
+          "detail": "Yakhyaev submitted Brendson Ribeiro by rear-naked choke at 2:52 of round one at UFC Fight Night: Moicano vs. Duncan in Las Vegas. He absorbed eight significant strikes according to UFC's June 2026 report, compared with almost none in his preceding very short UFC/Contender Series fights.",
+          "sourceLabel": "UFC June 2026 fighter interview",
+          "source": "https://www.ufc.com/news/abdul-rakhman-yakhyaev-active-successful-and-hungry-more-ufc-baku"
+        },
+        {
+          "date": "Jun. 27, 2026",
+          "label": "WIN · Julius Walker · eight-second KO",
+          "kind": "win",
+          "detail": "At UFC Baku, Yakhyaev countered Julius Walker with a right hand and followed with punches for an official KO at 0:08 of round one. Sherdog reported it as the second-fastest finish in UFC light heavyweight history at the time. It raised his record to 10-0 and 3-0 in regular UFC bouts, and he received a Performance of the Night bonus.",
+          "sourceLabel": "Sherdog UFC Baku result",
+          "source": "https://www.sherdog.com/news/news/UFC-Baku-Prelims-AbdulRakhman-Yakhyaev-shreds-Julius-Walker-in-eight-seconds-201660"
+        },
+        {
+          "date": "Jun. 27, 2026",
+          "label": "Performance of the Night bonus following UFC Baku knockout",
+          "kind": "milestone",
+          "detail": "Yakhyaev received a Performance of the Night award for his 0:08 first-round KO of Julius Walker in Azerbaijan. The bonus was for a completed UFC bout, which appears as an individual fight entry.",
+          "sourceLabel": "Sherdog post-event awards report",
+          "source": "https://www.sherdog.com/news/news/Four-Performance-of-the-Night-Bonuses-Handed-Out-at-UFC-Baku-201667"
+        },
+        {
+          "date": "Oct. 2026 (current listing, exact camp dates unreported)",
+          "label": "MMA Nürnberg remains listed affiliation",
+          "kind": "camp",
+          "detail": "The UFC lists MMA Nürnberg as Yakhyaev's gym, while its June 2026 reporting confirms training sessions under JZ Cavalcante in Florida. No primary source establishes a new permanent home gym or an injury-driven camp change for UFC 333, so one is not invented.",
+          "sourceLabel": "UFC athlete profile and report",
           "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
+        },
+        {
+          "date": "Oct. 21, 2026",
+          "label": "Discusses Nikita Krylov matchup and willingness to fight longer",
+          "kind": "milestone",
+          "detail": "In a UFC fight-week interview, Yakhyaev described his 3-0 UFC start, the plan to test himself against a much more experienced Krylov, and confidence in his conditioning despite little UFC cage time. He emphasized preparing multiple game plans and training for full rounds. Those are his own statements and do not establish how he will perform in a three-round fight.",
+          "sourceLabel": "UFC fight-week interview, Oct. 21, 2026",
+          "source": "https://jp.ufc.com/news/abdul-rakhman-yakhyaev-on-the-hunt-ufc-333-abu-dhabi"
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · scheduled light heavyweight fight vs. Nikita Krylov",
+          "kind": "upcoming",
+          "detail": "Yakhyaev (10-0 overall, 3-0 in UFC Octagon fights) is scheduled against Nikita Krylov at Etihad Arena in Abu Dhabi. UFC 333 prelims begin at noon US Eastern / 8:00 p.m. Abu Dhabi local time, but the individual fight's walkout time is not established. This is a scheduled bout, not a result as of the October 21 audit.",
+          "sourceLabel": "UFC official 333 fight preview",
+          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-333-volkanovski-vs-evloev"
         }
       ],
       "audit": {
-        "pass": 4,
-        "verifiedThrough": "2026-10-07",
-        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
+        "pass": 5,
+        "verifiedThrough": "2026-10-21",
+        "scope": "all ten professional fights 10-0 and 3-0 UFC, ACA 2021/22 early bouts with finish-clock discrepancies, KhanFight 2023 and ARES FC 2024 titles, documented 2019 amateur loss, NAGA/combat-sambo credentials with uncertainty, education and prior plumbing work, canceled 2023 ONE booking with no claimed cause, DWCS contract, complete 2025/26 UFC stoppages, June 2026 bonus, Germany and Florida gym affiliations, October 21 UFC fight-week interview and October 24 Krylov booking"
       }
     },
     "Abus Magomedov": {
