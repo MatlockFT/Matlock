@@ -38,22 +38,28 @@
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
-  function schedulePreview() {
-  window.clearTimeout(previewTimer);
-  previewTimer = window.setTimeout(updatePreview, 45);
-}
+  // The article preview is a reading surface, not a second live cursor.
+  // Coalesce consecutive keystrokes; repainting every 45ms was visible as jitter.
+  const writerBodyPreviewIdleMs = 650;
+  function schedulePreview(delayMs = 75) {
+    window.clearTimeout(previewTimer);
+    previewTimer = window.setTimeout(() => {
+      previewTimer = 0;
+      updatePreview();
+    }, delayMs);
+  }
 
 initializeWriterAutoCorrect();
 
 Object.values(fields).forEach(el => {
   el.addEventListener('input', () => {
     if (el === fields.filename && !currentPath) filenameTouched = true;
-    schedulePreview();
+    schedulePreview(el === bodyEditor ? writerBodyPreviewIdleMs : 75);
     updateDocumentStatus();
     scheduleAutosave();
   });
   el.addEventListener('change', () => {
-    schedulePreview();
+    schedulePreview(el === bodyEditor ? writerBodyPreviewIdleMs : 75);
     updateDocumentStatus();
     scheduleAutosave();
   });

@@ -1139,63 +1139,72 @@
     }
   }
 
+  // Exact content identity keeps untouched blocks (including scroll anchors) in
+  // place if a paragraph, heading, or visual is inserted earlier in the story.
+  // Index-based patching changes the meaning of existing nodes and can cause
+  // the preview to bounce even without any explicit scrollTop assignments.
+  function writerPreviewIdentity(node) {
+    const key = previewEmbedKey(node);
+    return key ? 'embed:' + key : 'markup:' + node.outerHTML;
+  }
+
   function patchPreviewContent(html) {
     const template = document.createElement('template');
     template.innerHTML = html || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
-    const nextElements = [...template.content.children];
-    const neededEmbedKeys = new Set(nextElements.map(previewEmbedKey).filter(Boolean));
+    const incoming = [...template.content.children];
+    const previous = [...previewContent.children];
+
+    // Reserve identical existing nodes before trying to patch edited nodes.
+    // This prevents an insertion above the viewport from consuming the element
+    // the browser is using as its scroll anchor.
+    const availableByIdentity = new Map();
+    previous.forEach(node => {
+      const identity = writerPreviewIdentity(node);
+      if (!availableByIdentity.has(identity)) availableByIdentity.set(identity, []);
+      availableByIdentity.get(identity).push(node);
+    });
+    const reserved = new Map();
+    const retained = new Set();
+    incoming.forEach(next => {
+      const candidates = availableByIdentity.get(writerPreviewIdentity(next));
+      while (candidates?.length) {
+        const existing = candidates.shift();
+        const embedKey = previewEmbedKey(next);
+        if (embedKey && !preservePreviewKeyedNode(existing, next, embedKey)) continue;
+        reserved.set(next, existing);
+        retained.add(existing);
+        break;
+      }
+    });
+
     let cursor = previewContent.firstElementChild;
-
-    for (const next of nextElements) {
-      const nextKey = previewEmbedKey(next);
-      if (nextKey) {
-        if (cursor && previewEmbedKey(cursor) === nextKey) {
-          if (preservePreviewKeyedNode(cursor, next, nextKey)) {
-            cursor = cursor.nextElementSibling;
-            continue;
-          }
-          const old = cursor;
-          cursor = old.nextElementSibling;
-          previewContent.replaceChild(next, old);
-          continue;
-        }
-        const existing = [...previewContent.children].find(child => previewEmbedKey(child) === nextKey);
-        if (existing && preservePreviewKeyedNode(existing, next, nextKey)) {
-          previewContent.insertBefore(existing, cursor || null);
-          cursor = existing.nextElementSibling;
-          continue;
-        }
+    incoming.forEach(next => {
+      const existing = reserved.get(next);
+      if (existing) {
+        if (existing !== cursor) previewContent.insertBefore(existing, cursor);
+        cursor = existing.nextElementSibling;
+        return;
       }
 
-      if (cursor && !nextKey && !previewEmbedKey(cursor) &&
+      // Edit a changed paragraph in place, without rebuilding its descendants.
+      // Reserved later paragraphs must not be recycled as replacement content.
+      if (cursor && !retained.has(cursor) &&
+          !previewEmbedKey(cursor) && !previewEmbedKey(next) &&
           syncPreviewElement(cursor, next)) {
+        retained.add(cursor);
         cursor = cursor.nextElementSibling;
-        continue;
+        return;
       }
 
-      if (cursor) {
-        const cursorKey = previewEmbedKey(cursor);
-        if (cursorKey && neededEmbedKeys.has(cursorKey)) {
-          previewContent.insertBefore(next, cursor);
-        } else {
-          const old = cursor;
-          cursor = old.nextElementSibling;
-          previewContent.replaceChild(next, old);
-        }
-      } else {
-        previewContent.appendChild(next);
-      }
-    }
+      previewContent.insertBefore(next, cursor);
+    });
 
-    while (cursor) {
-      const next = cursor.nextElementSibling;
-      cursor.remove();
-      cursor = next;
-    }
+    previous.forEach(node => {
+      if (!retained.has(node)) node.remove();
+    });
     [...previewContent.childNodes].forEach(node => {
       if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) node.remove();
     });
-
   }
 
   function sourceMediaBlocks(text = bodyEditor.value) {
@@ -1977,6 +1986,8 @@
     });
   }
 
+  let renderedPreviewBody = null;
+
   function updatePreview() {
     const title = fields.title.value.trim() || 'Untitled article';
     const description = fields.description.value.trim();
@@ -2035,13 +2046,18 @@
     }
 
     app.querySelector('[data-preview-spoiler]').hidden = !fields.spoilerWarning.checked;
-    patchPreviewContent(renderMarkdown(expandedBody));
-    hydratePreviewImages();
-    hydratePreviewVideos();
-    hydratePreviewMediaTools();
-    hydratePreviewTables();
-    hydratePreviewHtmlVisuals();
-    hydratePreviewXEmbeds();
+    // Metadata and autosave updates must not touch the article DOM when the
+    // rendered body is unchanged. Hydration also runs only on changed content.
+    if (expandedBody !== renderedPreviewBody) {
+      patchPreviewContent(renderMarkdown(expandedBody));
+      hydratePreviewImages();
+      hydratePreviewVideos();
+      hydratePreviewMediaTools();
+      hydratePreviewTables();
+      hydratePreviewHtmlVisuals();
+      hydratePreviewXEmbeds();
+      renderedPreviewBody = expandedBody;
+    }
 
     const topics = app.querySelector('[data-preview-topics]');
     app.querySelector('[data-preview-tags]').innerHTML = tags.map(tag => `<li>${escapeHtml(tag)}</li>`).join('');
@@ -6375,22 +6391,28 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
-  function schedulePreview() {
-  window.clearTimeout(previewTimer);
-  previewTimer = window.setTimeout(updatePreview, 45);
-}
+  // The article preview is a reading surface, not a second live cursor.
+  // Coalesce consecutive keystrokes; repainting every 45ms was visible as jitter.
+  const writerBodyPreviewIdleMs = 650;
+  function schedulePreview(delayMs = 75) {
+    window.clearTimeout(previewTimer);
+    previewTimer = window.setTimeout(() => {
+      previewTimer = 0;
+      updatePreview();
+    }, delayMs);
+  }
 
 initializeWriterAutoCorrect();
 
 Object.values(fields).forEach(el => {
   el.addEventListener('input', () => {
     if (el === fields.filename && !currentPath) filenameTouched = true;
-    schedulePreview();
+    schedulePreview(el === bodyEditor ? writerBodyPreviewIdleMs : 75);
     updateDocumentStatus();
     scheduleAutosave();
   });
   el.addEventListener('change', () => {
-    schedulePreview();
+    schedulePreview(el === bodyEditor ? writerBodyPreviewIdleMs : 75);
     updateDocumentStatus();
     scheduleAutosave();
   });

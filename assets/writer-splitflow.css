@@ -57,3 +57,10 @@
 .writer-splitflow [data-preview-content]{
   overflow-anchor:auto;
 }
+
+/* Keep the reading column the same width when content crosses the scroll
+   threshold. Its scroll position is independent of the textarea. */
+.writer-splitflow .writer-preview-pane{
+  scrollbar-gutter:stable;
+  scroll-behavior:auto;
+}

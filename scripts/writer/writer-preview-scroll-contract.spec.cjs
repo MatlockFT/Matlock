@@ -2,84 +2,122 @@ const { test, expect } = require('@playwright/test');
 
 const baseUrl = process.env.WRITER_BASE_URL || 'https://mmamatlock.com/write/';
 
-test('Writer preview receives no script-driven scrollTop writes during per-keystroke live renders', async ({ page }) => {
+test('Writer preview holds its reading position during typing idle and structural updates', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
-
   const app = page.locator('[data-writer-app]');
   await expect(app).toBeVisible();
-
-  const library = page.locator('[data-library-view]');
-  if (await library.isVisible()) await page.click('[data-library-new]');
-
+  if (await page.locator('[data-library-view]').isVisible()) {
+    await page.locator('[data-library-new]').click();
+  }
   const editor = page.locator('#writer-body');
   const previewPane = page.locator('.writer-preview-pane');
-  const splitButton = page.locator('[data-view="split"]');
-  if (await splitButton.isVisible()) await splitButton.click();
+  const previewContent = page.locator('[data-preview-content]');
+  await page.locator('[data-view="split"]').click();
 
-  const body = [
-    'Opening paragraph used to verify preview scrolling while text is edited above the viewport.',
-    ...Array.from({ length: 48 }, (_, index) =>
-      'Paragraph ' + (index + 1) + '. Stable filler keeps the preview tall enough to scroll while the editor remains focused.'
-    ),
-    'Final paragraph used to ensure the document has a full preview length.'
-  ].join('\n\n');
-
-  await editor.fill(body);
-  await expect(previewPane).toBeVisible();
-  await expect(page.locator('[data-preview-content]')).toContainText('Opening paragraph');
-  await page.waitForTimeout(140);
-
-  const previewRange = await previewPane.evaluate(el => {
-    const max = el.scrollHeight - el.clientHeight;
-    if (max < 300) throw new Error('Preview is not sufficiently scrollable for this test (max=' + max + ')');
-    el.scrollTop = Math.round(max * 0.4);
-    return { max, scrollTop: el.scrollTop };
+  const paragraphs = Array.from({ length: 65 }, (_, index) =>
+    'Paragraph ' + (index + 1) + '. This unique paragraph must retain its DOM node while earlier text changes. ' +
+    'The article preview is an independent reading pane.');
+  await editor.fill(['Opening paragraph.', ...paragraphs, 'Final paragraph.'].join('\n\n'));
+  await expect(previewContent).toContainText('Paragraph 65');
+  await previewPane.evaluate(el => {
+    el.scrollTop = Math.round((el.scrollHeight - el.clientHeight) * 0.45);
   });
-  expect(previewRange.scrollTop).toBeGreaterThan(50);
+
+  const before = await page.evaluate(() => {
+    const pane = document.querySelector('.writer-preview-pane');
+    const content = document.querySelector('[data-preview-content]');
+    const paneRect = pane.getBoundingClientRect();
+    const anchor = [...content.children].find(node => {
+      const rect = node.getBoundingClientRect();
+      return rect.top > paneRect.top + 25 && rect.bottom < paneRect.bottom - 20;
+    });
+    if (!anchor) throw new Error('No fully visible preview anchor.');
+    window.__writerTestAnchor = anchor;
+    window.__writerTestAnchorText = anchor.textContent;
+    const owner = pane;
+    let proto = owner;
+    let descriptor;
+    while (proto && !descriptor) {
+      descriptor = Object.getOwnPropertyDescriptor(proto, 'scrollTop');
+      proto = Object.getPrototypeOf(proto);
+    }
+    if (!descriptor?.get || !descriptor?.set) throw new Error('Cannot spy on preview scrollTop.');
+    window.__writerPreviewScrollAssignments = [];
+    Object.defineProperty(owner, 'scrollTop', {
+      configurable: true,
+      get() { return descriptor.get.call(owner); },
+      set(value) {
+        window.__writerPreviewScrollAssignments.push(value);
+        descriptor.set.call(owner, value);
+      }
+    });
+    const offset = anchor.getBoundingClientRect().top - paneRect.top;
+    const original = content.innerHTML;
+    return { offset, scrollTop: pane.scrollTop, original };
+  });
 
   await editor.evaluate(el => {
     el.focus({ preventScroll: true });
     el.setSelectionRange(0, 0);
   });
 
-  await previewPane.evaluate(el => {
-    let owner = el;
-    let descriptor;
-    while (owner && !descriptor) {
-      descriptor = Object.getOwnPropertyDescriptor(owner, 'scrollTop');
-      owner = Object.getPrototypeOf(owner);
-    }
-    if (!descriptor?.get || !descriptor?.set) throw new Error('Could not instrument preview scrollTop.');
-
-    window.__writerPreviewScrollAssignments = [];
-    Object.defineProperty(el, 'scrollTop', {
-      configurable: true,
-      enumerable: descriptor.enumerable,
-      get() { return descriptor.get.call(el); },
-      set(value) {
-        window.__writerPreviewScrollAssignments.push({
-          value,
-          before: descriptor.get.call(el)
-        });
-        descriptor.set.call(el, value);
-      }
-    });
+  // Two quick bursts must not repaint the preview while typing is in progress.
+  // The idle refresh is allowed to change the DOM only after typing stops.
+  await page.keyboard.type('First burst ', { delay: 12 });
+  await page.keyboard.type('second burst ', { delay: 12 });
+  const typing = await page.evaluate(() => {
+    const pane = document.querySelector('.writer-preview-pane');
+    const content = document.querySelector('[data-preview-content]');
+    return {
+      current: content.innerHTML,
+      offset: window.__writerTestAnchor.getBoundingClientRect().top - pane.getBoundingClientRect().top,
+      scrollTop: pane.scrollTop
+    };
   });
+  expect(typing.current, 'Preview should not repaint on every letter during typing idle.').toBe(before.original);
+  expect(Math.abs(typing.offset - before.offset), 'visual anchor drift during typing').toBeLessThan(2);
+  expect(Math.abs(typing.scrollTop - before.scrollTop)).toBeLessThan(2);
 
-  // The pause exceeds the live-preview debounce, so this exercises repeated renders,
-  // not a single batched update at the end of typing.
-  await page.keyboard.type('Added words before the current preview viewport. '.repeat(2), { delay: 55 });
-  await page.waitForTimeout(180);
+  await expect(previewContent.locator('p').first()).toContainText('First burst second burst', { timeout: 6000 });
+  const afterFirst = await page.evaluate(() => {
+    const pane = document.querySelector('.writer-preview-pane');
+    const node = window.__writerTestAnchor;
+    return {
+      connected: node.isConnected,
+      text: node.textContent,
+      offset: node.getBoundingClientRect().top - pane.getBoundingClientRect().top,
+      explicitWrites: window.__writerPreviewScrollAssignments,
+      anchoring: getComputedStyle(pane).overflowAnchor,
+      gutter: getComputedStyle(pane).scrollbarGutter
+    };
+  });
+  expect(afterFirst.connected).toBe(true);
+  expect(afterFirst.text).toBe(await page.evaluate(() => window.__writerTestAnchorText));
+  expect(Math.abs(afterFirst.offset - before.offset), 'visual anchor drift after idle update').toBeLessThan(3);
+  expect(afterFirst.explicitWrites).toEqual([]);
+  expect(afterFirst.anchoring).toBe('auto');
+  expect(afterFirst.gutter).toContain('stable');
 
-  const result = await previewPane.evaluate(el => ({
-    explicitWrites: window.__writerPreviewScrollAssignments,
-    scrollTop: el.scrollTop,
-    anchorEnabled: getComputedStyle(el).overflowAnchor
-  }));
-  expect(result.anchorEnabled).toBe('auto');
-  expect(
-    result.explicitWrites,
-    'A live preview render must never assign preview.scrollTop; doing so can make it step down with each keystroke.'
-  ).toEqual([]);
+  // Adding a new paragraph above the viewport must keep the original
+  // visible paragraph element, rather than reusing its index for new text.
+  await editor.evaluate(el => {
+    el.value = 'A new introduction placed above the viewport. '.repeat(30) + '\n\n' + el.value;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await expect(previewContent.locator('p').first()).toContainText('A new introduction', { timeout: 6000 });
+  const afterInsert = await page.evaluate(() => {
+    const pane = document.querySelector('.writer-preview-pane');
+    const node = window.__writerTestAnchor;
+    return {
+      connected: node.isConnected,
+      text: node.textContent,
+      offset: node.getBoundingClientRect().top - pane.getBoundingClientRect().top,
+      explicitWrites: window.__writerPreviewScrollAssignments
+    };
+  });
+  expect(afterInsert.connected).toBe(true);
+  expect(afterInsert.text).toBe(afterFirst.text);
+  expect(Math.abs(afterInsert.offset - before.offset), 'visual anchor drift after paragraph insertion').toBeLessThan(3);
+  expect(afterInsert.explicitWrites).toEqual([]);
 });

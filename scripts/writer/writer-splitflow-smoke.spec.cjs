@@ -149,7 +149,7 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
     el.value = prefix + el.value;
     el.dispatchEvent(new Event('input', { bubbles: true }));
   }, 'Extra introductory sentence to expand the content above the current preview viewport. '.repeat(45));
-  await page.waitForTimeout(200);
+  await expect(page.locator('[data-preview-content] > p').first()).toContainText('Extra introductory sentence', { timeout: 6000 });
   const previewAnchorAfter = await page.evaluate(() => {
     const pane = document.querySelector('.writer-preview-pane');
     const node = window.__writerPreviewScrollAnchor;
