@@ -4550,130 +4550,458 @@
       "division": "Middleweight",
       "items": [
         {
-          "date": "Childhood",
-          "label": "Lifelong martial arts start",
+          "date": "Childhood (before moving to Germany)",
+          "label": "Begins with wrestling and other martial arts in Russia",
           "kind": "training",
-          "detail": "Magomedov says he began martial arts as a child and has trained throughout his life.",
-          "sourceLabel": "UFC profile",
+          "detail": "Magomedov has described starting wrestling as a child before later building his kickboxing, Muay Thai and boxing skills. His UFC questionnaire says he trained in martial arts throughout childhood but does not give an exact start age or first gym.",
+          "sourceLabel": "UFC athlete questionnaire",
           "source": "https://www.ufc.com/athlete/abus-magomedov"
         },
         {
-          "date": "2010",
-          "label": "Turns professional",
+          "date": "Teenage years (exact relocation date unknown)",
+          "label": "Moves from Russia to Germany",
+          "kind": "background",
+          "detail": "Born in Argun, Chechnya, in 1990, Magomedov moved to Germany with his family during his teenage years and ultimately developed most of his professional MMA career there. The precise move year is not documented in the UFC interview.",
+          "sourceLabel": "UFC interview ahead of Sean Strickland fight",
+          "source": "https://www.ufc.com/news/abus-magomedov-out-prove-hes-headlining-act-ufc-middleweight-main-event"
+        },
+        {
+          "date": "By 2010 (joining date unconfirmed)",
+          "label": "Develops through Germany's regional MMA circuit",
+          "kind": "camp",
+          "detail": "Magomedov's early professional fights took place across Germany from 2010 onward. His later base became UFD Gym in Düsseldorf, but the exact date he joined UFD is not verified. No early-career move to a particular German gym is assigned without evidence.",
+          "sourceLabel": "UFC interview / Sherdog fight history",
+          "source": "https://www.ufc.com/news/abus-magomedov-wont-waste-any-time-middleweight-ufc-fight-night-paris"
+        },
+        {
+          "date": "Feb. 26, 2010",
+          "label": "WIN · Nicola di Loreto · Submission (guillotine choke) · R1",
+          "kind": "win",
+          "detail": "At Outsider Cup: Cage Fight Night 6, Magomedov defeated Nicola di Loreto by submission (guillotine choke) in round 1 at 0:30. This was his first recorded professional MMA fight, at welterweight, and he won at age 19.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Apr. 17, 2010",
+          "label": "WIN · Sjobbe Clymans · TKO (punches) · R1",
+          "kind": "win",
+          "detail": "At Outsider Cup: Cage Fight Night 7, Magomedov defeated Sjobbe Clymans by tko (punches) in round 1 at 1:57. Some records show the stoppage at 0:38, while Sherdog/Fight Atlas lists 1:57. The exact clock is disputed, and 1:57 reflects the Sherdog-sourced table.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "May 29, 2010",
+          "label": "WIN · Fahd Jahri · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At Kiru: In the Spirit of the Knights, Magomedov defeated Fahd Jahri by decision (unanimous) after 2 rounds.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Nov. 27, 2010",
+          "label": "WIN · Igor Montes · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At Tempel Fight School: Mix Fight Gala XI, Magomedov defeated Igor Montes by decision (unanimous) after 2 rounds.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Sep. 17, 2011",
+          "label": "WIN · Bjorn Corsis · TKO (doctor stoppage) · R2",
+          "kind": "win",
+          "detail": "At Superior FC 6, Magomedov defeated Bjorn Corsis by tko (doctor stoppage) in round 2 at 1:28.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Nov. 26, 2011",
+          "label": "WIN · Gocha Smoyan · TKO (doctor stoppage) · R2",
+          "kind": "win",
+          "detail": "At Superior FC 7, Magomedov defeated Gocha Smoyan by tko (doctor stoppage) in round 2 at 0:15.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Sep. 15, 2012",
+          "label": "WIN · David Rosmon · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At European MMA 1, Magomedov defeated David Rosmon by decision (unanimous) after 3 rounds.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Feb. 16, 2013",
+          "label": "WIN · Jessin Ayari · TKO (punches) · R1",
+          "kind": "win",
+          "detail": "At German MMA Championship 3, Magomedov defeated Jessin Ayari by tko (punches) in round 1 at 1:49. The first-round finish won the vacant German MMA Championship (GMC) welterweight title. Ayari later reached the UFC.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Feb. 16, 2013",
+          "label": "Wins German MMA Championship welterweight belt",
           "kind": "milestone",
-          "detail": "Magomedov began his professional MMA career in 2010.",
-          "sourceLabel": "UFC profile",
+          "detail": "Magomedov captured the vacant GMC welterweight title by stopping Jessin Ayari in the first round at GMC 3. He subsequently lost a GMC title fight to Rafal Moks in July 2013; both individual fights appear elsewhere on this timeline.",
+          "sourceLabel": "UFC fighter-reported titles and result",
           "source": "https://www.ufc.com/athlete/abus-magomedov"
         },
         {
-          "date": "2013-2017",
-          "label": "German and Superior FC titles",
-          "kind": "milestone",
-          "detail": "Before reaching the UFC, Magomedov won German MMA and Superior FC championships at welterweight and middleweight.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/abus-magomedov"
-        },
-        {
-          "date": "Sep. 3, 2022",
-          "label": "WIN · Dustin Stoltzfus · UFC debut KO",
-          "kind": "win",
-          "detail": "Magomedov needed only 19 seconds to stop Dustin Stoltzfus in his UFC debut.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/abus-magomedov"
-        },
-        {
-          "date": "May 18, 2024",
-          "label": "WIN · Warlley Alves · Decision (Unanimous)",
-          "kind": "win",
-          "detail": "Abus Magomedov defeated Warlley Alves. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abus-magomedov"
-        },
-        {
-          "date": "Oct 26, 2024",
-          "label": "WIN · Brunno Ferreira · Submission (Arm-Triangle Choke)",
-          "kind": "win",
-          "detail": "Abus Magomedov defeated Brunno Ferreira. Submission (Arm-Triangle Choke).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abus-magomedov"
-        },
-        {
-          "date": "Apr 26, 2025",
-          "label": "WIN · Michel Pereira · Decision (Unanimous)",
-          "kind": "win",
-          "detail": "Abus Magomedov defeated Michel Pereira. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abus-magomedov"
-        },
-        {
-          "date": "Oct 4, 2025",
-          "label": "LOSS · Joe Pyfer · Submission (Face Crank)",
+          "date": "Mar. 23, 2013",
+          "label": "LOSS · Andreas Stahl · Submission (rear-naked choke) · R2",
           "kind": "loss",
-          "detail": "Abus Magomedov lost to Joe Pyfer. Submission (Face Crank).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/abus-magomedov"
+          "detail": "At Heroes Fighting Championship, Magomedov lost to Andreas Stahl by submission (rear-naked choke) in round 2 (exact stoppage time unavailable). This was his first professional loss; Stahl submitted him with a rear-naked choke. Other databases omit the finish clock, so no time is asserted.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
         },
         {
-          "date": "Jun 27, 2026",
-          "label": "WIN · Michal Oleksiejczuk · Submission (Guillotine Choke)",
+          "date": "Jun. 1, 2013",
+          "label": "WIN · Andreas Birgels · TKO (punches) · R1",
           "kind": "win",
-          "detail": "Abus Magomedov defeated Michal Oleksiejczuk. Submission (Guillotine Choke).",
-          "sourceLabel": "UFC",
+          "detail": "At Superior FC 13, Magomedov defeated Andreas Birgels by tko (punches) in round 1 at 4:44. Magomedov won the Superior FC welterweight championship. The promotion's archived event report confirms the 4:44 first-round stoppage.",
+          "sourceLabel": "Superior FC official 2013 results",
+          "source": "https://superior-fc.com/superior-fc-13/"
+        },
+        {
+          "date": "Jun. 1, 2013",
+          "label": "Wins Superior FC welterweight championship",
+          "kind": "milestone",
+          "detail": "Superior FC records his TKO over Andreas Birgels at 4:44 of round one on June 1, 2013, and the UFC credits him with the 2013 Superior FC welterweight title. This is a separate regional championship from the GMC title.",
+          "sourceLabel": "Superior FC archive",
+          "source": "https://superior-fc.com/superior-fc-13/"
+        },
+        {
+          "date": "Jul. 6, 2013",
+          "label": "LOSS · Rafal Moks · Submission (guillotine choke) · R1",
+          "kind": "loss",
+          "detail": "At German MMA Championship 4, Magomedov lost to Rafal Moks by submission (guillotine choke) in round 1 at 2:53. Moks submitted Magomedov with a guillotine in a GMC welterweight title fight, ending his initial German MMA Championship reign.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Sep. 13, 2014",
+          "label": "WIN · Rafal Blachuta · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At German MMA Championship 5, Magomedov defeated Rafal Blachuta by decision (unanimous) after 3 rounds. Fight listings disagree on whether this unanimous decision was scheduled for three or five rounds. Sherdog/Fight Atlas reports three and a 5:00 final-round clock; the result itself is not disputed.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Apr. 18, 2015",
+          "label": "WIN · Donovan Panayiotis · TKO (punches) · R1",
+          "kind": "win",
+          "detail": "At German MMA Championship 6, Magomedov defeated Donovan Panayiotis by tko (punches) in round 1 at 0:56.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Jun. 5, 2015",
+          "label": "WIN · Josip Artukovic · TKO (kick to body and punches) · R1",
+          "kind": "win",
+          "detail": "At Tempel Fight School: Mix Fight Gala 18, Magomedov defeated Josip Artukovic by tko (kick to body and punches) in round 1 at 1:10.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Oct. 3, 2015",
+          "label": "WIN · Manuel Garcia · TKO (punches and knee) · R1",
+          "kind": "win",
+          "detail": "At Merseburger Fight Night 8, Magomedov defeated Manuel Garcia by tko (punches and knee) in round 1 at 0:40.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Nov. 7, 2015",
+          "label": "LOSS · Mikkel Parlo · Decision (unanimous)",
+          "kind": "loss",
+          "detail": "At German MMA Championship 7, Magomedov lost to Mikkel Parlo by decision (unanimous) after 3 rounds. He lost a three-round unanimous decision to the former Bellator middleweight contender, his third professional defeat and last before a six-fight winning streak heading into PFL.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "May 21, 2016",
+          "label": "WIN · Raymond Jarman · TKO (punches) · R1",
+          "kind": "win",
+          "detail": "At Superior FC 14, Magomedov defeated Raymond Jarman by tko (punches) in round 1 (exact stoppage time unavailable). Sherdog's event result shows 0:00 as a missing finish time. A genuine clock time cannot be confirmed, so it is omitted.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Sep. 23, 2016",
+          "label": "WIN · Ivica Truscek · Submission (rear-naked choke) · R2",
+          "kind": "win",
+          "detail": "At Final Fight Championship 26, Magomedov defeated Ivica Truscek by submission (rear-naked choke) in round 2 at 4:50.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Oct. 29, 2016",
+          "label": "WIN · Mathias Schuck · TKO (punch and elbow) · R1",
+          "kind": "win",
+          "detail": "At Superior FC 15, Magomedov defeated Mathias Schuck by tko (punch and elbow) in round 1 at 0:53.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "By 2017 (UFD membership date uncertain)",
+          "label": "UFD Gym Düsseldorf and striking coach Ivan Hippolyte",
+          "kind": "camp",
+          "detail": "Magomedov established a long-term home at UFD Gym in Düsseldorf. UFC's 2022 coverage identifies Ivan Hippolyte as an important coach. Magomedov has also described working on boxing with Sükrü Aksu and training alongside Agit Kabayel. Those relationships should not be conflated with a documented transfer date.",
+          "sourceLabel": "UFC pre-debut gym interview",
+          "source": "https://www.ufc.com/news/abus-magomedov-wont-waste-any-time-middleweight-ufc-fight-night-paris"
+        },
+        {
+          "date": "Mar. 11, 2017",
+          "label": "WIN · Aires Benrois · Submission (guillotine choke) · R2",
+          "kind": "win",
+          "detail": "At Superior FC 16, Magomedov defeated Aires Benrois by submission (guillotine choke) in round 2 at 2:51.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Apr. 22, 2017",
+          "label": "WIN · Sergio Souza · Submission (guillotine choke) · R1",
+          "kind": "win",
+          "detail": "At Final Fight Championship 29, Magomedov defeated Sergio Souza by submission (guillotine choke) in round 1 at 1:20.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Sep. 16, 2017",
+          "label": "WIN · Dan Hope · TKO (punches) · R1",
+          "kind": "win",
+          "detail": "At Superior FC 18, Magomedov defeated Dan Hope by tko (punches) in round 1 at 2:15. The first-round TKO earned Magomedov Superior FC's middleweight championship, four years after his welterweight title in the same promotion.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Sep. 16, 2017",
+          "label": "Superior FC middleweight champion before PFL",
+          "kind": "milestone",
+          "detail": "The win over Dan Hope at Superior FC 18 gave Magomedov a middleweight championship in the same promotion where he had held a welterweight title in 2013. The bout itself is recorded separately in his 29-7-1 professional record.",
+          "sourceLabel": "UFC athlete questionnaire",
           "source": "https://www.ufc.com/athlete/abus-magomedov"
         },
         {
-          "date": "Oct. 24, 2026",
-          "label": "UFC 333 · vs. Cam Rowston",
-          "kind": "upcoming",
-          "detail": "Abus Magomedov is scheduled to face Cam Rowston at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 29-7-1, UFC 5-3-0.",
-          "sourceLabel": "UFC 333",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "date": "Jul. 5, 2018",
+          "label": "WIN · Danillo Villefort · TKO (body front kick and punches) · R1",
+          "kind": "win",
+          "detail": "At PFL 3, Magomedov defeated Danillo Villefort by tko (body front kick and punches) in round 1 at 3:37. His first PFL regular-season bout ended with a front kick to the body followed by punches, one of two early PFL stoppages in 2018.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
         },
         {
-          "date": "2018",
-          "label": "Reaches PFL middleweight tournament final",
+          "date": "Aug. 16, 2018",
+          "label": "WIN · Anderson Goncalves · KO (punches) · R1",
+          "kind": "win",
+          "detail": "At PFL 6, Magomedov defeated Anderson Goncalves by ko (punches) in round 1 at 1:27. His second regular-season knockout secured a leading playoff seed in the 2018 PFL middleweight tournament.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Oct. 20, 2018",
+          "label": "DRAW · Gasan Umalatov · Draw (majority)",
+          "kind": "draw",
+          "detail": "At PFL 10: middleweight quarterfinal, Magomedov fought to a draw with Gasan Umalatov by draw (majority) after 2 rounds. The quarterfinal ended in a majority draw (20-18, 19-19, 19-19). Magomedov nevertheless advanced under PFL's first-round tiebreaker. It is a professional draw, not a win or no contest.",
+          "sourceLabel": "PFL official 2018 playoffs",
+          "source": "https://pflmma.com/news/new-article20102018220620"
+        },
+        {
+          "date": "Oct. 20, 2018",
+          "label": "WIN · Sadibou Sy · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At PFL 10: middleweight semifinal, Magomedov defeated Sadibou Sy by decision (unanimous) after 3 rounds. Magomedov fought twice on the October 20 PFL playoff card and advanced to the final by unanimous decision over Sy after three rounds.",
+          "sourceLabel": "PFL official 2018 playoffs",
+          "source": "https://pflmma.com/news/new-article20102018220620"
+        },
+        {
+          "date": "Oct. 20, 2018",
+          "label": "Two PFL playoff fights on one night, including a draw",
           "kind": "milestone",
-          "detail": "Magomedov advanced through the 2018 PFL middleweight season and playoffs, including a decision over Sadibou Sy in the semifinal, before losing the championship final to Louis Taylor by 33-second knockout.",
-          "sourceLabel": "Sherdog",
+          "detail": "Magomedov fought Gasan Umalatov and Sadibou Sy on October 20. He advanced from the quarterfinal despite a majority draw with Umalatov using the PFL first-round tiebreaker, then beat Sy by unanimous decision to reach the middleweight championship final. The draw counts separately in the career record.",
+          "sourceLabel": "PFL official results",
+          "source": "https://pflmma.com/news/new-article20102018220620"
+        },
+        {
+          "date": "Dec. 31, 2018",
+          "label": "LOSS · Louis Taylor · KO (punch) · R1",
+          "kind": "loss",
+          "detail": "At PFL 2018 Championship, Magomedov lost to Louis Taylor by ko (punch) in round 1 at 0:33. Taylor knocked him out with a single punch 33 seconds into the PFL middleweight championship final, earning the inaugural 2018 PFL title and million-dollar purse. Magomedov finished runner-up.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Dec. 31, 2018",
+          "label": "Runner-up in inaugural PFL middleweight season",
+          "kind": "milestone",
+          "detail": "Louis Taylor knocked Magomedov out in 33 seconds in the championship final. Magomedov was the 2018 PFL middleweight runner-up, not the tournament champion. This was the end of his 2018 PFL run.",
+          "sourceLabel": "Sherdog PFL championship play-by-play",
+          "source": "https://www.sherdog.com/news/news/2018-PFL-Championship-PlaybyPlay-Results-RoundbyRound-Scoring-147673"
+        },
+        {
+          "date": "May 4, 2019",
+          "label": "WIN · Slavisa Simeunovic · Submission (kimura) · R1",
+          "kind": "win",
+          "detail": "At Elite MMA Championship 3, Magomedov defeated Slavisa Simeunovic by submission (kimura) in round 1 at 0:47. A first-round kimura in Düsseldorf was his first completed MMA fight after losing the December 2018 PFL title final.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Dec. 19, 2020",
+          "label": "WIN · Cezariusz Kesik · Technical submission (guillotine choke) · R2",
+          "kind": "win",
+          "detail": "At KSW 57, Magomedov defeated Cezariusz Kesik by technical submission (guillotine choke) in round 2 at 1:53. He won in KSW by a technical guillotine submission. KSW/Tapology report the time around 1:52 to 1:53 of round two; this entry uses the Sherdog/Fight Atlas time of 1:53. It was his last completed professional fight before a series of canceled UFC bookings.",
+          "sourceLabel": "Sherdog-sourced Fight Atlas career table",
+          "source": "https://www.fightatlasmma.com/fighters/abus-magomedov"
+        },
+        {
+          "date": "Dec. 2020 – Sep. 2022",
+          "label": "Approximately 21 months between completed professional fights",
+          "kind": "layoff",
+          "detail": "After the December 19, 2020 win against Cezariusz Kesik, Magomedov did not complete another professional bout until September 3, 2022. Several planned UFC debuts fell through. The gap cannot all be attributed to a specific injury or illness from available evidence.",
+          "sourceLabel": "Sherdog professional MMA record",
           "source": "https://www.sherdog.com/fighter/Abus-Magomedov-60755"
         },
         {
-          "date": "July 1, 2023",
-          "label": "LOSS · Sean Strickland · first UFC main event",
-          "kind": "loss",
-          "detail": "In only his second UFC appearance, Magomedov was placed in a five-round main event against Sean Strickland. After a competitive first round, Strickland overwhelmed him and stopped him in round two.",
-          "sourceLabel": "UFC",
+          "date": "Dec. 18, 2021 (scheduled; canceled)",
+          "label": "Gerald Meerschaert UFC matchup does not happen",
+          "kind": "milestone",
+          "detail": "A UFC booking against Gerald Meerschaert for December 18, 2021 fell through. The fight was not completed, and an independently confirmed medical cause for Magomedov's withdrawal is not established here.",
+          "sourceLabel": "Tapology archived canceled matchup",
+          "source": "https://www.tapology.com/fightcenter/fighters/30204-abusupiyan-magomedov-abus"
+        },
+        {
+          "date": "Before Sep. 3, 2022 (original Paris booking changed)",
+          "label": "Makhmud Muradov withdrawal leads to Dustin Stoltzfus debut",
+          "kind": "milestone",
+          "detail": "Magomedov was originally booked against Makhmud Muradov for UFC Paris on September 3; Muradov withdrew and Dustin Stoltzfus became the replacement opponent. The replacement produced Magomedov's first actual UFC appearance, not a fourth canceled event.",
+          "sourceLabel": "Tapology UFC 2022 booking history",
+          "source": "https://www.tapology.com/fightcenter/fighters/30204-abusupiyan-magomedov-abus"
+        },
+        {
+          "date": "Mar. 22, 2022",
+          "label": "Visa issue cancels Aliaskhab Khizriev bout",
+          "kind": "milestone",
+          "detail": "The UFC announced that visa issues forced Magomedov off a scheduled March 26 matchup with Aliaskhab Khizriev in Columbus, Ohio. Denis Tiuliulin replaced Magomedov. This was a confirmed visa problem, not an MMA defeat, missed weight or doping sanction.",
+          "sourceLabel": "UFC March 22 official card update",
+          "source": "https://www.ufc.com.br/news/updates-ufc-fight-night-blaydes-vs-daukaus-columbus-ohio"
+        },
+        {
+          "date": "Sep. 3, 2022",
+          "label": "WIN · Dustin Stoltzfus · TKO (front kick and punches) · R1",
+          "kind": "win",
+          "detail": "At UFC Fight Night: Gane vs. Tuivasa, Magomedov defeated Dustin Stoltzfus by tko (front kick and punches) in round 1 at 0:19. The 19-second front-kick-led stoppage in Paris was his actual UFC debut and earned him a Performance of the Night bonus. The previous three UFC fight dates had fallen through.",
+          "sourceLabel": "UFC athlete fight history",
           "source": "https://www.ufc.com/athlete/abus-magomedov"
         },
         {
-          "date": "Long-term camp",
-          "label": "UFD Gym Düsseldorf with Ivan Hippolyte",
+          "date": "Jul. 1, 2023",
+          "label": "LOSS · Sean Strickland · TKO (punches) · R2",
+          "kind": "loss",
+          "detail": "At UFC on ESPN 48, Magomedov lost to Sean Strickland by tko (punches) in round 2 at 4:20. In only his second UFC appearance, he took a five-round main event against Strickland. He started aggressively but fatigued in the second round and was stopped at 4:20. Strickland later won the UFC middleweight championship.",
+          "sourceLabel": "UFC athlete fight history",
+          "source": "https://www.ufc.com/athlete/abus-magomedov"
+        },
+        {
+          "date": "Jul. 1, 2023",
+          "label": "First UFC main event arrives in second Octagon appearance",
+          "kind": "milestone",
+          "detail": "After a 19-second UFC debut, Magomedov was booked to headline a five-round fight against Sean Strickland on July 1, 2023. The fight ended in a second-round TKO loss. The event was a large jump in prominence for a UFC newcomer despite extensive regional and PFL experience.",
+          "sourceLabel": "UFC preview of main-event debut",
+          "source": "https://www.ufc.com/news/abus-magomedov-out-prove-hes-headlining-act-ufc-middleweight-main-event"
+        },
+        {
+          "date": "Nov. 4, 2023",
+          "label": "LOSS · Caio Borralho · Decision (unanimous)",
+          "kind": "loss",
+          "detail": "At UFC Fight Night: Almeida vs. Lewis, Magomedov lost to Caio Borralho by decision (unanimous) after 3 rounds. He lost a unanimous decision in São Paulo. It was his second consecutive UFC defeat after the Strickland main event.",
+          "sourceLabel": "UFC athlete fight history",
+          "source": "https://www.ufc.com/athlete/abus-magomedov"
+        },
+        {
+          "date": "Early 2024 (ahead of May 18 Alves bout)",
+          "label": "Trains at American Top Team in Miami to change camp preparation",
           "kind": "camp",
-          "detail": "Magomedov has been a long-time member of UFD Gym in Düsseldorf. His UFC debut coverage identified Ivan Hippolyte as his coach, and UFD has been his main European training base through his PFL and UFC years.",
-          "sourceLabel": "UFC / UFD coverage",
-          "source": "https://www.ufc.com/news/abus-magomedov-wont-waste-any-time-middleweight-ufc-fight-night-paris"
+          "detail": "Following defeats against Strickland and Borralho, Magomedov told Eurosport he traveled to American Top Team in Miami to get more high-level sparring and broaden his preparation for Warlley Alves. He continued describing Sükrü Aksu and his German team as significant past/current coaches, so this is a documented training block, not proof of a permanent split from UFD.",
+          "sourceLabel": "Eurosport Germany 2024 interview",
+          "source": "https://www.eurosport.de/mma/ufc-star-abus-magomedov-im-exklusiven-interview-ich-mache-das-fur-den-titel-mma-news_sto20006555/story.shtml"
         },
         {
-          "date": "2021-Sept. 2022",
-          "label": "Three scrapped UFC bookings delay promotional debut",
-          "kind": "layoff",
-          "detail": "After signing with the UFC, Magomedov had one planned fight in 2021 and two more in 2022 fall apart. One 2022 cancellation was specifically attributed to visa issues. He finally debuted in Paris in September 2022.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/news/abus-magomedov-wont-waste-any-time-middleweight-ufc-fight-night-paris"
+          "date": "May 18, 2024",
+          "label": "WIN · Warlley Alves · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At UFC Fight Night: Barboza vs. Murphy, Magomedov defeated Warlley Alves by decision (unanimous) after 3 rounds. This unanimous decision ended his two-fight UFC losing streak. Magomedov said he used American Top Team in Florida for this camp and emphasized his original wrestling background.",
+          "sourceLabel": "UFC athlete fight history",
+          "source": "https://www.ufc.com/athlete/abus-magomedov"
         },
         {
-          "date": "2021-2022",
-          "label": "Visa issue and other cancellations delay UFC debut",
-          "kind": "layoff",
-          "detail": "Magomedov was signed by the UFC but had fights with Gerald Meerschaert and Aliaskhab Khizriev fail to materialize before his Paris debut. The March 2022 Khizriev booking was specifically canceled because of visa issues, and the prolonged sequence left him waiting more than a year after signing.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/news/updates-ufc-fight-night-blaydes-vs-daukaus-columbus-ohio"
+          "date": "Oct. 26, 2024",
+          "label": "WIN · Brunno Ferreira · Submission (arm-triangle choke) · R3",
+          "kind": "win",
+          "detail": "At UFC 308, Magomedov defeated Brunno Ferreira by submission (arm-triangle choke) in round 3 at 3:14. His third-round arm-triangle submission in Abu Dhabi was his second consecutive UFC win following the Strickland and Borralho defeats.",
+          "sourceLabel": "UFC athlete fight history",
+          "source": "https://www.ufc.com/athlete/abus-magomedov"
+        },
+        {
+          "date": "Oct. 28, 2024",
+          "label": "Explains coaching and conditioning changes after UFC setbacks",
+          "kind": "camp",
+          "detail": "Following his submission of Brunno Ferreira, Magomedov told German outlet tz that he had expanded his coaching team and used a nutritionist and strength-and-conditioning coach. He described doing more camps overseas and improving wrestling and boxing preparation, rather than attributing the turnaround to one new technical skill.",
+          "sourceLabel": "tz interview October 28, 2024",
+          "source": "https://www.tz.de/sport/magomedov-will-mega-event-der-ufc-nach-deutschland-holen-zr-93379518.html"
+        },
+        {
+          "date": "Apr. 26, 2025",
+          "label": "WIN · Michel Pereira · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At UFC Fight Night: Garry vs. Prates, Magomedov defeated Michel Pereira by decision (unanimous) after 3 rounds. Magomedov defeated Pereira by unanimous decision after three rounds in Kansas City, making it three consecutive UFC victories.",
+          "sourceLabel": "UFC athlete fight history",
+          "source": "https://www.ufc.com/athlete/abus-magomedov"
+        },
+        {
+          "date": "Oct. 4, 2025",
+          "label": "LOSS · Joe Pyfer · Submission (face crank) · R2",
+          "kind": "loss",
+          "detail": "At UFC 320, Magomedov lost to Joe Pyfer by submission (face crank) in round 2 at 1:46. Pyfer submitted him in round two. UFC and Sherdog label the finish a face crank; some media databases call it a rear-naked choke, and this entry follows the official UFC/Sherdog classification.",
+          "sourceLabel": "UFC athlete fight history",
+          "source": "https://www.ufc.com/athlete/abus-magomedov"
+        },
+        {
+          "date": "Jun. 27, 2026",
+          "label": "WIN · Michal Oleksiejczuk · Submission (guillotine choke) · R1",
+          "kind": "win",
+          "detail": "At UFC Fight Night: Fiziev vs. Torres, Magomedov defeated Michal Oleksiejczuk by submission (guillotine choke) in round 1 at 3:25. A first-round guillotine submission in Baku brought him to 29-7-1 overall and 5-3 in the UFC ahead of his next scheduled fight. UFC published separate post-fight interviews.",
+          "sourceLabel": "UFC athlete fight history",
+          "source": "https://www.ufc.com/athlete/abus-magomedov"
+        },
+        {
+          "date": "Jun. 27, 2026",
+          "label": "UFC Baku guillotine win and post-fight interview",
+          "kind": "milestone",
+          "detail": "Magomedov defeated Michal Oleksiejczuk by first-round guillotine at 3:25 and spoke to UFC afterward in Baku. The result was his fifth UFC victory. The fight itself appears in a separate entry.",
+          "sourceLabel": "UFC Baku post-fight interview",
+          "source": "https://www.ufc.com/video/157929"
+        },
+        {
+          "date": "Oct. 2026 (directory affiliation, current camp details unconfirmed)",
+          "label": "UFD Gym still listed; no confirmed permanent ATT move",
+          "kind": "camp",
+          "detail": "Sherdog, PFL and third-party gym directories continue to associate Magomedov with UFD Gym Düsseldorf. His 2024 American Top Team work is documented separately. No verified report identifies a permanent new head coach or sole training location for the October 2026 Rowston fight.",
+          "sourceLabel": "UFD Gym association listing",
+          "source": "https://next-fight.com/en/fighters/gym/ufd-gym"
+        },
+        {
+          "date": "Oct. 24, 2026",
+          "label": "UFC 333 · scheduled middleweight bout vs. Cam Rowston",
+          "kind": "upcoming",
+          "detail": "Magomedov (29-7-1 professional, 5-3 UFC) is scheduled to fight Cam Rowston (also listed as Cameron Rowston) at UFC 333 at Etihad Arena in Abu Dhabi. The event's early prelims start 10:00 a.m. Eastern, prelims at noon and main card at 2:00 p.m. Eastern; no confirmed individual walkout time or result is available as of the October 21 audit.",
+          "sourceLabel": "UFC 333 official event page",
+          "source": "https://www.ufc.com/event/ufc-333"
         }
       ],
       "audit": {
-        "pass": 4,
-        "verifiedThrough": "2026-10-07",
-        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
+        "pass": 5,
+        "verifiedThrough": "2026-10-21",
+        "scope": "all 37 professional MMA results 29-7-1 with source-matched dates and documented round times, first career 2010 fight, 2013 GMC and Superior FC welterweight titles, 2017 Superior FC middleweight title, 2018 PFL regular season and two-fight playoff with majority draw, Dec 2018 championship loss, 2020 KSW bout, 2021–22 three UFC planned opponents with visa-related cancellation, all eight UFC fights through June 2026, UFD affiliation and 2024 American Top Team camp, current 333 Rowston booking"
       }
     },
     "Cam Rowston": {
