@@ -176,7 +176,7 @@ My assessment is that Keita is an entertaining action fighter with fast hands, c
 
 Aaron Pico has been a difficult fighter to read. He's got the skills and the raw materials, but they haven't always come together cohesively. His style can look blocky and disjointed, and there's often a sense of discomfort when watching him fight.
 
-That said, his latest outing against Pitbull was arguably the best he's looked. Yes, I know. Pitbull is 40, and there were moments when he just stared at Pico and let minutes tick off the clock. Still, Pico looked more comfortable on the feet and transitioned into his wrestling more seamlessly. That's encouraging because he's often looked skittish, and that can lead to poor decisions.
+That said, his latest outing against Pitbull was arguably the best he's looked. Yes, I know. Pitbull is 40, and there were moments when he just stared at Pico and let minutes tick off the clock. Still, Pico looked more comfortable on the feet and transitioned into his wrestling more seamlessly. That's encouraging because he's often looked uneasy or unsure, and that can lead to poor decisions.
 
 Early in the Pitbull fight, Pico looked uncomfortable, reacting to everything and throwing heavy, looping punches alongside kicks launched from well outside range. As the fight progressed, though, he started working behind his jab and putting combinations together. That's a positive development. It came later than many of us expected, but Pico is 30 now, and his game finally seems to be coming together.
 
