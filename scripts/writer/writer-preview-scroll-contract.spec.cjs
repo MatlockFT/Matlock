@@ -129,4 +129,15 @@ test('Writer preview holds its reading position during immediate typing and stru
   expect(afterInsert.text).toBe(afterFirst.text);
   expect(Math.abs(afterInsert.offset - before.offset), 'visual anchor drift after paragraph insertion').toBeLessThan(3);
   expect(afterInsert.explicitWrites).toEqual([]);
+
+  // Keyed tables must refresh when their content changes, without forcing
+  // unrelated article paragraphs to be reconstructed on normal typing.
+  const originalBody = await editor.inputValue();
+  const withTable = originalBody + '\n\n| Key | Value |\n| --- | --- |\n| Sample | 1 |';
+  await editor.fill(withTable);
+  const sampleTable = previewContent.locator('table[data-writer-table-index="0"]');
+  await expect(sampleTable).toContainText('Sample');
+  await expect(sampleTable).toContainText('1');
+  await editor.fill(withTable.replace('| Sample | 1 |', '| Sample | 2 |'));
+  await expect(sampleTable).toContainText('2', { timeout: 1000 });
 });

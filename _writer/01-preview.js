@@ -434,7 +434,13 @@
     template.innerHTML = html || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
     const incoming = [...template.content.children];
     const previous = [...previewContent.children];
-    const signatures = incoming.map(writerPreviewIdentity);
+    // For keyed visuals, compare both ID and HTML. A Tale of the Tape
+    // or table edit can change its contents while retaining the same key.
+    const signatures = incoming.map(node => {
+      const key = previewEmbedKey(node);
+      const identity = writerPreviewIdentity(node);
+      return key ? identity + ':' + node.outerHTML : identity;
+    });
     const previousSignatures = writerPreviewCanonicalSignatures.length === previous.length
       ? writerPreviewCanonicalSignatures : previous.map(writerPreviewIdentity);
     // Real-time text updates change existing text nodes only; no article
@@ -467,14 +473,14 @@
     // the browser is using as its scroll anchor.
     const availableByIdentity = new Map();
     previous.forEach((node, index) => {
-      const identity = previousSignatures[index];
+      const identity = previewEmbedKey(node) ? writerPreviewIdentity(node) : previousSignatures[index];
       if (!availableByIdentity.has(identity)) availableByIdentity.set(identity, []);
       availableByIdentity.get(identity).push(node);
     });
     const reserved = new Map();
     const retained = new Set();
     incoming.forEach((next, index) => {
-      const candidates = availableByIdentity.get(signatures[index]);
+      const candidates = availableByIdentity.get(previewEmbedKey(next) ? writerPreviewIdentity(next) : signatures[index]);
       while (candidates?.length) {
         const existing = candidates.shift();
         const embedKey = previewEmbedKey(next);
