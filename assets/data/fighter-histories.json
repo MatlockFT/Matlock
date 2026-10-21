@@ -5907,122 +5907,314 @@
       "division": "Lightweight",
       "items": [
         {
-          "date": "Childhood",
-          "label": "Starts training through older brothers",
+          "date": "Childhood (start year unverified)",
+          "label": "Older brothers introduce Aliev to wrestling",
           "kind": "training",
-          "detail": "Aliev says his older brothers brought him to martial-arts training when he was a child. His amateur résumé later grew into two World Pankration titles, a World Youth MMA title, two Asian Pankration titles and an Asian Combat Sambo championship.",
-          "sourceLabel": "UFC",
+          "detail": "Aliev grew up in Dushanbe, Tajikistan and says he began wrestling at around age 12 after his older brothers brought him to training. Because public fighter databases disagree on his birth date, a precise start year is not reliable.",
+          "sourceLabel": "UFC athlete Q&A",
           "source": "https://www.ufc.com/athlete/nurullo-aliev"
         },
         {
-          "date": "Amateur career",
-          "label": "Pankration and combat sambo titles",
+          "date": "2017 or earlier (remaining titles undated)",
+          "label": "Reports additional pankration and combat sambo honors",
           "kind": "milestone",
-          "detail": "Aliev became a two-time world pankration champion, Asian pankration champion and Asian combat sambo champion.",
-          "sourceLabel": "UFC profile",
+          "detail": "UFC credits Aliev with two world pankration championships, two Asian pankration titles and an Asian combat sambo championship. Only the 2017 Sochi pankration result and his 2017 World Youth MMA title are dated separately here; the other honors are reported credentials rather than independently dated professional MMA belts.",
+          "sourceLabel": "UFC athlete questionnaire",
           "source": "https://www.ufc.com/athlete/nurullo-aliev"
         },
         {
-          "date": "Pre-UFC",
-          "label": "Eagle FC lightweight champion",
+          "date": "Feb. 24, 2017",
+          "label": "AMATEUR WIN · Eshpolot Temirov · World Youth MMA selection",
           "kind": "milestone",
-          "detail": "Before joining the UFC, Aliev held the lightweight championship in Gorilla Fighting / Eagle FC.",
-          "sourceLabel": "UFC profile",
+          "detail": "Aliev beat Kyrgyz opponent Eshpolot Temirov at welterweight in Yaroslavl at the 2017 World Youth MMA championship selection stage. Sherdog does not record method, round or clock time; its zero-time placeholder is missing data, not a finish.",
+          "sourceLabel": "Sherdog WMMAA selection event",
+          "source": "https://www.sherdog.com/events/WMMAA-World-Youth-MMA-Championships-2017-Selection-83025"
+        },
+        {
+          "date": "Feb. 24, 2017",
+          "label": "AMATEUR WIN · Jan Fajk · World Youth MMA selection",
+          "kind": "milestone",
+          "detail": "Aliev defeated Jan Fajk from the Czech Republic in the same World Youth MMA tournament. Result confirmed; the event register does not specify a legitimate finish time or method. Amateur MMA, not a pro victory.",
+          "sourceLabel": "Sherdog WMMAA selection event",
+          "source": "https://www.sherdog.com/events/WMMAA-World-Youth-MMA-Championships-2017-Selection-83025"
+        },
+        {
+          "date": "Feb. 25, 2017",
+          "label": "AMATEUR WIN · Alexey Trofimov · wins youth MMA world title",
+          "kind": "milestone",
+          "detail": "Aliev defeated Alexey Trofimov from Russia in the World Youth MMA Championships final at welterweight, completing three recorded wins in the event. The official method and round clock are unavailable; these bouts form his 3-0 indexed amateur MMA record, separate from 12-0 as a professional.",
+          "sourceLabel": "Sherdog WMMAA world youth final",
+          "source": "https://www.sherdog.com/events/WMMAA-World-Youth-MMA-Championships-2017-Finals-83027"
+        },
+        {
+          "date": "Oct. 27–29, 2017",
+          "label": "First place at world pankration championship in Sochi",
+          "kind": "milestone",
+          "detail": "The 2017 United World Wrestling world pankration results from Sochi list Nurullo Aliev representing Tajikistan in first place in a youth bracket. The UFC questionnaire claims two world pankration titles, two Asian pankration championships and an Asian combat sambo championship, but dates and brackets for the other titles have not been established.",
+          "sourceLabel": "United World Wrestling indexed competition results",
+          "source": "https://uww.org/sites/default/files/media/document/event/results/results_10_sotchipk.pdf"
+        },
+        {
+          "date": "2018 (specific gym entry date unverified)",
+          "label": "Early MMA development in Tajikistan",
+          "kind": "camp",
+          "detail": "Regional fighter biography describes Aliev training with Akhmat Tajikistan under Rajabali Baenov during his early professional years. The exact dates and exclusive coaching arrangements are not established, and subsequent international training blocks are documented separately.",
+          "sourceLabel": "Tajikistan career biographical overview",
+          "source": "https://ru.wikipedia.org/wiki/%D0%90%D0%BB%D0%B8%D0%B5%D0%B2%2C_%D0%9D%D1%83%D1%80%D1%83%D0%BB%D0%BB%D0%BE_%D0%A5%D0%B0%D0%B9%D1%80%D1%83%D0%BB%D0%BB%D0%BE%D0%B5%D0%B2%D0%B8%D1%87"
+        },
+        {
+          "date": "Feb. 3, 2018",
+          "label": "WIN · Khabib Khabibuloev · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At Ismoili Somoni FC, Aliev defeated Khabib Khabibuloev by decision (unanimous) after 2 complete rounds (final round at 5:00). First recorded professional bout, held in Dushanbe, Tajikistan. He fought two five-minute rounds.",
+          "sourceLabel": "Sherdog professional results",
+          "source": "https://www.sherdog.com/fighter/Nurullo-Aliev-274869"
+        },
+        {
+          "date": "Mar. 4, 2018",
+          "label": "WIN · Sergey Malikov · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At Battle on the Volga 3, Aliev defeated Sergey Malikov by decision (unanimous) after 3 complete rounds (final round at 5:00). His second pro win. The opponent is sometimes romanized Sergey Malykov.",
+          "sourceLabel": "Sherdog professional results",
+          "source": "https://www.sherdog.com/fighter/Nurullo-Aliev-274869"
+        },
+        {
+          "date": "May 11, 2018",
+          "label": "WIN · Rasul Mamedbekov · TKO (corner stoppage) · R2",
+          "kind": "win",
+          "detail": "At Battle on the Volga 4, Aliev defeated Rasul Mamedbekov by tko (corner stoppage) at 5:00 of round 2. The opponent's corner ended the bout after the second round, the first recorded stoppage victory of Aliev's professional career. This was a semifinal in his 2018 lightweight tournament run.",
+          "sourceLabel": "Sherdog professional results",
+          "source": "https://www.sherdog.com/fighter/Nurullo-Aliev-274869"
+        },
+        {
+          "date": "Sep. 23, 2018",
+          "label": "WIN · Makkasharip Zaynukov · Decision (majority)",
+          "kind": "win",
+          "detail": "At Battle on the Volga 6, Aliev defeated Makkasharip Zaynukov by decision (majority) after 3 complete rounds (final round at 5:00). He won the Battle on the Volga lightweight grand prix final and was listed as the promotion's inaugural lightweight titleholder in historical title records. Some secondary sites mistakenly date this fight to 2028; the September 23, 2018 date is corroborated by Sherdog.",
+          "sourceLabel": "Historic Battle on the Volga title history",
+          "source": "https://theanswer.hatenablog.com/entry/2021/04/09/000214"
+        },
+        {
+          "date": "Sep. 23, 2018",
+          "label": "Wins Battle on the Volga lightweight grand prix",
+          "kind": "milestone",
+          "detail": "The majority-decision win over Makkasharip Zaynukov completed a lightweight tournament after the May semifinal against Rasul Mamedbekov. Historical championship records identify Aliev as the inaugural Battle on Volga lightweight champion. The related Gorilla Fighting / Eagle FC title affiliation in his UFC biography does not establish another separately documented title-winning bout.",
+          "sourceLabel": "Battle on the Volga historical title lineage",
+          "source": "https://theanswer.hatenablog.com/entry/2021/04/09/000214"
+        },
+        {
+          "date": "2019–2021 (promotional title history)",
+          "label": "Gorilla Fighting and Eagle FC championship claim clarified",
+          "kind": "milestone",
+          "detail": "UFC calls Aliev a former 'Gorilla Fighting (now Eagle FC) lightweight world champion.' His GFC 16 win in August 2019 was at welterweight, and his EFC / AMC bout in September 2021 was also at welterweight. Neither should be recast as a new 155-pound title fight without event documentation.",
+          "sourceLabel": "UFC fighter questionnaire",
           "source": "https://www.ufc.com/athlete/nurullo-aliev"
+        },
+        {
+          "date": "Aug. 30, 2019",
+          "label": "WIN · Ramazan Amirov · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At GFC 16, Aliev defeated Ramazan Amirov by decision (unanimous) after 3 complete rounds (final round at 5:00). Aliev competed at welterweight (170 lb). This should not be mislabeled as a lightweight title bout.",
+          "sourceLabel": "Sherdog professional results",
+          "source": "https://www.sherdog.com/fighter/Nurullo-Aliev-274869"
+        },
+        {
+          "date": "2020 (other regional bouts canceled)",
+          "label": "Multiple planned Gorilla FC matches do not occur",
+          "kind": "milestone",
+          "detail": "Fight registries list other planned matchups with Anvar Chergesov and Abdurakhman Alimagomedov in 2019–2020. Alimagomedov was reported to have fractured a rib. These bookings were not completed and did not change Aliev's MMA record.",
+          "sourceLabel": "Tapology canceled bouts",
+          "source": "https://www.tapology.com/fightcenter/fighters/178801-nurullo-aliev"
+        },
+        {
+          "date": "Feb. 9, 2020 (scheduled; canceled)",
+          "label": "Proposed GFC title fight with Anvar Chergesov canceled",
+          "kind": "milestone",
+          "detail": "Aliev was initially listed opposite Anvar Chergesov in a planned Gorilla FC lightweight title matchup at GFC 24. The pairing fell through, and the promotion booked Gadzhi Rabadanov against Joao Paulo de Moura e Silva for the belt instead. No contest involving Aliev occurred.",
+          "sourceLabel": "Tapology canceled bout record",
+          "source": "https://www.tapology.com/fightcenter/fighters/178801-nurullo-aliev"
+        },
+        {
+          "date": "Dec. 24, 2020",
+          "label": "WIN · Alexander Grebnev · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At AMC Fight Nights Global Winter Cup, Aliev defeated Alexander Grebnev by decision (unanimous) after 3 complete rounds (final round at 5:00). This was a three-round welterweight decision. Secondary records showing a first-round 3:07 decision conflict with the event result and should not be treated as a finish.",
+          "sourceLabel": "Sherdog professional results",
+          "source": "https://www.sherdog.com/fighter/Nurullo-Aliev-274869"
+        },
+        {
+          "date": "2021 (degree progress reported; no graduation date)",
+          "label": "Studies information technology in Tajikistan",
+          "kind": "background",
+          "detail": "Aliev told the UFC he was attending university to study Information Technology. Neither a graduation date nor an awarded degree is established by the source; do not describe his enrollment as a completed degree.",
+          "sourceLabel": "UFC athlete questionnaire",
+          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+        },
+        {
+          "date": "Sep. 17, 2021",
+          "label": "WIN · Kirill Kryukov · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At EFC / AMC Abdulmanap Nurmagomedov Memorial Tournament, Aliev defeated Kirill Kryukov by decision (unanimous) after 3 complete rounds (final round at 5:00). Aliev's third recorded professional bout at welterweight. Sherdog dates the fight September 17; some event databases list September 18. This was not a separately documented Eagle FC lightweight championship win.",
+          "sourceLabel": "Sherdog professional results",
+          "source": "https://www.sherdog.com/fighter/Nurullo-Aliev-274869"
+        },
+        {
+          "date": "2022 (camp ahead of Sept. 20)",
+          "label": "Trains at Tiger Muay Thai and Kill Cliff FC",
+          "kind": "camp",
+          "detail": "UFC reported Aliev had trained at Tiger Muay Thai in Thailand and then prepared for Contender Series at Kill Cliff FC in South Florida. These were documented training blocks; the article does not establish that he permanently moved his primary gym.",
+          "sourceLabel": "UFC Contender Series Week 9 preview",
+          "source": "https://www.ufc.com.br/news/dana-whites-contender-series-preview-season-6-week-9"
+        },
+        {
+          "date": "2022 (rank reported; belt promotion day unknown)",
+          "label": "Reports BJJ blue belt despite zero MMA submission wins",
+          "kind": "training",
+          "detail": "Aliev lists a Brazilian jiu-jitsu blue belt in his UFC questionnaire. The date of promotion is unknown. His professional record contains two TKO/KO victories, ten decisions and no submissions, despite his wrestling-heavy MMA style.",
+          "sourceLabel": "UFC athlete questionnaire",
+          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+        },
+        {
+          "date": "Aug. 19, 2022 (planned; canceled)",
+          "label": "LFA fight with Thiago Oliveira canceled for DWCS invitation",
+          "kind": "milestone",
+          "detail": "An originally scheduled LFA 139 fight with Thiago Oliveira did not occur after Aliev was accepted onto Dana White's Contender Series. The booking is not a professional win or loss.",
+          "sourceLabel": "Tapology canceled LFA listing",
+          "source": "https://www.tapology.com/fightcenter/fighters/178801-nurullo-aliev"
         },
         {
           "date": "Sep. 20, 2022",
-          "label": "WIN · Josh Wick · DWCS TKO",
+          "label": "WIN · Josh Wick · TKO (punches) · R1",
           "kind": "win",
-          "detail": "Aliev stopped Josh Wick on Contender Series to earn his UFC contract.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+          "detail": "At Dana White's Contender Series Season 6, Week 9, Aliev defeated Josh Wick by tko (punches) at 4:36 of round 1. Ground strikes produced a first-round TKO and earned Aliev his UFC contract. DWCS counts toward his overall 12-0 professional record but is not one of his four regular UFC Octagon appearances.",
+          "sourceLabel": "UFC Contender Series report",
+          "source": "https://www.ufc.com.br/news/dana-whites-contender-series-preview-season-6-week-9"
+        },
+        {
+          "date": "Sep. 20, 2022",
+          "label": "Wins UFC contract by finishing Josh Wick",
+          "kind": "milestone",
+          "detail": "Aliev stopped Josh Wick at 4:36 of round one on Contender Series Season 6 Week 9. The professional win moved him to 8-0 and earned a UFC contract; he had not yet made his Octagon debut.",
+          "sourceLabel": "UFC 2022 Contender Series coverage",
+          "source": "https://www.ufc.com.br/news/dana-whites-contender-series-preview-season-6-week-9"
+        },
+        {
+          "date": "Late 2023 – 2024 (surgery date undisclosed)",
+          "label": "Leg surgery and rehabilitation",
+          "kind": "injury",
+          "detail": "Aliev later confirmed undergoing surgery after the leg injury. In his January 2025 post-fight interview he said recovery was initially difficult, and he returned to boxing approximately six months after surgery. A precise procedure, surgery date and official clearance date were not disclosed.",
+          "sourceLabel": "MMA Junkie post-fight recovery interview",
+          "source": "https://sports.yahoo.com/nurullo-aliev-glad-past-lengthy-233049826.html"
+        },
+        {
+          "date": "Feb. 2023 – Jan. 2025",
+          "label": "Almost 23 months between professional fights",
+          "kind": "layoff",
+          "detail": "After his Feb. 25, 2023 debut Aliev did not fight again until Jan. 11, 2025, approximately 22 months and 17 days. His leg injury and surgery explain a substantial part of this period; there is no documented anti-doping sanction for the absence.",
+          "sourceLabel": "Sherdog professional fight history",
+          "source": "https://www.sherdog.com/fighter/Nurullo-Aliev-274869"
         },
         {
           "date": "Feb. 25, 2023",
-          "label": "WIN · Rafael Alves · UFC debut",
+          "label": "WIN · Rafael Alves · Decision (majority)",
           "kind": "win",
-          "detail": "Aliev won a majority decision in his UFC debut, then went nearly two years before his next UFC appearance.",
-          "sourceLabel": "UFC profile",
+          "detail": "At UFC Fight Night: Muniz vs. Allen, Aliev defeated Rafael Alves by decision (majority) after 3 complete rounds (final round at 5:00). Aliev won his UFC debut, 29-27, 29-27, 28-28, despite a one-point deduction by referee Mark Smith in round one for an alleged bite. Aliev denied biting intentionally; television replay did not conclusively show the act. The point deduction and majority-decision win are official.",
+          "sourceLabel": "UFC official judges' scorecards",
+          "source": "https://www.ufc.com/news/official-judges-scorecards-ufc-fight-night-krylov-vs-spann-ufc-vegas-70"
+        },
+        {
+          "date": "Feb. 25, 2023",
+          "label": "First Tajikistan-born UFC victor; unusual point deduction",
+          "kind": "milestone",
+          "detail": "Aliev defeated Rafael Alves on his actual UFC debut by majority decision after a point was deducted for a biting foul in round one. Aliev contested the interpretation of the hand-in-mouth exchange; the television replay was inconclusive. Official scorecards were 29-27, 29-27 and 28-28. This was not a doping case or post-fight disciplinary suspension.",
+          "sourceLabel": "UFC official judges' scorecards",
+          "source": "https://www.ufc.com/news/official-judges-scorecards-ufc-fight-night-krylov-vs-spann-ufc-vegas-70"
+        },
+        {
+          "date": "Nov. 3–7, 2023",
+          "label": "Injured leg forces UFC 295 withdrawal",
+          "kind": "injury",
+          "detail": "Aliev withdrew from his scheduled November 11 bout with Mateusz Rębecki after a leg injury and was replaced by Roosevelt Roberts. UFC confirmed the change on November 7. The exact anatomical diagnosis is not independently verified.",
+          "sourceLabel": "UFC official UFC 295 update",
+          "source": "https://www.ufc.com/news/updates-order-ufc-295-prochazka-vs-pereira"
+        },
+        {
+          "date": "Late 2024 (opponent withdrawal, cause unverified)",
+          "label": "Yanal Ashmouz out; Joe Solecki replaces him",
+          "kind": "milestone",
+          "detail": "Aliev had been paired with Yanal Ashmouz for the Jan. 11, 2025 UFC event, but Ashmouz withdrew and Joe Solecki was booked. The reported cause of Ashmouz's withdrawal was not established. Neither man fought Aliev on the originally proposed booking.",
+          "sourceLabel": "UFC profile / bout chronology",
           "source": "https://www.ufc.com/athlete/nurullo-aliev"
         },
         {
-          "date": "Jan 11, 2025",
-          "label": "WIN · Joe Solecki · Decision (Unanimous)",
+          "date": "Jan. 11, 2025",
+          "label": "WIN · Joe Solecki · Decision (unanimous)",
           "kind": "win",
-          "detail": "Nurullo Aliev defeated Joe Solecki. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+          "detail": "At UFC Fight Night: Dern vs. Ribas 2, Aliev defeated Joe Solecki by decision (unanimous) after 3 complete rounds (final round at 5:00). Aliev won 30-27, 29-28, 29-28 in his return after nearly 23 months away following a leg injury and subsequent surgery. Yanal Ashmouz was the originally announced opponent.",
+          "sourceLabel": "UFC official judges' scorecards",
+          "source": "https://www.ufc.com/news/official-judges-scorecards-ufc-fight-night-dern-vs-ribas-2"
         },
         {
-          "date": "Nov 22, 2025",
-          "label": "WIN · Shaqueme Rock · Decision (Unanimous)",
-          "kind": "win",
-          "detail": "Nurullo Aliev defeated Shaqueme Rock. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+          "date": "Jan. 11, 2025",
+          "label": "Successful post-surgery return against Joe Solecki",
+          "kind": "milestone",
+          "detail": "Aliev won a unanimous decision in Las Vegas, 30-27, 29-28, 29-28, almost two years after his previous appearance. He discussed drilling defensive grappling with his jiu-jitsu coach before the match.",
+          "sourceLabel": "UFC official January 2025 scorecards",
+          "source": "https://www.ufc.com/news/official-judges-scorecards-ufc-fight-night-dern-vs-ribas-2"
         },
         {
-          "date": "Jul 25, 2026",
-          "label": "WIN · Mike Davis · Decision (Unanimous)",
+          "date": "Nov. 22, 2025",
+          "label": "WIN · Shaqueme (Shem) Rock · Decision (unanimous)",
           "kind": "win",
-          "detail": "Nurullo Aliev defeated Mike Davis. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/nurullo-aliev"
+          "detail": "At UFC Fight Night: Tsarukyan vs. Hooker, Aliev defeated Shaqueme (Shem) Rock by decision (unanimous) after 3 complete rounds (final round at 5:00). Three judges scored the bout 30-27 for Aliev in Qatar. His record improved to 11-0, including three UFC wins.",
+          "sourceLabel": "UFC official judges' scorecards",
+          "source": "https://www.ufcespanol.com/news/ufc-qatar-official-judges-scorecards-ufc-fight-night-tsarukyan-vs-hooker"
+        },
+        {
+          "date": "Jul. 25, 2026",
+          "label": "WIN · Mike Davis · Decision (unanimous)",
+          "kind": "win",
+          "detail": "At UFC Fight Night: Ankalaev vs. Guskov, Aliev defeated Mike Davis by decision (unanimous) after 3 complete rounds (final round at 5:00). Aliev relied heavily on wrestling and top control, winning every round on every scorecard (30-27, 30-27, 30-27). Davis criticized him after the fight and later apologized. Aliev advanced to 12-0 overall, 4-0 UFC.",
+          "sourceLabel": "UFC official judges' scorecards",
+          "source": "https://www.ufc.com/news/ufc-abu-dhabi-official-scorecards"
+        },
+        {
+          "date": "Jul. 25, 2026",
+          "label": "Wins all three rounds against Mike Davis",
+          "kind": "milestone",
+          "detail": "Aliev earned a 30-27, 30-27, 30-27 unanimous decision in Abu Dhabi behind extensive wrestling and top control. Davis later criticized the style and apologized for his remarks. The official outcome was unchanged.",
+          "sourceLabel": "UFC official Abu Dhabi scorecards",
+          "source": "https://www.ufc.com/news/ufc-abu-dhabi-official-scorecards"
+        },
+        {
+          "date": "Oct. 2026 (current directory listings)",
+          "label": "Kaizen MMA / Kill Cliff FC affiliations",
+          "kind": "camp",
+          "detail": "Sherdog currently lists Aliev's team as Kaizen MMA / Kill Cliff FC. Separate gym listings name Nima Mazhari at Kaizen, but the available evidence does not establish that he is Aliev's current head coach or that Aliev permanently left his earlier Tajik, Thai and Florida training setups.",
+          "sourceLabel": "Sherdog athlete gym affiliations",
+          "source": "https://www.sherdog.com/fighter/Nurullo-Aliev-274869"
+        },
+        {
+          "date": "Oct. 20, 2026",
+          "label": "Fight-week interview ahead of Grant Dawson",
+          "kind": "milestone",
+          "detail": "UFC published Aliev's 'Every Fight Is a New Level' interview during UFC 333 fight week. His 4-0 UFC record includes four decisions, and no reliable source confirms a new injury or transfer of primary gym for this fight.",
+          "sourceLabel": "UFC 333 official fighter interview",
+          "source": "https://www.ufc.com.br/video/161103"
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · vs. Grant Dawson",
+          "label": "UFC 333 · scheduled vs. Grant Dawson",
           "kind": "upcoming",
-          "detail": "Nurullo Aliev is scheduled to face Grant Dawson at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 12-0-0, UFC 4-0-0.",
-          "sourceLabel": "UFC 333",
+          "detail": "Aliev (12-0 professional MMA; 4-0 UFC) is scheduled to meet Grant Dawson at lightweight in the UFC 333 preliminary card at Etihad Arena, Abu Dhabi. The prelims begin at noon U.S. Eastern / 11 a.m. Central / 8 p.m. Abu Dhabi time, with no independently confirmed individual cage-walk time or fight result as of Oct. 21.",
+          "sourceLabel": "UFC official UFC 333 card",
           "source": "https://www.ufc.com/event/ufc-333"
-        },
-        {
-          "date": "2022 camp",
-          "label": "Adds Kill Cliff FC work in South Florida",
-          "kind": "camp",
-          "detail": "Ahead of Contender Series, Aliev spent time at Tiger Muay Thai and then prepared at Kill Cliff FC in South Florida. Sherdog currently lists his association as Kaizen MMA / Kill Cliff FC.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/news/dana-whites-contender-series-preview-season-6-week-9"
-        },
-        {
-          "date": "Late 2023",
-          "label": "Leg injury forces withdrawal and surgery",
-          "kind": "injury",
-          "detail": "Aliev withdrew from his scheduled UFC 295 fight with Mateusz Rebecki after suffering a leg injury in the final days before the event. He subsequently underwent surgery and did not fight again until January 2025, creating an unusually long interruption in the early part of his UFC career.",
-          "sourceLabel": "MMA Fighting / UFC",
-          "source": "https://sports.yahoo.com/nurullo-aliev-announces-ufc-295-193046754.html"
-        },
-        {
-          "date": "2023-Jan. 2025",
-          "label": "Nearly two-year injury layoff",
-          "kind": "layoff",
-          "detail": "The leg surgery kept Aliev out for almost two years. He said the early recovery was difficult; around six months after surgery he was able to begin boxing again before eventually returning against Joe Solecki in January 2025.",
-          "sourceLabel": "Cageside Press",
-          "source": "https://cagesidepress.com/2025/01/12/nurullo-aliev-ufc-vegas-101-king-kong/"
-        },
-        {
-          "date": "Early pro career",
-          "label": "Competes at welterweight before settling at lightweight",
-          "kind": "weight",
-          "detail": "Aliev began his unbeaten professional run across two divisions. His UFC profile lists him at 3-0 at welterweight and 9-0 at lightweight, where he ultimately settled for his UFC run.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/nurullo-aliev"
-        },
-        {
-          "date": "Education",
-          "label": "Studies information technology in Tajikistan",
-          "kind": "background",
-          "detail": "While building his fighting career, Aliev has also pursued a university degree in information technology in Tajikistan.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/nurullo-aliev"
         }
       ],
       "audit": {
-        "pass": 4,
-        "verifiedThrough": "2026-10-07",
-        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
+        "pass": 5,
+        "verifiedThrough": "2026-10-21",
+        "scope": "all 12 professional bouts 12-0 and four UFC wins with official scorecards; three documented youth amateur MMA wins and October 2017 Sochi world pankration title; nuanced Battle on Volga 2018/Gorilla/Eagle lightweight championship lineage; 2020 canceled title opportunity; welterweight 2019-21 activity; DWCS and 2022 Tiger Muay Thai/Kill Cliff preparation; referee point deduction against Rafael Alves; 2023 leg injury, surgery and nearly 23-month layoff, 2025 rebound; 2026 Mike Davis result; current Kaizen/Kill Cliff gym listing and UFC 333 Dawson booking"
       }
     },
     "Colby Thicknesse": {
