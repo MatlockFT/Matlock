@@ -95,6 +95,114 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
     return route.fulfill({ status: 404, headers, body: JSON.stringify({ message: `Unhandled mock route: ${method} ${url.pathname}` }) });
   });
 
+  // Fighter lookup is deterministic in smoke: directory match + live UFCStats response.
+  await page.route('**/assets/data/matchmaker/current.json?writer-fighters=1', async route => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        generatedAt: '2026-09-26T18:00:00.000Z',
+        fighters: [{
+          id: 'lookup-fighter',
+          name: 'Lookup Fighter',
+          division: 'Lightweight',
+          record: '12-2-0',
+          rank: 9,
+          image: 'https://example.com/lookup.png',
+          checkedAt: '2026-09-26T18:00:00.000Z',
+          verifiedMeetings: [{
+            result: 'W',
+            opponentName: 'Recent Opponent',
+            competitionClass: 'ufc',
+            method: 'Decision - Unanimous',
+            date: '2026-09-01'
+          }],
+          meetingCoverage: { ufcStatsId: 'aaaaaaaaaaaaaaaa' }
+        }]
+      })
+    });
+  });
+  await page.route('**/assets/data/writer-fighters.json?writer-fighters=*', async route => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        schemaVersion: 1,
+        generatedAt: '2026-09-26T18:00:00.000Z',
+        builtAt: '2026-09-26T18:00:00.000Z',
+        mirrorThrough: '2026-09-26',
+        fighters: [{
+          id: 'lookup-fighter',
+          name: 'Lookup Fighter',
+          division: 'Lightweight',
+          record: '12-2-0',
+          ufcRecord: '6-1-0',
+          recordOutsideUfc: '6-1-0',
+          rank: 9,
+          image: 'https://example.com/lookup.png',
+          checkedAt: '2026-09-26T18:00:00.000Z',
+          ufcStatsId: 'aaaaaaaaaaaaaaaa',
+          sourceUrl: 'https://ufcstats.com/fighter-details/aaaaaaaaaaaaaaaa',
+          latestBoutDate: '2026-09-01',
+          mirrorThrough: '2026-09-26',
+          bio: { height: '5\' 10"', reach: '72"', dob: 'Jan 01, 1998' },
+          stats: {
+            slpm: '4.44',
+            sapm: '2.22',
+            strAccuracy: '50%',
+            strDefense: '60%',
+            tdAvg: '1.50',
+            tdAccuracy: '40%',
+            tdDefense: '70%',
+            subAvg: '0.50',
+            sample: { fights: 5, minutes: 50, latestBoutDate: '2026-09-01' }
+          },
+          recent: [{
+            result: 'W',
+            opponent: 'Recent Opponent',
+            method: 'Decision - Unanimous',
+            date: '2026-09-01'
+          }]
+        }]
+      })
+    });
+  });
+
+  await page.route('**/api/writer/fighter*', async route => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        ok: true,
+        source: 'UFCStats',
+        mode: 'live',
+        liveUfcStats: true,
+        liveUfcProfile: false,
+        liveCareerFallback: false,
+        fetchedAt: '2026-09-26T18:01:00.000Z',
+        sourceUrl: 'https://ufcstats.com/fighter-details/aaaaaaaaaaaaaaaa',
+        profile: {
+          statsId: 'aaaaaaaaaaaaaaaa',
+          name: 'Lookup Fighter',
+          record: '12-2-0',
+          height: '5\' 10"',
+          reach: '72"',
+          dob: 'Jan 01, 1998',
+          stats: {
+            slpm: '9.99',
+            sapm: '1.11',
+            strAccuracy: '61%',
+            strDefense: '67%',
+            tdAvg: '2.50',
+            tdAccuracy: '50%',
+            tdDefense: '80%',
+            subAvg: '0.7'
+          },
+          ufcRecord: '6-1-0',
+          latestBoutDate: '2026-09-01',
+          recent: [{ result:'W', opponent:'Recent Opponent', method:'Decision - Unanimous', date:'2026-09-01' }]
+        }
+      })
+    });
+  });
+
   await page.goto(BASE, { waitUntil: 'domcontentloaded' });
   await expect(page.locator('[data-writer-app]')).toBeVisible();
   await expect(page.locator('[data-library-view]')).toBeVisible();
@@ -234,114 +342,6 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(previewTableShell).toBeVisible();
   await expect(previewTableShell.locator('table')).toContainText('Metric');
   await expect(previewTableShell.locator('table')).toContainText('Reach');
-
-  // Fighter lookup is deterministic in smoke: directory match + live UFCStats response.
-  await page.route('**/assets/data/matchmaker/current.json?writer-fighters=1', async route => {
-    await route.fulfill({
-      contentType: 'application/json',
-      body: JSON.stringify({
-        generatedAt: '2026-09-26T18:00:00.000Z',
-        fighters: [{
-          id: 'lookup-fighter',
-          name: 'Lookup Fighter',
-          division: 'Lightweight',
-          record: '12-2-0',
-          rank: 9,
-          image: 'https://example.com/lookup.png',
-          checkedAt: '2026-09-26T18:00:00.000Z',
-          verifiedMeetings: [{
-            result: 'W',
-            opponentName: 'Recent Opponent',
-            competitionClass: 'ufc',
-            method: 'Decision - Unanimous',
-            date: '2026-09-01'
-          }],
-          meetingCoverage: { ufcStatsId: 'aaaaaaaaaaaaaaaa' }
-        }]
-      })
-    });
-  });
-  await page.route('**/assets/data/writer-fighters.json?writer-fighters=*', async route => {
-    await route.fulfill({
-      contentType: 'application/json',
-      body: JSON.stringify({
-        schemaVersion: 1,
-        generatedAt: '2026-09-26T18:00:00.000Z',
-        builtAt: '2026-09-26T18:00:00.000Z',
-        mirrorThrough: '2026-09-26',
-        fighters: [{
-          id: 'lookup-fighter',
-          name: 'Lookup Fighter',
-          division: 'Lightweight',
-          record: '12-2-0',
-          ufcRecord: '6-1-0',
-          recordOutsideUfc: '6-1-0',
-          rank: 9,
-          image: 'https://example.com/lookup.png',
-          checkedAt: '2026-09-26T18:00:00.000Z',
-          ufcStatsId: 'aaaaaaaaaaaaaaaa',
-          sourceUrl: 'https://ufcstats.com/fighter-details/aaaaaaaaaaaaaaaa',
-          latestBoutDate: '2026-09-01',
-          mirrorThrough: '2026-09-26',
-          bio: { height: '5\' 10"', reach: '72"', dob: 'Jan 01, 1998' },
-          stats: {
-            slpm: '4.44',
-            sapm: '2.22',
-            strAccuracy: '50%',
-            strDefense: '60%',
-            tdAvg: '1.50',
-            tdAccuracy: '40%',
-            tdDefense: '70%',
-            subAvg: '0.50',
-            sample: { fights: 5, minutes: 50, latestBoutDate: '2026-09-01' }
-          },
-          recent: [{
-            result: 'W',
-            opponent: 'Recent Opponent',
-            method: 'Decision - Unanimous',
-            date: '2026-09-01'
-          }]
-        }]
-      })
-    });
-  });
-
-  await page.route('https://mmamatlock-writer-auth.netlify.app/api/writer/fighter*', async route => {
-    await route.fulfill({
-      contentType: 'application/json',
-      body: JSON.stringify({
-        ok: true,
-        source: 'UFCStats',
-        mode: 'live',
-        liveUfcStats: true,
-        liveUfcProfile: false,
-        liveCareerFallback: false,
-        fetchedAt: '2026-09-26T18:01:00.000Z',
-        sourceUrl: 'https://ufcstats.com/fighter-details/aaaaaaaaaaaaaaaa',
-        profile: {
-          statsId: 'aaaaaaaaaaaaaaaa',
-          name: 'Lookup Fighter',
-          record: '12-2-0',
-          height: '5\' 10"',
-          reach: '72"',
-          dob: 'Jan 01, 1998',
-          stats: {
-            slpm: '9.99',
-            sapm: '1.11',
-            strAccuracy: '61%',
-            strDefense: '67%',
-            tdAvg: '2.50',
-            tdAccuracy: '50%',
-            tdDefense: '80%',
-            subAvg: '0.7'
-          },
-          ufcRecord: '6-1-0',
-          latestBoutDate: '2026-09-01',
-          recent: [{ result:'W', opponent:'Recent Opponent', method:'Decision - Unanimous', date:'2026-09-01' }]
-        }
-      })
-    });
-  });
 
   // Structured Fight Stats: normal fields, no pipe-delimited row syntax.
   await page.click('[data-tool="stats"]');
