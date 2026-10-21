@@ -1311,122 +1311,322 @@
       "division": "Flyweight",
       "items": [
         {
-          "date": "Childhood",
-          "label": "Begins martial arts training",
+          "date": "2006 (reported; exact start date unverified)",
+          "label": "Begins hand-to-hand combat and karate training",
           "kind": "training",
-          "detail": "Temirov says he began training as a child with the long-term goal of becoming UFC champion.",
-          "sourceLabel": "UFC profile",
+          "detail": "Secondary biographical accounts place Temirov's start in hand-to-hand fighting and karate around 2006. The UFC confirms he began martial arts as a child but does not publish an exact start date. His striking base predates his professional MMA career.",
+          "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/ramazan-temirov"
         },
         {
-          "date": "Amateur career",
-          "label": "World, European and Asian MMA titles",
+          "date": "2012 (reported; title documentation incomplete)",
+          "label": "Junior karate title in Uzbekistan",
           "kind": "milestone",
-          "detail": "Temirov's amateur résumé includes MMA championships at the Asian, European and World levels, plus a Master of Sports designation in hand-to-hand fighting. He turned professional in 2015 and later built the long winning streak that carried him to the UFC.",
-          "sourceLabel": "UFC",
+          "detail": "A biographical listing credits Temirov with winning a junior Uzbekistan karate competition around 2012, but the exact event, division and primary results are not independently established here. Treat this as a reported youth achievement, not a verified professional championship.",
+          "sourceLabel": "UFCalendar background",
+          "source": "https://www.ufcalendar.com/fighters/ramazan-temirov"
+        },
+        {
+          "date": "Pre-professional career (before Dec. 2015)",
+          "label": "Amateur MMA titles and Master of Sports designation",
+          "kind": "training",
+          "detail": "In his UFC athlete questionnaire, Temirov reports amateur MMA championships at the Asian, European and world levels as well as a Master of Sports designation in hand-to-hand fighting. The UFC does not give tournament names or dates; these are fighter-reported achievements and are not professional MMA title wins. He also reports completing a sports degree, with no published graduation date.",
+          "sourceLabel": "UFC athlete Q&A",
           "source": "https://www.ufc.com/athlete/ramazan-temirov"
         },
         {
-          "date": "Current camp",
-          "label": "Legion Fight Club",
+          "date": "Dec. 19, 2015",
+          "label": "WIN · Saykhan Elmurzaev · professional MMA debut",
+          "kind": "win",
+          "detail": "Temirov debuted professionally at Emperor Fighting Championship 10 in Tyumen, Russia, and won by TKO (punches) at 2:25 of round one. His first listed professional bout was at featherweight, before later competition at strawweight, flyweight and bantamweight.",
+          "sourceLabel": "Sherdog professional results",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "Nov. 26, 2016",
+          "label": "WIN · Laqie Sun · head-kick knockout",
+          "kind": "win",
+          "detail": "Temirov knocked out Laqie Sun with a head kick at 0:44 of round one at WLF W.A.R.S. 10 in China. Some secondary databases also display a separate March 2018 win against Sun; that extra entry conflicts with Sherdog's UFC-consistent 20-3 record and has not been counted as an additional professional bout.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "Mar. 3, 2017",
+          "label": "WIN · Ru Ze · first-round TKO",
+          "kind": "win",
+          "detail": "Temirov stopped Ru Ze by TKO (punches) at 4:29 of round one at WLF W.A.R.S. 11 in China, recording his third professional victory.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "2017 (specific tournament date unconfirmed)",
+          "label": "Reported Asian hand-to-hand combat championship",
+          "kind": "milestone",
+          "detail": "Secondary biographies credit Temirov with an Asian hand-to-hand fighting championship in 2017. This is distinct from his fighter-reported amateur MMA titles. No official tournament result confirming the exact date and bracket was located, so it is described as reported.",
+          "sourceLabel": "Fighter biographical overview",
+          "source": "https://ringside24.com/en/persons/ramazonbek-temirov.amp"
+        },
+        {
+          "date": "Jul. 30, 2017",
+          "label": "WIN · Alexey Krutoy · Legion Fighting Championship",
+          "kind": "win",
+          "detail": "Temirov defeated Alexey Krutoy by unanimous decision after three rounds at Legion Fighting Championship: Universal Battle in Tashkent. His early professional record shows he also competed at bantamweight rather than exclusively at today's flyweight limit.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "Dec. 16, 2017",
+          "label": "WIN · Zhe Li · same-event stoppage",
+          "kind": "win",
+          "detail": "Temirov beat Zhe Li by TKO (punches) at 0:54 of round two at WLF W.A.R.S. 20 in China. Fight records show two bouts for him on this date; this victory precedes the loss to Gexi Sanlang in the event listing.",
+          "sourceLabel": "Sherdog official WLF event results",
+          "source": "https://www.sherdog.com/events/WLF-WARS-20-65319"
+        },
+        {
+          "date": "Dec. 16, 2017",
+          "label": "LOSS · Gexi Sanlang · first professional defeat",
+          "kind": "loss",
+          "detail": "Temirov lost a three-round unanimous decision to Gexi Sanlang at WLF W.A.R.S. 20 in the same event as the Zhe Li fight. It was his first professional defeat. The commission-independent event record does not specify a starting clock time for either bout.",
+          "sourceLabel": "Sherdog official WLF event results",
+          "source": "https://www.sherdog.com/events/WLF-WARS-20-65319"
+        },
+        {
+          "date": "Jan. 13, 2018",
+          "label": "WIN · Longlong Xie · TKO in round two",
+          "kind": "win",
+          "detail": "Temirov stopped Longlong Xie with punches at 1:05 of round two at WLF W.A.R.S. 21 in China. Another online record duplicates this date with Ru Ze as an opponent; the UFC/Sherdog-consistent chronology counts only the Xie result here.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "Feb. 8, 2018",
+          "label": "WIN · Narik Tonyan · majority decision",
+          "kind": "win",
+          "detail": "Temirov defeated Narik Tonyan by majority decision after three rounds at Legion Fighting Championship: Universal Battle 1 in Tashkent, fighting at flyweight.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "May 11, 2018",
+          "label": "WIN · Biqie Qiu · unanimous decision",
+          "kind": "win",
+          "detail": "Temirov beat Biqie Qiu by unanimous decision after three rounds at WLF W.A.R.S. 24 in Zhengzhou. Listed weights across his early WLF career varied, including strawweight appearances, and should not be mistaken for UFC flyweight bouts.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "Jan. 3, 2019",
+          "label": "LOSS · Jilunzhou Qiu · unanimous decision",
+          "kind": "loss",
+          "detail": "Temirov lost a three-round unanimous decision to Jilunzhou Qiu (also listed as Qiujilunzhou) at WLF W.A.R.S. 31 in China. It was his second professional defeat.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "Sep. 27, 2019",
+          "label": "LOSS · Talgat Zhumagaliyev · armbar in round two",
+          "kind": "loss",
+          "detail": "At Gorilla Fighting Championship 17 in Atyrau, Kazakhstan, Talgat Zhumagaliyev submitted Temirov with an armbar at 3:17 of round two. This was his third and most recent professional MMA loss ahead of UFC 333.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "Sep. 2019 – Apr. 2021",
+          "label": "Approximately 18 months without a recorded MMA bout",
+          "kind": "milestone",
+          "detail": "No professional MMA fight appears in the Sherdog record from September 27, 2019 until April 8, 2021, an approximately 18-month competition gap. The available record does not establish that a particular injury, illness or personal issue caused the gap.",
+          "sourceLabel": "Sherdog professional chronology",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "Apr. 8, 2021",
+          "label": "WIN · Shodavlat Sultonmurodov · armbar",
+          "kind": "win",
+          "detail": "Temirov returned at the Kokand Mayor Cup in Uzbekistan and submitted Shodavlat Sultonmurodov (also recorded as Sultonmurod Shodavlatov) by armbar at 2:11 of round one. It remains his only professional submission win through UFC 333.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "May 28, 2021",
+          "label": "WIN · Satbek Esengeldin · Octagon 19",
+          "kind": "win",
+          "detail": "Temirov beat Satbek Esengeldin by unanimous decision after three rounds at Octagon 19 in Kazakhstan.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "Sep. 24, 2021",
+          "label": "WIN · Daniel Conceição · first-round knockout",
+          "kind": "win",
+          "detail": "At Future MMA 13 in Brazil, Temirov knocked out Daniel Conceição with a punch at 0:34 of round one. This is one of his fastest recorded professional finishes.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "Oct. 22, 2021",
+          "label": "WIN · Talgat Zhumagaliyev II · avenges 2019 armbar loss",
+          "kind": "win",
+          "detail": "Temirov defeated Zhumagaliyev in their Muradov Professional League rematch by decision over three rounds, avenging the 2019 submission loss. Sherdog lists the method only as 'Decision', without a specific judges' split, so no unanimous/split label is invented.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "Feb. 27, 2022",
+          "label": "WIN · Mikhail Sirbu · MPL 3 main event",
+          "kind": "win",
+          "detail": "Temirov defeated Mikhail Sirbu by unanimous decision after three five-minute rounds at Muradov Professional League 3.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "May 21, 2022",
+          "label": "WIN · Argen Maratbek Uulu · first-round stoppage",
+          "kind": "win",
+          "detail": "Temirov stopped Argen Maratbek Uulu by TKO (punches) at 4:27 of round one at Muradov Professional League 5.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
+        },
+        {
+          "date": "Nov. 21, 2022 (Sherdog lists Nov. 25)",
+          "label": "WIN · Kayck Alencar · Naiza FC 48 TKO",
+          "kind": "win",
+          "detail": "At Naiza FC 48 in Kazakhstan, Temirov stopped Kayck Alencar by punches/ground-and-pound at 1:50 of round one. Tapology's event record dates the fight Nov. 21, 2022; Sherdog lists Nov. 25. The mismatch is explicitly noted rather than treating either date as undisputed.",
+          "sourceLabel": "Tapology bout and event date",
+          "source": "https://www.tapology.com/fightcenter/bouts/705390-naiza-fc-48-kayck-avassalador-alencar-vs-ramazan-temurlan-temurov"
+        },
+        {
+          "date": "2023 (before May 6)",
+          "label": "Signs with RIZIN in Japan",
+          "kind": "milestone",
+          "detail": "Temirov joined the RIZIN Fighting Federation for a two-fight run in Japan in 2023. The recorded bouts are at flyweight (57 kg), and neither was a championship fight.",
+          "sourceLabel": "RIZIN 42 and 44 bout records",
+          "source": "https://www.tapology.com/fightcenter/bouts/752551-rizin-42-ramazonbek-temurlan-temirov-vs-yuta-cat-hamamoto"
+        },
+        {
+          "date": "May 6, 2023",
+          "label": "WIN · Yuta Hamamoto · RIZIN 42 TKO",
+          "kind": "win",
+          "detail": "Temirov defeated Yuta Hamamoto by TKO from punches at 4:06 of round one at RIZIN 42 at Ariake Arena in Tokyo. He had initially been slated to face Takaki Soya on the same card, but the Soya bout was canceled and Hamamoto became his opponent.",
+          "sourceLabel": "Tapology RIZIN 42 official bout record",
+          "source": "https://www.tapology.com/fightcenter/bouts/752551-rizin-42-ramazonbek-temurlan-temirov-vs-yuta-cat-hamamoto"
+        },
+        {
+          "date": "Sep. 24, 2023",
+          "label": "WIN · Takaki Soya · RIZIN 44 knockout",
+          "kind": "win",
+          "detail": "Temirov knocked out Takaki Soya with punches at 3:15 of round one at RIZIN 44 at Saitama Super Arena, completing a 2-0 run in the promotion.",
+          "sourceLabel": "Tapology RIZIN 44 bout record",
+          "source": "https://www.tapology.com/fightcenter/bouts/789876-rizin-44-takaki-soya-vs-ramazonbek-temurlan-temirov"
+        },
+        {
+          "date": "By Oct. 2024 (joining date unconfirmed)",
+          "label": "Legion Fight Club becomes his listed UFC training base",
           "kind": "camp",
-          "detail": "The UFC lists Temirov as training at Legion Fight Club.",
-          "sourceLabel": "UFC profile",
+          "detail": "The UFC lists his camp as Legion Fight Club; Sherdog calls it Muradov Legion Team. Other fighter databases have linked him to trainer Jasur Alijanov. Those may reflect different listings or training periods, not proof of a permanent 2026 team switch. The first date he joined Legion is not established.",
+          "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/ramazan-temirov"
         },
         {
           "date": "Oct. 12, 2024",
-          "label": "WIN · C.J. Vergara · UFC debut TKO",
+          "label": "WIN · C.J. Vergara · UFC debut TKO, performance bonus",
           "kind": "win",
-          "detail": "Temirov stopped C.J. Vergara in the first round of his UFC debut.",
-          "sourceLabel": "UFC profile",
+          "detail": "At UFC Fight Night: Royval vs. Taira in Las Vegas, Temirov stopped C.J. Vergara with punches at 2:50 of round one in his UFC debut. He received a Performance of the Night award and improved to 18-3 professionally.",
+          "sourceLabel": "UFC athlete results",
           "source": "https://www.ufc.com/athlete/ramazan-temirov"
         },
         {
-          "date": "May 6, 2023",
-          "label": "WIN · Yuta Hamamoto · TKO (Punches)",
+          "date": "Mar. 1, 2025",
+          "label": "WIN · Charles Johnson · unanimous decision",
           "kind": "win",
-          "detail": "Ramazan Temirov defeated Yuta Hamamoto. TKO (Punches).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/ramazan-temirov"
+          "detail": "Temirov defeated Charles Johnson by unanimous decision (29-28 on all three judges' cards) at UFC Fight Night: Kape vs. Almabayev in Las Vegas, moving to 2-0 in the UFC.",
+          "sourceLabel": "Sherdog UFC scorecards",
+          "source": "https://www.sherdog.com/fighter/Ramazonbek-Temirov-215649"
         },
         {
-          "date": "Sep 24, 2023",
-          "label": "WIN · Takaki Soya · KO (Punches)",
-          "kind": "win",
-          "detail": "Ramazan Temirov defeated Takaki Soya. KO (Punches).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/ramazan-temirov"
+          "date": "Jun. 12, 2025",
+          "label": "Out-of-competition sample tests positive for trimetazidine",
+          "kind": "suspension",
+          "detail": "Combat Sports Anti-Doping (CSAD) reported trimetazidine in a June 12 urine sample collected in Phuket, Thailand. Temirov said he had been prescribed the medication for a reported medical condition; CSAD did not publicly confirm a particular diagnosis. Trimetazidine is prohibited at all times under the UFC anti-doping policy.",
+          "sourceLabel": "UFC / CSAD official statement",
+          "source": "https://www.ufc.com/news/statement-ramazonbek-temirov"
         },
         {
-          "date": "Mar 1, 2025",
-          "label": "WIN · Charles Johnson · Decision (Unanimous)",
-          "kind": "win",
-          "detail": "Ramazan Temirov defeated Charles Johnson. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/ramazan-temirov"
+          "date": "Jul. 4, 2025",
+          "label": "Second out-of-competition sample tests positive",
+          "kind": "suspension",
+          "detail": "A second sample collected July 4 in Phuket also contained trimetazidine. CSAD combined the two adverse findings into one case because Temirov had not received notification of the June result before providing the second sample.",
+          "sourceLabel": "UFC / CSAD official statement",
+          "source": "https://www.ufc.com/news/statement-ramazonbek-temirov"
         },
         {
-          "date": "Jul 25, 2026",
-          "label": "WIN · Steve Erceg · KO (Punch)",
+          "date": "Jul. 5, 2025",
+          "label": "Provisional suspension begins",
+          "kind": "suspension",
+          "detail": "CSAD provisionally suspended Temirov effective July 5. His eventual 12-month suspension was backdated to this date, rather than to the later public announcement in October.",
+          "sourceLabel": "UFC / CSAD official statement",
+          "source": "https://www.ufc.com/news/statement-ramazonbek-temirov"
+        },
+        {
+          "date": "Jul. 2025 (scheduled bout Jul. 26)",
+          "label": "Asu Almabayev UFC Abu Dhabi fight canceled",
+          "kind": "milestone",
+          "detail": "Temirov was scheduled to meet Asu Almabayev in Abu Dhabi on July 26, 2025, but the bout did not happen after Temirov was withdrawn. Jose Ochoa replaced him. This was a canceled booking, not an MMA loss or a fight result.",
+          "sourceLabel": "Sherdog UFC Abu Dhabi preview, Jul. 24, 2025",
+          "source": "https://www.sherdog.com/news/articles/4/Preview-UFC-on-ABC-9-Whittaker-vs-de-Ridder-197808"
+        },
+        {
+          "date": "Oct. 1, 2025",
+          "label": "CSAD announces 12-month anti-doping suspension",
+          "kind": "suspension",
+          "detail": "The UFC published CSAD's determination: Temirov accepted 12 months of ineligibility after testing positive for trimetazidine. CSAD noted he had cooperated, provided evidence of a prescription and used it for a limited period, but failed to check the substance's status or tell his doctor he was a tested athlete. The sanction was retroactive to July 5, 2025; no second violation was imposed for the July sample.",
+          "sourceLabel": "UFC / CSAD official announcement",
+          "source": "https://www.ufc.com/news/statement-ramazonbek-temirov"
+        },
+        {
+          "date": "Feb. 7, 2026",
+          "label": "GRAPPLING DRAW · Azat Maksum · Mangu Professional League",
+          "kind": "milestone",
+          "detail": "During his UFC anti-doping suspension, Temirov participated in a separately classified professional grappling match against Azat Maksum at Mangu Professional League 1. The single 10-minute round ended in a majority draw. It was not a sanctioned professional MMA bout and does not alter his 20-3 MMA record; the anti-doping implications, if any, are not established here.",
+          "sourceLabel": "Tapology grappling bout record",
+          "source": "https://www.tapology.com/fightcenter/bouts/1097957-mangu-professional-league-1-ramazan-temurlan-temirov-vs-azat-qazaq-maksum"
+        },
+        {
+          "date": "Jul. 5, 2026",
+          "label": "Twelve-month UFC anti-doping suspension ends",
+          "kind": "suspension",
+          "detail": "Temirov's 12-month period of UFC ineligibility, counted from July 5, 2025, expired July 5, 2026. He could return to UFC competition afterward, subject to usual clearance and licensing.",
+          "sourceLabel": "UFC / CSAD official statement",
+          "source": "https://www.ufc.com/news/statement-ramazonbek-temirov"
+        },
+        {
+          "date": "Jul. 25, 2026",
+          "label": "WIN · Steve Erceg · first-round knockout in UFC return",
           "kind": "win",
-          "detail": "Ramazan Temirov defeated Steve Erceg. KO (Punch).",
-          "sourceLabel": "UFC",
+          "detail": "Temirov returned at UFC Abu Dhabi and stopped former flyweight title challenger Steve Erceg at 4:21 of round one. UFC's athlete history and Sherdog classify the finish as KO (punch), while UFC's highlight text calls it TKO. He earned another Performance of the Night award and improved to 20-3 overall, 3-0 in the UFC.",
+          "sourceLabel": "UFC post-fight report and bonus coverage",
+          "source": "https://www.ufc.com/news/bonus-coverage-ufc-abu-dhabi"
+        },
+        {
+          "date": "Oct. 2026 (listed team, exact 333 camp unconfirmed)",
+          "label": "Legion Fight Club / Muradov Legion Team affiliation",
+          "kind": "camp",
+          "detail": "Temirov remains listed with Legion Fight Club on the UFC's athlete page and Muradov Legion Team on Sherdog. Two names for the team should not be treated as a verified camp transfer. Testing in Phuket in 2025 establishes his presence there on those dates but not a permanent move of his fight camp to Thailand.",
+          "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/ramazan-temirov"
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · vs. Lone'er Kavanagh",
+          "label": "UFC 333 · scheduled flyweight bout vs. Lone'er Kavanagh",
           "kind": "upcoming",
-          "detail": "Ramazan Temirov is scheduled to face Lone'er Kavanagh at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 20-3-0, UFC 3-0-0.",
-          "sourceLabel": "UFC 333",
+          "detail": "Temirov (20-3 professionally and 3-0 UFC) is scheduled to face Lone'er Kavanagh (10-2) at UFC 333 at Etihad Arena in Abu Dhabi. This is a future booking as of the October 21 timeline audit. Fight-specific cage-walk and start times have not been officially announced.",
+          "sourceLabel": "UFC 333 event page",
           "source": "https://www.ufc.com/event/ufc-333"
-        },
-        {
-          "date": "2015",
-          "label": "Turns professional",
-          "kind": "milestone",
-          "detail": "Temirov began his professional MMA career in 2015 after a childhood spent around sports and martial arts.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/ramazan-temirov"
-        },
-        {
-          "date": "2017-2019",
-          "label": "Three early-career losses",
-          "kind": "loss",
-          "detail": "Temirov's three professional losses all came before his current run: a decision loss in December 2017, another decision loss in January 2019, and an armbar loss to Talgat Zhumagaliyev in September 2019.",
-          "sourceLabel": "Fight Atlas",
-          "source": "https://www.fightatlasmma.com/fighters/ramazan-temirov"
-        },
-        {
-          "date": "Sept. 2019 onward",
-          "label": "Long winning streak begins",
-          "kind": "milestone",
-          "detail": "The armbar loss to Talgat Zhumagaliyev in September 2019 became Temirov's last defeat before the long streak that carried him through the regional scene and into the UFC.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/ramazan-temirov"
-        },
-        {
-          "date": "June-July 2025",
-          "label": "Tests positive for trimetazidine in two out-of-competition samples",
-          "kind": "suspension",
-          "detail": "CSAD reported trimetazidine in Temirov's June 12 and July 4, 2025 samples in Phuket. Temirov said the drug had been prescribed for a reported medical condition, but he had not checked its prohibited status or told his doctor he was a tested athlete.",
-          "sourceLabel": "UFC / CSAD",
-          "source": "https://www.ufc.com/news/statement-ramazonbek-temirov"
-        },
-        {
-          "date": "July 5, 2025-July 5, 2026",
-          "label": "Serves 12-month UFC anti-doping suspension",
-          "kind": "suspension",
-          "detail": "Temirov accepted a 12-month period of ineligibility. The suspension began July 5, 2025, when CSAD placed him under provisional suspension, making him eligible to return on or after July 5, 2026.",
-          "sourceLabel": "UFC / CSAD",
-          "source": "https://www.ufc.com/news/statement-ramazonbek-temirov"
         }
       ],
       "audit": {
-        "pass": 4,
-        "verifiedThrough": "2026-10-07",
-        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
+        "pass": 5,
+        "verifiedThrough": "2026-10-21",
+        "scope": "fighter-reported amateur achievements and early training, all 23 bouts in Sherdog/UFC-consistent 20-3 record, finish times, RIZIN run, disputed regional fight dates, 2025 CSAD suspension and two sample dates, cancelled Almabayev fight, 2026 grappling draw, UFC return vs Erceg, camp naming, 333 booking"
       }
     },
     "Alexander Volkov": {
