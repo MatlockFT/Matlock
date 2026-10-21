@@ -21,8 +21,8 @@ assert.ok(start >= 0 && end > start, 'Could not isolate patchPreviewContent() in
 const renderer = previewSource.slice(start, end);
 assert.doesNotMatch(renderer, /scrollTop|scrollTo\s*\(|scrollIntoView\s*\(/,
   'Preview patching must not programmatically move the scroll position.');
-assert.match(renderer, /writerPreviewIdentity\(node\)/,
-  'The reconciler must preserve actual content nodes, not only their positions.');
+assert.match(renderer, /const identity = previousSignatures\[index\]/,
+  'The reconciler must preserve existing nodes using canonical signatures, not their positions.');
 assert.match(renderer, /const reserved = new Map\(\)/,
   'Reserve unchanged article blocks before patching edited blocks.');
 assert.match(previewSource, /if \(expandedBody !== renderedPreviewBody\)/,
