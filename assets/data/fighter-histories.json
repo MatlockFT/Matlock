@@ -2157,122 +2157,282 @@
       "division": "Heavyweight",
       "items": [
         {
-          "date": "Age 16",
-          "label": "Starts wushu sanda",
+          "date": "Around 2008 (age 16, reported)",
+          "label": "Begins wushu sanda training",
           "kind": "training",
-          "detail": "Kuniev began wushu sanda at 16, then switched his focus to MMA around age 20 at Gorets Fight Club.",
-          "sourceLabel": "UFC profile",
+          "detail": "Born March 10, 1992, Kuniev told the UFC he began wushu sanda at age 16, placing the start around 2008. He also reports becoming a European and world champion in sanda, without specifying championship dates or events.",
+          "sourceLabel": "UFC athlete Q&A",
           "source": "https://www.ufc.com/athlete/rizvan-kuniev"
         },
         {
-          "date": "Pre-UFC",
-          "label": "PROFC and Eagle FC champion",
-          "kind": "milestone",
-          "detail": "Kuniev won heavyweight titles in PROFC and Eagle FC before reaching the UFC.",
-          "sourceLabel": "UFC profile",
+          "date": "2011–2012 (around age 20, reported)",
+          "label": "Transitions into MMA at Gorets Fight Club",
+          "kind": "camp",
+          "detail": "Kuniev says he switched his focus to MMA at age 20 and started training at Gorets Fight Club in Dagestan. His professional record begins in October 2011, before his 20th birthday, so this is an approximate transition period based on his own retrospective account, not an exact first-MMA-session date.",
+          "sourceLabel": "UFC athlete profile / Sherdog record",
           "source": "https://www.ufc.com/athlete/rizvan-kuniev"
         },
         {
-          "date": "2021 & 2024",
-          "label": "Two Contender Series appearances",
-          "kind": "milestone",
-          "detail": "Kuniev first appeared on Dana White's Contender Series in 2021, then returned in 2024 and stopped Hugo Cunha.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+          "date": "Oct. 8, 2011",
+          "label": "WIN · Anatoli Ciumac · first recorded professional MMA bout",
+          "kind": "win",
+          "detail": "At the WMAC 2011 semifinals in Yalta, Kuniev defeated Anatoli Ciumac. Sherdog includes the bout in its professional record but lists no reliable method, round or stoppage time (0:00 is a missing-data placeholder). This is the first recorded fight in the 14-3-1 professional record.",
+          "sourceLabel": "Sherdog professional record",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
         },
         {
-          "date": "2025",
-          "label": "UFC debut vs. Curtis Blaydes",
+          "date": "Oct. 9, 2011",
+          "label": "DRAW · Ivan Gayvanovich · WMAC final",
+          "kind": "draw",
+          "detail": "Kuniev and Ivan Gayvanovich fought to a draw in the WMAC 2011 tournament final in Yalta after two five-minute rounds. This is his one recorded professional draw; it is not the same as his later PFL no contest.",
+          "sourceLabel": "Sherdog professional record",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "Jan. 20, 2012",
+          "label": "WIN · Mikhail Istomin · TKO (punches) R2",
+          "kind": "win",
+          "detail": "Kuniev stopped Mikhail Istomin with punches in round two at the Voronezh Mixfight Cup. Sherdog's result lists 0:00 for the round time, which is not a meaningful confirmed stoppage time; the exact clock time is therefore omitted.",
+          "sourceLabel": "Sherdog professional record",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "Jun. 14, 2014",
+          "label": "LOSS · Darko Stošić · unanimous decision",
           "kind": "loss",
-          "detail": "Kuniev made his UFC debut against Curtis Blaydes and lost a split decision, ending a long unbeaten stretch.",
-          "sourceLabel": "UFC profile",
+          "detail": "Kuniev lost a three-round unanimous decision to future UFC fighter Darko Stošić at Tesla Fighting Championship 4 in Serbia. This was his first recorded professional defeat.",
+          "sourceLabel": "Sherdog professional record",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "Aug. 29, 2015",
+          "label": "LOSS · Justin Willis · two-round decision in Japan",
+          "kind": "loss",
+          "detail": "At Inoki Genome Fight 4 in Tokyo, Kuniev lost to future UFC heavyweight Justin Willis. Sherdog lists a unanimous decision after two five-minute rounds, while some other databases call the decision a majority decision. The official detailed judges' scores were not established, so this timeline flags the discrepancy.",
+          "sourceLabel": "Sherdog professional record",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "2017 (exact individual championship dates not supplied)",
+          "label": "Reports multiple amateur MMA and wushu sanda titles",
+          "kind": "milestone",
+          "detail": "The UFC athlete questionnaire credits Kuniev with four European amateur MMA championships, three world amateur MMA championships, an Honored Master of Sports designation in MMA and a NAGA grappling title, in addition to sanda titles. Specific dates cannot be assigned to all these reported honors; individually documented amateur bouts follow.",
+          "sourceLabel": "UFC athlete Q&A",
           "source": "https://www.ufc.com/athlete/rizvan-kuniev"
         },
         {
-          "date": "Apr 7, 2023",
-          "label": "NC · Renan Ferreira · No Contest (Overturned)",
+          "date": "Sep. 10, 2017",
+          "label": "WIN · Charles Andrade · PROFC Heavyweight Grand Prix quarterfinal",
+          "kind": "win",
+          "detail": "Kuniev beat veteran Charles Andrade by unanimous decision at ProFC 63 in Russia. Independent fight records identify the match as a heavyweight tournament quarterfinal. His UFC questionnaire also reports a PROFC championship, but its exact title-acquisition date is not established by this bout alone.",
+          "sourceLabel": "Sherdog professional record",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "Dec. 7–8, 2017",
+          "label": "AMATEUR · European MMA championship victories",
+          "kind": "milestone",
+          "detail": "In European amateur MMA championship competition, Kuniev recorded victories over Athanasios Barkas and Artem Budkevich on December 7, then stopped Bagrat Adamiya by TKO at 1:48 of round one on December 8 in the final. These are amateur results and are excluded from his professional 14-3-1 record.",
+          "sourceLabel": "Sherdog amateur results",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "Dec. 24, 2017",
+          "label": "WIN · Konstantin Andreitsev · PROFC Grand Prix semifinal",
+          "kind": "win",
+          "detail": "Kuniev defeated Konstantin Andreitsev by unanimous decision after three rounds at ProFC 64 in Rostov-on-Don. Secondary records identify this as a heavyweight Grand Prix semifinal, rather than conclusive proof of an undisputed championship win on that date.",
+          "sourceLabel": "Sherdog professional record",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "May 12–13, 2018",
+          "label": "AMATEUR · wins Russian national heavyweight championship",
+          "kind": "milestone",
+          "detail": "At the Russian Amateur MMA Championships, Kuniev advanced with victories over Muhammad Saidov and Khuseyn Adamov on May 12 and stopped future professional heavyweight Grigoriy Ponomarev at 3:55 of round two in the May 13 final. These are amateur bouts despite occurring after his professional debut.",
+          "sourceLabel": "Sherdog amateur competition record",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "Jun. 2, 2018",
+          "label": "WIN · José Jimenez · TKO (punches) R1",
+          "kind": "win",
+          "detail": "Kuniev stopped José Jimenez (José Agustin Jimenez García) at 2:35 of round one at UMC 1 in Italy. The victory ended a gap of more than five months since his December 2017 professional fight.",
+          "sourceLabel": "Sherdog professional record",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "Oct. 13, 2018",
+          "label": "AMATEUR · wins 2018 European MMA heavyweight title",
+          "kind": "milestone",
+          "detail": "At the WMMAA European Championships in Guadalajara, Spain, Kuniev stopped Elgun Yusifov at 2:48 of round one and Dmitriy Sekira at 4:29 of round one in the final. These were amateur championship results, not two additional professional wins.",
+          "sourceLabel": "Sherdog WMMAA event results",
+          "source": "https://www.sherdog.com/events/WMMAA-2018-European-MMA-Championships-72601"
+        },
+        {
+          "date": "Jul. 6, 2019",
+          "label": "WIN · Navid Yadegari · rear-naked choke R1",
+          "kind": "win",
+          "detail": "Kuniev submitted Navid Yadegari with a rear-naked choke at 2:00 of round one at Gorets FC in Kaspiysk, Russia. Some secondary databases duplicate or use a different name for this event; the UFC/Sherdog-consistent professional record counts one bout here.",
+          "sourceLabel": "Sherdog professional record",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "Aug. 30, 2019",
+          "label": "WIN · Shamil Abasov · wins Gorilla/Eagle heavyweight championship",
+          "kind": "win",
+          "detail": "Kuniev stopped then-champion Shamil Abasov by TKO (punches) at 4:53 of round three at GFC 16 in Astrakhan. This marked the beginning of his heavyweight title reign under the promotion that later became Eagle Fighting Championship.",
+          "sourceLabel": "Sherdog record and Eagle championship history",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "Feb. 15, 2020",
+          "label": "WIN · Ruud Vernooij · unanimous decision",
+          "kind": "win",
+          "detail": "Kuniev beat Ruud Vernooij by unanimous decision after three rounds at Eagles FC: Next Level. It was a non-title heavyweight bout recorded between his championship victory and the subsequent Daineko defense.",
+          "sourceLabel": "Sherdog professional record",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "Dec. 19, 2020 (some sources Dec. 20)",
+          "label": "WIN · Vladimir Daineko · first Eagle FC title defense",
+          "kind": "win",
+          "detail": "Kuniev retained his heavyweight championship over Vladimir Daineko at Eagle FC 31 in Nizhny Novgorod. Daineko's corner stopped the fight after round three, officially TKO (corner stoppage), round three at 5:00. Sherdog dates the show December 19 while some event records use December 20.",
+          "sourceLabel": "Sherdog Eagle FC 31 results",
+          "source": "https://www.sherdog.com/events/EFC-31-Eagle-Fighting-Championship-31-88044"
+        },
+        {
+          "date": "Sep. 28, 2021",
+          "label": "WIN · Edivan Santos · first DWCS appearance",
+          "kind": "win",
+          "detail": "Kuniev stopped Edivan 'Mineiro' Santos by TKO (punches) at 1:00 of round three on Dana White's Contender Series Season 5, Week 5. He did not receive a UFC contract following this victory; it was a recorded professional win before his later 2024 DWCS return.",
+          "sourceLabel": "UFC athlete fight history",
+          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+        },
+        {
+          "date": "Mar. 11, 2022",
+          "label": "WIN · Anthony Hamilton · Eagle FC title defense in 77 seconds",
+          "kind": "win",
+          "detail": "Kuniev submitted former UFC heavyweight Anthony Hamilton with a guillotine choke at 1:17 of round one at Eagle FC 46 in Miami. He successfully defended his Eagle FC heavyweight championship for a second time.",
+          "sourceLabel": "Eagle FC 46 bout record",
+          "source": "https://www.tapology.com/fightcenter/bouts/636081-eagle-fc-46-rizvan-kuniev-vs-anthony-freight-train-hamilton"
+        },
+        {
+          "date": "Late 2022 (exact contract-signing date unconfirmed)",
+          "label": "Leaves Eagle FC for Professional Fighters League",
+          "kind": "milestone",
+          "detail": "After his March 2022 title defense, Kuniev moved to the PFL for the 2023 heavyweight season. Eagle FC historical records show the heavyweight title was vacated in December 2022 in connection with his PFL move, but a precise date for signing his contract is not confirmed.",
+          "sourceLabel": "PFL fighter news / Eagle FC championship history",
+          "source": "https://pflmma.com/news/regularseasonupdate"
+        },
+        {
+          "date": "Apr. 7, 2023",
+          "label": "NC · Renan Ferreira · PFL result overturned",
           "kind": "nc",
-          "detail": "Kuniev originally beat Renan Ferreira by unanimous decision in his 2023 PFL debut, but the Nevada State Athletic Commission overturned the result to a no contest after he tested positive for drostanolone, metenolone, boldenone and 19-norandrosterone, with a separate stimulant also appearing in the test. He served a one-year suspension and returned to competition in 2024.",
-          "sourceLabel": "MMA Fighting / Tapology",
+          "detail": "At PFL 2 in Las Vegas, Kuniev originally defeated Renan Ferreira by unanimous decision (29-28, 29-28, 30-27). The Nevada State Athletic Commission subsequently overturned the result to a no contest after Kuniev's drug-test findings. The official record is NC, not a win or a draw.",
+          "sourceLabel": "Sherdog professional record and NSAC reporting",
           "source": "https://www.mmafighting.com/2023/6/20/23767287/rob-wilkinson-thiago-santos-5-more-pfl-fighters-suspended-fined-testing-positive-banned-substances"
         },
         {
-          "date": "Aug 20, 2024",
-          "label": "WIN · Hugo Cunha · TKO (Knee to the Body and Punches)",
-          "kind": "win",
-          "detail": "Rizvan Kuniev defeated Hugo Cunha. TKO (Knee to the Body and Punches).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+          "date": "May 2023 (temporary suspension reported May 9)",
+          "label": "PFL announces provisional commission suspensions",
+          "kind": "suspension",
+          "detail": "PFL said on May 9 that Nevada had provisionally suspended several fighters from April PFL cards pending further commission review. Kuniev's case was ultimately decided by the commission in June. The public reporting does not specify his sample-collection date, so it is not invented.",
+          "sourceLabel": "PFL official statement",
+          "source": "https://pflmma.com/news/regularseasonupdate"
         },
         {
-          "date": "Jun 21, 2025",
-          "label": "LOSS · Curtis Blaydes · Decision (Split)",
+          "date": "Jun. 20, 2023",
+          "label": "Nevada imposes one-year anti-doping suspension and fines",
+          "kind": "suspension",
+          "detail": "Nevada's commission sanctioned Kuniev following positive findings of drostanolone, methenolone (also spelled metenolone), boldenone and 19-norandrosterone, with reporting also noting a separate stimulant finding. He received a one-year suspension, a $9,000 fine, $326 in prosecution fees and $495 in testing fees. He was removed from the 2023 PFL season; the Ferreira win was changed to NC. This was an official commission sanction, not a rumor.",
+          "sourceLabel": "MMA Fighting commission report",
+          "source": "https://www.mmafighting.com/2023/6/20/23767287/rob-wilkinson-thiago-santos-5-more-pfl-fighters-suspended-fined-testing-positive-banned-substances"
+        },
+        {
+          "date": "Apr. 7, 2024",
+          "label": "Eligible to compete after one-year Nevada suspension",
+          "kind": "suspension",
+          "detail": "The suspension attached to the April 7, 2023 PFL bout ran through April 7, 2024. This was the reported eligibility date; any separate licensing or UFC testing requirements would still apply. His first recorded return was on the Contender Series in August.",
+          "sourceLabel": "Sherdog commission sanctions report",
+          "source": "https://www.sherdog.com/news/news/Rob-Wilkinson-Among-Seven-PFL-Athletes-Punished-for-Failed-Drug-Tests-190299"
+        },
+        {
+          "date": "Aug. 20, 2024",
+          "label": "WIN · Hugo Cunha · earns UFC contract on second DWCS attempt",
+          "kind": "win",
+          "detail": "Kuniev stopped Hugo Cunha by TKO (knee to body and punches) at 4:59 of round one on Dana White's Contender Series Season 8, Week 2. Dana White offered him a UFC contract after this second DWCS victory, following his first appearance in 2021.",
+          "sourceLabel": "UFC and MMA Fighting DWCS reports",
+          "source": "https://www.mmafighting.com/2024/8/20/24224902/dwcs-season-8-week-2-results-4-more-contracts-awarded-including-former-pfl-fighter-rizvan-kuniev"
+        },
+        {
+          "date": "Feb. 2025 (original debut booking moved)",
+          "label": "Curtis Blaydes UFC debut repeatedly rescheduled",
+          "kind": "milestone",
+          "detail": "Kuniev was first booked to face Curtis Blaydes on February 22, 2025 in Seattle. The promotion moved their fight to UFC 313 on March 8, rather than Kuniev competing on the originally advertised date. The UFC profile's 'Octagon Debut' metadata still shows February 22, but he did not actually fight on that date.",
+          "sourceLabel": "UFC Seattle card update",
+          "source": "https://www.ufc.com/news/updates-ufc-seattle-cejudo-vs-song"
+        },
+        {
+          "date": "Mar. 8, 2025",
+          "label": "Curtis Blaydes fight canceled hours before UFC 313",
+          "kind": "milestone",
+          "detail": "The heavyweight fight was canceled on the day of UFC 313 when Blaydes became ill. Kuniev did not compete on that card; the scheduled fight was later rebooked for June. The cancellation was attributed to Blaydes' illness, not Kuniev's health.",
+          "sourceLabel": "UFC 313 official update",
+          "source": "https://www.ufc.com/news/updates-ufc-313-pereira-vs-ankalaev"
+        },
+        {
+          "date": "Jun. 21, 2025",
+          "label": "LOSS · Curtis Blaydes · actual UFC debut, split decision",
           "kind": "loss",
-          "detail": "Rizvan Kuniev lost to Curtis Blaydes. Decision (Split).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+          "detail": "In Baku, Azerbaijan, Kuniev made his actual UFC debut against Blaydes, losing a disputed split decision after three rounds. Official scores were 29-28, 29-28 for Blaydes and 29-28 for Kuniev. This ended his 12-fight unbeaten run when including the PFL no contest.",
+          "sourceLabel": "Official UFC Baku judges' scorecards",
+          "source": "https://www.ufc.com/news/official-judges-scorecards-ufc-fight-night-hill-vs-rountree-jr-baku"
         },
         {
-          "date": "Feb 7, 2026",
-          "label": "WIN · Jailton Almeida · Decision (Unanimous)",
-          "kind": "win",
-          "detail": "Rizvan Kuniev defeated Jailton Almeida. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+          "date": "Early Feb. 2026 (replacement opponent)",
+          "label": "Ryan Spann withdraws; Jailton Almeida enters",
+          "kind": "milestone",
+          "detail": "Kuniev had been scheduled to meet Ryan Spann on February 7, but Spann withdrew and Jailton Almeida stepped in on short notice. Kuniev did not fight Spann. Exact withdrawal date and cause have not been independently confirmed.",
+          "sourceLabel": "MMA Fighting Almeida interview",
+          "source": "https://www.mmafighting.com/ufc/470144/jailton-almeida-mind-froze-against-alexander-volkov-but-some-people-only-criticized-performance-because-im-brazilian"
         },
         {
-          "date": "Jul 25, 2026",
-          "label": "WIN · Tyrell Fortune · TKO (Knees)",
+          "date": "Feb. 7, 2026",
+          "label": "WIN · Jailton Almeida · unanimous decision",
           "kind": "win",
-          "detail": "Rizvan Kuniev defeated Tyrell Fortune. TKO (Knees).",
-          "sourceLabel": "UFC",
+          "detail": "At UFC Fight Night: Bautista vs. Oliveira in Las Vegas, Kuniev defeated Brazilian grappler Jailton Almeida by unanimous decision after three rounds. The Sherdog result report lists scores of 30-27, 30-27 and 29-28 for Kuniev, improving his Octagon record to 1-1.",
+          "sourceLabel": "Sherdog professional results",
+          "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
+        },
+        {
+          "date": "Jul. 25, 2026",
+          "label": "WIN · Tyrell Fortune · TKO (knees) R3; Fight of the Night",
+          "kind": "win",
+          "detail": "At UFC Fight Night: Ankalaev vs. Guskov in Abu Dhabi, Kuniev stopped Tyrell Fortune with knees at 1:12 of round three, improving to 2-1 inside the UFC and 14-3-1 professionally (plus one NC). The bout earned Fight of the Night honors. A few secondary databases list 1:11; UFC and Sherdog record 1:12.",
+          "sourceLabel": "UFC Abu Dhabi bonus report / official fighter results",
+          "source": "https://www.ufc.com/news/bonus-coverage-ufc-abu-dhabi"
+        },
+        {
+          "date": "Oct. 2026 (current gym listing)",
+          "label": "Atletica Sports listed by UFC; Gorets listed elsewhere",
+          "kind": "camp",
+          "detail": "The UFC's updated English athlete page lists Atletica Sports, while Sherdog lists Gorets Fight Club and an older UFC-language profile lists American Top Team. Kuniev's initial MMA development at Gorets is directly reported by him. These different current listings do not establish when, whether, or why he changed primary teams; no unsupported training-switch date is assigned.",
+          "sourceLabel": "UFC athlete profile / Sherdog",
           "source": "https://www.ufc.com/athlete/rizvan-kuniev"
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · vs. Alexander Volkov",
+          "label": "UFC 333 · scheduled vs. Alexander Volkov",
           "kind": "upcoming",
-          "detail": "Rizvan Kuniev is scheduled to face Alexander Volkov at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 14-3-1, UFC 2-1-0.",
-          "sourceLabel": "UFC 333",
-          "source": "https://www.ufc.com/event/ufc-333"
-        },
-        {
-          "date": "Apr. 2023-Apr. 2024",
-          "label": "One-year suspension",
-          "kind": "suspension",
-          "detail": "The Nevada State Athletic Commission suspended Kuniev for one year and fined him $9,000. The sanction kept him out of competition until April 7, 2024, after which he returned to the Contender Series and eventually earned his UFC contract.",
-          "sourceLabel": "MMA Fighting",
-          "source": "https://www.mmafighting.com/2023/6/20/23767287/rob-wilkinson-thiago-santos-5-more-pfl-fighters-suspended-fined-testing-positive-banned-substances"
-        },
-        {
-          "date": "Current camp",
-          "label": "Atletica Sports",
-          "kind": "camp",
-          "detail": "The UFC currently lists Kuniev as training at Atletica Sports. His earlier MMA development was at Gorets Fight Club after switching from wushu sanda.",
-          "sourceLabel": "UFC",
+          "detail": "Kuniev is scheduled to face Alexander Volkov at Etihad Arena in Abu Dhabi in a heavyweight matchup. His professional MMA record entering the event is 14-3-1 with one NC; his UFC record is 2-1. As of October 21, the fight is a booking, not a completed result, and a specific walkout time has not been verified.",
+          "sourceLabel": "UFC fighter booking / Sherdog UFC 333",
           "source": "https://www.ufc.com/athlete/rizvan-kuniev"
-        },
-        {
-          "date": "Mar. 2022",
-          "label": "WIN · Anthony Hamilton · submission in 77 seconds",
-          "kind": "win",
-          "detail": "Kuniev submitted UFC veteran Anthony Hamilton in 77 seconds, one of the more recognizable wins during the unbeaten stretch that preceded his UFC arrival.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
-        },
-        {
-          "date": "2024",
-          "label": "Second Contender Series chance earns UFC contract",
-          "kind": "milestone",
-          "detail": "Kuniev failed to get a UFC contract after his first Contender Series appearance, then returned the following year and stopped Hugo Cunha at the buzzer of the first round. Dana White awarded him a contract after the second attempt.",
-          "sourceLabel": "MMA Fighting",
-          "source": "https://www.mmafighting.com/2024/8/20/24224902/dwcs-season-8-week-2-results-4-more-contracts-awarded-including-former-pfl-fighter-rizvan-kuniev"
         }
       ],
       "audit": {
-        "pass": 4,
-        "verifiedThrough": "2026-10-07",
-        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
+        "pass": 5,
+        "verifiedThrough": "2026-10-21",
+        "scope": "sanda and Gorets origin; individually dated 14-3-1 (1 NC) professional bouts; reported and documented amateur championships; 2019 Eagle title and 2020/2022 defenses; 2021 and 2024 DWCS; overturned 2023 PFL Ferreira decision, full Nevada sanction; 2025 canceled UFC debut, 2025–2026 UFC results; team affiliation caveats; pending UFC 333 bout"
       }
     },
     "Aaron Pico": {
