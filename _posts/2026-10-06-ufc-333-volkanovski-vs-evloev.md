@@ -22,7 +22,7 @@ pinned: false
 listing_visibility: normal
 spoiler_warning: false
 preserve_line_breaks: true
-published: false
+published: true
 ---
 
 ## Alexander Volkanovski vs. Movsar Evloev
