@@ -39,7 +39,7 @@
     "check:generated": "node scripts/media/generated-integrity.mjs"
   },
   "devDependencies": {
-    "fast-xml-parser": "^5.10.1",
+    "fast-xml-parser": "^5.11.2",
     "sharp": "^0.35.3"
   }
 }
