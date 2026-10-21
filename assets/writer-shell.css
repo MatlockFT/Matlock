@@ -1728,6 +1728,17 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
 }
 
 
+/* The workspace is a fixed-height split grid. Override the older sticky
+   preview rule (top:104px / max-height:100vh-116px), which shortens the pane
+   and can reposition it while Writer chrome settles. */
+@media(min-width:1101px){
+  .writer-shell .writer-workspace[data-view-mode="split"] .writer-preview-pane{
+    position:relative;
+    top:auto;
+    max-height:none;
+  }
+}
+
 /* Writer screen separation: Library is navigation, Editor owns publishing controls. */
 .writer-shell .writer-app[data-writer-screen="library"] .writer-publish-actions,
 .writer-shell .writer-app[data-writer-screen="library"] [data-live-writer-toggle],

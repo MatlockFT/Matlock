@@ -11,6 +11,7 @@ const previewSource = read('_writer/01-preview.js');
 const bootstrapSource = read('_writer/06-bootstrap.js');
 const stateSource = read('_writer/02-state-library.js');
 const previewCss = read('assets/writer-splitflow.css');
+const shellCss = read('assets/writer-shell.css');
 const browserSpec = read('scripts/writer/writer-preview-scroll-contract.spec.cjs');
 
 const start = previewSource.indexOf('function patchPreviewContent(html) {');
@@ -34,6 +35,8 @@ assert.match(previewCss, /overflow-anchor:auto/,
   'Leave native scroll anchoring enabled.');
 assert.match(previewCss, /scrollbar-gutter:stable/,
   'Reserve gutter width to avoid layout jumps at the scroll threshold.');
+assert.match(shellCss, /\.writer-shell \.writer-workspace\[data-view-mode="split"\] \.writer-preview-pane\s*\{\s*position:relative;\s*top:auto;\s*max-height:none;/,
+  'Desktop split preview must override the legacy sticky/max-height rule.');
 assert.match(stateSource, /function restoreWriterPosition\(\)/,
   'Keep refresh position restoration available.');
 assert.match(browserSpec, /visual anchor drift/,

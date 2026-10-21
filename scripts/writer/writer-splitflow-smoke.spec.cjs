@@ -56,6 +56,7 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
   expect(viewportLayout.documentHeight).toBeLessThanOrEqual(viewportLayout.viewportHeight + 2);
   expect(viewportLayout.workspaceBottom).toBeLessThanOrEqual(viewportLayout.viewportHeight + 2);
   expect(Math.abs(viewportLayout.editorHeight - viewportLayout.previewHeight)).toBeLessThanOrEqual(3);
+  expect(await previewPane.evaluate(el => getComputedStyle(el).position)).not.toBe('sticky');
   expect(viewportLayout.bodyOverflow).toBe('hidden');
 
   const tallPreviewHeight = previewBox.height;
