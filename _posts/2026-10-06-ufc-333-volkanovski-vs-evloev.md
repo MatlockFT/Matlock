@@ -402,8 +402,8 @@ For me, I'll give Aliev a slight lean. He's proven against grapplers that he can
 
 Dawson by submission or Aliev by decision are both perfectly reasonable picks for me.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Nurullo%20Aliev%22%2C%22method%22%3A%22Split%20Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22Coin%20Flip%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
-<aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Nurullo Aliev</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Split Decision</span></span></div><p class="article-pick-card__note">Coin Flip</p></aside>
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Nurullo%20Aliev%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22Coin%20Flip%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Nurullo Aliev</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Decision</span></span></div><p class="article-pick-card__note">Coin Flip</p></aside>
 </section>
 ---
 
