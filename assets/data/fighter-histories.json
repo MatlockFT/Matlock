@@ -8165,122 +8165,386 @@
       "division": "Featherweight",
       "items": [
         {
-          "date": "2013",
-          "label": "Turns professional",
-          "kind": "milestone",
-          "detail": "Santos began his professional MMA career in 2013.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/daniel-santos"
+          "date": "Mar. 12, 1995",
+          "label": "Birth and Minas Gerais background",
+          "kind": "background",
+          "detail": "Daniel Gustavo Gonzaga Santos was born in Minas Gerais, Brazil. Sources disagree over the city: a UFC Oct. 2026 feature says Uberaba, while some fighter registries and Brazilian coverage say Uberlândia. No city is presented as settled without resolving that contradiction.",
+          "sourceLabel": "UFC Oct. 2026 profile and Sherdog birth date",
+          "source": "https://www.ufc.com.br/news/conheca-lutadores-brasileiros-ufc-333"
         },
         {
-          "date": "UFC career",
-          "label": "Chute Boxe",
+          "date": "Before 2011 (exact years unavailable)",
+          "label": "Works in rural agriculture before focusing on fighting",
+          "kind": "background",
+          "detail": "Santos told the UFC he previously lived in the countryside and worked in the fields. The interview does not establish exact employment dates or a specific move to São Paulo.",
+          "sourceLabel": "UFC athlete questionnaire",
+          "source": "https://us.ufcespanol.com/athlete/daniel-santos"
+        },
+        {
+          "date": "2011 (self-reported)",
+          "label": "Starts MMA training after watching Anderson Silva",
+          "kind": "training",
+          "detail": "Santos says he began training in 2011 after seeing a televised replay of an Anderson Silva fight and wanting to experience the feeling of competing in the Octagon. He was about 16; the calendar year comes from his UFC answer, not a first gym registry.",
+          "sourceLabel": "UFC fighter questionnaire",
+          "source": "https://us.ufcespanol.com/athlete/daniel-santos"
+        },
+        {
+          "date": "Early MMA training (specific date unverified)",
+          "label": "Receives nickname Willycat after exaggerated sprawl",
+          "kind": "training",
+          "detail": "Santos told the UFC his coach nicknamed him Willycat after he instinctively performed a high sprawl in early takedown training, comparing the movement to a cat or the ThunderCats character. A specific gym and date of the nickname are unverified.",
+          "sourceLabel": "UFC athlete Q&A and nickname explanation",
+          "source": "https://us.ufcespanol.com/athlete/daniel-santos"
+        },
+        {
+          "date": "Before professional MMA (competition dates unverified)",
+          "label": "Reports ten amateur MMA fights and ten Muay Thai wins",
+          "kind": "milestone",
+          "detail": "His UFC questionnaire mentions ten amateur MMA bouts and ten Muay Thai wins, but does not give a verified opponent-by-opponent ledger or the amateur MMA win-loss record. These numbers should not be converted into an invented 10-0 MMA record.",
+          "sourceLabel": "UFC athlete Q&A",
+          "source": "https://us.ufcespanol.com/athlete/daniel-santos"
+        },
+        {
+          "date": "Before 2022 (belt-promotion dates unverified)",
+          "label": "Muay Thai black grade and BJJ purple belt reported",
+          "kind": "training",
+          "detail": "UFC lists a Muay Thai black grade from Kickboxing Academy and a Brazilian jiu-jitsu purple belt. Dates and belt-awarding instructors are not fully documented; these are training credentials, not professional wins.",
+          "sourceLabel": "UFC athlete questionnaire",
+          "source": "https://us.ufcespanol.com/athlete/daniel-santos"
+        },
+        {
+          "date": "Aug. 17, 2013",
+          "label": "WIN · Caio Forastieri · Unanimous decision · R3 5:00",
+          "kind": "win",
+          "detail": "At Warriors of God, Santos defeated Caio Forastieri by unanimous decision. The fight went the full scheduled 3 rounds; 5:00 is the final bell. His recorded professional MMA debut; won three full rounds in Uberlândia, Brazil.",
+          "sourceLabel": "Sherdog dated professional bout record",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "Mar. 30, 2014",
+          "label": "WIN · Jose Mauro dos Santos · KO (spinning back elbow) · R2 (time unrecorded)",
+          "kind": "win",
+          "detail": "At Fatality Arena 6, Santos defeated Jose Mauro dos Santos by ko (spinning back elbow). The round is reported but the precise finish time is missing. Sherdog does not establish a legitimate elapsed stoppage clock, so the time is intentionally unknown. The UFC later reported Santos was a Fatality Arena regional champion, but no independently verified title-bout status is assigned to this fight.",
+          "sourceLabel": "Sherdog dated professional bout record",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "Mar. 30, 2015",
+          "label": "WIN · Ary dos Santos · Technical submission (anaconda choke) · R3 2:42",
+          "kind": "win",
+          "detail": "At Arena Fight Uberlândia 8, Santos defeated Ary dos Santos by technical submission (anaconda choke). The official recorded finish was at 2:42 of R3. Anaconda-choke technical submission, not a traditional KO. First of his two indexed professional submission wins.",
+          "sourceLabel": "Sherdog dated professional bout record",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "Aug. 22, 2015",
+          "label": "WIN · Irwing Romero Machado · Unanimous decision · R3 5:00",
+          "kind": "win",
+          "detail": "At Fighten / Decagon MMA Championship 2, Santos defeated Irwing Romero Machado by unanimous decision. The fight went the full scheduled 3 rounds; 5:00 is the final bell. Three full rounds and a unanimous decision.",
+          "sourceLabel": "Sherdog dated professional bout record",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "Oct. 6, 2015",
+          "label": "WIN · Lucas Eurico · KO (method unspecified) · R2 0:20",
+          "kind": "win",
+          "detail": "At Copa Euro, Santos defeated Lucas Eurico by ko (method unspecified). The official recorded finish was at 0:20 of R2. Sherdog records a knockout at 0:20 of round two without a more specific finishing technique.",
+          "sourceLabel": "Sherdog dated professional bout record",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "Apr. 2, 2016",
+          "label": "WIN · Jose Alexandre · TKO (punches and knees) · R3 3:30",
+          "kind": "win",
+          "detail": "At Thunder Fight 6, Santos defeated Jose Alexandre by tko (punches and knees). The official recorded finish was at 3:30 of R3. Stopped Jose Alexandre with punches and knees in the third round.",
+          "sourceLabel": "Sherdog dated professional bout record",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "Sep. 11, 2016",
+          "label": "WIN · Cleverson Silva · TKO (spinning back kick to body) · R1 3:10",
+          "kind": "win",
+          "detail": "At Fighten / Decagon MMA Championship 3, Santos defeated Cleverson Silva by tko (spinning back kick to body). The official recorded finish was at 3:10 of R1. The finish was a spinning back kick to the body, consistent with his regional striking background.",
+          "sourceLabel": "Sherdog dated professional bout record",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "Feb. 16, 2018",
+          "label": "WIN · Dukvaha Astamirov · Majority decision · R3 5:00",
+          "kind": "win",
+          "detail": "At ACB 80 in Krasnodar, Santos defeated Dukvaha Astamirov by majority decision. The fight went the full scheduled 3 rounds; 5:00 is the final bell. Won a majority decision in a three-round fight listed at flyweight by Tapology.",
+          "sourceLabel": "Sherdog dated professional bout record",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "Jan. 26, 2019",
+          "label": "LOSS · Murad Kalamov · Unanimous decision · R3 5:00",
+          "kind": "loss",
+          "detail": "At ACA 91 in Grozny, Santos lost to Murad Kalamov by unanimous decision. The fight went the full scheduled 3 rounds; 5:00 is the final bell. First professional MMA loss, bringing his record to 8-1; not a KO or submission defeat.",
+          "sourceLabel": "Sherdog dated professional bout record",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "Jun. 28, 2019",
+          "label": "WIN · Henrique Fantini · TKO (spinning back kick) · R1 2:21",
+          "kind": "win",
+          "detail": "At Future FC 6, Santos defeated Henrique Fantini by tko (spinning back kick). The official recorded finish was at 2:21 of R1. First-round spinning-kick stoppage and the ninth win in his professional record.",
+          "sourceLabel": "Sherdog dated professional bout record",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "Oct. 19, 2019 (scheduled; canceled)",
+          "label": "FFC bout against Guilherme Santos canceled",
+          "kind": "milestone",
+          "detail": "A planned FFC matchup with Guilherme Santos did not occur. It did not affect the professional record; the precise cancellation reason is not established.",
+          "sourceLabel": "Tapology canceled regional booking archive",
+          "source": "https://www.tapology.com/fightcenter/fighters/65061-daniel-willycat"
+        },
+        {
+          "date": "Dec. 14, 2019",
+          "label": "WIN · Nizambek Abdrashitov · Submission (armbar) · R1 2:37",
+          "kind": "win",
+          "detail": "At Brave CF 32 / WEF 91, Santos defeated Nizambek Abdrashitov by submission (armbar). The official recorded finish was at 2:37 of R1. Submitted Abdrashitov with an armbar. This was his final completed professional bout before the April 2022 UFC debut, not a UFC appearance.",
+          "sourceLabel": "Sherdog dated professional bout record",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "Mar. 28, 2020 (event canceled)",
+          "label": "Brave CF 35 fight vs. Rany Saadeh canceled amid COVID restrictions",
+          "kind": "milestone",
+          "detail": "Brave CF 35 was canceled during the onset of the COVID-19 pandemic, so the booked bout with Rany Saadeh was not fought. Do not assume this event alone explains the full 2019–2022 activity gap.",
+          "sourceLabel": "Tapology BRAVE CF 35 canceled event record",
+          "source": "https://www.tapology.com/fightcenter/fighters/65061-daniel-willycat"
+        },
+        {
+          "date": "Oct. 16, 2021 (scheduled; canceled)",
+          "label": "First UFC booking disrupted by Valiev withdrawal and Santos withdrawal",
+          "kind": "milestone",
+          "detail": "Fight listings show a canceled UFC Fight Night matchup with Timur Valiev (Valiev withdrew), followed by a canceled booking with Marcelo Rojo (Santos withdrew) on Oct. 16, 2021. Neither was a completed UFC debut, and their separate cancellation reasons should not be conflated.",
+          "sourceLabel": "Tapology UFC Oct. 2021 canceled bookings",
+          "source": "https://www.tapology.com/fightcenter/fighters/65061-daniel-willycat"
+        },
+        {
+          "date": "Dec. 2019–Apr. 2022",
+          "label": "More than 27 months without a completed professional fight",
+          "kind": "layoff",
+          "detail": "Between his Dec. 14, 2019 victory over Nizambek Abdrashitov and Apr. 9, 2022 UFC debut, fight registries show no completed professional MMA bouts. Canceled bookings occurred, but one continuous injury diagnosis for the entire gap is not documented.",
+          "sourceLabel": "Sherdog complete pro history",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "2022 (first official UFC appearance)",
+          "label": "Chute Boxe Diego Lima becomes his documented UFC team",
           "kind": "camp",
-          "detail": "Santos trains at Chute Boxe and has trained alongside fighters including Charles Oliveira and Allan Nascimento.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/daniel-santos"
+          "detail": "UFC and Sherdog list Chute Boxe Diego Lima in São Paulo. Santos has trained alongside Charles Oliveira and Allan Nascimento, and has discussed the team's pressure-heavy fighting environment. No precise date of his first arrival at Chute Boxe is confirmed.",
+          "sourceLabel": "UFC fighter team listing / Sherdog",
+          "source": "https://us.ufcespanol.com/athlete/daniel-santos"
         },
         {
           "date": "Apr. 9, 2022",
-          "label": "UFC debut",
+          "label": "LOSS · Julio Arce · Unanimous decision · R3 5:00",
+          "kind": "loss",
+          "detail": "At UFC 273 in Jacksonville, Santos lost to Julio Arce by unanimous decision. The fight went the full scheduled 3 rounds; 5:00 is the final bell. Santos lost a full three-round unanimous decision in his UFC debut. He arrived on a 10-1 regional professional record.",
+          "sourceLabel": "Sherdog dated professional bout record",
+          "source": "https://www.sherdog.com/fighter/Daniel-Santos-144395"
+        },
+        {
+          "date": "Sep. 30, 2022",
+          "label": "John Castañeda matchup officially moved to 140-pound catchweight",
           "kind": "milestone",
-          "detail": "Santos entered the UFC in 2022.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/daniel-santos"
+          "detail": "UFC announced a 140 lb catchweight before the event. At the weigh-in Santos was 138.5 and Castañeda 139.5, both under that agreed limit. The match was not a 135-pound bantamweight weigh-in.",
+          "sourceLabel": "UFC official Sept. 30 2022 card update",
+          "source": "https://www.ufc.com/news/updates-ufc-fight-night-dern-vs-yan"
         },
         {
           "date": "Oct. 1, 2022",
-          "label": "WIN · John Castaneda · first UFC win",
+          "label": "WIN · John Castañeda · KO (punches and knee) · R2 4:28",
           "kind": "win",
-          "detail": "After losing his UFC debut, Santos knocked out John Castaneda in the second round for his first Octagon victory.",
-          "sourceLabel": "UFC profile",
-          "source": "https://www.ufc.com/athlete/daniel-santos"
+          "detail": "At UFC Fight Night: Dern vs. Yan in Las Vegas, Santos defeated John Castañeda by ko (punches and knee). The official recorded finish was at 4:28 of R2. First UFC victory; the fight was officially changed to a 140-pound catchweight before weigh-ins, and Santos weighed 138.5 pounds under that agreement. The back-and-forth bout received UFC Fight of the Night honors.",
+          "sourceLabel": "UFC official 140-lb catchweight announcement; Sherdog official result",
+          "source": "https://www.ufc.com/news/updates-ufc-fight-night-dern-vs-yan"
         },
         {
-          "date": "Jun 3, 2023",
-          "label": "WIN · Johnny Munoz Jr. · Decision (Unanimous)",
+          "date": "Oct. 1, 2022",
+          "label": "Receives Fight of the Night bonus against John Castañeda",
+          "kind": "milestone",
+          "detail": "Santos won a second-round KO and earned a UFC Fight of the Night award for the back-and-forth bout. This was the first of two documented Fight of the Night bonuses through October 2026.",
+          "sourceLabel": "UFC bout result and awards summary",
+          "source": "https://en.wikipedia.org/wiki/UFC_Fight_Night:_Dern_vs._Yan"
+        },
+        {
+          "date": "May 6, 2023 (original date canceled)",
+          "label": "First Johnny Muñoz Jr. booking canceled after Santos injury",
+          "kind": "injury",
+          "detail": "The original UFC 288 bout against Johnny Muñoz Jr. was scratched with Santos listed as injured. The fight was eventually completed June 3, 2023. An exact medical diagnosis is not established.",
+          "sourceLabel": "Tapology canceled UFC 288 listing",
+          "source": "https://www.tapology.com/fightcenter/fighters/65061-daniel-willycat"
+        },
+        {
+          "date": "Jun. 3, 2023",
+          "label": "WIN · Johnny Muñoz Jr. · Unanimous decision · R3 5:00",
           "kind": "win",
-          "detail": "Daniel Santos defeated Johnny Munoz Jr.. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/daniel-santos?page=1"
+          "detail": "At UFC on ESPN: Kara-France vs. Albazi in Las Vegas, Santos defeated Johnny Muñoz Jr. by unanimous decision. The fight went the full scheduled 3 rounds; 5:00 is the final bell. Official scorecards were 29-27 for Santos on all three cards. One point was deducted from Santos in round three for repeated low blows. The win was not an undisputed 30-27 score because of that deduction.",
+          "sourceLabel": "RotoWire 2023 UFC judges' scores and penalty",
+          "source": "https://www.rotowire.com/mma/player/johnny-munoz-2062"
+        },
+        {
+          "date": "Nov. 4, 2023 (canceled)",
+          "label": "Withdraws from Daniel Marcos matchup due to injury",
+          "kind": "injury",
+          "detail": "The scheduled UFC São Paulo fight with Daniel Marcos did not occur after Santos withdrew. Santos later discussed this as one of two post-June 2023 canceled fights connected to his own injuries. It is not a professional loss.",
+          "sourceLabel": "Ag. Fight April 2025 retrospective interview",
+          "source": "https://agfight.com/entrevistas/aprendizado-e-emprestimo-daniel-willycat-revela-consequencias-de-lutas-canceladas-no-ufc/amp"
+        },
+        {
+          "date": "Oct. 26, 2024 (canceled)",
+          "label": "Withdraws from UFC 308 bout with Said Nurmagomedov",
+          "kind": "milestone",
+          "detail": "UFC canceled the planned bantamweight fight after Santos withdrew for reasons not specified in the contemporaneous report. His later interview grouped the Marcos and Nurmagomedov bookings among injury-affected camps, but no precise diagnosis is documented for the October 2024 withdrawal.",
+          "sourceLabel": "MMA Fighting Oct. 23, 2024 cancellation",
+          "source": "https://www.mmafighting.com/2024/10/23/24277618/said-nurmagomedov-vs-daniel-santos-officially-off-ufc-308"
+        },
+        {
+          "date": "Apr. 4, 2025 (interview published)",
+          "label": "Discusses repeated injuries, overtraining and borrowing money",
+          "kind": "milestone",
+          "detail": "In an Ag. Fight interview before the Davey Grant booking, Santos said repeated injuries and canceled fights forced him to reconsider high-intensity training close to fight day. He also described financial hardship during prolonged inactivity, borrowing from his manager and relying on friends while supporting his young daughter. These are his own reported experiences.",
+          "sourceLabel": "Ag. Fight exclusive interview, Apr. 4, 2025",
+          "source": "https://agfight.com/entrevistas/aprendizado-e-emprestimo-daniel-willycat-revela-consequencias-de-lutas-canceladas-no-ufc/amp"
+        },
+        {
+          "date": "Apr. 4, 2025 (cancellation announced)",
+          "label": "Davey Grant fight canceled after weight-cut medical problem",
+          "kind": "injury",
+          "detail": "One day before UFC Vegas 105, his planned April 5 bantamweight fight with Davey Grant was called off over medical issues with Santos's weight cut. Brazilian reporting specifically connected the issue to the cut; it was not a completed bout or a formal weigh-in loss.",
+          "sourceLabel": "Ag. Fight / UOL April 4 report",
+          "source": "https://www.uol.com.br/esporte/ultimas-noticias/ag-fight/2025/04/04/caiu-luta-de-daniel-willycat-e-cancelada-as-vesperas-do-ufc-vegas-105.htm"
+        },
+        {
+          "date": "Jun. 3, 2023–May 10, 2025",
+          "label": "Ends almost 23-month competition absence",
+          "kind": "layoff",
+          "detail": "The span between his June 3, 2023 win against Johnny Muñoz and May 10, 2025 win over Jeong Yeong Lee was 707 days, nearly 23 months. Multiple withdrawn or canceled fights, training injuries and weight-management problems were publicly discussed; the layoff should not be described as having no known explanation.",
+          "sourceLabel": "Sherdog bout dates and Ag. Fight injury account",
+          "source": "https://agfight.com/entrevistas/aprendizado-e-emprestimo-daniel-willycat-revela-consequencias-de-lutas-canceladas-no-ufc/amp"
         },
         {
           "date": "May 10, 2025",
-          "label": "WIN · Jeong Yeong Lee · Decision (Unanimous)",
+          "label": "WIN · Jeong Yeong Lee · Unanimous decision · R3 5:00",
           "kind": "win",
-          "detail": "Daniel Santos defeated Jeong Yeong Lee. Decision (Unanimous).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/daniel-santos?page=1"
+          "detail": "At UFC 315 in Montréal, Santos defeated Jeong Yeong Lee by unanimous decision. The fight went the full scheduled 3 rounds; 5:00 is the final bell. Returned after nearly 23 months away and won 30-27 on each judge's official card. This was his first completed UFC appearance at featherweight (146-pound non-title limit), after earlier bantamweight outings and canceled bookings.",
+          "sourceLabel": "UFC official May 2025 scorecards",
+          "source": "https://us.ufcespanol.com/news/official-judges-scorecards-ufc-315-muhammad-vs-della-maddalena-montreal"
         },
         {
-          "date": "Oct 4, 2025",
-          "label": "WIN · Joo Sang Yoo · TKO (Punches)",
+          "date": "May 10, 2025",
+          "label": "Returns at featherweight after difficult bantamweight years",
+          "kind": "milestone",
+          "detail": "His UFC 315 fight against Jeong Yeong Lee was at featherweight, the 145-pound division, rather than his prior UFC bantamweight class. Santos made the 146-pound non-title limit and won a unanimous decision, all three cards 30-27.",
+          "sourceLabel": "Official UFC 315 scorecards",
+          "source": "https://us.ufcespanol.com/news/official-judges-scorecards-ufc-315-muhammad-vs-della-maddalena-montreal"
+        },
+        {
+          "date": "Oct. 4, 2025",
+          "label": "WIN · Joo Sang Yoo · TKO (punches) · R2 0:21",
           "kind": "win",
-          "detail": "Daniel Santos defeated Joo Sang Yoo. TKO (Punches).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/daniel-santos?page=1"
+          "detail": "At UFC 320 in Las Vegas, Santos defeated Joo Sang Yoo by tko (punches). The official recorded finish was at 0:21 of R2. Stopped previously unbeaten Joo Sang Yoo with a left hook and follow-up punches. Their bout was renegotiated during fight week to a 153-pound catchweight after Santos's serious weight-cut problem. Santos officially weighed 151 lb and Yoo 152.5 lb, both within the revised agreed limit, not the originally scheduled featherweight limit.",
+          "sourceLabel": "UFC official UFC 320 weigh-in record; Sherdog result",
+          "source": "https://www.ufc.ru/news/official-weigh-results-ufc-320-ankalaev-vs-pereira-2"
+        },
+        {
+          "date": "Sep. 27, 2025 (canceled)",
+          "label": "Dooho Choi withdraws from originally planned Perth bout",
+          "kind": "milestone",
+          "detail": "Santos was scheduled to fight Dooho Choi at UFC Perth on Sep. 27, but Choi withdrew with a knee injury. Santos was rescheduled for UFC 320 against Joo Sang Yoo, then met Choi in May 2026.",
+          "sourceLabel": "Tapology canceled bout listing and MMA Fighting interview",
+          "source": "https://www.tapology.com/fightcenter/fighters/65061-daniel-willycat"
+        },
+        {
+          "date": "Oct. 3, 2025",
+          "label": "Serious weight-cut incident prompts 153-pound catchweight",
+          "kind": "milestone",
+          "detail": "Santos said he experienced major water retention while traveling, then collapsed or lost memory while cutting weight after standing up too quickly. A doctor told him to stop the cut. Coach Diego Lima secured a 153-lb catchweight with Joo Sang Yoo; Santos officially weighed 151 lb, Yoo 152.5. It was a medically disrupted attempted featherweight cut, not a formally recorded miss of the renegotiated limit.",
+          "sourceLabel": "Cageside Press Oct. 6, 2025 post-fight interview",
+          "source": "https://cagesidepress.com/2025/10/06/ufc-320-daniel-santos-weight/"
         },
         {
           "date": "May 16, 2026",
-          "label": "LOSS · Doo Ho Choi · TKO (Punches)",
+          "label": "LOSS · Dooho Choi · TKO (punches, body shot sequence) · R2 4:29",
           "kind": "loss",
-          "detail": "Daniel Santos lost to Doo Ho Choi. TKO (Punches).",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/daniel-santos?page=1"
+          "detail": "At UFC Fight Night: Allen vs. Costa at the Meta APEX, Santos lost to Dooho Choi by tko (punches, body shot sequence). The official recorded finish was at 4:29 of R2. Dooho Choi ended Santos's four-fight UFC winning streak with a body shot and follow-up attack at 4:29 of round two. The bout was awarded UFC Fight of the Night. This was Santos's first professional stoppage loss.",
+          "sourceLabel": "UFC Fight of the Night May 2026 recap and result",
+          "source": "https://www.ufc.com/news/bonus-coverage-ufc-fight-night-allen-vs-costa"
         },
         {
-          "date": "Oct. 24, 2026",
-          "label": "UFC 333 · vs. Bolaji Oki",
-          "kind": "upcoming",
-          "detail": "Daniel Santos is scheduled to face Bolaji Oki at UFC 333 in Abu Dhabi. Current record in the UFC 333 draft: 14-3-0, UFC 4-2-0.",
-          "sourceLabel": "UFC 333",
-          "source": "https://www.ufc.com/event/ufc-333"
-        },
-        {
-          "date": "2011 · age 16",
-          "label": "Starts MMA after watching Anderson Silva",
-          "kind": "training",
-          "detail": "Santos began training in 2011 after watching a replay of an Anderson Silva fight. Seeing Silva climb the Octagon and celebrate made Santos want to experience that moment himself. Before fighting, he lived in the countryside and worked in the field; he later accumulated 10 amateur MMA fights and 10 Muay Thai wins.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/daniel-santos"
-        },
-        {
-          "date": "Amateur / striking background",
-          "label": "10 amateur MMA fights and 10 Muay Thai wins",
+          "date": "May 16, 2026",
+          "label": "Second UFC Fight of the Night award despite loss to Choi",
           "kind": "milestone",
-          "detail": "Before his professional MMA run, Santos accumulated 10 amateur MMA fights and 10 Muay Thai wins. The UFC lists him with a black grade in Muay Thai and a purple belt in jiu-jitsu.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/daniel-santos?page=1"
+          "detail": "The UFC awarded Fight of the Night to Dooho Choi and Santos. Santos outlanded Choi in the first round but Choi's body-shot finishing sequence ended the fight late in the second.",
+          "sourceLabel": "UFC official May 2026 bonus feature",
+          "source": "https://www.ufc.com/news/bonus-coverage-ufc-fight-night-allen-vs-costa"
         },
         {
-          "date": "Current camp",
-          "label": "Chute Boxe Diego Lima",
+          "date": "Aug. 3, 2026",
+          "label": "Longtime teammate and cornerman Allan Nascimento dies",
+          "kind": "milestone",
+          "detail": "Chute Boxe teammate Allan Nascimento died on Aug. 3, 2026, aged 34. The UFC reported that he was found unresponsive after an apparent heart attack. Nascimento had cornered Santos and trained with him, as Santos later confirmed in October. This is included as a significant change in his fight-team environment, not as an injury to Santos.",
+          "sourceLabel": "UFC official Nascimento memorial, Aug. 3, 2026",
+          "source": "https://www.ufc.com/news/remembering-allan-nascimento-1991-2026"
+        },
+        {
+          "date": "Sep. 29, 2026",
+          "label": "UFC 333 featherweight matchup with Bolaji Oki reported",
+          "kind": "milestone",
+          "detail": "Heavy reported the Oki-Santos bout for the Oct. 24 Abu Dhabi card at featherweight. Santos enters 14-3, 4-2 UFC, and Oki moves down from 155 lb. The booking does not establish a result or a successful Oct. 23 weigh-in.",
+          "sourceLabel": "Heavy / Marcel Dorff Sept. 29 report",
+          "source": "https://heavy.com/sports/ufc/featherweight-banger-added-to-ufc-333-in-abu-dhabi/"
+        },
+        {
+          "date": "Oct. 17, 2026",
+          "label": "UFC previews Brazilian contingent at UFC 333",
+          "kind": "milestone",
+          "detail": "UFC Brazil confirmed Santos as a 14-3 featherweight representing Chute Boxe Diego Lima for UFC 333 against Bolaji Oki, looking to rebound from May's loss to Dooho Choi. An official published fighter profile identified Uberaba as his hometown despite contradictory Uberlândia reports.",
+          "sourceLabel": "UFC Brazil Oct. 17, 2026 pre-fight feature",
+          "source": "https://www.ufc.com.br/news/conheca-lutadores-brasileiros-ufc-333"
+        },
+        {
+          "date": "Oct. 21, 2026",
+          "label": "Remembers Allan Nascimento ahead of first fight without him",
+          "kind": "milestone",
+          "detail": "In a Rádio Itatiaia interview, Santos discussed his close friendship with late teammate Allan 'Puro Osso' Nascimento, who had helped him in camps and worked in his UFC corner. Santos spoke about entering UFC 333 without that support following Nascimento's Aug. 3 death. No new head coach or permanent camp change was confirmed.",
+          "sourceLabel": "Rádio Itatiaia interview, Oct. 21, 2026",
+          "source": "https://www.itatiaia.com.br/esportes/lutas/ufc/ele-esta-comigo-antes-de-luta-no-ufc-amigo-homenageia-lutador-brasileiro-falecido/"
+        },
+        {
+          "date": "Oct. 21, 2026",
+          "label": "Offers views on Volkanovski and UFC 333 featherweight division",
+          "kind": "milestone",
+          "detail": "In a separate Itatiaia interview, Santos argued that Alexander Volkanovski's achievements put him above José Aldo in the UFC featherweight discussion, and named Jean Silva as a dangerous potential challenger. These are Santos's opinions about the division, not confirmed future matchups.",
+          "sourceLabel": "Rádio Itatiaia interview, Oct. 21, 2026",
+          "source": "https://www.itatiaia.com.br/esportes/lutas/ufc/lutador-mineiro-diz-que-volkanovski-ja-superou-jose-aldo-no-ufc-e-o-melhor/"
+        },
+        {
+          "date": "Oct. 2026 (current team listing)",
+          "label": "Chute Boxe Diego Lima still his documented primary gym",
           "kind": "camp",
-          "detail": "Santos trains at Chute Boxe Diego Lima, where his training room has included Charles Oliveira and Allan Nascimento. He describes the aggressive, pressure-heavy approach as part of the Chute Boxe identity.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/daniel-santos?page=1"
+          "detail": "UFC and Sherdog continue to list Chute Boxe Diego Lima in São Paulo as Santos's team. His long-term association with Charles Oliveira remains documented. No reliable October 2026 evidence proves he has permanently transferred to another camp or changed head coaches.",
+          "sourceLabel": "UFC athlete profile and Sherdog association",
+          "source": "https://us.ufcespanol.com/athlete/daniel-santos"
         },
         {
-          "date": "June 2023-May 2025",
-          "label": "Nearly two-year gap between UFC appearances",
-          "kind": "layoff",
-          "detail": "Santos did not compete between his June 2023 win over Johnny Munoz Jr. and his May 2025 return against Jeong Yeong Lee. I have not found a reliable public source identifying one specific injury as the cause, so the timeline records the inactivity without assigning a reason.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/daniel-santos?page=1"
-        },
-        {
-          "date": "UFC era",
-          "label": "Trains alongside Charles Oliveira and Allan Nascimento",
-          "kind": "camp",
-          "detail": "Santos' UFC profile lists Chute Boxe as his home and notes that he trains with Charles Oliveira and Allan Nascimento, giving him regular access to high-level grappling and MMA work.",
-          "sourceLabel": "UFC",
-          "source": "https://www.ufc.com/athlete/daniel-santos"
+          "date": "Oct. 24, 2026 (scheduled)",
+          "label": "UFC 333 · featherweight vs. Bolaji Oki",
+          "kind": "upcoming",
+          "detail": "Santos (14-3 overall, 4-2 UFC) is booked to face Bolaji Oki (10-4, 2-3 UFC) at Etihad Arena in Abu Dhabi at featherweight. The early prelims are scheduled for 10 a.m. U.S. Eastern / 9 a.m. Central / 6 p.m. Abu Dhabi local time. This is the segment's start, not a confirmed cage-walk time. No fight result or official UFC 333 weigh-in is known as of Oct. 21, 2026.",
+          "sourceLabel": "UFC official Oct. 19 UFC 333 fight preview",
+          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-333-volkanovski-vs-evloev"
         }
       ],
       "audit": {
-        "pass": 4,
-        "verifiedThrough": "2026-10-07",
-        "scope": "training origin, amateur base, camp history, injuries/illness, layoffs, suspensions, weight changes, title history, UFC entry, career-shaping results"
+        "pass": 5,
+        "verifiedThrough": "2026-10-21",
+        "scope": "Reconstructed all 17 professional MMA fights 14-3, UFC 4-2, with dates, methods, rounds and verified clocks (2014 spinning-back-elbow time unavailable), UFC Castaneda first win and Fight of the Night, Johnny Munoz point deduction, May 2025 30-27 x3 Lee return and May 2026 Choi Fight of the Night; reported early amateur/Muay Thai background, Chute Boxe Diego Lima/Oliveira affiliation and team member Allan Nascimento death Aug 3 and Santos Oct 21 tribute; all key canceled matchups Oct 2021, 2023, 2024, Apr 2025 weight-cut medical cancellation and Sep 2025 Choi withdrawal; 2023–2025 layoff explained by firsthand April 4 2025 interview on injuries/overtraining/finances; 2025 UFC 320 153-lb catchweight after medical cut disruption vs reported official weighed 151/152.5, not mislabeled as missed revised weight; Sept 29 booking and Oct 24 2026 UFC 333 early prelim. UFC Oct 2026 Uberaba birthplace vs other outlets Uberlandia contradiction qualified; no unsupported drug bans, surgery dates, exact amateur record, Oct 2026 successful weigh-in or verified camp move."
       }
     },
     "Kody Steele": {
