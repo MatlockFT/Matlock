@@ -219,9 +219,9 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
   await page.reload({ waitUntil: 'domcontentloaded' });
   if (await page.locator('[data-library-view]').isVisible()) await page.click('[data-library-new]');
   await expect(editor).toBeVisible();
-  await expect.poll(async () => editor.evaluate(el => Math.abs(el.selectionStart - savedPosition.selectionStart))).toBeLessThanOrEqual(1);
-  await expect.poll(async () => editor.evaluate(el => Math.abs(el.scrollTop - savedPosition.editorScrollTop))).toBeLessThan(6);
-  await expect.poll(async () => previewPane.evaluate(el => Math.abs(el.scrollTop - savedPosition.previewScrollTop))).toBeLessThan(10);
+  await expect.poll(async () => editor.evaluate((el, expected) => Math.abs(el.selectionStart - expected), savedPosition.selectionStart)).toBeLessThanOrEqual(1);
+  await expect.poll(async () => editor.evaluate((el, expected) => Math.abs(el.scrollTop - expected), savedPosition.editorScrollTop)).toBeLessThan(6);
+  await expect.poll(async () => previewPane.evaluate((el, expected) => Math.abs(el.scrollTop - expected), savedPosition.previewScrollTop)).toBeLessThan(10);
   expect(await editor.evaluate(el => document.activeElement === el)).toBe(true);
 
   const moreAfterReload = page.locator('[data-writer-mode-more]');

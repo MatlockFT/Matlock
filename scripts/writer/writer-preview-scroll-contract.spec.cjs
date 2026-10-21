@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 
 const baseUrl = process.env.WRITER_BASE_URL || 'https://mmamatlock.com/write/';
 
-test('Writer preview holds its reading position during typing idle and structural updates', async ({ page }) => {
+test('Writer preview holds its reading position during immediate typing and structural updates', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
   const app = page.locator('[data-writer-app]');
@@ -62,24 +62,33 @@ test('Writer preview holds its reading position during typing idle and structura
     el.setSelectionRange(0, 0);
   });
 
-  // Two quick bursts must not repaint the preview while typing is in progress.
-  // The idle refresh is allowed to change the DOM only after typing stops.
-  await page.keyboard.type('First burst ', { delay: 12 });
-  await page.keyboard.type('second burst ', { delay: 12 });
+  // The immediate preview must update while typing and never remove
+  // the paragraph DOM just to change its text.
+  await previewContent.evaluate(el => {
+    window.__writerPreviewTopLevelMutations = [];
+    new MutationObserver(records => {
+      records.forEach(record => {
+        if (record.type === 'childList') window.__writerPreviewTopLevelMutations.push(record.removedNodes.length + record.addedNodes.length);
+      });
+    }).observe(el, { childList: true });
+  });
+  await page.keyboard.type('F');
+  await expect.poll(
+    () => previewContent.locator('p').first().textContent(),
+    { timeout: 350, message: 'immediate preview after the first keystroke' }
+  ).toContain('FOpening paragraph.');
+  await page.keyboard.type('irst burst second burst ', { delay: 25 });
+  await expect(previewContent.locator('p').first()).toContainText('First burst second burst Opening paragraph.', { timeout: 350 });
   const typing = await page.evaluate(() => {
     const pane = document.querySelector('.writer-preview-pane');
-    const content = document.querySelector('[data-preview-content]');
     return {
-      current: content.innerHTML,
       offset: window.__writerTestAnchor.getBoundingClientRect().top - pane.getBoundingClientRect().top,
-      scrollTop: pane.scrollTop
+      topLevelMutations: window.__writerPreviewTopLevelMutations
     };
   });
-  expect(typing.current, 'Preview should not repaint on every letter during typing idle.').toBe(before.original);
+  expect(typing.topLevelMutations, 'typing must not remove or reinsert article blocks').toEqual([]);
   expect(Math.abs(typing.offset - before.offset), 'visual anchor drift during typing').toBeLessThan(2);
-  expect(Math.abs(typing.scrollTop - before.scrollTop)).toBeLessThan(2);
 
-  await expect(previewContent.locator('p').first()).toContainText('First burst second burst', { timeout: 6000 });
   const afterFirst = await page.evaluate(() => {
     const pane = document.querySelector('.writer-preview-pane');
     const node = window.__writerTestAnchor;

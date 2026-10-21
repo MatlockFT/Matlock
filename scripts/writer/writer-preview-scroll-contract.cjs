@@ -27,10 +27,14 @@ assert.match(renderer, /const reserved = new Map\(\)/,
   'Reserve unchanged article blocks before patching edited blocks.');
 assert.match(previewSource, /if \(expandedBody !== renderedPreviewBody\)/,
   'Skip DOM and media hydration when article content has not changed.');
-assert.match(bootstrapSource, /writerBodyPreviewIdleMs = 650/,
-  'Typing should not repaint the preview on every keystroke.');
-assert.match(bootstrapSource, /schedulePreview\(el === bodyEditor \? writerBodyPreviewIdleMs : 75\)/,
-  'Keep body typing debounced independently of quick metadata updates.');
+assert.match(bootstrapSource, /window\.requestAnimationFrame\(\(\) => \{/,
+  'Render text on the next paint instead of waiting for typing to stop.');
+assert.doesNotMatch(bootstrapSource, /writerBodyPreviewIdleMs|setTimeout\(updatePreview/,
+  'Never reintroduce typing debounce.');
+assert.match(previewSource, /function writerPreviewSameTextStructure\(/,
+  'Fast typing path must preserve inline formatting.');
+assert.match(previewSource, /if \(!textOnly\) \{/,
+  'Do not run media hydration on plain-text edits.');
 assert.match(previewCss, /overflow-anchor:auto/,
   'Leave native scroll anchoring enabled.');
 assert.match(previewCss, /scrollbar-gutter:stable/,
@@ -41,6 +45,6 @@ assert.match(stateSource, /function restoreWriterPosition\(\)/,
   'Keep refresh position restoration available.');
 assert.match(browserSpec, /visual anchor drift/,
   'Browser test must measure actual geometry, not just explicit scroll writes.');
-assert.match(browserSpec, /typing idle/,
-  'Browser test must catch regressions to per-keystroke rendering.');
-console.log('Writer stability contract passed: idle rendering, content identity, steady gutter and measured viewport stability.');
+assert.match(browserSpec, /immediate preview/,
+  'Browser test must catch typing delays or DOM reconstruction.');
+console.log('Writer stability contract passed: frame-synchronous text updates, stable DOM and anchored preview.');

@@ -38,15 +38,14 @@
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
-  // The article preview is a reading surface, not a second live cursor.
-  // Coalesce consecutive keystrokes; repainting every 45ms was visible as jitter.
-  const writerBodyPreviewIdleMs = 650;
-  function schedulePreview(delayMs = 75) {
-    window.clearTimeout(previewTimer);
-    previewTimer = window.setTimeout(() => {
+  // Show changes on the next screen frame while the user is typing.
+  // Group only events arriving in the same frame, not a typing pause.
+  function schedulePreview() {
+    if (previewTimer) return;
+    previewTimer = window.requestAnimationFrame(() => {
       previewTimer = 0;
       updatePreview();
-    }, delayMs);
+    });
   }
 
 initializeWriterAutoCorrect();
@@ -54,12 +53,12 @@ initializeWriterAutoCorrect();
 Object.values(fields).forEach(el => {
   el.addEventListener('input', () => {
     if (el === fields.filename && !currentPath) filenameTouched = true;
-    schedulePreview(el === bodyEditor ? writerBodyPreviewIdleMs : 75);
+    schedulePreview();
     updateDocumentStatus();
     scheduleAutosave();
   });
   el.addEventListener('change', () => {
-    schedulePreview(el === bodyEditor ? writerBodyPreviewIdleMs : 75);
+    schedulePreview();
     updateDocumentStatus();
     scheduleAutosave();
   });

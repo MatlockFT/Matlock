@@ -1148,25 +1148,71 @@
     return key ? 'embed:' + key : 'markup:' + node.outerHTML;
   }
 
+
+  // Track canonical Markdown HTML before visuals are hydrated. Raw and live
+  // element markup cannot be compared reliably after editor controls are added.
+  let writerPreviewCanonicalSignatures = [];
+  function writerPreviewSameTextStructure(a, b) {
+    if (a.nodeType !== b.nodeType) return false;
+    if (a.nodeType === Node.TEXT_NODE) return true;
+    if (a.nodeType !== Node.ELEMENT_NODE || a.tagName !== b.tagName) return false;
+    if (a.attributes.length !== b.attributes.length) return false;
+    for (const attr of a.attributes) {
+      if (b.getAttribute(attr.name) !== attr.value) return false;
+    }
+    if (a.childNodes.length !== b.childNodes.length) return false;
+    for (let i = 0; i < a.childNodes.length; i++) {
+      if (!writerPreviewSameTextStructure(a.childNodes[i], b.childNodes[i])) return false;
+    }
+    return true;
+  }
+
   function patchPreviewContent(html) {
     const template = document.createElement('template');
     template.innerHTML = html || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
     const incoming = [...template.content.children];
     const previous = [...previewContent.children];
+    const signatures = incoming.map(writerPreviewIdentity);
+    const previousSignatures = writerPreviewCanonicalSignatures.length === previous.length
+      ? writerPreviewCanonicalSignatures : previous.map(writerPreviewIdentity);
+    // Real-time text updates change existing text nodes only; no article
+    // reconstruction or expensive media hydration on every keystroke.
+    if (previous.length && previous.length === incoming.length) {
+      let changed = -1;
+      for (let i = 0; i < incoming.length; i++) {
+        if (previousSignatures[i] === signatures[i]) continue;
+        if (changed !== -1) { changed = -2; break; }
+        changed = i;
+      }
+      if (changed === -1) {
+        writerPreviewCanonicalSignatures = signatures;
+        return true;
+      }
+      if (changed >= 0) {
+        const existing = previous[changed], next = incoming[changed];
+        if (/^(P|H[1-6])$/.test(existing.tagName) &&
+            !previewEmbedKey(existing) && !previewEmbedKey(next) &&
+            writerPreviewSameTextStructure(existing, next)) {
+          syncPreviewChildren(existing, next);
+          writerPreviewCanonicalSignatures = signatures;
+          return true;
+        }
+      }
+    }
 
     // Reserve identical existing nodes before trying to patch edited nodes.
     // This prevents an insertion above the viewport from consuming the element
     // the browser is using as its scroll anchor.
     const availableByIdentity = new Map();
-    previous.forEach(node => {
-      const identity = writerPreviewIdentity(node);
+    previous.forEach((node, index) => {
+      const identity = previousSignatures[index];
       if (!availableByIdentity.has(identity)) availableByIdentity.set(identity, []);
       availableByIdentity.get(identity).push(node);
     });
     const reserved = new Map();
     const retained = new Set();
-    incoming.forEach(next => {
-      const candidates = availableByIdentity.get(writerPreviewIdentity(next));
+    incoming.forEach((next, index) => {
+      const candidates = availableByIdentity.get(signatures[index]);
       while (candidates?.length) {
         const existing = candidates.shift();
         const embedKey = previewEmbedKey(next);
@@ -1205,6 +1251,8 @@
     [...previewContent.childNodes].forEach(node => {
       if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) node.remove();
     });
+    writerPreviewCanonicalSignatures = signatures;
+    return false;
   }
 
   function sourceMediaBlocks(text = bodyEditor.value) {
@@ -1998,32 +2046,38 @@
     const words = countWords(expandedBody);
     const minutes = Math.max(1, Math.ceil(words / 200));
 
-    const previewTitle = app.querySelector('[data-preview-title]');
-    previewTitle.textContent = title;
-    previewTitle.className = `post-title${title.length > 58 ? ' post-title-long' : title.length > 38 ? ' post-title-medium' : ''}`;
-    app.querySelector('[data-preview-breadcrumb]').textContent = title;
-    app.querySelector('[data-preview-category]').textContent = category;
+    const setPreviewText = (selector, value) => {
+      const node = app.querySelector(selector);
+      if (node && node.textContent !== String(value)) node.textContent = String(value);
+      return node;
+    };
+    const previewTitle = setPreviewText('[data-preview-title]', title);
+    const nextTitleClass = `post-title${title.length > 58 ? ' post-title-long' : title.length > 38 ? ' post-title-medium' : ''}`;
+    if (previewTitle.className !== nextTitleClass) previewTitle.className = nextTitleClass;
+    setPreviewText('[data-preview-breadcrumb]', title);
+    setPreviewText('[data-preview-category]', category);
     const desc = app.querySelector('[data-preview-description]');
-    desc.textContent = description;
-    desc.hidden = !description;
-    app.querySelector('[data-preview-date]').textContent = formatDate(date);
-    app.querySelector('[data-preview-read-time]').textContent = `${minutes} min read`;
-    app.querySelector('[data-word-count]').textContent = `${words.toLocaleString()} ${words === 1 ? 'word' : 'words'}`;
-    app.querySelector('[data-read-time]').textContent = `${minutes} min read`;
-    app.querySelector('[data-title-count]').textContent = fields.title.value.length;
-    app.querySelector('[data-description-count]').textContent = `${fields.description.value.length} / 160`;
+    if (desc.textContent !== description) desc.textContent = description;
+    if (desc.hidden !== !description) desc.hidden = !description;
+    setPreviewText('[data-preview-date]', formatDate(date));
+    setPreviewText('[data-preview-read-time]', `${minutes} min read`);
+    setPreviewText('[data-word-count]', `${words.toLocaleString()} ${words === 1 ? 'word' : 'words'}`);
+    setPreviewText('[data-read-time]', `${minutes} min read`);
+    setPreviewText('[data-title-count]', fields.title.value.length);
+    setPreviewText('[data-description-count]', `${fields.description.value.length} / 160`);
     const metaSummary = app.querySelector('[data-meta-summary]');
     if (metaSummary) {
       const summaryBits = [category, formatDate(date)];
       if (fields.filename.value.trim()) summaryBits.push(fields.filename.value.trim().replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/i, ''));
-      metaSummary.textContent = summaryBits.filter(Boolean).join(' · ');
+      const summary = summaryBits.filter(Boolean).join(' · ');
+      if (metaSummary.textContent !== summary) metaSummary.textContent = summary;
     }
 
     const shell = app.querySelector('[data-preview-image-shell]');
     const image = app.querySelector('[data-preview-image]');
     const savedImageSrc = normalizeImagePath(fields.imagePath.value);
     const imageSrc = localImageUrl || savedImageSrc;
-    shell.hidden = !imageSrc;
+    if (shell.hidden !== !imageSrc) shell.hidden = !imageSrc;
     if (imageSrc) {
       const imageError = shell.querySelector('[data-preview-image-error]');
       image.alt = fields.imageAlt.value.trim() || title;
@@ -2038,30 +2092,35 @@
       } else if (image.dataset.writerCanonicalSource !== savedImageSrc) {
         loadFeaturedImagePreview(image, shell, imageError, savedImageSrc);
       }
-    } else {
+    } else if (image.dataset.writerCanonicalSource || image.hasAttribute('src')) {
       clearFeaturedImageRetry();
       image.dataset.writerCanonicalSource = '';
       image.removeAttribute('src');
       shell.classList.remove('is-loading', 'is-missing');
     }
 
-    app.querySelector('[data-preview-spoiler]').hidden = !fields.spoilerWarning.checked;
+    const spoiler = app.querySelector('[data-preview-spoiler]');
+    if (spoiler.hidden !== !fields.spoilerWarning.checked) spoiler.hidden = !fields.spoilerWarning.checked;
     // Metadata and autosave updates must not touch the article DOM when the
     // rendered body is unchanged. Hydration also runs only on changed content.
     if (expandedBody !== renderedPreviewBody) {
-      patchPreviewContent(renderMarkdown(expandedBody));
+      const textOnly = patchPreviewContent(renderMarkdown(expandedBody));
+      if (!textOnly) {
       hydratePreviewImages();
       hydratePreviewVideos();
       hydratePreviewMediaTools();
       hydratePreviewTables();
       hydratePreviewHtmlVisuals();
       hydratePreviewXEmbeds();
+      }
       renderedPreviewBody = expandedBody;
     }
 
     const topics = app.querySelector('[data-preview-topics]');
-    app.querySelector('[data-preview-tags]').innerHTML = tags.map(tag => `<li>${escapeHtml(tag)}</li>`).join('');
-    topics.hidden = tags.length === 0;
+    const tagsElement = app.querySelector('[data-preview-tags]');
+    const nextTags = tags.map(tag => `<li>${escapeHtml(tag)}</li>`).join('');
+    if (tagsElement.innerHTML !== nextTags) tagsElement.innerHTML = nextTags;
+    if (topics.hidden !== (tags.length === 0)) topics.hidden = tags.length === 0;
     suggestFilename();
     updateLiveLink();
   }
@@ -6391,15 +6450,14 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
-  // The article preview is a reading surface, not a second live cursor.
-  // Coalesce consecutive keystrokes; repainting every 45ms was visible as jitter.
-  const writerBodyPreviewIdleMs = 650;
-  function schedulePreview(delayMs = 75) {
-    window.clearTimeout(previewTimer);
-    previewTimer = window.setTimeout(() => {
+  // Show changes on the next screen frame while the user is typing.
+  // Group only events arriving in the same frame, not a typing pause.
+  function schedulePreview() {
+    if (previewTimer) return;
+    previewTimer = window.requestAnimationFrame(() => {
       previewTimer = 0;
       updatePreview();
-    }, delayMs);
+    });
   }
 
 initializeWriterAutoCorrect();
@@ -6407,12 +6465,12 @@ initializeWriterAutoCorrect();
 Object.values(fields).forEach(el => {
   el.addEventListener('input', () => {
     if (el === fields.filename && !currentPath) filenameTouched = true;
-    schedulePreview(el === bodyEditor ? writerBodyPreviewIdleMs : 75);
+    schedulePreview();
     updateDocumentStatus();
     scheduleAutosave();
   });
   el.addEventListener('change', () => {
-    schedulePreview(el === bodyEditor ? writerBodyPreviewIdleMs : 75);
+    schedulePreview();
     updateDocumentStatus();
     scheduleAutosave();
   });
