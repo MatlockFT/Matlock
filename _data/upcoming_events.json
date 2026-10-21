@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-21T20:16:02.615Z",
+  "generated_at": "2026-10-21T23:28:38.615Z",
   "events": [
     {
       "id": "ufc-333-2026-10-24-fight-card",
@@ -208,7 +208,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/KRYLOV_NIKITA_L_07-11.png?itok=G-SKEXs5",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+360"
+                  "moneyline": "+350"
                 },
                 {
                   "name": "Abdul Rakhman Yakhyaev",
@@ -216,7 +216,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/YAKHYAEV_ABDUL_RAKHMAN_L_06-27.png?itok=r25ouJ0s",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-530"
+                  "moneyline": "-520"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -258,7 +258,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/DAWSON_GRANT_L_05-09.png?itok=JuVEhRo_",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-128"
+                  "moneyline": "-120"
                 },
                 {
                   "name": "Nurullo Aliev",
@@ -266,7 +266,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/ALIEV_NURULLO_L_07-25.png?itok=2JPUXADG",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+100"
+                  "moneyline": "-106"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -315,7 +315,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/VAGAEV_ABUBAKAR_L_07-25.png?itok=RfC7eTGH",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-166"
+                  "moneyline": "-170"
                 },
                 {
                   "name": "Jacob Malkoun",
@@ -323,7 +323,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MALKOUN_JACOB_L_05-02.png?itok=8P_D4zmL",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+130"
+                  "moneyline": "+132"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -780,6 +780,29 @@
             {
               "order": 4,
               "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Seokhyeon Ko",
+                  "initials": "SK",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/KO_SEOKHYEON_L_06-21.png?itok=QRZ7e0tm",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Wellington Turman",
+                  "initials": "WT",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-11/TURMAN_WELLINGTON_L_12-02.png?itok=icqJ0amp",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
               "weight_class": "Light Heavyweight Bout",
               "fighters": [
                 {
@@ -801,7 +824,7 @@
               ]
             },
             {
-              "order": 5,
+              "order": 6,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -831,7 +854,7 @@
           "time": "5:00 PM ET",
           "bouts": [
             {
-              "order": 6,
+              "order": 7,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -854,7 +877,7 @@
               ]
             },
             {
-              "order": 7,
+              "order": 8,
               "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [
@@ -877,7 +900,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 9,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -900,7 +923,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 10,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -923,7 +946,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -946,7 +969,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -969,7 +992,7 @@
               ]
             },
             {
-              "order": 12,
+              "order": 13,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
