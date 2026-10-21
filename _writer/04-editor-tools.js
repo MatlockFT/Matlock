@@ -89,7 +89,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
 
   function loadPreviewXWidgets(container) {
     const render = () => {
-      if (window.twttr?.widgets) window.twttr.widgets.load(container);
+      if (container.isConnected && window.twttr?.widgets) window.twttr.widgets.load(container);
     };
     if (window.twttr?.widgets) {
       render();
@@ -108,7 +108,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
 
   function hydratePreviewXEmbeds() {
     if (!previewContent) return;
-    let found = false;
+    const added = [];
     [...previewContent.querySelectorAll('a')].forEach(link => {
       if (link.textContent.trim().toUpperCase() !== 'EMBED X') return;
       const cleanUrl = xStatusUrl(link.href);
@@ -132,9 +132,9 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       const paragraph = link.closest('p');
       if (paragraph && paragraph.textContent.trim().toUpperCase() === 'EMBED X') paragraph.replaceWith(wrapper);
       else link.replaceWith(wrapper);
-      found = true;
+      added.push(wrapper);
     });
-    if (found) loadPreviewXWidgets(previewContent);
+    added.forEach(loadPreviewXWidgets);
   }
 
   function handleSimpleInsert(type) {

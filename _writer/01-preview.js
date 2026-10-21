@@ -288,6 +288,10 @@
         if (source) return 'video:' + source;
       }
     }
+    if (node.matches('a') && node.textContent.trim().toUpperCase() === 'EMBED X') {
+      const clean = xStatusUrl(node.href);
+      if (clean) return `x:${clean}`;
+    }
     if (node.matches('p')) {
       const links = node.querySelectorAll('a');
       if (links.length === 1 && node.textContent.trim().toUpperCase() === 'EMBED X') {
@@ -338,7 +342,13 @@
       const nextTable = next.matches?.('table[data-writer-table-index]')
         ? next
         : next.querySelector?.(':scope > table[data-writer-table-index]');
-      return Boolean(existingTable && nextTable && existingTable.innerHTML === nextTable.innerHTML);
+      if (!existingTable || !nextTable) return false;
+      const markup = nextTable.outerHTML;
+      if (writerPreviewMarkup.get(existingTable) !== markup) {
+        syncPreviewChildren(existingTable, nextTable);
+        writerPreviewMarkup.set(existingTable, markup);
+      }
+      return true;
     }
     syncPreviewMediaLayout(existing, next);
     return true;
@@ -351,6 +361,7 @@
     if (!existing || !next || existing.tagName !== next.tagName) return false;
     if (previewEmbedKey(existing) || previewEmbedKey(next)) return false;
 
+    const markup = next.outerHTML;
     for (const attribute of [...existing.attributes]) {
       if (!next.hasAttribute(attribute.name)) existing.removeAttribute(attribute.name);
     }
@@ -361,16 +372,46 @@
     }
 
     syncPreviewChildren(existing, next);
+    writerPreviewMarkup.set(existing, markup);
     return true;
   }
 
   function syncPreviewChildren(existing, next) {
+    const previous = [...existing.childNodes];
+    const incoming = [...next.childNodes];
+    const identity = node => node.nodeType === Node.ELEMENT_NODE
+      ? writerPreviewIdentity(node) : `${node.nodeType}:${node.nodeValue}`;
+    const available = new Map();
+    previous.forEach(node => {
+      const key = identity(node);
+      if (!available.has(key)) available.set(key, []);
+      available.get(key).push(node);
+    });
+    const reserved = new Map(), retained = new Set();
+    incoming.forEach(node => {
+      const candidates = available.get(identity(node));
+      while (candidates?.length) {
+        const candidate = candidates.shift(), key = previewEmbedKey(node);
+        if (key && !preservePreviewKeyedNode(candidate, node, key)) continue;
+        reserved.set(node, candidate); retained.add(candidate); break;
+      }
+    });
     let cursor = existing.firstChild;
-
-    for (const nextChild of [...next.childNodes]) {
-      if (cursor && cursor.nodeType === nextChild.nodeType) {
+    for (const nextChild of incoming) {
+      const saved = reserved.get(nextChild);
+      if (saved) {
+        // Deleting content before an iframe must not move the iframe itself.
+        while (cursor && cursor !== saved && !retained.has(cursor)) {
+          const removed = cursor; cursor = cursor.nextSibling; removed.remove();
+        }
+        if (saved !== cursor) existing.insertBefore(saved, cursor);
+        cursor = saved.nextSibling;
+        continue;
+      }
+      if (cursor && !retained.has(cursor) && cursor.nodeType === nextChild.nodeType) {
         if (cursor.nodeType === Node.TEXT_NODE || cursor.nodeType === Node.COMMENT_NODE) {
           if (cursor.nodeValue !== nextChild.nodeValue) cursor.nodeValue = nextChild.nodeValue;
+          retained.add(cursor);
           cursor = cursor.nextSibling;
           continue;
         }
@@ -380,34 +421,31 @@
             !previewEmbedKey(cursor) &&
             !previewEmbedKey(nextChild)) {
           syncPreviewElement(cursor, nextChild);
+          retained.add(cursor);
           cursor = cursor.nextSibling;
           continue;
         }
       }
 
-      const afterCurrent = cursor ? cursor.nextSibling : null;
-      if (cursor) {
-        cursor.replaceWith(nextChild);
-        cursor = afterCurrent;
-      } else {
-        existing.appendChild(nextChild);
-      }
+      rememberPreviewMarkup(nextChild);
+      existing.insertBefore(nextChild, cursor);
     }
-
-    while (cursor) {
-      const afterCurrent = cursor.nextSibling;
-      cursor.remove();
-      cursor = afterCurrent;
-    }
+    previous.forEach(node => { if (!retained.has(node)) node.remove(); });
   }
 
   // Exact content identity keeps untouched blocks (including scroll anchors) in
   // place if a paragraph, heading, or visual is inserted earlier in the story.
   // Index-based patching changes the meaning of existing nodes and can cause
   // the preview to bounce even without any explicit scrollTop assignments.
+  const writerPreviewMarkup = new WeakMap();
+  function rememberPreviewMarkup(node) {
+    if (node.nodeType !== Node.ELEMENT_NODE) return;
+    writerPreviewMarkup.set(node, node.outerHTML);
+    [...node.children].forEach(rememberPreviewMarkup);
+  }
   function writerPreviewIdentity(node) {
     const key = previewEmbedKey(node);
-    return key ? 'embed:' + key : 'markup:' + node.outerHTML;
+    return key ? 'embed:' + key : 'markup:' + (writerPreviewMarkup.get(node) || node.outerHTML);
   }
 
 
@@ -461,6 +499,7 @@
         if (/^(P|H[1-6])$/.test(existing.tagName) &&
             !previewEmbedKey(existing) && !previewEmbedKey(next) &&
             writerPreviewSameTextStructure(existing, next)) {
+          writerPreviewMarkup.set(existing, next.outerHTML);
           syncPreviewChildren(existing, next);
           writerPreviewCanonicalSignatures = signatures;
           return true;
@@ -495,6 +534,11 @@
     incoming.forEach(next => {
       const existing = reserved.get(next);
       if (existing) {
+        // insertBefore on an already connected iframe ancestor reloads it.
+        // Remove obsolete preceding blocks instead of moving retained media.
+        while (cursor && cursor !== existing && !retained.has(cursor)) {
+          const removed = cursor; cursor = cursor.nextElementSibling; removed.remove();
+        }
         if (existing !== cursor) previewContent.insertBefore(existing, cursor);
         cursor = existing.nextElementSibling;
         return;
@@ -510,6 +554,7 @@
         return;
       }
 
+      rememberPreviewMarkup(next);
       previewContent.insertBefore(next, cursor);
     });
 

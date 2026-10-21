@@ -51,6 +51,8 @@ on:
       - "scripts/writer/writer-splitflow-smoke.spec.cjs"
       - "scripts/writer/writer-preview-scroll-contract.cjs"
       - "scripts/writer/writer-preview-scroll-contract.spec.cjs"
+      - "scripts/writer/writer-preview-embeds.spec.cjs"
+      - "scripts/writer/writer-preview-fixture.cjs"
       - "_netlify-auth/**"
       - ".github/workflows/writer-quality.yml"
   push:
@@ -103,6 +105,8 @@ on:
       - "scripts/writer/writer-splitflow-smoke.spec.cjs"
       - "scripts/writer/writer-preview-scroll-contract.cjs"
       - "scripts/writer/writer-preview-scroll-contract.spec.cjs"
+      - "scripts/writer/writer-preview-embeds.spec.cjs"
+      - "scripts/writer/writer-preview-fixture.cjs"
       - "_netlify-auth/**"
       - ".github/workflows/writer-quality.yml"
 
@@ -168,6 +172,7 @@ jobs:
         run: |
           npm install --no-save --no-package-lock --ignore-scripts @playwright/test@1.55.0
           npx playwright install --with-deps chromium
+          npx playwright test scripts/writer/writer-preview-embeds.spec.cjs --workers=1 --reporter=line
           npx playwright test scripts/writer/broadcast-loop.spec.cjs scripts/writer/broadcast-news-pool.spec.cjs scripts/writer/broadcast-text-fit.spec.cjs --workers=1 --reporter=line
 
   production-smoke:
