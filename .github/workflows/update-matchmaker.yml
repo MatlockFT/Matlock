@@ -91,7 +91,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: .cache/matchmaker
           key: matchmaker-profiles-${{ github.run_id }}
