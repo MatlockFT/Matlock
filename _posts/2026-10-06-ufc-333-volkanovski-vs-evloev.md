@@ -75,8 +75,6 @@ I expect Evloev to be extremely well prepared, and I genuinely believe he can hu
 
 The one thing that gives me pause is that Volkanovski has genuinely wanted this matchup. He hasn't just reluctantly accepted Evloev as the deserving next contender. He's pursued the fight because he likes it, and because beating an undefeated guy like Movsar would add another impressive chapter to his legacy. That's worth considering. Volk knows what he's looking at, and there's obviously something about this matchup that makes him confident.
 
-Maybe he sees something I don't.
-
 This is a fantastic fight with a hell of a lot at stake. If Volkanovski shows up and puts on one of those vintage performances, that would be incredible. I don't think there's a soul on this planet who would hate to see him win. Of course we want to see him win. He's fucking badass and one of the greatest fighters to ever do the damn thing.
 
 But as much as I'd love to see him prove me wrong, I have to go with what I'm seeing rather than what I'm hoping to see.
