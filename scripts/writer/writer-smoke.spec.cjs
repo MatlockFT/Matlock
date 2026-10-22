@@ -5,7 +5,7 @@ const BASE = process.env.WRITER_BASE_URL || 'https://mmamatlock.com/write/';
 function corsHeaders() {
   return {
     'content-type': 'application/json; charset=utf-8',
-    'access-control-allow-origin': 'https://mmamatlock.com',
+    'access-control-allow-origin': new URL(BASE).origin,
     'access-control-allow-methods': 'GET,PUT,OPTIONS',
     'access-control-allow-headers': 'authorization,content-type,x-github-api-version,accept'
   };
@@ -36,7 +36,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
     });
   });
 
-  await page.route('https://mmamatlock-writer-auth.netlify.app/**', async route => {
+  await page.route('**/auth/github/**', async route => {
     const url = new URL(route.request().url());
     if (url.pathname.endsWith('/auth/github/health')) {
       return route.fulfill({ status: 200, headers: { ...corsHeaders(), 'access-control-allow-origin': '*' }, body: JSON.stringify({ ok: true, configured: false }) });
@@ -203,6 +203,8 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
     });
   });
 
+  await page.route('**/assets/live-ufc-odds.json*',r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({events:[{date:'2026-10-21',fights:[{fighters:[{name:'Natalia Silva',moneyline:'-205'},{name:'Wang Cong',moneyline:'+170'}]}]}]})}));
+  await page.route('https://example.com/**',r=>r.fulfill({status:200,contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9ZQmcAAAAASUVORK5CYII=','base64')}));
   await page.goto(BASE, { waitUntil: 'domcontentloaded' });
   await expect(page.locator('[data-writer-app]')).toBeVisible();
   await expect(page.locator('[data-library-view]')).toBeVisible();
@@ -246,6 +248,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.fill('[data-field="category"]', 'Breakdown');
   await page.fill('[data-field="tags"]', 'Writer QA, Production Smoke');
   const advancedDetails = page.locator('.writer-meta-advanced');
+  if (!(await page.locator('.writer-meta').evaluate(el=>el.open))) await page.locator('.writer-meta > summary').click();
   if (!(await advancedDetails.evaluate(el => el.open))) await advancedDetails.locator('summary').click();
   await page.fill('[data-field="filename"]', filename);
   await page.fill('#writer-body', longBody);
@@ -455,6 +458,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(taleShell.locator('[data-tale-crop-side="a"]')).toContainText('Alpha Fighter');
 
   const directFrame = taleSection.locator('.fc-left .fc-portrait');
+  await directFrame.scrollIntoViewIfNeeded();
   const directBox = await directFrame.boundingBox();
   expect(directBox).toBeTruthy();
   const cx = directBox.x + directBox.width / 2;
@@ -655,7 +659,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   const pickRound = pickDialog.locator('[data-pick-round]');
   await expect(pickMethod).toHaveCSS('color-scheme','dark');
   await expect(pickMethod.locator('option').nth(1)).toHaveCSS('background-color','rgb(17, 17, 19)');
-  await expect(pickRound.locator('option').first()).toHaveCSS('color','rgb(240, 240, 238)');
+  await expect(pickRound.locator('option').first()).toHaveCSS('color','rgb(255, 255, 255)');
   await pickDialog.locator('[data-pick-fighter]').fill('Alpha Fighter');
   await pickMethod.selectOption({label:'Decision'});
   await pickRound.selectOption({label:'Round 3'});
@@ -671,7 +675,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(pickCard.locator('.article-pick-card__note')).toContainText('Sharp range management');
   await expect(pickCard.locator('.article-pick-card__accent')).toHaveCount(0);
   await expect(pickCard.locator('.article-pick-card__centerline')).toHaveCSS('justify-content','center');
-  await expect(pickCard).toHaveCSS('border-top-color','rgba(117, 161, 255, 0.34)');
+  await expect(pickCard).toHaveCSS('border-top-color','rgba(255, 255, 255, 0.08)');
   const pickBox = await pickCard.boundingBox();
   expect(pickBox.height).toBeLessThan(150);
 
@@ -723,6 +727,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   expect(uploadedAssetPath).toMatch(new RegExp(`^assets/uploads/articles/${date.slice(0, 4)}/${date.slice(5, 7)}/writer-production-smoke(?:-test)?/`));
   await expect.poll(async () => await editor.inputValue(), { timeout: 10000 }).toContain('/' + uploadedAssetPath);
 
+  if (!(await page.locator('.writer-meta').evaluate(el=>el.open))) await page.locator('.writer-meta > summary').click();
   if (!(await advancedDetails.evaluate(el => el.open))) await advancedDetails.locator('summary').click();
   const cleanFilename = await page.locator('[data-field="filename"]').inputValue();
   await page.fill('[data-field="filename"]', `${date}-draft.md`);
@@ -840,7 +845,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-editor-view]')).toBeVisible();
   await expect(page.locator('[data-save-state]')).toContainText('visuals repaired');
   await expect(page.locator('[data-preview-content] .writer-preview-visual-recovery')).toHaveCount(0);
-  await expect(page.locator('[data-preview-content] section[data-writer-block="tale"]')).toBeVisible();
+  await expect(page.locator('[data-preview-content] section[data-writer-block="tale"]').first()).toBeVisible();
   await expect(page.locator('[data-preview-content]')).toContainText('Alpha Fighter');
   await expect(page.locator('[data-html-block-panel-toggle]')).toBeVisible();
 

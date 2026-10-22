@@ -87,4 +87,6 @@
   }
 
   restoreViewPreferences();
+  app.dataset.writerLayoutReady = 'true';
+  window.dispatchEvent(new Event('matlock-writer:layout-ready'));
 })();

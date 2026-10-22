@@ -49,7 +49,7 @@
       currentSha = state.currentSha || '';
       originalFrontmatter = state.originalFrontmatter || '';
       currentPublished = Boolean(state.currentPublished);
-      filenameTouched = Boolean(currentPath);
+      filenameTouched = Boolean(currentPath || state.filename);
       fields.filename.disabled = Boolean(currentPath);
       dirty = false;
       updateSaveButtonLabel();
@@ -146,8 +146,8 @@ async function githubFetch(path, options = {}, requireAuth = false) {
   } catch (error) {
     if (error?.message === 'Writer auth bridge is unavailable.') throw error;
     throw new Error(navigator.onLine === false
-      ? 'You appear to be offline. Your local autosave is safe.'
-      : 'Could not reach GitHub. Your local autosave is safe; try again in a moment.');
+      ? 'You appear to be offline. Check the local autosave status before closing Writer.'
+      : 'Could not reach GitHub. Try again in a moment.');
   }
 
   if (!response.ok) {
@@ -269,7 +269,7 @@ async function githubFetch(path, options = {}, requireAuth = false) {
   function saveWriterPositionNow() {
     window.clearTimeout(writerPositionSaveTimer);
     writerPositionSaveTimer = 0;
-    if (writerPositionRestoring || app.dataset.writerScreen !== 'editor') return;
+    if (!app.dataset.writerLayoutReady || writerPositionRestoring || app.dataset.writerScreen !== 'editor') return;
 
     const previous = readWriterPosition() || {};
     const previewVisible = Boolean(writerPreviewPane?.clientHeight);
@@ -303,6 +303,7 @@ async function githubFetch(path, options = {}, requireAuth = false) {
   }
 
   function restoreWriterPosition() {
+    if (!app.dataset.writerLayoutReady) return;
     const key = writerPositionKey();
     const saved = readWriterPosition();
     if (!saved) return;
@@ -351,6 +352,7 @@ async function githubFetch(path, options = {}, requireAuth = false) {
   function initializeWriterPositionMemory() {
     if (writerPositionMemoryInitialized || !bodyEditor) return;
     writerPositionMemoryInitialized = true;
+    window.addEventListener('matlock-writer:layout-ready', restoreWriterPosition);
     writerEditorWasFocused = document.activeElement === bodyEditor;
 
     bodyEditor.addEventListener('input', scheduleWriterPositionSave);
@@ -378,7 +380,14 @@ async function githubFetch(path, options = {}, requireAuth = false) {
     });
   }
 
+  function writerSaveNavigationBlocked() {
+    if (!saveInFlight) return false;
+    showToast('Wait for the current save to finish before switching articles. You can keep typing.');
+    return true;
+  }
+
   function showLibrary({ updateRoute = true, replaceRoute = false } = {}) {
+    if (writerSaveNavigationBlocked()) return false;
     if (dirty) {
       persistLocalAutosave();
       dirty = false;
@@ -416,6 +425,7 @@ async function githubFetch(path, options = {}, requireAuth = false) {
   }
 
   function resumeLocalNewDraft({ updateRoute = true, replaceRoute = false } = {}) {
+    if (writerSaveNavigationBlocked()) return false;
     const saved = readLocalNewDraft();
     if (!saved) return false;
     clearLocalFeaturedPreview();
@@ -435,13 +445,15 @@ async function githubFetch(path, options = {}, requireAuth = false) {
   }
 
 function persistLocalAutosave() {
-  if (!dirty) return;
+  if (!dirty) return false;
   try {
     localStorage.setItem(localKey(), JSON.stringify(getState()));
     const stamp = new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
     setLocalStatus(`Saved locally · ${stamp}`, 'saved');
+    return true;
   } catch {
-    setLocalStatus('Local autosave unavailable', 'error');
+    setLocalStatus('Local autosave unavailable — download or copy your draft', 'error');
+    return false;
   }
 }
 
@@ -484,6 +496,7 @@ function scheduleAutosave() {
   }
 
   function resetNewArticle({ template = '', updateRoute = true, replaceRoute = false, allowExistingLocal = false } = {}) {
+    if (writerSaveNavigationBlocked()) return false;
     if (dirty) {
       if (!window.confirm('Start a new article and leave the current unsaved changes?')) return false;
       persistLocalAutosave();
@@ -870,6 +883,7 @@ function scheduleAutosave() {
   }
 
   async function loadArticle(path, { force = false } = {}) {
+    if (writerSaveNavigationBlocked()) return false;
     if (!force && dirty) {
       if (!window.confirm('Open another article and leave the current unsaved changes?')) return;
       persistLocalAutosave();
@@ -897,6 +911,7 @@ function scheduleAutosave() {
   }
 
   async function duplicateArticle(path) {
+    if (writerSaveNavigationBlocked()) return false;
     if (dirty) {
       if (!window.confirm('Duplicate another article and leave the current unsaved changes?')) return;
       persistLocalAutosave();

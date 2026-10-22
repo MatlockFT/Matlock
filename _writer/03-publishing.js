@@ -157,6 +157,10 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
   const button = mode === 'publish' ? publishButton : mode === 'schedule' ? scheduleButton : saveDraftButton;
   const oldLabel = button.textContent;
   const clearSchedule = mode === 'publish';
+  // Save a single revision; editing remains live while the request is pending.
+  const savedMarkdown = fullMarkdown(desiredPublished, { clearSchedule });
+  const savedFrontmatter = buildFrontmatter(desiredPublished, { clearSchedule });
+  const savedSchedule = fields.publishAt.value;
 
   // Publishing an unchanged already-live article should not create an empty commit.
   // Empty commits restart GitHub Pages and can make the Writer say Published while
@@ -173,6 +177,7 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
   }
 
   saveInFlight = true;
+  fields.filename.disabled = true;
   setPublishingControls(false);
   button.textContent = mode === 'publish' ? 'Publishing…' : mode === 'schedule' ? 'Scheduling…' : 'Saving…';
   setSaveState(button.textContent);
@@ -192,7 +197,7 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
 
     const payload = {
       message: `${mode === 'publish' ? 'Publish' : mode === 'schedule' ? 'Schedule' : 'Update'} ${filename}`,
-      content: encodeBase64(fullMarkdown(desiredPublished, { clearSchedule })),
+      content: encodeBase64(savedMarkdown),
       branch: 'main'
     };
     if (currentSha) payload.sha = currentSha;
@@ -200,42 +205,47 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
       method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
     }, true);
 
+    const newerEdits = fullMarkdown(desiredPublished, { clearSchedule }) !== savedMarkdown || fields.publishAt.value !== savedSchedule;
     currentPath = path;
     currentSha = result.content?.sha || currentSha;
     currentPublished = desiredPublished;
-    if (clearSchedule) fields.publishAt.value = '';
-    originalFrontmatter = buildFrontmatter(desiredPublished, { clearSchedule });
+    if (clearSchedule && fields.publishAt.value === savedSchedule) fields.publishAt.value = '';
+    originalFrontmatter = savedFrontmatter;
+    fields.filename.value = filename;
     fields.filename.disabled = true;
     filenameTouched = true;
-    dirty = false;
+    dirty = newerEdits;
     window.clearTimeout(autosaveTimer);
+    // Persist newer edits under the committed path/SHA before removing the old key.
+    const recoveryWritten = newerEdits ? persistLocalAutosave() : false;
     try {
-      localStorage.removeItem(autosaveKeyBeforeSave);
-      localStorage.removeItem(localKey());
-      if (autosaveKeyBeforeSave === 'matlock-writer:new') localStorage.removeItem('matlock-writer:new');
+      if (!newerEdits) localStorage.removeItem(localKey());
+      if ((!newerEdits || recoveryWritten) && autosaveKeyBeforeSave !== localKey()) localStorage.removeItem(autosaveKeyBeforeSave);
     } catch {}
     updateUrlPath();
     updateSaveButtonLabel();
     updateLiveLink();
     updateDocumentStatus();
     const stamp = new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
-    setSaveState(mode === 'publish' ? `Published • ${stamp}` : mode === 'schedule' ? `Scheduled • ${stamp}` : `Saved • ${stamp}`);
-    setLocalStatus(`Saved to GitHub · ${stamp}`, 'github');
-    showToast(mode === 'publish'
+    setSaveState(newerEdits ? 'Unsaved changes • earlier revision saved' : mode === 'publish' ? `Published • ${stamp}` : mode === 'schedule' ? `Scheduled • ${stamp}` : `Saved • ${stamp}`);
+    if (!newerEdits) setLocalStatus(`Saved to GitHub · ${stamp}`, 'github');
+    showToast(newerEdits ? 'Earlier revision saved. Your newer edits still need saving.' : mode === 'publish'
       ? 'Published to GitHub. The public site is deploying now.'
       : mode === 'schedule'
-        ? `Scheduled for ${formatDateTime(localInputToIso(fields.publishAt.value))}. GitHub checks due posts about every 15 minutes.`
+        ? `Scheduled for ${formatDateTime(localInputToIso(savedSchedule))}. GitHub checks due posts about every 15 minutes.`
         : 'Saved to GitHub.');
     if (mode === 'publish') {
       window.dispatchEvent(new CustomEvent('matlock-writer:published', { detail: { path: currentPath, sha: currentSha } }));
     }
     loadLibrary({ hydrate: true });
   } catch (error) {
-    persistLocalAutosave();
-    setSaveState('Save failed • local copy safe');
+    dirty = true;
+    const locallySaved = persistLocalAutosave();
+    setSaveState(locallySaved ? 'Save failed • local copy safe' : 'Save failed • download or copy your draft');
     showToast(`Save failed: ${error.message}`, 6000);
   } finally {
     saveInFlight = false;
+    fields.filename.disabled = Boolean(currentPath);
     setPublishingControls(Boolean(githubCredential));
     if (button.textContent.endsWith('…')) button.textContent = oldLabel;
     updateSaveButtonLabel();
