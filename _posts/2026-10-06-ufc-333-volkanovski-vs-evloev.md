@@ -43,33 +43,45 @@ published: true
 </section>
 I might have to eat crow on Saturday night.
 
-I want to believe Volkanovski when he says he's going to surprise everyone and get Movsar outta there early, that he feels the best he's ever felt and everything is good. I just don't think that's how this fight is going to play out.
+I want to believe Volkanovski when he says he's going to surprise everyone and get Movsar outta there early. He says he feels the best he's ever felt, everything is clicking, and he's confident he can get the job done. I just have a hard time seeing it play out that way.
 
-Leading up to this fight, I've seen a lot of people talk about Movsar's wrestling being the deciding factor, that it's probably going to a decision, and if anyone gets knocked out, it'll be Movsar. But watching Evloev's recent fights, one thing that stands out to me is just how much he's willing to strike with these guys. Even against Aljo, it was Sterling who was initiating a lot of the wrestling exchanges.
+Leading up to this fight, I've seen a lot of people suggest that Movsar's wrestling will be the deciding factor, that we're probably headed for a decision, and that if anyone gets knocked out, it'll be Movsar. But after going back through Evloev's recent fights, I think people are overlooking how much he's actually willing to strike.
 
-And Movsar isn't a bad striker at all. He has very good timing on his jab, some sneaky stance switches, and I really like those inside body kicks he throws with his lead leg. Sometimes he gets a little too spinny for my liking, but it rarely gets him into any serious trouble, so whatever. When he feels like a fight is close, he's more than willing to turn to his wrestling, but he spends a lot more time striking than I think people give him credit for.
+Even against Aljo, it was Sterling who initiated a lot of the wrestling exchanges. Movsar seems perfectly comfortable keeping fights on the feet, and he's pretty damn good there, too. He has excellent timing on his jab, mixes in some sneaky stance switches, and I particularly like the inside body kicks he throws with his lead leg. Sometimes he gets a little too spinny for my liking, but he rarely gets himself into serious trouble doing it, so whatever. When he needs to secure a round, he can always fall back on his wrestling, but I don't think that's necessarily going to be his first approach here.
 
-I actually think this fight could be contested on the feet a lot more than people expect, and I think Movsar is going to do a hell of a lot better there than he's being given credit for.
+In fact, I wouldn't be surprised if this fight spends considerably more time on the feet than people expect. And I think Movsar could have a lot more success in those exchanges than he's being given credit for.
 
-Now, there are plenty of X's and O's you can point to that show why Volkanovski is the better striker, and he is. But watching his last couple of fights, I didn't see the same reactions, the same timing, or, honestly, always the best decision-making from him. Sometimes he tries to execute things that don't quite work out the way they should, and I think part of that is because he's just not as quick or explosive as he used to be.
+Now, you can break down all the X's and O's and make a pretty convincing case that Volkanovski is the superior striker. I wouldn't disagree with that. But there's a difference between what a fighter knows how to do and what he's still physically capable of executing.
 
-There are times when he's shooting takedowns from too far out, or he's not moving his head off the centerline or keeping his guard up. And these are things I noticed in the Diego Lopes fights. I'm not even talking about his knockout losses.
+Watching Volk's last couple of fights, I didn't see quite the same reactions, timing, or even decision-making that made him so difficult to deal with in his prime. There are moments when he tries to execute something and it just doesn't come together the way it used to. I suspect some of that comes down to losing a bit of the speed and explosiveness he once had.
 
-When I hear Volkanovski talk about this matchup, he's supremely confident that he's better than Evloev everywhere, regardless of where the fight takes place. And I can understand why he feels that way. On the surface, Movsar looks like a guy who does just enough on the feet, strings takedowns together, and holds people down. He doesn't seem particularly threatening. There aren't a bunch of finishes on his record you can go back and watch. It's all decisions.
+I've noticed him shooting takedowns from too far out, leaving his head on the centerline, and occasionally neglecting his guard. These aren't observations I'm pulling from his knockout losses, either. I'm seeing this stuff in the Diego Lopes fights, where Volk was largely successful.
 
-And while I think Volkanovski is a smart guy who absolutely does his homework, part of me wonders if there's a false sense of confidence going into this fight.
+And that's what makes this matchup so interesting to me.
 
-What's a better plan than bringing that trademark pace, volume, and pressure to Movsar and showing him there are levels to this game? What's stopping Volkanovski from shooting takedowns of his own? He tried taking Diego down, and Diego managed to put Movsar in several submission attempts when they fought. Diego is big, he's strong, so why wouldn't Volk be confident enough to try some of that himself?
+When I hear Volkanovski talk about Evloev, he sounds supremely confident that he's the better fighter everywhere. I can understand why. On the surface, Movsar looks like a guy who does just enough on the feet, strings together takedowns, and controls people on the ground. He doesn't come across as particularly dangerous because he isn't finishing anybody. There isn't a collection of knockouts or submissions you can point to. It's decision after decision.
 
-Now, I'm probably getting a little too far into the hypotheticals here, but I do wonder if Volkanovski is going to attempt things he could've gotten away with four or five years ago, or even things he got away with against Lopes, that simply won't work against Evloev.
+But I wonder if that perception could give Volk a false sense of confidence.
 
-I think Movsar is going to be prepared for just about anything Volkanovski throws at him. And I don't think his success is necessarily going to come from wrestling, either. I genuinely think he can hurt Volkanovski on the feet. Whether that's enough to get a TKO or just causes damage that accumulates over five rounds, I'm not sure. But I do think there's a real possibility this fight ends inside the distance. I actually rate Evloev's striking higher than Diego Lopes' or Yair Rodriguez's, which I know some people are going to disagree with.
+I think Volkanovski is an incredibly smart fighter who does his homework, so I'm not suggesting he's overlooking Movsar. But I can see how he'd look at this matchup and believe he can overwhelm him with pace, volume, and pressure. Show him there are levels to this game. Why wouldn't he be confident enough to wrestle with Movsar, too? Volk attempted takedowns against Diego Lopes, and Lopes himself managed to put Evloev in several submission attempts when they fought. If Diego can do that, what's stopping Volk from having some success of his own?
 
-One thing I keep in mind, though, is that Volkanovski has genuinely pursued this fight with Evloev. He likes the matchup. He's wanted it not just because Movsar is the deserving next contender, but because beating an undefeated guy like him would strengthen his legacy. And I think that says something about how confident Volk really is.
+Of course, Diego is a big, strong featherweight, and just because something worked for one fighter doesn't mean it'll work for another. I'm probably getting a little too deep into the hypotheticals here, but it ties into my bigger concern with Volkanovski.
 
-This is such a good matchup with a hell of a lot at stake. If Volkanovski really shows up and puts on a performance, that would be incredible. I don't think there's a soul on this planet who would hate to see him win. Of course we want to see him win. He's fucking badass and one of the greatest fighters to ever do the damn thing.
+I think he might attempt things against Evloev that he could've gotten away with four or five years ago, or even things he managed to get away with against Lopes. The problem is, I'm not convinced he'll have the same margin for error against Movsar.
 
-But I'm trying to be honest with myself about what I'm seeing. And as much as I'd love to see Volkanovski prove me wrong, I see Movsar winning this fight.
+And I don't think Volk necessarily needs to get outwrestled to lose this fight.
+
+I expect Evloev to be extremely well prepared, and I genuinely believe he can hurt Volkanovski on the feet. Whether that's enough to get a TKO or whether the damage just accumulates over the course of the fight, I don't know. But I wouldn't rule out a finish here, either. I actually rate Movsar's striking higher than Diego Lopes' or Yair Rodriguez's, and I realize that's probably going to raise a few eyebrows.
+
+The one thing that gives me pause is that Volkanovski has genuinely wanted this matchup. He hasn't just reluctantly accepted Evloev as the deserving next contender. He's pursued the fight because he likes it, and because beating an undefeated guy like Movsar would add another impressive chapter to his legacy. That's worth considering. Volk knows what he's looking at, and there's obviously something about this matchup that makes him confident.
+
+Maybe he sees something I don't.
+
+This is a fantastic fight with a hell of a lot at stake. If Volkanovski shows up and puts on one of those vintage performances, that would be incredible. I don't think there's a soul on this planet who would hate to see him win. Of course we want to see him win. He's fucking badass and one of the greatest fighters to ever do the damn thing.
+
+But as much as I'd love to see him prove me wrong, I have to go with what I'm seeing rather than what I'm hoping to see.
+
+And right now, I see Movsar winning this fight.
 
 <section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Movsar%20Evloev%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%205%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Movsar Evloev</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 5</span></span></div></aside>
