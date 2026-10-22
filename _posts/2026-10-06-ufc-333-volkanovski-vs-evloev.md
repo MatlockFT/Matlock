@@ -71,7 +71,7 @@ I think he might attempt things against Evloev that he could've gotten away with
 
 And I don't think Volk necessarily needs to get outwrestled to lose this fight.
 
-I expect Evloev to be extremely well prepared, and I genuinely believe he can hurt Volkanovski on the feet. Whether that's enough to get a TKO or whether the damage just accumulates over the course of the fight, I don't know. But I wouldn't rule out a finish here, either. I actually rate Movsar's striking higher than Diego Lopes' or Yair Rodriguez's, and I realize that's probably going to raise a few eyebrows.
+I expect Evloev to be extremely well prepared, and I genuinely believe he can hurt Volkanovski on the feet. Whether that's enough to get a TKO or whether the damage just accumulates over the course of the fight, I don't know. But I wouldn't rule out a finish here, either. I rate Movsar's striking higher than Diego Lopes' or Yair Rodriguez's.
 
 The one thing that gives me pause is that Volkanovski has genuinely wanted this matchup. He hasn't just reluctantly accepted Evloev as the deserving next contender. He's pursued the fight because he likes it, and because beating an undefeated guy like Movsar would add another impressive chapter to his legacy. That's worth considering. Volk knows what he's looking at, and there's obviously something about this matchup that makes him confident.
 
