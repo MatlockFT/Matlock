@@ -337,6 +337,7 @@
   }
 
   function showMediaLibrary({ updateRoute = true, replaceRoute = false } = {}) {
+    if (writerSaveNavigationBlocked()) return false;
     if (dirty) {
       persistLocalAutosave();
       dirty = false;

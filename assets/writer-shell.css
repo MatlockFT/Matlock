@@ -1807,3 +1807,31 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
   white-space:nowrap;
 }
 
+/* Keep article colors independent from the dark Writer chrome. */
+.writer-shell .writer-preview-frame[data-preview-theme="light"] .post-page-v3{
+  --v3-ink:#171717;
+  --v3-muted:#555;
+  --v3-red:#9b3b08;
+}
+.writer-shell .writer-preview-frame[data-preview-theme="light"] .post-body :is(h2,h3,h4,h5,h6){color:#171717}
+.writer-shell .writer-preview-frame[data-preview-theme="light"] .post-body a{color:#9b3b08}
+
+/* Phone navigation gets its own rows instead of competing with the title. */
+@media(max-width:700px){
+  .writer-shell .writer-topbar{display:flex;flex-direction:column;align-items:stretch;gap:.25rem;padding:.4rem 0}
+  .writer-shell .writer-topbar>div:first-child{min-width:0;width:100%}
+  .writer-shell .writer-topbar h1{margin:0;font-size:.9rem;white-space:normal}
+  .writer-shell .writer-top-actions{display:flex;flex-direction:column;align-items:stretch;width:100%;min-width:0;gap:.15rem}
+  .writer-shell .writer-top-secondary{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:.15rem;border:0;margin:0;padding:0;width:100%;min-width:0;overflow:visible}
+  .writer-shell .writer-publish-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.2rem;width:100%;min-width:0}
+  .writer-shell .writer-top-actions .writer-button{min-height:36px;padding:.4rem .6rem;font-size:12px;white-space:nowrap;flex-shrink:0}
+  .writer-shell .writer-publish-actions .writer-save-state{max-width:100%;white-space:normal;margin-right:auto}
+}
+/* Save/recovery feedback must remain visible, including storage failures. */
+.writer-shell .writer-app[data-writer-screen="editor"] .writer-save-state{display:inline-block!important;max-width:15rem;white-space:normal;font-size:11px;line-height:1.3}
+.writer-shell .writer-app[data-writer-screen="editor"] .writer-statusbar:has([data-local-status][data-state="error"]){display:flex!important;flex-wrap:wrap}
+@media(max-width:700px){
+  .writer-shell .writer-topbar [data-github-connect]{width:auto!important;overflow:visible;color:#aaa!important;gap:.32rem}
+  .writer-shell .writer-topbar [data-github-connect]::before{margin:0}
+  .writer-shell .writer-app[data-writer-screen="editor"] .writer-save-state{flex-basis:100%;max-width:none;padding:.2rem .4rem}
+}

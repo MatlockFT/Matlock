@@ -27,5 +27,10 @@
   loadScript('/assets/writer-wordtools-core.js')
     .then(() => loadScript('/assets/writer-ux.js'))
     .then(() => loadScript('/assets/writer-splitflow.js'))
-    .catch(error => console.error('[Writer]', error));
+    .catch(error => {
+      console.error('[Writer]', error);
+      const app = document.querySelector('[data-writer-app]');
+      if (app) app.dataset.writerLayoutReady = 'true';
+      window.dispatchEvent(new Event('matlock-writer:layout-ready'));
+    });
 })();

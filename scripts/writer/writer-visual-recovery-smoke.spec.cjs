@@ -7,7 +7,7 @@ const SHA = 'visual-recovery-sha';
 function corsHeaders() {
   return {
     'content-type': 'application/json; charset=utf-8',
-    'access-control-allow-origin': 'https://mmamatlock.com',
+    'access-control-allow-origin': new URL(BASE).origin,
     'access-control-allow-methods': 'GET,OPTIONS',
     'access-control-allow-headers': 'authorization,content-type,x-github-api-version,accept'
   };
@@ -54,7 +54,7 @@ published: false
 </section>
 `;
 
-  await page.route('https://mmamatlock-writer-auth.netlify.app/**', async route => {
+  await page.route('**/auth/github/**', async route => {
     const url = new URL(route.request().url());
     if (url.pathname.endsWith('/auth/github/health')) {
       return route.fulfill({

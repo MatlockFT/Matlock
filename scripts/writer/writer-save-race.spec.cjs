@@ -1,0 +1,52 @@
+const {test,expect}=require('@playwright/test');
+const {startWriterFixture}=require('./writer-preview-fixture.cjs');
+let fixture;
+test.beforeAll(async()=>{fixture=await startWriterFixture();});
+test.afterAll(async()=>{await fixture.close();});
+test('typing during a pending save remains recoverable and unsaved',async({page})=>{
+ let release, payload, remote = null, writes = 0;
+ const gate=new Promise(resolve=>release=resolve);
+ const headers={'access-control-allow-origin':'*','access-control-allow-headers':'authorization,content-type,accept,x-github-api-version','access-control-allow-methods':'GET,PUT,OPTIONS'};
+ await page.route('https://mmamatlock-writer-auth.fighttalkmma.workers.dev/**',r=>r.fulfill({status:401,headers,body:'{}'}));
+ await page.route('https://api.github.com/**',async r=>{
+  const req=r.request(),url=new URL(req.url());
+  if(req.method()==='OPTIONS')return r.fulfill({status:204,headers});
+  if(req.method()==='PUT'){
+   payload=req.postDataJSON(); writes++; await gate;
+   remote={sha:'saved-sha',content:payload.content};
+   return r.fulfill({status:200,headers,body:JSON.stringify({content:{sha:'saved-sha'}})});
+  }
+  if(url.pathname.endsWith('/Matlock'))return r.fulfill({status:200,headers,body:'{"owner":{"login":"MatlockFT"},"name":"Matlock"}'});
+  if(remote && url.pathname.includes('/contents/_posts/'))return r.fulfill({status:200,headers,body:JSON.stringify(remote)});
+  if(url.pathname.endsWith('/_posts'))return r.fulfill({status:200,headers,body:'[]'});
+  return r.fulfill({status:404,headers,body:'{"message":"Not Found"}'});
+ });
+ await page.goto(fixture.origin+'/write/');
+ await page.click('[data-library-new]');
+ await page.fill('[data-field="title"]','Save race QA');
+ await page.fill('#writer-body','Before save.');
+ await page.click('[data-github-connect]');
+ await page.locator('.writer-token-fallback').evaluate(el=>el.open=true);
+ await page.fill('[data-github-token]','github_pat_qa_fake');
+ await page.click('[data-github-authorize]');
+ await expect(page.locator('[data-github-status]')).toContainText('Connected to MatlockFT/Matlock');
+ await page.click('[data-save-draft]');
+ await expect.poll(()=>Boolean(payload)).toBe(true);
+ expect(Buffer.from(payload.content,'base64').toString()).toContain('Before save.');
+ await page.fill('#writer-body','Before save. Added while saving.');
+ await page.click('[data-show-library]');
+ await expect(page.locator('[data-editor-view]')).toBeVisible();
+ release();
+ await expect(page.locator('[data-save-draft]')).toBeEnabled();
+ await expect(page.locator('[data-save-state]')).toBeVisible();
+ await expect(page.locator('[data-save-state]')).toContainText('Unsaved');
+ const recovered=await page.evaluate(()=>Object.entries(localStorage).filter(([key])=>key.startsWith('matlock-writer:_posts/')).map(([,v])=>JSON.parse(v)));
+ expect(recovered.some(s=>s.body==='Before save. Added while saving.' && s.currentSha==='saved-sha')).toBe(true);
+ await page.reload();
+ await expect(page.locator('#writer-body')).toHaveValue('Before save. Added while saving.');
+ await page.click('[data-save-draft]');
+ await expect.poll(()=>writes).toBe(2);
+ await expect(page.locator('[data-save-state]')).toContainText('Saved');
+ expect(payload.sha).toBe('saved-sha');
+ expect(Buffer.from(payload.content,'base64').toString()).toContain('Added while saving.');
+});

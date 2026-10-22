@@ -670,6 +670,11 @@ window.addEventListener('matlock-writer:auth-expired', () => setPublishingContro
   loadLibrary({ hydrate: false });
 
   async function routeFromLocation({ fromPopState = false } = {}) {
+    if (saveInFlight && fromPopState) {
+      writerSaveNavigationBlocked();
+      setWriterRoute(currentPath ? 'article' : 'new', { path: currentPath, replace: true });
+      return;
+    }
     const params = new URLSearchParams(location.search);
     const path = params.get('path');
     const wantsNew = params.get('new') === '1';
