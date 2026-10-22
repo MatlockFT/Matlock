@@ -63,9 +63,9 @@ When I hear Volkanovski talk about Evloev, he sounds supremely confident that he
 
 But I wonder if that perception could give Volk a false sense of confidence.
 
-I think Volkanovski is an incredibly smart fighter who does his homework, so I'm not suggesting he's overlooking Movsar. But I can see how he'd look at this matchup and believe he can overwhelm him with pace, volume, and pressure. Show him there are levels to this game. Why wouldn't he be confident enough to wrestle with Movsar, too? Volk attempted takedowns against Diego Lopes, and Lopes himself managed to put Evloev in several submission attempts when they fought. If Diego can do that, what's stopping Volk from having some success of his own?
+I think Volkanovski is an incredibly smart fighter who does his homework, so I'm not suggesting he's overlooking Movsar. But I can see how he'd look at this matchup and believe he can overwhelm him with pace, volume, and pressure. Show him there are levels to this game. Why wouldn't he be confident enough to wrestle with Movsar, too? Volk attempted takedowns against Diego Lopes, and Lopes himself managed to put Evloev in several submission attempts when they fought. Why would Volk risk that? I don't know but he did. 
 
-Of course, Diego is a big, strong featherweight, and just because something worked for one fighter doesn't mean it'll work for another. I'm probably getting a little too deep into the hypotheticals here, but it ties into my bigger concern with Volkanovski.
+I'm probably getting a little too deep into the hypotheticals here, but it ties into my bigger concern with Volkanovski.
 
 I think he might attempt things against Evloev that he could've gotten away with four or five years ago, or even things he managed to get away with against Lopes. The problem is, I'm not convinced he'll have the same margin for error against Movsar.
 
