@@ -34,7 +34,7 @@ published: true
 
 [EMBED X](https://x.com/MMAMATLOCK/status/2113101875008381251)
 
-**Movsar Evloev** is an undefeated, wrestling-heavy fighter with excellent conditioning and a relentless pace. He mixes his boxing with frequent takedown attempts, works well against the fence and is especially good at maintaining control through scrambles. His striking has improved considerably over the years, and he's become more comfortable exchanging on the feet. He's not much of a finisher, but his wrestling, cardio and overall consistency make him extremely difficult to beat over three rounds.
+**Movsar Evloev** is an undefeated, wrestling-heavy fighter with excellent conditioning and a relentless pace. He mixes his boxing with frequent takedown attempts, works well against the fence and is especially good at maintaining control through scrambles. His striking has improved considerably over the years, and he's become more comfortable exchanging on the feet. He's not much of a finisher, but his wrestling, cardio and overall consistency make him extremely difficult to beat.
 
 [EMBED X](https://x.com/MMAMATLOCK/status/2113019188315054382)
 
