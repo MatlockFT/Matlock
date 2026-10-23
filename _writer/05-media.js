@@ -688,7 +688,14 @@
     uploadButton.disabled = true;
     uploadButton.textContent = 'Uploading…';
     try {
-      const preferred = fields.imagePath.value.trim().split('/').pop() || selectedImageFile.name;
+      // A replacement cover must have a new URL. Reusing the old filename can
+      // leave Jekyll's existing responsive WebP variants and browser/CDN caches
+      // serving the previous photo even after the original image is replaced.
+      const originalName = selectedImageFile.name || 'cover.png';
+      const stem = originalName.replace(/\.[^.]+$/, '').slice(0, 64) || 'cover';
+      const extension = originalName.match(/\.[A-Za-z0-9]+$/)?.[0] || '.png';
+      const nonce = (window.crypto?.randomUUID?.() || Math.random().toString(36).slice(2)).replace(/-/g, '').slice(0, 8);
+      const preferred = `${stem}-${Date.now().toString(36)}-${nonce}${extension}`;
       const path = await uploadAsset(selectedImageFile, preferred);
       fields.imagePath.value = path;
       // Keep the local blob alive for this editing session. GitHub's raw/CDN
@@ -696,7 +703,7 @@
       // makes a good upload look broken.
       selectedImageFile = null;
       imageFileInput.value = '';
-      showToast('Featured image uploaded and verified in GitHub.');
+      showToast(currentPath ? 'Cover uploaded. Click Save changes to update the article.' : 'Cover uploaded. Save the article to use it.', 6000);
       scheduleAutosave();
       updatePreview();
     } catch (error) {
