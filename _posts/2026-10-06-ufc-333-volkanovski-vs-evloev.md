@@ -9,8 +9,6 @@ image:
   path: /assets/uploads/articles/2026/10/ufc-333-volkanovski-vs-evloev/UFC-333-Cover-Image-JPEG-mvkath9t-01ccaccd.jpg
   alt: "UFC 333: Volkanovski vs. Evloev"
   position: center center
-  width: 1920
-  height: 1080
 social_image_version: "20261023-1"
 tags:
   - UFC 333
@@ -31,6 +29,8 @@ published: true
 This card is stacked with really solid matchups. It seems I'm picking a lot of decisions but I think there is a lot of potential for super competitive fights. High stakes on this one. 
 
 As always, my picks are subject to change but they all be updated here and on[ Verdict where you can follow me!](https://verdictmma.com/profile/MMAMatlock) Breakdowns are done so those won't change unless something happens throughout the course of fight week, in which case I'll update.
+
+<div class="article-video-embed"><iframe src="https://www.youtube.com/embed/J9JxDv4E5Hc" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>
 
 [Follow me on X for any updates, clips, and banter.](https://x.com/MMAMATLOCK)
 
