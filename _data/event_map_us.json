@@ -4,8 +4,8 @@
   "source_regional_updated_at": null,
   "major_total": 7,
   "major_mapped": 0,
-  "regional_total": 108,
-  "regional_mapped": 108,
+  "regional_total": 107,
+  "regional_mapped": 107,
   "quarantined_count": 7,
   "quarantined": [
     {
@@ -87,31 +87,6 @@
     }
   ],
   "events": [
-    {
-      "id": "sherdog-fcoc-fight-club-oc-international-war-games-2026-10-22-costa-mesa",
-      "promotion": "FCOC",
-      "promotion_key": "sherdog_discovery",
-      "title": "FCOC: Fight Club OC: International War Games",
-      "date": "2026-10-22",
-      "venue": "The Hangar at the OC Fair & Event Center",
-      "location": "Costa Mesa, CA",
-      "broadcast": "",
-      "official_url": "https://www.sherdog.com/events/FCOC-Fight-Club-OC-International-War-Games-114536",
-      "regional": true,
-      "level": "regional",
-      "source_key": "sherdog_discovery",
-      "source_label": "Sherdog regional discovery",
-      "city": "Costa Mesa",
-      "state": "CA",
-      "state_code": "CA",
-      "country": "US",
-      "location_source": "location-text",
-      "location_precision": "city",
-      "map_location_source": "location-text",
-      "map_location_precision": "city",
-      "map_location_confidence": "city",
-      "map_dataset": "regional"
-    },
     {
       "id": "sherdog-afc-178-alaska-fighting-championship-178-2026-10-23-anchorage",
       "promotion": "AFC",
