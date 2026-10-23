@@ -189,7 +189,13 @@
             crossorigin="anonymous"></script>
     {% endunless %}
 
-    {% seo %}
+    {% capture generated_seo_tags %}{% seo %}{% endcapture %}
+    {% if page.social_image_version and page.image.path %}
+        {% assign social_image_original = page.image.path | absolute_url %}
+        {% assign social_image_versioned = social_image_original | append: '?v=' | append: page.social_image_version %}
+        {% assign generated_seo_tags = generated_seo_tags | replace: social_image_original, social_image_versioned %}
+    {% endif %}
+    {{ generated_seo_tags }}
     {% feed_meta %}
 
     <noscript>
