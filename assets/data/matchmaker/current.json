@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-23T15:50:57.542Z"
+      "checkedAt": "2026-10-23T19:53:15.061Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-23T15:51:24.245Z",
+      "checkedAt": "2026-10-23T19:53:44.656Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -29579,13 +29579,7 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": {
-        "event": "Moicano vs Nolan",
-        "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
-        "opponent": "Andre Petroski",
-        "opponentId": "andre-petroski"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -48486,13 +48480,7 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": {
-        "event": "Moicano vs Nolan",
-        "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
-        "opponent": "Randy Brown",
-        "opponentId": "randy-brown"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -66141,7 +66129,11 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -73064,7 +73056,11 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -109877,13 +109873,7 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": {
-        "event": "Moicano vs Nolan",
-        "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
-        "opponent": "Francis Marshall",
-        "opponentId": "francis-marshall"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -131146,7 +131136,11 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -210391,11 +210385,9 @@
         "officialThrough": "2026-10-17"
       },
       "booking": {
-        "event": "Bonfim vs Brady",
-        "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-        "opponent": "Wes Schultz",
-        "opponentId": "wes-schultz"
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -233260,7 +233252,11 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -256211,7 +256207,11 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -332846,13 +332846,7 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": {
-        "event": "Bonfim vs Brady",
-        "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-        "opponent": "Mantas Kondratavičius",
-        "opponentId": "mantas-kondratavicius"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -338625,7 +338619,11 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
