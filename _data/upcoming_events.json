@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-23T20:38:48.391Z",
+  "generated_at": "2026-10-23T23:36:17.019Z",
   "events": [
     {
       "id": "ufc-333-2026-10-24-fight-card",
@@ -484,7 +484,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/SANTOS_YANA_L_05-03.png?itok=pkR_XniN",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+186"
+                  "moneyline": "+194"
                 },
                 {
                   "name": "Luana Santos",
@@ -492,7 +492,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/SANTOS_LUANA_L_05-17.png?itok=F9R3I5g7",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-194"
+                  "moneyline": "-203"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -595,29 +595,6 @@
             {
               "order": 8,
               "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Mantas Kondratavičius",
-                  "initials": "MK",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Andre Petroski",
-                  "initials": "AP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 9,
-              "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
                 {
@@ -634,14 +611,14 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/BERGGREN_THEODOR_R_06-27.png?itok=OcKsL0Tw",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+133"
+                  "moneyline": "+138"
                 }
               ],
               "odds_source": "BestFightOdds",
               "odds_provider": "Polymarket"
             },
             {
-              "order": 10,
+              "order": 9,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -666,7 +643,7 @@
               "odds_provider": "Polymarket"
             },
             {
-              "order": 11,
+              "order": 10,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -691,7 +668,7 @@
               "odds_provider": "Polymarket"
             },
             {
-              "order": 12,
+              "order": 11,
               "label": "",
               "weight_class": "Women's Strawweight Bout",
               "fighters": [
@@ -701,7 +678,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/ALENCAR_TALITA_L_04-25.png?itok=onBqiGWH",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+186"
+                  "moneyline": "+203"
                 },
                 {
                   "name": "Piera Rodriguez",
@@ -709,14 +686,14 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/RODRIGUEZ_PIERA_L_03-14.png?itok=UDMKBpY8",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-194"
+                  "moneyline": "-245"
                 }
               ],
               "odds_source": "BestFightOdds",
               "odds_provider": "Polymarket"
             },
             {
-              "order": 13,
+              "order": 12,
               "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [
@@ -726,7 +703,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/2022-02/womens-silhouette-RED-corner.png?itok=SXsY1AgG",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-376"
+                  "moneyline": "-400"
                 },
                 {
                   "name": "Tainara Lisboa",
@@ -858,6 +835,29 @@
             {
               "order": 5,
               "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Mantas Kondratavičius",
+                  "initials": "MK",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Andre Petroski",
+                  "initials": "AP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
               "weight_class": "Light Heavyweight Bout",
               "fighters": [
                 {
@@ -886,7 +886,7 @@
           "time": "5:00 PM ET",
           "bouts": [
             {
-              "order": 6,
+              "order": 7,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -909,7 +909,7 @@
               ]
             },
             {
-              "order": 7,
+              "order": 8,
               "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [
@@ -932,7 +932,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 9,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -955,7 +955,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 10,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -978,7 +978,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -1001,7 +1001,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -1024,7 +1024,7 @@
               ]
             },
             {
-              "order": 12,
+              "order": 13,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [

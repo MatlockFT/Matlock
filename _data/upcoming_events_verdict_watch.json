@@ -30,13 +30,13 @@
       "verdict_event_id": "1969",
       "verdict_url": "https://verdictmma.com/event/1969",
       "verdict_date": "2026-10-31",
-      "local_fight_count": 13,
-      "verdict_fight_count": 11,
-      "local_main_count": 13,
-      "verdict_main_count": 4,
+      "local_fight_count": 12,
+      "verdict_fight_count": 12,
+      "local_main_count": 12,
+      "verdict_main_count": 5,
       "local_prelim_count": 0,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 7
+      "confirmed_local_bouts": 8
     },
     {
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
@@ -47,9 +47,9 @@
       "verdict_event_id": "1957",
       "verdict_url": "https://verdictmma.com/event/1957",
       "verdict_date": "2026-11-07",
-      "local_fight_count": 12,
+      "local_fight_count": 13,
       "verdict_fight_count": 13,
-      "local_main_count": 5,
+      "local_main_count": 6,
       "verdict_main_count": 7,
       "local_prelim_count": 7,
       "verdict_prelim_count": 6,
@@ -228,17 +228,10 @@
       "verdict_prelim_count": 3
     },
     {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "verdict_event_id": "1969",
-      "local_fight_count": 13,
-      "verdict_fight_count": 11
-    },
-    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
       "verdict_event_id": "1969",
-      "order": 11,
+      "order": 10,
       "fighters": [
         "Nick Klein",
         "Joseph Kropschot"
@@ -252,16 +245,6 @@
       "fighters": [
         "Randy Brown",
         "Jacobe Smith"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "verdict_event_id": "1969",
-      "order": 4,
-      "fighters": [
-        "Ode' Osbourne",
-        "Cody Durden"
       ]
     },
     {
@@ -285,10 +268,29 @@
       ]
     },
     {
-      "type": "local_bout_not_found_on_verdict",
+      "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
       "verdict_event_id": "1969",
-      "order": 8,
+      "local_main_count": 12,
+      "verdict_main_count": 5,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": 7
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 13,
+      "fighters": [
+        "Jonny Parsons",
+        "José Souza"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 5,
       "fighters": [
         "Mantas Kondratavičius",
         "Andre Petroski"
@@ -296,35 +298,9 @@
     },
     {
       "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "verdict_event_id": "1969",
-      "local_main_count": 13,
-      "verdict_main_count": 4,
-      "local_prelim_count": 0,
-      "verdict_prelim_count": 7
-    },
-    {
-      "type": "bout_count_mismatch",
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
       "verdict_event_id": "1957",
-      "local_fight_count": 12,
-      "verdict_fight_count": 13
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "verdict_event_id": "1957",
-      "order": 12,
-      "fighters": [
-        "Jonny Parsons",
-        "José Souza"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "verdict_event_id": "1957",
-      "local_main_count": 5,
+      "local_main_count": 6,
       "verdict_main_count": 7,
       "local_prelim_count": 7,
       "verdict_prelim_count": 6
