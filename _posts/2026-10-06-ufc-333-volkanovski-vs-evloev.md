@@ -9,6 +9,9 @@ image:
   path: /assets/uploads/articles/2026/10/ufc-333-volkanovski-vs-evloev/UFC-333-Cover-Image-JPEG-mvkath9t-01ccaccd.jpg
   alt: "UFC 333: Volkanovski vs. Evloev"
   position: center center
+  width: 1920
+  height: 1080
+social_image_version: "20261023-1"
 tags:
   - UFC 333
   - Alexander Volkanovski
