@@ -5,7 +5,10 @@ description: "Tale of the tape, fighter stats and full-card breakdown for UFC 33
 date: 2026-10-21
 category: Breakdown
 author: Matlock
-image: ""
+image:
+  path: /assets/uploads/articles/2026/10/ufc-333-volkanovski-vs-evloev/UFC-333-Cover-Image-JPEG-mvkath9t-01ccaccd.jpg
+  alt: "UFC 333: Volkanovski vs. Evloev"
+  position: center center
 tags:
   - UFC 333
   - Alexander Volkanovski
