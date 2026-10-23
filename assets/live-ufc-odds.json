@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T23:40:46.191Z",
+  "generated_at": "2026-10-23T12:50:33.168Z",
   "source": "UFC.com + BestFightOdds",
   "events": [
     {
@@ -111,11 +111,11 @@
           "fighters": [
             {
               "name": "Abus Magomedov",
-              "moneyline": "-132"
+              "moneyline": "-122"
             },
             {
               "name": "Cam Rowston",
-              "moneyline": "+108"
+              "moneyline": "+100"
             }
           ]
         },
@@ -211,16 +211,86 @@
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
       "fights": [
         {
-          "source": "UFC.com",
-          "provider": "UFC.com",
+          "source": "BestFightOdds",
+          "provider": "Polymarket",
+          "fighters": [
+            {
+              "name": "Renato Moicano",
+              "moneyline": "-100"
+            },
+            {
+              "name": "Tom Nolan",
+              "moneyline": "-104"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "Polymarket",
+          "fighters": [
+            {
+              "name": "Yana Santos",
+              "moneyline": "+186"
+            },
+            {
+              "name": "Luana Santos",
+              "moneyline": "-194"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "Polymarket",
+          "fighters": [
+            {
+              "name": "Jean-Paul Lebosnoyani",
+              "moneyline": "-186"
+            },
+            {
+              "name": "Farman Hasanov",
+              "moneyline": "+178"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "Polymarket",
+          "fighters": [
+            {
+              "name": "Azamat Bekoev",
+              "moneyline": "-355"
+            },
+            {
+              "name": "Andre Petroski",
+              "moneyline": "+270"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "Polymarket",
+          "fighters": [
+            {
+              "name": "Julian Erosa",
+              "moneyline": "+488"
+            },
+            {
+              "name": "JeongYeong Lee",
+              "moneyline": "-488"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "Polymarket",
           "fighters": [
             {
               "name": "Talita Alencar",
-              "moneyline": "+120"
+              "moneyline": "+194"
             },
             {
               "name": "Piera Rodriguez",
-              "moneyline": "-145"
+              "moneyline": "-233"
             }
           ]
         }
