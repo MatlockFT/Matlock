@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T13:47:30.291Z",
+  "generatedAt": "2026-10-23T20:04:13.723Z",
   "engineVersion": 2,
   "subjects": 308,
   "publishedRecommendations": 838,
@@ -10,14 +10,14 @@
     "3": 276
   },
   "caseCounts": {
-    "rebound-pairing": 358,
-    "rising-vs-rising": 254,
+    "rebound-pairing": 360,
+    "rising-vs-rising": 250,
     "step-up-vs-rebound": 91,
+    "ranking-opportunity": 47,
     "rankings-progression": 47,
-    "ranking-opportunity": 46,
     "divisional-sorting": 20,
     "title-case": 10,
-    "prospect-test": 7,
+    "prospect-test": 8,
     "title-eliminator": 5
   },
   "confidenceCounts": {
@@ -26,13 +26,13 @@
     "low": 24
   },
   "averageRecentOpponentLinkCoverage": 0.9029,
-  "sameCardRecommendations": 52,
-  "sameCardRecommendationRatio": 0.0621,
-  "asymmetricTopThreeRecommendations": 276,
-  "asymmetricTopThreeRatio": 0.3294,
+  "sameCardRecommendations": 51,
+  "sameCardRecommendationRatio": 0.0609,
+  "asymmetricTopThreeRecommendations": 281,
+  "asymmetricTopThreeRatio": 0.3353,
   "publicPublishedRecommendations": 815,
-  "publicAsymmetricTopThreeRecommendations": 211,
-  "publicAsymmetricTopThreeRatio": 0.2589,
+  "publicAsymmetricTopThreeRecommendations": 215,
+  "publicAsymmetricTopThreeRatio": 0.2638,
   "engineGenericDivisionalSortingRecommendations": 20,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -66,8 +66,8 @@
       "title": "UFC 332: Silva vs Wang",
       "date": "2026-10-03",
       "subjects": 28,
-      "publicRecommendations": 80,
-      "noClearMatchupSubjects": 1
+      "publicRecommendations": 77,
+      "noClearMatchupSubjects": 2
     },
     {
       "id": "ufc-fight-night-september-26-2026",
@@ -114,8 +114,8 @@
       "title": "UFC Fight Night: Hernandez vs Rodrigues",
       "date": "2026-08-22",
       "subjects": 26,
-      "publicRecommendations": 71,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 74,
+      "noClearMatchupSubjects": 1
     },
     {
       "id": "ufc-330",
