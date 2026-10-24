@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T18:30:17.681Z",
+  "generated_at": "2026-10-24T21:08:40.086Z",
   "source": "UFC.com + BestFightOdds",
   "events": [
     {
@@ -55,11 +55,11 @@
           "fighters": [
             {
               "name": "Alexander Volkov",
-              "moneyline": "-132"
+              "moneyline": "-144"
             },
             {
               "name": "Rizvan Kuniev",
-              "moneyline": "+112"
+              "moneyline": "+122"
             }
           ]
         },
@@ -216,11 +216,11 @@
           "fighters": [
             {
               "name": "Renato Moicano",
-              "moneyline": "+102"
+              "moneyline": "+106"
             },
             {
               "name": "Tom Nolan",
-              "moneyline": "-120"
+              "moneyline": "-136"
             }
           ]
         },
@@ -431,6 +431,27 @@
             {
               "name": "Bo Nickal",
               "moneyline": "+160"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-336-2027-01-30-fight-card",
+      "date": "2027-01-30",
+      "official_url": "https://www.ufc.com/event/ufc-336",
+      "fights": [
+        {
+          "source": "BestFightOdds",
+          "provider": "Caesars",
+          "fighters": [
+            {
+              "name": "Joshua Van",
+              "moneyline": "-125"
+            },
+            {
+              "name": "Manel Kape",
+              "moneyline": "-105"
             }
           ]
         }

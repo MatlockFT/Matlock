@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-24T18:31:30.293Z",
+  "generated_at": "2026-10-24T21:09:52.130Z",
   "events": [
     {
       "id": "ufc-333-2026-10-24-fight-card",
@@ -105,7 +105,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/VOLKOV_ALEXANDER_L_05-09.png?itok=Z7Pt4p3a",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-132"
+                  "moneyline": "-144"
                 },
                 {
                   "name": "Rizvan Kuniev",
@@ -113,7 +113,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/KUNIEV_RIZVAN_L_07-25.png?itok=PSzxdGmY",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+112"
+                  "moneyline": "+122"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -436,7 +436,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MOICANO_RENATO_L_04-04.png?itok=2zj_9GSb",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+102"
+                  "moneyline": "+106"
                 },
                 {
                   "name": "Tom Nolan",
@@ -444,7 +444,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/NOLAN_TOM_L_09-27.png?itok=MyU46nSD",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-120"
+                  "moneyline": "-136"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -2056,6 +2056,77 @@
               ],
               "odds_source": "BestFightOdds",
               "odds_provider": "BetRivers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-336-2027-01-30-fight-card",
+      "promotion_key": "ufc",
+      "promotion": "UFC 336",
+      "title": "Van vs Kape",
+      "date": "2027-01-30",
+      "date_label": "Saturday · January 30, 2027",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
+      "official_url": "https://www.ufc.com/event/ufc-336",
+      "updated_label": "October 24, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "9:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Weight class TBA",
+              "fighters": [
+                {
+                  "name": "Joshua Van",
+                  "initials": "JV",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/VAN_JOSHUA_L_BELT_05-09.png?itok=emXQEdHo",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-125"
+                },
+                {
+                  "name": "Manel Kape",
+                  "initials": "MK",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/KAPE_MANEL_L_06-20.png?itok=hx-69Gee",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-105"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Caesars"
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Weight class TBA",
+              "fighters": [
+                {
+                  "name": "Carlos Prates",
+                  "initials": "CP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/5/PRATES_CARLOS_L_08-17.png?itok=_Hqd6Xfd",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Michael Morales",
+                  "initials": "MM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/5/MORALES_MICHAEL_L_08-24.png?itok=CCXil9g6",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
             }
           ]
         }

@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 7,
+    "major": 8,
     "regional": 102
   },
   "map_totals": {
     "mapped": 102,
-    "quarantined": 7
+    "quarantined": 8
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 102,
     "structured": 0,
-    "unresolved": 7
+    "unresolved": 8
   },
   "mapped_precision": {
     "city": 102
   },
-  "unresolved_count": 7,
+  "unresolved_count": 8,
   "unresolved": [
     {
       "id": "ufc-333-2026-10-24-fight-card",
@@ -73,6 +73,14 @@
       "title": "Oliveira vs Lopes",
       "date": "2026-12-12",
       "promotion": "UFC 335",
+      "venue": "Venue TBA",
+      "dataset": "major"
+    },
+    {
+      "id": "ufc-336-2027-01-30-fight-card",
+      "title": "Van vs Kape",
+      "date": "2027-01-30",
+      "promotion": "UFC 336",
       "venue": "Venue TBA",
       "dataset": "major"
     }
@@ -151,6 +159,17 @@
       "title": "Oliveira vs Lopes",
       "date": "2026-12-12",
       "promotion": "UFC 335",
+      "venue": "Venue TBA",
+      "location": "",
+      "country": "",
+      "kind": "major",
+      "reason": "unresolved-us-location"
+    },
+    {
+      "id": "ufc-336-2027-01-30-fight-card",
+      "title": "Van vs Kape",
+      "date": "2027-01-30",
+      "promotion": "UFC 336",
       "venue": "Venue TBA",
       "location": "",
       "country": "",

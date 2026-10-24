@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-23T23:36:59.162Z",
+  "generated_at": "2026-10-24T21:10:50.758Z",
   "changes": [
+    {
+      "id": "2026-10-24T21:10:50.758Z|ufc-336-2027-01-30-fight-card|event_added|1",
+      "at": "2026-10-24T21:10:50.758Z",
+      "type": "event_added",
+      "event_id": "ufc-336-2027-01-30-fight-card",
+      "promotion": "UFC 336",
+      "event_title": "Van vs Kape",
+      "event_date": "2027-01-30",
+      "summary": "UFC 336 Van vs Kape added to Upcoming Events.",
+      "details": {
+        "bout_count": 2,
+        "venue": "Venue TBA",
+        "date": "2027-01-30"
+      }
+    },
     {
       "id": "2026-10-23T23:36:59.162Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|1",
       "at": "2026-10-23T23:36:59.162Z",
@@ -4716,22 +4731,6 @@
       "details": {
         "from_order": 5,
         "to_order": 6,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-25T06:58:36.492Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|4",
-      "at": "2026-09-25T06:58:36.492Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Rodolfo Vieira vs Robert Bryczek moved on Jr. vs Barcelos.",
-      "details": {
-        "from_order": 6,
-        "to_order": 7,
         "from_section": "Prelims",
         "to_section": "Prelims"
       }
