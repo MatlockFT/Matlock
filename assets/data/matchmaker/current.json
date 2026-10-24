@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-24T19:50:10.493Z"
+      "checkedAt": "2026-10-24T22:21:21.410Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-24T19:51:52.804Z",
+      "checkedAt": "2026-10-24T22:21:51.778Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -27355,7 +27355,13 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-24"
       },
-      "booking": null,
+      "booking": {
+        "event": "Volkanovski vs Evloev",
+        "date": "2026-10-24",
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Colby Thicknesse",
+        "opponentId": "colby-thicknesse"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -67929,7 +67935,13 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-24"
       },
-      "booking": null,
+      "booking": {
+        "event": "Volkanovski vs Evloev",
+        "date": "2026-10-24",
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Asaf Chopurov",
+        "opponentId": "asaf-chopurov"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -199943,13 +199955,7 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-24"
       },
-      "booking": {
-        "event": "Volkanovski vs Evloev",
-        "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333",
-        "opponent": "Ramazan Temirov",
-        "opponentId": "ramazan-temirov"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -270042,13 +270048,7 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-24"
       },
-      "booking": {
-        "event": "Volkanovski vs Evloev",
-        "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333",
-        "opponent": "Lone’er Kavanagh",
-        "opponentId": "loneer-kavanagh"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
