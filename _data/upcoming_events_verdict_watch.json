@@ -5,23 +5,6 @@
   "mode": "read-only-watchdog",
   "coverage": [
     {
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "ufc",
-      "date": "2026-10-24",
-      "title": "Volkanovski vs Evloev",
-      "status": "matched",
-      "verdict_event_id": "1955",
-      "verdict_url": "https://verdictmma.com/event/1955",
-      "verdict_date": "2026-10-24",
-      "local_fight_count": 15,
-      "verdict_fight_count": 14,
-      "local_main_count": 6,
-      "verdict_main_count": 5,
-      "local_prelim_count": 9,
-      "verdict_prelim_count": 9,
-      "confirmed_local_bouts": 14
-    },
-    {
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
       "promotion": "ufc",
       "date": "2026-10-31",
@@ -128,7 +111,7 @@
       "promotion": "ufc",
       "date": "2027-01-30",
       "title": "Van vs Kape",
-      "status": "event_matched_card_unreadable",
+      "status": "matched",
       "verdict_event_id": "1993",
       "verdict_url": "https://verdictmma.com/event/1993",
       "verdict_date": "2027-01-30",
@@ -138,7 +121,7 @@
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": null
+      "confirmed_local_bouts": 2
     }
   ],
   "discrepancies": [
@@ -201,32 +184,6 @@
         "雑賀“ヤン坊”達也",
         "Daigo Kuramoto"
       ]
-    },
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "verdict_event_id": "1955",
-      "local_fight_count": 15,
-      "verdict_fight_count": 14
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "verdict_event_id": "1955",
-      "order": 15,
-      "fighters": [
-        "Arnold Allen",
-        "Aaron Pico"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "verdict_event_id": "1955",
-      "local_main_count": 6,
-      "verdict_main_count": 5,
-      "local_prelim_count": 9,
-      "verdict_prelim_count": 9
     },
     {
       "type": "bout_count_mismatch",

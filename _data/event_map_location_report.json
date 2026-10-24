@@ -1,33 +1,25 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 8,
+    "major": 7,
     "regional": 102
   },
   "map_totals": {
     "mapped": 102,
-    "quarantined": 8
+    "quarantined": 7
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 102,
     "structured": 0,
-    "unresolved": 8
+    "unresolved": 7
   },
   "mapped_precision": {
     "city": 102
   },
-  "unresolved_count": 8,
+  "unresolved_count": 7,
   "unresolved": [
-    {
-      "id": "ufc-333-2026-10-24-fight-card",
-      "title": "Volkanovski vs Evloev",
-      "date": "2026-10-24",
-      "promotion": "UFC 333",
-      "venue": "Venue TBA",
-      "dataset": "major"
-    },
     {
       "id": "ufc-fight-night-2026-10-31-fight-card",
       "title": "Moicano vs Nolan",
@@ -88,17 +80,6 @@
   "suspicious_count": 0,
   "suspicious": [],
   "quarantined": [
-    {
-      "id": "ufc-333-2026-10-24-fight-card",
-      "title": "Volkanovski vs Evloev",
-      "date": "2026-10-24",
-      "promotion": "UFC 333",
-      "venue": "Venue TBA",
-      "location": "",
-      "country": "",
-      "kind": "major",
-      "reason": "unresolved-us-location"
-    },
     {
       "id": "ufc-fight-night-2026-10-31-fight-card",
       "title": "Moicano vs Nolan",

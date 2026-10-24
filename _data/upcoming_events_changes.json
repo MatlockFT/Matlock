@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-24T21:10:50.758Z",
+  "generated_at": "2026-10-24T23:25:59.422Z",
   "changes": [
+    {
+      "id": "2026-10-24T23:25:59.422Z|ufc-333-2026-10-24-fight-card|event_removed|1",
+      "at": "2026-10-24T23:25:59.422Z",
+      "type": "event_removed",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "UFC 333 Volkanovski vs Evloev removed from Upcoming Events.",
+      "details": {
+        "bout_count": 15,
+        "venue": "Venue TBA",
+        "date": "2026-10-24"
+      }
+    },
     {
       "id": "2026-10-24T21:10:50.758Z|ufc-336-2027-01-30-fight-card|event_added|1",
       "at": "2026-10-24T21:10:50.758Z",
@@ -4717,22 +4732,6 @@
         "to_order": 5,
         "from_section": "Main Card",
         "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-25T06:58:36.492Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|3",
-      "at": "2026-09-25T06:58:36.492Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Brady Hiestand vs Rinya Nakamura moved on Jr. vs Barcelos.",
-      "details": {
-        "from_order": 5,
-        "to_order": 6,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
       }
     }
   ]
