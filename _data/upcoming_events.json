@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-24T07:14:23.544Z",
+  "generated_at": "2026-10-24T12:06:25.105Z",
   "events": [
     {
       "id": "ufc-333-2026-10-24-fight-card",
@@ -183,7 +183,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MURZAKANOV_AZAMAT_L_04-11.png?itok=mqQa9nra",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-200"
+                  "moneyline": "-215"
                 },
                 {
                   "name": "Dominick Reyes",
@@ -191,7 +191,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/REYES_DOMINICK_L_04-11.png?itok=7HSVtv1p",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+168"
+                  "moneyline": "+180"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -509,7 +509,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/OSBOURNE_ODE_L_02-21.png?itok=aw0NxANu",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-113"
                 },
                 {
                   "name": "Cody Durden",
@@ -517,9 +517,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/DURDEN_CODY_L_03-07.png?itok=vvCN2I2y",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+104"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Polymarket"
             },
             {
               "order": 5,
@@ -580,7 +582,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MARSHALL_FRANCIS_L_04-25.png?itok=Dz7HMd3L",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-233"
                 },
                 {
                   "name": "Dakota Hope",
@@ -588,9 +590,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/HOPE_DAKOTA_R_04-04.png?itok=sMKQySli",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+203"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Polymarket"
             },
             {
               "order": 8,
@@ -636,7 +640,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/LEE_JEONGYEONG_L_03-07.png?itok=Znq_QNLd",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-156"
+                  "moneyline": "-163"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -686,7 +690,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/RODRIGUEZ_PIERA_L_03-14.png?itok=UDMKBpY8",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-245"
+                  "moneyline": "-257"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -1695,7 +1699,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
-      "updated_label": "October 23, 2026",
+      "updated_label": "October 24, 2026",
       "sections": [
         {
           "kind": "main",
