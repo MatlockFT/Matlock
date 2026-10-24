@@ -90,7 +90,7 @@ But as much as I'd love to see him prove me wrong, I have to go with what I'm se
 
 And right now, I see Movsar winning this fight.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Movsar%20Evloev%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%205%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Movsar%20Evloev%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%205%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Volk%20Round%202%20KO%22%2C%22outcome%22%3A%22incorrect%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Movsar Evloev</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 5</span></span></div></aside>
 </section>
 ---
