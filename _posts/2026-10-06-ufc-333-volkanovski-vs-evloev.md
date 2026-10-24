@@ -186,7 +186,7 @@ Still, judging Volkov by his last performance, I don't mind picking Kuniev here.
 
 That said, this is heavyweight MMA, and anything can happen. I'm not going to die on the hill defending my Kuniev pick. Just look at Volkov's body of work. The guy has an incredible résumé and sits all over the UFC heavyweight record books. I just think Kuniev might have a slight edge in this matchup.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Rizvan%20Kuniev%22%2C%22method%22%3A%22Split%20Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Rizvan%20Kuniev%22%2C%22method%22%3A%22Split%20Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22incorrect%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Rizvan Kuniev</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Split Decision</span></span></div></aside>
 </section>
 <figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-e04891a2" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
