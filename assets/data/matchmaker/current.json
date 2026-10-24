@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-23T22:58:53.127Z"
+      "checkedAt": "2026-10-24T01:26:50.938Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-23T22:59:16.384Z",
+      "checkedAt": "2026-10-24T01:27:20.388Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -21661,9 +21661,11 @@
         "officialThrough": "2026-10-17"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Mantas Kondratavičius",
+        "opponentId": "mantas-kondratavicius"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -151273,13 +151275,7 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": {
-        "event": "Procházka vs Stirling",
-        "date": "2026-11-21",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
-        "opponent": "Navajo Stirling",
-        "opponentId": "navajo-stirling"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -210389,9 +210385,11 @@
         "officialThrough": "2026-10-17"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Andre Petroski",
+        "opponentId": "andre-petroski"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -246236,13 +246234,7 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": {
-        "event": "Procházka vs Stirling",
-        "date": "2026-11-21",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
-        "opponent": "Jiří Procházka",
-        "opponentId": "jiri-prochazka"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
