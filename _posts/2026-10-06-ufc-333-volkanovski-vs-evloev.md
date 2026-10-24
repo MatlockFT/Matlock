@@ -28,7 +28,7 @@ published: true
 
 This card is stacked with really solid matchups. It seems I'm picking a lot of decisions but I think there is a lot of potential for super competitive fights. High stakes on this one. 
 
-As always, my picks are subject to change but they all be updated here and on[ Verdict where you can follow me!](https://verdictmma.com/profile/MMAMatlock) Breakdowns are done so those won't change unless something happens throughout the course of fight week, in which case I'll update.
+As always, my picks are subject to change but they all be updated here and on [Verdict where you can follow me!](https://verdictmma.com/profile/MMAMatlock) Breakdowns are done so those won't change unless something happens throughout the course of fight week, in which case I'll update.
 
 <div class="article-video-embed"><iframe src="https://www.youtube.com/embed/J9JxDv4E5Hc" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>
 
