@@ -1,38 +1,38 @@
 {
-  "generatedAt": "2026-10-24T09:03:56.109Z",
+  "generatedAt": "2026-10-24T13:15:58.021Z",
   "engineVersion": 2,
   "subjects": 308,
-  "publishedRecommendations": 841,
+  "publishedRecommendations": 838,
   "recommendationSlots": {
-    "0": 25,
+    "0": 26,
     "1": 2,
     "2": 4,
-    "3": 277
+    "3": 276
   },
   "caseCounts": {
     "rebound-pairing": 360,
     "rising-vs-rising": 250,
-    "step-up-vs-rebound": 93,
-    "rankings-progression": 48,
+    "step-up-vs-rebound": 91,
     "ranking-opportunity": 47,
+    "rankings-progression": 47,
     "divisional-sorting": 20,
     "title-case": 10,
     "prospect-test": 8,
     "title-eliminator": 5
   },
   "confidenceCounts": {
-    "high": 786,
+    "high": 783,
     "medium": 31,
     "low": 24
   },
   "averageRecentOpponentLinkCoverage": 0.9029,
   "sameCardRecommendations": 51,
-  "sameCardRecommendationRatio": 0.0606,
+  "sameCardRecommendationRatio": 0.0609,
   "asymmetricTopThreeRecommendations": 281,
-  "asymmetricTopThreeRatio": 0.3341,
-  "publicPublishedRecommendations": 818,
+  "asymmetricTopThreeRatio": 0.3353,
+  "publicPublishedRecommendations": 815,
   "publicAsymmetricTopThreeRecommendations": 215,
-  "publicAsymmetricTopThreeRatio": 0.2628,
+  "publicAsymmetricTopThreeRatio": 0.2638,
   "engineGenericDivisionalSortingRecommendations": 20,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -138,8 +138,8 @@
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 69,
-      "noClearMatchupSubjects": 5
+      "publicRecommendations": 66,
+      "noClearMatchupSubjects": 6
     }
   ],
   "genericExamples": [
