@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-24T17:38:44.525Z"
+      "checkedAt": "2026-10-24T19:50:10.493Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-24T17:39:21.570Z",
+      "checkedAt": "2026-10-24T19:51:52.804Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -27042,13 +27042,7 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": {
-        "event": "Volkanovski vs Evloev",
-        "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333",
-        "opponent": "Colby Thicknesse",
-        "opponentId": "colby-thicknesse"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -67437,13 +67431,7 @@
         "mirrorThrough": "2026-10-17",
         "officialThrough": "2026-10-17"
       },
-      "booking": {
-        "event": "Volkanovski vs Evloev",
-        "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333",
-        "opponent": "Asaf Chopurov",
-        "opponentId": "asaf-chopurov"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
