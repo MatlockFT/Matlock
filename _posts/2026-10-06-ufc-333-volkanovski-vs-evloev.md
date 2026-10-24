@@ -26,6 +26,16 @@ preserve_line_breaks: true
 published: true
 ---
 
+**POST FIGHT**
+
+An absolutely fantastic card with a ton of very good fights. I really enjoyed it, plus its over by 4 PM? Awesome! My main event read certainly incorrect with too much emphasis on Volk losing a step and perhaps being past his prime as displayed a bit in the Lopes fight. That was one of the narratives. I think Evloev made several tactical mistakes but the primary one being that he didn't start quick enough. 
+
+Volkanovski is an all time great and you cannot talk about the UFC greatest fighters without mentioning Volkanovski. 
+
+PHENOMENAL!
+
+---
+
 This card is stacked with really solid matchups. It seems I'm picking a lot of decisions but I think there is a lot of potential for super competitive fights. High stakes on this one. 
 
 As always, my picks are subject to change but they all be updated here and on [Verdict where you can follow me!](https://verdictmma.com/profile/MMAMatlock) Breakdowns are done so those won't change unless something happens throughout the course of fight week, in which case I'll update.
