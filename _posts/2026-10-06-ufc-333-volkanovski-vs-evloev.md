@@ -252,7 +252,7 @@ Looking at Pico's striking, he can telegraph his shots and put so much windup an
 Assuming his camp in Morocco has gone well and he's getting quality work with the right training partners, I favor Pico to win. I think he can get it done by decision.
 
 I'm really looking forward to this fight.
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Aaron%20Pico%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Aaron%20Pico%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Aaron Pico</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Decision</span></span></div></aside>
 </section>
 ## Azamat Murzakanov vs. Dominick Reyes
@@ -296,7 +296,7 @@ That said, I think it's a close fight. If I have to weigh Azamat's questionable 
 
 I just don't think we'll see that happen. Azamat knocks out Dominick Reyes with a jab and the right hand follow up will just send him to the land of wind and ghosts before he hits the mat.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Azamat%20Murzakanov%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Azamat%20Murzakanov%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22incorrect%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Azamat Murzakanov</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div></aside>
 </section>
 ---
@@ -369,7 +369,7 @@ Still, I'm not comfortable laying -500 on an inexperienced fighter with unanswer
 
 Believe me, I'll be watching this fight closely, with my eye locked on those live odds. If Krylov survives the first round and starts finding his footing, I want to see what the market does.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Abdul%20Rakhman%20Yakhyaev%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22Yakhyaev%20is%20the%20rightful%20favorite%20but%20Krylov%20has%20a%20much%20better%20chance%20of%20winning%20than%20the%20odds%20suggest%2C%20IMO%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Abdul%20Rakhman%20Yakhyaev%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22Yakhyaev%20is%20the%20rightful%20favorite%20but%20Krylov%20has%20a%20much%20better%20chance%20of%20winning%20than%20the%20odds%20suggest%2C%20IMO%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Abdul Rakhman Yakhyaev</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div><p class="article-pick-card__note">Yakhyaev is the rightful favorite but Krylov has a much better chance of winning than the odds suggest, IMO</p></aside>
 </section>
 ---
@@ -412,7 +412,7 @@ What gives me pause is his fight with Torrez Finney. I thought Cam was clearly t
 
 There's enough to like in Cam's striking, but I haven't seen enough to know how he'll handle opponents who can take away his space and force him into uncomfortable positions. Based on what I've seen outside the UFC, on Contender Series, and in his UFC matchups so far, there are still too many unanswered questions for me to make a confident pick. Cam Rowston is a good pick simply because he's not 36 and he isn't a gasser like Magomedov. Skill for skill? I'd go with Abus Magomedov but on Saturday night... Cam Rowston.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Cam%20Rowston%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22Coin%20Flip%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Cam%20Rowston%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22Coin%20Flip%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22incorrect%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Cam Rowston</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Decision</span></span></div><p class="article-pick-card__note">Coin Flip</p></aside>
 </section>
 ---
@@ -467,7 +467,7 @@ For me, I'll give Aliev a slight lean. He's proven against grapplers that he can
 
 Dawson by submission or Aliev by decision are both perfectly reasonable picks for me.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Nurullo%20Aliev%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22Coin%20Flip%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Nurullo%20Aliev%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22Coin%20Flip%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22incorrect%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Nurullo Aliev</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Decision</span></span></div><p class="article-pick-card__note">Coin Flip</p></aside>
 </section>
 ---
@@ -488,7 +488,7 @@ I think Chopurov probably runs through Thicknesse here. I wasn't particularly im
 
 Obviously, he's making his UFC debut, so there's still some uncertainty about how he'll perform against better competition. I also don't want to completely write off Thicknesse, who's never been finished. But I just don't see many advantages for him in this matchup. I think Chopurov overwhelms him early and gets him out of there.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Asaf%20Chopurov%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Asaf%20Chopurov%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22incorrect%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Asaf Chopurov</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div></aside>
 </section>
 ---
@@ -509,7 +509,7 @@ Not a bad matchup but I think it might be another middleweight stinker. Malkoun 
 
 My only real concern is Vagaev moving up to middleweight and how his conditioning holds up. He slowed down in his UFC debut against Saygid Izagakhmaev, and Malkoun certainly has the cardio and persistence to make things interesting if Vagaev starts fading. Still, I favor Vagaev in the wrestling exchanges, and I think he has more to offer offensively. I wouldn't be surprised if this turns into a pretty competitive, grinding fight, but I'm comfortable picking Vagaev.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Abubakar%20Vagaev%22%2C%22method%22%3A%22Unanimous%20Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Abubakar%20Vagaev%22%2C%22method%22%3A%22Unanimous%20Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Abubakar Vagaev</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Unanimous Decision</span></span></div></aside>
 </section>
 ---
@@ -532,7 +532,7 @@ Santos was knocked out by my Superboy Dooho Choi, which is certainly a respectab
 
 I'm a bit conflicted because I genuinely think Santos is the better overall fighter. I like his aggression, his pace, and I think he has more ways to win. There's probably some value in Oki as an underdog, and I wouldn't be surprised if he pulls it off. Still, I'm going to reluctantly side with Santos here. Not particularly confident, though.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Daniel%20Santos%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Daniel%20Santos%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Daniel Santos</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Decision</span></span></div></aside>
 </section>
 ---
@@ -555,7 +555,7 @@ My biggest concern with Steele is how much damage he absorbs. He took a beating 
 
 I actually think this could be a pretty competitive fight, and I wouldn't be surprised if it comes down to who can win that third round. Gugnon might have the better moments on the feet, but I favor Steele in the grappling exchanges and trust his experience a little more. I'll lean Steele here.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Kody%20Steele%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Kody%20Steele%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Kody Steele</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Decision</span></span></div></aside>
 </section>
 ---
@@ -604,6 +604,6 @@ The wildcard is Caliari's scrappiness. She'll chase submissions, hunt for throws
 
 Ultimately, I favor the younger, stronger, more composed fighter with the longer reach — who also happens to have been popped for steroids. A KO/TKO wouldn't surprise me, as Lucindo could accumulate enough damage to put Caliari away. Still, this is MMA at 115 pounds so a decision is more likely but I think I'll pick a Lucindo by stoppage.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Iasmin%20Lucindo%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Iasmin%20Lucindo%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Iasmin Lucindo</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 2</span></span></div></aside>
 </section>
