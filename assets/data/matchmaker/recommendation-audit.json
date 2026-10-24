@@ -1,50 +1,58 @@
 {
-  "generatedAt": "2026-10-24T13:15:58.021Z",
+  "generatedAt": "2026-10-24T21:33:07.750Z",
   "engineVersion": 2,
-  "subjects": 308,
-  "publishedRecommendations": 838,
+  "subjects": 336,
+  "publishedRecommendations": 840,
   "recommendationSlots": {
-    "0": 26,
+    "0": 54,
     "1": 2,
-    "2": 4,
-    "3": 276
+    "2": 2,
+    "3": 278
   },
   "caseCounts": {
-    "rebound-pairing": 360,
-    "rising-vs-rising": 250,
-    "step-up-vs-rebound": 91,
-    "ranking-opportunity": 47,
+    "rebound-pairing": 364,
+    "rising-vs-rising": 253,
+    "step-up-vs-rebound": 87,
+    "ranking-opportunity": 48,
     "rankings-progression": 47,
     "divisional-sorting": 20,
-    "title-case": 10,
-    "prospect-test": 8,
+    "prospect-test": 9,
+    "title-case": 7,
     "title-eliminator": 5
   },
   "confidenceCounts": {
-    "high": 783,
-    "medium": 31,
-    "low": 24
+    "high": 786,
+    "medium": 29,
+    "low": 25
   },
-  "averageRecentOpponentLinkCoverage": 0.9029,
-  "sameCardRecommendations": 51,
-  "sameCardRecommendationRatio": 0.0609,
-  "asymmetricTopThreeRecommendations": 281,
-  "asymmetricTopThreeRatio": 0.3353,
-  "publicPublishedRecommendations": 815,
-  "publicAsymmetricTopThreeRecommendations": 215,
-  "publicAsymmetricTopThreeRatio": 0.2638,
+  "averageRecentOpponentLinkCoverage": 0.9048,
+  "sameCardRecommendations": 48,
+  "sameCardRecommendationRatio": 0.0571,
+  "asymmetricTopThreeRecommendations": 288,
+  "asymmetricTopThreeRatio": 0.3429,
+  "publicPublishedRecommendations": 816,
+  "publicAsymmetricTopThreeRecommendations": 214,
+  "publicAsymmetricTopThreeRatio": 0.2623,
   "engineGenericDivisionalSortingRecommendations": 20,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
-    "id": "ufc-fight-night-october-17-2026",
-    "title": "UFC Fight Night: Buckley vs Malott",
-    "date": "2026-10-17",
-    "subjects": 26,
-    "publicRecommendations": 78,
-    "noClearMatchupSubjects": 0
+    "id": "ufc-333",
+    "title": "UFC 333: Volkanovski vs Evloev",
+    "date": "2026-10-24",
+    "subjects": 28,
+    "publicRecommendations": 6,
+    "noClearMatchupSubjects": 26
   },
   "eventPublicSummary": [
+    {
+      "id": "ufc-333",
+      "title": "UFC 333: Volkanovski vs Evloev",
+      "date": "2026-10-24",
+      "subjects": 28,
+      "publicRecommendations": 6,
+      "noClearMatchupSubjects": 26
+    },
     {
       "id": "ufc-fight-night-october-17-2026",
       "title": "UFC Fight Night: Buckley vs Malott",
@@ -82,8 +90,8 @@
       "title": "Crypto.com UFC 331: Van vs Pantoja 2",
       "date": "2026-09-19",
       "subjects": 24,
-      "publicRecommendations": 68,
-      "noClearMatchupSubjects": 0
+      "publicRecommendations": 66,
+      "noClearMatchupSubjects": 1
     },
     {
       "id": "ufc-fight-night-september-12-2026",
@@ -122,8 +130,8 @@
       "title": "UFC 330: Makhachev vs Machado Garry",
       "date": "2026-08-15",
       "subjects": 24,
-      "publicRecommendations": 56,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 53,
+      "noClearMatchupSubjects": 5
     },
     {
       "id": "ufc-fight-night-august-08-2026",
@@ -153,29 +161,29 @@
     {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Ernesta Kareckaite",
-      "opponent": "Melissa Gatto",
-      "score": 90,
-      "rationale": "Ernesta Kareckaite and Melissa Gatto occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Ernesta Kareckaite",
       "opponent": "Jamey Lyn Horth",
-      "score": 88,
+      "score": 89,
       "rationale": "Ernesta Kareckaite and Jamey Lyn Horth occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Ernesta Kareckaite",
-      "opponent": "Jj Aldrich",
-      "score": 82,
-      "rationale": "Ernesta Kareckaite and Jj Aldrich occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "opponent": "Melissa Gatto",
+      "score": 89,
+      "rationale": "Ernesta Kareckaite and Melissa Gatto occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Ernesta Kareckaite",
+      "opponent": "Tereza Bleda",
+      "score": 87,
+      "rationale": "Ernesta Kareckaite and Tereza Bleda occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Melissa Gatto",
       "opponent": "Ernesta Kareckaite",
-      "score": 90,
+      "score": 89,
       "rationale": "Melissa Gatto and Ernesta Kareckaite occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
@@ -287,6 +295,56 @@
   "publicGenericExamples": [],
   "asymmetricExamples": [
     {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Colby Thicknesse",
+      "opponent": "Heili Alateng",
+      "pairScore": 89,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Bryce Mitchell",
+          "score": 92,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Raoni Barcelos",
+          "score": 90,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Victor Henry",
+          "score": 90,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Colby Thicknesse",
+      "opponent": "Jean Matsumoto",
+      "pairScore": 88,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Benardo Sopaj",
+          "score": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Kai Asakura",
+          "score": 89,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Victor Henry",
+          "score": 89,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
       "event": "UFC Fight Night: Buckley vs Malott",
       "fighter": "Joaquin Buckley",
       "opponent": "Ignacio Bahamondes",
@@ -392,40 +450,15 @@
       "opponent": "Serhiy Sidey",
       "pairScore": 91,
       "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Ethyn Ewing",
-          "score": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jakub Wiklacz",
-          "score": 91,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Suyoung You",
-          "score": 91,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Timmy Cuamba",
-      "opponent": "Cody Haddon",
-      "pairScore": 89,
-      "case": "rising-vs-rising",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Jakub Wiklacz",
+          "opponent": "Ethyn Ewing",
           "score": 92,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Ethyn Ewing",
+          "opponent": "Jakub Wiklacz",
           "score": 91,
           "case": "rising-vs-rising"
         },
@@ -638,31 +671,6 @@
     },
     {
       "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Katlyn Cerminara",
-      "opponent": "Eduarda Moura",
-      "pairScore": 90,
-      "case": "ranking-opportunity",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Dione Barbosa",
-          "score": 94,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Juliana Miller",
-          "score": 94,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Carli Judice",
-          "score": 91,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
       "fighter": "Chad Anheliger",
       "opponent": "Muin Gafurov",
       "pairScore": 90,
@@ -789,10 +797,35 @@
     {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Matheus Camilo",
-      "opponent": "Gauge Young",
+      "opponent": "Dom Mar Fan",
       "pairScore": 91,
       "case": "rebound-pairing",
       "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Artur Minev",
+          "score": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Gauge Young",
+          "score": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Kaue Fernandes",
+          "score": 91,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Matheus Camilo",
+      "opponent": "Gauge Young",
+      "pairScore": 91,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Artur Minev",
@@ -813,31 +846,6 @@
     },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Matheus Camilo",
-      "opponent": "Josiah Harrell",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Mark Choinski",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Artur Minev",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Mitch Ramirez",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Jai Herbert",
       "opponent": "Jalin Turner",
       "pairScore": 91,
@@ -846,7 +854,7 @@
       "opponentTopThree": [
         {
           "opponent": "Diego Ferreira",
-          "score": 95,
+          "score": 94,
           "case": "rising-vs-rising"
         },
         {
