@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-10-24T21:33:07.750Z",
+  "generatedAt": "2026-10-24T23:38:50.867Z",
   "engineVersion": 2,
   "subjects": 336,
-  "publishedRecommendations": 840,
+  "publishedRecommendations": 841,
   "recommendationSlots": {
     "0": 54,
-    "1": 2,
-    "2": 2,
+    "1": 1,
+    "2": 3,
     "3": 278
   },
   "caseCounts": {
-    "rebound-pairing": 364,
-    "rising-vs-rising": 253,
-    "step-up-vs-rebound": 87,
-    "ranking-opportunity": 48,
+    "rebound-pairing": 361,
+    "rising-vs-rising": 250,
+    "step-up-vs-rebound": 93,
+    "ranking-opportunity": 49,
     "rankings-progression": 47,
     "divisional-sorting": 20,
     "prospect-test": 9,
@@ -23,16 +23,16 @@
   "confidenceCounts": {
     "high": 786,
     "medium": 29,
-    "low": 25
+    "low": 26
   },
   "averageRecentOpponentLinkCoverage": 0.9048,
-  "sameCardRecommendations": 48,
-  "sameCardRecommendationRatio": 0.0571,
+  "sameCardRecommendations": 47,
+  "sameCardRecommendationRatio": 0.0559,
   "asymmetricTopThreeRecommendations": 288,
-  "asymmetricTopThreeRatio": 0.3429,
-  "publicPublishedRecommendations": 816,
-  "publicAsymmetricTopThreeRecommendations": 214,
-  "publicAsymmetricTopThreeRatio": 0.2623,
+  "asymmetricTopThreeRatio": 0.3424,
+  "publicPublishedRecommendations": 814,
+  "publicAsymmetricTopThreeRecommendations": 212,
+  "publicAsymmetricTopThreeRatio": 0.2604,
   "engineGenericDivisionalSortingRecommendations": 20,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -41,7 +41,7 @@
     "title": "UFC 333: Volkanovski vs Evloev",
     "date": "2026-10-24",
     "subjects": 28,
-    "publicRecommendations": 6,
+    "publicRecommendations": 5,
     "noClearMatchupSubjects": 26
   },
   "eventPublicSummary": [
@@ -50,7 +50,7 @@
       "title": "UFC 333: Volkanovski vs Evloev",
       "date": "2026-10-24",
       "subjects": 28,
-      "publicRecommendations": 6,
+      "publicRecommendations": 5,
       "noClearMatchupSubjects": 26
     },
     {
@@ -90,7 +90,7 @@
       "title": "Crypto.com UFC 331: Van vs Pantoja 2",
       "date": "2026-09-19",
       "subjects": 24,
-      "publicRecommendations": 66,
+      "publicRecommendations": 67,
       "noClearMatchupSubjects": 1
     },
     {
@@ -98,7 +98,7 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 66,
+      "publicRecommendations": 64,
       "noClearMatchupSubjects": 2
     },
     {
@@ -296,50 +296,50 @@
   "asymmetricExamples": [
     {
       "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Colby Thicknesse",
-      "opponent": "Heili Alateng",
-      "pairScore": 89,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
+      "fighter": "Loneer Kavanagh",
+      "opponent": "Tim Elliott",
+      "pairScore": 54,
+      "case": "rankings-progression",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Bryce Mitchell",
-          "score": 92,
-          "case": "rankings-progression"
+          "opponent": "Ramazan Temirov",
+          "score": 86,
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Raoni Barcelos",
-          "score": 90,
-          "case": "ranking-opportunity"
+          "opponent": "Tagir Ulanbekov",
+          "score": 71,
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Victor Henry",
-          "score": 90,
-          "case": "rising-vs-rising"
+          "opponent": "Alex Perez",
+          "score": 70,
+          "case": "divisional-sorting"
         }
       ]
     },
     {
       "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Colby Thicknesse",
-      "opponent": "Jean Matsumoto",
-      "pairScore": 88,
-      "case": "rising-vs-rising",
+      "fighter": "Ramazan Temirov",
+      "opponent": "Rei Tsuruya",
+      "pairScore": 76,
+      "case": "ranking-opportunity",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Benardo Sopaj",
-          "score": 90,
-          "case": "rising-vs-rising"
+          "opponent": "Tagir Ulanbekov",
+          "score": 95,
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Kai Asakura",
-          "score": 89,
-          "case": "rising-vs-rising"
+          "opponent": "Steve Erceg",
+          "score": 94,
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Victor Henry",
-          "score": 89,
+          "opponent": "Mitch Raposo",
+          "score": 91,
           "case": "rising-vs-rising"
         }
       ]
@@ -450,7 +450,7 @@
       "opponent": "Serhiy Sidey",
       "pairScore": 91,
       "case": "rising-vs-rising",
-      "fighterRank": "Another option",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
           "opponent": "Ethyn Ewing",
@@ -459,6 +459,31 @@
         },
         {
           "opponent": "Jakub Wiklacz",
+          "score": 91,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Suyoung You",
+          "score": 91,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Timmy Cuamba",
+      "opponent": "Cody Haddon",
+      "pairScore": 89,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Jakub Wiklacz",
+          "score": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ethyn Ewing",
           "score": 91,
           "case": "rising-vs-rising"
         },
@@ -891,31 +916,6 @@
           "opponent": "Jalin Turner",
           "score": 91,
           "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Loopy Godinez",
-      "opponent": "Fatima Kline",
-      "pairScore": 84,
-      "case": "rankings-progression",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Yan Xiaonan",
-          "score": 90,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Gillian Robertson",
-          "score": 87,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Alexia Thainara",
-          "score": 84,
-          "case": "rankings-progression"
         }
       ]
     }
