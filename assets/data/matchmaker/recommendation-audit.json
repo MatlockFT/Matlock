@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-25T01:45:31.985Z",
+  "generatedAt": "2026-10-25T06:58:16.893Z",
   "engineVersion": 2,
   "subjects": 334,
   "publishedRecommendations": 916,
@@ -10,30 +10,30 @@
     "3": 302
   },
   "caseCounts": {
-    "rebound-pairing": 394,
-    "rising-vs-rising": 263,
-    "step-up-vs-rebound": 106,
-    "ranking-opportunity": 55,
-    "rankings-progression": 52,
-    "divisional-sorting": 20,
+    "rebound-pairing": 390,
+    "rising-vs-rising": 260,
+    "step-up-vs-rebound": 112,
+    "ranking-opportunity": 56,
+    "rankings-progression": 51,
+    "divisional-sorting": 21,
     "title-case": 10,
     "prospect-test": 9,
     "title-eliminator": 7
   },
   "confidenceCounts": {
-    "high": 860,
-    "medium": 29,
-    "low": 27
+    "high": 858,
+    "medium": 30,
+    "low": 28
   },
-  "averageRecentOpponentLinkCoverage": 0.9051,
-  "sameCardRecommendations": 47,
-  "sameCardRecommendationRatio": 0.0513,
-  "asymmetricTopThreeRecommendations": 314,
-  "asymmetricTopThreeRatio": 0.3428,
+  "averageRecentOpponentLinkCoverage": 0.905,
+  "sameCardRecommendations": 46,
+  "sameCardRecommendationRatio": 0.0502,
+  "asymmetricTopThreeRecommendations": 319,
+  "asymmetricTopThreeRatio": 0.3483,
   "publicPublishedRecommendations": 888,
-  "publicAsymmetricTopThreeRecommendations": 229,
-  "publicAsymmetricTopThreeRatio": 0.2579,
-  "engineGenericDivisionalSortingRecommendations": 20,
+  "publicAsymmetricTopThreeRecommendations": 230,
+  "publicAsymmetricTopThreeRatio": 0.259,
+  "engineGenericDivisionalSortingRecommendations": 21,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -41,7 +41,7 @@
     "title": "UFC 333: Volkanovski vs Evloev",
     "date": "2026-10-24",
     "subjects": 26,
-    "publicRecommendations": 71,
+    "publicRecommendations": 70,
     "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
@@ -50,7 +50,7 @@
       "title": "UFC 333: Volkanovski vs Evloev",
       "date": "2026-10-24",
       "subjects": 26,
-      "publicRecommendations": 71,
+      "publicRecommendations": 70,
       "noClearMatchupSubjects": 0
     },
     {
@@ -90,7 +90,7 @@
       "title": "Crypto.com UFC 331: Van vs Pantoja 2",
       "date": "2026-09-19",
       "subjects": 24,
-      "publicRecommendations": 66,
+      "publicRecommendations": 67,
       "noClearMatchupSubjects": 1
     },
     {
@@ -98,7 +98,7 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 66,
+      "publicRecommendations": 65,
       "noClearMatchupSubjects": 2
     },
     {
@@ -114,7 +114,7 @@
       "title": "UFC Fight Night: Nurmagomedov vs Song",
       "date": "2026-08-29",
       "subjects": 26,
-      "publicRecommendations": 70,
+      "publicRecommendations": 71,
       "noClearMatchupSubjects": 2
     },
     {
@@ -251,6 +251,13 @@
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Tim Elliott",
+      "opponent": "Alex Perez",
+      "score": 70,
+      "rationale": "Tim Elliott and Alex Perez occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Jj Aldrich",
       "opponent": "Ernesta Kareckaite",
       "score": 82,
@@ -283,13 +290,6 @@
       "opponent": "Alibi Idiris",
       "score": 92,
       "rationale": "Kevin Borjas and Alibi Idiris occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC 330: Makhachev vs Machado Garry",
-      "fighter": "Ian Machado Garry",
-      "opponent": "Leon Edwards",
-      "score": 52,
-      "rationale": "Ian Machado Garry and Leon Edwards occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
@@ -391,6 +391,56 @@
           "opponent": "Cory Sandhagen",
           "score": 86,
           "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Loneer Kavanagh",
+      "opponent": "Tim Elliott",
+      "pairScore": 54,
+      "case": "rankings-progression",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Ramazan Temirov",
+          "score": 86,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Tagir Ulanbekov",
+          "score": 71,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Alex Perez",
+          "score": 70,
+          "case": "divisional-sorting"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Ramazan Temirov",
+      "opponent": "Rei Tsuruya",
+      "pairScore": 76,
+      "case": "ranking-opportunity",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Tagir Ulanbekov",
+          "score": 95,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Steve Erceg",
+          "score": 94,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Mitch Raposo",
+          "score": 91,
+          "case": "rising-vs-rising"
         }
       ]
     },
@@ -716,56 +766,6 @@
           "opponent": "Gauge Young",
           "score": 92,
           "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Colby Thicknesse",
-      "opponent": "Heili Alateng",
-      "pairScore": 89,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Bryce Mitchell",
-          "score": 92,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Raoni Barcelos",
-          "score": 90,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Victor Henry",
-          "score": 90,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Colby Thicknesse",
-      "opponent": "Jean Matsumoto",
-      "pairScore": 88,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Benardo Sopaj",
-          "score": 90,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Kai Asakura",
-          "score": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Victor Henry",
-          "score": 89,
-          "case": "rising-vs-rising"
         }
       ]
     },
