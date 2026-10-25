@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-10-25T06:58:16.893Z",
+  "generatedAt": "2026-10-25T12:30:30.702Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
@@ -40,8 +40,8 @@
   },
   "classifications": {
     "engine-ranking-miss-deep": 60,
-    "future-newcomer-booking": 16,
-    "engine-ranking-miss-near": 12,
+    "future-newcomer-booking": 17,
+    "engine-ranking-miss-near": 11,
     "engine-top3-hit": 11,
     "future-opponent-division-change": 9,
     "future-division-change": 7,
@@ -49,7 +49,7 @@
     "coverage-failure": 1
   },
   "reasons": {
-    "actual-opponent-had-no-pre-cutoff-ufc-history": 16,
+    "actual-opponent-had-no-pre-cutoff-ufc-history": 17,
     "Too large a UFC experience gap for an automatic recommendation.": 3,
     "actual-opponent-moved-from:Bantamweight:to:Flyweight": 2,
     "actual-opponent-moved-from:Lightweight:to:Featherweight": 2,
@@ -68,27 +68,27 @@
   },
   "metrics": {
     "allScorablePairs": {
-      "evaluated": 87,
+      "evaluated": 86,
       "top1": 2,
       "top3": 11,
-      "top8": 23,
+      "top8": 22,
       "publicTop3": 8,
-      "top1Rate": 0.023,
-      "top3Rate": 0.1264,
-      "top8Rate": 0.2644,
-      "publicTop3Rate": 0.092
+      "top1Rate": 0.0233,
+      "top3Rate": 0.1279,
+      "top8Rate": 0.2558,
+      "publicTop3Rate": 0.093
     },
     "cleanEvaluationSet": {
-      "cases": 83,
-      "evaluated": 83,
+      "cases": 82,
+      "evaluated": 82,
       "top1": 2,
       "top3": 11,
-      "top8": 23,
+      "top8": 22,
       "publicTop3": 8,
-      "top1Rate": 0.0241,
-      "top3Rate": 0.1325,
-      "top8Rate": 0.2771,
-      "publicTop3Rate": 0.0964
+      "top1Rate": 0.0244,
+      "top3Rate": 0.1341,
+      "top8Rate": 0.2683,
+      "publicTop3Rate": 0.0976
     },
     "fullStateCleanSet": {
       "cases": 0,
@@ -193,14 +193,14 @@
       "publicTop3Rate": 0
     },
     "Bantamweight": {
-      "evaluated": 6,
+      "evaluated": 5,
       "top1": 0,
       "top3": 1,
-      "top8": 2,
+      "top8": 1,
       "publicTop3": 0,
       "top1Rate": 0,
-      "top3Rate": 0.1667,
-      "top8Rate": 0.3333,
+      "top3Rate": 0.2,
+      "top8Rate": 0.2,
       "publicTop3Rate": 0
     },
     "Heavyweight": {
@@ -4466,21 +4466,20 @@
       "excludedFromAccuracy": true
     },
     {
-      "cutoff": "2026-04-25",
-      "targetDate": "2026-07-11",
+      "cutoff": "2026-05-02",
+      "targetDate": "2026-10-24",
       "division": "Bantamweight",
-      "targetDivision": "Flyweight",
-      "fighter": "Cody Durden",
-      "fighterId": "cody-durden",
-      "actualOpponent": "Alessandro Costa",
-      "actualOpponentId": "alessandro-costa",
+      "targetDivision": "Bantamweight",
+      "fighter": "Colby Thicknesse",
+      "fighterId": "colby-thicknesse",
+      "actualOpponent": "Asaf Chopurov",
+      "actualOpponentId": "asaf-chopurov",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "future-division-change",
-      "reason": "future-target-division:Flyweight",
-      "actualHistoricalDivision": "Flyweight",
+      "classification": "future-newcomer-booking",
+      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
       "excludedFromAccuracy": true
     },
     {
@@ -4998,63 +4997,21 @@
     },
     {
       "cutoff": "2026-04-25",
-      "targetDate": "2026-09-26",
+      "targetDate": "2026-07-11",
       "division": "Bantamweight",
-      "targetDivision": "Bantamweight",
-      "fighter": "Montel Jackson",
-      "fighterId": "montel-jackson",
-      "actualOpponent": "Ricky Simon",
-      "actualOpponentId": "ricky-simon",
+      "targetDivision": "Flyweight",
+      "fighter": "Cody Durden",
+      "fighterId": "cody-durden",
+      "actualOpponent": "Alessandro Costa",
+      "actualOpponentId": "alessandro-costa",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-deep",
-      "targetEligible": true,
-      "targetReason": null,
-      "engineRank": 28,
-      "publicRank": null,
-      "engineTopThree": [
-        {
-          "opponent": "Kyler Phillips",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Cory Sandhagen",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Song Yadong",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Kyler Phillips",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Cory Sandhagen",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Song Yadong",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
-        }
-      ],
-      "outlierReviewCandidate": true
+      "classification": "future-division-change",
+      "reason": "future-target-division:Flyweight",
+      "actualHistoricalDivision": "Flyweight",
+      "excludedFromAccuracy": true
     },
     {
       "cutoff": "2026-05-16",
@@ -5575,59 +5532,60 @@
       "targetDate": "2026-09-26",
       "division": "Bantamweight",
       "targetDivision": "Bantamweight",
-      "fighter": "Raoni Barcelos",
-      "fighterId": "raoni-barcelos",
-      "actualOpponent": "Raul Rosas Jr.",
-      "actualOpponentId": "raul-rosas-jr",
+      "fighter": "Montel Jackson",
+      "fighterId": "montel-jackson",
+      "actualOpponent": "Ricky Simon",
+      "actualOpponentId": "ricky-simon",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-near",
+      "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 4,
+      "engineRank": 28,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Charles Jourdain",
+          "opponent": "Kyler Phillips",
           "score": 93,
           "rankingScore": 93,
-          "case": "rising-vs-rising"
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Aiemann Zahabi",
-          "score": 87,
-          "rankingScore": 87,
-          "case": "rising-vs-rising"
+          "opponent": "Cory Sandhagen",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Farid Basharat",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "rising-vs-rising"
+          "opponent": "Song Yadong",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Charles Jourdain",
+          "opponent": "Kyler Phillips",
           "score": 93,
           "rankingScore": 93,
-          "case": "rising-vs-rising"
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Aiemann Zahabi",
-          "score": 87,
-          "rankingScore": 87,
-          "case": "rising-vs-rising"
+          "opponent": "Cory Sandhagen",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Farid Basharat",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "rising-vs-rising"
+          "opponent": "Song Yadong",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         }
-      ]
+      ],
+      "outlierReviewCandidate": true
     },
     {
       "cutoff": "2026-05-02",

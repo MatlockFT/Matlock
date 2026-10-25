@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-10-25T06:58:16.893Z",
+  "generatedAt": "2026-10-25T12:30:30.702Z",
   "engineVersion": 2,
-  "subjects": 334,
-  "publishedRecommendations": 916,
+  "subjects": 336,
+  "publishedRecommendations": 922,
   "recommendationSlots": {
     "0": 26,
     "1": 2,
     "2": 4,
-    "3": 302
+    "3": 304
   },
   "caseCounts": {
-    "rebound-pairing": 390,
-    "rising-vs-rising": 260,
+    "rebound-pairing": 393,
+    "rising-vs-rising": 263,
     "step-up-vs-rebound": 112,
     "ranking-opportunity": 56,
     "rankings-progression": 51,
@@ -21,18 +21,18 @@
     "title-eliminator": 7
   },
   "confidenceCounts": {
-    "high": 858,
+    "high": 864,
     "medium": 30,
     "low": 28
   },
-  "averageRecentOpponentLinkCoverage": 0.905,
+  "averageRecentOpponentLinkCoverage": 0.9048,
   "sameCardRecommendations": 46,
-  "sameCardRecommendationRatio": 0.0502,
-  "asymmetricTopThreeRecommendations": 319,
-  "asymmetricTopThreeRatio": 0.3483,
-  "publicPublishedRecommendations": 888,
-  "publicAsymmetricTopThreeRecommendations": 230,
-  "publicAsymmetricTopThreeRatio": 0.259,
+  "sameCardRecommendationRatio": 0.0499,
+  "asymmetricTopThreeRecommendations": 315,
+  "asymmetricTopThreeRatio": 0.3416,
+  "publicPublishedRecommendations": 894,
+  "publicAsymmetricTopThreeRecommendations": 231,
+  "publicAsymmetricTopThreeRatio": 0.2584,
   "engineGenericDivisionalSortingRecommendations": 21,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -40,8 +40,8 @@
     "id": "ufc-333",
     "title": "UFC 333: Volkanovski vs Evloev",
     "date": "2026-10-24",
-    "subjects": 26,
-    "publicRecommendations": 70,
+    "subjects": 28,
+    "publicRecommendations": 76,
     "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
@@ -49,8 +49,8 @@
       "id": "ufc-333",
       "title": "UFC 333: Volkanovski vs Evloev",
       "date": "2026-10-24",
-      "subjects": 26,
-      "publicRecommendations": 70,
+      "subjects": 28,
+      "publicRecommendations": 76,
       "noClearMatchupSubjects": 0
     },
     {
@@ -771,6 +771,56 @@
     },
     {
       "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Colby Thicknesse",
+      "opponent": "Heili Alateng",
+      "pairScore": 89,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Bryce Mitchell",
+          "score": 92,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Raoni Barcelos",
+          "score": 90,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Victor Henry",
+          "score": 90,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Colby Thicknesse",
+      "opponent": "Jean Matsumoto",
+      "pairScore": 88,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Benardo Sopaj",
+          "score": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Kai Asakura",
+          "score": 89,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Victor Henry",
+          "score": 89,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
       "fighter": "Abubakar Vagaev",
       "opponent": "Jackson McVey",
       "pairScore": 88,
@@ -865,56 +915,6 @@
         {
           "opponent": "Jun Yong Park",
           "score": 91,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Jacob Malkoun",
-      "opponent": "Dusko Todorovic",
-      "pairScore": 89,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Jun Yong Park",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Kyle Daukaus",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Eric McConico",
-          "score": 90,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Bolaji Oki",
-      "opponent": "Losene Keita",
-      "pairScore": 93,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Hyder Amil",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Javier Reyes",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Lerryan Douglas",
-          "score": 94,
           "case": "rebound-pairing"
         }
       ]
