@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-25T12:08:14.292Z",
+  "generated_at": "2026-10-25T16:12:37.402Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-10-31-fight-card",
@@ -57,7 +57,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-04/BROWN_RANDY_L_04-26.png?itok=alaUuEEQ",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+245"
                 },
                 {
                   "name": "Jacobe Smith",
@@ -65,9 +65,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/SMITH_JACOBE_L_02-21.png?itok=sBX3a4YZ",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-257"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Polymarket"
             },
             {
               "order": 3,
@@ -228,7 +230,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/EROSA_JULIAN_L_03-28.png?itok=QBTJINN6",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+155"
+                  "moneyline": "+140"
                 },
                 {
                   "name": "JeongYeong Lee",
@@ -236,7 +238,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/LEE_JEONGYEONG_L_03-07.png?itok=Znq_QNLd",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-185"
+                  "moneyline": "-165"
                 }
               ],
               "odds_source": "BestFightOdds",
