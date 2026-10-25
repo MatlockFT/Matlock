@@ -1,38 +1,38 @@
 {
-  "generatedAt": "2026-10-24T23:38:50.867Z",
+  "generatedAt": "2026-10-25T01:45:31.985Z",
   "engineVersion": 2,
-  "subjects": 336,
-  "publishedRecommendations": 841,
+  "subjects": 334,
+  "publishedRecommendations": 916,
   "recommendationSlots": {
-    "0": 54,
-    "1": 1,
-    "2": 3,
-    "3": 278
+    "0": 26,
+    "1": 2,
+    "2": 4,
+    "3": 302
   },
   "caseCounts": {
-    "rebound-pairing": 361,
-    "rising-vs-rising": 250,
-    "step-up-vs-rebound": 93,
-    "ranking-opportunity": 49,
-    "rankings-progression": 47,
+    "rebound-pairing": 394,
+    "rising-vs-rising": 263,
+    "step-up-vs-rebound": 106,
+    "ranking-opportunity": 55,
+    "rankings-progression": 52,
     "divisional-sorting": 20,
+    "title-case": 10,
     "prospect-test": 9,
-    "title-case": 7,
-    "title-eliminator": 5
+    "title-eliminator": 7
   },
   "confidenceCounts": {
-    "high": 786,
+    "high": 860,
     "medium": 29,
-    "low": 26
+    "low": 27
   },
-  "averageRecentOpponentLinkCoverage": 0.9048,
+  "averageRecentOpponentLinkCoverage": 0.9051,
   "sameCardRecommendations": 47,
-  "sameCardRecommendationRatio": 0.0559,
-  "asymmetricTopThreeRecommendations": 288,
-  "asymmetricTopThreeRatio": 0.3424,
-  "publicPublishedRecommendations": 814,
-  "publicAsymmetricTopThreeRecommendations": 212,
-  "publicAsymmetricTopThreeRatio": 0.2604,
+  "sameCardRecommendationRatio": 0.0513,
+  "asymmetricTopThreeRecommendations": 314,
+  "asymmetricTopThreeRatio": 0.3428,
+  "publicPublishedRecommendations": 888,
+  "publicAsymmetricTopThreeRecommendations": 229,
+  "publicAsymmetricTopThreeRatio": 0.2579,
   "engineGenericDivisionalSortingRecommendations": 20,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -40,18 +40,18 @@
     "id": "ufc-333",
     "title": "UFC 333: Volkanovski vs Evloev",
     "date": "2026-10-24",
-    "subjects": 28,
-    "publicRecommendations": 5,
-    "noClearMatchupSubjects": 26
+    "subjects": 26,
+    "publicRecommendations": 71,
+    "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
     {
       "id": "ufc-333",
       "title": "UFC 333: Volkanovski vs Evloev",
       "date": "2026-10-24",
-      "subjects": 28,
-      "publicRecommendations": 5,
-      "noClearMatchupSubjects": 26
+      "subjects": 26,
+      "publicRecommendations": 71,
+      "noClearMatchupSubjects": 0
     },
     {
       "id": "ufc-fight-night-october-17-2026",
@@ -90,7 +90,7 @@
       "title": "Crypto.com UFC 331: Van vs Pantoja 2",
       "date": "2026-09-19",
       "subjects": 24,
-      "publicRecommendations": 67,
+      "publicRecommendations": 66,
       "noClearMatchupSubjects": 1
     },
     {
@@ -98,7 +98,7 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 64,
+      "publicRecommendations": 66,
       "noClearMatchupSubjects": 2
     },
     {
@@ -106,8 +106,8 @@
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 70,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 73,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-august-29-2026",
@@ -122,7 +122,7 @@
       "title": "UFC Fight Night: Hernandez vs Rodrigues",
       "date": "2026-08-22",
       "subjects": 26,
-      "publicRecommendations": 74,
+      "publicRecommendations": 75,
       "noClearMatchupSubjects": 1
     },
     {
@@ -146,11 +146,32 @@
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 66,
-      "noClearMatchupSubjects": 6
+      "publicRecommendations": 69,
+      "noClearMatchupSubjects": 5
     }
   ],
   "genericExamples": [
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Movsar Evloev",
+      "opponent": "Youssef Zalal",
+      "score": 46,
+      "rationale": "Movsar Evloev and Youssef Zalal occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Alexander Volkov",
+      "opponent": "Vitor Petrino",
+      "score": 46,
+      "rationale": "Alexander Volkov and Vitor Petrino occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Alexander Volkov",
+      "opponent": "Jon Jones",
+      "score": 44,
+      "rationale": "Alexander Volkov and Jon Jones occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Dariya Zheleznyakova",
@@ -230,20 +251,6 @@
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Curtis Blaydes",
-      "opponent": "Jon Jones",
-      "score": 55,
-      "rationale": "Curtis Blaydes and Jon Jones occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Tim Elliott",
-      "opponent": "Alex Perez",
-      "score": 70,
-      "rationale": "Tim Elliott and Alex Perez occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Jj Aldrich",
       "opponent": "Ernesta Kareckaite",
       "score": 82,
@@ -272,13 +279,6 @@
     },
     {
       "event": "UFC Fight Night: Nurmagomedov vs Song",
-      "fighter": "Song Yadong",
-      "opponent": "Aiemann Zahabi",
-      "score": 51,
-      "rationale": "Song Yadong and Aiemann Zahabi occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Nurmagomedov vs Song",
       "fighter": "Kevin Borjas",
       "opponent": "Alibi Idiris",
       "score": 92,
@@ -296,511 +296,411 @@
   "asymmetricExamples": [
     {
       "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Loneer Kavanagh",
-      "opponent": "Tim Elliott",
-      "pairScore": 54,
-      "case": "rankings-progression",
-      "fighterRank": "Another option",
+      "fighter": "Alexander Volkanovski",
+      "opponent": "Jean Silva",
+      "pairScore": 63,
+      "case": "title-case",
+      "fighterRank": "Best match",
       "opponentTopThree": [
         {
-          "opponent": "Ramazan Temirov",
+          "opponent": "Lerone Murphy",
+          "score": 99,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Yair Rodriguez",
+          "score": 89,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Movsar Evloev",
           "score": 86,
           "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Tagir Ulanbekov",
-          "score": 71,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Alex Perez",
-          "score": 70,
-          "case": "divisional-sorting"
         }
       ]
     },
     {
       "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Ramazan Temirov",
-      "opponent": "Rei Tsuruya",
-      "pairScore": 76,
-      "case": "ranking-opportunity",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Tagir Ulanbekov",
-          "score": 95,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Steve Erceg",
-          "score": 94,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Mitch Raposo",
-          "score": 91,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Joaquin Buckley",
-      "opponent": "Ignacio Bahamondes",
-      "pairScore": 89,
-      "case": "ranking-opportunity",
+      "fighter": "Movsar Evloev",
+      "opponent": "Yair Rodriguez",
+      "pairScore": 79,
+      "case": "step-up-vs-rebound",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Daniel Rodriguez",
-          "score": 94,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Chidi Njokuani",
-          "score": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Nicolas Dalby",
-          "score": 90,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Erin Blanchfield",
-      "opponent": "Maycee Barber",
-      "pairScore": 87,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Casey Oneill",
-          "score": 94,
+          "opponent": "Lerone Murphy",
+          "score": 96,
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Rose Namajunas",
-          "score": 90,
-          "case": "rebound-pairing"
+          "opponent": "Arnold Allen",
+          "score": 88,
+          "case": "rankings-progression"
         },
         {
-          "opponent": "Wang Cong",
-          "score": 88,
-          "case": "rebound-pairing"
+          "opponent": "Youssef Zalal",
+          "score": 87,
+          "case": "step-up-vs-rebound"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Erin Blanchfield",
-      "opponent": "Casey Oneill",
-      "pairScore": 77,
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Movsar Evloev",
+      "opponent": "Youssef Zalal",
+      "pairScore": 46,
+      "case": "divisional-sorting",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Mairon Santos Alves",
+          "score": 90,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Arnold Allen",
+          "score": 89,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Aaron Pico",
+          "score": 88,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Merab Dvalishvili",
+      "opponent": "Payton Talbott",
+      "pairScore": 64,
       "case": "step-up-vs-rebound",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Maycee Barber",
-          "score": 94,
+          "opponent": "Umar Nurmagomedov",
+          "score": 90,
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Miranda Maverick",
-          "score": 93,
-          "case": "step-up-vs-rebound"
+          "opponent": "David Martinez",
+          "score": 89,
+          "case": "rankings-progression"
         },
         {
-          "opponent": "Tracy Cortez",
-          "score": 92,
+          "opponent": "Cory Sandhagen",
+          "score": 86,
           "case": "step-up-vs-rebound"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Kyle Nelson",
-      "opponent": "Daniel Zellhuber",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Claudio Puelles",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Fares Ziam",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Gauge Young",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Timmy Cuamba",
-      "opponent": "Serhiy Sidey",
-      "pairScore": 91,
-      "case": "rising-vs-rising",
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Alexander Volkov",
+      "opponent": "Vitor Petrino",
+      "pairScore": 46,
+      "case": "divisional-sorting",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Ethyn Ewing",
-          "score": 92,
-          "case": "rising-vs-rising"
+          "opponent": "Waldo Cortes Acosta",
+          "score": 88,
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Jakub Wiklacz",
-          "score": 91,
-          "case": "rising-vs-rising"
+          "opponent": "Rizvan Kuniev",
+          "score": 85,
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Suyoung You",
-          "score": 91,
-          "case": "rising-vs-rising"
+          "opponent": "Ante Delija",
+          "score": 83,
+          "case": "step-up-vs-rebound"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Timmy Cuamba",
-      "opponent": "Cody Haddon",
-      "pairScore": 89,
-      "case": "rising-vs-rising",
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Alexander Volkov",
+      "opponent": "Jon Jones",
+      "pairScore": 44,
+      "case": "divisional-sorting",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Jakub Wiklacz",
-          "score": 92,
-          "case": "rising-vs-rising"
+          "opponent": "Derrick Lewis",
+          "score": 81,
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Ethyn Ewing",
-          "score": 91,
-          "case": "rising-vs-rising"
+          "opponent": "Rizvan Kuniev",
+          "score": 80,
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Suyoung You",
-          "score": 91,
-          "case": "rising-vs-rising"
+          "opponent": "Serghei Spivac",
+          "score": 81,
+          "case": "ranking-opportunity"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Nate Landwehr",
-      "opponent": "Kyle Nelson",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Drakkar Klose",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Fares Ziam",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Daniel Zellhuber",
-          "score": 91,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Nate Landwehr",
-      "opponent": "Matt Frevola",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Claudio Puelles",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Drakkar Klose",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Sodiq Yusuff",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Nate Landwehr",
-      "opponent": "Claudio Puelles",
-      "pairScore": 90,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Sodiq Yusuff",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Daniel Zellhuber",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Matt Frevola",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Tanner Boser",
-      "opponent": "Tyrell Fortune",
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Aaron Pico",
+      "opponent": "Steve Garcia",
       "pairScore": 86,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Mairon Santos Alves",
+          "score": 91,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Patricio Freire",
+          "score": 88,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Marcus McGhee",
+          "score": 89,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Aaron Pico",
+      "opponent": "Melquizael Costa",
+      "pairScore": 88,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Marcus McGhee",
+          "score": 98,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Joanderson Brito",
+          "score": 97,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Mairon Santos Alves",
+          "score": 97,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Azamat Murzakanov",
+      "opponent": "Bogdan Guskov",
+      "pairScore": 84,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Reinier De Ridder",
+          "score": 99,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Abdulrakhman Yakhyaev",
+          "score": 93,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Robert Whittaker",
+          "score": 89,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Azamat Murzakanov",
+      "opponent": "Reinier De Ridder",
+      "pairScore": 83,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Bogdan Guskov",
+          "score": 99,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Abdulrakhman Yakhyaev",
+          "score": 90,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Volkan Oezdemir",
+          "score": 89,
+          "case": "rankings-progression"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Dominick Reyes",
+      "opponent": "Bogdan Guskov",
+      "pairScore": 82,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Reinier De Ridder",
+          "score": 99,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Abdulrakhman Yakhyaev",
+          "score": 93,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Robert Whittaker",
+          "score": 89,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Nikita Krylov",
+      "opponent": "Reinier De Ridder",
+      "pairScore": 87,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Bogdan Guskov",
+          "score": 99,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Abdulrakhman Yakhyaev",
+          "score": 90,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Volkan Oezdemir",
+          "score": 89,
+          "case": "rankings-progression"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Nikita Krylov",
+      "opponent": "Julius Walker",
+      "pairScore": 84,
       "case": "ranking-opportunity",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Brando Peričić",
+          "opponent": "Diyar Nurgozhay",
           "score": 92,
-          "case": "ranking-opportunity"
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Johnny Walker",
-          "score": 90,
-          "case": "ranking-opportunity"
+          "opponent": "Christian Edwards",
+          "score": 89,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Mario Pinto",
-          "score": 90,
-          "case": "step-up-vs-rebound"
+          "opponent": "Uran Satybaldiev",
+          "score": 86,
+          "case": "rising-vs-rising"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Jhonata Diniz",
-      "opponent": "Louie Sutherland",
-      "pairScore": 93,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Guilherme Pat",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Alexander Poppeck",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Gable Steveson",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Jhonata Diniz",
-      "opponent": "Guilherme Pat",
-      "pairScore": 92,
-      "case": "rebound-pairing",
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Abus Magomedov",
+      "opponent": "Roman Kopylov",
+      "pairScore": 87,
+      "case": "rankings-progression",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Louie Sutherland",
-          "score": 95,
-          "case": "rebound-pairing"
+          "opponent": "Ismail Naurdiev",
+          "score": 89,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Alexander Poppeck",
-          "score": 94,
-          "case": "rebound-pairing"
+          "opponent": "Shara Magomedov",
+          "score": 89,
+          "case": "rankings-progression"
         },
         {
-          "opponent": "Elisha Ellison",
-          "score": 94,
-          "case": "rebound-pairing"
+          "opponent": "Tresean Gore",
+          "score": 89,
+          "case": "rising-vs-rising"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Jhonata Diniz",
-      "opponent": "Marcus Buchecha",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Alexander Poppeck",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Guilherme Pat",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Javad Mahjoub",
-          "score": 93,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Javad Mahjoub",
-      "opponent": "Guilherme Pat",
-      "pairScore": 94,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Louie Sutherland",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Alexander Poppeck",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Elisha Ellison",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Chad Anheliger",
-      "opponent": "Muin Gafurov",
-      "pairScore": 90,
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Nurullo Aliev",
+      "opponent": "Matheus Camilo",
+      "pairScore": 91,
       "case": "rebound-pairing",
       "fighterRank": "Best match",
       "opponentTopThree": [
         {
-          "opponent": "Toshiomi Kazama",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Cameron Saaiman",
+          "opponent": "Daniel Zellhuber",
           "score": 92,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Chang Ho Lee",
-          "score": 92,
+          "opponent": "Dom Mar Fan",
+          "score": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Gauge Young",
+          "score": 91,
           "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Chad Anheliger",
-      "opponent": "Toshiomi Kazama",
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Nurullo Aliev",
+      "opponent": "Kaue Fernandes",
       "pairScore": 90,
       "case": "rebound-pairing",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Muin Gafurov",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Chang Ho Lee",
+          "opponent": "Daniel Zellhuber",
           "score": 92,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "John Yannis",
+          "opponent": "Gauge Young",
           "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Dom Mar Fan",
+          "score": 91,
           "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Chad Anheliger",
-      "opponent": "Cameron Saaiman",
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Nurullo Aliev",
+      "opponent": "Daniel Zellhuber",
       "pairScore": 89,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Garrett Armfield",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Muin Gafurov",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Xiao Long",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Steven Koslow",
-      "opponent": "Borislav Nikolic",
-      "pairScore": 94,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Francesco Nuzzi",
-          "score": 96,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Hector de Sousa Santiago",
-          "score": 96,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Ilimbek Akylbek",
-          "score": 95,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Matheus Camilo",
-      "opponent": "Daniel Zellhuber",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
       "opponentTopThree": [
         {
           "opponent": "Claudio Puelles",
@@ -820,102 +720,202 @@
       ]
     },
     {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Matheus Camilo",
-      "opponent": "Dom Mar Fan",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Artur Minev",
-          "score": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Gauge Young",
-          "score": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Kaue Fernandes",
-          "score": 91,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Matheus Camilo",
-      "opponent": "Gauge Young",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Artur Minev",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Charlie Campbell",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Daniel Zellhuber",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Jai Herbert",
-      "opponent": "Jalin Turner",
-      "pairScore": 91,
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Colby Thicknesse",
+      "opponent": "Heili Alateng",
+      "pairScore": 89,
       "case": "rising-vs-rising",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Diego Ferreira",
+          "opponent": "Bryce Mitchell",
+          "score": 92,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Raoni Barcelos",
+          "score": 90,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Victor Henry",
+          "score": 90,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Colby Thicknesse",
+      "opponent": "Jean Matsumoto",
+      "pairScore": 88,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Benardo Sopaj",
+          "score": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Kai Asakura",
+          "score": 89,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Victor Henry",
+          "score": 89,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Abubakar Vagaev",
+      "opponent": "Jackson McVey",
+      "pairScore": 88,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Robert Valentin Frey",
+          "score": 96,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Damian Pinas",
           "score": 94,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Alexander Hernandez",
-          "score": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Esteban Ribovics",
-          "score": 92,
+          "opponent": "Ryan Gandra",
+          "score": 93,
           "case": "rising-vs-rising"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Jai Herbert",
-      "opponent": "Joaquim Silva",
-      "pairScore": 90,
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Abubakar Vagaev",
+      "opponent": "Damian Pinas",
+      "pairScore": 87,
       "case": "rising-vs-rising",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Esteban Ribovics",
+          "opponent": "Jackson McVey",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Robert Valentin Frey",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ryan Gandra",
+          "score": 93,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Jacob Malkoun",
+      "opponent": "Ateba Gautier",
+      "pairScore": 91,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Cam Rowston",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Nick Galanti",
+          "score": 93,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Nursulton Ruziboev",
           "score": 92,
-          "case": "rising-vs-rising"
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Jacob Malkoun",
+      "opponent": "Kyle Daukaus",
+      "pairScore": 90,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Dusko Todorovic",
+          "score": 92,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Chase Hooper",
+          "opponent": "Brunno Ferreira",
           "score": 91,
-          "case": "rising-vs-rising"
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Jalin Turner",
+          "opponent": "Jun Yong Park",
           "score": 91,
-          "case": "rising-vs-rising"
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Jacob Malkoun",
+      "opponent": "Dusko Todorovic",
+      "pairScore": 89,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Jun Yong Park",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Kyle Daukaus",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Eric McConico",
+          "score": 90,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "fighter": "Bolaji Oki",
+      "opponent": "Losene Keita",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Hyder Amil",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Javier Reyes",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Lerryan Douglas",
+          "score": 94,
+          "case": "rebound-pairing"
         }
       ]
     }
