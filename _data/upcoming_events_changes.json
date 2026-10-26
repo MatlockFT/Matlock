@@ -1,7 +1,35 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-24T23:25:59.422Z",
+  "generated_at": "2026-10-26T21:43:10.992Z",
   "changes": [
+    {
+      "id": "2026-10-26T21:43:10.992Z|ufc-336-2027-01-30-fight-card|bout_weight_changed|1",
+      "at": "2026-10-26T21:43:10.992Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-336-2027-01-30-fight-card",
+      "promotion": "UFC 336",
+      "event_title": "Van vs Kape",
+      "event_date": "2027-01-30",
+      "summary": "Joshua Van vs Manel Kape weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Flyweight Title Bout"
+      }
+    },
+    {
+      "id": "2026-10-26T21:43:10.992Z|ufc-336-2027-01-30-fight-card|bout_weight_changed|2",
+      "at": "2026-10-26T21:43:10.992Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-336-2027-01-30-fight-card",
+      "promotion": "UFC 336",
+      "event_title": "Van vs Kape",
+      "event_date": "2027-01-30",
+      "summary": "Carlos Prates vs Michael Morales weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Welterweight Interim Title Bout"
+      }
+    },
     {
       "id": "2026-10-24T23:25:59.422Z|ufc-333-2026-10-24-fight-card|event_removed|1",
       "at": "2026-10-24T23:25:59.422Z",
@@ -4700,38 +4728,6 @@
           "Rikiya",
           "Rio Kimura"
         ]
-      }
-    },
-    {
-      "id": "2026-09-25T06:58:36.492Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|1",
-      "at": "2026-09-25T06:58:36.492Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Mahammadali Osmanli vs Ilimbek Akylbek moved on Jr. vs Barcelos.",
-      "details": {
-        "from_order": 3,
-        "to_order": 4,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-25T06:58:36.492Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|2",
-      "at": "2026-09-25T06:58:36.492Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Melissa Amaya vs Tina Black moved on Jr. vs Barcelos.",
-      "details": {
-        "from_order": 4,
-        "to_order": 5,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
       }
     }
   ]
