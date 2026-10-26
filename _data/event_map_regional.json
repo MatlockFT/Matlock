@@ -890,23 +890,19 @@
       "source_label": "Sherdog regional discovery"
     },
     {
-      "id": "nitro-synergy-fc-34-springfield-2026-11-14",
-      "promotion": "SYNERGY FC",
-      "promotion_key": "nitro",
-      "title": "Synergy FC 34: Springfield",
+      "id": "sherdog-synergy-fc-34-springfield-fight-night-2026-11-14-springfield",
+      "promotion": "Synergy FC",
+      "promotion_key": "sherdog_discovery",
+      "title": "Synergy FC 34: Springfield Fight Night",
       "date": "2026-11-14",
       "venue": "Shrine Mosque",
       "location": "Springfield, MO",
       "broadcast": "",
-      "official_url": "https://www.nitrotickets.com/event/1328/synergy-fc-34-springfield",
+      "official_url": "https://www.sherdog.com/events/Synergy-FC-34-Springfield-Fight-Night-114649",
       "regional": true,
       "level": "regional",
-      "source_key": "nitro",
-      "source_label": "Nitro Tickets",
-      "latitude": 37.209,
-      "longitude": -93.2923,
-      "ticket_url": "https://www.nitrotickets.com/event/1328/synergy-fc-34-springfield",
-      "poster_url": "https://www.nitrotickets.com/storage/advertimage/1328/1790469437_Synergy.jpg"
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
     },
     {
       "id": "sherdog-tfc-total-fight-challenge-2026-11-14-cicero",
@@ -1186,6 +1182,24 @@
       "level": "regional",
       "source_key": "sherdog_discovery",
       "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "afc_alaska-afc-nov-28-2026-2026-11-28",
+      "promotion": "Alaska Fighting Championships",
+      "promotion_key": "afc_alaska",
+      "title": "AFC Nov 28, 2026",
+      "date": "2026-11-28",
+      "venue": "Sullivan Arena",
+      "location": "Anchorage, AK",
+      "broadcast": "Zone Sports",
+      "official_url": "https://alaskafighting.com/",
+      "regional": true,
+      "level": "regional",
+      "source_key": "afc_alaska",
+      "source_label": "Alaska Fighting Championships",
+      "latitude": 61.2181,
+      "longitude": -149.9003,
+      "poster_url": "https://alaskafighting.com/wp-content/uploads/2024/11/AFC_WEBSITE-pic3.jpg"
     },
     {
       "id": "cffc-cffc-162-2026-12-04",
