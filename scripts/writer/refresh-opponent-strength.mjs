@@ -345,8 +345,8 @@ function topMarkup(side,fighter) {
 
 function buildTale(config) {
   const a=config.a||{}, b=config.b||{}, rows=config.rows||[];
-  const taleRows=rows.map((row,index)=>
-    '<div class="fc-tale-row'+(index===0?' featured':'')+'"><strong>'+escapeHtml(row.a||'—')+
+  const taleRows=rows.map(row=>
+    '<div class="fc-tale-row"><strong>'+escapeHtml(row.a||'—')+
     '</strong><span>'+escapeHtml(row.label||'')+'</span><strong>'+escapeHtml(row.b||'—')+'</strong></div>'
   ).join('');
   const recentA=recentMarkup(a.recent), recentB=recentMarkup(b.recent);
