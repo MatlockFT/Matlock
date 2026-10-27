@@ -67,17 +67,8 @@ jobs:
             wrangler queues create mmamatlock-writer-media-dlq
           fi
 
-      - name: Ensure R2 video bucket exists
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: |
-          set -euo pipefail
-          wrangler r2 bucket list > /tmp/writer-r2-buckets.txt
-          if ! grep -Fq "matlock-writer-videos" /tmp/writer-r2-buckets.txt; then
-            wrangler r2 bucket create matlock-writer-videos --location wnam
-          fi
-
+      # Article videos use Netlify. Do not provision R2 or require R2 API
+      # permissions merely to deploy authentication and upload authorization.
       - name: Deploy Worker
         id: deploy
         env:

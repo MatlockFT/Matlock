@@ -38,7 +38,3 @@ dead_letter_queue = "mmamatlock-writer-media-dlq"
 
 [triggers]
 crons = ["0 */6 * * *"]
-
-[[r2_buckets]]
-binding = "WRITER_VIDEO_BUCKET"
-bucket_name = "matlock-writer-videos"
