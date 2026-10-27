@@ -15,6 +15,27 @@
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 
+  // Names supplied by Writer/Markdown/HTML may differ in apostrophes,
+  // typographic quotes, accents and spacing (e.g. "Ode Osbourne"
+  // versus "Ode' Osbourne"). Match by a canonical form.
+  const fighterKey = value => String(value ?? '')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f\u02bb\u02bc]/g, '')
+    .replace(/[^\p{L}\p{N}]+/gu, '')
+    .toLowerCase();
+
+  function buildFighterIndex(fighters) {
+    const index = new Map();
+    Object.entries(fighters).forEach(([key, entry]) => {
+      if (!entry || typeof entry !== 'object') return;
+      [key, entry.name, entry.slug].forEach(value => {
+        const alias = fighterKey(value);
+        if (alias && !index.has(alias)) index.set(alias, entry);
+      });
+    });
+    return index;
+  }
+
   function loadData() {
     if (!dataPromise) {
       dataPromise = fetch(DATA_URL, { cache: 'no-store', headers: { Accept: 'application/json' } })
@@ -255,11 +276,12 @@
     if (!root?.isConnected) return;
     const fighters = await loadData();
     if (!root?.isConnected) return;
+    const fighterIndex = buildFighterIndex(fighters);
 
     root.querySelectorAll('p > strong, p strong').forEach(strong => {
       if (strong.closest('.fighter-history-trigger') || enhanced.has(strong)) return;
       const name = strong.textContent.trim();
-      const entry = fighters[name];
+      const entry = fighters[name] || fighterIndex.get(fighterKey(name));
       if (!entry) return;
       makeTrigger(strong, entry);
     });
