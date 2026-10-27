@@ -12,6 +12,8 @@ test('Cloudflare authorizes Netlify server-to-server, caches the media session a
  }});
  for(let i=0;i<2;i++){const response=await handler(request());assert.equal(response.status,200);const body=await response.text();assert.doesNotMatch(body,/github_only_on_servers/);assert.equal(JSON.parse(body).mediaBase,NETLIFY_MEDIA_BASE);}
  assert.equal(calls,1);
+ const renewed = new Request(request(), { body: JSON.stringify({renew:true}) });
+ assert.equal((await handler(renewed)).status,200); assert.equal(calls,2);
 });
 test('expired sign-in and untrusted origins cannot bootstrap media sessions',async()=>{
  const handler=createMediaSessionHandler({getSession:async()=>null});

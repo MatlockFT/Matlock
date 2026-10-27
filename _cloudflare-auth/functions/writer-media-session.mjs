@@ -17,7 +17,8 @@ export function createMediaSessionHandler({ getSession = getWriterSession, fetch
       const store = storeFactory();
       const key = createHash('sha256').update(id).digest('hex');
       const cached = await store.get(key, { type: 'json' });
-      if (cached?.expiresAt > Date.now() + 5 * 60 * 1000) return Response.json({ ok: true, mediaBase: NETLIFY_MEDIA_BASE, ...cached }, { headers });
+      const { renew } = await request.json().catch(() => ({}));
+      if (!renew && cached?.expiresAt > Date.now() + 5 * 60 * 1000) return Response.json({ ok: true, mediaBase: NETLIFY_MEDIA_BASE, ...cached }, { headers });
       const response = await fetcher(`${NETLIFY_MEDIA_BASE}/api/writer/media-session`, {
         method: 'POST', headers: { Authorization: `Bearer ${session.token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ previousId: cached?.sessionId || '', tokenExpiresAt: session.expiresAt || session.sessionExpiresAt }),

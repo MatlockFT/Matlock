@@ -20,6 +20,7 @@ async function setup(page,{unavailable=false}={}){
    if(url.pathname==='/api/writer/session')return respond(200,{ok:true,login:'MatlockFT'});
    if(url.pathname==='/api/writer/media-session'){
     expect(req.headers()['x-writer-session']).toBe(writerId);state.exchange++;
+    if(!unavailable&&state.exchange===2)expect(req.postDataJSON().renew).toBe(true);
     return unavailable?respond(503,{error:'Netlify video uploads are unavailable. Article saving remains available.'}):respond(200,{ok:true,mediaBase:media,sessionId:mediaId,expiresAt:Date.now()+3600000});
    }
    if(url.pathname==='/api/writer/github'){

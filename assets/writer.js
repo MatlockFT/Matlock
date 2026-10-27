@@ -5577,7 +5577,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     if (!videoMediaSessionRequest) {
       videoMediaSessionRequest = (async () => {
         const response = await fetch(authBase + '/api/writer/media-session', {
-          method: 'POST', mode: 'cors', cache: 'no-store', headers: { Accept: 'application/json', 'X-Writer-Session': writer }
+          method: 'POST', mode: 'cors', cache: 'no-store', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'X-Writer-Session': writer }, body: JSON.stringify({ renew: force })
         });
         const data = await response.json().catch(() => ({}));
         if (!response.ok) {
@@ -5686,6 +5686,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
           // Preserve transport metadata so the caller can retain staged chunks
           // and resume at this precise chunk rather than deleting the whole file.
           finalError.networkError = Boolean(error?.networkError);
+          finalError.uploadServiceUnavailable = Boolean(error?.uploadServiceUnavailable);
           finalError.status = error?.status;
           finalError.cause = error;
           finalError.chunkIndex = index;
@@ -5960,7 +5961,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       } catch (error) {
         // Keep the checkpoint and temporary chunks after transport failures.
         // Selecting the same file again resumes here instead of starting over.
-        if (!error?.networkError) {
+        if (!error?.networkError && !error?.uploadServiceUnavailable) {
           try {
             await mediaBridgeFetch('/api/writer/media-abort', {
               method: 'POST',
