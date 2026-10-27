@@ -1,5 +1,5 @@
 import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
-import { mediaStore, requireWriterSession, setStatus, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
+import { mediaStore, requireWriterSession, setStatus, statusKey, uploadScope, validUploadId, validateMediaMetadata } from './_writer-media.mjs';
 
 export default async function handler(request) {
   const origin = normalizeOrigin(request.headers.get('origin'));
@@ -45,6 +45,11 @@ export default async function handler(request) {
 
   const scope = uploadScope(sessionId);
   const store = mediaStore();
+  const current = await store.get(statusKey(scope, uploadId), { type: 'json', consistency: 'strong' });
+  if (current?.state === 'complete' && current.url) return Response.json({ ok: true, uploadId, state: 'complete', url: current.url }, { headers });
+  if (['queued', 'preparing', 'publishing'].includes(current?.state) && Date.now() - Date.parse(current.updatedAt || '') < 16 * 60 * 1000) {
+    return Response.json({ ok: true, uploadId, state: current.state }, { status: 202, headers });
+  }
   await setStatus(store, scope, uploadId, {
     state: 'queued',
     chunkCount: meta.chunkCount,

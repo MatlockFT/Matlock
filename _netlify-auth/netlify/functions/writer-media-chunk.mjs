@@ -20,7 +20,7 @@ export default async function handler(request) {
       status: 204,
       headers: {
         ...headers,
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': [
           'Accept',
           'Content-Type',
@@ -39,21 +39,26 @@ export default async function handler(request) {
   if (!isAllowedOrigin(origin)) {
     return Response.json({ ok: false, error: 'Origin not allowed' }, { status: 403, headers });
   }
-  if (request.method !== 'POST') {
-    return Response.json({ ok: false, error: 'Method not allowed' }, { status: 405, headers: { ...headers, Allow: 'POST, OPTIONS' } });
+  if (!['GET', 'POST'].includes(request.method)) {
+    return Response.json({ ok: false, error: 'Method not allowed' }, { status: 405, headers: { ...headers, Allow: 'GET, POST, OPTIONS' } });
   }
 
   const { id: sessionId, session } = await requireWriterSession(request);
   if (!session) return Response.json({ ok: false, error: 'Session expired' }, { status: 401, headers });
 
-  const uploadId = validUploadId(request.headers.get('x-upload-id'));
-  const chunkIndex = Number(request.headers.get('x-chunk-index'));
+  const url = new URL(request.url);
+  const uploadId = validUploadId(request.method === 'GET' ? url.searchParams.get('uploadId') : request.headers.get('x-upload-id'));
+  const chunkIndex = Number(request.method === 'GET' ? url.searchParams.get('chunkIndex') : request.headers.get('x-chunk-index'));
   const rawChunkCount = Number(request.headers.get('x-chunk-count'));
 
-  if (!uploadId || !Number.isInteger(chunkIndex) || chunkIndex < 0) {
+  if (!uploadId || !Number.isInteger(chunkIndex) || chunkIndex < 0 || chunkIndex >= 1200) {
     return Response.json({ ok: false, error: 'Invalid upload chunk metadata.' }, { status: 400, headers });
   }
 
+  if (request.method === 'GET') {
+    const entry = await mediaStore().getMetadata(chunkKey(uploadScope(sessionId), uploadId, chunkIndex), { consistency: 'strong' });
+    return Response.json({ ok: true, uploadId, chunkIndex, found: Boolean(entry), chunkSize: Number(entry?.metadata?.chunkSize) || 0 }, { headers });
+  }
   let meta;
   try {
     meta = validateMediaMetadata({

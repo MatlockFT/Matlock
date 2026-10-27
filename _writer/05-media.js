@@ -62,7 +62,10 @@
     ].filter(Boolean).join('\n');
   }
 
-  const VIDEO_CHUNK_BYTES = 1_800_000;
+  const videoMediaBase = String(app.dataset.mediaBase || authBase).replace(/\/$/, '');
+  let videoMediaSession = null;
+  let videoMediaSessionRequest = null;
+  const VIDEO_CHUNK_BYTES = videoMediaBase === authBase ? 1_800_000 : 3_500_000;
   const VIDEO_STATUS_POLL_MS = 1500;
   const VIDEO_STATUS_TIMEOUT_MS = 20 * 60 * 1000;
   const VIDEO_STALE_STATUS_MS = 6 * 60 * 1000;
@@ -71,6 +74,7 @@
   function videoResumeFingerprint(file) {
     return JSON.stringify({
       session: writerSessionId(),
+      service: videoMediaBase,
       name: String(file?.name || ''),
       size: Number(file?.size || 0),
       lastModified: Number(file?.lastModified || 0),
@@ -176,14 +180,38 @@
     return `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 14)}`;
   }
 
-  async function mediaBridgeFetch(path, options = {}) {
+  async function delegatedVideoSession(force = false) {
+    const writer = writerSessionId();
+    if (videoMediaBase === authBase) return writer;
+    if (force) videoMediaSession = null;
+    if (videoMediaSession?.writer === writer && videoMediaSession.expiresAt > Date.now() + 60000) return videoMediaSession.sessionId;
+    if (!videoMediaSessionRequest) {
+      videoMediaSessionRequest = (async () => {
+        const response = await fetch(authBase + '/api/writer/media-session', {
+          method: 'POST', mode: 'cors', cache: 'no-store', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'X-Writer-Session': writer }, body: JSON.stringify({ renew: force })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          if (response.status === 401) expireGithubConnection();
+          const error = new Error(data.error || 'Could not connect the video upload service.'); error.status = response.status; error.uploadServiceUnavailable = true; throw error;
+        }
+        if (data.mediaBase !== videoMediaBase || !/^mwm_[A-Za-z0-9_-]{48}$/.test(data.sessionId || '') || !(data.expiresAt > Date.now())) throw new Error('Invalid video upload authorization.');
+        videoMediaSession = { writer, sessionId: data.sessionId, expiresAt: data.expiresAt };
+        return data.sessionId;
+      })().finally(() => { videoMediaSessionRequest = null; });
+    }
+    return videoMediaSessionRequest;
+  }
+
+  async function mediaBridgeFetch(path, options = {}, renewed = false) {
     if (!authBase) throw new Error('Writer auth bridge is unavailable.');
-    const session = writerSessionId();
+    if (!writerSessionId()) throw new Error('Use the normal GitHub sign-in before uploading videos.');
+    const session = await delegatedVideoSession();
     if (!session) throw new Error('Use the normal GitHub sign-in before uploading videos.');
 
     let response;
     try {
-      response = await fetch(`${authBase}${path}`, {
+      response = await fetch(`${videoMediaBase}${path}`, {
         ...options,
         mode: 'cors',
         cache: 'no-store',
@@ -205,8 +233,12 @@
 
     const data = await response.json().catch(() => ({}));
     if (!response.ok) {
-      if (response.status === 401) expireGithubConnection();
-      const error = new Error(data.error || data.message || `${response.status} ${response.statusText}`);
+      if (response.status === 401 && videoMediaBase !== authBase && !renewed) {
+        await delegatedVideoSession(true);
+        return mediaBridgeFetch(path, options, true);
+      }
+      if (response.status === 401 && videoMediaBase === authBase) expireGithubConnection();
+      const error = new Error(data.error || data.message || (videoMediaBase !== authBase ? 'Netlify video uploads are unavailable. Article saving and GitHub sign-in are unaffected.' : `${response.status} ${response.statusText}`));
       error.status = response.status;
       throw error;
     }
@@ -256,8 +288,7 @@
           }
         }
 
-        const retryable = !Number.isInteger(error?.status)
-          || [408, 429, 500, 502, 503, 504].includes(error.status);
+        const retryable = retryableMediaRequestError(error);
         if (!retryable || attempt >= retryDelays.length) {
           const detail = String(error?.message || error || 'No response was received.');
           const finalError = new Error(
@@ -266,6 +297,7 @@
           // Preserve transport metadata so the caller can retain staged chunks
           // and resume at this precise chunk rather than deleting the whole file.
           finalError.networkError = Boolean(error?.networkError);
+          finalError.uploadServiceUnavailable = Boolean(error?.uploadServiceUnavailable);
           finalError.status = error?.status;
           finalError.cause = error;
           finalError.chunkIndex = index;
@@ -278,6 +310,7 @@
   }
 
   function retryableMediaRequestError(error) {
+    if (error?.uploadServiceUnavailable) return false;
     return Boolean(error?.networkError)
       || !Number.isInteger(error?.status)
       || [408, 429, 500, 502, 503, 504].includes(error.status);
@@ -539,7 +572,7 @@
       } catch (error) {
         // Keep the checkpoint and temporary chunks after transport failures.
         // Selecting the same file again resumes here instead of starting over.
-        if (!error?.networkError) {
+        if (!error?.networkError && !error?.uploadServiceUnavailable) {
           try {
             await mediaBridgeFetch('/api/writer/media-abort', {
               method: 'POST',

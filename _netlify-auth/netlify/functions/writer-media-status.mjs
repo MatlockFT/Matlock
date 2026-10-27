@@ -1,5 +1,5 @@
 import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
-import { mediaStore, requireWriterSession, statusKey, uploadScope, validUploadId } from './_writer-media.mjs';
+import { chunkKey, mediaStore, requireWriterSession, statusKey, uploadScope, validUploadId } from './_writer-media.mjs';
 
 export default async function handler(request) {
   const origin = normalizeOrigin(request.headers.get('origin'));
@@ -32,6 +32,17 @@ export default async function handler(request) {
 
   const store = mediaStore();
   const status = await store.get(statusKey(uploadScope(sessionId), uploadId), { type: 'json', consistency: 'strong' });
+  if (status?.state === 'error' && status.stagedRetained && status.chunkCount > 0 && status.chunkCount <= 1200) {
+    let stagedBytes = 0;
+    let allPresent = true;
+    for (let i = 0; i < status.chunkCount; i++) {
+      const entry = await store.getMetadata(chunkKey(uploadScope(sessionId), uploadId, i), { consistency: 'strong' });
+      const size = Number(entry?.metadata?.chunkSize);
+      if (!entry || !size) { allPresent = false; break; }
+      stagedBytes += size;
+    }
+    status.stagedComplete = allPresent && stagedBytes === Number(status.fileSize);
+  }
   return Response.json(status || { state: 'processing' }, { status: 200, headers });
 }
 
