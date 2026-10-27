@@ -961,6 +961,7 @@ html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-eve
 
 /* Trending: aligned headline slots, with dividers attached to their links. */
 .v3-trending {
+    border-top: 1px solid var(--v3-rule);
     gap: 0;
     margin: 0 0 1.25rem;
     padding: .65rem 0;
