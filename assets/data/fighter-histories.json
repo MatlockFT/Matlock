@@ -11499,146 +11499,274 @@
     "Ode' Osbourne": {
       "name": "Ode' Osbourne",
       "slug": "ode-osbourne",
-      "subtitle": "Career chronology",
+      "subtitle": "Career chronology · 24 professional bouts and 3 documented amateur results",
       "record": "13-9-0",
       "ufcRecord": "5-7-0",
       "division": "Flyweight",
       "items": [
         {
-          "date": "2011",
-          "label": "Begins wrestling in Wisconsin",
-          "kind": "training",
-          "detail": "Osbourne moved to Wisconsin to wrestle under college coach Benjamin Tones; began spending time in MMA gyms during wrestling offseasons.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/ode-osbourne"
+          "date": "Childhood–2001",
+          "label": "Born in Jamaica and later moves to the United States",
+          "kind": "background",
+          "detail": "Born in Kingston, Jamaica, and moved to the United States as a child, according to UFC interviews. Exact childhood move date varies or is not firmly sourced.",
+          "sourceLabel": "UFC · November 2019 fighter interview",
+          "source": "https://www.ufc.com/news/ode-osbourne-out-inspire-world"
         },
         {
-          "date": "2015",
-          "label": "Begins professional MMA career",
+          "date": "2011",
+          "label": "College wrestling brings Osbourne to Wisconsin",
+          "kind": "training",
+          "detail": "Moved to Wisconsin in 2011 to wrestle under college coach Benjamin Tones. Tones also coached at an MMA gym and introduced Osbourne to head coach Reese Shaner during the wrestling offseason. UFC identifies Osbourne as a first-year collegiate national qualifier.",
+          "sourceLabel": "UFC · fighter questionnaire",
+          "source": "https://www.ufc.com.br/athlete/ode-osbourne?page=2"
+        },
+        {
+          "date": "2013 (amateur phase)",
+          "label": "Wins amateur championship; begins MMA competition",
           "kind": "milestone",
-          "detail": "Turned professional after wrestling experience and training in striking and grappling.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/ode-osbourne"
+          "detail": "The UFC lists an XFO amateur title among Osbourne's accomplishments. Three amateur bouts in 2013 are indexed by Sherdog; the championship's exact fight date and opponent are not firmly established, so no unsourced title fight is identified here.",
+          "sourceLabel": "UFC · fighter questionnaire",
+          "source": "https://www.ufc.com.br/athlete/ode-osbourne?page=2"
+        },
+        {
+          "date": "Jun. 21, 2013",
+          "label": "AMATEUR WIN · Jesse Fisher · unanimous decision",
+          "kind": "background",
+          "detail": "Won a three-round unanimous decision over Fisher at RFA 8: Pettis vs. Pegg, one of three amateur bouts documented by Sherdog.",
+          "sourceLabel": "Sherdog · amateur results ledger",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
+        },
+        {
+          "date": "Jun. 29, 2013",
+          "label": "AMATEUR WIN · Alex Brockway · 19-second stoppage",
+          "kind": "background",
+          "detail": "Stopped Brockway by TKO (punches) at 0:19 of round one at APFC 12.",
+          "sourceLabel": "Sherdog · amateur results ledger",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
+        },
+        {
+          "date": "Dec. 7, 2013",
+          "label": "AMATEUR WIN · Jonathan Morrison · unanimous decision",
+          "kind": "background",
+          "detail": "Defeated Morrison by unanimous decision after three three-minute rounds at NAFC: Unrivaled, bringing his three documented amateur bouts to 3–0.",
+          "sourceLabel": "Sherdog · amateur results ledger",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
+        },
+        {
+          "date": "Apr. 11, 2015",
+          "label": "WIN · Brent Lee · professional MMA debut",
+          "kind": "win",
+          "detail": "Opened his professional MMA career by submitting Brent Lee with a rear-naked choke at 1:10 of round two at NAFC: Explosion in Waukesha, Wisconsin.",
+          "sourceLabel": "Sherdog · complete professional MMA fight record",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
+        },
+        {
+          "date": "May 24, 2015",
+          "label": "NO CONTEST · Murjan Flowers · Pure FC 1",
+          "kind": "nc",
+          "detail": "His second professional bout ended in a round-two no contest at Pure FC 1. MMA Official attributes the stoppage to an accidental eye poke; Sherdog verifies the no-contest ruling but does not give a cause or reliable elapsed stoppage time.",
+          "sourceLabel": "MMA Official · bout mechanism; Sherdog · no-contest ruling",
+          "source": "https://mma-official.com/en/combattants/ode-osbourne/"
+        },
+        {
+          "date": "Sep. 12, 2015",
+          "label": "WIN · Doug Milbrath · first-round TKO",
+          "kind": "win",
+          "detail": "Stopped Milbrath with punches at 1:37 of the first round at NAFC: Battledome, raising his professional record to 2–0 with one no contest.",
+          "sourceLabel": "Sherdog · complete professional MMA fight record",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
+        },
+        {
+          "date": "Jan. 30, 2016",
+          "label": "WIN · David Rhoads · stoppage from punches",
+          "kind": "win",
+          "detail": "Earned a first-round TKO (submission to punches) over Rhoads at 4:36 at NAFC: Super Brawl 3.",
+          "sourceLabel": "Sherdog · complete professional MMA fight record",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
+        },
+        {
+          "date": "Jun. 17, 2016",
+          "label": "LOSS · Antonio Sanchez · first professional defeat",
+          "kind": "loss",
+          "detail": "Lost a unanimous decision over three rounds at RFA 39: Barcelos vs. Moffett. It was Osbourne's first recorded professional defeat after a 3–0 start.",
+          "sourceLabel": "Sherdog · complete professional MMA fight record",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
+        },
+        {
+          "date": "Sep. 24, 2016",
+          "label": "WIN · Cory Galloway · split decision",
+          "kind": "win",
+          "detail": "Won a three-round split decision at Pure FC 5, moving to 4–1 with one no contest.",
+          "sourceLabel": "Sherdog · complete professional MMA fight record",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
+        },
+        {
+          "date": "Sep. 23, 2017",
+          "label": "LOSS · Jose Calvo · 24-second kneebar",
+          "kind": "loss",
+          "detail": "Submitted by Jose Calvo (also listed as Jose Luis Calvo) with a kneebar just 0:24 into round one at United Combat League: Havoc in Hammond 4.",
+          "sourceLabel": "Sherdog · complete professional MMA fight record",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
+        },
+        {
+          "date": "Jul. 28, 2018",
+          "label": "WIN · Seigenald Aurtan Daley Jr. · first meeting",
+          "kind": "win",
+          "detail": "Submitted Daley with a triangle choke at 1:44 of the opening round at Pure FC 9.",
+          "sourceLabel": "Sherdog · complete professional MMA fight record",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
+        },
+        {
+          "date": "Oct. 20, 2018",
+          "label": "WIN · Seigenald Aurtan Daley Jr. · rematch",
+          "kind": "win",
+          "detail": "Stopped Daley by TKO (punches) at 2:16 of round one at Pure FC 10, recording two consecutive wins against the same opponent.",
+          "sourceLabel": "Sherdog · complete professional MMA fight record",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
+        },
+        {
+          "date": "Jan. 19, 2019",
+          "label": "WIN · Kelly Offield · triangle choke",
+          "kind": "win",
+          "detail": "Submitted Offield by triangle choke at 4:07 of round one at HD MMA 15, his third consecutive professional win.",
+          "sourceLabel": "Sherdog · complete professional MMA fight record",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
         },
         {
           "date": "Jul. 16, 2019",
-          "label": "WIN · Armando Villareal · DWCS",
-          "kind": "milestone",
-          "detail": "Submitted Villareal via armbar at 4:39 of round one on Dana White's Contender Series to earn a UFC contract.",
-          "sourceLabel": "UFC athlete profile",
+          "label": "WIN · Armando Villarreal · Contender Series UFC contract",
+          "kind": "win",
+          "detail": "Submitted Villarreal by armbar at 4:39 of round one on Dana White's Contender Series, Season 3, Week 4. Entered the UFC with an 8–2 professional record and one no contest.",
+          "sourceLabel": "UFC · official athlete profile",
           "source": "https://www.ufc.com/athlete/ode-osbourne"
         },
         {
           "date": "Jan. 18, 2020",
           "label": "LOSS · Brian Kelleher · UFC debut",
           "kind": "loss",
-          "detail": "Submitted by guillotine choke at 2:49 of round one at UFC 246.",
-          "sourceLabel": "UFC athlete profile",
+          "detail": "Kelleher submitted Osbourne with a guillotine choke at 2:49 of round one at UFC 246. This was Osbourne's first official UFC event bout; his 2019 Contender Series appearance is counted as a professional fight, not a UFC Octagon result.",
+          "sourceLabel": "UFC · official athlete record",
           "source": "https://www.ufc.com/athlete/ode-osbourne"
         },
         {
           "date": "Feb. 6, 2021",
-          "label": "WIN · Jerome Rivera",
+          "label": "WIN · Jerome Rivera · 26-second knockout",
           "kind": "win",
-          "detail": "Knocked out Rivera in just 26 seconds.",
-          "sourceLabel": "UFC athlete profile",
+          "detail": "Knocked Rivera out with punches only 26 seconds into round one at UFC Fight Night: Overeem vs. Volkov, recording his first official UFC victory.",
+          "sourceLabel": "UFC · official athlete record",
           "source": "https://www.ufc.com/athlete/ode-osbourne"
         },
         {
           "date": "Aug. 7, 2021",
-          "label": "LOSS · Manel Kape",
+          "label": "LOSS · Manel Kape · flying-knee knockout",
           "kind": "loss",
-          "detail": "Knocked out by Kape late in round one.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/ode-osbourne"
+          "detail": "Kape knocked him out with a flying knee and follow-up punches at 4:44 of round one at UFC 265.",
+          "sourceLabel": "Sherdog · official UFC 265 result",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
         },
         {
           "date": "Nov. 6, 2021",
-          "label": "WIN · CJ Vergara",
+          "label": "WIN · C.J. Vergara · UFC 268",
           "kind": "win",
-          "detail": "Won by unanimous decision at UFC 268.",
-          "sourceLabel": "UFC athlete profile",
+          "detail": "Beat Vergara by unanimous decision over three rounds at UFC 268 in New York.",
+          "sourceLabel": "UFC · official athlete record",
           "source": "https://www.ufc.com/athlete/ode-osbourne"
         },
         {
           "date": "Jun. 4, 2022",
-          "label": "WIN · Zarrukh Adashev",
+          "label": "WIN · Zarrukh Adashev · knockout and first UFC bonus",
           "kind": "win",
-          "detail": "Knocked out Adashev at 1:01 of round one.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/ode-osbourne"
+          "detail": "Knocked out Adashev with a counter right hook and follow-up punches at 1:01 of round one at UFC Fight Night: Volkov vs. Rozenstruik. The finish earned a $50,000 Performance of the Night bonus, Osbourne's first UFC bonus.",
+          "sourceLabel": "MMA Fighting · June 4, 2022 performance bonuses",
+          "source": "https://www.mmafighting.com/2022/6/4/23154709/ufc-vegas-56-bonuses-four-first-timer-bonus-winners-cash-extra-50000"
         },
         {
           "date": "Aug. 13, 2022",
-          "label": "LOSS · Tyson Nam",
+          "label": "LOSS · Tyson Nam · first-round knockout",
           "kind": "loss",
-          "detail": "Knocked out in round one.",
-          "sourceLabel": "UFC athlete profile",
+          "detail": "Nam knocked Osbourne out with punches at 2:59 of round one at UFC on ESPN: Vera vs. Cruz.",
+          "sourceLabel": "UFC · official athlete record",
           "source": "https://www.ufc.com/athlete/ode-osbourne"
         },
         {
           "date": "Feb. 25, 2023",
-          "label": "WIN · Charles Johnson",
+          "label": "WIN · Charles Johnson · split decision",
           "kind": "win",
-          "detail": "Won by split decision.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/ode-osbourne"
+          "detail": "Won a three-round split decision over Johnson at UFC Fight Night: Muniz vs. Allen. Judges scored it 29–28, 29–28 for Osbourne and 29–28 for Johnson.",
+          "sourceLabel": "Sherdog · UFC fight result and judges' scores",
+          "source": "https://www.sherdog.com/fighter/Ode-Osbourne-137969"
         },
         {
           "date": "Aug. 5, 2023",
-          "label": "LOSS · Asu Almabayev",
+          "label": "LOSS · Asu Almabayev · rear-naked choke",
           "kind": "loss",
-          "detail": "Submitted by rear-naked choke at 3:11 of round two.",
-          "sourceLabel": "UFC athlete profile",
+          "detail": "Almabayev submitted Osbourne by rear-naked choke at 3:11 of round two at UFC on ESPN: Sandhagen vs. Font.",
+          "sourceLabel": "UFC · official athlete record",
           "source": "https://www.ufc.com/athlete/ode-osbourne"
         },
         {
           "date": "Mar. 16, 2024",
-          "label": "LOSS · Jafel Filho",
+          "label": "LOSS · Jafel Filho · first-round submission",
           "kind": "loss",
-          "detail": "Submitted by rear-naked choke at 4:27 of round one.",
-          "sourceLabel": "UFC athlete profile",
+          "detail": "Filho submitted Osbourne with a rear-naked choke at 4:27 of round one at UFC Fight Night: Tuivasa vs. Tybura, his second consecutive submission loss.",
+          "sourceLabel": "UFC · official athlete record",
           "source": "https://www.ufc.com/athlete/ode-osbourne"
         },
         {
           "date": "Sep. 14, 2024",
-          "label": "LOSS · Ronaldo Rodriguez",
+          "label": "LOSS · Ronaldo Rodriguez · UFC 306",
           "kind": "loss",
-          "detail": "Lost by unanimous decision at UFC 306.",
-          "sourceLabel": "UFC athlete profile",
+          "detail": "Lost a three-round unanimous decision to Rodriguez at UFC 306 at the Sphere in Las Vegas. This was Osbourne's third consecutive defeat.",
+          "sourceLabel": "UFC · official athlete record",
           "source": "https://www.ufc.com/athlete/ode-osbourne"
         },
         {
           "date": "Apr. 5, 2025",
-          "label": "WIN · Luis Gurule",
+          "label": "WIN · Luis Gurule · snaps skid; Performance of the Night",
           "kind": "win",
-          "detail": "Stopped Gurule with strikes at 1:54 of round two.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/ode-osbourne"
+          "detail": "Stopped previously unbeaten UFC newcomer Gurule with a counter left hand and follow-up punches at 1:54 of round two at UFC Vegas 105. The win ended a three-fight skid and earned a second $50,000 Performance of the Night bonus.",
+          "sourceLabel": "MMA Fighting · April 2025 performance bonuses",
+          "source": "https://www.mmafighting.com/2025/4/6/24402231/ufc-vegas-105-bonuses-rhys-mckee-snags-50k-after-finally-earning-ufc-win"
         },
         {
           "date": "Aug. 9, 2025",
-          "label": "LOSS · Steve Erceg",
+          "label": "LOSS · Steve Erceg · bantamweight co-main event",
           "kind": "loss",
-          "detail": "Lost a unanimous decision.",
-          "sourceLabel": "UFC athlete profile",
+          "detail": "Moved up to bantamweight for a co-main-event fight with former flyweight title challenger Steve Erceg at UFC on ESPN: Dolidze vs. Hernandez. Lost by unanimous decision after three rounds.",
+          "sourceLabel": "UFC · official athlete record",
           "source": "https://www.ufc.com/athlete/ode-osbourne"
         },
         {
           "date": "Feb. 21, 2026",
-          "label": "NO CONTEST · Alibi Idiris · result overturned",
+          "label": "NO CONTEST · Alibi Idiris · decision overturned after drug-test finding",
           "kind": "nc",
-          "detail": "Idiris initially won a unanimous decision on February 21, 2026. The Texas Department of Licensing and Regulation later overturned it to a no contest after Idiris tested positive for hydrochlorothiazide. Some UFC profiles still display the original loss.",
-          "sourceLabel": "Bout record / TDLR overturn",
-          "source": "https://www.tapology.com/fightcenter/bouts/1078044-ufc-fight-night-ode-the-jamaican-sensation-osbourne-vs-alibi-idiris"
+          "detail": "Idiris initially won a unanimous decision at UFC Houston, but the Texas Department of Licensing and Regulation changed the result to a no contest after Idiris tested positive for hydrochlorothiazide, a prohibited diuretic. CSAD announced Idiris' 12-month suspension in March. Some UFC fighter pages still show the original decision loss; the commission-amended no contest is used here.",
+          "sourceLabel": "MMA Fighting · March 31, 2026 suspension and commission ruling",
+          "source": "https://www.mmafighting.com/ufc/479785/ufc-flyweight-hit-with-12-month-suspension-for-failed-drug-test-victory-overturned"
+        },
+        {
+          "date": "Jun.–Jul. 2026",
+          "label": "Withdraws injured from original Cody Durden booking",
+          "kind": "injury",
+          "detail": "Was booked to face Cody Durden at UFC 329 on July 11, but withdrew after suffering an injury following an eight-week training camp. Alessandro Costa replaced him against Durden. No specific medical diagnosis is reliably established.",
+          "sourceLabel": "Sherdog · July 2, 2026 injury and replacement report",
+          "source": "https://www.sherdog.com/news/news/UFC-329-Shakeup-late-replacement-steps-in-to-face-Cody-Durden-201730"
+        },
+        {
+          "date": "Sep. 25, 2026",
+          "label": "Rebooked against Cody Durden for October 31",
+          "kind": "milestone",
+          "detail": "Osbourne and Durden were rebooked for an October 31 flyweight fight, after the July matchup fell through because of Osbourne's injury. The rebooking was reported in September.",
+          "sourceLabel": "RotoWire · September 25, 2026 booking update",
+          "source": "https://www.rotowire.com/mma/player/ode-osbourne-1926"
         },
         {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "UFC Fight Night · scheduled vs. Cody Durden",
           "kind": "upcoming",
-          "detail": "Booked against Cody Durden; future result not included.",
-          "sourceLabel": "Official UFC October 31 fight card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "detail": "Booked against Cody Durden on the main card at Meta APEX in Las Vegas. Enters with a professional record of 13–9 and two no contests; his official UFC record is 5–7 with one no contest. No result exists as of October 26, 2026.",
+          "sourceLabel": "UFC · October 26, 2026 official card preview",
+          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-fight-night-moicano-vs-nolan"
         }
       ],
       "lastReviewed": "2026-10-26"
