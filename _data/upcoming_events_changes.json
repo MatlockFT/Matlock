@@ -1,7 +1,135 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-26T21:43:10.992Z",
+  "generated_at": "2026-10-27T00:56:20.269Z",
   "changes": [
+    {
+      "id": "2026-10-27T00:56:20.269Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|1",
+      "at": "2026-10-27T00:56:20.269Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "Jean-Paul Lebosnoyani vs Farman Hasanov moved on Moicano vs Nolan.",
+      "details": {
+        "from_order": 6,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-10-27T00:56:20.269Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|2",
+      "at": "2026-10-27T00:56:20.269Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "Zachary Reese vs Mickey Gall moved on Moicano vs Nolan.",
+      "details": {
+        "from_order": 5,
+        "to_order": 6,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-27T00:56:20.269Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|3",
+      "at": "2026-10-27T00:56:20.269Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "Francis Marshall vs Dakota Hope moved on Moicano vs Nolan.",
+      "details": {
+        "from_order": 7,
+        "to_order": 7,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-27T00:56:20.269Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|4",
+      "at": "2026-10-27T00:56:20.269Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "Rodrigo Sezinando vs Theodor Berggren moved on Moicano vs Nolan.",
+      "details": {
+        "from_order": 8,
+        "to_order": 8,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-27T00:56:20.269Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|5",
+      "at": "2026-10-27T00:56:20.269Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "Julian Erosa vs JeongYeong Lee moved on Moicano vs Nolan.",
+      "details": {
+        "from_order": 9,
+        "to_order": 9,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-27T00:56:20.269Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|6",
+      "at": "2026-10-27T00:56:20.269Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "Nick Klein vs Joseph Kropschot moved on Moicano vs Nolan.",
+      "details": {
+        "from_order": 10,
+        "to_order": 10,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-27T00:56:20.269Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|7",
+      "at": "2026-10-27T00:56:20.269Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "Talita Alencar vs Piera Rodriguez moved on Moicano vs Nolan.",
+      "details": {
+        "from_order": 11,
+        "to_order": 11,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-27T00:56:20.269Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|8",
+      "at": "2026-10-27T00:56:20.269Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "Lucia Szabova vs Tainara Lisboa moved on Moicano vs Nolan.",
+      "details": {
+        "from_order": 12,
+        "to_order": 12,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
     {
       "id": "2026-10-26T21:43:10.992Z|ufc-336-2027-01-30-fight-card|bout_weight_changed|1",
       "at": "2026-10-26T21:43:10.992Z",
@@ -4590,144 +4718,6 @@
         "to_order": 14,
         "from_section": "Early Prelims",
         "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-09-28T21:56:16.258Z|ufc-332-2026-10-03-fight-card|bout_added|2",
-      "at": "2026-09-28T21:56:16.258Z",
-      "type": "bout_added",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Jacobe Smith vs Bruce Whitehead added to Silva vs Cong.",
-      "details": {
-        "order": 13,
-        "section": "Early Prelims",
-        "weight_class": "Welterweight Bout"
-      }
-    },
-    {
-      "id": "2026-09-28T14:53:24.658Z|dwcs-season-10-week-8-2026-09-29|bout_moved|1",
-      "at": "2026-09-28T14:53:24.658Z",
-      "type": "bout_moved",
-      "event_id": "dwcs-season-10-week-8-2026-09-29",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 8",
-      "event_date": "2026-09-29",
-      "summary": "George Staines vs Loai Abushaar moved on Season 10 · Week 8.",
-      "details": {
-        "from_order": 2,
-        "to_order": 1,
-        "from_section": "Fight Card",
-        "to_section": "Fight Card"
-      }
-    },
-    {
-      "id": "2026-09-28T14:53:24.658Z|dwcs-season-10-week-8-2026-09-29|bout_moved|2",
-      "at": "2026-09-28T14:53:24.658Z",
-      "type": "bout_moved",
-      "event_id": "dwcs-season-10-week-8-2026-09-29",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 8",
-      "event_date": "2026-09-29",
-      "summary": "Zaurbek Sabanov vs Adama Diop moved on Season 10 · Week 8.",
-      "details": {
-        "from_order": 5,
-        "to_order": 2,
-        "from_section": "Fight Card",
-        "to_section": "Fight Card"
-      }
-    },
-    {
-      "id": "2026-09-28T14:53:24.658Z|dwcs-season-10-week-8-2026-09-29|bout_moved|3",
-      "at": "2026-09-28T14:53:24.658Z",
-      "type": "bout_moved",
-      "event_id": "dwcs-season-10-week-8-2026-09-29",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 8",
-      "event_date": "2026-09-29",
-      "summary": "Camila Reynoso vs Aieza Ramos Bertolso moved on Season 10 · Week 8.",
-      "details": {
-        "from_order": 1,
-        "to_order": 4,
-        "from_section": "Fight Card",
-        "to_section": "Fight Card"
-      }
-    },
-    {
-      "id": "2026-09-28T14:53:24.658Z|dwcs-season-10-week-8-2026-09-29|bout_moved|4",
-      "at": "2026-09-28T14:53:24.658Z",
-      "type": "bout_moved",
-      "event_id": "dwcs-season-10-week-8-2026-09-29",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 8",
-      "event_date": "2026-09-29",
-      "summary": "Ilias Bulaid vs Erick Visconde moved on Season 10 · Week 8.",
-      "details": {
-        "from_order": 4,
-        "to_order": 5,
-        "from_section": "Fight Card",
-        "to_section": "Fight Card"
-      }
-    },
-    {
-      "id": "2026-09-27T05:54:39.236Z|ufc-fight-night-2026-09-26-fight-card|event_removed|1",
-      "at": "2026-09-27T05:54:39.236Z",
-      "type": "event_removed",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "UFC Fight Night Jr. vs Barcelos removed from Upcoming Events.",
-      "details": {
-        "bout_count": 12,
-        "venue": "Venue TBA",
-        "date": "2026-09-26"
-      }
-    },
-    {
-      "id": "2026-09-25T12:45:30.702Z|rizin-abc-presents-rizin-55-2026-11-08|bout_changed|1",
-      "at": "2026-09-25T12:45:30.702Z",
-      "type": "bout_changed",
-      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
-      "promotion": "RIZIN",
-      "event_title": "『abc presents RIZIN.55』",
-      "event_date": "2026-11-08",
-      "summary": "Taichi Nakajima vs 溝口司 changed to Taichi Nakajima vs Tsukasa Mizoguchi on 『abc presents RIZIN.55』.",
-      "details": {
-        "order": 9,
-        "section": "Fight Card",
-        "from": [
-          "Taichi Nakajima",
-          "溝口司"
-        ],
-        "to": [
-          "Taichi Nakajima",
-          "Tsukasa Mizoguchi"
-        ]
-      }
-    },
-    {
-      "id": "2026-09-25T12:45:30.702Z|rizin-abc-presents-rizin-55-2026-11-08|bout_changed|2",
-      "at": "2026-09-25T12:45:30.702Z",
-      "type": "bout_changed",
-      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
-      "promotion": "RIZIN",
-      "event_title": "『abc presents RIZIN.55』",
-      "event_date": "2026-11-08",
-      "summary": "力也 vs 木村琉音 changed to Rikiya vs Rio Kimura on 『abc presents RIZIN.55』.",
-      "details": {
-        "order": 10,
-        "section": "Fight Card",
-        "from": [
-          "力也",
-          "木村琉音"
-        ],
-        "to": [
-          "Rikiya",
-          "Rio Kimura"
-        ]
       }
     }
   ]

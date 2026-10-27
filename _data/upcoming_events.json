@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-26T21:42:19.740Z",
+  "generated_at": "2026-10-27T00:55:58.824Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-10-31-fight-card",
@@ -107,7 +107,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/OSBOURNE_ODE_L_02-21.png?itok=aw0NxANu",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-125"
+                  "moneyline": "-120"
                 },
                 {
                   "name": "Cody Durden",
@@ -115,7 +115,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/DURDEN_CODY_L_03-07.png?itok=vvCN2I2y",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-102"
+                  "moneyline": "-106"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -123,29 +123,6 @@
             },
             {
               "order": 5,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Zachary Reese",
-                  "initials": "ZR",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/REESE_ZACH_L_02-21.png?itok=beiKFsJ0",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Mickey Gall",
-                  "initials": "MG",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/GALL_MICKEY_L_11-16.png?itok=tlDNrYh3",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 6,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -155,7 +132,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/LEBOSNOYANI_JEAN-PAUL_R_02-21.png?itok=FM_JbPj8",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-265"
+                  "moneyline": "-290"
                 },
                 {
                   "name": "Farman Hasanov",
@@ -163,11 +140,41 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/HASANOV_FARMAN_L_06-27.png?itok=_Ex8iG6f",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+200"
+                  "moneyline": "+215"
                 }
               ],
               "odds_source": "BestFightOdds",
               "odds_provider": "FanDuel"
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "5:00 PM ET",
+          "bouts": [
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Zachary Reese",
+                  "initials": "ZR",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/REESE_ZACH_L_02-21.png?itok=beiKFsJ0",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-290"
+                },
+                {
+                  "name": "Mickey Gall",
+                  "initials": "MG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/GALL_MICKEY_L_11-16.png?itok=tlDNrYh3",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+235"
+                }
+              ]
             },
             {
               "order": 7,
@@ -230,7 +237,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/EROSA_JULIAN_L_03-28.png?itok=QBTJINN6",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+160"
+                  "moneyline": "+140"
                 },
                 {
                   "name": "JeongYeong Lee",
@@ -238,7 +245,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/LEE_JEONGYEONG_L_03-07.png?itok=Znq_QNLd",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-190"
+                  "moneyline": "-165"
                 }
               ],
               "odds_source": "BestFightOdds",
