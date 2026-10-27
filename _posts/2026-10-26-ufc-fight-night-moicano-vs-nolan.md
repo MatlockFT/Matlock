@@ -23,13 +23,6 @@ preserve_line_breaks: true
 
 UFC Fight Night: Moicano vs. Nolan takes place October 31 at Meta APEX in Las Vegas.
 
-
-<!-- Official card: https://www.ufc.com/event/ufc-fight-night-october-31-2026 -->
-<!-- UFCStats: https://ufcstats.com/ ; UFC athlete profiles and UFCalendar UFCStats-attributed mirrors were cross-checked. -->
-
-
-<!-- MAIN CARD -->
-
 ## Renato Moicano vs. Tom Nolan
 
 <section class="article-html-visual" data-writer-block="tale" data-writer-config="%7B%22version%22%3A6%2C%22a%22%3A%7B%22name%22%3A%22Renato%20Moicano%22%2C%22division%22%3A%22Lightweight%22%2C%22odds%22%3A%22%22%2C%22last5%22%3A%223-2%22%2C%22image%22%3A%22%22%2C%22portrait%22%3A%7B%22x%22%3A50%2C%22y%22%3A100%2C%22zoom%22%3A100%7D%2C%22recent%22%3A%5B%5D%2C%22source%22%3A%7B%22mode%22%3A%22secondary-UFCStats-attributed%22%2C%22checkedAt%22%3A%222026-10-26%22%2C%22verification%22%3A%22UFC%20fighter%20profile%20and%20UFCalendar%20UFCStats-attributed%20career%20metrics%3B%20pre-fight%22%7D%7D%2C%22b%22%3A%7B%22name%22%3A%22Tom%20Nolan%22%2C%22division%22%3A%22Lightweight%22%2C%22odds%22%3A%22%22%2C%22last5%22%3A%225-0%22%2C%22image%22%3A%22%22%2C%22portrait%22%3A%7B%22x%22%3A50%2C%22y%22%3A100%2C%22zoom%22%3A100%7D%2C%22recent%22%3A%5B%5D%2C%22source%22%3A%7B%22mode%22%3A%22secondary-UFCStats-attributed%22%2C%22checkedAt%22%3A%222026-10-26%22%2C%22verification%22%3A%22UFC%20fighter%20profile%20and%20UFCalendar%20UFCStats-attributed%20career%20metrics%3B%20pre-fight%22%7D%7D%2C%22rows%22%3A%5B%7B%22label%22%3A%22Record%22%2C%22a%22%3A%2221-7-1%22%2C%22b%22%3A%2211-1-0%22%7D%2C%7B%22label%22%3A%22Age%22%2C%22a%22%3A%2237%22%2C%22b%22%3A%2226%22%7D%2C%7B%22label%22%3A%22Height%22%2C%22a%22%3A%225%2711%5C%22%22%2C%22b%22%3A%226%273%5C%22%22%7D%2C%7B%22label%22%3A%22Arm%20Reach%22%2C%22a%22%3A%2272%5C%22%22%2C%22b%22%3A%2273%5C%22%22%7D%2C%7B%22label%22%3A%22Stance%22%2C%22a%22%3A%22Orthodox%22%2C%22b%22%3A%22Southpaw%22%7D%2C%7B%22label%22%3A%22UFC%20Record%22%2C%22a%22%3A%2213-7-0%22%2C%22b%22%3A%225-1-0%22%7D%2C%7B%22label%22%3A%22KO%20%2F%20TKO%20Wins%22%2C%22a%22%3A%222%22%2C%22b%22%3A%225%22%7D%2C%7B%22label%22%3A%22Submission%20Wins%22%2C%22a%22%3A%2211%22%2C%22b%22%3A%221%22%7D%2C%7B%22label%22%3A%22Decision%20Wins%22%2C%22a%22%3A%228%22%2C%22b%22%3A%225%22%7D%5D%2C%22eventDate%22%3A%222026-10-31%22%7D">
