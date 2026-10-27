@@ -72,7 +72,10 @@
           '<span class="fighter-history-detail-date" data-fighter-history-detail-date></span>',
           '<h4 data-fighter-history-detail-title>Career detail</h4>',
           '<p data-fighter-history-detail-copy>Hover or tap a timeline item to read more.</p>',
-          '<a data-fighter-history-source hidden target="_blank" rel="noopener noreferrer">Source ↗</a>',
+          '<a class="fighter-history-source" data-fighter-history-source hidden target="_blank" rel="noopener noreferrer">',
+            '<span class="fighter-history-source-copy"><span class="fighter-history-source-kicker">Read source</span><span class="fighter-history-source-title" data-fighter-history-source-title></span></span>',
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-10 10M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg>',
+          '</a>',
         '</section>',
       '</div>'
     ].join('');
@@ -86,20 +89,21 @@
     panel.addEventListener('pointerover', event => {
       const item = event.target.closest('[data-fighter-history-item]');
       if (!item || !panel.contains(item)) return;
-      selectItem(Number(item.dataset.fighterHistoryItem || 0), false);
+      selectItem(Number(item.dataset.fighterHistoryItem || 0));
     });
 
     panel.addEventListener('focusin', event => {
+      cancelClose();
       const item = event.target.closest('[data-fighter-history-item]');
       if (!item || !panel.contains(item)) return;
-      selectItem(Number(item.dataset.fighterHistoryItem || 0), false);
+      selectItem(Number(item.dataset.fighterHistoryItem || 0));
     });
 
     panel.addEventListener('click', event => {
       const item = event.target.closest('[data-fighter-history-item]');
       if (!item || !panel.contains(item)) return;
       event.preventDefault();
-      selectItem(Number(item.dataset.fighterHistoryItem || 0), true);
+      selectItem(Number(item.dataset.fighterHistoryItem || 0));
     });
 
     return panel;
@@ -154,10 +158,10 @@
       '</li>';
     }).join('');
 
-    selectItem(0, false);
+    selectItem(0);
   }
 
-  function selectItem(index, lock) {
+  function selectItem(index) {
     if (!currentEntry || !panel) return;
     const item = currentEntry.items?.[index];
     if (!item) return;
@@ -170,7 +174,6 @@
 
     const detail = panel.querySelector('[data-fighter-history-detail]');
     detail.dataset.kind = item.kind || 'note';
-    detail.dataset.year = String(item.date || '').match(/(?:19|20)\\d{2}/)?.[0] || '';
     panel.querySelector('[data-fighter-history-detail-date]').textContent = item.date || '';
     panel.querySelector('[data-fighter-history-detail-title]').textContent = item.label || '';
     panel.querySelector('[data-fighter-history-detail-copy]').textContent = item.detail || '';
@@ -178,19 +181,15 @@
     const source = panel.querySelector('[data-fighter-history-source]');
     if (item.source) {
       source.href = item.source;
-      source.textContent = (item.sourceLabel || 'Source') + ' ↗';
+      source.querySelector('[data-fighter-history-source-title]').textContent = item.sourceLabel || 'Original source';
+      source.setAttribute('aria-label', 'Read source: ' + (item.sourceLabel || 'Original source') + ' (opens in a new tab)');
       source.hidden = false;
     } else {
       source.hidden = true;
       source.removeAttribute('href');
     }
 
-    const target = panel.querySelector('[data-fighter-history-detail]');
-    if (target) target.scrollTop = 0;
-
-    if (lock) {
-      if (window.matchMedia('(max-width: 720px)').matches) target?.scrollIntoView?.({ block: 'nearest', behavior: 'smooth' });
-    }
+    detail.scrollTop = 0;
   }
 
   function positionPanel(trigger) {
@@ -198,7 +197,7 @@
     const rect = trigger.getBoundingClientRect();
     const margin = 12;
     const gap = 8;
-    const width = Math.min(760, window.innerWidth - margin * 2);
+    const width = Math.min(820, window.innerWidth - margin * 2);
     panel.style.width = width + 'px';
 
     panel.style.left = margin + 'px';
@@ -260,9 +259,14 @@
     strong.replaceWith(button);
     enhanced.add(button);
 
-    button.addEventListener('mouseenter', () => openPanel(button, entry));
+    const supportsHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    button.addEventListener('mouseenter', () => {
+      if (supportsHover()) openPanel(button, entry);
+    });
     button.addEventListener('mouseleave', scheduleClose);
-    button.addEventListener('focus', () => openPanel(button, entry));
+    button.addEventListener('focus', () => {
+      if (supportsHover() && button.matches(':focus-visible')) openPanel(button, entry);
+    });
     button.addEventListener('blur', scheduleClose);
     button.addEventListener('click', event => {
       event.preventDefault();
