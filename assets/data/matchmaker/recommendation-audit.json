@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T21:10:51.859Z",
+  "generatedAt": "2026-10-27T05:33:29.887Z",
   "engineVersion": 2,
   "subjects": 336,
   "publishedRecommendations": 922,
@@ -26,13 +26,13 @@
     "low": 28
   },
   "averageRecentOpponentLinkCoverage": 0.9048,
-  "sameCardRecommendations": 46,
-  "sameCardRecommendationRatio": 0.0499,
-  "asymmetricTopThreeRecommendations": 315,
-  "asymmetricTopThreeRatio": 0.3416,
+  "sameCardRecommendations": 47,
+  "sameCardRecommendationRatio": 0.051,
+  "asymmetricTopThreeRecommendations": 319,
+  "asymmetricTopThreeRatio": 0.346,
   "publicPublishedRecommendations": 895,
-  "publicAsymmetricTopThreeRecommendations": 232,
-  "publicAsymmetricTopThreeRatio": 0.2592,
+  "publicAsymmetricTopThreeRecommendations": 233,
+  "publicAsymmetricTopThreeRatio": 0.2603,
   "engineGenericDivisionalSortingRecommendations": 21,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -508,14 +508,14 @@
           "case": "ranking-opportunity"
         },
         {
+          "opponent": "Marcus McGhee",
+          "score": 90,
+          "case": "ranking-opportunity"
+        },
+        {
           "opponent": "Patricio Freire",
           "score": 88,
           "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Marcus McGhee",
-          "score": 89,
-          "case": "ranking-opportunity"
         }
       ]
     },
@@ -529,7 +529,7 @@
       "opponentTopThree": [
         {
           "opponent": "Marcus McGhee",
-          "score": 98,
+          "score": 99,
           "case": "ranking-opportunity"
         },
         {
@@ -678,14 +678,14 @@
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
+          "opponent": "Shara Magomedov",
+          "score": 90,
+          "case": "rankings-progression"
+        },
+        {
           "opponent": "Ismail Naurdiev",
           "score": 89,
           "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Shara Magomedov",
-          "score": 89,
-          "case": "rankings-progression"
         },
         {
           "opponent": "Tresean Gore",
@@ -834,7 +834,7 @@
         },
         {
           "opponent": "Damian Pinas",
-          "score": 94,
+          "score": 95,
           "case": "rising-vs-rising"
         },
         {
@@ -854,12 +854,12 @@
       "opponentTopThree": [
         {
           "opponent": "Jackson McVey",
-          "score": 94,
+          "score": 95,
           "case": "rising-vs-rising"
         },
         {
           "opponent": "Robert Valentin Frey",
-          "score": 94,
+          "score": 95,
           "case": "rising-vs-rising"
         },
         {
@@ -888,8 +888,8 @@
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Nursulton Ruziboev",
-          "score": 92,
+          "opponent": "Ryan Loder",
+          "score": 93,
           "case": "rebound-pairing"
         }
       ]
