@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-27T18:15:06.099Z",
+  "generated_at": "2026-10-27T22:26:18.459Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-10-31-fight-card",
@@ -543,6 +543,29 @@
             {
               "order": 9,
               "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Mitch Raposo",
+                  "initials": "MR",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-05/RAPOSO_MITCH_L_06-01.png?itok=fgzxnjZ5",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Marcos Degli",
+                  "initials": "MD",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/DEGLI_MARCOS_L_09-22.png?itok=Ltf-qarb",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
                 {
@@ -564,7 +587,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -587,7 +610,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -610,7 +633,7 @@
               ]
             },
             {
-              "order": 12,
+              "order": 13,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -633,7 +656,7 @@
               ]
             },
             {
-              "order": 13,
+              "order": 14,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -1203,9 +1226,9 @@
                   "moneyline": ""
                 },
                 {
-                  "name": "Baisangur Susurkaev",
-                  "initials": "BS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/SUSURKAEV_BAISANGUR_L_05-09.png?itok=tUbfeTCb",
+                  "name": "Cesar Almeida",
+                  "initials": "CA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/ALMEIDA_CESAR_L_12-13.png?itok=-zsz4wrx",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""

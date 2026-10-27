@@ -1,7 +1,124 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-27T06:14:28.820Z",
+  "generated_at": "2026-10-27T22:27:10.022Z",
   "changes": [
+    {
+      "id": "2026-10-27T22:27:10.022Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|1",
+      "at": "2026-10-27T22:27:10.022Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2026-11-07",
+      "summary": "Jose Delano vs Murtazali Magomedov moved on Bonfim vs Brady.",
+      "details": {
+        "from_order": 9,
+        "to_order": 10,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-27T22:27:10.022Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|2",
+      "at": "2026-10-27T22:27:10.022Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2026-11-07",
+      "summary": "Keiichiro Nakamura vs Ollie Schmid moved on Bonfim vs Brady.",
+      "details": {
+        "from_order": 10,
+        "to_order": 11,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-27T22:27:10.022Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|3",
+      "at": "2026-10-27T22:27:10.022Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2026-11-07",
+      "summary": "Austin Bashi vs Lucas Brennan moved on Bonfim vs Brady.",
+      "details": {
+        "from_order": 11,
+        "to_order": 12,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-27T22:27:10.022Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|4",
+      "at": "2026-10-27T22:27:10.022Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2026-11-07",
+      "summary": "Priscila Cachoeira vs Nina Milošević moved on Bonfim vs Brady.",
+      "details": {
+        "from_order": 12,
+        "to_order": 13,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-27T22:27:10.022Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|5",
+      "at": "2026-10-27T22:27:10.022Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2026-11-07",
+      "summary": "Jonny Parsons vs José Souza moved on Bonfim vs Brady.",
+      "details": {
+        "from_order": 13,
+        "to_order": 14,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-10-27T22:27:10.022Z|ufc-fight-night-2026-11-07-fight-card|bout_added|6",
+      "at": "2026-10-27T22:27:10.022Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2026-11-07",
+      "summary": "Mitch Raposo vs Marcos Degli added to Bonfim vs Brady.",
+      "details": {
+        "order": 9,
+        "section": "Prelims",
+        "weight_class": "Flyweight Bout"
+      }
+    },
+    {
+      "id": "2026-10-27T22:27:10.022Z|ufc-2026-11-14-polymarket-ufc-334|bout_changed|7",
+      "at": "2026-10-27T22:27:10.022Z",
+      "type": "bout_changed",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "promotion": "UFC",
+      "event_title": "Polymarket UFC 334",
+      "event_date": "2026-11-14",
+      "summary": "Donte Johnson vs Baisangur Susurkaev changed to Donte Johnson vs Cesar Almeida on Polymarket UFC 334.",
+      "details": {
+        "order": 9,
+        "section": "Prelims",
+        "from": [
+          "Donte Johnson",
+          "Baisangur Susurkaev"
+        ],
+        "to": [
+          "Donte Johnson",
+          "Cesar Almeida"
+        ]
+      }
+    },
     {
       "id": "2026-10-27T06:14:28.820Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|1",
       "at": "2026-10-27T06:14:28.820Z",
@@ -4618,111 +4735,6 @@
       "summary": "Francis Marshall vs Gaston Bolanos added to Moicano vs Nolan.",
       "details": {
         "order": 11,
-        "section": "Main Card",
-        "weight_class": "Featherweight Bout"
-      }
-    },
-    {
-      "id": "2026-09-29T23:17:44.321Z|ufc-fight-night-2026-11-07-fight-card|bout_added|23",
-      "at": "2026-09-29T23:17:44.321Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Tatiana Suarez vs Virna Jandiroba added to Bonfim vs Brady.",
-      "details": {
-        "order": 2,
-        "section": "Main Card",
-        "weight_class": "Women's Strawweight Bout"
-      }
-    },
-    {
-      "id": "2026-09-29T23:17:44.321Z|ufc-fight-night-2026-11-07-fight-card|bout_added|24",
-      "at": "2026-09-29T23:17:44.321Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Mantas Kondratavičius vs Wes Schultz added to Bonfim vs Brady.",
-      "details": {
-        "order": 3,
-        "section": "Main Card",
-        "weight_class": "Middleweight Bout"
-      }
-    },
-    {
-      "id": "2026-09-29T23:17:44.321Z|ufc-fight-night-2026-11-07-fight-card|bout_added|25",
-      "at": "2026-09-29T23:17:44.321Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Billy Elekana vs Lucas Fernando added to Bonfim vs Brady.",
-      "details": {
-        "order": 4,
-        "section": "Main Card",
-        "weight_class": "Light Heavyweight Bout"
-      }
-    },
-    {
-      "id": "2026-09-29T23:17:44.321Z|ufc-fight-night-2026-11-07-fight-card|bout_added|26",
-      "at": "2026-09-29T23:17:44.321Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Austin Bashi vs Lucas Brennan added to Bonfim vs Brady.",
-      "details": {
-        "order": 5,
-        "section": "Main Card",
-        "weight_class": "Featherweight Bout"
-      }
-    },
-    {
-      "id": "2026-09-29T23:17:44.321Z|ufc-fight-night-2026-11-07-fight-card|bout_added|27",
-      "at": "2026-09-29T23:17:44.321Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Karine Silva vs Gabriella Fernandes added to Bonfim vs Brady.",
-      "details": {
-        "order": 6,
-        "section": "Main Card",
-        "weight_class": "Women's Flyweight Bout"
-      }
-    },
-    {
-      "id": "2026-09-29T23:17:44.321Z|ufc-fight-night-2026-11-07-fight-card|bout_added|28",
-      "at": "2026-09-29T23:17:44.321Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Priscila Cachoeira vs Nina Milošević added to Bonfim vs Brady.",
-      "details": {
-        "order": 7,
-        "section": "Main Card",
-        "weight_class": "Women's Bantamweight Bout"
-      }
-    },
-    {
-      "id": "2026-09-29T23:17:44.321Z|ufc-fight-night-2026-11-07-fight-card|bout_added|29",
-      "at": "2026-09-29T23:17:44.321Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Keiichiro Nakamura vs Ollie Schmid added to Bonfim vs Brady.",
-      "details": {
-        "order": 8,
         "section": "Main Card",
         "weight_class": "Featherweight Bout"
       }

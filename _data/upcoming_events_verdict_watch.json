@@ -14,11 +14,11 @@
       "verdict_url": "https://verdictmma.com/event/1969",
       "verdict_date": "2026-10-31",
       "local_fight_count": 12,
-      "verdict_fight_count": 13,
+      "verdict_fight_count": 12,
       "local_main_count": 5,
       "verdict_main_count": 5,
       "local_prelim_count": 7,
-      "verdict_prelim_count": 8,
+      "verdict_prelim_count": 7,
       "confirmed_local_bouts": 10
     },
     {
@@ -30,11 +30,11 @@
       "verdict_event_id": "1957",
       "verdict_url": "https://verdictmma.com/event/1957",
       "verdict_date": "2026-11-07",
-      "local_fight_count": 13,
-      "verdict_fight_count": 13,
+      "local_fight_count": 14,
+      "verdict_fight_count": 12,
       "local_main_count": 6,
-      "verdict_main_count": 7,
-      "local_prelim_count": 7,
+      "verdict_main_count": 6,
+      "local_prelim_count": 8,
       "verdict_prelim_count": 6,
       "confirmed_local_bouts": 11
     },
@@ -70,7 +70,7 @@
       "verdict_main_count": 5,
       "local_prelim_count": 7,
       "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 11
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "ufc-fight-night-2026-11-21-fight-card",
@@ -193,16 +193,6 @@
       "verdict_fight_count": 13
     },
     {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
-      "verdict_event_id": "1970",
-      "order": 9,
-      "fighters": [
-        "Donte Johnson",
-        "Baisangur Susurkaev"
-      ]
-    },
-    {
       "type": "section_count_mismatch",
       "event_id": "ufc-2026-11-14-polymarket-ufc-334",
       "verdict_event_id": "1970",
@@ -228,13 +218,6 @@
       "verdict_prelim_count": 3
     },
     {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "verdict_event_id": "1969",
-      "local_fight_count": 12,
-      "verdict_fight_count": 13
-    },
-    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
       "verdict_event_id": "1969",
@@ -255,19 +238,17 @@
       ]
     },
     {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "verdict_event_id": "1969",
-      "local_main_count": 5,
-      "verdict_main_count": 5,
-      "local_prelim_count": 7,
-      "verdict_prelim_count": 8
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "local_fight_count": 14,
+      "verdict_fight_count": 12
     },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
       "verdict_event_id": "1957",
-      "order": 13,
+      "order": 14,
       "fighters": [
         "Jonny Parsons",
         "José Souza"
@@ -284,12 +265,22 @@
       ]
     },
     {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 9,
+      "fighters": [
+        "Mitch Raposo",
+        "Marcos Degli"
+      ]
+    },
+    {
       "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
       "verdict_event_id": "1957",
       "local_main_count": 6,
-      "verdict_main_count": 7,
-      "local_prelim_count": 7,
+      "verdict_main_count": 6,
+      "local_prelim_count": 8,
       "verdict_prelim_count": 6
     },
     {
