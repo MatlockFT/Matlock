@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-27T18:20:22.712Z"
+      "checkedAt": "2026-10-27T22:31:52.703Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-27T18:20:51.797Z",
+      "checkedAt": "2026-10-27T22:32:34.457Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -30491,13 +30491,7 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-24"
       },
-      "booking": {
-        "event": "Polymarket UFC 334",
-        "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334",
-        "opponent": "Donte Johnson",
-        "opponentId": "donte-johnson"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -51283,7 +51277,13 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-24"
       },
-      "booking": null,
+      "booking": {
+        "event": "Polymarket UFC 334",
+        "date": "2026-11-14",
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Donte Johnson",
+        "opponentId": "donte-johnson"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -91138,8 +91138,8 @@
         "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
-        "opponent": "Baisangur Susurkaev",
-        "opponentId": "baisangur-susurkaev"
+        "opponent": "Cesar Almeida",
+        "opponentId": "cesar-almeida"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -214948,7 +214948,13 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-24"
       },
-      "booking": null,
+      "booking": {
+        "event": "Bonfim vs Brady",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Mitch Raposo",
+        "opponentId": "mitch-raposo"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -237631,7 +237637,13 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-24"
       },
-      "booking": null,
+      "booking": {
+        "event": "Bonfim vs Brady",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Marcos Degli",
+        "opponentId": "marcos-degli"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
