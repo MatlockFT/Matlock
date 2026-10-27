@@ -12973,106 +12973,210 @@
     "Francis Marshall": {
       "name": "Francis Marshall",
       "slug": "francis-marshall",
-      "subtitle": "Career chronology",
+      "subtitle": "Career chronology · 13 professional fights and 5 documented amateur victories",
       "record": "10-3-0",
       "ufcRecord": "4-3-0",
       "division": "Featherweight",
       "items": [
         {
-          "date": "Teen years (about age 14–15)",
-          "label": "Begins training to become a professional fighter",
+          "date": "Teenage years (approximately age 14–15)",
+          "label": "Begins MMA training with a goal of reaching the UFC",
           "kind": "training",
-          "detail": "Marshall says he began training around age 14 or 15 with the goal of eventually reaching the UFC.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/francis-marshall"
+          "detail": "Marshall says he began training around age 14 or 15 with the explicit goal of making fighting his career and eventually competing in the UFC. His UFC profile describes him as a Brazilian jiu-jitsu purple belt and identifies the rear-naked choke and jab as his preferred techniques.",
+          "source": "https://www.ufc.com/athlete/francis-marshall",
+          "sourceLabel": "UFC · official fighter questionnaire"
         },
         {
-          "date": "2019",
-          "label": "Professional MMA career begins",
+          "date": "May 5, 2018",
+          "label": "AMATEUR WIN · Chris Gholi · knockout",
+          "kind": "background",
+          "detail": "Recorded an amateur knockout of Chris Gholi by punch at 0:34 of round three at Dead Serious MMA 29. Sherdog and Tapology both document this fight.",
+          "source": "https://www.sherdog.com/fighter/Francis-Marshall-282887",
+          "sourceLabel": "Sherdog · amateur results"
+        },
+        {
+          "date": "Jun. 30, 2018",
+          "label": "AMATEUR WIN · Bryant Pabon · majority decision",
+          "kind": "background",
+          "detail": "Defeated Bryant Pabon by majority decision over three three-minute rounds at Dead Serious MMA 30.",
+          "source": "https://www.sherdog.com/fighter/Francis-Marshall-282887",
+          "sourceLabel": "Sherdog · amateur results"
+        },
+        {
+          "date": "Mar. 9, 2019",
+          "label": "AMATEUR WIN · Chauncey Randolph · north-south choke",
+          "kind": "background",
+          "detail": "Submitted Randolph with a north-south choke at 2:52 of round one at a Primal Fight Promotions event held at a 160-pound catchweight. This amateur result is present on Tapology but absent from Sherdog's shorter four-fight amateur listing.",
+          "source": "https://www.tapology.com/fightcenter/fighters/186284-francis-marshall",
+          "sourceLabel": "Tapology · detailed amateur bout archive"
+        },
+        {
+          "date": "Jun. 15, 2019",
+          "label": "AMATEUR WIN · Nakia Brown · Bayou FC lightweight title bout",
+          "kind": "background",
+          "detail": "Submitted Brown via rear-naked choke at 2:33 of round two at Bayou FC 38 (Fightville 4). Tapology lists this as a lightweight championship fight, though the source does not establish whether the belt was vacant. UFC credits Marshall as a Bayou FC amateur lightweight champion.",
+          "source": "https://www.tapology.com/fightcenter/fighters/186284-francis-marshall",
+          "sourceLabel": "Tapology · Bayou FC 38 bout; UFC · amateur title"
+        },
+        {
+          "date": "Aug. 24, 2019",
+          "label": "AMATEUR WIN · Damon Vincent · Bayou FC 40 title bout",
+          "kind": "background",
+          "detail": "Stopped Vincent by TKO (punches) at 2:24 of round one at Bayou FC 40. Tapology identifies the bout as a lightweight championship contest and Marshall as the interim champion entering; the distinction between interim and undisputed status is preserved.",
+          "source": "https://www.tapology.com/fightcenter/fighters/186284-francis-marshall",
+          "sourceLabel": "Tapology · Bayou FC 40 amateur title record"
+        },
+        {
+          "date": "Nov. 9, 2019",
+          "label": "WIN · Keith Forant · professional MMA debut",
+          "kind": "win",
+          "detail": "Made his professional debut at Maverick MMA 15, submitting Forant by rear-naked choke at 4:57 of round three. It began a six-fight unbeaten regional/Contender Series professional run.",
+          "source": "https://www.sherdog.com/fighter/Francis-Marshall-282887",
+          "sourceLabel": "Sherdog · professional results"
+        },
+        {
+          "date": "Mar. 28, 2020 (canceled)",
+          "label": "Maverick MMA 16 bout with Thad Frick canceled",
           "kind": "milestone",
-          "detail": "Turned professional after an amateur run that included a Bayou FC lightweight championship.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/francis-marshall"
+          "detail": "Marshall was scheduled to meet Thad Frick at Maverick MMA 16, but the event was canceled during COVID-19 restrictions. It does not count as a professional bout, and no uninterrupted injury or suspension is inferred from the gap.",
+          "source": "https://www.tapology.com/fightcenter/fighters/186284-francis-marshall",
+          "sourceLabel": "Tapology · canceled Maverick MMA 16 booking"
+        },
+        {
+          "date": "Mar. 20, 2021",
+          "label": "WIN · Jude McNicol · first-round rear-naked choke",
+          "kind": "win",
+          "detail": "Submitted McNicol with a rear-naked choke at 3:38 of round one at Gulf Coast MMA 9, returning to professional competition after the canceled 2020 card.",
+          "source": "https://www.sherdog.com/fighter/Francis-Marshall-282887",
+          "sourceLabel": "Sherdog · professional fight results"
+        },
+        {
+          "date": "May 15, 2021",
+          "label": "WIN · Mike Taylor · first-round submission",
+          "kind": "win",
+          "detail": "Submitted Taylor by rear-naked choke at 3:10 of round one at Gulf Coast MMA 10, improving to 3–0.",
+          "source": "https://www.sherdog.com/fighter/Francis-Marshall-282887",
+          "sourceLabel": "Sherdog · professional fight results"
+        },
+        {
+          "date": "Aug. 14, 2021",
+          "label": "WIN · Rey Trujillo · first professional decision",
+          "kind": "win",
+          "detail": "Defeated Trujillo by unanimous decision over three rounds at Gulf Coast MMA 11; his first completed professional fight decided by judges rather than a finish.",
+          "source": "https://www.sherdog.com/fighter/Francis-Marshall-282887",
+          "sourceLabel": "Sherdog · professional fight results"
+        },
+        {
+          "date": "Feb. 18, 2022",
+          "label": "WIN · Mike Lawrence · Ring of Combat 75",
+          "kind": "win",
+          "detail": "Submitted Lawrence by rear-naked choke at 3:26 of round three at Ring of Combat 75, the fifth win of his unbeaten professional start.",
+          "source": "https://www.sherdog.com/fighter/Francis-Marshall-282887",
+          "sourceLabel": "Sherdog · Ring of Combat bout record"
         },
         {
           "date": "Aug. 2, 2022",
-          "label": "WIN · Connor Matthews · DWCS",
-          "kind": "milestone",
-          "detail": "Won a unanimous decision on Dana White's Contender Series and earned a UFC opportunity.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/francis-marshall"
+          "label": "WIN · Connor Matthews · unanimous decision on DWCS",
+          "kind": "win",
+          "detail": "Outpointed Matthews by unanimous decision on Dana White's Contender Series, Season 6 Week 2, earning a UFC contract. The scorecards were 30–27, 30–27 and 30–26. He joined the UFC undefeated professionally at 6–0.",
+          "source": "https://www.ufc.com/news/contender-series-2022-week-2-results-recap-contract-winners-dana-white",
+          "sourceLabel": "UFC · Dana White's Contender Series 2022 result"
         },
         {
           "date": "Dec. 3, 2022",
-          "label": "WIN · Marcelo Rojo · UFC debut",
+          "label": "WIN · Marcelo Rojo · UFC debut knockout",
           "kind": "win",
-          "detail": "Knocked out Rojo at 1:14 of round two.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/francis-marshall"
+          "detail": "Won his Octagon debut at UFC Orlando with a right hand in the clinch and a finishing hammerfist at 1:14 of round two, handing Rojo a knockout defeat and extending his professional start to 7–0.",
+          "source": "https://www.mmafighting.com/2022/12/3/23491913/ufc-orlando-video-francis-marshall-shuts-off-lights-on-marcelo-rojo-with-brutal-punches",
+          "sourceLabel": "MMA Fighting · UFC Orlando knockout report"
         },
         {
           "date": "Apr. 22, 2023",
-          "label": "LOSS · William Gomis",
+          "label": "LOSS · William Gomis · first professional defeat",
           "kind": "loss",
-          "detail": "Lost by split decision.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/francis-marshall"
+          "detail": "Lost a competitive three-round split decision to William Gomis at UFC Fight Night: Pavlovich vs. Blaydes. Two judges scored it 29–28 for Gomis and one 29–28 for Marshall. Gomis' range management frustrated him early; Marshall rallied with grappling attacks in the third.",
+          "source": "https://www.ufc.com/news/ufc-fight-night-pavlovich-vs-blaydes-results-highlights-winner-interviews-ufc-vegas-71",
+          "sourceLabel": "UFC · April 22, 2023 official fight recap"
         },
         {
           "date": "Aug. 12, 2023",
-          "label": "LOSS · Isaac Dulgarian",
+          "label": "LOSS · Isaac Dulgarian · first-round TKO",
           "kind": "loss",
-          "detail": "Stopped by strikes at 4:48 of round one.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/francis-marshall"
+          "detail": "Dulgarian stopped Marshall with punches and elbows at 4:48 of round one at UFC on ESPN: Luque vs. dos Anjos, giving Marshall consecutive defeats.",
+          "source": "https://www.sherdog.com/fighter/Francis-Marshall-282887",
+          "sourceLabel": "Sherdog · UFC on ESPN 51 official result"
+        },
+        {
+          "date": "By Aug. 2024",
+          "label": "Joins American Top Team in South Florida",
+          "kind": "camp",
+          "detail": "Relocated his principal training camp from New Jersey to American Top Team in South Florida. Marshall described his August 24, 2024 outing as his first fight with ATT in his corner; the precise initial date of relocation is not established.",
+          "source": "https://www.ufc.com/news/francis-marshall-ready-for-his-breakthrough-moment-ufc-313",
+          "sourceLabel": "UFC · March 2025 account of the move"
+        },
+        {
+          "date": "Aug. 20, 2024",
+          "label": "Replaces Danny Silva against Dennis Buzukja",
+          "kind": "milestone",
+          "detail": "Accepted the Buzukja bout four days before UFC Vegas 96 after Danny Silva withdrew injured. The UFC officially moved the matchup from featherweight to lightweight for the replacement booking.",
+          "source": "https://www.ufc.com/news/updates-to-ufc-fight-night-cannonier-vs-borralho-ufc-vegas-96",
+          "sourceLabel": "UFC · August 20, 2024 official event update"
         },
         {
           "date": "Aug. 24, 2024",
-          "label": "WIN · Dennis Buzukja",
+          "label": "WIN · Dennis Buzukja · short-notice split decision",
           "kind": "win",
-          "detail": "Earned a split-decision victory.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/francis-marshall"
+          "detail": "Defeated Buzukja via split decision in the 155-pound lightweight bout at UFC on ESPN 62, snapping a two-fight losing streak. Official UFC scorecards were 30–27 and 29–28 for Marshall, 29–28 for Buzukja. The matchup was not contested at the original featherweight limit.",
+          "source": "https://us.ufcespanol.com/news/official-judges-scorecards-ufc-fight-night-cannonier-vs-borralho-vegas-96",
+          "sourceLabel": "UFC · August 2024 official judges' scorecards"
         },
         {
           "date": "Mar. 8, 2025",
-          "label": "LOSS · Mairon Santos",
+          "label": "LOSS · Mairon Santos · controversial split decision",
           "kind": "loss",
-          "detail": "Lost a split decision at UFC 313.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/francis-marshall"
+          "detail": "Lost to The Ultimate Fighter 32 champion Mairon Santos at UFC 313. One judge gave Marshall all three rounds (30–27), but the other two scored the contest 29–28 for Santos. The 27–30, 29–28, 29–28 cards made it a disputed close decision, not a unanimous loss.",
+          "source": "https://www.ufc.com/news/official-judges-scorecards-ufc-313-pereira-vs-ankalaev-t-mobile-arena-las-vegas",
+          "sourceLabel": "UFC · UFC 313 official scorecards"
+        },
+        {
+          "date": "By Feb. 2026",
+          "label": "Leaves Jersey City firefighting job to train full-time",
+          "kind": "milestone",
+          "detail": "Marshall said after his February 2026 victory that he had left his job as a firefighter in Jersey City, New Jersey, moved to Florida and devoted himself full-time to training at American Top Team. The exact date he left the department is not verified.",
+          "source": "https://www.sherdog.com/news/news/Francis-Marshall-turned-my-whole-life-around-by-pursuing-fulltime-fighting-career-200304",
+          "sourceLabel": "Sherdog · March 1, 2026 post-fight interview"
         },
         {
           "date": "Feb. 28, 2026",
-          "label": "WIN · Erik Silva",
+          "label": "WIN · Erik Silva · first-round rear-naked choke",
           "kind": "win",
-          "detail": "Submitted Silva by rear-naked choke at 2:29 of round one.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/francis-marshall"
+          "detail": "Submitted Silva by rear-naked choke at 2:29 of round one at UFC Mexico City, putting him back in the win column after the close Santos decision. This was his first UFC submission victory.",
+          "source": "https://www.ufc.com/athlete/francis-marshall",
+          "sourceLabel": "UFC · official athlete fight history"
         },
         {
           "date": "Apr. 25, 2026",
-          "label": "WIN · Lucas Brennan",
+          "label": "WIN · Lucas Brennan · unanimous 30–27 sweep",
           "kind": "win",
-          "detail": "Won a three-round unanimous decision.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/francis-marshall"
+          "detail": "Defeated Brennan by unanimous decision at UFC Fight Night: Sterling vs. Zalal in Las Vegas, winning 30–27 on all three judges' cards. UFC statistics credit Marshall with 6:36 of control time and a 33–9 significant-strike advantage. He entered his next booking on a two-fight winning streak.",
+          "source": "https://www.ufc.com/news/ufc-fight-night-sterling-vs-zalal-official-scorecards-judges",
+          "sourceLabel": "UFC · official April 2026 scorecards"
         },
         {
-          "date": "Oct. 23, 2026",
-          "label": "Opponent changed from Gaston Bolaños to Dakota Hope",
+          "date": "Oct. 8, 2026",
+          "label": "Dakota Hope replaces injured Gaston Bolaños",
           "kind": "milestone",
-          "detail": "After originally being scheduled against Gaston Bolaños, Marshall appeared opposite Dakota Hope on the UFC's revised October 31 event lineup.",
-          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-fight-night-moicano-vs-nolan",
-          "sourceLabel": "UFC October 26 preview"
+          "detail": "Gaston Bolaños withdrew from his scheduled October 31 fight with Marshall after sustaining an eyebrow laceration during training. MMA Junkie and Heavy reported on October 8 that Dakota Hope had accepted the replacement assignment, not October 23 as previously recorded.",
+          "source": "https://sports.yahoo.com/articles/ufc-fight-booked-halloween-card-211025327.html",
+          "sourceLabel": "MMA Junkie · October 8, 2026 replacement report"
         },
         {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "UFC Fight Night · scheduled vs. Dakota Hope",
           "kind": "upcoming",
-          "detail": "Booked to fight Dakota Hope at featherweight; result not yet known.",
-          "sourceLabel": "Official UFC October 31 fight card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "detail": "Booked for a featherweight bout against Dakota Hope (11–2) at Meta APEX in Las Vegas. Marshall enters 10–3 professionally (4–3 UFC) and has won two straight fights. No result is recorded as of October 26, 2026.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+          "sourceLabel": "UFC · official October 31 fight card"
         }
       ],
       "lastReviewed": "2026-10-26"
