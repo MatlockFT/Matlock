@@ -1470,11 +1470,14 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
   .writer-shell .writer-recent-row{
     grid-template-columns:64px minmax(0,1fr)!important;
   }
-  .writer-shell .writer-recent-row [data-recent-detail]{
+  .writer-shell .writer-recent-row [data-recent-detail],
+  .writer-shell .writer-recent-row [data-recent-promotion],
+  .writer-shell .writer-recent-row [data-recent-round]{
     grid-column:1/-1;
   }
   .writer-shell .writer-recent-row .writer-row-actions{
     grid-column:1/-1;
+    grid-row:auto;
     justify-content:flex-start;
   }
 }

@@ -244,11 +244,41 @@ function formatDate(value) {
   return date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
 }
 
+function recentPromotion(fight) {
+  const explicit=String(fight?.promotion || '').trim();
+  if(explicit) return explicit;
+  const event=String(fight?.event || fight?.eventName || '').trim();
+  const numbered=event.match(/^UFC\s+(\d+)\b/i);
+  if(numbered) return 'UFC ' + numbered[1];
+  if(/^UFC\s+Fight\s+Night/i.test(event)) return 'UFC Fight Night';
+  const broadcast=event.match(/^UFC\s+on\s+(?:ESPN|ABC|FOX)\s*\d*/i);
+  if(broadcast) return broadcast[0].trim();
+  if(/^Dana White(?:'|’)?s Contender Series|^DWCS\b/i.test(event)) return 'DWCS';
+  if(/^Road to UFC/i.test(event)) return 'Road to UFC';
+  const regional=event.match(/^(?:LFA|OKTAGON|Cage Warriors|Fury FC|Fight Club Rush|BFL|MCC|RIZIN)\s*\d*/i);
+  if(regional) return regional[0].trim();
+  return event ? event.split(':')[0].trim() : '';
+}
+
+function recentDisplayDetail(row) {
+  const raw=String(row?.detail||'').trim();
+  const datePattern=/\b[A-Z][a-z]{2} \d{1,2},? \d{4}$/;
+  const sections=raw.split(/\s+·\s+/);
+  const date=sections.length>1 && datePattern.test(sections.at(-1)) ? sections.pop() : '';
+  const method=sections.join(' · ');
+  const promotion=String(row?.promotion||'').trim();
+  const round=String(row?.round||'').trim().replace(/^R\s*/i,'');
+  const showRound=/^[1-5]$/.test(round) && !/\bdecision\b/i.test(method) && !/\bR\s*[1-5]\b/i.test(method);
+  return [promotion,method,showRound?'R'+round:'',date].filter(Boolean).join(' · ');
+}
+
 function recentRows(history) {
   return (history||[]).slice(0,5).map(fight=>({
     result:String(fight.result||'').toUpperCase(),
     opponent:fight.opponent || fight.opponentName || '',
-    detail:[fight.method||'',formatDate(fight.date)].filter(Boolean).join(' · ')
+    detail:[fight.method||'',formatDate(fight.date)].filter(Boolean).join(' · '),
+    promotion:recentPromotion(fight),
+    round:/\b(?:KO|TKO|Submission|DQ|No Contest)\b/i.test(String(fight.method||'')) ? String(fight.round||'') : ''
   })).filter(row=>row.result||row.opponent);
 }
 
@@ -285,7 +315,7 @@ function recentMarkup(rows) {
     const resultClass=result==='W'?'win':result==='L'?'loss':'draw';
     return '<div class="fc-form-row"><span class="fc-result '+resultClass+'">'+escapeHtml(result||'—')+
       '</span><div class="fc-form-copy"><strong>'+escapeHtml(row.opponent||'')+
-      '</strong><small>'+escapeHtml(row.detail||'')+'</small></div></div>';
+      '</strong><small>'+escapeHtml(recentDisplayDetail(row))+'</small></div></div>';
   }).join('');
 }
 

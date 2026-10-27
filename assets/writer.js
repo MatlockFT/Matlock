@@ -3643,15 +3643,45 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     return fallbackLabels.map(label => ({ label, a: '', b: '' }));
   }
 
+  function recentPromotion(fight) {
+    const explicit=String(fight?.promotion || '').trim();
+    if(explicit) return explicit;
+    const event=String(fight?.event || fight?.eventName || '').trim();
+    const numbered=event.match(/^UFC\s+(\d+)\b/i);
+    if(numbered) return 'UFC ' + numbered[1];
+    if(/^UFC\s+Fight\s+Night/i.test(event)) return 'UFC Fight Night';
+    const broadcast=event.match(/^UFC\s+on\s+(?:ESPN|ABC|FOX)\s*\d*/i);
+    if(broadcast) return broadcast[0].trim();
+    if(/^Dana White(?:'|’)?s Contender Series|^DWCS\b/i.test(event)) return 'DWCS';
+    if(/^Road to UFC/i.test(event)) return 'Road to UFC';
+    const regional=event.match(/^(?:LFA|OKTAGON|Cage Warriors|Fury FC|Fight Club Rush|BFL|MCC|RIZIN)\s*\d*/i);
+    if(regional) return regional[0].trim();
+    return event ? event.split(':')[0].trim() : '';
+  }
+
+  function recentDisplayDetail(row) {
+    const raw=String(row?.detail||'').trim();
+    const datePattern=/\b[A-Z][a-z]{2} \d{1,2},? \d{4}$/;
+    const sections=raw.split(/\s+·\s+/);
+    const date=sections.length>1 && datePattern.test(sections.at(-1)) ? sections.pop() : '';
+    const method=sections.join(' · ');
+    const promotion=String(row?.promotion||'').trim();
+    const round=String(row?.round||'').trim().replace(/^R\s*/i,'');
+    const showRound=/^[1-5]$/.test(round) && !/\bdecision\b/i.test(method) && !/\bR\s*[1-5]\b/i.test(method);
+    return [promotion,method,showRound?'R'+round:'',date].filter(Boolean).join(' · ');
+  }
+
   function normalizeRecentRows(value) {
     if (Array.isArray(value)) {
       return value.map(row => ({
         result: String(row?.result || '').toUpperCase(),
         opponent: String(row?.opponent || ''),
-        detail: String(row?.detail || '')
+        detail: String(row?.detail || ''),
+        promotion: String(row?.promotion || ''),
+        round: String(row?.round || '')
       })).filter(row => row.result || row.opponent || row.detail);
     }
-    return pipeRows(value, 3).map(row => ({ result:String(row[0]||'').toUpperCase(), opponent:row[1]||'', detail:row[2]||'' }));
+    return pipeRows(value, 5).map(row => ({ result:String(row[0]||'').toUpperCase(), opponent:row[1]||'', detail:row[2]||'', promotion:row[3]||'', round:row[4]||'' }));
   }
 
   function comparisonRowElement(row = {}) {
@@ -3697,7 +3727,9 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     item.className='writer-recent-row';
     item.innerHTML='<select data-recent-result aria-label="Result"><option value="">—</option><option value="W">W</option><option value="L">L</option><option value="D">D</option><option value="NC">NC</option></select>'+
       '<input type="text" data-recent-opponent placeholder="Opponent" aria-label="Opponent">'+
-      '<input type="text" data-recent-detail placeholder="DEC · JUN 14, 2025 · R3 5:00" aria-label="Fight detail">'+
+      '<input type="text" data-recent-detail placeholder="Submission · Jun 14, 2025" aria-label="Fight method and date">'+
+      '<input type="text" data-recent-promotion placeholder="UFC / LFA / OKTAGON" aria-label="Promotion or event">'+
+      '<input type="text" data-recent-round placeholder="R2" aria-label="Finish round (if applicable)">'+
       '<div class="writer-row-actions">'+
       '<button type="button" data-structured-action="up" title="Move fight up" aria-label="Move fight up">↑</button>'+
       '<button type="button" data-structured-action="down" title="Move fight down" aria-label="Move fight down">↓</button>'+
@@ -3705,6 +3737,8 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     item.querySelector('[data-recent-result]').value=row.result||'';
     item.querySelector('[data-recent-opponent]').value=row.opponent||'';
     item.querySelector('[data-recent-detail]').value=row.detail||'';
+    item.querySelector('[data-recent-promotion]').value=row.promotion||'';
+    item.querySelector('[data-recent-round]').value=row.round ? 'R'+String(row.round).replace(/^R\s*/i,'') : '';
     return item;
   }
 
@@ -3725,7 +3759,9 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     return [...container.querySelectorAll('.writer-recent-row')].map(item=>({
       result:item.querySelector('[data-recent-result]')?.value||'',
       opponent:item.querySelector('[data-recent-opponent]')?.value.trim()||'',
-      detail:item.querySelector('[data-recent-detail]')?.value.trim()||''
+      detail:item.querySelector('[data-recent-detail]')?.value.trim()||'',
+      promotion:item.querySelector('[data-recent-promotion]')?.value.trim()||'',
+      round:(item.querySelector('[data-recent-round]')?.value.trim()||'').replace(/^R\s*/i,'')
     })).filter(row=>row.result||row.opponent||row.detail);
   }
 
@@ -4384,7 +4420,9 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     return history.slice(0,5).map(fight => ({
       result: fight.result || '',
       opponent: fight.opponent || fight.opponentName || '',
-      detail: compactFightDetail(fight)
+      detail: compactFightDetail(fight),
+      promotion: recentPromotion(fight),
+      round: /\b(?:KO|TKO|Submission|DQ|No Contest)\b/i.test(String(fight.method||'')) ? String(fight.round||'') : ''
     })).filter(row => row.result || row.opponent);
   }
 
@@ -4928,7 +4966,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       const resultClass=result==='W'?'win':result==='L'?'loss':'draw';
       return '<div class="fc-form-row"><span class="fc-result '+resultClass+'">'+escapeHtml(result||'—')+
         '</span><div class="fc-form-copy"><strong>'+escapeHtml(row.opponent)+
-        '</strong><small>'+escapeHtml(row.detail)+'</small></div></div>';
+        '</strong><small>'+escapeHtml(recentDisplayDetail(row))+'</small></div></div>';
     }).join('');
   }
 
