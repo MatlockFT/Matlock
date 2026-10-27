@@ -336,6 +336,7 @@ function topMarkup(side,fighter) {
   return '<div class="fc-fighter fc-'+side+'">'+portraitMarkup(side,fighter)+
     '<div class="fc-meta"><span class="fc-division">'+escapeHtml(fighter?.division||'')+
     '</span><h2>'+escapeHtml(fighter?.name||'')+
+    (/^(?:#?(?:[1-9]|1[0-5]))$/.test(String(fighter?.rank||'').trim()) ? '<span class="fc-meta-rank" title="UFC Meta ranking">#'+String(fighter.rank).trim().replace(/^#/,'')+'</span>' : '')+
     '</h2><div class="fc-meta-strip"><div class="fc-odds'+oddsClass+'" data-live-odds-side="'+liveSide+
     '" data-live-odds-fighter="'+escapeHtml(fighter?.name||'')+'" data-live-odds-state="pending"><span>ML</span><strong data-live-odds-value>'+
     escapeHtml(odds)+'</strong></div><div class="fc-last5"><span class="fc-last5-record">'+

@@ -3983,3 +3983,23 @@ html[data-theme="dark"] .post-page-v3 .article-toc-floating a.is-active{
 .post-page-v3 .article-picks-status.is-void{color:#b69a56;background:rgba(182,154,86,.11);border:1px solid rgba(182,154,86,.25)}
 .post-page-v3 .article-picks-summary.has-post-fight-results .article-picks-panel a.is-void{border-left:3px solid rgba(182,154,86,.72)}
 
+
+/* Compact UFC Meta ranking displayed inline; unranked athletes show no number. */
+.fight-compare-sleek .fc-meta .fc-meta-rank{
+  display:inline-block;
+  margin-left:.38em;
+  white-space:nowrap;
+  color:var(--muted);
+  font-size:.78em;
+  font-weight:800;
+  letter-spacing:0;
+}
+.fight-stats-sleek .fs-fighter .fs-meta-rank{
+  display:inline-block;
+  margin-left:.38em;
+  white-space:nowrap;
+  color:var(--fs-muted);
+  font-size:.78em;
+  font-weight:800;
+  letter-spacing:0;
+}

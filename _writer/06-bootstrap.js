@@ -354,6 +354,8 @@ Object.values(fields).forEach(el => {
       version:3,
       fighterA,
       fighterB,
+      rankA:statsDialog.querySelector('[data-stats-meta-rank="a"]').value.trim(),
+      rankB:statsDialog.querySelector('[data-stats-meta-rank="b"]').value.trim(),
       rows,
       sourceA:fighterSourceMeta(statsDialog.querySelector('[data-stats-fighter="a"]')),
       sourceB:fighterSourceMeta(statsDialog.querySelector('[data-stats-fighter="b"]'))
@@ -367,6 +369,7 @@ Object.values(fields).forEach(el => {
     const collect=side=>({
       name:taleDialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]').value.trim(),
       division:taleDialog.querySelector('[data-tale-division="'+side+'"]').value.trim(),
+      rank:taleDialog.querySelector('[data-tale-meta-rank="'+side+'"]').value.trim(),
       odds:taleDialog.querySelector('[data-tale-odds="'+side+'"]').value.trim(),
       last5:taleDialog.querySelector('[data-tale-last5="'+side+'"]').value.trim(),
       image:taleDialog.querySelector('[data-tale-image-path="'+side+'"]').value.trim(),

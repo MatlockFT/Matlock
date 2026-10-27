@@ -486,6 +486,10 @@ page_scripts:
           <div class="writer-structured-vs">VS</div>
           <label class="writer-field"><span>Blue / Fighter B</span><input data-stats-fighter="b" placeholder="Raoni Barcelos"></label>
         </div>
+        <div class="writer-dialog-grid writer-dialog-grid-two">
+          <label class="writer-field"><span>Fighter A UFC Meta Rank <small>optional</small></span><input data-stats-meta-rank="a" placeholder="#8" maxlength="3"></label>
+          <label class="writer-field"><span>Fighter B UFC Meta Rank <small>optional</small></span><input data-stats-meta-rank="b" placeholder="#11" maxlength="3"></label>
+        </div>
         <div class="writer-structured-toolbar">
           <div>
             <button class="writer-button writer-button-subtle writer-button-small" type="button" data-stats-preset="ufc">UFCStats standard</button>
@@ -517,7 +521,10 @@ page_scripts:
               <input type="file" data-tale-image-file="a" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
             </div>
             <label class="writer-field"><span>Fighter A</span><input data-tale-a placeholder="Fighter A"></label>
-            <label class="writer-field"><span>Division</span><input data-tale-division="a" placeholder="Bantamweight"></label>
+            <div class="writer-dialog-grid writer-dialog-grid-two">
+              <label class="writer-field"><span>Division</span><input data-tale-division="a" placeholder="Bantamweight"></label>
+              <label class="writer-field"><span>UFC Meta Rank <small>optional</small></span><input data-tale-meta-rank="a" placeholder="#8" maxlength="3"></label>
+            </div>
             <div class="writer-dialog-grid writer-dialog-grid-two">
               <label class="writer-field"><span>Fallback ML <small>optional</small></span><input data-tale-odds="a" placeholder="Auto"></label>
               <label class="writer-field"><span>Last 5</span><input data-tale-last5="a" placeholder="2-2-1"></label>
@@ -545,7 +552,10 @@ page_scripts:
               <input type="file" data-tale-image-file="b" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
             </div>
             <label class="writer-field"><span>Fighter B</span><input data-tale-b placeholder="Fighter B"></label>
-            <label class="writer-field"><span>Division</span><input data-tale-division="b" placeholder="Bantamweight"></label>
+            <div class="writer-dialog-grid writer-dialog-grid-two">
+              <label class="writer-field"><span>Division</span><input data-tale-division="b" placeholder="Bantamweight"></label>
+              <label class="writer-field"><span>UFC Meta Rank <small>optional</small></span><input data-tale-meta-rank="b" placeholder="#8" maxlength="3"></label>
+            </div>
             <div class="writer-dialog-grid writer-dialog-grid-two">
               <label class="writer-field"><span>Fallback ML <small>optional</small></span><input data-tale-odds="b" placeholder="Auto"></label>
               <label class="writer-field"><span>Last 5</span><input data-tale-last5="b" placeholder="3-2"></label>

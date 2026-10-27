@@ -1232,6 +1232,8 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     if (nameInput) nameInput.value = fighter.name;
     const division = dialog.querySelector('[data-tale-division="' + side + '"]');
     if (division && fighter.division) division.value = fighter.division;
+    const rankField=dialog.querySelector('[data-tale-meta-rank="'+side+'"]');
+    if (rankField) rankField.value=''; // New fighter: never carry over the previous fighter's rank.
     const image = dialog.querySelector('[data-tale-image-path="' + side + '"]');
     if (image && fighter.image) {
       const previousImage = image.value.trim();
@@ -1528,6 +1530,14 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       encodedStructuredConfig(config) + '">\n' + inner + '\n</section>';
   }
 
+
+  // An unranked fighter has no rank. Rankings are snapshotted per article.
+  function metaRankMarkup(value, cls) {
+    const n=String(value??'').trim().replace(/^#/,'').toUpperCase();
+    if(!/^(?:[1-9]|1[0-5]|C)$/.test(n)) return '';
+    return '<span class="'+cls+'" title="UFC Meta ranking">'+(n==='C'?'CHAMP':'#'+n)+'</span>';
+  }
+
   function buildStatsVisual(config) {
     const rows=normalizeComparisonRows(config.rows,statsDefaultRowLabels);
     const fighterA=String(config.fighterA||'Fighter A').trim()||'Fighter A';
@@ -1542,9 +1552,9 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     const inner=
       '<div class="fight-stats-sleek"><div class="fs-shell">'+
         '<div class="fs-header">'+
-          '<div class="fs-fighter fs-fighter-left"><span class="fs-side-label">RED CORNER</span><strong>'+escapeHtml(fighterA)+'</strong></div>'+
+          '<div class="fs-fighter fs-fighter-left"><span class="fs-side-label">RED CORNER</span><strong>'+escapeHtml(fighterA)+metaRankMarkup(config.rankA,'fs-meta-rank')+'</strong></div>'+
           '<div class="fs-header-center"><strong>STATS</strong><i></i></div>'+
-          '<div class="fs-fighter fs-fighter-right"><span class="fs-side-label">BLUE CORNER</span><strong>'+escapeHtml(fighterB)+'</strong></div>'+
+          '<div class="fs-fighter fs-fighter-right"><span class="fs-side-label">BLUE CORNER</span><strong>'+escapeHtml(fighterB)+metaRankMarkup(config.rankB,'fs-meta-rank')+'</strong></div>'+
         '</div>'+
         '<div class="fs-section">'+
           '<div class="fs-section-title"><span>Striking</span></div>'+
@@ -1585,7 +1595,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     return '<div class="fc-fighter fc-'+side+'">'+
       fighterPortraitMarkup(side,fighter)+
       '<div class="fc-meta"><span class="fc-division">'+escapeHtml(fighter.division||'')+
-      '</span><h2>'+escapeHtml(fighter.name||'')+
+      '</span><h2>'+escapeHtml(fighter.name||'')+metaRankMarkup(fighter.rank,'fc-meta-rank')+
       '</h2><div class="fc-meta-strip"><div class="fc-odds'+oddsClass+'" data-live-odds-side="'+liveSide+
       '" data-live-odds-fighter="'+escapeHtml(fighter.name||'')+'" data-live-odds-state="pending"><span>ML</span><strong data-live-odds-value>'+
       escapeHtml(odds)+'</strong></div><div class="fc-last5"><span class="fc-last5-record">'+
@@ -1704,6 +1714,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     const dialog=app.querySelector('[data-stats-dialog]');
     dialog.querySelector('[data-stats-fighter="a"]').value=config.fighterA||'';
     dialog.querySelector('[data-stats-fighter="b"]').value=config.fighterB||'';
+    ['a','b'].forEach(side=>{ dialog.querySelector('[data-stats-meta-rank="'+side+'"]').value=side==='a'?(config.rankA||''):(config.rankB||''); });
     ['a','b'].forEach(side => {
       const input=dialog.querySelector('[data-stats-fighter="'+side+'"]');
       const source=side==='a'?(config.sourceA||{}):(config.sourceB||{});
@@ -1855,6 +1866,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     ['a','b'].forEach(side=>{
       const fighter=side==='a'?a:b;
       dialog.querySelector('[data-tale-division="'+side+'"]').value=fighter.division||'';
+      dialog.querySelector('[data-tale-meta-rank="'+side+'"]').value=fighter.rank||'';
       dialog.querySelector('[data-tale-odds="'+side+'"]').value=fighter.odds||'';
       dialog.querySelector('[data-tale-last5="'+side+'"]').value=fighter.last5||'';
       const portrait=normalizeTalePortrait(fighter);
