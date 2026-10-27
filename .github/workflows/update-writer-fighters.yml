@@ -66,8 +66,10 @@ jobs:
           }
           const asaf = data.fighters.find(fighter => normalizeName(fighter.name) === 'asaf chopurov');
           if (!asaf) throw new Error('Asaf Chopurov is missing from Writer fighter data.');
-          if (asaf.ufcRecord !== '0-0-0') {
-            throw new Error("Asaf Chopurov is making his UFC debut; his UFC record must be 0-0-0, not " + asaf.ufcRecord + '.');
+          // UFC 333 took place on October 24, 2026; Asaf lost his UFC debut to Colby Thicknesse.
+          // Require the debut to be reflected without freezing the test to a record that becomes stale after future fights.
+          if (!/^\\d+-\\d+-\\d+$/.test(asaf.ufcRecord || '') || asaf.ufcRecord === '0-0-0') {
+            throw new Error("Asaf Chopurov's UFC 333 debut is missing or invalid in Writer fighter data: " + asaf.ufcRecord);
           }
           const completeStats = fighter => (
             fighter.stats &&
