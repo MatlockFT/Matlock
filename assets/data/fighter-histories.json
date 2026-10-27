@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -10263,14 +10263,23 @@
           "source": "https://www.ufc.com/athlete/renato-moicano"
         },
         {
+          "date": "Sep. 14, 2026",
+          "label": "Brian Ortega bout cancelled; Moicano–Nolan headliner announced",
+          "kind": "milestone",
+          "detail": "Moicano had been booked to face Brian Ortega at UFC 331. The UFC removed the bout following Ortega's injury and announced Nolan as Moicano's October 31 main-event opponent.",
+          "source": "https://www.ufc.com/news/updates-cryptocom-ufc-331-van-vs-pantoja-2",
+          "sourceLabel": "Official UFC event update"
+        },
+        {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "UFC Fight Night · scheduled vs. Tom Nolan",
           "kind": "upcoming",
           "detail": "Booked opposite Australian lightweight Tom Nolan in the October 31 main event; result not yet known.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/renato-moicano"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Tom Nolan": {
       "slug": "tom-nolan",
@@ -10340,7 +10349,7 @@
           "date": "Aug. 8, 2023",
           "label": "WIN · Bogdan Grad · Dana White's Contender Series",
           "kind": "milestone",
-          "detail": "Knocked out Grad at 1:23 of round one and secured a UFC contract.",
+          "detail": "Knocked out Grad with punches at 1:23 of round one on Dana White's Contender Series, earning his UFC contract.",
           "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/tom-nolan"
         },
@@ -10393,14 +10402,23 @@
           "source": "https://www.ufc.com/athlete/tom-nolan"
         },
         {
+          "date": "Sep. 14, 2026",
+          "label": "Booked for first UFC main event against Moicano",
+          "kind": "milestone",
+          "detail": "After Brian Ortega withdrew from a scheduled UFC 331 meeting with Moicano, the UFC announced Nolan as Moicano's opponent for the October 31 main event.",
+          "source": "https://www.ufc.com/news/updates-cryptocom-ufc-331-van-vs-pantoja-2",
+          "sourceLabel": "Official UFC event update"
+        },
+        {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "First UFC main event · scheduled vs. Renato Moicano",
           "kind": "upcoming",
           "detail": "Booked for his first UFC main event against veteran Renato Moicano; no outcome recorded.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/tom-nolan"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Randy Brown": {
       "slug": "randy-brown",
@@ -10417,6 +10435,22 @@
           "detail": "Turned professional after a 4-2 amateur run; early performances drew attention on Dana White: Lookin' for a Fight.",
           "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/randy-brown"
+        },
+        {
+          "date": "Jan. 23, 2015",
+          "label": "WIN · Mike Winters · wins Ring of Combat welterweight title",
+          "kind": "milestone",
+          "detail": "Stopped Mike Winters by strikes at 1:11 of round two to win the Ring of Combat welterweight championship.",
+          "source": "https://www.ufcalendar.com/fighters/randy-brown",
+          "sourceLabel": "Fight history"
+        },
+        {
+          "date": "Nov. 20, 2015",
+          "label": "WIN · Robert Plotkin · Dana White notices Brown",
+          "kind": "milestone",
+          "detail": "Stopped Plotkin with a knee at 4:23 of round one at Ring of Combat 53; Dana White attended for Lookin' for a Fight and Brown subsequently entered the UFC.",
+          "source": "https://www.ufc.com/news/randy-brown-rudeboy-eyeing-place-rankings",
+          "sourceLabel": "UFC fighter feature"
         },
         {
           "date": "Jan. 30, 2016",
@@ -10595,14 +10629,23 @@
           "source": "https://www.ufc.com/athlete/randy-brown"
         },
         {
+          "date": "Oct. 23, 2026",
+          "label": "Co-main opponent changed from Carlos Leal to Jacobe Smith",
+          "kind": "milestone",
+          "detail": "The UFC's updated October 31 card pairs Brown with unbeaten Jacobe Smith after his original Carlos Leal bout fell through; the main event remains Moicano vs. Nolan.",
+          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-fight-night-moicano-vs-nolan",
+          "sourceLabel": "UFC fight-by-fight preview"
+        },
+        {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "UFC Fight Night · scheduled vs. Jacobe Smith",
           "kind": "upcoming",
           "detail": "Scheduled against the unbeaten wrestler Jacobe Smith in Las Vegas.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/randy-brown"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Jacobe Smith": {
       "slug": "jacobe-smith",
@@ -10621,7 +10664,7 @@
           "source": "https://www.ufc.com/athlete/jacobe-smith"
         },
         {
-          "date": "College years (date not verified)",
+          "date": "After 2013 (college wrestling; exact dates unverified)",
           "label": "Junior-college and Oklahoma State wrestling",
           "kind": "training",
           "detail": "Two-time NJCAA national champion at Northeastern Oklahoma A&M; later wrestled at Oklahoma State and earned All-American honors.",
@@ -10685,14 +10728,23 @@
           "source": "https://www.ufc.com/athlete/jacobe-smith"
         },
         {
+          "date": "Oct. 23, 2026",
+          "label": "Takes Brown co-main on a four-week turnaround",
+          "kind": "milestone",
+          "detail": "Smith joined the October 31 card against Randy Brown following the withdrawal of Carlos Leal, having just finished Bruce Whitehead on October 3.",
+          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-fight-night-moicano-vs-nolan",
+          "sourceLabel": "UFC fight-by-fight preview"
+        },
+        {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "Fast turnaround · scheduled vs. Randy Brown",
           "kind": "upcoming",
           "detail": "Booked to face Randy Brown four weeks after his October 3 victory; bout outcome not recorded.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/jacobe-smith"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Yana Santos": {
       "slug": "yana-santos",
@@ -10719,10 +10771,26 @@
           "source": "https://www.ufc.com/athlete/yana-santos"
         },
         {
+          "date": "Nov. 18, 2016",
+          "label": "NO CONTEST · Tonya Evinger · Invicta FC 20",
+          "kind": "nc",
+          "detail": "Kunitskaya was initially announced as the winner by first-round armbar, but the Missouri Office of Athletics overturned the result to a no contest on December 1 after finding that referee instructions improperly affected Evinger's defense.",
+          "source": "https://invictafc.com/2016/12/01/tonya-evinger-remains-invicta-fc-champion-after-missouri-commission-ruling/",
+          "sourceLabel": "Invicta / Missouri commission ruling"
+        },
+        {
+          "date": "Mar. 25, 2017",
+          "label": "LOSS · Tonya Evinger · Invicta FC 22 rematch",
+          "kind": "loss",
+          "detail": "Lost the bantamweight title rematch to Evinger by rear-naked choke at 4:32 of round two.",
+          "source": "https://www.mmafighting.com/2017/3/25/15063744/invicta-fc-22-results-tonya-evinger-gets-revenge-submitting-yana-kunitskaya-to-retain-title",
+          "sourceLabel": "MMA Fighting results"
+        },
+        {
           "date": "Aug. 31, 2017",
           "label": "WIN · Raquel Pa'aluhi · Invicta FC championship",
           "kind": "milestone",
-          "detail": "Defeated Pa'aluhi to capture the vacant Invicta FC bantamweight title.",
+          "detail": "Fighting as Yana Kunitskaya, she defeated Raquel Pa'aluhi by unanimous decision to claim the vacant Invicta FC bantamweight title. This was distinct from the earlier, overturned 2016 Evinger bout.",
           "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/yana-santos"
         },
@@ -10827,10 +10895,11 @@
           "label": "UFC Fight Night · scheduled vs. Luana Santos",
           "kind": "upcoming",
           "detail": "Booked against Luana Santos in a bantamweight matchup.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/yana-santos"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Luana Santos": {
       "slug": "luana-santos",
@@ -10892,7 +10961,7 @@
           "date": "May 17, 2025",
           "label": "WIN · Tainara Lisboa",
           "kind": "win",
-          "detail": "Submitted Lisboa by americana at 4:59 of round two.",
+          "detail": "Finished fellow October 31-card fighter Tainara Lisboa with an americana (keylock) at 4:59 of round two in May 2025.",
           "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/luana-santos"
         },
@@ -10917,10 +10986,11 @@
           "label": "UFC Fight Night · scheduled vs. Yana Santos",
           "kind": "upcoming",
           "detail": "Booked against the veteran Yana Santos, carrying a three-fight winning streak.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/luana-santos"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Ode' Osbourne": {
       "name": "Ode' Osbourne",
@@ -11054,8 +11124,8 @@
           "date": "Feb. 21, 2026",
           "label": "NO CONTEST · Alibi Idiris · result overturned",
           "kind": "nc",
-          "detail": "Originally lost a unanimous decision; the Texas Department of Licensing and Regulation subsequently overturned the result after Idiris tested positive for hydrochlorothiazide.",
-          "sourceLabel": "Tapology official result",
+          "detail": "Idiris initially won a unanimous decision on February 21, 2026. The Texas Department of Licensing and Regulation later overturned it to a no contest after Idiris tested positive for hydrochlorothiazide. Some UFC profiles still display the original loss.",
+          "sourceLabel": "Bout record / TDLR overturn",
           "source": "https://www.tapology.com/fightcenter/bouts/1078044-ufc-fight-night-ode-the-jamaican-sensation-osbourne-vs-alibi-idiris"
         },
         {
@@ -11063,10 +11133,11 @@
           "label": "UFC Fight Night · scheduled vs. Cody Durden",
           "kind": "upcoming",
           "detail": "Booked against Cody Durden; future result not included.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/ode-osbourne"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Cody Durden": {
       "name": "Cody Durden",
@@ -11216,7 +11287,7 @@
           "date": "Jul. 11, 2026",
           "label": "LOSS · Alessandro Costa",
           "kind": "loss",
-          "detail": "Submitted via rear-naked choke at 2:19 of round two at UFC 329.",
+          "detail": "Submitted by Alessandro Costa via rear-naked choke at 2:19 of round two at UFC 329 on July 11, 2026.",
           "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/cody-durden"
         },
@@ -11225,10 +11296,11 @@
           "label": "UFC Fight Night · scheduled vs. Ode' Osbourne",
           "kind": "upcoming",
           "detail": "Scheduled for a matchup with Ode' Osbourne.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/cody-durden"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Zachary Reese": {
       "name": "Zachary Reese",
@@ -11338,7 +11410,7 @@
           "date": "Jul. 11, 2026",
           "label": "LOSS · Ryan Gandra",
           "kind": "loss",
-          "detail": "Stopped by strikes at 1:15 of round one at UFC 329.",
+          "detail": "Stopped via punches by Ryan Gandra at 1:15 of round one at UFC 329. This was his second straight UFC loss entering the October 31 Mickey Gall booking.",
           "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/zachary-reese"
         },
@@ -11347,10 +11419,11 @@
           "label": "UFC Fight Night · scheduled vs. Mickey Gall",
           "kind": "upcoming",
           "detail": "Booked to face submission specialist Mickey Gall at middleweight.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/zachary-reese"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Mickey Gall": {
       "name": "Mickey Gall",
@@ -11481,14 +11554,23 @@
           "source": "https://www.ufc.com/athlete/mickey-gall"
         },
         {
+          "date": "Sep. 24, 2026",
+          "label": "Withdraws from scheduled Sedriques Dumas bout",
+          "kind": "milestone",
+          "detail": "The UFC removed Gall from its September 26 card due to medical issues, with Luis Hernandez replacing him against Dumas. Gall was later booked to return October 31 against Zachary Reese.",
+          "source": "https://www.ufc.com/news/updates-ufc-fight-night-rosas-jr-vs-barcelos-ufc-vegas-121",
+          "sourceLabel": "Official UFC card update"
+        },
+        {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "Return from layoff · scheduled vs. Zachary Reese",
           "kind": "upcoming",
           "detail": "Scheduled to return against Zachary Reese after nearly two years out of competition.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/mickey-gall"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Jean-Paul Lebosnoyani": {
       "name": "Jean-Paul Lebosnoyani",
@@ -11555,20 +11637,20 @@
           "source": "https://www.ufc.com/athlete/jean-paul-lebosnoyani"
         },
         {
-          "date": "May 19, 2023",
-          "label": "LOSS · JaCobi Jones · LFA lightweight title bout",
-          "kind": "loss",
-          "detail": "Lost by second-round TKO in an LFA lightweight championship fight; later moved up to welterweight.",
-          "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/JeanPaul-Lebosnoyani-248169"
-        },
-        {
           "date": "2023–2025",
           "label": "Welterweight move and resurgence",
           "kind": "weight",
           "detail": "The UFC profile records a six-fight winning streak after moving up from lightweight to welterweight.",
           "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/jean-paul-lebosnoyani"
+        },
+        {
+          "date": "May 19, 2023",
+          "label": "LOSS · JaCobi Jones · LFA lightweight title bout",
+          "kind": "loss",
+          "detail": "Lost by second-round TKO in an LFA lightweight championship fight; later moved up to welterweight.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/JeanPaul-Lebosnoyani-248169"
         },
         {
           "date": "Sep. 2, 2025",
@@ -11590,19 +11672,20 @@
           "date": "Jul. 18, 2026",
           "label": "WIN · SeokHyeon Ko",
           "kind": "win",
-          "detail": "Won a three-round unanimous decision over Ko.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/jean-paul-lebosnoyani"
+          "detail": "Earned a three-round unanimous decision over SeokHyeon Ko, moving to 2-0 in official UFC bouts after his earlier split-decision debut win over Phil Rowe.",
+          "sourceLabel": "UFC October 26 preview",
+          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-fight-night-moicano-vs-nolan"
         },
         {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "UFC Fight Night · scheduled vs. Farman Hasanov",
           "kind": "upcoming",
           "detail": "Booked to face Azerbaijani wrestler Farman Hasanov.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/jean-paul-lebosnoyani"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Farman Hasanov": {
       "name": "Farman Hasanov",
@@ -11653,20 +11736,20 @@
           "source": "https://www.sherdog.com/fighter/Farman-Hasanov-410721"
         },
         {
-          "date": "Jun. 20, 2025",
-          "label": "WIN · Marc-Ari William Lewis · LFA",
-          "kind": "win",
-          "detail": "Stopped Lewis with punches in round two at LFA 211.",
-          "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/Farman-Hasanov-410721"
-        },
-        {
           "date": "2025",
           "label": "Moves training base to American Top Team",
           "kind": "camp",
           "detail": "UFC profile says he switched from Stout PGH to American Top Team in 2025; exact month is not established.",
           "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/farman-hasanov"
+        },
+        {
+          "date": "Jun. 20, 2025",
+          "label": "WIN · Marc-Ari William Lewis · LFA",
+          "kind": "win",
+          "detail": "Stopped Lewis with punches in round two at LFA 211.",
+          "sourceLabel": "Sherdog fight history",
+          "source": "https://www.sherdog.com/fighter/Farman-Hasanov-410721"
         },
         {
           "date": "Nov. 21, 2025",
@@ -11688,11 +11771,12 @@
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "UFC Fight Night · scheduled vs. Jean-Paul Lebosnoyani",
           "kind": "upcoming",
-          "detail": "Scheduled for his second UFC fight against Jean-Paul Lebosnoyani.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/farman-hasanov"
+          "detail": "Booked for his second UFC fight against Jean-Paul Lebosnoyani. UFC lists Hasanov at 6-0; Sherdog displays five professional wins plus one separately classified professional exhibition bout. The timeline preserves the UFC's stated total while clearly distinguishing bout classifications.",
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Francis Marshall": {
       "name": "Francis Marshall",
@@ -11783,14 +11867,23 @@
           "source": "https://www.ufc.com/athlete/francis-marshall"
         },
         {
+          "date": "Oct. 23, 2026",
+          "label": "Opponent changed from Gaston Bolaños to Dakota Hope",
+          "kind": "milestone",
+          "detail": "After originally being scheduled against Gaston Bolaños, Marshall appeared opposite Dakota Hope on the UFC's revised October 31 event lineup.",
+          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-fight-night-moicano-vs-nolan",
+          "sourceLabel": "UFC October 26 preview"
+        },
+        {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "UFC Fight Night · scheduled vs. Dakota Hope",
           "kind": "upcoming",
           "detail": "Booked to fight Dakota Hope at featherweight; result not yet known.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/francis-marshall"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Dakota Hope": {
       "name": "Dakota Hope",
@@ -11913,14 +12006,23 @@
           "source": "https://www.sherdog.com/fighter/Dakota-Hope-293145"
         },
         {
+          "date": "Oct. 23, 2026",
+          "label": "Booked on revised card against Francis Marshall",
+          "kind": "milestone",
+          "detail": "Hope took the October 31 featherweight booking against Francis Marshall after the earlier Marshall–Gaston Bolaños matchup was removed from the updated card.",
+          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-fight-night-moicano-vs-nolan",
+          "sourceLabel": "UFC October 26 preview"
+        },
+        {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "UFC Fight Night · scheduled vs. Francis Marshall",
           "kind": "upcoming",
           "detail": "Scheduled against Francis Marshall in Las Vegas.",
-          "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/Dakota-Hope-293145"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Rodrigo Sezinando": {
       "name": "Rodrigo Sezinando",
@@ -12030,11 +12132,12 @@
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "UFC Fight Night · scheduled vs. Theodor Berggren",
           "kind": "upcoming",
-          "detail": "Booked for a matchup with Swedish welterweight Theodor Berggren.",
-          "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/Rodrigo-Sezinando-376658"
+          "detail": "Booked to face Theodor Berggren on October 31. UFC lists Sezinando at 9-2, while Sherdog's professional fight-history table lists eight wins and two losses; the timeline does not create an unverified ninth named victory.",
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Theodor Berggren": {
       "name": "Theodor Berggren",
@@ -12144,19 +12247,20 @@
           "date": "Jun. 27, 2026",
           "label": "LOSS · Daniil Donchenko · UFC debut",
           "kind": "loss",
-          "detail": "Stopped by head kick and punches at 1:35 of round two in his UFC debut in Baku.",
-          "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/Theodor-Berggren-347365"
+          "detail": "Lost his UFC debut in Baku when Daniil Donchenko finished him with a head kick and follow-up punches at 1:35 of round two. Donchenko had also defeated Berggren's October 31 opponent Rodrigo Sezinando in 2025.",
+          "sourceLabel": "UFC Donchenko fight history",
+          "source": "https://www.ufc.com/athlete/daniil-donchenko"
         },
         {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "UFC Fight Night · scheduled vs. Rodrigo Sezinando",
           "kind": "upcoming",
           "detail": "Booked against Rodrigo Sezinando, who also previously lost to Daniil Donchenko.",
-          "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/Theodor-Berggren-347365"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Julian Erosa": {
       "name": "Julian Erosa",
@@ -12234,7 +12338,7 @@
           "date": "Jun. 27, 2020",
           "label": "WIN · Sean Woodson · short-notice UFC comeback",
           "kind": "milestone",
-          "detail": "Accepted a fight on three days' notice and submitted Woodson with a D'Arce choke at 2:44 of round three; a pivotal return to the UFC.",
+          "detail": "Accepting the fight on three days' notice, Erosa returned to the UFC and submitted Sean Woodson with a D'Arce choke at 2:44 of round three. The win revived his UFC run after earlier releases.",
           "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/julian-erosa"
         },
@@ -12339,10 +12443,11 @@
           "label": "UFC Fight Night · scheduled vs. JeongYeong Lee",
           "kind": "upcoming",
           "detail": "Booked to face Korean featherweight JeongYeong Lee.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/julian-erosa"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "JeongYeong Lee": {
       "name": "JeongYeong Lee",
@@ -12369,12 +12474,28 @@
           "source": "https://www.ufc.com/athlete/jeongyeong-lee"
         },
         {
-          "date": "Regional career (date not verified)",
-          "label": "Becomes youngest Road FC featherweight champion",
+          "date": "Jun. 10, 2017",
+          "label": "LOSS · Se Yeong Kim · Road FC 39",
+          "kind": "loss",
+          "detail": "Lost a two-round decision to Se Yeong Kim in regional competition. He subsequently rebounded to become the promotion's featherweight champion.",
+          "source": "https://www.sherdog.com/fighter/Jeong-Yeong-Lee-135897",
+          "sourceLabel": "Sherdog fight history"
+        },
+        {
+          "date": "Nov. 3, 2018",
+          "label": "WIN · Mu Gyeom Choi · wins Road FC featherweight title",
           "kind": "milestone",
-          "detail": "UFC athlete biography identifies Lee as the youngest Road FC featherweight title winner.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/jeongyeong-lee"
+          "detail": "Lee defeated reigning champion Mu Gyeom Choi by unanimous decision at Road FC 50, becoming the promotion's youngest featherweight titleholder.",
+          "sourceLabel": "Road FC 50 official results",
+          "source": "https://www.fightbookmma.com/road-fc-050-official-results-lee-jeong-yeong-wins-the-featherweight-title-match-against-choi-mu-gyeom/?llm_view=1"
+        },
+        {
+          "date": "Sep. 8, 2019",
+          "label": "WIN · Hae Jin Park · defends Road FC title",
+          "kind": "milestone",
+          "detail": "Successfully defended the Road FC featherweight belt against Hae Jin Park before moving toward Road to UFC competition.",
+          "source": "https://www.sherdog.com/fighter/Jeong-Yeong-Lee-135897",
+          "sourceLabel": "Sherdog / Road FC championship history"
         },
         {
           "date": "Jun. 10, 2022",
@@ -12396,7 +12517,7 @@
           "date": "Feb. 4, 2023",
           "label": "WIN · Yi Zha · Road to UFC featherweight final",
           "kind": "milestone",
-          "detail": "Won a split decision in the Road to UFC Season 1 featherweight final, earning a UFC opportunity.",
+          "detail": "Defeated Yi Zha by split decision in the Road to UFC Season 1 featherweight final, held on February 4 local event time (shown as February 5 in some UTC-oriented databases). This result is included in his UFC win total.",
           "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/jeongyeong-lee"
         },
@@ -12429,10 +12550,11 @@
           "label": "UFC Fight Night · scheduled vs. Julian Erosa",
           "kind": "upcoming",
           "detail": "Booked to return against the veteran Julian Erosa.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/jeongyeong-lee"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Nick Klein": {
       "name": "Nick Klein",
@@ -12518,7 +12640,7 @@
           "date": "Aug. 2, 2025",
           "label": "LOSS · Andrey Pulyaev",
           "kind": "loss",
-          "detail": "Stopped by body kick and punches at 1:31 of round two.",
+          "detail": "Lost by TKO following a body kick and punches at 1:31 of round two. It was his second UFC appearance and second stoppage loss.",
           "sourceLabel": "Sherdog fight history",
           "source": "https://www.sherdog.com/fighter/Nick-Klein-270893"
         },
@@ -12527,10 +12649,11 @@
           "label": "UFC Fight Night · scheduled vs. Joseph Kropschot",
           "kind": "upcoming",
           "detail": "Scheduled to face fellow middleweight Joe Kropschot.",
-          "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/Nick-Klein-270893"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Joseph Kropschot": {
       "name": "Joseph Kropschot",
@@ -12632,19 +12755,20 @@
           "date": "Aug. 11, 2026",
           "label": "WIN · Jonathan Kunneman · DWCS contract",
           "kind": "milestone",
-          "detail": "Won a unanimous decision on the first episode of DWCS Season 10. Dana White awarded him a UFC contract after a competitive fight featuring repeated armbar attempts.",
-          "sourceLabel": "UFC athlete feature",
-          "source": "https://www.ufc.com/news/welcome-ufc-dwcs-week-1-season-10"
+          "detail": "Won a unanimous decision in the August 11 Dana White's Contender Series opener after repeatedly threatening with submission attempts. Earned a UFC contract; this fight counts toward his professional MMA record but was not a standard UFC appearance.",
+          "sourceLabel": "Sherdog / DWCS history",
+          "source": "https://www.sherdog.com/fighter/Joseph-Kropschot-248331"
         },
         {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "Scheduled UFC debut vs. Nick Klein",
           "kind": "upcoming",
           "detail": "Booked for his UFC debut against Nick Klein; his prior Contender Series bout is not a regular UFC fight.",
-          "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/Joseph-Kropschot-248331"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Talita Alencar": {
       "name": "Talita Alencar",
@@ -12706,7 +12830,7 @@
           "date": "Sep. 19, 2023",
           "label": "DRAW · Stephanie Luciano · DWCS",
           "kind": "draw",
-          "detail": "The pair fought to a draw on Dana White's Contender Series, after which Alencar entered the UFC.",
+          "detail": "Fought Stephanie Luciano to a draw on Dana White's Contender Series in September 2023, then made her standard UFC debut that December. They later met again inside the UFC in August 2024.",
           "sourceLabel": "UFC athlete profile",
           "source": "https://www.ufc.com/athlete/talita-alencar"
         },
@@ -12755,10 +12879,11 @@
           "label": "UFC Fight Night · scheduled vs. Piera Rodriguez",
           "kind": "upcoming",
           "detail": "Scheduled against Piera Rodriguez in a women's strawweight bout.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/talita-alencar"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Piera Rodriguez": {
       "name": "Piera Rodriguez",
@@ -12860,9 +12985,9 @@
           "date": "May 18, 2024",
           "label": "LOSS · Ariane Carnelossi · disqualification",
           "kind": "loss",
-          "detail": "Disqualified for an illegal headbutt at 3:16 of round two.",
+          "detail": "Lost by disqualification for an illegal headbutt at 3:16 of round two, rather than by a judges' decision or stoppage caused by legal strikes.",
           "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/Piera-Rodriguez-247469"
+          "source": "https://www.ufc.com/athlete/piera-rodriguez"
         },
         {
           "date": "Dec. 14, 2024",
@@ -12893,10 +13018,11 @@
           "label": "UFC Fight Night · scheduled vs. Talita Alencar",
           "kind": "upcoming",
           "detail": "Booked against BJJ specialist Talita Alencar at strawweight.",
-          "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/Piera-Rodriguez-247469"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Lucia Szabova": {
       "name": "Lucia Szabova",
@@ -12955,11 +13081,11 @@
           "source": "https://www.sherdog.com/fighter/Lucia-Szabova-363981"
         },
         {
-          "date": "2021–2024",
+          "date": "Aug. 2021–Feb. 2024",
           "label": "Long gap in recorded professional MMA bouts",
           "kind": "layoff",
-          "detail": "There is an approximately two-year-and-eight-month gap between her July 2021 and March 2024 professional fights in Sherdog's record; the reason is not established.",
-          "sourceLabel": "Sherdog fight history",
+          "detail": "The Sherdog professional MMA list shows no recorded bouts between July 24, 2021 and March 23, 2024. This is a records gap, not evidence of a specific injury or personal hiatus.",
+          "sourceLabel": "Sherdog professional MMA history",
           "source": "https://www.sherdog.com/fighter/Lucia-Szabova-363981"
         },
         {
@@ -12988,37 +13114,38 @@
         },
         {
           "date": "Aug. 9, 2025",
-          "label": "WIN · Cecilie Maria Bolander · championship",
+          "label": "WIN · Cecilie Maria Bolander · OKTAGON bantamweight title",
           "kind": "milestone",
-          "detail": "Stopped Bolander with elbows and punches at 3:11 of round one in a championship bout at OKTAGON 74.",
-          "sourceLabel": "OKTAGON profile",
+          "detail": "Stopped Bolander by ground strikes at 3:11 of round one at OKTAGON 74, becoming the promotion's women's bantamweight champion.",
+          "sourceLabel": "OKTAGON fighter profile",
           "source": "https://oktagonmma.com/en/fighters/185/"
         },
         {
           "date": "Apr. 25, 2026",
-          "label": "WIN · Leidiane Fernandes",
+          "label": "WIN · Leidiane Fernandes · OKTAGON flyweight title",
           "kind": "win",
-          "detail": "Stopped Fernandes by TKO at 2:12 of round three at OKTAGON 87.",
-          "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/Lucia-Szabova-363981"
+          "detail": "Stopped Fernandes with elbows and punches at 2:12 of round three at OKTAGON 87, adding the vacant flyweight title to her bantamweight championship and becoming a two-division OKTAGON titleholder.",
+          "sourceLabel": "OKTAGON fighter profile",
+          "source": "https://oktagonmma.com/en/fighters/185/"
         },
         {
           "date": "Aug. 1, 2026",
           "label": "WIN · Lucie Pudilová · five-round main event",
           "kind": "milestone",
-          "detail": "Defeated former UFC competitor Pudilová by unanimous decision over five rounds at OKTAGON 92.",
-          "sourceLabel": "MMA bout record",
-          "source": "https://www.sherdog.com/events/Oktagon-MMA-Oktagon-92-Szabova-vs-Pudilova-111479"
+          "detail": "Defeated former UFC fighter Lucie Pudilová by unanimous decision over five rounds at OKTAGON 92 in a bantamweight championship defense. OKTAGON reports a 12-0 overall record, while Sherdog documents 10 professional MMA bouts; the difference is a source-count discrepancy, not two omitted named results.",
+          "sourceLabel": "Official OKTAGON event",
+          "source": "https://oktagonmma.com/en/events/oktagon-92-prague/"
         },
         {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "Scheduled UFC debut vs. Tainara Lisboa",
           "kind": "upcoming",
-          "detail": "Booked for her first UFC appearance against Tainara Lisboa; official OKTAGON career listings show her unbeaten, while external MMA databases vary in bout count.",
-          "sourceLabel": "OKTAGON profile",
-          "source": "https://oktagonmma.com/en/fighters/185/"
+          "detail": "Booked for a women's flyweight UFC debut against Tainara Lisboa. OKTAGON lists her overall unbeaten record as 12-0; Sherdog's professional MMA list contains 10 named bouts through August 2026. No additional fights are invented to reconcile the databases.",
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     },
     "Tainara Lisboa": {
       "name": "Tainara Lisboa",
@@ -13120,9 +13247,9 @@
           "date": "May 17, 2025",
           "label": "LOSS · Luana Santos",
           "kind": "loss",
-          "detail": "Submitted by keylock/americana with one second left in round two.",
+          "detail": "Submitted by americana/keylock at 4:59 of round two. Luana Santos is also competing on the October 31, 2026 card, in a separate bout against Yana Santos.",
           "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/Tainara-Lisboa-233589"
+          "source": "https://www.ufc.com/athlete/tainara-lisboa"
         },
         {
           "date": "Oct. 18, 2025",
@@ -13137,12 +13264,14 @@
           "label": "UFC Fight Night · scheduled vs. Lucia Szabova",
           "kind": "upcoming",
           "detail": "Booked to face undefeated Slovakian newcomer Lucia Szabova.",
-          "sourceLabel": "Sherdog fight history",
-          "source": "https://www.sherdog.com/fighter/Tainara-Lisboa-233589"
+          "sourceLabel": "Official UFC October 31 fight card",
+          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
         }
-      ]
+      ],
+      "lastReviewed": "2026-10-26"
     }
   },
   "updatedAt": "2026-10-21",
-  "notes": "Fourth-pass deep audit completed. Duplicate same-event notes merged; distinct same-year career events retained."
+  "notes": "Fourth-pass deep audit completed. Duplicate same-event notes merged; distinct same-year career events retained.",
+  "lastReviewed": "2026-10-26"
 }
