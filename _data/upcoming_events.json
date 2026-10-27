@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-27T00:55:58.824Z",
+  "generated_at": "2026-10-27T06:13:39.117Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-10-31-fight-card",
@@ -14,7 +14,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
-      "updated_label": "October 26, 2026",
+      "updated_label": "October 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -32,7 +32,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MOICANO_RENATO_L_04-04.png?itok=2zj_9GSb",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-108"
+                  "moneyline": "-115"
                 },
                 {
                   "name": "Tom Nolan",
@@ -40,7 +40,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/NOLAN_TOM_L_09-27.png?itok=MyU46nSD",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-118"
+                  "moneyline": "-111"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -74,31 +74,6 @@
             {
               "order": 3,
               "label": "",
-              "weight_class": "Women's Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Yana Santos",
-                  "initials": "YS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/SANTOS_YANA_L_05-03.png?itok=pkR_XniN",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+210"
-                },
-                {
-                  "name": "Luana Santos",
-                  "initials": "LS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/SANTOS_LUANA_L_05-17.png?itok=F9R3I5g7",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-280"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 4,
-              "label": "",
               "weight_class": "Flyweight Bout",
               "fighters": [
                 {
@@ -116,6 +91,31 @@
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": "-106"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Women's Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Yana Santos",
+                  "initials": "YS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/SANTOS_YANA_L_05-03.png?itok=pkR_XniN",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+210"
+                },
+                {
+                  "name": "Luana Santos",
+                  "initials": "LS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/SANTOS_LUANA_L_05-17.png?itok=F9R3I5g7",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-280"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -156,29 +156,6 @@
             {
               "order": 6,
               "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Zachary Reese",
-                  "initials": "ZR",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/REESE_ZACH_L_02-21.png?itok=beiKFsJ0",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-290"
-                },
-                {
-                  "name": "Mickey Gall",
-                  "initials": "MG",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/GALL_MICKEY_L_11-16.png?itok=tlDNrYh3",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+235"
-                }
-              ]
-            },
-            {
-              "order": 7,
-              "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
                 {
@@ -202,7 +179,7 @@
               "odds_provider": "FanDuel"
             },
             {
-              "order": 8,
+              "order": 7,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -227,7 +204,7 @@
               "odds_provider": "FanDuel"
             },
             {
-              "order": 9,
+              "order": 8,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -250,6 +227,29 @@
               ],
               "odds_source": "BestFightOdds",
               "odds_provider": "Caesars"
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Zachary Reese",
+                  "initials": "ZR",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/REESE_ZACH_L_02-21.png?itok=beiKFsJ0",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-290"
+                },
+                {
+                  "name": "Mickey Gall",
+                  "initials": "MG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/GALL_MICKEY_L_11-16.png?itok=tlDNrYh3",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+235"
+                }
+              ]
             },
             {
               "order": 10,
@@ -342,7 +342,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-      "updated_label": "October 26, 2026",
+      "updated_label": "October 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -444,29 +444,6 @@
             {
               "order": 5,
               "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Mantas Kondratavičius",
-                  "initials": "MK",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Andre Petroski",
-                  "initials": "AP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 6,
-              "label": "",
               "weight_class": "Light Heavyweight Bout",
               "fighters": [
                 {
@@ -481,6 +458,29 @@
                   "name": "Lucas Fernando",
                   "initials": "LF",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/FERNANDO_LUCAS_R_08-15.png?itok=T9Ij6iMO",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Mantas Kondratavičius",
+                  "initials": "MK",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Andre Petroski",
+                  "initials": "AP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -669,7 +669,7 @@
       "venue": "LaLa arena TOKYO-BAY",
       "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV",
       "official_url": "https://jp.rizinff.com/_ct/17852466",
-      "updated_label": "October 26, 2026",
+      "updated_label": "October 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -987,7 +987,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-334",
-      "updated_label": "October 26, 2026",
+      "updated_label": "October 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1304,7 +1304,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
-      "updated_label": "October 26, 2026",
+      "updated_label": "October 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1534,7 +1534,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-335",
-      "updated_label": "October 26, 2026",
+      "updated_label": "October 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1678,7 +1678,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-336",
-      "updated_label": "October 26, 2026",
+      "updated_label": "October 27, 2026",
       "sections": [
         {
           "kind": "main",
