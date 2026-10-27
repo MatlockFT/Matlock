@@ -726,7 +726,6 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 .post-page-v3 .post-body .mfc-tale-row:last-child{border-bottom:0}
 .post-page-v3 .post-body .mfc-tale-row strong{color:#fff;font-size:.78rem}
 .post-page-v3 .post-body .mfc-tale-row span{color:var(--mfc-muted);font-size:.52rem;font-weight:800;letter-spacing:.055em;text-transform:uppercase}
-.post-page-v3 .post-body .mfc-tale-row.featured strong{font-size:.92rem}
 @media(max-width:650px){
   .post-page-v3 .post-body .article-pick-card{grid-template-columns:46px minmax(0,1fr);gap:.75rem;padding:.9rem .85rem .95rem}
   .post-page-v3 .post-body .article-pick-card__accent{width:42px;height:42px}
@@ -1406,29 +1405,6 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 }
 
 
-.fight-compare-sleek .fc-tale-row.featured {
-  margin-bottom: 4px;
-
-  border:
-    1px solid var(--line);
-
-  border-radius: 12px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,77,90,.085),
-      rgba(255,255,255,.025),
-      rgba(87,140,255,.085)
-    );
-}
-
-
-.fight-compare-sleek .fc-tale-row.featured strong {
-  font-size: 1.06rem;
-}
-
-
 /* =========================================================
    RECENT FORM
    ========================================================= */
@@ -2029,29 +2005,6 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
   letter-spacing: .09em;
 
   text-transform: uppercase;
-}
-
-
-.fight-stats-sleek .fs-stat-row.featured {
-  margin-bottom: 3px;
-
-  border:
-    1px solid var(--fs-line);
-
-  border-radius: 12px;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--fs-red-soft),
-      rgba(255,255,255,.025),
-      var(--fs-blue-soft)
-    );
-}
-
-
-.fight-stats-sleek .fs-stat-row.featured strong {
-  font-size: 1.08rem;
 }
 
 

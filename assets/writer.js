@@ -4944,8 +4944,8 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     const rows=normalizeComparisonRows(config.rows,statsDefaultRowLabels);
     const fighterA=String(config.fighterA||'Fighter A').trim()||'Fighter A';
     const fighterB=String(config.fighterB||'Fighter B').trim()||'Fighter B';
-    const renderRows=(items)=>items.map((row,index)=>
-      '<div class="fs-stat-row'+(index===0?' featured':'')+'"><strong>'+
+    const renderRows=(items)=>items.map(row=>
+      '<div class="fs-stat-row"><strong>'+
       escapeHtml(row.a||'—')+'</strong><span>'+escapeHtml(row.label)+'</span><strong>'+
       escapeHtml(row.b||'—')+'</strong></div>'
     ).join('');
@@ -5008,8 +5008,8 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     config=normalizeTaleConfig(config);
     const a=config.a||{}, b=config.b||{};
     const rows=normalizeComparisonRows(config.rows,taleDefaultRowLabels);
-    const taleRows=rows.map((row,index)=>
-      '<div class="fc-tale-row'+(index===0?' featured':'')+'"><strong>'+escapeHtml(row.a||'—')+
+    const taleRows=rows.map(row=>
+      '<div class="fc-tale-row"><strong>'+escapeHtml(row.a||'—')+
       '</strong><span>'+escapeHtml(row.label)+'</span><strong>'+escapeHtml(row.b||'—')+'</strong></div>'
     ).join('');
     const recentA=recentFormMarkup(a.recent), recentB=recentFormMarkup(b.recent);
