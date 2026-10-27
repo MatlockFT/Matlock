@@ -1,12 +1,9 @@
 name: Deploy Writer Auth Backend
 
+# Netlify's repository integration deploys backend changes automatically.
+# This optional CLI fallback requires NETLIFY_AUTH_TOKEN and stays manual.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "_netlify-auth/**"
-      - ".github/workflows/deploy-writer-auth-once.yml"
 
 permissions:
   contents: read

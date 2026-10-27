@@ -1,3 +1,4 @@
+import { cleanupMediaSessions } from './writer-media-session.mjs';
 import {
   ACTIVE_UPLOAD_TTL_MS,
   cleanupChunks,
@@ -7,6 +8,7 @@ import {
 } from './_writer-media.mjs';
 
 export default async function handler() {
+  await cleanupMediaSessions();
   const store = mediaStore();
   const now = Date.now();
 

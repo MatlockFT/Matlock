@@ -1,11 +1,12 @@
 import { createHash } from 'node:crypto';
 import { getStore } from '@netlify/blobs';
+import { getMediaSession } from './writer-media-session.mjs';
 import { getWriterSession } from './_writer-session.mjs';
 
 export const MEDIA_STORE_NAME = 'matlock-writer-media-staging';
 export const MAX_CHUNK_BYTES = Math.floor(3.75 * 1024 * 1024);
 export const MAX_VIDEO_BYTES = 2 * 1024 * 1024 * 1024;
-export const MAX_VIDEO_CHUNKS = 600;
+export const MAX_VIDEO_CHUNKS = 1200;
 export const ACTIVE_UPLOAD_TTL_MS = 24 * 60 * 60 * 1000;
 export const COMPLETE_STATUS_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -41,7 +42,7 @@ export function writerSessionId(request) {
 
 export async function requireWriterSession(request) {
   const id = writerSessionId(request);
-  const session = await getWriterSession(id);
+  const session = id.startsWith('mwm_') ? await getMediaSession(id) : await getWriterSession(id);
   return { id, session };
 }
 

@@ -43,12 +43,12 @@ async function ensureRelease(token) {
   }
 }
 
-async function existingReleaseAsset(token, release, assetName) {
+async function existingReleaseAsset(token, release, assetName, expectedSize) {
   const assets = await githubJson(token, `/releases/${release.id}/assets?per_page=100`);
-  return Array.isArray(assets) ? assets.find(asset => asset.name === assetName && asset.browser_download_url) || null : null;
+  return Array.isArray(assets) ? assets.find(asset => asset.name === assetName && asset.browser_download_url && Number(asset.size) === expectedSize) || null : null;
 }
 
-function chunkStream(store, scope, uploadId, chunkCount) {
+export function chunkStream(store, scope, uploadId, chunkCount) {
   let index = 0;
   return new ReadableStream({
     async pull(controller) {
@@ -68,7 +68,7 @@ function chunkStream(store, scope, uploadId, chunkCount) {
   });
 }
 
-async function verifyChunks(store, scope, uploadId, chunkCount, fileSize) {
+export async function verifyChunks(store, scope, uploadId, chunkCount, fileSize) {
   let stagedBytes = 0;
   for (let index = 0; index < chunkCount; index += 1) {
     const entry = await store.getMetadata(chunkKey(scope, uploadId, index), { consistency: 'strong' });
@@ -81,7 +81,7 @@ async function verifyChunks(store, scope, uploadId, chunkCount, fileSize) {
   if (stagedBytes !== fileSize) throw new Error('Staged video size did not match the original upload.');
 }
 
-async function uploadAsset(token, release, store, scope, uploadId, meta) {
+export async function uploadAsset(token, release, store, scope, uploadId, meta) {
   const uploadUrl = String(release?.upload_url || '').replace(/\{\?name,label\}$/, '');
   if (!uploadUrl) throw new Error('GitHub did not provide a Release upload URL.');
 
@@ -96,10 +96,10 @@ async function uploadAsset(token, release, store, scope, uploadId, meta) {
   });
 
   const data = await response.json().catch(() => ({}));
-  if (response.status === 201 && data?.browser_download_url) return data;
+  if (response.status === 201 && data?.browser_download_url && Number(data.size) === meta.fileSize) return data;
 
   if (response.status === 422) {
-    const existing = await existingReleaseAsset(token, release, meta.assetName);
+    const existing = await existingReleaseAsset(token, release, meta.assetName, meta.fileSize);
     if (existing) return existing;
   }
   throw new Error(data?.message || `GitHub Release upload failed with status ${response.status}.`);
@@ -153,9 +153,12 @@ export default async function handler(request) {
     await setStatus(store, scope, uploadId, {
       state: 'error',
       error: String(error?.message || error || 'GitHub Release upload failed.'),
+      stagedRetained: true,
+      retryable: false,
       ...meta
     });
-    await cleanupChunks(store, scope, uploadId, meta.chunkCount);
+    // Keep failed uploads for an explicit retry; scheduled cleanup removes
+    // abandoned bytes after 24 hours. Success still deletes staged chunks.
   }
 }
 

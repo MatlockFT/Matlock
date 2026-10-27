@@ -23,7 +23,7 @@ page_scripts:
   - /assets/fighter-history.js
 ---
 
-<section class="writer-app" data-writer-app data-writer-screen="library" data-repo="MatlockFT/Matlock" data-media-repo="MatlockFT/Matlock" data-auth-base="https://mmamatlock-writer-auth.fighttalkmma.workers.dev">
+<section class="writer-app" data-writer-app data-writer-screen="library" data-repo="MatlockFT/Matlock" data-media-repo="MatlockFT/Matlock" data-auth-base="https://mmamatlock-writer-auth.fighttalkmma.workers.dev" data-media-base="https://mmamatlock-writer-auth.netlify.app">
   <header class="writer-topbar">
     <div>
       <p class="eyebrow">Publishing workspace</p>
@@ -399,7 +399,7 @@ page_scripts:
         <div class="writer-or"><span>or</span></div>
         <label class="writer-field writer-field-wide"><span>Direct video URL</span><input type="url" data-inline-video-url placeholder="https://…/clip.mp4"></label>
         <label class="writer-field writer-field-wide"><span>Caption <small>optional</small></span><input type="text" data-inline-video-caption placeholder="Caption or source credit"></label>
-        <p class="writer-dialog-note writer-field-wide">MP4 is recommended. Uploaded clips are staged in small temporary chunks, then published to GitHub Releases. The temporary chunks are deleted after the release asset is created, so the video never enters the site's Git history. Files must stay under GitHub's 2 GiB release-asset limit.</p>
+        <p class="writer-dialog-note writer-field-wide">MP4 is recommended. Upload files smaller than 2 GiB in resumable pieces. Video uploads use your Netlify monthly allowance; GitHub sign-in and article saving remain separate.</p>
         <div class="writer-video-upload-status writer-field-wide" data-video-upload-status hidden aria-live="polite">
           <progress data-video-upload-progress max="100" value="0"></progress>
           <span data-video-upload-label>Preparing upload…</span>

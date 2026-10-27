@@ -14,6 +14,7 @@ import writerMediaAbort from './functions/writer-media-abort.mjs';
 import writerMediaFinalize from './functions/writer-media-finalize.mjs';
 import writerMediaLibrary from './functions/writer-media-library.mjs';
 import writerMediaStatus from './functions/writer-media-status.mjs';
+import writerMediaSession from './functions/writer-media-session.mjs';
 import writerSession from './functions/writer-session.mjs';
 import fightOdds from './functions/fight-odds.mjs';
 import mediaProcess from './functions/writer-media-process-background.mjs';
@@ -49,6 +50,7 @@ const routeHandlers = new Map([
   ['/api/writer/media-library', writerMediaLibrary],
   ['/api/writer/media-status', writerMediaStatus],
   ['/api/writer/session', writerSession],
+  ['/api/writer/media-session', writerMediaSession],
   ['/api/fight-odds', fightOdds]
 ]);
 
@@ -257,7 +259,7 @@ export default {
       if (url.pathname === '/') return serviceIndex();
       if (url.pathname.startsWith("/media/")) return await servePublicVideo(request, env);
       if (url.pathname === '/__health') {
-        return Response.json({ ok: true, service: 'matlock-writer-auth', storage: 'kv', media_storage: 'durable-objects-sqlite', r2_video_storage: Boolean(env.WRITER_VIDEO_BUCKET), queue: Boolean(env.WRITER_MEDIA_QUEUE) }, {
+        return Response.json({ ok: true, service: 'matlock-writer-auth', storage: 'kv', media_storage: 'durable-objects-sqlite', article_video_uploads: 'netlify', r2_video_storage: Boolean(env.WRITER_VIDEO_BUCKET), queue: Boolean(env.WRITER_MEDIA_QUEUE) }, {
           headers: { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' }
         });
       }
