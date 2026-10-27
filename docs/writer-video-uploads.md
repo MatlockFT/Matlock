@@ -17,13 +17,13 @@ No paid plan, auto-recharge, new storage bucket, or PC service is enabled by thi
 
 Netlify's existing Git integration for `mmamatlock-writer-auth` uses `_netlify-auth` as its base and deploys backend changes automatically. Its content-change check skips commits that only update the main website. `.github/workflows/deploy-writer-auth-once.yml` is a manual CLI fallback requiring `NETLIFY_AUTH_TOKEN`; it is not the normal deployment path.
 
-Cloudflare deploys through the existing `deploy-writer-cloudflare.yml` workflow. The static Writer deploys through GitHub Pages. Confirm all three releases before reporting that the change is live:
+Cloudflare deploys through the existing `deploy-writer-cloudflare.yml` workflow. The deployment does not provision or require R2: the running Worker had no R2 binding, and article videos now use Netlify. Optional R2 serving code remains available for deployments that explicitly bind an existing bucket; other Cloudflare media keeps the GitHub Release path. The static Writer deploys through GitHub Pages. Confirm all three releases before reporting that the change is live:
 
 - Netlify: GET `/api/writer/media-session` returns `service: netlify-video-uploads`.
 - Cloudflare: GET `/__health` includes `article_video_uploads: netlify`; unauthenticated POST `/api/writer/media-session` with the site Origin returns 401.
 - Writer: `/write/` has the Netlify `data-media-base` while `data-auth-base` stays Cloudflare, and the generated Writer bundle matches the committed source.
 
-To restore the previous article-video route, remove `data-media-base` from the Writer app in `write.html` and deploy the static site. The default then uses the auth host and the earlier 1,800,000-byte Cloudflare chunks. Do not remove Cloudflare's public media route or R2 bucket: existing published video URLs may depend on them.
+To restore the previous article-video route, remove `data-media-base` from the Writer app in `write.html` and deploy the static site. The default then uses the auth host and the earlier 1,800,000-byte Cloudflare chunks. Do not delete existing media assets or storage resources during rollback. This update creates or deletes no bucket.
 
 ## Limits and validation
 

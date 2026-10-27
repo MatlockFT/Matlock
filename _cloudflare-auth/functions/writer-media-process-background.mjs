@@ -492,7 +492,7 @@ export default async function handler(request, env = null) {
     let asset = null;
     await setStatus(store, scope, uploadId, { state: 'publishing', publishAttempts: publishAttempt, ...meta });
 
-    if (meta.fileSize >= R2_VIDEO_MIN_BYTES) {
+    if (meta.fileSize >= R2_VIDEO_MIN_BYTES && env?.WRITER_VIDEO_BUCKET) {
       stage = 'streaming video to Cloudflare R2';
       asset = await uploadAssetToR2(env?.WRITER_VIDEO_BUCKET, store, scope, uploadId, meta, env?.WRITER_MEDIA_PUBLIC_BASE_URL);
     } else {
