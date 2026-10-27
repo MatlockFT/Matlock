@@ -958,3 +958,78 @@ html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-eve
         transform-origin: 50% 100%;
     }
 }
+
+/* Trending: aligned headline slots, with dividers attached to their links. */
+.v3-trending {
+    gap: 0;
+    margin: 0 0 1.25rem;
+    padding: .65rem 0;
+    align-items: center;
+}
+.v3-trending > strong {
+    margin: 0 1rem 0 0;
+    padding: 0 1rem 0 0;
+    border-right: 1px solid var(--v3-rule);
+    font-size: .62rem;
+    line-height: 1.4;
+    letter-spacing: .06em;
+}
+.v3-trending-links {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 0;
+    overflow: hidden;
+}
+.v3-trending-links a {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    max-width: none;
+    min-height: 36px;
+    padding: 0 1rem;
+    font-size: .66rem;
+    line-height: 1.5;
+    white-space: normal;
+    text-decoration: none;
+}
+.v3-trending-links a + a { border-left: 1px solid var(--v3-rule); }
+.v3-trending-links a:first-child { padding-left: 0; }
+.v3-trending-links a:last-child { padding-right: 0; }
+.v3-trending-text {
+    display: -webkit-box;
+    min-width: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
+    text-overflow: ellipsis;
+    transform: none;
+    transition: none;
+    will-change: auto;
+}
+.v3-trending-links a:hover,
+.v3-trending-links a:focus-visible { text-decoration: none; }
+@media (max-width: 780px) {
+    .v3-trending { display: block; padding: .75rem 0; }
+    .v3-trending > strong {
+        display: block;
+        margin: 0 0 .55rem;
+        padding: 0;
+        border: 0;
+    }
+    .v3-trending-links {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        scroll-padding-inline: 0;
+    }
+    .v3-trending-links a {
+        flex: 0 0 min(72vw, 280px);
+        max-width: none;
+        min-height: 44px;
+        padding-inline: 1rem;
+        scroll-snap-align: start;
+    }
+    .v3-trending-links a:first-child { padding-left: 0; }
+}

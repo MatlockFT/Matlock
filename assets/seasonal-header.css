@@ -28,28 +28,37 @@
     }
 }
 @media (min-width: 851px) {
-    .logo-banner > a {
-        display: inline-block;
+    body[data-editorial-shell] .site-header > .logo-banner {
+        padding-block: 1rem;
+    }
+
+    body[data-editorial-shell] .logo-banner > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
         position: relative;
         overflow: visible;
     }
 
-    .v3-wordmark-wrap {
+    body[data-editorial-shell] .logo-banner .v3-wordmark-wrap {
         position: relative;
-        display: inline-block;
+        display: block;
         line-height: 1;
     }
 
-    .v3-wordmark {
+    body[data-editorial-shell] .logo-banner .v3-wordmark {
         display: block;
         position: relative;
         z-index: 1;
+        /* Center the visible capital letters, rather than the font's leading. */
+        text-box: trim-both cap alphabetic;
     }
 
-    .desktop-brand-pumpkin {
+    body[data-editorial-shell] .logo-banner .desktop-brand-pumpkin {
         position: absolute;
         right: -25px;
-        bottom: -9px;
+        bottom: -2px;
         z-index: 3;
         width: clamp(38px, 2.55vw, 44px);
         height: clamp(38px, 2.55vw, 44px);
