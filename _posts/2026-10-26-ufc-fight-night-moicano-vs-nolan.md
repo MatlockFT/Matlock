@@ -5,6 +5,10 @@ description: "Tale of the tape, fighter profiles and UFC career stats for all 12
 date: 2026-10-26
 category: Breakdown
 author: Matlock
+image:
+  path: /assets/uploads/obkick.png
+  alt: "MMA striking action photograph"
+  position: center center
 tags:
   - UFC Fight Night
   - Renato Moicano
