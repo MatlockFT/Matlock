@@ -1,5 +1,5 @@
 {
-  "version": 14,
+  "version": 15,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -19392,6 +19392,360 @@
           "detail": "Holland is booked for a welterweight fight against Medić at Madison Square Garden. This is a future scheduled bout, not a result.",
           "sourceLabel": "UFC · event card",
           "source": "https://www.ufc.com/event/ufc-334"
+        }
+      ]
+    },
+    "Stephen Thompson": {
+      "slug": "stephen-thompson",
+      "name": "Stephen Thompson",
+      "subtitle": "Career chronology · Undefeated kickboxing career, two UFC title shots and 27 professional MMA bouts",
+      "record": "17-9-1",
+      "ufcRecord": "12-9-1",
+      "division": "Welterweight",
+      "items": [
+        {
+          "date": "Feb. 11, 1983",
+          "label": "Born in South Carolina",
+          "kind": "background",
+          "detail": "Stephen Randall Thompson was born February 11, 1983. He grew up around the family martial arts school in the Greenville–Simpsonville area of South Carolina.",
+          "source": "https://www.tapology.com/fightcenter/fighters/16753-stephen-thompson-wonderboy",
+          "sourceLabel": "Tapology · birth date and hometown"
+        },
+        {
+          "date": "Around 1986 (age three)",
+          "label": "Begins karate under his father Ray Thompson",
+          "kind": "training",
+          "detail": "He began training as a small child at his family's karate school. Ray Thompson, a former fighter and longtime instructor, taught Stephen and his siblings. The school's training later became the foundation of his UFC striking style.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · firsthand athlete Q&A"
+        },
+        {
+          "date": "Around 1995 (age twelve)",
+          "label": "Starts full-contact karate training",
+          "kind": "training",
+          "detail": "Thompson has said he moved into full-contact kempo training at about twelve, after years of childhood practice in the family school.",
+          "source": "https://mmabeats.wordpress.com/2012/01/31/featured-fighter-stephen-thompson/",
+          "sourceLabel": "2012 interview · early martial arts background"
+        },
+        {
+          "date": "Around 1998 (age fifteen)",
+          "label": "Wins first kickboxing bout against older opponent",
+          "kind": "milestone",
+          "detail": "His father matched him with an older, more experienced kickboxer for his first competition. Thompson won, beginning the unbeaten striking record he accumulated before switching to MMA. The year is estimated from his age.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · athlete Q&A and first competition"
+        },
+        {
+          "date": "Late 1990s–mid-2000s",
+          "label": "Builds undefeated kickboxing career and wins world titles",
+          "kind": "milestone",
+          "detail": "Thompson became a five-time world-champion kickboxer and competed in Chuck Norris's World Combat League. UFC materials list an undefeated 57–0 combined kickboxing record, with more than 40 knockouts; this is kickboxing, not part of his MMA record. Individual title dates are not consistently documented.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · kickboxing record and listed titles"
+        },
+        {
+          "date": "Around 2005–2006",
+          "label": "Serious knee injury interrupts kickboxing career",
+          "kind": "injury",
+          "detail": "Thompson described tearing major ligaments in his left knee during World Combat League competition and having several knee surgeries, including meniscus removal. Recovery kept him from fighting for approximately three years. Accounts vary on the exact injury year.",
+          "source": "https://www.ufc.com/news/stephen-thompson-voice-experience",
+          "sourceLabel": "UFC · 2013 interview about knee surgeries"
+        },
+        {
+          "date": "2009–2010",
+          "label": "Shifts focus from kickboxing to professional MMA",
+          "kind": "training",
+          "detail": "After knee rehabilitation, Thompson expanded his preparation toward mixed martial arts, including grappling and wrestling, and chose MMA as the next step in his fighting career. His first recorded professional MMA bout followed in February 2010.",
+          "source": "https://www.ufc.com/news/stephen-thompson-karates-back-20",
+          "sourceLabel": "UFC · 2012 account of the move to MMA"
+        },
+        {
+          "date": "Oct. 2012",
+          "label": "Withdraws from UFC 154 because of torn meniscus",
+          "kind": "injury",
+          "detail": "Following the Matt Brown defeat, Thompson suffered another knee injury in training. A torn meniscus forced him out of a planned November UFC 154 bout with Besam Yousef; he underwent treatment before returning the following May.",
+          "source": "https://www.mmafighting.com/2012/10/25/3557254/stephen-wonderboy-thompson-injures-knee-out-of-ufc-154",
+          "sourceLabel": "MMA Fighting · October 2012 injury report"
+        },
+        {
+          "date": "Jun. 18, 2016",
+          "label": "Seven-fight UFC winning streak brings a title shot",
+          "kind": "milestone",
+          "detail": "After his first professional defeat against Matt Brown in 2012, Thompson won seven straight UFC bouts between 2013 and June 2016, including victories over Robert Whittaker, Johny Hendricks and Rory MacDonald. The run earns him his first UFC welterweight title challenge.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Nov. 12, 2016",
+          "label": "First UFC welterweight championship bout",
+          "kind": "milestone",
+          "detail": "Thompson challenged Tyron Woodley at UFC 205, the promotion's first event at Madison Square Garden. Their five-round contest ended in a majority draw and Woodley retained the title; Thompson was granted a rematch.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official title-fight history"
+        },
+        {
+          "date": "Mar. 4, 2017",
+          "label": "Second title attempt ends in majority-decision defeat",
+          "kind": "milestone",
+          "detail": "The UFC 209 rematch was fought more cautiously than their first meeting. Woodley won a majority decision and remained welterweight champion. These are Thompson's only two UFC title fights through October 2026.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official title-fight history"
+        },
+        {
+          "date": "May 26, 2018",
+          "label": "Darren Till misses weight ahead of Liverpool main event",
+          "kind": "weight",
+          "detail": "Till weighed 174.5 pounds, 3.5 pounds above the non-title welterweight allowance. Thompson made weight at 171 pounds, accepted the bout under revised conditions, and faced Till the next day. This is a weigh-in event, not a separate fight.",
+          "source": "https://www.ufc.com/news/fight-night-liverpool-official-weigh-results",
+          "sourceLabel": "UFC · Liverpool official weigh-in results"
+        },
+        {
+          "date": "Jul. 28, 2023",
+          "label": "UFC 291 booking canceled after Michel Pereira misses weight",
+          "kind": "weight",
+          "detail": "Thompson made weight at 170.5 pounds but Pereira weighed 174 pounds, three pounds above the allowance. Thompson declined a catchweight contest, and the UFC canceled the matchup before fight night. No bout result is assigned.",
+          "source": "https://www.mmafighting.com/2023/7/28/23811876/stephen-thompson-vs-michel-pereira-off-of-ufc-291-after-pereira-weight-miss",
+          "sourceLabel": "MMA Fighting · canceled UFC 291 booking"
+        },
+        {
+          "date": "Nov. 2023",
+          "label": "Confirms UFC compensation issue from canceled fight was resolved",
+          "kind": "milestone",
+          "detail": "After initially reporting that he had not been paid for the canceled Pereira fight, Thompson later said the payment issue had been settled with the UFC. The dispute is separate from his professional fight record.",
+          "source": "https://www.mmafighting.com/2023/11/6/23948639/stephen-thomson-ufc-has-settled-everything-from-cancelled-fight-at-ufc-291",
+          "sourceLabel": "MMA Fighting · November 2023 statement"
+        },
+        {
+          "date": "Oct. 1, 2026",
+          "label": "Explains decision to take retirement fight with Charles Radtke",
+          "kind": "milestone",
+          "detail": "Ahead of UFC 334, Thompson described wanting to give a less-established fighter the kind of opportunity older veterans had given him. He has indicated the Radtke matchup is intended to be his final UFC appearance; the fight has not yet taken place.",
+          "source": "https://www.sherdog.com/news/news/Stephen-Thompson-explains-why-he-chose-Charles-Radtke-for-final-UFC-fight-203029",
+          "sourceLabel": "Sherdog · October 2026 retirement-fight interview"
+        },
+        {
+          "date": "Nov. 14, 2026 (scheduled)",
+          "label": "UFC 334 · welterweight bout vs. Charles Radtke",
+          "kind": "upcoming",
+          "detail": "Thompson is scheduled to face Charles Radtke at Madison Square Garden in New York City. He enters the booking 17–9–1 professionally and 12–9–1 in the UFC. The bout has been described as his planned retirement fight; no result is recorded.",
+          "source": "https://www.sherdog.com/fighter/Stephen-Thompson-59608",
+          "sourceLabel": "Sherdog · UFC 334 bout listing"
+        },
+        {
+          "date": "Feb. 5, 2010",
+          "label": "WIN · Jeremy Joles · Fight Party: Greenville Kage Fighting",
+          "kind": "win",
+          "detail": "Defeated Jeremy Joles by TKO (punches) at Fight Party: Greenville Kage Fighting, Round 2 (3:40). Professional MMA debut. Thompson brings his undefeated kickboxing background into MMA at age 26. Professional MMA record afterward: 1–0–0.",
+          "source": "https://www.sherdog.com/fighter/Stephen-Thompson-59608",
+          "sourceLabel": "Sherdog · documented MMA fight result"
+        },
+        {
+          "date": "May 22, 2010",
+          "label": "WIN · Danny Finz · Fight Party: Xtreme Cage Fighting 2",
+          "kind": "win",
+          "detail": "Defeated Danny Finz by TKO (punches) at Fight Party: Xtreme Cage Fighting 2, Round 1 (3:45). Second professional MMA win and first-round finish. Professional MMA record afterward: 2–0–0.",
+          "source": "https://www.sherdog.com/fighter/Stephen-Thompson-59608",
+          "sourceLabel": "Sherdog · documented MMA fight result"
+        },
+        {
+          "date": "Sep. 18, 2010",
+          "label": "WIN · Marques Worrell · Fight Party: Greenville Kage Fighting",
+          "kind": "win",
+          "detail": "Defeated Marques Worrell by Submission (rear-naked choke) at Fight Party: Greenville Kage Fighting, Round 2 (3:08). His first and, through October 2026, only professional MMA submission victory. Professional MMA record afterward: 3–0–0.",
+          "source": "https://www.sherdog.com/fighter/Stephen-Thompson-59608",
+          "sourceLabel": "Sherdog · documented MMA fight result"
+        },
+        {
+          "date": "Jul. 15, 2011",
+          "label": "WIN · William Kuhn · XC: Xtreme Chaos 2",
+          "kind": "win",
+          "detail": "Defeated William Kuhn by Decision (unanimous) at XC: Xtreme Chaos 2, Round 3 (5:00). Goes three rounds for his first professional MMA decision victory. Professional MMA record afterward: 4–0–0.",
+          "source": "https://www.sherdog.com/fighter/Stephen-Thompson-59608",
+          "sourceLabel": "Sherdog · documented MMA fight result"
+        },
+        {
+          "date": "Oct. 1, 2011",
+          "label": "WIN · Patrick Mandio · Fight Party: Masquerade Fight Party",
+          "kind": "win",
+          "detail": "Defeated Patrick Mandio by Decision (unanimous) at Fight Party: Masquerade Fight Party, Round 3 (5:00). Completes an undefeated 5–0 regional run before signing with the UFC. Professional MMA record afterward: 5–0–0.",
+          "source": "https://www.sherdog.com/fighter/Stephen-Thompson-59608",
+          "sourceLabel": "Sherdog · documented MMA fight result"
+        },
+        {
+          "date": "Feb. 4, 2012",
+          "label": "WIN · Daniel Stittgen · UFC 143",
+          "kind": "win",
+          "detail": "Defeated Daniel Stittgen by KO (head kick) at UFC 143, Round 1 (4:13). UFC debut. The head-kick knockout earned a Knockout of the Night bonus. Professional MMA record afterward: 6–0–0.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Apr. 21, 2012",
+          "label": "LOSS · Matt Brown · UFC 145",
+          "kind": "loss",
+          "detail": "Lost to Matt Brown by Decision (unanimous) at UFC 145, Round 3 (5:00). First professional MMA defeat. Brown closes distance, imposes clinch and wrestling pressure, and wins all three rounds on the scorecards. Professional MMA record afterward: 6–1–0.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "May 25, 2013",
+          "label": "WIN · Nah-Shon Burrell · UFC 160",
+          "kind": "win",
+          "detail": "Defeated Nah-Shon Burrell by Decision (unanimous) at UFC 160, Round 3 (5:00). Returns from an injury-related layoff and begins a seven-fight UFC winning streak. Professional MMA record afterward: 7–1–0.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Sep. 21, 2013",
+          "label": "WIN · Chris Clements · UFC 165",
+          "kind": "win",
+          "detail": "Defeated Chris Clements by TKO (punches) at UFC 165, Round 2 (1:27). Finishes Clements with strikes in Toronto for his second consecutive UFC win. Professional MMA record afterward: 8–1–0.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Feb. 22, 2014",
+          "label": "WIN · Robert Whittaker · UFC 170",
+          "kind": "win",
+          "detail": "Defeated Robert Whittaker by TKO (punches) at UFC 170, Round 1 (3:43). Stops Whittaker in the opening round, an important early win over a future UFC middleweight champion. Professional MMA record afterward: 9–1–0.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Sep. 27, 2014",
+          "label": "WIN · Patrick Côté · UFC 178",
+          "kind": "win",
+          "detail": "Defeated Patrick Côté by Decision (unanimous) at UFC 178, Round 3 (5:00). Beats the experienced Canadian veteran over three rounds in Las Vegas. Professional MMA record afterward: 10–1–0.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Jul. 12, 2015",
+          "label": "WIN · Jake Ellenberger · The Ultimate Fighter 21 Finale",
+          "kind": "win",
+          "detail": "Defeated Jake Ellenberger by KO (spinning hook kick) at The Ultimate Fighter 21 Finale, Round 1 (4:29). After surviving an early knockdown, Thompson finishes Ellenberger with spinning kicks and wins a Performance of the Night bonus. Professional MMA record afterward: 11–1–0.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Feb. 6, 2016",
+          "label": "WIN · Johny Hendricks · UFC Fight Night 82",
+          "kind": "win",
+          "detail": "Defeated Johny Hendricks by TKO (punches) at UFC Fight Night 82, Round 1 (3:31). Stops former UFC welterweight champion Hendricks in the first round, establishing himself as an immediate title contender. Professional MMA record afterward: 12–1–0.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Jun. 18, 2016",
+          "label": "WIN · Rory MacDonald · UFC Fight Night 89",
+          "kind": "win",
+          "detail": "Defeated Rory MacDonald by Decision (unanimous) at UFC Fight Night 89, Round 5 (5:00). Wins his first five-round UFC main event, extending his UFC winning streak to seven and securing a title opportunity. Professional MMA record afterward: 13–1–0.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Nov. 12, 2016",
+          "label": "DRAW · Tyron Woodley · UFC 205",
+          "kind": "note",
+          "detail": "Fought Tyron Woodley to a majority draw at UFC 205, five rounds (5:00 of Round 5). First UFC welterweight championship challenge at Madison Square Garden. An eventful fourth round helps define a close fight, which ends in a majority draw; Woodley retains the title. Professional MMA record afterward: 13–1–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Mar. 4, 2017",
+          "label": "LOSS · Tyron Woodley · UFC 209",
+          "kind": "loss",
+          "detail": "Lost to Tyron Woodley by Decision (majority) at UFC 209, Round 5 (5:00). Second consecutive UFC title challenge. The tactical rematch goes the distance; Woodley keeps the belt on a majority decision. Professional MMA record afterward: 13–2–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Nov. 4, 2017",
+          "label": "WIN · Jorge Masvidal · UFC 217",
+          "kind": "win",
+          "detail": "Defeated Jorge Masvidal by Decision (unanimous) at UFC 217, Round 3 (5:00). Rebounds from the Woodley rematch with a clear three-round striking victory over Masvidal at Madison Square Garden. Professional MMA record afterward: 14–2–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "May 27, 2018",
+          "label": "LOSS · Darren Till · UFC Fight Night 130",
+          "kind": "loss",
+          "detail": "Lost to Darren Till by Decision (unanimous) at UFC Fight Night 130, Round 5 (5:00). Liverpool main event. Till weighed 174.5 pounds, 3.5 pounds over the non-title welterweight allowance, but the fight went ahead. Till won on all three scorecards. Professional MMA record afterward: 14–3–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Mar. 23, 2019",
+          "label": "LOSS · Anthony Pettis · UFC Fight Night 148",
+          "kind": "loss",
+          "detail": "Lost to Anthony Pettis by KO (punches) at UFC Fight Night 148, Round 2 (4:55). Suffers the first knockout defeat of his professional MMA career after Pettis lands a late second-round superman punch. Professional MMA record afterward: 14–4–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Nov. 2, 2019",
+          "label": "WIN · Vicente Luque · UFC 244",
+          "kind": "win",
+          "detail": "Defeated Vicente Luque by Decision (unanimous) at UFC 244, Round 3 (5:00). Returns to winning form against a powerful pressure fighter in a bout that earns Fight of the Night. Professional MMA record afterward: 15–4–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Dec. 19, 2020",
+          "label": "WIN · Geoff Neal · UFC Fight Night 183",
+          "kind": "win",
+          "detail": "Defeated Geoff Neal by Decision (unanimous) at UFC Fight Night 183, Round 5 (5:00). Wins a five-round main event against Neal, using movement, straight punches and consistent volume. Professional MMA record afterward: 16–4–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Jul. 10, 2021",
+          "label": "LOSS · Gilbert Burns · UFC 264",
+          "kind": "loss",
+          "detail": "Lost to Gilbert Burns by Decision (unanimous) at UFC 264, Round 3 (5:00). Burns uses grappling and control to disrupt Thompson's preferred distance and take a decision. Professional MMA record afterward: 16–5–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Dec. 18, 2021",
+          "label": "LOSS · Belal Muhammad · UFC Fight Night 199",
+          "kind": "loss",
+          "detail": "Lost to Belal Muhammad by Decision (unanimous) at UFC Fight Night 199, Round 3 (5:00). Another three-round defeat driven by an opponent's wrestling pressure and positional control. Professional MMA record afterward: 16–6–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Dec. 3, 2022",
+          "label": "WIN · Kevin Holland · UFC on ESPN 42: Thompson vs. Holland",
+          "kind": "win",
+          "detail": "Defeated Kevin Holland by TKO (corner stoppage) at UFC on ESPN 42: Thompson vs. Holland, Round 4 (5:00). Wins a striking-heavy main event in Orlando; Holland's corner stops the contest before the fifth round due to injuries. Earns Fight of the Night. Professional MMA record afterward: 17–6–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Dec. 16, 2023",
+          "label": "LOSS · Shavkat Rakhmonov · UFC 296",
+          "kind": "loss",
+          "detail": "Lost to Shavkat Rakhmonov by Submission (rear-naked choke) at UFC 296, Round 2 (4:56). Suffers his first MMA submission defeat after Rakhmonov works to the back late in round two. Professional MMA record afterward: 17–7–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Oct. 5, 2024",
+          "label": "LOSS · Joaquin Buckley · UFC 307",
+          "kind": "loss",
+          "detail": "Lost to Joaquin Buckley by KO (punch) at UFC 307, Round 3 (2:17). Buckley knocks him out in the third round in Salt Lake City. Professional MMA record afterward: 17–8–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Jul. 12, 2025",
+          "label": "LOSS · Gabriel Bonfim · UFC on ESPN 70: Lewis vs. Teixeira",
+          "kind": "loss",
+          "detail": "Lost to Gabriel Bonfim by Decision (split) at UFC on ESPN 70: Lewis vs. Teixeira, Round 3 (5:00). Loses a closely contested split decision in Nashville. The result marks his third consecutive defeat. Professional MMA record afterward: 17–9–1.",
+          "source": "https://www.ufc.com/athlete/stephen-thompson",
+          "sourceLabel": "UFC · official fight history"
         }
       ]
     }
