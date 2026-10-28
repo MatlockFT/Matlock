@@ -31,12 +31,12 @@
       "verdict_url": "https://verdictmma.com/event/1957",
       "verdict_date": "2026-11-07",
       "local_fight_count": 14,
-      "verdict_fight_count": 12,
+      "verdict_fight_count": 14,
       "local_main_count": 6,
       "verdict_main_count": 6,
       "local_prelim_count": 8,
-      "verdict_prelim_count": 6,
-      "confirmed_local_bouts": 11
+      "verdict_prelim_count": 8,
+      "confirmed_local_bouts": 13
     },
     {
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
@@ -65,11 +65,11 @@
       "verdict_url": "https://verdictmma.com/event/1970",
       "verdict_date": "2026-11-14",
       "local_fight_count": 12,
-      "verdict_fight_count": 13,
+      "verdict_fight_count": 14,
       "local_main_count": 5,
       "verdict_main_count": 5,
       "local_prelim_count": 7,
-      "verdict_prelim_count": 8,
+      "verdict_prelim_count": 9,
       "confirmed_local_bouts": 12
     },
     {
@@ -101,9 +101,9 @@
       "local_fight_count": 5,
       "verdict_fight_count": 6,
       "local_main_count": 5,
-      "verdict_main_count": 3,
+      "verdict_main_count": 4,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 3,
+      "verdict_prelim_count": 2,
       "confirmed_local_bouts": 5
     },
     {
@@ -190,7 +190,7 @@
       "event_id": "ufc-2026-11-14-polymarket-ufc-334",
       "verdict_event_id": "1970",
       "local_fight_count": 12,
-      "verdict_fight_count": 13
+      "verdict_fight_count": 14
     },
     {
       "type": "section_count_mismatch",
@@ -199,7 +199,7 @@
       "local_main_count": 5,
       "verdict_main_count": 5,
       "local_prelim_count": 7,
-      "verdict_prelim_count": 8
+      "verdict_prelim_count": 9
     },
     {
       "type": "bout_count_mismatch",
@@ -213,9 +213,9 @@
       "event_id": "ufc-335-2026-12-12-fight-card",
       "verdict_event_id": "1971",
       "local_main_count": 5,
-      "verdict_main_count": 3,
+      "verdict_main_count": 4,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 3
+      "verdict_prelim_count": 2
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -238,13 +238,6 @@
       ]
     },
     {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "verdict_event_id": "1957",
-      "local_fight_count": 14,
-      "verdict_fight_count": 12
-    },
-    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
       "verdict_event_id": "1957",
@@ -253,35 +246,6 @@
         "Jonny Parsons",
         "José Souza"
       ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "verdict_event_id": "1957",
-      "order": 6,
-      "fighters": [
-        "Mantas Kondratavičius",
-        "Andre Petroski"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "verdict_event_id": "1957",
-      "order": 9,
-      "fighters": [
-        "Mitch Raposo",
-        "Marcos Degli"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "verdict_event_id": "1957",
-      "local_main_count": 6,
-      "verdict_main_count": 6,
-      "local_prelim_count": 8,
-      "verdict_prelim_count": 6
     },
     {
       "type": "section_count_mismatch",
