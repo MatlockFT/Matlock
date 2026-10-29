@@ -1,7 +1,29 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-29T09:51:38.396Z",
+  "generated_at": "2026-10-29T16:29:45.849Z",
   "changes": [
+    {
+      "id": "2026-10-29T16:29:45.849Z|rizin-abc-presents-rizin-55-2026-11-08|bout_changed|1",
+      "at": "2026-10-29T16:29:45.849Z",
+      "type": "bout_changed",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "promotion": "RIZIN",
+      "event_title": "『abc presents RIZIN.55』",
+      "event_date": "2026-11-08",
+      "summary": "Jake Wilkins vs YAJURO YAMASAKI changed to OPENING FIGHT ジェイク・ウィルキンス vs YAJURO YAMASAKI on 『abc presents RIZIN.55』.",
+      "details": {
+        "order": 15,
+        "section": "Fight Card",
+        "from": [
+          "Jake Wilkins",
+          "YAJURO YAMASAKI"
+        ],
+        "to": [
+          "OPENING FIGHT ジェイク・ウィルキンス",
+          "YAJURO YAMASAKI"
+        ]
+      }
+    },
     {
       "id": "2026-10-29T09:51:38.396Z|rizin-abc-presents-rizin-55-2026-11-08|bout_added|1",
       "at": "2026-10-29T09:51:38.396Z",
@@ -4504,22 +4526,6 @@
       "details": {
         "from_order": 11,
         "to_order": 10,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-10-15T05:13:01.832Z|ufc-333-2026-10-24-fight-card|bout_moved|2",
-      "at": "2026-10-15T05:13:01.832Z",
-      "type": "bout_moved",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "Abubakar Vagaev vs Jacob Malkoun moved on Volkanovski vs Evloev.",
-      "details": {
-        "from_order": 10,
-        "to_order": 11,
         "from_section": "Early Prelims",
         "to_section": "Early Prelims"
       }
