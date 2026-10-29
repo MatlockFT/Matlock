@@ -945,7 +945,7 @@ test('Fight view shows multiple round tapes and does not change scoring',async({
  await expect(page.locator('#graph')).toHaveAttribute('aria-label',/Round 2: 0 red exchanges, 1 blue exchanges/);
 });
 
-test('Download PNG generates a 1600x900 share image with the correct fight metadata',async({page})=>{
+test('Copy-only interface falls back to a 1600x900 PNG when clipboard is blocked',async({page})=>{
  await setup(page);
  await page.click('#startBtn');await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowRight');
  await page.evaluate(()=>{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{write:async()=>{throw Error('Permission denied')}}})});
@@ -1002,4 +1002,82 @@ test('Fight overview export and reduced-motion mobile layout stay usable',async(
  const buffer=await require('node:fs/promises').readFile(await download.path());
  expect(buffer.readUInt32BE(16)).toBe(1600);expect(buffer.readUInt32BE(20)).toBe(900);
  await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
+});
+
+
+test('Shift+arrows log major impact exchanges with exact side and timestamp, and survive reload',async({page})=>{
+ await setup(page);
+ await expect(page.locator('.timeline-title h2')).toHaveText('Exchanges');
+ await expect(page.locator('.tape-heading .micro')).toHaveCount(0);
+ await expect(page.locator('#downloadGraph')).toHaveCount(0);
+ await expect(page.locator('#copyGraph')).toBeVisible();
+ await page.click('#startBtn');
+ await page.keyboard.press('ArrowLeft');
+ await page.keyboard.press('Shift+ArrowRight');
+ await page.keyboard.press('Shift+ArrowLeft');
+ await expect(page.locator('#observationsCount')).toHaveText('3 exchanges · 2 major');
+ const types=await page.evaluate(()=>data.events[0].fights[0].roundData[0].observations.map(o=>({side:o.side,type:o.type,time:o.time})));
+ expect(types.map(o=>[o.side,o.type])).toEqual([['a','exchange'],['b','impact'],['a','impact']]);
+ expect(types.every(o=>Number.isFinite(o.time)&&o.time>=0)).toBe(true);
+ await expect(page.locator('#momentLog .impact-label')).toHaveCount(2);
+ await expect(page.locator('#graph')).toHaveAttribute('aria-label',/1 red major impacts and 1 blue major impacts/);
+ await page.click('#backBtn');await page.reload();
+ await page.locator('.bout-row .primary').click();
+ const restored=await page.evaluate(()=>data.events[0].fights[0].roundData[0].observations.map(o=>o.type));
+ expect(restored).toEqual(['exchange','impact','impact']);
+});
+
+test('Ctrl+Z undoes a major exchange and Backspace does not undo',async({page})=>{
+ await setup(page);await page.click('#startBtn');
+ await page.keyboard.press('Shift+ArrowRight');
+ await page.keyboard.press('Backspace');
+ await expect(page.locator('#observationsCount')).toHaveText('1 exchanges · 1 major');
+ await page.keyboard.press('Control+z');
+ await expect(page.locator('#observationsCount')).toHaveText('0 exchanges');
+ const n=await page.evaluate(()=>data.events[0].fights[0].roundData[0].observations.length);
+ expect(n).toBe(0);
+});
+
+test('A major impact outweighs one ordinary exchange but cannot force a 10–8',async({page})=>{
+ await setup(page);await page.click('#startBtn');
+ await page.keyboard.press('ArrowLeft');
+ await page.keyboard.press('Shift+ArrowRight');
+ await page.click('#endBtn');
+ await expect(page.locator('#suggestionText')).toContainText('Major impacts');
+ await expect(page.locator('#selectB')).toHaveClass(/selected/);
+ await expect(page.locator('#draftScore')).toHaveText('9 – 10');
+ await page.keyboard.press('ArrowLeft');await page.keyboard.press('Enter');
+ await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
+});
+
+test('Impact type survives JSON backup and is validated during restore',async({page})=>{
+ await setup(page);await page.click('#startBtn');await page.keyboard.press('Shift+ArrowLeft');
+ await page.click('#backBtn');
+ const [download]=await Promise.all([page.waitForEvent('download'),page.click('#exportAll')]);
+ const obj=JSON.parse(await require('node:fs/promises').readFile(await download.path(),'utf8'));
+ expect(obj.events[0].fights[0].roundData[0].observations[0].type).toBe('impact');
+ const bad=JSON.parse(JSON.stringify(obj));bad.events[0].fights[0].roundData[0].observations[0].type='invalid-type';
+ expect(await page.evaluate(input=>{try{validate(input);return false}catch{return true}},bad)).toBe(true);
+});
+
+test('Master Sheets adds impact columns and safely upgrades older existing tab headers',async({page})=>{
+ await stubGoogleSheets(page);await setup(page);await page.click('#startBtn');
+ await page.keyboard.press('Shift+ArrowLeft');await page.keyboard.press('ArrowRight');
+ await page.click('#backBtn');await connectQaGoogle(page);
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ const first=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs);
+ expect(first.Moments[0].at(-1)).toBe('Exchange type');
+ expect(first.Moments.slice(1).map(r=>r.at(-1))).toEqual(['Major impact','Exchange']);
+ expect(first.Rounds[0].slice(-2)).toEqual(['Red major impacts','Blue major impacts']);
+ expect(first.Rounds[1].slice(-2)).toEqual([1,0]);
+ await page.evaluate(()=>{
+  const tabs=window.__masterFiles['qa-spreadsheet-123'].tabs;
+  tabs.Moments=tabs.Moments.map(row=>row.slice(0,-1));
+  tabs.Rounds=tabs.Rounds.map(row=>row.slice(0,-2));
+ });
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ const migrated=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs);
+ expect(migrated.Moments[0].at(-1)).toBe('Exchange type');
+ expect(migrated.Rounds[0].at(-1)).toBe('Blue major impacts');
+ expect(migrated.Moments).toHaveLength(3);
 });
