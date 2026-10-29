@@ -157,7 +157,10 @@ test('reset from score prompt restarts same round and does not alter previous sc
   await expect(page.locator('#observationsCount')).toHaveText('0 recorded');
 });
 test('previous v2 scorecard keeps original fighter identity after layout migration', async ({page})=>{
-  await page.evaluate(()=>{
+  // Seed before the application initializes. Writing to localStorage in a running
+  // page is overwritten by its pagehide autosave during navigation.
+  await page.addInitScript(()=>{
+    if(localStorage.getItem('corner-migration-seeded'))return;
     const old={version:2,selected:'event-1',events:[{
       id:'event-1',name:'Old event',date:'2026-10-28',judge:'Judge',
       fights:[{id:'fight-1',left:'Original blue',right:'Original red',division:'Flyweight',rounds:3,duration:300,index:1,status:'in-progress',result:null,legacyId:null,
@@ -168,6 +171,7 @@ test('previous v2 scorecard keeps original fighter identity after layout migrati
       }]
     }]};
     localStorage.setItem('copper47.workspace.v2',JSON.stringify(old));
+    localStorage.setItem('corner-migration-seeded','1');
   });
   await page.reload();
   await page.locator('.bout-row .primary').click();
