@@ -40,8 +40,8 @@ h1,h2,h3,p{margin:0}h1{font-size:22px;letter-spacing:-.04em}h2{font-size:17px;le
     <div class="formgrid"><label>Event name<input id="eventName" maxlength="180" placeholder="UFC Fight Night"></label><label>Date<input id="eventDate" type="date"></label><label>Judge / session<input id="eventJudge" maxlength="150" placeholder="Judge name"></label></div>
     <div class="section"><div class="section-head"><h2>Fight card</h2><span class="micro" id="boutCount">0 fights</span></div><div id="bouts"></div></div>
     <div class="section"><div class="section-head"><h2>Add fight</h2></div><div class="formgrid">
-    <label>Left / blue corner<input id="boutLeft" maxlength="150" placeholder="Fighter A"></label>
-    <label>Right / red corner<input id="boutRight" maxlength="150" placeholder="Fighter B"></label>
+    <label>Left / red corner<input id="boutLeft" maxlength="150" placeholder="Fighter A"></label>
+    <label>Right / blue corner<input id="boutRight" maxlength="150" placeholder="Fighter B"></label>
     <label>Division<input id="boutDivision" maxlength="100" placeholder="Lightweight"></label>
     <label>Scheduled rounds<select id="boutRounds"><option value="3">3 rounds</option><option value="5">5 rounds</option></select></label>
     <label>Round length<select id="boutDuration"><option value="300">5 minutes</option><option value="180">3 minutes</option><option value="600">10 minutes</option></select></label>
@@ -57,24 +57,25 @@ h1,h2,h3,p{margin:0}h1{font-size:22px;letter-spacing:-.04em}h2{font-size:17px;le
    <div class="actions"><span id="wbSaved" class="pill saved">Saved locally</span><button id="fullscreenBtn" class="quiet small-btn">Full screen</button></div>
  </div>
  <div class="wb-head">
-  <div><div class="micro blue">Left / blue • ←</div><div class="corner-name" id="wbLeft">Fighter A</div></div>
+  <div><div class="micro red">Left / red • ←</div><div class="corner-name" id="wbLeft">Fighter A</div></div>
   <div class="round-box"><div id="wbRound" class="micro">Round 1 of 3</div><div id="clock" class="clock mono">5:00</div><div id="roundState" class="statusline">Ready</div></div>
-  <div class="right"><div class="micro red">Right / red • →</div><div class="corner-name" id="wbRight">Fighter B</div></div>
+  <div class="right"><div class="micro blue">Right / blue • →</div><div class="corner-name" id="wbRight">Fighter B</div></div>
  </div>
  <div class="timeline">
   <div class="timeline-title"><h2>Round observations</h2><span class="micro" id="observationsCount">0 recorded</span></div>
   <canvas id="graph" aria-label="Timeline of timestamped left and right fighter observations" role="img"></canvas>
-  <div class="legend"><span class="blue">BLUE • ABOVE CENTER</span><span>TIME →</span><span class="red">RED • BELOW CENTER</span></div>
+  <div class="legend"><span class="red">RED • ABOVE CENTER</span><span>TIME →</span><span class="blue">BLUE • BELOW CENTER</span></div>
  </div>
  <div class="controls">
   <button id="startBtn" class="primary">Start round</button>
   <button id="undoBtn">Undo last</button>
+  <button id="resetBtn" class="quiet danger">Reset round</button>
   <button id="endBtn">End round &amp; score</button>
   <button id="finishBtn" class="quiet">Finish fight</button>
  </div>
  <p class="hints">← / → record an observation &nbsp; • &nbsp; Space start/pause &nbsp; • &nbsp; Backspace undo &nbsp; • &nbsp; E end round</p>
  <div class="footer-grid">
-  <section class="panel"><div class="panel-title"><h2>Scorecard</h2><span id="wbTotal" class="totals mono">0 – 0</span></div><table class="score-rows"><thead><tr><th>Round</th><th>Blue</th><th>Red</th><th></th></tr></thead><tbody id="scoreBody"></tbody></table><div id="resultLabel" class="muted" style="margin-top:14px"></div></section>
+  <section class="panel"><div class="panel-title"><h2>Scorecard</h2><span id="wbTotal" class="totals mono">0 – 0</span></div><table class="score-rows"><thead><tr><th>Round</th><th>Red</th><th>Blue</th><th></th></tr></thead><tbody id="scoreBody"></tbody></table><div id="resultLabel" class="muted" style="margin-top:14px"></div></section>
   <section class="panel"><div class="panel-title"><h2>Review observations</h2><span class="micro">Not an automatic score</span></div><div id="roundTabs" class="round-tabs"></div><div id="momentLog" class="log"></div></section>
  </div>
 </section>
@@ -83,16 +84,16 @@ h1,h2,h3,p{margin:0}h1{font-size:22px;letter-spacing:-.04em}h2{font-size:17px;le
   <div class="micro" id="scoreKicker">Round complete</div><h2 id="scoreTitle" style="margin-top:7px;font-size:22px">Assign round score</h2>
   <p class="muted" style="margin-top:6px">Judge the round from effective striking and grappling, not from the number of observations.</p>
   <div class="winner-grid">
-   <button class="winner" id="selectA"><span class="micro blue">← Left / blue</span><div id="chooseA" style="font-size:18px;font-weight:750;margin-top:8px"></div></button>
-   <button class="winner right" id="selectB"><span class="micro red">Right / red →</span><div id="chooseB" style="font-size:18px;font-weight:750;margin-top:8px"></div></button>
+   <button class="winner" id="selectA"><span class="micro red">← Left / red</span><div id="chooseA" style="font-size:18px;font-weight:750;margin-top:8px"></div></button>
+   <button class="winner right" id="selectB"><span class="micro blue">Right / blue →</span><div id="chooseB" style="font-size:18px;font-weight:750;margin-top:8px"></div></button>
   </div>
   <div class="micro">Round margin</div>
   <div class="margins"><button data-margin="9">10–9</button><button data-margin="8">10–8</button><button data-margin="7">10–7</button><button data-margin="10">10–10</button></div>
-  <div class="deductions"><div class="deduction"><div class="micro">Blue deductions</div><div class="stepper"><button data-dside="0" data-delta="-1" aria-label="Remove blue deduction">−</button><strong id="deductA" class="mono">0</strong><button data-dside="0" data-delta="1" aria-label="Add blue deduction">+</button></div></div>
-  <div class="deduction"><div class="micro">Red deductions</div><div class="stepper"><button data-dside="1" data-delta="-1" aria-label="Remove red deduction">−</button><strong id="deductB" class="mono">0</strong><button data-dside="1" data-delta="1" aria-label="Add red deduction">+</button></div></div></div>
+  <div class="deductions"><div class="deduction"><div class="micro red">Red deductions</div><div class="stepper"><button data-dside="0" data-delta="-1" aria-label="Remove red deduction">−</button><strong id="deductA" class="mono">0</strong><button data-dside="0" data-delta="1" aria-label="Add red deduction">+</button></div></div>
+  <div class="deduction"><div class="micro blue">Blue deductions</div><div class="stepper"><button data-dside="1" data-delta="-1" aria-label="Remove blue deduction">−</button><strong id="deductB" class="mono">0</strong><button data-dside="1" data-delta="1" aria-label="Add blue deduction">+</button></div></div></div>
   <div class="notice">Deductions must be assessed by the referee. 10–10 is a separate, explicit selection.</div>
   <div id="draftScore" class="mono" style="font-size:24px;font-weight:800">—</div>
-  <div class="modal-actions"><button id="cancelScore" class="quiet">Back</button><button id="confirmScore" class="primary">Confirm score • Enter</button></div>
+  <div class="modal-actions"><button id="resetFromScore" class="quiet danger">Reset &amp; restart round</button><button id="cancelScore" class="quiet">Back</button><button id="confirmScore" class="primary">Confirm score • Enter</button></div>
  </div>
 </div>
 <div id="finishOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="finishTitle">
@@ -100,7 +101,7 @@ h1,h2,h3,p{margin:0}h1{font-size:22px;letter-spacing:-.04em}h2{font-size:17px;le
   <p class="muted" style="margin-top:6px">Select a result type. Decision uses the confirmed round scores; stoppages do not fabricate a score for an incomplete round.</p>
   <div class="formgrid" style="grid-template-columns:1fr 1fr;margin-top:18px">
    <label>Result type<select id="resultType"><option value="decision">Decision / scorecard</option><option value="ko">KO</option><option value="tko">TKO</option><option value="submission">Submission</option><option value="draw">Draw</option><option value="no-contest">No contest</option><option value="other">Other</option></select></label>
-   <label>Winner<select id="resultWinner"><option value="">Not selected / none</option><option value="a">Left / blue</option><option value="b">Right / red</option></select></label>
+   <label>Winner<select id="resultWinner"><option value="">Not selected / none</option><option value="a">Left / red</option><option value="b">Right / blue</option></select></label>
   </div>
   <div class="notice" id="finishHint">Confirm all rounds before completing a decision.</div>
   <div class="modal-actions"><button id="cancelFinish" class="quiet">Cancel</button><button id="confirmFinish" class="primary">Complete fight</button></div>
@@ -115,11 +116,35 @@ const KEY='copper47.workspace.v2', OLD_CURRENT='copper47.current.v1', OLD_SAVES=
 const uid=()=>crypto.randomUUID?crypto.randomUUID():'id-'+Date.now()+'-'+Math.random().toString(36).slice(2);
 const fresh=()=>({version:2,selected:null,events:[]});
 const newRound=()=>({elapsed:0,observations:[],score:null});
-const newFight=(left,right,division,rounds,duration)=>({id:uid(),left,right,division,rounds:+rounds,duration:+duration,index:0,roundData:[newRound()],status:'ready',result:null,legacyId:null});
+const newFight=(left,right,division,rounds,duration)=>({id:uid(),left,right,division,rounds:+rounds,duration:+duration,index:0,roundData:[newRound()],status:'ready',result:null,legacyId:null,cornerLayout:'red-left'});
 let data=fresh(),activeId=null,running=false,anchor=0,scoreIndex=null,scoreDraft=null,scoreWasLive=false,reviewIndex=0,focusMode=false,saveFailed=false;
 function readJSON(key){try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}}
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.add('hidden'),3600)}
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(data));saveFailed=false;$('saveStatus').textContent='Saved locally';$('saveStatus').className='pill saved';$('wbSaved').textContent='Saved locally';$('wbSaved').className='pill saved';return true}catch(e){saveFailed=true;$('saveStatus').textContent='SAVE FAILED';$('saveStatus').className='pill warning';$('wbSaved').textContent='SAVE FAILED';$('wbSaved').className='pill warning';toast('Browser storage failed. Export a backup before closing.');return false}}
+function upgradeCornerLayout(workspace){
+ // Older v2 fights used blue on the left and red on the right.
+ // Change sides once while preserving each fighter's observations, scores and results.
+ let changed=false;
+ workspace.events.forEach(e=>e.fights.forEach(f=>{
+  if(f.cornerLayout==='red-left')return;
+  if(f.cornerLayout&&f.cornerLayout!=='blue-left')throw Error('Unsupported corner layout.');
+  [f.left,f.right]=[f.right,f.left];
+  f.roundData.forEach(r=>{
+   r.observations.forEach(o=>o.side=o.side==='a'?'b':'a');
+   if(r.score){
+    if(r.score.winner==='a')r.score.winner='b';
+    else if(r.score.winner==='b')r.score.winner='a';
+    r.score.deductions.reverse();
+   }
+  });
+  if(f.result){
+   if(f.result.winner==='a')f.result.winner='b';
+   else if(f.result.winner==='b')f.result.winner='a';
+  }
+  f.cornerLayout='red-left';changed=true;
+ }));
+ return changed;
+}
 function event(){return data.events.find(e=>e.id===data.selected)}
 function fight(){const e=event();return e&&e.fights.find(f=>f.id===activeId)}
 function currentRound(){const f=fight();return f&&f.roundData[f.index]}
@@ -156,6 +181,18 @@ function observe(side){const f=fight(),r=currentRound();if(!f||!running||f.resul
  const time=Math.min(f.duration,Math.round(seconds()*10)/10);if(time>=f.duration){pause();renderWorkbench();return}
  r.observations.push({side,time});persist();renderWorkbench()}
 function undo(){const r=currentRound();if(!r||!r.observations.length||r.score)return;r.observations.pop();persist();renderWorkbench()}
+function resetRound(){
+ const f=fight(),r=currentRound();if(!f||!r||f.result)return;
+ const n=f.index+1;
+ if(!confirm('Reset round '+n+'? This clears its timer, observations and any confirmed score. Earlier rounds are not changed.'))return;
+ pause();
+ r.elapsed=0;r.observations=[];r.score=null;
+ f.status=f.roundData.some((rd,i)=>i<f.index&&rd.score)?'in-progress':'ready';
+ reviewIndex=f.index;
+ scoreDraft=null;scoreIndex=null;
+ setVisible('scoreOverlay',false);
+ persist();renderWorkbench();toast('Round '+n+' reset. Ready to restart.');
+}
 function endRound(){const f=fight(),r=currentRound();if(!f||f.result||r.score)return;
  if(f.duration-seconds()>20&&!confirm('The clock has time remaining. End and score this round?'))return;
  pause();openScore(f.index,false)}
@@ -164,6 +201,7 @@ function openScore(index,edit){const f=fight(),r=f&&f.roundData[index];if(!r)ret
  $('scoreKicker').textContent=edit?'Edit saved round':'Round '+(index+1)+' complete';
  $('scoreTitle').textContent='Score round '+(index+1);
  $('chooseA').textContent=safeName(f.left,'Fighter A');$('chooseB').textContent=safeName(f.right,'Fighter B');
+ $('resetFromScore').classList.toggle('hidden',!!f.result||index!==f.index);
  setVisible('scoreOverlay',true);renderScoreModal();$('selectA').focus()}
 function renderScoreModal(){
  $('selectA').classList.toggle('selected',scoreDraft.winner==='a');$('selectB').classList.toggle('selected',scoreDraft.winner==='b');
@@ -195,6 +233,7 @@ function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=cu
  $('startBtn').textContent=running?'Pause round':r.elapsed?'Resume round':'Start round';
  $('startBtn').disabled=!!f.result||!!r.score;
  $('undoBtn').disabled=!!f.result||!!r.score||!r.observations.length;
+ $('resetBtn').disabled=!!f.result||(!r.score&&!r.observations.length&&r.elapsed===0&&!running);
  $('endBtn').disabled=!!f.result||!!r.score;
  $('finishBtn').textContent=f.result?'View / edit result':f.status==='awaiting-result'?'Finalize decision':'Finish fight';
  $('observationsCount').textContent=r.observations.length+' recorded';
@@ -209,7 +248,7 @@ function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=cu
  const tabs=$('roundTabs');tabs.replaceChildren();f.roundData.forEach((rd,i)=>{const b=el('button','R'+(i+1),'small-btn'+(reviewIndex===i?' chosen':''));b.onclick=()=>{reviewIndex=i;renderWorkbench()};tabs.append(b)});
  const log=$('momentLog');log.replaceChildren();const selected=f.roundData[reviewIndex]||r;
  if(!selected.observations.length)log.append(el('div','No observations in this round.','muted'));
- selected.observations.slice().reverse().forEach(o=>{const l=el('div',undefined,'logline');l.append(el('span',o.side==='a'?safeName(f.left,'Fighter A'):safeName(f.right,'Fighter B'),o.side==='a'?'blue':'red'),el('span',clockText(f.duration-o.time),'mono muted'));log.append(l)});
+ selected.observations.slice().reverse().forEach(o=>{const l=el('div',undefined,'logline');l.append(el('span',o.side==='a'?safeName(f.left,'Fighter A'):safeName(f.right,'Fighter B'),o.side==='a'?'red':'blue'),el('span',clockText(f.duration-o.time),'mono muted'));log.append(l)});
  drawGraph();
 }
 function drawGraph(){const c=$('graph'),f=fight();if(!f)return;const r=f.roundData[reviewIndex]||currentRound();if(!r)return;const rect=c.getBoundingClientRect(),w=Math.max(260,rect.width),h=Math.max(125,rect.height),d=Math.min(2,window.devicePixelRatio||1);
@@ -217,7 +256,7 @@ function drawGraph(){const c=$('graph'),f=fight();if(!f)return;const r=f.roundDa
  const ctx=c.getContext('2d');ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,w,h);const left=12,right=w-12,middle=h*.5,pad=20;
  for(let i=0;i<=5;i++){const x=left+(right-left)*i/5;ctx.strokeStyle='#2e3c4a';ctx.beginPath();ctx.moveTo(x,8);ctx.lineTo(x,h-18);ctx.stroke();ctx.fillStyle='#93a9bf';ctx.font='11px system-ui';ctx.textAlign=i===0?'left':i===5?'right':'center';ctx.fillText(clockText(f.duration*i/5),x,h-3)}
  ctx.strokeStyle='#8193a6';ctx.setLineDash([3,5]);ctx.beginPath();ctx.moveTo(left,middle);ctx.lineTo(right,middle);ctx.stroke();ctx.setLineDash([]);
- r.observations.forEach(o=>{const x=left+(right-left)*o.time/f.duration,y=o.side==='a'?middle-29:middle+29;ctx.fillStyle=o.side==='a'?'#80aef6':'#f28b90';ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill()});
+ r.observations.forEach(o=>{const x=left+(right-left)*o.time/f.duration,y=o.side==='a'?middle-29:middle+29;ctx.fillStyle=o.side==='a'?'#f28b90':'#80aef6';ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill()});
  if(r===currentRound()&&running){ctx.strokeStyle='#d9e7f4';ctx.lineWidth=1;const x=left+(right-left)*seconds()/f.duration;ctx.beginPath();ctx.moveTo(x,8);ctx.lineTo(x,h-18);ctx.stroke()}
 }
 function resultDialog(){const f=fight();if(!f)return;pause();$('resultType').value=f.result?f.result.type:(f.status==='awaiting-result'?'decision':'tko');$('resultWinner').value=f.result?f.result.winner:'';setVisible('finishOverlay',true);renderFinishHint()}
@@ -235,13 +274,13 @@ function addBout(){const e=event(),a=$('boutLeft').value.trim(),b=$('boutRight')
 function download(content,name,type){const u=URL.createObjectURL(new Blob([content],{type})),a=el('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000)}
 function exportJSON(){pause();persist();download(JSON.stringify(data,null,2),'judging-backup-'+new Date().toISOString().slice(0,10)+'.json','application/json')}
 function qcsv(v){let s=String(v==null?'':v);if(/^[\s]*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
-function exportCSV(){pause();const rows=[['Event','Date','Judge','Blue fighter','Red fighter','Division','Round','Blue points','Red points','Blue deductions','Red deductions','Fight result']];
+function exportCSV(){pause();const rows=[['Event','Date','Judge','Red fighter','Blue fighter','Division','Round','Red points','Blue points','Red deductions','Blue deductions','Fight result']];
  data.events.forEach(e=>e.fights.forEach(f=>f.roundData.forEach((r,i)=>{const p=roundPoints(r.score);rows.push([e.name,e.date,e.judge,f.left,f.right,f.division,i+1,p?p[0]:'',p?p[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',f.result?f.result.type:''])})));
  download('\uFEFF'+rows.map(row=>row.map(qcsv).join(',')).join('\r\n'),'judging-scorecards.csv','text/csv')}
 function validate(input){if(!input||input.version!==2||!Array.isArray(input.events)||input.events.length>200)throw Error('Not a valid Stage 1 backup.');
  const ids=new Set();input.events.forEach(e=>{if(!e||typeof e.id!=='string'||ids.has(e.id)||!Array.isArray(e.fights)||e.fights.length>70)throw Error('Invalid event.');ids.add(e.id);for(const k of ['name','date','judge'])if(typeof e[k]!=='string'||e[k].length>1000)throw Error('Invalid event data.');
  e.fights.forEach(f=>{if(!f||typeof f.id!=='string'||ids.has(f.id)||!Array.isArray(f.roundData)||!Number.isInteger(f.index)||f.index<0||f.index>=f.roundData.length||f.roundData.length>5||![3,5].includes(f.rounds)||![180,300,600].includes(f.duration)||f.roundData.length>f.rounds)throw Error('Invalid fight.');
- ids.add(f.id);for(const k of ['left','right','division'])if(typeof f[k]!=='string'||f[k].length>1000)throw Error('Invalid fighter data.');
+ ids.add(f.id);if(f.cornerLayout&&!['red-left','blue-left'].includes(f.cornerLayout))throw Error('Invalid corner layout.');for(const k of ['left','right','division'])if(typeof f[k]!=='string'||f[k].length>1000)throw Error('Invalid fighter data.');
  f.roundData.forEach(r=>{if(!r||!Number.isFinite(r.elapsed)||r.elapsed<0||r.elapsed>f.duration||!Array.isArray(r.observations)||r.observations.length>15000)throw Error('Invalid round.');
  let prev=0;r.observations.forEach(o=>{if(!o||!['a','b'].includes(o.side)||!Number.isFinite(o.time)||o.time<prev||o.time>f.duration)throw Error('Invalid observation.');prev=o.time});
  if(r.score){if(!['a','b','draw'].includes(r.score.winner)||![7,8,9,10].includes(r.score.margin)||!Array.isArray(r.score.deductions)||r.score.deductions.length!==2||r.score.deductions.some(n=>!Number.isInteger(n)||n<0||n>10))throw Error('Invalid score.');}});
@@ -261,10 +300,10 @@ $('newEventBtn').onclick=newEvent;$('addBout').onclick=addBout;
 $('deleteEvent').onclick=()=>{const e=event();if(e&&confirm('Delete this event and ALL its scorecards? This cannot be undone.')){data.events=data.events.filter(x=>x.id!==e.id);data.selected=data.events[0]?.id||null;persist();renderDashboard()}};
 $('exportAll').onclick=exportJSON;$('exportCsv').onclick=exportCSV;$('importBtn').onclick=()=>$('backupInput').click();
 $('backupInput').onchange=async()=>{try{const file=$('backupInput').files[0];if(!file)return;if(file.size>4500000)throw Error('Maximum backup size is 4.5 MB.');
- const obj=validate(JSON.parse(await file.text()));if(!confirm('Replace this browser workspace with the imported backup? Export your current data first.'))return;pause();data=obj;activeId=null;data.selected=data.events.some(e=>e.id===data.selected)?data.selected:(data.events[0]?.id||null);persist();renderDashboard();toast('Backup imported.')}catch(e){toast(e.message)}finally{$('backupInput').value=''}};
+ const obj=validate(JSON.parse(await file.text()));upgradeCornerLayout(obj);if(!confirm('Replace this browser workspace with the imported backup? Export your current data first.'))return;pause();data=obj;activeId=null;data.selected=data.events.some(e=>e.id===data.selected)?data.selected:(data.events[0]?.id||null);persist();renderDashboard();toast('Backup imported.')}catch(e){toast(e.message)}finally{$('backupInput').value=''}};
 $('legacyBtn').onclick=importLegacy;$('backBtn').onclick=()=>{pause();if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});renderDashboard()};
 $('fullscreenBtn').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('workbench').requestFullscreen()}catch(e){toast('Full screen unavailable.')}};
-$('startBtn').onclick=run;$('undoBtn').onclick=undo;$('endBtn').onclick=endRound;$('finishBtn').onclick=resultDialog;
+$('startBtn').onclick=run;$('undoBtn').onclick=undo;$('resetBtn').onclick=resetRound;$('resetFromScore').onclick=resetRound;$('endBtn').onclick=endRound;$('finishBtn').onclick=resultDialog;
 $('selectA').onclick=()=>{scoreDraft.winner='a';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
 $('selectB').onclick=()=>{scoreDraft.winner='b';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
 document.querySelectorAll('[data-margin]').forEach(b=>b.onclick=()=>{scoreDraft.margin=+b.dataset.margin;if(scoreDraft.margin===10)scoreDraft.winner='draw';else if(scoreDraft.winner==='draw')scoreDraft.winner=null;renderScoreModal()});
@@ -284,7 +323,7 @@ window.addEventListener('resize',()=>{if(focusMode)drawGraph()});
 window.addEventListener('pagehide',()=>{pause();persist()});
 window.addEventListener('storage',e=>{if(e.key===KEY)toast('This workspace changed in another tab. Avoid scoring in two tabs at once.');});
 setInterval(()=>{if(focusMode)tick()},200);setInterval(()=>{if(running){currentRound().elapsed=seconds();anchor=performance.now();persist()}},1500);
-try{const saved=readJSON(KEY);if(saved)data=validate(saved)}catch(e){toast('Saved workspace could not be read. Original browser data was not changed.')}
+try{const saved=readJSON(KEY);if(saved){data=validate(saved);if(upgradeCornerLayout(data))persist()}}catch(e){toast('Saved workspace could not be read. Original browser data was not changed.')}
 if(!data.events.some(e=>e.id===data.selected))data.selected=data.events[0]?.id||null;
 renderDashboard();
 </script>
