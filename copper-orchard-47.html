@@ -3,85 +3,286 @@ layout: null
 permalink: /copper-orchard-47/
 sitemap: false
 ---
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive"><title>Scorecard</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Scorecard</title>
 <style>
-:root{color-scheme:dark;--bg:#101210;--panel:#1b1e1a;--line:#353c33;--muted:#a9b2a5;--a:#e69d79;--b:#94bdf3;--lime:#d6ef8c}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f0f2eb;font:15px system-ui,sans-serif}main{max-width:1180px;margin:auto;padding:30px 22px}header,.row,.actions{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}h1{font-size:clamp(28px,4vw,48px);letter-spacing:-2px;margin:4px 0 8px}h2{font-size:18px;margin:0 0 18px}.eyebrow{font:12px ui-monospace,monospace;letter-spacing:2px;color:var(--lime)}p{color:var(--muted);line-height:1.6}button,input,select,textarea{min-width:0;font:inherit;border:1px solid var(--line);border-radius:7px;padding:11px;background:#111510;color:inherit}button{cursor:pointer}button:hover{border-color:var(--lime)}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--lime);outline-offset:3px}button:disabled{opacity:.4;cursor:not-allowed}.primary{background:var(--lime);color:#192014;font-weight:700}.panel{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;margin:18px 0}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}label{min-width:0;display:grid;gap:7px;color:var(--muted);font-size:12px}input,select,textarea{width:100%;color:#fff}textarea{min-height:68px}.arena{display:grid;grid-template-columns:1fr 180px 1fr;gap:16px;align-items:center}.fighter{width:100%;padding:25px 12px;text-align:left;border:1px solid var(--a);background:#2b211c}.fighter.right{border-color:var(--b);background:#1a2430;text-align:right}.fighter strong{display:block;font-size:clamp(21px,3vw,34px);overflow-wrap:anywhere}.points{font:64px ui-monospace,monospace;color:var(--a)}.right .points{color:var(--b)}.center{text-align:center}.clock{font:38px ui-monospace,monospace;margin:10px 0}.hint{font-size:12px;color:var(--muted)}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:18px}.charts{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:18px}canvas{max-width:100%;width:100%;height:230px;display:block}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;text-align:left}th,td{border-bottom:1px solid var(--line);padding:12px 8px;white-space:nowrap}th{color:var(--muted);font-size:12px}.a{color:var(--a)}.b{color:var(--b)}.badge{border:1px solid var(--line);padding:6px 10px;border-radius:30px;font-size:12px}details summary{cursor:pointer;font-weight:700}details p{font-size:13px;overflow-wrap:anywhere}#total{overflow-wrap:anywhere}#status{position:sticky;bottom:10px;z-index:5;background:#192014;border-radius:7px;padding:8px 12px;min-height:24px;color:var(--lime);font-size:13px}#status:empty{display:none}#log{max-height:180px;overflow:auto;font:12px ui-monospace,monospace;color:var(--muted)}.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}.hidden{display:none}a{color:var(--lime)}@media(max-width:700px){main{padding:20px 12px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.arena{grid-template-columns:repeat(2,minmax(0,1fr))}.center{grid-column:1/-1;grid-row:1}.charts,.split{grid-template-columns:1fr}.panel{padding:16px}.fighter{padding:18px 10px}.points{font-size:48px}input,select,textarea{font-size:16px}}@media print{body{background:white;color:black}button,details,.toolbar,.actions,#status{display:none}.panel{min-width:0;background:white;border-color:#ccc}input,textarea,select{color:black;background:white}p,label,th{color:#444}}
-</style></head><body><main>
-<section class="panel"><div class="grid"><label>Event<input id="event" placeholder="UFC / PFL / regional event"></label><label>Fight / division<input id="fight" placeholder="Main event · Lightweight"></label><label>Date<input type="date" id="date"></label><label>Judge / session<input id="judge" placeholder="Your name"></label><label>Left fighter<input id="left" placeholder="Fighter A"></label><label>Right fighter<input id="right" placeholder="Fighter B"></label><label>Scheduled rounds<select id="rounds"><option>3</option><option>5</option></select></label><label>Round length<select id="duration"><option value="300">5 minutes</option><option value="180">3 minutes</option><option value="600">10 minutes</option></select></label></div></section>
-<section class="panel"><div class="arena"><button class="fighter" id="hitA"><span>← LEFT FIGHTER</span><strong id="nameA">Fighter A</strong><div class="points" id="pointsA">0</div></button><div class="center"><span class="eyebrow" id="roundLabel">ROUND 1 OF 3</span><div class="clock" id="clock">5:00</div><button class="primary" id="play">Start round</button><div class="hint" id="stateLabel" style="margin-top:10px">Ready</div></div><button class="fighter right" id="hitB"><span>RIGHT FIGHTER →</span><strong id="nameB">Fighter B</strong><div class="points" id="pointsB">0</div></button></div><div class="toolbar"><button id="undo">Undo last moment</button><button id="end">End round</button><button id="next">Next round</button><span class="hint">← / → score · Space pause · Backspace undo</span></div></section>
-<div class="charts"><section class="panel"><div class="row"><h2>Round graph</h2><select id="viewRound" aria-label="Graph round" style="width:auto"></select></div><p class="hint"><span class="a">above zero: left</span> · <span class="b">below zero: right</span></p><canvas id="momentum" aria-label="Cumulative scoring advantage over round time" role="img"></canvas></section><section class="panel"><h2>Moments by round</h2><p class="hint"><span class="a">■ Left fighter</span> &nbsp; <span class="b">■ Right fighter</span></p><canvas id="bars" aria-label="Moments for each fighter by round" role="img"></canvas></section></div>
-<section class="panel"><div class="row"><h2>Scorecard</h2><strong id="total">0 – 0</strong></div><div class="table-wrap"><table><thead><tr><th>Round</th><th>Moments L / R</th><th>Suggested</th><th>Final L / R</th><th>Deductions L / R</th></tr></thead><tbody id="scorecard"></tbody></table></div><label>Fight notes<textarea id="notes" placeholder="Key exchanges, damage, close rounds…"></textarea></label></section>
-<div class="split"><section class="panel"><h2>Sessions & exports</h2><div class="toolbar"><button id="save">Save session</button><button id="new">New fight</button><button id="json">Export JSON</button><button id="csv">Export CSV</button><button id="image">Export graph PNG</button><button id="print">Print scorecard</button><button id="import">Import JSON</button><input id="file" class="hidden" type="file" accept="application/json,.json"></div><label style="margin-top:18px">Saved on this browser<select id="sessions"><option value="">Choose a saved fight</option></select></label><button id="load" disabled style="margin-top:10px">Load selected fight</button><p class="hint">Autosaved in this browser.</p></section><section class="panel"><h2>Google Drive</h2><div class="toolbar"><button id="connect">Connect Google Drive</button><button id="driveSave" disabled>Save copy to Drive</button><button id="driveList" disabled>Load from Drive</button><button id="disconnect" disabled>Disconnect</button></div><div id="driveFiles" class="toolbar"></div><details style="margin-top:20px"><summary>Connection setup</summary><p>One-time setup: create a Google Cloud web OAuth client, enable Google Drive API, and add <strong id="origin"></strong> as an authorized JavaScript origin. Configure the consent screen and add your account as a test user if the app is in testing. Paste the client ID below; no client secret is needed.</p><label>Google OAuth client ID<input id="clientId" placeholder="…apps.googleusercontent.com"></label><p>Save or load a session as JSON.</p><a href="https://developers.google.com/workspace/drive/api/quickstart/js" target="_blank" rel="noopener">Google setup instructions ↗</a></details></section></div>
-<section class="panel"><h2>Moment log</h2><div id="log"></div></section><div id="status" role="status" aria-live="polite"></div>
-</main><script>
+:root{color-scheme:dark;--bg:#0c1015;--surface:#141a22;--panel:#19212b;--edge:#303b49;--text:#edf2f8;--muted:#9daebf;--blue:#80aef6;--red:#f28b90;--accent:#c9d9ec;--ok:#88bea6;--warn:#f3bd75}
+*{box-sizing:border-box}html,body{min-height:100%}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}button{background:#222c38;border:1px solid #405064;border-radius:7px;padding:10px 13px;cursor:pointer}button:hover:not(:disabled){background:#304052}button:disabled{opacity:.38;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+input,select,textarea{background:#101821;border:1px solid var(--edge);border-radius:6px;padding:10px;width:100%;min-width:0}textarea{resize:vertical;min-height:55px}
+h1,h2,h3,p{margin:0}h1{font-size:22px;letter-spacing:-.04em}h2{font-size:17px;letter-spacing:-.02em}h3{font-size:13px}small,.muted{color:var(--muted)}.micro{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.mono{font-family:ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums}.quiet{background:transparent}.primary{background:var(--accent);color:#121a24;border-color:var(--accent);font-weight:750}.primary:hover:not(:disabled){background:#fff}.danger{border-color:#81515a;color:#ffd9dc}.pill{padding:3px 8px;border:1px solid #3a4a5c;border-radius:50px;font-size:11px;color:var(--muted);white-space:nowrap}.saved{color:var(--ok)}.warning{color:var(--warn)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--edge);padding:17px 24px}.top-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.container{max-width:1320px;margin:auto;padding:22px 24px 64px}.panel{border:1px solid var(--edge);background:var(--surface);border-radius:10px;padding:20px}.panel-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.workspace{display:grid;grid-template-columns:minmax(210px,280px) minmax(0,1fr);gap:18px}.sidebar{align-self:start}.event-item{width:100%;border-radius:5px;display:block;text-align:left;padding:12px;margin:6px 0;background:transparent;border:1px solid transparent;overflow-wrap:anywhere}.event-item.current{border-color:#587b9f;background:#1e2b38}.event-item small{display:block;margin-top:3px}.empty{padding:38px 14px;text-align:center;color:var(--muted);border:1px dashed var(--edge);border-radius:8px}.formgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}label{display:block;font-size:12px;color:var(--muted)}label input,label select,label textarea{display:block;margin-top:6px;color:var(--text)}.section{margin-top:24px}.section-head{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:12px}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.bout-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:15px;padding:12px 0;border-top:1px solid var(--edge)}.bout-name{font-weight:700;overflow-wrap:anywhere}.bout-meta{margin-top:3px;color:var(--muted);font-size:12px}.small-btn{padding:6px 9px;font-size:12px}.file{display:none}
+#workbench{max-width:1200px;margin:auto;padding:0 24px 40px}.wb-top{padding:17px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--edge)}.wb-head{display:grid;grid-template-columns:minmax(0,1fr) 170px minmax(0,1fr);align-items:center;gap:10px;margin:32px 0 20px}.corner-name{font-weight:800;font-size:clamp(21px,2.8vw,38px);line-height:1.13;overflow-wrap:anywhere;letter-spacing:-.035em}.right{text-align:right}.blue{color:var(--blue)}.red{color:var(--red)}.round-box{text-align:center}.clock{font-size:clamp(39px,5vw,66px);line-height:1.2;font-weight:650;letter-spacing:-.06em}.statusline{height:24px;text-align:center;font-size:12px;color:var(--muted)}
+.timeline{padding:14px 18px 12px;border:1px solid var(--edge);border-radius:10px;background:#131c27}.timeline-title{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap}.timeline canvas{width:100%;height:180px;display:block;margin:12px 0 2px}.legend{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;gap:8px}.controls{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;margin:19px 0}.controls button{min-height:44px}.hints{text-align:center;color:var(--muted);font-size:12px;margin-bottom:24px}.footer-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:18px}.score-rows{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}th,td{padding:10px 9px;border-bottom:1px solid #303b49;text-align:left;white-space:nowrap}th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:500}.score-rows td:last-child{text-align:right}.score-rows th:last-child{text-align:right}.totals{font-weight:750;font-size:17px}.log{max-height:210px;overflow:auto}.logline{display:flex;justify-content:space-between;border-bottom:1px solid #273340;padding:8px 2px;font-size:12px}.round-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}.round-tabs button{padding:5px 10px;font-size:12px}.round-tabs .chosen{border-color:#a2b9d0;background:#2c3e51}
+.overlay{position:fixed;inset:0;background:#080c12dc;z-index:20;display:grid;place-items:center;padding:16px;overflow:auto}.modal{max-width:620px;width:100%;padding:24px;background:#1a2330;border:1px solid #526379;border-radius:14px;box-shadow:0 24px 100px #0009}.winner-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}.winner{min-height:90px;text-align:left;padding:16px}.winner.right{text-align:right}.winner.selected{border:2px solid var(--accent);background:#304459}.margins{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}.margins button.selected{background:#b7cce5;color:#15202b}.deductions{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:16px}.deduction{padding:10px 12px;border:1px solid var(--edge);border-radius:7px}.stepper{display:flex;align-items:center;gap:9px;margin-top:8px}.stepper button{padding:5px 12px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:22px}.notice{background:#273445;padding:10px 12px;border-radius:6px;color:#c6d2df;font-size:12px;margin:14px 0}.toast{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);background:#2a3a4c;border:1px solid #6a8098;color:#fff;padding:10px 16px;border-radius:7px;z-index:40;max-width:min(94vw,560px);font-size:13px}.hidden{display:none!important}
+@media(max-width:900px){.formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.workspace{grid-template-columns:220px minmax(0,1fr)}.footer-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.container,#workbench{padding-left:12px;padding-right:12px}.top{padding:14px}.workspace{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.wb-head{grid-template-columns:1fr 110px 1fr;gap:5px;margin-top:22px}.corner-name{font-size:19px}.clock{font-size:38px}.timeline{padding:10px}.timeline canvas{height:150px}.modal{padding:15px}.winner{min-height:75px;padding:10px}.controls button{flex:1 1 auto}}
+@media print{body{color:#111;background:#fff}.top,.sidebar,.controls,.hints,.actions,.wb-top,.modal,.toast{display:none!important}.workspace,.footer-grid{display:block}.panel,.timeline{border-color:#ccc;background:#fff;margin-bottom:16px}#workbench{display:block!important}#dashboard{display:none!important}}
+</style>
+</head>
+<body>
+<header class="top" id="dashTop">
+ <div><div class="micro">Judging / Event desk</div><h1>Scorecard</h1></div>
+ <div class="top-right"><span id="saveStatus" class="pill saved">Local save ready</span><button id="exportAll" class="quiet">Export backup</button><button id="importBtn" class="quiet">Import backup</button><button id="legacyBtn" class="quiet hidden">Import old sessions</button><button id="newEventBtn" class="primary">+ New event</button></div>
+</header>
+<main id="dashboard" class="container">
+ <div class="workspace">
+  <aside class="panel sidebar"><div class="panel-title"><h2>Events</h2><span id="eventCount" class="micro"></span></div><div id="events"></div></aside>
+  <div id="eventPane">
+   <div id="emptyEvent" class="empty">Create an event to begin. All fights and scorecards stay together under that event.</div>
+   <section class="panel hidden" id="eventEditor">
+    <div class="panel-title"><h2>Event setup</h2><button id="deleteEvent" class="danger small-btn">Delete event</button></div>
+    <div class="formgrid"><label>Event name<input id="eventName" maxlength="180" placeholder="UFC Fight Night"></label><label>Date<input id="eventDate" type="date"></label><label>Judge / session<input id="eventJudge" maxlength="150" placeholder="Judge name"></label></div>
+    <div class="section"><div class="section-head"><h2>Fight card</h2><span class="micro" id="boutCount">0 fights</span></div><div id="bouts"></div></div>
+    <div class="section"><div class="section-head"><h2>Add fight</h2></div><div class="formgrid">
+    <label>Left / blue corner<input id="boutLeft" maxlength="150" placeholder="Fighter A"></label>
+    <label>Right / red corner<input id="boutRight" maxlength="150" placeholder="Fighter B"></label>
+    <label>Division<input id="boutDivision" maxlength="100" placeholder="Lightweight"></label>
+    <label>Scheduled rounds<select id="boutRounds"><option value="3">3 rounds</option><option value="5">5 rounds</option></select></label>
+    <label>Round length<select id="boutDuration"><option value="300">5 minutes</option><option value="180">3 minutes</option><option value="600">10 minutes</option></select></label>
+    </div><div class="actions" style="margin-top:14px"><button id="addBout" class="primary">Add fight</button></div></div>
+    <div class="section"><h2>Local files</h2><p class="muted" style="margin-top:5px">Changes are saved in this browser. Export a backup regularly, especially before clearing browser data or changing devices.</p><div class="actions" style="margin-top:12px"><button id="exportCsv">Export scorecards CSV</button></div></div>
+   </section>
+  </div>
+ </div>
+</main>
+<section id="workbench" class="hidden" aria-label="Live scoring">
+ <div class="wb-top">
+   <div class="actions"><button id="backBtn" class="quiet">← Fight card</button><span class="micro" id="wbEvent"></span></div>
+   <div class="actions"><span id="wbSaved" class="pill saved">Saved locally</span><button id="fullscreenBtn" class="quiet small-btn">Full screen</button></div>
+ </div>
+ <div class="wb-head">
+  <div><div class="micro blue">Left / blue • ←</div><div class="corner-name" id="wbLeft">Fighter A</div></div>
+  <div class="round-box"><div id="wbRound" class="micro">Round 1 of 3</div><div id="clock" class="clock mono">5:00</div><div id="roundState" class="statusline">Ready</div></div>
+  <div class="right"><div class="micro red">Right / red • →</div><div class="corner-name" id="wbRight">Fighter B</div></div>
+ </div>
+ <div class="timeline">
+  <div class="timeline-title"><h2>Round observations</h2><span class="micro" id="observationsCount">0 recorded</span></div>
+  <canvas id="graph" aria-label="Timeline of timestamped left and right fighter observations" role="img"></canvas>
+  <div class="legend"><span class="blue">BLUE • ABOVE CENTER</span><span>TIME →</span><span class="red">RED • BELOW CENTER</span></div>
+ </div>
+ <div class="controls">
+  <button id="startBtn" class="primary">Start round</button>
+  <button id="undoBtn">Undo last</button>
+  <button id="endBtn">End round &amp; score</button>
+  <button id="finishBtn" class="quiet">Finish fight</button>
+ </div>
+ <p class="hints">← / → record an observation &nbsp; • &nbsp; Space start/pause &nbsp; • &nbsp; Backspace undo &nbsp; • &nbsp; E end round</p>
+ <div class="footer-grid">
+  <section class="panel"><div class="panel-title"><h2>Scorecard</h2><span id="wbTotal" class="totals mono">0 – 0</span></div><table class="score-rows"><thead><tr><th>Round</th><th>Blue</th><th>Red</th><th></th></tr></thead><tbody id="scoreBody"></tbody></table><div id="resultLabel" class="muted" style="margin-top:14px"></div></section>
+  <section class="panel"><div class="panel-title"><h2>Review observations</h2><span class="micro">Not an automatic score</span></div><div id="roundTabs" class="round-tabs"></div><div id="momentLog" class="log"></div></section>
+ </div>
+</section>
+<div id="scoreOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="scoreTitle">
+ <div class="modal">
+  <div class="micro" id="scoreKicker">Round complete</div><h2 id="scoreTitle" style="margin-top:7px;font-size:22px">Assign round score</h2>
+  <p class="muted" style="margin-top:6px">Judge the round from effective striking and grappling, not from the number of observations.</p>
+  <div class="winner-grid">
+   <button class="winner" id="selectA"><span class="micro blue">← Left / blue</span><div id="chooseA" style="font-size:18px;font-weight:750;margin-top:8px"></div></button>
+   <button class="winner right" id="selectB"><span class="micro red">Right / red →</span><div id="chooseB" style="font-size:18px;font-weight:750;margin-top:8px"></div></button>
+  </div>
+  <div class="micro">Round margin</div>
+  <div class="margins"><button data-margin="9">10–9</button><button data-margin="8">10–8</button><button data-margin="7">10–7</button><button data-margin="10">10–10</button></div>
+  <div class="deductions"><div class="deduction"><div class="micro">Blue deductions</div><div class="stepper"><button data-dside="0" data-delta="-1" aria-label="Remove blue deduction">−</button><strong id="deductA" class="mono">0</strong><button data-dside="0" data-delta="1" aria-label="Add blue deduction">+</button></div></div>
+  <div class="deduction"><div class="micro">Red deductions</div><div class="stepper"><button data-dside="1" data-delta="-1" aria-label="Remove red deduction">−</button><strong id="deductB" class="mono">0</strong><button data-dside="1" data-delta="1" aria-label="Add red deduction">+</button></div></div></div>
+  <div class="notice">Deductions must be assessed by the referee. 10–10 is a separate, explicit selection.</div>
+  <div id="draftScore" class="mono" style="font-size:24px;font-weight:800">—</div>
+  <div class="modal-actions"><button id="cancelScore" class="quiet">Back</button><button id="confirmScore" class="primary">Confirm score • Enter</button></div>
+ </div>
+</div>
+<div id="finishOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="finishTitle">
+ <div class="modal"><div class="micro">Close fight</div><h2 id="finishTitle" style="margin-top:7px;font-size:22px">Record result</h2>
+  <p class="muted" style="margin-top:6px">Select a result type. Decision uses the confirmed round scores; stoppages do not fabricate a score for an incomplete round.</p>
+  <div class="formgrid" style="grid-template-columns:1fr 1fr;margin-top:18px">
+   <label>Result type<select id="resultType"><option value="decision">Decision / scorecard</option><option value="ko">KO</option><option value="tko">TKO</option><option value="submission">Submission</option><option value="draw">Draw</option><option value="no-contest">No contest</option><option value="other">Other</option></select></label>
+   <label>Winner<select id="resultWinner"><option value="">Not selected / none</option><option value="a">Left / blue</option><option value="b">Right / red</option></select></label>
+  </div>
+  <div class="notice" id="finishHint">Confirm all rounds before completing a decision.</div>
+  <div class="modal-actions"><button id="cancelFinish" class="quiet">Cancel</button><button id="confirmFinish" class="primary">Complete fight</button></div>
+ </div>
+</div>
+<input id="backupInput" class="file" type="file" accept=".json,application/json">
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+<script>
 'use strict';
-const $=id=>document.getElementById(id), KEY='copper47.current.v1', SAVES='copper47.sessions.v1';
-const fields=['event','fight','date','judge','left','right','rounds','duration','notes'];
-let s, running=false, anchor=0, token='', tokenUntil=0, busy=false, driveExpiryTimer=0;
-const fresh=()=>({version:1,id:(crypto.randomUUID?crypto.randomUUID():Array.from(crypto.getRandomValues(new Uint8Array(16)),n=>n.toString(16).padStart(2,'0')).join('')),info:{event:'',fight:'',date:new Date().toLocaleDateString('en-CA'),judge:'',left:'',right:'',rounds:'3',duration:'300',notes:''},current:0,roundData:[{elapsed:0,ended:false,moments:[],manual:null,deductions:[0,0]}]});
-function read(key,fallback){try{return JSON.parse(localStorage.getItem(key))||fallback}catch{return fallback}}
-function status(msg){$('status').textContent=msg}
-function persist(){if(running){round().elapsed=elapsed();anchor=performance.now()}try{localStorage.setItem(KEY,JSON.stringify(s));return true}catch{status('Browser storage unavailable or full. Export JSON to keep your work.');return false}}
-function round(){return s.roundData[s.current]}
-function elapsed(){return Math.min(+s.info.duration,round().elapsed+(running?(performance.now()-anchor)/1000:0))}
-function pause(){if(running){round().elapsed=elapsed();running=false;persist()}}
-function totals(r){return r.moments.reduce((a,m)=>(a[m.side]++,a),[0,0])}
-function suggested(r){const [a,b]=totals(r);return a===b?[10,10]:a>b?[10,9]:[9,10]}
-function final(r){return (r.manual||suggested(r)).map((v,i)=>Math.max(0,v-r.deductions[i]))}
-function hydrate(){fields.forEach(k=>$(k).value=s.info[k]);$('viewRound').value=String(s.current);render()}
-function count(r,side){return r.moments.filter(m=>m.side===side).length}
-function render(){const r=round(),t=totals(r);$('nameA').textContent=s.info.left||'Fighter A';$('nameB').textContent=s.info.right||'Fighter B';$('pointsA').textContent=t[0];$('pointsB').textContent=t[1];$('roundLabel').textContent=`ROUND ${s.current+1} OF ${s.info.rounds}`;$('play').textContent=r.ended?'Round ended':running?'Pause':'Start / resume';$('play').disabled=r.ended;$('stateLabel').textContent=r.ended?'Ended':running?'Recording':'Paused / ready';$('hitA').disabled=$('hitB').disabled=!running||r.ended;$('end').disabled=r.ended;$('next').disabled=!r.ended||s.current+1>=+s.info.rounds;$('undo').disabled=!r.moments.length;$('duration').disabled=s.roundData.some(x=>x.moments.length||x.elapsed||x.ended)||running;$('rounds').disabled=s.roundData.length>3;renderTable();renderLog();let view=$('viewRound').value;$('viewRound').replaceChildren(...s.roundData.map((x,i)=>new Option('Round '+(i+1),i)));$('viewRound').value=view!==''&&+view<s.roundData.length?view:s.current;clock();draw()}
-function clock(){let left=Math.max(0,Math.ceil(+s.info.duration-elapsed()));$('clock').textContent=Math.floor(left/60)+':'+String(left%60).padStart(2,'0')}
-function hit(side){if(!running||round().ended)return;if(elapsed()>=+s.info.duration){end();return}round().moments.push({side,time:Math.floor(elapsed()*10)/10});persist();render()}
-function undo(){if(!round().moments.length)return;if(round().ended&&!confirm('Remove the last moment from this ended round?'))return;round().moments.pop();persist();render()}
-function end(){pause();round().ended=true;persist();render();status('Round ended.')}
-function scoreInput(value,min,max,onChange){const el=document.createElement('select');el.style.width='65px';el.setAttribute('aria-label',onChange.label);const nums=min===0&&max===10&&onChange.label.includes('score')?Array.from({length:11},(_,i)=>10-i):Array.from({length:max-min+1},(_,i)=>min+i);nums.forEach(n=>el.add(new Option(n,n)));el.value=value;el.onchange=()=>onChange(+el.value);return el}
-function renderTable(){const body=$('scorecard');body.replaceChildren();let total=[0,0];s.roundData.forEach((r,i)=>{const tr=document.createElement('tr'),t=totals(r),sg=suggested(r);const values=[i+1,`${count(r,0)} / ${count(r,1)}`,r.ended?sg.join('–'):'In progress'];values.forEach(v=>{let td=document.createElement('td');td.textContent=v;tr.append(td)});let td=document.createElement('td');if(r.ended){(r.manual||sg).forEach((v,j)=>{const fn=n=>{r.manual=[...(r.manual||suggested(r))];r.manual[j]=n;persist();render()};fn.label=`Round ${i+1} ${j?'right':'left'} score`;td.append(scoreInput(v,0,10,fn),' ')});const reset=document.createElement('button');reset.textContent='Auto';reset.onclick=()=>{r.manual=null;persist();render()};td.append(reset);const f=final(r);total=total.map((x,j)=>x+f[j])}else td.textContent='—';tr.append(td);td=document.createElement('td');r.deductions.forEach((v,j)=>{const fn=n=>{r.deductions[j]=n;persist();render()};fn.label=`Round ${i+1} ${j?'right':'left'} deduction`;td.append(scoreInput(v,0,10,fn),' ')});tr.append(td);body.append(tr)});$('total').textContent=`${s.info.left||'Left'} ${total[0]} – ${total[1]} ${s.info.right||'Right'}`}
-function renderLog(){const log=$('log');log.replaceChildren();round().moments.slice().reverse().forEach(m=>{const el=document.createElement('div');el.textContent=`${Math.floor(m.time/60)}:${String(Math.floor(m.time%60)).padStart(2,'0')} · ${m.side?(s.info.right||'Right'):(s.info.left||'Left')}`;log.append(el)});if(!round().moments.length)log.textContent='No moments recorded this round.'}
-function canvas(id){let c=$(id),d=devicePixelRatio||1,w=c.clientWidth||600,h=230;c.width=w*d;c.height=h*d;let ctx=c.getContext('2d');ctx.scale(d,d);ctx.fillStyle='#1b1e1a';ctx.fillRect(0,0,w,h);ctx.font='11px system-ui';return {ctx,w,h}}
-function draw(){let {ctx,w,h}=canvas('momentum'),r=s.roundData[+$('viewRound').value]||round(),t=0,max=2;r.moments.forEach(m=>{t+=(m.side?-1:1);max=Math.max(max,Math.abs(t))});const x=sec=>42+sec/(+s.info.duration)*(w-60),y=v=>h/2-v/max*(h/2-28);ctx.strokeStyle='#41483e';ctx.lineWidth=1;for(let v of [-max,0,max]){ctx.beginPath();ctx.moveTo(42,y(v));ctx.lineTo(w-18,y(v));ctx.stroke();ctx.fillStyle='#a9b2a5';ctx.fillText(v,10,y(v)+4)}for(let sec=0;sec<=+s.info.duration;sec+=(w<440&&+s.info.duration>300?120:60)){ctx.fillStyle='#a9b2a5';ctx.fillText(Math.floor(sec/60)+':00',x(sec)-10,h-5)}let prev=0,at=0;r.moments.forEach(m=>{const val=prev+(m.side?-1:1);ctx.strokeStyle=m.side?'#94bdf3':'#e69d79';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x(at),y(prev));ctx.lineTo(x(m.time),y(prev));ctx.lineTo(x(m.time),y(val));ctx.stroke();ctx.fillStyle=ctx.strokeStyle;ctx.beginPath();ctx.arc(x(m.time),y(val),3,0,Math.PI*2);ctx.fill();prev=val;at=m.time});ctx.beginPath();ctx.moveTo(x(at),y(prev));ctx.lineTo(x(r.ended?r.elapsed:(r===round()?elapsed():r.elapsed)),y(prev));ctx.strokeStyle='#d6ef8c';ctx.stroke();let bar=canvas('bars');ctx=bar.ctx;w=bar.w;h=bar.h;let largest=Math.max(1,...s.roundData.flatMap(totals)),slot=(w-30)/s.roundData.length; s.roundData.forEach((rd,i)=>{totals(rd).forEach((v,j)=>{let bw=Math.min(28,slot/3),bx=20+i*slot+j*(bw+4),bh=v/largest*(h-55);ctx.fillStyle=j?'#94bdf3':'#e69d79';ctx.fillRect(bx,h-25-bh,bw,bh);ctx.fillText(v,bx,h-31-bh)});ctx.fillStyle='#a9b2a5';ctx.fillText('R'+(i+1),20+i*slot,h-6)})}
-function valid(v){
- if(!v||v.version!==1||typeof v.id!=='string'||!v.id.length||v.id.length>200||!v.info||!Array.isArray(v.roundData)||v.roundData.length<1||v.roundData.length>5)throw Error('Not a supported session file.');
- if(![3,5].includes(+v.info.rounds)||![180,300,600].includes(+v.info.duration)||!Number.isInteger(v.current)||v.current!==v.roundData.length-1||v.roundData.length>+v.info.rounds)throw Error('Invalid round settings.');
- fields.forEach(k=>{if(typeof v.info[k]!=='string'||v.info[k].length>20000)throw Error('Invalid event information.')});
- v.roundData.forEach((r,i)=>{
-  if(!r||!Number.isFinite(r.elapsed)||r.elapsed<0||r.elapsed>+v.info.duration||typeof r.ended!=='boolean'||(i<v.current&&!r.ended)||!Array.isArray(r.moments)||r.moments.length>20000||!Array.isArray(r.deductions)||r.deductions.length!==2||r.deductions.some(n=>!Number.isInteger(n)||n<0||n>10)||r.manual!==null&&(!Array.isArray(r.manual)||r.manual.length!==2||r.manual.some(n=>!Number.isInteger(n)||n<0||n>10)))throw Error('Invalid round data.');
-  let last=0;r.moments.forEach(m=>{if(!m||![0,1].includes(m.side)||!Number.isFinite(m.time)||m.time<last||m.time>+v.info.duration)throw Error('Invalid moment data.');last=m.time;delete m.weight});
-  // Preserve older v1 sessions saved between timer checkpoints.
-  r.elapsed=Math.max(r.elapsed,last);
- });return v
+const $=id=>document.getElementById(id);
+const KEY='copper47.workspace.v2', OLD_CURRENT='copper47.current.v1', OLD_SAVES='copper47.sessions.v1';
+const uid=()=>crypto.randomUUID?crypto.randomUUID():'id-'+Date.now()+'-'+Math.random().toString(36).slice(2);
+const fresh=()=>({version:2,selected:null,events:[]});
+const newRound=()=>({elapsed:0,observations:[],score:null});
+const newFight=(left,right,division,rounds,duration)=>({id:uid(),left,right,division,rounds:+rounds,duration:+duration,index:0,roundData:[newRound()],status:'ready',result:null,legacyId:null});
+let data=fresh(),activeId=null,running=false,anchor=0,scoreIndex=null,scoreDraft=null,scoreWasLive=false,reviewIndex=0,focusMode=false,saveFailed=false;
+function readJSON(key){try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}}
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.add('hidden'),3600)}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(data));saveFailed=false;$('saveStatus').textContent='Saved locally';$('saveStatus').className='pill saved';$('wbSaved').textContent='Saved locally';$('wbSaved').className='pill saved';return true}catch(e){saveFailed=true;$('saveStatus').textContent='SAVE FAILED';$('saveStatus').className='pill warning';$('wbSaved').textContent='SAVE FAILED';$('wbSaved').className='pill warning';toast('Browser storage failed. Export a backup before closing.');return false}}
+function event(){return data.events.find(e=>e.id===data.selected)}
+function fight(){const e=event();return e&&e.fights.find(f=>f.id===activeId)}
+function currentRound(){const f=fight();return f&&f.roundData[f.index]}
+function seconds(){const f=fight(),r=currentRound();return f&&r?Math.min(f.duration,r.elapsed+(running?(performance.now()-anchor)/1000:0)):0}
+function pause(){if(!running)return;const r=currentRound();if(r)r.elapsed=seconds();running=false;persist()}
+function clockText(sec){const s=Math.max(0,Math.ceil(sec));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+function safeName(s,fallback){return (s||'').trim()||fallback}
+function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
+function setVisible(id,yes){$(id).classList.toggle('hidden',!yes)}
+function selectEvent(id){pause();activeId=null;focusMode=false;data.selected=id;persist();renderDashboard()}
+function renderDashboard(){setVisible('dashboard',true);setVisible('dashTop',true);setVisible('workbench',false);setVisible('scoreOverlay',false);setVisible('finishOverlay',false);focusMode=false;
+ const list=$('events');list.replaceChildren();$('eventCount').textContent=data.events.length;
+ data.events.forEach(e=>{const b=el('button');b.className='event-item'+(e.id===data.selected?' current':'');b.append(el('strong',safeName(e.name,'Untitled event')),el('small',(e.date||'No date')+' · '+e.fights.length+' fights'));b.onclick=()=>selectEvent(e.id);list.append(b)});
+ const e=event();setVisible('eventEditor',!!e);setVisible('emptyEvent',!e);if(!e)return;
+ $('eventName').value=e.name;$('eventDate').value=e.date;$('eventJudge').value=e.judge;$('boutCount').textContent=e.fights.length+' fights';
+ const rows=$('bouts');rows.replaceChildren();
+ if(!e.fights.length)rows.append(el('div','No fights added yet.','empty'));
+ e.fights.forEach((f,i)=>{const row=el('div',undefined,'bout-row'),left=el('div'),right=el('div',undefined,'actions');
+ left.append(el('div',safeName(f.left,'Fighter A')+' vs '+safeName(f.right,'Fighter B'),'bout-name'),el('div',(f.division||'Division not set')+' · '+f.rounds+' rounds · '+f.status.replace(/-/g,' '),'bout-meta'));
+ const enter=el('button','Open','small-btn primary');enter.onclick=()=>openFight(f.id);right.append(enter);
+ const up=el('button','↑','small-btn');up.title='Move fight earlier';up.disabled=i===0;up.onclick=()=>moveFight(i,-1);
+ const down=el('button','↓','small-btn');down.title='Move fight later';down.disabled=i===e.fights.length-1;down.onclick=()=>moveFight(i,1);
+ const del=el('button','Delete','small-btn danger');del.onclick=()=>{if(confirm('Delete this fight and its scores?')){e.fights.splice(i,1);persist();renderDashboard()}};
+ right.append(up,down,del);row.append(left,right);rows.append(row)});
+ $('legacyBtn').classList.toggle('hidden',!legacyAvailable());
 }
-function savedSessions(){const raw=read(SAVES,[]);if(!Array.isArray(raw))return [];return raw.filter(v=>{try{valid(v);return true}catch{return false}})}
-function replace(v){valid(v);if(!confirm('Replace the current fight? Save or export it first if needed.'))return;pause();s=v;persist();hydrate();status('Session loaded. Timer is paused.')}
-function savedList(){let list=savedSessions();$('sessions').replaceChildren(new Option('Choose a saved fight',''),...list.map(v=>new Option(`${v.info.event||'Untitled'} · ${v.info.left||'Left'} vs ${v.info.right||'Right'}`,v.id)));$('load').disabled=!$('sessions').value}
-function saveSession(){pause();let list=savedSessions().filter(v=>v.id!==s.id);list.unshift(JSON.parse(JSON.stringify(s)));try{localStorage.setItem(SAVES,JSON.stringify(list));savedList();status('Session saved in this browser.')}catch{status('Could not save. Export JSON instead.')}render()}
-function filename(){return `${s.info.event||'Fight'}_${s.info.left||'Left'}_vs_${s.info.right||'Right'}`.replace(/[^a-z0-9_-]+/gi,'_').slice(0,120)}
-function download(data,type,name){let url=URL.createObjectURL(new Blob([data],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-fields.forEach(k=>$(k).addEventListener('input',()=>{s.info[k]=$(k).value;persist();render()}));
-$('play').onclick=()=>{if(running)pause();else if(!round().ended){anchor=performance.now();running=true}render()};$('hitA').onclick=()=>hit(0);$('hitB').onclick=()=>hit(1);$('undo').onclick=undo;$('end').onclick=end;$('next').onclick=()=>{if(!round().ended||s.current+1>=+s.info.rounds)return;s.current++;s.roundData.push({elapsed:0,ended:false,moments:[],manual:null,deductions:[0,0]});$('viewRound').value='';persist();render()};$('viewRound').onchange=()=>{draw();$('viewRound').blur()};$('sessions').onchange=()=>{$('load').disabled=!$('sessions').value};
-document.addEventListener('keydown',e=>{if(e.target.closest('input,textarea,select,button')||e.ctrlKey||e.metaKey||e.altKey||e.repeat)return;if(['ArrowLeft','ArrowRight',' ','Backspace'].includes(e.key))e.preventDefault();if(e.key==='ArrowLeft')hit(0);if(e.key==='ArrowRight')hit(1);if(e.key===' ')$('play').click();if(e.key==='Backspace')undo();});
-// Clear focus on pointer scoring so keyboard shortcuts remain available.
-['hitA','hitB','play','undo','end','next','save','new','json','csv','image','load'].forEach(k=>$(k).addEventListener('click',e=>{if(e.detail>0)$(k).blur()}));
-$('save').onclick=saveSession;$('new').onclick=()=>{if(!confirm('Start a new fight? Save or export the current fight first if needed.'))return;pause();s=fresh();persist();hydrate();status('New fight ready.')};$('load').onclick=()=>{let v=savedSessions().find(x=>x.id===$('sessions').value);if(v)replace(v)};
-$('json').onclick=()=>{pause();render();download(JSON.stringify(s),'application/json',filename()+'.json')};
-const quote=v=>{let text=String(v??'');if(typeof v==='string'&&/^[\s]*[=+@-]/.test(text))text="'"+text;return '"'+text.replace(/"/g,'""')+'"'};
-$('csv').onclick=()=>{pause();render();let rows=[['Event',s.info.event],['Fight',s.info.fight],['Date',s.info.date],['Judge',s.info.judge],['Left',s.info.left],['Right',s.info.right],['Notes',s.info.notes],[],['Round','Ended','Left moments','Right moments','Left final','Right final','Left deduction','Right deduction']];s.roundData.forEach((r,i)=>rows.push([i+1,r.ended,count(r,0),count(r,1),...(r.ended?final(r):['','']),...r.deductions]));rows.push([],['Round','Seconds elapsed','Fighter']);s.roundData.forEach((r,i)=>r.moments.forEach(m=>rows.push([i+1,m.time,m.side?s.info.right:s.info.left])));download('\uFEFF'+rows.map(row=>row.map(quote).join(',')).join('\r\n'),'text/csv',filename()+'.csv')};
-$('image').onclick=()=>{draw();let c=document.createElement('canvas');c.width=1400;c.height=620;let ctx=c.getContext('2d');ctx.fillStyle='#1b1e1a';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#f0f2eb';ctx.font='bold 30px system-ui';ctx.fillText((s.info.event||'Fight')+' · '+(s.info.left||'Left')+' vs '+(s.info.right||'Right'),35,50,1330);ctx.font='20px system-ui';ctx.fillText($('total').textContent+' · Graph: round '+(+$('viewRound').value+1),35,95);ctx.fillStyle='#e69d79';ctx.fillText('Left / above zero',35,140);ctx.fillStyle='#94bdf3';ctx.fillText('Right / below zero',280,140);ctx.drawImage($('momentum'),25,175,900,400);ctx.drawImage($('bars'),950,175,420,400);c.toBlob(b=>{if(b)download(b,'image/png',filename()+'.png')})};$('print').onclick=()=>window.print();$('import').onclick=()=>$('file').click();$('file').onchange=async()=>{try{const f=$('file').files[0];if(!f)return;if(f.size>5000000)throw Error('File is too large (maximum 5 MB).');replace(valid(JSON.parse(await f.text())))}catch(e){status('Import failed: '+e.message)}finally{$('file').value=''}};
-setInterval(()=>{if(running){clock();if(elapsed()>=+s.info.duration)end();else draw()}},200);setInterval(()=>{if(running)persist()},2000);window.addEventListener('pagehide',()=>{pause();persist()});window.addEventListener('resize',draw);
-$('origin').textContent=location.origin;$('clientId').value=read('copper47.clientId','');$('clientId').onchange=()=>{try{localStorage.setItem('copper47.clientId',JSON.stringify($('clientId').value.trim()))}catch{}};
-function driveButtons(){const connected=!!token&&Date.now()<tokenUntil;['driveSave','driveList','disconnect'].forEach(k=>$(k).disabled=!connected||busy);$('connect').disabled=busy}
-$('connect').onclick=()=>{if(!window.google?.accounts?.oauth2){status('Google sign-in has not loaded. Check your connection or content blocker and retry.');return}const id=$('clientId').value.trim();if(!id.endsWith('.apps.googleusercontent.com')){document.querySelector('details').open=true;$('clientId').focus();status('Enter a Google web OAuth client ID in Connection setup first.');return}pause();render();google.accounts.oauth2.initTokenClient({client_id:id,scope:'https://www.googleapis.com/auth/drive.file',callback:r=>{if(r.error){status('Google connection failed: '+r.error);return}clearTimeout(driveExpiryTimer);$('driveFiles').replaceChildren();token=r.access_token;tokenUntil=Date.now()+r.expires_in*1000;driveButtons();status('Google Drive connected. Use Save copy to Drive to upload this fight.');driveExpiryTimer=setTimeout(()=>{token='';tokenUntil=0;$('driveFiles').replaceChildren();driveButtons();status('Google Drive connection expired. Reconnect to save or load.')},r.expires_in*1000)},error_callback:e=>status('Google sign-in closed or blocked: '+e.type)}).requestAccessToken({prompt:'consent'})};
-$('disconnect').onclick=()=>{if(token)google.accounts.oauth2.revoke(token,()=>{});clearTimeout(driveExpiryTimer);token='';tokenUntil=0;$('driveFiles').replaceChildren();driveButtons();status('Disconnected from Google Drive.')};
-async function driveFetch(url,options={}){if(!token||Date.now()>=tokenUntil)throw Error('Connection expired. Reconnect Google Drive.');const res=await fetch(url,{...options,headers:{...options.headers,Authorization:'Bearer '+token}});if(!res.ok){if(res.status===401){token='';tokenUntil=0;clearTimeout(driveExpiryTimer);$('driveFiles').replaceChildren();driveButtons()}let message='';try{message=(await res.json()).error?.message||''}catch{}throw Error(message||'Google Drive request failed ('+res.status+').')}return res}
-async function driveTask(fn){if(busy)return;busy=true;driveButtons();try{await fn()}catch(e){status(e.message)}finally{busy=false;driveButtons()}}
-function driveUpload(snapshot){
- const boundary='copper47_'+crypto.getRandomValues(new Uint32Array(4)).join('_');
- const metadata={name:filename()+'_'+new Date().toISOString().replace(/[:.]/g,'-')+'.json',mimeType:'application/json',appProperties:{copper47:'1'}};
- const body=new Blob(['--'+boundary+'\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n',JSON.stringify(metadata),'\r\n--'+boundary+'\r\nContent-Type: application/json\r\n\r\n',JSON.stringify(snapshot),'\r\n--'+boundary+'--\r\n'],{type:'multipart/related; boundary='+boundary});
- if(body.size>5000000)throw Error('Session exceeds the 5 MB Drive upload limit. Export JSON instead.');
- return {body,headers:{'Content-Type':'multipart/related; boundary='+boundary}};
+function moveFight(i,step){const fs=event().fights;[fs[i],fs[i+step]]=[fs[i+step],fs[i]];persist();renderDashboard()}
+function openFight(id){pause();const f=event().fights.find(x=>x.id===id);if(!f)return;activeId=id;focusMode=true;reviewIndex=f.index;setVisible('dashboard',false);setVisible('dashTop',false);setVisible('workbench',true);renderWorkbench();window.scrollTo(0,0)}
+function run(){const f=fight(),r=currentRound();if(!f||f.result||r.score)return;
+ if(running){pause()}else{running=true;anchor=performance.now();f.status='in-progress';persist()}renderWorkbench()}
+function observe(side){const f=fight(),r=currentRound();if(!f||!running||f.result||r.score)return;
+ const time=Math.min(f.duration,Math.round(seconds()*10)/10);if(time>=f.duration){pause();renderWorkbench();return}
+ r.observations.push({side,time});persist();renderWorkbench()}
+function undo(){const r=currentRound();if(!r||!r.observations.length||r.score)return;r.observations.pop();persist();renderWorkbench()}
+function endRound(){const f=fight(),r=currentRound();if(!f||f.result||r.score)return;
+ if(f.duration-seconds()>20&&!confirm('The clock has time remaining. End and score this round?'))return;
+ pause();openScore(f.index,false)}
+function openScore(index,edit){const f=fight(),r=f&&f.roundData[index];if(!r)return;scoreWasLive=running;pause();scoreIndex=index;
+ scoreDraft=r.score?{winner:r.score.winner,margin:r.score.margin,deductions:r.score.deductions.slice()}:{winner:null,margin:9,deductions:[0,0]};
+ $('scoreKicker').textContent=edit?'Edit saved round':'Round '+(index+1)+' complete';
+ $('scoreTitle').textContent='Score round '+(index+1);
+ $('chooseA').textContent=safeName(f.left,'Fighter A');$('chooseB').textContent=safeName(f.right,'Fighter B');
+ setVisible('scoreOverlay',true);renderScoreModal();$('selectA').focus()}
+function renderScoreModal(){
+ $('selectA').classList.toggle('selected',scoreDraft.winner==='a');$('selectB').classList.toggle('selected',scoreDraft.winner==='b');
+ document.querySelectorAll('[data-margin]').forEach(b=>b.classList.toggle('selected',+b.dataset.margin===scoreDraft.margin));
+ $('deductA').textContent=scoreDraft.deductions[0];$('deductB').textContent=scoreDraft.deductions[1];
+ const p=roundPoints(scoreDraft);$('draftScore').textContent=p?p[0]+' – '+p[1]:'Select a winner';
+ $('confirmScore').disabled=!p;
 }
-$('driveSave').onclick=()=>driveTask(async()=>{pause();render();await driveFetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{method:'POST',...driveUpload(s)});status('A complete session copy was saved to your Google Drive.')});
-$('driveList').onclick=()=>driveTask(async()=>{let files=[],page='';do{let query=new URLSearchParams({q:"trashed = false and appProperties has { key='copper47' and value='1' }",fields:'nextPageToken,files(id,name)',pageSize:'100',orderBy:'modifiedTime desc'});if(page)query.set('pageToken',page);const data=await(await driveFetch('https://www.googleapis.com/drive/v3/files?'+query)).json();files.push(...data.files);page=data.nextPageToken||''}while(page);$('driveFiles').replaceChildren();if(!files.length){status('No saved sessions found.');return}const sel=document.createElement('select');sel.setAttribute('aria-label','Drive session');files.forEach(f=>sel.add(new Option(f.name,f.id)));const btn=document.createElement('button');btn.textContent='Load selected Drive session';btn.onclick=()=>driveTask(async()=>{const res=await driveFetch('https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(sel.value)+'?alt=media');const text=await res.text();if(new Blob([text]).size>5000000)throw Error('Drive session is too large (maximum 5 MB).');replace(valid(JSON.parse(text)))});$('driveFiles').append(sel,btn);status('Choose a Drive session to restore.')});
-try{s=valid(read(KEY,null))}catch{s=fresh()}hydrate();savedList();driveButtons();
-</script><script src="https://accounts.google.com/gsi/client" async defer></script></body></html>
+function roundPoints(s){if(!s||!s.winner)return null;const a=s.margin===10?10:(s.winner==='a'?10:s.margin);const b=s.margin===10?10:(s.winner==='b'?10:s.margin);return [Math.max(0,a-s.deductions[0]),Math.max(0,b-s.deductions[1])]}
+function confirmScore(){if(!scoreDraft)return;const points=roundPoints(scoreDraft);if(!points)return;
+ const f=fight(),r=f.roundData[scoreIndex],wasScored=!!r.score;
+ r.score={winner:scoreDraft.margin===10?'draw':scoreDraft.winner,margin:scoreDraft.margin,deductions:scoreDraft.deductions.slice(),confirmedAt:new Date().toISOString()};
+ if(!wasScored&&scoreIndex===f.index&&scoreIndex<f.rounds-1){f.index++;if(!f.roundData[f.index])f.roundData.push(newRound())}
+ if(f.roundData.filter(x=>x.score).length===f.rounds)f.status='awaiting-result';
+ else f.status='in-progress';
+ setVisible('scoreOverlay',false);scoreIndex=null;scoreDraft=null;reviewIndex=f.index;persist();renderWorkbench();toast('Round score saved.')}
+function cancelScore(){setVisible('scoreOverlay',false);scoreIndex=null;scoreDraft=null;renderWorkbench()}
+function totals(f){return f.roundData.reduce((tot,r)=>{const p=roundPoints(r.score);if(p){tot[0]+=p[0];tot[1]+=p[1]}return tot},[0,0])}
+function tick(){if(!focusMode||!fight())return;
+ if(running&&seconds()>=fight().duration){pause();toast('Clock reached zero. Confirm end of round.')}
+ $('clock').textContent=clockText(fight().duration-seconds());if(running)drawGraph()}
+function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=currentRound();
+ $('wbEvent').textContent=safeName(e.name,'Event')+' · '+(f.division||'Fight');
+ $('wbLeft').textContent=safeName(f.left,'Fighter A');$('wbRight').textContent=safeName(f.right,'Fighter B');
+ $('wbRound').textContent='ROUND '+(f.index+1)+' OF '+f.rounds;
+ $('clock').textContent=clockText(f.duration-seconds());
+ $('roundState').textContent=f.result?'Fight complete':r.score?'Rounds finished':running?'Recording':r.elapsed?'Paused':'Ready';
+ $('startBtn').textContent=running?'Pause round':r.elapsed?'Resume round':'Start round';
+ $('startBtn').disabled=!!f.result||!!r.score;
+ $('undoBtn').disabled=!!f.result||!!r.score||!r.observations.length;
+ $('endBtn').disabled=!!f.result||!!r.score;
+ $('finishBtn').textContent=f.result?'View / edit result':f.status==='awaiting-result'?'Finalize decision':'Finish fight';
+ $('observationsCount').textContent=r.observations.length+' recorded';
+ const t=totals(f);$('wbTotal').textContent=t[0]+' – '+t[1];
+ const body=$('scoreBody');body.replaceChildren();
+ f.roundData.forEach((rd,i)=>{const tr=el('tr'),pts=roundPoints(rd.score);
+ tr.append(el('td',String(i+1)),el('td',pts?String(pts[0]):'—'),el('td',pts?String(pts[1]):'—'));
+ const action=el('td');if(rd.score){const b=el('button','Edit','small-btn');b.onclick=()=>openScore(i,true);action.append(b)}
+ else action.textContent=i===f.index?'Current':'—';
+ tr.append(action);body.append(tr)});
+ const result=f.result;$('resultLabel').textContent=result?'Result: '+result.type.toUpperCase()+(result.winner?' · '+(result.winner==='a'?f.left:f.right):''):'Unofficial scorecard · observations do not determine round scores';
+ const tabs=$('roundTabs');tabs.replaceChildren();f.roundData.forEach((rd,i)=>{const b=el('button','R'+(i+1),'small-btn'+(reviewIndex===i?' chosen':''));b.onclick=()=>{reviewIndex=i;renderWorkbench()};tabs.append(b)});
+ const log=$('momentLog');log.replaceChildren();const selected=f.roundData[reviewIndex]||r;
+ if(!selected.observations.length)log.append(el('div','No observations in this round.','muted'));
+ selected.observations.slice().reverse().forEach(o=>{const l=el('div',undefined,'logline');l.append(el('span',o.side==='a'?safeName(f.left,'Fighter A'):safeName(f.right,'Fighter B'),o.side==='a'?'blue':'red'),el('span',clockText(f.duration-o.time),'mono muted'));log.append(l)});
+ drawGraph();
+}
+function drawGraph(){const c=$('graph'),f=fight();if(!f)return;const r=f.roundData[reviewIndex]||currentRound();if(!r)return;const rect=c.getBoundingClientRect(),w=Math.max(260,rect.width),h=Math.max(125,rect.height),d=Math.min(2,window.devicePixelRatio||1);
+ if(c.width!==Math.round(w*d)||c.height!==Math.round(h*d)){c.width=Math.round(w*d);c.height=Math.round(h*d)}
+ const ctx=c.getContext('2d');ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,w,h);const left=12,right=w-12,middle=h*.5,pad=20;
+ for(let i=0;i<=5;i++){const x=left+(right-left)*i/5;ctx.strokeStyle='#2e3c4a';ctx.beginPath();ctx.moveTo(x,8);ctx.lineTo(x,h-18);ctx.stroke();ctx.fillStyle='#93a9bf';ctx.font='11px system-ui';ctx.textAlign=i===0?'left':i===5?'right':'center';ctx.fillText(clockText(f.duration*i/5),x,h-3)}
+ ctx.strokeStyle='#8193a6';ctx.setLineDash([3,5]);ctx.beginPath();ctx.moveTo(left,middle);ctx.lineTo(right,middle);ctx.stroke();ctx.setLineDash([]);
+ r.observations.forEach(o=>{const x=left+(right-left)*o.time/f.duration,y=o.side==='a'?middle-29:middle+29;ctx.fillStyle=o.side==='a'?'#80aef6':'#f28b90';ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill()});
+ if(r===currentRound()&&running){ctx.strokeStyle='#d9e7f4';ctx.lineWidth=1;const x=left+(right-left)*seconds()/f.duration;ctx.beginPath();ctx.moveTo(x,8);ctx.lineTo(x,h-18);ctx.stroke()}
+}
+function resultDialog(){const f=fight();if(!f)return;pause();$('resultType').value=f.result?f.result.type:(f.status==='awaiting-result'?'decision':'tko');$('resultWinner').value=f.result?f.result.winner:'';setVisible('finishOverlay',true);renderFinishHint()}
+function renderFinishHint(){const f=fight(),t=$('resultType').value,completed=f.roundData.filter(r=>!!r.score).length===f.rounds;
+ $('finishHint').textContent=t==='decision'&&!completed?'All scheduled rounds must have confirmed scores before a decision can be completed.':t==='decision'?'Decision winner is determined by the score totals.':'A stoppage can close a fight with a partially completed round.';
+ $('resultWinner').disabled=t==='decision';if(t==='decision'){const s=totals(f);$('resultWinner').value=s[0]===s[1]?'':s[0]>s[1]?'a':'b'} }
+function finishFight(){const f=fight(),t=$('resultType').value,w=$('resultWinner').value,complete=f.roundData.filter(r=>r.score).length===f.rounds;
+ if(t==='decision'&&!complete){toast('Score every scheduled round first.');return}
+ if(!['decision','draw','no-contest','other'].includes(t)&&!w){toast('Select a winner for this stoppage.');return}
+ if(f.result&&!confirm('Replace the recorded result?'))return;
+ f.result={type:t,winner:w,at:new Date().toISOString()};f.status='complete';setVisible('finishOverlay',false);persist();renderWorkbench();toast('Fight completed.')}
+function newEvent(){pause();const e={id:uid(),name:'',date:new Date().toLocaleDateString('en-CA'),judge:'',fights:[]};data.events.push(e);data.selected=e.id;persist();renderDashboard();$('eventName').focus()}
+function addBout(){const e=event(),a=$('boutLeft').value.trim(),b=$('boutRight').value.trim();if(!a||!b){toast('Enter both fighter names.');return}
+ const f=newFight(a,b,$('boutDivision').value.trim(),$('boutRounds').value,$('boutDuration').value);e.fights.push(f);['boutLeft','boutRight','boutDivision'].forEach(k=>$(k).value='');persist();renderDashboard();$('boutLeft').focus()}
+function download(content,name,type){const u=URL.createObjectURL(new Blob([content],{type})),a=el('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000)}
+function exportJSON(){pause();persist();download(JSON.stringify(data,null,2),'judging-backup-'+new Date().toISOString().slice(0,10)+'.json','application/json')}
+function qcsv(v){let s=String(v==null?'':v);if(/^[\s]*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
+function exportCSV(){pause();const rows=[['Event','Date','Judge','Blue fighter','Red fighter','Division','Round','Blue points','Red points','Blue deductions','Red deductions','Fight result']];
+ data.events.forEach(e=>e.fights.forEach(f=>f.roundData.forEach((r,i)=>{const p=roundPoints(r.score);rows.push([e.name,e.date,e.judge,f.left,f.right,f.division,i+1,p?p[0]:'',p?p[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',f.result?f.result.type:''])})));
+ download('\uFEFF'+rows.map(row=>row.map(qcsv).join(',')).join('\r\n'),'judging-scorecards.csv','text/csv')}
+function validate(input){if(!input||input.version!==2||!Array.isArray(input.events)||input.events.length>200)throw Error('Not a valid Stage 1 backup.');
+ const ids=new Set();input.events.forEach(e=>{if(!e||typeof e.id!=='string'||ids.has(e.id)||!Array.isArray(e.fights)||e.fights.length>70)throw Error('Invalid event.');ids.add(e.id);for(const k of ['name','date','judge'])if(typeof e[k]!=='string'||e[k].length>1000)throw Error('Invalid event data.');
+ e.fights.forEach(f=>{if(!f||typeof f.id!=='string'||ids.has(f.id)||!Array.isArray(f.roundData)||!Number.isInteger(f.index)||f.index<0||f.index>=f.roundData.length||f.roundData.length>5||![3,5].includes(f.rounds)||![180,300,600].includes(f.duration)||f.roundData.length>f.rounds)throw Error('Invalid fight.');
+ ids.add(f.id);for(const k of ['left','right','division'])if(typeof f[k]!=='string'||f[k].length>1000)throw Error('Invalid fighter data.');
+ f.roundData.forEach(r=>{if(!r||!Number.isFinite(r.elapsed)||r.elapsed<0||r.elapsed>f.duration||!Array.isArray(r.observations)||r.observations.length>15000)throw Error('Invalid round.');
+ let prev=0;r.observations.forEach(o=>{if(!o||!['a','b'].includes(o.side)||!Number.isFinite(o.time)||o.time<prev||o.time>f.duration)throw Error('Invalid observation.');prev=o.time});
+ if(r.score){if(!['a','b','draw'].includes(r.score.winner)||![7,8,9,10].includes(r.score.margin)||!Array.isArray(r.score.deductions)||r.score.deductions.length!==2||r.score.deductions.some(n=>!Number.isInteger(n)||n<0||n>10))throw Error('Invalid score.');}});
+ });});return input}
+function legacyAvailable(){return !!readJSON(OLD_CURRENT)||!!readJSON(OLD_SAVES)}
+function importLegacy(){const prior=[...(Array.isArray(readJSON(OLD_SAVES))?readJSON(OLD_SAVES):[])],current=readJSON(OLD_CURRENT);if(current)prior.push(current);
+ let count=0;const existing=new Set(data.events.flatMap(e=>e.fights.map(f=>f.legacyId)).filter(Boolean));
+ for(const s of prior){try{if(s.version!==1||!s.id||!s.info||!Array.isArray(s.roundData)||![3,5].includes(+s.info.rounds)||existing.has(s.id)||!s.roundData.length)continue;
+ const e={id:uid(),name:String(s.info.event||'Imported session'),date:String(s.info.date||''),judge:String(s.info.judge||''),fights:[]};
+ const f=newFight(String(s.info.left||'Fighter A'),String(s.info.right||'Fighter B'),String(s.info.fight||''),+s.info.rounds,+s.info.duration||300);f.legacyId=s.id;f.roundData=s.roundData.slice(0,f.rounds).map(r=>{const ob=(Array.isArray(r.moments)?r.moments:[]).filter(m=>m&&[0,1].includes(m.side)&&Number.isFinite(m.time)&&m.time>=0&&m.time<=f.duration).map(m=>({side:m.side===0?'a':'b',time:m.time}));let sc=null;
+ if(Array.isArray(r.manual)&&r.manual.length===2){const a=+r.manual[0],b=+r.manual[1];if(a===10&&b===10)sc={winner:'draw',margin:10,deductions:Array.isArray(r.deductions)?r.deductions.slice(0,2):[0,0],confirmedAt:''};else if(a===10&&[7,8,9].includes(b))sc={winner:'a',margin:b,deductions:Array.isArray(r.deductions)?r.deductions.slice(0,2):[0,0],confirmedAt:''};else if(b===10&&[7,8,9].includes(a))sc={winner:'b',margin:a,deductions:Array.isArray(r.deductions)?r.deductions.slice(0,2):[0,0],confirmedAt:''}}
+ return {elapsed:Math.max(0,Math.min(f.duration,+r.elapsed||0)),observations:ob,score:sc}});f.index=Math.min(f.roundData.length-1,+s.current||0);f.status='in-progress';e.fights.push(f);data.events.push(e);existing.add(s.id);count++}catch(err){continue}}
+ if(count){data.selected=data.events[data.events.length-count].id;persist();renderDashboard()}toast(count+' old session(s) imported. Original data left unchanged. Previously automatic scores were not treated as confirmed.')}
+['eventName','eventDate','eventJudge'].forEach(id=>$(id).oninput=()=>{const e=event();if(!e)return;const key={eventName:'name',eventDate:'date',eventJudge:'judge'}[id];e[key]=$(id).value;persist();if(id==='eventName')renderEventListOnly()});
+function renderEventListOnly(){const e=event();const btn=[...$('events').children][data.events.indexOf(e)];if(btn)btn.querySelector('strong').textContent=safeName(e.name,'Untitled event')}
+$('newEventBtn').onclick=newEvent;$('addBout').onclick=addBout;
+$('deleteEvent').onclick=()=>{const e=event();if(e&&confirm('Delete this event and ALL its scorecards? This cannot be undone.')){data.events=data.events.filter(x=>x.id!==e.id);data.selected=data.events[0]?.id||null;persist();renderDashboard()}};
+$('exportAll').onclick=exportJSON;$('exportCsv').onclick=exportCSV;$('importBtn').onclick=()=>$('backupInput').click();
+$('backupInput').onchange=async()=>{try{const file=$('backupInput').files[0];if(!file)return;if(file.size>4500000)throw Error('Maximum backup size is 4.5 MB.');
+ const obj=validate(JSON.parse(await file.text()));if(!confirm('Replace this browser workspace with the imported backup? Export your current data first.'))return;pause();data=obj;activeId=null;data.selected=data.events.some(e=>e.id===data.selected)?data.selected:(data.events[0]?.id||null);persist();renderDashboard();toast('Backup imported.')}catch(e){toast(e.message)}finally{$('backupInput').value=''}};
+$('legacyBtn').onclick=importLegacy;$('backBtn').onclick=()=>{pause();renderDashboard()};
+$('fullscreenBtn').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('workbench').requestFullscreen()}catch(e){toast('Full screen unavailable.')}};
+$('startBtn').onclick=run;$('undoBtn').onclick=undo;$('endBtn').onclick=endRound;$('finishBtn').onclick=resultDialog;
+$('selectA').onclick=()=>{scoreDraft.winner='a';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
+$('selectB').onclick=()=>{scoreDraft.winner='b';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
+document.querySelectorAll('[data-margin]').forEach(b=>b.onclick=()=>{scoreDraft.margin=+b.dataset.margin;if(scoreDraft.margin===10)scoreDraft.winner='draw';else if(scoreDraft.winner==='draw')scoreDraft.winner=null;renderScoreModal()});
+document.querySelectorAll('[data-dside]').forEach(b=>b.onclick=()=>{const i=+b.dataset.dside;scoreDraft.deductions[i]=Math.max(0,Math.min(3,scoreDraft.deductions[i]+(+b.dataset.delta)));renderScoreModal()});
+$('confirmScore').onclick=confirmScore;$('cancelScore').onclick=cancelScore;
+$('resultType').onchange=renderFinishHint;$('cancelFinish').onclick=()=>setVisible('finishOverlay',false);$('confirmFinish').onclick=finishFight;
+document.addEventListener('keydown',e=>{if(e.ctrlKey||e.altKey||e.metaKey||e.repeat)return;const typing=e.target.closest('input,select,textarea');if(typing)return;
+ const sm=!$('scoreOverlay').classList.contains('hidden');const fm=!$('finishOverlay').classList.contains('hidden');
+ if(sm){if(['ArrowLeft','ArrowRight','Enter','Escape','9','8','7','0'].includes(e.key))e.preventDefault();
+ if(e.key==='ArrowLeft')$('selectA').click();else if(e.key==='ArrowRight')$('selectB').click();else if(['9','8','7','0'].includes(e.key)){const v=e.key==='0'?10:+e.key;document.querySelector('[data-margin="'+v+'"]').click()}else if(e.key==='Enter')confirmScore();else if(e.key==='Escape')cancelScore();return}
+ if(fm){if(e.key==='Escape'){e.preventDefault();setVisible('finishOverlay',false)}return}
+ if(!focusMode)return;if(e.target.closest('button'))e.target.blur();
+ if(['ArrowLeft','ArrowRight',' ','Backspace','e','E'].includes(e.key))e.preventDefault();
+ if(e.key==='ArrowLeft')observe('a');else if(e.key==='ArrowRight')observe('b');else if(e.key===' ')run();else if(e.key==='Backspace')undo();else if(e.key.toLowerCase()==='e')endRound();
+});
+window.addEventListener('resize',()=>{if(focusMode)drawGraph()});
+window.addEventListener('pagehide',()=>{pause();persist()});
+window.addEventListener('storage',e=>{if(e.key===KEY)toast('This workspace changed in another tab. Avoid scoring in two tabs at once.');});
+setInterval(()=>{if(focusMode)tick()},200);setInterval(()=>{if(running){currentRound().elapsed=seconds();anchor=performance.now();persist()}},1500);
+try{const saved=readJSON(KEY);if(saved)data=validate(saved)}catch(e){toast('Saved workspace could not be read. Original browser data was not changed.')}
+if(!data.events.some(e=>e.id===data.selected))data.selected=data.events[0]?.id||null;
+renderDashboard();
+</script>
+</body></html>
