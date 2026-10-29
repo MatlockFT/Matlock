@@ -887,3 +887,24 @@ test('oversized master payload fails before replacing archived scores',async({pa
  expect(current).toBe(original);
 });
 
+
+
+test('oversized first sync does not create an empty master spreadsheet',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);await page.click('#backBtn');
+ await page.evaluate(()=>{
+  const e=data.events[0],f=e.fights[0];
+  e.name='U'.repeat(120);f.left='R'.repeat(120);f.right='B'.repeat(120);
+  f.roundData[0].observations=Array.from({length:8000},(_,i)=>({side:i%2?'a':'b',time:i*.03}));
+  persist();
+ });
+ await connectQaGoogle(page);
+ await page.click('#syncEvent');
+ await expect(page.locator('#sheetMessage')).toContainText('recommended 2 MB');
+ await expect(page.locator('#sheetLink')).toBeHidden();
+ const creations=await page.evaluate(()=>window.__sheetRequests.filter(x=>x.method==='POST'&&x.path==='/v4/spreadsheets'));
+ expect(creations).toHaveLength(0);
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')));
+ expect(saved.masterSheetId).toBeFalsy();
+ expect(saved.events[0].fights[0].roundData[0].observations).toHaveLength(8000);
+});
