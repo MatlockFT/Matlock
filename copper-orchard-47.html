@@ -655,6 +655,10 @@ async function readMasterRows(id){
  });
  return out;
 }
+function checkMasterPayloadSize(valuePayload){
+ const bytes=new TextEncoder().encode(JSON.stringify(valuePayload)).length;
+ if(bytes>1900000)throw Error('Master sync exceeds Google\'s recommended 2 MB request size ('+(bytes/1000000).toFixed(2)+' MB). Existing archive was not overwritten. Export a JSON backup and reduce the data before syncing.');
+}
 async function syncMasterEvents(events){
  const selected=events.map(e=>JSON.parse(JSON.stringify(e)));
  const replaceIds=new Set(selected.map(e=>e.id));
@@ -663,6 +667,11 @@ async function syncMasterEvents(events){
  if(incomingCount>50000)throw Error('Too many moments to sync at once. Export a JSON backup.');
  let id=data.masterSheetId,created=false;
  if(!id){
+  // Fail before creating an empty spreadsheet on an oversized initial export.
+  checkMasterPayloadSize({valueInputOption:'RAW',
+   data:MASTER_TABS.map(tab=>({range:"'"+tab+"'!A1",majorDimension:'ROWS',
+    values:[MASTER_HEADERS[tab],...additions.flatMap(x=>x[tab])]}))
+  });
   const result=await googleSheetsRequest('',{
    properties:{title:'Scorecard — Master Judging Archive'},
    sheets:MASTER_TABS.map(title=>({properties:{title,gridProperties:{frozenRowCount:1}}}))
@@ -675,17 +684,42 @@ async function syncMasterEvents(events){
  const sheets=new Map((meta.sheets||[]).map(x=>[x.properties.title,x.properties]));
  if(MASTER_TABS.some(t=>!sheets.has(t)))throw Error('Master is missing one or more required tabs. No records were overwritten.');
  const remote=await readMasterRows(id),merged={};
+ // Warn before replacing a remote event that came from a newer device or backup.
+ // We cannot guarantee Google-side compare-and-swap; this catches stale snapshots
+ // seen at the start of the request and requires an explicit human override.
+ const remoteByEvent=new Map(remote.Events.slice(1).filter(row=>row[0]).map(row=>[String(row[0]),row]));
+ for(const e of selected){
+  const old=remoteByEvent.get(e.id);
+  if(!old)continue;
+  const remoteStamp=Date.parse(old[7]||''),localStamp=Date.parse(e.masterSyncedAt||'');
+  const newer=(!Number.isFinite(localStamp)&&Number.isFinite(remoteStamp))
+   ||(Number.isFinite(remoteStamp)&&Number.isFinite(localStamp)&&remoteStamp>localStamp+1000);
+  if(newer&&!confirm('The master has a newer copy of '+(e.name||'this event')+' (synced '+String(old[7]||'unknown')+'). Overwrite those archived scores with this browser\'s version? Cancel to preserve them and compare backups first.'))
+   throw Error('Sync canceled to protect newer archived scores for '+(e.name||'this event')+'.');
+ }
  for(const tab of MASTER_TABS){
   const retained=remote[tab].slice(1).filter(row=>!replaceIds.has(String(row[0]||'')));
   const newRows=additions.flatMap(x=>x[tab]);
   merged[tab]=[MASTER_HEADERS[tab],...retained,...newRows];
   if(merged[tab].length>50001)throw Error('Master '+tab+' tab exceeds the single-sync safety limit.');
  }
+ // Google's recommended maximum is 2 MB per request. Fail before touching the
+ // existing spreadsheet rather than sending an oversized multi-tab overwrite.
+ const valuePayload={valueInputOption:'RAW',
+  data:MASTER_TABS.map(tab=>({range:"'"+tab+"'!A1",majorDimension:'ROWS',values:merged[tab]}))};
+ checkMasterPayloadSize(valuePayload);
  const formatting=[],growth=[];
  for(const tab of MASTER_TABS){
   const sheet=sheets.get(tab),idNum=sheet.sheetId;
   const current=sheet.gridProperties?.rowCount||1000,needed=merged[tab].length;
-  if(needed>current)growth.push({updateSheetProperties:{properties:{sheetId:idNum,gridProperties:{rowCount:needed+50}},fields:'gridProperties.rowCount'}});
+  const currentCols=sheet.gridProperties?.columnCount||26,neededCols=MASTER_HEADERS[tab].length;
+  const nextGrid={};
+  if(needed>current)nextGrid.rowCount=needed+50;
+  if(neededCols>currentCols)nextGrid.columnCount=neededCols;
+  if(Object.keys(nextGrid).length)growth.push({updateSheetProperties:{
+   properties:{sheetId:idNum,gridProperties:nextGrid},
+   fields:Object.keys(nextGrid).map(k=>'gridProperties.'+k).join(',')
+  }});
   if(created){
    formatting.push({repeatCell:{range:{sheetId:idNum,startRowIndex:0,endRowIndex:1},
     cell:{userEnteredFormat:{backgroundColor:{red:.16,green:.16,blue:.17},textFormat:{bold:true,foregroundColor:{red:1,green:1,blue:1}}}},fields:'userEnteredFormat'}});
@@ -695,10 +729,7 @@ async function syncMasterEvents(events){
  if(growth.length||formatting.length)
   await googleSheetsRequest('/'+encodeURIComponent(id)+':batchUpdate',{requests:[...growth,...formatting]});
  // Write updated rows FIRST. If the write fails, previously archived data stays intact.
- await googleSheetsRequest('/'+encodeURIComponent(id)+'/values:batchUpdate',{
-  valueInputOption:'RAW',
-  data:MASTER_TABS.map(tab=>({range:"'"+tab+"'!A1",majorDimension:'ROWS',values:merged[tab]}))
- });
+ await googleSheetsRequest('/'+encodeURIComponent(id)+'/values:batchUpdate',valuePayload);
  // Only remove obsolete trailing rows after the complete replacement has been written.
  const stale=MASTER_TABS.filter(tab=>remote[tab].length>merged[tab].length)
   .map(tab=>"'"+tab+"'!A"+(merged[tab].length+1)+":Z"+remote[tab].length);
@@ -723,7 +754,7 @@ async function syncEvents(all){
   message='Master updated: '+out.events+' event'+(out.events===1?'':'s')+', '+out.fights+' fights, '+out.rounds+' rounds, '+out.moments+' moments synced. Other archived events preserved.';
   toast('Master spreadsheet updated.');
  }catch(err){
-  message='Master sync failed: '+err.message+'. Your local scorecards and previously archived events were not deliberately deleted.';
+  message='Master sync failed: '+err.message+'. Local judging data is unchanged. If Google accepted an earlier write before the error, retry syncing to reconcile the archive.';
   toast('Google sync failed: '+err.message);
  }finally{
   driveBusy=false;updateDriveUI();if(message)$('sheetMessage').textContent=message;
