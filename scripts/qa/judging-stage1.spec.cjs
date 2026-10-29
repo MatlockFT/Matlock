@@ -4,7 +4,8 @@ test.beforeEach(async ({ page }) => {
   page.__scorecardErrors=[];
   page.on('pageerror', err => page.__scorecardErrors.push(err.message));
   page.on('dialog', async d => d.accept());
-  await page.goto(URL);
+  await page.route('https://accounts.google.com/gsi/client',route=>route.fulfill({status:200,contentType:'application/javascript',body:''}));
+  await page.goto(URL,{waitUntil:'domcontentloaded'});
 });
 test.afterEach(async ({page}) => {
   expect(page.__scorecardErrors).toEqual([]);
