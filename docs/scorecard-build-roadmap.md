@@ -35,7 +35,7 @@ Stage 1 exit criteria:
 - Full keyboard-only usability / accessibility and browser-disconnect testing.
 
 ## Stage 3 — Data and synchronization
-- **Implemented:** optional manual Google Sheets sync using Google consent and narrow `drive.file` authorization; local scorecard remains the source of truth. One spreadsheet per event, with Fights, Rounds, and Moments tabs and stable event-linked spreadsheet IDs. Re-sync updates existing files; Sync all events creates or updates each event. No automatic two-way recovery from spreadsheets.
+- **Implemented:** optional manual Google Sheets sync using Google consent and narrow `drive.file` authorization; local scorecard remains the source of truth. One persistent **master spreadsheet** for the workspace, with Events, Fights, Rounds and Moments tabs. Sync this event merges only that event by stable Event ID; Sync all events updates all local events while preserving other previously archived events. An existing master may be linked by URL/ID. Older per-event Google files remain untouched. No automatic two-way recovery from spreadsheets.
 - Import scheduled cards through an authorized source, maintain offline manual entry.
 - Optional official result/scorecard comparison; clearly distinguish provenance.
 - Search and filters for historic events and rounds.
@@ -46,3 +46,9 @@ Stage 1 exit criteria:
 - Keep JSON backups, particularly before device changes. Google Sheets setup: configure a Google web OAuth client; authorize the site's exact JavaScript origin (`https://mmamatlock.com`); enable Google Sheets API in the client project; add the account to the consent screen's test users when applicable. The previous Google Drive OAuth client ID is reused when saved in this browser.
 - Link obscurity + noindex are not access control; add authentication if data privacy becomes necessary.
 - The old v1 page can be recovered from the Git history. New app does not delete the older v1 local storage keys.
+
+## Master Sheets migration
+- No Google Drive files are deleted automatically. Earlier event-linked `sheetId` and `sheetSyncedAt` fields remain in saved JSON, but new syncs use root `masterSheetId` and `masterSyncedAt`.
+- Master archives keep previously synced events not currently present in local storage. Records for an event are upserted by persistent Event ID; renamed events and rescored rounds replace their prior rows without duplicates.
+- A failed write leaves the previously written remote data intact; obsolete trailing rows are cleared only after the new dataset is written successfully.
+- Keep the master Google Sheets URL/ID with backups if scoring from a different device; the app does not automatically discover a file created in a different browser. Master Sheets remains a one-way export, not a full JSON restore.

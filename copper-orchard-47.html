@@ -103,11 +103,14 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     <label>Scheduled rounds<select id="boutRounds"><option value="3">3 rounds</option><option value="5">5 rounds</option></select></label>
     <label>Round length<select id="boutDuration"><option value="300">5 minutes</option><option value="180">3 minutes</option><option value="600">10 minutes</option></select></label>
     </div><div class="actions" style="margin-top:14px"><button id="addBout" class="primary">Add fight</button></div></div>
-    <div class="section"><div class="section-head"><h2>Google Sheets</h2><span id="driveStatus" class="micro">Not connected</span></div>
-    <p class="muted">One spreadsheet per event, with Fights, Rounds and Moments tabs. Your local scorecard remains the source. Sync is manual; later edits replace the previous spreadsheet snapshot.</p>
-    <div class="actions" style="margin-top:13px"><button id="connectDrive">Connect Google</button><button id="syncEvent" class="primary" disabled>Sync this event</button><button id="syncAllEvents" disabled>Sync all events</button><a id="sheetLink" class="sheet-link hidden" target="_blank" rel="noopener noreferrer">Open spreadsheet ↗</a><button id="unlinkSheet" class="quiet small-btn hidden">Unlink sheet</button><button id="disconnectDrive" class="quiet small-btn" disabled>Disconnect</button></div>
+    <div class="section"><div class="section-head"><h2>Google Sheets · Master archive</h2><span id="driveStatus" class="micro">Not connected</span></div>
+    <p class="muted">One master spreadsheet for all events. Events, Fights, Rounds and Moments have their own tabs. Sync an event or your entire workspace into the same archive; other archived events are retained.</p>
+    <div class="actions" style="margin-top:13px"><button id="connectDrive">Connect Google</button><button id="syncEvent" class="primary" disabled>Sync this event</button><button id="syncAllEvents" disabled>Sync all events</button><a id="sheetLink" class="sheet-link hidden" target="_blank" rel="noopener noreferrer">Open master spreadsheet ↗</a><button id="disconnectDrive" class="quiet small-btn" disabled>Disconnect</button></div>
     <p id="sheetMessage" class="muted" style="margin-top:10px">Connect a Google account and sync when ready.</p>
-    <details style="margin-top:16px"><summary>Google connection setup</summary>
+    <details style="margin-top:16px"><summary>Google connection setup · Link existing master</summary>
+    <p class="muted" style="margin:9px 0">Already have a master spreadsheet from this tool? Paste its full Google Sheets URL or spreadsheet ID to connect it rather than creating a second one. Existing individual event spreadsheets are kept in Drive but are no longer updated.</p>
+    <div class="actions"><label style="flex:1;min-width:180px">Master spreadsheet URL or ID<input id="masterSheetInput" placeholder="https://docs.google.com/spreadsheets/d/…/edit" autocomplete="off"></label><button id="attachMaster" class="small-btn" style="align-self:end">Use this master</button></div>
+    <button id="unlinkSheet" class="quiet danger small-btn hidden" style="margin-top:9px">Unlink master (keep Google file)</button>
     <p class="muted" style="margin:9px 0">Use your existing Google web OAuth client (the older scorecard's saved client ID is reused). In that Google Cloud project, enable the <strong>Google Sheets API</strong>. Configure the OAuth consent screen, add your Google account as a test user if needed, and authorize <strong id="googleOrigin"></strong> as a JavaScript origin. No client secret is needed. Google's sign-in is required; no account token is stored.</p>
     <label>Google OAuth web client ID<input id="clientId" maxlength="300" placeholder="…apps.googleusercontent.com" autocomplete="off"></label>
     <p style="margin-top:9px"><a class="sheet-link" target="_blank" rel="noopener noreferrer" href="https://developers.google.com/identity/oauth2/web/guides/use-token-model">Google OAuth setup</a></p>
@@ -220,7 +223,7 @@ function clearChartFlash(){momentFlash=null;if(chartFrame){cancelAnimationFrame(
 
 const KEY='copper47.workspace.v2', OLD_CURRENT='copper47.current.v1', OLD_SAVES='copper47.sessions.v1';
 const uid=()=>crypto.randomUUID?crypto.randomUUID():'id-'+Date.now()+'-'+Math.random().toString(36).slice(2);
-const fresh=()=>({version:2,selected:null,events:[]});
+const fresh=()=>({version:2,selected:null,events:[],masterSheetId:null});
 const newRound=()=>({elapsed:0,observations:[],score:null});
 const newFight=(left,right,division,rounds,duration)=>({id:uid(),left,right,division,rounds:+rounds,duration:+duration,index:0,roundData:[newRound()],status:'ready',result:null,legacyId:null,cornerLayout:'red-left'});
 let data=fresh(),activeId=null,running=false,anchor=0,scoreIndex=null,scoreDraft=null,scoreWasLive=false,reviewIndex=0,focusMode=false,saveFailed=false,editingFightId=null;
@@ -521,21 +524,35 @@ function finishFight(){const f=fight(),t=$('resultType').value,w=$('resultWinner
 function driveReady(){return !!driveToken&&Date.now()<driveExpires}
 function sheetUrl(id){return 'https://docs.google.com/spreadsheets/d/'+encodeURIComponent(id)+'/edit'}
 function updateDriveUI(){
- const e=event(),ready=driveReady();
+ const e=event(),ready=driveReady(),hasMaster=!!data.masterSheetId;
  $('driveStatus').textContent=ready?'Connected':'Not connected';
  $('connectDrive').textContent=ready?'Switch / reconnect Google':'Connect Google';
  $('disconnectDrive').disabled=!driveToken;
  $('syncEvent').disabled=!e||!ready||driveBusy;
  $('syncAllEvents').disabled=!ready||driveBusy||!data.events.length;
- const hasSheet=!!e?.sheetId;
- $('sheetLink').classList.toggle('hidden',!hasSheet);
- $('unlinkSheet').classList.toggle('hidden',!hasSheet);
+ $('sheetLink').classList.toggle('hidden',!hasMaster);
+ $('unlinkSheet').classList.toggle('hidden',!hasMaster);
  $('unlinkSheet').disabled=driveBusy;
- if(hasSheet)$('sheetLink').href=sheetUrl(e.sheetId);
- $('sheetMessage').textContent=driveBusy?'Synchronizing sheets…':hasSheet?
-  'Spreadsheet linked'+(e.sheetSyncedAt?' · Last successful sync: '+new Date(e.sheetSyncedAt).toLocaleString():' · Not yet synced')+' · Sync again after any changes.':
-  ready?'No spreadsheet linked to this event. Sync to create one.':
-  'Connect Google and select an event to create its spreadsheet.';
+ $('attachMaster').disabled=driveBusy;
+ if(hasMaster)$('sheetLink').href=sheetUrl(data.masterSheetId);
+ $('sheetMessage').textContent=driveBusy?'Syncing master archive…':hasMaster?
+  'Master archive linked'+(data.masterSyncedAt?' · Last sync: '+new Date(data.masterSyncedAt).toLocaleString():' · Not yet synced')+' · All events share this spreadsheet.':
+  ready?'No master linked. Sync to create your one master spreadsheet.':
+  'Connect Google and sync an event to create your master spreadsheet.';
+}
+function masterIdFromInput(value){
+ const v=String(value||'').trim();
+ const m=v.match(/^https:\/\/docs\.google\.com\/spreadsheets\/d\/([\w-]{15,250})(?:[/?#]|$)/);
+ const id=m?m[1]:v;
+ return /^[\w-]{15,250}$/.test(id)?id:null;
+}
+function attachMasterSheet(){
+ if(driveBusy)return;
+ const id=masterIdFromInput($('masterSheetInput').value);
+ if(!id){toast('Paste a valid Google Sheets link or spreadsheet ID.');return}
+ if(data.masterSheetId&&data.masterSheetId!==id&&!confirm('Switch master spreadsheets? The previous Google file will be kept, and future syncs will update the new link.'))return;
+ if(data.masterSheetId!==id){data.masterSheetId=id;delete data.masterSyncedAt;persist()}
+ updateDriveUI();toast('Master linked. Sync an event to update it.');
 }
 function connectGoogle(){
  const clientId=$('clientId').value.trim();
@@ -603,41 +620,96 @@ function buildSheetRows(e){
  });
  return {Fights:fights,Rounds:rounds,Moments:moments};
 }
-async function syncOneEvent(e){
- const snapshot=JSON.parse(JSON.stringify(e)),rows=buildSheetRows(snapshot),tabs=['Fights','Rounds','Moments'];
- if(rows.Moments.length>50000)throw Error('Too many moments to sync in one operation. Export the local JSON backup.');
- let id=e.sheetId;
+
+const MASTER_TABS=['Events','Fights','Rounds','Moments'];
+const MASTER_HEADERS={
+ Events:['Event ID','Event','Date','Judge / session','Fights','Scored rounds','Total moments','Last synced UTC'],
+ Fights:['Event ID','Event','Event date','Judge','Fight #','Fight ID','Red corner','Blue corner','Division','Scheduled rounds','Round length (seconds)','Red points','Blue points','Red moments','Blue moments','Fight status','Result type','Winner','Last synced UTC'],
+ Rounds:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC'],
+ Moments:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter']
+};
+function masterRowsForEvent(e){
+ const per=buildSheetRows(e);
+ const allRounds=e.fights.flatMap(f=>f.roundData);
+ const scored=allRounds.filter(r=>!!r.score).length;
+ const counted=allRounds.reduce((n,r)=>n+r.observations.length,0);
+ return {
+  Events:[[e.id,e.name,e.date,e.judge,e.fights.length,scored,counted,new Date().toISOString()]],
+  Fights:per.Fights.slice(1).map(row=>[e.id,...row]),
+  Rounds:per.Rounds.slice(1).map(row=>[e.id,...row]),
+  Moments:per.Moments.slice(1).map(row=>[e.id,...row])
+ };
+}
+async function readMasterRows(id){
+ const query=new URLSearchParams();
+ MASTER_TABS.forEach(tab=>query.append('ranges',"'"+tab+"'!A:Z"));
+ query.set('valueRenderOption','UNFORMATTED_VALUE');
+ const result=await googleSheetsRequest('/'+encodeURIComponent(id)+'/values:batchGet?'+query.toString(),undefined,'GET');
+ if(!Array.isArray(result.valueRanges)||result.valueRanges.length!==MASTER_TABS.length)throw Error('Google returned an incomplete master sheet.');
+ const out={};
+ MASTER_TABS.forEach((tab,i)=>{
+  const existing=result.valueRanges[i].values||[];
+  if(existing.length&&JSON.stringify(existing[0])!==JSON.stringify(MASTER_HEADERS[tab]))
+   throw Error(tab+' has different column headers. Use a master created by this scorecard; no data was changed.');
+  out[tab]=existing;
+ });
+ return out;
+}
+async function syncMasterEvents(events){
+ const selected=events.map(e=>JSON.parse(JSON.stringify(e)));
+ const replaceIds=new Set(selected.map(e=>e.id));
+ const additions=selected.map(masterRowsForEvent);
+ const incomingCount=additions.reduce((n,x)=>n+x.Moments.length,0);
+ if(incomingCount>50000)throw Error('Too many moments to sync at once. Export a JSON backup.');
+ let id=data.masterSheetId,created=false;
  if(!id){
-  const title=('Judging — '+(snapshot.name.trim()||'Untitled event')+' — '+(snapshot.date||'No date')).slice(0,180);
-  const created=await googleSheetsRequest('',{
-   properties:{title},
-   sheets:tabs.map(title=>({properties:{title,gridProperties:{frozenRowCount:1}}}))
+  const result=await googleSheetsRequest('',{
+   properties:{title:'Scorecard — Master Judging Archive'},
+   sheets:MASTER_TABS.map(title=>({properties:{title,gridProperties:{frozenRowCount:1}}}))
   });
-  if(!/^[\w-]+$/.test(created.spreadsheetId||''))throw Error('Google did not return a valid spreadsheet ID.');
-  id=created.spreadsheetId;
-  e.sheetId=id;persist();updateDriveUI(); // Retain the file link even if a later write fails.
+  id=result.spreadsheetId;
+  if(!/^[\w-]{15,250}$/.test(id||''))throw Error('Google did not return a valid spreadsheet ID.');
+  data.masterSheetId=id;created=true;persist();updateDriveUI();
  }
  const meta=await googleSheetsRequest('/'+encodeURIComponent(id)+'?fields='+encodeURIComponent('sheets(properties(sheetId,title,gridProperties(rowCount,columnCount)))'),undefined,'GET');
  const sheets=new Map((meta.sheets||[]).map(x=>[x.properties.title,x.properties]));
- if(tabs.some(x=>!sheets.has(x)))throw Error('A linked spreadsheet tab is missing. Unlink this sheet to start a new spreadsheet.');
- const changes=[],styling=[];
- for(const tab of tabs){
-  const prop=sheets.get(tab),rowCount=prop.gridProperties?.rowCount||1000,colCount=prop.gridProperties?.columnCount||26;
-  const needed=Math.max(rowCount,rows[tab].length+25);
-  if(needed>rowCount)changes.push({updateSheetProperties:{properties:{sheetId:prop.sheetId,gridProperties:{rowCount:needed}},fields:'gridProperties.rowCount'}});
-  if(!snapshot.sheetId){ // New spreadsheet only; keep later user formatting untouched.
-   styling.push({repeatCell:{range:{sheetId:prop.sheetId,startRowIndex:0,endRowIndex:1},cell:{userEnteredFormat:{backgroundColor:{red:.13,green:.19,blue:.27},textFormat:{bold:true,foregroundColor:{red:1,green:1,blue:1}}}},fields:'userEnteredFormat'}});
-   styling.push({setBasicFilter:{filter:{range:{sheetId:prop.sheetId,startRowIndex:0,endRowIndex:needed}}}});
+ if(MASTER_TABS.some(t=>!sheets.has(t)))throw Error('Master is missing one or more required tabs. No records were overwritten.');
+ const remote=await readMasterRows(id),merged={};
+ for(const tab of MASTER_TABS){
+  const retained=remote[tab].slice(1).filter(row=>!replaceIds.has(String(row[0]||'')));
+  const newRows=additions.flatMap(x=>x[tab]);
+  merged[tab]=[MASTER_HEADERS[tab],...retained,...newRows];
+  if(merged[tab].length>50001)throw Error('Master '+tab+' tab exceeds the single-sync safety limit.');
+ }
+ const formatting=[],growth=[];
+ for(const tab of MASTER_TABS){
+  const sheet=sheets.get(tab),idNum=sheet.sheetId;
+  const current=sheet.gridProperties?.rowCount||1000,needed=merged[tab].length;
+  if(needed>current)growth.push({updateSheetProperties:{properties:{sheetId:idNum,gridProperties:{rowCount:needed+50}},fields:'gridProperties.rowCount'}});
+  if(created){
+   formatting.push({repeatCell:{range:{sheetId:idNum,startRowIndex:0,endRowIndex:1},
+    cell:{userEnteredFormat:{backgroundColor:{red:.16,green:.16,blue:.17},textFormat:{bold:true,foregroundColor:{red:1,green:1,blue:1}}}},fields:'userEnteredFormat'}});
+   formatting.push({setBasicFilter:{filter:{range:{sheetId:idNum,startRowIndex:0,endRowIndex:Math.max(current,needed+50)}}}});
   }
  }
- if(changes.length||styling.length)await googleSheetsRequest('/'+encodeURIComponent(id)+':batchUpdate',{requests:[...changes,...styling]});
- await googleSheetsRequest('/'+encodeURIComponent(id)+'/values:batchClear',{ranges:tabs.map(t=>"'"+t+"'!A:Z")});
+ if(growth.length||formatting.length)
+  await googleSheetsRequest('/'+encodeURIComponent(id)+':batchUpdate',{requests:[...growth,...formatting]});
+ // Write updated rows FIRST. If the write fails, previously archived data stays intact.
  await googleSheetsRequest('/'+encodeURIComponent(id)+'/values:batchUpdate',{
   valueInputOption:'RAW',
-  data:tabs.map(t=>({range:"'"+t+"'!A1",majorDimension:'ROWS',values:rows[t]}))
+  data:MASTER_TABS.map(tab=>({range:"'"+tab+"'!A1",majorDimension:'ROWS',values:merged[tab]}))
  });
- e.sheetSyncedAt=new Date().toISOString();persist();updateDriveUI();
- return {id,fights:rows.Fights.length-1,rounds:rows.Rounds.length-1,moments:rows.Moments.length-1};
+ // Only remove obsolete trailing rows after the complete replacement has been written.
+ const stale=MASTER_TABS.filter(tab=>remote[tab].length>merged[tab].length)
+  .map(tab=>"'"+tab+"'!A"+(merged[tab].length+1)+":Z"+remote[tab].length);
+ if(stale.length)await googleSheetsRequest('/'+encodeURIComponent(id)+'/values:batchClear',{ranges:stale});
+ const time=new Date().toISOString();
+ data.masterSyncedAt=time;
+ events.forEach(e=>e.masterSyncedAt=time);
+ persist();updateDriveUI();
+ return {id,events:selected.length,fights:additions.reduce((n,x)=>n+x.Fights.length,0),
+  rounds:additions.reduce((n,x)=>n+x.Rounds.length,0),
+  moments:incomingCount};
 }
 async function syncEvents(all){
  if(driveBusy)return;
@@ -645,24 +717,23 @@ async function syncEvents(all){
  const events=all?data.events.slice():[event()].filter(Boolean);
  if(!events.length){toast('Create an event first.');return}
  driveBusy=true;updateDriveUI();
- let count=0,lastMessage='';
+ let message='';
  try{
-  for(const e of events){
-   $('sheetMessage').textContent='Syncing '+(count+1)+' of '+events.length+': '+(e.name||'Untitled event');
-   const out=await syncOneEvent(e);count++;
-   lastMessage='Synced '+out.fights+' fights, '+out.rounds+' rounds, '+out.moments+' moments. Spreadsheet saved in Google Drive.';
-   $('sheetMessage').textContent=lastMessage;
-  }
-  toast(count+' event'+(count===1?'':'s')+' synced to Google Sheets.');
+  const out=await syncMasterEvents(events);
+  message='Master updated: '+out.events+' event'+(out.events===1?'':'s')+', '+out.fights+' fights, '+out.rounds+' rounds, '+out.moments+' moments synced. Other archived events preserved.';
+  toast('Master spreadsheet updated.');
  }catch(err){
-  lastMessage='Sync failed after '+count+' event(s): '+err.message+'. Local scorecards were not changed.';
+  message='Master sync failed: '+err.message+'. Your local scorecards and previously archived events were not deliberately deleted.';
   toast('Google sync failed: '+err.message);
- }finally{driveBusy=false;updateDriveUI();if(lastMessage)$('sheetMessage').textContent=lastMessage}
+ }finally{
+  driveBusy=false;updateDriveUI();if(message)$('sheetMessage').textContent=message;
+ }
 }
-function unlinkEventSheet(){
- const e=event();if(!e?.sheetId||driveBusy)return;
- if(!confirm('Unlink this spreadsheet? The Google Drive file will remain untouched. The next sync creates a NEW spreadsheet.'))return;
- delete e.sheetId;delete e.sheetSyncedAt;persist();updateDriveUI();toast('Sheet unlinked. Existing Google file was not deleted.');
+function unlinkMasterSheet(){
+ if(!data.masterSheetId||driveBusy)return;
+ if(!confirm('Unlink your master spreadsheet? The Google file will remain in Drive. Next sync will create a NEW master unless you attach the existing ID again.'))return;
+ delete data.masterSheetId;delete data.masterSyncedAt;persist();updateDriveUI();
+ toast('Master unlinked. The Google file was not deleted.');
 }
 
 function newEvent(){pause();const e={id:uid(),name:'',date:new Date().toLocaleDateString('en-CA'),judge:'',fights:[]};data.events.push(e);data.selected=e.id;persist();renderDashboard();$('eventName').focus()}
@@ -676,6 +747,8 @@ function exportCSV(){pause();const rows=[['Event','Date','Judge','Red fighter','
  data.events.forEach(e=>e.fights.forEach(f=>f.roundData.forEach((r,i)=>{const p=roundPoints(r.score);rows.push([e.name,e.date,e.judge,f.left,f.right,f.division,i+1,p?p[0]:'',p?p[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',f.result?f.result.type:''])})));
  download('\uFEFF'+rows.map(row=>row.map(qcsv).join(',')).join('\r\n'),'judging-scorecards.csv','text/csv')}
 function validate(input){if(!input||input.version!==2||!Array.isArray(input.events)||input.events.length>200)throw Error('Not a valid Stage 1 backup.');
+ if(input.masterSheetId!=null&&(!/^[\w-]{15,250}$/.test(input.masterSheetId)))throw Error('Invalid master spreadsheet ID.');
+ if(input.masterSyncedAt!=null&&typeof input.masterSyncedAt!=='string')throw Error('Invalid master sync date.');
  const ids=new Set();input.events.forEach(e=>{if(!e||typeof e.id!=='string'||ids.has(e.id)||!Array.isArray(e.fights)||e.fights.length>70)throw Error('Invalid event.');ids.add(e.id);if(e.sheetId!==undefined&&(!/^[\w-]+$/.test(e.sheetId)||e.sheetId.length>250))throw Error('Invalid linked spreadsheet ID.');for(const k of ['name','date','judge'])if(typeof e[k]!=='string'||e[k].length>1000)throw Error('Invalid event data.');
  e.fights.forEach(f=>{if(!f||typeof f.id!=='string'||ids.has(f.id)||!Array.isArray(f.roundData)||!Number.isInteger(f.index)||f.index<0||f.index>=f.roundData.length||f.roundData.length>5||![3,5].includes(f.rounds)||![180,300,600].includes(f.duration)||f.roundData.length>f.rounds)throw Error('Invalid fight.');
  ids.add(f.id);if(f.cornerLayout&&!['red-left','blue-left'].includes(f.cornerLayout))throw Error('Invalid corner layout.');for(const k of ['left','right','division'])if(typeof f[k]!=='string'||f[k].length>1000)throw Error('Invalid fighter data.');
@@ -702,7 +775,7 @@ $('clientId').onchange=()=>{
 };
 $('connectDrive').onclick=connectGoogle;$('disconnectDrive').onclick=disconnectGoogle;
 $('syncEvent').onclick=()=>syncEvents(false);$('syncAllEvents').onclick=()=>syncEvents(true);
-$('unlinkSheet').onclick=unlinkEventSheet;
+$('unlinkSheet').onclick=unlinkMasterSheet;$('attachMaster').onclick=attachMasterSheet;
 $('boutDivision').onchange=()=>toggleCustom('boutDivision','customDivisionWrap','boutCustomDivision');
 $('editDivision').onchange=()=>toggleCustom('editDivision','editCustomWrap','editCustomDivision');
 $('cancelEdit').onclick=closeEdit;$('saveEdit').onclick=saveEdit;
