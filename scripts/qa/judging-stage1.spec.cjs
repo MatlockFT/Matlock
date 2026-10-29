@@ -24,7 +24,7 @@ async function scoreRound(page,side,margin='9'){
   await page.click('#startBtn');
   await page.keyboard.press('ArrowLeft');
   await page.keyboard.press('ArrowRight');
-  await expect(page.locator('#observationsCount')).toHaveText('2 recorded');
+  await expect(page.locator('#observationsCount')).toHaveText('2 moments');
   await page.click('#endBtn');
   await expect(page.locator('#scoreOverlay')).toBeVisible();
   await page.keyboard.press(side==='a'?'ArrowLeft':'ArrowRight');
@@ -79,7 +79,7 @@ test('old sessions can be imported before any new event exists', async ({ page }
   await page.click('#legacyBtn');
   await expect(page.locator('.bout-row')).toHaveCount(1);
   await page.locator('.bout-row .primary').click();
-  await expect(page.locator('#observationsCount')).toHaveText('2 recorded');
+  await expect(page.locator('#observationsCount')).toHaveText('2 moments');
 });
 test('full workspace exports as JSON backup', async ({ page })=>{
   await setup(page);
@@ -99,10 +99,11 @@ test('red is left and blue right in controls, scorecard, graph and result', asyn
   await setup(page);
   await expect(page.locator('.wb-head .micro.red')).toContainText('Red corner');
   await expect(page.locator('.wb-head .micro.blue')).toContainText('Blue corner');
-  await expect(page.locator('.legend .red')).toHaveText('RED • ABOVE CENTER');
-  await expect(page.locator('.legend .blue')).toHaveText('BLUE • BELOW CENTER');
+  await expect(page.locator('.legend .red')).toHaveText('RED FIGHTER');
+  await expect(page.locator('.legend .blue')).toHaveText('BLUE FIGHTER');
   await expect(page.locator('#scoreBody').locator('tr')).toHaveCount(1);
-  await expect(page.locator('.score-rows thead')).toContainText('Red');
+  await expect(page.locator('#scoreHeadRed')).toHaveText('RED FIGHTER');
+  await expect(page.locator('#scoreHeadBlue')).toHaveText('BLUE FIGHTER');
   await page.click('#startBtn');
   await page.keyboard.press('ArrowLeft');
   await page.keyboard.press('ArrowRight');
@@ -122,20 +123,20 @@ test('reset the current round after a false start and persist the clean state', 
   await page.click('#startBtn');
   await page.keyboard.press('ArrowLeft');
   await page.keyboard.press('ArrowRight');
-  await expect(page.locator('#observationsCount')).toHaveText('2 recorded');
+  await expect(page.locator('#observationsCount')).toHaveText('2 moments');
   await expect(page.locator('#resetBtn')).toBeEnabled();
   await page.click('#resetBtn');
-  await expect(page.locator('#observationsCount')).toHaveText('0 recorded');
+  await expect(page.locator('#observationsCount')).toHaveText('0 moments');
   await expect(page.locator('#clock')).toHaveText('5:00');
   await expect(page.locator('#roundState')).toHaveText('Ready');
   await expect(page.locator('#resetBtn')).toBeDisabled();
   await page.reload();
   await page.locator('.bout-row .primary').click();
   await expect(page.locator('#clock')).toHaveText('5:00');
-  await expect(page.locator('#observationsCount')).toHaveText('0 recorded');
+  await expect(page.locator('#observationsCount')).toHaveText('0 moments');
   await page.click('#startBtn');
   await page.keyboard.press('ArrowLeft');
-  await expect(page.locator('#observationsCount')).toHaveText('1 recorded');
+  await expect(page.locator('#observationsCount')).toHaveText('1 moments');
 });
 test('declined reset retains the current observations and state', async ({page})=>{
   await setup(page);
@@ -144,7 +145,7 @@ test('declined reset retains the current observations and state', async ({page})
   page.removeAllListeners('dialog');
   page.once('dialog', async d => {await d.dismiss()});
   await page.click('#resetBtn');
-  await expect(page.locator('#observationsCount')).toHaveText('1 recorded');
+  await expect(page.locator('#observationsCount')).toHaveText('1 moments');
   await expect(page.locator('#roundState')).toHaveText('Recording');
 });
 test('reset from score prompt restarts same round and does not alter previous scores', async ({page})=>{
@@ -160,7 +161,7 @@ test('reset from score prompt restarts same round and does not alter previous sc
   await expect(page.locator('#wbRound')).toHaveText('ROUND 2 OF 3');
   await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
   await expect(page.locator('#clock')).toHaveText('5:00');
-  await expect(page.locator('#observationsCount')).toHaveText('0 recorded');
+  await expect(page.locator('#observationsCount')).toHaveText('0 moments');
 });
 test('previous v2 scorecard keeps original fighter identity after layout migration', async ({page})=>{
   // Seed before the application initializes. Writing to localStorage in a running
@@ -225,7 +226,7 @@ test('equal recorded moments preselect 10–10 without forcing it', async ({page
   await page.click('#startBtn');
   await page.keyboard.press('ArrowLeft');
   await page.keyboard.press('ArrowRight');
-  await expect(page.locator('#momentLead')).toHaveText('Moments even');
+  await expect(page.locator('#momentLead')).toHaveText('Even');
   await page.click('#endBtn');
   await expect(page.locator('[data-margin="10"]')).toHaveClass(/selected/);
   await expect(page.locator('#suggestionText')).toContainText('10–10 suggested');
@@ -283,7 +284,7 @@ test('undo and reset immediately recalculate the tallies', async ({page})=>{
   await page.click('#resetBtn');
   await expect(page.locator('#wbMomentsA')).toHaveText('0');
   await expect(page.locator('#wbMomentsB')).toHaveText('0');
-  await expect(page.locator('#momentLead')).toHaveText('No moments');
+  await expect(page.locator('#momentLead')).toHaveText('');
   await expect(page.locator('#clock')).toHaveText('5:00');
 });
 
@@ -620,4 +621,91 @@ test('google Sheets errors never delete the locally saved fight',async ({page})=
  await expect(page.locator('.bout-row')).toHaveCount(1);
  await page.locator('.bout-row .primary').click();
  await expect(page.locator('#wbLeft')).toHaveText('Red fighter');
+});
+
+
+test('copy cleanup and fighter surnames in scorecard and timeline',async({page})=>{
+ await page.click('#newEventBtn');
+ await page.fill('#eventName','UFC 334');
+ await page.fill('#boutLeft','Ciryl Gane');await page.fill('#boutRight','Josh Hokit');
+ await page.selectOption('#boutDivision','Heavyweight');await page.click('#addBout');
+ await page.locator('.bout-row .primary').click();
+ await expect(page.locator('.timeline-title h2')).toHaveText('Round timeline');
+ await expect(page.locator('.footer-grid h2').nth(1)).toHaveText('Moment log');
+ await expect(page.locator('#scoreHeadRed')).toHaveText('GANE');
+ await expect(page.locator('#scoreHeadBlue')).toHaveText('HOKIT');
+ await expect(page.locator('#graphRedName')).toHaveText('GANE');
+ await expect(page.locator('#graphBlueName')).toHaveText('HOKIT');
+ await expect(page.locator('#resultLabel')).toBeHidden();
+ await expect(page.locator('#momentLog')).toContainText('No moments logged this round.');
+ await expect(page.locator('.hints')).toContainText('log a moment');
+ await expect(page.locator('body')).not.toContainText('Moment counts are advisory');
+ await expect(page.locator('body')).not.toContainText('Unofficial scorecard · moment-based suggestions');
+ await expect(page.locator('body')).not.toContainText('Round observations');
+ await page.click('#startBtn');await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowRight');
+ await expect(page.locator('#observationsCount')).toHaveText('2 moments');
+ await expect(page.locator('#momentLog')).toContainText('Ciryl Gane');
+ await expect(page.locator('#momentLog')).toContainText('Josh Hokit');
+ await page.click('#endBtn');await page.keyboard.press('Enter');
+ await expect(page.locator('#scoreHeadRed')).toHaveText('GANE');
+ await expect(page.locator('#scoreHeadBlue')).toHaveText('HOKIT');
+});
+
+test('charcoal colors and graph pixels update as moments are logged',async({page})=>{
+ await setup(page);
+ const bg=await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor);
+ const root=await page.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--bg').trim());
+ expect(root).toBe('#111214');
+ const panel=await page.locator('.timeline').evaluate(el=>getComputedStyle(el).backgroundImage);
+ expect(panel).toContain('gradient');
+ const getCanvas=()=>page.locator('#graph').evaluate(el=>({
+   data:el.toDataURL('image/png'),
+   label:el.getAttribute('aria-label'),
+   width:el.width,height:el.height
+ }));
+ const initial=await getCanvas();expect(initial.width).toBeGreaterThan(200);
+ await page.click('#startBtn');await page.keyboard.press('ArrowLeft');
+ await expect(page.locator('#wbMomentsA')).toHaveText('1');
+ const red=await getCanvas();
+ expect(red.data).not.toBe(initial.data);
+ expect(red.label).toContain('1 red moments');
+ await page.keyboard.press('ArrowRight');
+ await expect(page.locator('#wbMomentsB')).toHaveText('1');
+ const blue=await getCanvas();
+ expect(blue.data).not.toBe(red.data);
+ expect(blue.label).toContain('1 blue moments');
+ await page.click('#resetBtn');
+ await expect(page.locator('#observationsCount')).toHaveText('0 moments');
+ expect((await getCanvas()).label).toContain('0 red moments, 0 blue moments');
+});
+
+test('long surnames fit without horizontal overflow',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.click('#newEventBtn');
+ await page.fill('#boutLeft','Alexandria Verylongcompoundlastname');
+ await page.fill('#boutRight','Christopher van der Berg');
+ await page.selectOption('#boutDivision','Lightweight');
+ await page.click('#addBout');
+ await page.locator('.bout-row .primary').click();
+ await expect(page.locator('#scoreHeadRed')).toHaveText('VERYLONGCOMPOUNDLASTNAME');
+ await expect(page.locator('#scoreHeadBlue')).toHaveText('VAN DER BERG');
+ const sz=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,view:innerWidth}));
+ expect(sz.scroll).toBeLessThanOrEqual(sz.view+1);
+ await page.click('#startBtn');
+ await page.keyboard.press('ArrowLeft');
+ await expect(page.locator('#wbMomentsA')).toHaveText('1');
+});
+
+test('reduced motion preserves all scores and produces a readable timeline',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await setup(page);
+ await page.click('#startBtn');
+ for(const key of ['ArrowLeft','ArrowRight','ArrowLeft'])await page.keyboard.press(key);
+ await expect(page.locator('#wbMomentsA')).toHaveText('2');
+ await expect(page.locator('#wbMomentsB')).toHaveText('1');
+ await expect(page.locator('#graph')).toHaveAttribute('aria-label',/2 red moments, 1 blue moments/);
+ await page.click('#endBtn');
+ await expect(page.locator('#draftScore')).toHaveText('10 – 9');
+ await page.keyboard.press('Enter');
+ await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
 });
