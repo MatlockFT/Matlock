@@ -490,18 +490,19 @@ async function syncEvents(all){
  const events=all?data.events.slice():[event()].filter(Boolean);
  if(!events.length){toast('Create an event first.');return}
  driveBusy=true;updateDriveUI();
- let count=0;
+ let count=0,lastMessage='';
  try{
   for(const e of events){
    $('sheetMessage').textContent='Syncing '+(count+1)+' of '+events.length+': '+(e.name||'Untitled event');
    const out=await syncOneEvent(e);count++;
-   $('sheetMessage').textContent='Synced '+out.fights+' fights, '+out.rounds+' rounds, '+out.moments+' moments. Spreadsheet saved in Google Drive.';
+   lastMessage='Synced '+out.fights+' fights, '+out.rounds+' rounds, '+out.moments+' moments. Spreadsheet saved in Google Drive.';
+   $('sheetMessage').textContent=lastMessage;
   }
   toast(count+' event'+(count===1?'':'s')+' synced to Google Sheets.');
  }catch(err){
-  $('sheetMessage').textContent='Sync failed after '+count+' event(s): '+err.message+'. Local scorecards were not changed.';
+  lastMessage='Sync failed after '+count+' event(s): '+err.message+'. Local scorecards were not changed.';
   toast('Google sync failed: '+err.message);
- }finally{driveBusy=false;updateDriveUI()}
+ }finally{driveBusy=false;updateDriveUI();if(lastMessage)$('sheetMessage').textContent=lastMessage}
 }
 function unlinkEventSheet(){
  const e=event();if(!e?.sheetId||driveBusy)return;
