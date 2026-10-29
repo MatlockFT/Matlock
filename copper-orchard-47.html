@@ -524,21 +524,35 @@ function finishFight(){const f=fight(),t=$('resultType').value,w=$('resultWinner
 function driveReady(){return !!driveToken&&Date.now()<driveExpires}
 function sheetUrl(id){return 'https://docs.google.com/spreadsheets/d/'+encodeURIComponent(id)+'/edit'}
 function updateDriveUI(){
- const e=event(),ready=driveReady();
+ const e=event(),ready=driveReady(),hasMaster=!!data.masterSheetId;
  $('driveStatus').textContent=ready?'Connected':'Not connected';
  $('connectDrive').textContent=ready?'Switch / reconnect Google':'Connect Google';
  $('disconnectDrive').disabled=!driveToken;
  $('syncEvent').disabled=!e||!ready||driveBusy;
  $('syncAllEvents').disabled=!ready||driveBusy||!data.events.length;
- const hasSheet=!!e?.sheetId;
- $('sheetLink').classList.toggle('hidden',!hasSheet);
- $('unlinkSheet').classList.toggle('hidden',!hasSheet);
+ $('sheetLink').classList.toggle('hidden',!hasMaster);
+ $('unlinkSheet').classList.toggle('hidden',!hasMaster);
  $('unlinkSheet').disabled=driveBusy;
- if(hasSheet)$('sheetLink').href=sheetUrl(e.sheetId);
- $('sheetMessage').textContent=driveBusy?'Synchronizing sheets…':hasSheet?
-  'Spreadsheet linked'+(e.sheetSyncedAt?' · Last successful sync: '+new Date(e.sheetSyncedAt).toLocaleString():' · Not yet synced')+' · Sync again after any changes.':
-  ready?'No spreadsheet linked to this event. Sync to create one.':
-  'Connect Google and select an event to create its spreadsheet.';
+ $('attachMaster').disabled=driveBusy;
+ if(hasMaster)$('sheetLink').href=sheetUrl(data.masterSheetId);
+ $('sheetMessage').textContent=driveBusy?'Syncing master archive…':hasMaster?
+  'Master archive linked'+(data.masterSyncedAt?' · Last sync: '+new Date(data.masterSyncedAt).toLocaleString():' · Not yet synced')+' · All events share this spreadsheet.':
+  ready?'No master linked. Sync to create your one master spreadsheet.':
+  'Connect Google and sync an event to create your master spreadsheet.';
+}
+function masterIdFromInput(value){
+ const v=String(value||'').trim();
+ const m=v.match(/^https:\/\/docs\.google\.com\/spreadsheets\/d\/([\w-]{15,250})(?:[/?#]|$)/);
+ const id=m?m[1]:v;
+ return /^[\w-]{15,250}$/.test(id)?id:null;
+}
+function attachMasterSheet(){
+ if(driveBusy)return;
+ const id=masterIdFromInput($('masterSheetInput').value);
+ if(!id){toast('Paste a valid Google Sheets link or spreadsheet ID.');return}
+ if(data.masterSheetId&&data.masterSheetId!==id&&!confirm('Switch master spreadsheets? The previous Google file will be kept, and future syncs will update the new link.'))return;
+ if(data.masterSheetId!==id){data.masterSheetId=id;delete data.masterSyncedAt;persist()}
+ updateDriveUI();toast('Master linked. Sync an event to update it.');
 }
 function connectGoogle(){
  const clientId=$('clientId').value.trim();
@@ -662,10 +676,11 @@ async function syncEvents(all){
   toast('Google sync failed: '+err.message);
  }finally{driveBusy=false;updateDriveUI();if(lastMessage)$('sheetMessage').textContent=lastMessage}
 }
-function unlinkEventSheet(){
- const e=event();if(!e?.sheetId||driveBusy)return;
- if(!confirm('Unlink this spreadsheet? The Google Drive file will remain untouched. The next sync creates a NEW spreadsheet.'))return;
- delete e.sheetId;delete e.sheetSyncedAt;persist();updateDriveUI();toast('Sheet unlinked. Existing Google file was not deleted.');
+function unlinkMasterSheet(){
+ if(!data.masterSheetId||driveBusy)return;
+ if(!confirm('Unlink your master spreadsheet? The Google file will remain in Drive. Next sync will create a NEW master unless you attach the existing ID again.'))return;
+ delete data.masterSheetId;delete data.masterSyncedAt;persist();updateDriveUI();
+ toast('Master unlinked. The Google file was not deleted.');
 }
 
 function newEvent(){pause();const e={id:uid(),name:'',date:new Date().toLocaleDateString('en-CA'),judge:'',fights:[]};data.events.push(e);data.selected=e.id;persist();renderDashboard();$('eventName').focus()}
@@ -707,7 +722,7 @@ $('clientId').onchange=()=>{
 };
 $('connectDrive').onclick=connectGoogle;$('disconnectDrive').onclick=disconnectGoogle;
 $('syncEvent').onclick=()=>syncEvents(false);$('syncAllEvents').onclick=()=>syncEvents(true);
-$('unlinkSheet').onclick=unlinkEventSheet;
+$('unlinkSheet').onclick=unlinkMasterSheet;$('attachMaster').onclick=attachMasterSheet;
 $('boutDivision').onchange=()=>toggleCustom('boutDivision','customDivisionWrap','boutCustomDivision');
 $('editDivision').onchange=()=>toggleCustom('editDivision','editCustomWrap','editCustomDivision');
 $('cancelEdit').onclick=closeEdit;$('saveEdit').onclick=saveEdit;
