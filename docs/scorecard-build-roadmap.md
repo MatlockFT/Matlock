@@ -5,6 +5,8 @@ Target: /copper-orchard-47/ (unindexed standalone page)
 ## Design contract
 - Watch the fight first. During an active round the main interaction is Left/Right.
 - Arrow presses create observations, never automatic 10-point scores.
+- Show live red/blue moment totals. End-of-round suggestions preselect an editable score from the counts, but never confirm it automatically.
+- Recommendation thresholds: no moments -> manual; equal moments -> tentative 10–10; one side ahead -> 10–9; >=6 leading moments, >=5 lead, and >=80% share -> 10–8 review suggestion. These are operator aids, not Unified Rules scoring conclusions.
 - Round scores are confirmed by the operator under the 10-point-must system.
 - Keep manual operation available if network connections fail.
 - No OBS, stream overlays, social graphics, or content-production modules.
