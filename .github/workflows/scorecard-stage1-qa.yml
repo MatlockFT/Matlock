@@ -1,0 +1,32 @@
+name: Scorecard Stage 1 QA
+on:
+  pull_request:
+    paths:
+      - copper-orchard-47.html
+      - scripts/qa/judging-stage1.spec.cjs
+      - .github/workflows/scorecard-stage1-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install browser runtime
+        run: |
+          npm install --no-save --no-package-lock @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Build standalone test fixture
+        run: |
+          mkdir -p .qa-local/copper-orchard-47
+          sed '1,5d' copper-orchard-47.html > .qa-local/copper-orchard-47/index.html
+      - name: End-to-end scoring tests
+        run: |
+          python3 -m http.server 4173 --directory .qa-local >/tmp/scorecard-qa.log 2>&1 &
+          sleep 2
+          npx playwright test scripts/qa/judging-stage1.spec.cjs --browser=chromium --reporter=line
