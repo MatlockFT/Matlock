@@ -24,7 +24,7 @@ jobs:
       - name: Build standalone test fixture
         run: |
           mkdir -p .qa-local/copper-orchard-47
-          sed '1,4d' copper-orchard-47.html > .qa-local/copper-orchard-47/index.html
+          sed '1,5d' copper-orchard-47.html > .qa-local/copper-orchard-47/index.html
       - name: End-to-end scoring tests
         run: |
           python3 -m http.server 4173 --directory .qa-local >/tmp/scorecard-qa.log 2>&1 &
