@@ -190,3 +190,93 @@ test('previous v2 scorecard keeps original fighter identity after layout migrati
   await expect(page.locator('#wbLeft')).toHaveText('Original red');
   await expect(page.locator('#wbTotal')).toHaveText('8 – 10');
 });
+
+
+test('live moment counts and tally preselect a red 10–9 score', async ({page})=>{
+  await setup(page);
+  await page.click('#startBtn');
+  await page.keyboard.press('ArrowLeft');
+  await page.keyboard.press('ArrowLeft');
+  await page.keyboard.press('ArrowRight');
+  await expect(page.locator('#wbMomentsA')).toHaveText('2');
+  await expect(page.locator('#wbMomentsB')).toHaveText('1');
+  await expect(page.locator('#momentLead')).toHaveText('Red +1');
+  await page.click('#endBtn');
+  await expect(page.locator('#scoreMomentsA')).toHaveText('2');
+  await expect(page.locator('#scoreMomentsB')).toHaveText('1');
+  await expect(page.locator('#selectA')).toHaveClass(/selected/);
+  await expect(page.locator('[data-margin="9"]')).toHaveClass(/selected/);
+  await expect(page.locator('#suggestionText')).toContainText('suggested 10–9 for Red');
+  await expect(page.locator('#draftScore')).toHaveText('10 – 9');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#scoreOverlay')).toBeHidden();
+  await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
+  await expect(page.locator('#scoreBody tr:first-child')).toContainText('2–1');
+});
+
+test('equal recorded moments preselect 10–10 without forcing it', async ({page})=>{
+  await setup(page);
+  await page.click('#startBtn');
+  await page.keyboard.press('ArrowLeft');
+  await page.keyboard.press('ArrowRight');
+  await expect(page.locator('#momentLead')).toHaveText('Moments even');
+  await page.click('#endBtn');
+  await expect(page.locator('[data-margin="10"]')).toHaveClass(/selected/);
+  await expect(page.locator('#suggestionText')).toContainText('10–10 suggested');
+  await expect(page.locator('#draftScore')).toHaveText('10 – 10');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#scoreOverlay')).toBeHidden();
+  await expect(page.locator('#wbTotal')).toHaveText('10 – 10');
+});
+
+test('strongly one-sided tally suggests 10–8 but manual override wins', async ({page})=>{
+  await setup(page);
+  await page.click('#startBtn');
+  for(let i=0;i<8;i++)await page.keyboard.press('ArrowLeft');
+  await page.keyboard.press('ArrowRight');
+  await page.click('#endBtn');
+  await expect(page.locator('#scoreMomentsA')).toHaveText('8');
+  await expect(page.locator('#scoreMomentsB')).toHaveText('1');
+  await expect(page.locator('[data-margin="8"]')).toHaveClass(/selected/);
+  await expect(page.locator('#selectA')).toHaveClass(/selected/);
+  await expect(page.locator('#draftScore')).toHaveText('10 – 8');
+  await expect(page.locator('#suggestionText')).toContainText('impact, dominance and duration');
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('9');
+  await expect(page.locator('#draftScore')).toHaveText('9 – 10');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#wbTotal')).toHaveText('9 – 10');
+  await page.locator('#scoreBody tr:first-child button').click();
+  await expect(page.locator('#draftScore')).toHaveText('9 – 10');
+  await expect(page.locator('[data-margin="9"]')).toHaveClass(/selected/);
+});
+
+test('no observed moments asks judge to choose instead of inventing a score', async ({page})=>{
+  await setup(page);
+  await page.click('#startBtn');
+  await page.click('#endBtn');
+  await expect(page.locator('#scoreMomentsA')).toHaveText('0');
+  await expect(page.locator('#scoreMomentsB')).toHaveText('0');
+  await expect(page.locator('#suggestionText')).toContainText('Select a score manually');
+  await expect(page.locator('#confirmScore')).toBeDisabled();
+  await page.keyboard.press('ArrowRight');
+  await expect(page.locator('#confirmScore')).toBeEnabled();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#wbTotal')).toHaveText('9 – 10');
+});
+
+test('undo and reset immediately recalculate the tallies', async ({page})=>{
+  await setup(page);
+  await page.click('#startBtn');
+  await page.keyboard.press('ArrowLeft');
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('Backspace');
+  await expect(page.locator('#wbMomentsA')).toHaveText('1');
+  await expect(page.locator('#wbMomentsB')).toHaveText('0');
+  await expect(page.locator('#momentLead')).toHaveText('Red +1');
+  await page.click('#resetBtn');
+  await expect(page.locator('#wbMomentsA')).toHaveText('0');
+  await expect(page.locator('#wbMomentsB')).toHaveText('0');
+  await expect(page.locator('#momentLead')).toHaveText('Moments even');
+  await expect(page.locator('#clock')).toHaveText('5:00');
+});
