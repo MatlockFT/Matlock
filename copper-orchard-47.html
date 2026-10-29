@@ -59,8 +59,11 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 #endBtn:hover:not(:disabled){background:#414348}
 #finishBtn{margin-left:10px}
 .hints{color:#9a9ba0;letter-spacing:.007em}
-.score-rows{table-layout:auto}
-.score-rows th{font-weight:650;font-size:10px;color:#b0b1b5;letter-spacing:.08em;max-width:145px;overflow:hidden;text-overflow:ellipsis}
+.score-rows{table-layout:fixed;min-width:0}
+.score-rows th:first-child,.score-rows td:first-child{width:13%}
+.score-rows th:last-child,.score-rows td:last-child{width:21%}
+.score-rows td{overflow:hidden;text-overflow:ellipsis}
+.score-rows th{font-weight:650;font-size:10px;color:#b0b1b5;letter-spacing:.08em;max-width:145px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .score-rows tbody tr{transition:background-color 160ms ease}
 .score-rows tbody tr:hover{background:#ffffff07}
 .logline{border-bottom-color:#34353a}
