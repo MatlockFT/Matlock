@@ -661,6 +661,7 @@ test('existing old per-event spreadsheet links remain untouched during master mi
   localStorage.setItem(key,JSON.stringify(workspace));
  });
  await page.reload();
+ await stubGoogleSheets(page); // Reload clears the browser-only OAuth/API test simulation.
  await connectQaGoogle(page);
  await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
  const workspace=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')));
