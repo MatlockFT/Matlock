@@ -718,7 +718,7 @@ test('copy cleanup and fighter surnames in scorecard and timeline',async({page})
  await page.fill('#boutLeft','Ciryl Gane');await page.fill('#boutRight','Josh Hokit');
  await page.selectOption('#boutDivision','Heavyweight');await page.click('#addBout');
  await page.locator('.bout-row .primary').click();
- await expect(page.locator('.timeline-title h2')).toHaveText('Round timeline');
+ await expect(page.locator('.timeline-title h2')).toHaveText('Momentum tape');
  await expect(page.locator('.footer-grid h2').nth(1)).toHaveText('Moment log');
  await expect(page.locator('#scoreHeadRed')).toHaveText('GANE');
  await expect(page.locator('#scoreHeadBlue')).toHaveText('HOKIT');
@@ -907,4 +907,97 @@ test('oversized first sync does not create an empty master spreadsheet',async({p
  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')));
  expect(saved.masterSheetId).toBeFalsy();
  expect(saved.events[0].fights[0].roundData[0].observations).toHaveLength(8000);
+});
+
+
+test('Graph V2 updates exact moment counts, reacts to undo and resets cleanly',async({page})=>{
+ await setup(page);
+ await expect(page.locator('.timeline-title h2')).toHaveText('Momentum tape');
+ await expect(page.locator('#graphRound')).toHaveAttribute('aria-pressed','true');
+ const snapshot=()=>page.locator('#graph').evaluate(c=>({png:c.toDataURL('image/png'),label:c.getAttribute('aria-label')}));
+ const empty=await snapshot();
+ await page.click('#startBtn');
+ await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowLeft');
+ await expect(page.locator('#observationsCount')).toHaveText('3 moments');
+ const withThree=await snapshot();expect(withThree.png).not.toBe(empty.png);
+ expect(withThree.label).toContain('2 red moments, 1 blue moments');
+ await page.keyboard.press('Backspace');
+ await expect(page.locator('#observationsCount')).toHaveText('2 moments');
+ expect((await snapshot()).label).toContain('1 red moments, 1 blue moments');
+ await page.click('#resetBtn');
+ await expect(page.locator('#observationsCount')).toHaveText('0 moments');
+ expect((await snapshot()).label).toContain('0 red moments, 0 blue moments');
+});
+
+test('Fight view shows multiple round tapes and does not change scoring',async({page})=>{
+ await setup(page);
+ await scoreRound(page,'a');
+ await page.click('#startBtn');await page.keyboard.press('ArrowRight');
+ await page.click('#graphFight');
+ await expect(page.locator('#graphFight')).toHaveAttribute('aria-pressed','true');
+ await expect(page.locator('#graphRound')).toHaveAttribute('aria-pressed','false');
+ await expect(page.locator('#observationsCount')).toHaveText('3 fight moments');
+ await expect(page.locator('#graph')).toHaveAttribute('aria-label',/Fight summary: 1 red moments, 2 blue moments/);
+ const raw=await page.evaluate(()=>({score:data.events[0].fights[0].roundData[0].score,round:data.events[0].fights[0].index}));
+ expect(raw.round).toBe(1);expect(raw.score.winner).toBe('a');
+ await page.click('#graphRound');
+ await expect(page.locator('#observationsCount')).toHaveText('1 moments');
+ await expect(page.locator('#graph')).toHaveAttribute('aria-label',/Round 2: 0 red moments, 1 blue moments/);
+});
+
+test('Download PNG generates a 1600x900 share image with the correct fight metadata',async({page})=>{
+ await setup(page);
+ await page.click('#startBtn');await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowRight');
+ const [download]=await Promise.all([page.waitForEvent('download'),page.click('#downloadGraph')]);
+ expect(download.suggestedFilename()).toMatch(/test-ufc-card_red-fighter_blue-fighter_round-1\.png$/);
+ const buffer=await require('node:fs/promises').readFile(await download.path());
+ expect(buffer.subarray(0,8).toString('hex')).toBe('89504e470d0a1a0a');
+ expect(buffer.readUInt32BE(16)).toBe(1600);
+ expect(buffer.readUInt32BE(20)).toBe(900);
+ expect(buffer.length).toBeGreaterThan(18000);
+});
+
+test('Copy graph writes image/png through clipboard API',async({page})=>{
+ await setup(page);
+ await page.evaluate(()=>{
+  window.__copyData=null;
+  Object.defineProperty(navigator,'clipboard',{configurable:true,value:{
+   write:async(items)=>{
+    const blob=await items[0].getType('image/png');
+    window.__copyData={type:blob.type,bytes:blob.size};
+   }
+  }});
+ });
+ await page.click('#startBtn');await page.keyboard.press('ArrowLeft');
+ await page.click('#copyGraph');
+ await expect.poll(()=>page.evaluate(()=>window.__copyData?.bytes||0)).toBeGreaterThan(18000);
+ const info=await page.evaluate(()=>window.__copyData);
+ expect(info.type).toBe('image/png');
+});
+
+test('Clipboard denial triggers automatic PNG download and retains moment data',async({page})=>{
+ await setup(page);
+ await page.evaluate(()=>{
+  Object.defineProperty(navigator,'clipboard',{configurable:true,value:{write:async()=>{throw Error('NotAllowedError')}}});
+ });
+ await page.click('#startBtn');await page.keyboard.press('ArrowRight');
+ const [download]=await Promise.all([page.waitForEvent('download'),page.click('#copyGraph')]);
+ expect(download.suggestedFilename()).toMatch(/round-1\.png$/);
+ await expect(page.locator('#momentLog')).toContainText('Blue fighter');
+ await expect(page.locator('#observationsCount')).toHaveText('1 moments');
+});
+
+test('Fight overview export and reduced-motion mobile layout stay usable',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await setup(page);
+ await scoreRound(page,'a');await page.click('#startBtn');await page.keyboard.press('ArrowRight');
+ await page.click('#graphFight');
+ const widths=await page.evaluate(()=>({page:document.documentElement.scrollWidth,screen:innerWidth}));
+ expect(widths.page).toBeLessThanOrEqual(widths.screen+1);
+ const [download]=await Promise.all([page.waitForEvent('download'),page.click('#downloadGraph')]);
+ expect(download.suggestedFilename()).toMatch(/_fight\.png$/);
+ const buffer=await require('node:fs/promises').readFile(await download.path());
+ expect(buffer.readUInt32BE(16)).toBe(1600);expect(buffer.readUInt32BE(20)).toBe(900);
+ await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
 });
