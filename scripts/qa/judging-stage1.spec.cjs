@@ -99,10 +99,11 @@ test('red is left and blue right in controls, scorecard, graph and result', asyn
   await setup(page);
   await expect(page.locator('.wb-head .micro.red')).toContainText('Red corner');
   await expect(page.locator('.wb-head .micro.blue')).toContainText('Blue corner');
-  await expect(page.locator('.legend .red')).toHaveText('FIGHTER');
-  await expect(page.locator('.legend .blue')).toHaveText('FIGHTER');
+  await expect(page.locator('.legend .red')).toHaveText('RED FIGHTER');
+  await expect(page.locator('.legend .blue')).toHaveText('BLUE FIGHTER');
   await expect(page.locator('#scoreBody').locator('tr')).toHaveCount(1);
-  await expect(page.locator('.score-rows thead')).toContainText('Red');
+  await expect(page.locator('#scoreHeadRed')).toHaveText('RED FIGHTER');
+  await expect(page.locator('#scoreHeadBlue')).toHaveText('BLUE FIGHTER');
   await page.click('#startBtn');
   await page.keyboard.press('ArrowLeft');
   await page.keyboard.press('ArrowRight');
