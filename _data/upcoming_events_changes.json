@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-28T19:52:17.473Z",
+  "generated_at": "2026-10-29T09:51:38.396Z",
   "changes": [
+    {
+      "id": "2026-10-29T09:51:38.396Z|rizin-abc-presents-rizin-55-2026-11-08|bout_added|1",
+      "at": "2026-10-29T09:51:38.396Z",
+      "type": "bout_added",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "promotion": "RIZIN",
+      "event_title": "『abc presents RIZIN.55』",
+      "event_date": "2026-11-08",
+      "summary": "Jake Wilkins vs YAJURO YAMASAKI added to 『abc presents RIZIN.55』.",
+      "details": {
+        "order": 15,
+        "section": "Fight Card",
+        "weight_class": "71.0 kg"
+      }
+    },
     {
       "id": "2026-10-28T19:52:17.473Z|ufc-fight-night-2026-10-31-fight-card|bout_changed|1",
       "at": "2026-10-28T19:52:17.473Z",
@@ -4507,22 +4522,6 @@
         "to_order": 11,
         "from_section": "Early Prelims",
         "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-10-14T22:17:08.733Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|1",
-      "at": "2026-10-14T22:17:08.733Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Seokhyeon Ko vs Wellington Turman moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 8,
-        "to_order": 5,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
       }
     }
   ]
