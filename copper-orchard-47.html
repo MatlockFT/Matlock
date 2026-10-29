@@ -168,7 +168,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 </section>
 <div id="editFightOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="editFightTitle">
  <div class="modal"><h2 id="editFightTitle">Edit fight</h2>
- <p class="muted" style="margin-top:6px">Editing names changes the labels attached to existing moments and scores. Keep each fighter assigned to the correct corner.</p>
+ <p class="muted" style="margin-top:6px">Editing names changes the labels attached to existing exchanges and scores. Keep each fighter assigned to the correct corner.</p>
  <div class="formgrid" style="margin-top:17px">
  <label>Red corner<input id="editRed" maxlength="150"></label>
  <label>Blue corner<input id="editBlue" maxlength="150"></label>
@@ -349,7 +349,7 @@ function undo(){const r=currentRound(),f=fight();if(!f||f.result||!r||!r.observa
 function resetRound(){
  const f=fight(),r=currentRound();if(!f||!r||f.result)return;
  const n=f.index+1;
- if(!confirm('Reset round '+n+'? This clears its timer, moments and any confirmed score. Earlier rounds are not changed.'))return;
+ if(!confirm('Reset round '+n+'? This clears its timer, exchanges and any confirmed score. Earlier rounds are not changed.'))return;
  pause();clearChartFlash();
  r.elapsed=0;r.observations=[];r.score=null;
  f.status=f.roundData.some((rd,i)=>i<f.index&&rd.score)?'in-progress':'ready';
@@ -749,8 +749,8 @@ async function googleSheetsRequest(path,body,method='POST'){
 }
 function buildSheetRows(e){
  const fights=[['Event','Event date','Judge','Fight #','Fight ID','Red corner','Blue corner','Division','Scheduled rounds','Round length (seconds)','Red points','Blue points','Red moments','Blue moments','Fight status','Result type','Winner','Last synced UTC']];
- const rounds=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC']];
- const moments=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter']];
+ const rounds=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC','Red major impacts','Blue major impacts']];
+ const moments=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter','Exchange type']];
  e.fights.forEach((f,ix)=>{
   const t=totals(f),redTotal=f.roundData.reduce((n,r)=>n+momentTally(r)[0],0),blueTotal=f.roundData.reduce((n,r)=>n+momentTally(r)[1],0);
   const result=f.result||{},name=result.winner==='a'?f.left:result.winner==='b'?f.right:'';
@@ -759,8 +759,8 @@ function buildSheetRows(e){
    const pts=roundPoints(r.score),suggest=suggestedRound(r),counts=momentTally(r);
    const suggestedPts=suggest.winner?roundPoints({winner:suggest.winner,margin:suggest.margin,deductions:[0,0]}):null;
    const win=suggest.winner==='a'?f.left:suggest.winner==='b'?f.right:suggest.winner==='draw'?'Even':'';
-   rounds.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,Math.round(r.elapsed*10)/10,f.duration,counts[0],counts[1],win,suggestedPts?suggestedPts.join('–'):'',pts?pts[0]:'',pts?pts[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',!!r.score,r.score?.confirmedAt||'']);
-   r.observations.forEach((o,k)=>moments.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,k+1,o.time,clockText(f.duration-o.time),o.side==='a'?'Red':'Blue',o.side==='a'?f.left:f.right]));
+   rounds.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,Math.round(r.elapsed*10)/10,f.duration,counts[0],counts[1],win,suggestedPts?suggestedPts.join('–'):'',pts?pts[0]:'',pts?pts[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',!!r.score,r.score?.confirmedAt||'',impactTally(r)[0],impactTally(r)[1]]);
+   r.observations.forEach((o,k)=>moments.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,k+1,o.time,clockText(f.duration-o.time),o.side==='a'?'Red':'Blue',o.side==='a'?f.left:f.right,o.type==='impact'?'Major impact':'Exchange']));
   });
  });
  return {Fights:fights,Rounds:rounds,Moments:moments};
@@ -770,8 +770,8 @@ const MASTER_TABS=['Events','Fights','Rounds','Moments'];
 const MASTER_HEADERS={
  Events:['Event ID','Event','Date','Judge / session','Fights','Scored rounds','Total moments','Last synced UTC'],
  Fights:['Event ID','Event','Event date','Judge','Fight #','Fight ID','Red corner','Blue corner','Division','Scheduled rounds','Round length (seconds)','Red points','Blue points','Red moments','Blue moments','Fight status','Result type','Winner','Last synced UTC'],
- Rounds:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC'],
- Moments:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter']
+ Rounds:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC','Red major impacts','Blue major impacts'],
+ Moments:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter','Exchange type']
 };
 function masterRowsForEvent(e){
  const per=buildSheetRows(e);
@@ -794,8 +794,12 @@ async function readMasterRows(id){
  const out={};
  MASTER_TABS.forEach((tab,i)=>{
   const existing=result.valueRanges[i].values||[];
-  if(existing.length&&JSON.stringify(existing[0])!==JSON.stringify(MASTER_HEADERS[tab]))
-   throw Error(tab+' has different column headers. Use a master created by this scorecard; no data was changed.');
+  if(existing.length){
+   const actual=existing[0],expected=MASTER_HEADERS[tab];
+   const legacy=tab==='Rounds'?expected.slice(0,-2):tab==='Moments'?expected.slice(0,-1):null;
+   if(JSON.stringify(actual)!==JSON.stringify(expected)&&JSON.stringify(actual)!==JSON.stringify(legacy))
+    throw Error(tab+' has different column headers. Use a master created by this scorecard; no data was changed.');
+  }
   out[tab]=existing;
  });
  return out;
@@ -929,7 +933,7 @@ function validate(input){if(!input||input.version!==2||!Array.isArray(input.even
  e.fights.forEach(f=>{if(!f||typeof f.id!=='string'||ids.has(f.id)||!Array.isArray(f.roundData)||!Number.isInteger(f.index)||f.index<0||f.index>=f.roundData.length||f.roundData.length>5||![3,5].includes(f.rounds)||![180,300,600].includes(f.duration)||f.roundData.length>f.rounds)throw Error('Invalid fight.');
  ids.add(f.id);if(f.cornerLayout&&!['red-left','blue-left'].includes(f.cornerLayout))throw Error('Invalid corner layout.');for(const k of ['left','right','division'])if(typeof f[k]!=='string'||f[k].length>1000)throw Error('Invalid fighter data.');
  f.roundData.forEach(r=>{if(!r||!Number.isFinite(r.elapsed)||r.elapsed<0||r.elapsed>f.duration||!Array.isArray(r.observations)||r.observations.length>15000)throw Error('Invalid round.');
- let prev=0;r.observations.forEach(o=>{if(!o||!['a','b'].includes(o.side)||!Number.isFinite(o.time)||o.time<prev||o.time>f.duration)throw Error('Invalid observation.');prev=o.time});
+ let prev=0;r.observations.forEach(o=>{if(!o||!['a','b'].includes(o.side)||!Number.isFinite(o.time)||o.time<prev||o.time>f.duration||(o.type!==undefined&&!['exchange','impact'].includes(o.type)))throw Error('Invalid exchange.');prev=o.time});
  if(r.score){if(!['a','b','draw'].includes(r.score.winner)||![7,8,9,10].includes(r.score.margin)||!Array.isArray(r.score.deductions)||r.score.deductions.length!==2||r.score.deductions.some(n=>!Number.isInteger(n)||n<0||n>10))throw Error('Invalid score.');}});
  });});return input}
 function legacyAvailable(){return !!readJSON(OLD_CURRENT)||!!readJSON(OLD_SAVES)}
