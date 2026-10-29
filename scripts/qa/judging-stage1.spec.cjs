@@ -559,7 +559,6 @@ test('google Sheets sync creates a per-event Fights, Rounds and Moments spreadsh
  await page.click('#connectDrive');
  await expect(page.locator('#driveStatus')).toHaveText('Connected');
  await page.click('#syncEvent');
- requests=await page.evaluate(()=>window.__sheetRequests);
  await expect(page.locator('#syncEvent')).toBeEnabled();
  requests=await page.evaluate(()=>window.__sheetRequests);
  await expect(page.locator('#sheetLink')).toBeVisible();
@@ -581,6 +580,7 @@ test('google Sheets sync creates a per-event Fights, Rounds and Moments spreadsh
  // Resync must update the same file rather than create another one.
  await page.click('#syncEvent');
  await expect(page.locator('#syncEvent')).toBeEnabled();
+ requests=await page.evaluate(()=>window.__sheetRequests);
  expect(requests.filter(r=>r.method==='POST'&&r.path==='/v4/spreadsheets')).toHaveLength(1);
  expect(requests.filter(r=>r.path.endsWith('/values:batchClear'))).toHaveLength(2);
  await page.reload();
@@ -598,7 +598,6 @@ test('sync-all creates one spreadsheet per event and keeps histories independent
  await page.locator('#clientId').evaluate(el=>el.closest('details').open=true);
  await page.fill('#clientId','qa-client.apps.googleusercontent.com');await page.click('#connectDrive');
  await page.click('#syncAllEvents');
- requests=await page.evaluate(()=>window.__sheetRequests);
  await expect(page.locator('#syncAllEvents')).toBeEnabled();
  requests=await page.evaluate(()=>window.__sheetRequests);
  const made=requests.filter(x=>x.method==='POST'&&x.path==='/v4/spreadsheets');
