@@ -9,7 +9,7 @@ sitemap: false
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<title>Scorecard</title>
+<title>Workspace</title>
 <style>
 :root{color-scheme:dark;--bg:#111214;--surface:#1c1d20;--panel:#222327;--edge:#35373c;--text:#f2f1ef;--muted:#a0a1a5;--blue:#83b3fb;--red:#f48588;--accent:#e9e7e3;--ok:#9bcab2;--warn:#e6b878}
 *{box-sizing:border-box}html,body{min-height:100%}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
@@ -23,7 +23,7 @@ h1,h2,h3,p{margin:0}h1{font-size:22px;letter-spacing:-.04em}h2{font-size:17px;le
 @media(max-width:900px){.formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.workspace{grid-template-columns:220px minmax(0,1fr)}.footer-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.container,#workbench{padding-left:12px;padding-right:12px}.top{padding:14px}.workspace{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.wb-head{grid-template-columns:1fr 110px 1fr;gap:5px;margin-top:22px}.corner-name{font-size:19px}.clock{font-size:38px}.timeline{padding:10px}.timeline canvas{height:150px}.modal{padding:15px}.winner{min-height:75px;padding:10px}.controls button{flex:1 1 auto}}
 
-/* Charcoal scorecard: restrained contrast, red/blue used only for fighter data. */
+/* Charcoal interface: restrained contrast, corner colors are used only for data. */
 body{background:radial-gradient(ellipse 1000px 480px at 50% -260px,#242527 0%,transparent 90%),var(--bg)}
 .top{background:#151618;border-bottom-color:#303135}
 .panel{background:linear-gradient(160deg,#202124 0%,#1a1b1e 95%);border-color:#34363a;box-shadow:0 12px 34px #00000017}
@@ -76,7 +76,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 @media(prefers-reduced-motion:reduce){button,.score-rows tbody tr{transition:none!important}*{scroll-behavior:auto!important}}
 
 
-/* Scoring Tape V2: density contours and exact moment ticks, with quiet export controls. */
+/* Exchange graph: density contours and exact event ticks, with compact export controls. */
 .tape-heading{display:flex;flex-direction:column;gap:1px}
 .tape-heading .micro{font-size:9px;letter-spacing:.17em;color:#7f8288}
 .tape-tools{gap:6px}
@@ -96,24 +96,24 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 </head>
 <body>
 <header class="top" id="dashTop">
- <div><div class="micro">Judging / Event desk</div><h1>Scorecard</h1></div>
+ <div><h1>Workspace</h1></div>
  <div class="top-right"><span id="saveStatus" class="pill saved">Local save ready</span><button id="exportAll" class="quiet">Export backup</button><button id="importBtn" class="quiet">Import backup</button><button id="legacyBtn" class="quiet hidden">Import old sessions</button><button id="newEventBtn" class="primary">+ New event</button></div>
 </header>
 <main id="dashboard" class="container">
  <div class="workspace">
   <aside class="panel sidebar"><div class="panel-title"><h2>Events</h2><span id="eventCount" class="micro"></span></div><div id="events"></div></aside>
   <div id="eventPane">
-   <div id="emptyEvent" class="empty">Create an event to begin. All fights and scorecards stay together under that event.</div>
+   <div id="emptyEvent" class="empty">Create an event to begin. All rounds and results stay together under that event.</div>
    <section class="panel hidden" id="eventEditor">
     <div class="panel-title"><h2>Event setup</h2><button id="deleteEvent" class="danger small-btn">Delete event</button></div>
-    <div class="formgrid"><label>Event name<input id="eventName" maxlength="180" placeholder="UFC Fight Night"></label><label>Date<input id="eventDate" type="date"></label><label>Judge / session<input id="eventJudge" maxlength="150" placeholder="Judge name"></label></div>
+    <div class="formgrid"><label>Event name<input id="eventName" maxlength="180" placeholder="Event name"></label><label>Date<input id="eventDate" type="date"></label><label>Session<input id="eventJudge" maxlength="150" placeholder="Session label"></label></div>
     <div class="section"><div class="section-head"><h2>Fight card</h2><span class="micro" id="boutCount">0 fights</span></div><div id="bouts"></div></div>
     <div class="section"><div class="section-head"><h2>Add fight</h2></div><div class="formgrid">
     <label>Red corner<input id="boutLeft" maxlength="150" placeholder="Fighter A"></label>
     <label>Blue corner<input id="boutRight" maxlength="150" placeholder="Fighter B"></label>
     <label>Division<select id="boutDivision"><option value="">Select division</option><optgroup label="Men">
 <option value="Flyweight">Flyweight — 125 lb</option><option value="Bantamweight">Bantamweight — 135 lb</option><option value="Featherweight">Featherweight — 145 lb</option><option value="Lightweight">Lightweight — 155 lb</option><option value="Welterweight">Welterweight — 170 lb</option><option value="Middleweight">Middleweight — 185 lb</option><option value="Light Heavyweight">Light Heavyweight — 205 lb</option><option value="Heavyweight">Heavyweight — 265 lb</option></optgroup>
-<optgroup label="Women"><option value="Women's Strawweight">Women's Strawweight — 115 lb</option><option value="Women's Flyweight">Women's Flyweight — 125 lb</option><option value="Women's Bantamweight">Women's Bantamweight — 135 lb</option><option value="Women's Featherweight">Women's Featherweight — 145 lb (former UFC division)</option></optgroup>
+<optgroup label="Women"><option value="Women's Strawweight">Women's Strawweight — 115 lb</option><option value="Women's Flyweight">Women's Flyweight — 125 lb</option><option value="Women's Bantamweight">Women's Bantamweight — 135 lb</option><option value="Women's Featherweight">Women's Featherweight — 145 lb</option></optgroup>
 <option value="custom">Custom / catchweight / other promotion</option></select></label>
     <label id="customDivisionWrap" class="hidden">Custom division / catchweight<input id="boutCustomDivision" maxlength="100" placeholder="Catchweight 165 lb"></label>
     <label>Scheduled rounds<select id="boutRounds"><option value="3">3 rounds</option><option value="5">5 rounds</option></select></label>
@@ -127,16 +127,16 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     <p class="muted" style="margin:9px 0">Already have a master spreadsheet from this tool? Paste its full Google Sheets URL or spreadsheet ID to connect it rather than creating a second one. Existing individual event spreadsheets are kept in Drive but are no longer updated.</p>
     <div class="actions"><label style="flex:1;min-width:180px">Master spreadsheet URL or ID<input id="masterSheetInput" placeholder="https://docs.google.com/spreadsheets/d/…/edit" autocomplete="off"></label><button id="attachMaster" class="small-btn" style="align-self:end">Use this master</button></div>
     <button id="unlinkSheet" class="quiet danger small-btn hidden" style="margin-top:9px">Unlink master (keep Google file)</button>
-    <p class="muted" style="margin:9px 0">Use your existing Google web OAuth client (the older scorecard's saved client ID is reused). In that Google Cloud project, enable the <strong>Google Sheets API</strong>. Configure the OAuth consent screen, add your Google account as a test user if needed, and authorize <strong id="googleOrigin"></strong> as a JavaScript origin. No client secret is needed. Google's sign-in is required; no account token is stored.</p>
+    <p class="muted" style="margin:9px 0">Use your existing Google web OAuth client (your previously saved client ID is reused). In that Google Cloud project, enable the <strong>Google Sheets API</strong>. Configure the OAuth consent screen, add your Google account as a test user if needed, and authorize <strong id="googleOrigin"></strong> as a JavaScript origin. No client secret is needed. Google's sign-in is required; no account token is stored.</p>
     <label>Google OAuth web client ID<input id="clientId" maxlength="300" placeholder="…apps.googleusercontent.com" autocomplete="off"></label>
     <p style="margin-top:9px"><a class="sheet-link" target="_blank" rel="noopener noreferrer" href="https://developers.google.com/identity/oauth2/web/guides/use-token-model">Google OAuth setup</a></p>
     </details></div>
-    <div class="section"><h2>Local files</h2><p class="muted" style="margin-top:5px">Changes are saved in this browser. Google Sheets is an explicitly synced record, not a two-way backup. Export a JSON backup regularly, especially before clearing browser data or changing devices. Previous Google Drive sessions can still be accessed through the <a href="/orchard-legacy-47/" rel="nofollow" style="color:#b9d5fa">older scorecard</a>.</p><div class="actions" style="margin-top:12px"><button id="exportCsv">Export scorecards CSV</button></div></div>
+    <div class="section"><h2>Local files</h2><p class="muted" style="margin-top:5px">Changes are saved in this browser. Google Sheets is an explicitly synced record, not a two-way backup. Export a JSON backup regularly, especially before clearing browser data or changing devices. Previous Google Drive sessions can still be accessed through the <a href="/orchard-legacy-47/" rel="nofollow" style="color:#b9d5fa">earlier version</a>.</p><div class="actions" style="margin-top:12px"><button id="exportCsv">Export rounds CSV</button></div></div>
    </section>
   </div>
  </div>
 </main>
-<section id="workbench" class="hidden" aria-label="Live scoring">
+<section id="workbench" class="hidden" aria-label="Live workspace">
  <div class="wb-top">
    <div class="actions"><button id="backBtn" class="quiet">← Fight card</button><span class="micro" id="wbEvent"></span></div>
    <div class="actions"><span id="wbSaved" class="pill saved">Saved locally</span><button id="fullscreenBtn" class="quiet small-btn">Full screen</button></div>
@@ -162,7 +162,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  </div>
  <p class="hints">← / → exchange winner &nbsp; • &nbsp; Shift + ← / → major impact &nbsp; • &nbsp; Space start/pause &nbsp; • &nbsp; Ctrl+Z undo &nbsp; • &nbsp; E end round</p>
  <div class="footer-grid">
-  <section class="panel"><div class="panel-title"><h2>Scorecard</h2><span id="wbTotal" class="totals mono">0 – 0</span></div><table class="score-rows"><thead><tr><th>Round</th><th id="scoreHeadRed">RED</th><th id="scoreHeadBlue">BLUE</th><th title="Red–Blue totals">Moments</th><th></th></tr></thead><tbody id="scoreBody"></tbody></table><div id="resultLabel" class="muted" style="margin-top:14px"></div></section>
+  <section class="panel"><div class="panel-title"><h2>Round totals</h2><span id="wbTotal" class="totals mono">0 – 0</span></div><table class="score-rows"><thead><tr><th>Round</th><th id="scoreHeadRed">RED</th><th id="scoreHeadBlue">BLUE</th><th title="Red–Blue totals">Exchanges</th><th></th></tr></thead><tbody id="scoreBody"></tbody></table><div id="resultLabel" class="muted" style="margin-top:14px"></div></section>
   <section class="panel"><div class="panel-title"><h2>Exchange log</h2></div><div id="roundTabs" class="round-tabs"></div><div id="momentLog" class="log"></div></section>
  </div>
 </section>
@@ -174,7 +174,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  <label>Blue corner<input id="editBlue" maxlength="150"></label>
  <label>Division<select id="editDivision"><option value="">Select division</option><optgroup label="Men">
 <option value="Flyweight">Flyweight — 125 lb</option><option value="Bantamweight">Bantamweight — 135 lb</option><option value="Featherweight">Featherweight — 145 lb</option><option value="Lightweight">Lightweight — 155 lb</option><option value="Welterweight">Welterweight — 170 lb</option><option value="Middleweight">Middleweight — 185 lb</option><option value="Light Heavyweight">Light Heavyweight — 205 lb</option><option value="Heavyweight">Heavyweight — 265 lb</option></optgroup>
-<optgroup label="Women"><option value="Women's Strawweight">Women's Strawweight — 115 lb</option><option value="Women's Flyweight">Women's Flyweight — 125 lb</option><option value="Women's Bantamweight">Women's Bantamweight — 135 lb</option><option value="Women's Featherweight">Women's Featherweight — 145 lb (former UFC division)</option></optgroup>
+<optgroup label="Women"><option value="Women's Strawweight">Women's Strawweight — 115 lb</option><option value="Women's Flyweight">Women's Flyweight — 125 lb</option><option value="Women's Bantamweight">Women's Bantamweight — 135 lb</option><option value="Women's Featherweight">Women's Featherweight — 145 lb</option></optgroup>
 <option value="custom">Custom / catchweight / other promotion</option></select></label>
  <label id="editCustomWrap" class="hidden">Custom division / catchweight<input id="editCustomDivision" maxlength="100" placeholder="Catchweight 165 lb"></label>
  </div>
@@ -183,7 +183,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 <div id="scoreOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="scoreTitle">
  <div class="modal">
   <div class="micro" id="scoreKicker">Round complete</div><h2 id="scoreTitle" style="margin-top:7px;font-size:22px">Assign round score</h2>
-  <p class="muted" style="margin-top:6px">Moment totals preselect a score. Review and change it as needed before confirming.</p>
+  <p class="muted" style="margin-top:6px">Exchange totals provide an initial suggestion. Review and change it before confirming.</p>
   <div class="winner-grid">
    <button class="winner" id="selectA"><span class="micro red">← Red corner</span><div id="chooseA" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure red"><span id="scoreMomentsA">0</span> <small>exchanges</small></span></button>
    <button class="winner right" id="selectB"><span class="micro blue">Blue corner →</span><div id="chooseB" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure blue"><span id="scoreMomentsB">0</span> <small>exchanges</small></span></button>
@@ -193,7 +193,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   <div class="margins"><button data-margin="9">10–9</button><button data-margin="8">10–8</button><button data-margin="7">10–7</button><button data-margin="10">10–10</button></div>
   <div class="deductions"><div class="deduction"><div class="micro red">Red deductions</div><div class="stepper"><button data-dside="0" data-delta="-1" aria-label="Remove red deduction">−</button><strong id="deductA" class="mono">0</strong><button data-dside="0" data-delta="1" aria-label="Add red deduction">+</button></div></div>
   <div class="deduction"><div class="micro blue">Blue deductions</div><div class="stepper"><button data-dside="1" data-delta="-1" aria-label="Remove blue deduction">−</button><strong id="deductB" class="mono">0</strong><button data-dside="1" data-delta="1" aria-label="Add blue deduction">+</button></div></div></div>
-  <div class="notice">The suggestion uses moment counts, not impact or dominance. A wide margin may warrant a 10–8 review; you decide the final score. Deductions must be referee-assessed.</div>
+  <div class="notice">Major impacts count more toward the suggested winner. A wider margin still requires your own assessment. Confirm the final totals manually.</div>
   <div id="draftScore" class="mono" style="font-size:24px;font-weight:800">—</div>
   <div class="modal-actions"><button id="resetFromScore" class="quiet danger">Reset &amp; restart round</button><button id="cancelScore" class="quiet">Back</button><button id="confirmScore" class="primary">Confirm score • Enter</button></div>
  </div>
@@ -202,7 +202,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  <div class="modal"><div class="micro">Close fight</div><h2 id="finishTitle" style="margin-top:7px;font-size:22px">Record result</h2>
   <p class="muted" style="margin-top:6px">Select a result type. Decision uses the confirmed round scores; stoppages do not fabricate a score for an incomplete round.</p>
   <div class="formgrid" style="grid-template-columns:1fr 1fr;margin-top:18px">
-   <label>Result type<select id="resultType"><option value="decision">Decision / scorecard</option><option value="ko">KO</option><option value="tko">TKO</option><option value="submission">Submission</option><option value="draw">Draw / scorecard</option><option value="no-contest">No contest</option><option value="other">Other</option></select></label>
+   <label>Result type<select id="resultType"><option value="decision">Decision</option><option value="ko">KO</option><option value="tko">TKO</option><option value="submission">Submission</option><option value="draw">Draw</option><option value="no-contest">No contest</option><option value="other">Other</option></select></label>
    <label>Winner<select id="resultWinner"><option value="">Not selected / none</option><option value="a">Red corner</option><option value="b">Blue corner</option></select></label>
   </div>
   <div class="notice" id="finishHint">Confirm all rounds before completing a decision.</div>
@@ -661,7 +661,7 @@ function renderFinishHint(){const f=fight(),t=$('resultType').value,completed=f.
  $('resultWinner').disabled=['decision','draw','no-contest'].includes(t);if(t==='draw'||t==='no-contest')$('resultWinner').value='';if(t==='decision'){const s=totals(f);$('resultWinner').value=s[0]===s[1]?'':s[0]>s[1]?'a':'b'} }
 function finishFight(){const f=fight(),t=$('resultType').value,w=$('resultWinner').value,complete=f.roundData.filter(r=>r.score).length===f.rounds;
  if(t==='decision'&&!complete){toast('Score every scheduled round first.');return}
- if(t==='decision'&&totals(f)[0]===totals(f)[1]){toast('The score totals are tied. Choose Draw / scorecard.');return}
+ if(t==='decision'&&totals(f)[0]===totals(f)[1]){toast('The round totals are tied. Choose Draw.');return}
  if(!['decision','draw','no-contest','other'].includes(t)&&!w){toast('Select a winner for this stoppage.');return}
  if(f.result&&!confirm('Replace the recorded result?'))return;
  f.result={type:t,winner:w,at:new Date().toISOString()};f.status='complete';setVisible('finishOverlay',false);persist();renderWorkbench();toast('Fight completed.')}
@@ -822,7 +822,7 @@ async function syncMasterEvents(events){
     values:[MASTER_HEADERS[tab],...additions.flatMap(x=>x[tab])]}))
   });
   const result=await googleSheetsRequest('',{
-   properties:{title:'Scorecard — Master Judging Archive'},
+   properties:{title:'Event Archive — Master'},
    sheets:MASTER_TABS.map(title=>({properties:{title,gridProperties:{frozenRowCount:1}}}))
   });
   id=result.spreadsheetId;
@@ -903,7 +903,7 @@ async function syncEvents(all){
   message='Master updated: '+out.events+' event'+(out.events===1?'':'s')+', '+out.fights+' fights, '+out.rounds+' rounds, '+out.moments+' moments synced. Other archived events preserved.';
   toast('Master spreadsheet updated.');
  }catch(err){
-  message='Master sync failed: '+err.message+'. Local judging data is unchanged. If Google accepted an earlier write before the error, retry syncing to reconcile the archive.';
+  message='Master sync failed: '+err.message+'. Local records are unchanged. If Google accepted an earlier write before the error, retry syncing to reconcile the archive.';
   toast('Google sync failed: '+err.message);
  }finally{
   driveBusy=false;updateDriveUI();if(message)$('sheetMessage').textContent=message;
@@ -921,11 +921,11 @@ function addBout(){const e=event(),a=$('boutLeft').value.trim(),b=$('boutRight')
  const division=selectedDivision('boutDivision','boutCustomDivision');if(!division){toast('Select or enter a division.');return}
  const f=newFight(a,b,division.slice(0,100),$('boutRounds').value,$('boutDuration').value);e.fights.push(f);['boutLeft','boutRight','boutDivision','boutCustomDivision'].forEach(k=>$(k).value='');$('customDivisionWrap').classList.add('hidden');persist();renderDashboard();$('boutLeft').focus()}
 function download(content,name,type){const u=URL.createObjectURL(new Blob([content],{type})),a=el('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000)}
-function exportJSON(){pause();persist();download(JSON.stringify(data,null,2),'judging-backup-'+new Date().toISOString().slice(0,10)+'.json','application/json')}
+function exportJSON(){pause();persist();download(JSON.stringify(data,null,2),'workspace-backup-'+new Date().toISOString().slice(0,10)+'.json','application/json')}
 function qcsv(v){let s=String(v==null?'':v);if(/^[\s]*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
 function exportCSV(){pause();const rows=[['Event','Date','Judge','Red fighter','Blue fighter','Division','Round','Red points','Blue points','Red deductions','Blue deductions','Fight result']];
  data.events.forEach(e=>e.fights.forEach(f=>f.roundData.forEach((r,i)=>{const p=roundPoints(r.score);rows.push([e.name,e.date,e.judge,f.left,f.right,f.division,i+1,p?p[0]:'',p?p[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',f.result?f.result.type:''])})));
- download('\uFEFF'+rows.map(row=>row.map(qcsv).join(',')).join('\r\n'),'judging-scorecards.csv','text/csv')}
+ download('\uFEFF'+rows.map(row=>row.map(qcsv).join(',')).join('\r\n'),'round-records.csv','text/csv')}
 function validate(input){if(!input||input.version!==2||!Array.isArray(input.events)||input.events.length>200)throw Error('Not a valid Stage 1 backup.');
  if(input.masterSheetId!=null&&(!/^[\w-]{15,250}$/.test(input.masterSheetId)))throw Error('Invalid master spreadsheet ID.');
  if(input.masterSyncedAt!=null&&typeof input.masterSyncedAt!=='string')throw Error('Invalid master sync date.');
@@ -959,7 +959,7 @@ $('unlinkSheet').onclick=unlinkMasterSheet;$('attachMaster').onclick=attachMaste
 $('boutDivision').onchange=()=>toggleCustom('boutDivision','customDivisionWrap','boutCustomDivision');
 $('editDivision').onchange=()=>toggleCustom('editDivision','editCustomWrap','editCustomDivision');
 $('cancelEdit').onclick=closeEdit;$('saveEdit').onclick=saveEdit;
-$('deleteEvent').onclick=()=>{const e=event();if(e&&confirm('Delete this event and ALL its scorecards? This cannot be undone.')){data.events=data.events.filter(x=>x.id!==e.id);data.selected=data.events[0]?.id||null;persist();renderDashboard()}};
+$('deleteEvent').onclick=()=>{const e=event();if(e&&confirm('Delete this event and ALL its saved rounds? This cannot be undone.')){data.events=data.events.filter(x=>x.id!==e.id);data.selected=data.events[0]?.id||null;persist();renderDashboard()}};
 $('exportAll').onclick=exportJSON;$('exportCsv').onclick=exportCSV;$('importBtn').onclick=()=>$('backupInput').click();
 $('backupInput').onchange=async()=>{try{const file=$('backupInput').files[0];if(!file)return;if(file.size>4500000)throw Error('Maximum backup size is 4.5 MB.');
  const obj=validate(JSON.parse(await file.text()));upgradeCornerLayout(obj);if(!confirm('Replace this browser workspace with the imported backup? Export your current data first.'))return;pause();data=obj;activeId=null;data.selected=data.events.some(e=>e.id===data.selected)?data.selected:(data.events[0]?.id||null);persist();renderDashboard();toast('Backup imported.')}catch(e){toast(e.message)}finally{$('backupInput').value=''}};
@@ -994,7 +994,7 @@ document.addEventListener('keydown',e=>{
 });
 window.addEventListener('resize',()=>{if(focusMode)drawGraph()});
 window.addEventListener('pagehide',()=>{pause();persist()});
-window.addEventListener('storage',e=>{if(e.key===KEY)toast('This workspace changed in another tab. Avoid scoring in two tabs at once.');});
+window.addEventListener('storage',e=>{if(e.key===KEY)toast('This workspace changed in another tab. Avoid recording in two tabs at once.');});
 setInterval(()=>{if(focusMode)tick()},200);setInterval(()=>{if(running){currentRound().elapsed=seconds();anchor=performance.now();persist()}},1500);
 try{const saved=readJSON(KEY);if(saved){data=validate(saved);if(upgradeCornerLayout(data))persist()}}catch(e){toast('Saved workspace could not be read. Original browser data was not changed.')}
 if(!data.events.some(e=>e.id===data.selected))data.selected=data.events[0]?.id||null;
