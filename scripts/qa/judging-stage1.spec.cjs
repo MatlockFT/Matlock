@@ -88,7 +88,7 @@ test('full workspace exports as JSON backup', async ({ page })=>{
     page.waitForEvent('download'),
     page.click('#exportAll')
   ]);
-  expect(download.suggestedFilename()).toMatch(/^judging-backup-/);
+  expect(download.suggestedFilename()).toMatch(/^workspace-backup-/);
   const text=await (await require('node:fs/promises').readFile(await download.path(),'utf8'));
   const obj=JSON.parse(text);
   expect(obj.version).toBe(2);
@@ -1080,4 +1080,49 @@ test('Master Sheets adds impact columns and safely upgrades older existing tab h
  expect(migrated.Moments[0].at(-1)).toBe('Exchange type');
  expect(migrated.Rounds[0].at(-1)).toBe('Blue major impacts');
  expect(migrated.Moments).toHaveLength(3);
+});
+
+
+test('private workspace presents neutral copy in all major UI states and is excluded from indexing',async({page})=>{
+ const check=async()=>{
+  const text=await page.evaluate(()=>{
+   const clone=document.body.cloneNode(true);
+   clone.querySelectorAll('script,style').forEach(el=>el.remove());
+   const all=[clone.textContent||'',...Array.from(clone.querySelectorAll('[placeholder],[aria-label],[title]')).flatMap(el=>[el.getAttribute('placeholder'),el.getAttribute('aria-label'),el.getAttribute('title')].filter(Boolean))].join(' ');
+   return all;
+  });
+  expect(text).not.toMatch(/\b(?:scorecard|judging|mma)\b/i);
+ };
+ await expect(page).toHaveTitle('Workspace');
+ await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content',/noindex/);
+ await expect(page.locator('h1')).toHaveText('Workspace');
+ await check();
+ await page.click('#newEventBtn');await page.fill('#eventName','Private session');
+ await page.fill('#boutLeft','Red contestant');await page.fill('#boutRight','Blue contestant');
+ await page.selectOption('#boutDivision','Lightweight');await page.click('#addBout');
+ await expect(page.locator('label').filter({hasText:'Session'})).toHaveCount(1);
+ await check();
+ await page.locator('.bout-row .primary').click();
+ await expect(page.locator('.footer-grid h2').first()).toHaveText('Round totals');
+ await check();
+ await page.click('#startBtn');await page.keyboard.press('Shift+ArrowLeft');
+ await page.click('#endBtn');await expect(page.locator('#scoreOverlay')).toBeVisible();
+ await check();
+ await page.keyboard.press('Enter');await page.click('#finishBtn');
+ await expect(page.locator('#finishOverlay')).toBeVisible();
+ await check();
+});
+test('neutral export filenames and unchanged storage format remain compatible',async({page})=>{
+ await setup(page);
+ await page.click('#backBtn');
+ const [csv]=await Promise.all([page.waitForEvent('download'),page.click('#exportCsv')]);
+ expect(csv.suggestedFilename()).toBe('round-records.csv');
+ const csvText=await require('node:fs/promises').readFile(await csv.path(),'utf8');
+ expect(csvText).toContain('Session');
+ expect(csvText).not.toMatch(/\bjudge\b/i);
+ const dataState=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')));
+ expect(dataState.version).toBe(2);
+ expect(dataState.events[0]).toHaveProperty('judge');
+ const [backup]=await Promise.all([page.waitForEvent('download'),page.click('#exportAll')]);
+ expect(backup.suggestedFilename()).toMatch(/^workspace-backup-/);
 });
