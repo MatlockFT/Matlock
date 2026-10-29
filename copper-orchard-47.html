@@ -133,6 +133,7 @@ function selectEvent(id){pause();activeId=null;focusMode=false;data.selected=id;
 function renderDashboard(){setVisible('dashboard',true);setVisible('dashTop',true);setVisible('workbench',false);setVisible('scoreOverlay',false);setVisible('finishOverlay',false);focusMode=false;
  const list=$('events');list.replaceChildren();$('eventCount').textContent=data.events.length;
  data.events.forEach(e=>{const b=el('button');b.className='event-item'+(e.id===data.selected?' current':'');b.append(el('strong',safeName(e.name,'Untitled event')),el('small',(e.date||'No date')+' · '+e.fights.length+' fights'));b.onclick=()=>selectEvent(e.id);list.append(b)});
+ $('legacyBtn').classList.toggle('hidden',!legacyAvailable());
  const e=event();setVisible('eventEditor',!!e);setVisible('emptyEvent',!e);if(!e)return;
  $('eventName').value=e.name;$('eventDate').value=e.date;$('eventJudge').value=e.judge;$('boutCount').textContent=e.fights.length+' fights';
  const rows=$('bouts');rows.replaceChildren();
@@ -143,9 +144,10 @@ function renderDashboard(){setVisible('dashboard',true);setVisible('dashTop',tru
  const up=el('button','↑','small-btn');up.title='Move fight earlier';up.disabled=i===0;up.onclick=()=>moveFight(i,-1);
  const down=el('button','↓','small-btn');down.title='Move fight later';down.disabled=i===e.fights.length-1;down.onclick=()=>moveFight(i,1);
  const del=el('button','Delete','small-btn danger');del.onclick=()=>{if(confirm('Delete this fight and its scores?')){e.fights.splice(i,1);persist();renderDashboard()}};
- right.append(up,down,del);row.append(left,right);rows.append(row)});
+ const ed=el('button','Edit','small-btn');ed.onclick=()=>editFight(f);right.append(ed,up,down,del);row.append(left,right);rows.append(row)});
  $('legacyBtn').classList.toggle('hidden',!legacyAvailable());
 }
+function editFight(f){const left=prompt('Left / blue fighter name',f.left);if(left===null)return;const right=prompt('Right / red fighter name',f.right);if(right===null)return;const division=prompt('Division',f.division);if(division===null)return;if(!left.trim()||!right.trim()){toast('Both fighter names are required.');return}f.left=left.trim().slice(0,150);f.right=right.trim().slice(0,150);f.division=division.trim().slice(0,100);persist();renderDashboard()}
 function moveFight(i,step){const fs=event().fights;[fs[i],fs[i+step]]=[fs[i+step],fs[i]];persist();renderDashboard()}
 function openFight(id){pause();const f=event().fights.find(x=>x.id===id);if(!f)return;activeId=id;focusMode=true;reviewIndex=f.index;setVisible('dashboard',false);setVisible('dashTop',false);setVisible('workbench',true);renderWorkbench();window.scrollTo(0,0)}
 function run(){const f=fight(),r=currentRound();if(!f||f.result||r.score)return;
@@ -177,6 +179,7 @@ function confirmScore(){if(!scoreDraft)return;const points=roundPoints(scoreDraf
  if(!wasScored&&scoreIndex===f.index&&scoreIndex<f.rounds-1){f.index++;if(!f.roundData[f.index])f.roundData.push(newRound())}
  if(f.roundData.filter(x=>x.score).length===f.rounds)f.status='awaiting-result';
  else f.status='in-progress';
+ if(f.result&&f.result.type==='decision'){const t=totals(f);f.result.winner=t[0]===t[1]?'':t[0]>t[1]?'a':'b'}
  setVisible('scoreOverlay',false);scoreIndex=null;scoreDraft=null;reviewIndex=f.index;persist();renderWorkbench();toast('Round score saved.')}
 function cancelScore(){setVisible('scoreOverlay',false);scoreIndex=null;scoreDraft=null;renderWorkbench()}
 function totals(f){return f.roundData.reduce((tot,r)=>{const p=roundPoints(r.score);if(p){tot[0]+=p[0];tot[1]+=p[1]}return tot},[0,0])}
@@ -200,7 +203,7 @@ function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=cu
  f.roundData.forEach((rd,i)=>{const tr=el('tr'),pts=roundPoints(rd.score);
  tr.append(el('td',String(i+1)),el('td',pts?String(pts[0]):'—'),el('td',pts?String(pts[1]):'—'));
  const action=el('td');if(rd.score){const b=el('button','Edit','small-btn');b.onclick=()=>openScore(i,true);action.append(b)}
- else action.textContent=i===f.index?'Current':'—';
+ else if(i!==f.index){const b=el('button','Score','small-btn');b.title='Confirm an imported, previously unconfirmed round';b.onclick=()=>openScore(i,true);action.append(b)}else action.textContent='Current';
  tr.append(action);body.append(tr)});
  const result=f.result;$('resultLabel').textContent=result?'Result: '+result.type.toUpperCase()+(result.winner?' · '+(result.winner==='a'?f.left:f.right):''):'Unofficial scorecard · observations do not determine round scores';
  const tabs=$('roundTabs');tabs.replaceChildren();f.roundData.forEach((rd,i)=>{const b=el('button','R'+(i+1),'small-btn'+(reviewIndex===i?' chosen':''));b.onclick=()=>{reviewIndex=i;renderWorkbench()};tabs.append(b)});
@@ -220,7 +223,7 @@ function drawGraph(){const c=$('graph'),f=fight();if(!f)return;const r=f.roundDa
 function resultDialog(){const f=fight();if(!f)return;pause();$('resultType').value=f.result?f.result.type:(f.status==='awaiting-result'?'decision':'tko');$('resultWinner').value=f.result?f.result.winner:'';setVisible('finishOverlay',true);renderFinishHint()}
 function renderFinishHint(){const f=fight(),t=$('resultType').value,completed=f.roundData.filter(r=>!!r.score).length===f.rounds;
  $('finishHint').textContent=t==='decision'&&!completed?'All scheduled rounds must have confirmed scores before a decision can be completed.':t==='decision'?'Decision winner is determined by the score totals.':'A stoppage can close a fight with a partially completed round.';
- $('resultWinner').disabled=t==='decision';if(t==='decision'){const s=totals(f);$('resultWinner').value=s[0]===s[1]?'':s[0]>s[1]?'a':'b'} }
+ $('resultWinner').disabled=['decision','draw','no-contest'].includes(t);if(t==='draw'||t==='no-contest')$('resultWinner').value='';if(t==='decision'){const s=totals(f);$('resultWinner').value=s[0]===s[1]?'':s[0]>s[1]?'a':'b'} }
 function finishFight(){const f=fight(),t=$('resultType').value,w=$('resultWinner').value,complete=f.roundData.filter(r=>r.score).length===f.rounds;
  if(t==='decision'&&!complete){toast('Score every scheduled round first.');return}
  if(!['decision','draw','no-contest','other'].includes(t)&&!w){toast('Select a winner for this stoppage.');return}
@@ -265,7 +268,7 @@ $('startBtn').onclick=run;$('undoBtn').onclick=undo;$('endBtn').onclick=endRound
 $('selectA').onclick=()=>{scoreDraft.winner='a';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
 $('selectB').onclick=()=>{scoreDraft.winner='b';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
 document.querySelectorAll('[data-margin]').forEach(b=>b.onclick=()=>{scoreDraft.margin=+b.dataset.margin;if(scoreDraft.margin===10)scoreDraft.winner='draw';else if(scoreDraft.winner==='draw')scoreDraft.winner=null;renderScoreModal()});
-document.querySelectorAll('[data-dside]').forEach(b=>b.onclick=()=>{const i=+b.dataset.dside;scoreDraft.deductions[i]=Math.max(0,Math.min(3,scoreDraft.deductions[i]+(+b.dataset.delta)));renderScoreModal()});
+document.querySelectorAll('[data-dside]').forEach(b=>b.onclick=()=>{const i=+b.dataset.dside;scoreDraft.deductions[i]=Math.max(0,Math.min(10,scoreDraft.deductions[i]+(+b.dataset.delta)));renderScoreModal()});
 $('confirmScore').onclick=confirmScore;$('cancelScore').onclick=cancelScore;
 $('resultType').onchange=renderFinishHint;$('cancelFinish').onclick=()=>setVisible('finishOverlay',false);$('confirmFinish').onclick=finishFight;
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.altKey||e.metaKey||e.repeat)return;const typing=e.target.closest('input,select,textarea');if(typing)return;
