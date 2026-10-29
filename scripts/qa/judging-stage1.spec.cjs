@@ -280,3 +280,175 @@ test('undo and reset immediately recalculate the tallies', async ({page})=>{
   await expect(page.locator('#momentLead')).toHaveText('Moments even');
   await expect(page.locator('#clock')).toHaveText('5:00');
 });
+
+
+test('editing an already completed decision preserves completed status and updates winner', async ({page})=>{
+  await setup(page);
+  await scoreRound(page,'a');
+  await scoreRound(page,'b');
+  await scoreRound(page,'a');
+  await page.click('#finishBtn');
+  await expect(page.locator('#resultWinner')).toHaveValue('a');
+  await page.click('#confirmFinish');
+  await expect(page.locator('#resultLabel')).toContainText('Red fighter');
+  await page.locator('#scoreBody tr:nth-child(3) button').click();
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#wbTotal')).toHaveText('28 – 29');
+  await expect(page.locator('#resultLabel')).toContainText('Blue fighter');
+  await expect(page.locator('#startBtn')).toBeDisabled();
+  await page.click('#backBtn');
+  await expect(page.locator('.bout-row .bout-meta')).toContainText('complete');
+  await page.reload();
+  await page.locator('.bout-row .primary').click();
+  await expect(page.locator('#resultLabel')).toContainText('Blue fighter');
+});
+
+test('clock expiry disables further recording and reset restores usable round', async ({page})=>{
+  await page.addInitScript(()=>{
+    if(localStorage.getItem('qa-clock-seeded'))return;
+    const f={id:'f-qa',left:'Red clock',right:'Blue clock',division:'',rounds:3,duration:300,index:0,status:'in-progress',result:null,legacyId:null,cornerLayout:'red-left',roundData:[{elapsed:299.6,observations:[],score:null}]};
+    localStorage.setItem('copper47.workspace.v2',JSON.stringify({version:2,selected:'e-qa',events:[{id:'e-qa',name:'QA event',date:'2026-10-29',judge:'',fights:[f]}]}));
+    localStorage.setItem('qa-clock-seeded','1');
+  });
+  await page.reload();
+  await page.locator('.bout-row .primary').click();
+  await page.click('#startBtn');
+  await expect(page.locator('#clock')).toHaveText('0:00',{timeout:4000});
+  await expect(page.locator('#startBtn')).toBeDisabled();
+  await expect(page.locator('#roundState')).toHaveText('Paused');
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.locator('#wbMomentsA')).toHaveText('0');
+  await page.click('#resetBtn');
+  await expect(page.locator('#clock')).toHaveText('5:00');
+  await expect(page.locator('#startBtn')).toBeEnabled();
+  await page.click('#startBtn');
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.locator('#wbMomentsA')).toHaveText('1');
+});
+
+test('v1 left/right legacy data preserves its original corners and manual scores', async ({page})=>{
+  await page.evaluate(()=>{
+    const old={version:1,id:'oldredleft',info:{event:'Old event',fight:'Welterweight',date:'2026-10-20',judge:'Judge',left:'Old left',right:'Old right',rounds:'3',duration:'300',notes:''},current:1,roundData:[
+      {elapsed:300,ended:true,moments:[{side:0,time:10},{side:0,time:15},{side:1,time:20}],manual:[10,9],deductions:[0,0]},
+      {elapsed:80,ended:false,moments:[{side:1,time:25}],manual:null,deductions:[0,0]}
+    ]};
+    localStorage.setItem('copper47.current.v1',JSON.stringify(old));
+  });
+  await page.reload();
+  await page.click('#legacyBtn');
+  await page.locator('.bout-row .primary').click();
+  await expect(page.locator('#wbLeft')).toHaveText('Old left');
+  await expect(page.locator('#wbRight')).toHaveText('Old right');
+  await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
+  await expect(page.locator('#wbMomentsA')).toHaveText('0');
+  await expect(page.locator('#wbMomentsB')).toHaveText('1');
+  await page.locator('#roundTabs button').first().click();
+  await expect(page.locator('#momentLog .red')).toHaveCount(2);
+  await expect(page.locator('#momentLog .blue')).toHaveCount(1);
+  await page.click('#backBtn');
+  await page.click('#legacyBtn');
+  await expect(page.locator('.bout-row')).toHaveCount(1);
+});
+
+test('scorecard draw is preselected when all confirmed round totals are tied', async ({page})=>{
+  await setup(page);
+  for(let i=0;i<3;i++){
+    await page.click('#startBtn');
+    await page.keyboard.press('ArrowLeft');
+    await page.keyboard.press('ArrowRight');
+    await page.click('#endBtn');
+    await expect(page.locator('#draftScore')).toHaveText('10 – 10');
+    await page.keyboard.press('Enter');
+  }
+  await expect(page.locator('#wbTotal')).toHaveText('30 – 30');
+  await page.click('#finishBtn');
+  await expect(page.locator('#resultType')).toHaveValue('draw');
+  await expect(page.locator('#resultWinner')).toHaveValue('');
+  await page.click('#confirmFinish');
+  await expect(page.locator('#resultLabel')).toContainText('DRAW');
+});
+
+test('pause prevents moment recording, resume restores it and totals are kept', async ({page})=>{
+  await setup(page);
+  await page.keyboard.press(' ');
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.locator('#wbMomentsA')).toHaveText('1');
+  await page.keyboard.press(' ');
+  await expect(page.locator('#roundState')).toHaveText('Paused');
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.locator('#wbMomentsA')).toHaveText('1');
+  await page.keyboard.press(' ');
+  await page.keyboard.press('ArrowRight');
+  await expect(page.locator('#wbMomentsB')).toHaveText('1');
+  await page.keyboard.press('Backspace');
+  await expect(page.locator('#wbMomentsB')).toHaveText('0');
+});
+
+test('event session and two independent fights survive reload', async ({page})=>{
+  await setup(page);
+  await page.click('#startBtn');
+  await page.keyboard.press('ArrowLeft');
+  await page.click('#endBtn');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
+  await page.click('#backBtn');
+  await page.fill('#boutLeft','Another red');
+  await page.fill('#boutRight','Another blue');
+  await page.click('#addBout');
+  await page.locator('.bout-row .primary').nth(1).click();
+  await expect(page.locator('#wbTotal')).toHaveText('0 – 0');
+  await expect(page.locator('#wbMomentsA')).toHaveText('0');
+  await page.click('#backBtn');
+  await page.reload();
+  await expect(page.locator('.bout-row')).toHaveCount(2);
+  await page.locator('.bout-row .primary').first().click();
+  await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
+  await page.click('#backBtn');
+  await page.locator('.bout-row .primary').nth(1).click();
+  await expect(page.locator('#wbTotal')).toHaveText('0 – 0');
+});
+
+test('5-round scorecard handles referee deduction and a preselected 10–8', async ({page})=>{
+  await page.click('#newEventBtn');
+  await page.fill('#eventName','Five round QA');
+  await page.fill('#boutLeft','Red fighter');
+  await page.fill('#boutRight','Blue fighter');
+  await page.selectOption('#boutRounds','5');
+  await page.click('#addBout');
+  await page.locator('.bout-row .primary').click();
+  await page.click('#startBtn');
+  for(let i=0;i<7;i++)await page.keyboard.press('ArrowLeft');
+  await page.click('#endBtn');
+  await expect(page.locator('#draftScore')).toHaveText('10 – 8');
+  await page.keyboard.press('Enter');
+  await scoreRound(page,'b');
+  await page.click('#startBtn');
+  await page.keyboard.press('ArrowLeft');
+  await page.click('#endBtn');
+  await page.keyboard.press('ArrowLeft');
+  await page.locator('[data-dside="0"][data-delta="1"]').click();
+  await expect(page.locator('#draftScore')).toHaveText('9 – 9');
+  await page.keyboard.press('Enter');
+  await scoreRound(page,'b');
+  await scoreRound(page,'a');
+  await expect(page.locator('#wbTotal')).toHaveText('47 – 46');
+  await page.click('#finishBtn');
+  await expect(page.locator('#resultWinner')).toHaveValue('a');
+  await page.click('#confirmFinish');
+  await expect(page.locator('#resultLabel')).toContainText('DECISION');
+});
+
+test('judging interface stays within laptop viewport and round modal fits', async ({page})=>{
+  await page.setViewportSize({width:1366,height:768});
+  await setup(page);
+  let sizes=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:window.innerWidth}));
+  expect(sizes.width).toBeLessThanOrEqual(sizes.viewport+1);
+  await page.click('#startBtn');
+  await page.keyboard.press('ArrowLeft');
+  await page.click('#endBtn');
+  await expect(page.locator('#scoreOverlay')).toBeVisible();
+  sizes=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:window.innerWidth}));
+  expect(sizes.width).toBeLessThanOrEqual(sizes.viewport+1);
+  await expect(page.locator('#confirmScore')).toBeInViewport();
+});
