@@ -135,7 +135,8 @@ test('declined reset retains the current observations and state', async ({page})
   await setup(page);
   await page.click('#startBtn');
   await page.keyboard.press('ArrowLeft');
-  await page.on('dialog', async d => {if(d.message().includes('Reset round'))await d.dismiss()});
+  page.removeAllListeners('dialog');
+  page.once('dialog', async d => {await d.dismiss()});
   await page.click('#resetBtn');
   await expect(page.locator('#observationsCount')).toHaveText('1 recorded');
   await expect(page.locator('#roundState')).toHaveText('Recording');
