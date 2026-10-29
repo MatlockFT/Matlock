@@ -756,7 +756,7 @@ test('charcoal colors and graph pixels update as moments are logged',async({page
  await expect(page.locator('#wbMomentsA')).toHaveText('1');
  const red=await getCanvas();
  expect(red.data).not.toBe(initial.data);
- expect(red.label).toContain('1 red moments');
+ expect(red.label).toContain('1 red exchanges');
  await page.keyboard.press('ArrowRight');
  await expect(page.locator('#wbMomentsB')).toHaveText('1');
  const blue=await getCanvas();
@@ -866,7 +866,7 @@ test('existing master with too few columns expands to fit round details',async({
  expect(expanded.length).toBe(4);
  const widths=expanded.map(x=>x.updateSheetProperties.properties.gridProperties.columnCount);
  expect(Math.min(...widths)).toBeGreaterThanOrEqual(8);
- expect(Math.max(...widths)).toBe(20);
+ expect(Math.max(...widths)).toBe(22);
 });
 
 test('oversized master payload fails before replacing archived scores',async({page})=>{
