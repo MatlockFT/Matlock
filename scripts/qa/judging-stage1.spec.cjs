@@ -654,11 +654,14 @@ test('two separate events sync into ONE master, and event-only resync preserves 
 test('existing old per-event spreadsheet links remain untouched during master migration',async({page})=>{
  await stubGoogleSheets(page);
  await setup(page);await page.click('#backBtn');
- await page.evaluate(()=>{
+ await page.addInitScript(()=>{
+  if(localStorage.getItem('qa-legacy-master-link-seeded'))return;
   const key='copper47.workspace.v2',workspace=JSON.parse(localStorage.getItem(key));
+  if(!workspace?.events?.[0])return;
   workspace.events[0].sheetId='older-event-sheet-12345';
   workspace.events[0].sheetSyncedAt='2026-10-20T00:00:00.000Z';
   localStorage.setItem(key,JSON.stringify(workspace));
+  localStorage.setItem('qa-legacy-master-link-seeded','1');
  });
  await page.reload();
  await stubGoogleSheets(page); // Reload clears the browser-only OAuth/API test simulation.
