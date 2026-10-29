@@ -147,7 +147,7 @@ function renderDashboard(){setVisible('dashboard',true);setVisible('dashTop',tru
  const ed=el('button','Edit','small-btn');ed.onclick=()=>editFight(f);right.append(ed,up,down,del);row.append(left,right);rows.append(row)});
  $('legacyBtn').classList.toggle('hidden',!legacyAvailable());
 }
-function editFight(f){const left=prompt('Left / blue fighter name',f.left);if(left===null)return;const right=prompt('Right / red fighter name',f.right);if(right===null)return;const division=prompt('Division',f.division);if(division===null)return;if(!left.trim()||!right.trim()){toast('Both fighter names are required.');return}f.left=left.trim().slice(0,150);f.right=right.trim().slice(0,150);f.division=division.trim().slice(0,100);persist();renderDashboard()}
+function editFight(f){if(f.roundData.some(r=>r.observations.length||r.score)&&!confirm('Existing observations and scores are tied to the left and right corners. Only correct fighter names here; do not swap corners. Continue?'))return;const left=prompt('Left / blue fighter name',f.left);if(left===null)return;const right=prompt('Right / red fighter name',f.right);if(right===null)return;const division=prompt('Division',f.division);if(division===null)return;if(!left.trim()||!right.trim()){toast('Both fighter names are required.');return}f.left=left.trim().slice(0,150);f.right=right.trim().slice(0,150);f.division=division.trim().slice(0,100);persist();renderDashboard()}
 function moveFight(i,step){const fs=event().fights;[fs[i],fs[i+step]]=[fs[i+step],fs[i]];persist();renderDashboard()}
 function openFight(id){pause();const f=event().fights.find(x=>x.id===id);if(!f)return;activeId=id;focusMode=true;reviewIndex=f.index;setVisible('dashboard',false);setVisible('dashTop',false);setVisible('workbench',true);renderWorkbench();window.scrollTo(0,0)}
 function run(){const f=fight(),r=currentRound();if(!f||f.result||r.score)return;
@@ -205,7 +205,7 @@ function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=cu
  const action=el('td');if(rd.score){const b=el('button','Edit','small-btn');b.onclick=()=>openScore(i,true);action.append(b)}
  else if(i!==f.index){const b=el('button','Score','small-btn');b.title='Confirm an imported, previously unconfirmed round';b.onclick=()=>openScore(i,true);action.append(b)}else action.textContent='Current';
  tr.append(action);body.append(tr)});
- const result=f.result;$('resultLabel').textContent=result?'Result: '+result.type.toUpperCase()+(result.winner?' · '+(result.winner==='a'?f.left:f.right):''):'Unofficial scorecard · observations do not determine round scores';
+ const result=f.result;$('resultLabel').textContent=result?(result.type==='decision'?'Unofficial decision: ':'Recorded result: ')+result.type.toUpperCase()+(result.winner?' · '+(result.winner==='a'?f.left:f.right):''):'Unofficial scorecard · observations do not determine round scores';
  const tabs=$('roundTabs');tabs.replaceChildren();f.roundData.forEach((rd,i)=>{const b=el('button','R'+(i+1),'small-btn'+(reviewIndex===i?' chosen':''));b.onclick=()=>{reviewIndex=i;renderWorkbench()};tabs.append(b)});
  const log=$('momentLog');log.replaceChildren();const selected=f.roundData[reviewIndex]||r;
  if(!selected.observations.length)log.append(el('div','No observations in this round.','muted'));
@@ -262,7 +262,7 @@ $('deleteEvent').onclick=()=>{const e=event();if(e&&confirm('Delete this event a
 $('exportAll').onclick=exportJSON;$('exportCsv').onclick=exportCSV;$('importBtn').onclick=()=>$('backupInput').click();
 $('backupInput').onchange=async()=>{try{const file=$('backupInput').files[0];if(!file)return;if(file.size>4500000)throw Error('Maximum backup size is 4.5 MB.');
  const obj=validate(JSON.parse(await file.text()));if(!confirm('Replace this browser workspace with the imported backup? Export your current data first.'))return;pause();data=obj;activeId=null;data.selected=data.events.some(e=>e.id===data.selected)?data.selected:(data.events[0]?.id||null);persist();renderDashboard();toast('Backup imported.')}catch(e){toast(e.message)}finally{$('backupInput').value=''}};
-$('legacyBtn').onclick=importLegacy;$('backBtn').onclick=()=>{pause();renderDashboard()};
+$('legacyBtn').onclick=importLegacy;$('backBtn').onclick=()=>{pause();if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});renderDashboard()};
 $('fullscreenBtn').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('workbench').requestFullscreen()}catch(e){toast('Full screen unavailable.')}};
 $('startBtn').onclick=run;$('undoBtn').onclick=undo;$('endBtn').onclick=endRound;$('finishBtn').onclick=resultDialog;
 $('selectA').onclick=()=>{scoreDraft.winner='a';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
