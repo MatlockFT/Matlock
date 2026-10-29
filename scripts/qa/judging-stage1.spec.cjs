@@ -490,7 +490,7 @@ async function stubGoogleSheets(page,requests,options={}){
   }}};
  });
  await page.route('https://sheets.googleapis.com/v4/spreadsheets**',async route=>{
-  const req=route.request(),u=new URL(req.url()),method=req.method();
+  const req=route.request(),u=new (require('node:url').URL)(req.url()),method=req.method();
   const body=req.postDataJSON?.()||null;
   requests.push({method,path:u.pathname,body,authorization:req.headers().authorization});
   if(options.failCreate&&method==='POST'&&u.pathname==='/v4/spreadsheets'){
