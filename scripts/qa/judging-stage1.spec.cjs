@@ -491,7 +491,7 @@ async function stubGoogleSheets(page,requests,options={}){
  });
  await page.route('https://sheets.googleapis.com/v4/spreadsheets**',async route=>{
   const req=route.request(),u=new (require('node:url').URL)(req.url()),method=req.method();
-  const body=req.postDataJSON?.()||null;
+  const body=req.postData() ? JSON.parse(req.postData()) : null;
   requests.push({method,path:u.pathname,body,authorization:req.headers().authorization});
   if(options.failCreate&&method==='POST'&&u.pathname==='/v4/spreadsheets'){
    await route.fulfill({status:403,json:{error:{message:'Sheets API is not enabled'}}});return
@@ -555,6 +555,8 @@ test('google Sheets sync creates a per-event Fights, Rounds and Moments spreadsh
  await page.click('#connectDrive');
  await expect(page.locator('#driveStatus')).toHaveText('Connected');
  await page.click('#syncEvent');
+ await page.waitForTimeout(900);
+ console.log('GOOGLE_SYNC_TRACE',JSON.stringify(requests.map(r=>({path:r.path,method:r.method}))),await page.locator('#sheetMessage').textContent());
  await expect(page.locator('#syncEvent')).toBeEnabled();
  await expect(page.locator('#sheetLink')).toBeVisible();
  await expect(page.locator('#sheetLink')).toHaveAttribute('href','https://docs.google.com/spreadsheets/d/qa-spreadsheet-123/edit');
@@ -592,6 +594,8 @@ test('sync-all creates one spreadsheet per event and keeps histories independent
  await page.locator('#clientId').evaluate(el=>el.closest('details').open=true);
  await page.fill('#clientId','qa-client.apps.googleusercontent.com');await page.click('#connectDrive');
  await page.click('#syncAllEvents');
+ await page.waitForTimeout(900);
+ console.log('GOOGLE_ALL_TRACE',JSON.stringify(requests.map(r=>({path:r.path,method:r.method}))),await page.locator('#sheetMessage').textContent());
  await expect(page.locator('#syncAllEvents')).toBeEnabled();
  const made=requests.filter(x=>x.method==='POST'&&x.path==='/v4/spreadsheets');
  expect(made).toHaveLength(2);
