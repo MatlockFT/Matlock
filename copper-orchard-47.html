@@ -362,6 +362,153 @@ function finishFight(){const f=fight(),t=$('resultType').value,w=$('resultWinner
  if(!['decision','draw','no-contest','other'].includes(t)&&!w){toast('Select a winner for this stoppage.');return}
  if(f.result&&!confirm('Replace the recorded result?'))return;
  f.result={type:t,winner:w,at:new Date().toISOString()};f.status='complete';setVisible('finishOverlay',false);persist();renderWorkbench();toast('Fight completed.')}
+
+function driveReady(){return !!driveToken&&Date.now()<driveExpires}
+function sheetUrl(id){return 'https://docs.google.com/spreadsheets/d/'+encodeURIComponent(id)+'/edit'}
+function updateDriveUI(){
+ const e=event(),ready=driveReady();
+ $('driveStatus').textContent=ready?'Connected':'Not connected';
+ $('connectDrive').textContent=ready?'Switch / reconnect Google':'Connect Google';
+ $('disconnectDrive').disabled=!driveToken;
+ $('syncEvent').disabled=!e||!ready||driveBusy;
+ $('syncAllEvents').disabled=!ready||driveBusy||!data.events.length;
+ const hasSheet=!!e?.sheetId;
+ $('sheetLink').classList.toggle('hidden',!hasSheet);
+ $('unlinkSheet').classList.toggle('hidden',!hasSheet);
+ $('unlinkSheet').disabled=driveBusy;
+ if(hasSheet)$('sheetLink').href=sheetUrl(e.sheetId);
+ $('sheetMessage').textContent=driveBusy?'Synchronizing sheets…':hasSheet?
+  'Spreadsheet linked'+(e.sheetSyncedAt?' · Last successful sync: '+new Date(e.sheetSyncedAt).toLocaleString():' · Not yet synced')+' · Sync again after any changes.':
+  ready?'No spreadsheet linked to this event. Sync to create one.':
+  'Connect Google and select an event to create its spreadsheet.';
+}
+function connectGoogle(){
+ const clientId=$('clientId').value.trim();
+ if(!/^[\w-]+\.apps\.googleusercontent\.com$/.test(clientId)){
+  $('clientId').closest('details').open=true;$('clientId').focus();
+  toast('Enter a Google OAuth web client ID first.');return
+ }
+ if(!window.google?.accounts?.oauth2){
+  toast('Google sign-in has not loaded. Check network access or content blockers.');return
+ }
+ try{localStorage.setItem(CLIENT_KEY,JSON.stringify(clientId))}catch{}
+ if(driveToken){try{google.accounts.oauth2.revoke(driveToken,()=>{})}catch{}}
+ driveToken='';driveExpires=0;updateDriveUI();
+ try{
+  driveClient=google.accounts.oauth2.initTokenClient({
+   client_id:clientId,scope:DRIVE_SCOPE,
+   callback:r=>{
+    if(!r?.access_token||r.error){driveToken='';driveExpires=0;updateDriveUI();toast('Google connection failed: '+(r?.error||'Authorization declined'));return}
+    if(typeof google.accounts.oauth2.hasGrantedAllScopes==='function'&&!google.accounts.oauth2.hasGrantedAllScopes(r,DRIVE_SCOPE)){
+     toast('Google did not grant the requested file permission.');return
+    }
+    driveToken=r.access_token;driveExpires=Date.now()+Math.max(0,(Number(r.expires_in)||3500)-30)*1000;
+    updateDriveUI();toast('Google connected. Sync an event to create its spreadsheet.');
+   },
+   error_callback:e=>{updateDriveUI();toast('Google sign-in was closed or blocked: '+(e?.type||'unknown'))}
+  });
+  driveClient.requestAccessToken({prompt:'consent'});
+ }catch(err){toast('Google authorization failed: '+err.message)}
+}
+function disconnectGoogle(){
+ if(driveToken&&window.google?.accounts?.oauth2?.revoke){
+  try{google.accounts.oauth2.revoke(driveToken,()=>{})}catch{}
+ }
+ driveToken='';driveExpires=0;driveClient=null;updateDriveUI();
+}
+async function googleSheetsRequest(path,body,method='POST'){
+ if(!driveReady())throw Error('Google connection expired. Reconnect and sync again.');
+ const res=await fetch('https://sheets.googleapis.com/v4/spreadsheets'+path,{
+  method,headers:{Authorization:'Bearer '+driveToken,'Content-Type':'application/json'},
+  ...(body===undefined?{}:{body:JSON.stringify(body)})
+ });
+ if(!res.ok){
+  let message='';
+  try{message=(await res.json())?.error?.message||''}catch{}
+  if(res.status===401){driveToken='';driveExpires=0;updateDriveUI()}
+  throw Error(message||'Google Sheets request failed (HTTP '+res.status+')');
+ }
+ return res.json();
+}
+function buildSheetRows(e){
+ const fights=[['Event','Event date','Judge','Fight #','Fight ID','Red corner','Blue corner','Division','Scheduled rounds','Round length (seconds)','Red points','Blue points','Red moments','Blue moments','Fight status','Result type','Winner','Last synced UTC']];
+ const rounds=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC']];
+ const moments=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter']];
+ e.fights.forEach((f,ix)=>{
+  const t=totals(f),redTotal=f.roundData.reduce((n,r)=>n+momentTally(r)[0],0),blueTotal=f.roundData.reduce((n,r)=>n+momentTally(r)[1],0);
+  const result=f.result||{},name=result.winner==='a'?f.left:result.winner==='b'?f.right:'';
+  fights.push([e.name,e.date,e.judge,ix+1,f.id,f.left,f.right,f.division,f.rounds,f.duration,t[0],t[1],redTotal,blueTotal,f.status,result.type||'',name,new Date().toISOString()]);
+  f.roundData.forEach((r,i)=>{
+   const pts=roundPoints(r.score),suggest=suggestedRound(r),counts=momentTally(r);
+   const suggestedPts=suggest.winner?roundPoints({winner:suggest.winner,margin:suggest.margin,deductions:[0,0]}):null;
+   const win=suggest.winner==='a'?f.left:suggest.winner==='b'?f.right:suggest.winner==='draw'?'Even':'';
+   rounds.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,Math.round(r.elapsed*10)/10,f.duration,counts[0],counts[1],win,suggestedPts?suggestedPts.join('–'):'',pts?pts[0]:'',pts?pts[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',!!r.score,r.score?.confirmedAt||'']);
+   r.observations.forEach((o,k)=>moments.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,k+1,o.time,clockText(f.duration-o.time),o.side==='a'?'Red':'Blue',o.side==='a'?f.left:f.right]));
+  });
+ });
+ return {Fights:fights,Rounds:rounds,Moments:moments};
+}
+async function syncOneEvent(e){
+ const snapshot=JSON.parse(JSON.stringify(e)),rows=buildSheetRows(snapshot),tabs=['Fights','Rounds','Moments'];
+ if(rows.Moments.length>50000)throw Error('Too many moments to sync in one operation. Export the local JSON backup.');
+ let id=e.sheetId;
+ if(!id){
+  const title=('Judging — '+(snapshot.name.trim()||'Untitled event')+' — '+(snapshot.date||'No date')).slice(0,180);
+  const created=await googleSheetsRequest('',{
+   properties:{title},
+   sheets:tabs.map(title=>({properties:{title,gridProperties:{frozenRowCount:1}}}))
+  });
+  if(!/^[\w-]+$/.test(created.spreadsheetId||''))throw Error('Google did not return a valid spreadsheet ID.');
+  id=created.spreadsheetId;
+  e.sheetId=id;persist();updateDriveUI(); // Retain the file link even if a later write fails.
+ }
+ const meta=await googleSheetsRequest('/'+encodeURIComponent(id)+'?fields='+encodeURIComponent('sheets(properties(sheetId,title,gridProperties(rowCount,columnCount)))'),undefined,'GET');
+ const sheets=new Map((meta.sheets||[]).map(x=>[x.properties.title,x.properties]));
+ if(tabs.some(x=>!sheets.has(x)))throw Error('A linked spreadsheet tab is missing. Unlink this sheet to start a new spreadsheet.');
+ const changes=[],styling=[];
+ for(const tab of tabs){
+  const prop=sheets.get(tab),rowCount=prop.gridProperties?.rowCount||1000,colCount=prop.gridProperties?.columnCount||26;
+  const needed=Math.max(rowCount,rows[tab].length+25);
+  if(needed>rowCount)changes.push({updateSheetProperties:{properties:{sheetId:prop.sheetId,gridProperties:{rowCount:needed}},fields:'gridProperties.rowCount'}});
+  if(!snapshot.sheetId){ // New spreadsheet only; keep later user formatting untouched.
+   styling.push({repeatCell:{range:{sheetId:prop.sheetId,startRowIndex:0,endRowIndex:1},cell:{userEnteredFormat:{backgroundColor:{red:.13,green:.19,blue:.27},textFormat:{bold:true,foregroundColor:{red:1,green:1,blue:1}}}},fields:'userEnteredFormat'}});
+   styling.push({setBasicFilter:{filter:{range:{sheetId:prop.sheetId,startRowIndex:0,endRowIndex:needed}}}});
+  }
+ }
+ if(changes.length||styling.length)await googleSheetsRequest('/'+encodeURIComponent(id)+':batchUpdate',{requests:[...changes,...styling]});
+ await googleSheetsRequest('/'+encodeURIComponent(id)+'/values:batchClear',{ranges:tabs.map(t=>"'"+t+"'!A:Z")});
+ await googleSheetsRequest('/'+encodeURIComponent(id)+'/values:batchUpdate',{
+  valueInputOption:'RAW',
+  data:tabs.map(t=>({range:"'"+t+"'!A1",majorDimension:'ROWS',values:rows[t]}))
+ });
+ e.sheetSyncedAt=new Date().toISOString();persist();updateDriveUI();
+ return {id,fights:rows.Fights.length-1,rounds:rows.Rounds.length-1,moments:rows.Moments.length-1};
+}
+async function syncEvents(all){
+ if(driveBusy)return;
+ if(!driveReady()){toast('Connect Google again to sync.');updateDriveUI();return}
+ const events=all?data.events.slice():[event()].filter(Boolean);
+ if(!events.length){toast('Create an event first.');return}
+ driveBusy=true;updateDriveUI();
+ let count=0;
+ try{
+  for(const e of events){
+   $('sheetMessage').textContent='Syncing '+(count+1)+' of '+events.length+': '+(e.name||'Untitled event');
+   const out=await syncOneEvent(e);count++;
+   $('sheetMessage').textContent='Synced '+out.fights+' fights, '+out.rounds+' rounds, '+out.moments+' moments. Spreadsheet saved in Google Drive.';
+  }
+  toast(count+' event'+(count===1?'':'s')+' synced to Google Sheets.');
+ }catch(err){
+  $('sheetMessage').textContent='Sync failed after '+count+' event(s): '+err.message+'. Local scorecards were not changed.';
+  toast('Google sync failed: '+err.message);
+ }finally{driveBusy=false;updateDriveUI()}
+}
+function unlinkEventSheet(){
+ const e=event();if(!e?.sheetId||driveBusy)return;
+ if(!confirm('Unlink this spreadsheet? The Google Drive file will remain untouched. The next sync creates a NEW spreadsheet.'))return;
+ delete e.sheetId;delete e.sheetSyncedAt;persist();updateDriveUI();toast('Sheet unlinked. Existing Google file was not deleted.');
+}
+
 function newEvent(){pause();const e={id:uid(),name:'',date:new Date().toLocaleDateString('en-CA'),judge:'',fights:[]};data.events.push(e);data.selected=e.id;persist();renderDashboard();$('eventName').focus()}
 function addBout(){const e=event(),a=$('boutLeft').value.trim(),b=$('boutRight').value.trim();if(!a||!b){toast('Enter both fighter names.');return}
  const division=selectedDivision('boutDivision','boutCustomDivision');if(!division){toast('Select or enter a division.');return}
@@ -373,7 +520,7 @@ function exportCSV(){pause();const rows=[['Event','Date','Judge','Red fighter','
  data.events.forEach(e=>e.fights.forEach(f=>f.roundData.forEach((r,i)=>{const p=roundPoints(r.score);rows.push([e.name,e.date,e.judge,f.left,f.right,f.division,i+1,p?p[0]:'',p?p[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',f.result?f.result.type:''])})));
  download('\uFEFF'+rows.map(row=>row.map(qcsv).join(',')).join('\r\n'),'judging-scorecards.csv','text/csv')}
 function validate(input){if(!input||input.version!==2||!Array.isArray(input.events)||input.events.length>200)throw Error('Not a valid Stage 1 backup.');
- const ids=new Set();input.events.forEach(e=>{if(!e||typeof e.id!=='string'||ids.has(e.id)||!Array.isArray(e.fights)||e.fights.length>70)throw Error('Invalid event.');ids.add(e.id);for(const k of ['name','date','judge'])if(typeof e[k]!=='string'||e[k].length>1000)throw Error('Invalid event data.');
+ const ids=new Set();input.events.forEach(e=>{if(!e||typeof e.id!=='string'||ids.has(e.id)||!Array.isArray(e.fights)||e.fights.length>70)throw Error('Invalid event.');ids.add(e.id);if(e.sheetId!==undefined&&(!/^[\w-]+$/.test(e.sheetId)||e.sheetId.length>250))throw Error('Invalid linked spreadsheet ID.');for(const k of ['name','date','judge'])if(typeof e[k]!=='string'||e[k].length>1000)throw Error('Invalid event data.');
  e.fights.forEach(f=>{if(!f||typeof f.id!=='string'||ids.has(f.id)||!Array.isArray(f.roundData)||!Number.isInteger(f.index)||f.index<0||f.index>=f.roundData.length||f.roundData.length>5||![3,5].includes(f.rounds)||![180,300,600].includes(f.duration)||f.roundData.length>f.rounds)throw Error('Invalid fight.');
  ids.add(f.id);if(f.cornerLayout&&!['red-left','blue-left'].includes(f.cornerLayout))throw Error('Invalid corner layout.');for(const k of ['left','right','division'])if(typeof f[k]!=='string'||f[k].length>1000)throw Error('Invalid fighter data.');
  f.roundData.forEach(r=>{if(!r||!Number.isFinite(r.elapsed)||r.elapsed<0||r.elapsed>f.duration||!Array.isArray(r.observations)||r.observations.length>15000)throw Error('Invalid round.');
@@ -392,6 +539,14 @@ function importLegacy(){const prior=[...(Array.isArray(readJSON(OLD_SAVES))?read
 ['eventName','eventDate','eventJudge'].forEach(id=>$(id).oninput=()=>{const e=event();if(!e)return;const key={eventName:'name',eventDate:'date',eventJudge:'judge'}[id];e[key]=$(id).value;persist();if(id==='eventName')renderEventListOnly()});
 function renderEventListOnly(){const e=event();const btn=[...$('events').children][data.events.indexOf(e)];if(btn)btn.querySelector('strong').textContent=safeName(e.name,'Untitled event')}
 $('newEventBtn').onclick=newEvent;$('addBout').onclick=addBout;
+$('googleOrigin').textContent=location.origin;
+$('clientId').value=typeof readJSON(CLIENT_KEY)==='string'?readJSON(CLIENT_KEY):'';
+$('clientId').onchange=()=>{
+ try{localStorage.setItem(CLIENT_KEY,JSON.stringify($('clientId').value.trim()))}catch{}
+};
+$('connectDrive').onclick=connectGoogle;$('disconnectDrive').onclick=disconnectGoogle;
+$('syncEvent').onclick=()=>syncEvents(false);$('syncAllEvents').onclick=()=>syncEvents(true);
+$('unlinkSheet').onclick=unlinkEventSheet;
 $('boutDivision').onchange=()=>toggleCustom('boutDivision','customDivisionWrap','boutCustomDivision');
 $('editDivision').onchange=()=>toggleCustom('editDivision','editCustomWrap','editCustomDivision');
 $('cancelEdit').onclick=closeEdit;$('saveEdit').onclick=saveEdit;
