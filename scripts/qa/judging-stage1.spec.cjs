@@ -24,7 +24,7 @@ async function scoreRound(page,side,margin='9'){
   await page.click('#startBtn');
   await page.keyboard.press('ArrowLeft');
   await page.keyboard.press('ArrowRight');
-  await expect(page.locator('#observationsCount')).toHaveText('2 moments');
+  await expect(page.locator('#observationsCount')).toHaveText('2 exchanges');
   await page.click('#endBtn');
   await expect(page.locator('#scoreOverlay')).toBeVisible();
   await page.keyboard.press(side==='a'?'ArrowLeft':'ArrowRight');
@@ -79,7 +79,7 @@ test('old sessions can be imported before any new event exists', async ({ page }
   await page.click('#legacyBtn');
   await expect(page.locator('.bout-row')).toHaveCount(1);
   await page.locator('.bout-row .primary').click();
-  await expect(page.locator('#observationsCount')).toHaveText('2 moments');
+  await expect(page.locator('#observationsCount')).toHaveText('2 exchanges');
 });
 test('full workspace exports as JSON backup', async ({ page })=>{
   await setup(page);
@@ -123,20 +123,20 @@ test('reset the current round after a false start and persist the clean state', 
   await page.click('#startBtn');
   await page.keyboard.press('ArrowLeft');
   await page.keyboard.press('ArrowRight');
-  await expect(page.locator('#observationsCount')).toHaveText('2 moments');
+  await expect(page.locator('#observationsCount')).toHaveText('2 exchanges');
   await expect(page.locator('#resetBtn')).toBeEnabled();
   await page.click('#resetBtn');
-  await expect(page.locator('#observationsCount')).toHaveText('0 moments');
+  await expect(page.locator('#observationsCount')).toHaveText('0 exchanges');
   await expect(page.locator('#clock')).toHaveText('5:00');
   await expect(page.locator('#roundState')).toHaveText('Ready');
   await expect(page.locator('#resetBtn')).toBeDisabled();
   await page.reload();
   await page.locator('.bout-row .primary').click();
   await expect(page.locator('#clock')).toHaveText('5:00');
-  await expect(page.locator('#observationsCount')).toHaveText('0 moments');
+  await expect(page.locator('#observationsCount')).toHaveText('0 exchanges');
   await page.click('#startBtn');
   await page.keyboard.press('ArrowLeft');
-  await expect(page.locator('#observationsCount')).toHaveText('1 moments');
+  await expect(page.locator('#observationsCount')).toHaveText('1 exchanges');
 });
 test('declined reset retains the current observations and state', async ({page})=>{
   await setup(page);
@@ -145,7 +145,7 @@ test('declined reset retains the current observations and state', async ({page})
   page.removeAllListeners('dialog');
   page.once('dialog', async d => {await d.dismiss()});
   await page.click('#resetBtn');
-  await expect(page.locator('#observationsCount')).toHaveText('1 moments');
+  await expect(page.locator('#observationsCount')).toHaveText('1 exchanges');
   await expect(page.locator('#roundState')).toHaveText('Recording');
 });
 test('reset from score prompt restarts same round and does not alter previous scores', async ({page})=>{
@@ -161,7 +161,7 @@ test('reset from score prompt restarts same round and does not alter previous sc
   await expect(page.locator('#wbRound')).toHaveText('ROUND 2 OF 3');
   await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
   await expect(page.locator('#clock')).toHaveText('5:00');
-  await expect(page.locator('#observationsCount')).toHaveText('0 moments');
+  await expect(page.locator('#observationsCount')).toHaveText('0 exchanges');
 });
 test('previous v2 scorecard keeps original fighter identity after layout migration', async ({page})=>{
   // Seed before the application initializes. Writing to localStorage in a running
@@ -277,7 +277,7 @@ test('undo and reset immediately recalculate the tallies', async ({page})=>{
   await page.click('#startBtn');
   await page.keyboard.press('ArrowLeft');
   await page.keyboard.press('ArrowRight');
-  await page.keyboard.press('Backspace');
+  await page.keyboard.press('Control+z');
   await expect(page.locator('#wbMomentsA')).toHaveText('1');
   await expect(page.locator('#wbMomentsB')).toHaveText('0');
   await expect(page.locator('#momentLead')).toHaveText('Red +1');
@@ -388,7 +388,7 @@ test('pause prevents moment recording, resume restores it and totals are kept', 
   await page.keyboard.press(' ');
   await page.keyboard.press('ArrowRight');
   await expect(page.locator('#wbMomentsB')).toHaveText('1');
-  await page.keyboard.press('Backspace');
+  await page.keyboard.press('Control+z');
   await expect(page.locator('#wbMomentsB')).toHaveText('0');
 });
 
@@ -604,7 +604,7 @@ test('sync creates one master with Events, Fights, Rounds and Moments, and resyn
  expect(archive.tabs.Rounds[1][0]).toBe(eid);
  expect(archive.tabs.Moments[1][0]).toBe(eid);
  expect(archive.tabs.Rounds[1][10]).toBe(2); // red moments
- expect(archive.tabs.Rounds[1][11]).toBe(1); // blue moments
+ expect(archive.tabs.Rounds[1][11]).toBe(1); // blue exchanges
  expect(archive.tabs.Rounds[1][14]).toBe(10); // confirmed red
  expect(archive.tabs.Rounds[1][15]).toBe(9); // confirmed blue
  expect(archive.tabs.Moments.slice(1).map(x=>x[11])).toEqual(['Red','Blue','Red']);
@@ -718,20 +718,20 @@ test('copy cleanup and fighter surnames in scorecard and timeline',async({page})
  await page.fill('#boutLeft','Ciryl Gane');await page.fill('#boutRight','Josh Hokit');
  await page.selectOption('#boutDivision','Heavyweight');await page.click('#addBout');
  await page.locator('.bout-row .primary').click();
- await expect(page.locator('.timeline-title h2')).toHaveText('Momentum tape');
- await expect(page.locator('.footer-grid h2').nth(1)).toHaveText('Moment log');
+ await expect(page.locator('.timeline-title h2')).toHaveText('Exchanges');
+ await expect(page.locator('.footer-grid h2').nth(1)).toHaveText('Exchange log');
  await expect(page.locator('#scoreHeadRed')).toHaveText('GANE');
  await expect(page.locator('#scoreHeadBlue')).toHaveText('HOKIT');
  await expect(page.locator('#graphRedName')).toHaveText('GANE');
  await expect(page.locator('#graphBlueName')).toHaveText('HOKIT');
  await expect(page.locator('#resultLabel')).toBeHidden();
- await expect(page.locator('#momentLog')).toContainText('No moments logged this round.');
- await expect(page.locator('.hints')).toContainText('log a moment');
+ await expect(page.locator('#momentLog')).toContainText('No exchanges logged this round.');
+ await expect(page.locator('.hints')).toContainText('exchange winner');
  await expect(page.locator('body')).not.toContainText('Moment counts are advisory');
  await expect(page.locator('body')).not.toContainText('Unofficial scorecard · moment-based suggestions');
  await expect(page.locator('body')).not.toContainText('Round observations');
  await page.click('#startBtn');await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowRight');
- await expect(page.locator('#observationsCount')).toHaveText('2 moments');
+ await expect(page.locator('#observationsCount')).toHaveText('2 exchanges');
  await expect(page.locator('#momentLog')).toContainText('Ciryl Gane');
  await expect(page.locator('#momentLog')).toContainText('Josh Hokit');
  await page.click('#endBtn');await page.keyboard.press('Enter');
@@ -756,15 +756,15 @@ test('charcoal colors and graph pixels update as moments are logged',async({page
  await expect(page.locator('#wbMomentsA')).toHaveText('1');
  const red=await getCanvas();
  expect(red.data).not.toBe(initial.data);
- expect(red.label).toContain('1 red moments');
+ expect(red.label).toContain('1 red exchanges');
  await page.keyboard.press('ArrowRight');
  await expect(page.locator('#wbMomentsB')).toHaveText('1');
  const blue=await getCanvas();
  expect(blue.data).not.toBe(red.data);
- expect(blue.label).toContain('1 blue moments');
+ expect(blue.label).toContain('1 blue exchanges');
  await page.click('#resetBtn');
- await expect(page.locator('#observationsCount')).toHaveText('0 moments');
- expect((await getCanvas()).label).toContain('0 red moments, 0 blue moments');
+ await expect(page.locator('#observationsCount')).toHaveText('0 exchanges');
+ expect((await getCanvas()).label).toContain('0 red exchanges, 0 blue exchanges');
 });
 
 test('long surnames fit without horizontal overflow',async({page})=>{
@@ -791,7 +791,7 @@ test('reduced motion preserves all scores and produces a readable timeline',asyn
  for(const key of ['ArrowLeft','ArrowRight','ArrowLeft'])await page.keyboard.press(key);
  await expect(page.locator('#wbMomentsA')).toHaveText('2');
  await expect(page.locator('#wbMomentsB')).toHaveText('1');
- await expect(page.locator('#graph')).toHaveAttribute('aria-label',/2 red moments, 1 blue moments/);
+ await expect(page.locator('#graph')).toHaveAttribute('aria-label',/2 red exchanges, 1 blue exchanges/);
  await page.click('#endBtn');
  await expect(page.locator('#draftScore')).toHaveText('10 – 9');
  await page.keyboard.press('Enter');
@@ -866,7 +866,7 @@ test('existing master with too few columns expands to fit round details',async({
  expect(expanded.length).toBe(4);
  const widths=expanded.map(x=>x.updateSheetProperties.properties.gridProperties.columnCount);
  expect(Math.min(...widths)).toBeGreaterThanOrEqual(8);
- expect(Math.max(...widths)).toBe(20);
+ expect(Math.max(...widths)).toBe(22);
 });
 
 test('oversized master payload fails before replacing archived scores',async({page})=>{
@@ -912,21 +912,21 @@ test('oversized first sync does not create an empty master spreadsheet',async({p
 
 test('Graph V2 updates exact moment counts, reacts to undo and resets cleanly',async({page})=>{
  await setup(page);
- await expect(page.locator('.timeline-title h2')).toHaveText('Momentum tape');
+ await expect(page.locator('.timeline-title h2')).toHaveText('Exchanges');
  await expect(page.locator('#graphRound')).toHaveAttribute('aria-pressed','true');
  const snapshot=()=>page.locator('#graph').evaluate(c=>({png:c.toDataURL('image/png'),label:c.getAttribute('aria-label')}));
  const empty=await snapshot();
  await page.click('#startBtn');
  await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowLeft');
- await expect(page.locator('#observationsCount')).toHaveText('3 moments');
+ await expect(page.locator('#observationsCount')).toHaveText('3 exchanges');
  const withThree=await snapshot();expect(withThree.png).not.toBe(empty.png);
- expect(withThree.label).toContain('2 red moments, 1 blue moments');
- await page.keyboard.press('Backspace');
- await expect(page.locator('#observationsCount')).toHaveText('2 moments');
- expect((await snapshot()).label).toContain('1 red moments, 1 blue moments');
+ expect(withThree.label).toContain('2 red exchanges, 1 blue exchanges');
+ await page.keyboard.press('Control+z');
+ await expect(page.locator('#observationsCount')).toHaveText('2 exchanges');
+ expect((await snapshot()).label).toContain('1 red exchanges, 1 blue exchanges');
  await page.click('#resetBtn');
- await expect(page.locator('#observationsCount')).toHaveText('0 moments');
- expect((await snapshot()).label).toContain('0 red moments, 0 blue moments');
+ await expect(page.locator('#observationsCount')).toHaveText('0 exchanges');
+ expect((await snapshot()).label).toContain('0 red exchanges, 0 blue exchanges');
 });
 
 test('Fight view shows multiple round tapes and does not change scoring',async({page})=>{
@@ -936,19 +936,20 @@ test('Fight view shows multiple round tapes and does not change scoring',async({
  await page.click('#graphFight');
  await expect(page.locator('#graphFight')).toHaveAttribute('aria-pressed','true');
  await expect(page.locator('#graphRound')).toHaveAttribute('aria-pressed','false');
- await expect(page.locator('#observationsCount')).toHaveText('3 fight moments');
- await expect(page.locator('#graph')).toHaveAttribute('aria-label',/Fight summary: 1 red moments, 2 blue moments/);
+ await expect(page.locator('#observationsCount')).toHaveText('3 exchanges');
+ await expect(page.locator('#graph')).toHaveAttribute('aria-label',/Fight summary: 1 red exchanges, 2 blue exchanges/);
  const raw=await page.evaluate(()=>({score:data.events[0].fights[0].roundData[0].score,round:data.events[0].fights[0].index}));
  expect(raw.round).toBe(1);expect(raw.score.winner).toBe('a');
  await page.click('#graphRound');
- await expect(page.locator('#observationsCount')).toHaveText('1 moments');
- await expect(page.locator('#graph')).toHaveAttribute('aria-label',/Round 2: 0 red moments, 1 blue moments/);
+ await expect(page.locator('#observationsCount')).toHaveText('1 exchanges');
+ await expect(page.locator('#graph')).toHaveAttribute('aria-label',/Round 2: 0 red exchanges, 1 blue exchanges/);
 });
 
-test('Download PNG generates a 1600x900 share image with the correct fight metadata',async({page})=>{
+test('Copy-only interface falls back to a 1600x900 PNG when clipboard is blocked',async({page})=>{
  await setup(page);
  await page.click('#startBtn');await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowRight');
- const [download]=await Promise.all([page.waitForEvent('download'),page.click('#downloadGraph')]);
+ await page.evaluate(()=>{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{write:async()=>{throw Error('Permission denied')}}})});
+ const [download]=await Promise.all([page.waitForEvent('download'),page.click('#copyGraph')]);
  expect(download.suggestedFilename()).toMatch(/test-ufc-card_red-fighter_blue-fighter_round-1\.png$/);
  const buffer=await require('node:fs/promises').readFile(await download.path());
  expect(buffer.subarray(0,8).toString('hex')).toBe('89504e470d0a1a0a');
@@ -984,7 +985,7 @@ test('Clipboard denial triggers automatic PNG download and retains moment data',
  const [download]=await Promise.all([page.waitForEvent('download'),page.click('#copyGraph')]);
  expect(download.suggestedFilename()).toMatch(/round-1\.png$/);
  await expect(page.locator('#momentLog')).toContainText('Blue fighter');
- await expect(page.locator('#observationsCount')).toHaveText('1 moments');
+ await expect(page.locator('#observationsCount')).toHaveText('1 exchanges');
 });
 
 test('Fight overview export and reduced-motion mobile layout stay usable',async({page})=>{
@@ -995,9 +996,88 @@ test('Fight overview export and reduced-motion mobile layout stay usable',async(
  await page.click('#graphFight');
  const widths=await page.evaluate(()=>({page:document.documentElement.scrollWidth,screen:innerWidth}));
  expect(widths.page).toBeLessThanOrEqual(widths.screen+1);
- const [download]=await Promise.all([page.waitForEvent('download'),page.click('#downloadGraph')]);
+ await page.evaluate(()=>{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{write:async()=>{throw Error('Permission denied')}}})});
+ const [download]=await Promise.all([page.waitForEvent('download'),page.click('#copyGraph')]);
  expect(download.suggestedFilename()).toMatch(/_fight\.png$/);
  const buffer=await require('node:fs/promises').readFile(await download.path());
  expect(buffer.readUInt32BE(16)).toBe(1600);expect(buffer.readUInt32BE(20)).toBe(900);
  await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
+});
+
+
+test('Shift+arrows log major impact exchanges with exact side and timestamp, and survive reload',async({page})=>{
+ await setup(page);
+ await expect(page.locator('.timeline-title h2')).toHaveText('Exchanges');
+ await expect(page.locator('.tape-heading .micro')).toHaveCount(0);
+ await expect(page.locator('#downloadGraph')).toHaveCount(0);
+ await expect(page.locator('#copyGraph')).toBeVisible();
+ await page.click('#startBtn');
+ await page.keyboard.press('ArrowLeft');
+ await page.keyboard.press('Shift+ArrowRight');
+ await page.keyboard.press('Shift+ArrowLeft');
+ await expect(page.locator('#observationsCount')).toHaveText('3 exchanges · 2 major');
+ const types=await page.evaluate(()=>data.events[0].fights[0].roundData[0].observations.map(o=>({side:o.side,type:o.type,time:o.time})));
+ expect(types.map(o=>[o.side,o.type])).toEqual([['a','exchange'],['b','impact'],['a','impact']]);
+ expect(types.every(o=>Number.isFinite(o.time)&&o.time>=0)).toBe(true);
+ await expect(page.locator('#momentLog .impact-label')).toHaveCount(2);
+ await expect(page.locator('#graph')).toHaveAttribute('aria-label',/1 red major impacts and 1 blue major impacts/);
+ await page.click('#backBtn');await page.reload();
+ await page.locator('.bout-row .primary').click();
+ const restored=await page.evaluate(()=>data.events[0].fights[0].roundData[0].observations.map(o=>o.type));
+ expect(restored).toEqual(['exchange','impact','impact']);
+});
+
+test('Ctrl+Z undoes a major exchange and Backspace does not undo',async({page})=>{
+ await setup(page);await page.click('#startBtn');
+ await page.keyboard.press('Shift+ArrowRight');
+ await page.keyboard.press('Backspace');
+ await expect(page.locator('#observationsCount')).toHaveText('1 exchanges · 1 major');
+ await page.keyboard.press('Control+z');
+ await expect(page.locator('#observationsCount')).toHaveText('0 exchanges');
+ const n=await page.evaluate(()=>data.events[0].fights[0].roundData[0].observations.length);
+ expect(n).toBe(0);
+});
+
+test('A major impact outweighs one ordinary exchange but cannot force a 10–8',async({page})=>{
+ await setup(page);await page.click('#startBtn');
+ await page.keyboard.press('ArrowLeft');
+ await page.keyboard.press('Shift+ArrowRight');
+ await page.click('#endBtn');
+ await expect(page.locator('#suggestionText')).toContainText('Major impacts');
+ await expect(page.locator('#selectB')).toHaveClass(/selected/);
+ await expect(page.locator('#draftScore')).toHaveText('9 – 10');
+ await page.keyboard.press('ArrowLeft');await page.keyboard.press('Enter');
+ await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
+});
+
+test('Impact type survives JSON backup and is validated during restore',async({page})=>{
+ await setup(page);await page.click('#startBtn');await page.keyboard.press('Shift+ArrowLeft');
+ await page.click('#backBtn');
+ const [download]=await Promise.all([page.waitForEvent('download'),page.click('#exportAll')]);
+ const obj=JSON.parse(await require('node:fs/promises').readFile(await download.path(),'utf8'));
+ expect(obj.events[0].fights[0].roundData[0].observations[0].type).toBe('impact');
+ const bad=JSON.parse(JSON.stringify(obj));bad.events[0].fights[0].roundData[0].observations[0].type='invalid-type';
+ expect(await page.evaluate(input=>{try{validate(input);return false}catch{return true}},bad)).toBe(true);
+});
+
+test('Master Sheets adds impact columns and safely upgrades older existing tab headers',async({page})=>{
+ await stubGoogleSheets(page);await setup(page);await page.click('#startBtn');
+ await page.keyboard.press('Shift+ArrowLeft');await page.keyboard.press('ArrowRight');
+ await page.click('#backBtn');await connectQaGoogle(page);
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ const first=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs);
+ expect(first.Moments[0].at(-1)).toBe('Exchange type');
+ expect(first.Moments.slice(1).map(r=>r.at(-1))).toEqual(['Major impact','Exchange']);
+ expect(first.Rounds[0].slice(-2)).toEqual(['Red major impacts','Blue major impacts']);
+ expect(first.Rounds[1].slice(-2)).toEqual([1,0]);
+ await page.evaluate(()=>{
+  const tabs=window.__masterFiles['qa-spreadsheet-123'].tabs;
+  tabs.Moments=tabs.Moments.map(row=>row.slice(0,-1));
+  tabs.Rounds=tabs.Rounds.map(row=>row.slice(0,-2));
+ });
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ const migrated=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs);
+ expect(migrated.Moments[0].at(-1)).toBe('Exchange type');
+ expect(migrated.Rounds[0].at(-1)).toBe('Blue major impacts');
+ expect(migrated.Moments).toHaveLength(3);
 });

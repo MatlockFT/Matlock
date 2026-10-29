@@ -90,6 +90,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .timeline{background:linear-gradient(160deg,#202124,#151619 75%);border-color:#46474b}
 @media(max-width:640px){.tape-tools{width:100%;justify-content:space-between}.tape-tools button{padding:6px 8px;font-size:10px}.tape-heading{min-width:100%}.tape-summary{justify-content:flex-start}.timeline canvas{height:205px}.graph-note{font-size:9px}}
 
+.impact-label{font-size:10px;font-weight:750;color:#f1d2a0;letter-spacing:.05em}
 @media print{body{color:#111;background:#ffffff}.top,.sidebar,.controls,.hints,.actions,.wb-top,.modal,.toast{display:none!important}.workspace,.footer-grid{display:block}.panel,.timeline{border-color:#ccc;background:#ffffff;margin-bottom:16px}#workbench{display:block!important}#dashboard{display:none!important}}
 </style>
 </head>
@@ -141,16 +142,16 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
    <div class="actions"><span id="wbSaved" class="pill saved">Saved locally</span><button id="fullscreenBtn" class="quiet small-btn">Full screen</button></div>
  </div>
  <div class="wb-head">
-  <div><div class="micro red">Red corner • ←</div><div class="corner-name" id="wbLeft">Fighter A</div><div class="moment-count red"><span id="wbMomentsA">0</span> <small>moments</small></div></div>
+  <div><div class="micro red">Red corner • ←</div><div class="corner-name" id="wbLeft">Fighter A</div><div class="moment-count red"><span id="wbMomentsA">0</span> <small>exchanges</small></div></div>
   <div class="round-box"><div id="wbRound" class="micro">Round 1 of 3</div><div id="clock" class="clock mono">5:00</div><div id="roundState" class="statusline">Ready</div></div>
-  <div class="right"><div class="micro blue">Blue corner • →</div><div class="corner-name" id="wbRight">Fighter B</div><div class="moment-count blue"><span id="wbMomentsB">0</span> <small>moments</small></div></div>
+  <div class="right"><div class="micro blue">Blue corner • →</div><div class="corner-name" id="wbRight">Fighter B</div><div class="moment-count blue"><span id="wbMomentsB">0</span> <small>exchanges</small></div></div>
  </div>
  <div class="timeline">
-  <div class="timeline-title"><div class="tape-heading"><div class="micro">SCORING / LIVE GRAPH</div><h2>Momentum tape</h2></div>
-   <div class="actions tape-tools"><div class="graph-switch" role="group" aria-label="Graph view"><button id="graphRound" type="button" class="chosen small-btn" aria-pressed="true">Round</button><button id="graphFight" type="button" class="small-btn" aria-pressed="false">Fight</button></div><button id="copyGraph" type="button" class="small-btn">Copy graph</button><button id="downloadGraph" type="button" class="small-btn">Download PNG</button></div></div>
-  <div class="tape-summary"><span id="momentLead" class="moment-tally"></span><span class="micro" id="observationsCount">0 moments</span></div>
-  <canvas id="graph" aria-label="Momentum tape showing red and blue scoring moments over time" role="img"></canvas>
-  <div class="legend"><span class="red" id="graphRedName">RED</span><span class="graph-time">ELAPSED TIME →</span><span class="blue" id="graphBlueName">BLUE</span></div><p class="graph-note">Ticks are logged moments. Curves show activity over time, not strike impact.</p>
+  <div class="timeline-title"><div class="tape-heading"><h2>Exchanges</h2></div>
+   <div class="actions tape-tools"><div class="graph-switch" role="group" aria-label="Graph view"><button id="graphRound" type="button" class="chosen small-btn" aria-pressed="true">Round</button><button id="graphFight" type="button" class="small-btn" aria-pressed="false">Fight</button></div><button id="copyGraph" type="button" class="small-btn">Copy graph</button></div></div>
+  <div class="tape-summary"><span id="momentLead" class="moment-tally"></span><span class="micro" id="observationsCount">0 exchanges</span></div>
+  <canvas id="graph" aria-label="Exchange winners over round time, with major impacts distinguished" role="img"></canvas>
+  <div class="legend"><span class="red" id="graphRedName">RED</span><span class="graph-time">ELAPSED TIME →</span><span class="blue" id="graphBlueName">BLUE</span></div>
  </div>
  <div class="controls">
   <button id="startBtn" class="primary">Start round</button>
@@ -159,15 +160,15 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   <button id="endBtn">End round &amp; score</button>
   <button id="finishBtn" class="quiet">Finish fight</button>
  </div>
- <p class="hints">← / → log a moment &nbsp; • &nbsp; Space start/pause &nbsp; • &nbsp; Backspace undo &nbsp; • &nbsp; E end round</p>
+ <p class="hints">← / → exchange winner &nbsp; • &nbsp; Shift + ← / → major impact &nbsp; • &nbsp; Space start/pause &nbsp; • &nbsp; Ctrl+Z undo &nbsp; • &nbsp; E end round</p>
  <div class="footer-grid">
   <section class="panel"><div class="panel-title"><h2>Scorecard</h2><span id="wbTotal" class="totals mono">0 – 0</span></div><table class="score-rows"><thead><tr><th>Round</th><th id="scoreHeadRed">RED</th><th id="scoreHeadBlue">BLUE</th><th title="Red–Blue totals">Moments</th><th></th></tr></thead><tbody id="scoreBody"></tbody></table><div id="resultLabel" class="muted" style="margin-top:14px"></div></section>
-  <section class="panel"><div class="panel-title"><h2>Moment log</h2></div><div id="roundTabs" class="round-tabs"></div><div id="momentLog" class="log"></div></section>
+  <section class="panel"><div class="panel-title"><h2>Exchange log</h2></div><div id="roundTabs" class="round-tabs"></div><div id="momentLog" class="log"></div></section>
  </div>
 </section>
 <div id="editFightOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="editFightTitle">
  <div class="modal"><h2 id="editFightTitle">Edit fight</h2>
- <p class="muted" style="margin-top:6px">Editing names changes the labels attached to existing moments and scores. Keep each fighter assigned to the correct corner.</p>
+ <p class="muted" style="margin-top:6px">Editing names changes the labels attached to existing exchanges and scores. Keep each fighter assigned to the correct corner.</p>
  <div class="formgrid" style="margin-top:17px">
  <label>Red corner<input id="editRed" maxlength="150"></label>
  <label>Blue corner<input id="editBlue" maxlength="150"></label>
@@ -184,10 +185,10 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   <div class="micro" id="scoreKicker">Round complete</div><h2 id="scoreTitle" style="margin-top:7px;font-size:22px">Assign round score</h2>
   <p class="muted" style="margin-top:6px">Moment totals preselect a score. Review and change it as needed before confirming.</p>
   <div class="winner-grid">
-   <button class="winner" id="selectA"><span class="micro red">← Red corner</span><div id="chooseA" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure red"><span id="scoreMomentsA">0</span> <small>moments</small></span></button>
-   <button class="winner right" id="selectB"><span class="micro blue">Blue corner →</span><div id="chooseB" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure blue"><span id="scoreMomentsB">0</span> <small>moments</small></span></button>
+   <button class="winner" id="selectA"><span class="micro red">← Red corner</span><div id="chooseA" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure red"><span id="scoreMomentsA">0</span> <small>exchanges</small></span></button>
+   <button class="winner right" id="selectB"><span class="micro blue">Blue corner →</span><div id="chooseB" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure blue"><span id="scoreMomentsB">0</span> <small>exchanges</small></span></button>
   </div>
-  <div id="suggestionText" class="suggestion" aria-live="polite">No moment tally yet</div>
+  <div id="suggestionText" class="suggestion" aria-live="polite">No exchanges yet</div>
   <div class="micro">Round margin</div>
   <div class="margins"><button data-margin="9">10–9</button><button data-margin="8">10–8</button><button data-margin="7">10–7</button><button data-margin="10">10–10</button></div>
   <div class="deductions"><div class="deduction"><div class="micro red">Red deductions</div><div class="stepper"><button data-dside="0" data-delta="-1" aria-label="Remove red deduction">−</button><strong id="deductA" class="mono">0</strong><button data-dside="0" data-delta="1" aria-label="Add red deduction">+</button></div></div>
@@ -339,16 +340,16 @@ function run(){const f=fight(),r=currentRound();if(!f||f.result||r.score)return;
  }
  renderWorkbench()
 }
-function observe(side){const f=fight(),r=currentRound();if(!f||!running||f.result||r.score)return;
+function observe(side,type='exchange'){const f=fight(),r=currentRound();if(!f||!running||f.result||r.score)return;
  const time=Math.min(f.duration,Math.round(seconds()*10)/10);if(time>=f.duration){pause();renderWorkbench();return}
- r.observations.push({side,time});reviewIndex=f.index;
+ r.observations.push({side,time,type});reviewIndex=f.index;
  momentFlash={at:performance.now(),side,index:r.observations.length-1,fightId:f.id,round:f.index};
  persist();renderWorkbench();scheduleChartFlash()}
-function undo(){const r=currentRound();if(!r||!r.observations.length||r.score)return;clearChartFlash();r.observations.pop();persist();renderWorkbench()}
+function undo(){const r=currentRound(),f=fight();if(!f||f.result||!r||!r.observations.length||r.score)return;clearChartFlash();r.observations.pop();persist();renderWorkbench()}
 function resetRound(){
  const f=fight(),r=currentRound();if(!f||!r||f.result)return;
  const n=f.index+1;
- if(!confirm('Reset round '+n+'? This clears its timer, moments and any confirmed score. Earlier rounds are not changed.'))return;
+ if(!confirm('Reset round '+n+'? This clears its timer, exchanges and any confirmed score. Earlier rounds are not changed.'))return;
  pause();clearChartFlash();
  r.elapsed=0;r.observations=[];r.score=null;
  f.status=f.roundData.some((rd,i)=>i<f.index&&rd.score)?'in-progress':'ready';
@@ -357,22 +358,26 @@ function resetRound(){
  setVisible('scoreOverlay',false);
  persist();renderWorkbench();toast('Round '+n+' reset. Ready to restart.');
 }
+function impactTally(r){const out=[0,0];for(const o of r.observations)if(o.type==='impact')out[o.side==='a'?0:1]++;return out}
+function weightedTally(r){const out=[0,0];for(const o of r.observations)out[o.side==='a'?0:1]+=o.type==='impact'?2:1;return out}
 function momentTally(r){
  const counts=[0,0];
  for(const o of r.observations)counts[o.side==='a'?0:1]++;
  return counts;
 }
 function suggestedRound(r){
- const [red,blue]=momentTally(r),total=red+blue;
- if(!total)return {winner:null,margin:9,counts:[red,blue],reason:'No moments recorded. Select a score manually.'};
- if(red===blue)return {winner:'draw',margin:10,counts:[red,blue],reason:'Even moment tally — 10–10 suggested. Review the round before confirming.'};
- const winner=red>blue?'a':'b',leading=Math.max(red,blue),trailing=Math.min(red,blue);
- // A strongly one-sided tally is a review cue, not a finding of judging dominance.
- // 10–7 is never inferred from moment counts.
- const wide=leading>=6&&leading-trailing>=5&&leading/total>=0.8;
- const margin=wide?8:9;
- const corner=winner==='a'?'Red':'Blue';
- return {winner,margin,counts:[red,blue],reason:corner+' '+leading+'–'+trailing+' in moments — suggested '+(margin===8?'10–8':'10–9')+' for '+corner+'.'+(wide?' Check impact, dominance and duration before keeping 10–8.':'')};
+ const [red,blue]=momentTally(r),[redImpact,blueImpact]=impactTally(r),total=red+blue;
+ if(!total)return {winner:null,margin:9,counts:[red,blue],reason:'No exchanges logged. Select a score manually.'};
+ const [weightedRed,weightedBlue]=weightedTally(r),allImpacts=redImpact+blueImpact;
+ const winner=weightedRed===weightedBlue?'draw':weightedRed>weightedBlue?'a':'b';
+ const extra=allImpacts?' Major impacts — Red: '+redImpact+', Blue: '+blueImpact+'.':'';
+ if(winner==='draw')return {winner,margin:10,counts:[red,blue],reason:'Even weighted exchanges — 10–10 suggested. Review the round before confirming.'+extra};
+ const leading=winner==='a'?red:blue,trailing=winner==='a'?blue:red;
+ // 10–8 requires a wide raw-exchange advantage, not just one impact marker.
+ // All recommendations remain editable by the judge.
+ const wide=leading>=6&&leading-trailing>=5&&leading/total>=.8;
+ const margin=wide?8:9,corner=winner==='a'?'Red':'Blue';
+ return {winner,margin,counts:[red,blue],reason:corner+' '+red+'–'+blue+' exchanges — suggested '+(margin===8?'10–8':'10–9')+' for '+corner+'.'+extra+(wide?' Check impact, dominance and duration before keeping 10–8.':'')};
 }
 function endRound(){const f=fight(),r=currentRound();if(!f||f.result||r.score)return;
  if(f.duration-seconds()>20&&!confirm('The clock has time remaining. End and score this round?'))return;
@@ -381,7 +386,7 @@ function openScore(index,edit){const f=fight(),r=f&&f.roundData[index];if(!r)ret
  const suggested=suggestedRound(r);
  scoreDraft=r.score?{winner:r.score.winner,margin:r.score.margin,deductions:r.score.deductions.slice()}:{winner:suggested.winner,margin:suggested.margin,deductions:[0,0]};
  $('scoreMomentsA').textContent=suggested.counts[0];$('scoreMomentsB').textContent=suggested.counts[1];
- $('suggestionText').textContent=(r.score?'Moment tally suggestion (saved score remains selected): ':'')+suggested.reason;
+ $('suggestionText').textContent=(r.score?'Exchange suggestion (saved score remains selected): ':'')+suggested.reason;
  $('scoreKicker').textContent=edit?'Edit saved round':'Round '+(index+1)+' complete';
  $('scoreTitle').textContent='Score round '+(index+1);
  $('chooseA').textContent=safeName(f.left,'Fighter A');$('chooseB').textContent=safeName(f.right,'Fighter B');
@@ -437,7 +442,8 @@ function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=cu
  updateMomentNumber('wbMomentsA',red);updateMomentNumber('wbMomentsB',blue);
  const shown=graphMode==='fight'?f.roundData.reduce((a,r)=>{const c=momentTally(r);return [a[0]+c[0],a[1]+c[1]]},[0,0]):momentTally(f.roundData[reviewIndex]||r);
  $('momentLead').textContent=shown[0]+shown[1]===0?'':shown[0]===shown[1]?'Even':(shown[0]>shown[1]?'Red':'Blue')+' +'+Math.abs(shown[0]-shown[1]);
- $('observationsCount').textContent=graphMode==='fight'?f.roundData.reduce((n,rd)=>n+rd.observations.length,0)+' fight moments':(f.roundData[reviewIndex]||r).observations.length+' moments';
+ const shownRounds=graphMode==='fight'?f.roundData:[f.roundData[reviewIndex]||r];const exchangeTotal=shownRounds.reduce((n,rd)=>n+rd.observations.length,0),impactTotal=shownRounds.reduce((n,rd)=>n+impactTally(rd)[0]+impactTally(rd)[1],0);
+ $('observationsCount').textContent=exchangeTotal+' exchanges'+(impactTotal?' · '+impactTotal+' major':'');
  const t=totals(f);$('wbTotal').textContent=t[0]+' – '+t[1];
  const body=$('scoreBody');body.replaceChildren();
  f.roundData.forEach((rd,i)=>{const tr=el('tr'),pts=roundPoints(rd.score);
@@ -449,8 +455,8 @@ function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=cu
  const result=f.result;$('resultLabel').classList.toggle('hidden',!result);$('resultLabel').textContent=result?(result.type==='decision'?'Unofficial decision: ':'Recorded result: ')+result.type.toUpperCase()+(result.winner?' · '+(result.winner==='a'?f.left:f.right):''):'';
  const tabs=$('roundTabs');tabs.replaceChildren();f.roundData.forEach((rd,i)=>{const b=el('button','R'+(i+1),'small-btn'+(reviewIndex===i?' chosen':''));b.onclick=()=>{reviewIndex=i;renderWorkbench()};tabs.append(b)});
  const log=$('momentLog');log.replaceChildren();const selected=f.roundData[reviewIndex]||r;
- if(!selected.observations.length)log.append(el('div','No moments logged this round.','muted'));
- selected.observations.slice().reverse().forEach(o=>{const l=el('div',undefined,'logline');l.append(el('span',o.side==='a'?safeName(f.left,'Fighter A'):safeName(f.right,'Fighter B'),o.side==='a'?'red':'blue'),el('span',clockText(f.duration-o.time),'mono muted'));log.append(l)});
+ if(!selected.observations.length)log.append(el('div','No exchanges logged this round.','muted'));
+ selected.observations.slice().reverse().forEach(o=>{const l=el('div',undefined,'logline'),name=el('span',o.side==='a'?safeName(f.left,'Fighter A'):safeName(f.right,'Fighter B'),o.side==='a'?'red':'blue');if(o.type==='impact')name.append(el('strong',' · MAJOR IMPACT','impact-label'));l.append(name,el('span',clockText(f.duration-o.time),'mono muted'));log.append(l)});
  drawGraph();
 }
 
@@ -460,7 +466,7 @@ function tapeDensity(round,duration,bins=80){
  const red=new Float32Array(bins),blue=new Float32Array(bins);
  for(const o of round.observations){
   const i=Math.min(bins-1,Math.max(0,Math.floor(o.time/duration*bins)));
-  (o.side==='a'?red:blue)[i]++;
+  (o.side==='a'?red:blue)[i]+=o.type==='impact'?2:1;
  }
  const smoothing=a=>a.map((_,i)=>{
   let sum=0;
@@ -516,14 +522,20 @@ function drawTapeLane(ctx,round,duration,rect,opts={}){
   const o=round.observations[i],xp=x0+span*Math.max(0,Math.min(1,o.time/duration));
   const red=o.side==='a',sign=red?-1:1,key=(red?'r':'b')+Math.round(xp/5);
   const count=collisions.get(key)||0;collisions.set(key,count+1);
-  const height=Math.min(lane*.56,12+(count%5)*(compact?2:3));
+  const impact=o.type==='impact',height=Math.min(lane*.68,(impact?23:12)+(count%5)*(compact?2:3));
   const flash=opts.flash&&opts.flash.side===o.side&&opts.flash.index===i&&opts.flash.fightId===opts.fightId&&opts.flash.round===opts.roundIndex;
   const age=flash?performance.now()-opts.flash.at:999;
   const fade=flash&&motionOK()&&age<240?Math.min(1,age/170):1;
   ctx.strokeStyle=red?'rgba(255,163,166,.74)':'rgba(162,205,255,.73)';
-  ctx.lineWidth=compact?1:1.5;
+  ctx.lineWidth=impact?(compact?2.2:3.2):(compact?1:1.5);
   ctx.globalAlpha=fade;
   ctx.beginPath();ctx.moveTo(xp,ym+sign*2);ctx.lineTo(xp,ym+sign*height);ctx.stroke();
+  if(impact){
+   const size=compact?4.5:7,py=ym+sign*height;
+   ctx.fillStyle=red?'#ffabad':'#aed4ff';ctx.beginPath();
+   ctx.moveTo(xp,py-size);ctx.lineTo(xp+size,py);ctx.lineTo(xp,py+size);ctx.lineTo(xp-size,py);ctx.closePath();ctx.fill();
+   ctx.strokeStyle='#f5ddbd';ctx.lineWidth=1.25;ctx.stroke();
+  }
   if(flash&&age<240&&motionOK()){
    const e=age/240;
    ctx.strokeStyle=red?'rgba(255,160,163,.75)':'rgba(160,202,255,.75)';
@@ -575,7 +587,8 @@ function drawGraph(){
  ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,w,h);
  const rd=f.roundData[reviewIndex]||currentRound(),counts=graphMode==='fight'?
  f.roundData.reduce((sum,r)=>{const n=momentTally(r);return [sum[0]+n[0],sum[1]+n[1]]},[0,0]):momentTally(rd);
- c.setAttribute('aria-label',(graphMode==='fight'?'Fight summary':'Round '+(reviewIndex+1))+': '+counts[0]+' red moments, '+counts[1]+' blue moments, over '+clockText(f.duration));
+ const majors=(graphMode==='fight'?f.roundData:[rd]).reduce((x,r)=>{const v=impactTally(r);return [x[0]+v[0],x[1]+v[1]]},[0,0]);
+ c.setAttribute('aria-label',(graphMode==='fight'?'Fight summary':'Round '+(reviewIndex+1))+': '+counts[0]+' red exchanges, '+counts[1]+' blue exchanges, including '+majors[0]+' red major impacts and '+majors[1]+' blue major impacts, over '+clockText(f.duration));
  drawGraphFrame(ctx,f,{x:0,y:0,w,h},{
   mode:graphMode,roundIndex:reviewIndex,
   playhead:running?seconds():null,flash:momentFlash
@@ -595,7 +608,7 @@ function exportGraphCanvas(){
  const ctx=c.getContext('2d');if(!ctx)throw Error('Image export unavailable.');
  ctx.fillStyle='#111214';ctx.fillRect(0,0,1600,900);
  ctx.fillStyle='#27282c';ctx.fillRect(0,0,1600,7);
- ctx.fillStyle='#9da0a5';ctx.font='700 21px system-ui';ctx.textAlign='left';ctx.fillText('SCORING / '+(graphMode==='fight'?'FIGHT OVERVIEW':'ROUND '+(reviewIndex+1)),76,90);
+ ctx.fillStyle='#9da0a5';ctx.font='700 21px system-ui';ctx.textAlign='left';ctx.fillText('EXCHANGES  /  '+(graphMode==='fight'?'FIGHT OVERVIEW':'ROUND '+(reviewIndex+1)),76,90);
  ctx.fillStyle='#f3f1ef';ctx.font='700 52px system-ui';
  const matchup=safeName(f.left,'Red corner')+'  VS  '+safeName(f.right,'Blue corner');
  let nameSize=52;while(ctx.measureText(matchup).width>1450&&nameSize>25){nameSize-=2;ctx.font='700 '+nameSize+'px system-ui'}
@@ -609,12 +622,13 @@ function exportGraphCanvas(){
  const round=graphMode==='round'?(f.roundData[reviewIndex]||currentRound()):null;
  const score=round?.score?roundPoints(round.score):null;
  const counts=graphMode==='round'?momentTally(round):f.roundData.reduce((sum,r)=>{const v=momentTally(r);return [sum[0]+v[0],sum[1]+v[1]]},[0,0]);
+ const impactTotals=graphMode==='round'?impactTally(round):f.roundData.reduce((sum,r)=>{const v=impactTally(r);return [sum[0]+v[0],sum[1]+v[1]]},[0,0]);
  ctx.font='700 26px system-ui';ctx.fillStyle='#f48588';ctx.textAlign='left';
- ctx.fillText('RED  '+counts[0]+' MOMENTS',80,791);
- ctx.textAlign='right';ctx.fillStyle='#83b3fb';ctx.fillText('BLUE  '+counts[1]+' MOMENTS',1518,791);
+ ctx.fillText('RED  '+counts[0]+' EXCHANGES',80,791);
+ ctx.textAlign='right';ctx.fillStyle='#83b3fb';ctx.fillText('BLUE  '+counts[1]+' EXCHANGES',1518,791);
  ctx.textAlign='left';ctx.fillStyle='#9b9ea3';ctx.font='17px system-ui';
- ctx.fillText(score?'CONFIRMED ROUND SCORE   '+score[0]+' – '+score[1]:'MOMENT LOG  /  ELAPSED ROUND TIME',80,840);
- ctx.textAlign='right';ctx.fillText('Ticks: logged moments  ·  Curves: activity density',1518,840);
+ ctx.fillText(score?'CONFIRMED ROUND SCORE   '+score[0]+' – '+score[1]:'EXCHANGE WINNERS  /  ELAPSED ROUND TIME',80,840);
+ ctx.textAlign='right';ctx.fillText('MAJOR IMPACTS  /  RED '+impactTotals[0]+'   BLUE '+impactTotals[1],1518,840);
  return c;
 }
 function graphFileName(){
@@ -640,10 +654,6 @@ async function copyGraphImage(){
    toast('Graph copied as PNG.');
   }catch(err){downloadGraphBlob(blob);toast('Clipboard unavailable — PNG downloaded.')}
  }catch(err){toast('Graph export failed: '+err.message)}
-}
-async function downloadGraphImage(){
- try{downloadGraphBlob(await graphImageBlob());toast('Graph PNG downloaded.')}
- catch(err){toast('Graph export failed: '+err.message)}
 }
 function resultDialog(){const f=fight();if(!f)return;pause();$('resultType').value=f.result?f.result.type:(f.status==='awaiting-result'?(totals(f)[0]===totals(f)[1]?'draw':'decision'):'tko');$('resultWinner').value=f.result?f.result.winner:'';setVisible('finishOverlay',true);renderFinishHint()}
 function renderFinishHint(){const f=fight(),t=$('resultType').value,completed=f.roundData.filter(r=>!!r.score).length===f.rounds;
@@ -739,8 +749,8 @@ async function googleSheetsRequest(path,body,method='POST'){
 }
 function buildSheetRows(e){
  const fights=[['Event','Event date','Judge','Fight #','Fight ID','Red corner','Blue corner','Division','Scheduled rounds','Round length (seconds)','Red points','Blue points','Red moments','Blue moments','Fight status','Result type','Winner','Last synced UTC']];
- const rounds=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC']];
- const moments=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter']];
+ const rounds=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC','Red major impacts','Blue major impacts']];
+ const moments=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter','Exchange type']];
  e.fights.forEach((f,ix)=>{
   const t=totals(f),redTotal=f.roundData.reduce((n,r)=>n+momentTally(r)[0],0),blueTotal=f.roundData.reduce((n,r)=>n+momentTally(r)[1],0);
   const result=f.result||{},name=result.winner==='a'?f.left:result.winner==='b'?f.right:'';
@@ -749,8 +759,8 @@ function buildSheetRows(e){
    const pts=roundPoints(r.score),suggest=suggestedRound(r),counts=momentTally(r);
    const suggestedPts=suggest.winner?roundPoints({winner:suggest.winner,margin:suggest.margin,deductions:[0,0]}):null;
    const win=suggest.winner==='a'?f.left:suggest.winner==='b'?f.right:suggest.winner==='draw'?'Even':'';
-   rounds.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,Math.round(r.elapsed*10)/10,f.duration,counts[0],counts[1],win,suggestedPts?suggestedPts.join('–'):'',pts?pts[0]:'',pts?pts[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',!!r.score,r.score?.confirmedAt||'']);
-   r.observations.forEach((o,k)=>moments.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,k+1,o.time,clockText(f.duration-o.time),o.side==='a'?'Red':'Blue',o.side==='a'?f.left:f.right]));
+   rounds.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,Math.round(r.elapsed*10)/10,f.duration,counts[0],counts[1],win,suggestedPts?suggestedPts.join('–'):'',pts?pts[0]:'',pts?pts[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',!!r.score,r.score?.confirmedAt||'',impactTally(r)[0],impactTally(r)[1]]);
+   r.observations.forEach((o,k)=>moments.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,k+1,o.time,clockText(f.duration-o.time),o.side==='a'?'Red':'Blue',o.side==='a'?f.left:f.right,o.type==='impact'?'Major impact':'Exchange']));
   });
  });
  return {Fights:fights,Rounds:rounds,Moments:moments};
@@ -760,8 +770,8 @@ const MASTER_TABS=['Events','Fights','Rounds','Moments'];
 const MASTER_HEADERS={
  Events:['Event ID','Event','Date','Judge / session','Fights','Scored rounds','Total moments','Last synced UTC'],
  Fights:['Event ID','Event','Event date','Judge','Fight #','Fight ID','Red corner','Blue corner','Division','Scheduled rounds','Round length (seconds)','Red points','Blue points','Red moments','Blue moments','Fight status','Result type','Winner','Last synced UTC'],
- Rounds:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC'],
- Moments:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter']
+ Rounds:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC','Red major impacts','Blue major impacts'],
+ Moments:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter','Exchange type']
 };
 function masterRowsForEvent(e){
  const per=buildSheetRows(e);
@@ -784,8 +794,12 @@ async function readMasterRows(id){
  const out={};
  MASTER_TABS.forEach((tab,i)=>{
   const existing=result.valueRanges[i].values||[];
-  if(existing.length&&JSON.stringify(existing[0])!==JSON.stringify(MASTER_HEADERS[tab]))
-   throw Error(tab+' has different column headers. Use a master created by this scorecard; no data was changed.');
+  if(existing.length){
+   const actual=existing[0],expected=MASTER_HEADERS[tab];
+   const legacy=tab==='Rounds'?expected.slice(0,-2):tab==='Moments'?expected.slice(0,-1):null;
+   if(JSON.stringify(actual)!==JSON.stringify(expected)&&JSON.stringify(actual)!==JSON.stringify(legacy))
+    throw Error(tab+' has different column headers. Use a master created by this scorecard; no data was changed.');
+  }
   out[tab]=existing;
  });
  return out;
@@ -919,7 +933,7 @@ function validate(input){if(!input||input.version!==2||!Array.isArray(input.even
  e.fights.forEach(f=>{if(!f||typeof f.id!=='string'||ids.has(f.id)||!Array.isArray(f.roundData)||!Number.isInteger(f.index)||f.index<0||f.index>=f.roundData.length||f.roundData.length>5||![3,5].includes(f.rounds)||![180,300,600].includes(f.duration)||f.roundData.length>f.rounds)throw Error('Invalid fight.');
  ids.add(f.id);if(f.cornerLayout&&!['red-left','blue-left'].includes(f.cornerLayout))throw Error('Invalid corner layout.');for(const k of ['left','right','division'])if(typeof f[k]!=='string'||f[k].length>1000)throw Error('Invalid fighter data.');
  f.roundData.forEach(r=>{if(!r||!Number.isFinite(r.elapsed)||r.elapsed<0||r.elapsed>f.duration||!Array.isArray(r.observations)||r.observations.length>15000)throw Error('Invalid round.');
- let prev=0;r.observations.forEach(o=>{if(!o||!['a','b'].includes(o.side)||!Number.isFinite(o.time)||o.time<prev||o.time>f.duration)throw Error('Invalid observation.');prev=o.time});
+ let prev=0;r.observations.forEach(o=>{if(!o||!['a','b'].includes(o.side)||!Number.isFinite(o.time)||o.time<prev||o.time>f.duration||(o.type!==undefined&&!['exchange','impact'].includes(o.type)))throw Error('Invalid exchange.');prev=o.time});
  if(r.score){if(!['a','b','draw'].includes(r.score.winner)||![7,8,9,10].includes(r.score.margin)||!Array.isArray(r.score.deductions)||r.score.deductions.length!==2||r.score.deductions.some(n=>!Number.isInteger(n)||n<0||n>10))throw Error('Invalid score.');}});
  });});return input}
 function legacyAvailable(){return !!readJSON(OLD_CURRENT)||!!readJSON(OLD_SAVES)}
@@ -952,7 +966,7 @@ $('backupInput').onchange=async()=>{try{const file=$('backupInput').files[0];if(
 $('legacyBtn').onclick=importLegacy;$('backBtn').onclick=()=>{pause();if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});renderDashboard()};
 $('fullscreenBtn').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('workbench').requestFullscreen()}catch(e){toast('Full screen unavailable.')}};
 $('graphRound').onclick=()=>setGraphMode('round');$('graphFight').onclick=()=>setGraphMode('fight');
-$('copyGraph').onclick=copyGraphImage;$('downloadGraph').onclick=downloadGraphImage;
+$('copyGraph').onclick=copyGraphImage;
 $('startBtn').onclick=run;$('undoBtn').onclick=undo;$('resetBtn').onclick=resetRound;$('resetFromScore').onclick=resetRound;$('endBtn').onclick=endRound;$('finishBtn').onclick=resultDialog;
 $('selectA').onclick=()=>{scoreDraft.winner='a';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
 $('selectB').onclick=()=>{scoreDraft.winner='b';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
@@ -960,15 +974,23 @@ document.querySelectorAll('[data-margin]').forEach(b=>b.onclick=()=>{scoreDraft.
 document.querySelectorAll('[data-dside]').forEach(b=>b.onclick=()=>{const i=+b.dataset.dside;scoreDraft.deductions[i]=Math.max(0,Math.min(10,scoreDraft.deductions[i]+(+b.dataset.delta)));renderScoreModal()});
 $('confirmScore').onclick=confirmScore;$('cancelScore').onclick=cancelScore;
 $('resultType').onchange=renderFinishHint;$('cancelFinish').onclick=()=>setVisible('finishOverlay',false);$('confirmFinish').onclick=finishFight;
-document.addEventListener('keydown',e=>{if(e.ctrlKey||e.altKey||e.metaKey||e.repeat)return;const typing=e.target.closest('input,select,textarea');if(typing)return;
+document.addEventListener('keydown',e=>{
+ if(e.repeat)return;
+ const typing=e.target.closest('input,select,textarea,[contenteditable="true"]');
+ if(typing)return;
+ const editModal=!$('scoreOverlay').classList.contains('hidden')||!$('finishOverlay').classList.contains('hidden')||!$('editFightOverlay').classList.contains('hidden');
+ if(focusMode&&(e.ctrlKey||e.metaKey)&&!e.altKey&&!e.shiftKey&&e.key.toLowerCase()==='z'){
+  if(!editModal){e.preventDefault();undo()}return;
+ }
+ if(e.ctrlKey||e.altKey||e.metaKey)return;
  const sm=!$('scoreOverlay').classList.contains('hidden');const fm=!$('finishOverlay').classList.contains('hidden');const em=!$('editFightOverlay').classList.contains('hidden');
  if(sm){if(['ArrowLeft','ArrowRight','Enter','Escape','9','8','7','0'].includes(e.key))e.preventDefault();
  if(e.key==='ArrowLeft')$('selectA').click();else if(e.key==='ArrowRight')$('selectB').click();else if(['9','8','7','0'].includes(e.key)){const v=e.key==='0'?10:+e.key;document.querySelector('[data-margin="'+v+'"]').click()}else if(e.key==='Enter')confirmScore();else if(e.key==='Escape')cancelScore();return}
  if(fm){if(e.key==='Escape'){e.preventDefault();setVisible('finishOverlay',false)}return}
  if(em){if(e.key==='Escape'){e.preventDefault();closeEdit()}return}
  if(!focusMode)return;if(e.target.closest('button'))e.target.blur();
- if(['ArrowLeft','ArrowRight',' ','Backspace','e','E'].includes(e.key))e.preventDefault();
- if(e.key==='ArrowLeft')observe('a');else if(e.key==='ArrowRight')observe('b');else if(e.key===' ')run();else if(e.key==='Backspace')undo();else if(e.key.toLowerCase()==='e')endRound();
+ if(['ArrowLeft','ArrowRight',' ','e','E'].includes(e.key))e.preventDefault();
+ if(e.key==='ArrowLeft')observe('a',e.shiftKey?'impact':'exchange');else if(e.key==='ArrowRight')observe('b',e.shiftKey?'impact':'exchange');else if(!e.shiftKey&&e.key===' ')run();else if(!e.shiftKey&&e.key.toLowerCase()==='e')endRound();
 });
 window.addEventListener('resize',()=>{if(focusMode)drawGraph()});
 window.addEventListener('pagehide',()=>{pause();persist()});
