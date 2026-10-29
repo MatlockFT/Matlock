@@ -490,30 +490,56 @@ async function stubGoogleSheets(page,options={}){
    revoke:(_t,cb)=>{if(cb)cb()}
   }}};
   window.__sheetRequests=[];
+  window.__masterFiles={};let nextId=123;
   const originalFetch=window.fetch.bind(window);
-  let nextId=123;
+  const response=(body,status=200)=>new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json'}});
   window.fetch=async(url,init={})=>{
    const address=String(url);
    if(!address.startsWith('https://sheets.googleapis.com/v4/spreadsheets'))return originalFetch(url,init);
-   const path=new window.URL(address).pathname,method=init.method||'GET',body=init.body?JSON.parse(init.body):null;
+   const u=new window.URL(address),path=u.pathname,method=init.method||'GET',body=init.body?JSON.parse(init.body):null;
    window.__sheetRequests.push({path,method,body,authorization:init.headers?.Authorization});
-   let response={},status=200;
-   if(failCreate&&method==='POST'&&path==='/v4/spreadsheets'){
-    status=403;response={error:{message:'Sheets API is not enabled'}};
-   }else if(method==='POST'&&path==='/v4/spreadsheets'){
-    response={spreadsheetId:'qa-spreadsheet-'+nextId++};
-   }else if(method==='GET'){
-    response={sheets:[
-     {properties:{title:'Fights',sheetId:11,gridProperties:{rowCount:1000,columnCount:26}}},
-     {properties:{title:'Rounds',sheetId:12,gridProperties:{rowCount:1000,columnCount:26}}},
-     {properties:{title:'Moments',sheetId:13,gridProperties:{rowCount:1000,columnCount:26}}}
-    ]};
-   }else if(method==='POST'&&(path.endsWith(':batchUpdate')||path.endsWith(':batchClear'))){
-    response={spreadsheetId:'qa-spreadsheet-123',responses:[]};
-   }else{
-    status=400;response={error:{message:'Unexpected request '+method+' '+path}};
+   if(failCreate&&method==='POST'&&path==='/v4/spreadsheets')
+    return response({error:{message:'Sheets API is not enabled'}},403);
+   if(method==='POST'&&path==='/v4/spreadsheets'){
+    const id='qa-spreadsheet-'+nextId++;
+    window.__masterFiles[id]={title:body.properties.title,tabs:Object.fromEntries(body.sheets.map(s=>[s.properties.title,[]]))};
+    return response({spreadsheetId:id});
    }
-   return new Response(JSON.stringify(response),{status,headers:{'Content-Type':'application/json'}});
+   const match=path.match(/^\/v4\/spreadsheets\/([\w-]+)(.*)$/),id=match?.[1],tail=match?.[2]||'';
+   const file=window.__masterFiles[id];
+   if(!file)return response({error:{message:'Spreadsheet not found'}},404);
+   if(method==='GET'&&tail==='/values:batchGet'){
+    const ranges=u.searchParams.getAll('ranges');
+    return response({valueRanges:ranges.map(range=>{
+     const tab=range.match(/^'([^']+)'!/)?.[1]||'';
+     return {range,values:file.tabs[tab]||[]};
+    })});
+   }
+   if(method==='GET'){
+    return response({sheets:Object.keys(file.tabs).map((title,i)=>({
+     properties:{title,sheetId:i+11,gridProperties:{rowCount:1000,columnCount:26}}
+    }))});
+   }
+   if(method==='POST'&&tail==='/values:batchUpdate'){
+    for(const d of body.data){
+     const tab=d.range.match(/^'([^']+)'!/)?.[1];
+     if(!tab)return response({error:{message:'Invalid sheet range'}},400);
+     const old=file.tabs[tab]||[];
+     const values=d.values.map(row=>row.slice());
+     file.tabs[tab]=values.concat(old.slice(values.length));
+    }
+    return response({spreadsheetId:id,responses:[]});
+   }
+   if(method==='POST'&&tail==='/values:batchClear'){
+    for(const range of body.ranges){
+     const tab=range.match(/^'([^']+)'!/)?.[1];
+     const row=Number(range.match(/!A(\d+):Z/)?.[1]||1)-1;
+     file.tabs[tab]=file.tabs[tab].slice(0,row);
+    }
+    return response({spreadsheetId:id,responses:[]});
+   }
+   if(method==='POST'&&tail===':batchUpdate')return response({spreadsheetId:id,responses:[]});
+   return response({error:{message:'Unmocked Sheets request '+method+' '+path}},400);
   };
  },!!options.failCreate);
 }
@@ -548,72 +574,105 @@ test('UFC men and women dropdown plus custom catchweight and edit dialog',async 
  await expect(page.locator('#editCustomDivision')).toHaveValue('Catchweight 165 lb');
 });
 
-test('google Sheets sync creates a per-event Fights, Rounds and Moments spreadsheet',async ({page})=>{
- let requests=[];await stubGoogleSheets(page);
- await setup(page);
- await page.click('#startBtn');
- await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowLeft');
- await page.click('#endBtn');await page.keyboard.press('Enter');
- await page.click('#backBtn');
+
+async function connectQaGoogle(page){
  await page.locator('#clientId').evaluate(el=>el.closest('details').open=true);
  await page.fill('#clientId','qa-client.apps.googleusercontent.com');
  await page.click('#connectDrive');
  await expect(page.locator('#driveStatus')).toHaveText('Connected');
+}
+test('sync creates one master with Events, Fights, Rounds and Moments, and resyncs without duplication',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);
+ await page.click('#startBtn');
+ for(const key of ['ArrowLeft','ArrowRight','ArrowLeft'])await page.keyboard.press(key);
+ await page.click('#endBtn');await page.keyboard.press('Enter');await page.click('#backBtn');
+ await connectQaGoogle(page);
  await page.click('#syncEvent');
  await expect(page.locator('#syncEvent')).toBeEnabled();
- requests=await page.evaluate(()=>window.__sheetRequests);
- await expect(page.locator('#sheetLink')).toBeVisible();
  await expect(page.locator('#sheetLink')).toHaveAttribute('href','https://docs.google.com/spreadsheets/d/qa-spreadsheet-123/edit');
- const created=requests.filter(r=>r.method==='POST'&&r.path==='/v4/spreadsheets');
- expect(created).toHaveLength(1);
- expect(created[0].body.sheets.map(x=>x.properties.title)).toEqual(['Fights','Rounds','Moments']);
- const writes=requests.filter(r=>r.path.endsWith('/values:batchUpdate'));
- expect(writes).toHaveLength(1);
- const payload=writes[0].body;expect(payload.valueInputOption).toBe('RAW');
- const range=title=>payload.data.find(x=>x.range==="'"+title+"'!A1").values;
- const f=range('Fights'),rd=range('Rounds'),m=range('Moments');
- expect(f).toHaveLength(2);expect(rd).toHaveLength(3);expect(m).toHaveLength(4);
- expect(f[1]).toContain('Lightweight');
- expect(rd[1][9]).toBe(2);expect(rd[1][10]).toBe(1);
- expect(rd[1][13]).toBe(10);expect(rd[1][14]).toBe(9);
- expect(m.slice(1).map(x=>x[10])).toEqual(['Red','Blue','Red']);
- expect(requests.every(x=>x.authorization==='Bearer qa-token')).toBe(true);
- // Resync must update the same file rather than create another one.
+ let archive=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123']);
+ expect(Object.keys(archive.tabs)).toEqual(['Events','Fights','Rounds','Moments']);
+ expect(archive.tabs.Events).toHaveLength(2);
+ expect(archive.tabs.Fights).toHaveLength(2);
+ expect(archive.tabs.Rounds).toHaveLength(3);
+ expect(archive.tabs.Moments).toHaveLength(4);
+ const eid=archive.tabs.Events[1][0];
+ expect(archive.tabs.Fights[1][0]).toBe(eid);
+ expect(archive.tabs.Rounds[1][0]).toBe(eid);
+ expect(archive.tabs.Moments[1][0]).toBe(eid);
+ expect(archive.tabs.Rounds[1][10]).toBe(2); // red moments
+ expect(archive.tabs.Rounds[1][11]).toBe(1); // blue moments
+ expect(archive.tabs.Rounds[1][14]).toBe(10); // confirmed red
+ expect(archive.tabs.Rounds[1][15]).toBe(9); // confirmed blue
+ expect(archive.tabs.Moments.slice(1).map(x=>x[11])).toEqual(['Red','Blue','Red']);
  await page.click('#syncEvent');
  await expect(page.locator('#syncEvent')).toBeEnabled();
- requests=await page.evaluate(()=>window.__sheetRequests);
- expect(requests.filter(r=>r.method==='POST'&&r.path==='/v4/spreadsheets')).toHaveLength(1);
- expect(requests.filter(r=>r.path.endsWith('/values:batchClear'))).toHaveLength(2);
+ archive=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123']);
+ expect(archive.tabs.Events).toHaveLength(2);
+ expect(archive.tabs.Moments).toHaveLength(4);
+ const created=await page.evaluate(()=>window.__sheetRequests.filter(x=>x.method==='POST'&&x.path==='/v4/spreadsheets'));
+ expect(created).toHaveLength(1);
+ expect(created[0].body.properties.title).toContain('Master');
+ expect(await page.evaluate(()=>window.__sheetRequests.every(x=>x.authorization==='Bearer qa-token'))).toBe(true);
  await page.reload();
  await expect(page.locator('#sheetLink')).toHaveAttribute('href','https://docs.google.com/spreadsheets/d/qa-spreadsheet-123/edit');
 });
-
-test('sync-all creates one spreadsheet per event and keeps histories independent',async ({page})=>{
- let requests=[];await stubGoogleSheets(page);
+test('two separate events sync into ONE master, and event-only resync preserves the other',async({page})=>{
+ await stubGoogleSheets(page);
  await page.click('#newEventBtn');await page.fill('#eventName','Event A');
  await page.fill('#boutLeft','A red');await page.fill('#boutRight','A blue');
  await page.selectOption('#boutDivision','Welterweight');await page.click('#addBout');
  await page.click('#newEventBtn');await page.fill('#eventName','Event B');
  await page.fill('#boutLeft','B red');await page.fill('#boutRight','B blue');
  await page.selectOption('#boutDivision',"Women's Bantamweight");await page.click('#addBout');
- await page.locator('#clientId').evaluate(el=>el.closest('details').open=true);
- await page.fill('#clientId','qa-client.apps.googleusercontent.com');await page.click('#connectDrive');
- await page.click('#syncAllEvents');
- await expect(page.locator('#syncAllEvents')).toBeEnabled();
- requests=await page.evaluate(()=>window.__sheetRequests);
- const made=requests.filter(x=>x.method==='POST'&&x.path==='/v4/spreadsheets');
- expect(made).toHaveLength(2);
- expect(made.map(x=>x.body.properties.title)).toEqual([
-  expect.stringContaining('Event A'),expect.stringContaining('Event B')
- ]);
+ await connectQaGoogle(page);
+ await page.click('#syncAllEvents');await expect(page.locator('#syncAllEvents')).toBeEnabled();
+ let archive=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123']);
+ expect(archive.tabs.Events).toHaveLength(3);
+ expect(archive.tabs.Fights).toHaveLength(3);
+ expect(archive.tabs.Events.slice(1).map(x=>x[1])).toEqual(['Event A','Event B']);
+ const firstEventId=archive.tabs.Events[1][0],secondEventId=archive.tabs.Events[2][0];
+ await page.click('#newEventBtn');await page.fill('#eventName','Event C');
+ await page.fill('#boutLeft','C red');await page.fill('#boutRight','C blue');
+ await page.selectOption('#boutDivision','Lightweight');await page.click('#addBout');
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ archive=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123']);
+ expect(archive.tabs.Events).toHaveLength(4);
+ expect(archive.tabs.Events.slice(1).map(x=>x[0])).toContain(firstEventId);
+ expect(archive.tabs.Events.slice(1).map(x=>x[0])).toContain(secondEventId);
+ const created=await page.evaluate(()=>window.__sheetRequests.filter(x=>x.method==='POST'&&x.path==='/v4/spreadsheets'));
+ expect(created).toHaveLength(1);
+ await page.locator('.event-item').first().click();
+ await page.fill('#eventName','Renamed Event A');
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ archive=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123']);
+ expect(archive.tabs.Events).toHaveLength(4);
+ expect(archive.tabs.Events.find(x=>x[0]===firstEventId)[1]).toBe('Renamed Event A');
+ expect(archive.tabs.Events.find(x=>x[0]===secondEventId)[1]).toBe('Event B');
 });
-
-test('google Sheets errors never delete the locally saved fight',async ({page})=>{
- let requests=[];await stubGoogleSheets(page,{failCreate:true});
- await setup(page);
- await page.click('#backBtn');
- await page.locator('#clientId').evaluate(el=>el.closest('details').open=true);
- await page.fill('#clientId','qa-client.apps.googleusercontent.com');await page.click('#connectDrive');
+test('existing old per-event spreadsheet links remain untouched during master migration',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);await page.click('#backBtn');
+ await page.evaluate(()=>{
+  const key='copper47.workspace.v2',workspace=JSON.parse(localStorage.getItem(key));
+  workspace.events[0].sheetId='older-event-sheet-12345';
+  workspace.events[0].sheetSyncedAt='2026-10-20T00:00:00.000Z';
+  localStorage.setItem(key,JSON.stringify(workspace));
+ });
+ await page.reload();
+ await connectQaGoogle(page);
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ const workspace=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')));
+ expect(workspace.masterSheetId).toBe('qa-spreadsheet-123');
+ expect(workspace.events[0].sheetId).toBe('older-event-sheet-12345');
+ const requests=await page.evaluate(()=>window.__sheetRequests);
+ expect(requests.some(x=>x.path.includes('older-event-sheet'))).toBe(false);
+});
+test('failed Google Sheets creation does not damage locally saved fights',async({page})=>{
+ await stubGoogleSheets(page,{failCreate:true});
+ await setup(page);await page.click('#backBtn');
+ await connectQaGoogle(page);
  await page.click('#syncEvent');
  await expect(page.locator('#sheetMessage')).toContainText('Sheets API is not enabled');
  await expect(page.locator('#sheetLink')).toBeHidden();
@@ -622,8 +681,31 @@ test('google Sheets errors never delete the locally saved fight',async ({page})=
  await page.locator('.bout-row .primary').click();
  await expect(page.locator('#wbLeft')).toHaveText('Red fighter');
 });
-
-
+test('master linking accepts existing URL and never creates a second spreadsheet',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);await page.click('#backBtn');
+ await connectQaGoogle(page);
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ await page.click('#unlinkSheet');
+ await expect(page.locator('#sheetLink')).toBeHidden();
+ await page.locator('#masterSheetInput').evaluate(el=>el.closest('details').open=true);
+ await page.fill('#masterSheetInput','https://docs.google.com/spreadsheets/d/qa-spreadsheet-123/edit#gid=11');
+ await page.click('#attachMaster');
+ await expect(page.locator('#sheetLink')).toBeVisible();
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ const created=await page.evaluate(()=>window.__sheetRequests.filter(x=>x.path==='/v4/spreadsheets'&&x.method==='POST'));
+ expect(created).toHaveLength(1);
+});
+test('missing master tabs are rejected without modifying remote records',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);await page.click('#backBtn');await connectQaGoogle(page);
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ await page.evaluate(()=>{delete window.__masterFiles['qa-spreadsheet-123'].tabs.Moments});
+ await page.click('#syncEvent');
+ await expect(page.locator('#sheetMessage')).toContainText('missing one or more required tabs');
+ const tabs=await page.evaluate(()=>Object.keys(window.__masterFiles['qa-spreadsheet-123'].tabs));
+ expect(tabs).toEqual(['Events','Fights','Rounds']);
+});
 test('copy cleanup and fighter surnames in scorecard and timeline',async({page})=>{
  await page.click('#newEventBtn');
  await page.fill('#eventName','UFC 334');
