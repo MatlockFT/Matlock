@@ -101,7 +101,7 @@ h1,h2,h3,p{margin:0}h1{font-size:22px;letter-spacing:-.04em}h2{font-size:17px;le
  <div class="modal"><div class="micro">Close fight</div><h2 id="finishTitle" style="margin-top:7px;font-size:22px">Record result</h2>
   <p class="muted" style="margin-top:6px">Select a result type. Decision uses the confirmed round scores; stoppages do not fabricate a score for an incomplete round.</p>
   <div class="formgrid" style="grid-template-columns:1fr 1fr;margin-top:18px">
-   <label>Result type<select id="resultType"><option value="decision">Decision / scorecard</option><option value="ko">KO</option><option value="tko">TKO</option><option value="submission">Submission</option><option value="draw">Draw</option><option value="no-contest">No contest</option><option value="other">Other</option></select></label>
+   <label>Result type<select id="resultType"><option value="decision">Decision / scorecard</option><option value="ko">KO</option><option value="tko">TKO</option><option value="submission">Submission</option><option value="draw">Draw / scorecard</option><option value="no-contest">No contest</option><option value="other">Other</option></select></label>
    <label>Winner<select id="resultWinner"><option value="">Not selected / none</option><option value="a">Left / red</option><option value="b">Right / blue</option></select></label>
   </div>
   <div class="notice" id="finishHint">Confirm all rounds before completing a decision.</div>
@@ -177,7 +177,12 @@ function editFight(f){if(f.roundData.some(r=>r.observations.length||r.score)&&!c
 function moveFight(i,step){const fs=event().fights;[fs[i],fs[i+step]]=[fs[i+step],fs[i]];persist();renderDashboard()}
 function openFight(id){pause();const f=event().fights.find(x=>x.id===id);if(!f)return;activeId=id;focusMode=true;reviewIndex=f.index;setVisible('dashboard',false);setVisible('dashTop',false);setVisible('workbench',true);renderWorkbench();window.scrollTo(0,0)}
 function run(){const f=fight(),r=currentRound();if(!f||f.result||r.score)return;
- if(running){pause()}else{running=true;anchor=performance.now();f.status='in-progress';reviewIndex=f.index;persist()}renderWorkbench()}
+ if(running){pause()}else{
+  if(seconds()>=f.duration){toast('Round clock has expired. End and score the round, or reset it.');renderWorkbench();return}
+  running=true;anchor=performance.now();f.status='in-progress';reviewIndex=f.index;persist()
+ }
+ renderWorkbench()
+}
 function observe(side){const f=fight(),r=currentRound();if(!f||!running||f.result||r.score)return;
  const time=Math.min(f.duration,Math.round(seconds()*10)/10);if(time>=f.duration){pause();renderWorkbench();return}
  r.observations.push({side,time});reviewIndex=f.index;persist();renderWorkbench()}
@@ -236,14 +241,15 @@ function confirmScore(){if(!scoreDraft)return;const points=roundPoints(scoreDraf
  const f=fight(),r=f.roundData[scoreIndex],wasScored=!!r.score;
  r.score={winner:scoreDraft.margin===10?'draw':scoreDraft.winner,margin:scoreDraft.margin,deductions:scoreDraft.deductions.slice(),confirmedAt:new Date().toISOString()};
  if(!wasScored&&scoreIndex===f.index&&scoreIndex<f.rounds-1){f.index++;if(!f.roundData[f.index])f.roundData.push(newRound())}
- if(f.roundData.filter(x=>x.score).length===f.rounds)f.status='awaiting-result';
+ if(f.result)f.status='complete';
+ else if(f.roundData.filter(x=>x.score).length===f.rounds)f.status='awaiting-result';
  else f.status='in-progress';
  if(f.result&&f.result.type==='decision'){const t=totals(f);f.result.winner=t[0]===t[1]?'':t[0]>t[1]?'a':'b'}
  setVisible('scoreOverlay',false);scoreIndex=null;scoreDraft=null;reviewIndex=f.index;persist();renderWorkbench();toast('Round score saved.')}
 function cancelScore(){setVisible('scoreOverlay',false);scoreIndex=null;scoreDraft=null;renderWorkbench()}
 function totals(f){return f.roundData.reduce((tot,r)=>{const p=roundPoints(r.score);if(p){tot[0]+=p[0];tot[1]+=p[1]}return tot},[0,0])}
 function tick(){if(!focusMode||!fight())return;
- if(running&&seconds()>=fight().duration){pause();toast('Clock reached zero. Confirm end of round.')}
+ if(running&&seconds()>=fight().duration){pause();renderWorkbench();toast('Clock reached zero. Confirm end of round.')}
  $('clock').textContent=clockText(fight().duration-seconds());if(running)drawGraph()}
 function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=currentRound();
  $('wbEvent').textContent=safeName(e.name,'Event')+' · '+(f.division||'Fight');
@@ -252,14 +258,14 @@ function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=cu
  $('clock').textContent=clockText(f.duration-seconds());
  $('roundState').textContent=f.result?'Fight complete':r.score?'Rounds finished':running?'Recording':r.elapsed?'Paused':'Ready';
  $('startBtn').textContent=running?'Pause round':r.elapsed?'Resume round':'Start round';
- $('startBtn').disabled=!!f.result||!!r.score;
+ $('startBtn').disabled=!!f.result||!!r.score||(!running&&seconds()>=f.duration);
  $('undoBtn').disabled=!!f.result||!!r.score||!r.observations.length;
  $('resetBtn').disabled=!!f.result||(!r.score&&!r.observations.length&&r.elapsed===0&&!running);
  $('endBtn').disabled=!!f.result||!!r.score;
  $('finishBtn').textContent=f.result?'View / edit result':f.status==='awaiting-result'?'Finalize decision':'Finish fight';
  const [red,blue]=momentTally(r);
  $('wbMomentsA').textContent=red;$('wbMomentsB').textContent=blue;
- $('momentLead').textContent=red===blue?'Moments even':(red>blue?'Red':'Blue')+' +'+Math.abs(red-blue);
+ $('momentLead').textContent=red+blue===0?'No moments':red===blue?'Moments even':(red>blue?'Red':'Blue')+' +'+Math.abs(red-blue);
  $('observationsCount').textContent=r.observations.length+' recorded';
  const t=totals(f);$('wbTotal').textContent=t[0]+' – '+t[1];
  const body=$('scoreBody');body.replaceChildren();
@@ -284,12 +290,13 @@ function drawGraph(){const c=$('graph'),f=fight();if(!f)return;const r=f.roundDa
  r.observations.forEach(o=>{const x=left+(right-left)*o.time/f.duration,y=o.side==='a'?middle-29:middle+29;ctx.fillStyle=o.side==='a'?'#f28b90':'#80aef6';ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill()});
  if(r===currentRound()&&running){ctx.strokeStyle='#d9e7f4';ctx.lineWidth=1;const x=left+(right-left)*seconds()/f.duration;ctx.beginPath();ctx.moveTo(x,8);ctx.lineTo(x,h-18);ctx.stroke()}
 }
-function resultDialog(){const f=fight();if(!f)return;pause();$('resultType').value=f.result?f.result.type:(f.status==='awaiting-result'?'decision':'tko');$('resultWinner').value=f.result?f.result.winner:'';setVisible('finishOverlay',true);renderFinishHint()}
+function resultDialog(){const f=fight();if(!f)return;pause();$('resultType').value=f.result?f.result.type:(f.status==='awaiting-result'?(totals(f)[0]===totals(f)[1]?'draw':'decision'):'tko');$('resultWinner').value=f.result?f.result.winner:'';setVisible('finishOverlay',true);renderFinishHint()}
 function renderFinishHint(){const f=fight(),t=$('resultType').value,completed=f.roundData.filter(r=>!!r.score).length===f.rounds;
  $('finishHint').textContent=t==='decision'&&!completed?'All scheduled rounds must have confirmed scores before a decision can be completed.':t==='decision'?'Decision winner is determined by the score totals.':'A stoppage can close a fight with a partially completed round.';
  $('resultWinner').disabled=['decision','draw','no-contest'].includes(t);if(t==='draw'||t==='no-contest')$('resultWinner').value='';if(t==='decision'){const s=totals(f);$('resultWinner').value=s[0]===s[1]?'':s[0]>s[1]?'a':'b'} }
 function finishFight(){const f=fight(),t=$('resultType').value,w=$('resultWinner').value,complete=f.roundData.filter(r=>r.score).length===f.rounds;
  if(t==='decision'&&!complete){toast('Score every scheduled round first.');return}
+ if(t==='decision'&&totals(f)[0]===totals(f)[1]){toast('The score totals are tied. Choose Draw / scorecard.');return}
  if(!['decision','draw','no-contest','other'].includes(t)&&!w){toast('Select a winner for this stoppage.');return}
  if(f.result&&!confirm('Replace the recorded result?'))return;
  f.result={type:t,winner:w,at:new Date().toISOString()};f.status='complete';setVisible('finishOverlay',false);persist();renderWorkbench();toast('Fight completed.')}
