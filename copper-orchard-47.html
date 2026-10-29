@@ -103,11 +103,14 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     <label>Scheduled rounds<select id="boutRounds"><option value="3">3 rounds</option><option value="5">5 rounds</option></select></label>
     <label>Round length<select id="boutDuration"><option value="300">5 minutes</option><option value="180">3 minutes</option><option value="600">10 minutes</option></select></label>
     </div><div class="actions" style="margin-top:14px"><button id="addBout" class="primary">Add fight</button></div></div>
-    <div class="section"><div class="section-head"><h2>Google Sheets</h2><span id="driveStatus" class="micro">Not connected</span></div>
-    <p class="muted">One spreadsheet per event, with Fights, Rounds and Moments tabs. Your local scorecard remains the source. Sync is manual; later edits replace the previous spreadsheet snapshot.</p>
-    <div class="actions" style="margin-top:13px"><button id="connectDrive">Connect Google</button><button id="syncEvent" class="primary" disabled>Sync this event</button><button id="syncAllEvents" disabled>Sync all events</button><a id="sheetLink" class="sheet-link hidden" target="_blank" rel="noopener noreferrer">Open spreadsheet ↗</a><button id="unlinkSheet" class="quiet small-btn hidden">Unlink sheet</button><button id="disconnectDrive" class="quiet small-btn" disabled>Disconnect</button></div>
+    <div class="section"><div class="section-head"><h2>Google Sheets · Master archive</h2><span id="driveStatus" class="micro">Not connected</span></div>
+    <p class="muted">One master spreadsheet for all events. Events, Fights, Rounds and Moments have their own tabs. Sync an event or your entire workspace into the same archive; other archived events are retained.</p>
+    <div class="actions" style="margin-top:13px"><button id="connectDrive">Connect Google</button><button id="syncEvent" class="primary" disabled>Sync this event</button><button id="syncAllEvents" disabled>Sync all events</button><a id="sheetLink" class="sheet-link hidden" target="_blank" rel="noopener noreferrer">Open master spreadsheet ↗</a><button id="disconnectDrive" class="quiet small-btn" disabled>Disconnect</button></div>
     <p id="sheetMessage" class="muted" style="margin-top:10px">Connect a Google account and sync when ready.</p>
-    <details style="margin-top:16px"><summary>Google connection setup</summary>
+    <details style="margin-top:16px"><summary>Google connection setup · Link existing master</summary>
+    <p class="muted" style="margin:9px 0">Already have a master spreadsheet from this tool? Paste its full Google Sheets URL or spreadsheet ID to connect it rather than creating a second one. Existing individual event spreadsheets are kept in Drive but are no longer updated.</p>
+    <div class="actions"><label style="flex:1;min-width:180px">Master spreadsheet URL or ID<input id="masterSheetInput" placeholder="https://docs.google.com/spreadsheets/d/…/edit" autocomplete="off"></label><button id="attachMaster" class="small-btn" style="align-self:end">Use this master</button></div>
+    <button id="unlinkSheet" class="quiet danger small-btn hidden" style="margin-top:9px">Unlink master (keep Google file)</button>
     <p class="muted" style="margin:9px 0">Use your existing Google web OAuth client (the older scorecard's saved client ID is reused). In that Google Cloud project, enable the <strong>Google Sheets API</strong>. Configure the OAuth consent screen, add your Google account as a test user if needed, and authorize <strong id="googleOrigin"></strong> as a JavaScript origin. No client secret is needed. Google's sign-in is required; no account token is stored.</p>
     <label>Google OAuth web client ID<input id="clientId" maxlength="300" placeholder="…apps.googleusercontent.com" autocomplete="off"></label>
     <p style="margin-top:9px"><a class="sheet-link" target="_blank" rel="noopener noreferrer" href="https://developers.google.com/identity/oauth2/web/guides/use-token-model">Google OAuth setup</a></p>
@@ -220,7 +223,7 @@ function clearChartFlash(){momentFlash=null;if(chartFrame){cancelAnimationFrame(
 
 const KEY='copper47.workspace.v2', OLD_CURRENT='copper47.current.v1', OLD_SAVES='copper47.sessions.v1';
 const uid=()=>crypto.randomUUID?crypto.randomUUID():'id-'+Date.now()+'-'+Math.random().toString(36).slice(2);
-const fresh=()=>({version:2,selected:null,events:[]});
+const fresh=()=>({version:2,selected:null,events:[],masterSheetId:null});
 const newRound=()=>({elapsed:0,observations:[],score:null});
 const newFight=(left,right,division,rounds,duration)=>({id:uid(),left,right,division,rounds:+rounds,duration:+duration,index:0,roundData:[newRound()],status:'ready',result:null,legacyId:null,cornerLayout:'red-left'});
 let data=fresh(),activeId=null,running=false,anchor=0,scoreIndex=null,scoreDraft=null,scoreWasLive=false,reviewIndex=0,focusMode=false,saveFailed=false,editingFightId=null;
@@ -676,6 +679,8 @@ function exportCSV(){pause();const rows=[['Event','Date','Judge','Red fighter','
  data.events.forEach(e=>e.fights.forEach(f=>f.roundData.forEach((r,i)=>{const p=roundPoints(r.score);rows.push([e.name,e.date,e.judge,f.left,f.right,f.division,i+1,p?p[0]:'',p?p[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',f.result?f.result.type:''])})));
  download('\uFEFF'+rows.map(row=>row.map(qcsv).join(',')).join('\r\n'),'judging-scorecards.csv','text/csv')}
 function validate(input){if(!input||input.version!==2||!Array.isArray(input.events)||input.events.length>200)throw Error('Not a valid Stage 1 backup.');
+ if(input.masterSheetId!=null&&(!/^[\w-]{15,250}$/.test(input.masterSheetId)))throw Error('Invalid master spreadsheet ID.');
+ if(input.masterSyncedAt!=null&&typeof input.masterSyncedAt!=='string')throw Error('Invalid master sync date.');
  const ids=new Set();input.events.forEach(e=>{if(!e||typeof e.id!=='string'||ids.has(e.id)||!Array.isArray(e.fights)||e.fights.length>70)throw Error('Invalid event.');ids.add(e.id);if(e.sheetId!==undefined&&(!/^[\w-]+$/.test(e.sheetId)||e.sheetId.length>250))throw Error('Invalid linked spreadsheet ID.');for(const k of ['name','date','judge'])if(typeof e[k]!=='string'||e[k].length>1000)throw Error('Invalid event data.');
  e.fights.forEach(f=>{if(!f||typeof f.id!=='string'||ids.has(f.id)||!Array.isArray(f.roundData)||!Number.isInteger(f.index)||f.index<0||f.index>=f.roundData.length||f.roundData.length>5||![3,5].includes(f.rounds)||![180,300,600].includes(f.duration)||f.roundData.length>f.rounds)throw Error('Invalid fight.');
  ids.add(f.id);if(f.cornerLayout&&!['red-left','blue-left'].includes(f.cornerLayout))throw Error('Invalid corner layout.');for(const k of ['left','right','division'])if(typeof f[k]!=='string'||f[k].length>1000)throw Error('Invalid fighter data.');
