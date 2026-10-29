@@ -277,7 +277,7 @@ test('undo and reset immediately recalculate the tallies', async ({page})=>{
   await page.click('#resetBtn');
   await expect(page.locator('#wbMomentsA')).toHaveText('0');
   await expect(page.locator('#wbMomentsB')).toHaveText('0');
-  await expect(page.locator('#momentLead')).toHaveText('Moments even');
+  await expect(page.locator('#momentLead')).toHaveText('No moments');
   await expect(page.locator('#clock')).toHaveText('5:00');
 });
 
