@@ -481,36 +481,40 @@ test('rescoring an already completed decision to tied totals updates recorded re
 });
 
 
-async function stubGoogleSheets(page,requests,options={}){
- await page.evaluate(()=>{
+async function stubGoogleSheets(page,options={}){
+ await page.evaluate(failCreate=>{
   window.google={accounts:{oauth2:{
    initTokenClient:cfg=>({requestAccessToken(){cfg.callback({access_token:'qa-token',expires_in:3600})}}),
    hasGrantedAllScopes:()=>true,
    revoke:(_t,cb)=>{if(cb)cb()}
   }}};
- });
- await page.route('https://sheets.googleapis.com/v4/spreadsheets**',async route=>{
-  const req=route.request(),u=new (require('node:url').URL)(req.url()),method=req.method();
-  const body=req.postData() ? JSON.parse(req.postData()) : null;
-  requests.push({method,path:u.pathname,body,authorization:req.headers().authorization});
-  if(options.failCreate&&method==='POST'&&u.pathname==='/v4/spreadsheets'){
-   await route.fulfill({status:403,json:{error:{message:'Sheets API is not enabled'}}});return
-  }
-  if(method==='POST'&&u.pathname==='/v4/spreadsheets'){
-   await route.fulfill({json:{spreadsheetId:'qa-spreadsheet-123'}});return
-  }
-  if(method==='GET'){
-   await route.fulfill({json:{sheets:[
-    {properties:{title:'Fights',sheetId:11,gridProperties:{rowCount:1000,columnCount:26}}},
-    {properties:{title:'Rounds',sheetId:12,gridProperties:{rowCount:1000,columnCount:26}}},
-    {properties:{title:'Moments',sheetId:13,gridProperties:{rowCount:1000,columnCount:26}}}
-   ]}});return
-  }
-  if(method==='POST'&&(u.pathname.endsWith(':batchUpdate')||u.pathname.endsWith(':batchClear'))){
-   await route.fulfill({json:{spreadsheetId:'qa-spreadsheet-123',responses:[]}});return
-  }
-  await route.fulfill({status:400,json:{error:{message:'Unmocked Sheets request'}}});
- });
+  window.__sheetRequests=[];
+  const originalFetch=window.fetch.bind(window);
+  let nextId=123;
+  window.fetch=async(url,init={})=>{
+   const address=String(url);
+   if(!address.startsWith('https://sheets.googleapis.com/v4/spreadsheets'))return originalFetch(url,init);
+   const path=new window.URL(address).pathname,method=init.method||'GET',body=init.body?JSON.parse(init.body):null;
+   window.__sheetRequests.push({path,method,body,authorization:init.headers?.Authorization});
+   let response={},status=200;
+   if(failCreate&&method==='POST'&&path==='/v4/spreadsheets'){
+    status=403;response={error:{message:'Sheets API is not enabled'}};
+   }else if(method==='POST'&&path==='/v4/spreadsheets'){
+    response={spreadsheetId:'qa-spreadsheet-'+nextId++};
+   }else if(method==='GET'){
+    response={sheets:[
+     {properties:{title:'Fights',sheetId:11,gridProperties:{rowCount:1000,columnCount:26}}},
+     {properties:{title:'Rounds',sheetId:12,gridProperties:{rowCount:1000,columnCount:26}}},
+     {properties:{title:'Moments',sheetId:13,gridProperties:{rowCount:1000,columnCount:26}}}
+    ]};
+   }else if(method==='POST'&&(path.endsWith(':batchUpdate')||path.endsWith(':batchClear'))){
+    response={spreadsheetId:'qa-spreadsheet-123',responses:[]};
+   }else{
+    status=400;response={error:{message:'Unexpected request '+method+' '+path}};
+   }
+   return new Response(JSON.stringify(response),{status,headers:{'Content-Type':'application/json'}});
+  };
+ },!!options.failCreate);
 }
 test('UFC men and women dropdown plus custom catchweight and edit dialog',async ({page})=>{
  await page.click('#newEventBtn');
@@ -544,7 +548,7 @@ test('UFC men and women dropdown plus custom catchweight and edit dialog',async 
 });
 
 test('google Sheets sync creates a per-event Fights, Rounds and Moments spreadsheet',async ({page})=>{
- const requests=[];await stubGoogleSheets(page,requests);
+ let requests=[];await stubGoogleSheets(page);
  await setup(page);
  await page.click('#startBtn');
  await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowLeft');
@@ -555,9 +559,9 @@ test('google Sheets sync creates a per-event Fights, Rounds and Moments spreadsh
  await page.click('#connectDrive');
  await expect(page.locator('#driveStatus')).toHaveText('Connected');
  await page.click('#syncEvent');
- await page.waitForTimeout(900);
- console.log('GOOGLE_SYNC_TRACE',JSON.stringify(requests.map(r=>({path:r.path,method:r.method}))),await page.locator('#sheetMessage').textContent());
+ requests=await page.evaluate(()=>window.__sheetRequests);
  await expect(page.locator('#syncEvent')).toBeEnabled();
+ requests=await page.evaluate(()=>window.__sheetRequests);
  await expect(page.locator('#sheetLink')).toBeVisible();
  await expect(page.locator('#sheetLink')).toHaveAttribute('href','https://docs.google.com/spreadsheets/d/qa-spreadsheet-123/edit');
  const created=requests.filter(r=>r.method==='POST'&&r.path==='/v4/spreadsheets');
@@ -584,7 +588,7 @@ test('google Sheets sync creates a per-event Fights, Rounds and Moments spreadsh
 });
 
 test('sync-all creates one spreadsheet per event and keeps histories independent',async ({page})=>{
- const requests=[];await stubGoogleSheets(page,requests);
+ let requests=[];await stubGoogleSheets(page);
  await page.click('#newEventBtn');await page.fill('#eventName','Event A');
  await page.fill('#boutLeft','A red');await page.fill('#boutRight','A blue');
  await page.selectOption('#boutDivision','Welterweight');await page.click('#addBout');
@@ -594,9 +598,9 @@ test('sync-all creates one spreadsheet per event and keeps histories independent
  await page.locator('#clientId').evaluate(el=>el.closest('details').open=true);
  await page.fill('#clientId','qa-client.apps.googleusercontent.com');await page.click('#connectDrive');
  await page.click('#syncAllEvents');
- await page.waitForTimeout(900);
- console.log('GOOGLE_ALL_TRACE',JSON.stringify(requests.map(r=>({path:r.path,method:r.method}))),await page.locator('#sheetMessage').textContent());
+ requests=await page.evaluate(()=>window.__sheetRequests);
  await expect(page.locator('#syncAllEvents')).toBeEnabled();
+ requests=await page.evaluate(()=>window.__sheetRequests);
  const made=requests.filter(x=>x.method==='POST'&&x.path==='/v4/spreadsheets');
  expect(made).toHaveLength(2);
  expect(made.map(x=>x.body.properties.title)).toEqual([
@@ -605,7 +609,7 @@ test('sync-all creates one spreadsheet per event and keeps histories independent
 });
 
 test('google Sheets errors never delete the locally saved fight',async ({page})=>{
- const requests=[];await stubGoogleSheets(page,requests,{failCreate:true});
+ let requests=[];await stubGoogleSheets(page,{failCreate:true});
  await setup(page);
  await page.click('#backBtn');
  await page.locator('#clientId').evaluate(el=>el.closest('details').open=true);
