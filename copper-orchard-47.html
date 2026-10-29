@@ -145,7 +145,10 @@ const uid=()=>crypto.randomUUID?crypto.randomUUID():'id-'+Date.now()+'-'+Math.ra
 const fresh=()=>({version:2,selected:null,events:[]});
 const newRound=()=>({elapsed:0,observations:[],score:null});
 const newFight=(left,right,division,rounds,duration)=>({id:uid(),left,right,division,rounds:+rounds,duration:+duration,index:0,roundData:[newRound()],status:'ready',result:null,legacyId:null,cornerLayout:'red-left'});
-let data=fresh(),activeId=null,running=false,anchor=0,scoreIndex=null,scoreDraft=null,scoreWasLive=false,reviewIndex=0,focusMode=false,saveFailed=false;
+let data=fresh(),activeId=null,running=false,anchor=0,scoreIndex=null,scoreDraft=null,scoreWasLive=false,reviewIndex=0,focusMode=false,saveFailed=false,editingFightId=null;
+let driveToken='',driveExpires=0,driveBusy=false,driveClient=null;
+const DRIVE_SCOPE='https://www.googleapis.com/auth/drive.file',CLIENT_KEY='copper47.clientId';
+const DIVISIONS=['Flyweight','Bantamweight','Featherweight','Lightweight','Welterweight','Middleweight','Light Heavyweight','Heavyweight',"Women's Strawweight","Women's Flyweight","Women's Bantamweight","Women's Featherweight"];
 function readJSON(key){try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}}
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.add('hidden'),3600)}
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(data));saveFailed=false;$('saveStatus').textContent='Saved locally';$('saveStatus').className='pill saved';$('wbSaved').textContent='Saved locally';$('wbSaved').className='pill saved';return true}catch(e){saveFailed=true;$('saveStatus').textContent='SAVE FAILED';$('saveStatus').className='pill warning';$('wbSaved').textContent='SAVE FAILED';$('wbSaved').className='pill warning';toast('Browser storage failed. Export a backup before closing.');return false}}
@@ -183,11 +186,11 @@ function safeName(s,fallback){return (s||'').trim()||fallback}
 function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
 function setVisible(id,yes){$(id).classList.toggle('hidden',!yes)}
 function selectEvent(id){pause();activeId=null;focusMode=false;data.selected=id;persist();renderDashboard()}
-function renderDashboard(){setVisible('dashboard',true);setVisible('dashTop',true);setVisible('workbench',false);setVisible('scoreOverlay',false);setVisible('finishOverlay',false);focusMode=false;
+function renderDashboard(){setVisible('dashboard',true);setVisible('dashTop',true);setVisible('workbench',false);setVisible('scoreOverlay',false);setVisible('finishOverlay',false);setVisible('editFightOverlay',false);focusMode=false;
  const list=$('events');list.replaceChildren();$('eventCount').textContent=data.events.length;
  data.events.forEach(e=>{const b=el('button');b.className='event-item'+(e.id===data.selected?' current':'');b.append(el('strong',safeName(e.name,'Untitled event')),el('small',(e.date||'No date')+' · '+e.fights.length+' fights'));b.onclick=()=>selectEvent(e.id);list.append(b)});
  $('legacyBtn').classList.toggle('hidden',!legacyAvailable());
- const e=event();setVisible('eventEditor',!!e);setVisible('emptyEvent',!e);if(!e)return;
+ const e=event();setVisible('eventEditor',!!e);setVisible('emptyEvent',!e);updateDriveUI();if(!e)return;
  $('eventName').value=e.name;$('eventDate').value=e.date;$('eventJudge').value=e.judge;$('boutCount').textContent=e.fights.length+' fights';
  const rows=$('bouts');rows.replaceChildren();
  if(!e.fights.length)rows.append(el('div','No fights added yet.','empty'));
@@ -200,7 +203,35 @@ function renderDashboard(){setVisible('dashboard',true);setVisible('dashTop',tru
  const ed=el('button','Edit','small-btn');ed.onclick=()=>editFight(f);right.append(ed,up,down,del);row.append(left,right);rows.append(row)});
  $('legacyBtn').classList.toggle('hidden',!legacyAvailable());
 }
-function editFight(f){if(f.roundData.some(r=>r.observations.length||r.score)&&!confirm('Existing observations and scores are tied to the left and right corners. Only correct fighter names here; do not swap corners. Continue?'))return;const left=prompt('Red corner fighter name',f.left);if(left===null)return;const right=prompt('Blue corner fighter name',f.right);if(right===null)return;const division=prompt('Division',f.division);if(division===null)return;if(!left.trim()||!right.trim()){toast('Both fighter names are required.');return}f.left=left.trim().slice(0,150);f.right=right.trim().slice(0,150);f.division=division.trim().slice(0,100);persist();renderDashboard()}
+function divisionPickerValue(selectId,wrapId,inputId,value){
+ const v=(value||'').trim(),known=DIVISIONS.includes(v);
+ $(selectId).value=known?v:v?'custom':'';
+ $(inputId).value=known?'':v;
+ $(wrapId).classList.toggle('hidden',$(selectId).value!=='custom');
+}
+function selectedDivision(selectId,inputId){
+ return $(selectId).value==='custom'?$(inputId).value.trim():$(selectId).value;
+}
+function toggleCustom(selectId,wrapId,inputId){
+ $(wrapId).classList.toggle('hidden',$(selectId).value!=='custom');
+ if($(selectId).value==='custom')$(inputId).focus();
+}
+function editFight(f){
+ editingFightId=f.id;
+ $('editRed').value=f.left;$('editBlue').value=f.right;
+ divisionPickerValue('editDivision','editCustomWrap','editCustomDivision',f.division);
+ setVisible('editFightOverlay',true);$('editRed').focus();
+}
+function closeEdit(){editingFightId=null;setVisible('editFightOverlay',false)}
+function saveEdit(){
+ const f=event()?.fights.find(x=>x.id===editingFightId);
+ if(!f)return closeEdit();
+ const a=$('editRed').value.trim(),b=$('editBlue').value.trim(),d=selectedDivision('editDivision','editCustomDivision');
+ if(!a||!b||!d){toast('Both fighters and a division are required.');return}
+ if((a!==f.left||b!==f.right)&&f.roundData.some(x=>x.observations.length||x.score)&&!confirm('Change corner names attached to existing observations and scores? Confirm that each fighter remains in the correct corner.'))return;
+ f.left=a;f.right=b;f.division=d.slice(0,100);
+ persist();closeEdit();renderDashboard();
+}
 function moveFight(i,step){const fs=event().fights;[fs[i],fs[i+step]]=[fs[i+step],fs[i]];persist();renderDashboard()}
 function openFight(id){pause();const f=event().fights.find(x=>x.id===id);if(!f)return;activeId=id;focusMode=true;reviewIndex=f.index;setVisible('dashboard',false);setVisible('dashTop',false);setVisible('workbench',true);renderWorkbench();window.scrollTo(0,0)}
 function run(){const f=fight(),r=currentRound();if(!f||f.result||r.score)return;
@@ -333,7 +364,8 @@ function finishFight(){const f=fight(),t=$('resultType').value,w=$('resultWinner
  f.result={type:t,winner:w,at:new Date().toISOString()};f.status='complete';setVisible('finishOverlay',false);persist();renderWorkbench();toast('Fight completed.')}
 function newEvent(){pause();const e={id:uid(),name:'',date:new Date().toLocaleDateString('en-CA'),judge:'',fights:[]};data.events.push(e);data.selected=e.id;persist();renderDashboard();$('eventName').focus()}
 function addBout(){const e=event(),a=$('boutLeft').value.trim(),b=$('boutRight').value.trim();if(!a||!b){toast('Enter both fighter names.');return}
- const f=newFight(a,b,$('boutDivision').value.trim(),$('boutRounds').value,$('boutDuration').value);e.fights.push(f);['boutLeft','boutRight','boutDivision'].forEach(k=>$(k).value='');persist();renderDashboard();$('boutLeft').focus()}
+ const division=selectedDivision('boutDivision','boutCustomDivision');if(!division){toast('Select or enter a division.');return}
+ const f=newFight(a,b,division.slice(0,100),$('boutRounds').value,$('boutDuration').value);e.fights.push(f);['boutLeft','boutRight','boutDivision','boutCustomDivision'].forEach(k=>$(k).value='');$('customDivisionWrap').classList.add('hidden');persist();renderDashboard();$('boutLeft').focus()}
 function download(content,name,type){const u=URL.createObjectURL(new Blob([content],{type})),a=el('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000)}
 function exportJSON(){pause();persist();download(JSON.stringify(data,null,2),'judging-backup-'+new Date().toISOString().slice(0,10)+'.json','application/json')}
 function qcsv(v){let s=String(v==null?'':v);if(/^[\s]*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
@@ -360,6 +392,9 @@ function importLegacy(){const prior=[...(Array.isArray(readJSON(OLD_SAVES))?read
 ['eventName','eventDate','eventJudge'].forEach(id=>$(id).oninput=()=>{const e=event();if(!e)return;const key={eventName:'name',eventDate:'date',eventJudge:'judge'}[id];e[key]=$(id).value;persist();if(id==='eventName')renderEventListOnly()});
 function renderEventListOnly(){const e=event();const btn=[...$('events').children][data.events.indexOf(e)];if(btn)btn.querySelector('strong').textContent=safeName(e.name,'Untitled event')}
 $('newEventBtn').onclick=newEvent;$('addBout').onclick=addBout;
+$('boutDivision').onchange=()=>toggleCustom('boutDivision','customDivisionWrap','boutCustomDivision');
+$('editDivision').onchange=()=>toggleCustom('editDivision','editCustomWrap','editCustomDivision');
+$('cancelEdit').onclick=closeEdit;$('saveEdit').onclick=saveEdit;
 $('deleteEvent').onclick=()=>{const e=event();if(e&&confirm('Delete this event and ALL its scorecards? This cannot be undone.')){data.events=data.events.filter(x=>x.id!==e.id);data.selected=data.events[0]?.id||null;persist();renderDashboard()}};
 $('exportAll').onclick=exportJSON;$('exportCsv').onclick=exportCSV;$('importBtn').onclick=()=>$('backupInput').click();
 $('backupInput').onchange=async()=>{try{const file=$('backupInput').files[0];if(!file)return;if(file.size>4500000)throw Error('Maximum backup size is 4.5 MB.');
@@ -374,10 +409,11 @@ document.querySelectorAll('[data-dside]').forEach(b=>b.onclick=()=>{const i=+b.d
 $('confirmScore').onclick=confirmScore;$('cancelScore').onclick=cancelScore;
 $('resultType').onchange=renderFinishHint;$('cancelFinish').onclick=()=>setVisible('finishOverlay',false);$('confirmFinish').onclick=finishFight;
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.altKey||e.metaKey||e.repeat)return;const typing=e.target.closest('input,select,textarea');if(typing)return;
- const sm=!$('scoreOverlay').classList.contains('hidden');const fm=!$('finishOverlay').classList.contains('hidden');
+ const sm=!$('scoreOverlay').classList.contains('hidden');const fm=!$('finishOverlay').classList.contains('hidden');const em=!$('editFightOverlay').classList.contains('hidden');
  if(sm){if(['ArrowLeft','ArrowRight','Enter','Escape','9','8','7','0'].includes(e.key))e.preventDefault();
  if(e.key==='ArrowLeft')$('selectA').click();else if(e.key==='ArrowRight')$('selectB').click();else if(['9','8','7','0'].includes(e.key)){const v=e.key==='0'?10:+e.key;document.querySelector('[data-margin="'+v+'"]').click()}else if(e.key==='Enter')confirmScore();else if(e.key==='Escape')cancelScore();return}
  if(fm){if(e.key==='Escape'){e.preventDefault();setVisible('finishOverlay',false)}return}
+ if(em){if(e.key==='Escape'){e.preventDefault();closeEdit()}return}
  if(!focusMode)return;if(e.target.closest('button'))e.target.blur();
  if(['ArrowLeft','ArrowRight',' ','Backspace','e','E'].includes(e.key))e.preventDefault();
  if(e.key==='ArrowLeft')observe('a');else if(e.key==='ArrowRight')observe('b');else if(e.key===' ')run();else if(e.key==='Backspace')undo();else if(e.key.toLowerCase()==='e')endRound();
