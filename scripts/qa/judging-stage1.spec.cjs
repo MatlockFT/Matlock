@@ -14,7 +14,7 @@ async function setup(page){
   await page.fill('#eventName','Test UFC card');
   await page.fill('#boutLeft','Red fighter');
   await page.fill('#boutRight','Blue fighter');
-  await page.fill('#boutDivision','Lightweight');
+  await page.selectOption('#boutDivision','Lightweight');
   await page.click('#addBout');
   await page.locator('.bout-row .primary').click();
   await expect(page.locator('#wbLeft')).toHaveText('Red fighter');
@@ -96,8 +96,8 @@ test('full workspace exports as JSON backup', async ({ page })=>{
 
 test('red is left and blue right in controls, scorecard, graph and result', async ({page})=>{
   await setup(page);
-  await expect(page.locator('.wb-head .micro.red')).toContainText('Left / red');
-  await expect(page.locator('.wb-head .micro.blue')).toContainText('Right / blue');
+  await expect(page.locator('.wb-head .micro.red')).toContainText('Red corner');
+  await expect(page.locator('.wb-head .micro.blue')).toContainText('Blue corner');
   await expect(page.locator('.legend .red')).toHaveText('RED • ABOVE CENTER');
   await expect(page.locator('.legend .blue')).toHaveText('BLUE • BELOW CENTER');
   await expect(page.locator('#scoreBody').locator('tr')).toHaveCount(1);
@@ -108,8 +108,8 @@ test('red is left and blue right in controls, scorecard, graph and result', asyn
   await expect(page.locator('#momentLog .red')).toHaveText('Red fighter');
   await expect(page.locator('#momentLog .blue')).toHaveText('Blue fighter');
   await page.click('#endBtn');
-  await expect(page.locator('#selectA')).toContainText('Left / red');
-  await expect(page.locator('#selectB')).toContainText('Right / blue');
+  await expect(page.locator('#selectA')).toContainText('Red corner');
+  await expect(page.locator('#selectB')).toContainText('Blue corner');
   await expect(page.locator('.deductions')).toContainText('Red deductions');
   await expect(page.locator('.deductions')).toContainText('Blue deductions');
   await page.keyboard.press('ArrowLeft');
@@ -400,6 +400,7 @@ test('event session and two independent fights survive reload', async ({page})=>
   await page.click('#backBtn');
   await page.fill('#boutLeft','Another red');
   await page.fill('#boutRight','Another blue');
+  await page.selectOption('#boutDivision','Welterweight');
   await page.click('#addBout');
   await page.locator('.bout-row .primary').nth(1).click();
   await expect(page.locator('#wbTotal')).toHaveText('0 – 0');
@@ -420,6 +421,7 @@ test('5-round scorecard handles referee deduction and a preselected 10–8', asy
   await page.fill('#boutLeft','Red fighter');
   await page.fill('#boutRight','Blue fighter');
   await page.selectOption('#boutRounds','5');
+  await page.selectOption('#boutDivision','Middleweight');
   await page.click('#addBout');
   await page.locator('.bout-row .primary').click();
   await page.click('#startBtn');
@@ -475,4 +477,136 @@ test('rescoring an already completed decision to tied totals updates recorded re
   await page.reload();
   await page.locator('.bout-row .primary').click();
   await expect(page.locator('#resultLabel')).toContainText('DRAW');
+});
+
+
+async function stubGoogleSheets(page,requests,options={}){
+ await page.evaluate(()=>{
+  window.google={accounts:{oauth2:{
+   initTokenClient:cfg=>({requestAccessToken(){cfg.callback({access_token:'qa-token',expires_in:3600})}}),
+   hasGrantedAllScopes:()=>true,
+   revoke:(_t,cb)=>{if(cb)cb()}
+  }}};
+ });
+ await page.route('https://sheets.googleapis.com/v4/spreadsheets**',async route=>{
+  const req=route.request(),u=new URL(req.url()),method=req.method();
+  const body=req.postDataJSON?.()||null;
+  requests.push({method,path:u.pathname,body,authorization:req.headers().authorization});
+  if(options.failCreate&&method==='POST'&&u.pathname==='/v4/spreadsheets'){
+   await route.fulfill({status:403,json:{error:{message:'Sheets API is not enabled'}}});return
+  }
+  if(method==='POST'&&u.pathname==='/v4/spreadsheets'){
+   await route.fulfill({json:{spreadsheetId:'qa-spreadsheet-123'}});return
+  }
+  if(method==='GET'){
+   await route.fulfill({json:{sheets:[
+    {properties:{title:'Fights',sheetId:11,gridProperties:{rowCount:1000,columnCount:26}}},
+    {properties:{title:'Rounds',sheetId:12,gridProperties:{rowCount:1000,columnCount:26}}},
+    {properties:{title:'Moments',sheetId:13,gridProperties:{rowCount:1000,columnCount:26}}}
+   ]}});return
+  }
+  if(method==='POST'&&(u.pathname.endsWith(':batchUpdate')||u.pathname.endsWith(':batchClear'))){
+   await route.fulfill({json:{spreadsheetId:'qa-spreadsheet-123',responses:[]}});return
+  }
+  await route.fulfill({status:400,json:{error:{message:'Unmocked Sheets request'}}});
+ });
+}
+test('UFC men and women dropdown plus custom catchweight and edit dialog',async ({page})=>{
+ await page.click('#newEventBtn');
+ await page.fill('#boutLeft','Red fighter');await page.fill('#boutRight','Blue fighter');
+ await page.click('#addBout');
+ await expect(page.locator('.bout-row')).toHaveCount(0);
+ await expect(page.locator('#boutDivision option[value="Flyweight"]')).toContainText('125');
+ await expect(page.locator('#boutDivision option[value="Women\'s Strawweight"]')).toContainText('115');
+ await page.selectOption('#boutDivision',"Women's Flyweight");
+ await page.click('#addBout');
+ await expect(page.locator('.bout-row')).toHaveCount(1);
+ await expect(page.locator('.bout-meta')).toContainText("Women's Flyweight");
+ await page.locator('.bout-row button').filter({hasText:'Edit'}).click();
+ await expect(page.locator('#editDivision')).toHaveValue("Women's Flyweight");
+ await page.selectOption('#editDivision','custom');
+ await page.fill('#editCustomDivision','Catchweight 165 lb');
+ await page.click('#saveEdit');
+ await expect(page.locator('.bout-meta')).toContainText('Catchweight 165 lb');
+ await page.fill('#boutLeft','Second red');await page.fill('#boutRight','Second blue');
+ await page.selectOption('#boutDivision','custom');
+ await expect(page.locator('#customDivisionWrap')).toBeVisible();
+ await page.fill('#boutCustomDivision','Openweight — regional');
+ await page.click('#addBout');
+ await expect(page.locator('.bout-row')).toHaveCount(2);
+ await expect(page.locator('.bout-meta').nth(1)).toContainText('Openweight — regional');
+ await page.reload();
+ await expect(page.locator('.bout-meta').first()).toContainText('Catchweight 165 lb');
+ await page.locator('.bout-row button').filter({hasText:'Edit'}).first().click();
+ await expect(page.locator('#editDivision')).toHaveValue('custom');
+ await expect(page.locator('#editCustomDivision')).toHaveValue('Catchweight 165 lb');
+});
+
+test('google Sheets sync creates a per-event Fights, Rounds and Moments spreadsheet',async ({page})=>{
+ const requests=[];await stubGoogleSheets(page,requests);
+ await setup(page);
+ await page.click('#startBtn');
+ await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowLeft');
+ await page.click('#endBtn');await page.keyboard.press('Enter');
+ await page.click('#backBtn');
+ await page.fill('#clientId','qa-client.apps.googleusercontent.com');
+ await page.click('#connectDrive');
+ await expect(page.locator('#driveStatus')).toHaveText('Connected');
+ await page.click('#syncEvent');
+ await expect(page.locator('#syncEvent')).toBeEnabled();
+ await expect(page.locator('#sheetLink')).toBeVisible();
+ await expect(page.locator('#sheetLink')).toHaveAttribute('href','https://docs.google.com/spreadsheets/d/qa-spreadsheet-123/edit');
+ const created=requests.filter(r=>r.method==='POST'&&r.path==='/v4/spreadsheets');
+ expect(created).toHaveLength(1);
+ expect(created[0].body.sheets.map(x=>x.properties.title)).toEqual(['Fights','Rounds','Moments']);
+ const writes=requests.filter(r=>r.path.endsWith('/values:batchUpdate'));
+ expect(writes).toHaveLength(1);
+ const payload=writes[0].body;expect(payload.valueInputOption).toBe('RAW');
+ const range=title=>payload.data.find(x=>x.range==="'"+title+"'!A1").values;
+ const f=range('Fights'),rd=range('Rounds'),m=range('Moments');
+ expect(f).toHaveLength(2);expect(rd).toHaveLength(3);expect(m).toHaveLength(4);
+ expect(f[1]).toContain('Lightweight');
+ expect(rd[1][9]).toBe(2);expect(rd[1][10]).toBe(1);
+ expect(rd[1][13]).toBe(10);expect(rd[1][14]).toBe(9);
+ expect(m.slice(1).map(x=>x[10])).toEqual(['Red','Blue','Red']);
+ expect(requests.every(x=>x.authorization==='Bearer qa-token')).toBe(true);
+ // Resync must update the same file rather than create another one.
+ await page.click('#syncEvent');
+ await expect(page.locator('#syncEvent')).toBeEnabled();
+ expect(requests.filter(r=>r.method==='POST'&&r.path==='/v4/spreadsheets')).toHaveLength(1);
+ expect(requests.filter(r=>r.path.endsWith('/values:batchClear'))).toHaveLength(2);
+ await page.reload();
+ await expect(page.locator('#sheetLink')).toHaveAttribute('href','https://docs.google.com/spreadsheets/d/qa-spreadsheet-123/edit');
+});
+
+test('sync-all creates one spreadsheet per event and keeps histories independent',async ({page})=>{
+ const requests=[];await stubGoogleSheets(page,requests);
+ await page.click('#newEventBtn');await page.fill('#eventName','Event A');
+ await page.fill('#boutLeft','A red');await page.fill('#boutRight','A blue');
+ await page.selectOption('#boutDivision','Welterweight');await page.click('#addBout');
+ await page.click('#newEventBtn');await page.fill('#eventName','Event B');
+ await page.fill('#boutLeft','B red');await page.fill('#boutRight','B blue');
+ await page.selectOption('#boutDivision',"Women's Bantamweight");await page.click('#addBout');
+ await page.fill('#clientId','qa-client.apps.googleusercontent.com');await page.click('#connectDrive');
+ await page.click('#syncAllEvents');
+ await expect(page.locator('#syncAllEvents')).toBeEnabled();
+ const made=requests.filter(x=>x.method==='POST'&&x.path==='/v4/spreadsheets');
+ expect(made).toHaveLength(2);
+ expect(made.map(x=>x.body.properties.title)).toEqual([
+  expect.stringContaining('Event A'),expect.stringContaining('Event B')
+ ]);
+});
+
+test('google Sheets errors never delete the locally saved fight',async ({page})=>{
+ const requests=[];await stubGoogleSheets(page,requests,{failCreate:true});
+ await setup(page);
+ await page.click('#backBtn');
+ await page.fill('#clientId','qa-client.apps.googleusercontent.com');await page.click('#connectDrive');
+ await page.click('#syncEvent');
+ await expect(page.locator('#sheetMessage')).toContainText('Sheets API is not enabled');
+ await expect(page.locator('#sheetLink')).toBeHidden();
+ await page.reload();
+ await expect(page.locator('.bout-row')).toHaveCount(1);
+ await page.locator('.bout-row .primary').click();
+ await expect(page.locator('#wbLeft')).toHaveText('Red fighter');
 });
