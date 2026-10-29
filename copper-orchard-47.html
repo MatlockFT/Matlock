@@ -522,14 +522,20 @@ function drawTapeLane(ctx,round,duration,rect,opts={}){
   const o=round.observations[i],xp=x0+span*Math.max(0,Math.min(1,o.time/duration));
   const red=o.side==='a',sign=red?-1:1,key=(red?'r':'b')+Math.round(xp/5);
   const count=collisions.get(key)||0;collisions.set(key,count+1);
-  const height=Math.min(lane*.56,12+(count%5)*(compact?2:3));
+  const impact=o.type==='impact',height=Math.min(lane*.68,(impact?23:12)+(count%5)*(compact?2:3));
   const flash=opts.flash&&opts.flash.side===o.side&&opts.flash.index===i&&opts.flash.fightId===opts.fightId&&opts.flash.round===opts.roundIndex;
   const age=flash?performance.now()-opts.flash.at:999;
   const fade=flash&&motionOK()&&age<240?Math.min(1,age/170):1;
   ctx.strokeStyle=red?'rgba(255,163,166,.74)':'rgba(162,205,255,.73)';
-  ctx.lineWidth=compact?1:1.5;
+  ctx.lineWidth=impact?(compact?2.2:3.2):(compact?1:1.5);
   ctx.globalAlpha=fade;
   ctx.beginPath();ctx.moveTo(xp,ym+sign*2);ctx.lineTo(xp,ym+sign*height);ctx.stroke();
+  if(impact){
+   const size=compact?4.5:7,py=ym+sign*height;
+   ctx.fillStyle=red?'#ffabad':'#aed4ff';ctx.beginPath();
+   ctx.moveTo(xp,py-size);ctx.lineTo(xp+size,py);ctx.lineTo(xp,py+size);ctx.lineTo(xp-size,py);ctx.closePath();ctx.fill();
+   ctx.strokeStyle='#f5ddbd';ctx.lineWidth=1.25;ctx.stroke();
+  }
   if(flash&&age<240&&motionOK()){
    const e=age/240;
    ctx.strokeStyle=red?'rgba(255,160,163,.75)':'rgba(160,202,255,.75)';
@@ -581,7 +587,8 @@ function drawGraph(){
  ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,w,h);
  const rd=f.roundData[reviewIndex]||currentRound(),counts=graphMode==='fight'?
  f.roundData.reduce((sum,r)=>{const n=momentTally(r);return [sum[0]+n[0],sum[1]+n[1]]},[0,0]):momentTally(rd);
- c.setAttribute('aria-label',(graphMode==='fight'?'Fight summary':'Round '+(reviewIndex+1))+': '+counts[0]+' red moments, '+counts[1]+' blue moments, over '+clockText(f.duration));
+ const majors=(graphMode==='fight'?f.roundData:[rd]).reduce((x,r)=>{const v=impactTally(r);return [x[0]+v[0],x[1]+v[1]]},[0,0]);
+ c.setAttribute('aria-label',(graphMode==='fight'?'Fight summary':'Round '+(reviewIndex+1))+': '+counts[0]+' red exchanges, '+counts[1]+' blue exchanges, including '+majors[0]+' red major impacts and '+majors[1]+' blue major impacts, over '+clockText(f.duration));
  drawGraphFrame(ctx,f,{x:0,y:0,w,h},{
   mode:graphMode,roundIndex:reviewIndex,
   playhead:running?seconds():null,flash:momentFlash
@@ -601,7 +608,7 @@ function exportGraphCanvas(){
  const ctx=c.getContext('2d');if(!ctx)throw Error('Image export unavailable.');
  ctx.fillStyle='#111214';ctx.fillRect(0,0,1600,900);
  ctx.fillStyle='#27282c';ctx.fillRect(0,0,1600,7);
- ctx.fillStyle='#9da0a5';ctx.font='700 21px system-ui';ctx.textAlign='left';ctx.fillText('SCORING / '+(graphMode==='fight'?'FIGHT OVERVIEW':'ROUND '+(reviewIndex+1)),76,90);
+ ctx.fillStyle='#9da0a5';ctx.font='700 21px system-ui';ctx.textAlign='left';ctx.fillText('EXCHANGES  /  '+(graphMode==='fight'?'FIGHT OVERVIEW':'ROUND '+(reviewIndex+1)),76,90);
  ctx.fillStyle='#f3f1ef';ctx.font='700 52px system-ui';
  const matchup=safeName(f.left,'Red corner')+'  VS  '+safeName(f.right,'Blue corner');
  let nameSize=52;while(ctx.measureText(matchup).width>1450&&nameSize>25){nameSize-=2;ctx.font='700 '+nameSize+'px system-ui'}
@@ -615,12 +622,13 @@ function exportGraphCanvas(){
  const round=graphMode==='round'?(f.roundData[reviewIndex]||currentRound()):null;
  const score=round?.score?roundPoints(round.score):null;
  const counts=graphMode==='round'?momentTally(round):f.roundData.reduce((sum,r)=>{const v=momentTally(r);return [sum[0]+v[0],sum[1]+v[1]]},[0,0]);
+ const impactTotals=graphMode==='round'?impactTally(round):f.roundData.reduce((sum,r)=>{const v=impactTally(r);return [sum[0]+v[0],sum[1]+v[1]]},[0,0]);
  ctx.font='700 26px system-ui';ctx.fillStyle='#f48588';ctx.textAlign='left';
- ctx.fillText('RED  '+counts[0]+' MOMENTS',80,791);
- ctx.textAlign='right';ctx.fillStyle='#83b3fb';ctx.fillText('BLUE  '+counts[1]+' MOMENTS',1518,791);
+ ctx.fillText('RED  '+counts[0]+' EXCHANGES',80,791);
+ ctx.textAlign='right';ctx.fillStyle='#83b3fb';ctx.fillText('BLUE  '+counts[1]+' EXCHANGES',1518,791);
  ctx.textAlign='left';ctx.fillStyle='#9b9ea3';ctx.font='17px system-ui';
- ctx.fillText(score?'CONFIRMED ROUND SCORE   '+score[0]+' – '+score[1]:'MOMENT LOG  /  ELAPSED ROUND TIME',80,840);
- ctx.textAlign='right';ctx.fillText('Ticks: logged moments  ·  Curves: activity density',1518,840);
+ ctx.fillText(score?'CONFIRMED ROUND SCORE   '+score[0]+' – '+score[1]:'EXCHANGE WINNERS  /  ELAPSED ROUND TIME',80,840);
+ ctx.textAlign='right';ctx.fillText('MAJOR IMPACTS  /  RED '+impactTotals[0]+'   BLUE '+impactTotals[1],1518,840);
  return c;
 }
 function graphFileName(){
@@ -962,15 +970,23 @@ document.querySelectorAll('[data-margin]').forEach(b=>b.onclick=()=>{scoreDraft.
 document.querySelectorAll('[data-dside]').forEach(b=>b.onclick=()=>{const i=+b.dataset.dside;scoreDraft.deductions[i]=Math.max(0,Math.min(10,scoreDraft.deductions[i]+(+b.dataset.delta)));renderScoreModal()});
 $('confirmScore').onclick=confirmScore;$('cancelScore').onclick=cancelScore;
 $('resultType').onchange=renderFinishHint;$('cancelFinish').onclick=()=>setVisible('finishOverlay',false);$('confirmFinish').onclick=finishFight;
-document.addEventListener('keydown',e=>{if(e.ctrlKey||e.altKey||e.metaKey||e.repeat)return;const typing=e.target.closest('input,select,textarea');if(typing)return;
+document.addEventListener('keydown',e=>{
+ if(e.repeat)return;
+ const typing=e.target.closest('input,select,textarea,[contenteditable="true"]');
+ if(typing)return;
+ const editModal=!$('scoreOverlay').classList.contains('hidden')||!$('finishOverlay').classList.contains('hidden')||!$('editFightOverlay').classList.contains('hidden');
+ if(focusMode&&(e.ctrlKey||e.metaKey)&&!e.altKey&&!e.shiftKey&&e.key.toLowerCase()==='z'){
+  if(!editModal){e.preventDefault();undo()}return;
+ }
+ if(e.ctrlKey||e.altKey||e.metaKey)return;
  const sm=!$('scoreOverlay').classList.contains('hidden');const fm=!$('finishOverlay').classList.contains('hidden');const em=!$('editFightOverlay').classList.contains('hidden');
  if(sm){if(['ArrowLeft','ArrowRight','Enter','Escape','9','8','7','0'].includes(e.key))e.preventDefault();
  if(e.key==='ArrowLeft')$('selectA').click();else if(e.key==='ArrowRight')$('selectB').click();else if(['9','8','7','0'].includes(e.key)){const v=e.key==='0'?10:+e.key;document.querySelector('[data-margin="'+v+'"]').click()}else if(e.key==='Enter')confirmScore();else if(e.key==='Escape')cancelScore();return}
  if(fm){if(e.key==='Escape'){e.preventDefault();setVisible('finishOverlay',false)}return}
  if(em){if(e.key==='Escape'){e.preventDefault();closeEdit()}return}
  if(!focusMode)return;if(e.target.closest('button'))e.target.blur();
- if(['ArrowLeft','ArrowRight',' ','Backspace','e','E'].includes(e.key))e.preventDefault();
- if(e.key==='ArrowLeft')observe('a');else if(e.key==='ArrowRight')observe('b');else if(e.key===' ')run();else if(e.key==='Backspace')undo();else if(e.key.toLowerCase()==='e')endRound();
+ if(['ArrowLeft','ArrowRight',' ','e','E'].includes(e.key))e.preventDefault();
+ if(e.key==='ArrowLeft')observe('a',e.shiftKey?'impact':'exchange');else if(e.key==='ArrowRight')observe('b',e.shiftKey?'impact':'exchange');else if(!e.shiftKey&&e.key===' ')run();else if(!e.shiftKey&&e.key.toLowerCase()==='e')endRound();
 });
 window.addEventListener('resize',()=>{if(focusMode)drawGraph()});
 window.addEventListener('pagehide',()=>{pause();persist()});
