@@ -655,6 +655,10 @@ async function readMasterRows(id){
  });
  return out;
 }
+function checkMasterPayloadSize(valuePayload){
+ const bytes=new TextEncoder().encode(JSON.stringify(valuePayload)).length;
+ if(bytes>1900000)throw Error('Master sync exceeds Google\'s recommended 2 MB request size ('+(bytes/1000000).toFixed(2)+' MB). Existing archive was not overwritten. Export a JSON backup and reduce the data before syncing.');
+}
 async function syncMasterEvents(events){
  const selected=events.map(e=>JSON.parse(JSON.stringify(e)));
  const replaceIds=new Set(selected.map(e=>e.id));
@@ -663,6 +667,11 @@ async function syncMasterEvents(events){
  if(incomingCount>50000)throw Error('Too many moments to sync at once. Export a JSON backup.');
  let id=data.masterSheetId,created=false;
  if(!id){
+  // Fail before creating an empty spreadsheet on an oversized initial export.
+  checkMasterPayloadSize({valueInputOption:'RAW',
+   data:MASTER_TABS.map(tab=>({range:"'"+tab+"'!A1",majorDimension:'ROWS',
+    values:[MASTER_HEADERS[tab],...additions.flatMap(x=>x[tab])]}))
+  });
   const result=await googleSheetsRequest('',{
    properties:{title:'Scorecard — Master Judging Archive'},
    sheets:MASTER_TABS.map(title=>({properties:{title,gridProperties:{frozenRowCount:1}}}))
@@ -698,8 +707,7 @@ async function syncMasterEvents(events){
  // existing spreadsheet rather than sending an oversized multi-tab overwrite.
  const valuePayload={valueInputOption:'RAW',
   data:MASTER_TABS.map(tab=>({range:"'"+tab+"'!A1",majorDimension:'ROWS',values:merged[tab]}))};
- const payloadBytes=new TextEncoder().encode(JSON.stringify(valuePayload)).length;
- if(payloadBytes>1900000)throw Error('Master sync exceeds Google\'s recommended 2 MB request size ('+(payloadBytes/1000000).toFixed(2)+' MB). Existing archive was not overwritten. Export a JSON backup and reduce the data before syncing.');
+ checkMasterPayloadSize(valuePayload);
  const formatting=[],growth=[];
  for(const tab of MASTER_TABS){
   const sheet=sheets.get(tab),idNum=sheet.sheetId;
