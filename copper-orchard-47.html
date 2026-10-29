@@ -396,7 +396,10 @@ function tick(){if(!focusMode||!fight())return;
 function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=currentRound();
  $('wbEvent').textContent=safeName(e.name,'Event')+' · '+(f.division||'Fight');
  $('wbLeft').textContent=safeName(f.left,'Fighter A');$('wbRight').textContent=safeName(f.right,'Fighter B');
- const redName=shortFighterName(f.left,'Red'),blueName=shortFighterName(f.right,'Blue');
+ const redSurname=shortFighterName(f.left,'Red'),blueSurname=shortFighterName(f.right,'Blue');
+ // Keep same-surname matchups unambiguous; preserve compact headers otherwise.
+ const redName=redSurname===blueSurname?safeName(f.left,'Red').toLocaleUpperCase():redSurname;
+ const blueName=redSurname===blueSurname?safeName(f.right,'Blue').toLocaleUpperCase():blueSurname;
  $('scoreHeadRed').textContent=redName;$('scoreHeadBlue').textContent=blueName;
  $('scoreHeadRed').title=f.left;$('scoreHeadBlue').title=f.right;
  $('graphRedName').textContent=redName;$('graphBlueName').textContent=blueName;
