@@ -75,6 +75,21 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 @media(max-width:640px){.timeline canvas{height:175px}.timeline{padding:15px 13px}.wb-head{margin:24px 0 20px}.corner-name{font-size:clamp(17px,5vw,23px)}.moment-count{font-size:18px}.moment-count small{font-size:9px}.controls button{padding-inline:11px}#finishBtn{margin-left:0}.score-rows th{max-width:74px;font-size:9px}}
 @media(prefers-reduced-motion:reduce){button,.score-rows tbody tr{transition:none!important}*{scroll-behavior:auto!important}}
 
+
+/* Scoring Tape V2: density contours and exact moment ticks, with quiet export controls. */
+.tape-heading{display:flex;flex-direction:column;gap:1px}
+.tape-heading .micro{font-size:9px;letter-spacing:.17em;color:#7f8288}
+.tape-tools{gap:6px}
+.tape-tools button{font-size:11px;font-weight:650;min-height:31px;padding:6px 10px}
+.graph-switch{display:flex;align-items:center;gap:2px;padding:2px;border:1px solid #3c3e43;border-radius:8px;background:#141518}
+.graph-switch button{border:0;background:transparent;box-shadow:none}
+.graph-switch button.chosen{background:#484a50;color:#fff}
+.tape-summary{display:flex;gap:11px;justify-content:flex-end;align-items:center;margin-top:7px;min-height:16px}
+.graph-note{margin-top:5px;font-size:10px;color:#85878c;text-align:center}
+.timeline canvas{height:245px;margin:6px 0 0}
+.timeline{background:linear-gradient(160deg,#202124,#151619 75%);border-color:#46474b}
+@media(max-width:640px){.tape-tools{width:100%;justify-content:space-between}.tape-tools button{padding:6px 8px;font-size:10px}.tape-heading{min-width:100%}.tape-summary{justify-content:flex-start}.timeline canvas{height:205px}.graph-note{font-size:9px}}
+
 @media print{body{color:#111;background:#ffffff}.top,.sidebar,.controls,.hints,.actions,.wb-top,.modal,.toast{display:none!important}.workspace,.footer-grid{display:block}.panel,.timeline{border-color:#ccc;background:#ffffff;margin-bottom:16px}#workbench{display:block!important}#dashboard{display:none!important}}
 </style>
 </head>
@@ -131,9 +146,11 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   <div class="right"><div class="micro blue">Blue corner • →</div><div class="corner-name" id="wbRight">Fighter B</div><div class="moment-count blue"><span id="wbMomentsB">0</span> <small>moments</small></div></div>
  </div>
  <div class="timeline">
-  <div class="timeline-title"><h2>Round timeline</h2><div class="actions"><span class="moment-tally" id="momentLead"></span><span class="micro" id="observationsCount">0 moments</span></div></div>
-  <canvas id="graph" aria-label="Timeline showing red and blue scoring moments over the round" role="img"></canvas>
-  <div class="legend"><span class="red" id="graphRedName">RED</span><span class="graph-time">TIME →</span><span class="blue" id="graphBlueName">BLUE</span></div>
+  <div class="timeline-title"><div class="tape-heading"><div class="micro">SCORING / LIVE GRAPH</div><h2>Momentum tape</h2></div>
+   <div class="actions tape-tools"><div class="graph-switch" role="group" aria-label="Graph view"><button id="graphRound" type="button" class="chosen small-btn" aria-pressed="true">Round</button><button id="graphFight" type="button" class="small-btn" aria-pressed="false">Fight</button></div><button id="copyGraph" type="button" class="small-btn">Copy graph</button><button id="downloadGraph" type="button" class="small-btn">Download PNG</button></div></div>
+  <div class="tape-summary"><span id="momentLead" class="moment-tally"></span><span class="micro" id="observationsCount">0 moments</span></div>
+  <canvas id="graph" aria-label="Momentum tape showing red and blue scoring moments over time" role="img"></canvas>
+  <div class="legend"><span class="red" id="graphRedName">RED</span><span class="graph-time">ELAPSED TIME →</span><span class="blue" id="graphBlueName">BLUE</span></div><p class="graph-note">Ticks are logged moments. Curves show activity over time, not strike impact.</p>
  </div>
  <div class="controls">
   <button id="startBtn" class="primary">Start round</button>
