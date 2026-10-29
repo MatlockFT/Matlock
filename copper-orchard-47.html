@@ -798,7 +798,7 @@ async function readMasterRows(id){
    const actual=existing[0],expected=MASTER_HEADERS[tab];
    const legacy=tab==='Rounds'?expected.slice(0,-2):tab==='Moments'?expected.slice(0,-1):null;
    if(JSON.stringify(actual)!==JSON.stringify(expected)&&JSON.stringify(actual)!==JSON.stringify(legacy))
-    throw Error(tab+' has different column headers. Use a master created by this scorecard; no data was changed.');
+    throw Error(tab+' has different column headers. Use a compatible master file; no data was changed.');
   }
   out[tab]=existing;
  });
@@ -923,7 +923,7 @@ function addBout(){const e=event(),a=$('boutLeft').value.trim(),b=$('boutRight')
 function download(content,name,type){const u=URL.createObjectURL(new Blob([content],{type})),a=el('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000)}
 function exportJSON(){pause();persist();download(JSON.stringify(data,null,2),'workspace-backup-'+new Date().toISOString().slice(0,10)+'.json','application/json')}
 function qcsv(v){let s=String(v==null?'':v);if(/^[\s]*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
-function exportCSV(){pause();const rows=[['Event','Date','Judge','Red fighter','Blue fighter','Division','Round','Red points','Blue points','Red deductions','Blue deductions','Fight result']];
+function exportCSV(){pause();const rows=[['Event','Date','Session','Red fighter','Blue fighter','Division','Round','Red points','Blue points','Red deductions','Blue deductions','Fight result']];
  data.events.forEach(e=>e.fights.forEach(f=>f.roundData.forEach((r,i)=>{const p=roundPoints(r.score);rows.push([e.name,e.date,e.judge,f.left,f.right,f.division,i+1,p?p[0]:'',p?p[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',f.result?f.result.type:''])})));
  download('\uFEFF'+rows.map(row=>row.map(qcsv).join(',')).join('\r\n'),'round-records.csv','text/csv')}
 function validate(input){if(!input||input.version!==2||!Array.isArray(input.events)||input.events.length>200)throw Error('Not a valid Stage 1 backup.');
