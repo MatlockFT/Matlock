@@ -1,8 +1,13 @@
 const { test, expect } = require('@playwright/test');
 const URL = 'http://127.0.0.1:4173/copper-orchard-47/';
 test.beforeEach(async ({ page }) => {
+  page.__scorecardErrors=[];
+  page.on('pageerror', err => page.__scorecardErrors.push(err.message));
   page.on('dialog', async d => d.accept());
   await page.goto(URL);
+});
+test.afterEach(async ({page}) => {
+  expect(page.__scorecardErrors).toEqual([]);
 });
 async function setup(page){
   await page.click('#newEventBtn');
@@ -451,4 +456,23 @@ test('judging interface stays within laptop viewport and round modal fits', asyn
   sizes=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:window.innerWidth}));
   expect(sizes.width).toBeLessThanOrEqual(sizes.viewport+1);
   await expect(page.locator('#confirmScore')).toBeInViewport();
+});
+
+test('rescoring an already completed decision to tied totals updates recorded result to draw', async ({page})=>{
+  await setup(page);
+  await scoreRound(page,'a');
+  await scoreRound(page,'b');
+  await scoreRound(page,'a');
+  await page.click('#finishBtn');
+  await page.click('#confirmFinish');
+  await expect(page.locator('#resultLabel')).toContainText('DECISION');
+  await page.locator('#scoreBody tr:nth-child(3) button').click();
+  await page.keyboard.press('0');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#wbTotal')).toHaveText('29 – 29');
+  await expect(page.locator('#resultLabel')).toContainText('DRAW');
+  await expect(page.locator('#startBtn')).toBeDisabled();
+  await page.reload();
+  await page.locator('.bout-row .primary').click();
+  await expect(page.locator('#resultLabel')).toContainText('DRAW');
 });
