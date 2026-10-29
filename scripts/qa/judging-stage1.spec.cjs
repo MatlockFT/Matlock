@@ -550,6 +550,7 @@ test('google Sheets sync creates a per-event Fights, Rounds and Moments spreadsh
  await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowLeft');
  await page.click('#endBtn');await page.keyboard.press('Enter');
  await page.click('#backBtn');
+ await page.locator('#clientId').evaluate(el=>el.closest('details').open=true);
  await page.fill('#clientId','qa-client.apps.googleusercontent.com');
  await page.click('#connectDrive');
  await expect(page.locator('#driveStatus')).toHaveText('Connected');
@@ -588,6 +589,7 @@ test('sync-all creates one spreadsheet per event and keeps histories independent
  await page.click('#newEventBtn');await page.fill('#eventName','Event B');
  await page.fill('#boutLeft','B red');await page.fill('#boutRight','B blue');
  await page.selectOption('#boutDivision',"Women's Bantamweight");await page.click('#addBout');
+ await page.locator('#clientId').evaluate(el=>el.closest('details').open=true);
  await page.fill('#clientId','qa-client.apps.googleusercontent.com');await page.click('#connectDrive');
  await page.click('#syncAllEvents');
  await expect(page.locator('#syncAllEvents')).toBeEnabled();
@@ -602,6 +604,7 @@ test('google Sheets errors never delete the locally saved fight',async ({page})=
  const requests=[];await stubGoogleSheets(page,requests,{failCreate:true});
  await setup(page);
  await page.click('#backBtn');
+ await page.locator('#clientId').evaluate(el=>el.closest('details').open=true);
  await page.fill('#clientId','qa-client.apps.googleusercontent.com');await page.click('#connectDrive');
  await page.click('#syncEvent');
  await expect(page.locator('#sheetMessage')).toContainText('Sheets API is not enabled');
