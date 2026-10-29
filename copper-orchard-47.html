@@ -90,6 +90,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .timeline{background:linear-gradient(160deg,#202124,#151619 75%);border-color:#46474b}
 @media(max-width:640px){.tape-tools{width:100%;justify-content:space-between}.tape-tools button{padding:6px 8px;font-size:10px}.tape-heading{min-width:100%}.tape-summary{justify-content:flex-start}.timeline canvas{height:205px}.graph-note{font-size:9px}}
 
+.impact-label{font-size:10px;font-weight:750;color:#f1d2a0;letter-spacing:.05em}
 @media print{body{color:#111;background:#ffffff}.top,.sidebar,.controls,.hints,.actions,.wb-top,.modal,.toast{display:none!important}.workspace,.footer-grid{display:block}.panel,.timeline{border-color:#ccc;background:#ffffff;margin-bottom:16px}#workbench{display:block!important}#dashboard{display:none!important}}
 </style>
 </head>
@@ -141,16 +142,16 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
    <div class="actions"><span id="wbSaved" class="pill saved">Saved locally</span><button id="fullscreenBtn" class="quiet small-btn">Full screen</button></div>
  </div>
  <div class="wb-head">
-  <div><div class="micro red">Red corner • ←</div><div class="corner-name" id="wbLeft">Fighter A</div><div class="moment-count red"><span id="wbMomentsA">0</span> <small>moments</small></div></div>
+  <div><div class="micro red">Red corner • ←</div><div class="corner-name" id="wbLeft">Fighter A</div><div class="moment-count red"><span id="wbMomentsA">0</span> <small>exchanges</small></div></div>
   <div class="round-box"><div id="wbRound" class="micro">Round 1 of 3</div><div id="clock" class="clock mono">5:00</div><div id="roundState" class="statusline">Ready</div></div>
-  <div class="right"><div class="micro blue">Blue corner • →</div><div class="corner-name" id="wbRight">Fighter B</div><div class="moment-count blue"><span id="wbMomentsB">0</span> <small>moments</small></div></div>
+  <div class="right"><div class="micro blue">Blue corner • →</div><div class="corner-name" id="wbRight">Fighter B</div><div class="moment-count blue"><span id="wbMomentsB">0</span> <small>exchanges</small></div></div>
  </div>
  <div class="timeline">
-  <div class="timeline-title"><div class="tape-heading"><div class="micro">SCORING / LIVE GRAPH</div><h2>Momentum tape</h2></div>
-   <div class="actions tape-tools"><div class="graph-switch" role="group" aria-label="Graph view"><button id="graphRound" type="button" class="chosen small-btn" aria-pressed="true">Round</button><button id="graphFight" type="button" class="small-btn" aria-pressed="false">Fight</button></div><button id="copyGraph" type="button" class="small-btn">Copy graph</button><button id="downloadGraph" type="button" class="small-btn">Download PNG</button></div></div>
-  <div class="tape-summary"><span id="momentLead" class="moment-tally"></span><span class="micro" id="observationsCount">0 moments</span></div>
-  <canvas id="graph" aria-label="Momentum tape showing red and blue scoring moments over time" role="img"></canvas>
-  <div class="legend"><span class="red" id="graphRedName">RED</span><span class="graph-time">ELAPSED TIME →</span><span class="blue" id="graphBlueName">BLUE</span></div><p class="graph-note">Ticks are logged moments. Curves show activity over time, not strike impact.</p>
+  <div class="timeline-title"><div class="tape-heading"><h2>Exchanges</h2></div>
+   <div class="actions tape-tools"><div class="graph-switch" role="group" aria-label="Graph view"><button id="graphRound" type="button" class="chosen small-btn" aria-pressed="true">Round</button><button id="graphFight" type="button" class="small-btn" aria-pressed="false">Fight</button></div><button id="copyGraph" type="button" class="small-btn">Copy graph</button></div></div>
+  <div class="tape-summary"><span id="momentLead" class="moment-tally"></span><span class="micro" id="observationsCount">0 exchanges</span></div>
+  <canvas id="graph" aria-label="Exchange winners over round time, with major impacts distinguished" role="img"></canvas>
+  <div class="legend"><span class="red" id="graphRedName">RED</span><span class="graph-time">ELAPSED TIME →</span><span class="blue" id="graphBlueName">BLUE</span></div>
  </div>
  <div class="controls">
   <button id="startBtn" class="primary">Start round</button>
@@ -159,10 +160,10 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   <button id="endBtn">End round &amp; score</button>
   <button id="finishBtn" class="quiet">Finish fight</button>
  </div>
- <p class="hints">← / → log a moment &nbsp; • &nbsp; Space start/pause &nbsp; • &nbsp; Backspace undo &nbsp; • &nbsp; E end round</p>
+ <p class="hints">← / → exchange winner &nbsp; • &nbsp; Shift + ← / → major impact &nbsp; • &nbsp; Space start/pause &nbsp; • &nbsp; Ctrl+Z undo &nbsp; • &nbsp; E end round</p>
  <div class="footer-grid">
   <section class="panel"><div class="panel-title"><h2>Scorecard</h2><span id="wbTotal" class="totals mono">0 – 0</span></div><table class="score-rows"><thead><tr><th>Round</th><th id="scoreHeadRed">RED</th><th id="scoreHeadBlue">BLUE</th><th title="Red–Blue totals">Moments</th><th></th></tr></thead><tbody id="scoreBody"></tbody></table><div id="resultLabel" class="muted" style="margin-top:14px"></div></section>
-  <section class="panel"><div class="panel-title"><h2>Moment log</h2></div><div id="roundTabs" class="round-tabs"></div><div id="momentLog" class="log"></div></section>
+  <section class="panel"><div class="panel-title"><h2>Exchange log</h2></div><div id="roundTabs" class="round-tabs"></div><div id="momentLog" class="log"></div></section>
  </div>
 </section>
 <div id="editFightOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="editFightTitle">
@@ -184,10 +185,10 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   <div class="micro" id="scoreKicker">Round complete</div><h2 id="scoreTitle" style="margin-top:7px;font-size:22px">Assign round score</h2>
   <p class="muted" style="margin-top:6px">Moment totals preselect a score. Review and change it as needed before confirming.</p>
   <div class="winner-grid">
-   <button class="winner" id="selectA"><span class="micro red">← Red corner</span><div id="chooseA" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure red"><span id="scoreMomentsA">0</span> <small>moments</small></span></button>
-   <button class="winner right" id="selectB"><span class="micro blue">Blue corner →</span><div id="chooseB" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure blue"><span id="scoreMomentsB">0</span> <small>moments</small></span></button>
+   <button class="winner" id="selectA"><span class="micro red">← Red corner</span><div id="chooseA" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure red"><span id="scoreMomentsA">0</span> <small>exchanges</small></span></button>
+   <button class="winner right" id="selectB"><span class="micro blue">Blue corner →</span><div id="chooseB" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure blue"><span id="scoreMomentsB">0</span> <small>exchanges</small></span></button>
   </div>
-  <div id="suggestionText" class="suggestion" aria-live="polite">No moment tally yet</div>
+  <div id="suggestionText" class="suggestion" aria-live="polite">No exchanges yet</div>
   <div class="micro">Round margin</div>
   <div class="margins"><button data-margin="9">10–9</button><button data-margin="8">10–8</button><button data-margin="7">10–7</button><button data-margin="10">10–10</button></div>
   <div class="deductions"><div class="deduction"><div class="micro red">Red deductions</div><div class="stepper"><button data-dside="0" data-delta="-1" aria-label="Remove red deduction">−</button><strong id="deductA" class="mono">0</strong><button data-dside="0" data-delta="1" aria-label="Add red deduction">+</button></div></div>
@@ -641,10 +642,6 @@ async function copyGraphImage(){
   }catch(err){downloadGraphBlob(blob);toast('Clipboard unavailable — PNG downloaded.')}
  }catch(err){toast('Graph export failed: '+err.message)}
 }
-async function downloadGraphImage(){
- try{downloadGraphBlob(await graphImageBlob());toast('Graph PNG downloaded.')}
- catch(err){toast('Graph export failed: '+err.message)}
-}
 function resultDialog(){const f=fight();if(!f)return;pause();$('resultType').value=f.result?f.result.type:(f.status==='awaiting-result'?(totals(f)[0]===totals(f)[1]?'draw':'decision'):'tko');$('resultWinner').value=f.result?f.result.winner:'';setVisible('finishOverlay',true);renderFinishHint()}
 function renderFinishHint(){const f=fight(),t=$('resultType').value,completed=f.roundData.filter(r=>!!r.score).length===f.rounds;
  $('finishHint').textContent=t==='decision'&&!completed?'All scheduled rounds must have confirmed scores before a decision can be completed.':t==='decision'?'Decision winner is determined by the score totals.':t==='draw'?'A draw has no selected winner. Confirm that the outcome is appropriate.':t==='no-contest'?'No contest has no winner.':'A stoppage can close a fight with a partially completed round.';
@@ -952,7 +949,7 @@ $('backupInput').onchange=async()=>{try{const file=$('backupInput').files[0];if(
 $('legacyBtn').onclick=importLegacy;$('backBtn').onclick=()=>{pause();if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});renderDashboard()};
 $('fullscreenBtn').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('workbench').requestFullscreen()}catch(e){toast('Full screen unavailable.')}};
 $('graphRound').onclick=()=>setGraphMode('round');$('graphFight').onclick=()=>setGraphMode('fight');
-$('copyGraph').onclick=copyGraphImage;$('downloadGraph').onclick=downloadGraphImage;
+$('copyGraph').onclick=copyGraphImage;
 $('startBtn').onclick=run;$('undoBtn').onclick=undo;$('resetBtn').onclick=resetRound;$('resetFromScore').onclick=resetRound;$('endBtn').onclick=endRound;$('finishBtn').onclick=resultDialog;
 $('selectA').onclick=()=>{scoreDraft.winner='a';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
 $('selectB').onclick=()=>{scoreDraft.winner='b';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
