@@ -587,7 +587,7 @@ function setGraphMode(mode){
  for(const [id,value] of [['graphRound','round'],['graphFight','fight']]){
   const b=$(id),on=value===mode;b.classList.toggle('chosen',on);b.setAttribute('aria-pressed',String(on));
  }
- drawGraph();
+ renderWorkbench();
 }
 function exportGraphCanvas(){
  const f=fight(),e=event();if(!f||!e)throw Error('Open a fight first.');
