@@ -490,6 +490,7 @@ async function stubGoogleSheets(page,options={}){
    revoke:(_t,cb)=>{if(cb)cb()}
   }}};
   window.__sheetRequests=[];
+  window.__failNextWrite=false;window.__mockColumnCount=26;
   window.__masterFiles={};let nextId=123;
   const originalFetch=window.fetch.bind(window);
   const response=(body,status=200)=>new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json'}});
@@ -517,10 +518,11 @@ async function stubGoogleSheets(page,options={}){
    }
    if(method==='GET'){
     return response({sheets:Object.keys(file.tabs).map((title,i)=>({
-     properties:{title,sheetId:i+11,gridProperties:{rowCount:1000,columnCount:26}}
+     properties:{title,sheetId:i+11,gridProperties:{rowCount:1000,columnCount:window.__mockColumnCount}}
     }))});
    }
    if(method==='POST'&&tail==='/values:batchUpdate'){
+    if(window.__failNextWrite){window.__failNextWrite=false;return response({error:{message:'Temporary Google write failure'}},503)}
     for(const d of body.data){
      const tab=d.range.match(/^'([^']+)'!/)?.[1];
      if(!tab)return response({error:{message:'Invalid sheet range'}},400);
@@ -795,3 +797,92 @@ test('reduced motion preserves all scores and produces a readable timeline',asyn
  await page.keyboard.press('Enter');
  await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
 });
+
+
+
+test('syncing an older backup prompts before overwriting newer remote event scores',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);await page.click('#backBtn');await connectQaGoogle(page);
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ const original=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs.Events[1].slice());
+ await page.evaluate(()=>{
+  window.__masterFiles['qa-spreadsheet-123'].tabs.Events[1][7]='2099-01-01T00:00:00.000Z';
+ });
+ page.removeAllListeners('dialog');
+ page.on('dialog',async d=>d.dismiss());
+ await page.click('#syncEvent');
+ await expect(page.locator('#sheetMessage')).toContainText('Sync canceled to protect newer archived scores');
+ const blocked=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs.Events[1][7]);
+ expect(blocked).toBe('2099-01-01T00:00:00.000Z');
+ page.removeAllListeners('dialog');
+ page.on('dialog',async d=>d.accept());
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ await expect(page.locator('#sheetMessage')).toContainText('Master updated');
+ expect((await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs.Events[1][7]))).not.toBe(blocked);
+});
+
+test('failed Google write preserves the previously synced master data',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);await page.click('#backBtn');await connectQaGoogle(page);
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ const previous=await page.evaluate(()=>JSON.stringify(window.__masterFiles['qa-spreadsheet-123'].tabs));
+ await page.fill('#eventName','Revised fight card');
+ await page.evaluate(()=>{window.__failNextWrite=true});
+ await page.click('#syncEvent');
+ await expect(page.locator('#sheetMessage')).toContainText('Temporary Google write failure');
+ const afterFailure=await page.evaluate(()=>JSON.stringify(window.__masterFiles['qa-spreadsheet-123'].tabs));
+ expect(afterFailure).toBe(previous);
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ const afterRetry=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs.Events[1][1]);
+ expect(afterRetry).toBe('Revised fight card');
+});
+
+test('removing a fight clears obsolete master rows while keeping the event',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);await page.click('#backBtn');
+ await page.fill('#boutLeft','Second red');await page.fill('#boutRight','Second blue');
+ await page.selectOption('#boutDivision','Featherweight');await page.click('#addBout');
+ await connectQaGoogle(page);
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ expect((await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs.Fights)).length).toBe(3);
+ await page.locator('.bout-row').nth(1).getByText('Delete',{exact:true}).click();
+ await expect(page.locator('.bout-row')).toHaveCount(1);
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ const rows=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs);
+ expect(rows.Events).toHaveLength(2);
+ expect(rows.Fights).toHaveLength(2);
+ expect(rows.Fights[1][7]).toBe('Blue fighter');
+ expect(rows.Fights.some(r=>r.includes('Second red'))).toBe(false);
+});
+
+test('existing master with too few columns expands to fit round details',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);await page.click('#backBtn');await connectQaGoogle(page);
+ await page.evaluate(()=>{window.__mockColumnCount=6});
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ const growth=await page.evaluate(()=>window.__sheetRequests.filter(x=>x.path.endsWith(':batchUpdate')&&x.body?.requests));
+ expect(growth.length).toBeGreaterThan(0);
+ const expanded=growth.flatMap(x=>x.body.requests).filter(x=>x.updateSheetProperties?.fields?.includes('gridProperties.columnCount'));
+ expect(expanded.length).toBe(4);
+ const widths=expanded.map(x=>x.updateSheetProperties.properties.gridProperties.columnCount);
+ expect(Math.min(...widths)).toBeGreaterThanOrEqual(13);
+});
+
+test('oversized master payload fails before replacing archived scores',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);await page.click('#backBtn');await connectQaGoogle(page);
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ const original=await page.evaluate(()=>JSON.stringify(window.__masterFiles['qa-spreadsheet-123'].tabs));
+ await page.evaluate(()=>{
+  const f=data.events[0].fights[0];
+  data.events[0].name='A'.repeat(120);
+  f.left='R'.repeat(120);f.right='B'.repeat(120);
+  f.roundData[0].observations=Array.from({length:8000},(_,i)=>({side:i%2?'a':'b',time:i*.03}));
+  persist();
+ });
+ await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ await expect(page.locator('#sheetMessage')).toContainText('recommended 2 MB');
+ const current=await page.evaluate(()=>JSON.stringify(window.__masterFiles['qa-spreadsheet-123'].tabs));
+ expect(current).toBe(original);
+});
+
