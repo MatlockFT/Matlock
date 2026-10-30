@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-10-30T19:27:40.577Z"
+      "checkedAt": "2026-10-30T23:08:00.343Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-10-30T19:28:16.766Z",
+      "checkedAt": "2026-10-30T23:08:33.999Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -16533,13 +16533,7 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-24"
       },
-      "booking": {
-        "event": "Bonfim vs Brady",
-        "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-        "opponent": "Gabriel Lorenco",
-        "opponentId": "gabriel-lorenco"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -108956,13 +108950,7 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-24"
       },
-      "booking": {
-        "event": "Bonfim vs Brady",
-        "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-        "opponent": "Sean Brady",
-        "opponentId": "sean-brady"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -160652,7 +160640,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-24"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -292823,13 +292815,7 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-24"
       },
-      "booking": {
-        "event": "Bonfim vs Brady",
-        "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-        "opponent": "Gabriel Bonfim",
-        "opponentId": "gabriel-bonfim"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -315886,7 +315872,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-24"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -332631,7 +332621,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-24"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
