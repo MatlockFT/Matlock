@@ -14,7 +14,16 @@ const HISTORY_ALIASES = new Map([
   ['khaos williams','Kalinn Williams'],
   ['bobby green','King Green'],
   ['ramazan temirov','Ramazonbek Temirov'],
-  ['cam rowston','Cameron Rowston']
+  ['cam rowston','Cameron Rowston'],
+  ['bia mesquita','Beatriz Mesquita']
+]);
+
+// Profile hints are verified against the fighter's name, complete pro history and
+// article record before use. The event card itself is not a reliable directory:
+// cancelled fights disappear and fighters can be listed under different names.
+const SHERDOG_PROFILE_HINTS = new Map([
+  ['bia mesquita','https://www.sherdog.com/fighter/Beatriz-Mesquita-451242'],
+  ['jefferson nascimento','https://www.sherdog.com/fighter/Jefferson-Nascimento-348445']
 ]);
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -140,6 +149,55 @@ async function sherdogHistoryLookup(url,expectedName) {
   const alias=targetAlias(expectedName);
   if(!likelySameName(profile.name,expectedName) && !likelySameName(profile.name,alias)) return null;
   return profile;
+}
+
+async function resolveSherdogProfile(name,eventFighters,cacheEntry,expectedRecord) {
+  const checked=new Set();
+  const candidates=[];
+  const add = url => {
+    if(!url || !/^https:\/\/www\.sherdog\.com\/fighter\//i.test(url) || checked.has(url)) return;
+    checked.add(url);
+    candidates.push(url);
+  };
+  add(matchEventFighter(eventFighters,name)?.href);
+  add(cacheEntry?.sourceUrl);
+  add(SHERDOG_PROFILE_HINTS.get(normalize(name)));
+
+  const verify = async () => {
+    for(const url of candidates.splice(0)){
+      const profile=await sherdogHistoryLookup(url,name);
+      if(!profile?.historyComplete || !Array.isArray(profile.history) || !profile.history.length) continue;
+      const record=parseRecord(profile.record);
+      // Identical names can refer to different people. Never pick an unrelated
+      // Sherdog search result merely because the display name matches.
+      if(expectedRecord && (!record ||
+          record.wins!==expectedRecord.wins || record.losses!==expectedRecord.losses ||
+          record.draws!==expectedRecord.draws)) continue;
+      return {profile,url};
+    }
+    return null;
+  };
+
+  const direct=await verify();
+  if(direct) return direct;
+
+  // A fighter might be removed from an event card or use a different ring name.
+  // Search the individual profile directory instead of failing the whole event.
+  for(const term of new Set([targetAlias(name),name])){
+    let html;
+    try {
+      html=await fetchText('https://www.sherdog.com/stats/fightfinder?SearchTxt='+encodeURIComponent(term),{attempts:2,timeout:12000});
+    } catch(error) {
+      console.warn('Sherdog fighter search unavailable for '+name+': '+error.message);
+      continue;
+    }
+    for(const entry of parseSherdogEventFighters(html)){
+      if(likelySameName(entry.label,name) || likelySameName(entry.label,targetAlias(name))) add(entry.href);
+    }
+    const match=await verify();
+    if(match) return match;
+  }
+  return null;
 }
 
 async function sherdogRecordLookup(url,expectedName) {
@@ -390,23 +448,35 @@ const targetNames=[...new Set(configs.flatMap(config=>[config.a?.name,config.b?.
 console.log('Refreshing all-career opponent strength for '+targetNames.length+' fighters.');
 
 const profiles=new Map();
+const expectedRecords=new Map();
+for(const config of configs){
+  const recordRow=(config.rows||[]).find(row=>normalize(row.label)==='record');
+  for(const side of ['a','b']){
+    const name=config[side]?.name;
+    const record=parseRecord(recordRow?.[side]);
+    if(name && record) expectedRecords.set(normalize(name),record);
+  }
+}
+const existing=await readJson(CACHE_PATH,{schemaVersion:1,updatedAt:null,fighters:{},opponents:{}});
 const SHERDOG_EVENT_URL=SHERDOG_EVENT_URL_INPUT || await discoverSherdogEventUrl(targetNames);
 const eventHtml=await fetchText(SHERDOG_EVENT_URL,{attempts:3,timeout:15000});
 const eventFighters=parseSherdogEventFighters(eventHtml);
-if(eventFighters.length<20) throw new Error('Sherdog event page exposed only '+eventFighters.length+' fighter links.');
+if(eventFighters.length<2) throw new Error('Sherdog event page exposed too few fighter links.');
 
+const unresolvedProfiles=[];
 await mapLimit(targetNames,3,async name=>{
-  const eventFighter=matchEventFighter(eventFighters,name);
-  if(!eventFighter) throw new Error('Sherdog event profile link unavailable for '+name);
   await sleep(90);
-  const profile=await sherdogHistoryLookup(eventFighter.href,name);
-  if(!profile?.historyComplete || !Array.isArray(profile.history) || !profile.history.length){
-    throw new Error('Complete Sherdog professional history unavailable for '+name);
+  const result=await resolveSherdogProfile(
+    name,eventFighters,existing.fighters?.[dataKey(name)],expectedRecords.get(normalize(name))
+  );
+  if(!result){
+    unresolvedProfiles.push(name);
+    console.warn('WARNING: No verified complete Sherdog profile for '+name+'; leaving its previous data unchanged.');
+    return;
   }
-  profiles.set(normalize(name),profile);
-  console.log('History '+name+': '+profile.history.length+' pro bouts via Sherdog ['+eventFighter.href+']');
+  profiles.set(normalize(name),result.profile);
+  console.log('History '+name+': '+result.profile.history.length+' pro bouts via Sherdog ['+result.url+']');
 });
-const existing=await readJson(CACHE_PATH,{schemaVersion:1,updatedAt:null,fighters:{},opponents:{}});
 existing.schemaVersion=1;
 existing.fighters ||= {};
 existing.opponents ||= {};
@@ -437,6 +507,13 @@ await mapLimit([...opponentTargets.values()],4,async target=>{
   await sleep(70);
   let hit=target.url ? await sherdogRecordLookup(target.url,name) : null;
   if(!parseRecord(hit?.record)){
+    // A temporary third-party failure must not discard a previously verified
+    // record for the same exact opponent profile URL.
+    if(target.url && cached?.sourceUrl===target.url && parseRecord(cached.record)){
+      opponentRecords.set(cacheKey,cached);
+      console.warn('Using last verified opponent record for '+name+' ['+target.url+']');
+      return;
+    }
     unresolved.push(name+(target.url?' ['+target.url+']':''));
     return;
   }
@@ -446,19 +523,29 @@ await mapLimit([...opponentTargets.values()],4,async target=>{
 });
 
 if(unresolved.length){
-  throw new Error('Unresolved opponent records ('+unresolved.length+'): '+unresolved.sort().join(', '));
+  console.warn('WARNING: '+unresolved.length+' opponent records unresolved. Fighters depending on them will not be overwritten: '+unresolved.sort().join(', '));
 }
 const strengthByName=new Map();
+const incompleteFighters=[...unresolvedProfiles];
 for(const name of targetNames){
   const profile=profiles.get(normalize(name));
+  if(!profile) continue;
   const records=profile.history.map(fight=>opponentRecords.get(normalize(fight.opponent)));
-  if(records.some(record=>!record)) throw new Error('Partial opponent record set for '+name);
+  if(records.some(record=>!record)){
+    incompleteFighters.push(name);
+    console.warn('WARNING: Incomplete opponent records for '+name+'; retaining existing data.');
+    continue;
+  }
   const parsed=records.map(record=>parseRecord(record.record));
   const wins=parsed.reduce((sum,row)=>sum+row.wins,0);
   const losses=parsed.reduce((sum,row)=>sum+row.losses,0);
   const draws=parsed.reduce((sum,row)=>sum+row.draws,0);
   const denominator=wins+losses;
-  if(!denominator) throw new Error('No opponent W/L denominator for '+name);
+  if(!denominator){
+    incompleteFighters.push(name);
+    console.warn('WARNING: No opponent W/L denominator for '+name+'; retaining existing data.');
+    continue;
+  }
   const strength={
     record:wins+'-'+losses,
     winPct:Math.round(wins/denominator*100),
@@ -482,8 +569,13 @@ for(const name of targetNames){
   };
   console.log(name+': '+strength.record+' / '+strength.winPct+'% ('+strength.bouts+' bouts)');
 }
+if(!strengthByName.size) throw new Error('No complete fighter strength profiles were refreshed; refusing to publish.');
 existing.updatedAt=new Date().toISOString();
-existing.lastRefresh={postPath:POST_PATH,eventUrl:SHERDOG_EVENT_URL,checkedAt:existing.updatedAt};
+existing.lastRefresh={
+  postPath:POST_PATH,eventUrl:SHERDOG_EVENT_URL,checkedAt:existing.updatedAt,
+  requested:targetNames.length,refreshed:strengthByName.size,
+  unresolvedFighters:[...new Set(incompleteFighters)].sort()
+};
 await fs.writeFile(CACHE_PATH,JSON.stringify(existing,null,2)+'\n');
 
 let changed=0;
@@ -495,7 +587,7 @@ const updatedMarkdown=markdown.replace(
     for(const side of ['a','b']){
       const fighter=config[side];
       const cached=existing.fighters[dataKey(fighter?.name)];
-      if(!fighter||!cached) continue;
+      if(!fighter||!cached||!strengthByName.has(normalize(fighter.name))) continue;
       const recent=recentRows(cached.history);
       fighter.recent=recent;
       fighter.last5=lastFive(recent);
@@ -508,7 +600,8 @@ const updatedMarkdown=markdown.replace(
     return buildTale(config);
   }
 );
-if(changed!==configs.length) throw new Error('Expected '+configs.length+' Tale blocks updated; got '+changed);
+if(changed!==configs.length) console.warn('WARNING: Updated '+changed+'/'+configs.length+' Tale blocks; incomplete fighters retain their previous data.');
 await fs.writeFile(POST_PATH,updatedMarkdown);
 
-console.log('Updated '+changed+' Tale blocks and '+targetNames.length+' cached fighter strength profiles.');
+console.log('Updated '+changed+' Tale blocks and '+strengthByName.size+'/'+targetNames.length+' fighter strength profiles.');
+if(incompleteFighters.length) console.warn('Needs follow-up: '+[...new Set(incompleteFighters)].sort().join(', '));
