@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-30T19:34:33.363Z",
+  "generated_at": "2026-10-30T23:12:33.831Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-10-31-fight-card",
@@ -285,7 +285,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/ALENCAR_TALITA_L_04-25.png?itok=onBqiGWH",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+245"
+                  "moneyline": "+250"
                 },
                 {
                   "name": "Piera Rodriguez",
@@ -318,7 +318,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/LISBOA_TAINARA_L_10-14.png?itok=ibBAzJ5i",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+470"
+                  "moneyline": "+500"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -332,7 +332,7 @@
       "id": "ufc-fight-night-2026-11-07-fight-card",
       "promotion_key": "ufc",
       "promotion": "UFC Fight Night",
-      "title": "Bonfim vs Brady",
+      "title": "Acosta vs Walker",
       "date": "2026-11-07",
       "date_label": "Saturday · November 7, 2026",
       "starts_at": "",
@@ -350,27 +350,25 @@
             {
               "order": 1,
               "label": "Main Event",
-              "weight_class": "Welterweight Bout",
+              "weight_class": "Heavyweight Bout",
               "fighters": [
                 {
-                  "name": "Gabriel Bonfim",
-                  "initials": "GB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/BONFIM_GABRIEL_L_11-08.png?itok=FGdOTced",
+                  "name": "Waldo Cortes Acosta",
+                  "initials": "WCA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CORTES_ACOSTA_WALDO_L.png?itok=R3cDV3Y_",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-113"
+                  "moneyline": ""
                 },
                 {
-                  "name": "Sean Brady",
-                  "initials": "SB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/BRADY_SEAN_L_05-09.png?itok=lfpHN5PX",
+                  "name": "Johnny Walker",
+                  "initials": "JW",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/WALKER_JOHNNY_L_08-23.png?itok=cy7jdBoB",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+108"
+                  "moneyline": ""
                 }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "Polymarket"
+              ]
             },
             {
               "order": 2,
@@ -511,17 +509,19 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/LORENCO_GABRIEL_L_09-01.png?itok=NdbmVc1d",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+140"
                 },
                 {
-                  "name": "Alvin Hines",
-                  "initials": "AH",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/HINES_ALVIN_R_06-28.png?itok=4Yj9bfkr",
+                  "name": "Thomas Petersen",
+                  "initials": "TP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/PETERSEN_THOMAS_L_05-03.png?itok=sYHO_Yst",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-175"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "BetWay"
             },
             {
               "order": 8,
@@ -682,7 +682,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/PARSONS_JONNY_L_07-22.png?itok=r2aeVJ95",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+170"
+                  "moneyline": "+156"
                 },
                 {
                   "name": "José Souza",
@@ -690,7 +690,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/SOUZA_JOSE_R_05-30.png?itok=-YP5UjdJ",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-178"
+                  "moneyline": "-163"
                 }
               ],
               "odds_source": "BestFightOdds",

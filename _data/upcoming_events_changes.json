@@ -1,7 +1,65 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-29T16:29:45.849Z",
+  "generated_at": "2026-10-30T23:13:12.191Z",
   "changes": [
+    {
+      "id": "2026-10-30T23:13:12.191Z|ufc-fight-night-2026-11-07-fight-card|title_changed|1",
+      "at": "2026-10-30T23:13:12.191Z",
+      "type": "title_changed",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Acosta vs Walker",
+      "event_date": "2026-11-07",
+      "summary": "UFC Fight Night Acosta vs Walker: title changed.",
+      "details": {
+        "from": "Bonfim vs Brady",
+        "to": "Acosta vs Walker"
+      }
+    },
+    {
+      "id": "2026-10-30T23:13:12.191Z|ufc-fight-night-2026-11-07-fight-card|bout_changed|2",
+      "at": "2026-10-30T23:13:12.191Z",
+      "type": "bout_changed",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Acosta vs Walker",
+      "event_date": "2026-11-07",
+      "summary": "Gabriel Bonfim vs Sean Brady changed to Waldo Cortes Acosta vs Johnny Walker on Acosta vs Walker.",
+      "details": {
+        "order": 1,
+        "section": "Main Card",
+        "from": [
+          "Gabriel Bonfim",
+          "Sean Brady"
+        ],
+        "to": [
+          "Waldo Cortes Acosta",
+          "Johnny Walker"
+        ]
+      }
+    },
+    {
+      "id": "2026-10-30T23:13:12.191Z|ufc-fight-night-2026-11-07-fight-card|bout_changed|3",
+      "at": "2026-10-30T23:13:12.191Z",
+      "type": "bout_changed",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Acosta vs Walker",
+      "event_date": "2026-11-07",
+      "summary": "Gabriel Lorenco vs Alvin Hines changed to Gabriel Lorenco vs Thomas Petersen on Acosta vs Walker.",
+      "details": {
+        "order": 7,
+        "section": "Prelims",
+        "from": [
+          "Gabriel Lorenco",
+          "Alvin Hines"
+        ],
+        "to": [
+          "Gabriel Lorenco",
+          "Thomas Petersen"
+        ]
+      }
+    },
     {
       "id": "2026-10-29T16:29:45.849Z|rizin-abc-presents-rizin-55-2026-11-08|bout_changed|1",
       "at": "2026-10-29T16:29:45.849Z",
@@ -4480,54 +4538,6 @@
         "to_order": 7,
         "from_section": "Prelims",
         "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-15T14:59:37.266Z|ufc-2026-11-14-polymarket-ufc-334|bout_moved|22",
-      "at": "2026-10-15T14:59:37.266Z",
-      "type": "bout_moved",
-      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
-      "promotion": "UFC",
-      "event_title": "Polymarket UFC 334",
-      "event_date": "2026-11-14",
-      "summary": "Jim Miller vs Terrance McKinney moved on Polymarket UFC 334.",
-      "details": {
-        "from_order": 9,
-        "to_order": 8,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-15T14:59:37.266Z|ufc-2026-11-14-polymarket-ufc-334|bout_moved|23",
-      "at": "2026-10-15T14:59:37.266Z",
-      "type": "bout_moved",
-      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
-      "promotion": "UFC",
-      "event_title": "Polymarket UFC 334",
-      "event_date": "2026-11-14",
-      "summary": "Donte Johnson vs Baisangur Susurkaev moved on Polymarket UFC 334.",
-      "details": {
-        "from_order": 8,
-        "to_order": 9,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-15T05:13:01.832Z|ufc-333-2026-10-24-fight-card|bout_moved|1",
-      "at": "2026-10-15T05:13:01.832Z",
-      "type": "bout_moved",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "Colby Thicknesse vs Asaf Chopurov moved on Volkanovski vs Evloev.",
-      "details": {
-        "from_order": 11,
-        "to_order": 10,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
       }
     }
   ]

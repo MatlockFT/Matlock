@@ -25,7 +25,7 @@
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
       "promotion": "ufc",
       "date": "2026-11-07",
-      "title": "Bonfim vs Brady",
+      "title": "Acosta vs Walker",
       "status": "matched",
       "verdict_event_id": "1957",
       "verdict_url": "https://verdictmma.com/event/1957",
@@ -36,7 +36,7 @@
       "verdict_main_count": 6,
       "local_prelim_count": 8,
       "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 13
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
@@ -245,6 +245,16 @@
       "fighters": [
         "Jonny Parsons",
         "José Souza"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 7,
+      "fighters": [
+        "Gabriel Lorenco",
+        "Thomas Petersen"
       ]
     },
     {
