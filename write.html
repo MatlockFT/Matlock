@@ -401,9 +401,27 @@ page_scripts:
         <label class="writer-field writer-field-wide"><span>Caption <small>optional</small></span><input type="text" data-inline-video-caption placeholder="Caption or source credit"></label>
         <p class="writer-dialog-note writer-field-wide">MP4 is recommended. Upload files smaller than 2 GiB in resumable pieces. Video uploads use your Netlify monthly allowance; GitHub sign-in and article saving remain separate.</p>
         <div class="writer-video-upload-status writer-field-wide" data-video-upload-status hidden aria-live="polite">
-          <progress data-video-upload-progress max="100" value="0"></progress>
+          <progress data-video-upload-progress max="100" value="0" aria-label="File transfer progress"></progress>
           <span data-video-upload-label>Preparing upload…</span>
         </div>
+        <section class="writer-video-diagnostics writer-field-wide" data-video-diagnostics aria-label="Video upload manager">
+          <div class="writer-video-diagnostics-head"><strong>Upload manager</strong><span data-video-diag-state>Ready</span></div>
+          <p data-video-diag-detail>Select a video to start. Transfers and GitHub publishing are tracked separately.</p>
+          <ol class="writer-video-stages" data-video-stages aria-label="Upload stages">
+            <li>Transfer</li><li>Verify</li><li>GitHub</li><li>Place</li>
+          </ol>
+          <details class="writer-video-history" data-video-history-details>
+            <summary>History and diagnostics</summary>
+            <label class="writer-field"><span>Previous attempts</span><select data-video-history-select aria-label="Choose upload attempt"></select></label>
+            <div class="writer-video-history-actions">
+              <button type="button" class="writer-button writer-button-subtle" data-video-check-status>Check status</button>
+              <button type="button" class="writer-button writer-button-subtle" data-video-copy-diagnostics>Copy report</button>
+              <button type="button" class="writer-button writer-button-primary" data-video-use-upload hidden>Place recovered video</button>
+            </div>
+            <p class="writer-video-recovery-note" data-video-recovery-note>To retry a failed transfer, choose the original file again and select Place video. Staged parts are only retained temporarily.</p>
+            <ol data-video-history-events class="writer-video-history-events"></ol>
+          </details>
+        </section>
       </div>
       <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-video-insert>Place video</button></footer>
     </form>
