@@ -834,7 +834,7 @@ async function googleSheetsRequest(path,body,method='POST'){
  return res.json();
 }
 function buildSheetRows(e){
- const fights=[['Event','Event date','Judge','Fight #','Fight ID','Red corner','Blue corner','Division','Scheduled rounds','Round length (seconds)','Red points','Blue points','Red moments','Blue moments','Fight status','Result type','Winner','Last synced UTC','Judge 1 red','Judge 1 blue','Judge 2 red','Judge 2 blue','Judge 3 red','Judge 3 blue']];
+ const fights=[['Event','Event date','Judge','Fight #','Fight ID','Red corner','Blue corner','Division','Scheduled rounds','Round length (seconds)','Red points','Blue points','Red moments','Blue moments','Fight status','Result type','Winner','Last synced UTC','Official 1 red','Official 1 blue','Official 2 red','Official 2 blue','Official 3 red','Official 3 blue']];
  const rounds=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC','Red major impacts','Blue major impacts']];
  const moments=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter','Exchange type']];
  e.fights.forEach((f,ix)=>{
@@ -855,7 +855,7 @@ function buildSheetRows(e){
 const MASTER_TABS=['Events','Fights','Rounds','Moments'];
 const MASTER_HEADERS={
  Events:['Event ID','Event','Date','Judge / session','Fights','Scored rounds','Total moments','Last synced UTC'],
- Fights:['Event ID','Event','Event date','Judge','Fight #','Fight ID','Red corner','Blue corner','Division','Scheduled rounds','Round length (seconds)','Red points','Blue points','Red moments','Blue moments','Fight status','Result type','Winner','Last synced UTC','Judge 1 red','Judge 1 blue','Judge 2 red','Judge 2 blue','Judge 3 red','Judge 3 blue'],
+ Fights:['Event ID','Event','Event date','Judge','Fight #','Fight ID','Red corner','Blue corner','Division','Scheduled rounds','Round length (seconds)','Red points','Blue points','Red moments','Blue moments','Fight status','Result type','Winner','Last synced UTC','Official 1 red','Official 1 blue','Official 2 red','Official 2 blue','Official 3 red','Official 3 blue'],
  Rounds:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC','Red major impacts','Blue major impacts'],
  Moments:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter','Exchange type']
 };
@@ -883,7 +883,8 @@ async function readMasterRows(id){
   if(existing.length){
    const actual=existing[0],expected=MASTER_HEADERS[tab];
    const legacy=tab==='Rounds'?expected.slice(0,-2):tab==='Moments'?expected.slice(0,-1):tab==='Fights'?expected.slice(0,-6):null;
-   if(JSON.stringify(actual)!==JSON.stringify(expected)&&JSON.stringify(actual)!==JSON.stringify(legacy))
+   const previous=tab==='Fights'?expected.map(x=>x.replace(/^Official ([123]) /,'Judge $1 ')):null;
+   if(JSON.stringify(actual)!==JSON.stringify(expected)&&JSON.stringify(actual)!==JSON.stringify(legacy)&&JSON.stringify(actual)!==JSON.stringify(previous))
     throw Error(tab+' has different column headers. Use a compatible master file; no data was changed.');
   }
   out[tab]=existing;
@@ -1009,7 +1010,7 @@ function addBout(){const e=event(),a=$('boutLeft').value.trim(),b=$('boutRight')
 function download(content,name,type){const u=URL.createObjectURL(new Blob([content],{type})),a=el('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000)}
 function exportJSON(){pause();persist();download(JSON.stringify(data,null,2),'workspace-backup-'+new Date().toISOString().slice(0,10)+'.json','application/json')}
 function qcsv(v){let s=String(v==null?'':v);if(/^[\s]*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
-function exportCSV(){pause();const rows=[['Event','Date','Session','Red fighter','Blue fighter','Division','Round','Red points','Blue points','Red deductions','Blue deductions','Fight result','Judge 1 red','Judge 1 blue','Judge 2 red','Judge 2 blue','Judge 3 red','Judge 3 blue']];
+function exportCSV(){pause();const rows=[['Event','Date','Session','Red fighter','Blue fighter','Division','Round','Red points','Blue points','Red deductions','Blue deductions','Fight result','Official 1 red','Official 1 blue','Official 2 red','Official 2 blue','Official 3 red','Official 3 blue']];
  data.events.forEach(e=>e.fights.forEach(f=>f.roundData.forEach((r,i)=>{const p=roundPoints(r.score);rows.push([e.name,e.date,e.judge,f.left,f.right,f.division,i+1,p?p[0]:'',p?p[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',f.result?f.result.type:'',...judgeCards(f).flatMap(c=>[c?.red??'',c?.blue??''])])})));
  download('\uFEFF'+rows.map(row=>row.map(qcsv).join(',')).join('\r\n'),'round-records.csv','text/csv')}
 function validate(input){if(!input||input.version!==2||!Array.isArray(input.events)||input.events.length>200)throw Error('Not a valid Stage 1 backup.');
