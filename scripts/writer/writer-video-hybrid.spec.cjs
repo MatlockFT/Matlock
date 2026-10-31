@@ -81,3 +81,22 @@ test('Netlify unavailable leaves Cloudflare article saving connected',async({pag
  await expect(page.locator('[data-github-status]')).toContainText('Connected to');
  await page.keyboard.press('Escape');await page.click('[data-save-draft]');await expect.poll(()=>state.articleSaves).toBe(1);
 });
+test('upload manager reports stages and recovers a published video into the draft',async({page})=>{
+ const state = await setup(page);
+ await page.click('[data-tool="video"]');
+ await page.locator('[data-inline-video-file]').setInputFiles({name:'recoverable-clip.mp4',mimeType:'video/mp4',buffer:Buffer.from('test video data')});
+ await page.click('[data-video-insert]');
+ await expect(page.locator('#writer-body')).toHaveValue(/releases\/download\/writer-media-test\/large.mp4/,{timeout:30000});
+ await expect(page.locator('[data-video-dialog]')).not.toBeVisible();
+ await page.fill('#writer-body','Restoring a previous upload.\n\n');
+ await page.click('[data-tool="video"]');
+ await expect(page.locator('[data-video-history-select]')).toContainText('recoverable-clip.mp4');
+ await expect(page.locator('[data-video-diag-state]')).toContainText('Placed in editor');
+ await page.click('[data-video-check-status]');
+ await expect(page.locator('[data-video-diag-state]')).toContainText('On GitHub');
+ await expect(page.locator('[data-video-use-upload]')).toBeVisible();
+ await page.click('[data-video-use-upload]');
+ await expect(page.locator('#writer-body')).toHaveValue(/releases\/download\/writer-media-test\/large.mp4/);
+ await expect(page.locator('[data-video-diag-state]')).toContainText('Placed in editor');
+ expect(state.finalized).not.toBeNull();
+});
