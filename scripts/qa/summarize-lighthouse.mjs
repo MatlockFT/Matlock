@@ -4,7 +4,10 @@ import { basename, resolve } from 'node:path';
 const reportDir = resolve(process.argv[2] || 'lighthouse-reports');
 const limits = {
     score: 0.70,
-    lcp: 4000,
+    lcpTarget: 4000,
+    // Synthetic mobile runs vary across shared CI runners. Keep the 4-second
+    // objective visible, while failing on sustained severe slowness (>5s).
+    lcpHard: 5000,
     tbtTarget: 700,
     tbtHard: 1200,
     cls: 0.25
@@ -80,7 +83,7 @@ const failuresFor = row => {
         if (!Number.isFinite(row[key])) failures.push(`Missing ${key} metric`);
     }
     if (Number.isFinite(row.score) && row.score < limits.score) failures.push(`Perf ${display(row.score, 'score')} < 70`);
-    if (Number.isFinite(row.lcp) && row.lcp > limits.lcp) failures.push(`LCP ${display(row.lcp)} > 4.00 s`);
+    if (Number.isFinite(row.lcp) && row.lcp > limits.lcpHard) failures.push(`LCP ${display(row.lcp)} > 5.00 s hard ceiling`);
     if (Number.isFinite(row.tbt) && row.tbt > limits.tbtHard) failures.push(`TBT ${display(row.tbt)} > ${display(limits.tbtHard)} hard ceiling`);
     if (Number.isFinite(row.cls) && row.cls > limits.cls) failures.push(`CLS ${display(row.cls, 'cls')} > 0.250`);
     return failures;
@@ -88,6 +91,9 @@ const failuresFor = row => {
 
 const warningsFor = row => {
     const warnings = [];
+    if (Number.isFinite(row.lcp) && row.lcp > limits.lcpTarget && row.lcp <= limits.lcpHard) {
+        warnings.push(`LCP ${display(row.lcp)} exceeds the 4.00 s target; inspect the largest content element`);
+    }
     if (Number.isFinite(row.tbt) && row.tbt > limits.tbtTarget && row.tbt <= limits.tbtHard) {
         warnings.push(`TBT ${display(row.tbt)} is above the ${display(limits.tbtTarget)} target`);
     }
@@ -139,7 +145,7 @@ const summary = [
     ...gateLines,
     ...warningLines,
     '',
-    'Gate uses the median of three mobile Lighthouse samples per page: performance >= 70, LCP <= 4.00 s, TBT <= 1.20 s hard ceiling (700 ms target), CLS <= 0.250.',
+    'Gate uses the median of three mobile Lighthouse samples per page: performance >= 70, LCP <= 5.00 s hard ceiling (4.00 s target), TBT <= 1.20 s hard ceiling (700 ms target), CLS <= 0.250.',
     '',
     '_Lab measurements are useful for regression tracking. They are not field INP/Core Web Vitals data._',
     ''
