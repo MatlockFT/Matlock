@@ -71,6 +71,174 @@
   const VIDEO_STALE_STATUS_MS = 6 * 60 * 1000;
   const VIDEO_RESUME_KEY = 'matlock-writer:video-upload-resume-v1';
 
+  const VIDEO_DIAG_KEY = 'matlock-writer:video-upload-diagnostics-v1';
+  let activeVideoDiagnosticId = '';
+
+  // Diagnostic history intentionally stores no credentials, cookies or file bytes.
+  function videoDiagnosticRecords() {
+    try {
+      const records = JSON.parse(window.localStorage.getItem(VIDEO_DIAG_KEY) || '[]');
+      return Array.isArray(records) ? records.filter(item => item && /^[A-Za-z0-9_-]{12,96}$/.test(item.id || '')).slice(0, 8) : [];
+    } catch { return []; }
+  }
+
+  function cleanVideoDiagnosticText(value) {
+    return String(value || '').replace(/(?:gh[pousr]_|github_pat_)[A-Za-z0-9_]+/g, '[redacted]').slice(0, 500);
+  }
+
+  function updateVideoDiagnostic(id, changes = {}) {
+    if (!/^[A-Za-z0-9_-]{12,96}$/.test(id || '')) return;
+    const records = videoDiagnosticRecords();
+    const old = records.find(item => item.id === id) || { id, startedAt: new Date().toISOString(), events: [] };
+    const now = new Date().toISOString();
+    const stage = changes.stage || old.stage || 'uploading';
+    const detail = changes.detail === undefined ? old.detail || '' : cleanVideoDiagnosticText(changes.detail);
+    const events = Array.isArray(old.events) ? old.events.slice(-29) : [];
+    if (stage !== old.stage || (changes.forceEvent && detail !== old.detail)) {
+      events.push({ at: now, stage, detail });
+    }
+    const entry = {
+      ...old, ...changes, stage, detail, events: events.slice(-30),
+      updatedAt: now,
+      ...(changes.error ? { error: cleanVideoDiagnosticText(changes.error) } : {})
+    };
+    const remaining = records.filter(item => item.id !== id);
+    try { window.localStorage.setItem(VIDEO_DIAG_KEY, JSON.stringify([entry, ...remaining].slice(0, 8))); } catch {}
+    renderVideoDiagnostics();
+  }
+
+  function videoDiagnosticSelected() {
+    const chosenId = app.querySelector('[data-video-history-select]')?.value || activeVideoDiagnosticId;
+    const records = videoDiagnosticRecords();
+    return records.find(item => item.id === chosenId) || records[0] || null;
+  }
+
+  function renderVideoDiagnostics() {
+    const section = app.querySelector('[data-video-diagnostics]');
+    if (!section) return;
+    const select = section.querySelector('[data-video-history-select]');
+    const records = videoDiagnosticRecords();
+    const preferred = select.value || activeVideoDiagnosticId || records[0]?.id || '';
+    if (select.options.length !== records.length || [...select.options].some((option, i) => option.value !== records[i]?.id)) {
+      select.replaceChildren();
+      for (const record of records) {
+        const option = document.createElement('option');
+        option.value = record.id;
+        option.textContent = (record.fileName || record.assetName || 'Video') + ' · ' + new Date(record.startedAt).toLocaleString();
+        select.append(option);
+      }
+    }
+    select.value = records.some(item => item.id === preferred) ? preferred : (records[0]?.id || '');
+    const record = videoDiagnosticSelected();
+    const state = section.querySelector('[data-video-diag-state]');
+    const detail = section.querySelector('[data-video-diag-detail]');
+    const stages = [...section.querySelectorAll('[data-video-stages] li')];
+    const timeline = section.querySelector('[data-video-history-events]');
+    const useButton = section.querySelector('[data-video-use-upload]');
+    const checkButton = section.querySelector('[data-video-check-status]');
+    const copyButton = section.querySelector('[data-video-copy-diagnostics]');
+    const note = section.querySelector('[data-video-recovery-note]');
+    checkButton.disabled = !record || videoUploadInFlight;
+    copyButton.disabled = !record;
+    const stageLabels = { uploading: 'Transferring', verifying: 'Verifying', queued: 'Queued', preparing: 'Verifying', publishing: 'Publishing to GitHub', complete: 'On GitHub', placed: 'Placed in editor', error: 'Failed', missing: 'Not found', checking: 'Checking status' };
+    state.textContent = record ? stageLabels[record.stage] || record.stage : 'Ready';
+    if (!record) {
+      detail.textContent = 'Select a video to start. Transfers and GitHub publishing are tracked separately.';
+      note.textContent = 'Select the original file again to resume an unfinished transfer.';
+    } else {
+      const size = record.fileSize ? (record.fileSize / 1048576).toFixed(1) + ' MiB' : 'Unknown size';
+      detail.textContent = (record.fileName || record.assetName || 'Video') + ' · ' + size + ' · ' + (record.detail || record.stage) +
+        (record.stage === 'uploading' && Number.isFinite(record.transferPercent) ? ' · ' + Math.round(record.transferPercent) + '% transferred' : '');
+      note.textContent = record.stage === 'complete' ? 'The file is on GitHub. Use Place recovered video to add it to this article.'
+        : record.stage === 'placed' ? 'Video inserted into the editor. Save the article to keep the change.'
+        : record.stage === 'error' ? (record.stagedComplete ? 'All staged parts are present. Choose the original file and Place video to retry publishing without transferring again.' : 'Choose the original file and Place video to check the resumable upload. Temporary parts expire after 24 hours.')
+        : record.stage === 'missing' ? 'This server record is unavailable. The original video may need to be uploaded again.'
+        : 'Uploading and publishing are separate steps. You can check status or copy this report.';
+    }
+    const index = !record ? -1 : record.stage === 'uploading' ? 0 : ['verifying','preparing'].includes(record.stage) ? 1
+      : ['queued','publishing'].includes(record.stage) ? 2 : ['complete','placed'].includes(record.stage) ? 3
+      : record.failureStage === 'verification' ? 1 : 2;
+    stages.forEach((el, i) => {
+      const status = index < 0 ? 'pending' : record.stage === 'error' || record.stage === 'missing'
+        ? i < index ? 'done' : i === index ? 'failed' : 'pending'
+        : i < index ? 'done' : i === index ? (record.stage === 'placed' ? 'done' : 'active') : 'pending';
+      el.dataset.stageStatus = status;
+    });
+    useButton.hidden = !(record && ['complete', 'placed'].includes(record.stage) && /^https:\/\/github\.com\/MatlockFT\/Matlock\/releases\/download\//.test(record.url || ''));
+    timeline.replaceChildren();
+    if (record) {
+      const entries = [...(record.events || []), ...(record.serverHistory || []).map(x => ({ at: x.at, stage: x.state, detail: x.description + (x.httpStatus ? ' · HTTP ' + x.httpStatus : '') }))];
+      entries.sort((a, b) => String(a.at || '').localeCompare(String(b.at || '')));
+      for (const item of entries.slice(-30)) {
+        const li = document.createElement('li');
+        const date = new Date(item.at);
+        li.textContent = (Number.isFinite(date.getTime()) ? date.toLocaleTimeString() : '--:--') + ' · ' + (item.stage || 'event') + (item.detail ? ' · ' + item.detail : '');
+        timeline.append(li);
+      }
+    }
+    if (!timeline.children.length) {
+      const li = document.createElement('li');
+      li.textContent = 'No upload attempts recorded in this browser.';
+      timeline.append(li);
+    }
+  }
+
+  async function checkVideoDiagnosticStatus() {
+    const record = videoDiagnosticSelected();
+    if (!record) return;
+    if (record.service && record.service !== videoMediaBase) {
+      showToast('This upload belongs to a different upload service.');
+      return;
+    }
+    const button = app.querySelector('[data-video-check-status]');
+    button.disabled = true;
+    try {
+      const status = await mediaBridgeFetch('/api/writer/media-status?uploadId=' + encodeURIComponent(record.id));
+      updateVideoDiagnostic(record.id, {
+        stage: status.state === 'complete' ? 'complete' : status.state === 'processing' ? 'checking' : status.state || 'checking',
+        detail: status.error || ('Server status: ' + (status.state || 'processing')),
+        url: status.url || record.url || '',
+        stagedComplete: Boolean(status.stagedChunksComplete || status.stagedComplete),
+        failureStage: status.failureStage || record.failureStage || '',
+        httpStatus: status.httpStatus || record.httpStatus || null,
+        serverHistory: Array.isArray(status.history) ? status.history.slice(-25) : record.serverHistory || []
+      });
+    } catch (error) {
+      updateVideoDiagnostic(record.id, { detail: 'Could not check status: ' + error.message, httpStatus: error.status || null, forceEvent: true });
+      showToast('Could not check upload status: ' + error.message, 6000);
+    } finally {
+      button.disabled = false;
+      renderVideoDiagnostics();
+    }
+  }
+
+  async function copyVideoDiagnostics() {
+    const record = videoDiagnosticSelected();
+    if (!record) return;
+    const report = {
+      uploadId: record.id, fileName: record.fileName, fileSize: record.fileSize,
+      service: record.service, startedAt: record.startedAt, updatedAt: record.updatedAt,
+      stage: record.stage, transferPercent: record.transferPercent,
+      failureStage: record.failureStage || null, httpStatus: record.httpStatus || null,
+      error: record.error || null, detail: record.detail,
+      events: record.events || [], serverHistory: record.serverHistory || []
+    };
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(report, null, 2));
+      showToast('Upload diagnostics copied.');
+    } catch { showToast('Clipboard access was blocked.'); }
+  }
+
+  function placeRecoveredVideo() {
+    const record = videoDiagnosticSelected();
+    if (!record || !/^https:\/\/github\.com\/MatlockFT\/Matlock\/releases\/download\//.test(record.url || '')) return;
+    if (bodyEditor.value.includes(record.url)) { showToast('This video is already in the editor.'); return; }
+    insertBlock(inlineVideoMarkup(record.url));
+    updateVideoDiagnostic(record.id, { stage: 'placed', detail: 'Recovered video inserted. Save the article.' });
+    showToast('Recovered video placed. Save the article to keep it.');
+  }
+
+
   function videoResumeFingerprint(file) {
     return JSON.stringify({
       session: writerSessionId(),
@@ -159,9 +327,20 @@
     const safePercent = Math.max(0, Math.min(100, Number(percent) || 0));
     const elements = videoProgressElements();
     if (elements.shell) elements.shell.hidden = false;
-    if (elements.progress) elements.progress.value = safePercent;
-    if (elements.label) elements.label.textContent = label || `Uploading… ${Math.round(safePercent)}%`;
-    setSaveState(label || `Uploading video… ${Math.round(safePercent)}%`);
+    const transfer = Math.max(0, Math.min(100, (safePercent - 5) / 70 * 100));
+    if (elements.progress) elements.progress.value = transfer;
+    if (elements.label) elements.label.textContent = label || `Uploading… ${Math.round(transfer)}%`;
+    if (activeVideoDiagnosticId) {
+      const stage = /^(Uploading video|Resuming video)/i.test(label) ? 'uploading'
+        : /^(Sending video|Queued)/i.test(label) ? 'queued'
+        : /^(Preparing GitHub|Publishing video)/i.test(label) ? 'publishing'
+        : /^(Publishing was interrupted|Publishing job stopped)/i.test(label) ? 'publishing'
+        : /^(Video received|Processing video)/i.test(label) ? 'verifying' : '';
+      if (stage) updateVideoDiagnostic(activeVideoDiagnosticId, {
+        stage, detail: label, transferPercent: stage === 'uploading' ? transfer : 100
+      });
+    }
+    setSaveState(label || `Uploading video… ${Math.round(transfer)}%`);
   }
 
   function clearVideoUploadProgress() {
@@ -240,6 +419,7 @@
       if (response.status === 401 && videoMediaBase === authBase) expireGithubConnection();
       const error = new Error(data.error || data.message || (videoMediaBase !== authBase ? 'Netlify video uploads are unavailable. Article saving and GitHub sign-in are unaffected.' : `${response.status} ${response.statusText}`));
       error.status = response.status;
+      error.endpoint = String(path || '').split('?')[0];
       throw error;
     }
     return data;
@@ -380,6 +560,15 @@
         continue;
       }
 
+      if (activeVideoDiagnosticId) updateVideoDiagnostic(activeVideoDiagnosticId, {
+        stage: status.state === 'complete' ? 'complete' : status.state || 'checking',
+        detail: status.error || ('Server status: ' + (status.state || 'processing')),
+        url: status.url || '',
+        failureStage: status.failureStage || '',
+        httpStatus: status.httpStatus || null,
+        stagedComplete: Boolean(status.stagedChunksComplete || status.stagedComplete),
+        serverHistory: Array.isArray(status.history) ? status.history.slice(-25) : []
+      });
       if (status.state === 'complete' && status.url) return status.url;
       if (status.state === 'error') {
         if (status.retryable && retryPayload) {
@@ -424,6 +613,13 @@
     const fingerprint = videoResumeFingerprint(file);
     const chunkCount = Math.ceil(file.size / VIDEO_CHUNK_BYTES);
     let resume = readVideoResume(fingerprint);
+    if (resume) {
+      activeVideoDiagnosticId = resume.uploadId;
+      updateVideoDiagnostic(resume.uploadId, {
+        fileName: file.name, fileSize: file.size, service: videoMediaBase,
+        stage: 'checking', detail: 'Checking the previous upload checkpoint.'
+      });
+    }
 
     if (resume && Number(resume.chunkCount) === chunkCount) {
       // The earlier request may have succeeded even though the browser lost
@@ -451,7 +647,7 @@
         clearVideoResume();
         return url;
       }
-      if (status.state === 'error' && status.stagedChunksComplete === true) {
+      if (status.state === 'error' && (status.stagedChunksComplete === true || status.stagedComplete === true)) {
         // Reuse the retained bytes when every staged chunk is present. A
         // non-retryable old status needs an explicit new attempt so the current
         // server diagnostics, rather than a stale browser message, are shown.
@@ -524,6 +720,11 @@
 
     const uploadId = resume?.uploadId || videoUploadId();
     const assetName = resume?.assetName || videoUploadName(file).replace(/[^A-Za-z0-9._-]+/g, '-');
+    activeVideoDiagnosticId = uploadId;
+    updateVideoDiagnostic(uploadId, {
+      fileName: file.name, fileSize: file.size, assetName, service: videoMediaBase,
+      stage: 'uploading', detail: resume ? 'Resuming staged video parts.' : 'Beginning video transfer.'
+    });
     const startIndex = resume ? Number(resume.nextChunkIndex) : 0;
     let uploaded = Math.min(file.size, startIndex * VIDEO_CHUNK_BYTES);
     resume = { fingerprint, uploadId, assetName, chunkCount, nextChunkIndex: startIndex };
@@ -624,14 +825,20 @@
 
     try {
       const url = await uploadVideoAsset(file);
+      updateVideoDiagnostic(activeVideoDiagnosticId, { stage: 'complete', detail: 'GitHub confirmed the published asset.', url, transferPercent: 100 });
       setVideoUploadProgress(100, 'Upload complete · placing video…');
       if (replaceUploadToken(token, inlineVideoMarkup(url, caption))) {
+        updateVideoDiagnostic(activeVideoDiagnosticId, { stage: 'placed', detail: 'Video inserted into the editor. Save the article.' });
         showToast('Video uploaded to GitHub Releases and placed.');
       }
       scheduleAutosave();
       return url;
     } catch (error) {
       replaceUploadToken(token, '');
+      updateVideoDiagnostic(activeVideoDiagnosticId, {
+        stage: 'error', error: error.message, detail: error.message,
+        httpStatus: error.status || null, failureStage: error.endpoint || 'upload'
+      });
       showToast(`Video upload failed: ${error.message}`, 9000);
       return '';
     } finally {
