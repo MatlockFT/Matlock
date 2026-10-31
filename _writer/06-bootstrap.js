@@ -175,6 +175,12 @@ Object.values(fields).forEach(el => {
     dialog.close();
   });
 
+  app.querySelector('[data-video-history-select]')?.addEventListener('change', renderVideoDiagnostics);
+  app.querySelector('[data-video-check-status]')?.addEventListener('click', checkVideoDiagnosticStatus);
+  app.querySelector('[data-video-copy-diagnostics]')?.addEventListener('click', copyVideoDiagnostics);
+  app.querySelector('[data-video-use-upload]')?.addEventListener('click', placeRecoveredVideo);
+  renderVideoDiagnostics();
+
   app.querySelector('[data-video-insert]').addEventListener('click', async () => {
     const dialog = app.querySelector('[data-video-dialog]');
     const fileInput = dialog.querySelector('[data-inline-video-file]');
