@@ -175,7 +175,10 @@ Object.values(fields).forEach(el => {
     dialog.close();
   });
 
-  app.querySelector('[data-video-history-select]')?.addEventListener('change', renderVideoDiagnostics);
+  app.querySelector('[data-video-history-select]')?.addEventListener('change', event => {
+    videoDiagnosticSelection = event.currentTarget.value;
+    renderVideoDiagnostics();
+  });
   app.querySelector('[data-video-check-status]')?.addEventListener('click', checkVideoDiagnosticStatus);
   app.querySelector('[data-video-copy-diagnostics]')?.addEventListener('click', copyVideoDiagnostics);
   app.querySelector('[data-video-use-upload]')?.addEventListener('click', placeRecoveredVideo);
