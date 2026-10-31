@@ -1,5 +1,11 @@
 name: Scorecard Stage 1 QA
 on:
+  push:
+    branches: [main]
+    paths:
+      - copper-orchard-47.html
+      - scripts/qa/judging-stage1.spec.cjs
+      - .github/workflows/scorecard-stage1-qa.yml
   pull_request:
     paths:
       - copper-orchard-47.html
