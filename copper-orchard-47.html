@@ -215,7 +215,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  <div class="modal finish-modal">
   <div class="micro" id="finishKicker">Close fight</div>
   <h2 id="finishTitle" style="margin-top:7px;font-size:22px">Your result</h2>
-  <p class="muted" style="margin-top:6px">Your scorecard and the official judges' scores are saved separately. Enter the official cards when they become available.</p>
+  <p class="muted" style="margin-top:6px">Your scores and the official totals are saved separately. Enter the official results when available.</p>
   <div class="finish-score">
    <div><span id="finishRedName" class="fighter-name red"></span><strong id="finishRedScore" class="mono">0</strong></div>
    <div><span id="finishBlueName" class="fighter-name blue"></span><strong id="finishBlueScore" class="mono">0</strong></div>
@@ -227,7 +227,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   </div>
   <div class="notice" id="finishHint">Confirm all rounds before completing a decision.</div>
   <section class="official-section" aria-labelledby="officialTitle">
-   <h3 id="officialTitle">Official judges' scorecards</h3>
+   <h3 id="officialTitle">Official scores</h3>
    <p class="muted" style="font-size:12px;margin-top:5px">Final points for each fighter. Leave both cells blank for judges whose scores are not yet available.</p>
    <table class="judge-table"><thead><tr><th>Judge</th><th id="officialRedHead" class="red">Red fighter</th><th id="officialBlueHead" class="blue">Blue fighter</th></tr></thead><tbody>
     <tr><td>Judge 1</td><td><input id="officialRed1" type="number" min="0" max="60" step="1" inputmode="numeric" aria-label="Judge 1 red fighter score" placeholder="—"></td><td><input id="officialBlue1" type="number" min="0" max="60" step="1" inputmode="numeric" aria-label="Judge 1 blue fighter score" placeholder="—"></td></tr>
@@ -696,7 +696,7 @@ function officialOutcome(f,cards){
 }
 function officialText(f){
  const cards=judgeCards(f),parts=cards.map((c,i)=>'J'+(i+1)+': '+(c?c.red+'–'+c.blue:'pending'));
- const outcome=officialOutcome(f,cards);return 'Official judges · '+parts.join(' · ')+(outcome?' · '+outcome:'');
+ const outcome=officialOutcome(f,cards);return 'Official · '+parts.join(' · ')+(outcome?' · '+outcome:'');
 }
 function readOfficialInputs(){
  const cards=[];
@@ -730,8 +730,8 @@ function resultDialog(){const f=fight();if(!f)return;pause();
  $('resultType').value=f.result?f.result.type:(f.status==='awaiting-result'?(t[0]===t[1]?'draw':'decision'):'tko');
  $('resultWinner').value=f.result?f.result.winner:'';
  for(let i=1;i<=3;i++){$('officialRed'+i).value=cards[i-1]?.red??'';$('officialBlue'+i).value=cards[i-1]?.blue??''}
- $('finishVerdict').textContent=count===f.rounds?'Your scorecard · '+(t[0]===t[1]?'Draw':safeName(t[0]>t[1]?f.left:f.right,'Fighter')+' wins')+' · '+t[0]+'–'+t[1]:
- 'Your scorecard · '+count+' of '+f.rounds+' rounds scored · '+t[0]+'–'+t[1];
+ $('finishVerdict').textContent=count===f.rounds?'Your scores · '+(t[0]===t[1]?'Draw':safeName(t[0]>t[1]?f.left:f.right,'Fighter')+' wins')+' · '+t[0]+'–'+t[1]:
+ 'Your scores · '+count+' of '+f.rounds+' rounds scored · '+t[0]+'–'+t[1];
  setVisible('finishOverlay',true);renderFinishHint();renderOfficialPreview();
 }
 function renderFinishHint(){const f=fight(),t=$('resultType').value,completed=f.roundData.filter(r=>!!r.score).length===f.rounds;
