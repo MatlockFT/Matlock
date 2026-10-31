@@ -67,8 +67,9 @@
   let videoMediaSessionRequest = null;
   const VIDEO_CHUNK_BYTES = videoMediaBase === authBase ? 1_800_000 : 3_500_000;
   const VIDEO_STATUS_POLL_MS = 1500;
-  const VIDEO_STATUS_TIMEOUT_MS = 20 * 60 * 1000;
-  const VIDEO_STALE_STATUS_MS = 6 * 60 * 1000;
+  const VIDEO_STATUS_TIMEOUT_MS = 35 * 60 * 1000;
+  // Netlify background jobs can run for 15 minutes; never restart an active job at minute 6.
+  const VIDEO_STALE_STATUS_MS = 16 * 60 * 1000;
   const VIDEO_RESUME_KEY = 'matlock-writer:video-upload-resume-v1';
 
   const VIDEO_DIAG_KEY = 'matlock-writer:video-upload-diagnostics-v1';
@@ -118,7 +119,8 @@
     if (!section) return;
     const select = section.querySelector('[data-video-history-select]');
     const records = videoDiagnosticRecords();
-    const preferred = select.value || activeVideoDiagnosticId || records[0]?.id || '';
+    const preferred = activeVideoDiagnosticId && records[0]?.id === activeVideoDiagnosticId
+      ? activeVideoDiagnosticId : select.value || records[0]?.id || '';
     if (select.options.length !== records.length || [...select.options].some((option, i) => option.value !== records[i]?.id)) {
       select.replaceChildren();
       for (const record of records) {
@@ -197,6 +199,7 @@
       updateVideoDiagnostic(record.id, {
         stage: status.state === 'complete' ? 'complete' : status.state === 'processing' ? 'checking' : status.state || 'checking',
         detail: status.error || ('Server status: ' + (status.state || 'processing')),
+        error: status.error || '',
         url: status.url || record.url || '',
         stagedComplete: Boolean(status.stagedChunksComplete || status.stagedComplete),
         failureStage: status.failureStage || record.failureStage || '',
@@ -563,6 +566,7 @@
       if (activeVideoDiagnosticId) updateVideoDiagnostic(activeVideoDiagnosticId, {
         stage: status.state === 'complete' ? 'complete' : status.state || 'checking',
         detail: status.error || ('Server status: ' + (status.state || 'processing')),
+        error: status.error || '',
         url: status.url || '',
         failureStage: status.failureStage || '',
         httpStatus: status.httpStatus || null,
