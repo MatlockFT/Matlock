@@ -841,7 +841,8 @@
       replaceUploadToken(token, '');
       updateVideoDiagnostic(activeVideoDiagnosticId, {
         stage: 'error', error: error.message, detail: error.message,
-        httpStatus: error.status || null, failureStage: error.endpoint || 'upload'
+        httpStatus: error.status || null,
+        failureStage: videoDiagnosticRecords().find(item => item.id === activeVideoDiagnosticId)?.failureStage || error.endpoint || 'upload'
       });
       showToast(`Video upload failed: ${error.message}`, 9000);
       return '';
@@ -849,6 +850,7 @@
       videoUploadInFlight = false;
       setPublishingControls(Boolean(githubCredential));
       window.setTimeout(clearVideoUploadProgress, 1200);
+      renderVideoDiagnostics();
       setSaveState('Unsaved changes');
     }
   }
