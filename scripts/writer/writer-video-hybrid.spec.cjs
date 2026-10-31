@@ -92,6 +92,7 @@ test('upload manager reports stages and recovers a published video into the draf
  await page.click('[data-tool="video"]');
  await expect(page.locator('[data-video-history-select]')).toContainText('recoverable-clip.mp4');
  await expect(page.locator('[data-video-diag-state]')).toContainText('Placed in editor');
+ await page.locator('[data-video-history-details] summary').click();
  await page.click('[data-video-check-status]');
  await expect(page.locator('[data-video-diag-state]')).toContainText('On GitHub');
  await expect(page.locator('[data-video-use-upload]')).toBeVisible();
