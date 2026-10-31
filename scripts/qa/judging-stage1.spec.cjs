@@ -866,7 +866,7 @@ test('existing master with too few columns expands to fit round details',async({
  expect(expanded.length).toBe(4);
  const widths=expanded.map(x=>x.updateSheetProperties.properties.gridProperties.columnCount);
  expect(Math.min(...widths)).toBeGreaterThanOrEqual(8);
- expect(Math.max(...widths)).toBe(22);
+ expect(Math.max(...widths)).toBe(25);
 });
 
 test('oversized master payload fails before replacing archived scores',async({page})=>{
