@@ -78,17 +78,30 @@
         {% for section in picker_preload_event.sections %}
             {% if section.kind == 'main' and section.bouts.size > 0 %}
                 {% assign picker_preload_bout = section.bouts | first %}
-                {% assign picker_preload_fighter = picker_preload_bout.fighters | first %}
-                {% assign picker_preload_override = site.data.fighter_portrait_overrides[picker_preload_fighter.name] %}
                 {% assign picker_lcp_cache = site.data.picker_lcp_portrait %}
-                {% assign picker_preload_source = picker_preload_fighter.image | replace: 'https://ufc.com/', 'https://www.ufc.com/' %}
-                {% unless picker_preload_fighter.image == blank or picker_preload_override.mode == 'fallback' %}
-                    {% if picker_lcp_cache.event_id == picker_preload_event.id and picker_lcp_cache.fighter_name == picker_preload_fighter.name and picker_lcp_cache.source_url == picker_preload_source and picker_lcp_cache.image_url != blank %}
-                        <link rel="preload" as="image" href="{{ picker_lcp_cache.image_url | relative_url | escape }}" fetchpriority="high">
-                    {% else %}
-                        <link rel="preload" as="image" href="{{ picker_preload_source | escape }}" fetchpriority="high" referrerpolicy="no-referrer">
+                {% for picker_preload_fighter in picker_preload_bout.fighters %}
+                    {% assign picker_preload_override = site.data.fighter_portrait_overrides[picker_preload_fighter.name] %}
+                    {% assign picker_preload_source = picker_preload_fighter.image | replace: 'https://ufc.com/', 'https://www.ufc.com/' %}
+                    {% assign picker_cached_url = '' %}
+                    {% if picker_lcp_cache.event_id == picker_preload_event.id %}
+                        {% for cached in picker_lcp_cache.portraits %}
+                            {% if cached.fighter_name == picker_preload_fighter.name and cached.source_url == picker_preload_source %}
+                                {% assign picker_cached_url = cached.image_url %}
+                                {% break %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if picker_cached_url == blank and picker_lcp_cache.fighter_name == picker_preload_fighter.name and picker_lcp_cache.source_url == picker_preload_source %}
+                            {% assign picker_cached_url = picker_lcp_cache.image_url %}
+                        {% endif %}
                     {% endif %}
-                {% endunless %}
+                    {% unless picker_preload_fighter.image == blank or picker_preload_override.mode == 'fallback' %}
+                        {% if picker_cached_url != blank %}
+                            <link rel="preload" as="image" href="{{ picker_cached_url | relative_url | escape }}" fetchpriority="high">
+                        {% else %}
+                            <link rel="preload" as="image" href="{{ picker_preload_source | escape }}" fetchpriority="high" referrerpolicy="no-referrer">
+                        {% endif %}
+                    {% endunless %}
+                {% endfor %}
                 {% break %}
             {% endif %}
         {% endfor %}
