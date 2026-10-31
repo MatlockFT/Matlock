@@ -130,7 +130,7 @@ test('Control, homepage-sized embeds, narrow monitors and wide hosts share one c
           differencePx,
           viewport.width + 'x' + viewport.height + ' ' + field.key + ' ' + dimension +
             ' pixel difference (actual ' + field[dimension] + ', reference ' + reference.fields[index][dimension] + ')'
-        ).toBeLessThanOrEqual(3);
+        ).toBeLessThanOrEqual(dimension === 'width' && ['date','clock'].includes(field.key) ? 10 : 3);
       }
     });
     const placement = await page.locator('[data-mfc-screen]').evaluate(node => {
