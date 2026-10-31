@@ -43,60 +43,41 @@ async function pruneOldAssets(keep = 7) {
   await Promise.all(ordered.slice(keep).map(file => fs.unlink(file.full).catch(() => {})));
 }
 
-async function main() {
+
+async function cachePortrait(fighter, event, previous) {
+  const sourceUrl = normalizeSource(fighter?.image);
+  if (!fighter?.name || !/^https:\/\//i.test(sourceUrl)) return null;
+  const matches = previous?.fighter_name === fighter.name && previous?.source_url === sourceUrl;
+  if (matches && previous?.image_url) {
+    const existingFile = path.join(ROOT, previous.image_url.replace(/^\/+/, ''));
+    const stat = await fs.stat(existingFile).catch(() => null);
+    if (stat && stat.size >= MIN_BYTES && stat.size <= MAX_BYTES) return previous;
+  }
+
   try {
-    const eventsData = await readJson(path.join(ROOT, '_data/upcoming_events.json'));
-    const regionalData = await readJson(path.join(ROOT, '_data/upcoming_events_regional.json'));
-    const overrides = await readJson(path.join(ROOT, '_data/fighter_portrait_overrides.json')) || {};
-    const events = [
-      ...(Array.isArray(eventsData?.events) ? eventsData.events : []),
-      ...(Array.isArray(regionalData?.events) ? regionalData.events : [])
-    ].sort((a, b) => String(a?.date || '').localeCompare(String(b?.date || '')));
-    const event = events[0];
-    const section = event?.sections?.find(item => item?.kind === 'main' && Array.isArray(item?.bouts) && item.bouts.length);
-    const fighter = section?.bouts?.[0]?.fighters?.[0];
-    const sourceUrl = normalizeSource(fighter?.image);
-    if (!event?.id || !event?.date || !fighter?.name || !/^https:\/\//i.test(sourceUrl) || overrides[fighter.name]?.mode === 'fallback') {
-      console.warn('Fight Card Picker LCP portrait cache skipped: no usable first-bout portrait is configured.');
-      return;
-    }
-
-    const existing = await readJson(MANIFEST_PATH);
-    if (existing?.event_id === event.id && existing?.fighter_name === fighter.name &&
-        existing?.source_url === sourceUrl && typeof existing.image_url === 'string') {
-      const existingFile = path.join(ROOT, existing.image_url.replace(/^\/+/, ''));
-      const stat = await fs.stat(existingFile).catch(() => null);
-      if (stat && stat.size >= MIN_BYTES) {
-        console.log('Fight Card Picker LCP portrait already cached locally for ' + fighter.name + '.');
-        return;
-      }
-    }
-
     const response = await fetch(sourceUrl, {
       redirect: 'follow',
       signal: AbortSignal.timeout(20000),
       headers: {
         'user-agent': 'Mozilla/5.0 (compatible; MatlockSiteAssetCache/1.0; +https://mmamatlock.com/)',
-        'referer': 'https://www.ufc.com/',
-        'accept': 'image/avif,image/webp,image/png,image/jpeg,image/gif,image/*;q=0.8,*/*;q=0.5'
+        referer: 'https://www.ufc.com/',
+        accept: 'image/avif,image/webp,image/png,image/jpeg,image/gif,image/*;q=0.8,*/*;q=0.5'
       }
     });
-    if (!response.ok) throw new Error('UFC image server returned HTTP ' + response.status);
+    if (!response.ok) throw new Error('HTTP ' + response.status);
     const declaredLength = Number(response.headers.get('content-length') || 0);
-    if (declaredLength > MAX_BYTES) throw new Error('Portrait exceeds the 4 MiB cache limit');
+    if (declaredLength > MAX_BYTES) throw new Error('Portrait exceeds 4 MiB limit');
     const bytes = Buffer.from(await response.arrayBuffer());
-    if (bytes.length < MIN_BYTES || bytes.length > MAX_BYTES) throw new Error('Downloaded portrait has an invalid size');
+    if (bytes.length < MIN_BYTES || bytes.length > MAX_BYTES) throw new Error('Invalid downloaded portrait size');
     const format = imageFormat(bytes);
-    if (!format) throw new Error('Downloaded portrait is not a supported raster image');
+    if (!format) throw new Error('Unsupported image format');
     const sha256 = createHash('sha256').update(bytes).digest('hex');
     const fileName = PREFIX + sha256.slice(0, 12) + format.ext;
     const imageUrl = '/assets/data/' + fileName;
     await fs.mkdir(ASSETS_DIR, { recursive: true });
     await atomicWrite(path.join(ASSETS_DIR, fileName), bytes);
-    const manifest = {
-      event_id: event.id,
-      event_date: event.date,
-      event_title: event.title || '',
+    console.log('Cached featured fighter portrait locally: ' + fighter.name + ' -> ' + imageUrl);
+    return {
       fighter_name: fighter.name,
       source_url: sourceUrl,
       image_url: imageUrl,
@@ -104,13 +85,54 @@ async function main() {
       sha256,
       bytes: bytes.length
     };
-    await fs.mkdir(path.dirname(MANIFEST_PATH), { recursive: true });
-    await atomicWrite(MANIFEST_PATH, JSON.stringify(manifest, null, 2) + '\n');
-    await pruneOldAssets();
-    console.log('Cached Fight Card Picker LCP portrait locally: ' + event.date + ' ' + fighter.name + ' -> ' + imageUrl + ' (' + bytes.length + ' bytes).');
   } catch (error) {
-    console.warn('Fight Card Picker local portrait cache skipped; remote image remains the fallback. ' + String(error?.message || error));
+    console.warn('Portrait cache unavailable for ' + fighter.name + ': ' + String(error?.message || error));
+    return null;
   }
+}
+
+async function main() {
+  const eventsData = await readJson(path.join(ROOT, '_data/upcoming_events.json'));
+  const regionalData = await readJson(path.join(ROOT, '_data/upcoming_events_regional.json'));
+  const overrides = await readJson(path.join(ROOT, '_data/fighter_portrait_overrides.json')) || {};
+  const events = [
+    ...(Array.isArray(eventsData?.events) ? eventsData.events : []),
+    ...(Array.isArray(regionalData?.events) ? regionalData.events : [])
+  ].sort((a, b) => String(a?.date || '').localeCompare(String(b?.date || '')));
+  const event = events[0];
+  const section = event?.sections?.find(item => item?.kind === 'main' && Array.isArray(item?.bouts) && item.bouts.length);
+  const fighters = section?.bouts?.[0]?.fighters?.slice(0, 2) || [];
+  if (!event?.id || !event?.date || !fighters.length) {
+    console.warn('Fight Card Picker LCP portrait cache skipped: no main event portrait configured.');
+    return;
+  }
+
+  const existing = await readJson(MANIFEST_PATH);
+  const previousPortraits = existing?.event_id === event.id
+    ? (Array.isArray(existing.portraits) && existing.portraits.length ? existing.portraits : [existing])
+    : [];
+  const portraits = [];
+  for (const fighter of fighters) {
+    if (overrides[fighter?.name]?.mode === 'fallback') continue;
+    const previous = previousPortraits.find(item => item?.fighter_name === fighter?.name);
+    const portrait = await cachePortrait(fighter, event, previous);
+    if (portrait) portraits.push(portrait);
+  }
+  if (!portraits.length) {
+    console.warn('No featured fighter portrait could be cached. Existing cache is unchanged.');
+    return;
+  }
+
+  // Preserve the previous top-level fields for old templates and QA tools.
+  const first = portraits[0];
+  const manifest = {
+    event_id: event.id, event_date: event.date, event_title: event.title || '',
+    ...first, portraits
+  };
+  await fs.mkdir(path.dirname(MANIFEST_PATH), { recursive: true });
+  await atomicWrite(MANIFEST_PATH, JSON.stringify(manifest, null, 2) + '\n');
+  await pruneOldAssets();
+  console.log('Featured matchup portrait cache: ' + portraits.length + '/' + fighters.length + ' locally available.');
 }
 
 await main();

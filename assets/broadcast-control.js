@@ -357,7 +357,10 @@
     const sequenceWidth = Math.max(1, tickerPreview.offsetWidth);
     const stageWidth = Math.max(1, tickerPreviewStage.clientWidth || 640);
     const pixelsPerSecond = Math.max(1, stageWidth * .15 * speed);
-    const seconds = clamp(sequenceWidth / pixelsPerSecond, 8, 300);
+    // Apply the speed multiplier after the safe baseline bounds. Clamping the
+    // final duration to 8s erased speed changes on short ticker headlines.
+    const baselineSeconds = clamp(sequenceWidth / Math.max(1, stageWidth * .15), 8, 300);
+    const seconds = baselineSeconds / speed;
 
     tickerPreviewTrack.style.setProperty('--mfc-ticker-preview-distance', '-' + sequenceWidth + 'px');
     tickerPreviewTrack.style.setProperty('--mfc-ticker-preview-seconds', seconds + 's');
