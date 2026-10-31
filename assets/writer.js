@@ -5463,6 +5463,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
 
   const VIDEO_DIAG_KEY = 'matlock-writer:video-upload-diagnostics-v1';
   let activeVideoDiagnosticId = '';
+  let videoDiagnosticSelection = '';
 
   // Diagnostic history intentionally stores no credentials, cookies or file bytes.
   function videoDiagnosticRecords() {
@@ -5508,8 +5509,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     if (!section) return;
     const select = section.querySelector('[data-video-history-select]');
     const records = videoDiagnosticRecords();
-    const preferred = activeVideoDiagnosticId && records[0]?.id === activeVideoDiagnosticId
-      ? activeVideoDiagnosticId : select.value || records[0]?.id || '';
+    const preferred = videoDiagnosticSelection || activeVideoDiagnosticId || records[0]?.id || '';
     if (select.options.length !== records.length || [...select.options].some((option, i) => option.value !== records[i]?.id)) {
       select.replaceChildren();
       for (const record of records) {
@@ -6008,6 +6008,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     let resume = readVideoResume(fingerprint);
     if (resume) {
       activeVideoDiagnosticId = resume.uploadId;
+      videoDiagnosticSelection = resume.uploadId;
       updateVideoDiagnostic(resume.uploadId, {
         fileName: file.name, fileSize: file.size, service: videoMediaBase,
         stage: 'checking', detail: 'Checking the previous upload checkpoint.'
@@ -6114,6 +6115,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     const uploadId = resume?.uploadId || videoUploadId();
     const assetName = resume?.assetName || videoUploadName(file).replace(/[^A-Za-z0-9._-]+/g, '-');
     activeVideoDiagnosticId = uploadId;
+    videoDiagnosticSelection = uploadId;
     updateVideoDiagnostic(uploadId, {
       fileName: file.name, fileSize: file.size, assetName, service: videoMediaBase,
       stage: 'uploading', detail: resume ? 'Resuming staged video parts.' : 'Beginning video transfer.'
@@ -6230,7 +6232,8 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       replaceUploadToken(token, '');
       updateVideoDiagnostic(activeVideoDiagnosticId, {
         stage: 'error', error: error.message, detail: error.message,
-        httpStatus: error.status || null, failureStage: error.endpoint || 'upload'
+        httpStatus: error.status || null,
+        failureStage: videoDiagnosticRecords().find(item => item.id === activeVideoDiagnosticId)?.failureStage || error.endpoint || 'upload'
       });
       showToast(`Video upload failed: ${error.message}`, 9000);
       return '';
@@ -6238,6 +6241,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       videoUploadInFlight = false;
       setPublishingControls(Boolean(githubCredential));
       window.setTimeout(clearVideoUploadProgress, 1200);
+      renderVideoDiagnostics();
       setSaveState('Unsaved changes');
     }
   }
@@ -6965,7 +6969,10 @@ Object.values(fields).forEach(el => {
     dialog.close();
   });
 
-  app.querySelector('[data-video-history-select]')?.addEventListener('change', renderVideoDiagnostics);
+  app.querySelector('[data-video-history-select]')?.addEventListener('change', event => {
+    videoDiagnosticSelection = event.currentTarget.value;
+    renderVideoDiagnostics();
+  });
   app.querySelector('[data-video-check-status]')?.addEventListener('click', checkVideoDiagnosticStatus);
   app.querySelector('[data-video-copy-diagnostics]')?.addEventListener('click', copyVideoDiagnostics);
   app.querySelector('[data-video-use-upload]')?.addEventListener('click', placeRecoveredVideo);
