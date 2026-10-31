@@ -132,6 +132,9 @@
     }
     select.value = records.some(item => item.id === preferred) ? preferred : (records[0]?.id || '');
     const record = videoDiagnosticSelected();
+    if (record && ['error','missing'].includes(record.stage)) {
+      section.querySelector('[data-video-history-details]').open = true;
+    }
     const state = section.querySelector('[data-video-diag-state]');
     const detail = section.querySelector('[data-video-diag-detail]');
     const stages = [...section.querySelectorAll('[data-video-stages] li')];
