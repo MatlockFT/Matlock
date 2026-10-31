@@ -1902,6 +1902,13 @@
     markDirty();
   }
 
+  // Reordering inserts the dragged element elsewhere in the track. The browser
+  // can release pointer capture when that DOM node moves, so completion must be
+  // handled on the document, not solely on the relocated element.
+  document.addEventListener('pointermove', programDragMove);
+  document.addEventListener('pointerup', event => programDragEnd(event));
+  document.addEventListener('pointercancel', event => programDragEnd(event, true));
+
   programZoomInput?.addEventListener('input', () => setProgramZoom(Number(programZoomInput.value) / 100));
   programZoomOutButton?.addEventListener('click', () => setProgramZoom(programZoom - .1));
   programZoomInButton?.addEventListener('click', () => setProgramZoom(programZoom + .1));
@@ -1975,9 +1982,6 @@
         }
       });
       block.addEventListener('pointerdown', event => programDragStart(event, block, item));
-      block.addEventListener('pointermove', programDragMove);
-      block.addEventListener('pointerup', event => programDragEnd(event));
-      block.addEventListener('pointercancel', event => programDragEnd(event, true));
 
       programTrack.append(block);
     });

@@ -339,7 +339,9 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
 
   const firstBox = await programBlocks.nth(0).boundingBox();
   const secondBox = await programBlocks.nth(1).boundingBox();
-  await page.mouse.move(firstBox.x + firstBox.width / 2, firstBox.y + firstBox.height / 2);
+  // Start from the non-interactive left edge; the center can overlap a
+  // duration input at narrower production widths and suppress dragging.
+  await page.mouse.move(firstBox.x + 14, firstBox.y + firstBox.height / 2);
   await page.mouse.down();
   await page.mouse.move(secondBox.x + secondBox.width - 4, secondBox.y + secondBox.height / 2, { steps: 6 });
   await page.mouse.up();
