@@ -74,6 +74,7 @@
 
   const VIDEO_DIAG_KEY = 'matlock-writer:video-upload-diagnostics-v1';
   let activeVideoDiagnosticId = '';
+  let videoDiagnosticSelection = '';
 
   // Diagnostic history intentionally stores no credentials, cookies or file bytes.
   function videoDiagnosticRecords() {
@@ -119,8 +120,7 @@
     if (!section) return;
     const select = section.querySelector('[data-video-history-select]');
     const records = videoDiagnosticRecords();
-    const preferred = activeVideoDiagnosticId && records[0]?.id === activeVideoDiagnosticId
-      ? activeVideoDiagnosticId : select.value || records[0]?.id || '';
+    const preferred = videoDiagnosticSelection || activeVideoDiagnosticId || records[0]?.id || '';
     if (select.options.length !== records.length || [...select.options].some((option, i) => option.value !== records[i]?.id)) {
       select.replaceChildren();
       for (const record of records) {
@@ -619,6 +619,7 @@
     let resume = readVideoResume(fingerprint);
     if (resume) {
       activeVideoDiagnosticId = resume.uploadId;
+      videoDiagnosticSelection = resume.uploadId;
       updateVideoDiagnostic(resume.uploadId, {
         fileName: file.name, fileSize: file.size, service: videoMediaBase,
         stage: 'checking', detail: 'Checking the previous upload checkpoint.'
@@ -725,6 +726,7 @@
     const uploadId = resume?.uploadId || videoUploadId();
     const assetName = resume?.assetName || videoUploadName(file).replace(/[^A-Za-z0-9._-]+/g, '-');
     activeVideoDiagnosticId = uploadId;
+    videoDiagnosticSelection = uploadId;
     updateVideoDiagnostic(uploadId, {
       fileName: file.name, fileSize: file.size, assetName, service: videoMediaBase,
       stage: 'uploading', detail: resume ? 'Resuming staged video parts.' : 'Beginning video transfer.'
