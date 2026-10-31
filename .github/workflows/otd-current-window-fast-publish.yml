@@ -190,8 +190,26 @@ jobs:
           lead_assets=(assets/data/on-this-day-current-lead-*)
           if [ "${#lead_assets[@]}" -gt 0 ]; then git add -- "${lead_assets[@]}"; fi
           git commit -m "Fast-publish current On This Day images"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          # Archive generators may also touch tracked, non-published files.
+          # Keep the intended commit isolated so rebase cannot fail on a dirty
+          # working tree. The runner is disposable; report the extra changes.
+          if ! git diff --quiet; then
+            echo "::warning::Unpublished generated changes left after archive commit; stashing before rebase."
+            git status --short
+            git stash push -m "Unpublished On This Day generator changes"
+          fi
+          # Other scheduled workflows can update main while this job runs.
+          # Rebase and retry the push instead of failing on a benign race.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase -X theirs origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep "$attempt"
+          done
+          echo "Could not publish On This Day changes after five attempts." >&2
+          exit 1
 
       - name: Publish rolling share image cache
         shell: bash
