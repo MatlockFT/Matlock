@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-10-30T21:01:41.110Z",
+  "generatedAt": "2026-10-31T05:23:06.277Z",
   "engineVersion": 2,
   "subjects": 336,
-  "publishedRecommendations": 922,
+  "publishedRecommendations": 917,
   "recommendationSlots": {
-    "0": 26,
-    "1": 2,
+    "0": 27,
+    "1": 3,
     "2": 4,
-    "3": 304
+    "3": 302
   },
   "caseCounts": {
-    "rebound-pairing": 393,
+    "rebound-pairing": 390,
     "rising-vs-rising": 262,
     "step-up-vs-rebound": 112,
-    "ranking-opportunity": 57,
+    "ranking-opportunity": 54,
     "rankings-progression": 51,
-    "divisional-sorting": 21,
-    "title-case": 10,
-    "prospect-test": 9,
+    "divisional-sorting": 20,
+    "title-case": 11,
+    "prospect-test": 10,
     "title-eliminator": 7
   },
   "confidenceCounts": {
-    "high": 864,
-    "medium": 30,
-    "low": 28
+    "high": 860,
+    "medium": 31,
+    "low": 26
   },
   "averageRecentOpponentLinkCoverage": 0.9048,
-  "sameCardRecommendations": 49,
-  "sameCardRecommendationRatio": 0.0531,
-  "asymmetricTopThreeRecommendations": 321,
-  "asymmetricTopThreeRatio": 0.3482,
-  "publicPublishedRecommendations": 895,
+  "sameCardRecommendations": 48,
+  "sameCardRecommendationRatio": 0.0523,
+  "asymmetricTopThreeRecommendations": 320,
+  "asymmetricTopThreeRatio": 0.349,
+  "publicPublishedRecommendations": 892,
   "publicAsymmetricTopThreeRecommendations": 233,
-  "publicAsymmetricTopThreeRatio": 0.2603,
-  "engineGenericDivisionalSortingRecommendations": 21,
+  "publicAsymmetricTopThreeRatio": 0.2612,
+  "engineGenericDivisionalSortingRecommendations": 20,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -74,8 +74,8 @@
       "title": "UFC 332: Silva vs Wang",
       "date": "2026-10-03",
       "subjects": 28,
-      "publicRecommendations": 77,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 74,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-september-26-2026",
@@ -98,8 +98,8 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 65,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 62,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-september-05-2026",
@@ -130,8 +130,8 @@
       "title": "UFC 330: Makhachev vs Machado Garry",
       "date": "2026-08-15",
       "subjects": 24,
-      "publicRecommendations": 53,
-      "noClearMatchupSubjects": 5
+      "publicRecommendations": 56,
+      "noClearMatchupSubjects": 4
     },
     {
       "id": "ufc-fight-night-august-08-2026",
@@ -453,11 +453,6 @@
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Waldo Cortes Acosta",
-          "score": 88,
-          "case": "step-up-vs-rebound"
-        },
-        {
           "opponent": "Rizvan Kuniev",
           "score": 85,
           "case": "step-up-vs-rebound"
@@ -466,6 +461,11 @@
           "opponent": "Ante Delija",
           "score": 83,
           "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Valter Walker",
+          "score": 76,
+          "case": "rankings-progression"
         }
       ]
     },
