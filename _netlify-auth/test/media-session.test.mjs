@@ -35,3 +35,23 @@ test('Netlify supports 100-200 MiB and the Writer limit with bounded small chunk
   assert.equal(validateMediaMetadata({assetName:'long-video.mp4',fileSize:size,fileType:'video/mp4',chunkCount:chunks}).fileSize,size);
  }
 });
+test('upload diagnostics retain state transitions without accumulating chunk entries',async()=>{
+ const { setStatus, statusKey } = await import('../netlify/functions/_writer-media.mjs');
+ const values = new Map();
+ const store = {
+   async get(key) { return values.get(key) || null; },
+   async setJSON(key, value) { values.set(key, value); }
+ };
+ const scope = 'abcdefabcdefabcdefabcdef', id = 'diagnosticupload123';
+ await setStatus(store, scope, id, { state: 'uploading', fileSize: 123 });
+ await setStatus(store, scope, id, { state: 'queued', fileSize: 123 });
+ await setStatus(store, scope, id, { state: 'preparing', fileSize: 123 });
+ await setStatus(store, scope, id, { state: 'publishing', fileSize: 123 });
+ await setStatus(store, scope, id, { state: 'error', failureStage: 'github-transfer', httpStatus: 502, error: 'Upstream response' });
+ const entry = values.get(statusKey(scope,id));
+ assert.deepEqual(entry.history.map(x=>x.state), ['queued','preparing','publishing','error']);
+ assert.equal(entry.history.at(-1).httpStatus, 502);
+ assert.equal(entry.history.at(-1).failureStage, 'github-transfer');
+ assert.ok(entry.startedAt && entry.updatedAt);
+ assert.ok(!JSON.stringify(entry).includes('github_owner_test_credential'));
+});

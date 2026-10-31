@@ -102,7 +102,9 @@ export async function uploadAsset(token, release, store, scope, uploadId, meta) 
     const existing = await existingReleaseAsset(token, release, meta.assetName, meta.fileSize);
     if (existing) return existing;
   }
-  throw new Error(data?.message || `GitHub Release upload failed with status ${response.status}.`);
+  const failure = new Error(data?.message || `GitHub Release upload failed with status ${response.status}.`);
+  failure.status = response.status;
+  throw failure;
 }
 
 export default async function handler(request) {
@@ -130,6 +132,7 @@ export default async function handler(request) {
   const scope = uploadScope(sessionId);
   const store = mediaStore();
 
+  let failureStage = 'verification';
   try {
     const current = await store.get(statusKey(scope, uploadId), { type: 'json', consistency: 'strong' });
     if (current?.state === 'complete' && current?.url) return;
@@ -137,9 +140,11 @@ export default async function handler(request) {
     await setStatus(store, scope, uploadId, { state: 'preparing', ...meta });
     await verifyChunks(store, scope, uploadId, meta.chunkCount, meta.fileSize);
 
+    failureStage = 'release-setup';
     const release = await ensureRelease(session.token);
     await setStatus(store, scope, uploadId, { state: 'publishing', ...meta });
 
+    failureStage = 'github-transfer';
     const asset = await uploadAsset(session.token, release, store, scope, uploadId, meta);
     await setStatus(store, scope, uploadId, {
       state: 'complete',
@@ -150,9 +155,14 @@ export default async function handler(request) {
     });
     await cleanupChunks(store, scope, uploadId, meta.chunkCount);
   } catch (error) {
+    const safeError = String(error?.message || error || 'GitHub Release upload failed.')
+      .replace(/(?:gh[pousr]_|github_pat_)[A-Za-z0-9_]+/g, '[redacted]')
+      .slice(0, 500);
     await setStatus(store, scope, uploadId, {
       state: 'error',
-      error: String(error?.message || error || 'GitHub Release upload failed.'),
+      error: safeError,
+      failureStage,
+      httpStatus: Number.isInteger(error?.status) ? error.status : null,
       stagedRetained: true,
       retryable: false,
       ...meta

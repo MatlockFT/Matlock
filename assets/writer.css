@@ -569,6 +569,27 @@
 }
 
 
+.writer-video-diagnostics{border:1px solid rgba(255,255,255,.13);border-radius:10px;padding:.85rem;background:#121213;display:grid;gap:.55rem;min-width:0}
+.writer-video-diagnostics-head{display:flex;justify-content:space-between;align-items:center;gap:.6rem;font-size:.8rem}
+.writer-video-diagnostics-head>span{font-size:.72rem;color:#b2b2b2}
+.writer-video-diagnostics>p{margin:0;font-size:.73rem;color:#aaa;overflow-wrap:anywhere;line-height:1.45}
+.writer-video-stages{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0;margin:.15rem 0;gap:.35rem}
+.writer-video-stages li{border:1px solid rgba(255,255,255,.11);padding:.42rem .2rem;text-align:center;border-radius:7px;font-size:.7rem;color:#919191}
+.writer-video-stages li[data-stage-status="done"]{color:#b5dec4;border-color:#416c4f;background:#17241b}
+.writer-video-stages li[data-stage-status="active"]{color:#fff;border-color:#aeaeae;background:#29292b}
+.writer-video-stages li[data-stage-status="failed"]{color:#f4b4b4;border-color:#894242;background:#311a1a}
+.writer-video-history{border-top:1px solid rgba(255,255,255,.08);padding-top:.45rem}
+.writer-video-history summary{cursor:pointer;color:#ddd;font-size:.75rem;font-weight:700}
+.writer-video-history>.writer-field{display:block;margin:.6rem 0}
+.writer-video-history select{width:100%;max-width:100%;background:#161617;color:#eee;padding:.55rem;border:1px solid #474747;border-radius:7px;font-size:.75rem}
+.writer-video-history-actions{display:flex;gap:.4rem;flex-wrap:wrap}
+.writer-video-history-actions .writer-button{font-size:.69rem;padding:.45rem .55rem}
+.writer-video-recovery-note{font-size:.72rem;color:#a7a7a7;line-height:1.4}
+.writer-video-history-events{font: .7rem/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;color:#bbb;background:#0b0b0c;border:1px solid #333;padding:.65rem .65rem .65rem 1.8rem;border-radius:7px;max-height:170px;overflow:auto;overflow-wrap:anywhere}
+.writer-video-history-events li{margin:.2rem 0}
+.writer-video-upload-status{grid-template-columns:1fr}
+.writer-video-upload-status span{white-space:normal}
+
 /* Direct media manipulation in the live article preview. */
 .writer-app [data-preview-content] :is(.article-inline-image,.article-inline-video){
   position:relative;

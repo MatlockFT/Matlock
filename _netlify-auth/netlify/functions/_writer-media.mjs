@@ -118,9 +118,34 @@ export function mediaStore() {
 }
 
 export async function setStatus(store, scope, uploadId, status) {
-  await store.setJSON(statusKey(scope, uploadId), {
+  const key = statusKey(scope, uploadId);
+  const now = new Date().toISOString();
+  // Chunk requests are frequent: do not read or append a history entry for every part.
+  if (status.state === 'uploading') {
+    await store.setJSON(key, { ...status, updatedAt: now });
+    return;
+  }
+  const previous = await store.get(key, { type: 'json', consistency: 'strong' }).catch(() => null);
+  const history = Array.isArray(previous?.history) ? previous.history.slice(-24) : [];
+  const description = status.state === 'queued' ? 'GitHub publishing job queued'
+    : status.state === 'preparing' ? 'Verifying staged file parts'
+    : status.state === 'publishing' ? 'Transferring to GitHub Releases'
+    : status.state === 'complete' ? 'GitHub Release asset confirmed'
+    : status.state === 'error' ? 'Publishing failed' : 'Upload state changed';
+  if (history.at(-1)?.state !== status.state || status.state === 'error') {
+    history.push({
+      at: now,
+      state: status.state,
+      description,
+      ...(status.failureStage ? { failureStage: status.failureStage } : {}),
+      ...(Number.isInteger(status.httpStatus) ? { httpStatus: status.httpStatus } : {})
+    });
+  }
+  await store.setJSON(key, {
     ...status,
-    updatedAt: new Date().toISOString()
+    history: history.slice(-25),
+    startedAt: previous?.startedAt || now,
+    updatedAt: now
   });
 }
 

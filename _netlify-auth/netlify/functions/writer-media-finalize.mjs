@@ -59,7 +59,9 @@ export default async function handler(request) {
   });
 
   const processUrl = `${new URL(request.url).origin}/api/writer/media-process`;
-  const processResponse = await fetch(processUrl, {
+  let processResponse;
+  try {
+    processResponse = await fetch(processUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -73,12 +75,23 @@ export default async function handler(request) {
       assetName: meta.assetName
     }),
     cache: 'no-store'
-  });
+    });
+  } catch (error) {
+    await setStatus(store, scope, uploadId, {
+      state: 'error', failureStage: 'start', error: 'Could not reach the GitHub publishing worker.',
+      stagedRetained: true, retryable: true, ...meta
+    });
+    return Response.json({ ok: false, error: 'Could not reach the GitHub publishing worker.' }, { status: 502, headers });
+  }
 
   if (!processResponse.ok) {
     await setStatus(store, scope, uploadId, {
       state: 'error',
       error: 'Could not start the GitHub Release publishing job.',
+      failureStage: 'start',
+      httpStatus: processResponse.status,
+      stagedRetained: true,
+      retryable: true,
       chunkCount: meta.chunkCount,
       fileSize: meta.fileSize,
       fileType: meta.fileType,

@@ -42,8 +42,9 @@ export default async function handler(request) {
       stagedBytes += size;
     }
     status.stagedComplete = allPresent && stagedBytes === Number(status.fileSize);
+    status.stagedChunksComplete = status.stagedComplete; // Backwards-compatible recovery flag.
   }
-  return Response.json(status || { state: 'processing' }, { status: 200, headers });
+  return Response.json(status || { state: 'missing', error: 'Upload record not found. Its temporary storage may have expired.' }, { status: 200, headers });
 }
 
 export const config = {
