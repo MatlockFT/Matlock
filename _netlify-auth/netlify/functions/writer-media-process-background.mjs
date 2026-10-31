@@ -102,7 +102,9 @@ export async function uploadAsset(token, release, store, scope, uploadId, meta) 
     const existing = await existingReleaseAsset(token, release, meta.assetName, meta.fileSize);
     if (existing) return existing;
   }
-  throw new Error(data?.message || `GitHub Release upload failed with status ${response.status}.`);
+  const failure = new Error(data?.message || `GitHub Release upload failed with status ${response.status}.`);
+  failure.status = response.status;
+  throw failure;
 }
 
 export default async function handler(request) {
