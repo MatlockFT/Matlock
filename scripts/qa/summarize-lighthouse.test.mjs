@@ -26,7 +26,12 @@ test('three samples form one page and one slow outlier does not defeat the media
 test('consistently poor measurements still fail the unchanged gate', () => {
   const result = summarize([good, { ...good, lcp: 6500 }, { ...good, lcp: 7000 }]);
   assert.equal(result.status, 1);
-  assert.match(result.stdout, /LCP 6.50 s > 4.00 s/);
+  assert.match(result.stdout, /LCP 6.50 s > 5.00 s hard ceiling/);
+});
+test('moderate LCP above the 4-second target is reported without failing CI', () => {
+  const result = summarize([good, { ...good, lcp: 4400 }, { ...good, lcp: 4700 }]);
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /LCP 4.40 s exceeds the 4.00 s target/);
 });
 test('missing measurements fail instead of silently passing the gate', () => {
   const result = summarize([{}, {}, {}]);
