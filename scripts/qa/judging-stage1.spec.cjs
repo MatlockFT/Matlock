@@ -489,6 +489,7 @@ async function stubGoogleSheets(page,options={}){
    hasGrantedAllScopes:()=>true,
    revoke:(_t,cb)=>{if(cb)cb()}
   }}};
+  window.__qaCloudFile=null;window.__qaCloudVersion=0;
   window.__sheetRequests=[];
   window.__failNextWrite=false;window.__mockColumnCount=26;
   window.__masterFiles={};let nextId=123;
@@ -496,6 +497,23 @@ async function stubGoogleSheets(page,options={}){
   const response=(body,status=200)=>new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json'}});
   window.fetch=async(url,init={})=>{
    const address=String(url);
+   if(address.startsWith('https://www.googleapis.com/')){
+    const u=new window.URL(address),p=u.pathname,m=init.method||'GET',reply=(v,status=200)=>response(v,status);
+    if(p==='/drive/v3/files'&&m==='GET')
+     return reply({files:window.__qaCloudFile?[{id:'qa-cloud-file',mimeType:'application/json',name:'copper47-workspace-sync-v1.json',version:String(window.__qaCloudVersion)}]:[]});
+    if(p==='/drive/v3/files/qa-cloud-file'&&m==='GET')
+     return u.searchParams.get('alt')==='media'?reply(window.__qaCloudFile):reply({id:'qa-cloud-file',version:String(window.__qaCloudVersion)});
+    if(p==='/upload/drive/v3/files'&&m==='POST'){
+     const raw=String(init.body),second=raw.indexOf('\r\n\r\n',raw.indexOf('\r\n\r\n')+4),end=raw.lastIndexOf('\r\n--workspace');
+     window.__qaCloudFile=JSON.parse(raw.slice(second+4,end));window.__qaCloudVersion=(window.__qaCloudVersion||0)+1;
+     return reply({id:'qa-cloud-file',version:String(window.__qaCloudVersion)});
+    }
+    if(p==='/upload/drive/v3/files/qa-cloud-file'&&m==='PATCH'){
+     window.__qaCloudFile=JSON.parse(init.body);window.__qaCloudVersion++;
+     return reply({id:'qa-cloud-file',version:String(window.__qaCloudVersion)});
+    }
+    return reply({error:{message:'Unmocked Drive request '+m+' '+p}},400);
+   }
    if(!address.startsWith('https://sheets.googleapis.com/v4/spreadsheets'))return originalFetch(url,init);
    const u=new window.URL(address),path=u.pathname,method=init.method||'GET',body=init.body?JSON.parse(init.body):null;
    window.__sheetRequests.push({path,method,body,authorization:init.headers?.Authorization});
@@ -1192,7 +1210,7 @@ test('official judge scores require complete pairs and leave personal result unc
 // A server-side fake Drive store survives page reloads and models a second computer.
 async function fakeWorkspaceDrive(page,remote) {
  await page.route('https://www.googleapis.com/**',async route=>{
-  const req=route.request(),url=new URL(req.url()),path=url.pathname,method=req.method();
+  const req=route.request(),url=new globalThis.URL(req.url()),path=url.pathname,method=req.method();
   const result=(value,status=200)=>route.fulfill({status,contentType:'application/json',body:JSON.stringify(value)});
   if(path==='/drive/v3/files'&&method==='GET'){
    return result({files:remote.file?[{id:'qa-workspace-drive-file',name:'copper47-workspace-sync-v1.json',mimeType:'application/json',version:String(remote.version)}]:[]});
