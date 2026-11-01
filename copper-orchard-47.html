@@ -116,6 +116,17 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  <div class="workspace">
   <aside class="panel sidebar"><div class="panel-title"><h2>Events</h2><span id="eventCount" class="micro"></span></div><div id="events"></div></aside>
   <div id="eventPane">
+   <section class="panel" id="cloudPanel" style="margin-bottom:18px">
+   <div class="panel-title"><h2>Google Drive · Workspace sync</h2><span id="cloudStatus" class="micro">Not connected</span></div>
+   <p class="muted">Keep your events, fights, scores and official cards available across computers. Connect the same Google account on each device. Changes are saved locally and synced automatically while the event list is open.</p>
+   <div class="actions" style="margin-top:13px"><button id="connectDrive">Connect Google</button><button id="cloudSyncNow" class="primary" disabled>Sync now</button><button id="disconnectDrive" class="quiet small-btn" disabled>Disconnect</button></div>
+   <p id="cloudMessage" class="muted" role="status" style="margin-top:10px">Connect Google to load existing events or save this browser's events to Drive.</p>
+   <details style="margin-top:14px"><summary>Google sign-in setup</summary>
+    <p class="muted" style="margin:9px 0">Use your Google OAuth web client ID. Enable both <strong>Google Drive API</strong> and <strong>Google Sheets API</strong> in its Google Cloud project, authorize <strong id="googleOrigin"></strong> as a JavaScript origin and add your Google account as a test user if necessary. No client secret or token is stored.</p>
+    <label>Google OAuth web client ID<input id="clientId" maxlength="300" placeholder="…apps.googleusercontent.com" autocomplete="off"></label>
+    <p style="margin-top:9px"><a class="sheet-link" target="_blank" rel="noopener noreferrer" href="https://developers.google.com/identity/oauth2/web/guides/use-token-model">Google OAuth setup</a></p>
+   </details>
+   </section>
    <div id="emptyEvent" class="empty">Create an event to begin. All rounds and results stay together under that event.</div>
    <section class="panel hidden" id="eventEditor">
     <div class="panel-title"><h2>Event setup</h2><button id="deleteEvent" class="danger small-btn">Delete event</button></div>
@@ -134,17 +145,15 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     </div><div class="actions" style="margin-top:14px"><button id="addBout" class="primary">Add fight</button></div></div>
     <div class="section"><div class="section-head"><h2>Google Sheets · Master archive</h2><span id="driveStatus" class="micro">Not connected</span></div>
     <p class="muted">One master spreadsheet for all events. Events, Fights, Rounds and Moments have their own tabs. Sync an event or your entire workspace into the same archive; other archived events are retained.</p>
-    <div class="actions" style="margin-top:13px"><button id="connectDrive">Connect Google</button><button id="syncEvent" class="primary" disabled>Sync this event</button><button id="syncAllEvents" disabled>Sync all events</button><a id="sheetLink" class="sheet-link hidden" target="_blank" rel="noopener noreferrer">Open master spreadsheet ↗</a><button id="disconnectDrive" class="quiet small-btn" disabled>Disconnect</button></div>
+    <div class="actions" style="margin-top:13px"><button id="syncEvent" class="primary" disabled>Sync this event</button><button id="syncAllEvents" disabled>Sync all events</button><a id="sheetLink" class="sheet-link hidden" target="_blank" rel="noopener noreferrer">Open master spreadsheet ↗</a></div>
     <p id="sheetMessage" class="muted" style="margin-top:10px">Connect a Google account and sync when ready.</p>
     <details style="margin-top:16px"><summary>Google connection setup · Link existing master</summary>
     <p class="muted" style="margin:9px 0">Already have a master spreadsheet from this tool? Paste its full Google Sheets URL or spreadsheet ID to connect it rather than creating a second one. Existing individual event spreadsheets are kept in Drive but are no longer updated.</p>
     <div class="actions"><label style="flex:1;min-width:180px">Master spreadsheet URL or ID<input id="masterSheetInput" placeholder="https://docs.google.com/spreadsheets/d/…/edit" autocomplete="off"></label><button id="attachMaster" class="small-btn" style="align-self:end">Use this master</button></div>
     <button id="unlinkSheet" class="quiet danger small-btn hidden" style="margin-top:9px">Unlink master (keep Google file)</button>
-    <p class="muted" style="margin:9px 0">Use your existing Google web OAuth client (your previously saved client ID is reused). In that Google Cloud project, enable the <strong>Google Sheets API</strong>. Configure the OAuth consent screen, add your Google account as a test user if needed, and authorize <strong id="googleOrigin"></strong> as a JavaScript origin. No client secret is needed. Google's sign-in is required; no account token is stored.</p>
-    <label>Google OAuth web client ID<input id="clientId" maxlength="300" placeholder="…apps.googleusercontent.com" autocomplete="off"></label>
-    <p style="margin-top:9px"><a class="sheet-link" target="_blank" rel="noopener noreferrer" href="https://developers.google.com/identity/oauth2/web/guides/use-token-model">Google OAuth setup</a></p>
+
     </details></div>
-    <div class="section"><h2>Local files</h2><p class="muted" style="margin-top:5px">Changes are saved in this browser. Google Sheets is an explicitly synced record, not a two-way backup. Export a JSON backup regularly, especially before clearing browser data or changing devices. Previous Google Drive sessions can still be accessed through the <a href="/orchard-legacy-47/" rel="nofollow" style="color:#b9d5fa">earlier version</a>.</p><div class="actions" style="margin-top:12px"><button id="exportCsv">Export rounds CSV</button></div></div>
+    <div class="section"><h2>Local files</h2><p class="muted" style="margin-top:5px">Changes are saved locally and backed up to Drive when Google is connected. Google Sheets remains a separate, manually synced reporting archive. Export a JSON backup regularly, especially before clearing browser data or changing devices. Previous Google Drive sessions can still be accessed through the <a href="/orchard-legacy-47/" rel="nofollow" style="color:#b9d5fa">earlier version</a>.</p><div class="actions" style="margin-top:12px"><button id="exportCsv">Export rounds CSV</button></div></div>
    </section>
   </div>
  </div>
@@ -280,7 +289,7 @@ const DRIVE_SCOPE='https://www.googleapis.com/auth/drive.file',CLIENT_KEY='coppe
 const DIVISIONS=['Flyweight','Bantamweight','Featherweight','Lightweight','Welterweight','Middleweight','Light Heavyweight','Heavyweight',"Women's Strawweight","Women's Flyweight","Women's Bantamweight","Women's Featherweight"];
 function readJSON(key){try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}}
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.add('hidden'),3600)}
-function persist(){try{localStorage.setItem(KEY,JSON.stringify(data));saveFailed=false;$('saveStatus').textContent='Saved locally';$('saveStatus').className='pill saved';$('wbSaved').textContent='Saved locally';$('wbSaved').className='pill saved';return true}catch(e){saveFailed=true;$('saveStatus').textContent='SAVE FAILED';$('saveStatus').className='pill warning';$('wbSaved').textContent='SAVE FAILED';$('wbSaved').className='pill warning';toast('Browser storage failed. Export a backup before closing.');return false}}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(data));window.copperCloud?.changed();saveFailed=false;$('saveStatus').textContent='Saved locally';$('saveStatus').className='pill saved';$('wbSaved').textContent='Saved locally';$('wbSaved').className='pill saved';return true}catch(e){saveFailed=true;$('saveStatus').textContent='SAVE FAILED';$('saveStatus').className='pill warning';$('wbSaved').textContent='SAVE FAILED';$('wbSaved').className='pill warning';toast('Browser storage failed. Export a backup before closing.');return false}}
 function upgradeCornerLayout(workspace){
  // Older v2 fights used blue on the left and red on the right.
  // Change sides once while preserving each fighter's observations, scores and results.
@@ -316,7 +325,7 @@ function safeName(s,fallback){return (s||'').trim()||fallback}
 function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
 function setVisible(id,yes){$(id).classList.toggle('hidden',!yes)}
 function selectEvent(id){pause();activeId=null;focusMode=false;data.selected=id;persist();renderDashboard()}
-function renderDashboard(){clearChartFlash();setVisible('dashboard',true);setVisible('dashTop',true);setVisible('workbench',false);setVisible('scoreOverlay',false);setVisible('finishOverlay',false);setVisible('editFightOverlay',false);focusMode=false;
+function renderDashboard(){clearChartFlash();window.copperCloud?.dashboard();setVisible('dashboard',true);setVisible('dashTop',true);setVisible('workbench',false);setVisible('scoreOverlay',false);setVisible('finishOverlay',false);setVisible('editFightOverlay',false);focusMode=false;
  const list=$('events');list.replaceChildren();$('eventCount').textContent=data.events.length;
  data.events.forEach(e=>{const b=el('button');b.className='event-item'+(e.id===data.selected?' current':'');b.append(el('strong',safeName(e.name,'Untitled event')),el('small',(e.date||'No date')+' · '+e.fights.length+' fights'));b.onclick=()=>selectEvent(e.id);list.append(b)});
  $('legacyBtn').classList.toggle('hidden',!legacyAvailable());
@@ -757,7 +766,7 @@ function sheetUrl(id){return 'https://docs.google.com/spreadsheets/d/'+encodeURI
 function updateDriveUI(){
  const e=event(),ready=driveReady(),hasMaster=!!data.masterSheetId;
  $('driveStatus').textContent=ready?'Connected':'Not connected';
- $('connectDrive').textContent=ready?'Switch / reconnect Google':'Connect Google';
+ $('connectDrive').textContent=ready?'Switch / reconnect Google':'Connect Google';$('cloudSyncNow').disabled=!ready||!!window.copperCloud?.busy();
  $('disconnectDrive').disabled=!driveToken;
  $('syncEvent').disabled=!e||!ready||driveBusy;
  $('syncAllEvents').disabled=!ready||driveBusy||!data.events.length;
@@ -806,7 +815,7 @@ function connectGoogle(){
      toast('Google did not grant the requested file permission.');return
     }
     driveToken=r.access_token;driveExpires=Date.now()+Math.max(0,(Number(r.expires_in)||3500)-30)*1000;
-    updateDriveUI();toast('Google connected. Sync an event to create its spreadsheet.');
+    updateDriveUI();toast('Google connected. Loading workspace from Drive.');window.copperCloud?.connected();
    },
    error_callback:e=>{updateDriveUI();toast('Google sign-in was closed or blocked: '+(e?.type||'unknown'))}
   });
@@ -817,7 +826,7 @@ function disconnectGoogle(){
  if(driveToken&&window.google?.accounts?.oauth2?.revoke){
   try{google.accounts.oauth2.revoke(driveToken,()=>{})}catch{}
  }
- driveToken='';driveExpires=0;driveClient=null;updateDriveUI();
+ driveToken='';driveExpires=0;driveClient=null;updateDriveUI();window.copperCloud?.disconnected();
 }
 async function googleSheetsRequest(path,body,method='POST'){
  if(!driveReady())throw Error('Google connection expired. Reconnect and sync again.');
@@ -1089,5 +1098,5 @@ setInterval(()=>{if(focusMode)tick()},200);setInterval(()=>{if(running){currentR
 try{const saved=readJSON(KEY);if(saved){data=validate(saved);if(upgradeCornerLayout(data))persist()}}catch(e){toast('Saved workspace could not be read. Original browser data was not changed.')}
 if(!data.events.some(e=>e.id===data.selected))data.selected=data.events[0]?.id||null;
 renderDashboard();
-</script><script src="https://accounts.google.com/gsi/client" async defer></script>
+</script><script src="/assets/js/copper-cloud-sync.js"></script><script src="https://accounts.google.com/gsi/client" async defer></script>
 </body></html>
