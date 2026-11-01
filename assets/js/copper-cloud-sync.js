@@ -235,7 +235,11 @@
     disconnected:()=>{clearTimeout(pending);pending=null;status('Not connected','Local records remain on this computer. Connect Google to sync again.');},
     changed:()=>{if(applying)return;generation++;schedule();},
     dashboard:()=>{if(driveReady())schedule(1200);},
-    sync:()=>sync(true)
+    sync:()=>sync(true),
+    resetBaseline:()=>{
+      baselineState={fileId:baselineState.fileId,signatures:{}};
+      try{localStorage.setItem(META_KEY,JSON.stringify(baselineState))}catch{}
+    }
   };
   $('cloudSyncNow').onclick=()=>sync(true);
   setInterval(()=>{
