@@ -21,6 +21,30 @@ spoiler_warning: false
 preserve_line_breaks: true
 ---
 
+## Post-Fight
+
+A very boring card, although that was expected. I didn't find any real standout performances. Nearly everything played out as expected, and even the one fight I picked incorrectly wasn't much of a surprise.
+
+Nice to see Erosa get the dub in his retirement fight. Kropschot had a good submission, although it came against a game, lower-level opponent. He was also getting touched up on the feet.
+
+Jacobe Smith dominated Randy Brown with his wrestling, which seemed to answer some questions about his cardio. I'm not convinced. Randy offered very little resistance beyond trying to maintain his range, so Jacobe didn't have to work particularly hard once he established top position. He just had to stay heavy and maintain control. I thought Jacobe looked a little winded, too, so... again, his cardio remains a question mark.
+
+The real story of the card was the main event. Moicano was doing enough to survive on the feet while finding takedowns and taking Nolan's back with relative ease. Nolan had some low-IQ moments, opting to punch Moicano instead of fighting out of the body lock. Moicano was repeatedly getting to Nolan's back, securing a body triangle and working to find the rear-naked choke.
+
+In the second round, Big Dumb Dan Miragliotta intervened and stood them up.
+
+This was an especially surprising decision considering how few stand-ups we had seen throughout the night. Luana Santos could've been stood up multiple times against Yana Santos. She offered almost no threat on the ground and was largely content to hold position. Meanwhile, Moicano, who presented a legitimate submission threat, had a dominant position outright stolen from him by the referee.
+
+The main event had actual stakes attached to it, and it was scheduled for five rounds. Why are we standing them up in the second round? An unbelievable decision by Dan, one that showed incredibly poor judgment and a complete lack of consistency.
+
+Moicano is going to have to swallow that loss, too. Referees are given the discretion to stand fighters up when they deem it necessary, and we're unlikely to hear any explanation from Dan. After all, referees aren't required to face the media or answer questions about their decisions.
+
+Nonetheless, Nolan wasted no time capitalizing on the opportunity he was given and put Moicano away. Let me be clear: Nolan did nothing wrong here, and neither did Moicano. I'm totally fine with referees standing fighters up when there's a genuine lack of activity. In fact, I wish they'd do it more frequently. But Jesus H. Christ, that was not the time to do it.
+
+I rate this event a D-.
+
+---
+
 UFC Fight Night: Moicano vs. Nolan takes place Saturday, October 31, at Meta APEX in Las Vegas. The prelims begin at 5 p.m. ET, followed by the main card at 8 p.m. ET. Both stream on Paramount+.
 
 The card is headlined by a five-round lightweight fight between No. 8 Renato Moicano and No. 11 Tom Nolan. Moicano is a former title challenger looking to hold his place among the division's contenders, while Nolan has won five straight and is getting his first UFC main event. In the co-main, veteran welterweight Randy Brown faces unbeaten prospect Jacobe Smith, who has finished all four of his UFC opponents. There's another ranked matchup between No. 6 Yana Santos and No. 4 Luana Santos at bantamweight, along with a mix of established fighters and newer names across the rest of the 12-fight card.
