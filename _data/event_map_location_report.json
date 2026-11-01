@@ -1,33 +1,25 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 7,
+    "major": 6,
     "regional": 88
   },
   "map_totals": {
     "mapped": 88,
-    "quarantined": 7
+    "quarantined": 6
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 88,
     "structured": 0,
-    "unresolved": 7
+    "unresolved": 6
   },
   "mapped_precision": {
     "city": 88
   },
-  "unresolved_count": 7,
+  "unresolved_count": 6,
   "unresolved": [
-    {
-      "id": "ufc-fight-night-2026-10-31-fight-card",
-      "title": "Moicano vs Nolan",
-      "date": "2026-10-31",
-      "promotion": "UFC Fight Night",
-      "venue": "Venue TBA",
-      "dataset": "major"
-    },
     {
       "id": "ufc-fight-night-2026-11-07-fight-card",
       "title": "Acosta vs Walker",
@@ -80,17 +72,6 @@
   "suspicious_count": 0,
   "suspicious": [],
   "quarantined": [
-    {
-      "id": "ufc-fight-night-2026-10-31-fight-card",
-      "title": "Moicano vs Nolan",
-      "date": "2026-10-31",
-      "promotion": "UFC Fight Night",
-      "venue": "Venue TBA",
-      "location": "",
-      "country": "",
-      "kind": "major",
-      "reason": "unresolved-us-location"
-    },
     {
       "id": "ufc-fight-night-2026-11-07-fight-card",
       "title": "Acosta vs Walker",
