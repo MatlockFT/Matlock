@@ -710,6 +710,7 @@ test('master linking accepts existing URL and never creates a second spreadsheet
  await setup(page);await page.click('#backBtn');
  await connectQaGoogle(page);
  await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
+ await page.locator('#masterSheetInput').evaluate(el=>el.closest('details').open=true);
  await page.click('#unlinkSheet');
  await expect(page.locator('#sheetLink')).toBeHidden();
  await page.locator('#masterSheetInput').evaluate(el=>el.closest('details').open=true);
@@ -1258,7 +1259,9 @@ test('Drive cloud sync restores all events and fights in a fresh browser, and pr
  expect(remote.file.workspace.events).toHaveLength(1);
  expect(remote.file.workspace.events[0].fights[0].left).toBe('Red A');
  // Simulate a second device with no localStorage but the same Google account.
- await page.evaluate(()=>localStorage.clear());
+ // The original page's unload handler writes browser storage; disable it for this
+ // test so clearing storage truly simulates opening on a separate computer.
+ await page.evaluate(()=>{window.persist=()=>true;localStorage.clear()});
  await page.reload();
  await expect(page.locator('#eventCount')).toHaveText('0');
  await expect(page.locator('#cloudPanel')).toBeVisible();
