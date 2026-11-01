@@ -108,7 +108,7 @@ The card is headlined by a five-round lightweight fight between No. 8 Renato Moi
 | 3 | 10 | 9 |
 | **Total** | **28** | **29** |
 
-*My unofficial round-by-round scores, recorded during the fight.*
+*My unofficial round-by-round scores, recorded during the fight.* The three official judges' totals entered in my scoring log were also 29–28 for Durden (29–28, 29–28, 29–28).
 
 ---
 
