@@ -58,9 +58,20 @@ The card is headlined by a five-round lightweight fight between No. 8 Renato Moi
 <section class="article-html-visual" data-writer-block="stats" data-writer-config="%7B%22version%22%3A3%2C%22fighterA%22%3A%22Randy%20Brown%22%2C%22fighterB%22%3A%22Jacobe%20Smith%22%2C%22rows%22%3A%5B%7B%22label%22%3A%22Significant%20Strikes%20%2F%20Minute%22%2C%22a%22%3A%224.39%22%2C%22b%22%3A%226.88%22%7D%2C%7B%22label%22%3A%22Sig.%20Strikes%20Absorbed%20%2F%20Minute%22%2C%22a%22%3A%223.35%22%2C%22b%22%3A%223.51%22%7D%2C%7B%22label%22%3A%22Striking%20Accuracy%22%2C%22a%22%3A%2247%25%22%2C%22b%22%3A%2263%25%22%7D%2C%7B%22label%22%3A%22Striking%20Defense%22%2C%22a%22%3A%2254%25%22%2C%22b%22%3A%2249%25%22%7D%2C%7B%22label%22%3A%22Takedowns%20%2F%2015%20Minutes%22%2C%22a%22%3A%220.71%22%2C%22b%22%3A%225.06%22%7D%2C%7B%22label%22%3A%22Takedown%20Accuracy%22%2C%22a%22%3A%2234%25%22%2C%22b%22%3A%2283%25%22%7D%2C%7B%22label%22%3A%22Takedown%20Defense%22%2C%22a%22%3A%2275%25%22%2C%22b%22%3A%22100%25%22%7D%2C%7B%22label%22%3A%22Submission%20Attempts%20%2F%2015%22%2C%22a%22%3A%220.50%22%2C%22b%22%3A%221.00%22%7D%5D%2C%22sourceA%22%3A%7B%22mode%22%3A%22secondary-UFCStats-attributed%22%2C%22checkedAt%22%3A%222026-10-26%22%2C%22verification%22%3A%22UFCStats-attributed%20career%20averages%20cross-checked%20with%20UFC%20athlete%20profiles%3B%20n%2Fa%20where%20unavailable%22%7D%2C%22sourceB%22%3A%7B%22mode%22%3A%22secondary-UFCStats-attributed%22%2C%22checkedAt%22%3A%222026-10-26%22%2C%22verification%22%3A%22UFCStats-attributed%20career%20averages%20cross-checked%20with%20UFC%20athlete%20profiles%3B%20n%2Fa%20where%20unavailable%22%7D%7D">
 <div class="fight-stats-sleek"><div class="fs-shell"><div class="fs-header"><div class="fs-fighter fs-fighter-left"><span class="fs-side-label">RED CORNER</span><strong>Randy Brown</strong></div><div class="fs-header-center"><strong>STATS</strong><i></i></div><div class="fs-fighter fs-fighter-right"><span class="fs-side-label">BLUE CORNER</span><strong>Jacobe Smith</strong></div></div><div class="fs-section"><div class="fs-section-title"><span>Striking</span></div><div class="fs-stat-row featured"><strong>4.39</strong><span>Significant Strikes / Minute</span><strong>6.88</strong></div><div class="fs-stat-row"><strong>3.35</strong><span>Sig. Strikes Absorbed / Minute</span><strong>3.51</strong></div><div class="fs-stat-row"><strong>47%</strong><span>Striking Accuracy</span><strong>63%</strong></div><div class="fs-stat-row"><strong>54%</strong><span>Striking Defense</span><strong>49%</strong></div></div><div class="fs-section fs-section-grappling"><div class="fs-section-title"><span>Grappling</span></div><div class="fs-stat-row featured"><strong>0.71</strong><span>Takedowns / 15 Minutes</span><strong>5.06</strong></div><div class="fs-stat-row"><strong>34%</strong><span>Takedown Accuracy</span><strong>83%</strong></div><div class="fs-stat-row"><strong>75%</strong><span>Takedown Defense</span><strong>100%</strong></div><div class="fs-stat-row"><strong>0.50</strong><span>Submission Attempts / 15</span><strong>1.00</strong></div></div></div></div>
 </section>
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Jacobe%20Smith%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Jacobe%20Smith%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Jacobe%20Smith%20%C2%B7%20Unanimous%20decision%20(3%20rounds)%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Jacobe Smith</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div></aside>
 </section>
+**My scorecard — Jacobe Smith 30–26**
+
+| Round | Randy Brown | Jacobe Smith |
+|:--|--:|--:|
+| 1 | 9 | 10 |
+| 2 | 8 | 10 |
+| 3 | 9 | 10 |
+| **Total** | **26** | **30** |
+
+*My unofficial round-by-round scores, recorded during the fight.* The three official judges' totals entered in my scoring log were also 30–26 for Smith (30–26, 30–26, 30–26).
+
 ---
 
 ## Yana Santos vs. Luana Santos
@@ -129,6 +140,17 @@ The card is headlined by a five-round lightweight fight between No. 8 Renato Moi
 <section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Zach%20Reese%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Zach%20Reese%20%C2%B7%20Unanimous%20decision%20(3%20rounds)%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Zach Reese</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div></aside>
 </section>
+**My scorecard — Zachary Reese 29–27**
+
+| Round | Zachary Reese | Mickey Gall |
+|:--|--:|--:|
+| 1 | 9 | 9 |
+| 2 | 10 | 9 |
+| 3 | 10 | 9 |
+| **Total** | **29** | **27** |
+
+*My unofficial round-by-round scores, recorded during the fight.* Official judges' totals have not yet been entered in my scoring log.
+
 ---
 
 ## Jean-Paul Lebosnoyani vs. Farman Hasanov
