@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-10-31T23:18:24.645Z",
+  "generatedAt": "2026-11-01T02:20:05.554Z",
   "engineVersion": 2,
   "subjects": 336,
-  "publishedRecommendations": 917,
+  "publishedRecommendations": 921,
   "recommendationSlots": {
-    "0": 27,
+    "0": 26,
     "1": 3,
-    "2": 4,
-    "3": 302
+    "2": 3,
+    "3": 304
   },
   "caseCounts": {
-    "rebound-pairing": 390,
-    "rising-vs-rising": 262,
-    "step-up-vs-rebound": 112,
-    "ranking-opportunity": 54,
-    "rankings-progression": 51,
-    "divisional-sorting": 20,
+    "rebound-pairing": 389,
+    "rising-vs-rising": 267,
+    "step-up-vs-rebound": 115,
+    "rankings-progression": 55,
+    "ranking-opportunity": 50,
+    "divisional-sorting": 18,
     "title-case": 11,
-    "prospect-test": 10,
+    "prospect-test": 9,
     "title-eliminator": 7
   },
   "confidenceCounts": {
-    "high": 860,
-    "medium": 31,
+    "high": 866,
+    "medium": 29,
     "low": 26
   },
   "averageRecentOpponentLinkCoverage": 0.9048,
   "sameCardRecommendations": 48,
-  "sameCardRecommendationRatio": 0.0523,
-  "asymmetricTopThreeRecommendations": 320,
-  "asymmetricTopThreeRatio": 0.349,
-  "publicPublishedRecommendations": 892,
-  "publicAsymmetricTopThreeRecommendations": 233,
-  "publicAsymmetricTopThreeRatio": 0.2612,
-  "engineGenericDivisionalSortingRecommendations": 20,
+  "sameCardRecommendationRatio": 0.0521,
+  "asymmetricTopThreeRecommendations": 315,
+  "asymmetricTopThreeRatio": 0.342,
+  "publicPublishedRecommendations": 896,
+  "publicAsymmetricTopThreeRecommendations": 224,
+  "publicAsymmetricTopThreeRatio": 0.25,
+  "engineGenericDivisionalSortingRecommendations": 18,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -74,15 +74,15 @@
       "title": "UFC 332: Silva vs Wang",
       "date": "2026-10-03",
       "subjects": 28,
-      "publicRecommendations": 74,
-      "noClearMatchupSubjects": 3
+      "publicRecommendations": 77,
+      "noClearMatchupSubjects": 2
     },
     {
       "id": "ufc-fight-night-september-26-2026",
       "title": "UFC Fight Night: Rosas Jr. vs Barcelos",
       "date": "2026-09-26",
       "subjects": 24,
-      "publicRecommendations": 69,
+      "publicRecommendations": 70,
       "noClearMatchupSubjects": 0
     },
     {
@@ -222,20 +222,6 @@
       "rationale": "Melissa Gatto and Jj Aldrich occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
-      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
-      "fighter": "Norma Dumont",
-      "opponent": "Michelle Montague",
-      "score": 61,
-      "rationale": "Norma Dumont and Michelle Montague occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
-      "fighter": "Ailin Perez",
-      "opponent": "Jacqueline Cavalcanti",
-      "score": 54,
-      "rationale": "Ailin Perez and Jacqueline Cavalcanti occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Joseph Morales",
       "opponent": "Jose Ochoa",
@@ -258,6 +244,13 @@
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Sean King III",
+      "opponent": "Jeongyeong Lee",
+      "score": 90,
+      "rationale": "Sean King III and Jeongyeong Lee occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Jj Aldrich",
       "opponent": "Ernesta Kareckaite",
       "score": 82,
@@ -276,13 +269,6 @@
       "opponent": "Evan Elder",
       "score": 47,
       "rationale": "Salahdine Parnasse and Evan Elder occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "fighter": "Salahdine Parnasse",
-      "opponent": "Gabe Green",
-      "score": 46,
-      "rationale": "Salahdine Parnasse and Gabe Green occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Nurmagomedov vs Song",
@@ -908,12 +894,12 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Brunno Ferreira",
-          "score": 91,
+          "opponent": "Zachary Reese",
+          "score": 92,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Jun Yong Park",
+          "opponent": "Brunno Ferreira",
           "score": 91,
           "case": "rebound-pairing"
         }
