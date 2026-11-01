@@ -1187,3 +1187,90 @@ test('official judge scores require complete pairs and leave personal result unc
  expect(after.result).toEqual(original);
  expect(after.officialJudges[0]).toEqual({red:30,blue:27});
 });
+
+
+// A server-side fake Drive store survives page reloads and models a second computer.
+async function fakeWorkspaceDrive(page,remote) {
+ await page.route('https://www.googleapis.com/**',async route=>{
+  const req=route.request(),url=new URL(req.url()),path=url.pathname,method=req.method();
+  const result=(value,status=200)=>route.fulfill({status,contentType:'application/json',body:JSON.stringify(value)});
+  if(path==='/drive/v3/files'&&method==='GET'){
+   return result({files:remote.file?[{id:'qa-workspace-drive-file',name:'copper47-workspace-sync-v1.json',mimeType:'application/json',version:String(remote.version)}]:[]});
+  }
+  if(path==='/drive/v3/files/qa-workspace-drive-file'&&method==='GET') {
+   if(!remote.file)return result({error:{message:'Not found'}},404);
+   if(url.searchParams.get('alt')==='media')return result(remote.file);
+   return result({id:'qa-workspace-drive-file',version:String(remote.version)});
+  }
+  if(path==='/upload/drive/v3/files'&&method==='POST'){
+   const raw=req.postData(),marker=raw.indexOf('\r\n\r\n',raw.indexOf('\r\n\r\n')+4),
+    end=raw.lastIndexOf('\r\n--workspace');
+   if(marker<0||end<0)return result({error:{message:'Malformed multipart upload'}},400);
+   remote.file=JSON.parse(raw.slice(marker+4,end));remote.version++;
+   return result({id:'qa-workspace-drive-file',version:String(remote.version)});
+  }
+  if(path==='/upload/drive/v3/files/qa-workspace-drive-file'&&method==='PATCH'){
+   remote.file=JSON.parse(req.postData());remote.version++;
+   return result({id:'qa-workspace-drive-file',version:String(remote.version)});
+  }
+  return result({error:{message:'Unexpected Drive request '+method+' '+path}},400);
+ });
+}
+async function connectWorkspaceGoogle(page) {
+ await page.evaluate(()=>{window.google={accounts:{oauth2:{
+  initTokenClient:config=>({requestAccessToken:()=>config.callback({access_token:'qa-token',expires_in:3600})}),
+  hasGrantedAllScopes:()=>true,revoke:(_t,cb)=>cb?.()
+ }}}});
+ await page.locator('#clientId').evaluate(el=>el.closest('details').open=true);
+ await page.fill('#clientId','qa-client.apps.googleusercontent.com');
+ await page.click('#connectDrive');
+ await expect(page.locator('#cloudStatus')).toHaveText('Synced');
+}
+test('Drive cloud sync restores all events and fights in a fresh browser, and propagates deletions',async({page})=>{
+ const remote={file:null,version:0};
+ await fakeWorkspaceDrive(page,remote);
+ await expect(page.locator('#cloudPanel')).toBeVisible();
+ await page.click('#newEventBtn');
+ await page.fill('#eventName','Cross-device event');
+ await page.fill('#boutLeft','Red A');
+ await page.fill('#boutRight','Blue B');
+ await page.selectOption('#boutDivision','Lightweight');
+ await page.click('#addBout');
+ await connectWorkspaceGoogle(page);
+ expect(remote.file.workspace.events).toHaveLength(1);
+ expect(remote.file.workspace.events[0].fights[0].left).toBe('Red A');
+ // Simulate a second device with no localStorage but the same Google account.
+ await page.evaluate(()=>localStorage.clear());
+ await page.reload();
+ await expect(page.locator('#eventCount')).toHaveText('0');
+ await expect(page.locator('#cloudPanel')).toBeVisible();
+ await connectWorkspaceGoogle(page);
+ await expect(page.locator('#eventCount')).toHaveText('1');
+ await expect(page.locator('.bout-row')).toHaveCount(1);
+ await expect(page.locator('#eventName')).toHaveValue('Cross-device event');
+ await page.fill('#eventName','Edited on second device');
+ await page.click('#cloudSyncNow');
+ await expect(page.locator('#cloudStatus')).toHaveText('Synced');
+ expect(remote.file.workspace.events[0].name).toBe('Edited on second device');
+ await page.click('#deleteEvent');
+ await page.click('#cloudSyncNow');
+ await expect(page.locator('#cloudStatus')).toHaveText('Synced');
+ expect(remote.file.workspace.events).toHaveLength(0);
+});
+test('Drive sync keeps conflicting event edits as separate copies, including offline changes',async({page})=>{
+ const remote={file:null,version:0};
+ await fakeWorkspaceDrive(page,remote);
+ await page.click('#newEventBtn');
+ await page.fill('#eventName','Original');
+ await connectWorkspaceGoogle(page);
+ await page.click('#disconnectDrive');
+ await page.fill('#eventName','Local offline edit');
+ remote.file.workspace.events[0].name='Other device edit';remote.version++;
+ await connectWorkspaceGoogle(page);
+ await expect(page.locator('#eventCount')).toHaveText('2');
+ const names=await page.locator('#events strong').allTextContents();
+ expect(names).toContain('Other device edit');
+ expect(names).toContain('Local offline edit (conflict copy)');
+ expect(remote.file.workspace.events).toHaveLength(2);
+ expect(new Set(remote.file.workspace.events.map(e=>e.id)).size).toBe(2);
+});
