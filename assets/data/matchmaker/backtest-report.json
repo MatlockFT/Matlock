@@ -1,11 +1,11 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-11-01T02:20:05.554Z",
+  "generatedAt": "2026-11-01T09:24:46.955Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
   "maxCases": 120,
-  "availableCases": 575,
+  "availableCases": 581,
   "sampledCases": 120,
   "historicalUniverseCoverage": {
     "currentDatasetFighters": 1022,
@@ -21,16 +21,16 @@
     "archiveStart": "2026-09-10",
     "archiveEnd": "2026-11-01",
     "snapshotsAvailable": 46,
-    "sampledCasesWithSnapshot": 0,
-    "sampledCasesWithoutSnapshot": 120,
+    "sampledCasesWithSnapshot": 1,
+    "sampledCasesWithoutSnapshot": 119,
     "maxSnapshotAgeDays": 14
   },
   "temporalStateCoverage": {
     "archiveStart": "2026-09-15",
     "archiveEnd": "2026-11-01",
     "snapshotsAvailable": 38,
-    "sampledCasesWithSnapshot": 0,
-    "sampledCasesWithoutSnapshot": 120,
+    "sampledCasesWithSnapshot": 1,
+    "sampledCasesWithoutSnapshot": 119,
     "maxSnapshotAgeDays": 7
   },
   "bookingStateCoverage": {
@@ -40,27 +40,26 @@
   },
   "classifications": {
     "engine-ranking-miss-deep": 60,
-    "future-newcomer-booking": 17,
-    "engine-ranking-miss-near": 11,
-    "engine-top3-hit": 11,
-    "future-opponent-division-change": 9,
-    "future-division-change": 7,
+    "future-newcomer-booking": 15,
+    "engine-ranking-miss-near": 14,
+    "engine-top3-hit": 12,
+    "future-opponent-division-change": 10,
+    "future-division-change": 4,
     "hard-rule-disagreement": 4,
     "coverage-failure": 1
   },
   "reasons": {
-    "actual-opponent-had-no-pre-cutoff-ufc-history": 17,
+    "actual-opponent-had-no-pre-cutoff-ufc-history": 15,
     "Too large a UFC experience gap for an automatic recommendation.": 3,
     "actual-opponent-moved-from:Bantamweight:to:Flyweight": 2,
     "actual-opponent-moved-from:Lightweight:to:Featherweight": 2,
-    "future-target-division:Bantamweight": 2,
-    "future-target-division:Flyweight": 2,
+    "actual-opponent-moved-from:Welterweight:to:Middleweight": 2,
     "actual-opponent-moved-from:Middleweight:to:Light Heavyweight": 1,
     "actual-opponent-moved-from:Welterweight:to:Lightweight": 1,
-    "actual-opponent-moved-from:Welterweight:to:Middleweight": 1,
     "actual-opponent-moved-from:Women's Bantamweight:to:Women's Flyweight": 1,
     "actual-opponent-moved-from:Women's Strawweight:to:Women's Flyweight": 1,
-    "future-target-division:Lightweight": 1,
+    "future-target-division:Bantamweight": 1,
+    "future-target-division:Flyweight": 1,
     "future-target-division:Middleweight": 1,
     "future-target-division:Women's Flyweight": 1,
     "Jan Blachowicz is in a championship-legacy career lane; automatic matchmaking keeps unranked legacy title fighters against ranked, UFC title-experienced, or high-level unranked opposition.": 1,
@@ -68,31 +67,31 @@
   },
   "metrics": {
     "allScorablePairs": {
-      "evaluated": 86,
-      "top1": 2,
-      "top3": 11,
-      "top8": 22,
-      "publicTop3": 8,
-      "top1Rate": 0.0233,
-      "top3Rate": 0.1279,
-      "top8Rate": 0.2558,
-      "publicTop3Rate": 0.093
+      "evaluated": 90,
+      "top1": 1,
+      "top3": 12,
+      "top8": 26,
+      "publicTop3": 9,
+      "top1Rate": 0.0111,
+      "top3Rate": 0.1333,
+      "top8Rate": 0.2889,
+      "publicTop3Rate": 0.1
     },
     "cleanEvaluationSet": {
-      "cases": 82,
-      "evaluated": 82,
-      "top1": 2,
-      "top3": 11,
-      "top8": 22,
-      "publicTop3": 8,
-      "top1Rate": 0.0244,
-      "top3Rate": 0.1341,
-      "top8Rate": 0.2683,
-      "publicTop3Rate": 0.0976
+      "cases": 86,
+      "evaluated": 86,
+      "top1": 1,
+      "top3": 12,
+      "top8": 26,
+      "publicTop3": 9,
+      "top1Rate": 0.0116,
+      "top3Rate": 0.1395,
+      "top8Rate": 0.3023,
+      "publicTop3Rate": 0.1047
     },
     "fullStateCleanSet": {
-      "cases": 0,
-      "evaluated": 0,
+      "cases": 1,
+      "evaluated": 1,
       "top1": 0,
       "top3": 0,
       "top8": 0,
@@ -116,14 +115,14 @@
       "publicTop3Rate": 0.25
     },
     "Flyweight": {
-      "evaluated": 6,
+      "evaluated": 7,
       "top1": 0,
       "top3": 2,
-      "top8": 2,
+      "top8": 3,
       "publicTop3": 0,
       "top1Rate": 0,
-      "top3Rate": 0.3333,
-      "top8Rate": 0.3333,
+      "top3Rate": 0.2857,
+      "top8Rate": 0.4286,
       "publicTop3Rate": 0
     },
     "Light Heavyweight": {
@@ -159,16 +158,27 @@
       "top8Rate": 0.4444,
       "publicTop3Rate": 0.1111
     },
+    "Welterweight": {
+      "evaluated": 8,
+      "top1": 0,
+      "top3": 1,
+      "top8": 2,
+      "publicTop3": 1,
+      "top1Rate": 0,
+      "top3Rate": 0.125,
+      "top8Rate": 0.25,
+      "publicTop3Rate": 0.125
+    },
     "Women's Bantamweight": {
       "evaluated": 10,
       "top1": 0,
-      "top3": 2,
-      "top8": 4,
-      "publicTop3": 2,
+      "top3": 3,
+      "top8": 5,
+      "publicTop3": 3,
       "top1Rate": 0,
-      "top3Rate": 0.2,
-      "top8Rate": 0.4,
-      "publicTop3Rate": 0.2
+      "top3Rate": 0.3,
+      "top8Rate": 0.5,
+      "publicTop3Rate": 0.3
     },
     "Women's Flyweight": {
       "evaluated": 6,
@@ -193,14 +203,14 @@
       "publicTop3Rate": 0
     },
     "Bantamweight": {
-      "evaluated": 5,
+      "evaluated": 6,
       "top1": 0,
       "top3": 1,
-      "top8": 1,
+      "top8": 2,
       "publicTop3": 0,
       "top1Rate": 0,
-      "top3Rate": 0.2,
-      "top8Rate": 0.2,
+      "top3Rate": 0.1667,
+      "top8Rate": 0.3333,
       "publicTop3Rate": 0
     },
     "Heavyweight": {
@@ -213,17 +223,6 @@
       "top3Rate": 0,
       "top8Rate": 0.2222,
       "publicTop3Rate": 0
-    },
-    "Welterweight": {
-      "evaluated": 6,
-      "top1": 1,
-      "top3": 1,
-      "top8": 1,
-      "publicTop3": 1,
-      "top1Rate": 0.1667,
-      "top3Rate": 0.1667,
-      "top8Rate": 0.1667,
-      "publicTop3Rate": 0.1667
     }
   },
   "caseClassifications": [
@@ -560,78 +559,120 @@
       ]
     },
     {
-      "cutoff": "2026-07-25",
-      "targetDate": "2026-10-24",
+      "cutoff": "2026-10-03",
+      "targetDate": "2026-10-31",
       "division": "Welterweight",
-      "targetDivision": "Middleweight",
-      "fighter": "Abubakar Vagaev",
-      "fighterId": "abubakar-vagaev",
-      "actualOpponent": "Jacob Malkoun",
-      "actualOpponentId": "jacob-malkoun",
+      "targetDivision": "Welterweight",
+      "fighter": "Jacobe Smith",
+      "fighterId": "jacobe-smith",
+      "actualOpponent": "Randy Brown",
+      "actualOpponentId": "randy-brown",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "future-division-change",
-      "reason": "future-target-division:Middleweight",
-      "actualHistoricalDivision": "Middleweight",
-      "excludedFromAccuracy": true
-    },
-    {
-      "cutoff": "2026-06-06",
-      "targetDate": "2026-10-17",
-      "division": "Women's Bantamweight",
-      "targetDivision": "Women's Bantamweight",
-      "fighter": "Chelsea Chandler",
-      "fighterId": "chelsea-chandler",
-      "actualOpponent": "Melissa Croden",
-      "actualOpponentId": "melissa-croden",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-near",
+      "rankingSnapshotDate": "2026-09-28",
+      "stateSnapshotDate": "2026-09-28",
+      "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 4,
+      "engineRank": 67,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Julianna Pena",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Luana Santos",
-          "score": 90,
-          "rankingScore": 90,
+          "opponent": "Sam Patterson",
+          "score": 89,
+          "rankingScore": 89,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Ketlen Vieira",
-          "score": 89,
-          "rankingScore": 89,
+          "opponent": "Bryan Battle",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jeremiah Wells",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Julianna Pena",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "step-up-vs-rebound"
+          "opponent": "Sam Patterson",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Luana Santos",
+          "opponent": "Jeremiah Wells",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Bryan Battle",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
+        }
+      ],
+      "outlierReviewCandidate": true
+    },
+    {
+      "cutoff": "2026-06-20",
+      "targetDate": "2026-10-31",
+      "division": "Women's Bantamweight",
+      "targetDivision": "Women's Bantamweight",
+      "fighter": "Luana Santos",
+      "fighterId": "luana-santos",
+      "actualOpponent": "Yana Santos",
+      "actualOpponentId": "yana-santos",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "engine-top3-hit",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 3,
+      "publicRank": 3,
+      "engineTopThree": [
+        {
+          "opponent": "Ailin Perez",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Joselyne Edwards",
           "score": 90,
           "rankingScore": 90,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Ketlen Vieira",
-          "score": 89,
-          "rankingScore": 89,
+          "opponent": "Yana Santos",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Ailin Perez",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Joselyne Edwards",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Yana Santos",
+          "score": 90,
+          "rankingScore": 90,
           "case": "rising-vs-rising"
         }
       ]
@@ -1175,124 +1216,81 @@
       "outlierReviewCandidate": true
     },
     {
-      "cutoff": "2026-06-27",
-      "targetDate": "2026-09-05",
+      "cutoff": "2026-07-25",
+      "targetDate": "2026-10-24",
       "division": "Welterweight",
-      "targetDivision": "Welterweight",
-      "fighter": "Daniil Donchenko",
-      "fighterId": "daniil-donchenko",
-      "actualOpponent": "Punahele Soriano",
-      "actualOpponentId": "punahele-soriano",
+      "targetDivision": "Middleweight",
+      "fighter": "Abubakar Vagaev",
+      "fighterId": "abubakar-vagaev",
+      "actualOpponent": "Jacob Malkoun",
+      "actualOpponentId": "jacob-malkoun",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-deep",
-      "targetEligible": true,
-      "targetReason": null,
-      "engineRank": 26,
-      "publicRank": null,
-      "engineTopThree": [
-        {
-          "opponent": "Bryan Battle",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Myktybek Orolbai",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Charles Radtke",
-          "score": 87,
-          "rankingScore": 87,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Bryan Battle",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Myktybek Orolbai",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Michael Page",
-          "score": 87,
-          "rankingScore": 87,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "outlierReviewCandidate": true
+      "classification": "future-division-change",
+      "reason": "future-target-division:Middleweight",
+      "actualHistoricalDivision": "Middleweight",
+      "excludedFromAccuracy": true
     },
     {
-      "cutoff": "2026-04-25",
-      "targetDate": "2026-09-26",
+      "cutoff": "2026-06-06",
+      "targetDate": "2026-10-17",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Norma Dumont",
-      "fighterId": "norma-dumont",
-      "actualOpponent": "Ailin Perez",
-      "actualOpponentId": "ailin-perez",
+      "fighter": "Chelsea Chandler",
+      "fighterId": "chelsea-chandler",
+      "actualOpponent": "Melissa Croden",
+      "actualOpponentId": "melissa-croden",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-deep",
+      "classification": "engine-ranking-miss-near",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 25,
+      "engineRank": 4,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Luana Carolina",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
+          "opponent": "Julianna Pena",
+          "score": 94,
+          "rankingScore": 94,
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Macy Chiasson",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
+          "opponent": "Luana Santos",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Priscila Cachoeira",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
+          "opponent": "Ketlen Vieira",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Macy Chiasson",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
+          "opponent": "Julianna Pena",
+          "score": 94,
+          "rankingScore": 94,
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Luana Carolina",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
+          "opponent": "Luana Santos",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Priscila Cachoeira",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
+          "opponent": "Ketlen Vieira",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
         }
-      ],
-      "outlierReviewCandidate": true
+      ]
     },
     {
       "cutoff": "2026-06-06",
@@ -1534,63 +1532,62 @@
     },
     {
       "cutoff": "2026-07-11",
-      "targetDate": "2026-10-24",
+      "targetDate": "2026-10-31",
       "division": "Flyweight",
       "targetDivision": "Flyweight",
-      "fighter": "Loneer Kavanagh",
-      "fighterId": "loneer-kavanagh",
-      "actualOpponent": "Ramazan Temirov",
-      "actualOpponentId": "ramazan-temirov",
+      "fighter": "Cody Durden",
+      "fighterId": "cody-durden",
+      "actualOpponent": "Ode Osbourne",
+      "actualOpponentId": "ode-osbourne",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-deep",
+      "classification": "engine-ranking-miss-near",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 33,
+      "engineRank": 4,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Amir Albazi",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Charles Johnson",
+          "score": 91,
+          "rankingScore": 91,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Andre Lima",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Kyoji Horiguchi",
+          "score": 89,
+          "rankingScore": 89,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Allan Nascimento",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Kai Kara France",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Andre Lima",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Charles Johnson",
+          "score": 91,
+          "rankingScore": 91,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Amir Albazi",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Tim Elliott",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Allan Nascimento",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Kyoji Horiguchi",
+          "score": 89,
+          "rankingScore": 89,
           "case": "rebound-pairing"
         }
-      ],
-      "outlierReviewCandidate": true
+      ]
     },
     {
       "cutoff": "2026-07-18",
@@ -1790,14 +1787,14 @@
       "outlierReviewCandidate": true
     },
     {
-      "cutoff": "2026-06-27",
-      "targetDate": "2026-10-03",
+      "cutoff": "2026-07-18",
+      "targetDate": "2026-10-31",
       "division": "Welterweight",
       "targetDivision": "Welterweight",
-      "fighter": "Eric Nolan",
-      "fighterId": "eric-nolan",
-      "actualOpponent": "Court McGee",
-      "actualOpponentId": "court-mcgee",
+      "fighter": "Jean Paul Lebosnoyani",
+      "fighterId": "jean-paul-lebosnoyani",
+      "actualOpponent": "Farman Hasanov",
+      "actualOpponentId": "farman-hasanov",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -1805,59 +1802,59 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 50,
+      "engineRank": 10,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Jefferson Nascimento",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Carlos Leal",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Ding Meng",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
+          "opponent": "Yaroslav Amosov",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Leon Shahbazyan",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
+          "opponent": "Jacobe Smith",
+          "score": 84,
+          "rankingScore": 82,
+          "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Jefferson Nascimento",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Carlos Leal",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Ding Meng",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
+          "opponent": "Yaroslav Amosov",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Leon Shahbazyan",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
+          "opponent": "Jacobe Smith",
+          "score": 84,
+          "rankingScore": 82,
+          "case": "rising-vs-rising"
         }
       ],
-      "outlierReviewCandidate": true
+      "outlierReviewCandidate": false
     },
     {
-      "cutoff": "2026-04-18",
-      "targetDate": "2026-10-10",
+      "cutoff": "2026-04-25",
+      "targetDate": "2026-09-26",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Dariya Zheleznyakova",
-      "fighterId": "dariya-zheleznyakova",
-      "actualOpponent": "Alice Pereira",
-      "actualOpponentId": "alice-pereira",
+      "fighter": "Norma Dumont",
+      "fighterId": "norma-dumont",
+      "actualOpponent": "Ailin Perez",
+      "actualOpponentId": "ailin-perez",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -1865,45 +1862,45 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 16,
+      "engineRank": 25,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Nora Cornolle",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Luana Carolina",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Josiane Nunes",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Macy Chiasson",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Tainara Lisboa",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Priscila Cachoeira",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Nora Cornolle",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Macy Chiasson",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Josiane Nunes",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Luana Carolina",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Tainara Lisboa",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Priscila Cachoeira",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         }
       ],
@@ -2149,21 +2146,64 @@
       "outlierReviewCandidate": true
     },
     {
-      "cutoff": "2026-06-27",
-      "targetDate": "2026-08-15",
+      "cutoff": "2026-07-11",
+      "targetDate": "2026-10-24",
       "division": "Flyweight",
-      "targetDivision": null,
-      "fighter": "Charles Johnson",
-      "fighterId": "charles-johnson",
-      "actualOpponent": "Eduardo Chapolin",
-      "actualOpponentId": "eduardo-chapolin",
+      "targetDivision": "Flyweight",
+      "fighter": "Loneer Kavanagh",
+      "fighterId": "loneer-kavanagh",
+      "actualOpponent": "Ramazan Temirov",
+      "actualOpponentId": "ramazan-temirov",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "future-newcomer-booking",
-      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
-      "excludedFromAccuracy": true
+      "classification": "engine-ranking-miss-deep",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 33,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Amir Albazi",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Andre Lima",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Allan Nascimento",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Andre Lima",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Amir Albazi",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Allan Nascimento",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        }
+      ],
+      "outlierReviewCandidate": true
     },
     {
       "cutoff": "2026-07-11",
@@ -2304,14 +2344,32 @@
       "actualHistoricalDivision": "Welterweight"
     },
     {
-      "cutoff": "2026-06-27",
-      "targetDate": "2026-10-24",
+      "cutoff": "2026-07-11",
+      "targetDate": "2026-10-31",
       "division": "Middleweight",
       "targetDivision": "Middleweight",
-      "fighter": "Abus Magomedov",
-      "fighterId": "abus-magomedov",
-      "actualOpponent": "Cam Rowston",
-      "actualOpponentId": "cam-rowston",
+      "fighter": "Zachary Reese",
+      "fighterId": "zachary-reese",
+      "actualOpponent": "Mickey Gall",
+      "actualOpponentId": "mickey-gall",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "future-opponent-division-change",
+      "reason": "actual-opponent-moved-from:Welterweight:to:Middleweight",
+      "excludedFromAccuracy": true,
+      "actualHistoricalDivision": "Welterweight"
+    },
+    {
+      "cutoff": "2026-06-27",
+      "targetDate": "2026-09-05",
+      "division": "Welterweight",
+      "targetDivision": "Welterweight",
+      "fighter": "Daniil Donchenko",
+      "fighterId": "daniil-donchenko",
+      "actualOpponent": "Punahele Soriano",
+      "actualOpponentId": "punahele-soriano",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -2319,120 +2377,59 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 11,
+      "engineRank": 26,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Bo Nickal",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Bryan Battle",
+          "score": 89,
+          "rankingScore": 89,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Dusko Todorovic",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Myktybek Orolbai",
+          "score": 89,
+          "rankingScore": 89,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Ikram Aliskerov",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Charles Radtke",
+          "score": 87,
+          "rankingScore": 87,
           "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Bo Nickal",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Bryan Battle",
+          "score": 89,
+          "rankingScore": 89,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Dusko Todorovic",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Myktybek Orolbai",
+          "score": 89,
+          "rankingScore": 89,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Ikram Aliskerov",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Michael Page",
+          "score": 87,
+          "rankingScore": 87,
           "case": "rising-vs-rising"
         }
       ],
-      "outlierReviewCandidate": false
-    },
-    {
-      "cutoff": "2026-06-20",
-      "targetDate": "2026-10-10",
-      "division": "Welterweight",
-      "targetDivision": "Welterweight",
-      "fighter": "Leon Shahbazyan",
-      "fighterId": "leon-shahbazyan",
-      "actualOpponent": "Niko Price",
-      "actualOpponentId": "niko-price",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "hard-rule-disagreement",
-      "targetEligible": false,
-      "targetReason": "Too large a UFC experience gap for an automatic recommendation.",
-      "engineRank": null,
-      "publicRank": null,
-      "engineTopThree": [
-        {
-          "opponent": "Ding Meng",
-          "score": 95,
-          "rankingScore": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Austin Vanderford",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Zachary Scroggin",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rebound-pairing"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Ding Meng",
-          "score": 95,
-          "rankingScore": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Austin Vanderford",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Zachary Scroggin",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rebound-pairing"
-        }
-      ],
-      "reason": "Too large a UFC experience gap for an automatic recommendation.",
       "outlierReviewCandidate": true
     },
     {
       "cutoff": "2026-04-18",
-      "targetDate": "2026-10-17",
+      "targetDate": "2026-10-10",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Melissa Croden",
-      "fighterId": "melissa-croden",
-      "actualOpponent": "Chelsea Chandler",
-      "actualOpponentId": "chelsea-chandler",
+      "fighter": "Dariya Zheleznyakova",
+      "fighterId": "dariya-zheleznyakova",
+      "actualOpponent": "Alice Pereira",
+      "actualOpponentId": "alice-pereira",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -2440,49 +2437,49 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 15,
+      "engineRank": 16,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Alice Pereira",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Nora Cornolle",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Bia Mesquita",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Josiane Nunes",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Michelle Montague",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Tainara Lisboa",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Alice Pereira",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Nora Cornolle",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Michelle Montague",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Josiane Nunes",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Bia Mesquita",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Tainara Lisboa",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         }
       ],
-      "outlierReviewCandidate": false
+      "outlierReviewCandidate": true
     },
     {
       "cutoff": "2026-04-18",
@@ -2555,14 +2552,14 @@
       "actualHistoricalDivision": "Lightweight"
     },
     {
-      "cutoff": "2026-06-20",
-      "targetDate": "2026-08-29",
+      "cutoff": "2026-06-27",
+      "targetDate": "2026-08-15",
       "division": "Flyweight",
-      "targetDivision": "Flyweight",
-      "fighter": "Andre Lima",
-      "fighterId": "andre-lima",
-      "actualOpponent": "Namsrai Batbayar",
-      "actualOpponentId": "namsrai-batbayar",
+      "targetDivision": null,
+      "fighter": "Charles Johnson",
+      "fighterId": "charles-johnson",
+      "actualOpponent": "Eduardo Chapolin",
+      "actualOpponentId": "eduardo-chapolin",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -2753,13 +2750,13 @@
     },
     {
       "cutoff": "2026-06-27",
-      "targetDate": "2026-10-03",
+      "targetDate": "2026-10-24",
       "division": "Middleweight",
       "targetDivision": "Middleweight",
-      "fighter": "Andrey Pulyaev",
-      "fighterId": "andrey-pulyaev",
-      "actualOpponent": "Damian Pinas",
-      "actualOpponentId": "damian-pinas",
+      "fighter": "Abus Magomedov",
+      "fighterId": "abus-magomedov",
+      "actualOpponent": "Cam Rowston",
+      "actualOpponentId": "cam-rowston",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -2767,125 +2764,169 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 43,
+      "engineRank": 11,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Torrez Finney",
-          "score": 94,
-          "rankingScore": 94,
+          "opponent": "Bo Nickal",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Dusko Todorovic",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ikram Aliskerov",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rising-vs-rising"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Bo Nickal",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Dusko Todorovic",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ikram Aliskerov",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rising-vs-rising"
+        }
+      ],
+      "outlierReviewCandidate": false
+    },
+    {
+      "cutoff": "2026-06-27",
+      "targetDate": "2026-10-03",
+      "division": "Welterweight",
+      "targetDivision": "Welterweight",
+      "fighter": "Eric Nolan",
+      "fighterId": "eric-nolan",
+      "actualOpponent": "Court McGee",
+      "actualOpponentId": "court-mcgee",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "engine-ranking-miss-deep",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 50,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Jefferson Nascimento",
+          "score": 92,
+          "rankingScore": 92,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Julien Leblanc",
-          "score": 93,
-          "rankingScore": 93,
+          "opponent": "Ding Meng",
+          "score": 91,
+          "rankingScore": 91,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Marco Tulio",
-          "score": 93,
-          "rankingScore": 93,
+          "opponent": "Leon Shahbazyan",
+          "score": 91,
+          "rankingScore": 91,
           "case": "rebound-pairing"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Torrez Finney",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Marco Tulio",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Denis Tiuliulin",
+          "opponent": "Jefferson Nascimento",
           "score": 92,
           "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Ding Meng",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Leon Shahbazyan",
+          "score": 91,
+          "rankingScore": 91,
           "case": "rebound-pairing"
         }
       ],
       "outlierReviewCandidate": true
     },
     {
-      "cutoff": "2026-05-30",
-      "targetDate": "2026-08-29",
-      "division": "Welterweight",
-      "targetDivision": "Welterweight",
-      "fighter": "Ding Meng",
-      "fighterId": "ding-meng",
-      "actualOpponent": "Cam Nelson",
-      "actualOpponentId": "cam-nelson",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "future-newcomer-booking",
-      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
-      "excludedFromAccuracy": true
-    },
-    {
-      "cutoff": "2026-04-04",
-      "targetDate": "2026-10-10",
+      "cutoff": "2026-04-18",
+      "targetDate": "2026-10-17",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Alice Pereira",
-      "fighterId": "alice-pereira",
-      "actualOpponent": "Dariya Zheleznyakova",
-      "actualOpponentId": "dariya-zheleznyakova",
+      "fighter": "Melissa Croden",
+      "fighterId": "melissa-croden",
+      "actualOpponent": "Chelsea Chandler",
+      "actualOpponentId": "chelsea-chandler",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-near",
+      "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 7,
+      "engineRank": 15,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Michelle Montague",
-          "score": 87,
-          "rankingScore": 87,
+          "opponent": "Alice Pereira",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Luana Carolina",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "step-up-vs-rebound"
+          "opponent": "Bia Mesquita",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Germaine de Randamie",
-          "score": 83,
-          "rankingScore": 80,
-          "case": "step-up-vs-rebound"
+          "opponent": "Michelle Montague",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Michelle Montague",
-          "score": 87,
-          "rankingScore": 87,
+          "opponent": "Alice Pereira",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Luana Carolina",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "step-up-vs-rebound"
+          "opponent": "Michelle Montague",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Germaine de Randamie",
-          "score": 83,
-          "rankingScore": 80,
-          "case": "step-up-vs-rebound"
+          "opponent": "Bia Mesquita",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
         }
-      ]
+      ],
+      "outlierReviewCandidate": false
     },
     {
       "cutoff": "2026-04-04",
@@ -2905,14 +2946,14 @@
       "excludedFromAccuracy": true
     },
     {
-      "cutoff": "2026-04-11",
-      "targetDate": "2026-10-10",
+      "cutoff": "2026-04-25",
+      "targetDate": "2026-10-31",
       "division": "Women's Strawweight",
       "targetDivision": "Women's Strawweight",
-      "fighter": "Loopy Godinez",
-      "fighterId": "loopy-godinez",
-      "actualOpponent": "Ketlen Souza",
-      "actualOpponentId": "ketlen-souza",
+      "fighter": "Talita Alencar",
+      "fighterId": "talita-alencar",
+      "actualOpponent": "Piera Rodriguez",
+      "actualOpponentId": "piera-rodriguez",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -2920,49 +2961,49 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 16,
+      "engineRank": 9,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Amanda Lemos",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rebound-pairing"
+          "opponent": "Iasmin Lucindo",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Yan Xiaonan",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rebound-pairing"
+          "opponent": "Alexia Thainara",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Sam Hughes",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Fatima Kline",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Amanda Lemos",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rebound-pairing"
+          "opponent": "Alexia Thainara",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Yan Xiaonan",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rebound-pairing"
+          "opponent": "Iasmin Lucindo",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Sam Hughes",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Fatima Kline",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
         }
       ],
-      "outlierReviewCandidate": true
+      "outlierReviewCandidate": false
     },
     {
       "cutoff": "2026-05-30",
@@ -3088,18 +3129,17 @@
       "targetDate": "2026-08-29",
       "division": "Flyweight",
       "targetDivision": "Flyweight",
-      "fighter": "Kevin Borjas",
-      "fighterId": "kevin-borjas",
-      "actualOpponent": "Rei Tsuruya",
-      "actualOpponentId": "rei-tsuruya",
+      "fighter": "Andre Lima",
+      "fighterId": "andre-lima",
+      "actualOpponent": "Namsrai Batbayar",
+      "actualOpponentId": "namsrai-batbayar",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "future-opponent-division-change",
-      "reason": "actual-opponent-moved-from:Bantamweight:to:Flyweight",
-      "excludedFromAccuracy": true,
-      "actualHistoricalDivision": "Bantamweight"
+      "classification": "future-newcomer-booking",
+      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
+      "excludedFromAccuracy": true
     },
     {
       "cutoff": "2026-05-09",
@@ -3240,13 +3280,132 @@
     },
     {
       "cutoff": "2026-06-27",
-      "targetDate": "2026-09-19",
+      "targetDate": "2026-10-03",
       "division": "Middleweight",
       "targetDivision": "Middleweight",
-      "fighter": "Brunno Ferreira",
-      "fighterId": "brunno-ferreira",
-      "actualOpponent": "Edmen Shahbazyan",
-      "actualOpponentId": "edmen-shahbazyan",
+      "fighter": "Andrey Pulyaev",
+      "fighterId": "andrey-pulyaev",
+      "actualOpponent": "Damian Pinas",
+      "actualOpponentId": "damian-pinas",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "engine-ranking-miss-deep",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 43,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Torrez Finney",
+          "score": 94,
+          "rankingScore": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Julien Leblanc",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Marco Tulio",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rebound-pairing"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Torrez Finney",
+          "score": 94,
+          "rankingScore": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Marco Tulio",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Denis Tiuliulin",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        }
+      ],
+      "outlierReviewCandidate": true
+    },
+    {
+      "cutoff": "2026-06-27",
+      "targetDate": "2026-10-31",
+      "division": "Welterweight",
+      "targetDivision": "Welterweight",
+      "fighter": "Farman Hasanov",
+      "fighterId": "farman-hasanov",
+      "actualOpponent": "Jean Paul Lebosnoyani",
+      "actualOpponentId": "jean-paul-lebosnoyani",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "engine-ranking-miss-near",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 8,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Jose Henrique",
+          "score": 95,
+          "rankingScore": 95,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Levan Chokheli",
+          "score": 95,
+          "rankingScore": 95,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Tahir Abdullayev",
+          "score": 95,
+          "rankingScore": 95,
+          "case": "rising-vs-rising"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Levan Chokheli",
+          "score": 95,
+          "rankingScore": 95,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Tahir Abdullayev",
+          "score": 95,
+          "rankingScore": 95,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jose Henrique",
+          "score": 95,
+          "rankingScore": 95,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "cutoff": "2026-04-04",
+      "targetDate": "2026-10-10",
+      "division": "Women's Bantamweight",
+      "targetDivision": "Women's Bantamweight",
+      "fighter": "Alice Pereira",
+      "fighterId": "alice-pereira",
+      "actualOpponent": "Dariya Zheleznyakova",
+      "actualOpponentId": "dariya-zheleznyakova",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -3258,78 +3417,44 @@
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Rodolfo Vieira",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rebound-pairing"
+          "opponent": "Michelle Montague",
+          "score": 87,
+          "rankingScore": 87,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Andre Petroski",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Luana Carolina",
+          "score": 86,
+          "rankingScore": 86,
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Anthony Hernandez",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Germaine de Randamie",
+          "score": 83,
+          "rankingScore": 80,
+          "case": "step-up-vs-rebound"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Rodolfo Vieira",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rebound-pairing"
+          "opponent": "Michelle Montague",
+          "score": 87,
+          "rankingScore": 87,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Anthony Hernandez",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Luana Carolina",
+          "score": 86,
+          "rankingScore": 86,
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Andre Petroski",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Germaine de Randamie",
+          "score": 83,
+          "rankingScore": 80,
+          "case": "step-up-vs-rebound"
         }
       ]
-    },
-    {
-      "cutoff": "2026-05-16",
-      "targetDate": "2026-10-03",
-      "division": "Welterweight",
-      "targetDivision": "Welterweight",
-      "fighter": "Khaos Williams",
-      "fighterId": "khaos-williams",
-      "actualOpponent": "Roberto Soldic",
-      "actualOpponentId": "roberto-soldic",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "future-newcomer-booking",
-      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
-      "excludedFromAccuracy": true
-    },
-    {
-      "cutoff": "2026-04-04",
-      "targetDate": "2026-08-01",
-      "division": "Women's Bantamweight",
-      "targetDivision": "Women's Bantamweight",
-      "fighter": "Hailey Cowan",
-      "fighterId": "hailey-cowan",
-      "actualOpponent": "Nina Milosevic",
-      "actualOpponentId": "nina-milosevic",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "future-newcomer-booking",
-      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
-      "excludedFromAccuracy": true
     },
     {
       "cutoff": "2026-04-04",
@@ -3392,14 +3517,14 @@
       "outlierReviewCandidate": false
     },
     {
-      "cutoff": "2026-04-04",
-      "targetDate": "2026-07-18",
+      "cutoff": "2026-04-11",
+      "targetDate": "2026-10-10",
       "division": "Women's Strawweight",
       "targetDivision": "Women's Strawweight",
-      "fighter": "Tabatha Ricci",
-      "fighterId": "tabatha-ricci",
-      "actualOpponent": "Fatima Kline",
-      "actualOpponentId": "fatima-kline",
+      "fighter": "Loopy Godinez",
+      "fighterId": "loopy-godinez",
+      "actualOpponent": "Ketlen Souza",
+      "actualOpponentId": "ketlen-souza",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -3407,45 +3532,45 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 34,
+      "engineRank": 16,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Sam Hughes",
+          "opponent": "Amanda Lemos",
           "score": 93,
           "rankingScore": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Molly McCann",
-          "score": 90,
-          "rankingScore": 90,
+          "opponent": "Yan Xiaonan",
+          "score": 93,
+          "rankingScore": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Ariane Carnelossi",
-          "score": 89,
-          "rankingScore": 89,
+          "opponent": "Sam Hughes",
+          "score": 92,
+          "rankingScore": 92,
           "case": "rebound-pairing"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Sam Hughes",
+          "opponent": "Amanda Lemos",
           "score": 93,
           "rankingScore": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Molly McCann",
-          "score": 90,
-          "rankingScore": 90,
+          "opponent": "Yan Xiaonan",
+          "score": 93,
+          "rankingScore": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Loma Lookboonmee",
-          "score": 89,
-          "rankingScore": 89,
+          "opponent": "Sam Hughes",
+          "score": 92,
+          "rankingScore": 92,
           "case": "rebound-pairing"
         }
       ],
@@ -3487,14 +3612,14 @@
       "excludedFromAccuracy": true
     },
     {
-      "cutoff": "2026-06-06",
-      "targetDate": "2026-07-11",
+      "cutoff": "2026-06-20",
+      "targetDate": "2026-08-29",
       "division": "Flyweight",
       "targetDivision": "Flyweight",
-      "fighter": "Alessandro Costa",
-      "fighterId": "alessandro-costa",
-      "actualOpponent": "Cody Durden",
-      "actualOpponentId": "cody-durden",
+      "fighter": "Kevin Borjas",
+      "fighterId": "kevin-borjas",
+      "actualOpponent": "Rei Tsuruya",
+      "actualOpponentId": "rei-tsuruya",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -3644,141 +3769,138 @@
     },
     {
       "cutoff": "2026-06-27",
-      "targetDate": "2026-09-05",
+      "targetDate": "2026-09-19",
       "division": "Middleweight",
       "targetDivision": "Middleweight",
-      "fighter": "Nursulton Ruziboev",
-      "fighterId": "nursulton-ruziboev",
-      "actualOpponent": "Michael Page",
-      "actualOpponentId": "michael-page",
+      "fighter": "Brunno Ferreira",
+      "fighterId": "brunno-ferreira",
+      "actualOpponent": "Edmen Shahbazyan",
+      "actualOpponentId": "edmen-shahbazyan",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "future-opponent-division-change",
-      "reason": "actual-opponent-moved-from:Welterweight:to:Middleweight",
-      "excludedFromAccuracy": true,
-      "actualHistoricalDivision": "Welterweight"
+      "classification": "engine-ranking-miss-near",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 7,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Rodolfo Vieira",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Andre Petroski",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Anthony Hernandez",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Rodolfo Vieira",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Anthony Hernandez",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Andre Petroski",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        }
+      ]
     },
     {
-      "cutoff": "2026-05-09",
-      "targetDate": "2026-10-17",
+      "cutoff": "2026-06-27",
+      "targetDate": "2026-10-31",
       "division": "Welterweight",
       "targetDivision": "Welterweight",
-      "fighter": "Joaquin Buckley",
-      "fighterId": "joaquin-buckley",
-      "actualOpponent": "Mike Malott",
-      "actualOpponentId": "mike-malott",
+      "fighter": "Theodor Berggren",
+      "fighterId": "theodor-berggren",
+      "actualOpponent": "Rodrigo Sezinando",
+      "actualOpponentId": "rodrigo-sezinando",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-deep",
+      "classification": "engine-top3-hit",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 70,
-      "publicRank": null,
+      "engineRank": 2,
+      "publicRank": 2,
       "engineTopThree": [
         {
-          "opponent": "Geoff Neal",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Andreas Gustafsson",
+          "score": 94,
+          "rankingScore": 94,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Max Griffin",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Rodrigo Sezinando",
+          "score": 94,
+          "rankingScore": 94,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Trevin Giles",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Saygid Izagakhmaev",
+          "score": 94,
+          "rankingScore": 94,
           "case": "rebound-pairing"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Li Jingliang",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Andreas Gustafsson",
+          "score": 94,
+          "rankingScore": 94,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Muslim Salikhov",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Rodrigo Sezinando",
+          "score": 94,
+          "rankingScore": 94,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Santiago Ponzinibbio",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Saygid Izagakhmaev",
+          "score": 94,
+          "rankingScore": 94,
           "case": "rebound-pairing"
         }
-      ],
-      "outlierReviewCandidate": true
+      ]
     },
     {
-      "cutoff": "2026-03-14",
-      "targetDate": "2026-06-20",
+      "cutoff": "2026-04-04",
+      "targetDate": "2026-08-01",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Bia Mesquita",
-      "fighterId": "bia-mesquita",
-      "actualOpponent": "Melissa Mullins",
-      "actualOpponentId": "melissa-mullins",
+      "fighter": "Hailey Cowan",
+      "fighterId": "hailey-cowan",
+      "actualOpponent": "Nina Milosevic",
+      "actualOpponentId": "nina-milosevic",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-deep",
-      "targetEligible": true,
-      "targetReason": null,
-      "engineRank": 16,
-      "publicRank": null,
-      "engineTopThree": [
-        {
-          "opponent": "Dariya Zheleznyakova",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Klaudia Sygula",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Melissa Gatto",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Dariya Zheleznyakova",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Klaudia Sygula",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Melissa Gatto",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "outlierReviewCandidate": true
+      "classification": "future-newcomer-booking",
+      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
+      "excludedFromAccuracy": true
     },
     {
       "cutoff": "2026-03-28",
@@ -3834,14 +3956,14 @@
       ]
     },
     {
-      "cutoff": "2026-03-28",
-      "targetDate": "2026-08-08",
+      "cutoff": "2026-04-04",
+      "targetDate": "2026-07-18",
       "division": "Women's Strawweight",
       "targetDivision": "Women's Strawweight",
-      "fighter": "Alexia Thainara",
-      "fighterId": "alexia-thainara",
-      "actualOpponent": "Amanda Lemos",
-      "actualOpponentId": "amanda-lemos",
+      "fighter": "Tabatha Ricci",
+      "fighterId": "tabatha-ricci",
+      "actualOpponent": "Fatima Kline",
+      "actualOpponentId": "fatima-kline",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -3849,46 +3971,46 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 24,
+      "engineRank": 34,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Fatima Kline",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
+          "opponent": "Sam Hughes",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Ketlen Souza",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
+          "opponent": "Molly McCann",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Mizuki Inoue",
+          "opponent": "Ariane Carnelossi",
           "score": 89,
           "rankingScore": 89,
-          "case": "rising-vs-rising"
+          "case": "rebound-pairing"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Fatima Kline",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
+          "opponent": "Sam Hughes",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Ketlen Souza",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
+          "opponent": "Molly McCann",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Mizuki Inoue",
+          "opponent": "Loma Lookboonmee",
           "score": 89,
           "rankingScore": 89,
-          "case": "rising-vs-rising"
+          "case": "rebound-pairing"
         }
       ],
       "outlierReviewCandidate": true
@@ -3972,63 +4094,21 @@
     },
     {
       "cutoff": "2026-06-06",
-      "targetDate": "2026-09-12",
+      "targetDate": "2026-07-11",
       "division": "Flyweight",
-      "targetDivision": null,
-      "fighter": "Edgar Chairez",
-      "fighterId": "edgar-chairez",
-      "actualOpponent": "Tim Elliott",
-      "actualOpponentId": "tim-elliott",
+      "targetDivision": "Flyweight",
+      "fighter": "Alessandro Costa",
+      "fighterId": "alessandro-costa",
+      "actualOpponent": "Cody Durden",
+      "actualOpponentId": "cody-durden",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-deep",
-      "targetEligible": true,
-      "targetReason": null,
-      "engineRank": 41,
-      "publicRank": null,
-      "engineTopThree": [
-        {
-          "opponent": "Manel Kape",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Steve Erceg",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Asu Almabayev",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Manel Kape",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Steve Erceg",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Asu Almabayev",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "outlierReviewCandidate": true
+      "classification": "future-opponent-division-change",
+      "reason": "actual-opponent-moved-from:Bantamweight:to:Flyweight",
+      "excludedFromAccuracy": true,
+      "actualHistoricalDivision": "Bantamweight"
     },
     {
       "cutoff": "2026-05-02",
@@ -4210,14 +4290,93 @@
       "outlierReviewCandidate": true
     },
     {
-      "cutoff": "2026-06-14",
-      "targetDate": "2026-10-17",
+      "cutoff": "2026-06-27",
+      "targetDate": "2026-09-05",
       "division": "Middleweight",
       "targetDivision": "Middleweight",
-      "fighter": "Kyle Daukaus",
-      "fighterId": "kyle-daukaus",
-      "actualOpponent": "Marc Andre Barriault",
-      "actualOpponentId": "marc-andre-barriault",
+      "fighter": "Nursulton Ruziboev",
+      "fighterId": "nursulton-ruziboev",
+      "actualOpponent": "Michael Page",
+      "actualOpponentId": "michael-page",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "future-opponent-division-change",
+      "reason": "actual-opponent-moved-from:Welterweight:to:Middleweight",
+      "excludedFromAccuracy": true,
+      "actualHistoricalDivision": "Welterweight"
+    },
+    {
+      "cutoff": "2026-06-20",
+      "targetDate": "2026-10-10",
+      "division": "Welterweight",
+      "targetDivision": "Welterweight",
+      "fighter": "Leon Shahbazyan",
+      "fighterId": "leon-shahbazyan",
+      "actualOpponent": "Niko Price",
+      "actualOpponentId": "niko-price",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "hard-rule-disagreement",
+      "targetEligible": false,
+      "targetReason": "Too large a UFC experience gap for an automatic recommendation.",
+      "engineRank": null,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Ding Meng",
+          "score": 95,
+          "rankingScore": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Austin Vanderford",
+          "score": 94,
+          "rankingScore": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Zachary Scroggin",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rebound-pairing"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Ding Meng",
+          "score": 95,
+          "rankingScore": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Austin Vanderford",
+          "score": 94,
+          "rankingScore": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Zachary Scroggin",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rebound-pairing"
+        }
+      ],
+      "reason": "Too large a UFC experience gap for an automatic recommendation.",
+      "outlierReviewCandidate": true
+    },
+    {
+      "cutoff": "2026-03-14",
+      "targetDate": "2026-06-20",
+      "division": "Women's Bantamweight",
+      "targetDivision": "Women's Bantamweight",
+      "fighter": "Bia Mesquita",
+      "fighterId": "bia-mesquita",
+      "actualOpponent": "Melissa Mullins",
+      "actualOpponentId": "melissa-mullins",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -4225,167 +4384,49 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 19,
+      "engineRank": 16,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Dustin Stoltzfus",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Dariya Zheleznyakova",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Sedriques Dumas",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Klaudia Sygula",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Zachary Reese",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Melissa Gatto",
+          "score": 86,
+          "rankingScore": 86,
+          "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Zachary Reese",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Dariya Zheleznyakova",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Dustin Stoltzfus",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Klaudia Sygula",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Sedriques Dumas",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Melissa Gatto",
+          "score": 86,
+          "rankingScore": 86,
+          "case": "rising-vs-rising"
         }
       ],
       "outlierReviewCandidate": true
-    },
-    {
-      "cutoff": "2026-05-09",
-      "targetDate": "2026-08-15",
-      "division": "Welterweight",
-      "targetDivision": "Welterweight",
-      "fighter": "Joel Alvarez",
-      "fighterId": "joel-alvarez",
-      "actualOpponent": "Chidi Njokuani",
-      "actualOpponentId": "chidi-njokuani",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "engine-top3-hit",
-      "targetEligible": true,
-      "targetReason": null,
-      "engineRank": 1,
-      "publicRank": 3,
-      "engineTopThree": [
-        {
-          "opponent": "Chidi Njokuani",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Khaos Williams",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Muslim Salikhov",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rebound-pairing"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Khaos Williams",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Jack Della Maddalena",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Chidi Njokuani",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "cutoff": "2026-02-28",
-      "targetDate": "2026-09-26",
-      "division": "Women's Bantamweight",
-      "targetDivision": "Women's Bantamweight",
-      "fighter": "Ailin Perez",
-      "fighterId": "ailin-perez",
-      "actualOpponent": "Norma Dumont",
-      "actualOpponentId": "norma-dumont",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "engine-top3-hit",
-      "targetEligible": true,
-      "targetReason": null,
-      "engineRank": 3,
-      "publicRank": 3,
-      "engineTopThree": [
-        {
-          "opponent": "Yana Santos",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jacqueline Cavalcanti",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Norma Dumont",
-          "score": 87,
-          "rankingScore": 87,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Yana Santos",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jacqueline Cavalcanti",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Norma Dumont",
-          "score": 87,
-          "rankingScore": 87,
-          "case": "rising-vs-rising"
-        }
-      ]
     },
     {
       "cutoff": "2026-03-28",
@@ -4448,22 +4489,64 @@
       "outlierReviewCandidate": true
     },
     {
-      "cutoff": "2026-03-21",
+      "cutoff": "2026-03-28",
       "targetDate": "2026-08-08",
       "division": "Women's Strawweight",
-      "targetDivision": "Women's Flyweight",
-      "fighter": "Ravena Oliveira",
-      "fighterId": "ravena-oliveira-morais",
-      "actualOpponent": "Juliana Miller",
-      "actualOpponentId": "juliana-miller",
+      "targetDivision": "Women's Strawweight",
+      "fighter": "Alexia Thainara",
+      "fighterId": "alexia-thainara",
+      "actualOpponent": "Amanda Lemos",
+      "actualOpponentId": "amanda-lemos",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "future-division-change",
-      "reason": "future-target-division:Women's Flyweight",
-      "actualHistoricalDivision": "Women's Flyweight",
-      "excludedFromAccuracy": true
+      "classification": "engine-ranking-miss-deep",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 24,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Fatima Kline",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ketlen Souza",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Mizuki Inoue",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Fatima Kline",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ketlen Souza",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Mizuki Inoue",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
+        }
+      ],
+      "outlierReviewCandidate": true
     },
     {
       "cutoff": "2026-05-02",
@@ -4501,63 +4584,64 @@
       "actualHistoricalDivision": "Lightweight"
     },
     {
-      "cutoff": "2026-05-30",
-      "targetDate": "2026-08-29",
+      "cutoff": "2026-06-06",
+      "targetDate": "2026-09-12",
       "division": "Flyweight",
-      "targetDivision": "Flyweight",
-      "fighter": "Alex Perez",
-      "fighterId": "alex-perez",
-      "actualOpponent": "Sumudaerji",
-      "actualOpponentId": "su-mudaerji",
+      "targetDivision": null,
+      "fighter": "Edgar Chairez",
+      "fighterId": "edgar-chairez",
+      "actualOpponent": "Tim Elliott",
+      "actualOpponentId": "tim-elliott",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-top3-hit",
+      "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 2,
+      "engineRank": 41,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Brandon Moreno",
-          "score": 87,
-          "rankingScore": 87,
-          "case": "divisional-sorting"
+          "opponent": "Manel Kape",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Sumudaerji",
-          "score": 87,
-          "rankingScore": 87,
-          "case": "divisional-sorting"
+          "opponent": "Steve Erceg",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Alessandro Costa",
-          "score": 83,
-          "rankingScore": 81,
-          "case": "divisional-sorting"
+          "opponent": "Asu Almabayev",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Mitch Raposo",
-          "score": 81,
-          "rankingScore": 71,
-          "case": "prospect-test"
+          "opponent": "Manel Kape",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Alden Coria",
-          "score": 79,
-          "rankingScore": 71,
-          "case": "prospect-test"
+          "opponent": "Steve Erceg",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Ramazan Temirov",
-          "score": 78,
-          "rankingScore": 68,
-          "case": "prospect-test"
+          "opponent": "Asu Almabayev",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rising-vs-rising"
         }
-      ]
+      ],
+      "outlierReviewCandidate": true
     },
     {
       "cutoff": "2026-05-02",
@@ -4739,14 +4823,91 @@
       "outlierReviewCandidate": true
     },
     {
-      "cutoff": "2026-06-06",
-      "targetDate": "2026-10-10",
+      "cutoff": "2026-06-14",
+      "targetDate": "2026-10-17",
       "division": "Middleweight",
       "targetDivision": "Middleweight",
-      "fighter": "Brendan Allen",
-      "fighterId": "brendan-allen",
-      "actualOpponent": "Christian Leroy Duncan",
-      "actualOpponentId": "christian-leroy-duncan",
+      "fighter": "Kyle Daukaus",
+      "fighterId": "kyle-daukaus",
+      "actualOpponent": "Marc Andre Barriault",
+      "actualOpponentId": "marc-andre-barriault",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "engine-ranking-miss-deep",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 19,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Dustin Stoltzfus",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Sedriques Dumas",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Zachary Reese",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Zachary Reese",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Dustin Stoltzfus",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Sedriques Dumas",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        }
+      ],
+      "outlierReviewCandidate": true
+    },
+    {
+      "cutoff": "2026-05-30",
+      "targetDate": "2026-08-29",
+      "division": "Welterweight",
+      "targetDivision": "Welterweight",
+      "fighter": "Ding Meng",
+      "fighterId": "ding-meng",
+      "actualOpponent": "Cam Nelson",
+      "actualOpponentId": "cam-nelson",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "future-newcomer-booking",
+      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
+      "excludedFromAccuracy": true
+    },
+    {
+      "cutoff": "2026-02-28",
+      "targetDate": "2026-09-26",
+      "division": "Women's Bantamweight",
+      "targetDivision": "Women's Bantamweight",
+      "fighter": "Ailin Perez",
+      "fighterId": "ailin-perez",
+      "actualOpponent": "Norma Dumont",
+      "actualOpponentId": "norma-dumont",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -4758,160 +4919,41 @@
       "publicRank": 3,
       "engineTopThree": [
         {
-          "opponent": "Michal Oleksiejczuk",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Gregory Rodrigues",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Christian Leroy Duncan",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Michal Oleksiejczuk",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Gregory Rodrigues",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Christian Leroy Duncan",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "cutoff": "2026-04-18",
-      "targetDate": "2026-10-17",
-      "division": "Welterweight",
-      "targetDivision": "Welterweight",
-      "fighter": "Mike Malott",
-      "fighterId": "mike-malott",
-      "actualOpponent": "Joaquin Buckley",
-      "actualOpponentId": "joaquin-buckley",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-deep",
-      "targetEligible": true,
-      "targetReason": null,
-      "engineRank": 50,
-      "publicRank": null,
-      "engineTopThree": [
-        {
-          "opponent": "Punahele Soriano",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Daniel Rodriguez",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Michael Morales",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Punahele Soriano",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Daniel Rodriguez",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Michael Morales",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "outlierReviewCandidate": true
-    },
-    {
-      "cutoff": "2026-02-21",
-      "targetDate": "2026-04-25",
-      "division": "Women's Bantamweight",
-      "targetDivision": "Women's Bantamweight",
-      "fighter": "Joselyne Edwards",
-      "fighterId": "joselyne-edwards",
-      "actualOpponent": "Norma Dumont",
-      "actualOpponentId": "norma-dumont",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "engine-top3-hit",
-      "targetEligible": true,
-      "targetReason": null,
-      "engineRank": 2,
-      "publicRank": 2,
-      "engineTopThree": [
-        {
           "opponent": "Yana Santos",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Norma Dumont",
-          "score": 90,
-          "rankingScore": 90,
+          "score": 89,
+          "rankingScore": 89,
           "case": "rising-vs-rising"
         },
         {
           "opponent": "Jacqueline Cavalcanti",
-          "score": 85,
-          "rankingScore": 85,
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Norma Dumont",
+          "score": 87,
+          "rankingScore": 87,
           "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
           "opponent": "Yana Santos",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Norma Dumont",
-          "score": 90,
-          "rankingScore": 90,
+          "score": 89,
+          "rankingScore": 89,
           "case": "rising-vs-rising"
         },
         {
           "opponent": "Jacqueline Cavalcanti",
-          "score": 85,
-          "rankingScore": 85,
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Norma Dumont",
+          "score": 87,
+          "rankingScore": 87,
           "case": "rising-vs-rising"
         }
       ]
@@ -4936,82 +4978,81 @@
     },
     {
       "cutoff": "2026-03-21",
-      "targetDate": "2026-08-22",
+      "targetDate": "2026-08-08",
       "division": "Women's Strawweight",
-      "targetDivision": "Women's Strawweight",
-      "fighter": "Shanelle Dyer",
-      "fighterId": "shanelle-dyer",
-      "actualOpponent": "Elise Reed",
-      "actualOpponentId": "elise-reed",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "hard-rule-disagreement",
-      "targetEligible": false,
-      "targetReason": "Too large a UFC experience gap for an automatic recommendation.",
-      "engineRank": null,
-      "publicRank": null,
-      "engineTopThree": [
-        {
-          "opponent": "Shi Ming",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jaqueline Amorim",
-          "score": 90,
-          "rankingScore": 90,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Ariane Carnelossi",
-          "score": 87,
-          "rankingScore": 87,
-          "case": "step-up-vs-rebound"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Shi Ming",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jaqueline Amorim",
-          "score": 90,
-          "rankingScore": 90,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Ariane Carnelossi",
-          "score": 87,
-          "rankingScore": 87,
-          "case": "step-up-vs-rebound"
-        }
-      ],
-      "reason": "Too large a UFC experience gap for an automatic recommendation.",
-      "outlierReviewCandidate": true
-    },
-    {
-      "cutoff": "2026-04-25",
-      "targetDate": "2026-07-11",
-      "division": "Bantamweight",
-      "targetDivision": "Flyweight",
-      "fighter": "Cody Durden",
-      "fighterId": "cody-durden",
-      "actualOpponent": "Alessandro Costa",
-      "actualOpponentId": "alessandro-costa",
+      "targetDivision": "Women's Flyweight",
+      "fighter": "Ravena Oliveira",
+      "fighterId": "ravena-oliveira-morais",
+      "actualOpponent": "Juliana Miller",
+      "actualOpponentId": "juliana-miller",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
       "classification": "future-division-change",
-      "reason": "future-target-division:Flyweight",
-      "actualHistoricalDivision": "Flyweight",
+      "reason": "future-target-division:Women's Flyweight",
+      "actualHistoricalDivision": "Women's Flyweight",
       "excludedFromAccuracy": true
+    },
+    {
+      "cutoff": "2026-04-25",
+      "targetDate": "2026-09-26",
+      "division": "Bantamweight",
+      "targetDivision": "Bantamweight",
+      "fighter": "Montel Jackson",
+      "fighterId": "montel-jackson",
+      "actualOpponent": "Ricky Simon",
+      "actualOpponentId": "ricky-simon",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "engine-ranking-miss-deep",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 28,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Kyler Phillips",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Cory Sandhagen",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Song Yadong",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Kyler Phillips",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Cory Sandhagen",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Song Yadong",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
+        }
+      ],
+      "outlierReviewCandidate": true
     },
     {
       "cutoff": "2026-05-16",
@@ -5078,10 +5119,10 @@
       "targetDate": "2026-08-29",
       "division": "Flyweight",
       "targetDivision": "Flyweight",
-      "fighter": "Sumudaerji",
-      "fighterId": "su-mudaerji",
-      "actualOpponent": "Alex Perez",
-      "actualOpponentId": "alex-perez",
+      "fighter": "Alex Perez",
+      "fighterId": "alex-perez",
+      "actualOpponent": "Sumudaerji",
+      "actualOpponentId": "su-mudaerji",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -5093,41 +5134,41 @@
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Kai Kara France",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "divisional-sorting"
-        },
-        {
-          "opponent": "Alex Perez",
+          "opponent": "Brandon Moreno",
           "score": 87,
           "rankingScore": 87,
           "case": "divisional-sorting"
         },
         {
-          "opponent": "Jose Ochoa",
-          "score": 86,
-          "rankingScore": 86,
+          "opponent": "Sumudaerji",
+          "score": 87,
+          "rankingScore": 87,
+          "case": "divisional-sorting"
+        },
+        {
+          "opponent": "Alessandro Costa",
+          "score": 83,
+          "rankingScore": 81,
           "case": "divisional-sorting"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Alden Coria",
+          "opponent": "Mitch Raposo",
           "score": 81,
-          "rankingScore": 74,
+          "rankingScore": 71,
           "case": "prospect-test"
         },
         {
-          "opponent": "Lucas Rocha",
-          "score": 80,
+          "opponent": "Alden Coria",
+          "score": 79,
           "rankingScore": 71,
           "case": "prospect-test"
         },
         {
           "opponent": "Ramazan Temirov",
-          "score": 80,
-          "rankingScore": 71,
+          "score": 78,
+          "rankingScore": 68,
           "case": "prospect-test"
         }
       ]
@@ -5253,152 +5294,14 @@
       "outlierReviewCandidate": true
     },
     {
-      "cutoff": "2026-05-16",
-      "targetDate": "2026-09-12",
+      "cutoff": "2026-06-06",
+      "targetDate": "2026-10-31",
       "division": "Lightweight",
       "targetDivision": "Lightweight",
-      "fighter": "Thomas Gantt",
-      "fighterId": "thomas-gantt",
-      "actualOpponent": "Drakkar Klose",
-      "actualOpponentId": "drakkar-klose",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "hard-rule-disagreement",
-      "targetEligible": false,
-      "targetReason": "Too large a UFC experience gap for an automatic recommendation.",
-      "engineRank": null,
-      "publicRank": null,
-      "engineTopThree": [
-        {
-          "opponent": "Manoel Sousa",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Marquel Mederos",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "divisional-sorting"
-        },
-        {
-          "opponent": "Nazim Sadykhov",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "step-up-vs-rebound"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Manoel Sousa",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Nazim Sadykhov",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Tofiq Musayev",
-          "score": 84,
-          "rankingScore": 80,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "reason": "Too large a UFC experience gap for an automatic recommendation.",
-      "outlierReviewCandidate": true
-    },
-    {
-      "cutoff": "2026-06-06",
-      "targetDate": "2026-09-19",
-      "division": "Middleweight",
-      "targetDivision": "Middleweight",
-      "fighter": "Edmen Shahbazyan",
-      "fighterId": "edmen-shahbazyan",
-      "actualOpponent": "Brunno Ferreira",
-      "actualOpponentId": "brunno-ferreira",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-near",
-      "targetEligible": true,
-      "targetReason": null,
-      "engineRank": 4,
-      "publicRank": null,
-      "engineTopThree": [
-        {
-          "opponent": "Jun Yong Park",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Roman Dolidze",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Abdul Razak Alhassan",
-          "score": 90,
-          "rankingScore": 90,
-          "case": "rebound-pairing"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Roman Dolidze",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Jun Yong Park",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Abdul Razak Alhassan",
-          "score": 90,
-          "rankingScore": 90,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "cutoff": "2026-04-11",
-      "targetDate": "2026-10-10",
-      "division": "Welterweight",
-      "targetDivision": "Lightweight",
-      "fighter": "Francisco Prado",
-      "fighterId": "francisco-prado",
-      "actualOpponent": "Ismael Bonfim",
-      "actualOpponentId": "ismael-bonfim",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "future-division-change",
-      "reason": "future-target-division:Lightweight",
-      "actualHistoricalDivision": "Lightweight",
-      "excludedFromAccuracy": true
-    },
-    {
-      "cutoff": "2026-02-21",
-      "targetDate": "2026-09-05",
-      "division": "Women's Bantamweight",
-      "targetDivision": "Women's Bantamweight",
-      "fighter": "Nora Cornolle",
-      "fighterId": "nora-cornolle",
-      "actualOpponent": "Klaudia Sygula",
-      "actualOpponentId": "klaudia-sygula",
+      "fighter": "Tom Nolan",
+      "fighterId": "tom-nolan",
+      "actualOpponent": "Renato Moicano",
+      "actualOpponentId": "renato-moicano",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -5406,49 +5309,184 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 21,
+      "engineRank": 26,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Chelsea Chandler",
+          "opponent": "Mason Jones",
           "score": 92,
           "rankingScore": 92,
-          "case": "rebound-pairing"
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Josiane Nunes",
+          "opponent": "Quillan Salkilld",
           "score": 91,
           "rankingScore": 91,
-          "case": "rebound-pairing"
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Julia Avila",
-          "score": 90,
-          "rankingScore": 90,
-          "case": "rebound-pairing"
+          "opponent": "Benoit Saint Denis",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Chelsea Chandler",
+          "opponent": "Mason Jones",
           "score": 92,
           "rankingScore": 92,
-          "case": "rebound-pairing"
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Julia Avila",
-          "score": 90,
-          "rankingScore": 90,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Josiane Nunes",
+          "opponent": "Quillan Salkilld",
           "score": 91,
           "rankingScore": 91,
-          "case": "rebound-pairing"
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Benoit Saint Denis",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
         }
       ],
       "outlierReviewCandidate": true
+    },
+    {
+      "cutoff": "2026-06-06",
+      "targetDate": "2026-10-10",
+      "division": "Middleweight",
+      "targetDivision": "Middleweight",
+      "fighter": "Brendan Allen",
+      "fighterId": "brendan-allen",
+      "actualOpponent": "Christian Leroy Duncan",
+      "actualOpponentId": "christian-leroy-duncan",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "engine-top3-hit",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 3,
+      "publicRank": 3,
+      "engineTopThree": [
+        {
+          "opponent": "Michal Oleksiejczuk",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Gregory Rodrigues",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Christian Leroy Duncan",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Michal Oleksiejczuk",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Gregory Rodrigues",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Christian Leroy Duncan",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "cutoff": "2026-05-16",
+      "targetDate": "2026-10-03",
+      "division": "Welterweight",
+      "targetDivision": "Welterweight",
+      "fighter": "Khaos Williams",
+      "fighterId": "khaos-williams",
+      "actualOpponent": "Roberto Soldic",
+      "actualOpponentId": "roberto-soldic",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "future-newcomer-booking",
+      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
+      "excludedFromAccuracy": true
+    },
+    {
+      "cutoff": "2026-02-21",
+      "targetDate": "2026-04-25",
+      "division": "Women's Bantamweight",
+      "targetDivision": "Women's Bantamweight",
+      "fighter": "Joselyne Edwards",
+      "fighterId": "joselyne-edwards",
+      "actualOpponent": "Norma Dumont",
+      "actualOpponentId": "norma-dumont",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "engine-top3-hit",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 2,
+      "publicRank": 2,
+      "engineTopThree": [
+        {
+          "opponent": "Yana Santos",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Norma Dumont",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jacqueline Cavalcanti",
+          "score": 85,
+          "rankingScore": 85,
+          "case": "rising-vs-rising"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Yana Santos",
+          "score": 93,
+          "rankingScore": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Norma Dumont",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jacqueline Cavalcanti",
+          "score": 85,
+          "rankingScore": 85,
+          "case": "rising-vs-rising"
+        }
+      ]
     },
     {
       "cutoff": "2026-02-21",
@@ -5468,63 +5506,64 @@
       "excludedFromAccuracy": true
     },
     {
-      "cutoff": "2026-03-14",
-      "targetDate": "2026-08-08",
+      "cutoff": "2026-03-21",
+      "targetDate": "2026-08-22",
       "division": "Women's Strawweight",
       "targetDivision": "Women's Strawweight",
-      "fighter": "Amanda Lemos",
-      "fighterId": "amanda-lemos",
-      "actualOpponent": "Alexia Thainara",
-      "actualOpponentId": "alexia-thainara",
+      "fighter": "Shanelle Dyer",
+      "fighterId": "shanelle-dyer",
+      "actualOpponent": "Elise Reed",
+      "actualOpponentId": "elise-reed",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-deep",
-      "targetEligible": true,
-      "targetReason": null,
-      "engineRank": 21,
+      "classification": "hard-rule-disagreement",
+      "targetEligible": false,
+      "targetReason": "Too large a UFC experience gap for an automatic recommendation.",
+      "engineRank": null,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Sam Hughes",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
+          "opponent": "Shi Ming",
+          "score": 94,
+          "rankingScore": 94,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Yan Xiaonan",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Tecia Pennington",
+          "opponent": "Jaqueline Amorim",
           "score": 90,
           "rankingScore": 90,
-          "case": "rebound-pairing"
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Ariane Carnelossi",
+          "score": 87,
+          "rankingScore": 87,
+          "case": "step-up-vs-rebound"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Sam Hughes",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
+          "opponent": "Shi Ming",
+          "score": 94,
+          "rankingScore": 94,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Karolina Kowalkiewicz",
+          "opponent": "Jaqueline Amorim",
           "score": 90,
           "rankingScore": 90,
-          "case": "rebound-pairing"
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Yan Xiaonan",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
+          "opponent": "Ariane Carnelossi",
+          "score": 87,
+          "rankingScore": 87,
+          "case": "step-up-vs-rebound"
         }
       ],
+      "reason": "Too large a UFC experience gap for an automatic recommendation.",
       "outlierReviewCandidate": true
     },
     {
@@ -5532,60 +5571,59 @@
       "targetDate": "2026-09-26",
       "division": "Bantamweight",
       "targetDivision": "Bantamweight",
-      "fighter": "Montel Jackson",
-      "fighterId": "montel-jackson",
-      "actualOpponent": "Ricky Simon",
-      "actualOpponentId": "ricky-simon",
+      "fighter": "Raoni Barcelos",
+      "fighterId": "raoni-barcelos",
+      "actualOpponent": "Raul Rosas Jr.",
+      "actualOpponentId": "raul-rosas-jr",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-deep",
+      "classification": "engine-ranking-miss-near",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 28,
+      "engineRank": 4,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Kyler Phillips",
+          "opponent": "Charles Jourdain",
           "score": 93,
           "rankingScore": 93,
-          "case": "rebound-pairing"
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Cory Sandhagen",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Aiemann Zahabi",
+          "score": 87,
+          "rankingScore": 87,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Song Yadong",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
+          "opponent": "Farid Basharat",
+          "score": 86,
+          "rankingScore": 86,
+          "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Kyler Phillips",
+          "opponent": "Charles Jourdain",
           "score": 93,
           "rankingScore": 93,
-          "case": "rebound-pairing"
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Cory Sandhagen",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rebound-pairing"
+          "opponent": "Aiemann Zahabi",
+          "score": 87,
+          "rankingScore": 87,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Song Yadong",
-          "score": 91,
-          "rankingScore": 91,
-          "case": "rebound-pairing"
+          "opponent": "Farid Basharat",
+          "score": 86,
+          "rankingScore": 86,
+          "case": "rising-vs-rising"
         }
-      ],
-      "outlierReviewCandidate": true
+      ]
     },
     {
       "cutoff": "2026-05-02",
@@ -5648,22 +5686,63 @@
       "outlierReviewCandidate": false
     },
     {
-      "cutoff": "2026-05-16",
-      "targetDate": "2026-05-30",
+      "cutoff": "2026-05-30",
+      "targetDate": "2026-08-29",
       "division": "Flyweight",
-      "targetDivision": "Bantamweight",
-      "fighter": "Luis Gurule",
-      "fighterId": "luis-gurule",
-      "actualOpponent": "Rei Tsuruya",
-      "actualOpponentId": "rei-tsuruya",
+      "targetDivision": "Flyweight",
+      "fighter": "Sumudaerji",
+      "fighterId": "su-mudaerji",
+      "actualOpponent": "Alex Perez",
+      "actualOpponentId": "alex-perez",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "future-division-change",
-      "reason": "future-target-division:Bantamweight",
-      "actualHistoricalDivision": "Flyweight",
-      "excludedFromAccuracy": true
+      "classification": "engine-top3-hit",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 2,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Kai Kara France",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "divisional-sorting"
+        },
+        {
+          "opponent": "Alex Perez",
+          "score": 87,
+          "rankingScore": 87,
+          "case": "divisional-sorting"
+        },
+        {
+          "opponent": "Jose Ochoa",
+          "score": 86,
+          "rankingScore": 86,
+          "case": "divisional-sorting"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Alden Coria",
+          "score": 81,
+          "rankingScore": 74,
+          "case": "prospect-test"
+        },
+        {
+          "opponent": "Lucas Rocha",
+          "score": 80,
+          "rankingScore": 71,
+          "case": "prospect-test"
+        },
+        {
+          "opponent": "Ramazan Temirov",
+          "score": 80,
+          "rankingScore": 71,
+          "case": "prospect-test"
+        }
+      ]
     },
     {
       "cutoff": "2026-04-18",
@@ -5786,14 +5865,134 @@
       "outlierReviewCandidate": false
     },
     {
-      "cutoff": "2026-05-09",
-      "targetDate": "2026-10-24",
+      "cutoff": "2026-05-16",
+      "targetDate": "2026-09-12",
       "division": "Lightweight",
       "targetDivision": "Lightweight",
-      "fighter": "Grant Dawson",
-      "fighterId": "grant-dawson",
-      "actualOpponent": "Nurullo Aliev",
-      "actualOpponentId": "nurullo-aliev",
+      "fighter": "Thomas Gantt",
+      "fighterId": "thomas-gantt",
+      "actualOpponent": "Drakkar Klose",
+      "actualOpponentId": "drakkar-klose",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "hard-rule-disagreement",
+      "targetEligible": false,
+      "targetReason": "Too large a UFC experience gap for an automatic recommendation.",
+      "engineRank": null,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Manoel Sousa",
+          "score": 94,
+          "rankingScore": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Marquel Mederos",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "divisional-sorting"
+        },
+        {
+          "opponent": "Nazim Sadykhov",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "step-up-vs-rebound"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Manoel Sousa",
+          "score": 94,
+          "rankingScore": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Nazim Sadykhov",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Tofiq Musayev",
+          "score": 84,
+          "rankingScore": 80,
+          "case": "rising-vs-rising"
+        }
+      ],
+      "reason": "Too large a UFC experience gap for an automatic recommendation.",
+      "outlierReviewCandidate": true
+    },
+    {
+      "cutoff": "2026-06-06",
+      "targetDate": "2026-09-19",
+      "division": "Middleweight",
+      "targetDivision": "Middleweight",
+      "fighter": "Edmen Shahbazyan",
+      "fighterId": "edmen-shahbazyan",
+      "actualOpponent": "Brunno Ferreira",
+      "actualOpponentId": "brunno-ferreira",
+      "subjectHistoricalOnly": false,
+      "actualOpponentHistoricalOnly": false,
+      "rankingSnapshotDate": null,
+      "stateSnapshotDate": null,
+      "classification": "engine-ranking-miss-near",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 4,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Jun Yong Park",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Roman Dolidze",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Abdul Razak Alhassan",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rebound-pairing"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Roman Dolidze",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Jun Yong Park",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Abdul Razak Alhassan",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "cutoff": "2026-05-09",
+      "targetDate": "2026-10-17",
+      "division": "Welterweight",
+      "targetDivision": "Welterweight",
+      "fighter": "Joaquin Buckley",
+      "fighterId": "joaquin-buckley",
+      "actualOpponent": "Mike Malott",
+      "actualOpponentId": "mike-malott",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -5801,93 +6000,59 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 27,
+      "engineRank": 70,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Mateusz Gamrot",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "rising-vs-rising"
+          "opponent": "Geoff Neal",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Jalin Turner",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rising-vs-rising"
+          "opponent": "Max Griffin",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Drakkar Klose",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rising-vs-rising"
+          "opponent": "Trevin Giles",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Mateusz Gamrot",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "rising-vs-rising"
+          "opponent": "Li Jingliang",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Jalin Turner",
-          "score": 93,
-          "rankingScore": 93,
-          "case": "rising-vs-rising"
+          "opponent": "Muslim Salikhov",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Drakkar Klose",
-          "score": 92,
-          "rankingScore": 92,
-          "case": "rising-vs-rising"
+          "opponent": "Santiago Ponzinibbio",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         }
       ],
       "outlierReviewCandidate": true
     },
     {
-      "cutoff": "2026-05-30",
-      "targetDate": "2026-09-05",
-      "division": "Middleweight",
-      "targetDivision": "Middleweight",
-      "fighter": "Luis Felipe Dias",
-      "fighterId": "luis-felipe-dias",
-      "actualOpponent": "Matthieu Letho Duclos",
-      "actualOpponentId": "matthieu-letho-duclos",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "future-newcomer-booking",
-      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
-      "excludedFromAccuracy": true
-    },
-    {
-      "cutoff": "2026-03-28",
-      "targetDate": "2026-10-10",
-      "division": "Welterweight",
-      "targetDivision": "Welterweight",
-      "fighter": "Niko Price",
-      "fighterId": "niko-price",
-      "actualOpponent": "Leon Shahbazyan",
-      "actualOpponentId": "leon-shahbazyan",
-      "subjectHistoricalOnly": false,
-      "actualOpponentHistoricalOnly": false,
-      "rankingSnapshotDate": null,
-      "stateSnapshotDate": null,
-      "classification": "future-newcomer-booking",
-      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
-      "excludedFromAccuracy": true
-    },
-    {
-      "cutoff": "2026-02-07",
+      "cutoff": "2026-02-21",
       "targetDate": "2026-09-05",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Klaudia Sygula",
-      "fighterId": "klaudia-sygula",
-      "actualOpponent": "Nora Cornolle",
-      "actualOpponentId": "nora-cornolle",
+      "fighter": "Nora Cornolle",
+      "fighterId": "nora-cornolle",
+      "actualOpponent": "Klaudia Sygula",
+      "actualOpponentId": "klaudia-sygula",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -5895,49 +6060,49 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 14,
+      "engineRank": 21,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Dariya Zheleznyakova",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
+          "opponent": "Chelsea Chandler",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Luana Santos",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "rising-vs-rising"
+          "opponent": "Josiane Nunes",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Melissa Gatto",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "rising-vs-rising"
+          "opponent": "Julia Avila",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rebound-pairing"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Dariya Zheleznyakova",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
+          "opponent": "Chelsea Chandler",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Luana Santos",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "rising-vs-rising"
+          "opponent": "Julia Avila",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Melissa Gatto",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "rising-vs-rising"
+          "opponent": "Josiane Nunes",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         }
       ],
-      "outlierReviewCandidate": false
+      "outlierReviewCandidate": true
     },
     {
       "cutoff": "2026-02-21",
@@ -5976,7 +6141,7 @@
     "The full-state clean set requires both ranking and roster snapshots and will remain small until those archives mature."
   ],
   "classificationRefinement": {
-    "opponentDivisionMovesReclassified": 9,
+    "opponentDivisionMovesReclassified": 10,
     "note": "If the eventual bout stayed in the subject cutoff division but the opponent was historically in another division at the cutoff, the case is classified as a future opponent division change rather than a data-coverage failure."
   }
 }

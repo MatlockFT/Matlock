@@ -1,50 +1,58 @@
 {
-  "generatedAt": "2026-11-01T02:20:05.554Z",
+  "generatedAt": "2026-11-01T09:24:46.955Z",
   "engineVersion": 2,
-  "subjects": 336,
-  "publishedRecommendations": 921,
+  "subjects": 360,
+  "publishedRecommendations": 993,
   "recommendationSlots": {
     "0": 26,
     "1": 3,
     "2": 3,
-    "3": 304
+    "3": 328
   },
   "caseCounts": {
-    "rebound-pairing": 389,
-    "rising-vs-rising": 267,
-    "step-up-vs-rebound": 115,
-    "rankings-progression": 55,
-    "ranking-opportunity": 50,
-    "divisional-sorting": 18,
+    "rebound-pairing": 421,
+    "rising-vs-rising": 290,
+    "step-up-vs-rebound": 122,
+    "rankings-progression": 60,
+    "ranking-opportunity": 55,
+    "divisional-sorting": 23,
     "title-case": 11,
-    "prospect-test": 9,
-    "title-eliminator": 7
+    "title-eliminator": 7,
+    "prospect-test": 4
   },
   "confidenceCounts": {
-    "high": 866,
-    "medium": 29,
-    "low": 26
+    "high": 933,
+    "low": 31,
+    "medium": 29
   },
-  "averageRecentOpponentLinkCoverage": 0.9048,
+  "averageRecentOpponentLinkCoverage": 0.9054,
   "sameCardRecommendations": 48,
-  "sameCardRecommendationRatio": 0.0521,
-  "asymmetricTopThreeRecommendations": 315,
-  "asymmetricTopThreeRatio": 0.342,
-  "publicPublishedRecommendations": 896,
-  "publicAsymmetricTopThreeRecommendations": 224,
-  "publicAsymmetricTopThreeRatio": 0.25,
-  "engineGenericDivisionalSortingRecommendations": 18,
+  "sameCardRecommendationRatio": 0.0483,
+  "asymmetricTopThreeRecommendations": 335,
+  "asymmetricTopThreeRatio": 0.3374,
+  "publicPublishedRecommendations": 967,
+  "publicAsymmetricTopThreeRecommendations": 248,
+  "publicAsymmetricTopThreeRatio": 0.2565,
+  "engineGenericDivisionalSortingRecommendations": 23,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
-    "id": "ufc-333",
-    "title": "UFC 333: Volkanovski vs Evloev",
-    "date": "2026-10-24",
-    "subjects": 28,
-    "publicRecommendations": 76,
+    "id": "ufc-fight-night-october-31-2026",
+    "title": "UFC Fight Night: Moicano vs Nolan",
+    "date": "2026-10-31",
+    "subjects": 24,
+    "publicRecommendations": 72,
     "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
+    {
+      "id": "ufc-fight-night-october-31-2026",
+      "title": "UFC Fight Night: Moicano vs Nolan",
+      "date": "2026-10-31",
+      "subjects": 24,
+      "publicRecommendations": 72,
+      "noClearMatchupSubjects": 0
+    },
     {
       "id": "ufc-333",
       "title": "UFC 333: Volkanovski vs Evloev",
@@ -82,7 +90,7 @@
       "title": "UFC Fight Night: Rosas Jr. vs Barcelos",
       "date": "2026-09-26",
       "subjects": 24,
-      "publicRecommendations": 70,
+      "publicRecommendations": 69,
       "noClearMatchupSubjects": 0
     },
     {
@@ -151,6 +159,34 @@
     }
   ],
   "genericExamples": [
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Rodrigo Sezinando",
+      "opponent": "Myktybek Orolbai",
+      "score": 94,
+      "rationale": "Rodrigo Sezinando and Myktybek Orolbai occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Lucia Szabova",
+      "opponent": "Ernesta Kareckaite",
+      "score": 85,
+      "rationale": "Lucia Szabova and Ernesta Kareckaite occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Lucia Szabova",
+      "opponent": "Tereza Bleda",
+      "score": 75,
+      "rationale": "Lucia Szabova and Tereza Bleda occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Lucia Szabova",
+      "opponent": "Jeisla Chaves",
+      "score": 72,
+      "rationale": "Lucia Szabova and Jeisla Chaves occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
     {
       "event": "UFC 333: Volkanovski vs Evloev",
       "fighter": "Movsar Evloev",
@@ -222,11 +258,11 @@
       "rationale": "Melissa Gatto and Jj Aldrich occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Joseph Morales",
-      "opponent": "Jose Ochoa",
-      "score": 91,
-      "rationale": "Joseph Morales and Jose Ochoa occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Ailin Perez",
+      "opponent": "Luana Santos",
+      "score": 69,
+      "rationale": "Ailin Perez and Luana Santos occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
@@ -241,13 +277,6 @@
       "opponent": "Alex Perez",
       "score": 70,
       "rationale": "Tim Elliott and Alex Perez occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Sean King III",
-      "opponent": "Jeongyeong Lee",
-      "score": 90,
-      "rationale": "Sean King III and Jeongyeong Lee occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
@@ -269,153 +298,196 @@
       "opponent": "Evan Elder",
       "score": 47,
       "rationale": "Salahdine Parnasse and Evan Elder occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Nurmagomedov vs Song",
-      "fighter": "Kevin Borjas",
-      "opponent": "Alibi Idiris",
-      "score": 92,
-      "rationale": "Kevin Borjas and Alibi Idiris occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
   "asymmetricExamples": [
     {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Alexander Volkanovski",
-      "opponent": "Jean Silva",
-      "pairScore": 63,
-      "case": "title-case",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Lerone Murphy",
-          "score": 99,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Yair Rodriguez",
-          "score": 89,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Movsar Evloev",
-          "score": 86,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Movsar Evloev",
-      "opponent": "Yair Rodriguez",
-      "pairScore": 79,
-      "case": "step-up-vs-rebound",
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Renato Moicano",
+      "opponent": "Grant Dawson",
+      "pairScore": 91,
+      "case": "ranking-opportunity",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Lerone Murphy",
-          "score": 96,
-          "case": "step-up-vs-rebound"
+          "opponent": "Alexander Hernandez",
+          "score": 94,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Arnold Allen",
+          "opponent": "Jalin Turner",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jai Herbert",
+          "score": 92,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Tom Nolan",
+      "opponent": "Esteban Ribovics",
+      "pairScore": 93,
+      "case": "rankings-progression",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Rongzhu",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jai Herbert",
+          "score": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jalin Turner",
+          "score": 93,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Randy Brown",
+      "opponent": "Jack Hermansson",
+      "pairScore": 89,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Santiago Ponzinibbio",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Muslim Salikhov",
+          "score": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Gunnar Nelson",
+          "score": 90,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Randy Brown",
+      "opponent": "Geoff Neal",
+      "pairScore": 86,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Chris Curtis",
+          "score": 89,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Joel Alvarez",
           "score": 88,
-          "case": "rankings-progression"
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Youssef Zalal",
+          "opponent": "Jack Hermansson",
           "score": 87,
-          "case": "step-up-vs-rebound"
+          "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Movsar Evloev",
-      "opponent": "Youssef Zalal",
-      "pairScore": 46,
-      "case": "divisional-sorting",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Mairon Santos Alves",
-          "score": 90,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Arnold Allen",
-          "score": 89,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Aaron Pico",
-          "score": 88,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Merab Dvalishvili",
-      "opponent": "Payton Talbott",
-      "pairScore": 64,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Umar Nurmagomedov",
-          "score": 90,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "David Martinez",
-          "score": 89,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Cory Sandhagen",
-          "score": 86,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Loneer Kavanagh",
-      "opponent": "Tim Elliott",
-      "pairScore": 54,
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Jacobe Smith",
+      "opponent": "Yaroslav Amosov",
+      "pairScore": 82,
       "case": "rankings-progression",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Ramazan Temirov",
-          "score": 86,
-          "case": "step-up-vs-rebound"
+          "opponent": "Shavkat Rakhmonov",
+          "score": 87,
+          "case": "rankings-progression"
         },
         {
-          "opponent": "Tagir Ulanbekov",
-          "score": 71,
-          "case": "step-up-vs-rebound"
+          "opponent": "Mike Malott",
+          "score": 84,
+          "case": "rankings-progression"
         },
         {
-          "opponent": "Alex Perez",
-          "score": 70,
-          "case": "divisional-sorting"
+          "opponent": "Joaquin Buckley",
+          "score": 84,
+          "case": "step-up-vs-rebound"
         }
       ]
     },
     {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Ramazan Temirov",
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Ode Osbourne",
+      "opponent": "Alden Coria",
+      "pairScore": 87,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Hyunsung Park",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Namsrai Batbayar",
+          "score": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Clayton Carpenter",
+          "score": 90,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Ode Osbourne",
+      "opponent": "Hyunsung Park",
+      "pairScore": 87,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Kevin Borjas",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Alden Coria",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Fabia Sintes",
+          "score": 88,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Cody Durden",
       "opponent": "Rei Tsuruya",
-      "pairScore": 76,
-      "case": "ranking-opportunity",
+      "pairScore": 81,
+      "case": "rising-vs-rising",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Tagir Ulanbekov",
-          "score": 95,
+          "score": 96,
           "case": "ranking-opportunity"
         },
         {
@@ -431,437 +503,312 @@
       ]
     },
     {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Alexander Volkov",
-      "opponent": "Vitor Petrino",
-      "pairScore": 46,
-      "case": "divisional-sorting",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Rizvan Kuniev",
-          "score": 85,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Ante Delija",
-          "score": 83,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Valter Walker",
-          "score": 76,
-          "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Alexander Volkov",
-      "opponent": "Jon Jones",
-      "pairScore": 44,
-      "case": "divisional-sorting",
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Jean Paul Lebosnoyani",
+      "opponent": "Ty Miller",
+      "pairScore": 82,
+      "case": "rising-vs-rising",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Derrick Lewis",
-          "score": 81,
-          "case": "ranking-opportunity"
+          "opponent": "Eric Nolan",
+          "score": 89,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Rizvan Kuniev",
-          "score": 80,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Serghei Spivac",
-          "score": 81,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Aaron Pico",
-      "opponent": "Steve Garcia",
-      "pairScore": 86,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Mairon Santos Alves",
-          "score": 91,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Marcus McGhee",
-          "score": 90,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Patricio Freire",
+          "opponent": "Rodrigo Sezinando",
           "score": 88,
-          "case": "step-up-vs-rebound"
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Carlos Leal",
+          "score": 87,
+          "case": "rising-vs-rising"
         }
       ]
     },
     {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Aaron Pico",
-      "opponent": "Melquizael Costa",
-      "pairScore": 88,
-      "case": "step-up-vs-rebound",
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Farman Hasanov",
+      "opponent": "Saygid Izagakhmaev",
+      "pairScore": 93,
+      "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Marcus McGhee",
-          "score": 99,
-          "case": "ranking-opportunity"
+          "opponent": "Leon Shahbazyan",
+          "score": 94,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Joanderson Brito",
-          "score": 97,
-          "case": "ranking-opportunity"
+          "opponent": "Theodor Berggren",
+          "score": 94,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Mairon Santos Alves",
-          "score": 97,
-          "case": "ranking-opportunity"
+          "opponent": "Bassil Hafez",
+          "score": 93,
+          "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Azamat Murzakanov",
-      "opponent": "Bogdan Guskov",
-      "pairScore": 84,
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Francis Marshall",
+      "opponent": "Jack Jenkins",
+      "pairScore": 92,
       "case": "rebound-pairing",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Reinier De Ridder",
-          "score": 99,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Abdulrakhman Yakhyaev",
+          "opponent": "Jeongyeong Lee",
           "score": 93,
-          "case": "ranking-opportunity"
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Robert Whittaker",
-          "score": 89,
-          "case": "step-up-vs-rebound"
+          "opponent": "Morgan Charriere",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "William Gomis",
+          "score": 93,
+          "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Azamat Murzakanov",
-      "opponent": "Reinier De Ridder",
-      "pairScore": 83,
-      "case": "step-up-vs-rebound",
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Francis Marshall",
+      "opponent": "Jeongyeong Lee",
+      "pairScore": 92,
+      "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Bogdan Guskov",
-          "score": 99,
-          "case": "step-up-vs-rebound"
+          "opponent": "Bolaji Oki",
+          "score": 94,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Abdulrakhman Yakhyaev",
-          "score": 90,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Volkan Oezdemir",
-          "score": 89,
-          "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Dominick Reyes",
-      "opponent": "Bogdan Guskov",
-      "pairScore": 82,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Reinier De Ridder",
-          "score": 99,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Abdulrakhman Yakhyaev",
+          "opponent": "Jack Jenkins",
           "score": 93,
-          "case": "ranking-opportunity"
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Robert Whittaker",
-          "score": 89,
-          "case": "step-up-vs-rebound"
+          "opponent": "Morgan Charriere",
+          "score": 93,
+          "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Nikita Krylov",
-      "opponent": "Reinier De Ridder",
-      "pairScore": 87,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Bogdan Guskov",
-          "score": 99,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Abdulrakhman Yakhyaev",
-          "score": 90,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Volkan Oezdemir",
-          "score": 89,
-          "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Nikita Krylov",
-      "opponent": "Julius Walker",
-      "pairScore": 84,
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Julian Erosa",
+      "opponent": "David Onama",
+      "pairScore": 91,
       "case": "ranking-opportunity",
-      "fighterRank": "Another option",
+      "fighterRank": "Best match",
       "opponentTopThree": [
         {
-          "opponent": "Diyar Nurgozhay",
-          "score": 92,
-          "case": "rising-vs-rising"
+          "opponent": "Sean Woodson",
+          "score": 96,
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Christian Edwards",
-          "score": 89,
-          "case": "rising-vs-rising"
+          "opponent": "Bogdan Grad",
+          "score": 95,
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Uran Satybaldiev",
-          "score": 86,
+          "opponent": "Christian Rodriguez",
+          "score": 95,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Julian Erosa",
+      "opponent": "Miles Johns",
+      "pairScore": 90,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "David Onama",
+          "score": 94,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Melquizael Costa",
+          "score": 94,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Sean Woodson",
+          "score": 93,
           "case": "rising-vs-rising"
         }
       ]
     },
     {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Abus Magomedov",
-      "opponent": "Roman Kopylov",
-      "pairScore": 87,
-      "case": "rankings-progression",
-      "fighterRank": "Alternative",
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Jeongyeong Lee",
+      "opponent": "Morgan Charriere",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Shara Magomedov",
-          "score": 90,
-          "case": "rankings-progression"
+          "opponent": "Hyder Amil",
+          "score": 94,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Ismail Naurdiev",
-          "score": 89,
+          "opponent": "William Gomis",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Bolaji Oki",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Zachary Reese",
+      "opponent": "Dustin Stoltzfus",
+      "pairScore": 93,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Rodolfo Vieira",
+          "score": 95,
           "case": "rising-vs-rising"
         },
         {
           "opponent": "Tresean Gore",
-          "score": 89,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Nurullo Aliev",
-      "opponent": "Matheus Camilo",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Daniel Zellhuber",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Dom Mar Fan",
-          "score": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Gauge Young",
-          "score": 91,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Nurullo Aliev",
-      "opponent": "Kaue Fernandes",
-      "pairScore": 90,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Daniel Zellhuber",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Gauge Young",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Dom Mar Fan",
-          "score": 91,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Nurullo Aliev",
-      "opponent": "Daniel Zellhuber",
-      "pairScore": 89,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Claudio Puelles",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Fares Ziam",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Gauge Young",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Colby Thicknesse",
-      "opponent": "Heili Alateng",
-      "pairScore": 89,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Bryce Mitchell",
-          "score": 92,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Raoni Barcelos",
-          "score": 90,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Victor Henry",
-          "score": 90,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Colby Thicknesse",
-      "opponent": "Jean Matsumoto",
-      "pairScore": 88,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Benardo Sopaj",
-          "score": 90,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Kai Asakura",
-          "score": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Victor Henry",
-          "score": 89,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Abubakar Vagaev",
-      "opponent": "Jackson McVey",
-      "pairScore": 88,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Robert Valentin Frey",
-          "score": 96,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Baisangur Susurkaev",
           "score": 95,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Damian Pinas",
-          "score": 95,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Abubakar Vagaev",
-      "opponent": "Damian Pinas",
-      "pairScore": 87,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Jackson McVey",
-          "score": 95,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Robert Valentin Frey",
-          "score": 95,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Baisangur Susurkaev",
+          "opponent": "Ismail Naurdiev",
           "score": 94,
           "case": "rising-vs-rising"
         }
       ]
     },
     {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Jacob Malkoun",
-      "opponent": "Ateba Gautier",
-      "pairScore": 91,
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Mickey Gall",
+      "opponent": "Robert Bryczek",
+      "pairScore": 88,
       "case": "rebound-pairing",
-      "fighterRank": "Best match",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Andrey Pulyaev",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Julien Leblanc",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Wes Schultz",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Mickey Gall",
+      "opponent": "Djorden Santos",
+      "pairScore": 87,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Andrey Pulyaev",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Julien Leblanc",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Mansur Abdul Malik",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Nick Klein",
+      "opponent": "Luis Felipe Dias",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Ozzy Diaz",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Treston Vines",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Benjamin Johnston",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Nick Klein",
+      "opponent": "Treston Vines",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Luis Felipe Dias",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Ozzy Diaz",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Benjamin Johnston",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Joseph Kropschot",
+      "opponent": "Ateba Gautier",
+      "pairScore": 92,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Cam Rowston",
@@ -881,27 +828,102 @@
       ]
     },
     {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Jacob Malkoun",
-      "opponent": "Kyle Daukaus",
-      "pairScore": 90,
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Talita Alencar",
+      "opponent": "Loma Lookboonmee",
+      "pairScore": 88,
       "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Polyana Viana",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Sam Hughes",
+          "score": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Ketlen Souza",
+          "score": 88,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Piera Rodriguez",
+      "opponent": "Angela Hill",
+      "pairScore": 81,
+      "case": "rankings-progression",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Dusko Todorovic",
+          "opponent": "Jessica Andrade",
+          "score": 85,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Mizuki Inoue",
+          "score": 85,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Amanda Ribas",
+          "score": 84,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Piera Rodriguez",
+      "opponent": "Amanda Ribas",
+      "pairScore": 82,
+      "case": "ranking-opportunity",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Amanda Lemos",
           "score": 92,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Zachary Reese",
-          "score": 92,
-          "case": "rebound-pairing"
+          "opponent": "Iasmin Lucindo",
+          "score": 86,
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Brunno Ferreira",
-          "score": 91,
-          "case": "rebound-pairing"
+          "opponent": "Angela Hill",
+          "score": 84,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Lucia Szabova",
+      "opponent": "Ernesta Kareckaite",
+      "pairScore": 85,
+      "case": "divisional-sorting",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Jamey Lyn Horth",
+          "score": 89,
+          "case": "divisional-sorting"
+        },
+        {
+          "opponent": "Melissa Gatto",
+          "score": 89,
+          "case": "divisional-sorting"
+        },
+        {
+          "opponent": "Tereza Bleda",
+          "score": 87,
+          "case": "divisional-sorting"
         }
       ]
     }
