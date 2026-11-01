@@ -325,7 +325,7 @@ function safeName(s,fallback){return (s||'').trim()||fallback}
 function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
 function setVisible(id,yes){$(id).classList.toggle('hidden',!yes)}
 function selectEvent(id){pause();activeId=null;focusMode=false;data.selected=id;persist();renderDashboard()}
-function renderDashboard(){clearChartFlash();window.copperCloud?.dashboard();setVisible('dashboard',true);setVisible('dashTop',true);setVisible('workbench',false);setVisible('scoreOverlay',false);setVisible('finishOverlay',false);setVisible('editFightOverlay',false);focusMode=false;
+function renderDashboard(){clearChartFlash();setVisible('dashboard',true);setVisible('dashTop',true);setVisible('workbench',false);setVisible('scoreOverlay',false);setVisible('finishOverlay',false);setVisible('editFightOverlay',false);focusMode=false;window.copperCloud?.dashboard();
  const list=$('events');list.replaceChildren();$('eventCount').textContent=data.events.length;
  data.events.forEach(e=>{const b=el('button');b.className='event-item'+(e.id===data.selected?' current':'');b.append(el('strong',safeName(e.name,'Untitled event')),el('small',(e.date||'No date')+' · '+e.fights.length+' fights'));b.onclick=()=>selectEvent(e.id);list.append(b)});
  $('legacyBtn').classList.toggle('hidden',!legacyAvailable());
