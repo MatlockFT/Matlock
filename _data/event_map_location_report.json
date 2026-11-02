@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 6,
+    "major": 7,
     "regional": 88
   },
   "map_totals": {
     "mapped": 88,
-    "quarantined": 6
+    "quarantined": 7
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 88,
     "structured": 0,
-    "unresolved": 6
+    "unresolved": 7
   },
   "mapped_precision": {
     "city": 88
   },
-  "unresolved_count": 6,
+  "unresolved_count": 7,
   "unresolved": [
     {
       "id": "ufc-fight-night-2026-11-07-fight-card",
@@ -65,6 +65,14 @@
       "title": "Van vs Kape",
       "date": "2027-01-30",
       "promotion": "UFC 336",
+      "venue": "Venue TBA",
+      "dataset": "major"
+    },
+    {
+      "id": "ufc-fight-night-2027-02-06-fight-card",
+      "title": "Salkilld vs Saint Denis",
+      "date": "2027-02-06",
+      "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
       "dataset": "major"
     }
@@ -132,6 +140,17 @@
       "title": "Van vs Kape",
       "date": "2027-01-30",
       "promotion": "UFC 336",
+      "venue": "Venue TBA",
+      "location": "",
+      "country": "",
+      "kind": "major",
+      "reason": "unresolved-us-location"
+    },
+    {
+      "id": "ufc-fight-night-2027-02-06-fight-card",
+      "title": "Salkilld vs Saint Denis",
+      "date": "2027-02-06",
+      "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
       "location": "",
       "country": "",

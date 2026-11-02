@@ -105,6 +105,23 @@
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
       "confirmed_local_bouts": 2
+    },
+    {
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "promotion": "ufc",
+      "date": "2027-02-06",
+      "title": "Salkilld vs Saint Denis",
+      "status": "matched",
+      "verdict_event_id": "1995",
+      "verdict_url": "https://verdictmma.com/event/1995",
+      "verdict_date": "2027-02-06",
+      "local_fight_count": 2,
+      "verdict_fight_count": null,
+      "local_main_count": 2,
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
+      "confirmed_local_bouts": 1
     }
   ],
   "discrepancies": [
@@ -238,6 +255,16 @@
       "verdict_main_count": 5,
       "local_prelim_count": 0,
       "verdict_prelim_count": 4
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "verdict_event_id": "1995",
+      "order": 2,
+      "fighters": [
+        "Bogdan Guskov",
+        "Robert Whittaker"
+      ]
     }
   ]
 }

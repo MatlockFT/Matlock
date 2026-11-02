@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "source_major_generated_at": "2026-11-02T09:55:58.196Z",
+  "source_major_generated_at": "2026-11-02T20:18:30.430Z",
   "source_regional_updated_at": null,
-  "major_total": 6,
+  "major_total": 7,
   "major_mapped": 0,
   "regional_total": 88,
   "regional_mapped": 88,
-  "quarantined_count": 6,
+  "quarantined_count": 7,
   "quarantined": [
     {
       "id": "ufc-fight-night-2026-11-07-fight-card",
@@ -68,6 +68,17 @@
       "title": "Van vs Kape",
       "date": "2027-01-30",
       "promotion": "UFC 336",
+      "venue": "Venue TBA",
+      "location": "",
+      "country": "",
+      "kind": "major",
+      "reason": "unresolved-us-location"
+    },
+    {
+      "id": "ufc-fight-night-2027-02-06-fight-card",
+      "title": "Salkilld vs Saint Denis",
+      "date": "2027-02-06",
+      "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
       "location": "",
       "country": "",
