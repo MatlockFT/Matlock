@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-02T09:35:16.674Z"
+      "checkedAt": "2026-11-02T19:49:48.877Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-02T09:35:53.935Z",
+      "checkedAt": "2026-11-02T19:50:29.403Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -33849,7 +33849,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2027-02-06",
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -36393,7 +36397,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2027-02-06",
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -266783,7 +266791,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2027-02-06",
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -282990,7 +283002,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2027-02-06",
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
