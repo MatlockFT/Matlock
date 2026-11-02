@@ -4,8 +4,8 @@
   "source_regional_updated_at": null,
   "major_total": 6,
   "major_mapped": 0,
-  "regional_total": 89,
-  "regional_mapped": 89,
+  "regional_total": 88,
+  "regional_mapped": 88,
   "quarantined_count": 6,
   "quarantined": [
     {
@@ -76,31 +76,6 @@
     }
   ],
   "events": [
-    {
-      "id": "sherdog-anthony-pettis-fc-26-indiana-fight-night-5-2026-11-01-hammond",
-      "promotion": "Anthony Pettis FC",
-      "promotion_key": "sherdog_discovery",
-      "title": "Anthony Pettis FC 26: Indiana Fight Night 5",
-      "date": "2026-11-01",
-      "venue": "Hammond Civic Center",
-      "location": "Hammond, IN",
-      "broadcast": "",
-      "official_url": "https://www.sherdog.com/events/Anthony-Pettis-FC-26-Indiana-Fight-Night-5-114643",
-      "regional": true,
-      "level": "regional",
-      "source_key": "sherdog_discovery",
-      "source_label": "Sherdog regional discovery",
-      "city": "Hammond",
-      "state": "IN",
-      "state_code": "IN",
-      "country": "US",
-      "location_source": "location-text",
-      "location_precision": "city",
-      "map_location_source": "location-text",
-      "map_location_precision": "city",
-      "map_location_confidence": "city",
-      "map_dataset": "regional"
-    },
     {
       "id": "sherdog-elite-fight-night-efn-31-combat-for-a-cause-2026-11-06-gary",
       "promotion": "Elite Fight Night",
