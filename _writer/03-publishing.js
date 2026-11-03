@@ -128,15 +128,20 @@
     else setDocumentStatus('New article');
   }
 
-  async function checkRemoteConflict(mode) {
+  async function checkRemoteConflict(mode, { automatic = false } = {}) {
   if (!currentPath || !currentSha) return false;
   try {
     const remote = await githubFetch(`/contents/${encodeURIComponent(currentPath).replace(/%2F/g,'/')}?ref=main`);
     if (remote.sha && remote.sha !== currentSha) {
       persistLocalAutosave();
-      pendingConflictMode = mode;
-      pendingRemoteSha = remote.sha;
-      conflictDialog.showModal();
+      if (automatic) {
+        // Never interrupt typing with a conflict dialog during a background save.
+        setSaveState('Auto-save paused • a newer GitHub version exists');
+      } else {
+        pendingConflictMode = mode;
+        pendingRemoteSha = remote.sha;
+        conflictDialog.showModal();
+      }
       return true;
     }
   } catch (error) {
@@ -145,13 +150,18 @@
   return false;
 }
 
-async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
-  if (saveInFlight) { showToast('A save is already in progress.'); return; }
-  try { validateForSave(mode); } catch (error) { showToast(error.message); return; }
-  if (!githubCredential) { connectDialog.showModal(); return; }
+async function saveArticle(mode = 'save', { skipConflict = false, automatic = false } = {}) {
+  // Background saves only update unpublished GitHub drafts. Updating a published
+  // article here would silently deploy changes that have not been approved.
+  if (automatic && (mode !== 'save' || !dirty || currentPublished || editorView.hidden ||
+    !githubCredential || saveInFlight || imageUploadInFlight || videoUploadInFlight)) return;
+  if (saveInFlight) { if (!automatic) showToast('A save is already in progress.'); return; }
+  try { validateForSave(mode); } catch (error) { if (!automatic) showToast(error.message); return; }
+  if (!githubCredential) { if (!automatic) connectDialog.showModal(); return; }
 
   const desiredPublished = mode === 'publish' ? true : mode === 'schedule' ? false : currentPublished;
   const filename = fields.filename.value.trim();
+  const wasNewArticle = !currentPath;
   const path = currentPath || `_posts/${filename}`;
   const autosaveKeyBeforeSave = localKey();
   const button = mode === 'publish' ? publishButton : mode === 'schedule' ? scheduleButton : saveDraftButton;
@@ -179,16 +189,17 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
   saveInFlight = true;
   fields.filename.disabled = true;
   setPublishingControls(false);
-  button.textContent = mode === 'publish' ? 'Publishing…' : mode === 'schedule' ? 'Scheduling…' : 'Saving…';
+  button.textContent = automatic ? 'Auto-saving…' : mode === 'publish' ? 'Publishing…' : mode === 'schedule' ? 'Scheduling…' : 'Saving…';
   setSaveState(button.textContent);
 
   try {
-    if (!skipConflict && await checkRemoteConflict(mode)) return;
+    if (!skipConflict && await checkRemoteConflict(mode, { automatic })) return;
 
     if (!currentPath && !skipConflict) {
       try {
         await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}?ref=main`);
-        showToast('That filename already exists. Change the filename before saving.', 6000);
+        if (automatic) setSaveState('Auto-save paused • filename already exists');
+        else showToast('That filename already exists. Change the filename before saving.', 6000);
         return;
       } catch (error) {
         if (error.status !== 404) throw new Error(`Could not verify the filename: ${error.message}`);
@@ -227,9 +238,9 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
     updateLiveLink();
     updateDocumentStatus();
     const stamp = new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
-    setSaveState(newerEdits ? 'Unsaved changes • earlier revision saved' : mode === 'publish' ? `Published • ${stamp}` : mode === 'schedule' ? `Scheduled • ${stamp}` : `Saved • ${stamp}`);
+    setSaveState(newerEdits ? 'Unsaved changes • earlier revision saved' : automatic ? `Auto-saved • ${stamp}` : mode === 'publish' ? `Published • ${stamp}` : mode === 'schedule' ? `Scheduled • ${stamp}` : `Saved • ${stamp}`);
     if (!newerEdits) setLocalStatus(`Saved to GitHub · ${stamp}`, 'github');
-    showToast(newerEdits ? 'Earlier revision saved. Your newer edits still need saving.' : mode === 'publish'
+    if (!automatic) showToast(newerEdits ? 'Earlier revision saved. Your newer edits still need saving.' : mode === 'publish'
       ? 'Published to GitHub. The public site is deploying now.'
       : mode === 'schedule'
         ? `Scheduled for ${formatDateTime(localInputToIso(savedSchedule))}. GitHub checks due posts about every 15 minutes.`
@@ -237,12 +248,15 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
     if (mode === 'publish') {
       window.dispatchEvent(new CustomEvent('matlock-writer:published', { detail: { path: currentPath, sha: currentSha } }));
     }
-    loadLibrary({ hydrate: true });
+    // Avoid fetching the entire library on every one-minute background save.
+    if (!automatic || wasNewArticle) loadLibrary({ hydrate: true });
   } catch (error) {
     dirty = true;
     const locallySaved = persistLocalAutosave();
-    setSaveState(locallySaved ? 'Save failed • local copy safe' : 'Save failed • download or copy your draft');
-    showToast(`Save failed: ${error.message}`, 6000);
+    setSaveState(locallySaved
+      ? (automatic ? 'Auto-save failed • local copy safe' : 'Save failed • local copy safe')
+      : 'Save failed • download or copy your draft');
+    if (!automatic) showToast(`Save failed: ${error.message}`, 6000);
   } finally {
     saveInFlight = false;
     fields.filename.disabled = Boolean(currentPath);
