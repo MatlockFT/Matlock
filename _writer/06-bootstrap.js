@@ -664,6 +664,17 @@ document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') persistLocalAutosave();
 });
 
+// A browser-local recovery copy is already saved shortly after every edit.
+// Once per minute, also persist changed unpublished articles to GitHub.
+const WRITER_CLOUD_AUTOSAVE_INTERVAL_MS = 60 * 1000;
+window.setInterval(() => {
+  if (editorView.hidden || !dirty || !githubCredential || currentPublished ||
+    saveInFlight || imageUploadInFlight || videoUploadInFlight || conflictDialog.open) return;
+  // Incomplete new articles stay safe in local storage until they can be saved.
+  try { validateForSave('save'); } catch { return; }
+  void saveArticle('save', { automatic: true });
+}, WRITER_CLOUD_AUTOSAVE_INTERVAL_MS);
+
 window.addEventListener('matlock-writer:auth', () => {
   setPublishingControls(true);
   void loadLibrary({ hydrate: true }).then(() => {
