@@ -4,8 +4,8 @@
   "source_regional_updated_at": null,
   "major_total": 8,
   "major_mapped": 0,
-  "regional_total": 101,
-  "regional_mapped": 101,
+  "regional_total": 102,
+  "regional_mapped": 102,
   "quarantined_count": 8,
   "quarantined": [
     {
@@ -124,19 +124,25 @@
       "map_dataset": "regional"
     },
     {
-      "id": "sherdog-fusion-fight-league-missoula-2026-11-06-missoula",
+      "id": "sherdog-fusion-fight-league-peterson-vs-trejo-2026-11-06-missoula",
       "promotion": "Fusion Fight League",
       "promotion_key": "sherdog_discovery",
-      "title": "Fusion Fight League: Missoula",
+      "title": "Fusion Fight League: Peterson vs. Trejo",
       "date": "2026-11-06",
       "venue": "Adams Center",
       "location": "Missoula, MT",
       "broadcast": "",
-      "official_url": "https://www.sherdog.com/events/Fusion-Fight-League-Missoula-114816",
+      "official_url": "https://www.sherdog.com/events/Fusion-Fight-League-Peterson-vs-Trejo-114816",
       "regional": true,
       "level": "regional",
       "source_key": "sherdog_discovery",
       "source_label": "Sherdog regional discovery",
+      "main_event": {
+        "fighters": [
+          "Peterson",
+          "Trejo"
+        ]
+      },
       "city": "Missoula",
       "state": "MT",
       "state_code": "MT",
@@ -1518,6 +1524,32 @@
       "map_dataset": "regional"
     },
     {
+      "id": "nitro-hammer-challenge-series-38-2026-11-15",
+      "promotion": "Hammer Challenge Series",
+      "promotion_key": "nitro",
+      "title": "HAMMER CHALLENGE SERIES 38",
+      "date": "2026-11-15",
+      "venue": "Rahway Rec Center",
+      "location": "Rahway, NJ",
+      "broadcast": "",
+      "official_url": "https://www.nitrotickets.com/event/1344/hammer-challenge-series-38",
+      "regional": true,
+      "level": "regional",
+      "source_key": "nitro",
+      "source_label": "Nitro Tickets",
+      "poster_url": "https://www.nitrotickets.com/storage/advertimage/1344/1789671042_large_thumb1785876728_Hammer-D2-Group-image.jpg",
+      "city": "Rahway",
+      "state": "NJ",
+      "state_code": "NJ",
+      "country": "US",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
+      "map_dataset": "regional"
+    },
+    {
       "id": "camomma-epic-fighting-67-2026-11-20",
       "promotion": "Epic Fighting",
       "promotion_key": "camomma",
@@ -2486,7 +2518,7 @@
       "source_label": "Legacy Fighting Alliance",
       "latitude": 36.1699,
       "longitude": -115.1398,
-      "poster_url": "https://www.lfa.com/wp-content/uploads/2026/10/IMG_8521.jpeg",
+      "poster_url": "https://www.lfa.com/wp-content/uploads/2026/10/LFA-248-Announcement-Square-1.jpg",
       "city": "Las Vegas",
       "state": "NV",
       "state_code": "NV",
