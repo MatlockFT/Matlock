@@ -1,7 +1,21 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-02T20:19:03.731Z",
+  "generated_at": "2026-11-03T02:29:40.745Z",
   "changes": [
+    {
+      "id": "2026-11-03T02:29:40.745Z|ufc-335-2026-12-12-fight-card|bout_weight_changed|1",
+      "at": "2026-11-03T02:29:40.745Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "Alex Pereira vs Sergei Pavlovich weight/class changed.",
+      "details": {
+        "from": "Heavyweight Bout",
+        "to": "Weight class TBA"
+      }
+    },
     {
       "id": "2026-11-02T20:19:03.731Z|ufc-fight-night-2027-02-06-fight-card|event_added|1",
       "at": "2026-11-02T20:19:03.731Z",
@@ -4518,22 +4532,6 @@
       "details": {
         "from_order": 13,
         "to_order": 12,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-15T14:59:37.266Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|19",
-      "at": "2026-10-15T14:59:37.266Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Jonny Parsons vs José Souza moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 10,
-        "to_order": 13,
         "from_section": "Prelims",
         "to_section": "Prelims"
       }
