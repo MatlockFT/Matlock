@@ -70,6 +70,8 @@ Where he excels is putting the pressure on his opponent, not giving them much ro
 
 But we have yet to see him against a heavyweight who can move and someone who isn't afraid to kick him and kick him often in the UFC. 
 
+Enter 
+
 ---
 
 ## Kayla Harrison vs. Amanda Nunes
