@@ -66,7 +66,7 @@ Josh is pretty comfortable at range because you can tell he is really confident 
 
 Sometimes Josh has good timing on his takedowns but he doesn't always get it which isn't necessarily a bad thing, he's making these guys work. Against Blaydes he did well slipping the jab and countering but not always. He can be very hittable at times.
 
-Where he excels is putting the pressure on his opponent, not giving them much room to breath against the cage, and being relentless with striking and grappling. He really like the 1-2, he loves throwing the right hand, he likes getting into the clinch even if it's to his own detriment. If he can't get the opponent to back up its just jab cross at range until he can find something with his wrestling. (bellator 300 round one, pushes Spencer to cage.)
+Where he excels is putting the pressure on his opponent, not giving them much room to breath against the cage, and being relentless with striking and grappling. He really like the 1-2, he loves throwing the right hand, he likes getting into the clinch even if it's to his own detriment. If he can't get the opponent to back up its just jab cross at range, trying to get his opponent to walk into his right hand until he can find something with his wrestling. (bellator 300 round one, pushes Spencer to cage.)
 
 Switch step, likes to get takedown from southpaw. Good jab, footowrk to right hand, does know how to armbar despite Derrick Lewis fight. 
 
