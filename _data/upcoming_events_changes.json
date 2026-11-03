@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T02:29:40.745Z",
+  "generated_at": "2026-11-03T17:47:54.682Z",
   "changes": [
+    {
+      "id": "2026-11-03T17:47:54.682Z|rizin-rizin-6-2026-12-31|event_added|1",
+      "at": "2026-11-03T17:47:54.682Z",
+      "type": "event_added",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "promotion": "RIZIN",
+      "event_title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "event_date": "2026-12-31",
+      "summary": "RIZIN 『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット added to Upcoming Events.",
+      "details": {
+        "bout_count": 10,
+        "venue": "バンテリンドーム ナゴヤ",
+        "date": "2026-12-31"
+      }
+    },
     {
       "id": "2026-11-03T02:29:40.745Z|ufc-335-2026-12-12-fight-card|bout_weight_changed|1",
       "at": "2026-11-03T02:29:40.745Z",
@@ -4516,22 +4531,6 @@
       "details": {
         "from_order": 7,
         "to_order": 11,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-15T14:59:37.266Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|18",
-      "at": "2026-10-15T14:59:37.266Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Priscila Cachoeira vs Nina Milošević moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 13,
-        "to_order": 12,
         "from_section": "Prelims",
         "to_section": "Prelims"
       }

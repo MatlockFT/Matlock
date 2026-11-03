@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T10:00:35.885Z",
+  "generated_at": "2026-11-03T17:46:51.902Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-11-07-fight-card",
@@ -32,7 +32,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CORTES_ACOSTA_WALDO_L.png?itok=R3cDV3Y_",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-245"
+                  "moneyline": "-200"
                 },
                 {
                   "name": "Johnny Walker",
@@ -40,7 +40,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/WALKER_JOHNNY_L_08-23.png?itok=cy7jdBoB",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+186"
+                  "moneyline": "+154"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -264,7 +264,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/DELANO_JOSE_L_04-04.png?itok=yx6OJq5I",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-106"
+                  "moneyline": "-111"
                 },
                 {
                   "name": "Murtazali Magomedov",
@@ -272,7 +272,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/MAGOMEDOV_MURTAZLI_R_06-20.png?itok=wXAJELZD",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-120"
+                  "moneyline": "-115"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -797,7 +797,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/BORRALHO_CAIO_L_03-07.png?itok=uKHF4K2U",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-160"
+                  "moneyline": "-164"
                 },
                 {
                   "name": "Yousri Belgaroui",
@@ -805,11 +805,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/BELGAROUI_YOUSRI_R_10-18.png?itok=1K9Q4J-G",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+135"
+                  "moneyline": "+128"
                 }
               ],
               "odds_source": "BestFightOdds",
-              "odds_provider": "Caesars"
+              "odds_provider": "FanDuel"
             },
             {
               "order": 4,
@@ -822,7 +822,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/MEDIC_UROS_L_08-01.png?itok=UUANmsOU",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-160"
+                  "moneyline": "-174"
                 },
                 {
                   "name": "Kevin Holland",
@@ -830,11 +830,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/HOLLAND_KEVIN_L_04-11.png?itok=mOqmHvqp",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+135"
+                  "moneyline": "+136"
                 }
               ],
               "odds_source": "BestFightOdds",
-              "odds_provider": "Caesars"
+              "odds_provider": "FanDuel"
             },
             {
               "order": 5,
@@ -847,7 +847,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/HASAN_BILAL_L_08-29.png?itok=_m_VFo4D",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-1000"
+                  "moneyline": "-900"
                 },
                 {
                   "name": "Luis Gurule",
@@ -855,11 +855,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/GURULE_LUIS_R_09-13.png?itok=S4-QiBmF",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+650"
+                  "moneyline": "+520"
                 }
               ],
               "odds_source": "BestFightOdds",
-              "odds_provider": "Caesars"
+              "odds_provider": "FanDuel"
             }
           ]
         },
@@ -1080,7 +1080,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/PROCHAZKA_JIRI_L_04-11.png?itok=kzDQfMFd",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+110"
                 },
                 {
                   "name": "Navajo Stirling",
@@ -1088,9 +1088,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/STIRLING_NAVAJO_L_03-28.png?itok=BVUQTbQ5",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-138"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "BetWay"
             },
             {
               "order": 2,
@@ -1423,6 +1425,238 @@
       ]
     },
     {
+      "id": "rizin-rizin-6-2026-12-31",
+      "promotion_key": "rizin",
+      "promotion": "RIZIN",
+      "title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "date": "2026-12-31",
+      "date_label": "Thursday · December 31, 2026",
+      "venue": "バンテリンドーム ナゴヤ",
+      "broadcast": "RIZIN 100 CLUB",
+      "official_url": "https://jp.rizinff.com/_ct/17870447",
+      "updated_label": "November 3, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "Time TBA",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Razhabali Shaidulloev",
+                  "initials": "RS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/05/07/bee7540df7d5ea4a115a8c2694d1aeaca454b46f_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Kyoma Akimoto",
+                  "initials": "KA",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/26/bb96e1680f7327e2037610e6c49739ca9d373c15_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "",
+              "weight_class": "71.0 kg",
+              "fighters": [
+                {
+                  "name": "Luiz Gustavo",
+                  "initials": "LG",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/05/18/4f54d052ed237447a0ef46ad29606963b41d66cf_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Mikuru Asakura",
+                  "initials": "MA",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/05/24/5bd5a5ff98d12967709d9a95387d60a2342e7235_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Chihiro Suzuki",
+                  "initials": "CS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2022/11/25/ba61c6729a25fe51e373a18bd300a9ac0ebe7324_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "YAMAN",
+                  "initials": "Y",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "49.0 kg",
+              "fighters": [
+                {
+                  "name": "Saori Oshima",
+                  "initials": "SO",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/05/24/c09be8a96d03832bb4e81d16d1bca6f45a3a6b00_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Natasha Kuziutina",
+                  "initials": "NK",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/02/12/f9dd2dc7a4135ed124bd8c861114913eb048d480_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "120.0 kg",
+              "fighters": [
+                {
+                  "name": "スダリオ剛",
+                  "initials": "ス",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2020/12/01/ed7bf7a5023ade5510ece765c67142964c51a880_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "King Edokpolo",
+                  "initials": "KE",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/16/5fcbb7810e5e392bd0ffd3f8d166d6ef170a59c4_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "Hiroya",
+                  "initials": "H",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/08/25/21b58294c11796f09157f569cae0d381d0ecedca_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Joe Hiramoto",
+                  "initials": "JH",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/12/10/550b01bc5c7e3f052428a05eccd634d8c1ff2865_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "Hinotori",
+                  "initials": "H",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/02/27/0132527d3d1ff01f2e9a692baa9dad195214dd6f_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Tatsuki Shinotsuka",
+                  "initials": "TS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/12/10/e1a476cc6b24e9acea0c90b6c4a14b790546bc98_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "Yutaro Muramoto",
+                  "initials": "YM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/07/21/7c4b38be31447f370b7928aef722d13ead82c855_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Erson Yamamoto",
+                  "initials": "EY",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/05/24/91d229d471b6f05bdef33f2147961eb76966b451_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "59.0 kg",
+              "fighters": [
+                {
+                  "name": "Daichi Tomizawa",
+                  "initials": "DT",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/12/10/3121ad371cceecd3d370ba30867e86519a043e37_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Don't mind Kawabata",
+                  "initials": "DMK",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/07/20/9b1b654132d103aa669e54561f642cef7d7333f4_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "61.0 kg",
+              "fighters": [
+                {
+                  "name": "Yukinori Akazawa",
+                  "initials": "YA",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/11/02/ac17ac4d781f3f6a365d2a6589c34e176b9e6f49_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Sora Kaneko",
+                  "initials": "SK",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/11/02/0809d0466533508f98515f07b31b5603e4f570ad_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_card_url": "https://jp.rizinff.com/_ct/17874052"
+    },
+    {
       "id": "ufc-336-2027-01-30-fight-card",
       "promotion_key": "ufc",
       "promotion": "UFC 336",
@@ -1525,7 +1759,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/SALKILLD_QUILLAN_L_01-31.png?itok=FT1z9B_U",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-275"
                 },
                 {
                   "name": "Benoît Saint Denis",
@@ -1533,9 +1767,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/SAINT_DENIS_BENOIT_L_07-11.png?itok=vdOsXo4G",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+200"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "BetWay"
             },
             {
               "order": 2,

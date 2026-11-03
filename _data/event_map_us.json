@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "source_major_generated_at": "2026-11-03T10:00:35.885Z",
+  "source_major_generated_at": "2026-11-03T17:46:51.902Z",
   "source_regional_updated_at": null,
-  "major_total": 7,
+  "major_total": 8,
   "major_mapped": 0,
   "regional_total": 101,
   "regional_mapped": 101,
-  "quarantined_count": 7,
+  "quarantined_count": 8,
   "quarantined": [
     {
       "id": "ufc-fight-night-2026-11-07-fight-card",
@@ -58,6 +58,17 @@
       "date": "2026-12-12",
       "promotion": "UFC 335",
       "venue": "Venue TBA",
+      "location": "",
+      "country": "",
+      "kind": "major",
+      "reason": "unresolved-us-location"
+    },
+    {
+      "id": "rizin-rizin-6-2026-12-31",
+      "title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "date": "2026-12-31",
+      "promotion": "RIZIN",
+      "venue": "バンテリンドーム ナゴヤ",
       "location": "",
       "country": "",
       "kind": "major",

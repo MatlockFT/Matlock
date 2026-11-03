@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T09:59:22.784Z",
+  "generated_at": "2026-11-03T17:45:21.908Z",
   "source": "UFC.com + BestFightOdds",
   "events": [
     {
@@ -13,11 +13,11 @@
           "fighters": [
             {
               "name": "Waldo Cortes Acosta",
-              "moneyline": "-245"
+              "moneyline": "-200"
             },
             {
               "name": "Johnny Walker",
-              "moneyline": "+186"
+              "moneyline": "+154"
             }
           ]
         },
@@ -139,11 +139,11 @@
           "fighters": [
             {
               "name": "Jose Delano",
-              "moneyline": "-106"
+              "moneyline": "-111"
             },
             {
               "name": "Murtazali Magomedov",
-              "moneyline": "-120"
+              "moneyline": "-115"
             }
           ]
         },
@@ -226,43 +226,43 @@
         },
         {
           "source": "BestFightOdds",
-          "provider": "Caesars",
+          "provider": "FanDuel",
           "fighters": [
             {
               "name": "Caio Borralho",
-              "moneyline": "-160"
+              "moneyline": "-164"
             },
             {
               "name": "Yousri Belgaroui",
-              "moneyline": "+135"
+              "moneyline": "+128"
             }
           ]
         },
         {
           "source": "BestFightOdds",
-          "provider": "Caesars",
+          "provider": "FanDuel",
           "fighters": [
             {
               "name": "Uroš Medić",
-              "moneyline": "-160"
+              "moneyline": "-174"
             },
             {
               "name": "Kevin Holland",
-              "moneyline": "+135"
+              "moneyline": "+136"
             }
           ]
         },
         {
           "source": "BestFightOdds",
-          "provider": "Caesars",
+          "provider": "FanDuel",
           "fighters": [
             {
               "name": "Bilal Hasan",
-              "moneyline": "-1000"
+              "moneyline": "-900"
             },
             {
               "name": "Luis Gurule",
-              "moneyline": "+650"
+              "moneyline": "+520"
             }
           ]
         },
@@ -333,6 +333,27 @@
             {
               "name": "Bia Mesquita",
               "moneyline": "-220"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-fight-night-2026-11-21-fight-card",
+      "date": "2026-11-21",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+      "fights": [
+        {
+          "source": "BestFightOdds",
+          "provider": "BetWay",
+          "fighters": [
+            {
+              "name": "Jiří Procházka",
+              "moneyline": "+110"
+            },
+            {
+              "name": "Navajo Stirling",
+              "moneyline": "-138"
             }
           ]
         }
@@ -417,6 +438,27 @@
             {
               "name": "Michael Morales",
               "moneyline": "+142"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-fight-night-2027-02-06-fight-card",
+      "date": "2027-02-06",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-february-06-2027",
+      "fights": [
+        {
+          "source": "BestFightOdds",
+          "provider": "BetWay",
+          "fighters": [
+            {
+              "name": "Quillan Salkilld",
+              "moneyline": "-275"
+            },
+            {
+              "name": "Benoît Saint Denis",
+              "moneyline": "+200"
             }
           ]
         }
