@@ -401,21 +401,6 @@
       "source_label": "Sherdog regional discovery"
     },
     {
-      "id": "sherdog-legends-fight-series-mma-2026-11-07-florence",
-      "promotion": "Legends Fight Series",
-      "promotion_key": "sherdog_discovery",
-      "title": "Legends Fight Series: MMA",
-      "date": "2026-11-07",
-      "venue": "Turfway Park Casino",
-      "location": "Florence, KY",
-      "broadcast": "",
-      "official_url": "https://www.sherdog.com/events/Legends-Fight-Series-MMA-114542",
-      "regional": true,
-      "level": "regional",
-      "source_key": "sherdog_discovery",
-      "source_label": "Sherdog regional discovery"
-    },
-    {
       "id": "sherdog-lsfl-6-lone-star-fight-league-6-2026-11-07-grand-prairie",
       "promotion": "LSFL",
       "promotion_key": "sherdog_discovery",
@@ -894,6 +879,21 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-sparta-sports-and-entertainment-sparta-114-blood-guts-2026-11-14-loveland",
+      "promotion": "Sparta Sports and Entertainment",
+      "promotion_key": "sherdog_discovery",
+      "title": "Sparta Sports and Entertainment: Sparta 114: Blood & Guts",
+      "date": "2026-11-14",
+      "venue": "",
+      "location": "Loveland, CO",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Sparta-Sports-and-Entertainment-Sparta-114-Blood-Guts-115202",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "sherdog-synergy-fc-34-springfield-fight-night-2026-11-14-springfield",
       "promotion": "Synergy FC",
       "promotion_key": "sherdog_discovery",
@@ -1029,6 +1029,21 @@
       "poster_url": "https://www.lfa.com/wp-content/uploads/2026/10/LFA-247-Standard-Poster_Layered-scaled.jpg"
     },
     {
+      "id": "sherdog-square-ring-promotions-island-fights-101-2026-11-20-biloxi",
+      "promotion": "Square Ring Promotions",
+      "promotion_key": "sherdog_discovery",
+      "title": "Square Ring Promotions: Island Fights 101",
+      "date": "2026-11-20",
+      "venue": "Hard Rock Hotel & Casino Biloxi",
+      "location": "Biloxi, MS",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Square-Ring-Promotions-Island-Fights-101-115209",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "camomma-209-beatdown-2026-11-21",
       "promotion": "209 BeatDown",
       "promotion_key": "camomma",
@@ -1070,6 +1085,42 @@
       "location": "Chattanooga, TN",
       "broadcast": "",
       "official_url": "https://www.sherdog.com/events/All-or-Nothing-Fights-17-ANF-17-114268",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-aos12-art-of-scrap-12-robles-vs-aguirre-2026-11-21-fort-wayne",
+      "promotion": "AOS12",
+      "promotion_key": "sherdog_discovery",
+      "title": "AOS12: Art of Scrap 12: Robles vs. Aguirre",
+      "date": "2026-11-21",
+      "venue": "Grand River Convention Center",
+      "location": "Fort Wayne, IN",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/AOS12-Art-of-Scrap-12-Robles-vs-Aguirre-115218",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "main_event": {
+        "fighters": [
+          "Robles",
+          "Aguirre"
+        ]
+      }
+    },
+    {
+      "id": "sherdog-art-of-combat-sc-queen-city-fights-2026-11-21-elmira",
+      "promotion": "Art of Combat SC",
+      "promotion_key": "sherdog_discovery",
+      "title": "Art of Combat SC: Queen City Fights",
+      "date": "2026-11-21",
+      "venue": "Lecom Event Center",
+      "location": "Elmira, NY",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Art-of-Combat-SC-Queen-City-Fights-115220",
       "regional": true,
       "level": "regional",
       "source_key": "sherdog_discovery",
@@ -1124,6 +1175,21 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-ego-combat-entertainment-ego-fight-series-9-fightsgiving-2026-11-21-piqua",
+      "promotion": "EGO Combat Entertainment",
+      "promotion_key": "sherdog_discovery",
+      "title": "EGO Combat Entertainment: EGO Fight Series 9: Fightsgiving",
+      "date": "2026-11-21",
+      "venue": "Piqua Center",
+      "location": "Piqua, OH",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/EGO-Combat-Entertainment-EGO-Fight-Series-9-Fightsgiving-115221",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "sherdog-fw-fightworld-47-2026-11-21-albuquerque",
       "promotion": "FW",
       "promotion_key": "sherdog_discovery",
@@ -1154,6 +1220,57 @@
       "source_label": "California Amateur Mixed Martial Arts Organization",
       "latitude": 33.4936,
       "longitude": -117.1484
+    },
+    {
+      "id": "sherdog-legends-of-combat-9-reaves-vs-lasky-2026-11-21-detroit",
+      "promotion": "Legends of Combat",
+      "promotion_key": "sherdog_discovery",
+      "title": "Legends of Combat 9: Reaves vs. Lasky",
+      "date": "2026-11-21",
+      "venue": "World of Games",
+      "location": "Detroit, MI",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Legends-of-Combat-9-Reaves-vs-Lasky-115224",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "main_event": {
+        "fighters": [
+          "Reaves",
+          "Lasky"
+        ]
+      }
+    },
+    {
+      "id": "sherdog-made-men-promotions-live-mma-at-mountaineer-casino-2026-11-21-new-cumberland",
+      "promotion": "Made Men Promotions",
+      "promotion_key": "sherdog_discovery",
+      "title": "Made Men Promotions: Live MMA at Mountaineer Casino",
+      "date": "2026-11-21",
+      "venue": "Mountaineer Casino",
+      "location": "New Cumberland, WV",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Made-Men-Promotions-Live-MMA-at-Mountaineer-Casino-115223",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-maximus-promotions-maximus-21-2026-11-21-aurora",
+      "promotion": "Maximus Promotions",
+      "promotion_key": "sherdog_discovery",
+      "title": "Maximus Promotions: Maximus 21",
+      "date": "2026-11-21",
+      "venue": "",
+      "location": "Aurora, IL",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Maximus-Promotions-Maximus-21-115219",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
     },
     {
       "id": "sherdog-shamrock-fc-379-st-charles-2026-11-21-st-charles",
@@ -1188,6 +1305,36 @@
       "longitude": -118.309
     },
     {
+      "id": "sherdog-team-buck-wild-kickboxing-and-mma-2026-11-21-peru",
+      "promotion": "Team Buck Wild",
+      "promotion_key": "sherdog_discovery",
+      "title": "Team Buck Wild: Kickboxing and MMA",
+      "date": "2026-11-21",
+      "venue": "Miami Nation of Indians Building",
+      "location": "Peru, IN",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Team-Buck-Wild-Kickboxing-and-MMA-115210",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-bizzarro-promotions-bayfront-brawl-19-2026-11-25-erie",
+      "promotion": "Bizzarro Promotions",
+      "promotion_key": "sherdog_discovery",
+      "title": "Bizzarro Promotions: Bayfront Brawl 19",
+      "date": "2026-11-25",
+      "venue": "Bayfront Convention Center",
+      "location": "Erie, PA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Bizzarro-Promotions-Bayfront-Brawl-19-115228",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "sherdog-mcc-77-midwest-cage-championship-2026-11-25-clive",
       "promotion": "MCC",
       "promotion_key": "sherdog_discovery",
@@ -1197,6 +1344,21 @@
       "location": "Clive, IA",
       "broadcast": "",
       "official_url": "https://www.sherdog.com/events/MCC-77-Midwest-Cage-Championship-114546",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-air-capital-combat-4-live-at-the-the-cotillion-2026-11-28-wichita",
+      "promotion": "Air Capital Combat",
+      "promotion_key": "sherdog_discovery",
+      "title": "Air Capital Combat 4: Live at the The Cotillion",
+      "date": "2026-11-28",
+      "venue": "The Cotillion",
+      "location": "Wichita, KS",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Air-Capital-Combat-4-Live-at-the-The-Cotillion-115244",
       "regional": true,
       "level": "regional",
       "source_key": "sherdog_discovery",
@@ -1230,6 +1392,57 @@
       "location": "Tulip Bay, WA",
       "broadcast": "",
       "official_url": "https://www.sherdog.com/events/COGA-94-Combat-Games-114547",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-legends-fight-series-hudson-vs-mamadaliyev-2026-11-28-newport",
+      "promotion": "Legends Fight Series",
+      "promotion_key": "sherdog_discovery",
+      "title": "Legends Fight Series: Hudson vs. Mamadaliyev",
+      "date": "2026-11-28",
+      "venue": "MegaCorp Pavilion",
+      "location": "Newport, KY",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Legends-Fight-Series-Hudson-vs-Mamadaliyev-114542",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "main_event": {
+        "fighters": [
+          "Hudson",
+          "Mamadaliyev"
+        ]
+      }
+    },
+    {
+      "id": "sherdog-nif-mma-24-north-iowa-fights-24-2026-11-28-waterloo",
+      "promotion": "NIF MMA",
+      "promotion_key": "sherdog_discovery",
+      "title": "NIF MMA 24: North Iowa Fights 24",
+      "date": "2026-11-28",
+      "venue": "Waterloo Convention Center",
+      "location": "Waterloo, IA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/NIF-MMA-24-North-Iowa-Fights-24-115243",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-nlc-50-new-line-cagefighting-50-thanksgiving-throwdown-2026-11-28-parkersburg",
+      "promotion": "NLC",
+      "promotion_key": "sherdog_discovery",
+      "title": "NLC 50: New Line Cagefighting 50: Thanksgiving Throwdown",
+      "date": "2026-11-28",
+      "venue": "Elite Sports Center",
+      "location": "Parkersburg, WV",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/NLC-50-New-Line-Cagefighting-50-Thanksgiving-Throwdown-115256",
       "regional": true,
       "level": "regional",
       "source_key": "sherdog_discovery",
