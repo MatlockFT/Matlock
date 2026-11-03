@@ -58,10 +58,19 @@ Ciryl Gane defends the heavyweight title against unbeaten challenger Josh Hokit 
 </section>
 I have been waiting for someone to blast through the UFC's heavyweight division and get a title shot with relative ease because, I think most would agree, heavyweight isn't exactly great right now. So I had my eyes on two fighters which was obviously Josh Hokit and Gable Steveson. Gable Steveson got knocked out. Looking at the heavyweight landscape, nobody can name a heavyweight outside a couple of fighters. Tom Aspinall vacated, Poatan lost, and is the UFC really interested in doing a trilogy with Volkov? Nobody knows or could name another heavyweight. Chill out hardcores, I'm not talking to you. Now, I'm very much a fan of Chael Sonnen's school of promotion. And what Chael would say is that all someone has to do is raise their hand. Josh Hokit, love him or hate him, is that guy who called his shot and raised his hand. He'll have been in the UFC for one year and 6 days with 4 UFC fights, not including his Contender Series fight and is fighting for the Undisputed Heavyweight Championship. Josh Hokit did everything right. 
 
-Is this too much too soon for Josh who only has 10 professional MMA fights? If its gonna happen in any division, its gonna by heavyweight. 
+Is this too much too soon for Josh who only has 10 professional MMA fights? If it's gonna happen in any division, its gonna by heavyweight. 
 
-There's things I like about Josh.
+There's things I like about Josh. He has a relentless pace, loves to pressure, great conditioning, and from what we've seen so far, a pretty good chin and the ability to recover quickly. These are all amazing attributes to have in the heavyweight division because so many fighters are slow, plodding, low volume guys.
 
+Josh is pretty comfortable at range because you can tell he is really confident in his speed and ability to get out of range from big shots. So he'll do a bit of theatrics and feints, explosive movements from the outside to draw out an attack from his opponent. He can let them hit air, or he can find an opportunity for counters. Both of which are excellent choices because some of these heavyweights are just throwing bomb and it'll gas them out. This couldn't be more evident than in the fight with Derrick Lewis. 
+
+Sometimes Josh has good timing on his takedowns but he doesn't always get it which isn't necessarily a bad thing, he's making these guys work. Against Blaydes he did well slipping the jab and countering but not always. He can be very hittable at times.
+
+Where he excels is putting the pressure on his opponent, not giving them much room to breath against the cage, and being relentless with striking and grappling. He really like the 1-2, he loves throwing the right hand, he likes getting into the clinch even if it's to his own detriment. If he can't get the opponent to back up its just jab cross at range until he can find something with his wrestling. (bellator 300 round one, pushes Spencer to cage.)
+
+Switch step, likes to get takedown from southpaw. Good jab, footowrk to right hand, does know how to armbar despite Derrick Lewis fight. 
+
+But we have yet to see him against a heavyweight who can move and someone who isn't afraid to kick him and kick him often in the UFC. 
 
 ---
 
