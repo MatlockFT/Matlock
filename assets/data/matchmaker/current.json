@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-02T19:49:48.877Z"
+      "checkedAt": "2026-11-03T02:07:02.476Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-02T19:50:29.403Z",
+      "checkedAt": "2026-11-03T02:07:31.440Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -33850,9 +33850,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Salkilld vs Saint Denis",
         "date": "2027-02-06",
-        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027",
+        "opponent": "Quillan Salkilld",
+        "opponentId": "quillan-salkilld"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -36398,9 +36400,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Salkilld vs Saint Denis",
         "date": "2027-02-06",
-        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027",
+        "opponent": "Robert Whittaker",
+        "opponentId": "robert-whittaker"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -266792,9 +266796,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Salkilld vs Saint Denis",
         "date": "2027-02-06",
-        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027",
+        "opponent": "Benoît Saint Denis",
+        "opponentId": "benoit-saint-denis"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -283003,9 +283009,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Salkilld vs Saint Denis",
         "date": "2027-02-06",
-        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027",
+        "opponent": "Bogdan Guskov",
+        "opponentId": "bogdan-guskov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
