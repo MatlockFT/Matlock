@@ -56,70 +56,127 @@ Ciryl Gane defends the heavyweight title against unbeaten challenger Josh Hokit 
 <section class="article-html-visual" data-writer-block="stats" data-writer-config="%7B%22version%22%3A3%2C%22fighterA%22%3A%22Ciryl%20Gane%22%2C%22fighterB%22%3A%22Josh%20Hokit%22%2C%22rows%22%3A%5B%7B%22label%22%3A%22Significant%20Strikes%20%2F%20Minute%22%2C%22a%22%3A%225.40%22%2C%22b%22%3A%229.29%22%7D%2C%7B%22label%22%3A%22Sig.%20Strikes%20Absorbed%20%2F%20Minute%22%2C%22a%22%3A%222.31%22%2C%22b%22%3A%225.28%22%7D%2C%7B%22label%22%3A%22Striking%20Accuracy%22%2C%22a%22%3A%2261%25%22%2C%22b%22%3A%2264%25%22%7D%2C%7B%22label%22%3A%22Striking%20Defense%22%2C%22a%22%3A%2260%25%22%2C%22b%22%3A%2248%25%22%7D%2C%7B%22label%22%3A%22Takedowns%20%2F%2015%20Minutes%22%2C%22a%22%3A%220.66%22%2C%22b%22%3A%223.73%22%7D%2C%7B%22label%22%3A%22Takedown%20Accuracy%22%2C%22a%22%3A%2223%25%22%2C%22b%22%3A%2247%25%22%7D%2C%7B%22label%22%3A%22Takedown%20Defense%22%2C%22a%22%3A%2247%25%22%2C%22b%22%3A%2277%25%22%7D%2C%7B%22label%22%3A%22Submission%20Attempts%20%2F%2015%22%2C%22a%22%3A%220.60%22%2C%22b%22%3A%220.40%22%7D%5D%2C%22sourceA%22%3A%7B%22fighterId%22%3A%22ciryl-gane%22%2C%22ufcStatsId%22%3A%22787bb1f087ccff8a%22%2C%22mode%22%3A%22source-checked-snapshot%22%2C%22fetchedAt%22%3A%222026-10-27T22%3A03%3A06.559Z%22%2C%22latestBoutDate%22%3A%222026-06-14%22%2C%22bookingDate%22%3A%222026-11-14%22%2C%22sourceUrl%22%3A%22http%3A%2F%2Fufcstats.com%2Ffighter-details%2F787bb1f087ccff8a%22%2C%22recordSource%22%3A%22https%3A%2F%2Fwww.tapology.com%2Ffightcenter%2Fevents%2F147320-ufc-334%22%7D%2C%22sourceB%22%3A%7B%22fighterId%22%3A%22josh-hokit%22%2C%22ufcStatsId%22%3A%22955da1675ad58a50%22%2C%22mode%22%3A%22source-checked-snapshot%22%2C%22fetchedAt%22%3A%222026-10-27T22%3A03%3A06.559Z%22%2C%22latestBoutDate%22%3A%222026-06-14%22%2C%22bookingDate%22%3A%222026-11-14%22%2C%22sourceUrl%22%3A%22http%3A%2F%2Fufcstats.com%2Ffighter-details%2F955da1675ad58a50%22%2C%22recordSource%22%3A%22https%3A%2F%2Fwww.tapology.com%2Ffightcenter%2Fevents%2F147320-ufc-334%22%7D%2C%22rankA%22%3A%22C%22%2C%22rankB%22%3A%224%22%7D">
 <div class="fight-stats-sleek"><div class="fs-shell"><div class="fs-header"><div class="fs-fighter fs-fighter-left"><span class="fs-side-label">RED CORNER</span><strong>Ciryl Gane<span class="fs-meta-rank" title="UFC Meta ranking">CHAMP</span></strong></div><div class="fs-header-center"><strong>STATS</strong><i></i></div><div class="fs-fighter fs-fighter-right"><span class="fs-side-label">BLUE CORNER</span><strong>Josh Hokit<span class="fs-meta-rank" title="UFC Meta ranking">#4</span></strong></div></div><div class="fs-section"><div class="fs-section-title"><span>Striking</span></div><div class="fs-stat-row"><strong>5.40</strong><span>Significant Strikes / Minute</span><strong>9.29</strong></div><div class="fs-stat-row"><strong>2.31</strong><span>Sig. Strikes Absorbed / Minute</span><strong>5.28</strong></div><div class="fs-stat-row"><strong>61%</strong><span>Striking Accuracy</span><strong>64%</strong></div><div class="fs-stat-row"><strong>60%</strong><span>Striking Defense</span><strong>48%</strong></div></div><div class="fs-section fs-section-grappling"><div class="fs-section-title"><span>Grappling</span></div><div class="fs-stat-row"><strong>0.66</strong><span>Takedowns / 15 Minutes</span><strong>3.73</strong></div><div class="fs-stat-row"><strong>23%</strong><span>Takedown Accuracy</span><strong>47%</strong></div><div class="fs-stat-row"><strong>47%</strong><span>Takedown Defense</span><strong>77%</strong></div><div class="fs-stat-row"><strong>0.60</strong><span>Submission Attempts / 15</span><strong>0.40</strong></div></div></div></div>
 </section>
+# Ciryl Gane vs. Josh Hokit — UFC 334 Breakdown
+
 I've been waiting for someone to blast through the UFC's heavyweight division and get a title shot with relative ease because, I think most would agree, heavyweight isn't exactly great right now.
 
-So I had my eyes on two fighters, which were obviously Josh Hokit and Gable Steveson. Gable Steveson got knocked out.
+So I had my eyes on two fighters, Josh Hokit and Gable Steveson. Gable Steveson got knocked out.
 
-Looking at the heavyweight landscape, nobody can name a heavyweight outside of a couple of fighters. Tom Aspinall vacated, Poatan lost, and is the UFC really interested in doing a trilogy with Volkov? Nobody knows or could name another heavyweight. Chill out, hardcores, I'm not talking to you.
+Looking at the heavyweight landscape, there aren't exactly a lot of names that jump out at you. Tom Aspinall vacated, Poatan lost, and is the UFC really interested in doing a trilogy with Volkov? I mean, Volkov certainly has an argument for another title shot, but outside of a handful of fighters, how many heavyweights can the average fan even name?
 
-Now, I'm very much a fan of Chael Sonnen's school of promotion, and what Chael would say is that all someone has to do is raise their hand. Josh Hokit, love him or hate him, is that guy. He called his shot and raised his hand.
+Chill out, hardcores, I'm not talking to you.
 
-By the time he fights for the undisputed heavyweight championship, Josh Hokit will have been in the UFC for just one year and six days, with four UFC fights under his belt, not including his Contender Series fight.
+Now, I'm very much a fan of Chael Sonnen's school of promotion, and what Chael would say is that all someone has to do is raise their hand. Josh Hokit, love him or hate him, is that guy who called his shot and raised his hand.
+
+By the time he fights for the undisputed heavyweight championship, he'll have been in the UFC for just one year and six days, with four UFC fights under his belt, not including his Contender Series fight.
 
 Josh Hokit did everything right.
 
 Is this too much too soon for Josh, who only has 10 professional MMA fights? If it's gonna happen in any division, it's gonna be heavyweight.
 
+And here's something interesting. Ciryl Gane himself won the interim heavyweight championship against Derrick Lewis in just his 10th professional MMA fight. So it's not like we haven't seen a fighter with relatively little experience get to this level, especially in this division.
+
 There's a lot I like about Josh. He has a relentless pace, loves to pressure, has great conditioning, and from what we've seen so far, a pretty good chin and the ability to recover quickly. These are all amazing attributes to have in the heavyweight division because so many fighters are slow, plodding, low-volume guys.
 
-Josh is pretty comfortable at range because you can tell he's really confident in his speed and ability to get out of the way of big shots. So he'll do a bit of theatrics and feinting, using explosive movements from the outside to draw out an attack from his opponent. He can let them hit air, or he can find an opportunity to counter. Both are excellent choices because some of these heavyweights are just throwing bombs, and it'll gas them out.
+Josh is pretty comfortable at range because you can tell he's really confident in his speed and ability to get out of range of big shots. So he'll do a bit of theatrics and feinting, using explosive movements from the outside to draw out an attack from his opponent.
 
-This couldn't be more evident than in his fight with Derrick Lewis.
+He can let them hit air, or he can find an opportunity to counter. Both are excellent choices because some of these heavyweights are just throwing bombs, and it'll gas them out.
 
-Sometimes Josh has good timing on his takedowns, but he doesn't always get them. That isn't necessarily a bad thing because he's making these guys work. Against Blaydes, he did well slipping the jab and countering, but not always. He can be very hittable at times.
+We saw some of this against Derrick Lewis, who offered very little resistance to what Hokit was doing. Hokit was able to dictate the pace, find opportunities to attack, and even get some wrestling going. But Lewis wasn't really forcing Hokit to make difficult adjustments, so I'm not sure how much that fight tells us about this matchup.
 
-Where he really excels is putting pressure on his opponent, not giving them much room to breathe against the cage, and being relentless with his striking and grappling.
+Sometimes Josh has good timing on his takedowns, but he doesn't always get them. That isn't necessarily a bad thing because he's making these guys work. Even when he doesn't secure a takedown, the threat of wrestling can make his opponents hesitant, and the clinch exchanges can be exhausting.
 
-He really likes the one-two, loves throwing the right hand, and likes getting into the clinch, even if it's to his own detriment. If he can't get his opponent to back up, it's just jab-cross at range, trying to get his opponent to walk into his right hand, at least until he can find something with his wrestling.
+But there's a difference between threatening takedowns, completing them, and actually keeping someone on the ground. I think that's an important distinction to make in this fight because we haven't really seen Hokit demonstrate that he can consistently take down and control someone at Gane's level.
 
-And despite what we've seen against Derrick Lewis, Hokit does know how to armbar.
+Against Blaydes, Hokit did well slipping the jab and countering, but not always. I think Blaydes felt pretty comfortable at range, thinking he was going to stick and move with the jab, and Hokit was able to read it, slip, and counter with his right hand over the top time and time again.
 
-But we have yet to see him in the UFC against a heavyweight who can move, someone who isn't afraid to kick him and kick him often.
+But the Blaydes fight also exposed some pretty significant defensive issues.
+
+Hokit was getting hit a lot. Blaydes had success with his combinations, landed plenty of punches, and was able to find openings throughout the fight. Hokit showed an incredible chin, tremendous recovery, and the ability to fight through adversity, but being able to take a punch isn't the same thing as being defensively sound.
+
+And that concerns me against Gane.
+
+Where Hokit really excels is putting pressure on his opponent, not giving them much room to breathe against the cage, and being relentless with his striking and grappling.
+
+He really likes the one-two, loves throwing the right hand, and likes getting into the clinch, even if it's to his own detriment. If he can't get his opponent to back up, it's often just jab-cross at range, trying to get his opponent to walk into his right hand, at least until he can find something with his wrestling.
+
+And Hokit isn't completely lost on the ground, either. He's got submission wins on his record, including an armbar, and he even attempted one against Derrick Lewis.
+
+But we have yet to see him in the UFC against a heavyweight with Gane's combination of movement, distance management, and willingness to kick, and kick often.
 
 Enter Ciryl Gane, who is, I think, the most athletic fighter and most sophisticated striker Hokit has faced.
 
-Standing at 6'4" tall with an 81" reach, it's going to be very interesting to see the dynamic between the two at range.
+Standing at 6'4" tall with an 81-inch reach, Gane has a three-inch height advantage and a seven-and-a-half-inch reach advantage. It's going to be very interesting to see the dynamic between the two at range.
 
-Gane is going to have to be more cautious about overcommitting to strikes and more mindful of his stance switches, as these are opportunities for Hokit to time his takedowns. And even though Gane has that reach and is lighter on his feet, I think he still needs to be extremely mindful of Hokit's speed.
+Gane is going to have to be more cautious about overcommitting to strikes and more mindful of his stance switches, as these are opportunities for Hokit to time his takedowns. And even though Gane has that reach advantage and is lighter on his feet, I think he still needs to be extremely mindful of Hokit's speed.
 
 Gane can get a little lazy with his defense at range when he thinks he's out of range. Sometimes he doesn't expect counterattacks, and when he exits after an exchange, that's when he's shown himself to be most vulnerable.
 
 Some of this has been tightened up, but underestimating Hokit, no matter how small or inexperienced he is, would be a big mistake.
 
-I think Blaydes felt pretty comfortable at range, thinking he was going to stick and move with the jab. Hokit was able to read it, slip, and counter with his right hand over the top time and time again.
+Gane isn't the most defensively sound fighter in every exchange. He often pulls his head straight back when strikes are coming at him, and he doesn't always get his head off the centerline when attacking. Again, some of this has been tightened up.
 
-Gane isn't the most defensively sound fighter, as he often pulls his head straight back when strikes are coming at him, and he doesn't always get his head off the centerline when attacking. Again, some of this has been tightened up.
+That being said, Gane is still the more defensively responsible fighter overall, and I think he's far better at feinting and timing his jab, which I see being a struggle for Hokit.
 
-That being said, I think Gane is far better at feinting and timing his jab, which I see being a struggle for Hokit. I also think that if Gane can get the right reactions out of Hokit, he can really get his kicks going without too much risk of Hokit trying to catch them or close the distance while he's throwing them.
+I also think that if Gane can get the right reactions out of Hokit, he can really get his kicks going without too much risk of Hokit trying to catch them or close the distance while he's throwing them.
+
+And I think the kicking game is going to be especially important here.
+
+Hokit wants to pressure, and he's willing to eat shots to get into range. But there's a difference between taking punches from Blaydes and having someone like Gane consistently attacking your legs and body while making you chase him around the cage.
+
+If Gane can establish his jab, start working the legs and body, and force Hokit to constantly reset his entries, I think he can really start taking away some of what makes Hokit dangerous.
+
+But that's assuming Gane can establish his rhythm in the first place.
+
+One thing I wouldn't underestimate about Hokit is his ability to make a fight ugly. He doesn't necessarily have to be the better striker or even the better wrestler to make things difficult for Gane.
+
+He just has to stop Gane from getting comfortable.
+
+If Hokit can consistently pressure him, threaten takedowns, and force him into clinch exchanges, even if those takedowns aren't successful, he could make Gane hesitant to throw kicks or commit to combinations. Gane is at his best when he can dictate the range and choose when to engage. Hokit has the potential to make that pretty difficult.
+
+And if Gane starts making mistakes under that pressure, Hokit is absolutely capable of capitalizing on them.
 
 The more difficult aspect of this fight to anticipate is how well Gane is going to fare off his back against Hokit.
 
-Will Gane's physical attributes and size give him a major advantage if Hokit gets him to the ground? Gane has previously struggled to recover position and get back to his feet against larger opponents. Will that be less of an issue against Hokit?
+Gane has previously struggled to recover position and get back to his feet. Against Francis Ngannou, we saw him have difficulty dealing with the wrestling, particularly once Ngannou started implementing it later in the fight.
+
+Against Jon Jones, there wasn't really enough time to see how Gane would handle prolonged grappling exchanges because Jones finished him so quickly.
+
+But I think the second Volkov fight is another interesting example.
+
+In the third round, Volkov was able to get Gane to the ground, and Gane spent a considerable amount of time underneath him, holding onto a kimura attempt that wasn't really getting him anywhere.
+
+So was that an issue with Gane's ability to escape, his decision-making, or both?
+
+And would those same issues be present against someone like Hokit?
+
+Gane is the larger man, and that could certainly help him in some of these exchanges. But I don't think we should assume that because Hokit is smaller than some of Gane's previous opponents, he'll automatically have more difficulty controlling him.
+
+Jones wasn't significantly heavier than Gane when they fought, and that certainly didn't stop him.
+
+It's more about whether Hokit can actually complete his takedowns, secure good positions, and prevent Gane from working his way back to his feet.
 
 Tough to say.
 
-We also have to take into consideration how often Hokit can get this fight to the mat and how many times Gane can get back to his feet over the course of five rounds.
+We also have to consider how often Hokit can get this fight to the mat and how many times Gane can get back to his feet over the course of five rounds.
 
 I think they both have pretty good conditioning, especially for heavyweight, so who's going to be exerting the most energy? The one trying for takedowns and keeping the fight on the ground, or the one who has to consistently get back to his feet?
 
 I think it may be more exhausting for Hokit to try to close the distance, cut off the cage, get through the strikes, and take Gane down, especially if Gane can get back to his feet and make Hokit try for it all over again.
 
-However, if Hokit can hold him down for extended periods and keep his efforts on the ground minimal through his weight distribution, the conditioning aspect of this fight could swing in Hokit's favor.
+But it's not like Gane gets to recover for free.
 
-At this point, I'm not sure Hokit can, or would even want to, keep Gane on the mat.
+He's going to be spending energy circling, defending takedowns, fighting off the cage, and getting back to his feet. Even if he's successful at defending all of this, that's still a lot of work.
 
-I wouldn't underestimate the Jackson-Wink camp and their ability to put together a really good game plan. And before you point to Gable Steveson and use that as an example of bad game planning from that camp, keep in mind that Jon Jones is not in the driver's seat of Hokit's career.
+And if Hokit can hold him down for extended periods and keep his own efforts on the ground minimal through good positioning and weight distribution, the conditioning aspect of this fight could swing in Hokit's favor.
 
+I think the bigger question is whose style is going to force the other fighter to work harder.
+
+Another thing to consider is that while Hokit has shown excellent conditioning over three rounds, we haven't seen him do this over five. Gane has that experience, and I don't think that's something we should overlook.
+
+At this point, I'm not sure Hokit can, or would even want to, keep Gane on the mat. He may be perfectly happy using the threat of takedowns to open up his striking and just make Gane work.
+
+I also wouldn't underestimate the Jackson-Wink camp and their ability to put together a really good game plan. And before you point to Gable Steveson and use that as an example of bad game planning from that camp, keep in mind that Jon Jones is not in the driver's seat of Hokit's career.
 
 People are very divided on this fight, and I think a lot of that has to do with Hokit.
 
@@ -127,13 +184,33 @@ I'm leaning Gane here to get it done inside the distance.
 
 I think if he's disciplined for this camp, sticks to a game plan, minds his P's and Q's, and is able to recover from any low-IQ decisions he makes in the fight, he can work Hokit inside the Octagon.
 
-Well-timed jabs and leg kicks are going to be extremely effective for Gane, and from there, he can set up his more powerful shots. Hokit's entries into range are going to be difficult.
+Well-timed jabs and leg kicks are going to be extremely effective for Gane, and from there, he can set up his more powerful shots.
 
-However, if Hokit can stay way out of range, find his timing on his takedowns to collapse that distance, work Gane against the cage with strikes, get him to the ground, and just really put Gane through a grind, betting on his conditioning to outlast Gane's, then we might be in for another crazy fight.
+Hokit's entries into range are going to be difficult, and I think this is where the striking defense we saw against Blaydes becomes a real concern.
 
-I think Hokit has a good opportunity to win this fight, but the Curtis Blaydes fight gives me a lot of hesitation about picking him, and the Derrick Lewis fight showed us literally nothing.
+Against Blaydes, Hokit was able to take a tremendous amount of punishment and keep coming forward. But I don't think he can afford to fight that way against Gane.
 
-I'm excited for this one. It's a good heavyweight matchup.
+Gane isn't likely to stand in front of him and exchange punches for extended periods. He's going to make Hokit work to get into range, and if he can consistently make Hokit miss, counter him, and get back out, that's going to be frustrating.
+
+And that's really why I'm leaning toward a finish rather than a decision.
+
+I think the accumulation of leg kicks, body kicks, and well-timed jabs could start slowing Hokit down, making his entries more predictable and forcing him to take bigger risks to get inside.
+
+And as those entries become more desperate, the opportunities for Gane to land something significant are going to increase.
+
+Now, Hokit has shown an excellent chin, and I don't want to underestimate his ability to recover. But there's only so much punishment you can take, especially against someone with Gane's variety of attacks.
+
+However, if Hokit can stay outside of Gane's preferred range, find his timing on his takedowns to collapse that distance, work Gane against the cage with strikes, get him to the ground, and just really put Gane through a grind, betting on his conditioning to outlast Gane's, then we might be in for another crazy fight.
+
+And he doesn't necessarily have to keep Gane on the ground to make that work. If he's consistently disrupting Gane's rhythm, making him defend takedowns, and preventing him from getting comfortable at range, that's a pretty good start.
+
+I think Hokit has a good opportunity to win this fight, but the Curtis Blaydes fight gives me a lot of hesitation about picking him.
+
+What I liked about that performance was his toughness, pressure, and ability to keep fighting through adversity. What I didn't like was how much offense he absorbed in the process.
+
+And the Derrick Lewis fight, while impressive, didn't really answer the questions I have about Hokit against someone like Gane.
+
+I'm excited for this one. It's a good heavyweight matchup, and I think we're going to learn a lot about both fighters.
 
 Give me Gane to get it done inside the distance.
 
