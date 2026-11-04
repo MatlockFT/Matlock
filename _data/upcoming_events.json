@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T22:36:31.821Z",
+  "generated_at": "2026-11-04T02:42:36.033Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-11-07-fight-card",
@@ -99,31 +99,6 @@
             {
               "order": 4,
               "label": "",
-              "weight_class": "Welterweight Bout",
-              "fighters": [
-                {
-                  "name": "Seokhyeon Ko",
-                  "initials": "SK",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/KO_SEOKHYEON_L_06-21.png?itok=QRZ7e0tm",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-850"
-                },
-                {
-                  "name": "Wellington Turman",
-                  "initials": "WT",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-11/TURMAN_WELLINGTON_L_12-02.png?itok=icqJ0amp",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+500"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 5,
-              "label": "",
               "weight_class": "Light Heavyweight Bout",
               "fighters": [
                 {
@@ -147,25 +122,50 @@
               "odds_provider": "FanDuel"
             },
             {
-              "order": 6,
+              "order": 5,
               "label": "",
-              "weight_class": "Middleweight Bout",
+              "weight_class": "Women's Bantamweight Bout",
               "fighters": [
                 {
-                  "name": "Mantas Kondratavičius",
-                  "initials": "MK",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
+                  "name": "Priscila Cachoeira",
+                  "initials": "PC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/CACHOEIRA_PRISCILA_L_06-06.png?itok=FFiYkCQu",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-310"
+                  "moneyline": "+350"
                 },
                 {
-                  "name": "Andre Petroski",
-                  "initials": "AP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
+                  "name": "Nina Milošević",
+                  "initials": "NM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/MILOSEVIC_NINA_L_08-01.png?itok=6zq_3wtV",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+230"
+                  "moneyline": "-520"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Mitch Raposo",
+                  "initials": "MR",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-05/RAPOSO_MITCH_L_06-01.png?itok=fgzxnjZ5",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+186"
+                },
+                {
+                  "name": "Marcos Degli",
+                  "initials": "MD",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/DEGLI_MARCOS_L_09-22.png?itok=Ltf-qarb",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-245"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -180,6 +180,31 @@
           "bouts": [
             {
               "order": 7,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Keiichiro Nakamura",
+                  "initials": "KN",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/NAKAMURA_KEIICHIRO_L_01-31.png?itok=-vL6J_TE",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-390"
+                },
+                {
+                  "name": "Ollie Schmid",
+                  "initials": "OS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/SCHMID_OLLIE_R_05-02.png?itok=yb6L6zTk",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+280"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
+            {
+              "order": 8,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -204,7 +229,7 @@
               "odds_provider": "FanDuel"
             },
             {
-              "order": 8,
+              "order": 9,
               "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [
@@ -223,31 +248,6 @@
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": "+172"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 9,
-              "label": "",
-              "weight_class": "Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Mitch Raposo",
-                  "initials": "MR",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-05/RAPOSO_MITCH_L_06-01.png?itok=fgzxnjZ5",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+186"
-                },
-                {
-                  "name": "Marcos Degli",
-                  "initials": "MD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/DEGLI_MARCOS_L_09-22.png?itok=Ltf-qarb",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-245"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -284,31 +284,6 @@
               "weight_class": "Featherweight Bout",
               "fighters": [
                 {
-                  "name": "Keiichiro Nakamura",
-                  "initials": "KN",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/NAKAMURA_KEIICHIRO_L_01-31.png?itok=-vL6J_TE",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-390"
-                },
-                {
-                  "name": "Ollie Schmid",
-                  "initials": "OS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/SCHMID_OLLIE_R_05-02.png?itok=yb6L6zTk",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+280"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 12,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
                   "name": "Austin Bashi",
                   "initials": "AB",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/BASHI_AUSTIN_L_07-18.png?itok=ICEox51M",
@@ -327,25 +302,50 @@
               ]
             },
             {
-              "order": 13,
+              "order": 12,
               "label": "",
-              "weight_class": "Women's Bantamweight Bout",
+              "weight_class": "Middleweight Bout",
               "fighters": [
                 {
-                  "name": "Priscila Cachoeira",
-                  "initials": "PC",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/CACHOEIRA_PRISCILA_L_06-06.png?itok=FFiYkCQu",
+                  "name": "Mantas Kondratavičius",
+                  "initials": "MK",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+350"
+                  "moneyline": "-310"
                 },
                 {
-                  "name": "Nina Milošević",
-                  "initials": "NM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/MILOSEVIC_NINA_L_08-01.png?itok=6zq_3wtV",
+                  "name": "Andre Petroski",
+                  "initials": "AP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-520"
+                  "moneyline": "+230"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
+            {
+              "order": 13,
+              "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Seokhyeon Ko",
+                  "initials": "SK",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/KO_SEOKHYEON_L_06-21.png?itok=QRZ7e0tm",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-850"
+                },
+                {
+                  "name": "Wellington Turman",
+                  "initials": "WT",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-11/TURMAN_WELLINGTON_L_12-02.png?itok=icqJ0amp",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+500"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -879,7 +879,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/THOMPSON_STEPHEN_L_07-12.png?itok=T4Y2Tqct",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-125"
+                  "moneyline": "-140"
                 },
                 {
                   "name": "Charles Radtke",
@@ -887,7 +887,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/RADTKE_CHARLES_L_04-11.png?itok=rRI5kMVe",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+105"
+                  "moneyline": "+118"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -904,7 +904,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/DOBER_DREW_L_03-07.png?itok=2b9RABZl",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+125"
+                  "moneyline": "+135"
                 },
                 {
                   "name": "Chris Duncan",
@@ -912,7 +912,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/DUNCAN_CHRIS_L_07-22.png?itok=35KjIAR4",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-150"
+                  "moneyline": "-160"
                 }
               ],
               "odds_source": "BestFightOdds",
