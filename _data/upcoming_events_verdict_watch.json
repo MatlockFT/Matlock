@@ -30,9 +30,9 @@
       "verdict_event_id": "1974",
       "verdict_url": "https://verdictmma.com/event/1974",
       "verdict_date": "2026-11-08",
-      "local_fight_count": 15,
+      "local_fight_count": 13,
       "verdict_fight_count": null,
-      "local_main_count": 15,
+      "local_main_count": 13,
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
@@ -47,13 +47,13 @@
       "verdict_event_id": "1970",
       "verdict_url": "https://verdictmma.com/event/1970",
       "verdict_date": "2026-11-14",
-      "local_fight_count": 12,
+      "local_fight_count": 11,
       "verdict_fight_count": 14,
-      "local_main_count": 5,
+      "local_main_count": 4,
       "verdict_main_count": 5,
       "local_prelim_count": 7,
       "verdict_prelim_count": 9,
-      "confirmed_local_bouts": 12
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "ufc-fight-night-2026-11-21-fight-card",
@@ -148,7 +148,7 @@
       "verdict_event_id": "1974",
       "order": 1,
       "fighters": [
-        "フライ級タイトルマッチ／神龍誠",
+        "フライ級タイトルマッチ 神龍誠",
         "Tony Laramie"
       ]
     },
@@ -156,30 +156,10 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
       "verdict_event_id": "1974",
-      "order": 13,
+      "order": 11,
       "fighters": [
-        "OPENING FIGHT 松本尚大",
-        "Masachika Takahashi"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
-      "verdict_event_id": "1974",
-      "order": 14,
-      "fighters": [
-        "OPENING FIGHT 井上舜矢",
-        "Mighty saw"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
-      "verdict_event_id": "1974",
-      "order": 15,
-      "fighters": [
-        "OPENING FIGHT ジェイク・ウィルキンス",
-        "YAJURO YAMASAKI"
+        "雑賀“ヤン坊”達也",
+        "Daigo Kuramoto"
       ]
     },
     {
@@ -196,10 +176,10 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
       "verdict_event_id": "1974",
-      "order": 6,
+      "order": 8,
       "fighters": [
-        "Hiroaki Suzuki",
-        "Chiharu"
+        "Mac Papalii",
+        "Yukinori Akazawa"
       ]
     },
     {
@@ -208,22 +188,22 @@
       "verdict_event_id": "1974",
       "order": 9,
       "fighters": [
-        "雑賀“ヤン坊”達也",
-        "Daigo Kuramoto"
+        "Hiroaki Suzuki",
+        "Chiharu"
       ]
     },
     {
       "type": "bout_count_mismatch",
       "event_id": "ufc-2026-11-14-polymarket-ufc-334",
       "verdict_event_id": "1970",
-      "local_fight_count": 12,
+      "local_fight_count": 11,
       "verdict_fight_count": 14
     },
     {
       "type": "section_count_mismatch",
       "event_id": "ufc-2026-11-14-polymarket-ufc-334",
       "verdict_event_id": "1970",
-      "local_main_count": 5,
+      "local_main_count": 4,
       "verdict_main_count": 5,
       "local_prelim_count": 7,
       "verdict_prelim_count": 9
@@ -260,7 +240,7 @@
       "verdict_event_id": "1957",
       "order": 8,
       "fighters": [
-        "Gabriel Lorenco",
+        "Gabriel Lorenço",
         "Thomas Petersen"
       ]
     },
