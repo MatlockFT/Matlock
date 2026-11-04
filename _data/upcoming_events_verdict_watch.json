@@ -19,7 +19,7 @@
       "verdict_main_count": 6,
       "local_prelim_count": 8,
       "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 12
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
@@ -47,13 +47,13 @@
       "verdict_event_id": "1970",
       "verdict_url": "https://verdictmma.com/event/1970",
       "verdict_date": "2026-11-14",
-      "local_fight_count": 11,
+      "local_fight_count": 12,
       "verdict_fight_count": 14,
-      "local_main_count": 4,
+      "local_main_count": 5,
       "verdict_main_count": 5,
       "local_prelim_count": 7,
       "verdict_prelim_count": 9,
-      "confirmed_local_bouts": 11
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "ufc-fight-night-2026-11-21-fight-card",
@@ -132,9 +132,9 @@
       "verdict_event_id": "1995",
       "verdict_url": "https://verdictmma.com/event/1995",
       "verdict_date": "2027-02-06",
-      "local_fight_count": 2,
+      "local_fight_count": 4,
       "verdict_fight_count": null,
-      "local_main_count": 2,
+      "local_main_count": 4,
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
@@ -196,14 +196,14 @@
       "type": "bout_count_mismatch",
       "event_id": "ufc-2026-11-14-polymarket-ufc-334",
       "verdict_event_id": "1970",
-      "local_fight_count": 11,
+      "local_fight_count": 12,
       "verdict_fight_count": 14
     },
     {
       "type": "section_count_mismatch",
       "event_id": "ufc-2026-11-14-polymarket-ufc-334",
       "verdict_event_id": "1970",
-      "local_main_count": 4,
+      "local_main_count": 5,
       "verdict_main_count": 5,
       "local_prelim_count": 7,
       "verdict_prelim_count": 9
@@ -223,6 +223,16 @@
       "verdict_main_count": 4,
       "local_prelim_count": 0,
       "verdict_prelim_count": 2
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 11,
+      "fighters": [
+        "Austin Bashi",
+        "Carlos Calderon"
+      ]
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -261,6 +271,26 @@
       "fighters": [
         "Bogdan Guskov",
         "Robert Whittaker"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "verdict_event_id": "1995",
+      "order": 3,
+      "fighters": [
+        "Marwan Rahiki",
+        "JooSang Yoo"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "verdict_event_id": "1995",
+      "order": 4,
+      "fighters": [
+        "Kaan Ofli",
+        "Joanderson Brito"
       ]
     }
   ]

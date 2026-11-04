@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-04T17:58:33.295Z",
+  "generated_at": "2026-11-04T23:36:39.680Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-11-07-fight-card",
@@ -32,7 +32,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CORTES_ACOSTA_WALDO_L.png?itok=R3cDV3Y_",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-250"
+                  "moneyline": "-265"
                 },
                 {
                   "name": "Johnny Walker",
@@ -40,7 +40,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/WALKER_JOHNNY_L_08-23.png?itok=cy7jdBoB",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+190"
+                  "moneyline": "+200"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -264,7 +264,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/DELANO_JOSE_L_04-04.png?itok=yx6OJq5I",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-111"
+                  "moneyline": "-120"
                 },
                 {
                   "name": "Murtazali Magomedov",
@@ -272,7 +272,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/MAGOMEDOV_MURTAZLI_R_06-20.png?itok=wXAJELZD",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-115"
+                  "moneyline": "-106"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -289,17 +289,19 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/BASHI_AUSTIN_L_07-18.png?itok=ICEox51M",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-480"
                 },
                 {
-                  "name": "Lucas Brennan",
-                  "initials": "LB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BRENNAN_LUCAS_R_04-25.png?itok=ajTVXdf5",
+                  "name": "Carlos Calderon",
+                  "initials": "CC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-11/CALDERON_CARLOS_R.png?itok=k8EF8zCQ",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+335"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "BetRivers"
             },
             {
               "order": 12,
@@ -312,7 +314,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-310"
+                  "moneyline": "-295"
                 },
                 {
                   "name": "Andre Petroski",
@@ -320,7 +322,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+230"
+                  "moneyline": "+220"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -747,6 +749,31 @@
             {
               "order": 3,
               "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Caio Borralho",
+                  "initials": "CB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/BORRALHO_CAIO_L_03-07.png?itok=uKHF4K2U",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-164"
+                },
+                {
+                  "name": "Yousri Belgaroui",
+                  "initials": "YB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/BELGAROUI_YOUSRI_R_10-18.png?itok=1K9Q4J-G",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+128"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
+            {
+              "order": 4,
+              "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
                 {
@@ -770,7 +797,7 @@
               "odds_provider": "FanDuel"
             },
             {
-              "order": 4,
+              "order": 5,
               "label": "",
               "weight_class": "Flyweight Bout",
               "fighters": [
@@ -802,7 +829,7 @@
           "time": "5:00 PM ET",
           "bouts": [
             {
-              "order": 5,
+              "order": 6,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -827,7 +854,7 @@
               "odds_provider": "FanDuel"
             },
             {
-              "order": 6,
+              "order": 7,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -852,7 +879,7 @@
               "odds_provider": "Caesars"
             },
             {
-              "order": 7,
+              "order": 8,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -877,7 +904,7 @@
               "odds_provider": "Caesars"
             },
             {
-              "order": 8,
+              "order": 9,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -909,7 +936,7 @@
           "time": "5:00 PM ET",
           "bouts": [
             {
-              "order": 9,
+              "order": 10,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -934,7 +961,7 @@
               "odds_provider": "Caesars"
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -957,7 +984,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -1227,7 +1254,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-335",
-      "updated_label": "November 3, 2026",
+      "updated_label": "November 4, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1723,6 +1750,52 @@
                   "name": "Robert Whittaker",
                   "initials": "RW",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/WHITTAKER_ROBERT_L_07-26.png?itok=9PCu_K6-",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Marwan Rahiki",
+                  "initials": "MR",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/RAHIKI_MARWAN_L_05-02.png?itok=4HkXr7I1",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "JooSang Yoo",
+                  "initials": "JY",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/YOO_JOOSANG_R_06-07.png?itok=sFYPXELB",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Kaan Ofli",
+                  "initials": "KO",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/OFLI_KAAN_L_06-27.png?itok=6swnPJvi",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Joanderson Brito",
+                  "initials": "JB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/BRITO_JOANDERSON_L_12-13.png?itok=MAvkv4Zx",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
