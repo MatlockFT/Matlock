@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-04T17:53:08.682Z"
+      "checkedAt": "2026-11-04T23:28:09.666Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-04T17:53:47.042Z",
+      "checkedAt": "2026-11-04T23:28:35.666Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -46478,7 +46478,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "Polymarket UFC 334",
+        "date": "2026-11-14",
+        "source": "https://www.ufc.com/event/ufc-334"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -153566,7 +153570,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2027-02-06",
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -163404,7 +163412,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2027-02-06",
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -174026,7 +174038,13 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Quentin Pasley",
+        "opponentId": "quentin-pasley"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -175448,7 +175466,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2027-02-06",
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -202870,13 +202892,7 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": {
-        "event": "Acosta vs Walker",
-        "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-        "opponent": "Austin Bashi",
-        "opponentId": "austin-bashi"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -220554,7 +220570,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2027-02-06",
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -266483,7 +266503,13 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Junior Tafa",
+        "opponentId": "junior-tafa"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -316747,7 +316773,7 @@
         "event": "Acosta vs Walker",
         "date": "2026-11-07",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-        "opponent": "Gabriel Lorenco",
+        "opponent": "Gabriel Lorenço",
         "opponentId": "gabriel-lorenco"
       },
       "rosterEligibility": {
@@ -339216,7 +339242,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "Polymarket UFC 334",
+        "date": "2026-11-14",
+        "source": "https://www.ufc.com/event/ufc-334"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
