@@ -7,6 +7,7 @@
   const titleInput = app.querySelector('[data-field="title"]');
   const descriptionInput = app.querySelector('[data-field="description"]');
   const filenameInput = app.querySelector('[data-field="filename"]');
+  const membersOnlyInput = app.querySelector('[data-field="membersOnly"]');
   const preview = app.querySelector('[data-preview-content]');
   const publishedLink = app.querySelector('[data-live-link]');
   const toggleButton = app.querySelector('[data-live-writer-toggle]');
@@ -90,7 +91,8 @@
     const target = currentTarget();
     startButton.hidden = active;
     endButton.hidden = !active;
-    if (pushButton) pushButton.disabled = !active;
+    if (pushButton) pushButton.disabled = !active || Boolean(membersOnlyInput?.checked);
+    if (!active) startButton.disabled = Boolean(membersOnlyInput?.checked);
 
     if (publicLink) {
       const url = publicUrl(target);
@@ -246,8 +248,8 @@
       publicPath: target.publicPath,
       title: titleInput.value.trim() || previous?.title || 'Live article',
       description: descriptionInput?.value.trim() || previous?.description || '',
-      html: safePreviewHtml() || previous?.html || '',
-      text: editor.value || previous?.text || '',
+      html: membersOnlyInput?.checked ? '' : (safePreviewHtml() || previous?.html || ''),
+      text: membersOnlyInput?.checked ? '' : (editor.value || previous?.text || ''),
       publishedAt
     };
   }
@@ -258,6 +260,10 @@
 
   async function pushNow({ force = false } = {}) {
     if (!active) return;
+    if (membersOnlyInput?.checked) {
+      setSyncState('Live Writer is disabled for members-only articles.', 'error');
+      return;
+    }
     if (syncing) {
       queuedWhileSyncing = true;
       return;
@@ -355,6 +361,10 @@
   }
 
   async function startLive() {
+    if (membersOnlyInput?.checked) {
+      setSyncState('Members-only articles cannot use public Live Writer.', 'error');
+      return;
+    }
     const target = currentTarget();
     if (!sessionId()) {
       setSyncState('Sign in with GitHub first.', 'error');
