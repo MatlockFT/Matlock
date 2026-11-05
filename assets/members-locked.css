@@ -36,20 +36,25 @@
 }
 
 
-/* Membership is the only gold navigation item on the public site. */
-:root { --member-nav-gold: #9b6d26; }
+/* Membership is the only permanently gold nav label. This stylesheet loads
+   after the page-specific navigation styles to prevent theme overrides. */
+:root { --member-nav-gold: #9f711f; }
 html[data-theme="dark"] { --member-nav-gold: #e3bd73; }
-.navigation-list a.nav-membership-link,
-body:has([data-globe-home]) .navigation-list a.nav-membership-link,
-body[data-editorial-shell]:not(:has(.v3-home)) .navigation-list a.nav-membership-link {
-  color: var(--member-nav-gold) !important;
-  font-weight: 800;
+
+html body .site-navigation .navigation-list li > a.nav-membership-link,
+html body:has([data-globe-home]) .site-navigation .navigation-list li > a.nav-membership-link,
+html body[data-editorial-shell] .site-navigation .navigation-list li > a.nav-membership-link,
+html body .site-navigation .navigation-list li > a.nav-membership-link > span:first-child,
+html body:has([data-globe-home]) .site-navigation .navigation-list li > a.nav-membership-link > span:first-child,
+html body[data-editorial-shell] .site-navigation .navigation-list li > a.nav-membership-link > span:first-child {
+    color: var(--member-nav-gold) !important;
+    opacity: 1 !important;
+    font-weight: 800;
 }
-.navigation-list a.nav-membership-link:is(:hover, :focus-visible),
-body:has([data-globe-home]) .navigation-list a.nav-membership-link:is(:hover, :focus-visible),
-body[data-editorial-shell]:not(:has(.v3-home)) .navigation-list a.nav-membership-link:is(:hover, :focus-visible) {
-  color: var(--member-nav-gold) !important;
-  text-decoration: underline;
-  text-decoration-color: currentColor;
-  text-underline-offset: 4px;
+
+html body .site-navigation .navigation-list li > a.nav-membership-link:hover,
+html body .site-navigation .navigation-list li > a.nav-membership-link:focus-visible,
+html body .site-navigation .navigation-list li > a.nav-membership-link[aria-current="page"] {
+    color: var(--member-nav-gold) !important;
+    text-decoration-color: var(--member-nav-gold) !important;
 }
