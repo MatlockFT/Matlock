@@ -1,5 +1,5 @@
 {
-  "version": 41,
+  "version": 42,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -26927,66 +26927,331 @@
       "name": "Lucas Fernando",
       "subtitle": "Career chronology",
       "record": "14-3",
-      "ufcRecord": "",
+      "ufcRecord": "1-0",
       "division": "Light Heavyweight",
       "items": [
         {
-          "date": "2024–2026",
-          "label": "LFA career and titles",
-          "detail": "Competed extensively in the LFA's middleweight and light heavyweight divisions before joining the UFC. His August 2026 win against Rafael Tobias was his UFC debut.",
+          "date": "Around 2005",
+          "label": "Starts kickboxing at age eight",
+          "kind": "training",
+          "detail": "Fernando states that his parents encouraged him to fight and that he began kickboxing at eight. Born January 10, 1997, the start falls around 2005; this is an approximate year, not a verified first lesson date.",
           "source": "https://www.ufc.com/athlete/lucas-fernando",
+          "sourceLabel": "UFC · athlete questionnaire, childhood martial arts"
+        },
+        {
+          "date": "Before professional MMA",
+          "label": "Competes on Brazilian national kickboxing team",
+          "kind": "background",
+          "detail": "Represented Brazil on its national kickboxing team for years and later reported Brazilian, Pan-American, South American, and state kickboxing championships. Exact dates and events for those striking titles were not supplied by UFC. They are separate from his professional MMA record.",
+          "source": "https://www.ufc.com/athlete/lucas-fernando",
+          "sourceLabel": "UFC · national-team and kickboxing title background"
+        },
+        {
+          "date": "Before and during MMA career",
+          "label": "Develops grappling and trains under Pedro Rizzo",
+          "kind": "training",
+          "detail": "Fernando reports a BJJ black belt, kickboxing black belt, and Muay Thai black grade. He trains at Rizzo RVT and names former UFC heavyweight Pedro Rizzo as his main fighting inspiration. An August 2026 report also associated his training with Andre Pederneiras. Exact belt promotion dates are not independently documented.",
+          "source": "https://www.ufc.com/athlete/lucas-fernando",
+          "sourceLabel": "UFC · gym, belts and mentorship"
+        },
+        {
+          "date": "Jun. 25, 2016",
+          "label": "AMATEUR WIN · Peterson Pit · WOCS 43",
+          "kind": "amateur",
+          "detail": "Defeated Peterson Pit by guillotine-choke submission in round one at WOCS 43 on June 25, 2016. Sherdog lists 0:00 in the time field, which appears to be a missing-time placeholder; exact finish time is unverified and is not presented as an instantaneous submission. Amateur result excluded from professional/UFC record.",
+          "source": "https://www.sherdog.com/fighter/Lucas-Fernando-227719",
+          "sourceLabel": "Sherdog · amateur MMA ledger"
+        },
+        {
+          "date": "2016–2017",
+          "label": "Prepares to enter professional MMA after amateur competition",
           "kind": "milestone",
-          "sourceLabel": "UFC fighter profile"
+          "detail": "His one verifiable amateur MMA result was the 2016 guillotine submission. UFC lists his professional career beginning in July 2017. This entry does not claim that one amateur bout is necessarily his complete lifetime amateur history.",
+          "source": "https://www.ufc.com/athlete/lucas-fernando",
+          "sourceLabel": "UFC · year professional career began"
         },
         {
-          "date": "Aug 15, 2026",
-          "label": "WIN · Rafael Tobias · UFC 330",
+          "date": "Jul. 8, 2017",
+          "label": "WIN · Mateus Silva · Rio Bonito Fighting Championship 7",
           "kind": "win",
-          "detail": "Defeated Rafael Tobias at UFC 330 by TKO (Knee to the Body) in round 3 at 1:10.",
-          "source": "https://verdictmma.com/fighter/lucas-fernando",
-          "sourceLabel": "Verdict MMA fighter history"
+          "detail": "Defeated Mateus Silva at Rio Bonito Fighting Championship 7 on Jul. 8, 2017 by TKO (knees) (round 1, 2:56). Professional MMA record after fight: 1-0. Professional MMA debut in Brazil, a first-round stoppage.",
+          "source": "https://www.sherdog.com/fighter/Lucas-Fernando-227719",
+          "sourceLabel": "Sherdog · complete professional fight ledger"
         },
         {
-          "date": "May 29, 2026",
-          "label": "WIN · Leon Soares · LFA 234",
+          "date": "Nov. 25, 2017",
+          "label": "WIN · Dailon Farias · MMA Experience 4: Panthers and Fight Night",
           "kind": "win",
-          "detail": "Defeated Leon Soares at LFA 234 by TKO (Leg Kicks and Punches) in round 1 at 2:28.",
-          "source": "https://verdictmma.com/fighter/lucas-fernando",
-          "sourceLabel": "Verdict MMA fighter history"
+          "detail": "Defeated Dailon Farias at MMA Experience 4: Panthers and Fight Night on Nov. 25, 2017 by TKO (elbows) (round 1, 2:34). Professional MMA record after fight: 2-0. A second first-round stoppage; some aggregator pages mislabel this promotion as Cage MMA Finland 41. Sherdog identifies MMA Experience 4.",
+          "source": "https://www.sherdog.com/fighter/Lucas-Fernando-227719",
+          "sourceLabel": "Sherdog · complete professional fight ledger"
         },
         {
-          "date": "Aug 15, 2025",
-          "label": "WIN · Phillip Latu · LFA 214",
+          "date": "Jul. 7, 2018",
+          "label": "WIN · Paulo Henrique Laia · Rio Bonito Fighting Championship 9",
           "kind": "win",
-          "detail": "Defeated Phillip Latu at LFA 214 by TKO (Punches) in round 1 at 1:03.",
-          "source": "https://verdictmma.com/fighter/lucas-fernando",
-          "sourceLabel": "Verdict MMA fighter history"
+          "detail": "Defeated Paulo Henrique Laia at Rio Bonito Fighting Championship 9 on Jul. 7, 2018 by submission (rear-naked choke) (round 1, 4:15). Professional MMA record after fight: 3-0. First professional submission victory, by rear-naked choke.",
+          "source": "https://www.sherdog.com/fighter/Lucas-Fernando-227719",
+          "sourceLabel": "Sherdog · complete professional fight ledger"
         },
         {
-          "date": "Aug 30, 2024",
-          "label": "WIN · Pedro Oliveira · LFA 191",
+          "date": "Dec. 8, 2018",
+          "label": "WIN · Rafael Silva de Souza · Federação Fight 9",
           "kind": "win",
-          "detail": "Defeated Pedro Oliveira at LFA 191 by Decision (Unanimous) in round 3.",
-          "source": "https://verdictmma.com/fighter/lucas-fernando",
-          "sourceLabel": "Verdict MMA fighter history"
+          "detail": "Defeated Rafael Silva de Souza at Federação Fight 9 on Dec. 8, 2018 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 4-0. First professional victory by decision.",
+          "source": "https://www.sherdog.com/fighter/Lucas-Fernando-227719",
+          "sourceLabel": "Sherdog · complete professional fight ledger"
+        },
+        {
+          "date": "Dec. 21, 2019",
+          "label": "WIN · Wallace Lopes · Shooto Brazil 99",
+          "kind": "win",
+          "detail": "Defeated Wallace Lopes at Shooto Brazil 99 on Dec. 21, 2019 by submission (rear-naked choke) (round 1; exact finish time unavailable). Professional MMA record after fight: 5-0. Second professional submission win. Sherdog does not publish a reliable round-one finish time for this fight; no clock time is invented.",
+          "source": "https://www.sherdog.com/fighter/Lucas-Fernando-227719",
+          "sourceLabel": "Sherdog · complete professional fight ledger"
+        },
+        {
+          "date": "Aug. 23, 2020",
+          "label": "LOSS · Diego Dias · Shooto Brazil 100",
+          "kind": "loss",
+          "detail": "Lost to Diego Dias at Shooto Brazil 100 on Aug. 23, 2020 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 5-1. First professional defeat, snapping a five-fight unbeaten start.",
+          "source": "https://www.sherdog.com/fighter/Lucas-Fernando-227719",
+          "sourceLabel": "Sherdog · complete professional fight ledger"
+        },
+        {
+          "date": "Jul. 16, 2021",
+          "label": "WIN · João Dantas · LFA 111: De Sa vs. Bonfim",
+          "kind": "win",
+          "detail": "Defeated João Dantas at LFA 111: De Sa vs. Bonfim on Jul. 16, 2021 by KO (flying knee) (round 1, 2:29). Professional MMA record after fight: 6-1. LFA debut in Brazil; scored a spectacular flying-knee knockout in round one.",
+          "source": "https://www.sherdog.com/fighter/Lucas-Fernando-227719",
+          "sourceLabel": "Sherdog · complete professional fight ledger"
+        },
+        {
+          "date": "Jul. 16, 2021",
+          "label": "Flying-knee KO introduces Fernando to the LFA",
+          "kind": "milestone",
+          "detail": "Knocked out João Dantas in round one at LFA 111, the LFA's first event in Brazil. This result began a four-fight LFA win streak leading to his 2023 middleweight title. The championship was not won in 2021; this entry marks his LFA debut.",
+          "source": "https://www.lfa.com/lfa-concludes-its-2023-schedule-with-a-championship-doubleheader-in-las-vegas-at-lfa-173/",
+          "sourceLabel": "LFA · retrospective on his opening LFA run"
+        },
+        {
+          "date": "Mar. 11, 2022",
+          "label": "WIN · Rodrigo Lima Novais · LFA 126: Bilharinho vs. Delano",
+          "kind": "win",
+          "detail": "Defeated Rodrigo Lima Novais at LFA 126: Bilharinho vs. Delano on Mar. 11, 2022 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 7-1. Second LFA victory; won by decision to move to 7-1.",
+          "source": "https://www.sherdog.com/fighter/Lucas-Fernando-227719",
+          "sourceLabel": "Sherdog · complete professional fight ledger"
+        },
+        {
+          "date": "Sep. 30, 2022",
+          "label": "WIN · Fabio Aguiar · LFA 143: Lopes vs. Paiva",
+          "kind": "win",
+          "detail": "Defeated Fabio Aguiar at LFA 143: Lopes vs. Paiva on Sep. 30, 2022 by TKO (punches) (round 1, 2:55). Professional MMA record after fight: 8-1. Third straight win following the Diego Dias loss, improving to 8-1.",
+          "source": "https://www.sherdog.com/fighter/Lucas-Fernando-227719",
+          "sourceLabel": "Sherdog · complete professional fight ledger"
+        },
+        {
+          "date": "Feb. 16, 2023",
+          "label": "LFA 154 booked for vacant middleweight championship",
+          "kind": "booking",
+          "detail": "LFA announced Fernando vs Jansey Silva for the vacant middleweight belt on March 10 in Cajamar. Ozzy Diaz had vacated the championship after competing on Dana White's Contender Series; this was Fernando's first documented professional title opportunity.",
+          "source": "https://www.lfa.com/lfa-brings-championship-doubleheader-to-brazil-at-lfa-154/",
+          "sourceLabel": "LFA · official title-fight booking"
+        },
+        {
+          "date": "Mar. 10, 2023",
+          "label": "WIN · Jansey Silva · LFA 154: Fernando vs. Silva",
+          "kind": "win",
+          "detail": "Defeated Jansey Silva at LFA 154: Fernando vs. Silva on Mar. 10, 2023 by KO (punch to the body) (round 4, 2:34). Professional MMA record after fight: 9-1. Won the vacant LFA middleweight championship in round four with a punch to the body. LFA's official report confirms 2:34 of round four.",
+          "source": "https://www.lfa.com/lucas-fernando-and-eduardo-neves-become-lfa-champions-at-lfa-154/",
+          "sourceLabel": "LFA · official LFA 154 championship result"
+        },
+        {
+          "date": "Mar. 10, 2023",
+          "label": "Wins LFA middleweight championship",
+          "kind": "milestone",
+          "detail": "A fourth-round body-punch knockout of Jansey Silva at LFA 154 won Fernando the vacant LFA middleweight championship. This is the title milestone attached to the single professional fight recorded on the same date, not a separate win.",
+          "source": "https://www.lfa.com/lucas-fernando-and-eduardo-neves-become-lfa-champions-at-lfa-154/",
+          "sourceLabel": "LFA · March 2023 official title result"
+        },
+        {
+          "date": "Aug. 8, 2023",
+          "label": "LOSS · Cesar Almeida · Dana White's Contender Series 2023: Week 1",
+          "kind": "loss",
+          "detail": "Lost to Cesar Almeida at Dana White's Contender Series 2023: Week 1 on Aug. 8, 2023 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 9-2. Lost in the Contender Series main event by scores of 30-26, 29-28 and 29-27. Almeida received a UFC contract; Fernando did not. DWCS bout counts as a professional defeat, but not as an official UFC fight.",
+          "source": "https://www.ufc.com/news/season-7-week-1-results-dana-whites-contender-series",
+          "sourceLabel": "UFC · official DWCS season seven scorecards"
+        },
+        {
+          "date": "Aug. 8, 2023",
+          "label": "Contender Series loss does not produce a UFC contract",
+          "kind": "milestone",
+          "detail": "Fernando entered the seventh season of DWCS as the reigning LFA 185-pound champion, but lost to Cesar Almeida. The UFC awarded contracts to the five winners, including Almeida, not Fernando. The loss is included in his 14-3 professional record; his official UFC record remained 0-0 until August 2026.",
+          "source": "https://www.ufc.com/news/season-7-week-1-results-dana-whites-contender-series",
+          "sourceLabel": "UFC · first week DWCS 2023 contract awards"
+        },
+        {
+          "date": "Dec. 15, 2023",
+          "label": "LOSS · Azamat Bekoev · LFA 173: Fernando vs. Bekoev",
+          "kind": "loss",
+          "detail": "Lost to Azamat Bekoev at LFA 173: Fernando vs. Bekoev on Dec. 15, 2023 by unanimous decision (round 5, 5:00). Professional MMA record after fight: 9-3. Lost LFA middleweight title unification match against interim champion Bekoev by 50-45, 48-47 and 49-46. His second consecutive professional loss and last defeat before a five-fight winning streak.",
+          "source": "https://www.lfa.com/russian-fighters-bekoev-and-kuziutina-sweep-lfa-middleweight-and-womens-strawweight-titles-at-lfa-173/",
+          "sourceLabel": "LFA · official middleweight title unification scores"
+        },
+        {
+          "date": "Dec. 15, 2023",
+          "label": "LFA middleweight title lost in champion-vs-interim unification",
+          "kind": "milestone",
+          "detail": "Champion Fernando faced interim champion Azamat Bekoev in Las Vegas, where Bekoev prevailed unanimously after five rounds. LFA's scorecards: 50-45, 48-47, 49-46. This is the same loss listed in his fight ledger, and ends Fernando's middleweight championship reign.",
+          "source": "https://www.lfa.com/russian-fighters-bekoev-and-kuziutina-sweep-lfa-middleweight-and-womens-strawweight-titles-at-lfa-173/",
+          "sourceLabel": "LFA · December 2023 unification scores"
+        },
+        {
+          "date": "Mar. 23, 2024",
+          "label": "Canceled or postponed · João Paulo Silva · LFA 179",
+          "kind": "booking",
+          "detail": "Tapology's fighter ledger lists a scheduled March 23, 2024 LFA 179 bout with João Paulo Silva as canceled. The pairing eventually took place on May 3 at LFA 183. No reliable source was located establishing who withdrew or whether injury caused the March change; do not attribute it to a specific fighter.",
+          "source": "https://www.tapology.com/fightcenter/fighters/135406-lucas-fernando",
+          "sourceLabel": "Tapology · canceled March 2024 pairing and later completed bout"
         },
         {
           "date": "May 3, 2024",
-          "label": "WIN · Joao Paulo Silva · LFA 183",
+          "label": "WIN · João Paulo Silva · LFA 183: Cantanhede vs. Guimarães",
           "kind": "win",
-          "detail": "Defeated Joao Paulo Silva at LFA 183 by Decision (Unanimous) in round 3.",
-          "source": "https://verdictmma.com/fighter/lucas-fernando",
-          "sourceLabel": "Verdict MMA fighter history"
+          "detail": "Defeated João Paulo Silva at LFA 183: Cantanhede vs. Guimarães on May 3, 2024 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 10-3. Returned to competition following his December 2023 loss; the originally listed March bout with this opponent had been canceled or postponed for an undocumented reason.",
+          "source": "https://www.sherdog.com/fighter/Lucas-Fernando-227719",
+          "sourceLabel": "Sherdog · complete professional fight ledger"
+        },
+        {
+          "date": "May 3, 2024",
+          "label": "Returns with unanimous decision in João Paulo Silva rescheduling",
+          "kind": "return",
+          "detail": "Fernando returned after the December 2023 Bekoev title loss and beat João Paulo Silva at LFA 183. The same opponent had been listed for March 23, but the original booking did not take place. No injury or medical layoff was independently documented.",
+          "source": "https://www.tapology.com/fightcenter/fighters/135406-lucas-fernando",
+          "sourceLabel": "Tapology · LFA 179 cancellation and LFA 183 result"
+        },
+        {
+          "date": "Aug. 30, 2024",
+          "label": "WIN · Pedro Oliveira · LFA 191: Prado vs. Lopes",
+          "kind": "win",
+          "detail": "Defeated Pedro Oliveira at LFA 191: Prado vs. Lopes on Aug. 30, 2024 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 11-3. Second consecutive win after losing the middleweight belt; LFA reported official scores of 30-27, 29-28 and 29-28.",
+          "source": "https://www.lfa.com/keweny-lopes-knocks-out-wellington-prado-in-capoeria-vs-jiu-jitsu-showdown-at-lfa-191/",
+          "sourceLabel": "LFA · official LFA 191 results"
+        },
+        {
+          "date": "Aug. 30, 2024",
+          "label": "Beats Pedro Oliveira to rebuild post-title momentum",
+          "kind": "milestone",
+          "detail": "Official LFA scoring gave Fernando a unanimous decision over Oliveira, 30-27, 29-28, 29-28, in the co-main event of LFA 191. This was his second completed victory since losing the middleweight title; no second or distinct fight is counted.",
+          "source": "https://www.lfa.com/keweny-lopes-knocks-out-wellington-prado-in-capoeria-vs-jiu-jitsu-showdown-at-lfa-191/",
+          "sourceLabel": "LFA · LFA 191 official judges and results"
+        },
+        {
+          "date": "Aug. 14, 2025",
+          "label": "Moves up to 205 pounds for vacant LFA title fight",
+          "kind": "weight",
+          "detail": "At the LFA 214 weigh-ins, Fernando was announced as the former middleweight champion challenging Phillip Latu for the vacant light heavyweight belt. This marked the documented transition to a 205-pound title opportunity after his previous middleweight fights.",
+          "source": "https://www.lfa.com/lfa-214-official-weigh-in-results/",
+          "sourceLabel": "LFA · official Aug. 2025 light heavyweight championship announcement"
+        },
+        {
+          "date": "Aug. 15, 2025",
+          "label": "WIN · Phillip Latu · LFA 214: Fernando vs. Latu",
+          "kind": "win",
+          "detail": "Defeated Phillip Latu at LFA 214: Fernando vs. Latu on Aug. 15, 2025 by TKO (body punch) (round 1, 1:03). Professional MMA record after fight: 12-3. Moved up to light heavyweight for a vacant LFA championship bout; won with a first-round body punch. LFA confirms the title was VACANT at the time, meaning this was a capture, not a defense.",
+          "source": "https://www.lfa.com/fernando-takes-the-light-heavyweight-title-in-lfa-214/",
+          "sourceLabel": "LFA · official vacant 205-pound championship result"
+        },
+        {
+          "date": "Aug. 15, 2025",
+          "label": "Captures vacant LFA light heavyweight championship",
+          "kind": "milestone",
+          "detail": "Fernando stopped Phillip Latu with a first-round body punch at 1:03 at LFA 214 to claim the VACANT light heavyweight title. This made him a titleholder at both 185 and 205 pounds in the promotion, at separate times.",
+          "source": "https://www.lfa.com/fernando-takes-the-light-heavyweight-title-in-lfa-214/",
+          "sourceLabel": "LFA · official August 2025 championship result"
+        },
+        {
+          "date": "May 29, 2026",
+          "label": "WIN · Leon Soares · LFA 234: Fernando vs. Soares",
+          "kind": "win",
+          "detail": "Defeated Leon Soares at LFA 234: Fernando vs. Soares on May 29, 2026 by TKO (leg kick and punches) (round 1, 1:28). Professional MMA record after fight: 13-3. Defended the LFA light heavyweight title in Brazil. The promotion's official result lists 1:28, although several third-party fight ledgers list 2:28.",
+          "source": "https://www.lfa.com/fernando-and-nascimento-defend-their-titles-in-lfa-234/",
+          "sourceLabel": "LFA · official LFA 234 results"
+        },
+        {
+          "date": "May 29, 2026",
+          "label": "Defends LFA light heavyweight title against Leon Soares",
+          "kind": "milestone",
+          "detail": "After dropping Soares with a leg kick, Fernando followed with punches to retain his 205-pound title. LFA's own pre-fight article describes this as a first defense, but its post-fight recap calls it a second successful defense; the 17-bout ledger shows no intervening defense after the Phillip Latu title win. The count discrepancy is unresolved and must not create a phantom bout.",
+          "source": "https://www.lfa.com/fernando-and-nascimento-defend-their-titles-in-lfa-234/",
+          "sourceLabel": "LFA · May 2026 title defense and inconsistent defense count"
+        },
+        {
+          "date": "May 30, 2026",
+          "label": "LFA 234 stoppage-clock discrepancy: 1:28 versus 2:28",
+          "kind": "note",
+          "detail": "The official LFA result reports 1:28 of round one for Fernando's TKO of Leon Soares; multiple databases, including the existing writer entry and some third-party aggregators, record 2:28. Use the primary promotion's 1:28 unless an official commission result establishes otherwise. The finish was leg kick followed by punches.",
+          "source": "https://www.lfa.com/fernando-and-nascimento-defend-their-titles-in-lfa-234/",
+          "sourceLabel": "LFA · original official May 29, 2026 result"
+        },
+        {
+          "date": "July 2026",
+          "label": "UFC signs reigning LFA light heavyweight titleholder",
+          "kind": "milestone",
+          "detail": "MMA Fighting reported that Fernando had signed with the UFC for an August 15 debut at UFC 330 against Rafael Tobias. He was 13-3 professionally and riding a four-fight winning streak. The UFC signing happened three years after his unsuccessful Contender Series attempt.",
+          "source": "https://www.mmafighting.com/ufc/499619/lfa-champ-lucas-fernando-books-ufc-330-debut-against-bipolar",
+          "sourceLabel": "MMA Fighting · July 2026 UFC contract and debut announcement"
+        },
+        {
+          "date": "Aug. 15, 2026",
+          "label": "WIN · Rafael Tobias · UFC 330: Makhachev vs. Machado Garry",
+          "kind": "win",
+          "detail": "Defeated Rafael Tobias at UFC 330: Makhachev vs. Machado Garry on Aug. 15, 2026 by TKO (knee to the body and strikes) (round 3, 1:10). Professional MMA record after fight: 14-3. Official UFC record: 1-0. Official UFC debut after signing as LFA light heavyweight champion. Finished fellow Brazilian Tobias with a knee to the body in round three at 1:10, extending his winning streak to five.",
+          "source": "https://www.mmafighting.com/ufc/504983/ufc-330-video-lucas-fernando-destroys-rafael-tobias-with-brutal-knee-to-the-body",
+          "sourceLabel": "MMA Fighting · UFC 330 stoppage and debut report"
+        },
+        {
+          "date": "Aug. 15, 2026",
+          "label": "UFC debut knee-to-body stoppage at 1:10 of round three",
+          "kind": "milestone",
+          "detail": "In Philadelphia at UFC 330, Fernando used jabs and a body knee to stop Rafael Tobias at 1:10 of round three. The win extended his professional streak to five and gave him a 1-0 official UFC record; it was not another LFA fight.",
+          "source": "https://www.mmafighting.com/ufc/504983/ufc-330-video-lucas-fernando-destroys-rafael-tobias-with-brutal-knee-to-the-body",
+          "sourceLabel": "MMA Fighting · UFC 330 ringside result"
+        },
+        {
+          "date": "Autumn 2026",
+          "label": "Booked for second UFC fight against Billy Elekana",
+          "kind": "booking",
+          "detail": "MMA Fighting reported a November 7, 2026 UFC Vegas 124 light heavyweight booking against Billy Elekana. Fernando's pre-fight professional record was 14-3, with one official UFC victory. The matchup is the next scheduled fight, not a completed result.",
+          "source": "https://www.mmafighting.com/ufc/509674/rising-light-heavyweights-lucas-fernando-billy-elekana-booked-for-ufc-vegas-124-fight",
+          "sourceLabel": "MMA Fighting · autumn 2026 Elekana–Fernando matchup"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Career injury and withdrawal audit",
+          "kind": "note",
+          "detail": "No verified major MMA-related surgery, prolonged injury layoff or injury-attributed withdrawal was found in Fernando's official UFC questionnaire, LFA event histories or public fight-ledger reporting through Nov. 5, 2026. The João Paulo Silva LFA 179 booking appears as canceled or postponed but the reason is unknown. This is a documentation limit, not evidence that he has never been injured.",
+          "source": "https://www.tapology.com/fightcenter/fighters/135406-lucas-fernando",
+          "sourceLabel": "Tapology · booking history checked against UFC and LFA event reports"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Full professional record and title-history reconciliation",
+          "kind": "note",
+          "detail": "The complete professional ledger has 17 fights: 14 wins (eight KO/TKO, two submissions, four decisions) and three decision losses, including his August 2023 DWCS loss. One official UFC fight yields a 1-0 UFC record. Official results support a 2023 LFA middleweight championship, an August 2025 vacant LFA light heavyweight title capture and a May 2026 title defense; the UFC bio's 'two-time' 205-pound champion label is not reconciled by these listed bouts.",
+          "source": "https://www.ufc.com/athlete/lucas-fernando",
+          "sourceLabel": "UFC · official 14-3 record, fight methods and title biography; compared with LFA"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Billy Elekana · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Scheduled to fight Billy Elekana at UFC Vegas 124 in Las Vegas. No result yet.",
+          "kind": "upcoming",
+          "detail": "Scheduled to face Billy Elekana at 205 pounds on Nov. 7, 2026 at Meta APEX in Las Vegas on UFC Fight Night: Cortes-Acosta vs Walker. As of Nov. 5 no result exists; entering record 14-3 professional and 1-0 UFC. The earlier August win over Rafael Tobias remains his only completed official UFC contest.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "Official UFC event"
+          "sourceLabel": "UFC · official November 7, 2026 event card"
         }
-      ]
+      ],
+      "lastReviewed": "2026-11-05"
     },
     "Mantas Kondratavičius": {
       "slug": "mantas-kondratavicius",
