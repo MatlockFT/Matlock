@@ -1,3 +1,16 @@
+  async function memberWriterFetch(suffix = '', options = {}) {
+    const endpoint = 'https://members.mmamatlock.com/api/admin/writer/posts' + suffix;
+    let response;
+    try {
+      response = await fetch(endpoint, { credentials: 'include', mode: 'cors', cache: 'no-store', ...options });
+    } catch {
+      throw new Error('Could not contact private publishing. Check members.mmamatlock.com and try again.');
+    }
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || 'Private publishing failed. Sign in on members.mmamatlock.com with your owner account.');
+    return data;
+  }
+
   function isAllowedPublishUrl(value) {
     const url = String(value || '').trim();
     if (!url) return false;
@@ -105,6 +118,11 @@
     if (!fields.date.value) throw new Error('Choose an article date.');
     if (!fields.filename.value.trim()) throw new Error('Add a filename.');
     if (!/^\d{4}-\d{2}-\d{2}-.+\.md$/i.test(fields.filename.value.trim())) throw new Error('Filename must look like YYYY-MM-DD-article-name.md.');
+    const beforeWasMembersOnly = /^members_only:\s*true\s*$/m.test(originalFrontmatter);
+    if (currentPath && beforeWasMembersOnly !== Boolean(fields.membersOnly?.checked))
+      throw new Error('Changing the visibility of an existing article requires a migration. Create a new members-only article instead to keep its contents out of public Git history.');
+    if (fields.membersOnly?.checked && mode === 'schedule')
+      throw new Error('Scheduled members-only publishing is not enabled yet. Use Save draft or Publish.');
     if (fields.newsFeature?.checked) {
       const newsFeatureUntil = new Date(fields.newsFeatureUntil?.value || '');
       if (!fields.newsFeatureUntil?.value || Number.isNaN(newsFeatureUntil.getTime())) throw new Error('Choose a valid News lead end time first.');
@@ -168,7 +186,10 @@ async function saveArticle(mode = 'save', { skipConflict = false, automatic = fa
   const oldLabel = button.textContent;
   const clearSchedule = mode === 'publish';
   // Save a single revision; editing remains live while the request is pending.
-  const savedMarkdown = fullMarkdown(desiredPublished, { clearSchedule });
+  const savedMarkdown = publicMarkdownForSave(desiredPublished, { clearSchedule });
+  const privateBody = fields.membersOnly?.checked
+    ? expandHtmlBlocks(normalizeMarkdownDividers(bodyEditor.value).replace(/^\s+/, '')) : '';
+  const privateBodySnapshot = bodyEditor.value;
   const savedFrontmatter = buildFrontmatter(desiredPublished, { clearSchedule });
   const savedSchedule = fields.publishAt.value;
 
@@ -206,6 +227,19 @@ async function saveArticle(mode = 'save', { skipConflict = false, automatic = fa
       }
     }
 
+    if (fields.membersOnly?.checked) {
+      const slug = membersArticleSlug();
+      if (!/^[a-z0-9](?:[a-z0-9-]{1,78})[a-z0-9]$/.test(slug))
+        throw new Error('Members-only filenames must use a lowercase slug with hyphens (3–80 characters).');
+      if (!privateBody.trim()) throw new Error('Write private article text before saving.');
+      if (privateBody.length > 100000) throw new Error('The private article exceeds the 100,000-character storage limit.');
+      await memberWriterFetch('', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug, title: fields.title.value.trim(),
+          body_markdown: privateBody, status: desiredPublished ? 'published' : 'draft' })
+      });
+    }
+
     const payload = {
       message: `${mode === 'publish' ? 'Publish' : mode === 'schedule' ? 'Schedule' : 'Update'} ${filename}`,
       content: encodeBase64(savedMarkdown),
@@ -216,7 +250,8 @@ async function saveArticle(mode = 'save', { skipConflict = false, automatic = fa
       method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
     }, true);
 
-    const newerEdits = fullMarkdown(desiredPublished, { clearSchedule }) !== savedMarkdown || fields.publishAt.value !== savedSchedule;
+    const newerEdits = publicMarkdownForSave(desiredPublished, { clearSchedule }) !== savedMarkdown
+      || fields.publishAt.value !== savedSchedule || (fields.membersOnly?.checked && bodyEditor.value !== privateBodySnapshot);
     currentPath = path;
     currentSha = result.content?.sha || currentSha;
     currentPublished = desiredPublished;
@@ -241,7 +276,7 @@ async function saveArticle(mode = 'save', { skipConflict = false, automatic = fa
     setSaveState(newerEdits ? 'Unsaved changes • earlier revision saved' : automatic ? `Auto-saved • ${stamp}` : mode === 'publish' ? `Published • ${stamp}` : mode === 'schedule' ? `Scheduled • ${stamp}` : `Saved • ${stamp}`);
     if (!newerEdits) setLocalStatus(`Saved to GitHub · ${stamp}`, 'github');
     if (!automatic) showToast(newerEdits ? 'Earlier revision saved. Your newer edits still need saving.' : mode === 'publish'
-      ? 'Published to GitHub. The public site is deploying now.'
+      ? (fields.membersOnly?.checked ? 'Private article saved. Locked public listing is deploying.' : 'Published to GitHub. The public site is deploying now.')
       : mode === 'schedule'
         ? `Scheduled for ${formatDateTime(localInputToIso(savedSchedule))}. GitHub checks due posts about every 15 minutes.`
         : 'Saved to GitHub.');
