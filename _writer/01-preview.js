@@ -1350,6 +1350,8 @@
   let renderedPreviewBody = null;
 
   function updatePreview() {
+    const membersBanner = app.querySelector('[data-members-preview-banner]');
+    if (membersBanner) membersBanner.hidden = !Boolean(fields.membersOnly?.checked);
     const title = fields.title.value.trim() || 'Untitled article';
     const description = fields.description.value.trim();
     const category = fields.category.value.trim() || 'Breakdown';
