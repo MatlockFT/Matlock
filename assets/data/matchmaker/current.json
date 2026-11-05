@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-05T11:35:04.876Z"
+      "checkedAt": "2026-11-05T19:01:11.891Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-05T11:35:29.102Z",
+      "checkedAt": "2026-11-05T19:01:54.964Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -104252,7 +104252,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "Polymarket UFC 334",
+        "date": "2026-11-14",
+        "source": "https://www.ufc.com/event/ufc-334"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -141725,7 +141729,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "Polymarket UFC 334",
+        "date": "2026-11-14",
+        "source": "https://www.ufc.com/event/ufc-334"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -227897,7 +227905,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "Polymarket UFC 334",
+        "date": "2026-11-14",
+        "source": "https://www.ufc.com/event/ufc-334"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -291582,7 +291594,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "Polymarket UFC 334",
+        "date": "2026-11-14",
+        "source": "https://www.ufc.com/event/ufc-334"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
