@@ -59,7 +59,7 @@ page_scripts:
           {% assign side_src = side_responsive.src | default: side_image %}
           <article class="v3-rail-story">
             {% if side_image %}
-              <a class="v3-rail-image" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">
+              <a class="v3-rail-image" href="{% if post.members_only %}https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}{% else %}{{ post.url | relative_url }}{% endif %}" aria-label="Read {{ post.title | escape }}">
                 <img
                   src="{{ side_src | relative_url }}"
                   {% if side_responsive.srcset %}
@@ -74,7 +74,7 @@ page_scripts:
               </a>
             {% endif %}
             <p class="v3-label">{{ post.date | date: "%b %-d" }}</p>
-            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+            <h2><a href="{% if post.members_only %}https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}{% else %}{{ post.url | relative_url }}{% endif %}">{{ post.title }}{% if post.members_only %} <span class="members-lock-badge" aria-label="Members only">🔒 Members only</span>{% endif %}</a></h2>
             {% if post.description %}
               <p class="v3-summary">{{ post.description | strip_html | truncate: 118 }}</p>
             {% elsif post.excerpt %}
@@ -85,7 +85,7 @@ page_scripts:
       </aside>
 
       <article class="v3-lead">
-        <h1><a href="{{ lead_post.url | relative_url }}">{{ lead_post.title }}</a></h1>
+        <h1><a href="{% if lead_post.members_only %}https://members.mmamatlock.com/post/{{ lead_post.members_slug | default: lead_post.slug | escape }}{% else %}{{ lead_post.url | relative_url }}{% endif %}">{{ lead_post.title }}{% if lead_post.members_only %} <span class="members-lock-badge" aria-label="Members only">🔒 Members only</span>{% endif %}</a></h1>
         {% if lead_post.description %}
           <p class="v3-lead-deck">{{ lead_post.description | strip_html | truncate: 225 }}</p>
         {% elsif lead_post.excerpt %}
@@ -93,7 +93,7 @@ page_scripts:
         {% endif %}
 
         {% if lead_image %}
-          <a class="v3-lead-image" href="{{ lead_post.url | relative_url }}" aria-label="Read {{ lead_post.title | escape }}">
+          <a class="v3-lead-image" href="{% if lead_post.members_only %}https://members.mmamatlock.com/post/{{ lead_post.members_slug | default: lead_post.slug | escape }}{% else %}{{ lead_post.url | relative_url }}{% endif %}" aria-label="Read {{ lead_post.title | escape }}">
             <img
               src="{{ lead_src | relative_url }}"
               {% if lead_responsive.srcset %}
@@ -143,7 +143,7 @@ page_scripts:
 
         <article class="v3-feature">
           {% if post_image %}
-            <a class="v3-feature-image" href="{{ post.url | relative_url }}">
+            <a class="v3-feature-image" href="{% if post.members_only %}https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}{% else %}{{ post.url | relative_url }}{% endif %}">
               <img
                 src="{{ post_src | relative_url }}"
                 {% if post_responsive.srcset %}
@@ -158,7 +158,7 @@ page_scripts:
             </a>
           {% endif %}
           <p class="v3-label">{{ post.date | date: "%b %-d" }}</p>
-          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <h3><a href="{% if post.members_only %}https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}{% else %}{{ post.url | relative_url }}{% endif %}">{{ post.title }}{% if post.members_only %} <span class="members-lock-badge" aria-label="Members only">🔒 Members only</span>{% endif %}</a></h3>
           {% if post.description %}
             <p class="v3-summary">{{ post.description | strip_html | truncate: 145 }}</p>
           {% endif %}
@@ -192,7 +192,7 @@ page_scripts:
         {% for post in more_posts %}
           <article class="v3-more-story">
             <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d" }}</time>
-            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <h3><a href="{% if post.members_only %}https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}{% else %}{{ post.url | relative_url }}{% endif %}">{{ post.title }}{% if post.members_only %} <span class="members-lock-badge" aria-label="Members only">🔒 Members only</span>{% endif %}</a></h3>
             {% if post.description %}
               <p>{{ post.description | strip_html | truncate: 155 }}</p>
             {% endif %}
