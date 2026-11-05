@@ -1,5 +1,5 @@
 {
-  "version": 42,
+  "version": 43,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -27262,28 +27262,308 @@
       "division": "Middleweight",
       "items": [
         {
-          "date": "Mar 21, 2026",
-          "label": "WIN · Antonio Trocoli · UFC Fight Night",
-          "kind": "win",
-          "detail": "Defeated Antonio Trocoli at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "date": "July 17, 1999",
+          "label": "Born in Lithuania; grows up in Kaunas region",
+          "kind": "milestone",
+          "detail": "Born July 17, 1999 in Lithuania. He later fought out of Kaunas for Fighter House. His birthplace and team are background facts, not a separate professional fight.",
           "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
-          "sourceLabel": "Tapology fighter history"
+          "sourceLabel": "Tapology · MMA, kickboxing, grappling, and canceled booking history"
         },
         {
-          "date": "Sep 23, 2025",
-          "label": "WIN · Dani Barbir · Dana White's Contender Series",
-          "kind": "win",
-          "detail": "Defeated Dani Barbir at Dana White's Contender Series by TKO (Punches) in round 1 at 1:06.",
+          "date": "Around 2011 (age 12)",
+          "label": "Begins training in combat sports",
+          "kind": "training",
+          "detail": "Told the UFC he began training for fighting at age 12 and had a passion for combat sports from childhood. The approximate calendar year follows from his July 1999 birth; no precise month was stated.",
+          "source": "https://www.ufc.com/athlete/mantas-kondratavicius",
+          "sourceLabel": "UFC · official athlete biography and Q&A"
+        },
+        {
+          "date": "Amateur combat-sports years (exact dates unverified)",
+          "label": "Wins Lithuanian combat-sambo, grappling and amateur MMA honors",
+          "kind": "training",
+          "detail": "Reports three Lithuanian combat-sambo championships, a Lithuanian grappling championship, amateur Lithuanian and Baltic MMA titles and multiple amateur K-1, Muay Thai and boxing honors. Lists a purple belt in Brazilian jiu-jitsu. The UFC questionnaire does not date each championship; do not fabricate event dates.",
+          "source": "https://www.ufc.com/athlete/mantas-kondratavicius",
+          "sourceLabel": "UFC · official athlete biography and Q&A"
+        },
+        {
+          "date": "Dec. 7, 2014",
+          "label": "DRAW · Savvas Michael · KOK 24 (kickboxing)",
+          "kind": "milestone",
+          "detail": "Drew with Savvas Michael in a kickboxing contest at KOK World Series 2014 in Nicosia, Cyprus. KOK's original event archive gives December 7; one third-party listing says December 6. Not a professional MMA result.",
+          "source": "https://kokfights.com/event/kok-world-series-2014-in-cyprus/",
+          "sourceLabel": "KOK · original December 2014 event result"
+        },
+        {
+          "date": "Apr. 18, 2015",
+          "label": "KICKBOXING WIN · Deivydas Jemeljanovas · SWAT 47",
+          "kind": "milestone",
+          "detail": "Defeated Deivydas Jemeljanovas by three-round unanimous decision in a kickboxing bout at Bushido FC: SWAT 47. His opponent's first name is also rendered Deividas by another database. Not an MMA victory.",
           "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
-          "sourceLabel": "Tapology fighter history"
+          "sourceLabel": "Tapology · MMA, kickboxing, grappling, and canceled booking history"
+        },
+        {
+          "date": "May 7, 2015",
+          "label": "KICKBOXING DRAW · Raimondas Avlasevičius · SWAT 48",
+          "kind": "milestone",
+          "detail": "Drew with Raimondas Avlasevičius after three rounds at Bushido FC: SWAT 48 under kickboxing rules. This does not alter his professional MMA record.",
+          "source": "https://gidstats.com/fighters/mantas_kondrataviius.html",
+          "sourceLabel": "GIDStats · 2015 kickboxing results"
+        },
+        {
+          "date": "Nov. 19, 2016",
+          "label": "KICKBOXING WIN · Paweł Dawidziuk · KOK 41",
+          "kind": "milestone",
+          "detail": "Stopped Paweł Dawidziuk by TKO in round three at KOK 41: Hero's 2016. Documented separately from his eventual MMA career.",
+          "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
+          "sourceLabel": "Tapology · MMA, kickboxing, grappling, and canceled booking history"
+        },
+        {
+          "date": "2018–2020",
+          "label": "Amateur MMA experience in WCMMA and UCMMA",
+          "kind": "milestone",
+          "detail": "Documented UK-based amateur appearances against Sam Home, Mihai Balint, Arvydas Pumputis, Simeon Powell and Alin Moatamed. Those five bouts produced four wins and one loss. Tapology additionally lists a November 2021 amateur loss.",
+          "source": "https://www.sherdog.com/fighter/Mantas-Kondratavicius-310159",
+          "sourceLabel": "Sherdog · complete professional and amateur fight ledgers"
+        },
+        {
+          "date": "Dec. 8, 2018",
+          "label": "AMATEUR WIN · Sam Home · WCMMA 35",
+          "kind": "win",
+          "detail": "Beat Sam Home via TKO (arm injury) at 0:04 of round one. The arm injury belongs to opponent Sam Home, not Kondratavičius. Amateur MMA; excluded from his 9-1 professional record.",
+          "source": "https://www.sherdog.com/fighter/Mantas-Kondratavicius-310159",
+          "sourceLabel": "Sherdog · complete professional and amateur fight ledgers"
+        },
+        {
+          "date": "Feb. 9, 2019",
+          "label": "AMATEUR WIN · Mihai Balint · UCMMA 58",
+          "kind": "win",
+          "detail": "Submitted Mihai Balint with a guillotine choke in round one at 0:29 at UCMMA 58. Amateur MMA; not counted among professional submission victories.",
+          "source": "https://www.sherdog.com/fighter/Mantas-Kondratavicius-310159",
+          "sourceLabel": "Sherdog · complete professional and amateur fight ledgers"
+        },
+        {
+          "date": "Mar. 23, 2019",
+          "label": "AMATEUR WIN · Arvydas Pumputis · WCMMA 36",
+          "kind": "win",
+          "detail": "Defeated Arvydas Pumputis by round-one TKO at 0:44 at WCMMA 36. Amateur MMA result.",
+          "source": "https://www.sherdog.com/fighter/Mantas-Kondratavicius-310159",
+          "sourceLabel": "Sherdog · complete professional and amateur fight ledgers"
+        },
+        {
+          "date": "June 22, 2019",
+          "label": "AMATEUR LOSS · Simeon Powell · WCMMA 37",
+          "kind": "loss",
+          "detail": "Lost a three-round unanimous decision to Simeon Powell. Tapology identifies the bout as a WCMMA middleweight championship contest but lists the championship status as uncertain. The loss does not affect his professional record.",
+          "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
+          "sourceLabel": "Tapology · MMA, kickboxing, grappling, and canceled booking history"
+        },
+        {
+          "date": "Mar. 14, 2020",
+          "label": "AMATEUR WIN · Alin Moatamed · WCMMA 40",
+          "kind": "win",
+          "detail": "Defeated Alin Moatamed by TKO (punches) at 1:33 of round one at WCMMA 40. End of the five-fight 4-1 amateur run shown by Sherdog.",
+          "source": "https://www.sherdog.com/fighter/Mantas-Kondratavicius-310159",
+          "sourceLabel": "Sherdog · complete professional and amateur fight ledgers"
+        },
+        {
+          "date": "Feb. 8, 2021",
+          "label": "PRO WIN · Rytis Kveselys · KOK Classic 5",
+          "kind": "win",
+          "detail": "Submitted Rytis Kveselys in round two at KOK Classic 5 in Vilnius. The original Sherdog event page dates the bout Feb. 8, while Sherdog's fighter page says Feb. 28; the finish time is not available and 0:00 in some listings is a placeholder. Pro MMA record after bout: 1-0; official UFC record 0-0.",
+          "source": "https://www.sherdog.com/events/KOK-King-of-Kings-Classic-5-98158",
+          "sourceLabel": "Sherdog · original February 2021 KOK event page"
+        },
+        {
+          "date": "Apr. 24, 2021",
+          "label": "PRO WIN · Artūrs Leisāns · KOK Classic 6",
+          "kind": "win",
+          "detail": "Stopped Artūrs Leisāns by TKO (punches) at 1:15 of round two at KOK Classic 6. Pro MMA record after bout: 2-0; official UFC record 0-0.",
+          "source": "https://www.sherdog.com/fighter/Mantas-Kondratavicius-310159",
+          "sourceLabel": "Sherdog · complete professional and amateur fight ledgers"
+        },
+        {
+          "date": "Nov. 21, 2021",
+          "label": "Additional amateur loss to Danielius Grebliūnas",
+          "kind": "loss",
+          "detail": "Tapology lists a decision loss to Danielius Grebliūnas as an amateur bout, confirmed by its corresponding entry on Grebliūnas's own fighter page. This occurred after Kondratavičius had already taken professional MMA bouts. Sherdog and MMA Index omit it from their 4-1 amateur ledgers. If included as classified, amateur record becomes 4-2; professional record stays 9-1.",
+          "source": "https://www.tapology.com/fightcenter/fighters/324873-danielius-grebliunas",
+          "sourceLabel": "Tapology · Grebliūnas's amateur fight record"
+        },
+        {
+          "date": "Jan. 22, 2022",
+          "label": "PRO WIN · Jack Comby · Almighty Fighting Championship 22",
+          "kind": "win",
+          "detail": "Stopped Jack Comby by TKO (punches) at 4:04 of round two. Pro MMA record after bout: 3-0; official UFC record 0-0.",
+          "source": "https://www.sherdog.com/fighter/Mantas-Kondratavicius-310159",
+          "sourceLabel": "Sherdog · complete professional and amateur fight ledgers"
+        },
+        {
+          "date": "June 25, 2022",
+          "label": "Ale Joseph booking canceled at Ares FC 7",
+          "kind": "booking",
+          "detail": "Tapology records a canceled middleweight pairing against Ale Joseph. The reason for cancellation is not established; the bout was later completed at Ares FC 8 in September. Do not classify a canceled booking as a fight.",
+          "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
+          "sourceLabel": "Tapology · MMA, kickboxing, grappling, and canceled booking history"
+        },
+        {
+          "date": "Sept. 2, 2022",
+          "label": "PRO WIN · Ale Joseph · Ares FC 8",
+          "kind": "win",
+          "detail": "Won by TKO at 1:55 of round one when opponent Ale Joseph suffered a shoulder injury requiring a stoppage. The injury was to Joseph, not Kondratavičius; do not describe it as a clean punch KO. Pro MMA record after bout: 4-0.",
+          "source": "https://www.sherdog.com/fighter/Mantas-Kondratavicius-310159",
+          "sourceLabel": "Sherdog · complete professional and amateur fight ledgers"
+        },
+        {
+          "date": "Nov. 5, 2022",
+          "label": "PRO WIN · Nicolai Garbuz · KOK World Series in Kaunas",
+          "kind": "win",
+          "detail": "Knocked out Nicolai Garbuz with a flying knee only six seconds into the first round. Pro MMA record after bout: 5-0; official UFC record 0-0.",
+          "source": "https://www.sherdog.com/fighter/Mantas-Kondratavicius-310159",
+          "sourceLabel": "Sherdog · complete professional and amateur fight ledgers"
+        },
+        {
+          "date": "Feb. 17, 2023",
+          "label": "First Vlad Gutu booking canceled at Ares FC 12",
+          "kind": "booking",
+          "detail": "Scheduled to fight Vlad Gutu at Ares FC 12; the matchup is recorded as canceled. Available sources do not identify a reliable withdrawal cause or confirm a Kondratavičius injury.",
+          "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
+          "sourceLabel": "Tapology · MMA, kickboxing, grappling, and canceled booking history"
+        },
+        {
+          "date": "June 23, 2023",
+          "label": "Second Vlad Gutu booking canceled at Ares FC 16",
+          "kind": "booking",
+          "detail": "Another Vlad Gutu pairing was recorded as canceled on the Ares FC 16 date. Kondratavičius nevertheless competed against Virgil Augen at the same event. These are a canceled booking and a separate completed fight, not two professional contests.",
+          "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
+          "sourceLabel": "Tapology · MMA, kickboxing, grappling, and canceled booking history"
+        },
+        {
+          "date": "June 23, 2023",
+          "label": "PRO LOSS · Virgil Augen · Ares FC 16",
+          "kind": "loss",
+          "detail": "Suffered his first professional defeat when Virgil Augen secured a rear-naked choke at 4:01 of round two. Professional record after bout: 5-1, official UFC record 0-0.",
+          "source": "https://www.sherdog.com/fighter/Mantas-Kondratavicius-310159",
+          "sourceLabel": "Sherdog · complete professional and amateur fight ledgers"
+        },
+        {
+          "date": "Late 2023–early 2024",
+          "label": "Emphasizes wrestling and grappling after Augen loss",
+          "kind": "training",
+          "detail": "In a later UFC interview, Kondratavičius said the submission loss made him tougher and described working with leading wrestlers and grapplers in Lithuania to improve. This period is not documented as an injury layoff.",
+          "source": "https://www.ufc.com/news/mantas-kondratavicius-out-to-prove-he-belongs-ufc-london",
+          "sourceLabel": "UFC · March 2026 interview on loss and development"
+        },
+        {
+          "date": "Feb. 10, 2024",
+          "label": "PRO WIN · Kirill Andreev (also listed Lumivuori) · CAGE 61",
+          "kind": "win",
+          "detail": "Defeated the opponent called Kirill Andreev by Sherdog/ESPN/MMA Index and Kirill Lumivuori by Tapology through a first-round armbar at CAGE 61 in Finland. The exact clock time is unverified; 0:00 means missing data, not instant submission. These sources show ONE bout, not two. Professional record after bout: 6-1.",
+          "source": "https://www.sherdog.com/fighter/Mantas-Kondratavicius-310159",
+          "sourceLabel": "Sherdog · complete professional and amateur fight ledgers"
+        },
+        {
+          "date": "Mar. 14, 2025",
+          "label": "PRO WIN · Michael Tchamou · Cage Warriors 184",
+          "kind": "win",
+          "detail": "Knocked out Michael Tchamou with a right cross/punches at 0:47 of round one at Cage Warriors 184: Unplugged. Professional record after bout: 7-1. Second documented professional MMA finish inside a minute, following the Garbuz flying knee.",
+          "source": "https://www.sherdog.com/fighter/Mantas-Kondratavicius-310159",
+          "sourceLabel": "Sherdog · complete professional and amateur fight ledgers"
+        },
+        {
+          "date": "Sept. 23, 2025",
+          "label": "PRO WIN · Djani (Đani) Barbir · DWCS Season 9 Week 7",
+          "kind": "win",
+          "detail": "Stopped previously undefeated Djani Barbir with an overhand/right hand and follow-up punches in the DWCS middleweight main event at 1:06 of round one. Professional MMA record after bout: 8-1. DWCS result is NOT part of official UFC 1-0 record.",
+          "source": "https://us.ufcespanol.com/news/week-7-results-scorecards-fight-recaps-contract-winners-interviews-dana-whites-contender-series-season-9",
+          "sourceLabel": "UFC · Sept. 2025 DWCS official results"
+        },
+        {
+          "date": "Sept. 23, 2025",
+          "label": "Earns UFC contract following 66-second TKO",
+          "kind": "milestone",
+          "detail": "Awarded a UFC contract after defeating Barbir in Season 9 Week 7 of Dana White's Contender Series. UFC bio identifies Kondratavičius as the first Lithuanian male fighter to appear on DWCS. Contract award and DWCS win are distinct from his March 2026 UFC debut.",
+          "source": "https://www.ufc.com/athlete/mantas-kondratavicius",
+          "sourceLabel": "UFC · official athlete biography and Q&A"
+        },
+        {
+          "date": "Oct. 25, 2025",
+          "label": "GRAPPLING WIN · Kamil Dzikowski · Factory Fight Night Kaunas",
+          "kind": "milestone",
+          "detail": "Won a separately recorded grappling-rules match over Kamil Dzikowski via decision across a single ten-minute round. This is not MMA, and does not add a tenth professional MMA win.",
+          "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
+          "sourceLabel": "Tapology · MMA, kickboxing, grappling, and canceled booking history"
+        },
+        {
+          "date": "Mar. 21, 2026",
+          "label": "PRO WIN · Antonio Trocoli · UFC Fight Night: Evloev vs. Murphy",
+          "kind": "win",
+          "detail": "Made his official UFC debut at The O2 in London. Defeated Antonio Trocoli by unanimous decision after three rounds, official scores 30-27, 29-27, 29-27. Professional record after bout: 9-1; official UFC record 1-0.",
+          "source": "https://www.ufc.com.br/news/ufc-london-official-scorecards-evloev-vs-murphy-fight-night",
+          "sourceLabel": "UFC · March 2026 official results and scorecards"
+        },
+        {
+          "date": "Mar. 21, 2026",
+          "label": "First full three-round professional MMA fight",
+          "kind": "milestone",
+          "detail": "The Trocoli win was his first professional decision victory and first completed three-round professional MMA contest. A round-two knockdown helped Kondratavičius earn 10-8 scores from two judges; the other judge scored all rounds 10-9 for him.",
+          "source": "https://mmadecisions.com/decision/15973/Mantas-Kondratavicius-vs-Antonio-Trocoli",
+          "sourceLabel": "MMA Decisions · official judges' round scores"
+        },
+        {
+          "date": "Spring–summer 2026",
+          "label": "Adapts to UFC competition and longer fights",
+          "kind": "milestone",
+          "detail": "Acknowledged that the full fifteen-minute Trocoli fight was useful experience after an earlier professional career of fast finishes. Later spoke about improvements in diet, strength and conditioning and training alongside fellow Lithuanian UFC fighter Modestas Bukauskas.",
+          "source": "https://us.ufcespanol.com/news/mantas-kondratavicius-more-comfortable-every-time-ufc-vegas-124",
+          "sourceLabel": "UFC · November 2026 pre-fight interview"
+        },
+        {
+          "date": "Sept. 29, 2026",
+          "label": "Booked to fight Wes Schultz on Nov. 7",
+          "kind": "booking",
+          "detail": "Original second-UFC-appearance booking paired Kondratavičius with fellow 2025 DWCS graduate Wes Schultz on UFC Vegas 124. This matchup would not ultimately take place.",
+          "source": "https://www.rotowire.com/mma/player/wes-schultz-2734",
+          "sourceLabel": "RotoWire · Wes Schultz booking and withdrawal"
+        },
+        {
+          "date": "Oct. 23–24, 2026",
+          "label": "Wes Schultz removed; Kondratavičius paired with Andre Petroski",
+          "kind": "booking",
+          "detail": "Wes Schultz left the November 7 booking, while Andre Petroski lost his original October 31 opponent Azamat Bekoev. UFC matchmakers paired Kondratavičius and Petroski. RotoWire reported Schultz's withdrawal cause as unclear; no evidence Kondratavičius himself was injured.",
+          "source": "https://www.rotowire.com/mma/player/wes-schultz-2734",
+          "sourceLabel": "RotoWire · Wes Schultz booking and withdrawal"
+        },
+        {
+          "date": "Oct. 26–27, 2026",
+          "label": "Petroski fight moved from Oct. 31 listing to Nov. 7",
+          "kind": "booking",
+          "detail": "UFC schedules briefly showed Kondratavičius–Petroski on two different Saturdays. By Oct. 26 the Oct. 31 Moicano–Nolan listing was removed, and the bout remained set for Nov. 7. This was one rescheduled pairing, not two separate fights.",
+          "source": "https://www.ufcalendar.com/blog/kondratavicius-petroski-moves-ufc-fight-night-moicano-nolan-to-bonfim-brady",
+          "sourceLabel": "UFCalendar · October 2026 card-change tracking"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Injury and canceled-booking review",
+          "kind": "note",
+          "detail": "No verified major surgery, personally injury-attributed withdrawal, or injury-enforced prolonged absence was found in reviewed public UFC interviews and fight histories. Canceled bouts against Ale Joseph (June 2022) and Vlad Gutu (February and June 2023) lack verified causes. The 2022 TKO due to shoulder injury involved his opponent Ale Joseph. In 2026 Wes Schultz left the originally scheduled matchup; cause not confirmed.",
+          "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
+          "sourceLabel": "Tapology · MMA, kickboxing, grappling, and canceled booking history"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Reconcile records across rulesets and databases",
+          "kind": "note",
+          "detail": "Professional MMA ledger: 10 bouts, 9-1 (6 KO/TKO, 2 submission, 1 decision wins; one submission loss); official UFC 1-0; DWCS 1-0 separately. Sherdog/MMA Index document five amateur MMA bouts (4-1), while Tapology also lists Nov. 21, 2021 Danielius Grebliūnas amateur loss (4-2 if counted). Four documented 2014–16 kickboxing bouts show two wins, two draws; one documented 2025 grappling victory is separate. There is an event-date discrepancy for the 2021 Kveselys fight and an opponent-name discrepancy for 2024 CAGE 61; do not fabricate fights to reconcile.",
+          "source": "https://www.mmaindex.com/fighters/mantas-kondratavicius-3cc506f1",
+          "sourceLabel": "MMA Index · professional and amateur fight chronology"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Andre Petroski · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Scheduled to fight Andre Petroski at UFC Vegas 124 in Las Vegas. No result yet.",
+          "kind": "upcoming",
+          "detail": "Scheduled to meet Andre Petroski in a three-round middleweight bout at Meta APEX in Las Vegas on UFC Fight Night: Cortes-Acosta vs. Walker. Enters 9-1 professional and 1-0 official UFC. As of November 5, there is NO result.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "Official UFC event"
+          "sourceLabel": "UFC · official November 7 fight card"
         }
       ]
     },
@@ -28178,7 +28458,7 @@
       ]
     }
   },
-  "updatedAt": "2026-10-27",
+  "updatedAt": "2026-11-05",
   "notes": "Fourth-pass deep audit completed. Duplicate same-event notes merged; distinct same-year career events retained. Bia Mesquita timeline added. Donte Johnson timeline added. Cesar Almeida timeline added. Melquizael Costa timeline added; corrected May 2026 Arnold Allen result and move to lightweight. Jared Gordon's 31 professional bouts, CFFC championships and distinct career milestones added; same-fight notes merged. Evan Elder full professional history, amateur records and UFC 334 booking added; duplicate same-fight milestones merged. Samuel Sanches timeline added with complete 12-fight professional ledger; DWCS separated from UFC debut.",
   "lastReviewed": "2026-11-05"
 }
