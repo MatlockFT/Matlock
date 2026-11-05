@@ -1034,3 +1034,43 @@ html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-eve
     }
     .v3-trending-links a:first-child { padding-left: 0; }
 }
+
+
+/* Right rail: members-only headlines replace live latest-news links.
+   The live-news fetch still powers Trending, not this editorial rail. */
+.v3-member-rail .v3-rail-head a {
+    color: #ae792e;
+}
+html[data-theme="dark"] .v3-member-rail .v3-rail-head a {
+    color: #e3bd73;
+}
+.v3-member-list .v3-member-story a {
+    display: block;
+    color: var(--v3-ink);
+}
+.v3-member-list .v3-member-story a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.v3-member-list .v3-member-story .v3-news-meta {
+    margin-left: 0;
+    color: var(--v3-muted);
+}
+.v3-member-empty {
+    padding: 1rem 0 1.4rem;
+}
+.v3-member-empty p {
+    margin: 0 0 .65rem;
+    color: var(--v3-muted);
+    font-size: .83rem;
+    line-height: 1.5;
+}
+.v3-member-empty a {
+    color: #ae792e;
+    font: 700 .68rem/1.4 var(--v3-sans);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+html[data-theme="dark"] .v3-member-empty a {
+    color: #e3bd73;
+}
