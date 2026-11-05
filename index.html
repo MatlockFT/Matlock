@@ -15,7 +15,7 @@ page_scripts:
 {% assign homepage_posts = "" | split: "" %}
 {% for post in site.posts %}
   {% assign visibility = post.listing_visibility | default: "normal" %}
-  {% unless visibility == "hide-home" or visibility == "direct-only" %}
+  {% unless post.members_only or visibility == "hide-home" or visibility == "direct-only" %}
     {% assign homepage_posts = homepage_posts | push: post %}
   {% endunless %}
 {% endfor %}
@@ -116,13 +116,32 @@ page_scripts:
         </div>
       </article>
 
-      <aside class="v3-right-rail" aria-labelledby="v3-latest-title">
+      <aside class="v3-right-rail v3-member-rail" aria-labelledby="v3-members-title">
         <div class="v3-rail-head">
-          <h2 id="v3-latest-title">Latest</h2>
-          <a href="{{ '/news/' | relative_url }}">All news</a>
+          <h2 id="v3-members-title">Members Only</h2>
+          <a href="https://members.mmamatlock.com/">Membership</a>
         </div>
-        <div class="v3-news-list" data-v3-news-list>
-          <p class="v3-loading">Loading latest MMA news…</p>
+        <div class="v3-news-list v3-member-list">
+          {% assign member_story_count = 0 %}
+          {% for post in site.posts %}
+            {% assign member_visibility = post.listing_visibility | default: "normal" %}
+            {% if post.members_only and post.published != false %}
+              {% unless member_visibility == "hide-home" or member_visibility == "direct-only" %}
+                <article class="v3-news-item v3-member-story">
+                  <a href="https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}">{{ post.title | escape }}</a>
+                  <span class="v3-news-meta">MEMBERS ONLY · {{ post.date | date: "%b %-d, %Y" }}</span>
+                </article>
+                {% assign member_story_count = member_story_count | plus: 1 %}
+                {% if member_story_count >= 6 %}{% break %}{% endif %}
+              {% endunless %}
+            {% endif %}
+          {% endfor %}
+          {% if member_story_count == 0 %}
+            <div class="v3-member-empty">
+              <p>No members-only articles yet.</p>
+              <a href="https://members.mmamatlock.com/">Visit the members site</a>
+            </div>
+          {% endif %}
         </div>
       </aside>
     </section>
