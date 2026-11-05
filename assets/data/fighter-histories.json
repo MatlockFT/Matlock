@@ -1,5 +1,5 @@
 {
-  "version": 33,
+  "version": 34,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -23933,17 +23933,17 @@
         },
         {
           "date": "Sep 13, 2025",
-          "label": "WIN · Amanda Lemos · UFC Fight Night",
+          "label": "WIN · Amanda Lemos · Noche UFC",
           "kind": "win",
-          "detail": "Defeated Amanda Lemos at UFC Fight Night by Decision (Unanimous) in round 3.",
-          "source": "https://www.tapology.com/fightcenter/fighters/63005-tatiana-suarez",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Defeated Amanda Lemos at Noche UFC by Decision (Unanimous) after three rounds (round 3 at 5:00).",
+          "source": "https://www.ufc.com/athlete/tatiana-suarez",
+          "sourceLabel": "UFC fighter history"
         },
         {
           "date": "Feb 8, 2025",
           "label": "LOSS · Zhang Weili · UFC 312",
           "kind": "loss",
-          "detail": "Lost to Zhang Weili at UFC 312 by Decision (Unanimous) in round 5.",
+          "detail": "Lost to Zhang Weili at UFC 312 by Decision (Unanimous) after five rounds (round 5 at 5:00).",
           "source": "https://www.tapology.com/fightcenter/fighters/63005-tatiana-suarez",
           "sourceLabel": "Tapology fighter history"
         },
@@ -23970,6 +23970,22 @@
           "detail": "Scheduled to fight Virna Jandiroba at UFC Vegas 124 in Las Vegas. No result yet.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
           "sourceLabel": "Official UFC event"
+        },
+        {
+          "date": "Jul. 8, 2016",
+          "label": "Wins The Ultimate Fighter 23",
+          "kind": "milestone",
+          "detail": "Submitted Amanda Cooper by D’Arce choke in the first round at 3:43 to win the women's strawweight season of The Ultimate Fighter. The bout also marked her UFC debut.",
+          "source": "https://www.ufc.com/news/ultimate-fighter-finale-final-results-news",
+          "sourceLabel": "UFC official history"
+        },
+        {
+          "date": "Feb. 8, 2025",
+          "label": "First UFC strawweight title challenge",
+          "kind": "milestone",
+          "detail": "Lost a unanimous decision to Zhang Weili at UFC 312 in her first UFC championship opportunity after a long unbeaten run.",
+          "source": "https://www.ufc.com/athlete/tatiana-suarez",
+          "sourceLabel": "UFC official history"
         }
       ]
     },
@@ -23993,7 +24009,7 @@
           "date": "Apr 4, 2026",
           "label": "WIN · Tabatha Ricci · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Tabatha Ricci at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "detail": "Defeated Tabatha Ricci at UFC Fight Night by Decision (Unanimous) after three rounds (round 3 at 5:00).",
           "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
           "sourceLabel": "Tapology fighter history"
         },
@@ -24001,7 +24017,7 @@
           "date": "Oct 25, 2025",
           "label": "LOSS · Mackenzie Dern · UFC 321",
           "kind": "loss",
-          "detail": "Lost to Mackenzie Dern at UFC 321 by Decision (Unanimous) in round 5.",
+          "detail": "Lost to Mackenzie Dern at UFC 321 by Decision (Unanimous) after five rounds (round 5 at 5:00).",
           "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
           "sourceLabel": "Tapology fighter history"
         },
@@ -24009,7 +24025,7 @@
           "date": "Apr 12, 2025",
           "label": "WIN · Yan Xiaonan · UFC 314",
           "kind": "win",
-          "detail": "Defeated Yan Xiaonan at UFC 314 by Decision (Unanimous) in round 3.",
+          "detail": "Defeated Yan Xiaonan at UFC 314 by Decision (Unanimous) after three rounds (round 3 at 5:00).",
           "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
           "sourceLabel": "Tapology fighter history"
         },
@@ -24025,7 +24041,7 @@
           "date": "Mar 30, 2024",
           "label": "WIN · Lupita Godinez · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Lupita Godinez at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "detail": "Defeated Lupita Godinez at UFC Fight Night by Decision (Unanimous) after three rounds (round 3 at 5:00).",
           "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
           "sourceLabel": "Tapology fighter history"
         },
@@ -24036,6 +24052,22 @@
           "detail": "Scheduled to fight Tatiana Suarez at UFC Vegas 124 in Las Vegas. No result yet.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
           "sourceLabel": "Official UFC event"
+        },
+        {
+          "date": "Apr. 27, 2019",
+          "label": "UFC debut vs. Carla Esparza",
+          "kind": "milestone",
+          "detail": "Jandiroba entered the UFC following her Invicta FC strawweight championship run. Her debut against Carla Esparza ended in a unanimous decision loss.",
+          "source": "https://www.ufc.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC official history"
+        },
+        {
+          "date": "Oct. 25, 2025",
+          "label": "First UFC strawweight title challenge",
+          "kind": "milestone",
+          "detail": "Fought Mackenzie Dern for the UFC strawweight championship at UFC 321. She lost by unanimous decision after five rounds.",
+          "source": "https://www.ufc.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC official history"
         }
       ]
     },
