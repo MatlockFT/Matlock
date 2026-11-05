@@ -7538,7 +7538,7 @@ document.addEventListener('visibilitychange', () => {
 // Once per minute, also persist changed unpublished articles to GitHub.
 const WRITER_CLOUD_AUTOSAVE_INTERVAL_MS = 60 * 1000;
 window.setInterval(() => {
-  if (editorView.hidden || !dirty || !githubCredential || currentPublished ||
+  if (editorView.hidden || !dirty || !githubCredential || currentPublished || !currentPath ||
     saveInFlight || imageUploadInFlight || videoUploadInFlight || conflictDialog.open) return;
   // Incomplete new articles stay safe in local storage until they can be saved.
   try { validateForSave('save'); } catch { return; }
