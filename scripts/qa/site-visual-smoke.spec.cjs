@@ -754,8 +754,10 @@ test.describe('Homepage editorial shell', () => {
         wordmarkBottom: wordmark?.bottom ?? -1
       };
     });
-    expect(masthead.left, 'ornament must be positioned right of the MATLOCK wordmark')
-      .toBeGreaterThanOrEqual(masthead.rightOfWordmark - 10);
+    expect(masthead.left, 'ornament should overlap the end of MATLOCK slightly')
+      .toBeGreaterThanOrEqual(masthead.rightOfWordmark - 26);
+    expect(masthead.left, 'ornament should not float detached from MATLOCK')
+      .toBeLessThan(masthead.rightOfWordmark - 3);
     expect(masthead.top, 'ornament must NOT hang below the wordmark')
       .toBeLessThan(masthead.wordmarkBottom);
 
