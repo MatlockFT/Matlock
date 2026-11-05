@@ -1,5 +1,5 @@
 {
-  "version": 44,
+  "version": 45,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -28702,56 +28702,384 @@
       "name": "Priscila Cachoeira",
       "subtitle": "Career chronology",
       "record": "13-9",
-      "ufcRecord": "5-8",
-      "division": "Women&#39;s Bantamweight",
+      "ufcRecord": "5-9",
+      "division": "Women's Bantamweight",
       "items": [
         {
-          "date": "Jun 6, 2026",
-          "label": "LOSS · Chelsea Chandler · UFC Fight Night",
-          "kind": "loss",
-          "detail": "Lost to Chelsea Chandler at UFC Fight Night by Submission (Armbar) in round 1 at 3:42.",
-          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira",
-          "sourceLabel": "Tapology fighter history"
+          "date": "Aug. 19, 1988",
+          "label": "Born in Rio de Janeiro, Brazil",
+          "kind": "milestone",
+          "detail": "Priscila Cachoeira Gomes da Silva was born August 19, 1988. Rio de Janeiro is supported by UFC anti-doping and biography records; a third-party database incorrectly lists Bishkek as her birthplace. At the Nov. 5, 2026 audit she is 38 years old.",
+          "source": "https://www.ufc.ru/news/priscila-cachoeira-gomes-da-silva-accepts-sanction-violation-ufc-anti-doping-policy",
+          "sourceLabel": "UFC/USADA · official December 2019 four-month sanction statement"
         },
         {
-          "date": "Feb 7, 2026",
-          "label": "LOSS · Klaudia Sygula · UFC Fight Night",
-          "kind": "loss",
-          "detail": "Lost to Klaudia Sygula at UFC Fight Night by Decision (Unanimous) in round 3.",
-          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira",
-          "sourceLabel": "Tapology fighter history"
+          "date": "Around 2015",
+          "label": "Begins MMA training after difficulties outside sport",
+          "kind": "training",
+          "detail": "In her original UFC athlete questionnaire, Cachoeira said she began combat training around three years before her February 2018 debut while trying to leave an earlier serious drug problem and negative social influences behind. This account is attributed to the fighter; the specific training-start date is approximate.",
+          "source": "https://www.ufc.com/athlete/priscila-cachoeira",
+          "sourceLabel": "UFC · career history and fighter questionnaire"
         },
         {
-          "date": "Aug 9, 2025",
-          "label": "LOSS · Joselyne Edwards · UFC Fight Night",
-          "kind": "loss",
-          "detail": "Lost to Joselyne Edwards at UFC Fight Night by TKO (Strikes) in round 1 at 2:24.",
-          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira",
-          "sourceLabel": "Tapology fighter history"
+          "date": "Early career",
+          "label": "Paraná Vale Tudo and striking-based fighting style",
+          "kind": "training",
+          "detail": "Developed as an aggressive striking-focused mixed martial artist with Paraná Vale Tudo and coach Gilliard Parana. In her UFC questionnaire she described the overhand right as her favorite striking technique and cited a purple belt in Brazilian jiu-jitsu. These are self-reported training details, not verified competition results.",
+          "source": "https://www.ufc.com/athlete/priscila-cachoeira",
+          "sourceLabel": "UFC · career history and fighter questionnaire"
         },
         {
-          "date": "Mar 15, 2025",
-          "label": "WIN · Josiane Nunes · UFC Fight Night",
+          "date": "Mar. 12, 2016",
+          "label": "AMATEUR WIN · Ana Costa Monteiro · Face to Face 13",
           "kind": "win",
-          "detail": "Defeated Josiane Nunes at UFC Fight Night by TKO (Uppercut) in round 1 at 2:46.",
-          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "One documented amateur MMA bout: beat Ana Costa Monteiro by unanimous decision after three three-minute rounds at Face To Face 13. Amateur 1-0 as documented by Sherdog; excluded from 13-9 professional record.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
         },
         {
-          "date": "Jan 20, 2024",
-          "label": "LOSS · Jasmine Jasudavicius · UFC 297",
+          "date": "June 11, 2016",
+          "label": "PRO WIN · Cleudilene Costa · Your Chance 1",
+          "kind": "win",
+          "detail": "Professional MMA debut in Rio de Janeiro; defeated Cleudilene Costa by unanimous decision after three rounds. Some databases list the opponent as Kakau Costa, but the date/event/record refer to the same one fight. Pro 1-0; UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
+        },
+        {
+          "date": "June 11, 2016",
+          "label": "Istela Nunes booking listed as canceled",
+          "kind": "booking",
+          "detail": "Some booking histories list an Istela Nunes pairing for the Your Chance 1 date, but Cachoeira's actual professional debut was against Cleudilene Costa. The reason for an apparent opponent change could not be corroborated; do not treat as a completed fight.",
+          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira",
+          "sourceLabel": "Tapology · fight, weigh-in and canceled-booking ledger"
+        },
+        {
+          "date": "Aug. 13, 2016",
+          "label": "PRO WIN · Paula Baack · Hipnose Fight Night 2",
+          "kind": "win",
+          "detail": "Beat Paula Baack by unanimous decision after three rounds in her second professional MMA fight. Pro 2-0, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
+        },
+        {
+          "date": "Sept. 17, 2016",
+          "label": "PRO WIN · Amanda Torres · X-Force MMA 4",
+          "kind": "win",
+          "detail": "Beat Amanda Torres by three-round unanimous decision at X-Force MMA 4. Professional record after fight 3-0, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
+        },
+        {
+          "date": "Dec. 16, 2016",
+          "label": "PRO WIN · Alexandra de Cássia Rodrigues · CUFA Fight Festival 4",
+          "kind": "win",
+          "detail": "Stopped Alexandra de Cássia Rodrigues with punches at 2:50 of round two; recorded by Sherdog as knockout. Professional record 4-0, UFC 0-0. Event also recorded as FLC 4.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
+        },
+        {
+          "date": "Feb. 24, 2017",
+          "label": "PRO WIN · Laisa Coimbra · Curitiba Top Fight 10",
+          "kind": "win",
+          "detail": "Stopped Laisa Coimbra by first-round punch knockout at 1:09. Professional record after fight 5-0, official UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
+        },
+        {
+          "date": "May 25, 2017",
+          "label": "PRO WIN · Karoline Martins Moreira · CUFA Fight Festival 5",
+          "kind": "win",
+          "detail": "Stopped Karoline Martins Moreira by TKO (punches) at 0:49 of round one at CUFA Fight Festival 5. Professional record after fight 6-0, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
+        },
+        {
+          "date": "July 1, 2017",
+          "label": "Rafaela Thomazini matchup replaced at Curitiba Top Fight 11",
+          "kind": "booking",
+          "detail": "Fight booking archives show a canceled original pairing against Rafaela Thomazini for the date. Cachoeira instead fought Marta Souza in the completed main event. No verified cancellation cause was found.",
+          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira",
+          "sourceLabel": "Tapology · fight, weigh-in and canceled-booking ledger"
+        },
+        {
+          "date": "July 1, 2017",
+          "label": "PRO WIN · Marta Souza · Curitiba Top Fight 11",
+          "kind": "win",
+          "detail": "Won the three-round main event against Marta Souza by MAJORITY decision, not unanimous, at Curitiba Top Fight 11 in Curitiba. Cachoeira called this contest Brazil's 2017 Fight of the Year in her UFC questionnaire. Professional record 7-0, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
+        },
+        {
+          "date": "Sept. 7, 2017",
+          "label": "PRO WIN · Rosy Duarte · Hipnose Fight Night 3",
+          "kind": "win",
+          "detail": "Stopped Rosy Duarte by TKO (punches) at 4:54 of round two. Finished eight-for-eight across her first eight professional bouts and was signed by the UFC. Professional record 8-0, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
+        },
+        {
+          "date": "Autumn 2017",
+          "label": "Signs UFC contract as an unbeaten 8-0 prospect",
+          "kind": "milestone",
+          "detail": "After eight regional wins between June 2016 and September 2017 (four decisions and four KO/TKOs), Cachoeira secured a UFC contract. She was initially slated to face Lauren Murphy in December, before visa problems postponed her debut.",
+          "source": "https://www.mmafighting.com/2017/12/5/16734730/priscila-cachoeira-still-dealing-with-visa-issues-ufc-debut-cancelled",
+          "sourceLabel": "MMA Fighting · Lauren Murphy UFC debut visa cancellation"
+        },
+        {
+          "date": "Dec. 1, 2017",
+          "label": "CANCELED · Lauren Murphy · TUF 26 Finale (visa problems)",
+          "kind": "booking",
+          "detail": "Her planned UFC debut against Lauren Murphy at The Ultimate Fighter 26 Finale in Las Vegas was canceled because Cachoeira could not obtain her U.S. work visa in time. Murphy instead fought Barb Honchak. No MMA result for Cachoeira occurred on this date.",
+          "source": "https://www.mmafighting.com/2017/12/5/16734730/priscila-cachoeira-still-dealing-with-visa-issues-ufc-debut-cancelled",
+          "sourceLabel": "MMA Fighting · Lauren Murphy UFC debut visa cancellation"
+        },
+        {
+          "date": "Feb. 3, 2018",
+          "label": "PRO LOSS · Valentina Shevchenko · UFC Fight Night: Machida vs. Anders",
           "kind": "loss",
-          "detail": "Lost to Jasmine Jasudavicius at UFC 297 by Submission (D'Arce Choke) in round 3 at 4:21.",
-          "source": "https://www.tapology.com/fightcenter/bouts/818301-ufc-297-jasmine-jasudavicius-vs-priscila-zombie-girl-cachoeira",
-          "sourceLabel": "Tapology fight result"
+          "detail": "Official UFC debut at UFC Belém. Lost via rear-naked choke at 4:25 of round two to Valentina Shevchenko in a heavily one-sided fight. Cachoeira also suffered a serious RIGHT knee injury early in the contest. Professional record 8-1; UFC 0-1.",
+          "source": "https://www.ufc.com/athlete/priscila-cachoeira?page=1",
+          "sourceLabel": "UFC · complete official fight history"
+        },
+        {
+          "date": "Feb. 3–4, 2018",
+          "label": "UFC debut raises referee and corner-stoppage criticism",
+          "kind": "milestone",
+          "detail": "UFC Belém drew criticism over the mismatch and prolonged punishment, including referee Mario Yamasaki's decision to continue the fight and coach Gilliard Parana not stopping it despite Cachoeira reporting knee trouble. The dispute was about the completed Shevchenko fight, not a separate bout.",
+          "source": "https://www.mmafighting.com/2018/2/22/17032746/jessica-andrade-defends-teammate-priscila-cachoeira-valentina-shevchenko-loss-silence-critics-ufc",
+          "sourceLabel": "MMA Fighting · UFC Belém stoppage and corner criticism"
+        },
+        {
+          "date": "Feb. 16, 2018",
+          "label": "Right ACL and meniscus tears repaired surgically",
+          "kind": "injury",
+          "detail": "After tearing her right anterior cruciate ligament (ACL) and meniscus early in the Shevchenko bout, Cachoeira underwent surgery in Rio de Janeiro on Feb. 16. Head coach Gilliard Parana said she would require approximately six months before resuming training. This is a verified significant surgery and layoff, not an unconfirmed injury rumor.",
+          "source": "https://www.mmafighting.com/2018/2/16/17020424/priscila-cachoeira-undergoes-successful-knee-surgery-ufc-belem",
+          "sourceLabel": "MMA Fighting · February 2018 ACL and meniscus surgery"
+        },
+        {
+          "date": "2018–early 2019",
+          "label": "Long layoff and rehabilitation after knee surgery",
+          "kind": "injury",
+          "detail": "Missed approximately 13 months of UFC competition after the Shevchenko fight. In a March 2019 interview Cachoeira said the injury and operation made her fear she would never compete again. She described her knee as roughly 95 percent recovered shortly before returning against Molly McCann.",
+          "source": "https://www.mmafighting.com/2019/3/15/18168965/injured-knee-money-lessons-priscila-cachoeira-ufc-loss-valentina-shevchenko-molly-mccann-london",
+          "sourceLabel": "MMA Fighting · 2019 interview on 2018 ACL recovery"
+        },
+        {
+          "date": "Mar. 16, 2019",
+          "label": "PRO LOSS · Molly McCann · UFC London",
+          "kind": "loss",
+          "detail": "Returned after knee surgery at UFC Fight Night: Till vs. Masvidal in London and lost a three-round unanimous decision to Molly McCann. Professional record 8-2; official UFC record 0-2.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
+        },
+        {
+          "date": "May 11, 2019",
+          "label": "PRO LOSS · Luana Carolina · UFC 237",
+          "kind": "loss",
+          "detail": "Lost another three-round unanimous decision, to Luana Carolina at UFC 237 in Brazil. Her initial UFC run fell to 0-3; professional record 8-3.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
+        },
+        {
+          "date": "Oct. 12, 2019",
+          "label": "Out-of-competition urine sample positive for hydrochlorothiazide",
+          "kind": "milestone",
+          "detail": "An Oct. 12 urine sample tested positive for hydrochlorothiazide (HCTZ) and metabolites, a prohibited diuretic/masking agent. Cachoeira said she had taken a blood-pressure medication supplied by a parent while feeling ill. USADA found no therapeutic-use exemption. Note: one contemporaneous report mistakenly dated the test Oct. 19, but the official USADA/UFC release states Oct. 12.",
+          "source": "https://www.ufc.ru/news/priscila-cachoeira-gomes-da-silva-accepts-sanction-violation-ufc-anti-doping-policy",
+          "sourceLabel": "UFC/USADA · official December 2019 four-month sanction statement"
+        },
+        {
+          "date": "Nov. 16, 2019",
+          "label": "CANCELED · Ariane Lipski · UFC São Paulo (positive test)",
+          "kind": "booking",
+          "detail": "Withdrawn from a scheduled Ariane Lipski flyweight bout at UFC São Paulo after USADA notified her of the diuretic test result. Veronica Macedo replaced Cachoeira. This was NOT an injury withdrawal, and it did not count as a UFC defeat.",
+          "source": "https://www.mmafighting.com/2019/11/6/20952102/priscila-cachoeira-out-ufc-sao-paulo-failed-drug-test-diuretic-usada-mma",
+          "sourceLabel": "MMA Fighting · November 2019 canceled Lipski fight"
+        },
+        {
+          "date": "Dec. 18, 2019–Feb. 12, 2020",
+          "label": "USADA announces four-month sanction retroactive to Oct. 12",
+          "kind": "milestone",
+          "detail": "USADA publicly announced a four-month anti-doping suspension after the hydrochlorothiazide finding, backdated to Oct. 12, 2019; the term ended in February 2020. USADA accepted the medication circumstances as grounds for a reduced sanction but confirmed the violation. The sanction was four MONTHS, not four years.",
+          "source": "https://www.ufc.ru/news/priscila-cachoeira-gomes-da-silva-accepts-sanction-violation-ufc-anti-doping-policy",
+          "sourceLabel": "UFC/USADA · official December 2019 four-month sanction statement"
+        },
+        {
+          "date": "Feb. 23, 2020 (New Zealand local date)",
+          "label": "PRO WIN · Shana Dobson · UFC Auckland",
+          "kind": "win",
+          "detail": "Knocked out Shana Dobson with a punch/uppercut at 0:40 of the first round at UFC Fight Night: Felder vs. Hooker in Auckland. First UFC win, after three consecutive UFC losses. Some U.S.-time databases list February 22 because the event occurred in New Zealand on February 23. Professional record 9-3, official UFC 1-3.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
+        },
+        {
+          "date": "Oct. 30–31, 2020",
+          "label": "CANCELED · Cortney Casey · UFC Vegas 12 (weight cut and fall)",
+          "kind": "booking",
+          "detail": "The UFC canceled a scheduled flyweight bout with Cortney Casey amid Cachoeira's weight-management problems. According to her manager, an agreement to switch to 135 pounds was considered, but Cachoeira slipped during the cut, struck the back of her head on a bathtub, and was kept under observation at a Las Vegas hospital. The fall was documented; no lasting brain injury or surgery was established.",
+          "source": "https://www.mmafighting.com/2020/10/30/21542211/ufc-vegas-12-weigh-in-results-greg-hardy-two-others-miss-weight-one-preliminary-fight-canceled",
+          "sourceLabel": "MMA Fighting · October 2020 Casey fight cancellation and weight-cut incident"
+        },
+        {
+          "date": "May 15, 2021",
+          "label": "PRO WIN · Gina Mazany · UFC 262",
+          "kind": "win",
+          "detail": "Stopped Gina Mazany with standing punches at 4:51 of round two at UFC 262: Oliveira vs. Chandler. Professional record 10-3, UFC 2-3.",
+          "source": "https://www.ufc.com/athlete/priscila-cachoeira?page=1",
+          "sourceLabel": "UFC · complete official fight history"
+        },
+        {
+          "date": "June–July 2021",
+          "label": "CANCELED · Sijara Eubanks · July 24 UFC Fight Night",
+          "kind": "booking",
+          "detail": "Originally scheduled to face Sijara Eubanks on July 24 at bantamweight, but Cachoeira withdrew and Eubanks instead faced Elise Reed. Tapology confirms Cachoeira's withdrawal; contemporary MMA Junkie reporting gave NO reason, so it should not automatically be attributed to injury.",
+          "source": "https://sports.yahoo.com/sijara-eubanks-vs-elise-reed-170016437.html",
+          "sourceLabel": "MMA Junkie · July 2021 Eubanks replacement and unknown withdrawal cause"
+        },
+        {
+          "date": "Dec. 10, 2021",
+          "label": "Misses flyweight limit by three pounds before Gillian Robertson",
+          "kind": "milestone",
+          "detail": "Weighed 129 pounds for a non-title flyweight fight (limit 126), resulting in a catchweight bout and 30 percent purse forfeiture. Cachoeira said she had suffered flu-like symptoms and fever before traveling to Vegas. Her account does not change the official weight miss or fight result.",
+          "source": "https://www.mmafighting.com/2021/12/15/22834525/priscila-cachoeira-apologizes-unintentional-eye-gouge-ufc-269-loss-gillian-robertson",
+          "sourceLabel": "MMA Fighting · December 2021 weight miss and Robertson incident"
+        },
+        {
+          "date": "Dec. 11, 2021",
+          "label": "PRO LOSS · Gillian Robertson · UFC 269",
+          "kind": "loss",
+          "detail": "Submitted by rear-naked choke by Gillian Robertson at 4:59 of round one at UFC 269. Professional record 10-4 and UFC record 2-4. While defending the choke, Cachoeira appeared to push fingers into Robertson's eyes. She later apologized, denied intent and acknowledged the violation; the bout was not overturned.",
+          "source": "https://www.mmafighting.com/2021/12/15/22834525/priscila-cachoeira-apologizes-unintentional-eye-gouge-ufc-269-loss-gillian-robertson",
+          "sourceLabel": "MMA Fighting · December 2021 weight miss and Robertson incident"
+        },
+        {
+          "date": "Feb. 26, 2022",
+          "label": "PRO WIN · Ji Yeon Kim · UFC Fight Night: Makhachev vs. Green",
+          "kind": "win",
+          "detail": "Won a three-round unanimous decision over Ji Yeon Kim. Cachoeira's ONLY UFC decision win through Nov. 5, 2026; professional record 11-4 and UFC 3-4.",
+          "source": "https://www.ufc.com/athlete/priscila-cachoeira?page=1",
+          "sourceLabel": "UFC · complete official fight history"
+        },
+        {
+          "date": "Aug. 5–6, 2022",
+          "label": "Ariane Lipski bout postponed after Lipski's weight-cut hospitalization",
+          "kind": "booking",
+          "detail": "Original Aug. 6 flyweight bout against Ariane Lipski was postponed one week after LIPSKI missed weight by 2.5 pounds and was hospitalized following a difficult weight cut. UFC rescheduled the same matchup for Aug. 13 in San Diego at bantamweight. This medical issue was Lipski's, not Cachoeira's.",
+          "source": "https://www.mmafighting.com/2022/8/6/23294799/ariane-lipski-vs-priscila-cachoeira-moved-from-ufc-vegas-59-to-ufc-san-diego/",
+          "sourceLabel": "MMA Fighting · Aug. 2022 postponement after Lipski hospitalized"
+        },
+        {
+          "date": "Aug. 13, 2022",
+          "label": "PRO WIN · Ariane Lipski da Silva · UFC San Diego",
+          "kind": "win",
+          "detail": "Stopped Ariane Lipski da Silva with punches at 1:05 of round one at UFC Fight Night: Vera vs. Cruz in San Diego. This was the rescheduled bout from Aug. 6, not a separate fight. Professional record 12-4; UFC 4-4. It marked two successive UFC wins.",
+          "source": "https://www.ufc.com/athlete/priscila-cachoeira?page=1",
+          "sourceLabel": "UFC · complete official fight history"
+        },
+        {
+          "date": "Jan. 13–14, 2023",
+          "label": "CANCELED · Sijara Eubanks · UFC Vegas 67 (Eubanks weight issues)",
+          "kind": "booking",
+          "detail": "Second attempted Eubanks matchup canceled after Eubanks was pulled for weight-management problems and did not attend official weigh-ins. Cachoeira made weight at 126 pounds. This is a withdrawal by EUBANKS, not Cachoeira; neither fighter received an official win or loss.",
+          "source": "https://www.mmafighting.com/2023/1/13/23553860/priscila-cachoeira-vs-sijara-eubanks-off-of-ufc-vegas-67-due-to-eubanks-weight-management-issues",
+          "sourceLabel": "MMA Fighting · Jan. 2023 Eubanks cancellation"
+        },
+        {
+          "date": "Apr. 21–22, 2023",
+          "label": "CANCELED · Karine Silva · UFC Vegas 71 (130-pound weigh-in)",
+          "kind": "booking",
+          "detail": "Cachoeira weighed 130 pounds for her non-title flyweight matchup with Karine Silva, four pounds above the 126-pound allowance. UFC officially canceled the bout, rather than proceeding at a catchweight. Second recorded UFC scale miss after December 2021, but unlike that bout the April fight never happened.",
+          "source": "https://www.ufc.com/news/updates-ufc-fight-night-pavlovich-vs-blaydes",
+          "sourceLabel": "UFC · official April 2023 Karine Silva cancellation"
+        },
+        {
+          "date": "Apr. 2023",
+          "label": "Describes improved preparation at Lioness Studio",
+          "kind": "training",
+          "detail": "During the 2023 season, the UFC profiled her training alongside Amanda Nunes, Nina Ansaroff Nunes and Larissa Pacheco at Lioness Studio. Later profiles also associate her with MMA Masters in Florida; the sources span different periods and do not justify assuming a permanent unchanged camp.",
+          "source": "https://www.ufc.com/athlete/priscila-cachoeira",
+          "sourceLabel": "UFC · career history and fighter questionnaire"
+        },
+        {
+          "date": "July 29, 2023",
+          "label": "PRO LOSS · Miranda Maverick · UFC 291",
+          "kind": "loss",
+          "detail": "Submitted by Miranda Maverick via armbar at 2:11 of round three at UFC 291. Professional record 12-5, UFC 4-5. This was a completed bout after the April Karine Silva weigh-in cancellation.",
+          "source": "https://www.ufc.com/athlete/priscila-cachoeira?page=1",
+          "sourceLabel": "UFC · complete official fight history"
+        },
+        {
+          "date": "Jan. 20, 2024",
+          "label": "PRO LOSS · Jasmine Jasudavicius · UFC 297",
+          "kind": "loss",
+          "detail": "Submitted by Jasmine Jasudavicius with an anaconda choke at 4:21 of round three at UFC 297 in Toronto. The prior three-entry draft incorrectly called this a D'Arce choke; UFC and Sherdog both specify ANACONDA. Professional record 12-6; official UFC 4-6.",
+          "source": "https://www.ufc.com/athlete/priscila-cachoeira?page=1",
+          "sourceLabel": "UFC · complete official fight history"
+        },
+        {
+          "date": "Mar. 15, 2025",
+          "label": "PRO WIN · Josiane Nunes · UFC Fight Night: Vettori vs. Dolidze 2",
+          "kind": "win",
+          "detail": "Knocked out Josiane Nunes with a punch/uppercut at 2:46 of round one, breaking a two-fight losing streak. Professional record 13-6, UFC 5-6. This became her fifth official UFC victory.",
+          "source": "https://www.ufc.com/athlete/priscila-cachoeira?page=1",
+          "sourceLabel": "UFC · complete official fight history"
+        },
+        {
+          "date": "Aug. 9, 2025",
+          "label": "PRO LOSS · Joselyne Edwards · UFC Fight Night: Dolidze vs. Hernandez",
+          "kind": "loss",
+          "detail": "Knocked out by Joselyne Edwards with punches at 2:24 of round one. First KO/TKO defeat of Cachoeira's 22-fight professional career. Professional record 13-7, UFC 5-7.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
+        },
+        {
+          "date": "Feb. 7, 2026",
+          "label": "PRO LOSS · Klaudia Sygula · UFC Fight Night: Bautista vs. Oliveira",
+          "kind": "loss",
+          "detail": "Lost a three-round unanimous decision to Klaudia Syguła. Professional MMA record 13-8, UFC 5-8. Although this was the pre-fight UFC record before June, it is NOT the correct current UFC record after June 6.",
+          "source": "https://www.ufc.com/athlete/priscila-cachoeira?page=1",
+          "sourceLabel": "UFC · complete official fight history"
+        },
+        {
+          "date": "June 6, 2026",
+          "label": "PRO LOSS · Chelsea Chandler · UFC Fight Night: Muhammad vs. Bonfim",
+          "kind": "loss",
+          "detail": "Submitted by Chelsea Chandler via armbar at 3:42 of round one. This was her ninth UFC loss and third consecutive UFC defeat. Professional MMA record 13-9, official UFC record 5-9.",
+          "source": "https://www.ufc.com/athlete/priscila-cachoeira?page=1",
+          "sourceLabel": "UFC · complete official fight history"
+        },
+        {
+          "date": "Sept. 25, 2026",
+          "label": "UFC Vegas 124 booking announced against Nina Milošević",
+          "kind": "booking",
+          "detail": "MMA Junkie reported a scheduled Nov. 7 women's bantamweight bout between Priscila Cachoeira and Nina Milošević (9-1, 1-0 UFC). Cachoeira enters on a three-fight losing streak; this is a new booking, not a completed contest.",
+          "source": "https://uk.sports.yahoo.com/news/ufc-vegas-124-adds-nina-024307717.html",
+          "sourceLabel": "MMA Junkie · Sept. 25, 2026 Cachoeira–Milošević announcement"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Injury, surgery, sanctions and withdrawal reconciliation",
+          "kind": "note",
+          "detail": "Verified own injury and surgery: right ACL and meniscus tears suffered against Valentina Shevchenko on Feb. 3, 2018; surgery Feb. 16, with return March 2019. Another confirmed 2020 weight-cut incident involved a bathtub fall and hospital observation; chronic injury not established. Confirmed non-injury missed booking: 2017 Lauren Murphy visa problems, Nov. 2019 Ariane Lipski positive anti-doping test and four-month USADA sanction, Oct. 2020 Cortney Casey due weight-cut/head-fall, July 2021 Eubanks cancellation by Cachoeira with unspecified cause, Apr. 2023 Karine Silva after weight miss. Opponent-caused changes: Aug. 2022 Lipski weight-cut hospitalization and Jan. 2023 Eubanks weight issues. Avoid treating every canceled fight as a fighter injury.",
+          "source": "https://www.mmafighting.com/2019/3/15/18168965/injured-knee-money-lessons-priscila-cachoeira-ufc-loss-valentina-shevchenko-molly-mccann-london",
+          "sourceLabel": "MMA Fighting · 2019 interview on 2018 ACL recovery"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Record and archival discrepancies reconciled",
+          "kind": "note",
+          "detail": "Twenty-two completed pro MMA bouts: 13-9 overall, 5-9 UFC (14 UFC fights), eight pre-UFC wins from 2016–2017. Win methods: eight KO/TKO, zero submissions and five decisions; losses: one KO/TKO, five submissions and three decisions. Sherdog lists one completed amateur decision victory, Ana Costa Monteiro, separately. Known inconsistencies: debut opponent Cleudilene/Kakau Costa (same bout); Shana Dobson Feb. 22 U.S. time versus Feb. 23 New Zealand local; UFC 297 finish anaconda, not D'Arce; UFC record previously entered incorrectly as 5-8; 2019 USADA sample date Oct. 12 per official statement, not Oct. 19 in one secondary source.",
+          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
+          "sourceLabel": "Sherdog · professional and amateur bout ledger"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Nina Milošević · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Scheduled to fight Nina Milošević at UFC Vegas 124 in Las Vegas. No result yet.",
+          "kind": "upcoming",
+          "detail": "Scheduled for women's bantamweight against Nina Milošević at Meta APEX in Las Vegas on UFC Fight Night: Cortes-Acosta vs. Walker. Entering record 13-9 professional and 5-9 UFC; upcoming bout has NO result as of Nov. 5, 2026.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "Official UFC event"
+          "sourceLabel": "UFC · November 7, 2026 official event"
         }
       ]
     },
