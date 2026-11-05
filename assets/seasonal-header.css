@@ -23,7 +23,7 @@
 
   body[data-editorial-shell] .logo-banner .desktop-brand-harvest {
     position: absolute;
-    right: -67px;
+    right: -44px;
     bottom: 3px;
     z-index: 3;
     display: block;
@@ -63,7 +63,7 @@
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
-    margin-left: .05em;
+    margin-left: -.12em;
     pointer-events: none;
   }
 
@@ -78,10 +78,10 @@
   }
 }
 
-/* The ornament must never hang over the wordmark on smaller desktop widths. */
+/* Keep a slight visual overlap on narrower desktop mastheads, too. */
 @media (min-width: 851px) and (max-width: 1100px) {
   body[data-editorial-shell] .logo-banner .desktop-brand-harvest {
-    right: -57px;
+    right: -36px;
     bottom: 2px;
     width: 54px;
     height: 54px;
