@@ -1,0 +1,42 @@
+name: Build Writer bundle from source
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '_writer/**'
+      - '.github/workflows/build-members-writer.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-matlock-writer-main
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build source-controlled Writer bundle
+        run: npm run build:frontend
+      - name: Verify Writer JavaScript syntax
+        run: node --check assets/writer.js
+      - name: Commit generated public Writer asset
+        run: |
+          if git diff --quiet -- assets/writer.js; then
+            echo "Writer bundle already matches source."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/writer.js
+          git commit -m "Build Writer bundle with secure members-only publishing"
+          git push origin HEAD:main
