@@ -533,9 +533,15 @@ test.describe('Mobile site shell', () => {
 
       await expect(brand).toBeVisible();
       await expect(brand.locator('.mobile-brand-wordmark')).toHaveText('MATLOCK');
-      const pumpkinIcon = brand.locator('.mobile-brand-pumpkin-icon');
-      await expect(pumpkinIcon).toBeVisible();
-      await expect(pumpkinIcon).toHaveAttribute('src', /\/assets\/icons\/pumpkin-seasonal\.svg(?:\?v=\d+)?$/);
+      const harvestIcon = brand.locator('.mobile-brand-harvest-icon');
+      await expect(harvestIcon).toBeVisible();
+      await expect(harvestIcon).toHaveAttribute('src', /\/assets\/icons\/cornucopia-seasonal\.svg(?:\?v=\d+)?$/);
+      const mobileOrnament = await page.evaluate(() => {
+        const letters = document.querySelector('.mobile-brand-wordmark')?.getBoundingClientRect();
+        const icon = document.querySelector('.mobile-brand-harvest-icon')?.getBoundingClientRect();
+        return { iconLeft: icon?.left ?? -1, wordmarkRight: letters?.right ?? 9999 };
+      });
+      expect(mobileOrnament.iconLeft).toBeGreaterThanOrEqual(mobileOrnament.wordmarkRight - 9);
       await expect(toggle).toBeVisible();
       await expect(banner).toBeHidden();
 
@@ -720,22 +726,60 @@ test.describe('Homepage editorial shell', () => {
     const seasonalAccent = await page.evaluate(() => {
       const heading = document.querySelector('.v3-section-head h2');
       const trendingLabel = document.querySelector('.v3-trending > strong');
-      const pumpkin = document.querySelector('.desktop-brand-pumpkin');
-      const pumpkinImage = document.querySelector('.desktop-brand-pumpkin-icon');
-      const pumpkinStyle = pumpkin ? getComputedStyle(pumpkin) : null;
+      const harvest = document.querySelector('.desktop-brand-harvest');
+      const harvestImage = document.querySelector('.desktop-brand-harvest-icon');
+      const harvestStyle = harvest ? getComputedStyle(harvest) : null;
       return {
         headingColor: heading ? getComputedStyle(heading).color : null,
         trendingColor: trendingLabel ? getComputedStyle(trendingLabel).color : null,
-        pumpkinSource: pumpkinImage?.getAttribute('src') || null,
-        pumpkinBottom: pumpkinStyle?.bottom || null,
-        pumpkinWidth: pumpkinStyle ? parseFloat(pumpkinStyle.width) : 0
+        harvestSource: harvestImage?.getAttribute('src') || null,
+        harvestBottom: harvestStyle?.bottom || null,
+        harvestWidth: harvestStyle ? parseFloat(harvestStyle.width) : 0
       };
     });
     expect(seasonalAccent.headingColor).toBe('rgb(17, 17, 17)');
     expect(seasonalAccent.trendingColor).toBe('rgb(196, 95, 0)');
-    expect(seasonalAccent.pumpkinSource).toContain('/assets/icons/pumpkin-seasonal.svg');
-    expect(seasonalAccent.pumpkinBottom).not.toBe('auto');
-    expect(seasonalAccent.pumpkinWidth).toBeGreaterThanOrEqual(16);
+    expect(seasonalAccent.harvestSource).toContain('/assets/icons/cornucopia-seasonal.svg');
+    expect(seasonalAccent.harvestBottom).not.toBe('auto');
+    expect(seasonalAccent.harvestWidth).toBeGreaterThanOrEqual(48);
+
+    // The seasonal illustration sits to the RIGHT of MATLOCK, not dangling below.
+    const masthead = await page.evaluate(() => {
+      const wordmark = document.querySelector('.logo-banner .v3-wordmark')?.getBoundingClientRect();
+      const cornucopia = document.querySelector('.logo-banner .desktop-brand-harvest-icon')?.getBoundingClientRect();
+      return {
+        left: cornucopia?.left ?? -1,
+        top: cornucopia?.top ?? -1,
+        rightOfWordmark: wordmark?.right ?? 9999,
+        wordmarkBottom: wordmark?.bottom ?? -1
+      };
+    });
+    expect(masthead.left, 'ornament must be positioned right of the MATLOCK wordmark')
+      .toBeGreaterThanOrEqual(masthead.rightOfWordmark - 10);
+    expect(masthead.top, 'ornament must NOT hang below the wordmark')
+      .toBeLessThan(masthead.wordmarkBottom);
+
+    // Membership must stay gold without hover, for BOTH site themes.
+    const membershipColors = await page.evaluate(() => {
+      const linkText = document.querySelector('.navigation-list a.nav-membership-link > span:first-child');
+      const otherText = document.querySelector('.navigation-list a:not(.nav-membership-link) > span:first-child');
+      if (!linkText || !otherText) return null;
+      const root = document.documentElement;
+      const original = root.getAttribute('data-theme');
+      root.setAttribute('data-theme', 'light');
+      const light = getComputedStyle(linkText).color;
+      root.setAttribute('data-theme', 'dark');
+      const dark = getComputedStyle(linkText).color;
+      const other = getComputedStyle(otherText).color;
+      if (original === null) root.removeAttribute('data-theme');
+      else root.setAttribute('data-theme', original);
+      return { light, dark, other };
+    });
+    expect(membershipColors).not.toBeNull();
+    expect(membershipColors.light).toBe('rgb(159, 113, 31)');
+    expect(membershipColors.dark).toBe('rgb(227, 189, 115)');
+    expect(membershipColors.dark).not.toBe(membershipColors.other);
+
     expect(geometry.leadFont).toContain('Herkey');
     expect(geometry.sectionFont).toContain('Herkey');
     expect(geometry.historyFont).toContain('Herkey');
