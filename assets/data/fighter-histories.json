@@ -1,5 +1,5 @@
 {
-  "version": 49,
+  "version": 50,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -26333,6 +26333,14 @@
           "sourceLabel": "Sherdog · complete professional fight ledger"
         },
         {
+          "date": "Jul. 4, 2015",
+          "label": "Opens professional career with eight consecutive wins",
+          "kind": "milestone",
+          "detail": "Turman reached 8-0 less than 11 months after his Aug. 9, 2014 professional debut. Five of the eight wins came by submission or KO/TKO; the early run ended with the unanimous-decision loss to Gian Siqueira in November 2015. This is a career streak, not an additional fight.",
+          "source": "https://www.sherdog.com/fighter/Wellington-Turman-157451",
+          "sourceLabel": "Sherdog · dated early professional fight ledger"
+        },
+        {
           "date": "Nov. 28, 2015",
           "label": "LOSS · Gian Siqueira · XFC International 12",
           "kind": "loss",
@@ -26363,14 +26371,6 @@
           "detail": "Defeated Dyego Roberto at Imortal FC 5 on Jul. 23, 2016 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 11-1.",
           "source": "https://www.sherdog.com/fighter/Wellington-Turman-157451",
           "sourceLabel": "Sherdog · complete professional fight ledger"
-        },
-        {
-          "date": "2014–2018",
-          "label": "Regional championship development in Imortal FC",
-          "kind": "milestone",
-          "detail": "Turman competed extensively in the Imortal FC circuit in Brazil and later listed Imortal FC and Curitiba Fight Pro middleweight championships on his UFC profile. Sources confirm the titles, but exact belt-award dates are not reliably established; do not attach a specific title capture to an invented date or fight.",
-          "source": "https://www.ufc.com/athlete/wellington-turman",
-          "sourceLabel": "UFC · athlete questionnaire listing regional championships"
         },
         {
           "date": "Dec. 10, 2016",
@@ -26405,6 +26405,14 @@
           "sourceLabel": "Sherdog · complete professional fight ledger"
         },
         {
+          "date": "By the end of 2018 (title dates unverified)",
+          "label": "Regional middleweight titles at Imortal FC and Curitiba Fight Pro",
+          "kind": "milestone",
+          "detail": "Turman's UFC athlete questionnaire lists Imortal FC and Curitiba Fight Pro middleweight championships. His recorded regional wins include four bouts in Imortal FC and appearances in Curitiba Fight Pro, but the date and bout in which either title was awarded could not be independently established. These are documented accomplishments without an invented title-fight date.",
+          "source": "https://www.ufc.com/athlete/wellington-turman",
+          "sourceLabel": "UFC · athlete questionnaire confirming both regional titles"
+        },
+        {
           "date": "Apr. 19, 2019",
           "label": "WIN · Marcio Alexandre Jr. · Future FC 4",
           "kind": "win",
@@ -26424,17 +26432,25 @@
           "date": "Jul. 13, 2019",
           "label": "LOSS · Karl Roberson · UFC Fight Night 155: De Randamie vs. Ladd",
           "kind": "loss",
-          "detail": "Lost to Karl Roberson at UFC Fight Night 155: De Randamie vs. Ladd on Jul. 13, 2019 by split decision (round 3, 5:00). Professional MMA record after fight: 15-3. Official UFC record: 0-1. Accepted UFC debut as a late replacement for John Phillips against Roberson. His first official UFC result was a narrow split-decision defeat.",
-          "source": "https://www.mmafighting.com/2019/6/18/18683472/wellington-turman-replaces-john-phillips-vs-karl-roberson-at-ufc-sacramento",
-          "sourceLabel": "MMA Fighting · June 2019 UFC replacement booking and pro record"
+          "detail": "Lost to Karl Roberson at UFC Fight Night 155: De Randamie vs. Ladd on Jul. 13, 2019 by split decision after three rounds (29-28, 29-28 Roberson; 29-28 Turman). Professional MMA record after fight: 15-3. Official UFC record: 0-1. He accepted the debut as a replacement for John Phillips. All three judges gave Turman round three, but they disagreed on round two, making the debut competitive rather than a lopsided defeat.",
+          "source": "https://mmadecisions.com/decision/10268/Karl-Roberson-vs-Wellington-Turman",
+          "sourceLabel": "MMA Decisions · named judges and round-by-round scorecards"
+        },
+        {
+          "date": "Jul. 13, 2019",
+          "label": "Split UFC debut hinges on round-two judging",
+          "kind": "note",
+          "detail": "Michael Bell and Wade Vierra awarded Karl Roberson the first two rounds, 29-28 overall; Derek Cleary gave Turman rounds two and three, 29-28. All judges scored round three for Turman. Media and fan scorecards were mixed, so this remains an official split-decision loss, not a disputed result overturned on review.",
+          "source": "https://mmadecisions.com/decision/10268/Karl-Roberson-vs-Wellington-Turman",
+          "sourceLabel": "MMA Decisions · judges' round allocations and media scores"
         },
         {
           "date": "Nov. 16, 2019",
           "label": "WIN · Markus Perez · UFC Fight Night 164: Blachowicz vs. Jacare",
           "kind": "win",
-          "detail": "Defeated Markus Perez at UFC Fight Night 164: Blachowicz vs. Jacare on Nov. 16, 2019 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 16-3. Official UFC record: 1-1. First official UFC win, returning to compete in Brazil.",
-          "source": "https://www.ufc.com/athlete/wellington-turman",
-          "sourceLabel": "UFC · official fight history"
+          "detail": "Defeated Markus Perez at UFC Fight Night 164: Blachowicz vs. Jacare on Nov. 16, 2019 by unanimous decision (30-27 on all three cards). Professional MMA record after fight: 16-3. Official UFC record: 1-1. The win came in Sao Paulo, Brazil, and was his first UFC victory. All three judges awarded him every round.",
+          "source": "https://mmadecisions.com/decision/10694/Wellington-Turman-vs-Markus-Perez",
+          "sourceLabel": "MMA Decisions · three unanimous 30-27 judges' scorecards"
         },
         {
           "date": "Aug. 8, 2020",
@@ -26451,6 +26467,14 @@
           "detail": "Turman said he developed fever, body and chest pain and shortness of breath around Sep. 4, tested positive for COVID-19 five days later and quarantined until Sep. 24. His coach reported that Turman lost almost 11 pounds. Exact positive test date is based on Turman's recalled timeline.",
           "source": "https://www.mmafighting.com/2020/9/29/21493762/wellington-turman-covid-19-ufc-fight-sean-strickland-augusto-sakai-rogerio-bontorin",
           "sourceLabel": "MMA Fighting · September 2020 firsthand illness account"
+        },
+        {
+          "date": "Sep. 24, 2020",
+          "label": "Quarantine ends, but training remains restricted",
+          "kind": "illness",
+          "detail": "Turman said he completed isolation on Sep. 24 after developing COVID-19 symptoms around Sep. 4. He could resume only light exercise, not full training, which made the planned Oct. 31 Sean Strickland fight untenable. His coach estimated he lost nearly 11 pounds during the illness. This is a recovery milestone, not a second positive test.",
+          "source": "https://www.mmafighting.com/2020/9/29/21493762/wellington-turman-covid-19-ufc-fight-sean-strickland-augusto-sakai-rogerio-bontorin",
+          "sourceLabel": "MMA Fighting · Sep. 29, 2020 firsthand recovery account"
         },
         {
           "date": "Sep. 29, 2020",
@@ -26488,9 +26512,9 @@
           "date": "Aug. 28, 2021",
           "label": "WIN · Sam Alvey · UFC on ESPN 30: Barboza vs. Chikadze",
           "kind": "win",
-          "detail": "Defeated Sam Alvey at UFC on ESPN 30: Barboza vs. Chikadze on Aug. 28, 2021 by split decision (round 3, 5:00). Professional MMA record after fight: 17-5. Official UFC record: 2-3. Two points were deducted for repeated eye pokes in round three, but Turman still won split scorecards 28-27, 28-27 and 27-28. Reported dislocated big toe in a kick during this fight, requiring stitches and roughly a month without training.",
+          "detail": "Defeated Sam Alvey at UFC on ESPN 30: Barboza vs. Chikadze on Aug. 28, 2021 by split decision (28-27, 28-27, 27-28). Professional MMA record after fight: 17-5. Official UFC record: 2-3. Turman cut Alvey with a spinning elbow, scored takedowns and survived two separate point deductions for eye pokes in round three. He also dislocated and cut his big toe while kicking; that injury and recovery are separately documented.",
           "source": "https://www.ufc.com/news/ufc-fight-night-barboza-chikadze-results-highlights-interviews-winners-ufc-vegas-35",
-          "sourceLabel": "UFC · official August 2021 results and judges"
+          "sourceLabel": "UFC · official bout recap and scorecards"
         },
         {
           "date": "Aug. 28, 2021",
@@ -26536,9 +26560,9 @@
           "date": "Feb. 26, 2022",
           "label": "WIN · Misha Cirkunov · UFC Fight Night 202: Makhachev vs. Green",
           "kind": "win",
-          "detail": "Defeated Misha Cirkunov at UFC Fight Night 202: Makhachev vs. Green on Feb. 26, 2022 by submission (armbar) (round 2, 1:29). Professional MMA record after fight: 18-5. Official UFC record: 3-3. Stepped in for injured Makhmud Muradov after a separate Rodolfo Vieira booking fell through. First UFC submission victory and Performance of the Night bonus.",
-          "source": "https://www.ufc.com/news/ufc-bonus-coverage-2022-performance-fight-of-the-night",
-          "sourceLabel": "UFC · official 2022 performance bonus archive"
+          "detail": "Defeated Misha Cirkunov at UFC Fight Night 202: Makhachev vs. Green on Feb. 26, 2022 by submission (armbar) (round 2, 1:29). Professional MMA record after fight: 18-5. Official UFC record: 3-3. Turman threatened a standing rear-naked choke in round one but was thrown off and absorbed heavy punches and a submission threat. After Cirkunov tripped him to the mat in round two, Turman attacked an armbar from bottom guard for the immediate tap. He earned Performance of the Night, his first UFC bonus and first UFC finish.",
+          "source": "https://www.mmafighting.com/2022/2/26/22952836/ufc-vegas-49-video-wellington-turman-surprises-misha-cirkunov-with-devastating-armbar-submission",
+          "sourceLabel": "MMA Fighting · detailed grappling sequence and official finish"
         },
         {
           "date": "Feb. 26, 2022",
@@ -26568,17 +26592,17 @@
           "date": "Nov. 12, 2022",
           "label": "LOSS · Andre Petroski · UFC 281: Adesanya vs. Pereira",
           "kind": "loss",
-          "detail": "Lost to Andre Petroski at UFC 281: Adesanya vs. Pereira on Nov. 12, 2022 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 18-6. Official UFC record: 3-4. Third consecutive UFC appearance at middleweight before moving to 170 pounds in 2023; lost after three rounds at Madison Square Garden.",
-          "source": "https://www.ufc.com/athlete/wellington-turman",
-          "sourceLabel": "UFC · official fight history"
+          "detail": "Lost to Andre Petroski at UFC 281: Adesanya vs. Pereira on Nov. 12, 2022 by unanimous decision (30-27, 30-27, 29-28). Professional MMA record after fight: 18-6. Official UFC record: 3-4. The opening rounds included competitive striking and grappling, but Petroski threatened a guillotine early in round three and held top position through most of the last round. This was Turman's final completed UFC middleweight bout before dropping to welterweight.",
+          "source": "https://www.ufc.com/news/ufc-281-adesanya-vs-pereira-esparza-vs-zhang-results-winner-interviews",
+          "sourceLabel": "UFC · official Nov. 2022 fight recap and scorecards"
         },
         {
           "date": "Jun. 24, 2023",
           "label": "LOSS · Randy Brown · UFC on ABC 5: Emmett vs. Topuria",
           "kind": "loss",
-          "detail": "Lost to Randy Brown at UFC on ABC 5: Emmett vs. Topuria on Jun. 24, 2023 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 18-7. Official UFC record: 3-5. First UFC appearance at welterweight, moving down from 185 pounds; lost a three-round decision to Brown.",
-          "source": "https://www.ufc.com/athlete/wellington-turman",
-          "sourceLabel": "UFC · official fight history"
+          "detail": "Lost to Randy Brown at UFC on ABC 5: Emmett vs. Topuria on Jun. 24, 2023 by unanimous decision (29-28 on all three cards). Professional MMA record after fight: 18-7. Official UFC record: 3-5. This was Turman's UFC welterweight debut after seven completed UFC bouts at middleweight. Brown won the first two rounds on every judge's card; Turman took the third on all three cards.",
+          "source": "https://fightshow.pro/fights/3f3c69d8-randy-brown-vs-wellington-turman",
+          "sourceLabel": "Fightshow · official judges' round-by-round scoring"
         },
         {
           "date": "Jun. 24, 2023",
@@ -26624,9 +26648,25 @@
           "date": "2024–2026",
           "label": "Lengthy inactive spell causes financial and relocation difficulties",
           "kind": "layoff",
-          "detail": "Turman said the shoulder surgeries prevented him from fighting and at times coaching, prompting temporary side jobs. After his U.S. visa expired he left Danbury and returned to his parents' home in Brazil. He also spent roughly three months coaching in Turkey during the layoff. Exact calendar dates of each move are not established.",
+          "detail": "After the December 2023 fight, four shoulder surgeries and lengthy rehabilitation disrupted Turman's income. He told MMA Fighting he sometimes could neither fight nor coach, so he found temporary work to support himself. The medical absences, not an undisclosed bout result, explain his inactivity. The date range is approximate.",
           "source": "https://www.mmafighting.com/ufc/500425/wellington-turman-details-tough-time-away-after-4-surgeries-ahead-of-ufc-abu-dhabi-return",
-          "sourceLabel": "MMA Fighting · July 2026 interview about recovery and income"
+          "sourceLabel": "MMA Fighting · Jul. 24, 2026 firsthand account of economic effects"
+        },
+        {
+          "date": "During 2024–2026 layoff (date unreported)",
+          "label": "U.S. visa expires; relocates from Danbury to parents' home in Brazil",
+          "kind": "layoff",
+          "detail": "Turman said his U.S. visa expired while he was unable to compete. He left Danbury, Connecticut, and moved back in with his parents in Brazil to save money and be close to family. The interview does not give the month or year of the relocation; this entry does not assign an invented date.",
+          "source": "https://www.mmafighting.com/ufc/500425/wellington-turman-details-tough-time-away-after-4-surgeries-ahead-of-ufc-abu-dhabi-return",
+          "sourceLabel": "MMA Fighting · July 2026 personal account of visa and relocation"
+        },
+        {
+          "date": "During 2024–2026 layoff (dates unreported)",
+          "label": "Coaches fighters in Turkey for roughly three months",
+          "kind": "training",
+          "detail": "During the long rehabilitation period, Turman said he spent approximately three months in Turkey coaching fighters. The role provided work while he was sidelined from competition; neither the beginning nor end date was publicly established. No professional bout is recorded during this spell.",
+          "source": "https://www.mmafighting.com/ufc/500425/wellington-turman-details-tough-time-away-after-4-surgeries-ahead-of-ufc-abu-dhabi-return",
+          "sourceLabel": "MMA Fighting · July 2026 interview confirming Turkey coaching"
         },
         {
           "date": "Jun. 1, 2026",
@@ -26661,6 +26701,14 @@
           "sourceLabel": "MMA Fighting · July 31, 2026 direct Turman interview"
         },
         {
+          "date": "Jul. 31, 2026",
+          "label": "Discusses possible Dulatov rematch in Abu Dhabi; no booking confirmed",
+          "kind": "booking",
+          "detail": "After the last-minute cancellation, Turman said he was open to rescheduling Islam Dulatov, potentially at the Oct. 24 UFC 333 event in Abu Dhabi, but wanted confidence the fight would happen. This was a proposed possibility, not a confirmed booking or completed bout. He was later scheduled against Seokhyeon Ko instead.",
+          "source": "https://www.mmafighting.com/ufc/501878/wellington-turman-blames-islam-dulatovs-lack-of-professionalism-for-heartbreaking-ufc-abu-dhabi-fight-cancellation",
+          "sourceLabel": "MMA Fighting · July 31, 2026 interview about potential rebooking"
+        },
+        {
           "date": "Sep. 10, 2026",
           "label": "Seokhyeon Ko matchup targeted for November 7",
           "kind": "booking",
@@ -26672,17 +26720,17 @@
           "date": "Nov. 5, 2026",
           "label": "Fight-ledger and return-status audit",
           "kind": "note",
-          "detail": "The complete Sherdog fight ledger comprises 26 professional fights: 18 wins (four KO/TKO, eight submissions, six decisions) and eight losses (two KO/TKO, one submission, five decisions). The nine completed UFC fights total 3-6. The 2026 Abu Dhabi cancellation is not a comeback fight, meaning Turman has not had a completed professional bout since Dec. 2, 2023.",
+          "detail": "Rechecked all 26 completed professional contests against the Sherdog ledger: 18 wins (four KO/TKO, eight submissions, six decisions), eight losses (two KO/TKO, one submission, five decisions). Nine completed UFC bouts yield 3-6. His last completed fight was Dec. 2, 2023; as of Nov. 5, 2026, the gap is approximately 35 months. The canceled July 2026 Dulatov booking did not reset the layoff, and the Nov. 7 Seokhyeon Ko fight remains upcoming.",
           "source": "https://www.sherdog.com/fighter/Wellington-Turman-157451",
-          "sourceLabel": "Sherdog · complete pro/amateur fight history; UFC official fight list"
+          "sourceLabel": "Sherdog · 26 professional bouts; UFC · November 7, 2026 official card"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Seokhyeon Ko · UFC Vegas 124",
           "kind": "upcoming",
-          "detail": "Officially scheduled to face Seokhyeon Ko at welterweight on Nov. 7, 2026 at Meta APEX in Las Vegas on the UFC Fight Night: Cortes-Acosta vs. Walker card. As of Nov. 5, there is no result. Entering record: 18-8 professional, 3-6 UFC. If completed, this will be his first fight since the December 2023 Gooden loss.",
+          "detail": "Officially scheduled to face Seokhyeon Ko at welterweight on Saturday, Nov. 7, 2026, at Meta APEX in Las Vegas on UFC Fight Night: Cortes-Acosta vs. Walker. As of Nov. 5, there is no result. Entering record: 18-8 professional, 3-6 UFC. If it takes place, the matchup will end a nearly three-year competitive absence dating to the December 2023 Jared Gooden bout.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "UFC · official November 7, 2026 event card"
+          "sourceLabel": "UFC · official November 7, 2026 fight card"
         }
       ],
       "lastReviewed": "2026-11-05"
@@ -30227,6 +30275,6 @@
     }
   },
   "updatedAt": "2026-11-05",
-  "notes": "Fourth-pass deep audit completed. Duplicate same-event notes merged; distinct same-year career events retained. Bia Mesquita timeline added. Donte Johnson timeline added. Cesar Almeida timeline added. Melquizael Costa timeline added; corrected May 2026 Arnold Allen result and move to lightweight. Jared Gordon's 31 professional bouts, CFFC championships and distinct career milestones added; same-fight notes merged. Evan Elder full professional history, amateur records and UFC 334 booking added; duplicate same-fight milestones merged. Samuel Sanches timeline added with complete 12-fight professional ledger; DWCS separated from UFC debut.",
+  "notes": "Fourth-pass deep audit completed. Duplicate same-event notes merged; distinct same-year career events retained. Bia Mesquita timeline added. Donte Johnson timeline added. Cesar Almeida timeline added. Melquizael Costa timeline added; corrected May 2026 Arnold Allen result and move to lightweight. Jared Gordon's 31 professional bouts, CFFC championships and distinct career milestones added; same-fight notes merged. Evan Elder full professional history, amateur records and UFC 334 booking added; duplicate same-fight milestones merged. Samuel Sanches timeline added with complete 12-fight professional ledger; DWCS separated from UFC debut. Wellington Turman's 26 professional fights and four amateur bouts audited; return chronology and six dated or deliberately undated milestones expanded; disputed debut scoring and medical history clarified.",
   "lastReviewed": "2026-11-05"
 }
