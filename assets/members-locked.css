@@ -1,0 +1,25 @@
+/* The public site only displays a locked teaser for private articles. */
+.members-lock-badge {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  gap: .25rem;
+  border: 1px solid currentColor;
+  border-radius: .25rem;
+  padding: .15rem .4rem;
+  font-size: .68em;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: .025em;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.members-locked-article {
+  border: 1px solid var(--border-color, #bbb);
+  border-radius: 8px;
+  padding: clamp(1.25rem, 4vw, 2.25rem);
+  margin-block: 1.5rem 2rem;
+}
+.members-locked-article h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); margin: 1.25rem 0 .65rem; }
+.members-locked-article p { max-width: 65ch; margin-bottom: 1.5rem; }
+.writer-members-toggle small { display: block; margin-left: 1.5rem; font-weight: 400; opacity: .76; line-height: 1.4; }
