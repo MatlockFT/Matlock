@@ -1,5 +1,5 @@
 {
-  "version": 29,
+  "version": 30,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -23787,49 +23787,57 @@
       "slug": "waldo-cortes-acosta",
       "name": "Waldo Cortes-Acosta",
       "subtitle": "Career chronology",
-      "record": "",
+      "record": "17-4",
       "ufcRecord": "",
       "division": "Heavyweight",
       "items": [
         {
-          "date": "Sep. 19, 2026",
+          "date": "Sep 12, 2026",
           "label": "LOSS · Curtis Blaydes · Noche UFC",
           "kind": "loss",
-          "detail": "Lost to Curtis Blaydes at Noche UFC. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/92314-waldo-cortes-acosta"
+          "detail": "Lost to Curtis Blaydes at Noche UFC by Decision (Unanimous) in round 3.",
+          "source": "https://verdictmma.com/fighter/waldo-salsa-boy-cortes-acosta",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Jan. 24, 2026",
+          "date": "May 9, 2026",
+          "label": "LOSS · Alexander Volkov · UFC 328",
+          "kind": "loss",
+          "detail": "Lost to Alexander Volkov at UFC 328 by Decision (Unanimous) in round 3.",
+          "source": "https://verdictmma.com/fighter/waldo-salsa-boy-cortes-acosta",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Jan 24, 2026",
           "label": "WIN · Derrick Lewis · UFC 324",
           "kind": "win",
-          "detail": "Defeated Derrick Lewis at UFC 324. TKO (ground-and-pound), round 2 at 3:14.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/92314-waldo-cortes-acosta"
+          "detail": "Defeated Derrick Lewis at UFC 324 by TKO (Ground-and-Pound) in round 2 at 3:14.",
+          "source": "https://verdictmma.com/fighter/waldo-salsa-boy-cortes-acosta",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Nov. 22, 2025",
+          "date": "Nov 22, 2025",
           "label": "WIN · Shamil Gaziev · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Shamil Gaziev at UFC Fight Night. TKO (right hook), round 1 at 1:22.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/92314-waldo-cortes-acosta"
+          "detail": "Defeated Shamil Gaziev at UFC Fight Night by TKO (Right Hook) in round 1 at 1:22.",
+          "source": "https://verdictmma.com/fighter/waldo-salsa-boy-cortes-acosta",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Nov. 1, 2025",
+          "date": "Nov 1, 2025",
           "label": "WIN · Ante Delija · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Ante Delija at UFC Fight Night. TKO, round 1 at 3:59.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/92314-waldo-cortes-acosta"
+          "detail": "Defeated Ante Delija at UFC Fight Night by TKO (Punches) in round 1 at 3:59.",
+          "source": "https://verdictmma.com/fighter/waldo-salsa-boy-cortes-acosta",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Johnny Walker · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Johnny Walker at UFC Vegas 124 on November 7, 2026 in the heavyweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Johnny Walker at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -23837,49 +23845,65 @@
       "slug": "johnny-walker",
       "name": "Johnny Walker",
       "subtitle": "Career chronology",
-      "record": "",
+      "record": "23-10",
       "ufcRecord": "",
       "division": "Heavyweight",
       "items": [
         {
           "date": "Oct. 3, 2026",
+          "label": "Moves up to heavyweight",
+          "detail": "Defeated Mick Parkin in his first UFC heavyweight fight following his long run in the light heavyweight division.",
+          "source": "https://www.ufc.com/athlete/johnny-walker",
+          "kind": "milestone",
+          "sourceLabel": "UFC fighter profile"
+        },
+        {
+          "date": "Oct 3, 2026",
           "label": "WIN · Mick Parkin · UFC 332",
           "kind": "win",
-          "detail": "Defeated Mick Parkin at UFC 332. KO, round 1; heavyweight debut.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/85671-johnny-walker"
+          "detail": "Defeated Mick Parkin at UFC 332 by TKO (Knee) in round 1 at 3:35.",
+          "source": "https://verdictmma.com/fighter/johnny-walker",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Apr. 11, 2026",
+          "date": "Apr 11, 2026",
           "label": "LOSS · Dominick Reyes · UFC 327",
           "kind": "loss",
-          "detail": "Lost to Dominick Reyes at UFC 327. Split decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/85671-johnny-walker"
+          "detail": "Lost to Dominick Reyes at UFC 327 by Decision (Split) in round 3.",
+          "source": "https://verdictmma.com/fighter/johnny-walker",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Aug. 23, 2025",
+          "date": "Aug 23, 2025",
           "label": "WIN · Mingyang Zhang · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Mingyang Zhang at UFC Fight Night. TKO (punches), round 2 at 2:37.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/85671-johnny-walker"
+          "detail": "Defeated Mingyang Zhang at UFC Fight Night by TKO (Punches) in round 2 at 2:37.",
+          "source": "https://verdictmma.com/fighter/johnny-walker",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Jun. 22, 2024",
+          "date": "Jun 22, 2024",
           "label": "LOSS · Volkan Oezdemir · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Volkan Oezdemir at UFC Fight Night. TKO (uppercut), round 1 at 2:28.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/85671-johnny-walker"
+          "detail": "Lost to Volkan Oezdemir at UFC Fight Night by TKO (Uppercut) in round 1 at 2:28.",
+          "source": "https://verdictmma.com/fighter/johnny-walker",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Jan 13, 2024",
+          "label": "LOSS · Magomed Ankalaev · UFC Fight Night",
+          "kind": "loss",
+          "detail": "Lost to Magomed Ankalaev at UFC Fight Night by TKO (Punches) in round 2 at 2:42.",
+          "source": "https://verdictmma.com/fighter/johnny-walker",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Waldo Cortes-Acosta · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Waldo Cortes-Acosta at UFC Vegas 124 on November 7, 2026 in the heavyweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Waldo Cortes-Acosta at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -23888,48 +23912,56 @@
       "name": "Tatiana Suarez",
       "subtitle": "Career chronology",
       "record": "12-1",
-      "ufcRecord": "",
-      "division": "Women's Strawweight",
+      "ufcRecord": "9-1",
+      "division": "Women&#39;s Strawweight",
       "items": [
         {
-          "date": "Apr. 11, 2026",
+          "date": "Apr 11, 2026",
           "label": "WIN · Lupita Godinez · UFC 327",
           "kind": "win",
-          "detail": "Defeated Lupita Godinez at UFC 327. Submission (rear-naked choke), round 2 at 2:29.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/63005-tatiana-suarez"
+          "detail": "Defeated Lupita Godinez at UFC 327 by Submission (Rear-Naked Choke) in round 2 at 2:29.",
+          "source": "https://www.tapology.com/fightcenter/fighters/63005-tatiana-suarez",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Sep. 13, 2025",
+          "date": "Sep 13, 2025",
           "label": "WIN · Amanda Lemos · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Amanda Lemos at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/63005-tatiana-suarez"
+          "detail": "Defeated Amanda Lemos at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/63005-tatiana-suarez",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Feb. 8, 2025",
+          "date": "Feb 8, 2025",
           "label": "LOSS · Zhang Weili · UFC 312",
           "kind": "loss",
-          "detail": "Lost to Zhang Weili at UFC 312. Unanimous decision (5 rounds); first UFC title challenge.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/63005-tatiana-suarez"
+          "detail": "Lost to Zhang Weili at UFC 312 by Decision (Unanimous) in round 5.",
+          "source": "https://www.tapology.com/fightcenter/fighters/63005-tatiana-suarez",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Aug. 5, 2023",
+          "date": "Aug 5, 2023",
           "label": "WIN · Jessica Andrade · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Jessica Andrade at UFC Fight Night. Submission (guillotine choke), round 2 at 1:31.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/63005-tatiana-suarez"
+          "detail": "Defeated Jessica Andrade at UFC Fight Night by Submission (Guillotine Choke) in round 2 at 1:31.",
+          "source": "https://www.tapology.com/fightcenter/fighters/63005-tatiana-suarez",
+          "sourceLabel": "Tapology fighter history"
+        },
+        {
+          "date": "Feb 25, 2023",
+          "label": "WIN · Montana De La Rosa · UFC Fight Night",
+          "kind": "win",
+          "detail": "Defeated Montana De La Rosa at UFC Fight Night by Submission (Guillotine Choke) in round 2 at 2:51.",
+          "source": "https://www.tapology.com/fightcenter/fighters/63005-tatiana-suarez",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Virna Jandiroba · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Virna Jandiroba at UFC Vegas 124 on November 7, 2026 in the women's strawweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Virna Jandiroba at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -23938,56 +23970,64 @@
       "name": "Virna Jandiroba",
       "subtitle": "Career chronology",
       "record": "23-4",
-      "ufcRecord": "",
-      "division": "Women's Strawweight",
+      "ufcRecord": "9-4",
+      "division": "Women&#39;s Strawweight",
       "items": [
         {
-          "date": "Apr. 4, 2026",
+          "date": "Mar. 24, 2018",
+          "label": "Wins Invicta FC strawweight title",
+          "detail": "Defeated Mizuki Inoue by split decision at Invicta FC 28 to become the promotion's strawweight champion.",
+          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
+          "kind": "milestone",
+          "sourceLabel": "Tapology fighter history"
+        },
+        {
+          "date": "Apr 4, 2026",
           "label": "WIN · Tabatha Ricci · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Tabatha Ricci at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba"
+          "detail": "Defeated Tabatha Ricci at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Oct. 25, 2025",
+          "date": "Oct 25, 2025",
           "label": "LOSS · Mackenzie Dern · UFC 321",
           "kind": "loss",
-          "detail": "Lost to Mackenzie Dern at UFC 321. Unanimous decision (5 rounds); UFC strawweight title fight.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba"
+          "detail": "Lost to Mackenzie Dern at UFC 321 by Decision (Unanimous) in round 5.",
+          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Apr. 12, 2025",
+          "date": "Apr 12, 2025",
           "label": "WIN · Yan Xiaonan · UFC 314",
           "kind": "win",
-          "detail": "Defeated Yan Xiaonan at UFC 314. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba"
+          "detail": "Defeated Yan Xiaonan at UFC 314 by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Jul. 20, 2024",
+          "date": "Jul 20, 2024",
           "label": "WIN · Amanda Lemos · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Amanda Lemos at UFC Fight Night. Submission (armbar), round 2 at 4:48.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba"
+          "detail": "Defeated Amanda Lemos at UFC Fight Night by Submission (Armbar) in round 2 at 4:48.",
+          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Mar. 24, 2018",
-          "label": "WIN · Mizuki Inoue · Invicta FC 28",
+          "date": "Mar 30, 2024",
+          "label": "WIN · Lupita Godinez · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Mizuki Inoue at Invicta FC 28. Split decision (5 rounds); won Invicta FC strawweight championship.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba"
+          "detail": "Defeated Lupita Godinez at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Tatiana Suarez · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Tatiana Suarez at UFC Vegas 124 on November 7, 2026 in the women's strawweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Tatiana Suarez at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -23996,56 +24036,64 @@
       "name": "Davey Grant",
       "subtitle": "Career chronology",
       "record": "16-8",
-      "ufcRecord": "",
+      "ufcRecord": "9-7",
       "division": "Bantamweight",
       "items": [
         {
-          "date": "Apr. 25, 2026",
+          "date": "Nov. 30, 2013",
+          "label": "Reaches The Ultimate Fighter 18 final",
+          "detail": "Lost the bantamweight tournament final to Chris Holdsworth by submission in the second round.",
+          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
+          "kind": "milestone",
+          "sourceLabel": "Tapology fighter history"
+        },
+        {
+          "date": "Apr 25, 2026",
           "label": "WIN · Adrian Luna Martinetti · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Adrian Luna Martinetti at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant"
+          "detail": "Defeated Adrian Luna Martinetti at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Oct. 18, 2025",
+          "date": "Oct 18, 2025",
           "label": "LOSS · Charles Jourdain · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Charles Jourdain at UFC Fight Night. Submission (guillotine choke), round 1 at 3:05.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant"
+          "detail": "Lost to Charles Jourdain at UFC Fight Night by Submission (Guillotine Choke) in round 1 at 3:05.",
+          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Jul. 26, 2025",
+          "date": "Jul 26, 2025",
           "label": "WIN · Da'Mon Blackshear · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Da'Mon Blackshear at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant"
+          "detail": "Defeated Da'Mon Blackshear at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Dec. 14, 2024",
+          "date": "Dec 14, 2024",
           "label": "WIN · Ramon Taveras · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Ramon Taveras at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant"
+          "detail": "Defeated Ramon Taveras at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Nov. 30, 2013",
-          "label": "LOSS · Chris Holdsworth · The Ultimate Fighter 18 Finale",
+          "date": "Jul 22, 2023",
+          "label": "LOSS · Daniel Marcos · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Chris Holdsworth at The Ultimate Fighter 18 Finale. Submission (rear-naked choke), round 2 at 2:10; TUF final.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant"
+          "detail": "Lost to Daniel Marcos at UFC Fight Night by Decision (Split) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Elijah Smith · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Elijah Smith at UFC Vegas 124 on November 7, 2026 in the bantamweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Elijah Smith at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24054,40 +24102,48 @@
       "name": "Elijah Smith",
       "subtitle": "Career chronology",
       "record": "10-1",
-      "ufcRecord": "",
+      "ufcRecord": "3-0",
       "division": "Bantamweight",
       "items": [
         {
-          "date": "Mar. 14, 2026",
+          "date": "Mar 14, 2026",
           "label": "WIN · Su Young You · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Su Young You at UFC Fight Night. Submission (rear-naked choke), round 2 at 1:04.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/289643-elijah-smith"
+          "detail": "Defeated Su Young You at UFC Fight Night by Submission (Rear-Naked Choke) in round 2 at 1:04.",
+          "source": "https://www.tapology.com/fightcenter/fighters/289643-elijah-smith",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Aug. 9, 2025",
+          "date": "Aug 9, 2025",
           "label": "WIN · Toshiomi Kazama · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Toshiomi Kazama at UFC Fight Night. TKO, round 1 at 4:10.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/289643-elijah-smith"
+          "detail": "Defeated Toshiomi Kazama at UFC Fight Night by KO (Slam) in round 1 at 4:10.",
+          "source": "https://www.tapology.com/fightcenter/fighters/289643-elijah-smith",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Feb. 15, 2025",
+          "date": "Feb 15, 2025",
           "label": "WIN · Vince Morales · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Vince Morales at UFC Fight Night. Unanimous decision (3 rounds); UFC debut.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/289643-elijah-smith"
+          "detail": "Defeated Vince Morales at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/289643-elijah-smith",
+          "sourceLabel": "Tapology fighter history"
+        },
+        {
+          "date": "Sep 17, 2024",
+          "label": "WIN · Aaron Tau · Dana White's Contender Series",
+          "kind": "win",
+          "detail": "Defeated Aaron Tau at Dana White's Contender Series by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/289643-elijah-smith",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Davey Grant · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Davey Grant at UFC Vegas 124 on November 7, 2026 in the bantamweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Davey Grant at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24095,49 +24151,57 @@
       "slug": "seokhyeon-ko",
       "name": "Seokhyeon Ko",
       "subtitle": "Career chronology",
-      "record": "",
+      "record": "13-3",
       "ufcRecord": "",
       "division": "Welterweight",
       "items": [
         {
-          "date": "Nov. 1, 2025",
+          "date": "Dec. 30, 2022",
+          "label": "Wins AFC middleweight title",
+          "detail": "Stopped Jae Woong Kim by corner retirement at AFC 22 to claim the vacant championship.",
+          "source": "https://www.tapology.com/fightcenter/fighters/175557-seok-hyun-ko",
+          "kind": "milestone",
+          "sourceLabel": "Tapology fighter history"
+        },
+        {
+          "date": "Jul 18, 2026",
+          "label": "LOSS · Jean-Paul Lebosnoyani · UFC Fight Night",
+          "kind": "loss",
+          "detail": "Lost to Jean-Paul Lebosnoyani at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/175557-seok-hyun-ko",
+          "sourceLabel": "Tapology fighter history"
+        },
+        {
+          "date": "Nov 1, 2025",
           "label": "WIN · Phil Rowe · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Phil Rowe at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/175557-seok-hyun-ko"
+          "detail": "Defeated Phil Rowe at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/175557-seok-hyun-ko",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Jun. 21, 2025",
+          "date": "Jun 21, 2025",
           "label": "WIN · Oban Elliott · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Oban Elliott at UFC Fight Night. Unanimous decision (3 rounds); UFC debut.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/175557-seok-hyun-ko"
+          "detail": "Defeated Oban Elliott at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/175557-seok-hyun-ko",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Sep. 3, 2024",
+          "date": "Sep 3, 2024",
           "label": "WIN · Igor Cavalcanti · Dana White's Contender Series",
           "kind": "win",
-          "detail": "Defeated Igor Cavalcanti at Dana White's Contender Series. Unanimous decision (3 rounds); UFC contract.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/175557-seok-hyun-ko"
-        },
-        {
-          "date": "Dec. 30, 2022",
-          "label": "WIN · Jae Woong Kim · AFC 22",
-          "kind": "win",
-          "detail": "Defeated Jae Woong Kim at AFC 22. TKO (corner retirement), round 2; won vacant AFC middleweight title.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/175557-seok-hyun-ko"
+          "detail": "Defeated Igor Cavalcanti at Dana White's Contender Series by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/175557-seok-hyun-ko",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Wellington Turman · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Wellington Turman at UFC Vegas 124 on November 7, 2026 in the welterweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Wellington Turman at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24150,44 +24214,52 @@
       "division": "Welterweight",
       "items": [
         {
-          "date": "Dec. 2, 2023",
+          "date": "Dec 2, 2023",
           "label": "LOSS · Jared Gooden · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Jared Gooden at UFC Fight Night. Submission (rear-naked choke), round 2 at 1:11.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/wellington-turman"
+          "detail": "Lost to Jared Gooden at UFC Fight Night by Submission (Rear-Naked Choke) in round 2 at 1:11.",
+          "source": "https://www.tapology.com/fightcenter/fighters/157451-wellington-turman",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Jun. 24, 2023",
+          "date": "Jun 24, 2023",
           "label": "LOSS · Randy Brown · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Randy Brown at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/wellington-turman"
+          "detail": "Lost to Randy Brown at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/157451-wellington-turman",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Nov. 12, 2022",
+          "date": "Nov 12, 2022",
           "label": "LOSS · Andre Petroski · UFC 281",
           "kind": "loss",
-          "detail": "Lost to Andre Petroski at UFC 281. Unanimous decision (3 rounds).",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/wellington-turman"
+          "detail": "Lost to Andre Petroski at UFC 281 by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/157451-wellington-turman",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Feb. 26, 2022",
+          "date": "Feb 26, 2022",
           "label": "WIN · Misha Cirkunov · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Misha Cirkunov at UFC Fight Night. Submission (armbar), round 2 at 1:29.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/wellington-turman"
+          "detail": "Defeated Misha Cirkunov at UFC Fight Night by Submission (Armbar) in round 2 at 1:29.",
+          "source": "https://www.tapology.com/fightcenter/fighters/157451-wellington-turman",
+          "sourceLabel": "Tapology fighter history"
+        },
+        {
+          "date": "Aug 28, 2021",
+          "label": "WIN · Sam Alvey · UFC Fight Night",
+          "kind": "win",
+          "detail": "Defeated Sam Alvey at UFC Fight Night by Decision (Split) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/157451-wellington-turman",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Seokhyeon Ko · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Seokhyeon Ko at UFC Vegas 124 on November 7, 2026 in the welterweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Seokhyeon Ko at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24196,56 +24268,48 @@
       "name": "Billy Elekana",
       "subtitle": "Career chronology",
       "record": "10-2",
-      "ufcRecord": "",
+      "ufcRecord": "3-1",
       "division": "Light Heavyweight",
       "items": [
         {
-          "date": "Jan. 31, 2026",
+          "date": "Jan 31, 2026",
           "label": "WIN · Junior Tafa · UFC 325",
           "kind": "win",
-          "detail": "Defeated Junior Tafa at UFC 325. Submission (rear-naked choke), round 2 at 3:18.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/152109-billy-elekana"
+          "detail": "Defeated Junior Tafa at UFC 325 by Submission (Rear-Naked Choke) in round 2 at 3:18.",
+          "source": "https://www.tapology.com/fightcenter/fighters/152109-billy-elekana",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Nov. 1, 2025",
+          "date": "Nov 1, 2025",
           "label": "WIN · Kevin Christian · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Kevin Christian at UFC Fight Night. Submission (rear-naked choke), round 1 at 3:33.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/152109-billy-elekana"
+          "detail": "Defeated Kevin Christian at UFC Fight Night by Submission (Rear-Naked Choke) in round 1 at 3:33.",
+          "source": "https://www.tapology.com/fightcenter/fighters/152109-billy-elekana",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Jul. 26, 2025",
+          "date": "Jul 26, 2025",
           "label": "WIN · Ibo Aslan · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Ibo Aslan at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/152109-billy-elekana"
+          "detail": "Defeated Ibo Aslan at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/152109-billy-elekana",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Jan. 18, 2025",
+          "date": "Jan 18, 2025",
           "label": "LOSS · Bogdan Guskov · UFC 311",
           "kind": "loss",
-          "detail": "Lost to Bogdan Guskov at UFC 311. Submission (guillotine choke), round 2 at 3:33; UFC debut.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/152109-billy-elekana"
-        },
-        {
-          "date": "Aug. 4, 2023",
-          "label": "WIN · Chuck Campbell · PFL 7",
-          "kind": "win",
-          "detail": "Defeated Chuck Campbell at PFL 7. Split decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/152109-billy-elekana"
+          "detail": "Lost to Bogdan Guskov at UFC 311 by Submission (Guillotine Choke) in round 2 at 3:33.",
+          "source": "https://www.tapology.com/fightcenter/fighters/152109-billy-elekana",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Lucas Fernando · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Lucas Fernando at UFC Vegas 124 on November 7, 2026 in the light heavyweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Lucas Fernando at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24253,25 +24317,65 @@
       "slug": "lucas-fernando",
       "name": "Lucas Fernando",
       "subtitle": "Career chronology",
-      "record": "12-3",
+      "record": "14-3",
       "ufcRecord": "",
       "division": "Light Heavyweight",
       "items": [
         {
-          "date": "2025",
-          "label": "LFA competition · LFA",
+          "date": "2024–2026",
+          "label": "LFA career and titles",
+          "detail": "Competed extensively in the LFA's middleweight and light heavyweight divisions before joining the UFC. His August 2026 win against Rafael Tobias was his UFC debut.",
+          "source": "https://www.ufc.com/athlete/lucas-fernando",
           "kind": "milestone",
-          "detail": "Continued on the Brazilian and US regional circuits, including LFA.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/135406-lucas-fernando"
+          "sourceLabel": "UFC fighter profile"
+        },
+        {
+          "date": "Aug 15, 2026",
+          "label": "WIN · Rafael Tobias · UFC 330",
+          "kind": "win",
+          "detail": "Defeated Rafael Tobias at UFC 330 by TKO (Knee and Punches) in round 3 at 1:10.",
+          "source": "https://verdictmma.com/fighter/lucas-fernando",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "May 29, 2026",
+          "label": "WIN · Leon Soares · LFA 234",
+          "kind": "win",
+          "detail": "Defeated Leon Soares at LFA 234 by TKO (Leg Kicks and Punches) in round 1 at 2:28.",
+          "source": "https://verdictmma.com/fighter/lucas-fernando",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Aug 15, 2025",
+          "label": "WIN · Phillip Latu · LFA 214",
+          "kind": "win",
+          "detail": "Defeated Phillip Latu at LFA 214 by TKO (Punches) in round 1 at 1:03.",
+          "source": "https://verdictmma.com/fighter/lucas-fernando",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Aug 30, 2024",
+          "label": "WIN · Pedro Oliveira · LFA 191",
+          "kind": "win",
+          "detail": "Defeated Pedro Oliveira at LFA 191 by Decision (Unanimous) in round 3.",
+          "source": "https://verdictmma.com/fighter/lucas-fernando",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "May 3, 2024",
+          "label": "WIN · Joao Paulo Silva · LFA 183",
+          "kind": "win",
+          "detail": "Defeated Joao Paulo Silva at LFA 183 by Decision (Unanimous) in round 3.",
+          "source": "https://verdictmma.com/fighter/lucas-fernando",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
           "date": "Nov. 7, 2026",
-          "label": "UFC debut booking · UFC Vegas 124",
+          "label": "Upcoming · Billy Elekana · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Billy Elekana at light heavyweight; results pending.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/135406-lucas-fernando"
+          "detail": "Scheduled to fight Billy Elekana at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24280,32 +24384,32 @@
       "name": "Mantas Kondratavičius",
       "subtitle": "Career chronology",
       "record": "9-1",
-      "ufcRecord": "",
+      "ufcRecord": "1-0",
       "division": "Middleweight",
       "items": [
         {
-          "date": "Mar. 21, 2026",
-          "label": "WIN · Antonio Trocoli · UFC Fight Night: London",
+          "date": "Mar 21, 2026",
+          "label": "WIN · Antonio Trocoli · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Antonio Trocoli at UFC Fight Night: London. Unanimous decision (3 rounds); UFC debut.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius"
+          "detail": "Defeated Antonio Trocoli at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "2025",
-          "label": "Contender Series contract · Dana White's Contender Series",
-          "kind": "milestone",
-          "detail": "Earned a UFC opportunity after appearing on the UFC's prospect series; opponent and finish remain to be verified.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius"
+          "date": "Sep 23, 2025",
+          "label": "WIN · Dani Barbir · Dana White's Contender Series",
+          "kind": "win",
+          "detail": "Defeated Dani Barbir at Dana White's Contender Series by TKO (Punches) in round 1 at 1:06.",
+          "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Andre Petroski · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Andre Petroski at UFC Vegas 124 on November 7, 2026 in the middleweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Andre Petroski at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24313,49 +24417,65 @@
       "slug": "andre-petroski",
       "name": "Andre Petroski",
       "subtitle": "Career chronology",
-      "record": "13-5",
+      "record": "13-6",
       "ufcRecord": "",
       "division": "Middleweight",
       "items": [
         {
-          "date": "Sep. 27, 2025",
+          "date": "2021",
+          "label": "Appears on The Ultimate Fighter 29",
+          "detail": "Competed as a middleweight on the 29th season of The Ultimate Fighter before making his UFC debut.",
+          "source": "https://www.ufc.com/athlete/andre-petroski",
+          "kind": "milestone",
+          "sourceLabel": "UFC fighter profile"
+        },
+        {
+          "date": "May 16, 2026",
+          "label": "LOSS · Cody Brundage · UFC Fight Night",
+          "kind": "loss",
+          "detail": "Lost to Cody Brundage at UFC Fight Night by TKO (Strikes) in round 2 at 0:44.",
+          "source": "https://verdictmma.com/fighter/andre-petroski",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Sep 27, 2025",
           "label": "LOSS · Cam Rowston · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Cam Rowston at UFC Fight Night. TKO (strikes), round 1 at 2:41.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/123353-andre-petroski"
+          "detail": "Lost to Cam Rowston at UFC Fight Night by TKO (Strikes) in round 1 at 2:41.",
+          "source": "https://verdictmma.com/fighter/andre-petroski",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Jun. 14, 2025",
+          "date": "Jun 14, 2025",
           "label": "LOSS · Edmen Shahbazyan · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Edmen Shahbazyan at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/123353-andre-petroski"
+          "detail": "Lost to Edmen Shahbazyan at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://verdictmma.com/fighter/andre-petroski",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Feb. 15, 2025",
+          "date": "Feb 15, 2025",
           "label": "WIN · Rodolfo Vieira · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Rodolfo Vieira at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/123353-andre-petroski"
+          "detail": "Defeated Rodolfo Vieira at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://verdictmma.com/fighter/andre-petroski",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Nov. 12, 2022",
-          "label": "WIN · Wellington Turman · UFC 281",
+          "date": "Sep 7, 2024",
+          "label": "WIN · Dylan Budka · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Wellington Turman at UFC 281. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/123353-andre-petroski"
+          "detail": "Defeated Dylan Budka at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://verdictmma.com/fighter/andre-petroski",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Mantas Kondratavičius · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Mantas Kondratavičius at UFC Vegas 124 on November 7, 2026 in the middleweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Mantas Kondratavičius at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24363,25 +24483,65 @@
       "slug": "gabriel-lorenco",
       "name": "Gabriel Lorenco",
       "subtitle": "Career chronology",
-      "record": "",
+      "record": "8-1",
       "ufcRecord": "",
       "division": "Heavyweight",
       "items": [
         {
-          "date": "2025",
-          "label": "Brazilian regional victories · Regional MMA",
+          "date": "Nov. 7, 2026",
+          "label": "Scheduled UFC debut against Thomas Petersen",
+          "detail": "Booked to make his UFC debut at UFC Vegas 124 after receiving a contract on Dana White's Contender Series.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
           "kind": "milestone",
-          "detail": "Won several regional fights by stoppage while pursuing a UFC opportunity.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/gabriel-lorenco"
+          "sourceLabel": "UFC fighter profile"
+        },
+        {
+          "date": "Sep 1, 2026",
+          "label": "WIN · Charlie Cleveland · Dana White's Contender Series",
+          "kind": "win",
+          "detail": "Defeated Charlie Cleveland at Dana White's Contender Series by TKO (Punches) in round 1 at 2:02.",
+          "source": "https://verdictmma.com/fighter/gabriel-the-black-mamba-lorenco",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Nov 15, 2025",
+          "label": "WIN · Bruno de Jesus · Curitiba Fight Pro 12",
+          "kind": "win",
+          "detail": "Defeated Bruno de Jesus at Curitiba Fight Pro 12 by TKO (Punches) in round 1.",
+          "source": "https://verdictmma.com/fighter/gabriel-the-black-mamba-lorenco",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Oct 18, 2025",
+          "label": "WIN · William Magalhaes · Saikyo 2",
+          "kind": "win",
+          "detail": "Defeated William Magalhaes at Saikyo 2 by Submission (Guillotine Choke) in round 1 at 0:56.",
+          "source": "https://verdictmma.com/fighter/gabriel-the-black-mamba-lorenco",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Jun 28, 2025",
+          "label": "WIN · Tiago Afonso · Brazilian Cage Championship 1",
+          "kind": "win",
+          "detail": "Defeated Tiago Afonso at Brazilian Cage Championship 1 by TKO (Knee) in round 1 at 1:45.",
+          "source": "https://verdictmma.com/fighter/gabriel-the-black-mamba-lorenco",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Nov 30, 2024",
+          "label": "WIN · Alan de Oliveira · Cidade da Luta 11",
+          "kind": "win",
+          "detail": "Defeated Alan de Oliveira at Cidade da Luta 11 by Decision (Unanimous) in round 3.",
+          "source": "https://verdictmma.com/fighter/gabriel-the-black-mamba-lorenco",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
           "date": "Nov. 7, 2026",
-          "label": "UFC debut booking · UFC Vegas 124",
+          "label": "Upcoming · Thomas Petersen · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled heavyweight UFC debut against Thomas Petersen.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/gabriel-lorenco"
+          "detail": "Scheduled to fight Thomas Petersen at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24389,57 +24549,57 @@
       "slug": "thomas-petersen",
       "name": "Thomas Petersen",
       "subtitle": "Career chronology",
-      "record": "11-4",
+      "record": "11-5",
       "ufcRecord": "",
       "division": "Heavyweight",
       "items": [
         {
-          "date": "Apr. 4, 2026",
-          "label": "WIN · Guilherme Pat · UFC Fight Night",
-          "kind": "win",
-          "detail": "Defeated Guilherme Pat at UFC Fight Night. Majority decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/187808-thomas-peterson"
+          "date": "Jul 25, 2026",
+          "label": "LOSS · Valter Walker · UFC Fight Night",
+          "kind": "loss",
+          "detail": "Lost to Valter Walker at UFC Fight Night by Submission (Calf Slicer) in round 1 at 1:32.",
+          "source": "https://verdictmma.com/fighter/thomas-the-train-petersen",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Oct. 11, 2025",
+          "date": "Apr 4, 2026",
+          "label": "WIN · Guilherme Pat · UFC Fight Night",
+          "kind": "win",
+          "detail": "Defeated Guilherme Pat at UFC Fight Night by Decision (Majority) in round 3.",
+          "source": "https://verdictmma.com/fighter/thomas-the-train-petersen",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Oct 11, 2025",
           "label": "LOSS · Vitor Petrino · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Vitor Petrino at UFC Fight Night. TKO (strikes), round 3 at 0:26.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/187808-thomas-peterson"
+          "detail": "Lost to Vitor Petrino at UFC Fight Night by TKO (Strikes) in round 3 at 0:26.",
+          "source": "https://verdictmma.com/fighter/thomas-the-train-petersen",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
           "date": "May 3, 2025",
           "label": "WIN · Don'Tale Mayes · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Don'Tale Mayes at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/187808-thomas-peterson"
+          "detail": "Defeated Don'Tale Mayes at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://verdictmma.com/fighter/thomas-the-train-petersen",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Feb. 1, 2025",
+          "date": "Feb 1, 2025",
           "label": "LOSS · Shamil Gaziev · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Shamil Gaziev at UFC Fight Night. TKO (right hook), round 1 at 3:12.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/187808-thomas-peterson"
-        },
-        {
-          "date": "Aug. 29, 2023",
-          "label": "WIN · Chandler Cole · Dana White's Contender Series",
-          "kind": "win",
-          "detail": "Defeated Chandler Cole at Dana White's Contender Series. Submission (keylock), round 2 at 1:08; signed with UFC.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/187808-thomas-peterson"
+          "detail": "Lost to Shamil Gaziev at UFC Fight Night by TKO (Right Hook) in round 1 at 3:12.",
+          "source": "https://verdictmma.com/fighter/thomas-the-train-petersen",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Gabriel Lorenco · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Gabriel Lorenco at UFC Vegas 124 on November 7, 2026 in the heavyweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Gabriel Lorenco at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24448,56 +24608,56 @@
       "name": "Karine Silva",
       "subtitle": "Career chronology",
       "record": "19-7",
-      "ufcRecord": "",
-      "division": "Women's Flyweight",
+      "ufcRecord": "5-3",
+      "division": "Women&#39;s Flyweight",
       "items": [
         {
-          "date": "Apr. 18, 2026",
+          "date": "Apr 18, 2026",
           "label": "LOSS · Jasmine Jasudavicius · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Jasmine Jasudavicius at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/69225-karine-silva-killer"
+          "detail": "Lost to Jasmine Jasudavicius at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/69225-karine-silva-killer",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Dec. 6, 2025",
+          "date": "Dec 6, 2025",
           "label": "LOSS · Maycee Barber · UFC 323",
           "kind": "loss",
-          "detail": "Lost to Maycee Barber at UFC 323. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/69225-karine-silva-killer"
+          "detail": "Lost to Maycee Barber at UFC 323 by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/69225-karine-silva-killer",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Aug. 16, 2025",
+          "date": "Aug 16, 2025",
           "label": "WIN · Dione Barbosa · UFC 319",
           "kind": "win",
-          "detail": "Defeated Dione Barbosa at UFC 319. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/69225-karine-silva-killer"
+          "detail": "Defeated Dione Barbosa at UFC 319 by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/69225-karine-silva-killer",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Nov. 16, 2024",
+          "date": "Nov 16, 2024",
           "label": "LOSS · Viviane Araujo · UFC 309",
           "kind": "loss",
-          "detail": "Lost to Viviane Araujo at UFC 309. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/69225-karine-silva-killer"
+          "detail": "Lost to Viviane Araujo at UFC 309 by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/69225-karine-silva-killer",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Aug. 19, 2023",
-          "label": "WIN · Maryna Moroz · UFC 292",
+          "date": "Apr 27, 2024",
+          "label": "WIN · Ariane Lipski · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Maryna Moroz at UFC 292. Submission (guillotine choke), round 1 at 4:59.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/69225-karine-silva-killer"
+          "detail": "Defeated Ariane Lipski at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/69225-karine-silva-killer",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Gabriella Fernandes · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Gabriella Fernandes at UFC Vegas 124 on November 7, 2026 in the women's flyweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Gabriella Fernandes at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24507,47 +24667,55 @@
       "subtitle": "Career chronology",
       "record": "11-4",
       "ufcRecord": "",
-      "division": "Women's Flyweight",
+      "division": "Women&#39;s Flyweight",
       "items": [
         {
-          "date": "Mar. 28, 2026",
+          "date": "Mar 28, 2026",
           "label": "LOSS · Casey O'Neill · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Casey O'Neill at UFC Fight Night. KO/TKO, round 1 at 3:11.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/gabriella-fernandes"
+          "detail": "Lost to Casey O'Neill at UFC Fight Night by KO/TKO (Strikes) in round 1 at 3:11.",
+          "source": "https://www.ufc.com/athlete/gabriella-fernandes",
+          "sourceLabel": "UFC fighter profile"
         },
         {
-          "date": "Aug. 9, 2025",
+          "date": "Aug 9, 2025",
           "label": "WIN · Julija Stoliarenko · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Julija Stoliarenko at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/gabriella-fernandes"
+          "detail": "Defeated Julija Stoliarenko at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.ufc.com/athlete/gabriella-fernandes",
+          "sourceLabel": "UFC fighter profile"
         },
         {
-          "date": "Nov. 23, 2024",
+          "date": "Nov 23, 2024",
           "label": "WIN · Wang Cong · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Wang Cong at UFC Fight Night. Submission (rear-naked choke), round 2 at 3:49.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/gabriella-fernandes"
+          "detail": "Defeated Wang Cong at UFC Fight Night by Submission (Rear-Naked Choke) in round 2 at 3:49.",
+          "source": "https://www.ufc.com/athlete/gabriella-fernandes",
+          "sourceLabel": "UFC fighter profile"
         },
         {
-          "date": "Jun. 15, 2024",
+          "date": "Jun 15, 2024",
           "label": "WIN · Carli Judice · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Carli Judice at UFC Fight Night. Split decision (3 rounds).",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/gabriella-fernandes"
+          "detail": "Defeated Carli Judice at UFC Fight Night by Decision (Split) in round 3.",
+          "source": "https://www.ufc.com/athlete/gabriella-fernandes",
+          "sourceLabel": "UFC fighter profile"
+        },
+        {
+          "date": "Jun 17, 2023",
+          "label": "LOSS · Tereza Bleda · UFC Fight Night",
+          "kind": "loss",
+          "detail": "Lost to Tereza Bleda at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.ufc.com/athlete/gabriella-fernandes",
+          "sourceLabel": "UFC fighter profile"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Karine Silva · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Karine Silva at UFC Vegas 124 on November 7, 2026 in the women's flyweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Karine Silva at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24555,49 +24723,57 @@
       "slug": "mitch-raposo",
       "name": "Mitch Raposo",
       "subtitle": "Career chronology",
-      "record": "10-3",
-      "ufcRecord": "",
+      "record": "11-3",
+      "ufcRecord": "1-2",
       "division": "Flyweight",
       "items": [
         {
-          "date": "Oct. 25, 2025",
+          "date": "Jun 20, 2026",
+          "label": "WIN · Allan Nascimento · UFC Fight Night",
+          "kind": "win",
+          "detail": "Defeated Allan Nascimento at UFC Fight Night by Decision (Split) in round 3.",
+          "source": "https://verdictmma.com/fighter/mitch-raposo",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Oct 25, 2025",
           "label": "WIN · Azat Maksum · UFC 321",
           "kind": "win",
-          "detail": "Defeated Azat Maksum at UFC 321. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/160416-mitch-raposo"
+          "detail": "Defeated Azat Maksum at UFC 321 by Decision (Unanimous) in round 3.",
+          "source": "https://verdictmma.com/fighter/mitch-raposo",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Apr. 12, 2025",
+          "date": "Apr 12, 2025",
           "label": "LOSS · Sumudaerji · UFC 314",
           "kind": "loss",
-          "detail": "Lost to Sumudaerji at UFC 314. Split decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/160416-mitch-raposo"
+          "detail": "Lost to Sumudaerji at UFC 314 by Decision (Split) in round 3.",
+          "source": "https://verdictmma.com/fighter/mitch-raposo",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Jun. 1, 2024",
+          "date": "Jun 1, 2024",
           "label": "LOSS · Andre Lima · UFC 302",
           "kind": "loss",
-          "detail": "Lost to Andre Lima at UFC 302. Split decision (3 rounds); UFC debut.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/160416-mitch-raposo"
+          "detail": "Lost to Andre Lima at UFC 302 by Decision (Split) in round 3.",
+          "source": "https://verdictmma.com/fighter/mitch-raposo",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Jan. 27, 2024",
+          "date": "Jan 27, 2024",
           "label": "WIN · Justin Valentin · Cage Titans 63",
           "kind": "win",
-          "detail": "Defeated Justin Valentin at Cage Titans 63. TKO, round 4 at 3:03; won the flyweight championship.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/160416-mitch-raposo"
+          "detail": "Defeated Justin Valentin at Cage Titans 63 by TKO (Strikes) in round 4 at 3:03.",
+          "source": "https://verdictmma.com/fighter/mitch-raposo",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Marcos Degli · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Marcos Degli at UFC Vegas 124 on November 7, 2026 in the flyweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Marcos Degli at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24605,41 +24781,41 @@
       "slug": "marcos-degli",
       "name": "Marcos Degli",
       "subtitle": "Career chronology",
-      "record": "14-3",
+      "record": "15-3",
       "ufcRecord": "",
       "division": "Flyweight",
       "items": [
         {
-          "date": "Jan. 30, 2026",
-          "label": "WIN · Luis Aguiar · LFA 225",
+          "date": "Sep 22, 2026",
+          "label": "WIN · Paris Moran · Dana White's Contender Series",
           "kind": "win",
-          "detail": "Defeated Luis Aguiar at LFA 225. TKO (body shot), round 1 at 1:35.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/events/137876-lfa-225-degli-vs-aguiar"
+          "detail": "Defeated Paris Moran at Dana White's Contender Series by Submission (Rear-Naked Choke) in round 2 at 4:46.",
+          "source": "https://www.tapology.com/fightcenter/events/137876-lfa-225-degli-vs-aguiar",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Feb. 7, 2025",
+          "date": "Jan 30, 2026",
+          "label": "WIN · Luís Aguiar · LFA 225",
+          "kind": "win",
+          "detail": "Defeated Luís Aguiar at LFA 225 by TKO (Body Shot) in round 1 at 1:35.",
+          "source": "https://www.tapology.com/fightcenter/events/137876-lfa-225-degli-vs-aguiar",
+          "sourceLabel": "Tapology fighter history"
+        },
+        {
+          "date": "Feb 7, 2025",
           "label": "WIN · Lincon Santos · LFA 201",
           "kind": "win",
-          "detail": "Defeated Lincon Santos at LFA 201. TKO (punch), round 2 at 0:41.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/events/137876-lfa-225-degli-vs-aguiar"
-        },
-        {
-          "date": "2024",
-          "label": "LFA title contention · LFA",
-          "kind": "milestone",
-          "detail": "Competed in the organization's flyweight title picture before his UFC booking.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/events/137876-lfa-225-degli-vs-aguiar"
+          "detail": "Defeated Lincon Santos at LFA 201 by TKO (Punches) in round 2 at 0:41.",
+          "source": "https://www.tapology.com/fightcenter/events/137876-lfa-225-degli-vs-aguiar",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Mitch Raposo · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Mitch Raposo at UFC Vegas 124 on November 7, 2026 in the flyweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Mitch Raposo at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24648,48 +24824,48 @@
       "name": "Jose Delano",
       "subtitle": "Career chronology",
       "record": "17-3",
-      "ufcRecord": "",
+      "ufcRecord": "1-0",
       "division": "Featherweight",
       "items": [
         {
-          "date": "Apr. 4, 2026",
+          "date": "Apr 4, 2026",
           "label": "WIN · Robert Ruchala · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Robert Ruchala at UFC Fight Night. Unanimous decision (3 rounds); UFC debut.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/167070-jose-delano"
+          "detail": "Defeated Robert Ruchala at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/167070-jose-delano",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Aug. 19, 2025",
+          "date": "Aug 19, 2025",
           "label": "WIN · Manuel Exposito · Dana White's Contender Series",
           "kind": "win",
-          "detail": "Defeated Manuel Exposito at Dana White's Contender Series. Unanimous decision (3 rounds); UFC contract.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/167070-jose-delano"
+          "detail": "Defeated Manuel Exposito at Dana White's Contender Series by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/167070-jose-delano",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Feb. 7, 2025",
+          "date": "Feb 7, 2025",
           "label": "WIN · Abu Muslim Alikhanov · LFA 201",
           "kind": "win",
-          "detail": "Defeated Abu Muslim Alikhanov at LFA 201. TKO (punch), round 1 at 3:46.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/167070-jose-delano"
+          "detail": "Defeated Abu Muslim Alikhanov at LFA 201 by TKO (Punch) in round 1 at 3:46.",
+          "source": "https://www.tapology.com/fightcenter/fighters/167070-jose-delano",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Mar. 23, 2024",
+          "date": "Mar 23, 2024",
           "label": "WIN · Alan Villalba · LFA 179",
           "kind": "win",
-          "detail": "Defeated Alan Villalba at LFA 179. Submission (rear-naked choke), round 1 at 4:55.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/167070-jose-delano"
+          "detail": "Defeated Alan Villalba at LFA 179 by Submission (Rear-Naked Choke) in round 1 at 4:55.",
+          "source": "https://www.tapology.com/fightcenter/fighters/167070-jose-delano",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Murtazali Magomedov · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Murtazali Magomedov at UFC Vegas 124 on November 7, 2026 in the featherweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Murtazali Magomedov at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24697,41 +24873,57 @@
       "slug": "murtazali-magomedov",
       "name": "Murtazali Magomedov",
       "subtitle": "Career chronology",
-      "record": "10-0",
+      "record": "11-0",
       "ufcRecord": "",
       "division": "Featherweight",
       "items": [
         {
-          "date": "Sep. 23, 2025",
+          "date": "Jun 20, 2026",
+          "label": "WIN · Melsik Baghdasaryan · UFC Fight Night",
+          "kind": "win",
+          "detail": "Defeated Melsik Baghdasaryan at UFC Fight Night by Submission (Modified Twister) in round 1 at 1:17.",
+          "source": "https://verdictmma.com/fighter/murtazali-the-highlight-magomedov",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Sep 23, 2025",
           "label": "WIN · Brahyam Zurcher · Dana White's Contender Series",
           "kind": "win",
-          "detail": "Defeated Brahyam Zurcher at Dana White's Contender Series. TKO (punches), round 1 at 1:37; earned UFC contract.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/361797-murtazali-magomedov"
+          "detail": "Defeated Brahyam Zurcher at Dana White's Contender Series by TKO (Punches) in round 1 at 1:37.",
+          "source": "https://verdictmma.com/fighter/murtazali-the-highlight-magomedov",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "Dec. 6, 2024",
+          "date": "Dec 6, 2024",
           "label": "WIN · Claudeci Brito · Octagon 67",
           "kind": "win",
-          "detail": "Defeated Claudeci Brito at Octagon 67. TKO (strikes), round 2 at 2:30.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/361797-murtazali-magomedov"
+          "detail": "Defeated Claudeci Brito at Octagon 67 by TKO (Strikes) in round 2 at 2:30.",
+          "source": "https://verdictmma.com/fighter/murtazali-the-highlight-magomedov",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
-          "date": "2022",
-          "label": "Professional career begins · WEF",
-          "kind": "milestone",
-          "detail": "Recorded early professional wins on the Kyrgyzstan regional circuit.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/361797-murtazali-magomedov"
+          "date": "Jun 23, 2024",
+          "label": "WIN · Sardor Khudoyberdiev · Regional MMA",
+          "kind": "win",
+          "detail": "Defeated Sardor Khudoyberdiev at Regional MMA by Submission (Triangle Choke) in round 2 at 3:48.",
+          "source": "https://verdictmma.com/fighter/murtazali-the-highlight-magomedov",
+          "sourceLabel": "Verdict MMA fighter history"
+        },
+        {
+          "date": "Feb 16, 2024",
+          "label": "WIN · Beksultan Taalay uulu · Regional MMA",
+          "kind": "win",
+          "detail": "Defeated Beksultan Taalay uulu at Regional MMA by Submission (Rear-Naked Choke) in round 1 at 2:58.",
+          "source": "https://verdictmma.com/fighter/murtazali-the-highlight-magomedov",
+          "sourceLabel": "Verdict MMA fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Jose Delano · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Jose Delano at UFC Vegas 124 on November 7, 2026 in the featherweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Jose Delano at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24745,35 +24937,43 @@
       "items": [
         {
           "date": "Jan. 31, 2026",
-          "label": "WIN · Sebastian Szalay · Road to UFC / UFC 325",
-          "kind": "win",
-          "detail": "Defeated Sebastian Szalay at Road to UFC / UFC 325. TKO (knee), round 3 at 3:48; won Road to UFC tournament.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/334478-keiichiro-nakamura"
+          "label": "Wins Road to UFC featherweight tournament",
+          "detail": "Defeated Sebastian Szalay by third-round knee stoppage in the Road to UFC featherweight final.",
+          "source": "https://www.ufc.com/athlete/keiichiro-nakamura",
+          "kind": "milestone",
+          "sourceLabel": "UFC fighter profile"
         },
         {
-          "date": "Aug. 22, 2025",
+          "date": "Jan 31, 2026",
+          "label": "WIN · Sebastian Szalay · Road to UFC / UFC 325",
+          "kind": "win",
+          "detail": "Defeated Sebastian Szalay at Road to UFC / UFC 325 by TKO (Knee) in round 3 at 3:48.",
+          "source": "https://www.tapology.com/fightcenter/fighters/334478-keiichiro-nakamura",
+          "sourceLabel": "Tapology fighter history"
+        },
+        {
+          "date": "Aug 22, 2025",
           "label": "WIN · Li Kaiwen · Road to UFC",
           "kind": "win",
-          "detail": "Defeated Li Kaiwen at Road to UFC. Unanimous decision (3 rounds); semifinal.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/334478-keiichiro-nakamura"
+          "detail": "Defeated Li Kaiwen at Road to UFC by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/334478-keiichiro-nakamura",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "May 22, 2025",
           "label": "WIN · Park Eoh-jin · Road to UFC",
           "kind": "win",
-          "detail": "Defeated Park Eoh-jin at Road to UFC. TKO (knee), round 2 at 2:24; tournament quarterfinal.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/334478-keiichiro-nakamura"
+          "detail": "Defeated Park Eoh-jin at Road to UFC by TKO (Knee) in round 2 at 2:24.",
+          "source": "https://www.tapology.com/fightcenter/fighters/334478-keiichiro-nakamura",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Ollie Schmid · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Ollie Schmid at UFC Vegas 124 on November 7, 2026 in the featherweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Ollie Schmid at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24782,40 +24982,40 @@
       "name": "Ollie Schmid",
       "subtitle": "Career chronology",
       "record": "4-3",
-      "ufcRecord": "",
+      "ufcRecord": "0-1",
       "division": "Featherweight",
       "items": [
         {
           "date": "May 2, 2026",
           "label": "LOSS · Marwan Rahiki · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Marwan Rahiki at UFC Fight Night. TKO (strikes), round 1 at 2:47; UFC debut.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/237487-oliver-schmid"
+          "detail": "Lost to Marwan Rahiki at UFC Fight Night by TKO (Strikes) in round 1 at 2:47.",
+          "source": "https://www.tapology.com/fightcenter/fighters/237487-oliver-schmid",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Mar. 7, 2026",
+          "date": "Mar 7, 2026",
           "label": "WIN · Jeffrey Mesa · Shuriken Fight Series 23",
           "kind": "win",
-          "detail": "Defeated Jeffrey Mesa at Shuriken Fight Series 23. TKO (backfist), round 1 at 0:15.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/237487-oliver-schmid"
+          "detail": "Defeated Jeffrey Mesa at Shuriken Fight Series 23 by TKO (Backfist) in round 1 at 0:15.",
+          "source": "https://www.tapology.com/fightcenter/fighters/237487-oliver-schmid",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Jul. 5, 2025",
+          "date": "Jul 5, 2025",
           "label": "WIN · Ford Gerbes · SFC: Rivalry",
           "kind": "win",
-          "detail": "Defeated Ford Gerbes at SFC: Rivalry. TKO (right hand), round 1.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/237487-oliver-schmid"
+          "detail": "Defeated Ford Gerbes at SFC: Rivalry by TKO (Right Hand) in round 1.",
+          "source": "https://www.tapology.com/fightcenter/fighters/237487-oliver-schmid",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Keiichiro Nakamura · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Keiichiro Nakamura at UFC Vegas 124 on November 7, 2026 in the featherweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Keiichiro Nakamura at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24823,49 +25023,49 @@
       "slug": "austin-bashi",
       "name": "Austin Bashi",
       "subtitle": "Career chronology",
-      "record": "",
-      "ufcRecord": "",
+      "record": "14-2",
+      "ufcRecord": "1-2",
       "division": "Featherweight",
       "items": [
         {
-          "date": "Jul. 2026",
+          "date": "Jul 18, 2026",
           "label": "LOSS · Jose Delgado · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Jose Delgado at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi"
+          "detail": "Lost to Jose Delgado at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Aug. 2, 2025",
+          "date": "Aug 2, 2025",
           "label": "WIN · John Yannis · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated John Yannis at UFC Fight Night. Submission (rear-naked choke), round 1 at 3:39.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi"
+          "detail": "Defeated John Yannis at UFC Fight Night by Submission (Rear-Naked Choke) in round 1 at 3:39.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Jan. 11, 2025",
+          "date": "Jan 11, 2025",
           "label": "LOSS · Christian Rodriguez · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Christian Rodriguez at UFC Fight Night. Unanimous decision (3 rounds); UFC debut.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi"
+          "detail": "Lost to Christian Rodriguez at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Sep. 3, 2024",
+          "date": "Sep 3, 2024",
           "label": "WIN · Dorian Ramos · Dana White's Contender Series",
           "kind": "win",
-          "detail": "Defeated Dorian Ramos at Dana White's Contender Series. Submission (rear-naked choke), round 2 at 3:15; UFC contract.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi"
+          "detail": "Defeated Dorian Ramos at Dana White's Contender Series by Submission (Rear-Naked Choke) in round 2 at 3:15.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Carlos Calderon · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Carlos Calderon at UFC Vegas 124 on November 7, 2026 in the featherweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Carlos Calderon at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24873,49 +25073,49 @@
       "slug": "carlos-calderon",
       "name": "Carlos Calderon",
       "subtitle": "Career chronology",
-      "record": "",
+      "record": "11-4 (1 NC)",
       "ufcRecord": "",
       "division": "Featherweight",
       "items": [
         {
+          "date": "Nov. 4, 2026",
+          "label": "Accepts short-notice UFC debut",
+          "detail": "Replaced injured Lucas Brennan against Austin Bashi on only four days' notice after winning the Fury FC featherweight championship.",
+          "source": "https://www.mmafighting.com/ufc/519393/ufc-vegas-124-adds-replacement-fighter-on-4-days-notice",
+          "kind": "milestone",
+          "sourceLabel": "MMA Fighting"
+        },
+        {
           "date": "2026",
           "label": "WIN · Lorram Esteves · Fury FC",
           "kind": "win",
-          "detail": "Defeated Lorram Esteves at Fury FC. Unanimous decision (3 rounds); defended Fury FC featherweight title.",
-          "sourceLabel": "MMA Fighting",
-          "source": "https://www.mmafighting.com/ufc/519393/ufc-vegas-124-adds-replacement-fighter-on-4-days-notice"
+          "detail": "Defeated Lorram Esteves at Fury FC by Decision (Unanimous) in round 5.",
+          "source": "https://www.mmafighting.com/ufc/519393/ufc-vegas-124-adds-replacement-fighter-on-4-days-notice",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "2026",
           "label": "WIN · Damon Jackson · Fury FC",
           "kind": "win",
-          "detail": "Defeated Damon Jackson at Fury FC. Submission victory; won Fury FC featherweight title.",
-          "sourceLabel": "MMA Fighting",
-          "source": "https://www.mmafighting.com/ufc/519393/ufc-vegas-124-adds-replacement-fighter-on-4-days-notice"
+          "detail": "Defeated Damon Jackson at Fury FC by Submission.",
+          "source": "https://www.mmafighting.com/ufc/519393/ufc-vegas-124-adds-replacement-fighter-on-4-days-notice",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "2025",
           "label": "WIN · Juan Alvarez Jr. · Fury FC 104",
           "kind": "win",
-          "detail": "Defeated Juan Alvarez Jr. at Fury FC 104. Submission (guillotine choke), round 1 at 1:19.",
-          "sourceLabel": "MMA Fighting",
-          "source": "https://www.mmafighting.com/ufc/519393/ufc-vegas-124-adds-replacement-fighter-on-4-days-notice"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Accepts UFC debut on short notice · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Replaces Lucas Brennan against Austin Bashi after Brennan withdrew with a torn ACL; four days' notice",
-          "sourceLabel": "MMA Fighting",
-          "source": "https://www.mmafighting.com/ufc/519393/ufc-vegas-124-adds-replacement-fighter-on-4-days-notice"
+          "detail": "Defeated Juan Alvarez Jr. at Fury FC 104 by Submission (Guillotine Choke) in round 1 at 1:19.",
+          "source": "https://www.mmafighting.com/ufc/519393/ufc-vegas-124-adds-replacement-fighter-on-4-days-notice",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Austin Bashi · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Austin Bashi at UFC Vegas 124 on November 7, 2026 in the featherweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Austin Bashi at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24923,49 +25123,49 @@
       "slug": "priscila-cachoeira",
       "name": "Priscila Cachoeira",
       "subtitle": "Career chronology",
-      "record": "13-8",
-      "ufcRecord": "",
-      "division": "Women's Bantamweight",
+      "record": "13-9",
+      "ufcRecord": "5-8",
+      "division": "Women&#39;s Bantamweight",
       "items": [
         {
-          "date": "Feb. 7, 2026",
+          "date": "Jun 6, 2026",
+          "label": "LOSS · Chelsea Chandler · UFC Fight Night",
+          "kind": "loss",
+          "detail": "Lost to Chelsea Chandler at UFC Fight Night by Submission (Armbar) in round 1 at 3:42.",
+          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira",
+          "sourceLabel": "Tapology fighter history"
+        },
+        {
+          "date": "Feb 7, 2026",
           "label": "LOSS · Klaudia Sygula · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Klaudia Sygula at UFC Fight Night. Unanimous decision (3 rounds).",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira"
+          "detail": "Lost to Klaudia Sygula at UFC Fight Night by Decision (Unanimous) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Aug. 9, 2025",
+          "date": "Aug 9, 2025",
           "label": "LOSS · Joselyne Edwards · UFC Fight Night",
           "kind": "loss",
-          "detail": "Lost to Joselyne Edwards at UFC Fight Night. TKO (strikes), round 1 at 2:24.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira"
+          "detail": "Lost to Joselyne Edwards at UFC Fight Night by TKO (Strikes) in round 1 at 2:24.",
+          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Mar. 15, 2025",
+          "date": "Mar 15, 2025",
           "label": "WIN · Josiane Nunes · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Josiane Nunes at UFC Fight Night. TKO (uppercut), round 1 at 2:46.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira"
-        },
-        {
-          "date": "Feb. 3, 2018",
-          "label": "LOSS · Valentina Shevchenko · UFC Fight Night",
-          "kind": "loss",
-          "detail": "Lost to Valentina Shevchenko at UFC Fight Night. Submission (rear-naked choke), round 2 at 4:25; UFC debut.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira"
+          "detail": "Defeated Josiane Nunes at UFC Fight Night by TKO (Uppercut) in round 1 at 2:46.",
+          "source": "https://www.tapology.com/fightcenter/fighters/128371-priscila-cachoeira",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Nina Milošević · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Nina Milošević at UFC Vegas 124 on November 7, 2026 in the women's bantamweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Nina Milošević at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -24974,48 +25174,32 @@
       "name": "Nina Milošević",
       "subtitle": "Career chronology",
       "record": "9-1",
-      "ufcRecord": "",
-      "division": "Women's Bantamweight",
+      "ufcRecord": "1-0",
+      "division": "Women&#39;s Bantamweight",
       "items": [
         {
-          "date": "Aug. 1, 2026",
+          "date": "Amateur career",
+          "label": "Two-time IMMAF world champion",
+          "detail": "Won two IMMAF amateur world championships before turning professional.",
+          "source": "https://www.ufc.com/athlete/nina-milosevic",
+          "kind": "milestone",
+          "sourceLabel": "UFC fighter profile"
+        },
+        {
+          "date": "Aug 1, 2026",
           "label": "WIN · Hailey Cowan · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Hailey Cowan at UFC Fight Night. TKO (strikes), round 1 at 3:41; UFC debut.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/nina-milosevic"
-        },
-        {
-          "date": "2025",
-          "label": "Undertakes five-fight winning run · European regional MMA",
-          "kind": "milestone",
-          "detail": "Won five professional fights in 2025 before joining UFC.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/nina-milosevic"
-        },
-        {
-          "date": "Amateur career",
-          "label": "Two-time IMMAF world champion · IMMAF",
-          "kind": "milestone",
-          "detail": "Won two world amateur MMA championships, along with a European championship.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/nina-milosevic"
-        },
-        {
-          "date": "Nov. 2023",
-          "label": "LOSS · Professional debut opponent · Regional MMA",
-          "kind": "loss",
-          "detail": "Lost to Professional debut opponent at Regional MMA. Lost her professional debut by split decision; opponent name pending verification..",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/nina-milosevic"
+          "detail": "Defeated Hailey Cowan at UFC Fight Night by TKO (Strikes) in round 1 at 3:41.",
+          "source": "https://www.ufc.com/athlete/nina-milosevic",
+          "sourceLabel": "UFC fighter profile"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Priscila Cachoeira · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Priscila Cachoeira at UFC Vegas 124 on November 7, 2026 in the women's bantamweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Priscila Cachoeira at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -25024,40 +25208,48 @@
       "name": "Jonny Parsons",
       "subtitle": "Career chronology",
       "record": "9-3",
-      "ufcRecord": "",
+      "ufcRecord": "1-0",
       "division": "Welterweight",
       "items": [
         {
-          "date": "Jul. 22, 2023",
+          "date": "2023–2026",
+          "label": "Long absence from UFC competition",
+          "detail": "Had not fought professionally since his July 2023 UFC debut win against Danny Roberts before this November 2026 booking.",
+          "source": "https://www.ufc.com/athlete/jonny-parsons",
+          "kind": "milestone",
+          "sourceLabel": "UFC fighter profile"
+        },
+        {
+          "date": "Jul 22, 2023",
           "label": "WIN · Danny Roberts · UFC Fight Night",
           "kind": "win",
-          "detail": "Defeated Danny Roberts at UFC Fight Night. TKO (punches), round 2 at 4:57; UFC debut.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/99713-johnny-parsons"
+          "detail": "Defeated Danny Roberts at UFC Fight Night by TKO (Punches) in round 2 at 4:57.",
+          "source": "https://www.tapology.com/fightcenter/fighters/99713-johnny-parsons",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Oct. 19, 2021",
+          "date": "Oct 19, 2021",
           "label": "WIN · Solomon Renfro · Dana White's Contender Series",
           "kind": "win",
-          "detail": "Defeated Solomon Renfro at Dana White's Contender Series. Split decision (3 rounds); UFC contract.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/99713-johnny-parsons"
+          "detail": "Defeated Solomon Renfro at Dana White's Contender Series by Decision (Split) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/99713-johnny-parsons",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Jun. 11, 2021",
+          "date": "Jun 11, 2021",
           "label": "WIN · Ricardo Chavez · iKON Fighting Federation 7",
           "kind": "win",
-          "detail": "Defeated Ricardo Chavez at iKON Fighting Federation 7. TKO (head kick), round 2 at 3:26.",
-          "sourceLabel": "Tapology fighter record",
-          "source": "https://www.tapology.com/fightcenter/fighters/99713-johnny-parsons"
+          "detail": "Defeated Ricardo Chavez at iKON Fighting Federation 7 by TKO (Head Kick) in round 2 at 3:26.",
+          "source": "https://www.tapology.com/fightcenter/fighters/99713-johnny-parsons",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · José Souza · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face José Souza at UFC Vegas 124 on November 7, 2026 in the welterweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight José Souza at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     },
@@ -25065,7 +25257,7 @@
       "slug": "jose-souza",
       "name": "José Souza",
       "subtitle": "Career chronology",
-      "record": "",
+      "record": "9-1",
       "ufcRecord": "",
       "division": "Welterweight",
       "items": [
@@ -25073,33 +25265,33 @@
           "date": "May 30, 2026",
           "label": "WIN · Meng Ding · UFC Fight Night: Macau",
           "kind": "win",
-          "detail": "Defeated Meng Ding at UFC Fight Night: Macau. Won UFC debut; finish details need verification.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/jose-henrique"
+          "detail": "Defeated Meng Ding at UFC Fight Night: Macau by Decision (Split) in round 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/289580-jose-henrique-canela",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Nov. 13, 2024",
+          "date": "Nov 13, 2024",
           "label": "WIN · Porfirio Alves · CFC 24",
           "kind": "win",
-          "detail": "Defeated Porfirio Alves at CFC 24. TKO, round 2 at 2:30.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/jose-henrique"
+          "detail": "Defeated Porfirio Alves at CFC 24 by TKO (Strikes) in round 2 at 2:30.",
+          "source": "https://www.tapology.com/fightcenter/fighters/289580-jose-henrique-canela",
+          "sourceLabel": "Tapology fighter history"
         },
         {
-          "date": "Aug. 30, 2022",
+          "date": "Aug 30, 2022",
           "label": "LOSS · Yusaku Kinoshita · Dana White's Contender Series",
           "kind": "loss",
-          "detail": "Lost to Yusaku Kinoshita at Dana White's Contender Series. TKO (strikes), round 3 at 0:43.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/jose-henrique"
+          "detail": "Lost to Yusaku Kinoshita at Dana White's Contender Series by TKO (Strikes) in round 3 at 0:43.",
+          "source": "https://www.tapology.com/fightcenter/fighters/289580-jose-henrique-canela",
+          "sourceLabel": "Tapology fighter history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Jonny Parsons · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to face Jonny Parsons at UFC Vegas 124 on November 7, 2026 in the welterweight division. No result yet.",
-          "sourceLabel": "UFC event card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+          "detail": "Scheduled to fight Jonny Parsons at UFC Vegas 124 in Las Vegas. No result yet.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "Official UFC event"
         }
       ]
     }
