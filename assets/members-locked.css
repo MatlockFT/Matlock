@@ -23,3 +23,14 @@
 .members-locked-article h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); margin: 1.25rem 0 .65rem; }
 .members-locked-article p { max-width: 65ch; margin-bottom: 1.5rem; }
 .writer-members-toggle small { display: block; margin-left: 1.5rem; font-weight: 400; opacity: .76; line-height: 1.4; }
+
+.writer-members-toggle { grid-column: 1 / -1; }
+.writer-members-toggle input { margin-right: .45rem; }
+.writer-members-preview-banner {
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  padding: .85rem 1rem;
+  margin-bottom: 1rem;
+  font-size: .9rem;
+  line-height: 1.5;
+}
