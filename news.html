@@ -45,7 +45,7 @@ page_fetch_preloads:
                     data-news-feature
                     data-id="{{ post.url | relative_url | escape }}"
                     data-title="{{ post.title | escape }}"
-                    data-url="{{ post.url | relative_url }}"
+                    data-url="{% if post.members_only %}https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}{% else %}{{ post.url | relative_url }}{% endif %}"
                     data-image="{% if news_feature_image %}{{ news_feature_src | relative_url }}{% endif %}"
                     data-image-alt="{{ news_feature_alt | escape }}"
                     data-published-at="{{ post.date | date_to_xmlschema }}"
