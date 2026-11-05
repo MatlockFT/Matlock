@@ -1,5 +1,5 @@
 {
-  "version": 48,
+  "version": 49,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -25826,6 +25826,14 @@
       "division": "Welterweight",
       "items": [
         {
+          "date": "Before professional MMA (dates unverified)",
+          "label": "Judo upbringing, Kyonggi University and early career direction",
+          "kind": "training",
+          "detail": "Ko developed his combat-sports base in judo, eventually earning a black belt. His UFC questionnaire says he attended Kyonggi University but dropped out, and worked part-time jobs before MMA. Exact school years and the judo black-belt award date are not established; these are undated career background, not professional bouts.",
+          "source": "https://www.ufc.com/athlete/seokhyeon-ko",
+          "sourceLabel": "UFC · fighter questionnaire, background, age and official results"
+        },
+        {
           "date": "Before 2018",
           "label": "Military service precedes professional MMA career",
           "kind": "background",
@@ -25842,12 +25850,44 @@
           "sourceLabel": "UFC · judo, BJJ and sambo credentials"
         },
         {
-          "date": "November 2017",
-          "label": "Wins 2017 World Sambo Championships gold for South Korea",
+          "date": "Around 2015 (approximate)",
+          "label": "Starts focused combat-sambo training",
+          "kind": "training",
+          "detail": "A December 2017 Yonhap profile said Ko had begun training specifically in sambo roughly two years earlier, building on his strong judo foundation. This approximates 2015, not a documented exact enrollment date, and helps explain how he entered the 2017 international circuit.",
+          "source": "https://www.yna.co.kr/amp/view/AKR20171205085700007",
+          "sourceLabel": "Yonhap · December 2017 interview on sambo and UFC ambitions"
+        },
+        {
+          "date": "September 2017 (day unverified)",
+          "label": "Wins combat-sambo World Cup in Irkutsk",
           "kind": "grappling",
-          "detail": "Won combat-sambo gold at the 2017 World Sambo Championships in Sochi, Russia. International SAMBO Federation lists the gold as South Korea's first world sambo championship title, and Ko later described the recognition it brought. Sambo medal is not a professional MMA fight.",
-          "source": "https://new.sambo.sport/en/federations/sambo-union-of-asia-and-oceania/korea-sambo-federation/",
-          "sourceLabel": "International Sambo Federation · South Korea's 2017 world title record"
+          "detail": "South Korea's Yonhap news agency reported that Ko won a World Cup competition in Irkutsk, Russia, in September 2017, before his November world championship. Competition-specific match dates and opponents have not been independently verified; do not fabricate them. This was sambo, not professional MMA.",
+          "source": "https://www.yna.co.kr/view/AKR20171112055600007",
+          "sourceLabel": "Yonhap · November 12, 2017 contemporary world championship and World Cup report"
+        },
+        {
+          "date": "Nov. 11, 2017",
+          "label": "Wins 2017 world combat-sambo championship at 82 kg",
+          "kind": "grappling",
+          "detail": "Won gold in the men's combat-sambo 82 kg division at the World SAMBO Championships in Sochi, Russia, defeating Belarus's Yauheni Aleksiyévich (Alekseyevich) 6-1 in the final on November 11, 2017. FIAS official results list Ko first and the Belarusian second. Yonhap identified him as South Korea's first world sambo gold medalist. Contemporary reports published Nov. 12 sometimes use a next-day dating convention; the FIAS competition-day result is Nov. 11.",
+          "source": "https://sambo.sport/en/news/pobediteli-i-prizery-2-dnya-chempionata-mira-po-sambo-2017-v-sochi/",
+          "sourceLabel": "International SAMBO Federation · November 11 2017 world championship podium"
+        },
+        {
+          "date": "Nov. 11, 2017",
+          "label": "First Korean world sambo gold; official post-final remarks",
+          "kind": "milestone",
+          "detail": "International SAMBO Federation interviewed Ko after his gold medal in Sochi. He described the first match as exhausting, said confidence built with each subsequent victory and expressed hope that the first Korean gold medal would expand sambo's appeal back home. This is a separate career milestone, not another professional MMA fight.",
+          "source": "https://sambo.sport/en/news/o-chem-govorili-pobediteli-i-prizery-2-dnya-chempionata-mira-po-sambo-2017/",
+          "sourceLabel": "International SAMBO Federation · Ko's 2017 first-person gold-medal remarks"
+        },
+        {
+          "date": "Dec. 5, 2017",
+          "label": "States ambition to reach the UFC following historic sambo title",
+          "kind": "milestone",
+          "detail": "In a Korean-language Yonhap interview after the world championship, Ko said entering the UFC was a personal long-term goal. Reporting emphasized that he had become a world combat-sambo champion within approximately two years of focused sambo practice. He later made his professional MMA debut in January 2018 and his official UFC debut in June 2025.",
+          "source": "https://www.yna.co.kr/amp/view/AKR20171205085700007",
+          "sourceLabel": "Yonhap · December 2017 interview on sambo and UFC ambitions"
         },
         {
           "date": "Jan. 12, 2018",
@@ -26003,6 +26043,14 @@
         },
         {
           "date": "Sep. 3, 2024",
+          "label": "DWCS opponent unbeaten; decision opens door to UFC",
+          "kind": "milestone",
+          "detail": "Ko beat previously unbeaten Igor Cavalcanti by unanimous decision at DWCS 2024 Week 4. Unlike many earlier regional knockouts, the three-round win featured patient grappling and positional work. Professional record became 11-2 but UFC official record remained 0-0. The event is Contender Series, NOT Road to UFC.",
+          "source": "https://www.ufc.com/news/seokhyeon-ko-quietly-making-waves-welterweight-ufc-oklahoma-city",
+          "sourceLabel": "UFC · July 17, 2026 interview on tactics, nickname, rib injury and Elliott"
+        },
+        {
+          "date": "Sep. 3, 2024",
           "label": "Earns a UFC contract through Contender Series",
           "kind": "milestone",
           "detail": "Won the DWCS season eight, week four main event over Igor Cavalcanti and received one of five UFC contracts awarded that night. This was not a Road to UFC tournament appearance. The DWCS win counts toward Ko's 13-3 professional record but not his 2-1 UFC record.",
@@ -26021,9 +26069,9 @@
           "date": "Jun. 21, 2025",
           "label": "WIN · Oban Elliott · UFC on ABC 8: Hill vs. Rountree Jr.",
           "kind": "win",
-          "detail": "Defeated Oban Elliott at UFC on ABC 8: Hill vs. Rountree Jr. on Jun. 21, 2025 by unanimous decision (round 3, 5:00). Professional MMA record after bout: 12-2. Official UFC record: 1-0. Official UFC debut in Baku, Azerbaijan, after visa issues had canceled a planned May 31 Las Vegas debut against Billy Ray Goff. Ko controlled large portions of the fight with wrestling to win.",
-          "source": "https://www.ufc.com/athlete/seokhyeon-ko",
-          "sourceLabel": "UFC · official fight result"
+          "detail": "Defeated previously unbeaten-in-UFC Oban Elliott by unanimous decision in Baku, Azerbaijan, all three judges 30-27. Professional MMA record rose to 12-2, UFC record 1-0. Ko converted six of nine takedown attempts, logged 10:15 control and out-landed Elliott 33-10 in significant strikes. The fight was his official UFC debut after visa-related removal from a May 31 Las Vegas booking. The prior DWCS win is pro MMA but not official UFC.",
+          "source": "https://www.ufc.com/news/official-judges-scorecards-ufc-fight-night-hill-vs-rountree-jr-baku",
+          "sourceLabel": "UFC · June 21 2025 official Elliott scorecards"
         },
         {
           "date": "Jun. 21, 2025",
@@ -26034,28 +26082,52 @@
           "sourceLabel": "Sherdog · visa changes and rebooking; UFC fight history"
         },
         {
+          "date": "June 21, 2025",
+          "label": "Ground control drives three-round Baku debut shutout",
+          "kind": "milestone",
+          "detail": "Official scorecards were 30-27 across all three judges against Oban Elliott. Ko's six takedowns from nine attempts and 10:15 of control demonstrate the successful grappling-heavy transition from his regional striking style. This is a technical milestone for the Elliott bout, not an extra UFC contest.",
+          "source": "https://www.ufc.com/news/official-judges-scorecards-ufc-fight-night-hill-vs-rountree-jr-baku",
+          "sourceLabel": "UFC · June 21 2025 official Elliott scorecards"
+        },
+        {
           "date": "Nov. 1, 2025",
           "label": "WIN · Phil Rowe · UFC Fight Night: Garcia vs. Onama",
           "kind": "win",
-          "detail": "Defeated Phil Rowe at UFC Fight Night: Garcia vs. Onama on Nov. 1, 2025 by unanimous decision (round 3, 5:00). Professional MMA record after bout: 13-2. Official UFC record: 2-0. Second official UFC victory, using heavy top control and scoring a unanimous decision. Professional record rose to 13-2; UFC record 2-0.",
-          "source": "https://www.ufc.com/athlete/seokhyeon-ko",
-          "sourceLabel": "UFC · official fight result"
+          "detail": "Defeated Phil Rowe via unanimous decision at UFC Fight Night: Garcia vs. Onama in Las Vegas. Judges 30-26, 30-27, 30-27. Ko completed all four takedown attempts, amassed 13:10 of ground control, landed 36 significant strikes to Rowe's four, and won all three rounds. Professional MMA record 13-2; official UFC record 2-0. The result is one fight, not a submission despite Ko's dominant wrestling.",
+          "source": "https://www.ufc.com/news/official-judges-scorecards-ufc-fight-night-garcia-vs-onama",
+          "sourceLabel": "UFC · November 1, 2025 Rowe official scorecards"
         },
         {
           "date": "Nov. 1, 2025",
           "label": "Pressure grappling produces second UFC win over Phil Rowe",
           "kind": "milestone",
-          "detail": "Ko controlled Rowe for much of their three-round contest at UFC Fight Night: Garcia vs. Onama, winning unanimously. After the fight he had two official UFC wins and six consecutive professional victories since his December 2021 knockout loss.",
-          "source": "https://www.ufc.com/athlete/seokhyeon-ko",
-          "sourceLabel": "UFC · official November 2025 result"
+          "detail": "Ko held Phil Rowe down for 13:10 of a 15-minute fight, landed four of four takedowns and out-landed Rowe 36-4 in significant strikes. One judge gave Ko a 30-26 card and the other two 30-27. The win showcased a marked shift toward effective judo- and sambo-based control. It did not earn a submission finish, and this milestone is not a separate UFC bout.",
+          "source": "https://www.mmaindex.com/bouts/seokhyeon-ko-vs-phil-rowe-e6031b5937294176",
+          "sourceLabel": "MMA Index · Rowe matchup 13:10 control, 4-for-4 takedowns"
+        },
+        {
+          "date": "Nov. 2025",
+          "label": "Adapts regional finishing style into UFC wrestling strategy",
+          "kind": "training",
+          "detail": "The UFC's July 2026 feature later contrasted Ko's six KO/TKO wins on the Asian regional circuit with his deliberate control-heavy performances against Elliott and Rowe. Both UFC opponents remarked on his move away from aggressive striking toward patient, highly effective grappling. A shift in style, not a new martial-arts rank or fight.",
+          "source": "https://www.ufc.com/news/seokhyeon-ko-quietly-making-waves-welterweight-ufc-oklahoma-city",
+          "sourceLabel": "UFC · July 17, 2026 interview on tactics, nickname, rib injury and Elliott"
+        },
+        {
+          "date": "Dec. 11, 2025",
+          "label": "Booked against fellow DWCS graduate Jacobe Smith for Houston",
+          "kind": "booking",
+          "detail": "The February 21, 2026 UFC Houston welterweight matchup against Jacobe Smith was reported in December 2025, after Ko had reached 2-0 in the UFC. It was canceled in February when Ko suffered a rib injury; it does not count as a fourth UFC fight.",
+          "source": "https://www.rotowire.com/mma/player/seok-hyeon-ko-2598",
+          "sourceLabel": "RotoWire · September 9 2026 Turman booking"
         },
         {
           "date": "Feb. 13, 2026",
           "label": "Rib injury forces withdrawal from Jacobe Smith fight",
           "kind": "injury",
-          "detail": "UFC confirmed that Ko withdrew from the February 21, 2026 Houston bout against Jacobe Smith due to injury and was replaced by Josiah Harrell. In a July 2026 interview Ko identified a severe rib injury, said he wanted to fight through it but the pain was too much, and regretted missing the matchup for weeks. No surgical treatment was established.",
+          "detail": "UFC officially announced Feb. 13 that Ko was removed from his planned Feb. 21 Houston contest with Jacobe Smith because of injury and replaced by Josiah Harrell. Ko explained in a July 17 interview that he had a severe rib injury and too much pain to compete, despite wanting to fight. A specific fracture, tear or surgery was NOT medically documented in the public sources.",
           "source": "https://www.ufc.com/news/updates-ufc-houston",
-          "sourceLabel": "UFC · official February 13 injury announcement and July interview"
+          "sourceLabel": "UFC · February 13 2026 official injury withdrawal"
         },
         {
           "date": "Feb. 21, 2026",
@@ -26066,6 +26138,14 @@
           "sourceLabel": "UFC · Houston fight card update"
         },
         {
+          "date": "Early 2026 (month unverified)",
+          "label": "Reconnects with former opponent Oban Elliott during South Korean training",
+          "kind": "milestone",
+          "detail": "UFC's July 17, 2026 profile reports that Oban Elliott visited South Korea after his June 2025 defeat and trained with Ko, developing a friendly relationship. This was after their official fight and is not evidence of a rematch, teammate transfer or injury.",
+          "source": "https://www.ufc.com/news/seokhyeon-ko-quietly-making-waves-welterweight-ufc-oklahoma-city",
+          "sourceLabel": "UFC · July 17, 2026 interview on tactics, nickname, rib injury and Elliott"
+        },
+        {
           "date": "Jul. 16, 2026",
           "label": "Discusses severe rib injury and return to competition",
           "kind": "return",
@@ -26074,12 +26154,20 @@
           "sourceLabel": "UFC · July 2026 firsthand interview"
         },
         {
+          "date": "Jul. 17, 2026",
+          "label": "Rebrands from 'The Korean Tyson' to 'Technical'",
+          "kind": "milestone",
+          "detail": "In a UFC interview before facing Lebosnoyani, Ko said he was retiring 'The Korean Tyson,' a Mike Tyson comparison originally suggested by Korean UFC veteran Dong Hyun Kim, and preferred 'Technical' to reflect his evolving style and individual identity. Third-party databases and the UFC profile still display the older nickname; this is a quoted fighter preference, not a second fighter identity.",
+          "source": "https://www.ufc.com/news/seokhyeon-ko-quietly-making-waves-welterweight-ufc-oklahoma-city",
+          "sourceLabel": "UFC · July 17, 2026 interview on tactics, nickname, rib injury and Elliott"
+        },
+        {
           "date": "Jul. 18, 2026",
           "label": "LOSS · Jean-Paul Lebosnoyani · UFC Fight Night: Du Plessis vs. Usman",
           "kind": "loss",
-          "detail": "Lost to Jean-Paul Lebosnoyani at UFC Fight Night: Du Plessis vs. Usman on Jul. 18, 2026 by unanimous decision (round 3, 5:00). Professional MMA record after bout: 13-3. Official UFC record: 2-1. First UFC defeat, 29-28 on all three official scorecards. Ko out-landed Lebosnoyani 66-52 in significant strikes but went 0-for-4 on takedowns against the American's 3-for-4. Snapped a six-fight winning streak.",
-          "source": "https://www.ufc.com/event/ufc-fight-night-july-18-2026",
-          "sourceLabel": "UFC · July 18, 2026 official results"
+          "detail": "Lost a unanimous decision to Jean-Paul Lebosnoyani at UFC Oklahoma City, 29-28 on all three official judges' cards. Ko landed 66 of 168 significant strikes against 52 of 152, but was 0-for-4 on takedowns while Lebosnoyani made 3 of 4, limiting Ko's usual extended control. First UFC loss after 2-0 start; professional 13-3, UFC 2-1. Event result is a LOSS even though the UFC athlete page's auto-generated 'Last fight' widget incorrectly marks 'Win'.",
+          "source": "https://www.ufc.com/news/ufc-oklahoma-city-official-scorecards",
+          "sourceLabel": "UFC · July 18 2026 Lebosnoyani scorecards"
         },
         {
           "date": "Jul. 18, 2026",
@@ -26090,12 +26178,28 @@
           "sourceLabel": "UFC statistics and official scorecard compilation"
         },
         {
+          "date": "Sep. 9, 2026",
+          "label": "Wellington Turman matchup reported for November 7",
+          "kind": "booking",
+          "detail": "RotoWire, citing Marcel Dorff's reporting, announced Ko would face Wellington Turman in a three-round welterweight matchup at UFC Vegas 124. It was Ko's scheduled fourth official UFC appearance, and Turman's attempted return after nearly three years without a completed bout. The pairing remains upcoming on November 5.",
+          "source": "https://www.rotowire.com/mma/player/seok-hyeon-ko-2598",
+          "sourceLabel": "RotoWire · September 9 2026 Turman booking"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Injury, withdrawal and medical evidence reconciliation",
+          "kind": "note",
+          "detail": "Known canceled UFC bookings: Billy Ray Goff on May 31, 2025 because of US visa issues, followed by a rebooking versus Oban Elliott in Azerbaijan; Jacobe Smith on Feb. 21, 2026 due to Ko's severe rib injury, replaced by Josiah Harrell. Ko reported pain and rehab impact from the rib injury but no verified fracture, surgery or longer-term medical diagnosis. No other source-confirmed injury withdrawals found in reviewed public fighter records.",
+          "source": "https://www.ufc.com/news/updates-ufc-houston",
+          "sourceLabel": "UFC · February 13 2026 official injury withdrawal"
+        },
+        {
           "date": "Nov. 5, 2026",
           "label": "Record and career-path audit",
           "kind": "note",
-          "detail": "The complete 16-fight professional ledger is 13-3 (six KO/TKO wins, seven decision wins; two KO/TKO losses and one decision loss). Three official UFC bouts produce a 2-1 UFC record. The September 2024 Contender Series win remains in the pro record, not UFC; no Road to UFC tournament bout is recorded. Two canceled UFC matchups (Goff visa issue in 2025; Jacobe Smith rib injury in 2026) are kept separate.",
-          "source": "https://www.tapology.com/fightcenter/fighters/175557-seok-hyun-ko",
-          "sourceLabel": "Tapology · professional career and canceled fight history; cross-checked with UFC"
+          "detail": "16 completed professional MMA bouts: 13 wins (6 KO/TKO, 0 submission, 7 decisions) and 3 losses (2 KO/TKO, 1 decision). UFC Octagon record 2-1 across 3 completed bouts. Sept. 2024 DWCS victory counts in the 13-3 pro ledger but not UFC 2-1, and there is no documented Road to UFC tournament appearance. Major separate credentials: 2017 Irkutsk World Cup combat-sambo gold and Nov. 11 2017 Sochi world combat-sambo gold at 82 kg; AFC welterweight and middleweight championships, HEAT co-promotion. UFC's age 32 display is stale after Sep. 24, 2026: age is 33. Some databases disagree over the Wakimoto decision method (majority vs unanimous), Moon Ho Park KO time (0:51 vs 0:53), Han Seul Kim time (1:05 vs 1:06), and Alwin Kincai date/time (Dec. 8 at 0:58 vs Dec. 9 at 0:48). No extra bout created from these. Fighter's 2026 nickname preference 'Technical' differs from older profile label 'The Korean Tyson'.",
+          "source": "https://www.sherdog.com/fighter/Seok-Hyeon-Ko-275977",
+          "sourceLabel": "Sherdog · complete 16-fight professional record"
         },
         {
           "date": "Nov. 7, 2026",
