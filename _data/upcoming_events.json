@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-05T11:39:58.796Z",
+  "generated_at": "2026-11-05T19:05:42.039Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-11-07-fight-card",
@@ -214,7 +214,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/LORENCO_GABRIEL_L_09-01.png?itok=NdbmVc1d",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+138"
+                  "moneyline": "+140"
                 },
                 {
                   "name": "Thomas Petersen",
@@ -222,7 +222,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/PETERSEN_THOMAS_L_05-03.png?itok=sYHO_Yst",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-178"
+                  "moneyline": "-180"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -264,7 +264,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/DELANO_JOSE_L_04-04.png?itok=yx6OJq5I",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-120"
+                  "moneyline": "-125"
                 },
                 {
                   "name": "Murtazali Magomedov",
@@ -272,7 +272,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/MAGOMEDOV_MURTAZLI_R_06-20.png?itok=wXAJELZD",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-106"
+                  "moneyline": "-102"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -938,6 +938,31 @@
             {
               "order": 10,
               "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Jared Gordon",
+                  "initials": "JG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/GORDON_JARED_L_05-17.png?itok=JksSLA9u",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+310"
+                },
+                {
+                  "name": "Melquizael Costa",
+                  "initials": "MC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/COSTA_MELQUIZAEL_L_12-13.png?itok=4B7irp2h",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-400"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Caesars"
+            },
+            {
+              "order": 11,
+              "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
                 {
@@ -961,7 +986,30 @@
               "odds_provider": "Caesars"
             },
             {
-              "order": 11,
+              "order": 12,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Nazim Sadykhov",
+                  "initials": "NS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/SADYKHOV_NAZIM_L_12-06.png?itok=ccjzeBfj",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Jefferson Nascimento",
+                  "initials": "JN",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 13,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -984,27 +1032,29 @@
               ]
             },
             {
-              "order": 12,
+              "order": 14,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
                 {
-                  "name": "Nazim Sadykhov",
-                  "initials": "NS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/SADYKHOV_NAZIM_L_12-06.png?itok=ccjzeBfj",
+                  "name": "Evan Elder",
+                  "initials": "EE",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-04/ELDER_EVAN_L_04-26.png?itok=FqH6Jch-",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-120"
                 },
                 {
-                  "name": "Jefferson Nascimento",
-                  "initials": "JN",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
+                  "name": "Samuel Sanches",
+                  "initials": "SS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/SANCHES_SAMUEL_R_09-09.png?itok=RWqnGB4l",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+100"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Caesars"
             }
           ]
         }
@@ -1103,6 +1153,29 @@
             {
               "order": 4,
               "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Asu Almabayev",
+                  "initials": "AA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ALMABAYEV_ASU_L_06-27.png?itok=Y0SjNrdV",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Kyoji Horiguchi",
+                  "initials": "KH",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/HORIGUCHI_KYOJI_R_11-22.png?itok=Dn6SxnwP",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
                 {
@@ -1122,55 +1195,16 @@
                   "moneyline": ""
                 }
               ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Shamil Gaziev",
-                  "initials": "SG",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/GAZIEV_SHAMIL_L_05-02.png?itok=VAF3kcSW",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Tallison Teixeira",
-                  "initials": "TT",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/TEIXEIRA_TALLISON_R_07-12.png?itok=vtmFVu5M",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "10:00 AM ET",
+          "bouts": [
             {
               "order": 6,
-              "label": "",
-              "weight_class": "Welterweight Bout",
-              "fighters": [
-                {
-                  "name": "Jake Matthews",
-                  "initials": "JM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/MATTHEWS_JAKE_L_05-30.png?itok=kYM4Kq87",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Tahir Abdullayev",
-                  "initials": "TA",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ABDULLAYEV_TAHIR_L_06-27.png?itok=OjpS2GZ7",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 7,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -1193,22 +1227,22 @@
               ]
             },
             {
-              "order": 8,
+              "order": 7,
               "label": "",
-              "weight_class": "Flyweight Bout",
+              "weight_class": "Heavyweight Bout",
               "fighters": [
                 {
-                  "name": "Asu Almabayev",
-                  "initials": "AA",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ALMABAYEV_ASU_L_06-27.png?itok=Y0SjNrdV",
+                  "name": "Shamil Gaziev",
+                  "initials": "SG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/GAZIEV_SHAMIL_L_05-02.png?itok=VAF3kcSW",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
                 },
                 {
-                  "name": "Kyoji Horiguchi",
-                  "initials": "KH",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/HORIGUCHI_KYOJI_R_11-22.png?itok=Dn6SxnwP",
+                  "name": "Tallison Teixeira",
+                  "initials": "TT",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/TEIXEIRA_TALLISON_R_07-12.png?itok=vtmFVu5M",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -1216,7 +1250,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 8,
               "label": "",
               "weight_class": "Flyweight Bout",
               "fighters": [
@@ -1232,6 +1266,29 @@
                   "name": "Alessandro Costa",
                   "initials": "AC",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/COSTA_ALESSANDRO_L_07-11.png?itok=okElYxK7",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Jake Matthews",
+                  "initials": "JM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/MATTHEWS_JAKE_L_05-30.png?itok=kYM4Kq87",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Tahir Abdullayev",
+                  "initials": "TA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ABDULLAYEV_TAHIR_L_06-27.png?itok=OjpS2GZ7",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""

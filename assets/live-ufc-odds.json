@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T11:38:27.047Z",
+  "generated_at": "2026-11-05T19:04:09.636Z",
   "source": "UFC.com + BestFightOdds",
   "events": [
     {
@@ -111,11 +111,11 @@
           "fighters": [
             {
               "name": "Gabriel Lorenço",
-              "moneyline": "+138"
+              "moneyline": "+140"
             },
             {
               "name": "Thomas Petersen",
-              "moneyline": "-178"
+              "moneyline": "-180"
             }
           ]
         },
@@ -139,11 +139,11 @@
           "fighters": [
             {
               "name": "Jose Delano",
-              "moneyline": "-120"
+              "moneyline": "-125"
             },
             {
               "name": "Murtazali Magomedov",
-              "moneyline": "-106"
+              "moneyline": "-102"
             }
           ]
         },
@@ -341,12 +341,40 @@
           "provider": "Caesars",
           "fighters": [
             {
+              "name": "Jared Gordon",
+              "moneyline": "+310"
+            },
+            {
+              "name": "Melquizael Costa",
+              "moneyline": "-400"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "Caesars",
+          "fighters": [
+            {
               "name": "Macy Chiasson",
               "moneyline": "+180"
             },
             {
               "name": "Bia Mesquita",
               "moneyline": "-220"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "Caesars",
+          "fighters": [
+            {
+              "name": "Evan Elder",
+              "moneyline": "-120"
+            },
+            {
+              "name": "Samuel Sanches",
+              "moneyline": "+100"
             }
           ]
         }
