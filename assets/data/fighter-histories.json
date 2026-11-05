@@ -1,5 +1,5 @@
 {
-  "version": 35,
+  "version": 36,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -24774,81 +24774,362 @@
       "subtitle": "Career chronology",
       "record": "23-4",
       "ufcRecord": "9-4",
-      "division": "Women&#39;s Strawweight",
+      "division": "Women's Strawweight",
       "items": [
         {
-          "date": "Mar. 24, 2018",
-          "label": "Wins Invicta FC strawweight title",
-          "detail": "Defeated Mizuki Inoue by split decision at Invicta FC 28 to become the promotion's strawweight champion.",
-          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
-          "kind": "milestone",
-          "sourceLabel": "Tapology fighter history"
+          "date": "Childhood–early 2000s",
+          "label": "Early martial arts training: kung fu, judo and jiu-jitsu",
+          "kind": "training",
+          "detail": "Growing up in Serrinha, Bahia, Jandiroba practiced kung fu and judo before taking up Brazilian jiu-jitsu. She later described the sport as central to her development before MMA; the exact start year for kung fu is not securely documented.",
+          "source": "https://us.ufcespanol.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · fighter background"
         },
         {
-          "date": "Apr 4, 2026",
-          "label": "WIN · Tabatha Ricci · UFC Fight Night",
+          "date": "2005 onward",
+          "label": "Starts competing in Brazilian jiu-jitsu",
+          "kind": "grappling",
+          "detail": "Her UFC questionnaire dates the start of her BJJ competition to 2005. She went on to earn a black belt and reported world, Pan-American and South American grappling championships; these are not professional MMA results.",
+          "source": "https://us.ufcespanol.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · fighter questionnaire"
+        },
+        {
+          "date": "2013",
+          "label": "BJJ black belt; moves into professional MMA",
+          "kind": "training",
+          "detail": "After a competitive jiu-jitsu career, she moved into MMA competition in 2013, initially fighting on Brazilian regional shows. Her entire first 11 professional MMA bouts were in Brazil before joining Invicta.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · complete professional fight record"
+        },
+        {
+          "date": "Jun. 15, 2013",
+          "label": "WIN · Joana Santana · PFL — Premier Fight League 10",
           "kind": "win",
-          "detail": "Defeated Tabatha Ricci at UFC Fight Night by Decision (Unanimous) after three rounds (round 3 at 5:00).",
-          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Defeated Joana Santana at PFL — Premier Fight League 10 on Jun. 15, 2013 by submission (rear-naked choke) (round 1, 0:41). Professional MMA record: 1-0.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · professional fight ledger"
         },
         {
-          "date": "Oct 25, 2025",
-          "label": "LOSS · Mackenzie Dern · UFC 321",
+          "date": "Dec. 21, 2013",
+          "label": "WIN · Gina Brito Silva Santana · The Iron Fight 2.0 — MMA Tournament",
+          "kind": "win",
+          "detail": "Defeated Gina Brito Silva Santana at The Iron Fight 2.0 — MMA Tournament on Dec. 21, 2013 by submission (rear-naked choke) (round 3; exact finish time unlisted). Professional MMA record: 2-0.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · professional fight ledger"
+        },
+        {
+          "date": "Nov. 15, 2014",
+          "label": "WIN · Camila Lima · MMA Super Heroes 7",
+          "kind": "win",
+          "detail": "Defeated Camila Lima at MMA Super Heroes 7 on Nov. 15, 2014 by submission (rear-naked choke) (round 2, 4:30). Professional MMA record: 3-0.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · professional fight ledger"
+        },
+        {
+          "date": "May 16, 2015",
+          "label": "WIN · Carla Ramos · Banzay Fight Championship 2",
+          "kind": "win",
+          "detail": "Defeated Carla Ramos at Banzay Fight Championship 2 on May 16, 2015 by submission (triangle choke) (round 1, 1:50). Professional MMA record: 4-0.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · professional fight ledger"
+        },
+        {
+          "date": "Sep. 12, 2015",
+          "label": "WIN · Cristiane Lima Silva · Velame Fight Combat 4",
+          "kind": "win",
+          "detail": "Defeated Cristiane Lima Silva at Velame Fight Combat 4 on Sep. 12, 2015 by submission (rear-naked choke) (round 1, 2:53). Professional MMA record: 5-0.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · professional fight ledger"
+        },
+        {
+          "date": "Nov. 14, 2015",
+          "label": "WIN · Aline Sattelmayer · The King of Arena Fight 2",
+          "kind": "win",
+          "detail": "Defeated Aline Sattelmayer at The King of Arena Fight 2 on Nov. 14, 2015 by unanimous decision (round 3, 5:00). Professional MMA record: 6-0.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · professional fight ledger"
+        },
+        {
+          "date": "Apr. 9, 2016",
+          "label": "WIN · Anne Karoline Nascimento · MNA MMA Circuit 2",
+          "kind": "win",
+          "detail": "Defeated Anne Karoline Nascimento at MNA MMA Circuit 2 on Apr. 9, 2016 by submission (armbar) (round 2, 3:29). Professional MMA record: 7-0.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · professional fight ledger"
+        },
+        {
+          "date": "Jul. 30, 2016",
+          "label": "WIN · Cristiane Lima Silva · Fight On MMA 3",
+          "kind": "win",
+          "detail": "Defeated Cristiane Lima Silva at Fight On MMA 3 on Jul. 30, 2016 by submission (rear-naked choke) (round 1, 2:34). Professional MMA record: 8-0.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · professional fight ledger"
+        },
+        {
+          "date": "Nov. 4, 2016",
+          "label": "WIN · Lisa Ellis · Fight 2 Night",
+          "kind": "win",
+          "detail": "Defeated Lisa Ellis at Fight 2 Night on Nov. 4, 2016 by submission (rear-naked choke) (round 1, 2:21). Professional MMA record: 9-0.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · professional fight ledger"
+        },
+        {
+          "date": "Nov. 26, 2016",
+          "label": "WIN · Suiane Teixeira dos Santos · Imperium MMA Pro 12",
+          "kind": "win",
+          "detail": "Defeated Suiane Teixeira dos Santos at Imperium MMA Pro 12 on Nov. 26, 2016 by submission (armbar) (round 1, 0:46). Professional MMA record: 10-0.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · professional fight ledger"
+        },
+        {
+          "date": "Apr. 28, 2017",
+          "label": "WIN · Ericka Almeida · Fight 2 Night 2",
+          "kind": "win",
+          "detail": "Defeated Ericka Almeida at Fight 2 Night 2 on Apr. 28, 2017 by split decision (round 3, 5:00). Professional MMA record: 11-0.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · professional fight ledger"
+        },
+        {
+          "date": "Dec. 8, 2017",
+          "label": "WIN · Amy Montenegro · Invicta FC 26",
+          "kind": "win",
+          "detail": "Defeated Amy Montenegro at Invicta FC 26 on Dec. 8, 2017 by submission (armbar) (round 1, 2:50). Professional MMA record: 12-0. Invicta debut after an 11-0 unbeaten Brazilian regional run; earned an Invicta performance bonus.",
+          "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
+          "sourceLabel": "Sherdog · professional fight ledger"
+        },
+        {
+          "date": "Mar. 2, 2018",
+          "label": "Invicta 28 opponent change: Morandin replaced by Mizuki Inoue",
+          "kind": "booking",
+          "detail": "Janaisa Morandin withdrew from the vacant strawweight title fight after a wisdom tooth infection, extraction and complications disrupted training. Invicta named Mizuki Inoue as her replacement; the title remained at stake.",
+          "source": "https://www.mmafighting.com/2018/3/2/17073230/mizuki-inoue-steps-in-for-janaisa-morandin-faces-virna-jandiroba-for-title-at-invicta-28",
+          "sourceLabel": "MMA Fighting · March 2018 injury-replacement report"
+        },
+        {
+          "date": "Mar. 24, 2018",
+          "label": "WIN · Mizuki Inoue · Invicta FC 28",
+          "kind": "win",
+          "detail": "Defeated Mizuki Inoue at Invicta FC 28 on Mar. 24, 2018 by split decision (round 5, 5:00). Professional MMA record: 13-0. Won the vacant Invicta FC strawweight championship, 49-46, 46-49, 49-46. Original opponent Janaisa Morandin withdrew.",
+          "source": "https://www.mmafighting.com/2018/3/2/17073230/mizuki-inoue-steps-in-for-janaisa-morandin-faces-virna-jandiroba-for-title-at-invicta-28",
+          "sourceLabel": "MMA Fighting · Invicta 28 title opponent and result"
+        },
+        {
+          "date": "Sep. 1, 2018",
+          "label": "WIN · Janaisa Morandin · Invicta FC 31",
+          "kind": "win",
+          "detail": "Defeated Janaisa Morandin at Invicta FC 31 on Sep. 1, 2018 by submission (arm-triangle choke) (round 2, 2:23). Professional MMA record: 14-0. Successful first and only Invicta strawweight title defense; improved to 14-0 and earned an Invicta performance bonus.",
+          "source": "https://www.mmafighting.com/2018/9/1/17807892/invicta-fc-31-results-jandiroba-vs-morandin",
+          "sourceLabel": "MMA Fighting · Invicta 31 official results"
+        },
+        {
+          "date": "Apr. 4, 2019",
+          "label": "Signs with UFC as replacement for injured Lívia Renata Souza",
+          "kind": "booking",
+          "detail": "The reigning Invicta champion entered the UFC at 14-0 when Lívia Renata Souza withdrew from her Carla Esparza fight with an ankle injury. Jandiroba took the April 27 booking and left Invicta without having lost its belt in competition.",
+          "source": "https://www.mmafighting.com/2019/4/4/18295296/invicta-fc-champion-virna-jandiroba-livinha-souza-carla-esparza-ufc-fort-lauderdale",
+          "sourceLabel": "MMA Fighting · UFC signing and ankle-injury replacement"
+        },
+        {
+          "date": "Apr. 27, 2019",
+          "label": "LOSS · Carla Esparza · UFC Fight Night 150",
           "kind": "loss",
-          "detail": "Lost to Mackenzie Dern at UFC 321 by Decision (Unanimous) after five rounds (round 5 at 5:00).",
-          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Lost to Carla Esparza at UFC Fight Night 150 on Apr. 27, 2019 by unanimous decision (round 3, 5:00). Professional MMA record: 14-1; UFC record: 0-1. UFC debut after signing as an injury replacement for Lívia Renata Souza. First professional defeat.",
+          "source": "https://www.ufc.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · official fight history"
         },
         {
-          "date": "Apr 12, 2025",
+          "date": "Nov. 26, 2019",
+          "label": "Opponent changes before first UFC win: Casey, Souza, then Martin",
+          "kind": "booking",
+          "detail": "Originally booked against Cortney Casey for Dec. 7. Casey left the matchup for an undisclosed reason; Lívia Renata Souza replaced her but then withdrew with a back injury. Mallory Martin stepped in for her UFC debut.",
+          "source": "https://www.mmafighting.com/2019/11/26/20983770/mallory-martin-replaces-livinha-souza-virna-jandiroba-ufc-espn",
+          "sourceLabel": "MMA Fighting · November 2019 replacement chronology"
+        },
+        {
+          "date": "Dec. 7, 2019",
+          "label": "WIN · Mallory Martin · UFC on ESPN 7",
+          "kind": "win",
+          "detail": "Defeated Mallory Martin at UFC on ESPN 7 on Dec. 7, 2019 by submission (rear-naked choke) (round 2, 1:16). Professional MMA record: 15-1; UFC record: 1-1. First UFC win, after planned opponents Cortney Casey and Lívia Renata Souza both exited the booking.",
+          "source": "https://www.ufc.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Aug. 15, 2020",
+          "label": "WIN · Felice Herrig · UFC 252",
+          "kind": "win",
+          "detail": "Defeated Felice Herrig at UFC 252 on Aug. 15, 2020 by submission (armbar) (round 1, 1:44). Professional MMA record: 16-1; UFC record: 2-1. Earned a UFC Performance of the Night bonus.",
+          "source": "https://www.ufc.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Dec. 12, 2020",
+          "label": "LOSS · Mackenzie Dern · UFC 256",
+          "kind": "loss",
+          "detail": "Lost to Mackenzie Dern at UFC 256 on Dec. 12, 2020 by unanimous decision (round 3, 5:00). Professional MMA record: 16-2; UFC record: 2-2.",
+          "source": "https://www.ufc.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Jun. 19, 2021",
+          "label": "WIN · Kanako Murata · UFC on ESPN 25",
+          "kind": "win",
+          "detail": "Defeated Kanako Murata at UFC on ESPN 25 on Jun. 19, 2021 by TKO (opponent arm injury; doctor's stoppage) (round 2, 5:00). Professional MMA record: 17-2; UFC record: 3-2. The stoppage was caused by Murata's arm injury, following Jandiroba's armbar attempts; do not count as a submission win.",
+          "source": "https://www.ufc.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Oct. 30, 2021",
+          "label": "LOSS · Amanda Ribas · UFC 267",
+          "kind": "loss",
+          "detail": "Lost to Amanda Ribas at UFC 267 on Oct. 30, 2021 by unanimous decision (round 3, 5:00). Professional MMA record: 17-3; UFC record: 3-3.",
+          "source": "https://www.ufc.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "May 14, 2022",
+          "label": "WIN · Angela Hill · UFC on ESPN 36",
+          "kind": "win",
+          "detail": "Defeated Angela Hill at UFC on ESPN 36 on May 14, 2022 by unanimous decision (round 3, 5:00). Professional MMA record: 18-3; UFC record: 4-3.",
+          "source": "https://www.ufc.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "After May 2022",
+          "label": "Knee surgery and rehabilitation interrupt UFC schedule",
+          "kind": "injury",
+          "detail": "Jandiroba later described undergoing knee surgery during a period of family difficulties, leaving her with only one UFC fight in 2022. Exact procedure date was not established; this is placed after her May 2022 appearance, not presented as an exact-day event.",
+          "source": "https://www.mmafighting.com/2023/5/6/23710957/ufc-288-virna-jandiroba-fueled-love-father-win-over-cancer",
+          "sourceLabel": "MMA Fighting · May 2023 interview"
+        },
+        {
+          "date": "May 6, 2023",
+          "label": "WIN · Marina Rodriguez · UFC 288",
+          "kind": "win",
+          "detail": "Defeated Marina Rodriguez at UFC 288 on May 6, 2023 by unanimous decision (round 3, 5:00). Professional MMA record: 19-3; UFC record: 5-3.",
+          "source": "https://www.ufc.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "May 23, 2023",
+          "label": "First Tatiana Suarez booking scheduled for August 5",
+          "kind": "booking",
+          "detail": "After beating Marina Rodriguez, Jandiroba was booked against Tatiana Suarez for UFC Nashville on Aug. 5, 2023. It would have been Suarez's return to strawweight.",
+          "source": "https://sports.yahoo.com/tatiana-suarez-returns-strawweight-meets-120056818.html",
+          "sourceLabel": "MMA Junkie · May 2023 booking report"
+        },
+        {
+          "date": "Jun. 20, 2023",
+          "label": "Withdraws from Suarez fight: knee injury requiring surgery",
+          "kind": "injury",
+          "detail": "Jandiroba's knee injury forced her out of the Aug. 5 UFC Nashville matchup. Reporting said surgery was required; Jessica Andrade replaced her against Suarez. This was not a loss or no-contest.",
+          "source": "https://www.sherdog.com/news/news/Jessica-Andrade-Steps-in-for-Virna-Jandiroba-Meets-Tatiana-Suarez-at-UFC-Nashville-190300",
+          "sourceLabel": "Sherdog · June 2023 withdrawal and surgery report"
+        },
+        {
+          "date": "Mar. 29, 2024",
+          "label": "Returns after consecutive major injuries and surgeries",
+          "kind": "return",
+          "detail": "Ahead of fighting Lupita Godinez, Jandiroba described the fight as especially difficult personally because it followed her second consecutive surgery. The two injury interruptions limited her to one UFC bout in each of 2022 and 2023; precise surgical dates are not fully established.",
+          "source": "https://us.ufcespanol.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · fighter questionnaire and injury history"
+        },
+        {
+          "date": "Mar. 30, 2024",
+          "label": "WIN · Lupita Godinez · UFC on ESPN 54",
+          "kind": "win",
+          "detail": "Defeated Lupita Godinez at UFC on ESPN 54 on Mar. 30, 2024 by unanimous decision (round 3, 5:00). Professional MMA record: 20-3; UFC record: 6-3. First bout since May 2023, following another knee injury and surgery; won after 10 months away.",
+          "source": "https://www.ufc.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · official fight history"
+        },
+        {
+          "date": "Jul. 20, 2024",
+          "label": "WIN · Amanda Lemos · UFC on ESPN 60",
+          "kind": "win",
+          "detail": "Defeated Amanda Lemos at UFC on ESPN 60 on Jul. 20, 2024 by submission (armbar) (round 2, 4:48). Professional MMA record: 21-3; UFC record: 7-3. First UFC main event; earned a UFC Performance of the Night bonus and advanced to a four-fight win streak.",
+          "source": "https://www.ufc.com/news/prelim-results-highlights-winner-interviews-ufc-fight-night-lemos-vs-jandiroba-vegas-94",
+          "sourceLabel": "UFC · Lemos vs Jandiroba results"
+        },
+        {
+          "date": "Oct. 21, 2024",
+          "label": "Second Suarez fight canceled ahead of UFC 310",
+          "kind": "booking",
+          "detail": "The planned Dec. 7, 2024 UFC 310 contender bout was canceled after Suarez withdrew. Contemporaneous reporting described an unspecified health issue or injury, but Suarez later said the UFC preferred moving her directly into a title shot. The cause is disputed; Jandiroba did not fight a replacement.",
+          "source": "https://www.mmafighting.com/2024/10/21/24276317/tatiana-suarez-out-of-ufc-310-fight-against-virna-jandiroba",
+          "sourceLabel": "MMA Fighting · contemporaneous October 2024 report"
+        },
+        {
+          "date": "Jan. 30, 2025",
+          "label": "Suarez disputes injury explanation for canceled UFC 310 booking",
+          "kind": "note",
+          "detail": "Suarez told MMA Junkie that she was not injured for the December 2024 Jandiroba booking and believed the promotion wanted to make her title bout against Zhang Weili. This conflicts with 2024 reports of a health issue; preserve both explanations rather than treating either as established fact.",
+          "source": "https://sports.yahoo.com/tatiana-suarez-explains-she-ended-192025648.html",
+          "sourceLabel": "MMA Junkie · January 2025 direct interview"
+        },
+        {
+          "date": "Feb. 6, 2025",
+          "label": "Questions Suarez title shot; offers to be UFC 312 backup",
+          "kind": "milestone",
+          "detail": "Jandiroba expressed frustration with the circumstances of the canceled UFC 310 bout and Suarez moving directly to the Zhang Weili championship fight. She said she offered to serve as the UFC 312 backup but was not selected; she was subsequently matched with Yan Xiaonan.",
+          "source": "https://www.mmafighting.com/2025/2/6/24357737/virna-jandiroba-frustration-obscure-change-tatiana-suarez-ufc-312-title-shot-yan-xiaonan",
+          "sourceLabel": "MMA Fighting · February 2025 interview"
+        },
+        {
+          "date": "Apr. 12, 2025",
           "label": "WIN · Yan Xiaonan · UFC 314",
           "kind": "win",
-          "detail": "Defeated Yan Xiaonan at UFC 314 by Decision (Unanimous) after three rounds (round 3 at 5:00).",
-          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Defeated Yan Xiaonan at UFC 314 on Apr. 12, 2025 by unanimous decision (round 3, 5:00). Professional MMA record: 22-3; UFC record: 8-3. Fifth consecutive UFC win, positioning her for a championship opportunity.",
+          "source": "https://www.ufc.com/athlete/virna-jandiroba",
+          "sourceLabel": "UFC · official fight history"
         },
         {
-          "date": "Jul 20, 2024",
-          "label": "WIN · Amanda Lemos · UFC Fight Night",
-          "kind": "win",
-          "detail": "Defeated Amanda Lemos at UFC Fight Night by Submission (Armbar) in round 2 at 4:48.",
-          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
-          "sourceLabel": "Tapology fighter history"
+          "date": "Aug. 28, 2025",
+          "label": "First UFC title fight announced after Zhang Weili vacates",
+          "kind": "milestone",
+          "detail": "After five consecutive wins, Jandiroba was booked to rematch Mackenzie Dern at UFC 321 on Oct. 25 for the vacant 115-pound championship. Zhang Weili vacated the title to challenge Valentina Shevchenko at flyweight.",
+          "source": "https://www.sportsnet.ca/ufc/article/virna-jandiroba-mackenzie-dern-to-fight-for-vacant-strawweight-title-at-ufc-321/",
+          "sourceLabel": "Sportsnet · August 2025 title announcement"
         },
         {
-          "date": "Mar 30, 2024",
-          "label": "WIN · Lupita Godinez · UFC Fight Night",
+          "date": "Oct. 25, 2025",
+          "label": "LOSS · Mackenzie Dern · UFC 321",
+          "kind": "loss",
+          "detail": "Lost to Mackenzie Dern at UFC 321 on Oct. 25, 2025 by unanimous decision (round 5, 5:00). Professional MMA record: 22-4; UFC record: 8-4. First UFC title attempt, against Dern for the vacant strawweight championship after Zhang Weili moved to flyweight. Scores 48-47, 48-47, 49-46 for Dern. Ended five-fight win streak.",
+          "source": "https://www.mmafighting.com/ufc/451927/ufc-321-results-mackenzie-dern-claims-vacant-strawweight-title-with-decision-win-over-virna-jandiroba",
+          "sourceLabel": "MMA Fighting · UFC 321 result and title scorecards"
+        },
+        {
+          "date": "Apr. 4, 2026",
+          "label": "WIN · Tabatha Ricci · UFC Fight Night: Moicano vs. Duncan",
           "kind": "win",
-          "detail": "Defeated Lupita Godinez at UFC Fight Night by Decision (Unanimous) after three rounds (round 3 at 5:00).",
-          "source": "https://www.tapology.com/fightcenter/fighters/56622-virna-jandiroba",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Defeated Tabatha Ricci at UFC Fight Night: Moicano vs. Duncan on Apr. 4, 2026 by unanimous decision (round 3, 5:00). Professional MMA record: 23-4; UFC record: 9-4. Rebounded from the Dern championship loss; official scores 30-27, 29-28, 29-28.",
+          "source": "https://www.ufc.com/news/ufc-fight-night-moicano-vs-duncan-official-scorecards-judges",
+          "sourceLabel": "UFC · April 2026 official scorecards"
+        },
+        {
+          "date": "Sep. 11, 2026",
+          "label": "Third booking with Suarez set for UFC Vegas 124",
+          "kind": "booking",
+          "detail": "The UFC scheduled Jandiroba and Suarez for Nov. 7, 2026 after unsuccessful pairings in August 2023 (Jandiroba knee injury) and December 2024 (Suarez withdrawal). Jandiroba entered the new booking at 23-4 professional, 9-4 UFC.",
+          "source": "https://sports.yahoo.com/articles/virna-jandiroba-vs-tatiana-suarez-181014624.html",
+          "sourceLabel": "MMA Junkie · September 2026 rescheduling"
+        },
+        {
+          "date": "Oct. 22, 2026",
+          "label": "Targets another UFC title opportunity after Suarez matchup",
+          "kind": "milestone",
+          "detail": "In an October interview, Jandiroba said she hoped a win over Suarez would lead to a third Mackenzie Dern fight and a title opportunity in early 2027. This is her stated objective, not a confirmed future booking.",
+          "source": "https://www.sherdog.com/news/news/Virna-Jandiroba-eyes-third-Mackenzie-Dern-fight-after-Tatiana-Suarez-203302",
+          "sourceLabel": "Sherdog · October 2026 interview"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Tatiana Suarez · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Scheduled to fight Tatiana Suarez at UFC Vegas 124 in Las Vegas. No result yet.",
+          "kind": "upcoming",
+          "detail": "Scheduled to face Tatiana Suarez at Meta APEX in Las Vegas on Nov. 7, 2026. This is their third attempted booking. As of Nov. 5, no result exists. Pre-fight record: 23-4 professional, 9-4 UFC.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "Official UFC event"
-        },
-        {
-          "date": "Apr. 27, 2019",
-          "label": "UFC debut vs. Carla Esparza",
-          "kind": "milestone",
-          "detail": "Jandiroba entered the UFC following her Invicta FC strawweight championship run. Her debut against Carla Esparza ended in a unanimous decision loss.",
-          "source": "https://www.ufc.com/athlete/virna-jandiroba",
-          "sourceLabel": "UFC official history"
-        },
-        {
-          "date": "Oct. 25, 2025",
-          "label": "First UFC strawweight title challenge",
-          "kind": "milestone",
-          "detail": "Fought Mackenzie Dern for the UFC strawweight championship at UFC 321. She lost by unanimous decision after five rounds.",
-          "source": "https://www.ufc.com/athlete/virna-jandiroba",
-          "sourceLabel": "UFC official history"
+          "sourceLabel": "UFC · official November 7, 2026 fight card"
         }
-      ]
+      ],
+      "lastReviewed": "2026-11-05"
     },
     "Davey Grant": {
       "slug": "davey-grant",
@@ -26173,5 +26454,5 @@
   },
   "updatedAt": "2026-10-27",
   "notes": "Fourth-pass deep audit completed. Duplicate same-event notes merged; distinct same-year career events retained. Bia Mesquita timeline added. Donte Johnson timeline added. Cesar Almeida timeline added. Melquizael Costa timeline added; corrected May 2026 Arnold Allen result and move to lightweight. Jared Gordon's 31 professional bouts, CFFC championships and distinct career milestones added; same-fight notes merged. Evan Elder full professional history, amateur records and UFC 334 booking added; duplicate same-fight milestones merged. Samuel Sanches timeline added with complete 12-fight professional ledger; DWCS separated from UFC debut.",
-  "lastReviewed": "2026-10-27"
+  "lastReviewed": "2026-11-05"
 }
