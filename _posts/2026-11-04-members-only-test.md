@@ -14,7 +14,7 @@ members_slug: members-only-test
 listing_visibility: normal
 spoiler_warning: false
 preserve_line_breaks: true
-published: true
+published: false
 ---
 
 This article is available to MMA Matlock members. [Read it with a membership](https://members.mmamatlock.com/post/members-only-test).
