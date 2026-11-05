@@ -254,8 +254,17 @@ layout: default
                 class="post-body{% if page.preserve_line_breaks %} post-body-preserve-breaks{% endif %}"
                 data-fight-glow="{{ page.fight_glow | default: false }}"
             >
+                {% if page.members_only %}
+                <div class="members-locked-article">
+                  <span class="members-lock-badge">🔒 Members only</span>
+                  <h2>Read the full article with a membership.</h2>
+                  <p>{{ page.description | default: "This analysis is available exclusively to MMA Matlock members." | escape }}</p>
+                  <a class="primary-button" href="https://members.mmamatlock.com/post/{{ page.members_slug | default: page.slug | escape }}">Sign in or subscribe to read</a>
+                </div>
+                {% else %}
                 {{ content }}
                 {% include article-ad.html %}
+                {% endif %}
             </div>
         </div>
 
