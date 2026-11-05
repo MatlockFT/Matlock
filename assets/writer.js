@@ -71,7 +71,7 @@
 
   const controlledKeys = [
     'layout','title','description','date','category','author','image','tags',
-    'show_toc','pinned','listing_visibility','spoiler_warning','preserve_line_breaks','news_feature','news_feature_until','publish_at','published'
+    'show_toc','pinned','members_only','members_slug','listing_visibility','spoiler_warning','preserve_line_breaks','news_feature','news_feature_until','publish_at','published'
   ];
 
   const templateBodies = {
@@ -295,6 +295,8 @@
       tags: tags.length ? ['tags:', ...tags.map(tag => `  - ${yamlQuote(tag)}`)] : ['tags: []'],
       show_toc: [`show_toc: ${fields.showToc.checked ? 'true' : 'false'}`],
       pinned: [`pinned: ${fields.pinned.checked ? 'true' : 'false'}`],
+      members_only: [`members_only: ${fields.membersOnly?.checked ? 'true' : 'false'}`],
+      members_slug: fields.membersOnly?.checked ? [`members_slug: ${yamlQuote(membersArticleSlug())}`] : [],
       listing_visibility: ['listing_visibility: normal'],
       spoiler_warning: [`spoiler_warning: ${fields.spoilerWarning.checked ? 'true' : 'false'}`],
       preserve_line_breaks: ['preserve_line_breaks: true'],
@@ -355,6 +357,19 @@
     }
 
     return output.join('\n');
+  }
+
+  function membersArticleSlug() {
+    const filename = String(fields.filename?.value || '').trim();
+    return filename.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/i, '');
+  }
+
+  // Never put subscribers-only article text into the publicly visible GitHub repository.
+  // Only this metadata/teaser is saved as a public Jekyll post.
+  function publicMarkdownForSave(publishedValue = currentPublished, options = {}) {
+    if (!fields.membersOnly?.checked) return fullMarkdown(publishedValue, options);
+    const frontmatter = buildFrontmatter(publishedValue, options);
+    return `---\n${frontmatter}\n---\n\nThis article is available to MMA Matlock members. [Read it with a membership](https://members.mmamatlock.com/post/${membersArticleSlug()}).\n`;
   }
 
   function fullMarkdown(publishedValue = currentPublished, options = {}) {
@@ -2193,6 +2208,7 @@
       showToc: fields.showToc.checked,
       spoilerWarning: fields.spoilerWarning.checked,
       pinned: fields.pinned.checked,
+      membersOnly: Boolean(fields.membersOnly?.checked),
       body: bodyEditor.value,
       htmlBlocks: [...htmlBlocks.values()].map(block => ({ ...block })),
       currentPath,
@@ -2219,6 +2235,7 @@
     fields.showToc.checked = Boolean(state.showToc);
     fields.spoilerWarning.checked = Boolean(state.spoilerWarning);
     fields.pinned.checked = Boolean(state.pinned);
+    if (fields.membersOnly) fields.membersOnly.checked = Boolean(state.membersOnly);
     bodyEditor.value = prepareEditorBody(state.body || '', state.htmlBlocks || []);
     renderHtmlBlockRail();
     scheduleWriterAutoCorrectFighterRefresh(0);
@@ -2256,6 +2273,7 @@
       showToc: Boolean(m.show_toc),
       spoilerWarning: Boolean(m.spoiler_warning),
       pinned: Boolean(m.pinned),
+      membersOnly: Boolean(m.members_only),
       body: parsed.body.replace(/^\n+/, ''),
       currentPath: path,
       currentSha: sha,
@@ -3073,6 +3091,12 @@ function scheduleAutosave() {
     try {
       const data = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}?ref=main`);
       const state = stateFromFile(decodeBase64(data.content), path, data.sha);
+      if (state.membersOnly) {
+        const slug = path.split('/').pop().replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/i,'');
+        const privateData = await memberWriterFetch('/' + encodeURIComponent(slug));
+        if (!privateData?.post?.body_markdown) throw new Error('The private article could not be loaded.');
+        state.body = privateData.post.body_markdown;
+      }
       applyState(state, { remote: true });
       const restored = maybeRestoreLocal(`matlock-writer:${path}`, state);
       if (!restored) dirty = false;
@@ -3125,6 +3149,19 @@ function scheduleAutosave() {
     } catch (error) {
       showToast(`Could not duplicate article: ${error.message}`, 5000);
     }
+  }
+
+  async function memberWriterFetch(suffix = '', options = {}) {
+    const endpoint = 'https://members.mmamatlock.com/api/admin/writer/posts' + suffix;
+    let response;
+    try {
+      response = await fetch(endpoint, { credentials: 'include', mode: 'cors', cache: 'no-store', ...options });
+    } catch {
+      throw new Error('Could not contact private publishing. Check members.mmamatlock.com and try again.');
+    }
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || 'Private publishing failed. Sign in on members.mmamatlock.com with your owner account.');
+    return data;
   }
 
   function isAllowedPublishUrl(value) {
@@ -3234,6 +3271,11 @@ function scheduleAutosave() {
     if (!fields.date.value) throw new Error('Choose an article date.');
     if (!fields.filename.value.trim()) throw new Error('Add a filename.');
     if (!/^\d{4}-\d{2}-\d{2}-.+\.md$/i.test(fields.filename.value.trim())) throw new Error('Filename must look like YYYY-MM-DD-article-name.md.');
+    const beforeWasMembersOnly = /^members_only:\s*true\s*$/m.test(originalFrontmatter);
+    if (currentPath && beforeWasMembersOnly !== Boolean(fields.membersOnly?.checked))
+      throw new Error('Changing the visibility of an existing article requires a migration. Create a new members-only article instead to keep its contents out of public Git history.');
+    if (fields.membersOnly?.checked && mode === 'schedule')
+      throw new Error('Scheduled members-only publishing is not enabled yet. Use Save draft or Publish.');
     if (fields.newsFeature?.checked) {
       const newsFeatureUntil = new Date(fields.newsFeatureUntil?.value || '');
       if (!fields.newsFeatureUntil?.value || Number.isNaN(newsFeatureUntil.getTime())) throw new Error('Choose a valid News lead end time first.');
@@ -3297,7 +3339,10 @@ async function saveArticle(mode = 'save', { skipConflict = false, automatic = fa
   const oldLabel = button.textContent;
   const clearSchedule = mode === 'publish';
   // Save a single revision; editing remains live while the request is pending.
-  const savedMarkdown = fullMarkdown(desiredPublished, { clearSchedule });
+  const savedMarkdown = publicMarkdownForSave(desiredPublished, { clearSchedule });
+  const privateBody = fields.membersOnly?.checked
+    ? expandHtmlBlocks(normalizeMarkdownDividers(bodyEditor.value).replace(/^\s+/, '')) : '';
+  const privateBodySnapshot = bodyEditor.value;
   const savedFrontmatter = buildFrontmatter(desiredPublished, { clearSchedule });
   const savedSchedule = fields.publishAt.value;
 
@@ -3335,6 +3380,19 @@ async function saveArticle(mode = 'save', { skipConflict = false, automatic = fa
       }
     }
 
+    if (fields.membersOnly?.checked) {
+      const slug = membersArticleSlug();
+      if (!/^[a-z0-9](?:[a-z0-9-]{1,78})[a-z0-9]$/.test(slug))
+        throw new Error('Members-only filenames must use a lowercase slug with hyphens (3–80 characters).');
+      if (!privateBody.trim()) throw new Error('Write private article text before saving.');
+      if (privateBody.length > 100000) throw new Error('The private article exceeds the 100,000-character storage limit.');
+      await memberWriterFetch('', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug, title: fields.title.value.trim(),
+          body_markdown: privateBody, status: desiredPublished ? 'published' : 'draft' })
+      });
+    }
+
     const payload = {
       message: `${mode === 'publish' ? 'Publish' : mode === 'schedule' ? 'Schedule' : 'Update'} ${filename}`,
       content: encodeBase64(savedMarkdown),
@@ -3345,7 +3403,8 @@ async function saveArticle(mode = 'save', { skipConflict = false, automatic = fa
       method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
     }, true);
 
-    const newerEdits = fullMarkdown(desiredPublished, { clearSchedule }) !== savedMarkdown || fields.publishAt.value !== savedSchedule;
+    const newerEdits = publicMarkdownForSave(desiredPublished, { clearSchedule }) !== savedMarkdown
+      || fields.publishAt.value !== savedSchedule || (fields.membersOnly?.checked && bodyEditor.value !== privateBodySnapshot);
     currentPath = path;
     currentSha = result.content?.sha || currentSha;
     currentPublished = desiredPublished;
@@ -3370,7 +3429,7 @@ async function saveArticle(mode = 'save', { skipConflict = false, automatic = fa
     setSaveState(newerEdits ? 'Unsaved changes • earlier revision saved' : automatic ? `Auto-saved • ${stamp}` : mode === 'publish' ? `Published • ${stamp}` : mode === 'schedule' ? `Scheduled • ${stamp}` : `Saved • ${stamp}`);
     if (!newerEdits) setLocalStatus(`Saved to GitHub · ${stamp}`, 'github');
     if (!automatic) showToast(newerEdits ? 'Earlier revision saved. Your newer edits still need saving.' : mode === 'publish'
-      ? 'Published to GitHub. The public site is deploying now.'
+      ? (fields.membersOnly?.checked ? 'Private article saved. Locked public listing is deploying.' : 'Published to GitHub. The public site is deploying now.')
       : mode === 'schedule'
         ? `Scheduled for ${formatDateTime(localInputToIso(savedSchedule))}. GitHub checks due posts about every 15 minutes.`
         : 'Saved to GitHub.');
