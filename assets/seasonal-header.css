@@ -23,7 +23,7 @@
 
   body[data-editorial-shell] .logo-banner .desktop-brand-harvest {
     position: absolute;
-    right: -44px;
+    right: -24px;
     bottom: -7px;
     z-index: 3;
     display: block;
@@ -81,7 +81,7 @@
 /* Keep a slight visual overlap on narrower desktop mastheads, too. */
 @media (min-width: 851px) and (max-width: 1100px) {
   body[data-editorial-shell] .logo-banner .desktop-brand-harvest {
-    right: -36px;
+    right: -16px;
     bottom: -8px;
     width: 54px;
     height: 54px;
