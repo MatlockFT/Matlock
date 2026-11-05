@@ -1,5 +1,5 @@
 {
-  "version": 45,
+  "version": 46,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -29089,31 +29089,367 @@
       "subtitle": "Career chronology",
       "record": "9-1",
       "ufcRecord": "1-0",
-      "division": "Women&#39;s Bantamweight",
+      "division": "Women's Bantamweight",
       "items": [
         {
-          "date": "Amateur career",
-          "label": "Two-time IMMAF world champion",
-          "detail": "Won two IMMAF amateur world championships before turning professional.",
-          "source": "https://www.ufc.com/athlete/nina-milosevic",
+          "date": "Aug. 8, 1996",
+          "label": "Born in Gothenburg, Sweden, to Serbian parents",
           "kind": "milestone",
-          "sourceLabel": "UFC fighter profile"
+          "detail": "Born August 8, 1996, in Gothenburg, Sweden. Grew up in Sweden with two Serbian parents; spent holidays visiting relatives in Serbia. Her Serbian UFC flag reflects heritage and later national-team switch, not a documented Serbian birthplace. Age 30 on Nov. 5, 2026.",
+          "source": "https://www.ufc.com/news/nina-milosevic-back-home-big-stage-ufc-belgrade",
+          "sourceLabel": "UFC · July 2026 Swedish upbringing and Serbian roots"
         },
         {
-          "date": "Aug 1, 2026",
-          "label": "WIN · Hailey Cowan · UFC Fight Night",
-          "kind": "win",
-          "detail": "Defeated Hailey Cowan at UFC Fight Night by TKO (Strikes) in round 1 at 3:41.",
+          "date": "Childhood (exact start date not published)",
+          "label": "Begins karate and other martial arts",
+          "kind": "training",
+          "detail": "Says she started training martial arts as a child, including karate and Muay Thai, and later Brazilian jiu-jitsu. UFC athlete questionnaire confirms karate black belt and BJJ brown belt. No reliable childhood tournament dates found, so none are invented.",
           "source": "https://www.ufc.com/athlete/nina-milosevic",
-          "sourceLabel": "UFC fighter profile"
+          "sourceLabel": "UFC · official fighter facts, fight history and interview"
+        },
+        {
+          "date": "Before 2020",
+          "label": "Develops career in Swedish regional combat sports",
+          "kind": "training",
+          "detail": "Represented clubs in Gothenburg and developed Muay Thai, karate and grappling before international amateur MMA. She later worked as an accountant after completing an economics bachelor's degree, according to her UFC questionnaire. Exact dates of degree and employment are not established.",
+          "source": "https://immaf.org/2023/11/01/immaf-alumni-collide-cecilie-bolander-vs-nina-nikolija-milosevic/",
+          "sourceLabel": "IMMAF · November 2023 pro-debut preview and martial arts background"
+        },
+        {
+          "date": "Aug. 15, 2020",
+          "label": "AMATEUR WIN · Jessica Andersson · BRAVE CF 39",
+          "kind": "win",
+          "detail": "Defeated Jessica Andersson by unanimous decision after three amateur MMA rounds at BRAVE CF 39, in the earliest completed amateur bout listed by Tapology's expanded record. This was amateur, not a professional BRAVE CF fight; UFC record remained 0-0.",
+          "source": "https://aisportsmetrics.com/mma/fighter.php?name=Nina+Milosevic",
+          "sourceLabel": "Tapology amateur ledger reproduced · 12-1 with Millie Eriksson loss"
+        },
+        {
+          "date": "Jan. 25, 2022",
+          "label": "AMATEUR WIN · Daria Tereshchenko · IMMAF 2021 Worlds",
+          "kind": "win",
+          "detail": "Opened the 2021 IMMAF World Championships tournament in Abu Dhabi by beating Daria Tereshchenko via three-round unanimous decision. The event was branded '2021' but contested in January 2022. First of four tournament wins on the way to the world title.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "Jan. 26, 2022",
+          "label": "AMATEUR WIN · Katharina Rychkova · IMMAF 2021 Worlds",
+          "kind": "win",
+          "detail": "Stopped Katharina Rychkova by TKO in round three at 2:15 in the IMMAF championship quarterfinal. Amateur result only.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "Jan. 27, 2022",
+          "label": "AMATEUR WIN · Tatiana Postarnakova · IMMAF 2021 Worlds",
+          "kind": "win",
+          "detail": "Defeated Tatiana Postarnakova by three-round unanimous decision in the women's bantamweight semifinal at the 2021 IMMAF World Championships, held in Abu Dhabi in January 2022.",
+          "source": "https://immaf.org/athlete/nina-nikolija-milosevic/",
+          "sourceLabel": "IMMAF · official 2021 world and 2022 European championship brackets"
+        },
+        {
+          "date": "Jan. 29, 2022",
+          "label": "AMATEUR WIN · Raiane Vinuto Guimarães · IMMAF world final",
+          "kind": "win",
+          "detail": "Beat Raiane Vinuto Guimarães by unanimous decision over three three-minute rounds to capture the 2021 IMMAF women's bantamweight world championship for Sweden. The date is January 29, 2022, despite the championship's 2021 name.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "Jan. 29–30, 2022",
+          "label": "First IMMAF world gold representing Sweden",
+          "kind": "milestone",
+          "detail": "Won four bouts in five days in Abu Dhabi, ending with the decision over Guimarães. Swedish public broadcaster SVT covered her as a Gothenburg-based debutant to Sweden's national team and world champion. This was her first of two world titles.",
+          "source": "https://www.svt.se/sport/mma/milosevic-om-vm-guldet-blod-svett-och-tarar-1-allt-var-vart-det",
+          "sourceLabel": "SVT · January 2022 first world title interview"
+        },
+        {
+          "date": "Feb. 19, 2022",
+          "label": "AMATEUR WIN · Jessica Andersson · Swedish national championship",
+          "kind": "win",
+          "detail": "Beat Jessica Andersson again, this time by TKO at Svenska Mästerskapet 2021 (Swedish MMA Championship), held February 19, 2022. Some ledgers list the 2021 competition label; the actual bout date is in 2022. This was a SECOND separate meeting from August 2020.",
+          "source": "https://aisportsmetrics.com/mma/fighter.php?name=Nina+Milosevic",
+          "sourceLabel": "Tapology amateur ledger reproduced · 12-1 with Millie Eriksson loss"
+        },
+        {
+          "date": "May 14, 2022",
+          "label": "AMATEUR LOSS · Millie Eriksson · Excellence FC 3",
+          "kind": "loss",
+          "detail": "Lost a three-round split decision to Millie Eriksson at Excellence Fighting Championship 3 in Linköping. Swedish MMA coverage described the matchup as a meeting of elite amateur fighters. This defeat appears in Tapology's 12-1 amateur ledger but is omitted from Sherdog's shorter ten-bout amateur list. Does not affect her later 9-1 PRO record.",
+          "source": "https://www.kimura.se/millie-eriksson-besegrade-varldsmastarinnan-i-linkoping/",
+          "sourceLabel": "Kimura · May 14 2022 split-decision loss to Millie Eriksson"
+        },
+        {
+          "date": "Sept. 29, 2022",
+          "label": "AMATEUR WIN · Mercedes Custodio López · IMMAF Europe",
+          "kind": "win",
+          "detail": "Stopped Mercedes Custodio López by second-round TKO at 2:23 to open her 2022 IMMAF European Championship run. She was still competing for Sweden. Note that 2023 Worlds included another fight against Custodio López; these are separate bouts.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "Sept. 30, 2022",
+          "label": "AMATEUR WIN · Giulia Grossi · IMMAF European semifinal",
+          "kind": "win",
+          "detail": "Stopped Giulia Grossi via TKO at 2:38 of round two to advance to the 2022 IMMAF European bantamweight final.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "Oct. 1, 2022",
+          "label": "AMATEUR WIN · Paulina Kontna · IMMAF European final",
+          "kind": "win",
+          "detail": "Stopped Paulina Kontna by TKO at 2:28 of round two to win the women's bantamweight European title for Sweden. This was the first of two documented meetings with Kontna; their second occurred in February 2023.",
+          "source": "https://immaf.org/athlete/nina-nikolija-milosevic/",
+          "sourceLabel": "IMMAF · official 2021 world and 2022 European championship brackets"
+        },
+        {
+          "date": "Oct. 1, 2022",
+          "label": "Wins European IMMAF championship for Sweden",
+          "kind": "milestone",
+          "detail": "Won three tournament fights on three successive days to take European amateur gold, adding to her January world title. Her subsequent switch to Serbia came AFTER these Swedish titles, not before.",
+          "source": "https://immaf.org/2026/08/01/nina-nikolija-milosevic-from-immaf-gold-to-the-ufc/",
+          "sourceLabel": "IMMAF · August 2026 athlete career retrospective"
+        },
+        {
+          "date": "Jan. 3, 2023",
+          "label": "IMMAF approves Sweden-to-Serbia national-team switch",
+          "kind": "milestone",
+          "detail": "IMMAF confirmed that dual national Milošević, with two Serbian parents, was authorized to change representation from Sweden to Serbia ahead of the 2022 World Championships, held in Belgrade in February 2023. Swedish federation supported the transfer and retained the team-ranking points from her Swedish championship wins. This was a formal national-team switch, not a new birth nationality.",
+          "source": "https://immaf.org/2023/01/03/defending-champion-nina-milosevic-now-set-to-represent-serbia-at-2022-immaf-world-championships/",
+          "sourceLabel": "IMMAF · January 2023 country-switch authorization"
+        },
+        {
+          "date": "Feb. 13, 2023",
+          "label": "AMATEUR WIN · Lama Nassar · IMMAF 2022 Worlds",
+          "kind": "win",
+          "detail": "Opened the 2022 IMMAF World Championships (held February 2023) in Belgrade with a first-round ground-and-pound TKO over Lama Nassar at 2:05. Some athlete databases anonymize this opponent as 'L. N.'; IMMAF contemporaneous coverage names Nassar. Represented Serbia.",
+          "source": "https://immaf.org/2026/08/01/nina-nikolija-milosevic-from-immaf-gold-to-the-ufc/",
+          "sourceLabel": "IMMAF · August 2026 athlete career retrospective"
+        },
+        {
+          "date": "Feb. 14, 2023",
+          "label": "AMATEUR WIN · Mercedes Custodio López · IMMAF 2022 Worlds",
+          "kind": "win",
+          "detail": "Submitted Mercedes Custodio López by rear-naked choke at the February 14 world tournament. Sherdog lists round three at 1:00; Tapology-derived amateur ledgers show round two at 3:00. The disagreement remains unresolved; both refer to ONE completed fight, not separate bouts.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "Feb. 15, 2023",
+          "label": "AMATEUR WIN · Paulina Kontna · IMMAF 2022 Worlds",
+          "kind": "win",
+          "detail": "Submitted Paulina Kontna by rear-naked choke at 1:15 of round two, advancing to the women's bantamweight world final. It was the second documented tournament victory over Kontna (after October 2022).",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "Feb. 18, 2023",
+          "label": "Second IMMAF world title awarded without final bout",
+          "kind": "milestone",
+          "detail": "Won the 2022 IMMAF World Championships women's bantamweight gold for Serbia in Belgrade when scheduled final opponent Josiane Oliveira was not medically cleared to compete. IMMAF confirms she did NOT fight the final that day, though she entered the arena and had her hand raised. Do not fabricate a victory via stoppage or decision over Oliveira. The title counts as her second world championship and Serbia's first IMMAF gold.",
+          "source": "https://immaf.org/2023/02/18/ramazan-gitinov-and-sabrina-de-sousa-become-three-time-world-champions-on-final-day-of-2022-world-championships/",
+          "sourceLabel": "IMMAF · February 2023 world final awarded without bout"
+        },
+        {
+          "date": "Feb. 2023",
+          "label": "First athlete to win IMMAF world gold for two countries",
+          "kind": "milestone",
+          "detail": "IMMAF identified her as the first athlete to earn world titles for two different national teams: Sweden in January 2022 and Serbia in February 2023. These were the 2021 and 2022 tournament editions, contested in the next calendar years.",
+          "source": "https://immaf.org/2023/02/18/ramazan-gitinov-and-sabrina-de-sousa-become-three-time-world-champions-on-final-day-of-2022-world-championships/",
+          "sourceLabel": "IMMAF · February 2023 world final awarded without bout"
+        },
+        {
+          "date": "2023 (after IMMAF Worlds)",
+          "label": "Transitions from amateur to professional competition",
+          "kind": "milestone",
+          "detail": "After winning world gold and European gold, turned to professional MMA. Her professional debut came in November 2023 rather than 2022. Pro career fights must be kept distinct from the 12-1 expanded amateur record and the walkover title in 2023.",
+          "source": "https://immaf.org/2023/11/01/immaf-alumni-collide-cecilie-bolander-vs-nina-nikolija-milosevic/",
+          "sourceLabel": "IMMAF · November 2023 pro-debut preview and martial arts background"
+        },
+        {
+          "date": "Nov. 4, 2023",
+          "label": "PRO LOSS · Cecilie Maria Bolander · Superior Challenge 26",
+          "kind": "loss",
+          "detail": "Professional MMA debut against Norwegian IMMAF champion Cecilie Maria Bolander at Superior Challenge 26: Legends in Stockholm. Lost a three-round split decision, her ONLY professional MMA defeat through Nov. 5, 2026. Professional record 0-1; UFC record 0-0.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "Nov. 2023",
+          "label": "Elite amateur champions meet in pro debut",
+          "kind": "milestone",
+          "detail": "The Bolander matchup paired two established IMMAF medalists early in their professional careers; Bolander entered 2-0 while Milošević made her first professional appearance. The split decision loss does not reverse any of Milošević's previous amateur titles.",
+          "source": "https://immaf.org/2023/11/01/immaf-alumni-collide-cecilie-bolander-vs-nina-nikolija-milosevic/",
+          "sourceLabel": "IMMAF · November 2023 pro-debut preview and martial arts background"
+        },
+        {
+          "date": "2024 (dates not individually established)",
+          "label": "Develops under coach Renato Subotic; trains in Australia",
+          "kind": "training",
+          "detail": "Later IMMAF and UFC reporting place Milošević with head coach Renato Subotic and Family Fight Team, with training experience at Infinity Fitness Gym in Australia. Her documented 2024–26 professional fights took place across French Polynesia, New Zealand, Europe and Serbia; do not assume one fixed camp for all years.",
+          "source": "https://immaf.org/2026/08/01/nina-nikolija-milosevic-from-immaf-gold-to-the-ufc/",
+          "sourceLabel": "IMMAF · August 2026 athlete career retrospective"
+        },
+        {
+          "date": "May 4, 2024",
+          "label": "PRO WIN · Tehanahana Bernardino · TFC Challenger Series",
+          "kind": "win",
+          "detail": "Earned her first professional MMA victory by rear-naked-choke submission over Tehanahana Bernardino at 3:10 of round three in French Polynesia. Pro record 1-1; official UFC record 0-0.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "July 27, 2024",
+          "label": "PRO WIN · Anastasiya Koroleva · Shuriken Fight Series 18",
+          "kind": "win",
+          "detail": "Defeated Anastasiya Koroleva via unanimous decision after three rounds at Shuriken Fight Series 18 in Auckland, New Zealand. Some databases spell the opponent Anastasiya Korzh; Sherdog's opponent and event records use Koroleva. Pro 2-1, UFC 0-0.",
+          "source": "https://www.sherdog.com/events/SFS-18-Shuriken-Fight-Series-18-101988",
+          "sourceLabel": "Sherdog · July 2024 Shuriken Fight Series 18 event card"
+        },
+        {
+          "date": "Nov. 23, 2024",
+          "label": "CANCELED · Annie Thatcher · HEX Fight Series 33",
+          "kind": "booking",
+          "detail": "A scheduled matchup with Annie Thatcher at HEX Fight Series 33 on Nov. 23 appears canceled in multiple fight ledger archives. No verified explanation establishes which fighter withdrew or whether injury caused the cancellation; no MMA bout was completed or counted.",
+          "source": "https://www.nextknockout.com/fighters/nina-nikolija-milosevic-349667",
+          "sourceLabel": "NextKnockout · November 2024 Annie Thatcher canceled booking ledger"
+        },
+        {
+          "date": "Mar. 8, 2025",
+          "label": "PRO WIN · Gina Gee · Shuriken Fight Series 20",
+          "kind": "win",
+          "detail": "Submitted Gina Gee with a rear-naked choke in 0:52 of round one at Shuriken Fight Series 20 in New Zealand. Professional record 3-1; UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "Apr. 11, 2025",
+          "label": "PRO WIN · Maricel Dela Torre · Jez Premier Fight Night",
+          "kind": "win",
+          "detail": "Stopped Maricel Dela Torre by TKO (punches/ground-and-pound) at 1:14 of the first round at a Jez Premier Promotions Fight Night. Professional record 4-1; UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "May 10, 2025",
+          "label": "PRO WIN · Nadine Mandiau · Tahiti Fighting Championship 4",
+          "kind": "win",
+          "detail": "Defeated Nadine Mandiau by unanimous decision after three full rounds to capture the Tahiti Fighting Championship women's bantamweight title at TFC 4. Pro 5-1, UFC 0-0. Sherdog event card confirms TITLE FIGHT status.",
+          "source": "https://www.sherdog.com/events/Tahiti-Fighting-Championship-TFC-4-108298",
+          "sourceLabel": "Sherdog · May 2025 TFC 4 professional title fight"
+        },
+        {
+          "date": "May 10, 2025",
+          "label": "Captures Tahiti Fighting Championship bantamweight belt",
+          "kind": "milestone",
+          "detail": "The title won over Nadine Mandiau became her first documented professional MMA championship. In her later UFC questionnaire she identified the Tahiti title fight as a key career milestone because it tested her resilience over three rounds.",
+          "source": "https://www.ufc.com/athlete/nina-milosevic",
+          "sourceLabel": "UFC · official fighter facts, fight history and interview"
+        },
+        {
+          "date": "June 14, 2025",
+          "label": "PRO WIN · Sandra Succar · WAR MMA 6 Alicante",
+          "kind": "win",
+          "detail": "Stopped Sandra Succar by TKO (punches) at 3:03 of round one at WAR MMA 6 in Alicante, Spain. Professional record 6-1, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "July 5, 2025",
+          "label": "PRO WIN · Desi Rahayu · Jez Premier Fight Night 2",
+          "kind": "win",
+          "detail": "Stopped Desi Rahayu with strikes at 0:58 of round one, her third TKO in five professional wins during 2025. Professional record 7-1; UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
+        },
+        {
+          "date": "2025 season",
+          "label": "Five consecutive professional wins in one year",
+          "kind": "milestone",
+          "detail": "Went 5-0 in 2025 against Gee, Dela Torre, Mandiau, Succar and Rahayu, with three TKOs, one rear-naked choke and one unanimous decision. The win over Mandiau added a professional TFC championship; none of these bouts were official UFC fights.",
+          "source": "https://www.ufc.com/athlete/nina-milosevic",
+          "sourceLabel": "UFC · official fighter facts, fight history and interview"
+        },
+        {
+          "date": "Feb. 14, 2026",
+          "label": "PRO WIN · Dina Osman · BRAVE CF 104",
+          "kind": "win",
+          "detail": "Defeated previously unbeaten Dina Osman by unanimous decision after three rounds at BRAVE CF 104 in Belgrade, Serbia. BRAVE CF's official cards were 30-26, 30-26 and 30-26 for Milošević. Professional record 8-1; official UFC record 0-0. This completed BRAVE bout was professional MMA, unlike her amateur BRAVE CF 39 appearance in 2020.",
+          "source": "https://www.bravecf.com/events/brave-cf-104",
+          "sourceLabel": "BRAVE CF · official February 2026 results and judges' scores"
+        },
+        {
+          "date": "Spring–summer 2026",
+          "label": "Signs with UFC as first woman representing Serbia",
+          "kind": "milestone",
+          "detail": "Joined the UFC after a run of eight consecutive professional victories, becoming the first woman from Serbia to sign with and later compete in UFC. The announced August 1 Belgrade debut was especially meaningful given her Swedish upbringing and Serbian family roots.",
+          "source": "https://www.ufc.com/news/nina-milosevic-back-home-big-stage-ufc-belgrade",
+          "sourceLabel": "UFC · July 2026 Swedish upbringing and Serbian roots"
+        },
+        {
+          "date": "July 2026",
+          "label": "Prepares for first UFC card held in Serbia",
+          "kind": "booking",
+          "detail": "Milošević was booked to face Hailey Cowan in a women's bantamweight bout at UFC Belgrade on Aug. 1. In pre-fight UFC interviews she discussed building a different training camp to return to her family homeland after time spent in Australia.",
+          "source": "https://www.ufc.com/news/nina-milosevic-back-home-big-stage-ufc-belgrade",
+          "sourceLabel": "UFC · July 2026 Swedish upbringing and Serbian roots"
+        },
+        {
+          "date": "Aug. 1, 2026",
+          "label": "PRO WIN · Hailey Cowan · UFC Belgrade",
+          "kind": "win",
+          "detail": "Made her official UFC debut at UFC Fight Night: Medić vs. Rodriguez in Belgrade. Finished Hailey Cowan with two powerful straight punches to the body, officially KO/TKO at 3:41 of round one. Professional record 9-1, official UFC record 1-0. The damage was to Cowan, not a confirmed injury to Milošević.",
+          "source": "https://www.ufc.com/news/ufc-belgrade-prelim-results",
+          "sourceLabel": "UFC · August 2026 Cowan stoppage official recap"
+        },
+        {
+          "date": "Aug. 1, 2026",
+          "label": "Receives Performance of the Night for Cowan stoppage",
+          "kind": "milestone",
+          "detail": "Earned a UFC Performance of the Night bonus following the first-round body-shot knockout at Belgrade Arena. UFC reporting identifies her as the first Serbian female UFC participant, winner, finisher and postfight bonus recipient.",
+          "source": "https://www.ufc.com/index.php/news/bonus-coverage-ufc-belgrade",
+          "sourceLabel": "UFC · official UFC Belgrade performance bonus"
+        },
+        {
+          "date": "Sept. 25, 2026",
+          "label": "Booked against Priscila Cachoeira at UFC Vegas 124",
+          "kind": "booking",
+          "detail": "MMA Junkie reported the women's bantamweight matchup for Nov. 7 at Meta APEX in Las Vegas, against Priscila Cachoeira (13-9 overall, 5-9 UFC). Milošević's pre-fight record remained 9-1 with one official UFC win; matchup was later listed by UFC.",
+          "source": "https://uk.sports.yahoo.com/news/ufc-vegas-124-adds-nina-024307717.html",
+          "sourceLabel": "MMA Junkie · September 2026 Cachoeira booking"
+        },
+        {
+          "date": "Nov. 4, 2026",
+          "label": "Discusses second UFC fight and main-card assignment",
+          "kind": "milestone",
+          "detail": "In a UFC interview published Nov. 4, Milošević described the home-country debut as meaningful and her November 7 main-card placement as motivation, while emphasizing that fight-night adaptation matters beyond prepared tactics. This is a pre-fight interview, not evidence of a completed Nov. 7 result.",
+          "source": "https://www.ufc.com/news/nina-milosevic-practice-makes-perfect-ufc-vegas-124",
+          "sourceLabel": "UFC · November 4 2026 interview"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Injury and booking audit",
+          "kind": "note",
+          "detail": "No verified major operation, sustained injury-enforced hiatus or personally injury-attributed withdrawal was located in reviewed UFC/IMMAF interviews, Sherdog histories and booking data. ONE canceled professional booking against Annie Thatcher (HEX Fight Series 33, Nov. 23, 2024) is recorded without a confirmed cause. Her 2023 IMMAF final was not contested because OPPONENT Josiane Oliveira lacked medical clearance, not because Milošević was injured. Absence of public reports is not proof she has never been injured.",
+          "source": "https://www.nextknockout.com/fighters/nina-nikolija-milosevic-349667",
+          "sourceLabel": "NextKnockout · November 2024 Annie Thatcher canceled booking ledger"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Reconcile amateur ledger, title walkover and pro methods",
+          "kind": "note",
+          "detail": "Professional MMA: ten completed bouts, nine wins (four KO/TKO, two rear-naked-choke submissions, three decisions) and one split-decision loss to Cecilie Bolander; UFC 1-0 (Hailey Cowan). Expanded amateur MMA: 12-1 in 13 completed bouts on Tapology-derived ledger; Sherdog lists 10 of these as wins and omits earlier Swedish bouts and the Millie Eriksson defeat. The February 18, 2023 second IMMAF world title was awarded after opponent was not cleared: it does NOT count as a completed fight or a 13th amateur win. There are two DIFFERENT Jessica Andersson meetings in 2020 and 2022. 2021 Worlds occurred Jan. 2022; 2022 Worlds occurred Feb. 2023.",
+          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
+          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Priscila Cachoeira · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Scheduled to fight Priscila Cachoeira at UFC Vegas 124 in Las Vegas. No result yet.",
+          "kind": "upcoming",
+          "detail": "Scheduled for a three-round women's bantamweight fight with Priscila Cachoeira at Meta APEX in Las Vegas on UFC Fight Night: Cortes-Acosta vs. Walker. As of Nov. 5 this is UPCOMING, no result. Entry records: Milošević 9-1 professional, 1-0 UFC; Cachoeira 13-9 professional, 5-9 UFC.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "Official UFC event"
+          "sourceLabel": "UFC · official November 7 event and upcoming bout"
         }
       ]
     },
