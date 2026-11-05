@@ -1,5 +1,5 @@
 {
-  "version": 46,
+  "version": 47,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -29462,44 +29462,356 @@
       "division": "Welterweight",
       "items": [
         {
-          "date": "2023–2026",
-          "label": "Long absence from UFC competition",
-          "detail": "Had not fought professionally since his July 2023 UFC debut win against Danny Roberts before this November 2026 booking.",
-          "source": "https://www.ufc.com/athlete/jonny-parsons",
+          "date": "Sept. 6, 1991",
+          "label": "Born in Biloxi, Mississippi; later based in Las Vegas",
           "kind": "milestone",
-          "sourceLabel": "UFC fighter profile"
+          "detail": "Born September 6, 1991. UFC lists his birthplace as Biloxi, Mississippi; he later lived and trained in Las Vegas. His accurate age on November 5, 2026 is 35; an old UFC bio still displays 32 and must not override his birth date.",
+          "source": "https://www.ufc.com/athlete/jonny-parsons",
+          "sourceLabel": "UFC · official fighter questionnaire, martial arts background and results"
         },
         {
-          "date": "Jul 22, 2023",
-          "label": "WIN · Danny Roberts · UFC Fight Night",
-          "kind": "win",
-          "detail": "Defeated Danny Roberts at UFC Fight Night by TKO (Punches) in round 2 at 4:57.",
-          "source": "https://www.tapology.com/fightcenter/fighters/99713-johnny-parsons",
-          "sourceLabel": "Tapology fighter history"
+          "date": "Around 2007 (age 16)",
+          "label": "Begins formal fight training",
+          "kind": "training",
+          "detail": "Parsons told the UFC he began martial arts at age 16 after becoming interested in martial-arts films and fighting. Approximate year follows from his September 1991 birth; no exact beginning date is established. He developed a Muay Thai base before his MMA career.",
+          "source": "https://www.ufc.com/athlete/jonny-parsons",
+          "sourceLabel": "UFC · official fighter questionnaire, martial arts background and results"
         },
         {
-          "date": "Oct 19, 2021",
-          "label": "WIN · Solomon Renfro · Dana White's Contender Series",
-          "kind": "win",
-          "detail": "Defeated Solomon Renfro at Dana White's Contender Series by Decision (Split) in round 3.",
-          "source": "https://www.tapology.com/fightcenter/fighters/99713-johnny-parsons",
-          "sourceLabel": "Tapology fighter history"
+          "date": "Around 2009 (age 18)",
+          "label": "Makes amateur Muay Thai debut with TKO victory",
+          "kind": "milestone",
+          "detail": "In his UFC questionnaire, Parsons said he trained for roughly two years before making his first amateur Muay Thai appearance at 18, winning via TKO. He self-reports a 6-1 amateur Muay Thai record and a USMTA amateur Tri State Championship; individual opponent names and championship dates have not been confirmed.",
+          "source": "https://www.ufc.com/athlete/jonny-parsons",
+          "sourceLabel": "UFC · official fighter questionnaire, martial arts background and results"
         },
         {
-          "date": "Jun 11, 2021",
-          "label": "WIN · Ricardo Chavez · iKON Fighting Federation 7",
+          "date": "May 1, 2010",
+          "label": "AMATEUR WIN · Benjamin Sample · Las Vegas MMA",
           "kind": "win",
-          "detail": "Defeated Ricardo Chavez at iKON Fighting Federation 7 by TKO (Head Kick) in round 2 at 3:26.",
-          "source": "https://www.tapology.com/fightcenter/fighters/99713-johnny-parsons",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "First amateur MMA fight in the four-bout Sherdog ledger. Knocked out Benjamin Sample with a head kick in round two at the Las Vegas MMA Angelo vs. Thomas event. The finish's precise round time is unverified, not 0:00. Amateur record 1-0.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "May 28, 2010",
+          "label": "AMATEUR LOSS · Mac McNamara · Tuff-N-Uff",
+          "kind": "loss",
+          "detail": "Lost a three-round split decision to Mac McNamara at Tuff-N-Uff Future Stars of MMA. His sole recorded amateur MMA defeat in Sherdog's ledger. Amateur record 1-1.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "Sept. 24, 2010",
+          "label": "AMATEUR WIN · Alex Delgado · Tuff-N-Uff",
+          "kind": "win",
+          "detail": "Stopped Alex Delgado by TKO (punches) at 0:16 of round two at Tuff-N-Uff Future Stars of MMA. Sherdog dates the bout September 24; other aggregated databases also show a September 10 Alex Delgado entry with the same finish, likely a duplicated/date-disputed listing. Do not count two victories without separate official fight evidence. Amateur record 2-1 in documented ledger.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "May 25, 2012",
+          "label": "AMATEUR WIN · Chris Sherley Rios · Tuff-N-Uff Festibrawl",
+          "kind": "win",
+          "detail": "Defeated Chris Sherley Rios by TKO after a spinning backfist and punches at 0:28 of round three. The four documented amateur MMA bouts yield 3-1; Parsons's UFC questionnaire claims 4-1, leaving one additional amateur win undocumented.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "2010–2012",
+          "label": "Develops regional amateur MMA and Muay Thai résumé",
+          "kind": "milestone",
+          "detail": "UFC lists amateur MMA 4-1 and amateur Muay Thai 6-1 with a USMTA amateur Tri State title. Sherdog and MMA Index document only four amateur MMA bouts (3-1). The apparent extra win is unresolved and must not be created without a named opponent, date and event.",
+          "source": "https://www.ufc.com/athlete/jonny-parsons",
+          "sourceLabel": "UFC · official fighter questionnaire, martial arts background and results"
+        },
+        {
+          "date": "Oct. 5, 2013",
+          "label": "PRO LOSS · Glenn Sparv · Muchzhima MMA: Cage Wars 1",
+          "kind": "loss",
+          "detail": "Professional MMA debut against Glenn Sparv ended in second-round TKO via doctor stoppage in Thailand. Sherdog does not provide a trustworthy finish time; its 0:00 field is missing data, not an instantaneous stoppage. Professional record 0-1; official UFC record 0-0. No specific injury diagnosis is established by the doctor-stoppage classification.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "Dec. 27, 2013",
+          "label": "PRO WIN · Christian Daigo · Sitpholek event",
+          "kind": "win",
+          "detail": "Earned his first professional MMA victory by TKO (leg kicks and punches) against Christian Daigo at 3:59 of round two, at an event titled International Thai Boxing Charity Gala 2013. Sherdog categorizes this result as a PRO MMA bout despite the event's Thai boxing branding. Professional record after fight 1-1, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "Apr. 25, 2015",
+          "label": "CANCELED · Jeff Barney · Golden Fights Cage Wars 21",
+          "kind": "booking",
+          "detail": "An archived fight ledger lists a scheduled Jeff Barney bout for Golden Fights Cage Wars 21 as canceled. No independently verified explanation for the change or withdrawal was found. It is not a professional result.",
+          "source": "https://www.nextknockout.com/fighters/jonny-parsons-312463",
+          "sourceLabel": "NextKnockout · archived regional and UFC canceled bookings"
+        },
+        {
+          "date": "July 25, 2015",
+          "label": "PRO WIN · Shonie Carter · Cage Wars 22",
+          "kind": "win",
+          "detail": "Knocked out veteran Shonie Carter with a punch just 0:34 into round one at Golden Fights / BCP Cage Wars 22 in Colorado. UFC later cited this as a signature early-career win. Professional MMA record 2-1, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "July 25, 2015",
+          "label": "Wins Colorado regional professional middleweight title",
+          "kind": "milestone",
+          "detail": "Parsons's UFC questionnaire identifies his 185-pound regional title in Colorado as the championship earned against Shonie Carter. The 34-second finish is the same July 25 professional bout, not an additional fight.",
+          "source": "https://www.ufc.com/athlete/jonny-parsons",
+          "sourceLabel": "UFC · official fighter questionnaire, martial arts background and results"
+        },
+        {
+          "date": "Oct. 9, 2015",
+          "label": "CANCELED · Jeff Roman · RFA 31",
+          "kind": "booking",
+          "detail": "Fight-history archives record a canceled booking against Jeff Roman for Resurrection Fighting Alliance 31: Smith vs. Marunde. No verified medical reason or responsible withdrawal party is given. No completed professional MMA bout.",
+          "source": "https://www.nextknockout.com/fighters/jonny-parsons-312463",
+          "sourceLabel": "NextKnockout · archived regional and UFC canceled bookings"
+        },
+        {
+          "date": "Nov. 11, 2017",
+          "label": "PRO WIN · Eldon Sproat · War on the Valley Isle 6",
+          "kind": "win",
+          "detail": "Knocked out Eldon Sproat with a first-round punch at 3:36 at Southside Boxing's War on the Valley Isle 6 in Hawaii. Professional record after fight 3-1; UFC 0-0. Returned after more than two years without a documented professional MMA contest.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "Nov. 11, 2017",
+          "label": "Captures Hawaii 185-pound regional championship",
+          "kind": "milestone",
+          "detail": "Parsons's UFC questionnaire states he won the 185-pound championship at War on the Valley Isle on Maui, Hawaii. The documented professional ledger links the championship to his knockout of Eldon Sproat. Do not count this as a separate win.",
+          "source": "https://www.ufc.com/athlete/jonny-parsons",
+          "sourceLabel": "UFC · official fighter questionnaire, martial arts background and results"
+        },
+        {
+          "date": "July 21, 2018",
+          "label": "PRO LOSS · David Gladun · Dragon Fighting Championship",
+          "kind": "loss",
+          "detail": "Lost by second-round TKO (punches) to David Gladun in Japan with referee Ryogaku Wada officiating. Sherdog reports 3:47 of round two; at least one fight aggregator gives 3:44. Use the Sherdog ledger's 3:47 while noting the small clock discrepancy. Professional record 3-2, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "Aug. 3, 2019",
+          "label": "PRO LOSS · Chris Cisneros · Destiny MMA: Last Man Standing",
+          "kind": "loss",
+          "detail": "Lost a unanimous decision to Chris Cisneros across five five-minute rounds at Destiny MMA: Last Man Standing in Hawaii. This was his third and final professional MMA defeat through November 2026; career record fell to 3-3. Not a UFC fight.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "Dec. 14, 2019",
+          "label": "PRO WIN · Ty Freeman · Gladiator Challenge: Holiday Beatings",
+          "kind": "win",
+          "detail": "Won a unanimous decision over Ty Freeman after three rounds of three minutes at Gladiator Challenge: Holiday Beatings. Ended a two-fight losing streak and started the six-fight winning streak that continued through his UFC debut. Pro record 4-3; UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "Apr. 18, 2020",
+          "label": "CANCELED · Gil Guardado · WFC 127",
+          "kind": "booking",
+          "detail": "A planned Gil Guardado bout attached to WFC 127 is listed as canceled, and the underlying event itself is marked canceled. This occurred during the onset of COVID-19 pandemic restrictions, but the exact event organizer's cancellation reason is not independently established in the reviewed fighter ledgers; do not presume fighter injury.",
+          "source": "https://www.nextknockout.com/fighters/jonny-parsons-312463",
+          "sourceLabel": "NextKnockout · archived regional and UFC canceled bookings"
+        },
+        {
+          "date": "Sept. 24, 2020",
+          "label": "PRO WIN · Tyler Hill · iKON Fighting Federation 1",
+          "kind": "win",
+          "detail": "Stopped Tyler Hill by TKO (punches) at 2:35 of round one in iKON Fighting Federation's inaugural event. Pro MMA record after fight 5-3; official UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "Oct. 22, 2020",
+          "label": "PRO WIN · Ramon Grano · iKON Fighting Federation 2",
+          "kind": "win",
+          "detail": "Defeated Ramon Grano via TKO at 3:12 of round two, listed as 'submission to punches' or 'tap to strikes' because Grano submitted from punches. The official pro method remains TKO, NOT a submission win. Pro record 6-3; UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "June 11, 2021",
+          "label": "PRO WIN · Ricardo Chavez · iKON Fighting Federation 7",
+          "kind": "win",
+          "detail": "Knocked out Ricardo Chavez with a head kick at 3:26 of round two in the iKON Fighting Federation 7 co-main event. Previous abbreviated timeline called it a TKO, but Sherdog records a KO (head kick); preserve the method distinction. Pro record 7-3; UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "Early September 2021 (approximate)",
+          "label": "Knocked unconscious by Sean Strickland during sparring",
+          "kind": "injury",
+          "detail": "In a November 2026 interview with Danny Podolsky, Parsons said Sean Strickland knocked him out cold with a head kick while sparring at Syndicate MMA approximately six weeks before his October 19, 2021 DWCS bout. He said he saw security footage afterward and that Strickland drove him home; he barely trained after the incident. This is Parsons's firsthand account of a sparring knockout; no physician-documented concussion diagnosis, imaging or surgery is established in the report.",
+          "source": "https://www.sherdog.com/news/news/Sean-Strickland-knocked-him-out-then-drove-him-home-203482",
+          "sourceLabel": "Sherdog · Nov. 4 2026 Parsons account of Sept. 2021 sparring KO"
+        },
+        {
+          "date": "Oct. 19, 2021",
+          "label": "PRO WIN · Solomon Renfro · DWCS Season 5 Week 8",
+          "kind": "win",
+          "detail": "Defeated Solomon Renfro by split decision after three rounds at Dana White's Contender Series 2021 Week 8, official scores 29-28, 28-29, 29-28. Pro record 8-3. This DWCS victory is counted in his professional record but NOT the official UFC Octagon ledger, which remained 0-0.",
+          "source": "https://www.ufc.com/news/dana-whites-contender-series-season-5-results-and-scorecards-dwcs",
+          "sourceLabel": "UFC · Oct. 2021 DWCS Week 8 official split decision"
+        },
+        {
+          "date": "Oct. 19, 2021",
+          "label": "Receives UFC contract after DWCS split decision",
+          "kind": "milestone",
+          "detail": "Awarded a UFC contract after defeating Renfro despite being dropped by a strike and taken down during the closely fought contest. His five-fight winning streak began with the December 2019 Ty Freeman decision. Award of contract and DWCS bout do not constitute an official UFC debut.",
+          "source": "https://www.mmafighting.com/2021/10/19/22735431/dwcs-season-5-week-8-results-dana-white-contender-series-ufc",
+          "sourceLabel": "MMA Fighting · DWCS 2021 Week 8 results"
+        },
+        {
+          "date": "Feb. 26, 2022",
+          "label": "CANCELED · Micheal Gillmore · first UFC appearance postponed",
+          "kind": "booking",
+          "detail": "Originally scheduled to make his contracted UFC debut versus Micheal Gillmore at UFC Fight Night: Makhachev vs. Green. Parsons withdrew; Gillmore subsequently faced Ramiz Brahimaj. UFC's 2023 pre-debut feature mentions injuries and the scrapped Gillmore bout, but no reliable fighter-specific medical diagnosis for this February cancellation was located. No fight result or official UFC appearance.",
+          "source": "https://www.tapology.com/fightcenter/fighters/86130-mike-gillmore",
+          "sourceLabel": "Tapology · Feb. 26 2022 canceled Micheal Gillmore pairing"
+        },
+        {
+          "date": "2022–July 2023",
+          "label": "Contracted fighter without Octagon debut",
+          "kind": "milestone",
+          "detail": "Following the October 2021 contract, the February 2022 Gillmore cancellation and injury interruptions prevented an immediate UFC debut. The UFC July 2023 feature documented the delay. His professional record remained 8-3 and official UFC record 0-0 up to the Danny Roberts fight.",
+          "source": "https://www.ufc.com/news/its-finally-time-jonny-parsons-make-walk-ufc-london",
+          "sourceLabel": "UFC · July 2023 debut feature and delayed signing history"
+        },
+        {
+          "date": "July 2023",
+          "label": "Receives short-notice London opportunity at high walking weight",
+          "kind": "booking",
+          "detail": "Parsons said in an October 2026 James Lynch interview that he weighed around 235 pounds when accepting the 170-pound Danny Roberts fight. This is his retrospective account of walking/training weight, not an official 235-pound weigh-in. He made the July 2023 welterweight limit at 171 pounds.",
+          "source": "https://millions.co/lynchonsports/news/jonathan-parsons-james-lynch-interview",
+          "sourceLabel": "James Lynch / Millions · Oct. 22 2026 interview on weight cut and communication"
+        },
+        {
+          "date": "July 22, 2023",
+          "label": "PRO WIN · Danny Roberts · UFC Fight Night: Aspinall vs. Tybura",
+          "kind": "win",
+          "detail": "Official UFC debut at The O2 in London. Stopped Danny Roberts with punches at 4:57 of round two after a back-and-forth striking battle. Pro record 9-3, official UFC record 1-0; his sole completed UFC Octagon appearance through November 5, 2026.",
+          "source": "https://www.ufc.com/news/ufc-fight-night-aspinall-vs-tybura-results-highlights-interviews-ufc-london",
+          "sourceLabel": "UFC · official July 2023 results"
+        },
+        {
+          "date": "July 22, 2023",
+          "label": "Earns $50,000 UFC Fight of the Night bonus",
+          "kind": "milestone",
+          "detail": "Parsons and Danny Roberts jointly earned the UFC Fight of the Night award and a reported $50,000 bonus each for their London fight. The bonus was FIGHT of the Night, not Performance of the Night. This milestone refers to his same completed UFC debut, not a second contest.",
+          "source": "https://www.ufc.com/news/ufc-bonus-coverage-2023-performance-fight-of-the-night",
+          "sourceLabel": "UFC · July 22 2023 Fight of the Night bonus"
+        },
+        {
+          "date": "Second half of 2023",
+          "label": "Recurring hip-flexor and groin problems following UFC debut",
+          "kind": "injury",
+          "detail": "In an October 15, 2026 MMA Junkie interview, Parsons said he repeatedly reinjured himself after returning to the gym following the Roberts win. He specifically identified hip-flexor and groin problems that at times made walking or lifting his legs difficult. Reported severe symptoms do not by themselves confirm a torn tendon, labral tear or surgery.",
+          "source": "https://sports.yahoo.com/articles/sluggernaut-jonny-parsons-wonders-slug-234031324.html",
+          "sourceLabel": "MMA Junkie via Yahoo · Oct. 15 2026 hip-flexor and groin injury interview"
+        },
+        {
+          "date": "Nov. 18, 2023",
+          "label": "CANCELED · Uroš Medić · UFC Fight Night: Allen vs. Craig",
+          "kind": "booking",
+          "detail": "UFC removed Parsons from his booked Nov. 18 welterweight fight against Uroš Medić and brought in Myktybek Orolbai, who made his UFC debut. The promotion's Nov. 16 changes statement grouped the replacement under 'due to injury,' although contemporaneous beat reporting did not specify a diagnosis. Do not invent an injury type or treat the cancellation as a completed fight.",
+          "source": "https://www.ufc.com/news/updates-ufc-fight-night-allen-vs-craig",
+          "sourceLabel": "UFC · Nov. 16 2023 Parsons removal and Orolbai replacement"
+        },
+        {
+          "date": "June 14, 2024",
+          "label": "Booked against Yusaku Kinoshita for Aug. 10 UFC card",
+          "kind": "booking",
+          "detail": "UFC matchmakers arranged a bout between Parsons and Yusaku Kinoshita at UFC Fight Night: Tybura vs. Spivac 2, scheduled for August 10 in Las Vegas. It would have been Parsons's second official UFC fight after a one-year absence.",
+          "source": "https://www.rotowire.com/mma/player/yusaku-kinoshita-2344",
+          "sourceLabel": "RotoWire · Kinoshita–Parsons booking and unclear cancellation"
+        },
+        {
+          "date": "Aug. 6–10, 2024",
+          "label": "CANCELED · Yusaku Kinoshita · UFC Fight Night: Tybura vs. Spivac 2",
+          "kind": "booking",
+          "detail": "UFC announced Parsons had been removed and the Kinoshita fight canceled. Although the official update lists several injuries under a group heading, subsequent reporting said the specific withdrawal reason for Parsons was undisclosed. The same update also reports Uroš Medić withdrawing from a DIFFERENT fight with Danny Barlow; do not confuse Medić's 2024 rib injury with Parsons's medical history.",
+          "source": "https://www.ufc.com.br/news/updates-ufc-fight-night-tybura-vs-spivac-2",
+          "sourceLabel": "UFC · Aug. 6 2024 cancellation announcement"
+        },
+        {
+          "date": "2024–2025",
+          "label": "Extensive physical therapy and adjusted training load",
+          "kind": "injury",
+          "detail": "By October 2026 Parsons said extensive rehab, physical therapy and strength-and-conditioning work at the UFC Performance Institute had reduced his hip/groin flare-ups; he estimated approximately a year without the severe episodes. The available interviews do not identify a major operation or formally specified surgical diagnosis. No additional completed bouts appear in 2024 or 2025.",
+          "source": "https://middleeasy.com/mma-news/jonny-parsons-injury-layoff-training-changes-ufc-return/",
+          "sourceLabel": "MiddleEasy · Oct. 15 2026 rehabilitation and training changes"
+        },
+        {
+          "date": "Late 2025–2026",
+          "label": "Changes approach to Muay Thai volume and recovery",
+          "kind": "training",
+          "detail": "Described abandoning a youth-era habit of high-repetition, hard-intensity striking sessions without sufficient strength preparation. He said this overtraining approach contributed to lingering injuries as he entered his thirties and emphasized steadier physical conditioning to avoid recurrent breakdowns.",
+          "source": "https://mmasucka.com/interviews/jonny-parsons-opens-up-on-bad-habits-behind-three-year-ufc-hiatus/",
+          "sourceLabel": "MMASucka · Oct. 30 2026 interview about overtraining"
+        },
+        {
+          "date": "Oct. 15, 2026",
+          "label": "Explains 40-month gap and hip/groin setbacks to MMA Junkie",
+          "kind": "milestone",
+          "detail": "Ahead of his November UFC return, Parsons publicly linked the roughly 40-month gap since July 2023 to chronic hip-flexor/groin symptoms and recurring reinjury. He credited extensive UFC PI rehabilitation with restoring consistency. Distinguish his own reported symptoms from an independently verified surgical diagnosis.",
+          "source": "https://sports.yahoo.com/articles/sluggernaut-jonny-parsons-wonders-slug-234031324.html",
+          "sourceLabel": "MMA Junkie via Yahoo · Oct. 15 2026 hip-flexor and groin injury interview"
+        },
+        {
+          "date": "Oct. 22, 2026",
+          "label": "Discusses weight gain, aggressive dieting and booking miscommunication",
+          "kind": "milestone",
+          "detail": "In an interview with James Lynch, Parsons said being sidelined led to weight gain and repeated attempts to cut weight too fast, creating energy crashes and injury flare-ups. He also described a misunderstanding involving communications between himself, his manager and UFC matchmaker Sean Shelby about the timing of a return offer. He now favors gradual weight loss. The specific alleged communication mix-up is his account, not a verified UFC administrative error.",
+          "source": "https://millions.co/lynchonsports/news/jonathan-parsons-james-lynch-interview",
+          "sourceLabel": "James Lynch / Millions · Oct. 22 2026 interview on weight cut and communication"
+        },
+        {
+          "date": "Oct. 30, 2026",
+          "label": "Details longstanding overtraining habits",
+          "kind": "training",
+          "detail": "In another interview, Parsons described years of hard Muay Thai work and repetitive conditioning with insufficient recovery, saying he had learned to prioritize strength, rest and sustainable camp volume. He wanted to remain available for more frequent fights after returning.",
+          "source": "https://mmasucka.com/interviews/jonny-parsons-opens-up-on-bad-habits-behind-three-year-ufc-hiatus/",
+          "sourceLabel": "MMASucka · Oct. 30 2026 interview about overtraining"
+        },
+        {
+          "date": "Nov. 3–4, 2026",
+          "label": "Publicly recounts 2021 Strickland sparring KO",
+          "kind": "milestone",
+          "detail": "Ahead of the Souza fight, Parsons revealed that Sean Strickland rendered him unconscious with a head kick during training at Syndicate MMA approximately six weeks before October 2021 DWCS. This is a new 2026 public disclosure of an event that reportedly occurred in 2021; do not misdate the sparring knockout itself to 2026.",
+          "source": "https://www.sherdog.com/news/news/Sean-Strickland-knocked-him-out-then-drove-him-home-203482",
+          "sourceLabel": "Sherdog · Nov. 4 2026 Parsons account of Sept. 2021 sparring KO"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Full professional, amateur and canceled-bout reconciliation",
+          "kind": "note",
+          "detail": "Twelve completed professional MMA fights produce 9-3: seven KO/TKO wins, ZERO submission wins and two decisions; three losses (two KO/TKO, one decision). Official UFC 1-0 from July 22, 2023; October 19, 2021 DWCS win is pro MMA but non-UFC. Sherdog documents four amateur MMA bouts (3-1) while UFC biography self-reports 4-1. NextKnockout duplicates a 2010 Alex Delgado result under Sept. 10 and Sept. 24, without sufficient evidence of two separate 16-second stoppages. The canceled Jeff Barney, Jeff Roman, Gil Guardado, Micheal Gillmore, Uroš Medić and Yusaku Kinoshita bookings are not wins or losses. UFC website still displays stale age 32; accurate birth-date-based age is 35.",
+          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
+          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Medical and withdrawal evidence review",
+          "kind": "note",
+          "detail": "His publicly documented injury-related issues include a self-reported Sept. 2021 Strickland head-kick knockout in sparring; a 2022 postponed debut following unspecified injuries; a Nov. 2023 Uroš Medić cancellation grouped under injuries in UFC's release; and recurring 2023–25 hip-flexor/groin symptoms. The Aug. 2024 Kinoshita withdrawal cause was not specifically established. Physical therapy, UFC Performance Institute strength work, gradual weight loss and better training-load management are reported. NO confirmed surgery, specific torn ligament or imaging diagnosis was verified. Do not classify every cancellation as caused by the same injury.",
+          "source": "https://sports.yahoo.com/articles/sluggernaut-jonny-parsons-wonders-slug-234031324.html",
+          "sourceLabel": "MMA Junkie via Yahoo · Oct. 15 2026 hip-flexor and groin injury interview"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · José Souza · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Scheduled to fight José Souza at UFC Vegas 124 in Las Vegas. No result yet.",
+          "kind": "upcoming",
+          "detail": "Scheduled for a welterweight bout against José Henrique Souza (9-1 professional, 1-0 UFC) at Meta APEX in Las Vegas, UFC Fight Night: Cortes-Acosta vs. Walker. Entering records are Parsons 9-3 professional and 1-0 UFC. As of November 5 this bout is UPCOMING, with no result, finish time or judges' scores.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "Official UFC event"
+          "sourceLabel": "UFC · official November 7 2026 fight card"
         }
       ]
     },
