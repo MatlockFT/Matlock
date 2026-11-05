@@ -23792,54 +23792,239 @@
       "division": "Heavyweight",
       "items": [
         {
-          "date": "Sep 12, 2026",
-          "label": "LOSS · Curtis Blaydes · Noche UFC",
-          "kind": "loss",
-          "detail": "Lost to Curtis Blaydes at Noche UFC by Decision (Unanimous) in round 3.",
+          "date": "Before 2015",
+          "label": "Minor-league baseball and Tommy John surgery",
+          "kind": "injury",
+          "detail": "Before entering MMA, Cortes-Acosta was a pitcher in the Cincinnati Reds' minor-league system. In a September 2026 interview, he described undergoing Tommy John elbow surgery, rehabilitation in Ohio and recovery support in Arizona. The precise surgery date was not established, and this was a baseball injury, not a UFC injury.",
+          "source": "https://sports.yahoo.com/videos/waldo-cortes-acosta-dominican-republic-120328341.html",
+          "sourceLabel": "The Arizona Republic · September 2026 interview"
+        },
+        {
+          "date": "2015",
+          "label": "Begins MMA training",
+          "kind": "training",
+          "detail": "Cortes-Acosta says he began training for combat sports in 2015 after pursuing baseball. His UFC fighter questionnaire lists 2015 as the year he began fighting training; his regional amateur record preceded the professional MMA debut.",
           "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
-          "sourceLabel": "UFC fighter fight history"
+          "sourceLabel": "UFC · fighter questionnaire"
+        },
+        {
+          "date": "Jun. 2017–Apr. 2021",
+          "label": "Professional boxing alongside MMA development",
+          "kind": "background",
+          "detail": "Competed as a professional boxer during the years around his early MMA career, including bouts on Top Rank cards. He said he emphasized boxing during the pandemic when Arizona MMA opportunities were limited. Boxing matches are separate from, and do not count toward, his professional MMA record.",
+          "source": "https://sports.yahoo.com/videos/waldo-cortes-acosta-dominican-republic-120328341.html",
+          "sourceLabel": "The Arizona Republic · interview on boxing and baseball"
+        },
+        {
+          "date": "May 19, 2018",
+          "label": "WIN · Odell Pantin · Iron Boy MMA 11",
+          "kind": "win",
+          "detail": "Defeated Odell Pantin by KO (punch) at Iron Boy MMA 11 (May 19, 2018; round 2, 1:23). Professional MMA record after fight: 1-0. Professional MMA debut in Arizona.",
+          "source": "https://www.sherdog.com/fighter/Waldo-CortesAcosta-190909",
+          "sourceLabel": "Sherdog · professional fight history"
+        },
+        {
+          "date": "Jul. 31, 2021",
+          "label": "WIN · Edison Lopes · RUF MMA 42",
+          "kind": "win",
+          "detail": "Defeated Edison Lopes by submission (kimura) at RUF MMA 42 (Jul. 31, 2021; round 1, 3:12). Professional MMA record after fight: 2-0. Returned to the professional MMA cage after more than three years.",
+          "source": "https://www.sherdog.com/fighter/Waldo-CortesAcosta-190909",
+          "sourceLabel": "Sherdog · professional fight history"
+        },
+        {
+          "date": "Aug. 29, 2021",
+          "label": "WIN · Jordan Powell · RUF MMA 43",
+          "kind": "win",
+          "detail": "Defeated Jordan Powell by unanimous decision at RUF MMA 43 (Aug. 29, 2021; round 3, 5:00). Professional MMA record after fight: 3-0.",
+          "source": "https://www.sherdog.com/fighter/Waldo-CortesAcosta-190909",
+          "sourceLabel": "Sherdog · professional fight history"
+        },
+        {
+          "date": "Nov. 12, 2021",
+          "label": "WIN · Muhammed DeReese · Bellator 271",
+          "kind": "win",
+          "detail": "Defeated Muhammed DeReese by unanimous decision at Bellator 271 (Nov. 12, 2021; round 3, 5:00). Professional MMA record after fight: 4-0. A Bellator appearance before his LFA and UFC runs.",
+          "source": "https://www.sherdog.com/fighter/Waldo-CortesAcosta-190909",
+          "sourceLabel": "Sherdog · professional fight history"
+        },
+        {
+          "date": "Feb. 11, 2022",
+          "label": "WIN · Derrick Weaver · LFA 124",
+          "kind": "win",
+          "detail": "Defeated Derrick Weaver by TKO (punches) at LFA 124 (Feb. 11, 2022; round 2, 0:22). Professional MMA record after fight: 5-0.",
+          "source": "https://www.sherdog.com/fighter/Waldo-CortesAcosta-190909",
+          "sourceLabel": "Sherdog · professional fight history"
+        },
+        {
+          "date": "Apr. 15, 2022",
+          "label": "WIN · Thomas Petersen · LFA 129",
+          "kind": "win",
+          "detail": "Defeated Thomas Petersen by TKO (punches) at LFA 129 (Apr. 15, 2022; round 3, 4:53). Professional MMA record after fight: 6-0. Claimed the LFA heavyweight championship, headlining against the previously unbeaten Petersen.",
+          "source": "https://combatpress.com/2022/04/lfa-129-results-cortes-acosta-stops-petersen-earns-title/",
+          "sourceLabel": "Combat Press · LFA 129 results"
+        },
+        {
+          "date": "Aug. 2, 2022",
+          "label": "WIN · Danilo Suzart · Dana White's Contender Series S6 W2",
+          "kind": "win",
+          "detail": "Defeated Danilo Suzart by TKO (punches) at Dana White's Contender Series S6 W2 (Aug. 2, 2022; round 1, 3:40). Professional MMA record after fight: 7-0. Won a UFC contract. Contender Series results count in his professional record but not his official UFC Octagon record.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
+        },
+        {
+          "date": "Oct. 29, 2022",
+          "label": "WIN · Jared Vanderaa · UFC Fight Night: Kattar vs. Allen",
+          "kind": "win",
+          "detail": "Defeated Jared Vanderaa by unanimous decision at UFC Fight Night: Kattar vs. Allen (Oct. 29, 2022; round 3, 5:00). Professional MMA record after fight: 8-0. UFC debut; Octagon record 1-0.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
+        },
+        {
+          "date": "Nov. 19, 2022",
+          "label": "WIN · Chase Sherman · UFC Fight Night: Nzechukwu vs. Cutelaba",
+          "kind": "win",
+          "detail": "Defeated Chase Sherman by unanimous decision at UFC Fight Night: Nzechukwu vs. Cutelaba (Nov. 19, 2022; round 3, 5:00). Professional MMA record after fight: 9-0. Moved to 2-0 UFC.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
+        },
+        {
+          "date": "Apr. 29, 2023",
+          "label": "LOSS · Marcos Rogério de Lima · UFC Fight Night: Song vs. Simón",
+          "kind": "loss",
+          "detail": "Lost to Marcos Rogério de Lima by unanimous decision at UFC Fight Night: Song vs. Simón (Apr. 29, 2023; round 3, 5:00). Professional MMA record after fight: 9-1. First professional MMA defeat, after a nine-fight start.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
+        },
+        {
+          "date": "Aug. 26, 2023",
+          "label": "WIN · Łukasz Brzeski · UFC Fight Night: Holloway vs. The Korean Zombie",
+          "kind": "win",
+          "detail": "Defeated Łukasz Brzeski by KO (punches) at UFC Fight Night: Holloway vs. The Korean Zombie (Aug. 26, 2023; round 1, 3:01). Professional MMA record after fight: 10-1.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
+        },
+        {
+          "date": "Jan. 13, 2024",
+          "label": "WIN · Andrei Arlovski · UFC Fight Night: Ankalaev vs. Walker 2",
+          "kind": "win",
+          "detail": "Defeated Andrei Arlovski by unanimous decision at UFC Fight Night: Ankalaev vs. Walker 2 (Jan. 13, 2024; round 3, 5:00). Professional MMA record after fight: 11-1.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
+        },
+        {
+          "date": "May 11, 2024",
+          "label": "WIN · Robelis Despaigne · UFC Fight Night: Lewis vs. Nascimento",
+          "kind": "win",
+          "detail": "Defeated Robelis Despaigne by unanimous decision at UFC Fight Night: Lewis vs. Nascimento (May 11, 2024; round 3, 5:00). Professional MMA record after fight: 12-1.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
+        },
+        {
+          "date": "Mar. 15, 2025",
+          "label": "WIN · Ryan Spann · UFC Fight Night: Vettori vs. Dolidze 2",
+          "kind": "win",
+          "detail": "Defeated Ryan Spann by TKO (punches) at UFC Fight Night: Vettori vs. Dolidze 2 (Mar. 15, 2025; round 2, 4:48). Professional MMA record after fight: 13-1.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
+        },
+        {
+          "date": "May 2025",
+          "label": "Gaziev withdraws; first short-notice Spivac booking",
+          "kind": "milestone",
+          "detail": "Shamil Gaziev withdrew from a planned matchup with Serghei Spivac, and Cortes-Acosta took his place for UFC 316. The replacement booking led to the June 7 bout against Spivac. Do not describe Cortes-Acosta himself as withdrawing.",
+          "source": "https://www.mmafighting.com/ufc/457532/waldo-cortes-acosta-steps-in-on-3-days-notice-to-save-ufc-qatar-heavyweight-bout",
+          "sourceLabel": "MMA Fighting · history of Gaziev–Spivac changes"
+        },
+        {
+          "date": "Jun. 7, 2025",
+          "label": "WIN · Serghei Spivac · UFC 316",
+          "kind": "win",
+          "detail": "Defeated Serghei Spivac by unanimous decision at UFC 316 (Jun. 7, 2025; round 3, 5:00). Professional MMA record after fight: 14-1.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
+        },
+        {
+          "date": "Aug. 23, 2025",
+          "label": "LOSS · Sergei Pavlovich · UFC Fight Night: Walker vs. Zhang",
+          "kind": "loss",
+          "detail": "Lost to Sergei Pavlovich by unanimous decision at UFC Fight Night: Walker vs. Zhang (Aug. 23, 2025; round 3, 5:00). Professional MMA record after fight: 14-2.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
+        },
+        {
+          "date": "Nov. 1, 2025",
+          "label": "WIN · Ante Delija · UFC Fight Night: Garcia vs. Onama",
+          "kind": "win",
+          "detail": "Defeated Ante Delija by KO (punches) at UFC Fight Night: Garcia vs. Onama (Nov. 1, 2025; round 1, 3:59). Professional MMA record after fight: 15-2. The bout was paused after an eye poke by Delija; after replay review, fighting resumed and Cortes-Acosta scored the knockout. The unusual officiating sequence became a formal dispute.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
+        },
+        {
+          "date": "Nov. 2025",
+          "label": "Eye injury and post-fight medical follow-up",
+          "kind": "injury",
+          "detail": "After the Ante Delija fight, Cortes-Acosta reported left-eye pain, pressure and clouded vision while looking downward. He said he was seeing a specialist for additional evaluation. No permanent injury or specific diagnosis should be inferred from that account.",
+          "source": "https://sports.yahoo.com/article/waldo-cortes-acosta-provides-eye-001531556.html",
+          "sourceLabel": "MMA Junkie · reported post-fight eye update"
+        },
+        {
+          "date": "Nov. 20, 2025",
+          "label": "Accepts UFC Qatar fight on three days' notice",
+          "kind": "milestone",
+          "detail": "Accepted a late replacement booking against Shamil Gaziev after Serghei Spivac was removed from the card due to illness. Traveled from Arizona to Doha during fight week and weighed in successfully. UFC later confirmed Spivac was out due to illness.",
+          "source": "https://www.ufc.com/news/updates-to-ufc-fight-night-tsarukyan-vs-hooker-qatar",
+          "sourceLabel": "UFC · official event update"
+        },
+        {
+          "date": "Nov. 22, 2025",
+          "label": "WIN · Shamil Gaziev · UFC Fight Night: Tsarukyan vs. Hooker",
+          "kind": "win",
+          "detail": "Defeated Shamil Gaziev by KO (punch) at UFC Fight Night: Tsarukyan vs. Hooker (Nov. 22, 2025; round 1, 1:22). Professional MMA record after fight: 16-2. Second win in November 2025 and fifth UFC appearance of that calendar year, on short notice.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
+        },
+        {
+          "date": "Jan. 24, 2026",
+          "label": "WIN · Derrick Lewis · UFC 324",
+          "kind": "win",
+          "detail": "Defeated Derrick Lewis by TKO (punches) at UFC 324 (Jan. 24, 2026; round 2, 3:14). Professional MMA record after fight: 17-2.",
+          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
+          "sourceLabel": "UFC · fighter results"
         },
         {
           "date": "May 9, 2026",
           "label": "LOSS · Alexander Volkov · UFC 328",
           "kind": "loss",
-          "detail": "Lost to Alexander Volkov at UFC 328 by Decision (Unanimous) in round 3.",
+          "detail": "Lost to Alexander Volkov by unanimous decision at UFC 328 (May 9, 2026; round 3, 5:00). Professional MMA record after fight: 17-3.",
           "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
-          "sourceLabel": "UFC fighter fight history"
+          "sourceLabel": "UFC · fighter results"
         },
         {
-          "date": "Jan 24, 2026",
-          "label": "WIN · Derrick Lewis · UFC 324",
-          "kind": "win",
-          "detail": "Defeated Derrick Lewis at UFC 324 by TKO (Ground-and-Pound) in round 2 at 3:14.",
+          "date": "Sep. 12, 2026",
+          "label": "LOSS · Curtis Blaydes · Noche UFC: Silva vs. Delgado",
+          "kind": "loss",
+          "detail": "Lost to Curtis Blaydes by unanimous decision at Noche UFC: Silva vs. Delgado (Sep. 12, 2026; round 3, 5:00). Professional MMA record after fight: 17-4. Second consecutive decision loss.",
           "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
-          "sourceLabel": "UFC fighter fight history"
+          "sourceLabel": "UFC · fighter results"
         },
         {
-          "date": "Nov 22, 2025",
-          "label": "WIN · Shamil Gaziev · UFC Fight Night",
-          "kind": "win",
-          "detail": "Defeated Shamil Gaziev at UFC Fight Night by TKO (Right Hook) in round 1 at 1:22.",
-          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
-          "sourceLabel": "UFC fighter fight history"
-        },
-        {
-          "date": "Nov 1, 2025",
-          "label": "WIN · Ante Delija · UFC Fight Night",
-          "kind": "win",
-          "detail": "Defeated Ante Delija at UFC Fight Night by TKO (Punches) in round 1 at 3:59.",
-          "source": "https://www.ufc.com/athlete/waldo-cortes-acosta",
-          "sourceLabel": "UFC fighter fight history"
+          "date": "Oct. 29–30, 2026",
+          "label": "Short-notice booking for first UFC main event",
+          "kind": "milestone",
+          "detail": "The UFC booked Cortes-Acosta against Johnny Walker as the November 7 UFC Vegas 124 headliner after an injury forced Sean Brady out of the planned main event against Gabriel Bonfim. This is Cortes-Acosta's first scheduled UFC main event. Brady's injury—not an injury to Cortes-Acosta—caused the reshuffle.",
+          "source": "https://www.ufc.com/news/ufc-fight-night-bonfim-vs-brady-updates",
+          "sourceLabel": "UFC · October 30 official card update"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Johnny Walker · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Scheduled to fight Johnny Walker at UFC Vegas 124 in Las Vegas. No result yet.",
+          "kind": "upcoming",
+          "detail": "Scheduled to face Johnny Walker in the heavyweight main event at Meta APEX in Las Vegas. Entering with a 17-4 professional MMA record and 10-4 UFC record as of November 5. The fight has not happened yet; do not record a result.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "Official UFC event"
+          "sourceLabel": "UFC · official November 7 card"
         }
-      ]
+      ],
+      "lastReviewed": "2026-11-05"
     },
     "Johnny Walker": {
       "slug": "johnny-walker",
