@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-04T23:28:09.666Z"
+      "checkedAt": "2026-11-05T03:39:58.601Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-04T23:28:35.666Z",
+      "checkedAt": "2026-11-05T03:40:32.768Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -28866,8 +28866,8 @@
         "event": "Acosta vs Walker",
         "date": "2026-11-07",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-        "opponent": "Lucas Brennan",
-        "opponentId": "lucas-brennan"
+        "opponent": "Carlos Calderon",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -46481,7 +46481,9 @@
       "booking": {
         "event": "Polymarket UFC 334",
         "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334"
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Yousri Belgaroui",
+        "opponentId": "yousri-belgaroui"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -153571,9 +153573,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Salkilld vs Saint Denis",
         "date": "2027-02-06",
-        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027",
+        "opponent": "Kaan Ofli",
+        "opponentId": "kaan-ofli"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -163413,9 +163417,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Salkilld vs Saint Denis",
         "date": "2027-02-06",
-        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027",
+        "opponent": "Marwan Rahiki",
+        "opponentId": "marwan-rahiki"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -175467,9 +175473,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Salkilld vs Saint Denis",
         "date": "2027-02-06",
-        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027",
+        "opponent": "Joanderson Brito",
+        "opponentId": "joanderson-brito"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -220571,9 +220579,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Salkilld vs Saint Denis",
         "date": "2027-02-06",
-        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027"
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027",
+        "opponent": "JooSang Yoo",
+        "opponentId": "joosang-yoo"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -339245,7 +339255,9 @@
       "booking": {
         "event": "Polymarket UFC 334",
         "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334"
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Caio Borralho",
+        "opponentId": "caio-borralho"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
