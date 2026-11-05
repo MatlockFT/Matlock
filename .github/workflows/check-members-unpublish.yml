@@ -1,0 +1,41 @@
+name: Verify members-only unpublish integration in public Writer
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/check-members-unpublish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify main Writer bundle reflects private unpublish source
+        run: |
+          node scripts/writer/build-frontend-bundles.mjs --check
+          node --check assets/writer.js
+      - name: Verify deployed site contains the private unpublish hook
+        run: |
+          node --input-type=module - <<'NODE'
+          const url='https://mmamatlock.com/assets/writer.js?v=unpublish-sync-20261105';
+          const res=await fetch(url,{cache:'no-store'});
+          if(!res.ok)throw Error('Could not load deployed Writer JS: HTTP '+res.status);
+          const text=await res.text();
+          const required=[
+            'async function hideMembersArticleInPrivateStore',
+            "memberWriterFetch('/status'",
+            'Private article hidden, but public-site unpublish failed',
+            'privateArticleHidden = await hideMembersArticleInPrivateStore'
+          ];
+          if(required.some(s=>!text.includes(s)))
+            throw Error('Public Writer JS has not yet deployed the private unpublish integration.');
+          console.log('PASS: deployed Writer includes private unpublish and delete sync safeguards.');
+          NODE
