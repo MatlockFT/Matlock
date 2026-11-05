@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Members Only Test
-description: ""
+description: this is for testing purposes only
 date: 2026-11-04
 category: Breakdown
 author: Matlock
