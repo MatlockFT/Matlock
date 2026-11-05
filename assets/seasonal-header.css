@@ -56,7 +56,7 @@
     z-index: 1;
   }
 
-  .site-navigation .mobile-brand-harvest {
+  html body[data-editorial-shell] .site-navigation .mobile-brand-harvest {
     position: relative;
     z-index: 2;
     display: inline-flex;
@@ -67,7 +67,7 @@
     pointer-events: none;
   }
 
-  .site-navigation .mobile-brand-harvest-icon {
+  html body[data-editorial-shell] .site-navigation .mobile-brand-harvest-icon {
     display: block;
     width: 1.15em;
     height: 1.15em;
