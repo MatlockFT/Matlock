@@ -167,9 +167,11 @@
   };
 
   const renderNews = data => {
-    if (!newsList) return;
     const stories = newsStories(data);
+    // The homepage news sidebar is now a Jekyll-generated members-only rail.
+    // Keep the independently useful Trending rail fed by the live news source.
     renderTrending(stories);
+    if (!newsList) return;
     newsList.replaceChildren();
 
     if (!stories.length) {
