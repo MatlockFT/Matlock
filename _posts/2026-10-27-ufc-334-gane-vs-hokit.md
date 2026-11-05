@@ -224,6 +224,8 @@ Give me Gane to get it done inside the distance.
 </section>
 **Kayla Harrison** is a two-time Olympic gold medalist in judo who has built her MMA career around physical strength, clinch work and dominant top control. She uses body locks, trips and throws to bring opponents to the ground, where she applies heavy pressure, advances position and attacks with ground-and-pound or submissions. Her striking is still developing and primarily serves to close distance and set up her grappling, where she is most dangerous.
 
+
+
 **Amanda Nunes** is a former two-division UFC champion and one of the most accomplished finishers in women's MMA history. She's an explosive, heavy-handed striker who builds much of her offense around a powerful right hand, sharp boxing combinations and low kicks. Although best known for her knockout power, Nunes is also a Brazilian jiu-jitsu black belt with strong wrestling, effective takedowns and punishing ground-and-pound. She can fight aggressively when she senses an opening, but she's equally capable of slowing things down, controlling position and winning rounds without relying on a finish.
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-1e0af85c" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
