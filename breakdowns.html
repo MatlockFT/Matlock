@@ -112,7 +112,7 @@ page_scripts:
                     {% if post_image %}
                         <a
                             class="article-card-image"
-                            href="{{ post.url | relative_url }}"
+                            href="{% if post.members_only %}https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}{% else %}{{ post.url | relative_url }}{% endif %}"
                             data-image-shell
                         >
                             <img
@@ -155,8 +155,8 @@ page_scripts:
                         </p>
 
                         <h2>
-                            <a href="{{ post.url | relative_url }}">
-                                {{ post.title }}
+                            <a href="{% if post.members_only %}https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}{% else %}{{ post.url | relative_url }}{% endif %}">
+                                {{ post.title }}{% if post.members_only %} <span class="members-lock-badge">🔒 Members only</span>{% endif %}
                             </a>
                         </h2>
 
@@ -174,9 +174,9 @@ page_scripts:
 
                         <a
                             class="card-link"
-                            href="{{ post.url | relative_url }}"
+                            href="{% if post.members_only %}https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}{% else %}{{ post.url | relative_url }}{% endif %}"
                         >
-                            Read article
+                            {% if post.members_only %}🔒 Members only{% else %}Read article{% endif %}
                         </a>
                     </div>
                 </article>
