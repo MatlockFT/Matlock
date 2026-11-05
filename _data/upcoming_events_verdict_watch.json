@@ -94,7 +94,7 @@
       "promotion": "rizin",
       "date": "2026-12-31",
       "title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
-      "status": "event_matched_card_unreadable",
+      "status": "matched",
       "verdict_event_id": "1976",
       "verdict_url": "https://verdictmma.com/event/1976",
       "verdict_date": "2026-12-31",
@@ -104,7 +104,7 @@
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": null
+      "confirmed_local_bouts": 3
     },
     {
       "event_id": "ufc-336-2027-01-30-fight-card",
@@ -190,6 +190,76 @@
       "fighters": [
         "Hiroaki Suzuki",
         "Chiharu"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 1,
+      "fighters": [
+        "Razhabali Shaidulloev",
+        "Kyoma Akimoto"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 10,
+      "fighters": [
+        "Yukinori Akazawa",
+        "Sora Kaneko"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 3,
+      "fighters": [
+        "Chihiro Suzuki",
+        "YAMAN"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 5,
+      "fighters": [
+        "スダリオ剛",
+        "King Edokpolo"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 7,
+      "fighters": [
+        "Hinotori",
+        "Tatsuki Shinotsuka"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 8,
+      "fighters": [
+        "Yutaro Muramoto",
+        "Erson Yamamoto"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 9,
+      "fighters": [
+        "Daichi Tomizawa",
+        "Don't mind Kawabata"
       ]
     },
     {
