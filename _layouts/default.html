@@ -256,10 +256,10 @@
                 {% if use_editorial_shell %}
                     <span class="v3-wordmark-wrap">
                         <span class="v3-wordmark">MATLOCK</span>
-                        <span class="desktop-brand-pumpkin" aria-hidden="true">
+                        <span class="desktop-brand-harvest" aria-hidden="true">
                             <img
-                                class="desktop-brand-pumpkin-icon"
-                                src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}?v={{ site.asset_version }}"
+                                class="desktop-brand-harvest-icon"
+                                src="{{ '/assets/icons/cornucopia-seasonal.svg' | relative_url }}?v={{ site.asset_version }}"
                                 alt=""
                                 width="48"
                                 height="48"
@@ -291,7 +291,7 @@
                     href="{{ '/' | relative_url }}"
                     aria-label="MMA Matlock home"
                 >
-                    <span class="mobile-brand-wordmark">MATLOCK</span><span class="mobile-brand-pumpkin" aria-hidden="true"><img class="mobile-brand-pumpkin-icon" src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}?v={{ site.asset_version }}" alt="" width="34" height="34" decoding="async"></span>
+                    <span class="mobile-brand-wordmark">MATLOCK</span><span class="mobile-brand-harvest" aria-hidden="true"><img class="mobile-brand-harvest-icon" src="{{ '/assets/icons/cornucopia-seasonal.svg' | relative_url }}?v={{ site.asset_version }}" alt="" width="34" height="34" decoding="async"></span>
                 </a>
 
                 <button
@@ -366,7 +366,10 @@
 
                             <li>
                                 <a
-                                    {% if item.external %}
+                                    {% if item.membership %}class="nav-membership-link"{% endif %}
+                                    {% if item.membership %}
+                                        href="{{ item.link }}"
+                                    {% elsif item.external %}
                                         href="{{ item.link }}"
                                         target="_blank"
                                         rel="noopener noreferrer"
