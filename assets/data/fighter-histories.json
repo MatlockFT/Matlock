@@ -1,5 +1,5 @@
 {
-  "version": 34,
+  "version": 35,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -24075,65 +24075,81 @@
       "slug": "davey-grant",
       "name": "Davey Grant",
       "subtitle": "Career chronology",
-      "record": "16-8",
+      "record": "18-8",
       "ufcRecord": "9-7",
       "division": "Bantamweight",
       "items": [
         {
+          "date": "2008",
+          "label": "Begins professional MMA career",
+          "kind": "milestone",
+          "detail": "Started his professional MMA career in 2008 before competing for regional bantamweight championships.",
+          "source": "https://www.ufc.com/athlete/davey-grant",
+          "sourceLabel": "UFC fighter biography"
+        },
+        {
           "date": "Nov. 30, 2013",
           "label": "Reaches The Ultimate Fighter 18 final",
-          "detail": "Lost the bantamweight tournament final to Chris Holdsworth by submission in the second round.",
-          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
           "kind": "milestone",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Reached the bantamweight final on The Ultimate Fighter 18 and lost to Chris Holdsworth by rear-naked choke in round two at 2:10. This was his first UFC competition.",
+          "source": "https://www.ufc.com/athlete/davey-grant",
+          "sourceLabel": "UFC fighter biography"
+        },
+        {
+          "date": "Mar. 11, 2023",
+          "label": "Late inverted-triangle submission of Raphael Assunção",
+          "kind": "milestone",
+          "detail": "Submitted Raphael Assunção by inverted triangle choke at 4:43 of round three on UFC Fight Night, one of his notable submission victories.",
+          "source": "https://www.ufc.com/athlete/davey-grant",
+          "sourceLabel": "UFC fighter biography"
         },
         {
           "date": "Apr 25, 2026",
-          "label": "WIN · Adrian Luna Martinetti · UFC Fight Night",
+          "label": "WIN · Adrian Luna Martinetti · UFC Fight Night: Sterling vs. Zalal",
           "kind": "win",
-          "detail": "Defeated Adrian Luna Martinetti at UFC Fight Night by Decision (Unanimous) in round 3.",
-          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Defeated Adrian Luna Martinetti at UFC Fight Night: Sterling vs. Zalal by Decision (Unanimous) in round 3 at 5:00.",
+          "source": "https://www.ufc.com/athlete/davey-grant",
+          "sourceLabel": "UFC fighter fight history"
         },
         {
           "date": "Oct 18, 2025",
-          "label": "LOSS · Charles Jourdain · UFC Fight Night",
+          "label": "LOSS · Charles Jourdain · UFC Fight Night: de Ridder vs. Allen",
           "kind": "loss",
-          "detail": "Lost to Charles Jourdain at UFC Fight Night by Submission (Guillotine Choke) in round 1 at 3:05.",
-          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Lost to Charles Jourdain at UFC Fight Night: de Ridder vs. Allen by Submission (Guillotine Choke) in round 1 at 3:05.",
+          "source": "https://www.ufc.com/athlete/davey-grant",
+          "sourceLabel": "UFC fighter fight history"
         },
         {
           "date": "Jul 26, 2025",
-          "label": "WIN · Da'Mon Blackshear · UFC Fight Night",
+          "label": "WIN · Da'Mon Blackshear · UFC on ABC: Whittaker vs. de Ridder",
           "kind": "win",
-          "detail": "Defeated Da'Mon Blackshear at UFC Fight Night by Decision (Unanimous) in round 3.",
-          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Defeated Da'Mon Blackshear at UFC on ABC: Whittaker vs. de Ridder by Decision (Unanimous) in round 3 at 5:00.",
+          "source": "https://www.ufc.com/athlete/davey-grant",
+          "sourceLabel": "UFC fighter fight history"
         },
         {
           "date": "Dec 14, 2024",
-          "label": "WIN · Ramon Taveras · UFC Fight Night",
+          "label": "WIN · Ramon Taveras · UFC Fight Night: Covington vs. Buckley",
           "kind": "win",
-          "detail": "Defeated Ramon Taveras at UFC Fight Night by Decision (Unanimous) in round 3.",
-          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Defeated Ramon Taveras at UFC Fight Night: Covington vs. Buckley by Decision (Unanimous) in round 3 at 5:00.",
+          "source": "https://www.ufc.com/athlete/davey-grant",
+          "sourceLabel": "UFC fighter fight history"
         },
         {
           "date": "Jul 22, 2023",
-          "label": "LOSS · Daniel Marcos · UFC Fight Night",
+          "label": "LOSS · Daniel Marcos · UFC Fight Night: Aspinall vs. Tybura",
           "kind": "loss",
-          "detail": "Lost to Daniel Marcos at UFC Fight Night by Decision (Split) in round 3.",
-          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Lost to Daniel Marcos at UFC Fight Night: Aspinall vs. Tybura by Decision (Split) in round 3 at 5:00.",
+          "source": "https://www.ufc.com/athlete/davey-grant",
+          "sourceLabel": "UFC fighter fight history"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Elijah Smith · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to fight Elijah Smith at UFC Vegas 124 in Las Vegas. No result yet.",
+          "detail": "Scheduled to face Elijah Smith at bantamweight at UFC Vegas 124 on November 7, 2026; no result yet.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "Official UFC event"
+          "sourceLabel": "UFC event page"
         }
       ]
     },
@@ -24146,44 +24162,76 @@
       "division": "Bantamweight",
       "items": [
         {
+          "date": "Aug. 21, 2022",
+          "label": "Professional MMA debut against Roger Smith",
+          "kind": "milestone",
+          "detail": "Made his professional MMA debut at Fury FC 68, winning by corner stoppage after round two.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog professional record"
+        },
+        {
+          "date": "Mar. 24, 2023",
+          "label": "First professional defeat against Reyes Cortez Jr.",
+          "kind": "loss",
+          "detail": "Lost by KO (punch) at 2:17 of round three at Fury FC 76, his only professional defeat before the November 2026 UFC booking.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog professional record"
+        },
+        {
+          "date": "Feb. 15, 2025",
+          "label": "UFC debut against Vince Morales",
+          "kind": "milestone",
+          "detail": "Made his UFC debut against Vince Morales and won by unanimous decision after three rounds, having previously earned a contract on the 2024 Contender Series.",
+          "source": "https://www.ufc.com/athlete/elijah-smith",
+          "sourceLabel": "UFC fighter biography"
+        },
+        {
           "date": "Mar 14, 2026",
-          "label": "WIN · Su Young You · UFC Fight Night",
+          "label": "WIN · Su Young You · UFC Fight Night: Emmett vs. Vallejos",
           "kind": "win",
-          "detail": "Defeated Su Young You at UFC Fight Night by Submission (Rear-Naked Choke) in round 2 at 1:04.",
-          "source": "https://www.tapology.com/fightcenter/fighters/289643-elijah-smith",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Defeated Su Young You at UFC Fight Night: Emmett vs. Vallejos by Submission (Rear-Naked Choke) in round 2 at 1:04.",
+          "source": "https://www.ufc.com/athlete/elijah-smith",
+          "sourceLabel": "UFC fighter fight history"
         },
         {
           "date": "Aug 9, 2025",
-          "label": "WIN · Toshiomi Kazama · UFC Fight Night",
+          "label": "WIN · Toshiomi Kazama · UFC Fight Night: Dolidze vs. Hernandez",
           "kind": "win",
-          "detail": "Defeated Toshiomi Kazama at UFC Fight Night by KO (Slam) in round 1 at 4:10.",
-          "source": "https://www.tapology.com/fightcenter/fighters/289643-elijah-smith",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Defeated Toshiomi Kazama at UFC Fight Night: Dolidze vs. Hernandez by KO (Slam) in round 1 at 4:10.",
+          "source": "https://www.ufc.com/athlete/elijah-smith",
+          "sourceLabel": "UFC fighter fight history"
         },
         {
           "date": "Feb 15, 2025",
-          "label": "WIN · Vince Morales · UFC Fight Night",
+          "label": "WIN · Vince Morales · UFC Fight Night: Cannonier vs. Rodrigues",
           "kind": "win",
-          "detail": "Defeated Vince Morales at UFC Fight Night by Decision (Unanimous) in round 3.",
-          "source": "https://www.tapology.com/fightcenter/fighters/289643-elijah-smith",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Defeated Vince Morales at UFC Fight Night: Cannonier vs. Rodrigues by Decision (Unanimous) in round 3 at 5:00.",
+          "source": "https://www.ufc.com/athlete/elijah-smith",
+          "sourceLabel": "UFC fighter fight history"
         },
         {
           "date": "Sep 17, 2024",
           "label": "WIN · Aaron Tau · Dana White's Contender Series",
           "kind": "win",
-          "detail": "Defeated Aaron Tau at Dana White's Contender Series by Decision (Unanimous) in round 3.",
-          "source": "https://www.tapology.com/fightcenter/fighters/289643-elijah-smith",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Defeated Aaron Tau at Dana White's Contender Series by Decision (Unanimous) in round 3 at 5:00.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog fight record"
+        },
+        {
+          "date": "Jun 16, 2024",
+          "label": "WIN · Josh Walker · Fury FC 92",
+          "kind": "win",
+          "detail": "Defeated Josh Walker at Fury FC 92 by TKO (Punches and Elbows) in round 1 at 1:40.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog fight record"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Davey Grant · UFC Vegas 124",
           "kind": "milestone",
-          "detail": "Scheduled to fight Davey Grant at UFC Vegas 124 in Las Vegas. No result yet.",
+          "detail": "Scheduled to face Davey Grant at bantamweight at UFC Vegas 124 on November 7, 2026; no result yet.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "Official UFC event"
+          "sourceLabel": "UFC event page"
         }
       ]
     },
