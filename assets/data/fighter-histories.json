@@ -1,5 +1,5 @@
 {
-  "version": 43,
+  "version": 44,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -27572,64 +27572,488 @@
       "name": "Andre Petroski",
       "subtitle": "Career chronology",
       "record": "13-6",
-      "ufcRecord": "",
+      "ufcRecord": "8-5",
       "division": "Middleweight",
       "items": [
         {
-          "date": "2021",
-          "label": "Appears on The Ultimate Fighter 29",
-          "detail": "Competed as a middleweight on the 29th season of The Ultimate Fighter before making his UFC debut.",
-          "source": "https://www.ufc.com/athlete/andre-petroski",
+          "date": "June 12, 1991",
+          "label": "Born in Chester, Pennsylvania",
           "kind": "milestone",
-          "sourceLabel": "UFC fighter profile"
+          "detail": "Born in Chester, Pennsylvania, on June 12, 1991; grew up in the Springfield area. His father, Guy Petroski, wrestled at Penn State and later coached wrestling and taught karate.",
+          "source": "https://goheels.com/sports/wrestling/roster/andre-petroski/4809",
+          "sourceLabel": "University of North Carolina Athletics · 2010–12 wrestling biography"
+        },
+        {
+          "date": "Circa 1995 (age four)",
+          "label": "Begins wrestling and karate under his father",
+          "kind": "training",
+          "detail": "Petroski told the UFC he started both wrestling and karate around age four. His father wrestled at Penn State, and wrestling became the foundation of his eventual MMA style. Exact starting month not documented.",
+          "source": "https://www.ufc.com/athlete/andre-petroski?page=1",
+          "sourceLabel": "UFC · athlete history and fighter questionnaire"
+        },
+        {
+          "date": "High-school years, before 2010",
+          "label": "Three-time Pennsylvania high-school state medalist and finalist",
+          "kind": "milestone",
+          "detail": "Competed at Springfield High School, medaled at the Pennsylvania state wrestling championships three times and reached the final; also earned three medals at Beast of the East and played football. School bio does not specify every placement by year.",
+          "source": "https://goheels.com/sports/wrestling/roster/andre-petroski/4809",
+          "sourceLabel": "University of North Carolina Athletics · 2010–12 wrestling biography"
+        },
+        {
+          "date": "2010–11",
+          "label": "University of North Carolina freshman wrestling season",
+          "kind": "milestone",
+          "detail": "At the University of North Carolina he wrestled at 174 pounds, going 16-12 as a freshman, 3-5 in dual meets, with five pins and a seventh-place finish at the Southern Scuffle. Later college records show a 2011-12 redshirt year.",
+          "source": "https://goheels.com/sports/wrestling/roster/andre-petroski/4809",
+          "sourceLabel": "University of North Carolina Athletics · 2010–12 wrestling biography"
+        },
+        {
+          "date": "2012–13",
+          "label": "Transfers to Bloomsburg and competes at 184 pounds",
+          "kind": "milestone",
+          "detail": "Competed at Bloomsburg University after UNC, earning second place at the Pennsylvania State Athletic Conference championships in December 2012. Recorded dual-meet wins over opponents from Hofstra, Ohio, Clarion and others, according to Kutztown's retrospective roster.",
+          "source": "https://kubears.com/sports/wrestling/roster/andre-petroski/3675",
+          "sourceLabel": "Kutztown University Athletics · 2014–15 wrestling record"
+        },
+        {
+          "date": "2013–14",
+          "label": "Moves to Kutztown; redshirts wrestling season",
+          "kind": "milestone",
+          "detail": "Joined Kutztown University's wrestling program but did not compete in the 2013–14 season. The Kutztown record clearly differentiates his time at UNC, Bloomsburg and Kutztown.",
+          "source": "https://kubears.com/sports/wrestling/roster/andre-petroski/3675",
+          "sourceLabel": "Kutztown University Athletics · 2014–15 wrestling record"
+        },
+        {
+          "date": "2014–15",
+          "label": "NCAA Division II national wrestling qualifier at Kutztown",
+          "kind": "milestone",
+          "detail": "As a redshirt senior at 184 pounds, went 23-10 with five pins, finished second at the NCAA Super Region 1 tournament and third at the PSAC championships, qualified for the 2015 Division II national championships and won his opening bout 6-4. He was a national QUALIFIER, not a verified NCAA national champion.",
+          "source": "https://kubears.com/sports/wrestling/roster/andre-petroski/3675",
+          "sourceLabel": "Kutztown University Athletics · 2014–15 wrestling record"
+        },
+        {
+          "date": "Jan. 8, 2016",
+          "label": "AMATEUR WIN · Jesse Stokes · CFFC 54",
+          "kind": "win",
+          "detail": "Submitted Jesse Stokes with a brabo choke at 2:48 of the first round, in the first of eight amateur MMA bouts documented by Sherdog. Amateur result, not part of professional 13-6 ledger.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "May 7, 2016",
+          "label": "AMATEUR WIN · Dayan Ruiz-Alvarez · Stellar Fights 30",
+          "kind": "win",
+          "detail": "Won a three-round unanimous decision over Dayan Ruiz-Alvarez in amateur MMA. Amateur record: 2-0.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Dec. 17, 2016",
+          "label": "AMATEUR LOSS · Daniel Tolbert · CFFC 62",
+          "kind": "loss",
+          "detail": "Suffered his only documented amateur MMA loss, by unanimous decision after three three-minute rounds against Daniel Tolbert. Amateur record: 2-1.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Feb. 18, 2017",
+          "label": "AMATEUR WIN · Kevin Benedetti · Asylum Fight League 53",
+          "kind": "win",
+          "detail": "Submitted Kevin Benedetti by rear-naked choke at 1:21 of round one. Amateur MMA record: 3-1.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "June 2, 2017",
+          "label": "AMATEUR WIN · Jon Tuxford Jr. · Art of War 2",
+          "kind": "win",
+          "detail": "Submitted Jon Tuxford Jr. by rear-naked choke at 0:47 of round one. Tapology describes this as an Art of War amateur middleweight title bout; the result is excluded from professional record. Amateur MMA record: 4-1.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Sept. 9, 2017",
+          "label": "AMATEUR WIN · Gordon Wigington · Stellar Fights 35",
+          "kind": "win",
+          "detail": "Won unanimous decision over five three-minute rounds against Gordon Wigington, a Stellar Fights amateur middleweight championship contest. Amateur MMA record: 5-1.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Dec. 8, 2017",
+          "label": "AMATEUR WIN · Andrew Johnson · Art of War 4",
+          "kind": "win",
+          "detail": "Stopped Andrew Johnson by first-round TKO (punches) at 0:44 at Art of War Cage Fighting 4. Amateur MMA record: 6-1.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Feb. 16, 2018",
+          "label": "AMATEUR WIN · Avery Sanchis · Art of War 5",
+          "kind": "win",
+          "detail": "Won a three-round unanimous decision against Avery Sanchis at Art of War Cage Fighting 5, completing the eight-bout amateur MMA ledger at 7-1. UFC also identifies his Stellar Fights and Art of War amateur titles, and two kickboxing wins without opponent/date details.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "2018",
+          "label": "Overcomes substance-use problems; publicly credits treatment and recovery",
+          "kind": "milestone",
+          "detail": "Petroski later publicly described becoming sober in 2018 after an extended struggle with heroin addiction. In UFC and 2025 interviews he credited treatment, recovery housing and support for rebuilding his life and continuing his MMA career. This is his own published account and is not described as a fight result or an injury.",
+          "source": "https://www.ufc.com/news/andre-petroski-earned-all-of-this-ufc-267",
+          "sourceLabel": "UFC · 2021 recovery account, publicly disclosed by Petroski"
+        },
+        {
+          "date": "Oct. 5, 2018",
+          "label": "PRO WIN · Mark Krumrine · Art of War 8",
+          "kind": "win",
+          "detail": "Professional MMA debut at Art of War Cage Fighting 8; stopped Mark Krumrine by TKO (punches) at 4:40 of round one. Professional record after bout: 1-0, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "May 11, 2019",
+          "label": "PRO WIN · Ryan Parker · Art of War 12",
+          "kind": "win",
+          "detail": "Submitted Ryan Parker at 1:56 of round one. Sherdog does not identify the hold in this professional listing, so an unverified submission technique has not been invented. Professional record after bout: 2-0, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Sept. 28, 2019",
+          "label": "PRO WIN · Jesse James · Art of War 13",
+          "kind": "win",
+          "detail": "Submitted Jesse James via kimura at 3:34 of round one in a catchweight bout at Art of War 13. Professional record after bout: 3-0, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Dec. 13, 2019",
+          "label": "PRO WIN · Shedrick Goodridge · Art of War 15",
+          "kind": "win",
+          "detail": "Won the Art of War professional middleweight championship by TKO (punches) against Shedrick Goodridge at 2:29 of round two. Professional record after bout: 4-0, UFC 0-0. Some secondary ledgers give round-two 5:00; Sherdog lists 2:29.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Dec. 13, 2019",
+          "label": "Captures Art of War professional middleweight championship",
+          "kind": "milestone",
+          "detail": "The victory over Goodridge was his first documented professional MMA title capture. It is one championship outcome and one recorded fight, not an extra professional victory.",
+          "source": "https://www.ufcalendar.com/fighters/andre-petroski",
+          "sourceLabel": "UFCalendar · dated MMA, TUF, amateur and Fury Pro grappling records"
+        },
+        {
+          "date": "Feb. 7, 2020",
+          "label": "PRO WIN · Andre Hall · Art of War 16",
+          "kind": "win",
+          "detail": "Defended the Art of War middleweight championship against Andre Hall with a second-round TKO (punches) at 3:37. Professional MMA record after bout: 5-0, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Oct. 16, 2020",
+          "label": "PRO LOSS · Aaron Jeffery · LFA 93",
+          "kind": "loss",
+          "detail": "Headlined LFA 93 against Aaron Jeffery and suffered his first professional loss via TKO (knees and punches) at 4:19 of round two. Pro MMA record after bout: 5-1. It was an LFA bout, not a UFC fight.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Early 2021",
+          "label": "Selected for The Ultimate Fighter 29, Team Ortega",
+          "kind": "milestone",
+          "detail": "Joined Brian Ortega's team for the 2021 return of The Ultimate Fighter in the middleweight tournament. The competition's in-house bouts are professional exhibitions, not additions to his official 13-6 record or UFC 8-5 record.",
+          "source": "https://www.mmafighting.com/2021/8/17/22629378/the-ultimate-fighter-29-episode-12-results-tournament-finals-set-for-ufc-vegas-35-on-aug-28",
+          "sourceLabel": "MMA Fighting · complete TUF 29 exhibition results"
+        },
+        {
+          "date": "Apr. 29, 2021",
+          "label": "TUF EXHIBITION WIN · Aaron Phillips · quarterfinals",
+          "kind": "milestone",
+          "detail": "Submitted Aaron Phillips by guillotine choke at 4:42 of round one on The Ultimate Fighter 29. Exhibition win only; professional record remained 5-1.",
+          "source": "https://www.mmafighting.com/2021/8/17/22629378/the-ultimate-fighter-29-episode-12-results-tournament-finals-set-for-ufc-vegas-35-on-aug-28",
+          "sourceLabel": "MMA Fighting · complete TUF 29 exhibition results"
+        },
+        {
+          "date": "May 20, 2021",
+          "label": "TUF EXHIBITION LOSS · Bryan Battle · semifinals",
+          "kind": "milestone",
+          "detail": "Lost to eventual TUF 29 middleweight champion Bryan Battle by a second-round choke at 2:05. Sherdog labels it a ninja choke; UFC and MMA Fighting describe a guillotine choke. Record this technique discrepancy without creating duplicate bouts. Professional record stayed 5-1.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "July 2, 2021",
+          "label": "GRAPPLING WIN · Brian Nielson · Fury Pro Grappling 1",
+          "kind": "milestone",
+          "detail": "Won an exhibition grappling-rules match against Brian Nielson at the inaugural Fury Pro Grappling event. Not a professional MMA fight; method recorded as a decision by the grappling ledger.",
+          "source": "https://www.ufcalendar.com/fighters/andre-petroski",
+          "sourceLabel": "UFCalendar · dated MMA, TUF, amateur and Fury Pro grappling records"
+        },
+        {
+          "date": "Aug. 28, 2021",
+          "label": "PRO WIN · Micheal Gillmore · UFC Fight Night: Barboza vs. Chikadze",
+          "kind": "win",
+          "detail": "Official UFC debut after TUF 29. Stopped fellow TUF contestant Micheal Gillmore by TKO (punches and elbows) at 3:12 of round three. Pro MMA record 6-1, official UFC record 1-0.",
+          "source": "https://www.ufc.com/athlete/micheal-gillmore",
+          "sourceLabel": "UFC · Gillmore/Petroski official debut record"
+        },
+        {
+          "date": "October 2021",
+          "label": "Replaces Alen Amedovski for UFC 267 on short notice",
+          "kind": "booking",
+          "detail": "After Alen Amedovski came out of his planned UFC 267 bout with Hu Yaozong, Petroski accepted the matchup on short notice, less than three months after his UFC debut. This is a replacement booking, not a canceled Petroski fight.",
+          "source": "https://www.sherdog.com/news/news/UFC-267-Prelims-Amanda-Ribas-Rights-Ship-Downs-Virna-Jandiroba-in-United-Arab-Emirates-182687",
+          "sourceLabel": "Sherdog · UFC 267 recap and short-notice replacement"
+        },
+        {
+          "date": "Oct. 30, 2021",
+          "label": "PRO WIN · Hu Yaozong · UFC 267",
+          "kind": "win",
+          "detail": "Submitted Hu Yaozong by arm-triangle choke at 4:46 of round three at UFC 267 in Abu Dhabi. Pro MMA record 7-1, official UFC record 2-0. His second UFC victory came as a replacement for Alen Amedovski.",
+          "source": "https://www.ufc.com/news/ufc-267-blachowicz-vs-teixeira-results-highlights-winners-interviews-abu-dhabi",
+          "sourceLabel": "UFC · official UFC 267 submission and event result"
+        },
+        {
+          "date": "Dec. 30, 2021",
+          "label": "GRAPPLING WIN · Phil Hawes · Fury Pro Grappling 3",
+          "kind": "milestone",
+          "detail": "Defeated Phil Hawes by decision in an exhibition grappling event. This was a separate ruleset and does not change the professional or UFC MMA records.",
+          "source": "https://www.ufcalendar.com/fighters/andre-petroski",
+          "sourceLabel": "UFCalendar · dated MMA, TUF, amateur and Fury Pro grappling records"
+        },
+        {
+          "date": "May 14, 2022",
+          "label": "PRO WIN · Nick Maximov · UFC Fight Night: Błachowicz vs. Rakić",
+          "kind": "win",
+          "detail": "Choked previously undefeated Nick Maximov unconscious with an anaconda choke at 1:16 of round one, officially a technical submission. Pro MMA record 8-1, official UFC record 3-0.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Aug. 27, 2022",
+          "label": "GRAPPLING WIN · Eryk Anders · Fury Pro Grappling 5",
+          "kind": "milestone",
+          "detail": "Submitted Eryk Anders with an anaconda choke at 1:32 of the opening round of a grappling match. Not counted as an official UFC or pro MMA submission win.",
+          "source": "https://www.ufcalendar.com/fighters/andre-petroski",
+          "sourceLabel": "UFCalendar · dated MMA, TUF, amateur and Fury Pro grappling records"
+        },
+        {
+          "date": "Nov. 12, 2022",
+          "label": "PRO WIN · Wellington Turman · UFC 281",
+          "kind": "win",
+          "detail": "Won a three-round unanimous decision over Wellington Turman, his first professional MMA decision win after eight finish victories. Pro MMA record 9-1, official UFC record 4-0.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Dec. 30, 2022",
+          "label": "GRAPPLING WIN · Ovince Saint Preux · Fury Pro Grappling 6",
+          "kind": "milestone",
+          "detail": "Won a grappling-only contest by decision against Ovince Saint Preux. MMA professional and UFC records unchanged.",
+          "source": "https://www.ufcalendar.com/fighters/andre-petroski",
+          "sourceLabel": "UFCalendar · dated MMA, TUF, amateur and Fury Pro grappling records"
+        },
+        {
+          "date": "Spring 2023",
+          "label": "Partial rotator-cuff tear forces layoff",
+          "kind": "injury",
+          "detail": "Petroski sustained a partial rotator-cuff tear in his shoulder and said the tear measured less than 50 percent of the tendon width. He reported opting for nonoperative recovery and receiving PRP and stem-cell-based treatment arranged with UFC assistance. This is a reported treatment history, not independent evidence of the treatment's effectiveness.",
+          "source": "https://www.inkl.com/news/ufc-middleweight-andre-petroski-provides-health-update-after-avoiding-rotator-cuff-surgery",
+          "sourceLabel": "MMA Junkie Radio via Inkl · July 2023 rotator-cuff report"
+        },
+        {
+          "date": "May 6, 2023",
+          "label": "CANCELED · Armen Petrosyan · UFC 288 (Petroski shoulder injury)",
+          "kind": "booking",
+          "detail": "Scheduled UFC 288 middleweight fight against Armen Petrosyan canceled because Andre Petroski withdrew with a shoulder injury. This is a verified Petroski-related injury withdrawal, unlike his opponent substitutions in 2021, 2023, 2025 and 2026. No completed professional MMA bout occurred.",
+          "source": "https://www.tapology.com/fightcenter/bouts/737138-ufc-288-andre-petroski-vs-armen-superman-petrosyan",
+          "sourceLabel": "Tapology · canceled UFC 288 matchup"
+        },
+        {
+          "date": "May 27, 2023",
+          "label": "GRAPPLING LOSS · Rene Sousa · Fury Pro Grappling 7",
+          "kind": "milestone",
+          "detail": "Lost a separate grappling-rules match to Rene Sousa via straight ankle lock at 4:09. The exhibition result occurred during the period between the canceled May UFC booking and his August MMA return; it is not an MMA submission defeat.",
+          "source": "https://www.ufcalendar.com/fighters/andre-petroski",
+          "sourceLabel": "UFCalendar · dated MMA, TUF, amateur and Fury Pro grappling records"
+        },
+        {
+          "date": "July–August 2023",
+          "label": "Says rotator-cuff surgery was avoided and returns to fight camp",
+          "kind": "injury",
+          "detail": "In MMA Junkie Radio and BJPenn.com interviews, Petroski said he had avoided rotator-cuff surgery; he had needed to rest the shoulder because training repeatedly aggravated it. Public interviews do not establish a surgical procedure. He returned to UFC action in August.",
+          "source": "https://www.bjpenn.com/mma-news/andre-petroski/andre-petroski-explains-why-he-wanted-to-fight-gerald-meerchaert-at-ufc-292-hopes-to-secure-bo-nickal-scrap-with-a-win/",
+          "sourceLabel": "BJPenn.com · Aug. 2023 interview on injury rehabilitation"
+        },
+        {
+          "date": "Aug. 19, 2023",
+          "label": "PRO WIN · Gerald Meerschaert · UFC 292",
+          "kind": "win",
+          "detail": "Returned from shoulder layoff to win a three-round split decision over Gerald Meerschaert (two 29-28 cards for Petroski, one 29-28 for Meerschaert). Dropped Meerschaert, who recovered, and was cut during a competitive third round. Pro MMA record 10-1, official UFC record 5-0.",
+          "source": "https://www.ufc.com/athlete/andre-petroski?page=1",
+          "sourceLabel": "UFC · athlete history and fighter questionnaire"
+        },
+        {
+          "date": "October 2023",
+          "label": "Accepts Michel Pereira fight on ten days' notice",
+          "kind": "booking",
+          "detail": "Marc-André Barriault withdrew from a scheduled fight with Michel Pereira because of a medical issue; Petroski accepted the replacement assignment with approximately ten days to prepare, around eight weeks after his Meerschaert fight. Petroski later said he did not regret taking the risk but wished he had kept his weight lower between fights.",
+          "source": "https://www.mmafighting.com/2023/10/9/23910173/michel-pereira-faces-late-notice-replacement-andre-petroski-at-ufc-vegas-81",
+          "sourceLabel": "MMA Fighting · late-notice Pereira replacement"
+        },
+        {
+          "date": "Oct. 14, 2023",
+          "label": "PRO LOSS · Michel Pereira · UFC Vegas 81",
+          "kind": "loss",
+          "detail": "Lost by first-round TKO (punches) to Michel Pereira at 1:06 in their short-notice middleweight bout. Ended his five-fight UFC winning streak. Pro MMA record 10-2, official UFC record 5-1.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Mar. 30, 2024",
+          "label": "PRO LOSS · Jacob Malkoun · UFC Atlantic City",
+          "kind": "loss",
+          "detail": "Lost by TKO at 0:39 of round two in an unusual sequence: Petroski apparently collided head-first with Malkoun's hip while shooting, stumbled badly and was finished by Malkoun's follow-up body kick and punches. The official method is TKO; this was not a documented withdrawal or proof of a separate lasting concussion diagnosis. Pro MMA record 10-3, UFC 5-2.",
+          "source": "https://www.mmafighting.com/2024/3/30/24116817/ufc-atlantic-city-video-andre-petroski-nearly-knocks-himself-out-on-jacob-malkouns-hip-finished",
+          "sourceLabel": "MMA Fighting · March 2024 unusual Malkoun stoppage"
+        },
+        {
+          "date": "May 24, 2024",
+          "label": "GRAPPLING WIN · Alex Myers · Fury Pro Grappling 10",
+          "kind": "milestone",
+          "detail": "Won a grappling-rules match over Alex Myers by decision at Fury Pro Grappling 10. Not part of professional or official UFC MMA records.",
+          "source": "https://www.ufcalendar.com/fighters/andre-petroski",
+          "sourceLabel": "UFCalendar · dated MMA, TUF, amateur and Fury Pro grappling records"
+        },
+        {
+          "date": "July 13, 2024",
+          "label": "PRO WIN · Josh Fremd · UFC Denver",
+          "kind": "win",
+          "detail": "Broke a two-fight UFC losing streak by defeating Josh Fremd through three-round unanimous decision in Denver. Professional MMA record 11-3, official UFC record 6-2.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Sept. 6, 2024",
+          "label": "Dylan Budka misses middleweight limit by 2.5 pounds",
+          "kind": "milestone",
+          "detail": "At UFC Vegas 97 weigh-ins, Petroski weighed 185.5 pounds while Budka came in at 188.5, 2.5 pounds over the 186-pound non-title limit. The contest proceeded at catchweight with Budka forfeiting 20 percent of his purse to Petroski. This was Budka's weight miss, not Petroski's.",
+          "source": "https://www.mmafighting.com/2024/9/6/24237606/ufc-vegas-97-weigh-in-results-dylan-budka-badly-misses-weight-after-scary-trip-to-scale",
+          "sourceLabel": "MMA Fighting · Sept. 2024 Budka missed weight and purse penalty"
+        },
+        {
+          "date": "Sept. 7, 2024",
+          "label": "PRO WIN · Dylan Budka · UFC Fight Night: Burns vs. Brady",
+          "kind": "win",
+          "detail": "Won a three-round unanimous decision over Dylan Budka in the agreed catchweight bout after Budka missed middleweight. Professional MMA record 12-3, official UFC record 7-2.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Dec. 28, 2024",
+          "label": "GRAPPLING LOSS · Patrick Downey · Fury Pro Grappling 12",
+          "kind": "milestone",
+          "detail": "Lost a separate grappling decision to former elite collegiate wrestler Patrick Downey. This was Petroski's second recorded Fury Pro grappling defeat, not a seventh professional MMA loss.",
+          "source": "https://www.ufcalendar.com/fighters/andre-petroski",
+          "sourceLabel": "UFCalendar · dated MMA, TUF, amateur and Fury Pro grappling records"
+        },
+        {
+          "date": "Jan. 1, 2025",
+          "label": "Replaces injured Jacob Malkoun against Rodolfo Vieira",
+          "kind": "booking",
+          "detail": "With Jacob Malkoun injured and unable to face Rodolfo Vieira at UFC Vegas 102 in February, Petroski accepted the open matchup. Malkoun's injury and withdrawal were not caused by Petroski, whom Malkoun had beaten in March 2024.",
+          "source": "https://www.sherdog.com/news/news/Andre-Petroski-Replaces-Jacob-Malkoun-Meets-Rodolfo-Vieira-at-UFC-Vegas-102-195819",
+          "sourceLabel": "Sherdog · Jan. 2025 short-notice Vieira booking"
+        },
+        {
+          "date": "Feb. 15, 2025",
+          "label": "PRO WIN · Rodolfo Vieira · UFC Vegas 102",
+          "kind": "win",
+          "detail": "Defeated decorated Brazilian jiu-jitsu specialist Rodolfo Vieira by unanimous decision after three rounds. Petroski was the replacement for injured Jacob Malkoun. Professional MMA record 13-3, official UFC record 8-2.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "June 10–11, 2025",
+          "label": "Discusses recovery journey publicly in interview",
+          "kind": "milestone",
+          "detail": "In a 2025 Home of Fight interview and follow-up reporting, Petroski discussed his earlier opioid and heroin addiction, overdose, treatment and recovery. His account reinforces the significance of the 2018 recovery milestone; it is not a new medical injury or fight.",
+          "source": "https://www.sherdog.com/news/news/Andre-Petroski-Opens-Up-on-Battle-With-Addiction-197273",
+          "sourceLabel": "Sherdog · June 2025 Petroski interview about recovery"
+        },
+        {
+          "date": "June 14, 2025",
+          "label": "PRO LOSS · Edmen Shahbazyan · UFC Atlanta",
+          "kind": "loss",
+          "detail": "Lost a unanimous decision to Edmen Shahbazyan after three rounds at UFC on ESPN: Usman vs. Buckley. First professional defeat by decision (previous losses had been by TKO). Professional MMA record 13-4, official UFC record 8-3.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
+        },
+        {
+          "date": "Sept. 27, 2025",
+          "label": "PRO LOSS · Cameron (Cam) Rowston · UFC Perth",
+          "kind": "loss",
+          "detail": "Stopped by Australian middleweight Cam Rowston with punches at 2:41 of round one at UFC Perth. Sherdog lists Sept. 27 while some Australian-local coverage uses Sept. 28 due to time zones. The event is one fight, not two. Pro record 13-5, official UFC 8-4.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
         },
         {
           "date": "May 16, 2026",
-          "label": "LOSS · Cody Brundage · UFC Fight Night",
+          "label": "PRO LOSS · Cody Brundage · UFC Fight Night: Allen vs. Costa",
           "kind": "loss",
-          "detail": "Lost to Cody Brundage at UFC Fight Night by TKO (Strikes) in round 2 at 0:44.",
-          "source": "https://verdictmma.com/fighter/andre-petroski",
-          "sourceLabel": "Verdict MMA fighter history"
+          "detail": "Lost by TKO (punches) at 0:44 of round two to Cody Brundage. Professional record 13-6, official UFC 8-5. This was his third consecutive UFC loss after Shahbazyan and Rowston.",
+          "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
+          "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
         },
         {
-          "date": "Sep 27, 2025",
-          "label": "LOSS · Cam Rowston · UFC Fight Night",
-          "kind": "loss",
-          "detail": "Lost to Cam Rowston at UFC Fight Night by TKO (Strikes) in round 1 at 2:41.",
-          "source": "https://verdictmma.com/fighter/andre-petroski",
-          "sourceLabel": "Verdict MMA fighter history"
+          "date": "August–September 2026",
+          "label": "Booked against Azamat Bekoev for Oct. 31",
+          "kind": "booking",
+          "detail": "UFC matched Petroski with Azamat Bekoev for the October 31 UFC Vegas 123 card. Before that bout Petroski was 13-6 overall and on a three-fight skid. The matchup did not reach the cage and must not be listed as a loss or win.",
+          "source": "https://www.ufcalendar.com/fighters/andre-petroski",
+          "sourceLabel": "UFCalendar · dated MMA, TUF, amateur and Fury Pro grappling records"
         },
         {
-          "date": "Jun 14, 2025",
-          "label": "LOSS · Edmen Shahbazyan · UFC Fight Night",
-          "kind": "loss",
-          "detail": "Lost to Edmen Shahbazyan at UFC Fight Night by Decision (Unanimous) in round 3.",
-          "source": "https://verdictmma.com/fighter/andre-petroski",
-          "sourceLabel": "Verdict MMA fighter history"
+          "date": "Oct. 24, 2026",
+          "label": "CANCELED · Azamat Bekoev · opponent medical emergency",
+          "kind": "booking",
+          "detail": "Bekoev said he was withdrawing after an anaphylactic reaction, loss of consciousness in a pharmacy and an ambulance call. He apologized to Petroski and UFC. This health emergency was Bekoev's, NOT Petroski's. October 31 pairing was canceled with no fight result.",
+          "source": "https://mmasucka.com/news/azamat-bekoev-releases-statement-on-health-scare-withdrawal-from-ufc-vegas-123-fight-andre-petroski/",
+          "sourceLabel": "MMASucka · Oct. 2026 Bekoev emergency and withdrawal"
         },
         {
-          "date": "Feb 15, 2025",
-          "label": "WIN · Rodolfo Vieira · UFC Fight Night",
-          "kind": "win",
-          "detail": "Defeated Rodolfo Vieira at UFC Fight Night by Decision (Unanimous) in round 3.",
-          "source": "https://verdictmma.com/fighter/andre-petroski",
-          "sourceLabel": "Verdict MMA fighter history"
+          "date": "Oct. 24–27, 2026",
+          "label": "Rebooked against Mantas Kondratavičius for Nov. 7",
+          "kind": "booking",
+          "detail": "After Bekoev withdrew and Kondratavičius's original opponent Wes Schultz was removed, UFC arranged Petroski versus Kondratavičius. Event trackers briefly showed the bout on both October 31 and November 7 before the former listing was removed. The actual upcoming date is November 7.",
+          "source": "https://www.ufcalendar.com/blog/kondratavicius-petroski-moves-ufc-fight-night-moicano-nolan-to-bonfim-brady",
+          "sourceLabel": "UFCalendar · Oct. 2026 card reassignment chronology"
         },
         {
-          "date": "Sep 7, 2024",
-          "label": "WIN · Dylan Budka · UFC Fight Night",
-          "kind": "win",
-          "detail": "Defeated Dylan Budka at UFC Fight Night by Decision (Unanimous) in round 3.",
-          "source": "https://verdictmma.com/fighter/andre-petroski",
-          "sourceLabel": "Verdict MMA fighter history"
+          "date": "Nov. 5, 2026",
+          "label": "Injury and withdrawal audit; distinguish whose injuries",
+          "kind": "note",
+          "detail": "Confirmed Petroski injury withdrawal: May 6, 2023 Armen Petrosyan matchup, due to partial shoulder rotator-cuff tear. He reported rest and nonoperative treatment and avoided surgery. 2024 Malkoun defeat involved a hard head-to-hip collision in the fight but is not proof of diagnosed lasting injury. Separate changes due to other athletes: Alen Amedovski (2021), Marc-André Barriault (2023), Jacob Malkoun (2025), Azamat Bekoev (2026). No other verified Petroski injury-caused withdrawal or surgery identified through Nov. 5.",
+          "source": "https://www.inkl.com/news/ufc-middleweight-andre-petroski-provides-health-update-after-avoiding-rotator-cuff-surgery",
+          "sourceLabel": "MMA Junkie Radio via Inkl · July 2023 rotator-cuff report"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Reconciled MMA, TUF, amateur and grappling records",
+          "kind": "note",
+          "detail": "19 completed professional MMA bouts: 13-6 (4 KO/TKO wins, 4 submission wins, 5 decision wins; five TKO losses, one decision loss). UFC 8-5 in 13 official bouts; outside UFC 5-1 (Art of War 5-0, LFA 0-1). Amateur MMA 7-1 across eight documented bouts; TUF 29 exhibitions 1-1; seven Fury Pro Grappling matches 5-2. These are distinct rule sets and never combined. UFC athlete profile displayed 13-7 in one live rendering despite its fight ledger and Sherdog/FightMatrix supporting 13-6; do not invent a seventh loss.",
+          "source": "https://www.ufc.com/athlete/andre-petroski",
+          "sourceLabel": "UFC · numerical profile discrepancy as displayed Nov. 2026"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Mantas Kondratavičius · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Scheduled to fight Mantas Kondratavičius at UFC Vegas 124 in Las Vegas. No result yet.",
+          "kind": "upcoming",
+          "detail": "Scheduled to fight Mantas Kondratavičius (9-1 professional, 1-0 UFC) at middleweight at the Meta APEX in Las Vegas on UFC Fight Night: Cortes-Acosta vs. Walker. Petroski enters 13-6 professional, 8-5 UFC. This fight is UPCOMING as of Nov. 5, 2026: no result, finish or score may be assigned.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "Official UFC event"
+          "sourceLabel": "UFC · official November 7 fight card"
         }
       ]
     },
