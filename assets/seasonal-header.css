@@ -24,7 +24,7 @@
   body[data-editorial-shell] .logo-banner .desktop-brand-harvest {
     position: absolute;
     right: -44px;
-    bottom: 3px;
+    bottom: -7px;
     z-index: 3;
     display: block;
     width: 62px;
@@ -82,7 +82,7 @@
 @media (min-width: 851px) and (max-width: 1100px) {
   body[data-editorial-shell] .logo-banner .desktop-brand-harvest {
     right: -36px;
-    bottom: 2px;
+    bottom: -8px;
     width: 54px;
     height: 54px;
   }
