@@ -1,82 +1,89 @@
-/* Seasonal header treatment only. No global color or typography changes. */
-@media (max-width: 850px) {
-    .site-navigation .mobile-brand {
-        align-items: flex-end !important;
-        gap: 0 !important;
-        overflow: visible;
-    }
-    .mobile-brand-wordmark {
-        position: relative;
-        z-index: 1;
-    }
-    .mobile-brand-pumpkin {
-        position: relative !important;
-        z-index: 2;
-        display: inline-flex !important;
-        align-items: flex-end;
-        justify-content: center;
-        flex: 0 0 auto;
-        margin-left: -.10em !important;
-        pointer-events: none;
-    }
-    .mobile-brand-pumpkin-icon {
-        display: block !important;
-        width: .86em !important;
-        height: .86em !important;
-        transform: translateY(.075em) rotate(-3deg) !important;
-        transform-origin: 50% 100%;
-    }
-}
+/* Fall masthead: keep the cornucopia alongside MATLOCK, never underneath it. */
 @media (min-width: 851px) {
-    body[data-editorial-shell] .site-header > .logo-banner {
-        padding-block: 1rem;
-    }
+  body[data-editorial-shell] .logo-banner > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: visible;
+  }
 
-    body[data-editorial-shell] .logo-banner > a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1;
-        position: relative;
-        overflow: visible;
-    }
+  body[data-editorial-shell] .logo-banner .v3-wordmark-wrap {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+  }
 
-    body[data-editorial-shell] .logo-banner .v3-wordmark-wrap {
-        position: relative;
-        display: block;
-        line-height: 1;
-    }
+  body[data-editorial-shell] .logo-banner .v3-wordmark {
+    display: block;
+    position: relative;
+    z-index: 1;
+    text-box: trim-both cap alphabetic;
+  }
 
-    body[data-editorial-shell] .logo-banner .v3-wordmark {
-        display: block;
-        position: relative;
-        z-index: 1;
-        /* Center the visible capital letters, rather than the font's leading. */
-        text-box: trim-both cap alphabetic;
-    }
+  body[data-editorial-shell] .logo-banner .desktop-brand-harvest {
+    position: absolute;
+    right: -67px;
+    bottom: 3px;
+    z-index: 3;
+    display: block;
+    width: 62px;
+    height: 62px;
+    margin: 0;
+    pointer-events: none;
+  }
 
-    body[data-editorial-shell] .logo-banner .desktop-brand-pumpkin {
-        position: absolute;
-        right: -25px;
-        bottom: -2px;
-        z-index: 3;
-        width: clamp(38px, 2.55vw, 44px);
-        height: clamp(38px, 2.55vw, 44px);
-        margin: 0;
-        display: block;
-        pointer-events: none;
-    }
+  body[data-editorial-shell] .logo-banner .desktop-brand-harvest-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    transform: none;
+  }
+}
 
-    .desktop-brand-pumpkin-icon,
-    .desktop-brand-pumpkin img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        transform: rotate(-8deg) !important;
-        transform-origin: 50% 78%;
-    }
+@media (max-width: 850px) {
+  .site-navigation .mobile-brand {
+    display: inline-flex;
+    align-items: flex-end !important;
+    gap: 0 !important;
+    overflow: visible;
+  }
 
-    .desktop-brand-pumpkin-image-logo {
-        display: none !important;
-    }
+  .mobile-brand-wordmark {
+    position: relative;
+    z-index: 1;
+  }
+
+  .site-navigation .mobile-brand-harvest {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    margin-left: .05em;
+    pointer-events: none;
+  }
+
+  .site-navigation .mobile-brand-harvest-icon {
+    display: block;
+    width: 1.15em;
+    height: 1.15em;
+    max-width: none;
+    max-height: none;
+    transform: translateY(.14em);
+    transform-origin: center;
+  }
+}
+
+/* The ornament must never hang over the wordmark on smaller desktop widths. */
+@media (min-width: 851px) and (max-width: 1100px) {
+  body[data-editorial-shell] .logo-banner .desktop-brand-harvest {
+    right: -57px;
+    bottom: 2px;
+    width: 54px;
+    height: 54px;
+  }
 }
