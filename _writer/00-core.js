@@ -361,7 +361,7 @@
 
   function membersArticleSlug() {
     const filename = String(fields.filename?.value || '').trim();
-    return filename.replace(/^\\d{4}-\\d{2}-\\d{2}-/, '').replace(/\\.md$/i, '');
+    return filename.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/i, '');
   }
 
   // Never put subscribers-only article text into the publicly visible GitHub repository.
@@ -369,7 +369,7 @@
   function publicMarkdownForSave(publishedValue = currentPublished, options = {}) {
     if (!fields.membersOnly?.checked) return fullMarkdown(publishedValue, options);
     const frontmatter = buildFrontmatter(publishedValue, options);
-    return `---\\n${frontmatter}\\n---\\n\\nThis article is available to MMA Matlock members. [Read it with a membership](https://members.mmamatlock.com/post/${membersArticleSlug()}).\\n`;
+    return `---\n${frontmatter}\n---\n\nThis article is available to MMA Matlock members. [Read it with a membership](https://members.mmamatlock.com/post/${membersArticleSlug()}).\n`;
   }
 
   function fullMarkdown(publishedValue = currentPublished, options = {}) {
