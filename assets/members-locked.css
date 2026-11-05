@@ -34,3 +34,22 @@
   font-size: .9rem;
   line-height: 1.5;
 }
+
+
+/* Membership is the only gold navigation item on the public site. */
+:root { --member-nav-gold: #9b6d26; }
+html[data-theme="dark"] { --member-nav-gold: #e3bd73; }
+.navigation-list a.nav-membership-link,
+body:has([data-globe-home]) .navigation-list a.nav-membership-link,
+body[data-editorial-shell]:not(:has(.v3-home)) .navigation-list a.nav-membership-link {
+  color: var(--member-nav-gold) !important;
+  font-weight: 800;
+}
+.navigation-list a.nav-membership-link:is(:hover, :focus-visible),
+body:has([data-globe-home]) .navigation-list a.nav-membership-link:is(:hover, :focus-visible),
+body[data-editorial-shell]:not(:has(.v3-home)) .navigation-list a.nav-membership-link:is(:hover, :focus-visible) {
+  color: var(--member-nav-gold) !important;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 4px;
+}
