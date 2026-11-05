@@ -144,9 +144,13 @@ for (const filename of readdirSync(postsDirectory).filter(
     );
 
     if (!imageBlock) {
-        (published === 'true' ? failures : warnings).push(
-            `${filename}: missing featured image`
-        );
+        // Subscribers-only posts are public metadata/teasers; artwork is optional.
+        // Their full content lives in the separate private membership database.
+        if (scalar(frontmatter.yaml, 'members_only') !== 'true') {
+            (published === 'true' ? failures : warnings).push(
+                `${filename}: missing featured image`
+            );
+        }
         continue;
     }
 
