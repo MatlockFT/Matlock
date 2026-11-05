@@ -71,7 +71,7 @@
 
   const controlledKeys = [
     'layout','title','description','date','category','author','image','tags',
-    'show_toc','pinned','listing_visibility','spoiler_warning','preserve_line_breaks','news_feature','news_feature_until','publish_at','published'
+    'show_toc','pinned','members_only','members_slug','listing_visibility','spoiler_warning','preserve_line_breaks','news_feature','news_feature_until','publish_at','published'
   ];
 
   const templateBodies = {
@@ -295,6 +295,8 @@
       tags: tags.length ? ['tags:', ...tags.map(tag => `  - ${yamlQuote(tag)}`)] : ['tags: []'],
       show_toc: [`show_toc: ${fields.showToc.checked ? 'true' : 'false'}`],
       pinned: [`pinned: ${fields.pinned.checked ? 'true' : 'false'}`],
+      members_only: [`members_only: ${fields.membersOnly?.checked ? 'true' : 'false'}`],
+      members_slug: fields.membersOnly?.checked ? [`members_slug: ${yamlQuote(membersArticleSlug())}`] : [],
       listing_visibility: ['listing_visibility: normal'],
       spoiler_warning: [`spoiler_warning: ${fields.spoilerWarning.checked ? 'true' : 'false'}`],
       preserve_line_breaks: ['preserve_line_breaks: true'],
@@ -355,6 +357,19 @@
     }
 
     return output.join('\n');
+  }
+
+  function membersArticleSlug() {
+    const filename = String(fields.filename?.value || '').trim();
+    return filename.replace(/^\\d{4}-\\d{2}-\\d{2}-/, '').replace(/\\.md$/i, '');
+  }
+
+  // Never put subscribers-only article text into the publicly visible GitHub repository.
+  // Only this metadata/teaser is saved as a public Jekyll post.
+  function publicMarkdownForSave(publishedValue = currentPublished, options = {}) {
+    if (!fields.membersOnly?.checked) return fullMarkdown(publishedValue, options);
+    const frontmatter = buildFrontmatter(publishedValue, options);
+    return `---\\n${frontmatter}\\n---\\n\\nThis article is available to MMA Matlock members. [Read it with a membership](https://members.mmamatlock.com/post/${membersArticleSlug()}).\\n`;
   }
 
   function fullMarkdown(publishedValue = currentPublished, options = {}) {
