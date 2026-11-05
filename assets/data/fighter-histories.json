@@ -1,5 +1,5 @@
 {
-  "version": 37,
+  "version": 38,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -25559,78 +25559,263 @@
       "division": "Bantamweight",
       "items": [
         {
-          "date": "Aug. 21, 2022",
-          "label": "Professional MMA debut against Roger Smith",
+          "date": "Childhood (approximately 2007)",
+          "label": "Begins wrestling at age five",
+          "kind": "training",
+          "detail": "Smith began wrestling at five, then returned to wrestling in high school alongside football. His father Gilbert Smith was a professional MMA fighter and UFC veteran, later serving as his trainer and cornerman. The calendar year is approximate, inferred from his September 2002 birth date.",
+          "source": "https://www.ufc.com/athlete/elijah-smith",
+          "sourceLabel": "UFC · firsthand fighter background and age"
+        },
+        {
+          "date": "Before professional career",
+          "label": "Family MMA background: Gilbert Smith's UFC and TUF appearances",
+          "kind": "background",
+          "detail": "His father Gilbert Smith participated in The Ultimate Fighter and competed in the UFC, then coached at Victory MMA in Colorado Springs. Elijah's eventual route into fighting followed a childhood spent around MMA, but he originally planned to play football in college. This entry records his family's history, not Elijah's fight record.",
+          "source": "https://www.ufc.com/news/elijah-smith-wise-beyond-his-years-ufc-vegas-114",
+          "sourceLabel": "UFC · second-generation fighter profile"
+        },
+        {
+          "date": "2019–2020",
+          "label": "Two-time Colorado high-school state wrestling qualifier",
           "kind": "milestone",
-          "detail": "Made his professional MMA debut at Fury FC 68, winning by corner stoppage after round two.",
+          "detail": "At Sierra High School in Colorado Springs, Smith played football and wrestled in his junior and senior years, qualifying for the Colorado state wrestling tournament twice. In the 2020 3A 145-pound bracket he won his opener by technical fall before losing his next two matches. These wrestling results do not count as MMA fights.",
+          "source": "https://shs.hsd2.org/news/posts/~board/shs-news/post/gazette-former-sierra-stallion-elijah-smith-could-earn-competitive-ufc-contract",
+          "sourceLabel": "The Gazette · 2024 high school wrestling feature"
+        },
+        {
+          "date": "2020",
+          "label": "COVID-19 redirects college football plans toward MMA",
+          "kind": "training",
+          "detail": "Smith intended to pursue junior-college football in California but the pandemic disrupted that plan. He began regular MMA training with his father at Victory MMA in Colorado Springs in 2020, having previously wrestled and played high-school football. The month marks the pandemic's impact, not a precisely verified first training day.",
+          "source": "https://www.ufc.com/news/elijah-smith-poised-for-the-spotlight-ufc-fight-night-cannonier-vs-rodrigues-dana-whites-contender-series",
+          "sourceLabel": "UFC · February 2025 first-person interview"
+        },
+        {
+          "date": "Mar. 27, 2021",
+          "label": "AMATEUR WIN · Luis Romero · Sparta Wyoming 6",
+          "kind": "amateur",
+          "detail": "Defeated Luis Romero at Sparta Wyoming 6 on Mar. 27, 2021 by TKO (punches) (round 1, 0:15). Amateur MMA record after bout: 1-0. Amateur bouts are excluded from professional and official UFC records. This is the first documented amateur MMA bout; it was over in 15 seconds.",
           "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
-          "sourceLabel": "Sherdog professional record"
+          "sourceLabel": "Sherdog · full amateur fight ledger"
+        },
+        {
+          "date": "May 1, 2021",
+          "label": "AMATEUR WIN · Brandon Henson · Sparta Wyoming 7",
+          "kind": "amateur",
+          "detail": "Defeated Brandon Henson at Sparta Wyoming 7 on May 1, 2021 by TKO (strikes) (round 1, 0:07). Amateur MMA record after bout: 2-0. Amateur bouts are excluded from professional and official UFC records. His first two amateur bouts lasted a combined 22 seconds, consistent with his UFC account.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog · full amateur fight ledger"
+        },
+        {
+          "date": "Jul. 24, 2021",
+          "label": "AMATEUR WIN · Bizjhan Bahadori · Colorado Combat Club 7",
+          "kind": "amateur",
+          "detail": "Defeated Bizjhan Bahadori at Colorado Combat Club 7 on Jul. 24, 2021 by unanimous decision (round 3, 3:00). Amateur MMA record after bout: 3-0. Amateur bouts are excluded from professional and official UFC records.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog · full amateur fight ledger"
+        },
+        {
+          "date": "Dec. 18, 2021",
+          "label": "AMATEUR WIN · Aaron Brito · Colorado Combat Club 10",
+          "kind": "amateur",
+          "detail": "Defeated Aaron Brito at Colorado Combat Club 10 on Dec. 18, 2021 by TKO (punches) (round 1, 2:33). Amateur MMA record after bout: 4-0. Amateur bouts are excluded from professional and official UFC records.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog · full amateur fight ledger"
+        },
+        {
+          "date": "Mar. 25, 2022",
+          "label": "AMATEUR WIN · Felix Cano · Colorado Combat Club 11",
+          "kind": "amateur",
+          "detail": "Defeated Felix Cano at Colorado Combat Club 11 on Mar. 25, 2022 by submission (armbar) (round 2, 2:39). Amateur MMA record after bout: 5-0. Amateur bouts are excluded from professional and official UFC records. Completed a 5-0 documented amateur career; UFC also credits him with two amateur championship belts.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog · full amateur fight ledger"
+        },
+        {
+          "date": "Early 2022",
+          "label": "Ends amateur career 5-0 with two titles",
+          "kind": "milestone",
+          "detail": "After five documented amateur wins, Smith made the transition to professional MMA. UFC credits him with two amateur belts but does not identify the titles in its standard biography. The two belts are not presented as professional championships.",
+          "source": "https://www.ufc.com/athlete/elijah-smith",
+          "sourceLabel": "UFC · fighter questionnaire, amateur achievements"
+        },
+        {
+          "date": "Aug. 21, 2022",
+          "label": "WIN · Roger Smith · Fury FC 68",
+          "kind": "win",
+          "detail": "Defeated Roger Smith at Fury FC 68 on Aug. 21, 2022 by TKO (corner stoppage) (round 2, 5:00). Professional record after bout: 1-0. Professional MMA debut at age 19. Sherdog records a corner stoppage after the second round, rather than a knockout in the third.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog · pro fight ledger"
+        },
+        {
+          "date": "Dec. 18, 2022",
+          "label": "WIN · Christian Strong · Fury FC 72",
+          "kind": "win",
+          "detail": "Defeated Christian Strong at Fury FC 72 on Dec. 18, 2022 by TKO (punches) (round 1, 1:18). Professional record after bout: 2-0.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog · pro fight ledger"
         },
         {
           "date": "Mar. 24, 2023",
-          "label": "First professional defeat against Reyes Cortez Jr.",
+          "label": "LOSS · Reyes Cortez Jr. · Fury FC 76",
           "kind": "loss",
-          "detail": "Lost by KO (punch) at 2:17 of round three at Fury FC 76, his only professional defeat before the November 2026 UFC booking.",
+          "detail": "Lost to Reyes Cortez Jr. at Fury FC 76 on Mar. 24, 2023 by KO (punch) (round 3, 2:17). Professional record after bout: 2-1. His first and only professional defeat as of November 5, 2026; Smith later identified this bout as a turning point, saying he had not been fully prepared for the step up while just 2-0.",
           "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
-          "sourceLabel": "Sherdog professional record"
+          "sourceLabel": "Sherdog · pro fight ledger"
+        },
+        {
+          "date": "After March 2023",
+          "label": "Reflects on Cortez knockout and adjusts preparation",
+          "kind": "milestone",
+          "detail": "Smith said the March 2023 loss to Reyes Cortez Jr. was his toughest fight because, at 2-0, he had underestimated how ready he was. He then won his next eight professional fights through March 2026. This is his account of its effect on development, not evidence of an injury or an additional bout.",
+          "source": "https://www.ufc.com/athlete/elijah-smith",
+          "sourceLabel": "UFC · personal fighter questionnaire"
+        },
+        {
+          "date": "Sep. 1, 2023",
+          "label": "WIN · Dimas Chapa · Fury FC Challenger Series 6",
+          "kind": "win",
+          "detail": "Defeated Dimas Chapa at Fury FC Challenger Series 6 on Sep. 1, 2023 by submission (face crank) (round 3, 2:09). Professional record after bout: 3-1. First fight after the Cortez loss; a third-round face-crank submission. Some other databases group the finish under a rear-naked choke; Sherdog lists face crank.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog · pro fight ledger"
+        },
+        {
+          "date": "Dec. 15, 2023",
+          "label": "WIN · Robert Trujillo · Colorado Combat Club 21",
+          "kind": "win",
+          "detail": "Defeated Robert Trujillo at Colorado Combat Club 21 on Dec. 15, 2023 by unanimous decision (round 3, 5:00). Professional record after bout: 4-1.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog · pro fight ledger"
+        },
+        {
+          "date": "Feb. 17, 2024",
+          "label": "WIN · Jacob Kreitel · Battle MMA Championships 12",
+          "kind": "win",
+          "detail": "Defeated Jacob Kreitel at Battle MMA Championships 12 on Feb. 17, 2024 by TKO (punches) (round 1, 0:37). Professional record after bout: 5-1. Quick first-round TKO in the second bout of 2024.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog · pro fight ledger"
+        },
+        {
+          "date": "Jun. 16, 2024",
+          "label": "WIN · Josh Walker · Fury FC 92",
+          "kind": "win",
+          "detail": "Defeated Josh Walker at Fury FC 92 on Jun. 16, 2024 by TKO (punches and elbows) (round 1, 1:40). Professional record after bout: 6-1. Final regional professional fight before receiving his Contender Series opportunity.",
+          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
+          "sourceLabel": "Sherdog · pro fight ledger"
+        },
+        {
+          "date": "Late August–September 2024",
+          "label": "Receives short-notice Contender Series opportunity",
+          "kind": "booking",
+          "detail": "Smith and his father Gilbert received word of a possible September Contender Series spot in late August, with management subsequently confirming Aaron Tau as the opponent. Local reporting described a condensed lead time, while Smith was still working at an auto dealership.",
+          "source": "https://shs.hsd2.org/news/posts/~board/shs-news/post/gazette-former-sierra-stallion-elijah-smith-could-earn-competitive-ufc-contract",
+          "sourceLabel": "The Gazette · September 2024 interview"
+        },
+        {
+          "date": "Sep. 17, 2024",
+          "label": "WIN · Aaron Tau · Dana White's Contender Series 8, Week 6",
+          "kind": "win",
+          "detail": "Defeated Aaron Tau at Dana White's Contender Series 8, Week 6 on Sep. 17, 2024 by unanimous decision (round 3, 5:00). Professional record after bout: 7-1. Won his DWCS appearance on three judges' 29-28 scorecards and earned a UFC contract. Counts toward the professional record but is not a UFC regular-roster fight; official UFC record remained 0-0.",
+          "source": "https://www.ufc.com/news/week-6-results-scorecards-dana-whites-contender-series-season-8",
+          "sourceLabel": "UFC · official Contender Series week-six scorecards"
+        },
+        {
+          "date": "Sep. 17, 2024",
+          "label": "Contract awarded after victory over Aaron Tau",
+          "kind": "milestone",
+          "detail": "Dana White selected Smith for a UFC contract after his three-round unanimous decision over Aaron Tau on DWCS season eight, week six. He had entered at 6-1 and exited at 7-1 professionally. This contract milestone is not an additional fight and DWCS is not counted in his official UFC record.",
+          "source": "https://www.ufc.com/news/week-6-results-scorecards-dana-whites-contender-series-season-8",
+          "sourceLabel": "UFC · official September 2024 contracts and results"
         },
         {
           "date": "Feb. 15, 2025",
-          "label": "UFC debut against Vince Morales",
-          "kind": "milestone",
-          "detail": "Made his UFC debut against Vince Morales and won by unanimous decision after three rounds, having previously earned a contract on the 2024 Contender Series.",
-          "source": "https://www.ufc.com/athlete/elijah-smith",
-          "sourceLabel": "UFC fighter biography"
-        },
-        {
-          "date": "Mar 14, 2026",
-          "label": "WIN · Su Young You · UFC Fight Night: Emmett vs. Vallejos",
-          "kind": "win",
-          "detail": "Defeated Su Young You at UFC Fight Night: Emmett vs. Vallejos by Submission (Rear-Naked Choke) in round 2 at 1:04.",
-          "source": "https://www.ufc.com/athlete/elijah-smith",
-          "sourceLabel": "UFC fighter fight history"
-        },
-        {
-          "date": "Aug 9, 2025",
-          "label": "WIN · Toshiomi Kazama · UFC Fight Night: Dolidze vs. Hernandez",
-          "kind": "win",
-          "detail": "Defeated Toshiomi Kazama at UFC Fight Night: Dolidze vs. Hernandez by KO (Slam) in round 1 at 4:10.",
-          "source": "https://www.ufc.com/athlete/elijah-smith",
-          "sourceLabel": "UFC fighter fight history"
-        },
-        {
-          "date": "Feb 15, 2025",
           "label": "WIN · Vince Morales · UFC Fight Night: Cannonier vs. Rodrigues",
           "kind": "win",
-          "detail": "Defeated Vince Morales at UFC Fight Night: Cannonier vs. Rodrigues by Decision (Unanimous) in round 3 at 5:00.",
-          "source": "https://www.ufc.com/athlete/elijah-smith",
-          "sourceLabel": "UFC fighter fight history"
+          "detail": "Defeated Vince Morales at UFC Fight Night: Cannonier vs. Rodrigues on Feb. 15, 2025 by unanimous decision (round 3, 5:00). Professional record after bout: 8-1. Official UFC record: 1-0. Official UFC debut and first father-son UFC appearance since Randy and Ryan Couture, according to UFC. All three judges scored the bout 29-28; Smith later said Morales' anaconda choke almost forced him to submit.",
+          "source": "https://www.ufc.com/news/official-judges-scorecards-ufc-fight-night-cannonier-vs-rodrigues-las-vegas",
+          "sourceLabel": "UFC · official February 2025 judges' scorecards"
         },
         {
-          "date": "Sep 17, 2024",
-          "label": "WIN · Aaron Tau · Dana White's Contender Series",
-          "kind": "win",
-          "detail": "Defeated Aaron Tau at Dana White's Contender Series by Decision (Unanimous) in round 3 at 5:00.",
-          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
-          "sourceLabel": "Sherdog fight record"
+          "date": "Feb. 15, 2025",
+          "label": "Historic UFC father-son milestone with Gilbert Smith",
+          "kind": "milestone",
+          "detail": "Smith's first official UFC appearance made him and Gilbert Smith the second father-son pair to compete in the promotion, after Randy and Ryan Couture, as described by UFC. Gilbert serves as his coach and corner; this is a separate career milestone, not a second fight.",
+          "source": "https://www.ufc.com/news/elijah-smith-wise-beyond-his-years-ufc-vegas-114",
+          "sourceLabel": "UFC · March 2026 father-son feature"
         },
         {
-          "date": "Jun 16, 2024",
-          "label": "WIN · Josh Walker · Fury FC 92",
+          "date": "Feb. 16, 2025",
+          "label": "Admits near submission against Vince Morales",
+          "kind": "note",
+          "detail": "After beating Morales by decision, Smith said he had seriously considered tapping to Morales' tight anaconda choke before sensing Morales' grip weaken. The admission describes adversity within his completed UFC debut, not a separate submission loss.",
+          "source": "https://sports.yahoo.com/elijah-smith-gave-serious-thought-224508789.html",
+          "sourceLabel": "MMA Junkie · February 2025 post-fight interview"
+        },
+        {
+          "date": "Aug. 9, 2025",
+          "label": "WIN · Toshiomi Kazama · UFC Fight Night: Dolidze vs. Hernandez",
           "kind": "win",
-          "detail": "Defeated Josh Walker at Fury FC 92 by TKO (Punches and Elbows) in round 1 at 1:40.",
+          "detail": "Defeated Toshiomi Kazama at UFC Fight Night: Dolidze vs. Hernandez on Aug. 9, 2025 by KO (slam) (round 1, 4:10). Professional record after bout: 9-1. Official UFC record: 2-0. Escaped a triangle-choke threat by lifting and slamming Kazama unconscious. Awarded a $50,000 Performance of the Night bonus; second official UFC victory.",
+          "source": "https://www.mmafighting.com/latest-news/398304/elijah-smith-powerbombs-toshiomi-kazama-to-score-brutal-knockout-at-ufc-vegas-109",
+          "sourceLabel": "MMA Fighting · August 2025 slam knockout report"
+        },
+        {
+          "date": "Aug. 9, 2025",
+          "label": "Performance of the Night for slam knockout",
+          "kind": "milestone",
+          "detail": "The UFC awarded Smith $50,000 for Performance of the Night after his first-round slam KO of Toshiomi Kazama. The payout is a fight-night award, not an additional win or a career purse estimate.",
+          "source": "https://www.sherdog.com/news/news/UFC-Vegas-109-Bonuses-Vicious-Slam-KO-Earns-3650000-197990",
+          "sourceLabel": "Sherdog · UFC Vegas 109 post-fight awards"
+        },
+        {
+          "date": "Mar. 10, 2026",
+          "label": "Father Gilbert remains primary coach and cornerman",
+          "kind": "training",
+          "detail": "Before the SuYoung You fight, Smith described Gilbert's continuing role in each camp's preparation, training plans and in-cage corner work. His UFC profile also lists Factory X as a training location while Sherdog lists Team Victory; those listings alone do not establish a dated gym transfer.",
+          "source": "https://www.ufc.com/news/elijah-smith-wise-beyond-his-years-ufc-vegas-114",
+          "sourceLabel": "UFC · March 10, 2026 training interview"
+        },
+        {
+          "date": "Mar. 14, 2026",
+          "label": "WIN · SuYoung You · UFC Fight Night: Emmett vs. Vallejos",
+          "kind": "win",
+          "detail": "Defeated SuYoung You at UFC Fight Night: Emmett vs. Vallejos on Mar. 14, 2026 by submission (rear-naked choke) (round 2, 1:04). Professional record after bout: 10-1. Official UFC record: 3-0. After dealing with multiple first-round takedowns, Smith scored a knockdown and submitted You. The first professional to submit You according to contemporary MMA Junkie reporting. Third UFC victory.",
+          "source": "https://sports.yahoo.com/articles/ufc-fight-night-269-video-234214496.html",
+          "sourceLabel": "MMA Junkie · March 2026 fight result"
+        },
+        {
+          "date": "Aug. 14, 2026",
+          "label": "Davey Grant matchup initially reported for November 7",
+          "kind": "booking",
+          "detail": "The Davey Grant–Elijah Smith bantamweight matchup was reported as targeted for the Nov. 7 UFC Fight Night before it appeared on the UFC's official event card. Initial reports used a different Vegas card number; the current UFC listing confirms the date and opponent.",
+          "source": "https://agentmma.com/news/88648-elijah-smith-vs-davey-grant-targeted-for-ufc-vegas-123-on-nov-7",
+          "sourceLabel": "AgentMMA · August 2026 initial fight announcement"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Injury and cancellation audit: none reliably verified",
+          "kind": "note",
+          "detail": "Review of the official UFC history, complete Sherdog fight ledger and contemporaneous profiles found no specific documented major injury surgery, extended injury layoff or canceled professional booking attributable to Smith through Nov. 5, 2026. This is a documentation limitation, not a claim that he has never had an injury or fight fall through.",
           "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
-          "sourceLabel": "Sherdog fight record"
+          "sourceLabel": "Sherdog · pro/amateur fight ledger; checked against UFC biography"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Method classification note: early Fury FC finishes",
+          "kind": "note",
+          "detail": "For the Aug. 21, 2022 Roger Smith fight, Sherdog specifies TKO by corner stoppage after round two, whereas some fight databases abbreviate the result to KO. For the Sep. 1, 2023 Dimas Chapa submission, Sherdog specifies face crank while FightMatrix categorizes it as rear-naked choke. The chronology uses Sherdog's granular classifications and retains the competing labels here.",
+          "source": "https://www.fightmatrix.com/fighter-profile/Elijah%2520Smith/241981/",
+          "sourceLabel": "FightMatrix · alternative method labels, compared with Sherdog"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Davey Grant · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Scheduled to face Davey Grant at bantamweight at UFC Vegas 124 on November 7, 2026; no result yet.",
+          "kind": "upcoming",
+          "detail": "Booked to face Davey Grant at bantamweight at Meta APEX in Las Vegas on Saturday Nov. 7, 2026. As of Nov. 5 no result exists; Smith enters at 10-1 professionally and 3-0 in official UFC fights. The 2024 DWCS win is included in the professional total but excluded from UFC's 3-0 record.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "UFC event page"
+          "sourceLabel": "UFC · official November 7, 2026 event card"
         }
-      ]
+      ],
+      "lastReviewed": "2026-11-05"
     },
     "Seokhyeon Ko": {
       "slug": "seokhyeon-ko",
