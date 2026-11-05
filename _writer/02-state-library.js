@@ -736,6 +736,24 @@ function scheduleAutosave() {
     }
   }
 
+  // Members-only source files are public metadata; the complete article lives
+  // in private D1. Hide it there before removing its public listing, so a
+  // failed GitHub commit never leaves a readable private article behind.
+  async function hideMembersArticleInPrivateStore(text, path) {
+    const meta = parseFrontmatter(text).meta;
+    if (meta.members_only !== true) return false;
+    const fallback = path.split('/').pop().replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/i, '');
+    const slug = typeof meta.members_slug === 'string' && meta.members_slug ? meta.members_slug : fallback;
+    if (!/^[a-z0-9][a-z0-9-]{1,78}[a-z0-9]$/.test(slug))
+      throw new Error('The members-only article identifier is invalid.');
+    await memberWriterFetch('/status', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slug, status: 'draft' })
+    });
+    return true;
+  }
+
   async function unpublishLibraryArticle(path) {
     const entry = libraryEntries.find(item => item.path === path);
     if (!entry || entry.status !== 'published') return;
@@ -745,9 +763,12 @@ function scheduleAutosave() {
     if (!window.confirm(`Unpublish “${title}”?\n\nIt will be removed from the public site after the next deployment, but the article will stay in Writer as a draft.`)) return;
 
     const apiPath = `/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}`;
+    let privateArticleHidden = false;
     try {
       const data = await githubFetch(`${apiPath}?ref=main`);
-      const unpublishedText = markArticleUnpublished(decodeBase64(data.content));
+      const markdown = decodeBase64(data.content);
+      privateArticleHidden = await hideMembersArticleInPrivateStore(markdown, path);
+      const unpublishedText = markArticleUnpublished(markdown);
       const result = await githubFetch(apiPath, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -775,10 +796,14 @@ function scheduleAutosave() {
       }
 
       renderLibrary();
-      showToast('Article unpublished. The public site is redeploying now.', 5000);
+      showToast(privateArticleHidden
+        ? 'Unpublished on both sites. Members can no longer read this article.'
+        : 'Article unpublished. The public site is redeploying now.', 5000);
       loadLibrary({ hydrate: true });
     } catch (error) {
-      showToast(`Could not unpublish: ${error.message}`, 6000);
+      showToast(privateArticleHidden
+        ? `Private article hidden, but public-site unpublish failed: ${error.message}`
+        : `Could not unpublish: ${error.message}`, 8000);
     }
   }
 
@@ -794,8 +819,10 @@ function scheduleAutosave() {
     if (!window.confirm(`Delete “${title}”?\n\nThis removes the article source file from Writer and GitHub. Git history can still recover it, but there is no undo button in Writer.${liveWarning}`)) return;
 
     const apiPath = `/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}`;
+    let privateArticleHidden = false;
     try {
       const data = await githubFetch(`${apiPath}?ref=main`);
+      privateArticleHidden = await hideMembersArticleInPrivateStore(decodeBase64(data.content), path);
       await githubFetch(apiPath, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
@@ -816,10 +843,14 @@ function scheduleAutosave() {
       }
 
       renderLibrary();
-      showToast('Article deleted from GitHub. The public site is redeploying now.', 5000);
+      showToast(privateArticleHidden
+        ? 'Article deleted from Writer and hidden from the members feed.'
+        : 'Article deleted from GitHub. The public site is redeploying now.', 5000);
       loadLibrary({ hydrate: true });
     } catch (error) {
-      showToast(`Could not delete: ${error.message}`, 6000);
+      showToast(privateArticleHidden
+        ? `Private article hidden, but GitHub deletion failed: ${error.message}`
+        : `Could not delete: ${error.message}`, 8000);
     }
   }
 
