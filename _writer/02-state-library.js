@@ -15,6 +15,7 @@
       showToc: fields.showToc.checked,
       spoilerWarning: fields.spoilerWarning.checked,
       pinned: fields.pinned.checked,
+      membersOnly: Boolean(fields.membersOnly?.checked),
       body: bodyEditor.value,
       htmlBlocks: [...htmlBlocks.values()].map(block => ({ ...block })),
       currentPath,
@@ -41,6 +42,7 @@
     fields.showToc.checked = Boolean(state.showToc);
     fields.spoilerWarning.checked = Boolean(state.spoilerWarning);
     fields.pinned.checked = Boolean(state.pinned);
+    if (fields.membersOnly) fields.membersOnly.checked = Boolean(state.membersOnly);
     bodyEditor.value = prepareEditorBody(state.body || '', state.htmlBlocks || []);
     renderHtmlBlockRail();
     scheduleWriterAutoCorrectFighterRefresh(0);
@@ -78,6 +80,7 @@
       showToc: Boolean(m.show_toc),
       spoilerWarning: Boolean(m.spoiler_warning),
       pinned: Boolean(m.pinned),
+      membersOnly: Boolean(m.members_only),
       body: parsed.body.replace(/^\n+/, ''),
       currentPath: path,
       currentSha: sha,
@@ -895,6 +898,12 @@ function scheduleAutosave() {
     try {
       const data = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}?ref=main`);
       const state = stateFromFile(decodeBase64(data.content), path, data.sha);
+      if (state.membersOnly) {
+        const slug = path.split('/').pop().replace(/^\\d{4}-\\d{2}-\\d{2}-/, '').replace(/\\.md$/i,'');
+        const privateData = await memberWriterFetch('/' + encodeURIComponent(slug));
+        if (!privateData?.post?.body_markdown) throw new Error('The private article could not be loaded.');
+        state.body = privateData.post.body_markdown;
+      }
       applyState(state, { remote: true });
       const restored = maybeRestoreLocal(`matlock-writer:${path}`, state);
       if (!restored) dirty = false;
