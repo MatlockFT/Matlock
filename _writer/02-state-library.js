@@ -899,7 +899,7 @@ function scheduleAutosave() {
       const data = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}?ref=main`);
       const state = stateFromFile(decodeBase64(data.content), path, data.sha);
       if (state.membersOnly) {
-        const slug = path.split('/').pop().replace(/^\\d{4}-\\d{2}-\\d{2}-/, '').replace(/\\.md$/i,'');
+        const slug = path.split('/').pop().replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/i,'');
         const privateData = await memberWriterFetch('/' + encodeURIComponent(slug));
         if (!privateData?.post?.body_markdown) throw new Error('The private article could not be loaded.');
         state.body = privateData.post.body_markdown;
