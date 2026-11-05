@@ -1,5 +1,5 @@
 {
-  "version": 36,
+  "version": 37,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -25140,78 +25140,415 @@
       "division": "Bantamweight",
       "items": [
         {
+          "date": "Feb. 22, 2002",
+          "label": "AMATEUR LOSS · Craig Foster · Goshin Ryu MMA Championships 3",
+          "kind": "amateur",
+          "detail": "Sherdog lists an amateur loss to Craig Foster by decision in February 2002, when Grant was 16. The database does not provide a credible round/time (shows 0:00), so these are omitted. Amateur fight; excluded from professional MMA record.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · amateur fight history"
+        },
+        {
+          "date": "Jul. 26, 2008",
+          "label": "AMATEUR LOSS · James Saville · Goshin Ryu 25",
+          "kind": "amateur",
+          "detail": "Sherdog lists an amateur defeat to James Saville by submission (triangle choke), round 1 at 1:44. Amateur result is not part of his professional record.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · amateur fight history"
+        },
+        {
           "date": "2008",
-          "label": "Begins professional MMA career",
+          "label": "Early regional MMA career in northeast England",
+          "kind": "training",
+          "detail": "Developed in the northeast England MMA scene around Bishop Auckland and fought on Goshin Ryu, Total Combat, Shock n' Awe and M4tC regional shows. His first verified professional bout was Nov. 29, 2008.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · early regional competition"
+        },
+        {
+          "date": "Nov. 29, 2008",
+          "label": "WIN · Gary Conlon · GR 27: Goshin Ryu 27",
+          "kind": "win",
+          "detail": "Defeated Gary Conlon at GR 27: Goshin Ryu 27 on Nov. 29, 2008 by submission (triangle choke) (round 1, 1:00). Professional MMA record after fight: 1-0.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · verified regional professional fight history"
+        },
+        {
+          "date": "Jul. 18, 2009",
+          "label": "LOSS · Dale Dargan · TC 30: Total Combat 30",
+          "kind": "loss",
+          "detail": "Lost to Dale Dargan at TC 30: Total Combat 30 on Jul. 18, 2009 by submission (armbar) (round 1, 3:53). Professional MMA record after fight: 1-1.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · verified regional professional fight history"
+        },
+        {
+          "date": "Nov. 13, 2010",
+          "label": "WIN · Nathan Thompson · TC 37: Total Combat 37",
+          "kind": "win",
+          "detail": "Defeated Nathan Thompson at TC 37: Total Combat 37 on Nov. 13, 2010 by submission (guillotine choke) (round 1, 1:17). (The two same-day bouts leave Grant at 3-1 after the event; their internal order is not established.) This was one of two professional wins at the same event on the same date; Sherdog does not establish the order of the two contests.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · verified regional professional fight history"
+        },
+        {
+          "date": "Nov. 13, 2010",
+          "label": "WIN · Mark Platts · TC 37: Total Combat 37",
+          "kind": "win",
+          "detail": "Defeated Mark Platts at TC 37: Total Combat 37 on Nov. 13, 2010 by submission (guillotine choke) (round 2, 2:27). (The two same-day bouts leave Grant at 3-1 after the event; their internal order is not established.) This was one of two professional wins at the same event on the same date; Sherdog does not establish the order of the two contests.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · verified regional professional fight history"
+        },
+        {
+          "date": "Mar. 12, 2011",
+          "label": "WIN · Declan Williams · TC 39: Total Combat 39",
+          "kind": "win",
+          "detail": "Defeated Declan Williams at TC 39: Total Combat 39 on Mar. 12, 2011 by submission (rear-naked choke) (round 2, 1:13). Professional MMA record after fight: 4-1.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · verified regional professional fight history"
+        },
+        {
+          "date": "Jul. 16, 2011",
+          "label": "WIN · Mark Aldridge · TC 41: Total Combat 41",
+          "kind": "win",
+          "detail": "Defeated Mark Aldridge at TC 41: Total Combat 41 on Jul. 16, 2011 by submission (rear-naked choke) (round 1, 1:12). Professional MMA record after fight: 5-1.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · verified regional professional fight history"
+        },
+        {
+          "date": "Nov. 19, 2011",
+          "label": "WIN · Luke Dixon · TC 44: Total Combat 44",
+          "kind": "win",
+          "detail": "Defeated Luke Dixon at TC 44: Total Combat 44 on Nov. 19, 2011 by submission (rear-naked choke) (round 1, 2:11). Professional MMA record after fight: 6-1.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · verified regional professional fight history"
+        },
+        {
+          "date": "Mar. 10, 2012",
+          "label": "WIN · Rob Bunford · TC 46: Total Combat 46",
+          "kind": "win",
+          "detail": "Defeated Rob Bunford at TC 46: Total Combat 46 on Mar. 10, 2012 by TKO (punches) (round 1, 1:01). Professional MMA record after fight: 7-1.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · verified regional professional fight history"
+        },
+        {
+          "date": "Jul. 14, 2012",
+          "label": "WIN · James Pennington · SnA 11: Shock n Awe 11",
+          "kind": "win",
+          "detail": "Defeated James Pennington at SnA 11: Shock n Awe 11 on Jul. 14, 2012 by submission (guillotine choke) (round 1, 3:59). Professional MMA record after fight: 8-1.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · verified regional professional fight history"
+        },
+        {
+          "date": "Oct. 13, 2012",
+          "label": "WIN · Danny Welsh · M4tC 7: Vengeance",
+          "kind": "win",
+          "detail": "Defeated Danny Welsh at M4tC 7: Vengeance on Oct. 13, 2012 by submission (rear-naked choke) (round 1, 1:54). Professional MMA record after fight: 9-1.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · verified regional professional fight history"
+        },
+        {
+          "date": "May 29, 2013",
+          "label": "TUF 18 exhibition win · Danny Martinez",
+          "kind": "exhibition",
+          "detail": "Submitted Danny Martinez with an armbar in round 2 at 2:02 during the TUF 18 entry elimination phase. Classified by Sherdog as a pro exhibition, not a professional MMA result; no UFC-record credit.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · TUF 18 exhibition history"
+        },
+        {
+          "date": "Jun. 14, 2013",
+          "label": "TUF 18 exhibition win · Louis Fisette",
+          "kind": "exhibition",
+          "detail": "Submitted Louis Fisette by rear-naked choke in round 2 at 1:02 in the TUF 18 quarterfinal. This is a TUF exhibition and does not count as a professional/UFC win.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · TUF 18 exhibition history"
+        },
+        {
+          "date": "Jul. 1, 2013",
+          "label": "Advances to TUF 18 final when Anthony Gutierrez misses weight",
           "kind": "milestone",
-          "detail": "Started his professional MMA career in 2008 before competing for regional bantamweight championships.",
-          "source": "https://www.ufc.com/athlete/davey-grant",
-          "sourceLabel": "UFC fighter biography"
+          "detail": "Grant was scheduled for a semifinal against Anthony Gutierrez, but Gutierrez failed to make weight and was removed. Grant advanced by forfeit without a fight. No exhibition or professional result should be recorded for the walkover.",
+          "source": "https://boxing.nv.gov/uploadedFiles/boxingnvgov/content/results/MMA/2013/TUF-SEASON-18.pdf",
+          "sourceLabel": "Nevada State Athletic Commission · TUF 18 exhibition results"
         },
         {
           "date": "Nov. 30, 2013",
-          "label": "Reaches The Ultimate Fighter 18 final",
-          "kind": "milestone",
-          "detail": "Reached the bantamweight final on The Ultimate Fighter 18 and lost to Chris Holdsworth by rear-naked choke in round two at 2:10. This was his first UFC competition.",
+          "label": "LOSS · Chris Holdsworth · TUF 18 Finale",
+          "kind": "loss",
+          "detail": "Lost to Chris Holdsworth at TUF 18 Finale on Nov. 30, 2013 by submission (rear-naked choke) (round 2, 2:10). Professional MMA record after fight: 9-2; UFC record after fight: 0-1. Lost the live TUF 18 men's bantamweight final; first official UFC fight. TUF house exhibitions and the semifinal walkover do not affect the professional ledger.",
           "source": "https://www.ufc.com/athlete/davey-grant",
-          "sourceLabel": "UFC fighter biography"
+          "sourceLabel": "UFC · TUF 18 Finale result"
+        },
+        {
+          "date": "Mar. 7, 2014",
+          "label": "Torn meniscus cancels Roland Delorme fight after weigh-ins",
+          "kind": "injury",
+          "detail": "At UFC Fight Night 37 in London, Grant and Roland Delorme both weighed in, but an MRI revealed a torn meniscus suffered days earlier. UFC officials canceled the March 8 contest the night before the fight. Both fighters were to receive their show money.",
+          "source": "https://www.mmafighting.com/2014/3/7/5482998/ufc-fight-night-37s-davey-grant-vs-roland-delorme-fight-canceled",
+          "sourceLabel": "MMA Fighting · March 7, 2014 cancellation report"
+        },
+        {
+          "date": "March 2014",
+          "label": "Meniscus surgery follows canceled London fight",
+          "kind": "injury",
+          "detail": "Grant later recounted undergoing knee surgery within roughly a week of the canceled Roland Delorme fight. Exact operation date not public; approximate March 2014 placement. This was the beginning of a 27-month UFC layoff.",
+          "source": "https://www.mmafighting.com/2022/5/19/23125591/davey-grant-on-the-disastrous-early-road-that-nearly-derailed-his-ufc-career-and-how-quitting-never",
+          "sourceLabel": "MMA Fighting · Grant's firsthand 2022 injury account"
+        },
+        {
+          "date": "2014–2015",
+          "label": "Training fall tears three lateral ankle ligaments; second surgery",
+          "kind": "injury",
+          "detail": "Shortly after resuming training following knee surgery, Grant fell and tore three ligaments on the outside of an ankle, which he said separated from the bone. He underwent another operation. Exact date not reported; sequence is confirmed, calendar placement is approximate.",
+          "source": "https://www.mmafighting.com/2022/5/19/23125591/davey-grant-on-the-disastrous-early-road-that-nearly-derailed-his-ufc-career-and-how-quitting-never",
+          "sourceLabel": "MMA Fighting · Grant's firsthand 2022 injury account"
+        },
+        {
+          "date": "Jan. 24, 2015",
+          "label": "Canceled booking · Douglas Silva de Andrade · UFC on Fox 14",
+          "kind": "booking",
+          "detail": "A proposed Jan. 24, 2015 UFC on Fox 14 meeting with Douglas Silva de Andrade is listed as canceled in Tapology. A reliably documented reason was not established; do not attribute this cancellation to a specific injury without direct evidence. Not a fight result.",
+          "source": "https://www.tapology.com/fightcenter/fighters/18815-david-grant",
+          "sourceLabel": "Tapology · canceled bouts in fighter history"
+        },
+        {
+          "date": "2014–2015",
+          "label": "Severe neck injury and nerve injections prolong first UFC layoff",
+          "kind": "injury",
+          "detail": "After the knee and ankle operations, Grant suffered a severe neck problem that made even jogging painful. He said he received injections to deaden nerves rather than neck surgery at that time; exact onset/date not established. This prolonged the inactivity until February 2016.",
+          "source": "https://www.mmafighting.com/2022/5/19/23125591/davey-grant-on-the-disastrous-early-road-that-nearly-derailed-his-ufc-career-and-how-quitting-never",
+          "sourceLabel": "MMA Fighting · detailed 2022 interview"
+        },
+        {
+          "date": "Feb. 27, 2016",
+          "label": "WIN · Marlon Vera · UFC Fight Night 84: Silva vs. Bisping",
+          "kind": "win",
+          "detail": "Defeated Marlon Vera at UFC Fight Night 84: Silva vs. Bisping on Feb. 27, 2016 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 10-2; UFC record after fight: 1-1. Returned after 27 months out of the Octagon due to knee, ankle and neck problems; defeated Vera on the UFC London card. First UFC victory.",
+          "source": "https://us.ufcespanol.com/news/former-tuf-finalist-ready-return-after-2-year-layoff",
+          "sourceLabel": "UFC · comeback after 27-month absence"
+        },
+        {
+          "date": "Oct. 8, 2016",
+          "label": "LOSS · Damian Stasiak · UFC 204: Bisping vs. Henderson 2",
+          "kind": "loss",
+          "detail": "Lost to Damian Stasiak at UFC 204: Bisping vs. Henderson 2 on Oct. 8, 2016 by submission (armbar) (round 3, 3:56). Professional MMA record after fight: 10-3; UFC record after fight: 1-2. Grant reported feeling his arm crack as Stasiak applied the finishing armbar. The injury caused another roughly 21-month gap until his next UFC fight.",
+          "source": "https://www.ufc.com/news/davey-grant-is-prepared-any-obstacle-espn-fight-night-edwards-vs-muhammad-ufc-vegas-21",
+          "sourceLabel": "UFC · arm break and subsequent layoff"
+        },
+        {
+          "date": "Oct. 9, 2016",
+          "label": "Broken arm from Stasiak armbar requires extended recovery",
+          "kind": "injury",
+          "detail": "The armbar in the Stasiak defeat visibly damaged Grant's arm. UFC later confirmed a broken arm and a prolonged absence; Grant said he felt the arm cracking before submitting. The next UFC appearance came July 2018.",
+          "source": "https://www.ufc.com/news/davey-grant-is-prepared-any-obstacle-espn-fight-night-edwards-vs-muhammad-ufc-vegas-21",
+          "sourceLabel": "UFC · March 2021 injury chronology"
+        },
+        {
+          "date": "May 25, 2018",
+          "label": "Staph infection cancels May 27 Manny Bermudez matchup",
+          "kind": "illness",
+          "detail": "Grant developed a staph infection days ahead of UFC Liverpool (May 27, 2018). The UFC canceled the entire pairing, without an immediate replacement. The same matchup was subsequently rebooked for July 22 in Hamburg.",
+          "source": "https://www.mmafighting.com/2018/5/25/17392032/manny-bermudez-vs-davey-grant-scrapped-from-ufc-liverpool",
+          "sourceLabel": "MMA Fighting · May 25, 2018 withdrawal report"
+        },
+        {
+          "date": "Jul. 22, 2018",
+          "label": "LOSS · Manny Bermudez · UFC Fight Night 134: Shogun vs. Smith",
+          "kind": "loss",
+          "detail": "Lost to Manny Bermudez at UFC Fight Night 134: Shogun vs. Smith on Jul. 22, 2018 by technical submission (triangle choke) (round 1, 0:59). Professional MMA record after fight: 10-4; UFC record after fight: 1-3. Eventually faced Bermudez after their planned May 2018 Liverpool bout was canceled because Grant had a staph infection.",
+          "source": "https://www.mmafighting.com/2018/5/25/17392032/manny-bermudez-vs-davey-grant-scrapped-from-ufc-liverpool",
+          "sourceLabel": "MMA Fighting · canceled May 2018 bout"
+        },
+        {
+          "date": "Oct. 30, 2019",
+          "label": "Details repeated ongoing injuries before November Moscow return",
+          "kind": "layoff",
+          "detail": "Ahead of Grigory Popov, Grant described persistent injuries that had worsened over time and had limited his appearances. This explains another nearly 16-month absence since July 2018; specific new diagnoses were not established in the interview.",
+          "source": "https://www.ufc.com/news/davey-grant-seeking-consistent-opportunities-ufc-moscow-features",
+          "sourceLabel": "UFC · October/November 2019 interview"
+        },
+        {
+          "date": "Nov. 9, 2019",
+          "label": "WIN · Grigory Popov · UFC Fight Night 163: Magomedsharipov vs. Kattar",
+          "kind": "win",
+          "detail": "Defeated Grigory Popov at UFC Fight Night 163: Magomedsharipov vs. Kattar on Nov. 9, 2019 by split decision (round 3, 5:00). Professional MMA record after fight: 11-4; UFC record after fight: 2-3. Returned after almost 16 months away, having discussed ongoing injuries affecting his career.",
+          "source": "https://www.ufc.com/news/davey-grant-seeking-consistent-opportunities-ufc-moscow-features",
+          "sourceLabel": "UFC · November 2019 injury recovery interview"
+        },
+        {
+          "date": "Jul. 11, 2020",
+          "label": "WIN · Martin Day · UFC 251: Usman vs. Masvidal",
+          "kind": "win",
+          "detail": "Defeated Martin Day at UFC 251: Usman vs. Masvidal on Jul. 11, 2020 by KO (left hook) (round 3, 2:38). Professional MMA record after fight: 12-4; UFC record after fight: 3-3. Knocked out Day despite a broken jaw (in two places) and a fractured nose suffered during the fight. Awarded Performance of the Night.",
+          "source": "https://www.ufc.com/news/davey-grant-is-prepared-any-obstacle-espn-fight-night-edwards-vs-muhammad-ufc-vegas-21",
+          "sourceLabel": "UFC · fractured jaw and nose account"
+        },
+        {
+          "date": "Jul. 12, 2020",
+          "label": "Performance bonus and jaw/nose fractures from Martin Day victory",
+          "kind": "injury",
+          "detail": "Grant's left-hook knockout of Martin Day at UFC 251 earned Performance of the Night. UFC later reported he broke his jaw in two places and fractured his nose during the fight. This was a distinct injury from the earlier 2014–2016 neck issue.",
+          "source": "https://jp.ufc.com/news/ufc-251-bonus-coverage-fight-island",
+          "sourceLabel": "UFC · UFC 251 bonus recap and injury detail"
+        },
+        {
+          "date": "Mar. 13, 2021",
+          "label": "WIN · Jonathan Martinez · UFC Fight Night 187: Edwards vs. Muhammad",
+          "kind": "win",
+          "detail": "Defeated Jonathan Martinez at UFC Fight Night 187: Edwards vs. Muhammad on Mar. 13, 2021 by KO (punch) (round 2, 3:03). Professional MMA record after fight: 13-4; UFC record after fight: 4-3. Another Performance of the Night award; his third consecutive UFC victory.",
+          "source": "https://www.ufc.com/news/bonus-coverage-every-bonus-2021",
+          "sourceLabel": "UFC · 2021 bonus archive"
+        },
+        {
+          "date": "Jun. 19, 2021",
+          "label": "LOSS · Marlon Vera · UFC on ESPN 25: Korean Zombie vs. Ige",
+          "kind": "loss",
+          "detail": "Lost to Marlon Vera at UFC on ESPN 25: Korean Zombie vs. Ige on Jun. 19, 2021 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 13-5; UFC record after fight: 4-4. Rematch of their February 2016 bout. Vera avenged the prior result; Grant and Vera earned Fight of the Night.",
+          "source": "https://www.mmafighting.com/2021/6/19/22541924/ufc-vegas-29-bonuses-marlon-vera-vs-davey-grant-gets-fight-of-the-night",
+          "sourceLabel": "MMA Fighting · Vera rematch and Fight of the Night"
+        },
+        {
+          "date": "Nov. 20, 2021",
+          "label": "LOSS · Adrian Yanez · UFC Fight Night 198: Vieira vs. Tate",
+          "kind": "loss",
+          "detail": "Lost to Adrian Yanez at UFC Fight Night 198: Vieira vs. Tate on Nov. 20, 2021 by split decision (round 3, 5:00). Professional MMA record after fight: 13-6; UFC record after fight: 4-5. A split-decision loss that earned Fight of the Night.",
+          "source": "https://www.ufc.com/news/bonus-coverage-every-bonus-2021",
+          "sourceLabel": "UFC · 2021 bonus archive"
+        },
+        {
+          "date": "May 14, 2022",
+          "label": "WIN · Louis Smolka · UFC on ESPN 36: Blachowicz vs. Rakic",
+          "kind": "win",
+          "detail": "Defeated Louis Smolka at UFC on ESPN 36: Blachowicz vs. Rakic on May 14, 2022 by KO (punches) (round 3, 0:49). Professional MMA record after fight: 14-6; UFC record after fight: 5-5. Stopped Smolka after damaging his legs and landing punches; ended back-to-back decision losses.",
+          "source": "https://www.ufc.com/athlete/davey-grant",
+          "sourceLabel": "UFC · official full fight history"
+        },
+        {
+          "date": "Feb. 24, 2023",
+          "label": "Added to Raphael Assuncao matchup for March 11",
+          "kind": "booking",
+          "detail": "The UFC announced Grant as Assuncao's opponent for March 11 as part of changes to its March schedule. Their completed bout is recorded separately; the booking itself is not a result.",
+          "source": "https://www.ufc.com/news/fights-scheduled-loaded-march-slate",
+          "sourceLabel": "UFC · February 24, 2023 card updates"
         },
         {
           "date": "Mar. 11, 2023",
-          "label": "Late inverted-triangle submission of Raphael Assunção",
+          "label": "WIN · Raphael Assuncao · UFC Fight Night 221: Yan vs. Dvalishvili",
+          "kind": "win",
+          "detail": "Defeated Raphael Assuncao at UFC Fight Night 221: Yan vs. Dvalishvili on Mar. 11, 2023 by technical submission (inverted triangle choke) (round 3, 4:43). Professional MMA record after fight: 15-6; UFC record after fight: 6-5. Finished Assuncao with an unusual inverted triangle after knocking him down with a spinning backfist. Assuncao retired afterward; Grant earned Performance of the Night.",
+          "source": "https://www.ufc.com/athlete/davey-grant",
+          "sourceLabel": "UFC · official full fight history"
+        },
+        {
+          "date": "Mar. 11, 2023",
+          "label": "Raphael Assuncao retires after loss to Grant",
           "kind": "milestone",
-          "detail": "Submitted Raphael Assunção by inverted triangle choke at 4:43 of round three on UFC Fight Night, one of his notable submission victories.",
+          "detail": "Following Grant's third-round inverted-triangle technical submission, Assuncao announced retirement in the Octagon. It is a notable career milestone for Grant, but not a second result.",
           "source": "https://www.ufc.com/athlete/davey-grant",
-          "sourceLabel": "UFC fighter biography"
+          "sourceLabel": "UFC · official athlete fight history"
         },
         {
-          "date": "Apr 25, 2026",
-          "label": "WIN · Adrian Luna Martinetti · UFC Fight Night: Sterling vs. Zalal",
-          "kind": "win",
-          "detail": "Defeated Adrian Luna Martinetti at UFC Fight Night: Sterling vs. Zalal by Decision (Unanimous) in round 3 at 5:00.",
-          "source": "https://www.ufc.com/athlete/davey-grant",
-          "sourceLabel": "UFC fighter fight history"
-        },
-        {
-          "date": "Oct 18, 2025",
-          "label": "LOSS · Charles Jourdain · UFC Fight Night: de Ridder vs. Allen",
+          "date": "Jul. 22, 2023",
+          "label": "LOSS · Daniel Marcos · UFC Fight Night 224: Aspinall vs. Tybura",
           "kind": "loss",
-          "detail": "Lost to Charles Jourdain at UFC Fight Night: de Ridder vs. Allen by Submission (Guillotine Choke) in round 1 at 3:05.",
-          "source": "https://www.ufc.com/athlete/davey-grant",
-          "sourceLabel": "UFC fighter fight history"
+          "detail": "Lost to Daniel Marcos at UFC Fight Night 224: Aspinall vs. Tybura on Jul. 22, 2023 by split decision (round 3, 5:00). Professional MMA record after fight: 15-7; UFC record after fight: 6-6. Official scores were 29-28 for Grant and 29-28 twice for Marcos. MMA Decisions lists 12 of 14 media scores for Grant, but the official result remains a loss.",
+          "source": "https://mmadecisions.com/decision/14157/Daniel-Marcos-vs-Davey-Grant",
+          "sourceLabel": "MMA Decisions · official judges and 14 media cards"
         },
         {
-          "date": "Jul 26, 2025",
-          "label": "WIN · Da'Mon Blackshear · UFC on ABC: Whittaker vs. de Ridder",
+          "date": "Jan. 8, 2024",
+          "label": "Cody Gibson fight announced for March 23",
+          "kind": "booking",
+          "detail": "Grant's management announced a bantamweight bout with Cody Gibson for UFC Vegas 89 on March 23, 2024. The planned fight was later canceled because of Grant's severe neck injury.",
+          "source": "https://www.sherdog.com/news/news/Davey-Grant-vs-Cody-Gibson-Two-Other-Bouts-Added-to-UFC-Fight-Night-on-March-23-192210",
+          "sourceLabel": "Sherdog · January 2024 fight announcement"
+        },
+        {
+          "date": "Mar. 22, 2024",
+          "label": "Severe neck pain forces withdrawal and neck surgery",
+          "kind": "injury",
+          "detail": "Grant said he had been in constant pain while trying to salvage the Cody Gibson booking. MRIs, CT scans, doctors' opinions, treatments and two neck injections had not solved the problem. He underwent neck surgery in March 2024 and reported that it was successful. Specific surgical procedure not disclosed.",
+          "source": "https://www.mmamania.com/2024/3/22/24109345/ufc-bantamweight-contender-davey-grant-neck-surgery-return-timeline-worst-espn-mma",
+          "sourceLabel": "MMA Mania · March 2024 reporting Grant's own updates"
+        },
+        {
+          "date": "Mar. 23, 2024",
+          "label": "Canceled · Cody Gibson · UFC Vegas 89",
+          "kind": "booking",
+          "detail": "Grant did not fight Cody Gibson because of his neck injury and surgery. Miles Johns replaced him on the March 23 card. No loss or withdrawal should enter his professional fight ledger.",
+          "source": "https://www.mmamania.com/2024/3/22/24109345/ufc-bantamweight-contender-davey-grant-neck-surgery-return-timeline-worst-espn-mma",
+          "sourceLabel": "MMA Mania · March 2024 cancellation and replacement"
+        },
+        {
+          "date": "Late July 2024",
+          "label": "Returns to most training after March neck operation",
+          "kind": "return",
+          "detail": "In a December 2024 interview Grant said he was back doing most training by late July after March surgery and had made it a goal to compete again before the end of 2024. The exact July day was not reported.",
+          "source": "https://www.bjpenn.com/mma-news/davey-grant/davey-grant-vows-to-ko-ramon-taveras-at-ufc-tampa-in-an-entertaining-fight-we-are-gonna-stand-and-bang/",
+          "sourceLabel": "BJPenn · December 2024 interview"
+        },
+        {
+          "date": "Dec. 14, 2024",
+          "label": "WIN · Ramon Taveras · UFC on ESPN 63: Covington vs. Buckley",
           "kind": "win",
-          "detail": "Defeated Da'Mon Blackshear at UFC on ABC: Whittaker vs. de Ridder by Decision (Unanimous) in round 3 at 5:00.",
-          "source": "https://www.ufc.com/athlete/davey-grant",
-          "sourceLabel": "UFC fighter fight history"
+          "detail": "Defeated Ramon Taveras at UFC on ESPN 63: Covington vs. Buckley on Dec. 14, 2024 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 16-7; UFC record after fight: 7-6. Return after March 2024 neck surgery and roughly 17 months without a professional bout.",
+          "source": "https://www.bjpenn.com/mma-news/davey-grant/davey-grant-vows-to-ko-ramon-taveras-at-ufc-tampa-in-an-entertaining-fight-we-are-gonna-stand-and-bang/",
+          "sourceLabel": "BJPenn · December 2024 interview following neck surgery"
         },
         {
-          "date": "Dec 14, 2024",
-          "label": "WIN · Ramon Taveras · UFC Fight Night: Covington vs. Buckley",
+          "date": "Apr. 4, 2025",
+          "label": "Daniel Santos medical issue cancels April 5 fight",
+          "kind": "booking",
+          "detail": "Daniel Santos did not appear at Friday's UFC Vegas 105 weigh-ins. Broadcaster Brendan Fitzgerald said Santos had a medical issue; the bout with Grant was canceled. Grant was not identified as the injured party, and the cancellation is not a professional loss.",
+          "source": "https://www.mmafighting.com/2025/4/4/24401182/ufc-vegas-105-weigh-in-results",
+          "sourceLabel": "MMA Fighting · April 4, 2025 weigh-in report"
+        },
+        {
+          "date": "Jul. 26, 2025",
+          "label": "WIN · Da'Mon Blackshear · UFC on ABC 9: Whittaker vs. de Ridder",
           "kind": "win",
-          "detail": "Defeated Ramon Taveras at UFC Fight Night: Covington vs. Buckley by Decision (Unanimous) in round 3 at 5:00.",
+          "detail": "Defeated Da'Mon Blackshear at UFC on ABC 9: Whittaker vs. de Ridder on Jul. 26, 2025 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 17-7; UFC record after fight: 8-6. First appearance since the planned April 2025 Santos fight was canceled due to Santos's medical issue.",
           "source": "https://www.ufc.com/athlete/davey-grant",
-          "sourceLabel": "UFC fighter fight history"
+          "sourceLabel": "UFC · official full fight history"
         },
         {
-          "date": "Jul 22, 2023",
-          "label": "LOSS · Daniel Marcos · UFC Fight Night: Aspinall vs. Tybura",
+          "date": "Oct. 18, 2025",
+          "label": "LOSS · Charles Jourdain · UFC Fight Night 262: de Ridder vs. Allen",
           "kind": "loss",
-          "detail": "Lost to Daniel Marcos at UFC Fight Night: Aspinall vs. Tybura by Decision (Split) in round 3 at 5:00.",
+          "detail": "Lost to Charles Jourdain at UFC Fight Night 262: de Ridder vs. Allen on Oct. 18, 2025 by submission (guillotine choke) (round 1, 3:05). Professional MMA record after fight: 17-8; UFC record after fight: 8-7.",
           "source": "https://www.ufc.com/athlete/davey-grant",
-          "sourceLabel": "UFC fighter fight history"
+          "sourceLabel": "UFC · official full fight history"
+        },
+        {
+          "date": "Apr. 25, 2026",
+          "label": "WIN · Adrian Luna Martinetti · UFC Fight Night 274: Sterling vs. Zalal",
+          "kind": "win",
+          "detail": "Defeated Adrian Luna Martinetti at UFC Fight Night 274: Sterling vs. Zalal on Apr. 25, 2026 by unanimous decision (round 3, 5:00). Professional MMA record after fight: 18-8; UFC record after fight: 9-7. Earned Fight of the Night ($100,000 bonus each) after a three-round stand-up battle. Judges scored it 29-28 unanimously. Grant landed 162 significant strikes to Martinetti's 99.",
+          "source": "https://ca.sports.yahoo.com/news/ufc-fight-night-274-bonuses-043141839.html",
+          "sourceLabel": "MMA Junkie · April 2026 Fight of the Night bonuses"
+        },
+        {
+          "date": "Apr. 26, 2026",
+          "label": "Fight of the Night award after Martinetti bout",
+          "kind": "milestone",
+          "detail": "Grant and Adrian Luna Martinetti each received a $100,000 Fight of the Night bonus after their April 25 three-round battle; it was Grant's third Fight of the Night accolade. A post-fight award, not a separate bout.",
+          "source": "https://ca.sports.yahoo.com/news/ufc-fight-night-274-bonuses-043141839.html",
+          "sourceLabel": "MMA Junkie · April 2026 post-fight bonuses"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Record-source discrepancy: 18-8 versus Tapology's 16-8",
+          "kind": "note",
+          "detail": "The complete Sherdog professional ledger contains 26 fights (18 wins, eight losses), matching UFC.com and FightMatrix; 16 official UFC fights yield a 9-7 UFC record. Tapology currently reports 16-8 overall while also listing 9-7 UFC. Preserve the 18-8 total supported by the 26-fight ledger and flag the two-win discrepancy, rather than inventing or dropping fights.",
+          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
+          "sourceLabel": "Sherdog · 26-fight professional record; compared with Tapology and UFC"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Elijah Smith · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Scheduled to face Elijah Smith at bantamweight at UFC Vegas 124 on November 7, 2026; no result yet.",
+          "kind": "upcoming",
+          "detail": "Scheduled to face Elijah Smith at UFC Vegas 124 on Nov. 7, 2026, at Meta APEX in Las Vegas. As of Nov. 5 no result has occurred. Professional MMA record: 18-8; UFC record: 9-7. Amateur, TUF exhibition and canceled bouts are excluded.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "UFC event page"
+          "sourceLabel": "UFC · official November 7, 2026 fight card"
         }
-      ]
+      ],
+      "lastReviewed": "2026-11-05"
     },
     "Elijah Smith": {
       "slug": "elijah-smith",
