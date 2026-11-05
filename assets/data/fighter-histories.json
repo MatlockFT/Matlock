@@ -1,5 +1,5 @@
 {
-  "version": 47,
+  "version": 48,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -29820,40 +29820,304 @@
       "name": "José Souza",
       "subtitle": "Career chronology",
       "record": "9-1",
-      "ufcRecord": "",
+      "ufcRecord": "1-0",
       "division": "Welterweight",
       "items": [
         {
-          "date": "May 30, 2026",
-          "label": "WIN · Meng Ding · UFC Fight Night: Macau",
-          "kind": "win",
-          "detail": "Defeated Meng Ding at UFC Fight Night: Macau by Decision (Split) in round 3.",
-          "source": "https://www.tapology.com/fightcenter/fighters/289580-jose-henrique-canela",
-          "sourceLabel": "Tapology fighter history"
+          "date": "May 23, 2002",
+          "label": "Born in Manaus, Amazonas, Brazil",
+          "kind": "milestone",
+          "detail": "José Henrique Nascimento de Souza was born May 23, 2002, in Manaus, Amazonas. Later moved to Rio de Janeiro to train at Nova União. At the November 5, 2026 review date he is 24 years old. Some professional reports call him simply José Souza or José Henrique; those names identify the same fighter.",
+          "source": "https://www.ufc.com/athlete/jose-henrique",
+          "sourceLabel": "UFC · José Souza fighter biography and Q&A"
         },
         {
-          "date": "Nov 13, 2024",
-          "label": "WIN · Porfirio Alves · CFC 24",
-          "kind": "win",
-          "detail": "Defeated Porfirio Alves at CFC 24 by TKO (Strikes) in round 2 at 2:30.",
-          "source": "https://www.tapology.com/fightcenter/fighters/289580-jose-henrique-canela",
-          "sourceLabel": "Tapology fighter history"
+          "date": "Around 2010 (age eight)",
+          "label": "Begins jiu-jitsu and transitions into Muay Thai",
+          "kind": "training",
+          "detail": "Souza told UFC and Rede Amazônica interviewers he began jiu-jitsu at age eight while overweight, then took up Muay Thai and pursued fighting as a career. Approximate year derived from his May 2002 birth; no individual youth match dates were documented.",
+          "source": "https://redeglobo.globo.com/redeamazonica/zappeando/noticia/tbtdozapp-relembre-entrevista-de-canela-campeao-do-ufc-china.ghtml",
+          "sourceLabel": "Rede Amazônica / Globo · 2023 interview revisited June 2026"
         },
         {
-          "date": "Aug 30, 2022",
-          "label": "LOSS · Yusaku Kinoshita · Dana White's Contender Series",
+          "date": "Around 2019 (age 17)",
+          "label": "Leaves Manaus to train at Nova União in Rio de Janeiro",
+          "kind": "training",
+          "detail": "In a May 2023 interview revisited by Rede Amazônica in 2026, Souza said he moved from Manaus to Rio de Janeiro at age 17 to develop as a fighter. He trained with Andre Pederneiras's Nova União team, citing José Aldo as an inspiration and later a personal friend. Exact month of relocation is unverified.",
+          "source": "https://redeglobo.globo.com/redeamazonica/zappeando/noticia/tbtdozapp-relembre-entrevista-de-canela-campeao-do-ufc-china.ghtml",
+          "sourceLabel": "Rede Amazônica / Globo · 2023 interview revisited June 2026"
+        },
+        {
+          "date": "2019–2022 (amateur documentation review)",
+          "label": "No individually verified amateur MMA fight ledger",
+          "kind": "note",
+          "detail": "UFC bio confirms combat-sports training from childhood, but the complete Sherdog, MMA Index and reviewed Tapology professional pages do not provide reliable named amateur MMA bouts with dates and results. No amateur record or fictional opponent has been added. Distinguish early jiu-jitsu and Muay Thai experience from documented amateur MMA fights.",
+          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
+          "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
+        },
+        {
+          "date": "Nov. 16, 2019",
+          "label": "PRO WIN · Leonardo Andrade · Open Extreme Manaus",
+          "kind": "win",
+          "detail": "Professional MMA debut at Open Extreme Manaus. Defeated Leonardo Andrade by second-round TKO (opponent retirement) at 2:50. After fight record 1-0 pro, 0-0 official UFC. Do not confuse Leonardo Andrade (2019 MMA opponent) with Leonardo Guimarães (2023 boxing opponent).",
+          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
+          "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
+        },
+        {
+          "date": "Aug. 29, 2020",
+          "label": "PRO WIN · Sadraque de Freitas · Shark Fight Championship 4",
+          "kind": "win",
+          "detail": "Stopped Sadraque de Freitas by TKO (punches) at 1:01 of the first round. Professional MMA record advanced to 2-0, official UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
+          "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
+        },
+        {
+          "date": "May 14, 2021",
+          "label": "PRO WIN · Lucas Prestes · Silva Combat Fight 3",
+          "kind": "win",
+          "detail": "Stopped Lucas Prestes by TKO (punches) at 1:17 of round one at Silva Combat Fight 3. Pro MMA record 3-0, official UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
+          "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
+        },
+        {
+          "date": "Nov. 13, 2021",
+          "label": "PRO WIN · Carlos Eduardo de Freitas · Shooto Brazil 109",
+          "kind": "win",
+          "detail": "Stopped Carlos Eduardo de Freitas with punches at 1:05 of round two. Tapology calls the opponent 'Kadu Freitas' and describes the finish as elbows; records refer to the same Shooto Brazil 109 fight, not two different wins. Professional record 4-0, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
+          "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
+        },
+        {
+          "date": "May 13, 2022",
+          "label": "PRO WIN · Pedro Oliveira · LFA 132",
+          "kind": "win",
+          "detail": "Beat Pedro Oliveira by three-round split decision at LFA 132: Gomes vs. Costa, his first professional decision win after four straight stoppage victories. Pro record advanced to 5-0, official UFC 0-0. Some calendar feeds show May 14 due to time-zone conversions; Sherdog event date May 13 is used.",
+          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
+          "sourceLabel": "Sherdog · May 2022 LFA 132 result"
+        },
+        {
+          "date": "July 2022",
+          "label": "Professional boxing date incorrectly stated in UFC biography",
+          "kind": "note",
+          "detail": "His UFC questionnaire claims he won a professional boxing bout in July 2022, but Tapology records a boxing-rules victory over Leonardo Guimarães on July 2, 2023. The dated matchup occurred during his later UFC anti-doping suspension. The conflicting year is flagged instead of inventing a second boxing contest.",
+          "source": "https://www.tapology.com/fightcenter/fighters/289580-jose-henrique-canela",
+          "sourceLabel": "Tapology · fighter identity, 2023 boxing and 2026 canceled-booking listing"
+        },
+        {
+          "date": "Aug. 30, 2022",
+          "label": "PRO LOSS · Yusaku Kinoshita · DWCS Season 6 Week 6",
           "kind": "loss",
-          "detail": "Lost to Yusaku Kinoshita at Dana White's Contender Series by TKO (Strikes) in round 3 at 0:43.",
+          "detail": "Lost the main-event welterweight bout to Yusaku Kinoshita by TKO (punches) at 0:43 of round three in Dana White's Contender Series Week 6. First professional MMA defeat; record became 5-1. UFC Octagon record remained 0-0, since DWCS is not an official UFC fight. A later interview mistakenly called this a decision loss; primary fight ledgers confirm stoppage.",
+          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
+          "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
+        },
+        {
+          "date": "Aug. 2022",
+          "label": "UFC officials encourage regional wins after DWCS defeat",
+          "kind": "milestone",
+          "detail": "Souza said that Dana White and Sean Shelby visited him after the Contender Series defeat and told him they liked his ability but wanted him to return to smaller promotions for additional experience. This statement is Souza's retrospective account, not an actual UFC contract in August 2022.",
+          "source": "https://www.mmafighting.com/ufc/490963/ufc-macau-newcomer-jose-souza-opens-up-on-difficulties-during-doping-suspension",
+          "sourceLabel": "MMA Fighting · May 30 2026 exclusive interview about injury, injection, suspension and continued career"
+        },
+        {
+          "date": "Jan. 2023 (about two to three weeks before fight)",
+          "label": "Suffers knee injury while wrestling in Shooto camp",
+          "kind": "injury",
+          "detail": "In a May 2026 MMA Fighting interview, Souza said he injured his knee in wrestling training while preparing for the Feb. 3, 2023 Shooto Brazil bout. He said a doctor recommended an injection of Deca-Durabolin (nandrolone) to help recover. This is HIS explanation of the injury and banned substance; no independently verified orthopedic diagnosis or surgery was documented.",
+          "source": "https://www.mmafighting.com/ufc/490963/ufc-macau-newcomer-jose-souza-opens-up-on-difficulties-during-doping-suspension",
+          "sourceLabel": "MMA Fighting · May 30 2026 exclusive interview about injury, injection, suspension and continued career"
+        },
+        {
+          "date": "Feb. 3, 2023",
+          "label": "PRO WIN · Alan Silva · Shooto Brazil 115",
+          "kind": "win",
+          "detail": "Knocked out Alan Silva with a knee at 4:55 of round three at Shooto Brazil 115. After fight professional MMA record 6-1, official UFC 0-0. This bout took place shortly after the knee-injury episode that Souza later described and before the March 2023 USADA test.",
+          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
+          "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
+        },
+        {
+          "date": "February–March 2023",
+          "label": "Signs first UFC contract following Shooto victory",
+          "kind": "milestone",
+          "detail": "Souza said Nova União coach Andre Pederneiras contacted UFC matchmaker Sean Shelby after the Alan Silva knockout and he was told he had earned a UFC deal. MMA Fighting's June 2023 report confirms he was a newly signed fighter by March. The contract did not lead to a completed UFC Octagon debut until May 2026.",
+          "source": "https://www.mmafighting.com/2023/6/1/23746068/ufc-newcomer-jose-henrique-suspended-2-years-for-usada-violation",
+          "sourceLabel": "MMA Fighting · June 1 2023 suspension and UFC signing"
+        },
+        {
+          "date": "Mar. 8, 2023",
+          "label": "USADA collects out-of-competition sample",
+          "kind": "milestone",
+          "detail": "UFC's then anti-doping provider USADA collected a sample March 8, 2023. Analysis found 19-norandrosterone (19-NA) and 19-noretiocholanolone, metabolites associated with nandrolone and related 19-norsteroids. The test was out-of-competition and is distinct from his 2022 DWCS loss or February 2023 Shooto win.",
+          "source": "https://www.usada.org/sanction/jose-de-souza-accepts-doping-sanction/",
+          "sourceLabel": "USADA · official June 1 2023 nandrolone sanction"
+        },
+        {
+          "date": "Mar. 8, 2023–Mar. 8, 2025",
+          "label": "Two-year UFC anti-doping ineligibility period begins",
+          "kind": "milestone",
+          "detail": "USADA imposed a two-year anti-doping sanction retroactively beginning March 8, 2023, making him eligible again March 8, 2025 under that sanction. The agency said Souza failed to declare prior nandrolone/related 19-norsteroid use when entering the program. He acknowledged the non-disclosure in a May 2026 interview and disputed the implication he had used it for performance enhancement, attributing it to knee-treatment advice.",
+          "source": "https://www.usada.org/sanction/jose-de-souza-accepts-doping-sanction/",
+          "sourceLabel": "USADA · official June 1 2023 nandrolone sanction"
+        },
+        {
+          "date": "June 1, 2023",
+          "label": "USADA publicly announces two-year suspension",
+          "kind": "milestone",
+          "detail": "USADA published the violation and sanction June 1, 2023. It specified an anabolic-agent class violation, rather than a therapeutic-use exemption or the loss of a UFC fight result. No UFC Octagon fight took place during the sanction. The suspension was TWO YEARS and dated from the March 8 sample, not June 1.",
+          "source": "https://www.usada.org/sanction/jose-de-souza-accepts-doping-sanction/",
+          "sourceLabel": "USADA · official June 1 2023 nandrolone sanction"
+        },
+        {
+          "date": "July 2, 2023",
+          "label": "BOXING WIN · Leonardo Guimarães · Shooto Brazil Boxing 2",
+          "kind": "milestone",
+          "detail": "Won a separately recorded professional BOXING bout against Leonardo Guimarães by fourth-round disqualification at 1:24 (Tapology's boxing section). His May 2026 interview confirms the victory occurred while he was unable to compete under UFC anti-doping jurisdiction. This is NOT a professional MMA win and does not count toward 9-1.",
           "source": "https://www.tapology.com/fightcenter/fighters/289580-jose-henrique-canela",
-          "sourceLabel": "Tapology fighter history"
+          "sourceLabel": "Tapology · fighter identity, 2023 boxing and 2026 canceled-booking listing"
+        },
+        {
+          "date": "2023–2024",
+          "label": "Remains active outside the UFC during sanction",
+          "kind": "milestone",
+          "detail": "In 2026 Souza explained that he and Nova União arranged his release from the suspended UFC arrangement to earn income by competing for promotions not applying USADA's UFC ineligibility. He continued training and completed one boxing bout and two Centurion FC MMA contests. These completed MMA fights remain on independent fight ledgers; do not automatically delete their records as a consequence of the UFC sanction.",
+          "source": "https://www.mmafighting.com/ufc/490963/ufc-macau-newcomer-jose-souza-opens-up-on-difficulties-during-doping-suspension",
+          "sourceLabel": "MMA Fighting · May 30 2026 exclusive interview about injury, injection, suspension and continued career"
+        },
+        {
+          "date": "Jan. 20, 2024",
+          "label": "PRO WIN · Alexandre Silva · Centurion FC 17",
+          "kind": "win",
+          "detail": "Defeated Alexandre Silva by MAJORITY decision after three rounds at CFC 17: Rex Mundi, held during his time away from the UFC. Professional MMA record advanced to 7-1; official UFC remained 0-0.",
+          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
+          "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
+        },
+        {
+          "date": "Nov. 13, 2024",
+          "label": "PRO WIN · Porfirio Alves Jr. · Centurion FC 24",
+          "kind": "win",
+          "detail": "Stopped Porfirio Alves Jr. with a knee to the body followed by punches at 2:13 of round two at Centurion FC 24: Arcem. Earlier short timeline incorrectly gave the stoppage as 2:30; Sherdog and MMA Index support 2:13. Professional MMA record became 8-1, UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
+          "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
+        },
+        {
+          "date": "Mar. 8, 2025",
+          "label": "Two-year UFC anti-doping suspension reaches scheduled expiry",
+          "kind": "milestone",
+          "detail": "The USADA suspension period running from March 8, 2023 ends March 8, 2025. The date does not itself establish that Souza fought on that day or returned immediately to UFC competition; he remained without an official Octagon appearance until May 30, 2026.",
+          "source": "https://www.usada.org/sanction/jose-de-souza-accepts-doping-sanction/",
+          "sourceLabel": "USADA · official June 1 2023 nandrolone sanction"
+        },
+        {
+          "date": "2025",
+          "label": "No completed professional MMA fight documented",
+          "kind": "note",
+          "detail": "Sherdog and MMA Index list no completed professional MMA contests in calendar 2025. The absence follows his November 2024 Centurion FC bout and precedes his eventual 2026 UFC debut; a public injury-based explanation for the entire 2025 period was not independently verified.",
+          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
+          "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
+        },
+        {
+          "date": "Jan. 2026",
+          "label": "Initial UFC debut booked against Eric Nolan for Feb. 7",
+          "kind": "booking",
+          "detail": "Booked against Eric Nolan at UFC Vegas 113 for Feb. 7, 2026, as his first UFC Octagon appearance. The bout did not happen: RotoWire reporting says NOLAN withdrew for undisclosed reasons, and the promotion arranged Nikolay Veretennikov as a replacement.",
+          "source": "https://www.rotowire.com/mma/player/jose-henrique-souza-2744",
+          "sourceLabel": "RotoWire · Jan–Aug 2026 debut delays and booking reports"
+        },
+        {
+          "date": "Jan. 2026",
+          "label": "CANCELED · Eric Nolan · Feb. 7 UFC Fight Night",
+          "kind": "booking",
+          "detail": "The original Eric Nolan pairing was removed after Nolan withdrew (specific cause unverified). It was replaced by a proposed Veretennikov matchup on the same February 7 card. This is ONE canceled planned fight, not a competitive result.",
+          "source": "https://www.foxsports.com/ufc/jose-henrique-souza-fighter",
+          "sourceLabel": "FOX Sports · syndicated RotoWire 2026 cancellation updates"
+        },
+        {
+          "date": "Early Feb. 2026",
+          "label": "CANCELED · Nikolay Veretennikov · Feb. 7 UFC Fight Night",
+          "kind": "booking",
+          "detail": "The Veretennikov replacement fight was canceled after Souza withdrew according to Tapology and contemporaneous RotoWire reporting. The reason was described as undisclosed; there is no verified basis to label it a knee injury, a failed drug test or a visa denial. Veretennikov went on to face Niko Price.",
+          "source": "https://www.tapology.com/fightcenter/bouts/1091504-ufc-fight-night-jose-henrique-canela-souza-vs-nikolay-veretennikov",
+          "sourceLabel": "Tapology · Feb. 7 2026 canceled Veretennikov fight"
+        },
+        {
+          "date": "Mar. 4, 2026",
+          "label": "Second prospective UFC debut booked against Charles Radtke",
+          "kind": "booking",
+          "detail": "UFC matchmakers scheduled Souza against Charles Radtke for April 4 at UFC Vegas 115. This followed two February opponent changes and would still have been Souza's first official Octagon appearance.",
+          "source": "https://www.rotowire.com/mma/player/jose-henrique-souza-2744",
+          "sourceLabel": "RotoWire · Jan–Aug 2026 debut delays and booking reports"
+        },
+        {
+          "date": "Mar. 28–Apr. 4, 2026",
+          "label": "CANCELED · Charles Radtke · April 4 UFC Fight Night",
+          "kind": "booking",
+          "detail": "The Radtke pairing fell through. Tapology specifically lists 'Henrique Visa Issues' as the cause, while RotoWire initially reported the explanation was uncertain and said Radtke was reassigned against Francisco Prado. Record the visa attribution as Tapology's listing, not independently proven documentation; no UFC result occurred.",
+          "source": "https://www.tapology.com/fightcenter/fighters/289580-jose-henrique-canela",
+          "sourceLabel": "Tapology · fighter identity, 2023 boxing and 2026 canceled-booking listing"
+        },
+        {
+          "date": "May 2026",
+          "label": "Accepts fourth prospective UFC debut matchup against Ding Meng",
+          "kind": "booking",
+          "detail": "After the unsuccessful bookings with Eric Nolan, Nikolay Veretennikov and Charles Radtke, Souza accepted a May 30 Macau UFC Fight Night bout against veteran Ding Meng. At that point he was 8-1 professionally but still 0-0 in official UFC competition.",
+          "source": "https://www.mmafighting.com/ufc/490963/ufc-macau-newcomer-jose-souza-opens-up-on-difficulties-during-doping-suspension",
+          "sourceLabel": "MMA Fighting · May 30 2026 exclusive interview about injury, injection, suspension and continued career"
+        },
+        {
+          "date": "May 29–30, 2026",
+          "label": "Pre-debut interview details knee injury, injection and suspension",
+          "kind": "milestone",
+          "detail": "In a long MMA Fighting interview, Souza said he was given a Deca-Durabolin injection by a doctor after a January 2023 training injury, did not inform coach Andre Pederneiras or USADA, accepted responsibility for the missing disclosure, and later competed outside USADA-regulated promotions. This is his explanation; the positive sample and sanction are independently established by USADA.",
+          "source": "https://www.mmafighting.com/ufc/490963/ufc-macau-newcomer-jose-souza-opens-up-on-difficulties-during-doping-suspension",
+          "sourceLabel": "MMA Fighting · May 30 2026 exclusive interview about injury, injection, suspension and continued career"
+        },
+        {
+          "date": "May 30, 2026",
+          "label": "PRO WIN · Ding Meng · UFC Macau",
+          "kind": "win",
+          "detail": "Finally made his official UFC debut at UFC Fight Night: Song vs. Figueiredo in Macau, defeating Ding Meng by three-round split decision. Official judges' scores 30-27, 29-28 for Souza and 29-28 for Ding. Professional record advanced to 9-1; official UFC record to 1-0.",
+          "source": "https://www.ufc.com/news/ufc-fight-night-song-vs-figueiredo-official-judges-scorecards-macau",
+          "sourceLabel": "UFC · May 30 2026 official Macau judge cards"
+        },
+        {
+          "date": "May 30, 2026",
+          "label": "UFC debut tactical notes: jab, knees versus low kicks",
+          "kind": "milestone",
+          "detail": "UFC recap described Ding's steady forward pressure and substantial leg-kick output, with Souza countering through jabs, impactful head shots and a second-round knee that hurt Ding. Judges disagreed over the better effective offense; Souza won a split decision. This was his first completed UFC contest, not a second UFC win.",
+          "source": "https://www.ufc.com/news/ufc-fight-night-song-vs-figueiredo-results-highlights-prelims-winners-interviews-macau",
+          "sourceLabel": "UFC · UFC Macau preliminary fight recap"
+        },
+        {
+          "date": "Aug. 28, 2026",
+          "label": "Booked against Jonny Parsons for November 7",
+          "kind": "booking",
+          "detail": "RotoWire reported Souza would fight Jonny Parsons at the November 7 Las Vegas card. The pairing pits Souza's 9-1 record (1-0 UFC) against Parsons's 9-3 record (1-0 UFC). It remains only a booking as of Nov. 5.",
+          "source": "https://www.rotowire.com/mma/player/jose-henrique-souza-2744",
+          "sourceLabel": "RotoWire · Jan–Aug 2026 debut delays and booking reports"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Injury, sanction and withdrawal review",
+          "kind": "note",
+          "detail": "The only specifically described knee injury is the January 2023 training-wrestling injury described by Souza in his May 2026 interview, which he said prompted a Deca-Durabolin injection. No verified knee surgery or precise ligament diagnosis was found. Canceled 2026 bouts: Eric Nolan withdrew (cause unspecified); Souza withdrew from Nikolay Veretennikov (cause unspecified); Charles Radtke pairing was removed (Tapology cites visa issues but RotoWire initially did not confirm cause). The two-year anti-doping penalty was for a documented prohibited-substance finding and missing declaration, NOT an injury exemption.",
+          "source": "https://www.mmafighting.com/ufc/490963/ufc-macau-newcomer-jose-souza-opens-up-on-difficulties-during-doping-suspension",
+          "sourceLabel": "MMA Fighting · May 30 2026 exclusive interview about injury, injection, suspension and continued career"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Resolve name, fight dates, boxing and UFC debut discrepancies",
+          "kind": "note",
+          "detail": "Professional MMA: ten completed bouts, 9-1 (six KO/TKO wins, zero submissions, three decisions; lone loss by TKO to Yusaku Kinoshita). UFC 1-0; DWCS defeat in August 2022 is professional but not UFC Octagon. Eight other MMA wins occurred outside UFC/DWCS. Boxing win vs Leonardo Guimarães was July 2, 2023 per Tapology, while UFC biography says July 2022; no duplicate bout established. CFC 24 stoppage clock 2:13 (not 2:30). MMA 2022 DWCS defeat was third-round TKO, contrary to a 2026 retrospective interview's 'decision loss' description. UFC profile shows a stale Apr. 4, 2026 'Octagon Debut' field despite the actual first completed UFC fight being May 30 against Ding Meng. No source-backed amateur MMA fight ledger located.",
+          "source": "https://www.mmaindex.com/fighters/jose-henrique-20a0e4cc",
+          "sourceLabel": "MMA Index · 10 professional bouts by date and ruleset"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Jonny Parsons · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Scheduled to fight Jonny Parsons at UFC Vegas 124 in Las Vegas. No result yet.",
+          "kind": "upcoming",
+          "detail": "Scheduled to face Jonny Parsons (9-3 professional, 1-0 UFC) in a three-round welterweight bout at Meta APEX in Las Vegas at UFC Fight Night: Cortes-Acosta vs. Walker. Souza enters 9-1 pro, 1-0 UFC. As of Nov. 5 the fight is UPCOMING and no result or judge scores have been assigned.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "Official UFC event"
+          "sourceLabel": "UFC · official Nov. 7 2026 fight card"
         }
       ]
     }
