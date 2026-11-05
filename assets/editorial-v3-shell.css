@@ -883,11 +883,11 @@ body[data-editorial-shell]:not(:has(.v3-home)) .site-navigation .mobile-brand {
         text-transform: uppercase !important;
     }
 
-body[data-editorial-shell]:not(:has(.v3-home)) .mobile-brand-pumpkin {
+body[data-editorial-shell]:not(:has(.v3-home)) .mobile-brand-harvest {
         margin-left: -.18em;
     }
 
-body[data-editorial-shell]:not(:has(.v3-home)) .mobile-brand-pumpkin-icon {
+body[data-editorial-shell]:not(:has(.v3-home)) .mobile-brand-harvest-icon {
         display: block;
         width: .94em;
         height: .94em;
@@ -936,7 +936,7 @@ body[data-editorial-shell]:not(:has(.v3-home)) .v3-wordmark {
     letter-spacing: .005em;
     text-transform: uppercase;
 }
-body[data-editorial-shell]:not(:has(.v3-home)) .desktop-brand-pumpkin {
+body[data-editorial-shell]:not(:has(.v3-home)) .desktop-brand-harvest {
     position: absolute;
     right: -25px;
     bottom: -9px;
@@ -946,7 +946,7 @@ body[data-editorial-shell]:not(:has(.v3-home)) .desktop-brand-pumpkin {
     margin: 0;
     pointer-events: none;
 }
-body[data-editorial-shell]:not(:has(.v3-home)) .desktop-brand-pumpkin-icon {
+body[data-editorial-shell]:not(:has(.v3-home)) .desktop-brand-harvest-icon {
     display: block;
     width: 100%;
     height: 100%;
