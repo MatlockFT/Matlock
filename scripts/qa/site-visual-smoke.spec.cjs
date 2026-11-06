@@ -1019,3 +1019,63 @@ test.describe('On This Day share builder', () => {
     expect(pageErrors).toEqual([]);
   });
 });
+
+
+test.describe('Long fight-card article layout regression', () => {
+  const articlePath = '/2026/11/05/ufc-vegas-124-cortes-acosta-vs-walker.html';
+
+  test.describe('desktop', () => {
+    test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+    test('14-fight TOC stays in its column and stops before sharing', async ({ page }) => {
+      await page.goto(targetUrl(articlePath), { waitUntil: 'domcontentloaded', timeout: 45000 });
+      const toc = page.locator('.article-toc-floating');
+      await expect(toc).toBeVisible({ timeout: 10000 });
+      await expect(toc.locator('[data-article-toc-list] li')).toHaveCount(14);
+      expect(await toc.evaluate(el => getComputedStyle(el).position)).toBe('sticky');
+
+      await page.locator('.post-share').scrollIntoViewIfNeeded();
+      const geometry = await page.evaluate(() => {
+        const rect = selector => document.querySelector(selector).getBoundingClientRect();
+        return {
+          tocBottom: rect('.article-toc-floating').bottom,
+          railBottom: rect('.post-rail').bottom,
+          shareTop: rect('.post-share').top,
+          relatedWidth: rect('.related-breakdowns').width,
+          articleWidth: rect('.post-body').width,
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
+        };
+      });
+      expect(geometry.tocBottom).toBeLessThanOrEqual(geometry.shareTop + 2);
+      expect(geometry.railBottom).toBeLessThanOrEqual(geometry.shareTop + 2);
+      expect(geometry.relatedWidth).toBeGreaterThan(geometry.articleWidth);
+      expect(geometry.overflow).toBeLessThanOrEqual(2);
+    });
+  });
+
+  test.describe('mobile', () => {
+    test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+
+    test('contents becomes inline, cards stack and share controls fit', async ({ page }) => {
+      await page.goto(targetUrl(articlePath), { waitUntil: 'domcontentloaded', timeout: 45000 });
+      await expect(page.locator('.article-toc-floating')).toBeHidden();
+      await expect(page.locator('.article-toc-inline')).toBeVisible({ timeout: 10000 });
+      await expect(page.locator('.post-share-button')).toHaveCount(8);
+      const geometry = await page.evaluate(() => {
+        const card = document.querySelector('.related-breakdowns .article-card');
+        const grid = document.querySelector('.related-breakdowns .article-grid');
+        return {
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          cardWidth: card?.getBoundingClientRect().width || 0,
+          gridWidth: grid?.getBoundingClientRect().width || 0,
+          shareColumns: getComputedStyle(document.querySelector('.post-share-actions')).gridTemplateColumns.split(' ').length
+        };
+      });
+      expect(geometry.overflow).toBeLessThanOrEqual(2);
+      expect(geometry.cardWidth).toBeGreaterThan(280);
+      expect(Math.abs(geometry.cardWidth - geometry.gridWidth)).toBeLessThan(2);
+      expect(geometry.shareColumns).toBe(2);
+    });
+  });
+});
+
