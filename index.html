@@ -127,7 +127,17 @@ page_scripts:
             {% if post.members_only and post.published != false %}
               {% unless member_visibility == "hide-home" or member_visibility == "direct-only" %}
                 <article class="v3-news-item v3-member-story">
-                  <a href="https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}">{{ post.title | escape }}</a>
+                  {% assign member_image = post.image.path | default: post.image %}
+                  {% if member_image and member_story_count == 0 %}
+                    {% assign member_image_data = site.data.responsive_images[member_image] %}
+                    {% assign member_image_src = member_image_data.src | default: member_image %}
+                    <a class="v3-member-thumb" href="https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}" aria-label="Read {{ post.title | escape }}">
+                      <img src="{{ member_image_src | relative_url }}"
+                        {% if member_image_data.srcset %}srcset="{{ member_image_data.srcset }}" sizes="(min-width: 780px) 24vw, 100vw"{% endif %}
+                        alt="{{ post.image.alt | default: post.title | escape }}" loading="lazy" decoding="async">
+                    </a>
+                  {% endif %}
+                  <a class="v3-member-title" href="https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}">{{ post.title | escape }}</a>
                   <span class="v3-news-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
                 </article>
                 {% assign member_story_count = member_story_count | plus: 1 %}
