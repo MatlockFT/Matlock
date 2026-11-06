@@ -116,7 +116,11 @@ Oh boy, this is gonna be a weird fight I think. Priscila's MMA career has been a
 
 Nina I'm just not impressed with. I think her defensive reactions are pretty bad, I think she can be easily hit, I'm not particularly impressed with her striking at range. Sure, she's doing what she needs to putting away these shlubs so I can't knock her for that but how would Nina fare against Jasmine Jasudavicius, Joselyn Edwards.. fuck.. even Chelsea Chandler? I'm not so certain.
 
-I gotta admit, there's something inside me that pulls beneath the surface wanting me to pick Cachoeira for the upset. -500 is a ridiculous number. Between you and me, might throw a sprinkle on Cachoeira upset. For a straight pick? That Edwards KO is playing on repeat in my mind, Cachoeira is 
+I gotta admit, there's something inside me that pulls beneath the surface wanting me to pick Cachoeira for the upset. -500 is a ridiculous number. Between you and me, might throw a sprinkle on Cachoeira upset. For a straight pick? That Edwards KO is playing on repeat in my mind, Cachoeira is terrible on the ground, and she has terrible knees.
+
+Sorry, Priscila.
+
+
 
 ## Mitch Raposo vs. Marcos Degli
 
