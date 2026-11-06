@@ -1,0 +1,63 @@
+name: Publish MMA Matlock website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Keep the latest pending build when the Writer produces several quick commits.
+# Do not cancel a deployment after it has begun.
+concurrency:
+  group: mma-matlock-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out current main branch
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build Jekyll website
+        uses: actions/jekyll-build-pages@v1
+
+      - name: Verify recently published articles and Writer UI are in the build
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s _site/index.html
+          test -s _site/breakdowns/index.html
+          test -s _site/write/index.html
+          test -s _site/2026/10/27/ufc-334-gane-vs-hokit.html
+          test -s _site/2026/11/05/ufc-vegas-124-cortes-acosta-vs-walker.html
+          grep -Fq 'UFC 334: Gane vs. Hokit' _site/breakdowns/index.html
+          grep -Fq 'UFC Vegas 124: Cortes-Acosta vs. Walker' _site/breakdowns/index.html
+          grep -Fq 'class="writer-members-toggle"' _site/write/index.html
+          grep -Fq 'Members only' _site/write/index.html
+          echo 'Published articles and compact Members only checkbox verified in Jekyll output.'
+
+      - name: Upload site for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: build
+    steps:
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4
