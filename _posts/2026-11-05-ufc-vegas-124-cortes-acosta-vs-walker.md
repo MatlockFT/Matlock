@@ -156,7 +156,7 @@ Raposo is tough and has some boxing skills. I could see this being competitive o
 </section>
 In my opinion, this fight feels very mid-tier regional level. Perhaps that's a harsh judgement by me but I feel like both these guys will get eaten alive in this division.
 
-I want to be kind to Ollie because he seems like an action fighter, he's got some skills, he's trying things out but it looks like he tried learning all the cool shit in his living room and is going out there playing MMA. Whereas Nakamura has more composure, all his skills meld together more cohesively than Ollie's. But I'm not really impressed by him either. It wouldn't blow my balls off if Ollie did some shit that Nakamura doesn't see coming and knocks him out so that's why I'm confused why Nakamura is favored at -3
+I want to be kind to Ollie because he seems like an action fighter, he's got some skills, he's trying things out but it looks like he tried learning all the cool shit in his living room and is going out there playing MMA. Whereas Nakamura has more composure, all his skills meld together more cohesively than Ollie's. But I'm not really impressed by him either. It wouldn't blow my balls off if Ollie did some shit that Nakamura doesn't see coming and knocks him out so that's why I'm confused why Nakamura is favored at -375. This will be a weird fight especially if Ollie has taken note of Nakamura's intercepting counters because that would leave him hesi
 
 ## Gabriel Lorenco vs. Thomas Petersen
 
