@@ -5,10 +5,10 @@
 
 .otd-page-v3 {
     --otd-v3-rule: var(--v3-rule);
-    width: min(calc(100% - 2rem), 1280px);
+    width: min(calc(100% - var(--v3-page-inline)), 1280px);
     min-height: 72svh;
     margin: 0 auto;
-    padding: .9rem 0 clamp(4rem, 7vw, 7rem);
+    padding: .8rem 0 var(--v3-page-bottom);
     color: var(--v3-ink);
     font-family: var(--v3-sans);
 }
@@ -17,7 +17,7 @@
 .otd-page-v3 .otd-v3-header {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 1rem 2rem;
+    gap: .85rem 1.5rem;
     align-items: end;
     padding: .85rem 0 .9rem;
     border-top: 3px solid var(--v3-ink);
@@ -795,7 +795,7 @@ html.v3-theme-transitioning body:has(.otd-page-v3) .otd-share-panel {
 
 @media (max-width: 760px) {
     .otd-page-v3 {
-        width: min(calc(100% - 1.4rem), 1280px);
+        width: min(calc(100% - var(--v3-page-inline)), 1280px);
     }
 
     .otd-page-v3 .otd-v3-heading-row {
