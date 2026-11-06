@@ -4,16 +4,16 @@
  */
 
 .contact-page-v3 {
-    width: min(calc(100% - 2rem), 1180px);
+    width: min(calc(100% - var(--v3-page-inline)), 1180px);
     margin: 0 auto;
-    padding: .9rem 0 clamp(4rem, 7vw, 7rem);
+    padding: .8rem 0 var(--v3-page-bottom);
     color: var(--v3-ink);
     font-family: var(--v3-sans);
 }
 
 .contact-page-v3 .contact-hero {
     display: block;
-    margin: 0 0 clamp(2.4rem, 5vw, 4rem);
+    margin: 0 0 clamp(1.7rem, 3vw, 2.75rem);
 }
 
 .contact-page-v3 .contact-hero-main {
@@ -105,7 +105,7 @@
 
 /* Social directory */
 .contact-page-v3 .contact-platform-section {
-    margin: 0 0 2.5rem;
+    margin: 0 0 2rem;
 }
 
 .contact-page-v3 .contact-section-header {
@@ -306,7 +306,7 @@ html.v3-theme-transitioning .contact-page-v3 .contact-email {
 
 @media (max-width: 520px) {
     .contact-page-v3 {
-        width: min(calc(100% - 1.4rem), 1180px);
+        width: min(calc(100% - var(--v3-page-inline)), 1180px);
     }
 
     .contact-page-v3 .contact-hero-main h1 {
