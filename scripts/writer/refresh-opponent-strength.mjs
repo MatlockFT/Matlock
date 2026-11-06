@@ -15,7 +15,12 @@ const HISTORY_ALIASES = new Map([
   ['bobby green','King Green'],
   ['ramazan temirov','Ramazonbek Temirov'],
   ['cam rowston','Cameron Rowston'],
-  ['bia mesquita','Beatriz Mesquita']
+  ['bia mesquita','Beatriz Mesquita'],
+  ['nina milosevic','Nina Nikolija Milosevic'],
+  ['ollie schmid','Oliver Schmid'],
+  ['jose delano','Jose Mauro Delano'],
+  ['seokhyeon ko','Seok Hyeon Ko'],
+  ['jose souza','Jose Henrique Souza']
 ]);
 
 // Profile hints are verified against the fighter's name, complete pro history and
@@ -23,7 +28,12 @@ const HISTORY_ALIASES = new Map([
 // cancelled fights disappear and fighters can be listed under different names.
 const SHERDOG_PROFILE_HINTS = new Map([
   ['bia mesquita','https://www.sherdog.com/fighter/Beatriz-Mesquita-451242'],
-  ['jefferson nascimento','https://www.sherdog.com/fighter/Jefferson-Nascimento-348445']
+  ['jefferson nascimento','https://www.sherdog.com/fighter/Jefferson-Nascimento-348445'],
+  ['nina milosevic','https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822'],
+  ['ollie schmid','https://www.sherdog.com/fighter/Oliver-Schmid-326999'],
+  ['jose delano','https://www.sherdog.com/fighter/Jose-Mauro-Delano-177407'],
+  ['seokhyeon ko','https://www.sherdog.com/fighter/Seok-Hyeon-Ko-275977'],
+  ['jose souza','https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437']
 ]);
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
