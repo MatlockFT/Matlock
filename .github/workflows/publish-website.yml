@@ -44,6 +44,7 @@ jobs:
           grep -Fq 'class="writer-members-toggle"' _site/write/index.html
           grep -Fq 'Members only' _site/write/index.html
           echo 'Published articles and compact Members only checkbox verified in Jekyll output.'
+          node scripts/qa/check-retired-fight-cards.mjs _site
 
       - name: Upload site for GitHub Pages
         uses: actions/upload-pages-artifact@v3
