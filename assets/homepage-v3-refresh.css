@@ -376,14 +376,12 @@ body:has([data-globe-home]) .site-news-item-source {
     line-height: 1.2;
 }
 
-/* Bottom-half composition: two compact editorial panels, not tall stacked blocks. */
+/* Lower homepage: one coherent editorial rhythm, without heavy framing rules. */
 .v3-lower-grid {
-    display: grid;
-    grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
-    gap: clamp(2rem, 4vw, 4rem);
-    margin-top: clamp(2.8rem, 5vw, 4.4rem);
-    padding-top: .9rem;
-    border-top: 3px solid var(--v3-ink);
+    display: block;
+    margin-top: clamp(2.15rem, 4vw, 3.4rem);
+    padding-top: 0;
+    border: 0;
 }
 
 .v3-lower-grid > .v3-section {
@@ -391,45 +389,68 @@ body:has([data-globe-home]) .site-news-item-source {
     padding-top: 0;
 }
 
-.v3-lower-grid .v3-section-head {
+.v3-lower-grid .v3-section-head,
+.v3-more .v3-section-head {
     margin-bottom: 1rem;
-    padding-bottom: .65rem;
-    border-bottom: 1px solid var(--v3-rule);
+    padding: 0;
+    border: 0;
 }
 
-/* Preserve the full poster, but return it to a normal editorial scale. */
+.v3-lower-grid .v3-section-head h2,
+.v3-more .v3-section-head h2 {
+    font-size: clamp(1.95rem, 2.75vw, 2.55rem);
+    line-height: 1.04;
+}
+
 .v3-lower-grid .v3-history-feature-card {
-    grid-template-columns: minmax(160px, 260px) minmax(0, 1fr);
-    gap: clamp(1.2rem, 2.3vw, 2rem);
-    align-items: center;
+    display: grid;
+    grid-template-columns: minmax(150px, 210px) minmax(0, 1fr);
+    gap: clamp(1.25rem, 3vw, 2.6rem);
+    align-items: start;
+    max-width: 920px;
 }
 
 .v3-lower-grid .v3-history-feature-image {
-    width: min(100%, 260px);
+    width: 100%;
+    max-width: 210px;
     justify-self: start;
     background: transparent;
 }
 
 .v3-lower-grid .v3-history-feature-image img {
+    display: block;
     width: 100%;
     height: auto !important;
     aspect-ratio: auto !important;
     object-fit: contain !important;
 }
 
+.v3-lower-grid .v3-history-feature-copy {
+    min-width: 0;
+    align-self: start;
+    padding: .5rem 0 0;
+}
+
+.v3-lower-grid .v3-history-feature-year {
+    margin-bottom: .55rem;
+}
+
 .v3-lower-grid .v3-history-feature-title {
-    max-width: 14ch;
-    font-size: clamp(1.65rem, 2.25vw, 2.35rem);
+    max-width: 25ch;
+    font-size: clamp(1.7rem, 2.35vw, 2.3rem);
+    line-height: 1.1;
 }
 
 .v3-lower-grid .v3-history-feature-text {
-    margin-top: .75rem;
-    font-size: .9rem;
-    line-height: 1.42;
+    max-width: 52ch;
+    margin-top: .65rem;
+    font-size: clamp(.88rem, 1.05vw, 1rem);
+    line-height: 1.52;
 }
 
 .v3-lower-grid .v3-history-feature-link {
     margin-top: .85rem;
+    padding: .25rem 0;
 }
 
 /* Verdict becomes an on-site data section. */
@@ -584,53 +605,62 @@ body:has([data-globe-home]) .site-news-item-source {
     font-weight: 700;
 }
 
-/* Stronger, less repetitive lower article layout. */
+/* Equal editorial cards: consistent scan order and no repeated white rules. */
 .v3-more {
-    padding-top: clamp(3rem, 5vw, 4.8rem);
+    padding-top: 0;
+    margin-top: clamp(2.25rem, 4.4vw, 3.5rem);
 }
 
 .v3-more-list {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: 1.8rem clamp(1.4rem, 3vw, 2.8rem);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.6rem, 3vw, 2.65rem) clamp(1.15rem, 2.6vw, 2.5rem);
 }
 
-.v3-more-story {
-    grid-column: span 4;
-    padding-top: .8rem !important;
-    border-top: 1px solid var(--v3-rule) !important;
-}
-
-.v3-more-story:first-child {
-    grid-column: span 7;
-}
-
+.v3-more-story,
+.v3-more-story:first-child,
 .v3-more-story:nth-child(2) {
-    grid-column: span 5;
+    display: block;
+    grid-column: auto;
+    min-width: 0;
+    padding: 0 !important;
+    border: 0 !important;
 }
 
-.v3-more-story h3 {
-    font-size: clamp(1.3rem, 1.8vw, 1.75rem);
+.v3-more-story time {
+    display: block;
+    margin-bottom: .5rem;
+    line-height: 1.25;
 }
 
+.v3-more-story h3,
 .v3-more-story:first-child h3 {
-    font-size: clamp(1.8rem, 2.7vw, 2.65rem);
+    max-width: 26ch;
+    margin: 0;
+    font-size: clamp(1.3rem, 1.8vw, 1.65rem);
+    line-height: 1.12;
+    text-wrap: pretty;
+}
+
+.v3-more-story p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    max-width: 48ch;
+    margin-top: .6rem;
+    line-height: 1.48;
+}
+
+.v3-more-story a:focus-visible,
+.v3-history-feature a:focus-visible {
+    outline: 2px solid var(--v3-red);
+    outline-offset: 3px;
 }
 
 @media (max-width: 1050px) {
-    .v3-lower-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-
-    .v3-lower-grid .v3-history-feature-card {
-        grid-template-columns: minmax(170px, 240px) minmax(0, 1fr);
-    }
-
-    .v3-more-story,
-    .v3-more-story:first-child,
-    .v3-more-story:nth-child(2) {
-        grid-column: span 6;
+    .v3-more-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -693,12 +723,17 @@ body:has([data-globe-home]) .site-news-item-source {
 
 @media (max-width: 700px) {
     .v3-lower-grid .v3-history-feature-card {
-        grid-template-columns: 145px minmax(0, 1fr);
+        grid-template-columns: minmax(110px, 145px) minmax(0, 1fr);
         gap: 1rem;
     }
 
     .v3-lower-grid .v3-history-feature-image {
-        width: 145px;
+        max-width: 145px;
+    }
+
+    .v3-more-list {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.4rem;
     }
 
     .v3-verdict-stats {
@@ -726,11 +761,6 @@ body:has([data-globe-home]) .site-news-item-source {
         gap: .25rem;
     }
 
-    .v3-more-story,
-    .v3-more-story:first-child,
-    .v3-more-story:nth-child(2) {
-        grid-column: 1 / -1;
-    }
 }
 
 @media (max-width: 520px) {
@@ -744,12 +774,25 @@ body:has([data-globe-home]) .site-news-item-source {
     }
 
     .v3-lower-grid .v3-history-feature-card {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(90px, 110px) minmax(0, 1fr);
+        gap: .9rem;
     }
 
     .v3-lower-grid .v3-history-feature-image {
-        width: min(72vw, 240px);
-        justify-self: center;
+        max-width: 110px;
+        justify-self: start;
+    }
+
+    .v3-lower-grid .v3-history-feature-copy {
+        padding-top: 0;
+    }
+
+    .v3-lower-grid .v3-history-feature-title {
+        font-size: clamp(1.35rem, 5vw, 1.65rem);
+    }
+
+    .v3-lower-grid .v3-history-feature-text {
+        font-size: .86rem;
     }
 }
 
@@ -853,15 +896,6 @@ html[data-theme="dark"] body:has([data-globe-home]) {
     margin-left: 0;
 }
 
-
-/* Homepage lower feature returns to a single editorial column while Verdict integration is disabled. */
-.v3-lower-grid {
-    grid-template-columns: minmax(0, 1fr);
-}
-
-.v3-lower-grid .v3-history-feature-card {
-    max-width: 920px;
-}
 
 
 /* Keep the fight-week dropdown readable over the dark homepage. */
