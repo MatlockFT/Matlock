@@ -1,5 +1,5 @@
 {
-  "version": 64,
+  "version": 65,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -6012,14 +6012,6 @@
           "source": "https://www.sherdog.com/fighter/Nurullo-Aliev-274869"
         },
         {
-          "date": "By Sep. 2021 (title lineage; precise dates unverified)",
-          "label": "Gorilla Fighting and Eagle FC championship claim clarified",
-          "kind": "milestone",
-          "detail": "The UFC describes Aliev as a former Gorilla Fighting (later Eagle FC) lightweight champion. His documented 2018 Battle on the Volga tournament win supplies a concrete 155-pound title achievement, but his GFC 16 fight in 2019 and EFC/AMC fight in 2021 were both at welterweight. No separate lightweight title-winning bout in those promotions is established by the available fight records.",
-          "sourceLabel": "UFC fighter questionnaire",
-          "source": "https://www.ufc.com/athlete/nurullo-aliev"
-        },
-        {
           "date": "2022 (camp ahead of Sept. 20)",
           "label": "Trains at Tiger Muay Thai and Kill Cliff FC",
           "kind": "camp",
@@ -6898,14 +6890,6 @@
           "detail": "At Alexander Serdyukov Memorial 2025, Chopurov defeated Mukhammad Akhmedov by split decision. Recorded stoppage/round completion: R3 at 3:00. This is an amateur MMA bout and is excluded from his 11-0 professional total. Amateur registries include this May 2025 decision despite professional fights in both 2023 and 2024. It must not be counted as his sole professional decision win.",
           "sourceLabel": "Combat Edge amateur registry (cross-check with IMMAF/Tapology)",
           "source": "https://combat-edge.com/fighter/asaf-chopurov-3472/"
-        },
-        {
-          "date": "May 2025 (registry discrepancy)",
-          "label": "Amateur record reported as 34-1 or 35-1",
-          "kind": "milestone",
-          "detail": "Contemporaneous MMA Junkie and Sherdog signing reports quote a 34-1 amateur record, while an Oct. 2026 UFC feature says 35-1. Fight registries also record amateur tournament appearances as late as May 2025 after Chopurov was already a professional. The differing totals have not been fully reconciled by a single official bout-by-bout federation ledger; neither is presented as an indisputable unified count.",
-          "sourceLabel": "UFC Oct. 20 Fighters on the Rise profile and MMA Junkie Sept. 24 report",
-          "source": "https://www.ufc.com/news/fighters-rise-ufc-333-volkanovski-vs-evloev"
         },
         {
           "date": "Jul. 23, 2025",
@@ -8095,7 +8079,7 @@
           "date": "Before professional MMA (competition dates unverified)",
           "label": "Reports ten amateur MMA fights and ten Muay Thai wins",
           "kind": "milestone",
-          "detail": "His UFC questionnaire mentions ten amateur MMA bouts and ten Muay Thai wins, but does not give a verified opponent-by-opponent ledger or the amateur MMA win-loss record. These numbers should not be converted into an invented 10-0 MMA record.",
+          "detail": "His UFC questionnaire mentions ten amateur MMA bouts and ten Muay Thai wins, but does not give a verified opponent-by-opponent record or the amateur MMA win-loss record. These numbers should not be converted into an invented 10-0 MMA record.",
           "sourceLabel": "UFC athlete Q&A",
           "source": "https://us.ufcespanol.com/athlete/daniel-santos"
         },
@@ -8567,7 +8551,7 @@
           "date": "Jan. 30, 2022 (pre-debut preview)",
           "label": "Roughly 200 grappling matches reported entering pro MMA",
           "kind": "milestone",
-          "detail": "A UFC Fight Pass pre-debut profile estimated Steele had already competed in about 200 grappling matches before his first professional MMA contest. This was an approximate retrospective count, not a complete verified fight-by-fight ledger.",
+          "detail": "A UFC Fight Pass pre-debut profile estimated Steele had already competed in about 200 grappling matches before his first professional MMA contest. This was an approximate retrospective count, not a complete verified fight-by-fight record.",
           "sourceLabel": "UFC Fight Pass Jan. 30, 2022 preview",
           "source": "https://www.ufc.com/news/dominant-grappler-kody-steele-eyes-pro-mma-debut-fury-fc-56-ufc-fight-pass"
         },
@@ -8847,7 +8831,7 @@
           "date": "Nov. 5, 2016",
           "label": "AMATEUR WIN · Marco Wowra · unanimous decision · R2 3:00",
           "kind": "milestone",
-          "detail": "Sherdog's indexed amateur MMA ledger records Gugnon defeating Marco Wowra at Integra FC 6 by unanimous decision over two three-minute rounds. This is one confirmed amateur bout, NOT a comprehensive amateur record; his amateur pancrace and grappling results lack a unified fight-by-fight database.",
+          "detail": "Sherdog's indexed amateur MMA record records Gugnon defeating Marco Wowra at Integra FC 6 by unanimous decision over two three-minute rounds. This is one confirmed amateur bout, NOT a comprehensive amateur record; his amateur pancrace and grappling results lack a unified fight-by-fight database.",
           "sourceLabel": "Sherdog amateur fight history",
           "source": "https://www.sherdog.com/fighter/Noah-Gugnon-236171"
         },
@@ -9098,22 +9082,6 @@
           "detail": "UFC 333 added Gugnon versus Kody Steele to the Oct. 24 card in Abu Dhabi. Gugnon entered 10-2 with six straight wins and one UFC bout. The announced three-round fight is at lightweight, not featherweight.",
           "sourceLabel": "MMA Knockout / Sports Illustrated Oct. 5 report",
           "source": "https://www.si.com/fannation/mma/news/late-ufc-333-addition-rounds-out-stacked-fight-card-two-title-bouts"
-        },
-        {
-          "date": "Oct. 6, 2026",
-          "label": "Describes growing recognition after Belgrade UFC victory",
-          "kind": "milestone",
-          "detail": "Discussing the response to his 81-second submission win, Gugnon said his social-media following had roughly tripled and that he felt more accepted by French fans. This is his own estimate of his audience, not a verified platform analytics figure.",
-          "sourceLabel": "ActuMMA October 6 retrospective on RMC interview",
-          "source": "https://www.actumma.com/noah-gugnon-revient-sur-les-retombees-ahurissantes-de-sa-victoire-a-lufc-belgrade/193286/"
-        },
-        {
-          "date": "Oct. 18, 2026",
-          "label": "Turns 26 during preparation for UFC 333",
-          "kind": "background",
-          "detail": "Gugnon turned 26 on Oct. 18, six days before his booked bout with Kody Steele. Some UFC pre-fight materials continued to show his previous age of 25; his verified Oct. 18, 2000 birthday resolves the age.",
-          "sourceLabel": "Sherdog date of birth and UFC bout schedule",
-          "source": "https://www.sherdog.com/fighter/Noah-Gugnon-236171"
         },
         {
           "date": "Oct. 20, 2026",
@@ -9906,14 +9874,6 @@
           "source": "https://www.ufc.com.br/news/conheca-lutadores-brasileiros-ufc-333"
         },
         {
-          "date": "Oct. 21, 2026",
-          "label": "Enters UFC 333 with nine finishes and first strawweight win",
-          "kind": "milestone",
-          "detail": "Caliari enters Abu Dhabi with 9 wins from 13 professional fights, five KO/TKOs and four submissions, all victories inside the distance. Her most recent fight was May 16 at strawweight, so no October injury status, successful UFC 333 weigh-in or fight result is independently verified yet.",
-          "sourceLabel": "Sherdog Oct. 2026 records / UFC 333 preview",
-          "source": "https://www.sherdog.com/fighter/Nicolle-Caliari-202195"
-        },
-        {
           "date": "Oct. 24, 2026",
           "label": "LOSS · Iasmin Lucindo · UFC 333",
           "kind": "loss",
@@ -10249,7 +10209,7 @@
           "date": "Nov. 25, 2017",
           "label": "AMATEUR WIN · Joshua Francois · wins XFC featherweight title",
           "kind": "background",
-          "detail": "Stopped Francois by first-round TKO at 3:00 at XFC 32 to win the XFC amateur featherweight championship. This fight is missing from Sherdog's amateur ledger, but contemporary results document it and help reconcile his UFC-reported 6–1, 1 NC amateur record.",
+          "detail": "Stopped Francois by first-round TKO at 3:00 at XFC 32 to win the XFC amateur featherweight championship. This fight is missing from Sherdog's amateur record, but contemporary results document it and help reconcile his UFC-reported 6–1, 1 NC amateur record.",
           "sourceLabel": "Fight News Australia · XFC 32 results (2017)",
           "source": "https://www.fightnewsaustralia.com/xfc-32-results/"
         },
@@ -11691,7 +11651,7 @@
           "date": "Sep. 18, 2015",
           "label": "AMATEUR WIN · Jamark Cooper",
           "kind": "background",
-          "detail": "Won a three-round unanimous decision over Cooper at NFC 77. This is the only amateur bout displayed in Sherdog's shorter amateur ledger, but other databases document five additional fights.",
+          "detail": "Won a three-round unanimous decision over Cooper at NFC 77. This is the only amateur bout displayed in Sherdog's shorter amateur record, but other databases document five additional fights.",
           "sourceLabel": "Sherdog · amateur history; Tapology · additional bouts",
           "source": "https://www.sherdog.com/fighter/Cody-Durden-222325"
         },
@@ -12233,7 +12193,7 @@
           "date": "Nov. 15, 2014",
           "label": "AMATEUR WIN · Joseph Morrison · armbar",
           "kind": "background",
-          "detail": "Submitted Joseph Morrison with an armbar at 1:50 of round two at WCC 11, according to the longer MMA fight ledger. Sherdog's public listing omits this bout, but UFC confirms that Gall's 3–0 amateur run included one armbar and one rear-naked choke.",
+          "detail": "Submitted Joseph Morrison with an armbar at 1:50 of round two at WCC 11, according to the longer MMA fight record. Sherdog's public listing omits this bout, but UFC confirms that Gall's 3–0 amateur run included one armbar and one rear-naked choke.",
           "sourceLabel": "Combat Edge amateur fight ledger; UFC official career Q&A",
           "source": "https://combat-edge.com/fighter/mickey-gall-2423/"
         },
@@ -12508,7 +12468,7 @@
           "date": "Oct. 7, 2017",
           "label": "AMATEUR WIN · Djavan Coleman · first-round submission",
           "kind": "background",
-          "detail": "Finished Coleman with a submission at 0:43 of round one at Spar Star Promotions. Available fight ledgers do not establish the exact choke or joint lock.",
+          "detail": "Finished Coleman with a submission at 0:43 of round one at Spar Star Promotions. Available fight records do not establish the exact choke or joint lock.",
           "sourceLabel": "Sherdog · amateur MMA fight history",
           "source": "https://www.sherdog.com/fighter/JeanPaul-Lebosnoyani-248169"
         },
@@ -12735,7 +12695,7 @@
           "date": "Sep. 2022",
           "label": "Earns silver at European amateur MMA championships",
           "kind": "milestone",
-          "detail": "Won silver for Azerbaijan in the 83/83.9 kg category at the GAMMA European MMA Championships held in Tbilisi. A September 29, 2022 Azerbaijani news report names Hasanov as silver medalist; the UFC also recognizes the 2022 amateur European medal. The available databases document two tournament fights here, not a complete lifetime amateur ledger.",
+          "detail": "Won silver for Azerbaijan in the 83/83.9 kg category at the GAMMA European MMA Championships held in Tbilisi. A September 29, 2022 Azerbaijani news report names Hasanov as silver medalist; the UFC also recognizes the 2022 amateur European medal. The available databases document two tournament fights here, not a complete lifetime amateur record.",
           "sourceLabel": "SIA Azerbaijan · September 29, 2022 championship medal report",
           "source": "https://sia.az/en/news/sport/986801.html"
         },
@@ -13061,7 +13021,7 @@
           "date": "Apr. 21, 2018",
           "label": "AMATEUR WIN · Josh Rosen · amateur MMA debut",
           "kind": "background",
-          "detail": "Defeated Josh Rosen by unanimous decision over three three-minute rounds at Valor FL: Brazos Throwdown 4 at featherweight. This bout is in Tapology's longer amateur ledger but is missing from Sherdog's public two-fight amateur list.",
+          "detail": "Defeated Josh Rosen by unanimous decision over three three-minute rounds at Valor FL: Brazos Throwdown 4 at featherweight. This bout is in Tapology's longer amateur record but is missing from Sherdog's public two-fight amateur list.",
           "sourceLabel": "Tapology · Valor FL: Brazos Throwdown 4 event results",
           "source": "https://www.tapology.com/fightcenter/events/52112-vfl-brazos-throwdown-4"
         },
@@ -13395,7 +13355,7 @@
           "date": "Aug. 31, 2019",
           "label": "AMATEUR WIN · Khalid Kerchiyev",
           "kind": "background",
-          "detail": "Won a three-round split decision at Fight Club Rush 5, his earliest fight in Sherdog's documented amateur ledger.",
+          "detail": "Won a three-round split decision at Fight Club Rush 5, his earliest fight in Sherdog's documented amateur record.",
           "sourceLabel": "Sherdog · fight history",
           "source": "https://www.sherdog.com/fighter/Theodor-Berggren-347365"
         },
@@ -14431,7 +14391,7 @@
           "date": "Before 2016 (exact dates unavailable)",
           "label": "Develops BJJ competition and coaching career",
           "kind": "training",
-          "detail": "A black belt under Jon Santos, Kropschot competes in submission grappling and teaches at Team Santos Jiu Jitsu. The gym lists ADCC, Fight to Win and IBJJF tournament wins, but does not provide a dated complete ledger.",
+          "detail": "A black belt under Jon Santos, Kropschot competes in submission grappling and teaches at Team Santos Jiu Jitsu. The gym lists ADCC, Fight to Win and IBJJF tournament wins, but does not provide a dated complete record.",
           "sourceLabel": "Team Santos Jiu Jitsu · instructor biography",
           "source": "https://teamsantosjiujitsu.com/instructors/"
         },
@@ -14842,7 +14802,7 @@
           "date": "Apr. 25, 2026",
           "label": "WIN · Julia Polastri · third straight UFC victory",
           "kind": "win",
-          "detail": "Won by unanimous decision, 29–28 on all three scorecards, at UFC Fight Night: Sterling vs. Zalal. The previously completed opponent ledger lists Polastri at 14–5 entering; she has since continued competing. It was Alencar's third consecutive UFC win.",
+          "detail": "Won by unanimous decision, 29–28 on all three scorecards, at UFC Fight Night: Sterling vs. Zalal. The previously completed opponent record lists Polastri at 14–5 entering; she has since continued competing. It was Alencar's third consecutive UFC win.",
           "sourceLabel": "UFC · official scorecards",
           "source": "https://www.ufc.com/news/ufc-fight-night-sterling-vs-zalal-official-scorecards-judges"
         },
@@ -15026,14 +14986,6 @@
           "source": "https://www.ufc.com/news/ufc-fight-night-emmett-vs-vallejos-results-prelims-highlights-winners-interviews"
         },
         {
-          "date": "October 2026",
-          "label": "UFC career metrics and strawweight record-book standing",
-          "kind": "milestone",
-          "detail": "Across seven regular UFC appearances through March 14, 2026 (92:37 fight time), Rodriguez has landed 392 of 807 significant strikes (48.6%), averaging 4.23 landed and 3.25 absorbed per minute. She completed 26 of 44 takedowns (59.1%, 4.21 per 15 minutes), defended 18 of 22 attempts against her (81.8%), and recorded zero submission attempts. The UFC's active-fighter women's strawweight record book ranks her first in takedown accuracy and third in takedown defense among those meeting minimum eligibility requirements. UFC lists her reach at 63.5 inches; UFCStats-derived data displays 63 inches.",
-          "sourceLabel": "UFC · women's strawweight record book; UFCStats-based totals",
-          "source": "https://statleaders.ufc.com/?fighter_status=1&weight_class=WSW"
-        },
-        {
           "date": "Oct. 31, 2026",
           "label": "WIN · Talita Alencar · UFC Vegas 123",
           "kind": "win",
@@ -15120,7 +15072,7 @@
           "date": "Nov. 21, 2020",
           "label": "WIN · Anzelika Petkevičiūtė",
           "kind": "win",
-          "detail": "Won her first bout recognized in the Sherdog/UFC standard professional MMA ledger with a first-round armbar at 0:43 at OKTAGON 18. Anzelika Petkevičiūtė entered this bout at 0–1 according to Verdict's opponent ledger.",
+          "detail": "Won her first bout recognized in the Sherdog/UFC standard professional MMA record with a first-round armbar at 0:43 at OKTAGON 18. Anzelika Petkevičiūtė entered this bout at 0–1 according to Verdict.",
           "sourceLabel": "Sherdog · professional bout results; Verdict · pre-fight opponent record",
           "source": "https://verdictmma.com/fighter/lucia-silent-killer-szabova"
         },
@@ -15128,7 +15080,7 @@
           "date": "Jan. 30, 2021",
           "label": "WIN · Rizlen Zouak",
           "kind": "win",
-          "detail": "Finished Zouak with an armbar at 1:25 of round two at OKTAGON 21. Rizlen Zouak entered this bout at 3–1 according to Verdict's opponent ledger.",
+          "detail": "Finished Zouak with an armbar at 1:25 of round two at OKTAGON 21. Rizlen Zouak entered this bout at 3–1 according to Verdict.",
           "sourceLabel": "Sherdog · professional bout results; Verdict · pre-fight opponent record",
           "source": "https://verdictmma.com/fighter/lucia-silent-killer-szabova"
         },
@@ -15136,7 +15088,7 @@
           "date": "Mar. 27, 2021",
           "label": "WIN · Christina Netza",
           "kind": "win",
-          "detail": "Scored a head-kick knockout at 1:30 of the opening round at OKTAGON 22. Christina Netza entered this bout at 3–1 according to Verdict's opponent ledger.",
+          "detail": "Scored a head-kick knockout at 1:30 of the opening round at OKTAGON 22. Christina Netza entered this bout at 3–1 according to Verdict.",
           "sourceLabel": "Sherdog · professional bout results; Verdict · pre-fight opponent record",
           "source": "https://verdictmma.com/fighter/lucia-silent-killer-szabova"
         },
@@ -15144,7 +15096,7 @@
           "date": "Jul. 24, 2021",
           "label": "WIN · Cornelia Holm",
           "kind": "win",
-          "detail": "Went three full rounds and won by unanimous decision at OKTAGON 26. This was her first conventional professional MMA bout to reach the judges' scorecards. Cornelia Holm entered this bout at 4–3 according to Verdict's opponent ledger.",
+          "detail": "Went three full rounds and won by unanimous decision at OKTAGON 26. This was her first conventional professional MMA bout to reach the judges' scorecards. Cornelia Holm entered this bout at 4–3 according to Verdict.",
           "sourceLabel": "Sherdog · professional bout results; Verdict · pre-fight opponent record",
           "source": "https://verdictmma.com/fighter/lucia-silent-killer-szabova"
         },
@@ -15184,7 +15136,7 @@
           "date": "Mar. 23, 2024",
           "label": "WIN · Róża Gumienna",
           "kind": "win",
-          "detail": "Returned after maternity leave at OKTAGON 55 in Stuttgart and secured an armbar at 4:38 of round three. This was her fifth standard professional MMA win. Róża Gumienna entered this bout at 5–3 according to Verdict's opponent ledger.",
+          "detail": "Returned after maternity leave at OKTAGON 55 in Stuttgart and secured an armbar at 4:38 of round three. This was her fifth standard professional MMA win. Róża Gumienna entered this bout at 5–3 according to Verdict.",
           "sourceLabel": "Sherdog · professional bout results; Verdict · pre-fight opponent record",
           "source": "https://verdictmma.com/fighter/lucia-silent-killer-szabova"
         },
@@ -15200,7 +15152,7 @@
           "date": "Jul. 20, 2024",
           "label": "WIN · Aitana Álvarez",
           "kind": "win",
-          "detail": "Won a unanimous decision over three rounds at OKTAGON 59 in Bratislava, moving to 6–0 in the standard ten-bout pro ledger. Aitana Álvarez entered this bout at 6–5 according to Verdict's opponent ledger.",
+          "detail": "Won a unanimous decision over three rounds at OKTAGON 59 in Bratislava, moving to 6–0 in the standard ten-bout pro record. Aitana Álvarez entered this bout at 6–5 according to Verdict.",
           "sourceLabel": "Sherdog · professional bout results; Verdict · pre-fight opponent record",
           "source": "https://verdictmma.com/fighter/lucia-silent-killer-szabova"
         },
@@ -15208,7 +15160,7 @@
           "date": "Feb. 22, 2025",
           "label": "WIN · Kalindra Faria",
           "kind": "win",
-          "detail": "Submitted experienced former UFC and Invicta fighter Faria by keylock (standing Americana) at 4:16 of round one at OKTAGON 67. Her opponent had 30 prior professional MMA bouts. Kalindra Faria entered this bout at 19–10–1 according to Verdict's opponent ledger.",
+          "detail": "Submitted experienced former UFC and Invicta fighter Faria by keylock (standing Americana) at 4:16 of round one at OKTAGON 67. Her opponent had 30 prior professional MMA bouts. Kalindra Faria entered this bout at 19–10–1 according to Verdict.",
           "sourceLabel": "Sherdog · professional bout results; Verdict · pre-fight opponent record",
           "source": "https://verdictmma.com/fighter/lucia-silent-killer-szabova"
         },
@@ -15216,7 +15168,7 @@
           "date": "Aug. 9, 2025",
           "label": "WIN · Cecilie Maria Bolander",
           "kind": "win",
-          "detail": "Won the OKTAGON women's bantamweight title with a first-round TKO (elbows and punches from mount) at 3:11 at OKTAGON 74. Bolander entered as the reigning champion. Cecilie Maria Bolander entered this bout at 4–1 according to Verdict's opponent ledger.",
+          "detail": "Won the OKTAGON women's bantamweight title with a first-round TKO (elbows and punches from mount) at 3:11 at OKTAGON 74. Bolander entered as the reigning champion. Cecilie Maria Bolander entered this bout at 4–1 according to Verdict.",
           "sourceLabel": "Sherdog · professional bout results; Verdict · pre-fight opponent record",
           "source": "https://verdictmma.com/fighter/lucia-silent-killer-szabova"
         },
@@ -15232,7 +15184,7 @@
           "date": "Apr. 25, 2026",
           "label": "WIN · Leidiane Fernandes",
           "kind": "win",
-          "detail": "Stopped Fernandes by elbows and punches from mount at 2:12 of round three at OKTAGON 87, winning the vacant OKTAGON women's flyweight championship in the main event. She became the organization's first simultaneous women's two-division titleholder. Leidiane Fernandes entered this bout at 7–2 according to Verdict's opponent ledger.",
+          "detail": "Stopped Fernandes by elbows and punches from mount at 2:12 of round three at OKTAGON 87, winning the vacant OKTAGON women's flyweight championship in the main event. She became the organization's first simultaneous women's two-division titleholder. Leidiane Fernandes entered this bout at 7–2 according to Verdict.",
           "sourceLabel": "OKTAGON · dual-champion biography; Verdict · opponent record",
           "source": "https://oktagonmma.com/en/fighters/185/"
         },
@@ -15240,7 +15192,7 @@
           "date": "Aug. 1, 2026",
           "label": "WIN · Lucie Pudilová",
           "kind": "win",
-          "detail": "Defended the OKTAGON women's bantamweight title by unanimous decision after five rounds in Prague at OKTAGON 92. Pudilová is a two-time UFC veteran and the most experienced opponent on Szabová's record. The victory left Szabová at 10–0 on Sherdog and 12–0 on OKTAGON/Verdict. Lucie Pudilová entered this bout at 17–11 according to Verdict's opponent ledger.",
+          "detail": "Defended the OKTAGON women's bantamweight title by unanimous decision after five rounds in Prague at OKTAGON 92. Pudilová is a two-time UFC veteran and the most experienced opponent on Szabová's record. The victory left Szabová at 10–0 on Sherdog and 12–0 on OKTAGON/Verdict. Lucie Pudilová entered this bout at 17–11 according to Verdict.",
           "sourceLabel": "Sherdog · result; Verdict · opponent record",
           "source": "https://verdictmma.com/fighter/lucia-silent-killer-szabova"
         },
@@ -18809,14 +18761,6 @@
           "detail": "Medić was booked to face Kevin Holland in a welterweight matchup at Madison Square Garden on November 14. The pairing matched his four-fight winning run with Holland's experience across two UFC divisions; the announcement is separate from a completed result.",
           "sourceLabel": "UFC · November 2026 official event listing",
           "source": "https://www.ufc.com/event/ufc-334"
-        },
-        {
-          "date": "Oct. 2026",
-          "label": "Holds 14–3 record with no decisions",
-          "kind": "milestone",
-          "detail": "As of October 27, 2026, all 17 of Medić's professional MMA bouts had ended by stoppage. His 14 wins comprised 12 KO/TKOs and two submissions, while three defeats came by two submissions and one knockout. He stood 8–3 in the UFC and had won four straight first-round finishes.",
-          "sourceLabel": "Verdict MMA · full professional record and methods",
-          "source": "https://verdictmma.com/fighter/uros-the-doctor-medic"
         },
         {
           "date": "Nov. 14, 2026 (scheduled)",
@@ -24573,7 +24517,7 @@
           "date": "Feb. 8, 2025",
           "label": "First UFC strawweight title challenge and first professional loss",
           "kind": "milestone",
-          "detail": "Against reigning champion Zhang Weili at UFC 312, Suarez went five rounds for the first time but lost by unanimous decision on official cards of 49-46, 49-46 and 49-45. Zhang defended takedowns and dominated much of the later fight. The result is separately counted once in her professional ledger.",
+          "detail": "Against reigning champion Zhang Weili at UFC 312, Suarez went five rounds for the first time but lost by unanimous decision on official cards of 49-46, 49-46 and 49-45. Zhang defended takedowns and dominated much of the later fight.",
           "source": "https://www.ufc.com/news/official-judges-scorecards-ufc-312-du-plessis-vs-strickland-2-sydney",
           "sourceLabel": "UFC · official UFC 312 scorecards"
         },
@@ -25115,7 +25059,7 @@
           "date": "Nov. 30, 2013",
           "label": "LOSS · Chris Holdsworth · TUF 18 Finale",
           "kind": "loss",
-          "detail": "Lost to Chris Holdsworth at TUF 18 Finale on Nov. 30, 2013 by submission (rear-naked choke) (round 2, 2:10). Professional MMA record after fight: 9-2; UFC record after fight: 0-1. Lost the live TUF 18 men's bantamweight final; first official UFC fight. TUF house exhibitions and the semifinal walkover do not affect the professional ledger.",
+          "detail": "Lost to Chris Holdsworth at TUF 18 Finale on Nov. 30, 2013 by submission (rear-naked choke) (round 2, 2:10). Professional MMA record after fight: 9-2; UFC record after fight: 0-1. Lost the live TUF 18 men's bantamweight final; first official UFC fight. TUF house exhibitions and the semifinal walkover do not affect the professional record.",
           "source": "https://www.ufc.com/athlete/davey-grant",
           "sourceLabel": "UFC · TUF 18 Finale result"
         },
@@ -25315,7 +25259,7 @@
           "date": "Mar. 23, 2024",
           "label": "Canceled · Cody Gibson · UFC Vegas 89",
           "kind": "booking",
-          "detail": "Grant did not fight Cody Gibson because of his neck injury and surgery. Miles Johns replaced him on the March 23 card. No loss or withdrawal should enter his professional fight ledger.",
+          "detail": "Grant did not fight Cody Gibson because of his neck injury and surgery. Miles Johns replaced him on the March 23 card.",
           "source": "https://www.mmamania.com/2024/3/22/24109345/ufc-bantamweight-contender-davey-grant-neck-surgery-return-timeline-worst-espn-mma",
           "sourceLabel": "MMA Mania · March 2024 cancellation and replacement"
         },
@@ -25793,7 +25737,7 @@
           "date": "Oct. 15, 2021",
           "label": "First documented AFC welterweight title defense",
           "kind": "milestone",
-          "detail": "Ko retained his AFC welterweight championship by unanimous decision over Yun Jae Jung at AFC 17. This is an award/title milestone, not an additional win beyond that fight's ledger entry.",
+          "detail": "Ko retained his AFC welterweight championship by unanimous decision over Yun Jae Jung at AFC 17.",
           "source": "https://www.tapology.com/fightcenter/fighters/175557-seok-hyun-ko",
           "sourceLabel": "Tapology · AFC 17 championship bout"
         },
@@ -25825,7 +25769,7 @@
           "date": "Dec. 30, 2022",
           "label": "Captures vacant AFC middleweight title",
           "kind": "milestone",
-          "detail": "After nearly a year without a documented professional bout, Ko won the vacant AFC middleweight belt by stoppage when Jae Woong Kim retired at the end of the second round. This result appears once in his professional ledger.",
+          "detail": "After nearly a year without a documented professional bout, Ko won the vacant AFC middleweight belt by stoppage when Jae Woong Kim retired at the end of the second round.",
           "source": "https://www.sherdog.com/events/AFC-22-Angels-Fighting-Championship-22-95633",
           "sourceLabel": "Sherdog · AFC 22 title fight"
         },
@@ -26044,7 +25988,7 @@
           "date": "Jan. 25, 2014",
           "label": "AMATEUR WIN · Leo Torres · Striker's House Cup 33",
           "kind": "amateur",
-          "detail": "Defeated Leo Torres at Striker's House Cup 33 on Jan. 25, 2014 by submission (armbar) (round 1, 0:33). Documented amateur record after bout: 1-0. Amateur exhibitions are excluded from Turman's 18-8 professional ledger.",
+          "detail": "Defeated Leo Torres at Striker's House Cup 33 on Jan. 25, 2014 by submission (armbar) (round 1, 0:33). Documented amateur record after bout: 1-0.",
           "source": "https://www.sherdog.com/fighter/Wellington-Turman-157451",
           "sourceLabel": "Sherdog · complete amateur fight history"
         },
@@ -26052,7 +25996,7 @@
           "date": "Feb. 22, 2014",
           "label": "AMATEUR WIN · Michel Michel · Curitiba Fight Pro",
           "kind": "amateur",
-          "detail": "Defeated Michel Michel at Curitiba Fight Pro on Feb. 22, 2014 by split decision (round and time not reliably listed). Documented amateur record after bout: 2-0. Amateur exhibitions are excluded from Turman's 18-8 professional ledger.",
+          "detail": "Defeated Michel Michel at Curitiba Fight Pro on Feb. 22, 2014 by split decision (round and time not reliably listed). Documented amateur record after bout: 2-0.",
           "source": "https://www.sherdog.com/fighter/Wellington-Turman-157451",
           "sourceLabel": "Sherdog · complete amateur fight history"
         },
@@ -26060,7 +26004,7 @@
           "date": "May 25, 2014",
           "label": "AMATEUR WIN · Joao Antonio de Oliveira Gois · Aspera FC 7",
           "kind": "amateur",
-          "detail": "Defeated Joao Antonio de Oliveira Gois at Aspera FC 7 on May 25, 2014 by majority decision (round 2, 5:00). Documented amateur record after bout: 3-0. Amateur exhibitions are excluded from Turman's 18-8 professional ledger.",
+          "detail": "Defeated Joao Antonio de Oliveira Gois at Aspera FC 7 on May 25, 2014 by majority decision (round 2, 5:00). Documented amateur record after bout: 3-0.",
           "source": "https://www.sherdog.com/fighter/Wellington-Turman-157451",
           "sourceLabel": "Sherdog · complete amateur fight history"
         },
@@ -26068,7 +26012,7 @@
           "date": "Jun. 7, 2014",
           "label": "AMATEUR WIN · Paulo Silva · Gladiator Combat Fight 5",
           "kind": "amateur",
-          "detail": "Defeated Paulo Silva at Gladiator Combat Fight 5 on Jun. 7, 2014 by submission (armbar) (round 1, 1:05). Documented amateur record after bout: 4-0. Amateur exhibitions are excluded from Turman's 18-8 professional ledger.",
+          "detail": "Defeated Paulo Silva at Gladiator Combat Fight 5 on Jun. 7, 2014 by submission (armbar) (round 1, 1:05). Documented amateur record after bout: 4-0.",
           "source": "https://www.sherdog.com/fighter/Wellington-Turman-157451",
           "sourceLabel": "Sherdog · complete amateur fight history"
         },
@@ -26076,7 +26020,7 @@
           "date": "Jun. 8, 2014",
           "label": "Completes documented amateur career 4-0",
           "kind": "milestone",
-          "detail": "Sherdog records four amateur wins between January and June 2014, including two armbars. This initial documented amateur ledger is separate from the professional debut on Aug. 9, 2014.",
+          "detail": "Sherdog records four amateur wins between January and June 2014, including two armbars. This initial documented amateur record is separate from the professional debut on Aug. 9, 2014.",
           "source": "https://www.sherdog.com/fighter/Wellington-Turman-157451",
           "sourceLabel": "Sherdog · amateur and professional separation"
         },
@@ -26324,7 +26268,7 @@
           "date": "Feb. 6, 2021",
           "label": "Canceled · Aliaskhab Khizriev · UFC Fight Night",
           "kind": "booking",
-          "detail": "Turman could not make the Feb. 6 matchup with Aliaskhab Khizriev because of January pneumonia and hospitalization. No match took place and this does not count in his professional or UFC ledger.",
+          "detail": "Turman could not make the Feb. 6 matchup with Aliaskhab Khizriev because of January pneumonia and hospitalization. No match took place and this does not count in his professional or UFC record.",
           "source": "https://www.mmafighting.com/2021/1/9/22222601/pneumonia-wellington-turman-out-ufc-fight-aliaskhab-khizriev",
           "sourceLabel": "MMA Fighting · opponent, date and medical withdrawal"
         },
@@ -26583,7 +26527,7 @@
           "date": "Mar. 10, 2017",
           "label": "AMATEUR WIN · Art Aranza · Tuff-N-Uff: Downtown Showdown",
           "kind": "amateur",
-          "detail": "Defeated Art Aranza at Tuff-N-Uff: Downtown Showdown on Mar. 10, 2017 by TKO (punches) (round 2, 1:34). Amateur record after bout: 1-0-0. Amateur result does not affect professional MMA or UFC records. First recorded amateur MMA bout in Sherdog's eight-bout ledger.",
+          "detail": "Defeated Art Aranza at Tuff-N-Uff: Downtown Showdown on Mar. 10, 2017 by TKO (punches) (round 2, 1:34). Amateur record after bout: 1-0-0. Amateur result does not affect professional MMA or UFC records. First recorded amateur MMA bout in Sherdog's eight-bout record.",
           "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
           "sourceLabel": "Sherdog · full eight-fight amateur ledger"
         },
@@ -26647,7 +26591,7 @@
           "date": "Jun. 29, 2019",
           "label": "AMATEUR LOSS · Koby Jeffers · Tuff-N-Uff: World Amateur Championships",
           "kind": "amateur",
-          "detail": "Lost to Koby Jeffers at Tuff-N-Uff: World Amateur Championships on Jun. 29, 2019 by unanimous decision (round 3, 3:00), finishing his documented amateur ledger 6-1-1. The title fight was held at Thomas & Mack Center in Las Vegas. Contemporary reporting calls Elekana the defending Tuff-N-Uff world amateur light heavyweight champion and describes Jeffers rallying late to win the decision, ending Elekana's title reign. This is not a professional defeat.",
+          "detail": "Lost to Koby Jeffers at Tuff-N-Uff: World Amateur Championships on Jun. 29, 2019 by unanimous decision (round 3, 3:00), finishing his documented amateur record 6-1-1. The title fight was held at Thomas & Mack Center in Las Vegas. Contemporary reporting calls Elekana the defending Tuff-N-Uff world amateur light heavyweight champion and describes Jeffers rallying late to win the decision, ending Elekana's title reign. This is not a professional defeat.",
           "source": "https://www.sanpedrosun.com/sports/2019/07/05/belizean-born-mma-fighter-koby-jeffers-wins-light-heavyweight-title-in-las-vegas/",
           "sourceLabel": "The San Pedro Sun · Jul. 5, 2019 contemporary title bout coverage"
         },
@@ -26655,7 +26599,7 @@
           "date": "Jun. 30, 2019",
           "label": "Completes documented amateur competition at 6-1-1",
           "kind": "milestone",
-          "detail": "Eight amateur results across 2017–2019: six wins, one loss and one draw. Three late Tuff-N-Uff bouts were title contests: championship wins over Bryan Battle in December 2018 and Sullivan Cauley in April 2019, followed by the June 2019 championship loss to Koby Jeffers as defending champion. Elekana reports two amateur belts; the exact identity of each belt and whether both wins involved different belts are not independently established. Amateur bouts are separate from the 10-2 pro ledger.",
+          "detail": "Eight amateur results across 2017–2019: six wins, one loss and one draw. Three late Tuff-N-Uff bouts were title contests: championship wins over Bryan Battle in December 2018 and Sullivan Cauley in April 2019, followed by the June 2019 championship loss to Koby Jeffers as defending champion. Elekana reports two amateur belts; the exact identity of each belt and whether both wins involved different belts are not independently established. Amateur bouts are separate from the 10-2 pro record.",
           "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
           "sourceLabel": "Sherdog · full amateur ledger, with title status checked against event pages"
         },
@@ -26671,7 +26615,7 @@
           "date": "Jun. 2019–May 2021",
           "label": "Nearly 23 months between last amateur bout and professional debut",
           "kind": "layoff",
-          "detail": "The published MMA ledger shows no completed bout between the June 29, 2019 amateur title loss and the May 14, 2021 professional debut, a gap of about 22.5 months. No verified injury, suspension or specific explanation was found, so the gap should not be attributed to an undisclosed medical problem.",
+          "detail": "The published MMA record shows no completed bout between the June 29, 2019 amateur title loss and the May 14, 2021 professional debut, a gap of about 22.5 months. No verified injury, suspension or specific explanation was found, so the gap should not be attributed to an undisclosed medical problem.",
           "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
           "sourceLabel": "Sherdog · final amateur and first professional fight dates"
         },
@@ -26767,7 +26711,7 @@
           "date": "Aug. 2023–Jul. 2024",
           "label": "Approximately eleven months without a recorded completed fight",
           "kind": "layoff",
-          "detail": "Elekana's next completed professional bout after his August 4, 2023 win over Chuck Campbell occurred at LXF 18 on July 27, 2024, nearly 12 months later. The gap is visible in the verified bout ledger, but no specific injury, surgery, suspension or withdrawal is confirmed as its cause.",
+          "detail": "Elekana's next completed professional bout after his August 4, 2023 win over Chuck Campbell occurred at LXF 18 on July 27, 2024, nearly 12 months later. The gap is visible in the verified bout record, but no specific injury, surgery, suspension or withdrawal is confirmed as its cause.",
           "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
           "sourceLabel": "Sherdog · professional fight dates between PFL and LXF"
         },
@@ -26783,7 +26727,7 @@
           "date": "Nov. 9, 2024",
           "label": "Canceled · Justin Sumter · CES 79",
           "kind": "booking",
-          "detail": "Elekana was scheduled to face Justin Sumter at CES 79 on November 9, 2024, but withdrew. UFC's January 2025 debut interview confirms he was forced to withdraw, and Tapology records the canceled pairing. No medically verified explanation or surgical diagnosis was found. The fight never happened and must not affect the professional ledger.",
+          "detail": "Elekana was scheduled to face Justin Sumter at CES 79 on November 9, 2024, but withdrew. UFC's January 2025 debut interview confirms he was forced to withdraw, and Tapology records the canceled pairing. No medically verified explanation or surgical diagnosis was found.",
           "source": "https://www.ufc.com/index.php/news/billy-elekana-opportunity-knocked-ufc-311",
           "sourceLabel": "UFC · January 2025 firsthand interview and canceled Sumter booking"
         },
@@ -27002,7 +26946,7 @@
           "date": "Dec. 2018–Dec. 2019",
           "label": "Approximately one year between fourth and fifth completed professional fights",
           "kind": "layoff",
-          "detail": "After defeating Rafael Silva de Souza on Dec. 8, 2018, Fernando's next recorded professional fight was against Wallace Lopes at Shooto Brazil 99 on Dec. 21, 2019. The professional ledger has no intervening completed bout. Public sources checked do not establish a related injury or withdrawal, so the inactivity is not assigned a medical cause.",
+          "detail": "After defeating Rafael Silva de Souza on Dec. 8, 2018, Fernando's next recorded professional fight was against Wallace Lopes at Shooto Brazil 99 on Dec. 21, 2019. The professional record has no intervening completed bout. Public sources checked do not establish a related injury or withdrawal, so the inactivity is not assigned a medical cause.",
           "source": "https://www.sherdog.com/fighter/Lucas-Fernando-227719",
           "sourceLabel": "Sherdog · full 2018–2019 professional fight dates"
         },
@@ -27130,7 +27074,7 @@
           "date": "Dec. 15, 2023",
           "label": "LFA middleweight title lost in champion-vs-interim unification",
           "kind": "milestone",
-          "detail": "Fernando returned to the LFA as reigning middleweight champion after his DWCS defeat and defended against interim champion Azamat Bekoev at LFA 173 in Las Vegas. Bekoev won the unification by unanimous decision (50-45, 48-47, 49-46) after five rounds. This second consecutive professional loss left Fernando 9-3 and ended his only documented LFA middleweight reign; the contest is already counted once in his professional ledger.",
+          "detail": "Fernando returned to the LFA as reigning middleweight champion after his DWCS defeat and defended against interim champion Azamat Bekoev at LFA 173 in Las Vegas. Bekoev won the unification by unanimous decision (50-45, 48-47, 49-46) after five rounds. This second consecutive professional loss left Fernando 9-3 and ended his only documented LFA middleweight reign; the contest is already counted once in his professional record.",
           "source": "https://www.lfa.com/russian-fighters-bekoev-and-kuziutina-sweep-lfa-middleweight-and-womens-strawweight-titles-at-lfa-173/",
           "sourceLabel": "LFA · official Dec. 15, 2023 unified title fight decision"
         },
@@ -27138,7 +27082,7 @@
           "date": "Mar. 23, 2024",
           "label": "Canceled or postponed · João Paulo Silva · LFA 179",
           "kind": "booking",
-          "detail": "Tapology's fighter ledger lists a scheduled March 23, 2024 LFA 179 bout with João Paulo Silva as canceled. The pairing eventually took place on May 3 at LFA 183. No reliable source was located establishing who withdrew or whether injury caused the March change; do not attribute it to a specific fighter.",
+          "detail": "Tapology's fighter record lists a scheduled March 23, 2024 LFA 179 bout with João Paulo Silva as canceled. The pairing eventually took place on May 3 at LFA 183. No reliable source was located establishing who withdrew or whether injury caused the March change; do not attribute it to a specific fighter.",
           "source": "https://www.tapology.com/fightcenter/fighters/135406-lucas-fernando",
           "sourceLabel": "Tapology · canceled March 2024 pairing and later completed bout"
         },
@@ -27210,7 +27154,7 @@
           "date": "May 29, 2026",
           "label": "WIN · Leon Soares · LFA 234: Fernando vs. Soares",
           "kind": "win",
-          "detail": "Defeated Leon Soares at LFA 234: Fernando vs. Soares on May 29, 2026 by TKO (leg kick and punches) (round 1, 1:28). Professional MMA record after fight: 13-3. Defended the LFA light heavyweight title in Brazil. The promotion's official result lists 1:28, although several third-party fight ledgers list 2:28.",
+          "detail": "Defeated Leon Soares at LFA 234: Fernando vs. Soares on May 29, 2026 by TKO (leg kick and punches) (round 1, 1:28). Professional MMA record after fight: 13-3. Defended the LFA light heavyweight title in Brazil. The promotion's official result lists 1:28, although several third-party fight records list 2:28.",
           "source": "https://www.lfa.com/fernando-and-nascimento-defend-their-titles-in-lfa-234/",
           "sourceLabel": "LFA · official LFA 234 results"
         },
@@ -27218,7 +27162,7 @@
           "date": "May 29, 2026",
           "label": "Defends LFA light heavyweight title against Leon Soares",
           "kind": "milestone",
-          "detail": "With the 205-pound belt he won against Phillip Latu in August 2025, Fernando defended against Leon Soares on May 29, 2026 in Cajamar, Brazil. A hard leg kick dropped Soares and Fernando followed with ground punches for a TKO at 1:28 of round one. The LFA 234 preview introduces him as reigning champion, and the available bout ledger shows one completed 205-pound defense. The post-event LFA recap calls this a 'second successful defense,' but no second defense is documented; do not invent another title fight.",
+          "detail": "With the 205-pound belt he won against Phillip Latu in August 2025, Fernando defended against Leon Soares on May 29, 2026 in Cajamar, Brazil. A hard leg kick dropped Soares and Fernando followed with ground punches for a TKO at 1:28 of round one. The LFA 234 preview introduces him as reigning champion, and the available bout record shows one completed 205-pound defense. The post-event LFA recap calls this a 'second successful defense,' but no second defense is documented; do not invent another title fight.",
           "source": "https://www.lfa.com/fernando-and-nascimento-defend-their-titles-in-lfa-234/",
           "sourceLabel": "LFA · May 2026 first-person promotion recap and unverified second-defense claim"
         },
@@ -27242,7 +27186,7 @@
           "date": "Aug. 15, 2026",
           "label": "UFC debut knee-to-body stoppage at 1:10 of round three",
           "kind": "milestone",
-          "detail": "UFC's official coverage describes a complete striking performance in Philadelphia: Fernando repeatedly mixed attacks to head, body and legs, knocked Tobias down with a jab in the second round and finished at 1:10 of round three when a knee to the midsection produced a delayed reaction and referee stoppage. The result extended his post-Bekoev win streak to five and started his official UFC ledger at 1-0; the 2023 DWCS loss remains a professional result but not a UFC result.",
+          "detail": "UFC's official coverage describes a complete striking performance in Philadelphia: Fernando repeatedly mixed attacks to head, body and legs, knocked Tobias down with a jab in the second round and finished at 1:10 of round three when a knee to the midsection produced a delayed reaction and referee stoppage. The result extended his post-Bekoev win streak to five and started his official UFC record at 1-0; the 2023 DWCS loss remains a professional result but not a UFC result.",
           "source": "https://www.ufc.com/news/ufc-330-prelims-results",
           "sourceLabel": "UFC · official early prelim recap and stoppage"
         },
@@ -27405,7 +27349,7 @@
           "date": "Nov. 21, 2021",
           "label": "Additional amateur loss to Danielius Grebliūnas",
           "kind": "loss",
-          "detail": "Tapology lists a decision loss to Danielius Grebliūnas as an amateur bout, confirmed by its corresponding entry on Grebliūnas's own fighter page. This occurred after Kondratavičius had already taken professional MMA bouts. Sherdog and MMA Index omit it from their 4-1 amateur ledgers. If included as classified, amateur record becomes 4-2; professional record stays 9-1.",
+          "detail": "Tapology lists a decision loss to Danielius Grebliūnas as an amateur bout, confirmed by its corresponding entry on Grebliūnas's own fighter page. This occurred after Kondratavičius had already taken professional MMA bouts. Sherdog and MMA Index omit it from their 4-1 amateur records. If included as classified, amateur record becomes 4-2; professional record stays 9-1.",
           "source": "https://www.tapology.com/fightcenter/fighters/324873-danielius-grebliunas",
           "sourceLabel": "Tapology · Grebliūnas's amateur fight record"
         },
@@ -27639,7 +27583,7 @@
           "date": "Jan. 8, 2016",
           "label": "AMATEUR WIN · Jesse Stokes · CFFC 54",
           "kind": "win",
-          "detail": "Submitted Jesse Stokes with a brabo choke at 2:48 of the first round, in the first of eight amateur MMA bouts documented by Sherdog. Amateur result, not part of professional 13-6 ledger.",
+          "detail": "Submitted Jesse Stokes with a brabo choke at 2:48 of the first round, in the first of eight amateur MMA bouts documented by Sherdog.",
           "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
           "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
         },
@@ -27695,7 +27639,7 @@
           "date": "Feb. 16, 2018",
           "label": "AMATEUR WIN · Avery Sanchis · Art of War 5",
           "kind": "win",
-          "detail": "Won a three-round unanimous decision against Avery Sanchis at Art of War Cage Fighting 5, completing the eight-bout amateur MMA ledger at 7-1. UFC also identifies his Stellar Fights and Art of War amateur titles, and two kickboxing wins without opponent/date details.",
+          "detail": "Won a three-round unanimous decision against Avery Sanchis at Art of War Cage Fighting 5, completing the eight-bout amateur MMA record at 7-1. UFC also identifies his Stellar Fights and Art of War amateur titles, and two kickboxing wins without opponent/date details.",
           "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
           "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
         },
@@ -27743,7 +27687,7 @@
           "date": "Dec. 13, 2019",
           "label": "PRO WIN · Shedrick Goodridge · Art of War 15",
           "kind": "win",
-          "detail": "Won the Art of War professional middleweight championship by TKO (punches) against Shedrick Goodridge at 2:29 of round two. Professional record after bout: 4-0, UFC 0-0. Some secondary ledgers give round-two 5:00; Sherdog lists 2:29.",
+          "detail": "Won the Art of War professional middleweight championship by TKO (punches) against Shedrick Goodridge at 2:29 of round two. Professional record after bout: 4-0, UFC 0-0. Some secondary records give round-two 5:00; Sherdog lists 2:29.",
           "source": "https://www.sherdog.com/fighter/Andre-Petroski-215253",
           "sourceLabel": "Sherdog · professional, TUF and amateur fight ledger"
         },
@@ -27799,7 +27743,7 @@
           "date": "July 2, 2021",
           "label": "GRAPPLING WIN · Brian Nielson · Fury Pro Grappling 1",
           "kind": "milestone",
-          "detail": "Won an exhibition grappling-rules match against Brian Nielson at the inaugural Fury Pro Grappling event. Not a professional MMA fight; method recorded as a decision by the grappling ledger.",
+          "detail": "Won an exhibition grappling-rules match against Brian Nielson at the inaugural Fury Pro Grappling event. Not a professional MMA fight; method recorded as a decision by the grappling record.",
           "source": "https://www.ufcalendar.com/fighters/andre-petroski",
           "sourceLabel": "UFCalendar · dated MMA, TUF, amateur and Fury Pro grappling records"
         },
@@ -28645,7 +28589,7 @@
           "date": "Around 2019 (age 18)",
           "label": "Transitions from grappling and striking tournaments into amateur MMA",
           "kind": "milestone",
-          "detail": "Said he began mixed martial arts competition at 18 after years of jiu-jitsu, school wrestling and kickboxing. The subsequent Sherdog amateur MMA ledger identifies two bouts; other youth competitions are different rulesets and must not be counted as amateur MMA wins.",
+          "detail": "Said he began mixed martial arts competition at 18 after years of jiu-jitsu, school wrestling and kickboxing. The subsequent Sherdog amateur MMA record identifies two bouts; other youth competitions are different rulesets and must not be counted as amateur MMA wins.",
           "source": "https://sports.yahoo.com/ufcs-next-big-star-michigan-110451889.html",
           "sourceLabel": "Detroit Free Press · January 2025 long-form training and wrestling profile"
         },
@@ -28781,7 +28725,7 @@
           "date": "Nov. 12, 2022",
           "label": "Captures vacant Lights Out bantamweight title",
           "kind": "milestone",
-          "detail": "The Joseph Penafiel five-round victory earned the vacant Lights Out Championship bantamweight belt. The title is documented by the event fight ledger and UFC biography; it is one professional bout and one championship achievement.",
+          "detail": "The Joseph Penafiel five-round victory earned the vacant Lights Out Championship bantamweight belt.",
           "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
           "sourceLabel": "Tapology · Shamrock FC and Lights Out championship-bout record"
         },
@@ -29016,7 +28960,7 @@
           "date": "Apr. 28, 2018",
           "label": "AMATEUR WIN · Colby Brand · Primal Fight League: Hostile Takeover",
           "kind": "win",
-          "detail": "Defeated Colby Brand at Primal Fight League: Hostile Takeover by submission, round 1 at 2:16. The hold is not specified in the available bout ledger.",
+          "detail": "Defeated Colby Brand at Primal Fight League: Hostile Takeover by submission, round 1 at 2:16. The hold is not specified in the available bout record.",
           "source": "https://www.sherdog.com/fighter/Carlos-Calderon-247279",
           "sourceLabel": "Sherdog · amateur MMA fight ledger"
         },
@@ -29040,7 +28984,7 @@
           "date": "2017–2019",
           "label": "Amateur MMA career: four documented wins",
           "kind": "milestone",
-          "detail": "Four documented amateur MMA bouts, all victories: one TKO and three submissions. These are separate from the professional 11-4 (1 NC) record; records outside this documented amateur ledger have not been presumed.",
+          "detail": "Four documented amateur MMA bouts, all victories: one TKO and three submissions. These are separate from the professional 11-4 (1 NC) record; records outside this documented amateur record have not been presumed.",
           "source": "https://www.sherdog.com/fighter/Carlos-Calderon-247279",
           "sourceLabel": "Sherdog · four recorded amateur bouts"
         },
@@ -29701,7 +29645,7 @@
           "date": "Feb. 19, 2022",
           "label": "AMATEUR WIN · Jessica Andersson · Swedish national championship",
           "kind": "win",
-          "detail": "Beat Jessica Andersson again, this time by TKO at Svenska Mästerskapet 2021 (Swedish MMA Championship), held February 19, 2022. Some ledgers list the 2021 competition label; the actual bout date is in 2022. This was a SECOND separate meeting from August 2020.",
+          "detail": "Beat Jessica Andersson again, this time by TKO at Svenska Mästerskapet 2021 (Swedish MMA Championship), held February 19, 2022. Some records list the 2021 competition label; the actual bout date is in 2022. This was a SECOND separate meeting from August 2020.",
           "source": "https://aisportsmetrics.com/mma/fighter.php?name=Nina+Milosevic",
           "sourceLabel": "Tapology amateur ledger reproduced · 12-1 with Millie Eriksson loss"
         },
@@ -29709,7 +29653,7 @@
           "date": "May 14, 2022",
           "label": "AMATEUR LOSS · Millie Eriksson · Excellence FC 3",
           "kind": "loss",
-          "detail": "Lost a three-round split decision to Millie Eriksson at Excellence Fighting Championship 3 in Linköping. Swedish MMA coverage described the matchup as a meeting of elite amateur fighters. This defeat appears in Tapology's 12-1 amateur ledger but is omitted from Sherdog's shorter ten-bout amateur list. Does not affect her later 9-1 PRO record.",
+          "detail": "Lost a three-round split decision to Millie Eriksson at Excellence Fighting Championship 3 in Linköping. Swedish MMA coverage described the matchup as a meeting of elite amateur fighters. This defeat appears in Tapology's 12-1 amateur record but is omitted from Sherdog's shorter ten-bout amateur list. Does not affect her later 9-1 PRO record.",
           "source": "https://www.kimura.se/millie-eriksson-besegrade-varldsmastarinnan-i-linkoping/",
           "sourceLabel": "Kimura · May 14 2022 split-decision loss to Millie Eriksson"
         },
@@ -29765,7 +29709,7 @@
           "date": "Feb. 14, 2023",
           "label": "AMATEUR WIN · Mercedes Custodio López · IMMAF 2022 Worlds",
           "kind": "win",
-          "detail": "Submitted Mercedes Custodio López by rear-naked choke at the February 14 world tournament. Sherdog lists round three at 1:00; Tapology-derived amateur ledgers show round two at 3:00. The disagreement remains unresolved; both refer to ONE completed fight, not separate bouts.",
+          "detail": "Submitted Mercedes Custodio López by rear-naked choke at the February 14 world tournament. Sherdog lists round three at 1:00; Tapology-derived amateur records show round two at 3:00. The disagreement remains unresolved; both refer to ONE completed fight, not separate bouts.",
           "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
           "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
         },
@@ -29845,7 +29789,7 @@
           "date": "Nov. 23, 2024",
           "label": "CANCELED · Annie Thatcher · HEX Fight Series 33",
           "kind": "booking",
-          "detail": "A scheduled matchup with Annie Thatcher at HEX Fight Series 33 on Nov. 23 appears canceled in multiple fight ledger archives. No verified explanation establishes which fighter withdrew or whether injury caused the cancellation; no MMA bout was completed or counted.",
+          "detail": "A scheduled matchup with Annie Thatcher at HEX Fight Series 33 on Nov. 23 appears canceled in multiple fight record archives. No verified explanation establishes which fighter withdrew or whether injury caused the cancellation; no MMA bout was completed or counted.",
           "source": "https://www.nextknockout.com/fighters/nina-nikolija-milosevic-349667",
           "sourceLabel": "NextKnockout · November 2024 Annie Thatcher canceled booking ledger"
         },
@@ -30015,7 +29959,7 @@
           "date": "May 1, 2010",
           "label": "AMATEUR WIN · Benjamin Sample · Las Vegas MMA",
           "kind": "win",
-          "detail": "First amateur MMA fight in the four-bout Sherdog ledger. Knocked out Benjamin Sample with a head kick in round two at the Las Vegas MMA Angelo vs. Thomas event. The finish's precise round time is unverified, not 0:00. Amateur record 1-0.",
+          "detail": "First amateur MMA fight in the four-bout Sherdog record. Knocked out Benjamin Sample with a head kick in round two at the Las Vegas MMA Angelo vs. Thomas event. The finish's precise round time is unverified, not 0:00. Amateur record 1-0.",
           "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
           "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
         },
@@ -30023,7 +29967,7 @@
           "date": "May 28, 2010",
           "label": "AMATEUR LOSS · Mac McNamara · Tuff-N-Uff",
           "kind": "loss",
-          "detail": "Lost a three-round split decision to Mac McNamara at Tuff-N-Uff Future Stars of MMA. His sole recorded amateur MMA defeat in Sherdog's ledger. Amateur record 1-1.",
+          "detail": "Lost a three-round split decision to Mac McNamara at Tuff-N-Uff Future Stars of MMA. His sole recorded amateur MMA defeat in Sherdog's record. Amateur record 1-1.",
           "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
           "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
         },
@@ -30031,7 +29975,7 @@
           "date": "Sept. 24, 2010",
           "label": "AMATEUR WIN · Alex Delgado · Tuff-N-Uff",
           "kind": "win",
-          "detail": "Stopped Alex Delgado by TKO (punches) at 0:16 of round two at Tuff-N-Uff Future Stars of MMA. Sherdog dates the bout September 24; other aggregated databases also show a September 10 Alex Delgado entry with the same finish, likely a duplicated/date-disputed listing. Amateur record 2-1 in documented ledger.",
+          "detail": "Stopped Alex Delgado by TKO (punches) at 0:16 of round two at Tuff-N-Uff Future Stars of MMA. Sherdog dates the bout September 24; other aggregated databases also show a September 10 Alex Delgado entry with the same finish, likely a duplicated/date-disputed listing. Amateur record 2-1 in documented record.",
           "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
           "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
         },
@@ -30079,7 +30023,7 @@
           "date": "Apr. 25, 2015",
           "label": "CANCELED · Jeff Barney · Golden Fights Cage Wars 21",
           "kind": "booking",
-          "detail": "An archived fight ledger lists a scheduled Jeff Barney bout for Golden Fights Cage Wars 21 as canceled. No independently verified explanation for the change or withdrawal was found. It is not a professional result.",
+          "detail": "An archived fight record lists a scheduled Jeff Barney bout for Golden Fights Cage Wars 21 as canceled. No independently verified explanation for the change or withdrawal was found. It is not a professional result.",
           "source": "https://www.nextknockout.com/fighters/jonny-parsons-312463",
           "sourceLabel": "NextKnockout · archived regional and UFC canceled bookings"
         },
@@ -30119,7 +30063,7 @@
           "date": "Nov. 11, 2017",
           "label": "Captures Hawaii 185-pound regional championship",
           "kind": "milestone",
-          "detail": "Parsons's UFC questionnaire states he won the 185-pound championship at War on the Valley Isle on Maui, Hawaii. The documented professional ledger links the championship to his knockout of Eldon Sproat.",
+          "detail": "Parsons's UFC questionnaire states he won the 185-pound championship at War on the Valley Isle on Maui, Hawaii. The documented professional record links the championship to his knockout of Eldon Sproat.",
           "source": "https://www.ufc.com/athlete/jonny-parsons",
           "sourceLabel": "UFC · official fighter questionnaire, martial arts background and results"
         },
@@ -30151,7 +30095,7 @@
           "date": "Apr. 18, 2020",
           "label": "CANCELED · Gil Guardado · WFC 127",
           "kind": "booking",
-          "detail": "A planned Gil Guardado bout attached to WFC 127 is listed as canceled, and the underlying event itself is marked canceled. This occurred during the onset of COVID-19 pandemic restrictions, but the exact event organizer's cancellation reason is not independently established in the reviewed fighter ledgers; do not presume fighter injury.",
+          "detail": "A planned Gil Guardado bout attached to WFC 127 is listed as canceled, and the underlying event itself is marked canceled. This occurred during the onset of COVID-19 pandemic restrictions, but the exact event organizer's cancellation reason is not independently established in the reviewed fighter records; do not presume fighter injury.",
           "source": "https://www.nextknockout.com/fighters/jonny-parsons-312463",
           "sourceLabel": "NextKnockout · archived regional and UFC canceled bookings"
         },
@@ -30191,7 +30135,7 @@
           "date": "Oct. 19, 2021",
           "label": "PRO WIN · Solomon Renfro · DWCS Season 5 Week 8",
           "kind": "win",
-          "detail": "Defeated Solomon Renfro by split decision after three rounds at Dana White's Contender Series 2021 Week 8, official scores 29-28, 28-29, 29-28. Pro record 8-3. This DWCS victory is counted in his professional record but NOT the official UFC Octagon ledger, which remained 0-0.",
+          "detail": "Defeated Solomon Renfro by split decision after three rounds at Dana White's Contender Series 2021 Week 8, official scores 29-28, 28-29, 29-28. Pro record 8-3. The victory counted toward his professional record, but not his official UFC record.",
           "source": "https://www.ufc.com/news/dana-whites-contender-series-season-5-results-and-scorecards-dwcs",
           "sourceLabel": "UFC · Oct. 2021 DWCS Week 8 official split decision"
         },
@@ -30449,7 +30393,7 @@
           "date": "Aug. 30, 2022",
           "label": "PRO LOSS · Yusaku Kinoshita · DWCS Season 6 Week 6",
           "kind": "loss",
-          "detail": "Lost the main-event welterweight bout to Yusaku Kinoshita by TKO (punches) at 0:43 of round three in Dana White's Contender Series Week 6. First professional MMA defeat; record became 5-1. UFC Octagon record remained 0-0, since DWCS is not an official UFC fight. A later interview mistakenly called this a decision loss; primary fight ledgers confirm stoppage.",
+          "detail": "Lost the main-event welterweight bout to Yusaku Kinoshita by TKO (punches) at 0:43 of round three in Dana White's Contender Series Week 6. First professional MMA defeat; record became 5-1. UFC Octagon record remained 0-0, since DWCS is not an official UFC fight. A later interview mistakenly called this a decision loss; primary fight records confirm stoppage.",
           "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
           "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
         },
@@ -30521,7 +30465,7 @@
           "date": "2023–2024",
           "label": "Remains active outside the UFC during sanction",
           "kind": "milestone",
-          "detail": "In 2026 Souza explained that he and Nova União arranged his release from the suspended UFC arrangement to earn income by competing for promotions not applying USADA's UFC ineligibility. He continued training and completed one boxing bout and two Centurion FC MMA contests. These completed MMA fights remain on independent fight ledgers; do not automatically delete their records as a consequence of the UFC sanction.",
+          "detail": "In 2026 Souza explained that he and Nova União arranged his release from the suspended UFC arrangement to earn income by competing for promotions not applying USADA's UFC ineligibility. He continued training and completed one boxing bout and two Centurion FC MMA contests. These completed MMA fights remain on independent fight records; the UFC sanction did not erase those fight results.",
           "source": "https://www.mmafighting.com/ufc/490963/ufc-macau-newcomer-jose-souza-opens-up-on-difficulties-during-doping-suspension",
           "sourceLabel": "MMA Fighting · May 30 2026 exclusive interview about injury, injection, suspension and continued career"
         },
