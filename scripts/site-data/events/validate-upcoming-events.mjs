@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 const beforePath=process.argv[2]||'';
 const dataPath=process.argv[3]||'_data/upcoming_events.json';
-const templatePath=process.argv[4]||'upcoming-events.html';
+const templatePath=process.argv[4]||'assets/data/event-map-live.json';
 const failures=[];
 const tracking=/(?:piwik|matomo|google-analytics|googletagmanager|doubleclick|analytics|tracking|pixel|beacon|acs01\.rvlvr\.co|\/collect(?:[/?]|$)|\/track(?:[/?]|$))/i;
 const badPflPortrait=/(?:\/articles?\/|\/news\/|\/videos?\/thumbnails?\/|\/thumbnails?\/|\/fighters\/(?:bodyshots|headshots)\/default-(?:male|female)\.(?:png|jpe?g|webp)(?:\?|$))/i;
@@ -76,10 +76,10 @@ if(before?.events&&after?.events){
 
 let template='';try{template=await fs.readFile(templatePath,'utf8');}catch(error){failures.push(`Could not read ${templatePath}: ${error.message}`);}
 if(template){
-  if(!/site\.data\.upcoming_events\.events/.test(template))failures.push('Upcoming Events template does not render unified data.');
-  if(/site\.data\.ufc_events|assign\s+pfl_|assign\s+sac\b|assign\s+sacr\b|assign\s+sacp\b/i.test(template))failures.push('Legacy hard-coded/old event data references remain in Upcoming Events template.');
+  if(!/site\.data\.upcoming_events\.events/.test(template))failures.push('Event Map bridge does not render unified event data.');
+  if(/site\.data\.ufc_events|assign\s+pfl_|assign\s+sac\b|assign\s+sacr\b|assign\s+sacp\b/i.test(template))failures.push('Legacy hard-coded/old event data references remain in Event Map bridge.');
   const opens=(template.match(/\{%\s*(?:for|if|unless|case)\b/gi)||[]).length,closes=(template.match(/\{%\s*end(?:for|if|unless|case)\b/gi)||[]).length;
-  if(opens!==closes)failures.push(`Upcoming Events Liquid blocks are unbalanced: ${opens} opens, ${closes} closes.`);
+  if(opens!==closes)failures.push(`Event Map bridge Liquid blocks are unbalanced: ${opens} opens, ${closes} closes.`);
 }
 
 if(failures.length){console.error('Upcoming Events validation failed:');for(const failure of failures)console.error(`- ${failure}`);process.exit(1);}

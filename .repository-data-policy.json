@@ -212,7 +212,7 @@
         "scripts/site-data/events/diff-upcoming-events.mjs"
       ],
       "consumers": [
-        "upcoming-events.html",
+        "assets/data/event-map-live.json",
         "scripts/matchmaker/update-matchmaker.mjs",
         "scripts/site-data/events"
       ],
@@ -252,7 +252,7 @@
       ],
       "consumers": [
         "assets/site-ticker.js",
-        "browser:event-map-and-fight-card-surfaces"
+        "browser:event-map-and-site-ticker"
       ],
       "safeToRegenerate": true,
       "safeToDeleteFromRepository": false,
@@ -729,44 +729,6 @@
       ],
       "consumers": [
         "on-this-day.html"
-      ],
-      "safeToRegenerate": true,
-      "safeToDeleteFromRepository": false,
-      "publicContract": true
-    },
-    {
-      "id": "picker-lcp-portrait-build-cache",
-      "storage": "build-time",
-      "paths": [
-        "_data/picker_lcp_portrait.json"
-      ],
-      "lifecycle": "generated-build-data",
-      "owner": "ufc",
-      "producers": [
-        "scripts/site-data/ufc/cache-picker-lcp-portrait.mjs"
-      ],
-      "consumers": [
-        "_includes/fight-card-picker-event.html",
-        "_layouts/default.html"
-      ],
-      "safeToRegenerate": true,
-      "safeToDeleteFromRepository": false,
-      "publicContract": false
-    },
-    {
-      "id": "picker-lcp-portrait-image-cache",
-      "storage": "public-runtime",
-      "prefixes": [
-        "assets/data/picker-lcp-portrait-"
-      ],
-      "lifecycle": "generated-public-runtime",
-      "owner": "ufc",
-      "producers": [
-        "scripts/site-data/ufc/cache-picker-lcp-portrait.mjs"
-      ],
-      "consumers": [
-        "_includes/fight-card-picker-event.html",
-        "_layouts/default.html"
       ],
       "safeToRegenerate": true,
       "safeToDeleteFromRepository": false,

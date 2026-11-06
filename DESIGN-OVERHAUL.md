@@ -54,7 +54,6 @@ These are product/structure decisions, not visual-style decisions:
 
 - article hierarchy
 - News Wire
-- Fight Cards and picks
 - Event Map
 - On This Day
 - UFC Roster

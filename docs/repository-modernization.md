@@ -87,7 +87,6 @@ Public routes that later stages must continue to protect:
 - `/`
 - `/news/`
 - `/breakdowns/`
-- `/upcoming-events/`
 - `/event-map/`
 - `/on-this-day/`
 - `/ufc-roster/`
