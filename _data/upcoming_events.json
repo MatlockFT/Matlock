@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-05T19:05:42.039Z",
+  "generated_at": "2026-11-06T00:10:40.217Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-11-07-fight-card",
@@ -264,7 +264,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/DELANO_JOSE_L_04-04.png?itok=yx6OJq5I",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-125"
+                  "moneyline": "-120"
                 },
                 {
                   "name": "Murtazali Magomedov",
@@ -289,7 +289,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/BASHI_AUSTIN_L_07-18.png?itok=ICEox51M",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-500"
+                  "moneyline": "-480"
                 },
                 {
                   "name": "Carlos Calderon",
@@ -297,7 +297,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-11/CALDERON_CARLOS_R.png?itok=k8EF8zCQ",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+340"
+                  "moneyline": "+350"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -314,7 +314,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-295"
+                  "moneyline": "-290"
                 },
                 {
                   "name": "Andre Petroski",
@@ -322,7 +322,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+220"
+                  "moneyline": "+225"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -339,7 +339,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/KO_SEOKHYEON_L_06-21.png?itok=QRZ7e0tm",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-800"
+                  "moneyline": "-750"
                 },
                 {
                   "name": "Wellington Turman",
@@ -347,7 +347,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-11/TURMAN_WELLINGTON_L_12-02.png?itok=icqJ0amp",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+480"
+                  "moneyline": "+490"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -364,7 +364,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/PARSONS_JONNY_L_07-22.png?itok=r2aeVJ95",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+186"
+                  "moneyline": "+184"
                 },
                 {
                   "name": "José Souza",
@@ -372,7 +372,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/SOUZA_JOSE_R_05-30.png?itok=-YP5UjdJ",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-245"
+                  "moneyline": "-230"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -678,10 +678,10 @@
       "source_card_url": "https://jp.rizinff.com/_ct/17864056"
     },
     {
-      "id": "ufc-2026-11-14-polymarket-ufc-334",
+      "id": "ufc-334-2026-11-14-fight-card",
       "promotion_key": "ufc",
-      "promotion": "UFC",
-      "title": "Polymarket UFC 334",
+      "promotion": "UFC 334",
+      "title": "Gane vs Hokit",
       "date": "2026-11-14",
       "date_label": "Saturday · November 14, 2026",
       "starts_at": "",
@@ -988,29 +988,6 @@
             {
               "order": 12,
               "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Nazim Sadykhov",
-                  "initials": "NS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/SADYKHOV_NAZIM_L_12-06.png?itok=ccjzeBfj",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Jefferson Nascimento",
-                  "initials": "JN",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 13,
-              "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
                 {
@@ -1032,7 +1009,7 @@
               ]
             },
             {
-              "order": 14,
+              "order": 13,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -1156,17 +1133,17 @@
               "weight_class": "Flyweight Bout",
               "fighters": [
                 {
-                  "name": "Asu Almabayev",
-                  "initials": "AA",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ALMABAYEV_ASU_L_06-27.png?itok=Y0SjNrdV",
+                  "name": "Kyoji Horiguchi",
+                  "initials": "KH",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/HORIGUCHI_KYOJI_R_11-22.png?itok=Dn6SxnwP",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
                 },
                 {
-                  "name": "Kyoji Horiguchi",
-                  "initials": "KH",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/HORIGUCHI_KYOJI_R_11-22.png?itok=Dn6SxnwP",
+                  "name": "Asu Almabayev",
+                  "initials": "AA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ALMABAYEV_ASU_L_06-27.png?itok=Y0SjNrdV",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
