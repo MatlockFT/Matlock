@@ -135,6 +135,11 @@ page_scripts:
               {% endunless %}
             {% endif %}
           {% endfor %}
+          {% if member_story_count == 0 %}
+            <div class="v3-member-coming-soon">
+              <p>Coming soon</p>
+            </div>
+          {% endif %}
         </div>
       </aside>
     </section>
