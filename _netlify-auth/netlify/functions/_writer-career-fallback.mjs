@@ -258,7 +258,7 @@ export function parseUfcFightCareerProfile(html, sourceUrl = null) {
     history,
     recent:history.slice(0,5),
     latestBoutDate:history[0]?.date || null,
-    historyComplete:history.length >= expectedFights,
+    historyComplete:verifiedHistory,
     career:{
       winsByKnockout,
       winsBySubmission,
@@ -291,7 +291,6 @@ export function parseSherdogCareerProfile(html, sourceUrl = null) {
 
   const wins = Number(winsMatch[1]);
   const losses = Number(lossesMatch[1]);
-  const draws = Number(text.match(/\bDraws?\s+(\d+)\b/i)?.[1] || 0);
   const start = winsMatch.index ?? -1;
   const end = lossesMatch.index ?? -1;
   if (start < 0 || end <= start) return null;
@@ -320,7 +319,13 @@ export function parseSherdogCareerProfile(html, sourceUrl = null) {
     : source;
 
   const history = parseSherdogHistory(source);
-  const expectedFights = wins + losses + draws;
+  // Sherdog lists header wins/losses, not a reliable header draw counter.
+  // A page-wide "Draws 3" regex can accidentally capture an unrelated
+  // amateur/related-content number (Mason Iacobellis was affected).
+  const winsInHistory=history.filter(row=>row.result==='W').length;
+  const lossesInHistory=history.filter(row=>row.result==='L').length;
+  const draws=history.filter(row=>row.result==='D').length;
+  const verifiedHistory=winsInHistory===wins && lossesInHistory===losses;
   return {
     source:'Sherdog',
     sourceUrl,
