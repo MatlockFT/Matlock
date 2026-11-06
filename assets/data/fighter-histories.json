@@ -1,5 +1,5 @@
 {
-  "version": 57,
+  "version": 58,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -30136,12 +30136,44 @@
           "sourceLabel": "Rede Amazônica / Globo · 2023 interview revisited June 2026"
         },
         {
+          "date": "Around 2012 (age ten)",
+          "label": "Expands from jiu-jitsu into Muay Thai",
+          "kind": "training",
+          "detail": "In a 2022 interview, Souza explained that his father first encouraged him to train in jiu-jitsu when he was eight. About two years later he began Muay Thai and became interested in combining disciplines after watching MMA practices at the gym. The 2012 year is approximate, derived from his age, not a confirmed start date.",
+          "source": "https://ge.globo.com/combate/noticia/2022/08/29/contender-henrique-canela-mira-vaga-no-ufc-inspirado-por-aldo-e-ketlen-vieira.ghtml",
+          "sourceLabel": "ge / Globo Combate · August 29, 2022 interview with José Henrique"
+        },
+        {
+          "date": "Around 2017 (age 15)",
+          "label": "Begins MMA sparring while still training in Manaus",
+          "kind": "training",
+          "detail": "Souza said he was already sparring with MMA athletes by age 15, with experienced partners moderating their intensity because he was younger. He recalled deciding during this period that he wanted a professional fighting career. Exact start month unverified.",
+          "source": "https://ge.globo.com/combate/noticia/2022/08/29/contender-henrique-canela-mira-vaga-no-ufc-inspirado-por-aldo-e-ketlen-vieira.ghtml",
+          "sourceLabel": "ge / Globo Combate · August 29, 2022 interview with José Henrique"
+        },
+        {
+          "date": "Around 2019 (age 17; before permanent move)",
+          "label": "Márcio Pontes introduces Souza to Nova União through sparring footage",
+          "kind": "training",
+          "detail": "Manaus coach Márcio Pontes filmed Souza sparring and sent the footage to Nova União coach André Pederneiras, who invited him to train in Rio de Janeiro. Souza recalled an initial stay of about ten days before returning to Manaus to finish school; after completing his studies he moved to Rio more permanently. Precise visit and move dates are not given.",
+          "source": "https://ge.globo.com/combate/noticia/2022/08/29/contender-henrique-canela-mira-vaga-no-ufc-inspirado-por-aldo-e-ketlen-vieira.ghtml",
+          "sourceLabel": "ge / Globo Combate · August 29, 2022 interview with José Henrique"
+        },
+        {
           "date": "Around 2019 (age 17)",
           "label": "Leaves Manaus to train at Nova União in Rio de Janeiro",
           "kind": "training",
           "detail": "In a May 2023 interview revisited by Rede Amazônica in 2026, Souza said he moved from Manaus to Rio de Janeiro at age 17 to develop as a fighter. He trained with Andre Pederneiras's Nova União team, citing José Aldo as an inspiration and later a personal friend. Exact month of relocation is unverified.",
           "source": "https://redeglobo.globo.com/redeamazonica/zappeando/noticia/tbtdozapp-relembre-entrevista-de-canela-campeao-do-ufc-china.ghtml",
           "sourceLabel": "Rede Amazônica / Globo · 2023 interview revisited June 2026"
+        },
+        {
+          "date": "Around 2019–2020 (six-month stay; dates approximate)",
+          "label": "Ketlen Vieira houses Souza during initial relocation to Rio",
+          "kind": "milestone",
+          "detail": "Souza said he had known Ketlen Vieira from training in Manaus and that, when he moved to Rio without a place to live, Vieira and her partner Giu Pereira let him stay for six months without charging him. Their assistance supported his transition to Nova União. The exact six-month window is not reported.",
+          "source": "https://ge.globo.com/combate/noticia/2022/08/29/contender-henrique-canela-mira-vaga-no-ufc-inspirado-por-aldo-e-ketlen-vieira.ghtml",
+          "sourceLabel": "ge / Globo Combate · August 29, 2022 interview with José Henrique"
         },
         {
           "date": "2019–2022 (amateur documentation review)",
@@ -30198,6 +30230,14 @@
           "detail": "His UFC questionnaire claims he won a professional boxing bout in July 2022, but Tapology records a boxing-rules victory over Leonardo Guimarães on July 2, 2023. The dated matchup occurred during his later UFC anti-doping suspension. The conflicting year is flagged instead of inventing a second boxing contest.",
           "source": "https://www.tapology.com/fightcenter/fighters/289580-jose-henrique-canela",
           "sourceLabel": "Tapology · fighter identity, 2023 boxing and 2026 canceled-booking listing"
+        },
+        {
+          "date": "August 2022 (before Aug. 30 DWCS bout)",
+          "label": "Drops from middleweight to welterweight for first time",
+          "kind": "milestone",
+          "detail": "Ahead of his Yusaku Kinoshita bout, Souza told Globo's Combate that DWCS would be his first fight at welterweight (170 lb/77 kg), having previously competed at middleweight (185 lb/84 kg). André Pederneiras had discussed the opportunity after his May 2022 LFA victory. This is a division-change milestone, not an extra contest.",
+          "source": "https://ge.globo.com/combate/noticia/2022/08/29/contender-henrique-canela-mira-vaga-no-ufc-inspirado-por-aldo-e-ketlen-vieira.ghtml",
+          "sourceLabel": "ge / Globo Combate · August 29, 2022 interview with José Henrique"
         },
         {
           "date": "Aug. 30, 2022",
