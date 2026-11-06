@@ -4,9 +4,9 @@
  */
 
 .news-page-v3 {
-    width: min(calc(100% - 2rem), 1880px);
+    width: min(calc(100% - var(--v3-page-inline)), 1380px);
     margin: 0 auto;
-    padding: .8rem 0 clamp(4rem, 7vw, 7rem);
+    padding: .8rem 0 var(--v3-page-bottom);
     background: var(--v3-paper);
     color: var(--v3-ink);
 }
@@ -116,7 +116,7 @@
 .news-page-v3 .news-lead-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.78fr) minmax(300px, .72fr);
-    gap: clamp(1.3rem, 2.4vw, 2.4rem);
+    gap: clamp(1rem, 1.8vw, 1.8rem);
     align-items: start;
 }
 
@@ -319,7 +319,7 @@
 
 /* On This Day becomes another newspaper section rather than a card deck. */
 .news-page-v3 .otd-compact {
-    margin: clamp(2.8rem, 5vw, 4.5rem) 0 0;
+    margin: clamp(2rem, 3.5vw, 3.2rem) 0 0;
     padding: .85rem 0 1rem;
     border-top: 3px solid var(--v3-ink);
     border-bottom: 0;
@@ -417,7 +417,7 @@
 
 /* More stories: image + headline grid, no floating AI-card treatment. */
 .news-page-v3 .news-more {
-    margin-top: clamp(3rem, 6vw, 5.5rem);
+    margin-top: clamp(2rem, 3.8vw, 3.5rem);
     padding-top: .85rem;
     border-top: 3px solid var(--v3-ink);
 }
@@ -454,7 +454,7 @@
 
 .news-page-v3 .news-more-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2rem clamp(1.3rem, 2.6vw, 2.5rem);
+    gap: 1.5rem clamp(1rem, 2vw, 1.9rem);
 }
 
 .news-page-v3 .news-card {
@@ -617,7 +617,7 @@ html.v3-theme-transitioning .news-page-v3 .otd-compact-item {
 
 @media (max-width: 760px) {
     .news-page-v3 {
-        width: min(calc(100% - 1.4rem), 1380px);
+        width: min(calc(100% - var(--v3-page-inline)), 1380px);
     }
 
     .news-page-v3 .news-page-header {
