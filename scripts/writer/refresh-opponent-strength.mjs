@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import { parseSherdogCareerProfile } from '../../_netlify-auth/netlify/functions/_writer-career-fallback.mjs';
+import { calculateOpponentQuality } from './opponent-quality.mjs';
 
 const POST_PATH_INPUT = String(process.env.WRITER_STRENGTH_POST || '').trim();
 const CACHE_PATH = 'assets/data/writer-opponent-strength.json';
@@ -213,17 +214,15 @@ async function resolveSherdogProfile(name,eventFighters,cacheEntry,expectedRecor
 async function sherdogRecordLookup(url,expectedName) {
   let html;
   try { html=await fetchText(url,{attempts:3,timeout:12000}); } catch { return null; }
-  const clean=text(html);
-  const name=text(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || expectedName);
-  const wins=clean.match(/\bWins\s+(\d+)\b/i);
-  const losses=clean.match(/\bLosses\s+(\d+)\b/i);
-  if(!wins||!losses) return null;
-  const draws=clean.match(/\bDraws?\s+(\d+)\b/i);
+  const profile=parseSherdogCareerProfile(html,url);
+  if(!profile?.record || !profile?.name || !likelySameName(profile.name,expectedName)) return null;
   return {
-    name:name||expectedName,
-    record:wins[1]+'-'+losses[1]+'-'+(draws?.[1]||0),
+    name:profile.name,
+    record:profile.record,
     source:'Sherdog',
-    sourceUrl:url
+    sourceUrl:url,
+    historyComplete:profile.historyComplete === true,
+    history:Array.isArray(profile.history) ? profile.history : []
   };
 }
 
@@ -509,7 +508,7 @@ await mapLimit([...opponentTargets.values()],4,async target=>{
   const name=target.name;
   const cacheKey=normalize(name);
   const cached=existing.opponents[cacheKey];
-  if(cached?.record && cached?.sourceUrl===target.url && Date.now()-Date.parse(cached.checkedAt||0)<MAX_RECORD_AGE_MS){
+  if(cached?.record && cached?.sourceUrl===target.url && cached.historyComplete===true && Array.isArray(cached.history) && Date.now()-Date.parse(cached.checkedAt||0)<MAX_RECORD_AGE_MS){
     opponentRecords.set(cacheKey,cached);
     return;
   }
@@ -556,7 +555,10 @@ for(const name of targetNames){
     console.warn('WARNING: No opponent W/L denominator for '+name+'; retaining existing data.');
     continue;
   }
+  const quality=calculateOpponentQuality(profile.history,opponentRecords);
+  if(!quality) console.warn('Opponent Quality withheld for '+name+': one or more verified historical opponent ledgers unavailable.');
   const strength={
+    quality,
     record:wins+'-'+losses,
     winPct:Math.round(wins/denominator*100),
     wins,losses,draws,
@@ -602,6 +604,8 @@ const updatedMarkdown=markdown.replace(
       // This refresh is responsible only for opponent-strength fields.
       fighter.opponentsRecord=cached.opponentStrength.record;
       fighter.opponentsPct=cached.opponentStrength.winPct+'%';
+      if(cached.opponentStrength.quality?.complete) fighter.opponentQuality=cached.opponentStrength.quality;
+      else delete fighter.opponentQuality;
       touched=true;
     }
     if(!touched) return whole;
@@ -624,7 +628,12 @@ const updatedMarkdown=markdown.replace(
         '<div class="fc-opponent-stat"><strong>'+escapeHtml(b.opponentsRecord||'—')+'</strong><span>'+
         escapeHtml(b.opponentsPct||'')+'</span></div></div>'
       : '';
-    return prefix+opponents+tail;
+    const qa=Number.isFinite(a.opponentQuality?.score) ? a.opponentQuality : null;
+    const qb=Number.isFinite(b.opponentQuality?.score) ? b.opponentQuality : null;
+    const quality=(qa || qb)
+      ? '<div class="fc-opponent-quality"><div class="fc-quality-value"><strong>'+escapeHtml(qa ? qa.score.toFixed(1) : '—')+'</strong><span>'+escapeHtml(qa ? 'Recent 6: '+qa.recent6.toFixed(1) : 'Awaiting verified history')+'</span></div><div class="fc-quality-label">OPPONENT QUALITY <small>FULL CAREER · /100</small></div><div class="fc-quality-value"><strong>'+escapeHtml(qb ? qb.score.toFixed(1) : '—')+'</strong><span>'+escapeHtml(qb ? 'Recent 6: '+qb.recent6.toFixed(1) : 'Awaiting verified history')+'</span></div></div>'
+      : '';
+    return prefix+opponents+quality+tail;
   }
 );
 await fs.writeFile(POST_PATH,updatedMarkdown);
