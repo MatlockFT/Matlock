@@ -297,6 +297,20 @@ jobs:
           node scripts/qa/check-site.mjs _site
           node scripts/qa/check-retired-fight-cards.mjs _site
 
+      - name: Verify Broadcast Control is absent, and public player preserved
+        run: |
+          set -euo pipefail
+          test ! -e broadcast-control.html
+          test ! -e assets/broadcast-control.js
+          test ! -e assets/broadcast-control.css
+          test ! -e assets/broadcast-news-pool.js
+          test ! -e _site/broadcast/control/index.html
+          test ! -e _site/broadcast-control.html
+          test ! -e _site/assets/broadcast-control.js
+          test ! -e _site/assets/broadcast-control.css
+          test -s _site/broadcast/index.html
+          echo "Broadcast Control removed; existing playback page preserved."
+
       - name: Check search and AdSense readiness
         run: npm run check:search
 
