@@ -214,12 +214,9 @@ page_scripts:
               <span>Tags <small>comma separated</small></span>
               <input type="text" data-field="tags" placeholder="UFC 332, Fighter Name, Lightweight">
             </label>
-            <label class="writer-field writer-members-toggle">
-              <input type="checkbox" data-field="membersOnly" aria-describedby="writer-members-toggle-help">
-              <span class="writer-members-toggle-copy">
-                <span class="writer-members-toggle-title">Members only</span>
-                <small id="writer-members-toggle-help">Choose before the first save. Full text goes to private storage; the public listing stays locked.</small>
-              </span>
+            <label class="writer-members-toggle" title="Select before the first save. The full article is stored privately; the public site shows a locked listing.">
+              <input type="checkbox" data-field="membersOnly">
+              <span>Members only</span>
             </label>
           </div>
 
