@@ -11,7 +11,7 @@ tags:
   - Johnny Walker
   - Tatiana Suarez
   - Virna Jandiroba
-show_toc: false
+show_toc: true
 published: true
 pinned: false
 listing_visibility: normal
