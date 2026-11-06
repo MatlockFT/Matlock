@@ -35,7 +35,6 @@
     const detailSource = page.querySelector('[data-detail-source]');
     const detailCalendar = page.querySelector('[data-detail-calendar]');
     const detailShare = page.querySelector('[data-detail-share]');
-    const detailPicker = page.querySelector('[data-detail-picker]');
     const clusterCard = page.querySelector('[data-cluster-card]');
     const clusterCount = page.querySelector('[data-cluster-count]');
     const clusterTitle = page.querySelector('[data-cluster-title]');
@@ -158,8 +157,6 @@
     let stateFeatureByCode = new Map();
     let allEvents = [];
     let filteredEvents = [];
-    let pickerEventIds = new Set();
-    let pickerEvents = [];
     let eventOverrides = {};
     let currentRange = 'all';
     let selectedEventId = '';
@@ -298,27 +295,6 @@
         };
     }
 
-    function canonicalPromotion(value) {
-        const text = normalizeText(value)
-  .normalize('NFD')
-  .replace(/[\u0300-\u036f]/g, '')
-  .toLowerCase()
-  .replace(/[^a-z0-9]+/g, ' ')
-  .trim();
-        if (/^(ultimate fighting championship|ufc)\b/.test(text)) return 'ufc';
-        if (/^(legacy fighting alliance|lfa)\b/.test(text)) return 'lfa';
-        if (/^(cage fury fighting championships|cffc)\b/.test(text)) return 'cffc';
-        if (/^(professional fighters league|pfl)\b/.test(text)) return 'pfl';
-        if (/^rizin\b/.test(text)) return 'rizin';
-        if (/^(one championship|one)\b/.test(text)) return 'one';
-        if (/^(dana whites contender series|dwcs)\b/.test(text)) return 'dwcs';
-        return text.replace(/\b\d+\b.*$/, '').trim();
-    }
-
-    function eventNumber(value) {
-        return normalizeText(value).match(/\b(\d{1,4})\b/)?.[1] || '';
-    }
-
     function mergedEvent(event) {
         if (!event) return null;
         const override = eventOverrides[event.id] || eventOverrides[event.mapId] || {};
@@ -424,32 +400,6 @@
   if (requestId === posterRequest) hidePoster();
         };
         probe.src = url;
-    }
-
-    function pickerIdFor(event) {
-        if (!event) return '';
-        const direct = pickerEvents.find(item => item.id === event.id || item.id === event.mapId);
-        if (direct) return direct.id;
-
-        const title = normalizeText(event.title).toLowerCase();
-        const date = normalizeText(event.date);
-        const promotion = canonicalPromotion(event.promotion);
-        const number = eventNumber(event.title);
-        const exact = pickerEvents.find(item =>
-  normalizeText(item.title).toLowerCase() === title
-  && (!date || item.date === date)
-        );
-        if (exact) return exact.id;
-
-        const samePromotionDate = pickerEvents.filter(item =>
-  (!date || item.date === date)
-  && (!promotion || canonicalPromotion(item.promotion) === promotion)
-        );
-        if (number) {
-  const numbered = samePromotionDate.find(item => eventNumber(item.title) === number);
-  if (numbered) return numbered.id;
-        }
-        return samePromotionDate.length === 1 ? samePromotionDate[0].id : '';
     }
 
     function setHoverPreview(active) {
@@ -801,10 +751,6 @@
         detailCalendar.href = calendarHref(event);
         detailCalendar.download = `${normalizeText(event.title || event.promotion || 'mma-event').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'mma-event'}.ics`;
 
-        const pickerId = pickerIdFor(event);
-        detailPicker.hidden = !pickerId;
-        const encodedPickerId = encodeURIComponent(pickerId);
-        detailPicker.href = pickerId ? `/upcoming-events/?event=${encodedPickerId}#${encodedPickerId}` : '/upcoming-events/';
         updateDetailLock();
     }
 
@@ -1205,8 +1151,6 @@
 
             d3 = d3Module;
             topojson = topoModule;
-            pickerEventIds = new Set(Array.isArray(eventData?.picker_event_ids) ? eventData.picker_event_ids : []);
-            pickerEvents = Array.isArray(eventData?.picker_events) ? eventData.picker_events : [];
             eventOverrides = eventData?.event_overrides && typeof eventData.event_overrides === 'object'
                 ? eventData.event_overrides
                 : {};

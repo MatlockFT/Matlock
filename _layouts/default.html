@@ -72,41 +72,6 @@
         <link rel="preload" href="{{ '/assets/fonts/herkey-regular-v1.woff2' | relative_url }}?v={{ site.asset_version }}" as="font" type="font/woff2" crossorigin>
     {% endif %}
 
-    {% if page.permalink == '/upcoming-events/' %}
-        {% assign picker_preload_events = site.data.upcoming_events.events | concat: site.data.upcoming_events_regional.events | sort: "date" %}
-        {% assign picker_preload_event = picker_preload_events | first %}
-        {% for section in picker_preload_event.sections %}
-            {% if section.kind == 'main' and section.bouts.size > 0 %}
-                {% assign picker_preload_bout = section.bouts | first %}
-                {% assign picker_lcp_cache = site.data.picker_lcp_portrait %}
-                {% for picker_preload_fighter in picker_preload_bout.fighters %}
-                    {% assign picker_preload_override = site.data.fighter_portrait_overrides[picker_preload_fighter.name] %}
-                    {% assign picker_preload_source = picker_preload_fighter.image | replace: 'https://ufc.com/', 'https://www.ufc.com/' %}
-                    {% assign picker_cached_url = '' %}
-                    {% if picker_lcp_cache.event_id == picker_preload_event.id %}
-                        {% for cached in picker_lcp_cache.portraits %}
-                            {% if cached.fighter_name == picker_preload_fighter.name and cached.source_url == picker_preload_source %}
-                                {% assign picker_cached_url = cached.image_url %}
-                                {% break %}
-                            {% endif %}
-                        {% endfor %}
-                        {% if picker_cached_url == blank and picker_lcp_cache.fighter_name == picker_preload_fighter.name and picker_lcp_cache.source_url == picker_preload_source %}
-                            {% assign picker_cached_url = picker_lcp_cache.image_url %}
-                        {% endif %}
-                    {% endif %}
-                    {% unless picker_preload_fighter.image == blank or picker_preload_override.mode == 'fallback' %}
-                        {% if picker_cached_url != blank %}
-                            <link rel="preload" as="image" href="{{ picker_cached_url | relative_url | escape }}" fetchpriority="high">
-                        {% else %}
-                            <link rel="preload" as="image" href="{{ picker_preload_source | escape }}" fetchpriority="high" referrerpolicy="no-referrer">
-                        {% endif %}
-                    {% endunless %}
-                {% endfor %}
-                {% break %}
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-
     {% if page.permalink == '/on-this-day/' %}
         {% assign head_otd_key = site.time | date: "%m-%d" %}
         {% assign head_otd_lead = site.data.on_this_day_leads.leads[head_otd_key] %}
@@ -448,7 +413,6 @@
                         <h2>Explore</h2>
                         <a href="{{ '/news/' | relative_url }}">News</a>
                         <a href="{{ '/breakdowns/' | relative_url }}">Breakdowns</a>
-                        <a href="{{ '/upcoming-events/' | relative_url }}">Fight Cards</a>
                         <a href="{{ '/on-this-day/' | relative_url }}">On This Day</a>
                     </section>
 

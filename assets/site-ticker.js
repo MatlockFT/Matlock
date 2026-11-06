@@ -342,7 +342,7 @@
     function eventRow(item) {
         const li = document.createElement("li");
         const event = item.event;
-        const url = event.official_url || "/upcoming-events/";
+        const url = event.official_url || "/event-map/";
         const link = document.createElement("a");
         link.className = "site-event-row";
         link.href = url;

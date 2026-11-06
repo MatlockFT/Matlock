@@ -38,7 +38,7 @@
         return score;
     }
 
-    function render(event, pickerAvailable) {
+    function render(event) {
         if (!event?.id || post.querySelector('[data-post-event-context]')) return;
         const section = document.createElement('aside');
         section.className = 'post-event-context';
@@ -58,13 +58,6 @@
         map.textContent = 'Event map';
         actions.append(map);
 
-        if (pickerAvailable) {
-            const picks = document.createElement('a');
-            picks.href = `/upcoming-events/#${encodeURIComponent(event.id)}`;
-            picks.textContent = 'Make picks';
-            actions.prepend(picks);
-        }
-
         section.append(copy, actions);
         const anchor = post.querySelector('.post-featured-image') || post.querySelector('.post-header');
         anchor?.insertAdjacentElement('afterend', section);
@@ -74,7 +67,6 @@
         .then(response => response.ok ? response.json() : Promise.reject(new Error(`HTTP ${response.status}`)))
         .then(data => {
             const events = Array.isArray(data?.events) ? data.events : [];
-            const pickerIds = new Set((data?.picker_event_ids || []).map(String));
             const ranked = events
                 .map(event => ({ event, score: eventScore(event) }))
                 .filter(item => item.score >= 6)
@@ -82,8 +74,7 @@
             if (!ranked.length) return;
             const best = ranked[0];
             if (ranked[1] && ranked[1].score === best.score && best.score < 10) return;
-            const id = String(best.event.id || '');
-            render(best.event, pickerIds.has(id));
+            render(best.event);
         })
         .catch(() => {});
 })();
