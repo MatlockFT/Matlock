@@ -76,6 +76,7 @@ jobs:
       - name: Check browser and data scripts
         run: |
           node --check assets/site.js
+          node --check assets/autumn-leaves.js
           node --check assets/site-ticker.js
           node --check assets/article-toc.js
           node --check assets/news-feed.js
