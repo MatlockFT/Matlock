@@ -114,7 +114,9 @@ I think Billy Elekana is in for a tough night. If Junior Tafa smacked him up, I 
 </section>
 Oh boy, this is gonna be a weird fight I think. Priscila's MMA career has been a tough one. Visa troubles, weight troubles, USADA troubles, knee troubles... yikes. She's on a three fight losing streak and 1-4 in her last five. Finished in three of those losses. Tough. Undoubtedly a must-win situation for her here but even then she might not get resigned. Upside for Cachoeira and it's always a really huge upside in WMMA is P O W E R. She's got power! Despite her losses, she's also fought the tougher caliber of competition.
 
-Nina I'm just not impressed with. I think her defensive reactions are pretty bad, I think she can be easily hit, I'm not particularly impressed with her striking at range. Sure, she's doing what she needs to putting away these shlubs so I can't knock her for that but how would Nina fare against Jasmine Jasudavicius, 
+Nina I'm just not impressed with. I think her defensive reactions are pretty bad, I think she can be easily hit, I'm not particularly impressed with her striking at range. Sure, she's doing what she needs to putting away these shlubs so I can't knock her for that but how would Nina fare against Jasmine Jasudavicius, Joselyn Edwards.. fuck.. even Chelsea Chandler? I'm not so certain.
+
+I gotta admit, there's something inside me that pulls beneath the surface wanting me to pick Cachoe
 
 ## Mitch Raposo vs. Marcos Degli
 
