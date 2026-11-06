@@ -1136,3 +1136,23 @@ html[data-theme="dark"] .v3-member-empty a {
     .v3-right-rail { padding: 1rem 0; }
     .v3-feature, .v3-feature:first-child, .v3-feature:last-child { padding: .85rem 0; }
 }
+
+/* Featured members-only article in the public homepage rail. */
+.v3-member-list .v3-member-story::before { display: none; }
+.v3-member-list .v3-member-story .v3-member-title,
+.v3-member-list .v3-member-story .v3-news-meta { margin-left: 0; }
+.v3-member-list .v3-member-story .v3-member-thumb {
+  display: block;
+  margin: 0 0 .8rem;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #18191b;
+}
+.v3-member-list .v3-member-story .v3-member-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.v3-member-list .v3-member-story .v3-member-title { line-height: 1.22; }
