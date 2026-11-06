@@ -1074,3 +1074,48 @@ html[data-theme="dark"] .v3-member-rail .v3-rail-head a {
 html[data-theme="dark"] .v3-member-empty a {
     color: #e3bd73;
 }
+
+
+/* Homepage lead: shorter, more readable headline lines on all screen sizes.
+   Keep the custom editorial face, but avoid the crowded 0.91 line-height. */
+.v3-lead h1 {
+    max-width: 100%;
+    margin: 0 0 .5rem;
+    font-size: clamp(2.35rem, 3.7vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -.018em;
+    text-wrap: balance;
+}
+
+.v3-lead-deck {
+    margin-top: 0;
+    max-width: 62ch;
+}
+
+/* Empty membership rail: an intentional placeholder, not a blank column. */
+.v3-member-list .v3-member-coming-soon {
+    grid-column: 1 / -1;
+    padding: 1.05rem 0 1.5rem;
+}
+
+.v3-member-coming-soon p {
+    margin: 0;
+    color: var(--v3-muted);
+    font-family: "Herkey", Georgia, "Times New Roman", serif;
+    font-size: clamp(1.25rem, 1.5vw, 1.55rem);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+@media (max-width: 780px) {
+    .v3-lead h1 {
+        font-size: clamp(2.25rem, 6.8vw, 3.3rem);
+        line-height: 1.09;
+    }
+}
+
+@media (max-width: 480px) {
+    .v3-lead h1 {
+        font-size: clamp(2.05rem, 8.3vw, 2.55rem);
+    }
+}
