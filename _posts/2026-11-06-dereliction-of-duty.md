@@ -5,7 +5,10 @@ description: "A collection of MMA's most egregious officiating failures, from qu
 date: 2026-11-06
 category: History
 author: Matlock
-image: ""
+image:
+  path: /assets/uploads/articles/2026/11/dereliction-of-duty/Dereliction-of-Duty-mw5fwxkl-55651bc9.jpg
+  alt: Dereliction of Duty
+  position: center center
 tags: []
 show_toc: false
 pinned: false
