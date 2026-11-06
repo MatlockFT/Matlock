@@ -6,7 +6,7 @@ The Tale of the Tape has two distinct measures:
 - **Opponents combined record**: the sum of the professional career W-L records of every opponent; uses the opponents' current records.
 - **Opponent Quality**: a **descriptive strength-of-schedule measure**, on a 0–100 point scale, that grades the opponent *immediately before* each professional fight and then averages across **every career fight**. An additional **Recent 6** average makes current opposition strength easy to compare. Scores are not win probabilities, betting odds, world rankings or percentiles.
 
-The model is independently implemented for Matlock Fight Talk. It uses transparent techniques similar in intent to Fight Matrix's point-in-time opposition evaluation and Tapology's recent-form / opponents'-opponents analysis, but does not reproduce either proprietary ranking algorithm.
+The model is independently implemented for MMA Matlock. It uses transparent techniques similar in intent to Fight Matrix's point-in-time opposition evaluation and Tapology's recent-form / opponents'-opponents analysis, but does not reproduce either proprietary ranking algorithm.
 
 ## Formula
 
