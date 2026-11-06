@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-11-06T16:55:44.136Z",
+  "updatedAt": "2026-11-06T17:48:08.060Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -3976,16 +3976,44 @@
     "bellator:2013-11-08:bellator-107": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T06:37:12.066Z",
-      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 107"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-11-06T17:46:42.995Z",
+      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 107",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2013-11-08-bellator-107-0f85894f4cccbdc3.jpg",
+      "imageAlt": "Bellator 107 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/20050-bellator-107",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/20050-bellator-107",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "0f85894f4cccbdc3ac317840e740ef3f56d0dde786cb3640d3503f33e3967eab",
+      "posterRegistryKey": "2013-11-08::bellator 107"
     },
     "bellator:2019-11-08:bellator-233": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T06:37:12.066Z",
-      "wikipediaTitle": "Bellator MMA in 2019#Bellator 233"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-11-06T17:47:09.321Z",
+      "wikipediaTitle": "Bellator MMA in 2019#Bellator 233",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2019-11-08-bellator-233-6ff0a770471b291c.jpg",
+      "imageAlt": "Bellator 233 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/62512-bellator-233-salter-vs-van-steenis",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/62512-bellator-233-salter-vs-van-steenis",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "6ff0a770471b291cda542c5db95a91de746db2e637a9501b2098141ca408efab",
+      "posterRegistryKey": "2019-11-08::bellator 233"
     },
     "pancrase:1993-11-08:pancrase-yes-we-are-hybrid-wrestlers-3": {
       "strategyVersion": 6,
@@ -13070,12 +13098,23 @@
     "ufc:2025-11-08:ufc-fight-night-bonfim-vs-brown": {
       "strategyVersion": 6,
       "status": "pageimage-kept",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T06:37:12.066Z",
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-11-06T17:48:07.900Z",
       "wikipediaTitle": "UFC Fight Night: Bonfim vs. Brown",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/09/UFC_on_ESPN_73.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "imageAlt": "UFC Fight Night: Bonfim vs. Brown event image",
-      "imageCredit": "Wikipedia"
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2025-11-08-ufc-fight-night-bonfim-vs-brown-a97bb056370e76f9.jpg",
+      "imageAlt": "UFC Fight Night: Bonfim vs. Brown event poster",
+      "imageCredit": "Tapology",
+      "imageStatus": "resolved",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/132761-ufc-fight-night",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/132761-ufc-fight-night",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "a97bb056370e76f9fb59477a18a5a5d2ea07f9e19396073c46b990b1cddd50a0",
+      "posterRegistryKey": "2025-11-08::ufc fight night bonfim vs brown"
     },
     "ufc:2026-07-11:ufc-329-mcgregor-vs-holloway-2": {
       "strategyVersion": 6,
