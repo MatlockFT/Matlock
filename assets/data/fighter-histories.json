@@ -1,5 +1,5 @@
 {
-  "version": 55,
+  "version": 56,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -26229,6 +26229,14 @@
       "division": "Welterweight",
       "items": [
         {
+          "date": "Around 2011–2012 (age 15)",
+          "label": "Begins Muay Thai training to lose weight; develops ambition to fight professionally",
+          "kind": "training",
+          "detail": "Turman told Sherdog he began martial-arts training at about age 15, originally to lose weight rather than pursue fighting. His brother first took an interest in a local Muay Thai instructor who rented an apartment from their father; Turman joined a class and became interested in the sport within about a month. The approximate year derives from his July 1996 birth; no exact start date was reported.",
+          "source": "https://www.sherdog.com/news/articles/Wellington-Turman-It-Makes-No-Sense-to-Fight-Just-for-the-Sake-of-Fighting-184233",
+          "sourceLabel": "Sherdog · Jan. 19, 2022 firsthand interview on his introduction to fighting"
+        },
+        {
           "date": "Before 2014",
           "label": "Develops through Brazilian jiu-jitsu and Muay Thai in Curitiba",
           "kind": "training",
@@ -26405,6 +26413,14 @@
           "sourceLabel": "Sherdog · complete professional fight ledger"
         },
         {
+          "date": "August 2018 (day unverified)",
+          "label": "Canceled · Brazilian Contender Series appearance · U.S. visa denied",
+          "kind": "booking",
+          "detail": "Turman was scheduled for the 2018 Brazilian-focused edition of Dana White's Contender Series but was removed after his U.S. visa was denied roughly two weeks before his expected fight. He said officials questioned whether he would return to Brazil after the one-fight trip. Marcio Alexandre Jr. took his place on the show. This was a canceled opportunity: Turman did not fight on DWCS and must not be credited with a DWCS result.",
+          "source": "https://www.mmafighting.com/2019/7/13/20691063/visa-issues-wellington-turman-dreams-ufc-sacramento-fight",
+          "sourceLabel": "MMA Fighting · July 13, 2019 interview on denied 2018 Contender Series visa"
+        },
+        {
           "date": "Dec. 2, 2018",
           "label": "WIN · Rafael Atilio · Imortal FC 10",
           "kind": "win",
@@ -26435,6 +26451,14 @@
           "detail": "After Turman built a 15-2 Brazilian regional record, John Phillips withdrew from the July 13 UFC Sacramento bout against Karl Roberson. Turman accepted the replacement assignment for his UFC debut.",
           "source": "https://www.mmafighting.com/2019/6/18/18683472/wellington-turman-replaces-john-phillips-vs-karl-roberson-at-ufc-sacramento",
           "sourceLabel": "MMA Fighting · June 18, 2019 replacement announcement"
+        },
+        {
+          "date": "July 2019 (before July 13)",
+          "label": "UFC multi-fight contract resolves U.S. visa obstacle",
+          "kind": "milestone",
+          "detail": "After the 2018 Contender Series visa denial, Turman continued his regional career and beat Rafael Atilio and Marcio Alexandre Jr. He told MMA Fighting that signing a multi-fight UFC contract, rather than traveling for one isolated appearance, helped secure the visa needed for his July 2019 UFC Sacramento debut against Karl Roberson.",
+          "source": "https://www.mmafighting.com/2019/7/13/20691063/visa-issues-wellington-turman-dreams-ufc-sacramento-fight",
+          "sourceLabel": "MMA Fighting · July 13, 2019 reporting on UFC signing and visa approval"
         },
         {
           "date": "Jul. 13, 2019",
