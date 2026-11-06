@@ -84,8 +84,6 @@ jobs:
           node --check assets/ufc-roster.js
           node --check assets/event-map-v2.js
           node --check assets/event-map-enhancements.js
-          node --check assets/upcoming-events-jump.js
-          node --check assets/upcoming-events-links.js
           node --check scripts/qa/check-brand-identity.mjs
           node --check scripts/qa/check-theme-readiness.mjs
           node --check scripts/news/build-news-feed.mjs
@@ -144,7 +142,6 @@ jobs:
           node --check scripts/site-data/events/validate-event-map-regional.mjs
           node --check scripts/site-data/events/validate-event-map-quality.mjs
           node --check scripts/site-data/events/check-event-map-architecture.mjs
-          node --check scripts/site-data/events/validate-regional-picker.mjs
           node --check scripts/site-data/ufc/resolve-espn-fighter-portraits.mjs
           node --check scripts/site-data/ufc/enrich-fighter-portraits.mjs
           node --check scripts/site-data/events/validate-upcoming-events.mjs
@@ -213,9 +210,6 @@ jobs:
           grep -q '/assets/homepage-v3.css' index.html
           grep -q '/assets/news-feed.js' news.html
           grep -q 'data-news-feature' news.html
-          grep -q '/assets/upcoming-events-links.js' upcoming-events.html
-          grep -q 'data-picker-map-link' _includes/fight-card-picker-event.html
-          grep -q 'data-event-id' _includes/fight-card-picker-event.html
           grep -q 'name: "On This Day"' _config.yml
           grep -q '/assets/post-event-context.js' _config.yml
           if grep -qE '/assets/on-this-day-(full|media-adaptive)\.js' on-this-day.html; then
@@ -247,9 +241,6 @@ jobs:
 
       - name: Check Upcoming Events data and renderer
         run: node scripts/site-data/events/validate-upcoming-events.mjs
-
-      - name: Check curated regional Fight Card Picker data
-        run: node scripts/site-data/events/validate-regional-picker.mjs
 
       - name: Check regional Event Map data
         run: node scripts/site-data/events/validate-event-map-regional.mjs

@@ -16,7 +16,6 @@
     .homepage,
     .archive-page,
     .news-page,
-    .upcoming-events-page,
     .event-map-page,
     .ufc-roster-page,
     .otd-page,
@@ -34,7 +33,6 @@
    page styles may still own bottom/side padding. */
 :where(
     .archive-page,
-    .upcoming-events-page,
     .event-map-page,
     .ufc-roster-page,
     .otd-page
@@ -46,7 +44,6 @@
     .homepage,
     .archive-page,
     .news-page,
-    .upcoming-events-page,
     .event-map-page,
     .ufc-roster-page,
     .otd-page
@@ -58,7 +55,6 @@
     .homepage,
     .archive-page,
     .news-page,
-    .upcoming-events-page,
     .event-map-page,
     .ufc-roster-page,
     .otd-page
@@ -214,7 +210,6 @@
         .homepage,
         .archive-page,
         .news-page,
-        .upcoming-events-page,
         .event-map-page,
         .ufc-roster-page,
         .otd-page

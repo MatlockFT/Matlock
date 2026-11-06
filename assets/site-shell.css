@@ -217,7 +217,6 @@ h3 {
 
 .archive-header,
 .news-page-header,
-.upcoming-events-header,
 .event-map-hero,
 .ufc-roster-hero,
 .otd-page-header {
@@ -228,7 +227,6 @@ h3 {
 
 .archive-header h1,
 .news-page-header h1,
-.upcoming-events-header h1,
 .event-map-hero h1,
 .ufc-roster-hero h1,
 .otd-page-header h1 {
@@ -441,57 +439,6 @@ h3 {
    redundant with its title. */
 .mma-gallery-hero-copy > .eyebrow {
     display: none;
-}
-
-/* Fight Card Picker: compact zine layout with a 10px functional-text floor. */
-.event-promotion {
-    font-size: 0.625rem;
-}
-
-.event-card-meta p {
-    font-size: 0.625rem;
-    line-height: 1.35;
-}
-
-.event-card-meta a {
-    font-size: 0.625rem;
-}
-
-.event-card-section-heading span {
-    font-size: 0.625rem;
-}
-
-.event-card-heading h2 {
-    line-height: 1.01;
-}
-
-.event-card-section-heading h3 {
-    line-height: 1.05;
-}
-
-.bout-label {
-    min-height: 20px;
-    font-size: 0.625rem;
-    line-height: 1.2;
-}
-
-.bout-footer {
-    min-height: 22px;
-    font-size: 0.625rem;
-    line-height: 1.12;
-}
-
-.event-card-note p {
-    font-size: 0.625rem;
-    line-height: 1.4;
-}
-
-.fighter-name {
-    line-height: 1.05;
-}
-
-.prediction-button {
-    min-height: 44px;
 }
 
 /* Event Map utility labels should read as UI, not decoration. */

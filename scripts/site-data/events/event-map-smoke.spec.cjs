@@ -33,12 +33,6 @@ async function expectActionUrls(page) {
   const tickets = page.locator('[data-detail-tickets]:not([hidden])');
   if (await tickets.count()) expect(await tickets.getAttribute('href')).toMatch(/^https?:\/\//);
 
-  const picker = page.locator('[data-detail-picker]:not([hidden])');
-  if (await picker.count()) {
-    const href = await picker.getAttribute('href');
-    expect(href || '').toContain('/upcoming-events/');
-    expect(href || '').toContain('#');
-  }
 }
 
 test.describe('Event Map desktop interaction chain', () => {

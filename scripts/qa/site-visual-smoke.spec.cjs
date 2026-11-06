@@ -9,7 +9,6 @@ const SCREENSHOT_DIR = process.env.VISUAL_SMOKE_DIR || 'artifacts/site-visual-sm
 const pages = [
   { slug: 'home', path: '/', ready: '[data-globe-home]' },
   { slug: 'news', path: '/news/', ready: '.news-page' },
-  { slug: 'fight-cards', path: '/upcoming-events/', ready: '.upcoming-events-page' },
   { slug: 'event-map', path: '/event-map/', ready: '.event-map-page' },
   { slug: 'on-this-day', path: '/on-this-day/', ready: '.otd-page' },
   { slug: 'roster', path: '/ufc-roster/', ready: '.ufc-roster-page' },
@@ -189,7 +188,6 @@ test.describe('Editorial top spacing consistency', () => {
   const peers = [
     ['/news/', '.news-page-v3', '.news-page-header h1'],
     ['/breakdowns/', '.archive-page-v3', '.archive-header h1'],
-    ['/upcoming-events/', '.upcoming-events-page-v3', '.upcoming-events-header h1'],
     ['/event-map/', '.event-map-page-v3', '.event-map-hero h1']
   ];
 
@@ -581,7 +579,7 @@ test.describe('V3 site rollout', () => {
 
     const routes = [
     ['/', '[data-globe-home]'], ['/news/', '[data-editorial-v3]'], ['/breakdowns/', '[data-editorial-v3]'],
-    ['/upcoming-events/', '[data-editorial-v3]'], ['/event-map/', '[data-editorial-v3]'],
+    ['/event-map/', '[data-editorial-v3]'],
     ['/on-this-day/', '[data-editorial-v3]'], ['/ufc-roster/', '[data-editorial-v3]'],
     ['/matchmaker/', '[data-editorial-v3]'], ['/about/', '[data-editorial-v3]'], ['/contact/', '[data-editorial-v3]'],
     ['/privacy/', '[data-editorial-v3]'], ['/media-kit/', '[data-editorial-v3]'],
