@@ -988,7 +988,7 @@ body[data-editorial-shell]:not(:has(.v3-home)) .site-header {
 body[data-editorial-shell]:not(:has(.v3-home)) .v3-footer {
     position: relative;
     overflow: hidden;
-    margin-top: clamp(2.5rem, 4.5vw, 4rem);
+    margin-top: 0;
     border-top: 1px solid var(--v3-rule) !important;
     background: var(--v3-paper) !important;
     color: var(--v3-ink) !important;
