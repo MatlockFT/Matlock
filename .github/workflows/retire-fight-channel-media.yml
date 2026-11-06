@@ -1,0 +1,44 @@
+name: One-time Fight Channel media retirement
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/retire-fight-channel-media.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  delete-retired-channel-uploads:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Delete exactly six verified Fight Channel release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ids=(601400395 601401758 602687498 603681106 604589383 604591517)
+          names=(
+            'broadcast-audio-Dark-Passage-20260930165913978.mp4'
+            'broadcast-video-Dana-Signs-Fart-20260930165957226.mp4'
+            'broadcast-video-Video-by-titos.cantina-20261001072003475.mp4'
+            'broadcast-video-Video-by-titos.cantina-20261001072003475-h264.mp4'
+            'broadcast-video-Jed-I.-Goodman---Dana-White-is-asked-what-he-saw-from-Wang-Cong-that-he--20261002020537344.mp4'
+            'broadcast-video-Pelunaton---jedigoodman-He-believes-Wang-Cong-beat-Namajunas-Andrade-and-20261002020650279.mp4'
+          )
+          for index in "${!ids[@]}"; do
+            id="${ids[$index]}"
+            expected="${names[$index]}"
+            asset="$(gh api "repos/${GITHUB_REPOSITORY}/releases/assets/${id}")"
+            actual="$(jq -r '.name' <<<"$asset")"
+            if [ "$actual" != "$expected" ]; then
+              echo "::error::Asset ${id} is no longer ${expected}; refusing deletion."
+              exit 1
+            fi
+            echo "Deleting verified retired asset: ${actual} (${id})"
+            gh api --method DELETE "repos/${GITHUB_REPOSITORY}/releases/assets/${id}"
+          done
+          echo "Six Fight Channel release assets removed. Unrelated writer-media release assets untouched."
