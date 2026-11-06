@@ -179,6 +179,9 @@ Strange fight, but I'll roll with the southpaw counterstriker who has faced a hi
 </section>
 I'm showing blind support for my northern brethren, Thomas Petersen. He's got some wrestling, he's from Minnesota, he's a southpaw. I'm honestly a bit surprised he's the slight favorite right now and I imagine that will change when the odds close but perhaps people are just not convince with Lorenco yet because he hasn't really fought anyone. For those not blindly allegiant to Thomas Petersen, yes it's probably a good idea to roll with Lourenco by KO. 
 
+For me, I pick Petersen to survive and make this a grindy fight.
+
+
 ---
 
 ## Karine Silva vs. Gabriella Fernandes
