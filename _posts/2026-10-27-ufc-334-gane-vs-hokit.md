@@ -24,7 +24,7 @@ editorial_notes: >-
   Samuel Sanches's rate numbers are from one Contender Series appearance.
 image:
   path: /assets/uploads/articles/2026/10/ufc-334-gane-vs-hokit/UFC-334-Thumbnail-mw4t0chl-10c68956.webp
-  alt: "UFC 334: Gane vs. Hokit"
+  alt: "UFC 334: Gane vs. Hokit - That's a pretty nice thumbnail if I do say so myself"
   position: center center
 members_only: false
 ---
