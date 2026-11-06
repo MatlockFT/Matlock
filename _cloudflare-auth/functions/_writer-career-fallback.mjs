@@ -258,7 +258,7 @@ export function parseUfcFightCareerProfile(html, sourceUrl = null) {
     history,
     recent:history.slice(0,5),
     latestBoutDate:history[0]?.date || null,
-    historyComplete:verifiedHistory,
+    historyComplete:history.length >= expectedFights,
     career:{
       winsByKnockout,
       winsBySubmission,
@@ -335,7 +335,7 @@ export function parseSherdogCareerProfile(html, sourceUrl = null) {
     history,
     recent:history.slice(0,5),
     latestBoutDate:history[0]?.date || null,
-    historyComplete:history.length >= expectedFights,
+    historyComplete:verifiedHistory,
     career:{
       winsByKnockout,
       winsBySubmission,
