@@ -9,6 +9,12 @@ on:
 permissions:
   contents: read
 
+# Cancel checks for superseded commits instead of running several full Jekyll
+# QA suites concurrently during rapid Writer/data pushes.
+concurrency:
+  group: site-quality-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-and-check:
     runs-on: ubuntu-latest
