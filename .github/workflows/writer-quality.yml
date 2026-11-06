@@ -31,19 +31,6 @@ on:
       - "assets/live-writer-public.js"
       - "assets/live-writer-public.css"
       - "live-notes.html"
-      - "broadcast-control.html"
-      - "broadcast.html"
-      - "assets/broadcast-control.js"
-      - "assets/broadcast-control.css"
-      - "assets/broadcast.js"
-      - "assets/broadcast-news-pool.js"
-      - "assets/broadcast-youtube.js"
-      - "scripts/writer/broadcast-news-pool.spec.cjs"
-      - "scripts/writer/broadcast-text-fit.spec.cjs"
-      - "assets/broadcast.css"
-      - "scripts/writer/broadcast-control-smoke.spec.cjs"
-      - "scripts/writer/broadcast-loop.spec.cjs"
-      - "scripts/writer/broadcast-test-server.cjs"
       - "scripts/writer/writer-smoke.spec.cjs"
       - "scripts/writer/writer-fighter-autofill-smoke.spec.cjs"
       - "scripts/writer/writer-wordtools-smoke.spec.cjs"
@@ -89,19 +76,6 @@ on:
       - "assets/live-writer-public.js"
       - "assets/live-writer-public.css"
       - "live-notes.html"
-      - "broadcast-control.html"
-      - "broadcast.html"
-      - "assets/broadcast-control.js"
-      - "assets/broadcast-control.css"
-      - "assets/broadcast.js"
-      - "assets/broadcast-news-pool.js"
-      - "assets/broadcast-youtube.js"
-      - "scripts/writer/broadcast-news-pool.spec.cjs"
-      - "scripts/writer/broadcast-text-fit.spec.cjs"
-      - "assets/broadcast.css"
-      - "scripts/writer/broadcast-control-smoke.spec.cjs"
-      - "scripts/writer/broadcast-loop.spec.cjs"
-      - "scripts/writer/broadcast-test-server.cjs"
       - "scripts/writer/writer-smoke.spec.cjs"
       - "scripts/writer/writer-fighter-autofill-smoke.spec.cjs"
       - "scripts/writer/writer-wordtools-smoke.spec.cjs"
@@ -153,11 +127,6 @@ jobs:
           node --check assets/post-writer-actions.js
           node --check assets/writer-live.js
           node --check assets/live-writer-public.js
-          node --check assets/broadcast-control.js
-          node --check assets/broadcast.js
-          node --check assets/broadcast-news-pool.js
-          node --check assets/broadcast-youtube.js
-          node --check scripts/writer/broadcast-control-smoke.spec.cjs
 
       - name: Install auth bridge dependency
         working-directory: _netlify-auth
@@ -176,12 +145,11 @@ jobs:
         working-directory: _netlify-auth
         run: npm test
 
-      - name: Test broadcast uploads and continuous playback locally
+      - name: Test Writer browser workflows locally
         run: |
           npm install --no-save --no-package-lock --ignore-scripts @playwright/test@1.55.0
           npx playwright install --with-deps chromium
           npx playwright test scripts/writer/writer-preview-embeds.spec.cjs scripts/writer/writer-save-race.spec.cjs scripts/writer/writer-save-failures.spec.cjs scripts/writer/writer-qa-regressions.spec.cjs scripts/writer/writer-video-hybrid.spec.cjs --workers=1 --reporter=line
-          npx playwright test scripts/writer/broadcast-loop.spec.cjs scripts/writer/broadcast-news-pool.spec.cjs scripts/writer/broadcast-text-fit.spec.cjs --workers=1 --reporter=line
 
   production-smoke:
     if: github.event_name != 'pull_request'
@@ -269,8 +237,3 @@ jobs:
         env:
           WRITER_BASE_URL: https://mmamatlock.com/write/
         run: npx playwright test scripts/writer/writer-smoke.spec.cjs scripts/writer/writer-wordtools-smoke.spec.cjs scripts/writer/writer-layout-smoke.spec.cjs scripts/writer/writer-splitflow-smoke.spec.cjs scripts/writer/writer-preview-scroll-contract.spec.cjs --workers=1 --reporter=line
-
-      - name: Exercise Broadcast Control workflow
-        env:
-          BROADCAST_CONTROL_BASE_URL: https://mmamatlock.com/broadcast/control/
-        run: npx playwright test scripts/writer/broadcast-control-smoke.spec.cjs --workers=1 --reporter=line

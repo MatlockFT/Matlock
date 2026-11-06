@@ -399,25 +399,6 @@
       "publicContract": true
     },
     {
-      "id": "broadcast-news-video-runtime",
-      "storage": "public-runtime",
-      "paths": [
-        "assets/data/broadcast-news-videos.json"
-      ],
-      "lifecycle": "generated-public-runtime",
-      "owner": "news",
-      "producers": [
-        "scripts/news/build-broadcast-videos.mjs"
-      ],
-      "consumers": [
-        "assets/broadcast-news-pool.js",
-        "broadcast-control.html"
-      ],
-      "safeToRegenerate": true,
-      "safeToDeleteFromRepository": false,
-      "publicContract": true
-    },
-    {
       "id": "otd-primary-runtime",
       "storage": "public-runtime",
       "paths": [
@@ -590,7 +571,7 @@
       "lifecycle": "operational-state",
       "owner": "broadcast",
       "producers": [
-        "broadcast-control.html"
+        "manual:archived-broadcast-state"
       ],
       "consumers": [
         "broadcast.html",
@@ -677,24 +658,6 @@
       "safeToRegenerate": false,
       "safeToDeleteFromRepository": false,
       "publicContract": false
-    },
-    {
-      "id": "news-refresh-trigger-state",
-      "storage": "public-runtime",
-      "paths": [
-        "assets/data/news-refresh-trigger.json"
-      ],
-      "lifecycle": "operational-trigger-state",
-      "owner": "news",
-      "producers": [
-        "assets/broadcast-control.js"
-      ],
-      "consumers": [
-        ".github/workflows/update-news-feed.yml"
-      ],
-      "safeToRegenerate": false,
-      "safeToDeleteFromRepository": false,
-      "publicContract": true
     },
     {
       "id": "otd-current-lead-build-cache",

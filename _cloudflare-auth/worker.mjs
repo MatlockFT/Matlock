@@ -12,7 +12,6 @@ import writerLive from './functions/writer-live.mjs';
 import writerMediaChunk from './functions/writer-media-chunk.mjs';
 import writerMediaAbort from './functions/writer-media-abort.mjs';
 import writerMediaFinalize from './functions/writer-media-finalize.mjs';
-import writerMediaLibrary from './functions/writer-media-library.mjs';
 import writerMediaStatus from './functions/writer-media-status.mjs';
 import writerMediaSession from './functions/writer-media-session.mjs';
 import writerSession from './functions/writer-session.mjs';
@@ -47,7 +46,6 @@ const routeHandlers = new Map([
   ['/api/writer/media-chunk', writerMediaChunk],
   ['/api/writer/media-abort', writerMediaAbort],
   ['/api/writer/media-finalize', writerMediaFinalize],
-  ['/api/writer/media-library', writerMediaLibrary],
   ['/api/writer/media-status', writerMediaStatus],
   ['/api/writer/session', writerSession],
   ['/api/writer/media-session', writerMediaSession],

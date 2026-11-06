@@ -15,7 +15,6 @@ import {
   validateMediaMetadata,
   validateVideoMetadata
 } from '../netlify/functions/_writer-media.mjs';
-import { broadcastVideoUsage, isBroadcastVideoAsset, isBroadcastAudioAsset, isBroadcastImageAsset, isManagedMediaRelease } from '../netlify/functions/writer-media-library.mjs';
 
 test('Writer GitHub proxy only allows scoped article and upload paths', () => {
   assert.equal(allowedPath('/contents/_posts?ref=main', 'GET'), true);
@@ -25,8 +24,8 @@ test('Writer GitHub proxy only allows scoped article and upload paths', () => {
   assert.equal(allowedPath('/contents/assets/uploads/example.webp', 'PUT'), true);
   assert.equal(allowedPath('/contents/assets/uploads/example.webp', 'DELETE'), false);
   assert.equal(allowedPath('/contents/assets/uploads/articles/2026/09/article-slug/cover.webp', 'PUT'), true);
-  assert.equal(allowedPath('/contents/assets/data/broadcast.json?ref=main', 'GET'), true);
-  assert.equal(allowedPath('/contents/assets/data/broadcast.json', 'PUT'), true);
+  assert.equal(allowedPath('/contents/assets/data/broadcast.json?ref=main', 'GET'), false);
+  assert.equal(allowedPath('/contents/assets/data/broadcast.json', 'PUT'), false);
   assert.equal(allowedPath('/repos/MatlockFT/Matlock/actions', 'GET'), false);
   assert.equal(allowedPath('/contents/_config.yml', 'PUT'), false);
   assert.equal(allowedPath('/contents/_posts/../../_config.yml', 'PUT'), false);
@@ -105,7 +104,7 @@ test('Video metadata validation enforces extension, MIME, size and chunk count',
   }), /chunk count is too small/);
 });
 
-test('Broadcast media metadata accepts common audio formats', () => {
+test('Media metadata accepts common audio formats', () => {
   const valid = validateMediaMetadata({
     assetName: 'Weather Groove.mp3',
     fileSize: 8 * 1024 * 1024,
@@ -123,7 +122,7 @@ test('Broadcast media metadata accepts common audio formats', () => {
   }), /MP4, WebM or M4V/);
 });
 
-test('Broadcast media metadata accepts common image formats', () => {
+test('Media metadata accepts common image formats', () => {
   for (const [extension, mime] of [['png', 'image/png'], ['jpg', 'image/jpeg'], ['jpeg', 'image/jpeg'], ['webp', 'image/webp'], ['gif', 'image/gif']]) {
     const valid = validateMediaMetadata({
       assetName: 'Fight Graphic.' + extension,
@@ -163,64 +162,6 @@ test('Asset names are reduced to release-safe characters', () => {
   assert.equal(sanitizeAssetName('  weird / fight clip (1).mp4  '), 'weird-fight-clip-1-.mp4');
 });
 
-
-test('Broadcast video library only exposes managed broadcast video release assets', () => {
-  assert.equal(isManagedMediaRelease({ tag_name: 'writer-media-2026-09' }), true);
-  assert.equal(isManagedMediaRelease({ tag_name: 'v1.0.0' }), false);
-
-  assert.equal(isBroadcastVideoAsset({
-    name: 'broadcast-video-main-event-20260930050000000.mp4',
-    content_type: 'video/mp4'
-  }), true);
-  assert.equal(isBroadcastVideoAsset({
-    name: 'broadcast-audio-theme-20260930050000000.mp3',
-    content_type: 'audio/mpeg'
-  }), false);
-  assert.equal(isBroadcastVideoAsset({
-    name: 'writer-video-article-clip.mp4',
-    content_type: 'video/mp4'
-  }), false);
-});
-
-test('Broadcast video usage guard finds saved draft and live references', () => {
-  const url = 'https://github.com/example/video.mp4';
-  const state = {
-    draft: {
-      program: [
-        { type: 'headline', title: 'A' },
-        { type: 'video', mediaUrl: url }
-      ]
-    },
-    live: {
-      program: [
-        { type: 'video', mediaUrl: 'https://github.com/example/other.mp4' }
-      ]
-    }
-  };
-  assert.deepEqual(broadcastVideoUsage(state, url), { draft: true, live: false });
-  state.live.program.push({ type: 'image', mediaUrl: url });
-  assert.deepEqual(broadcastVideoUsage(state, url), { draft: true, live: true });
-  assert.deepEqual(broadcastVideoUsage(state, ''), { draft: false, live: false });
-});
-
-test('Broadcast music library includes audio and music uploaded in video containers', () => {
-  for (const extension of ['mp3', 'm4a', 'wav', 'ogg', 'opus', 'flac', 'aac', 'mp4', 'webm']) {
-    assert.equal(isBroadcastAudioAsset({ name: `broadcast-audio-theme.${extension}` }), true);
-  }
-  assert.equal(isBroadcastAudioAsset({ name: 'writer-audio-private.mp3' }), false);
-  assert.equal(isBroadcastAudioAsset({ name: 'broadcast-audio-file.exe' }), false);
-});
-
-test('Broadcast image library recognizes managed still-image assets', () => {
-  for (const extension of ['png', 'jpg', 'jpeg', 'webp', 'gif']) {
-    assert.equal(isBroadcastImageAsset({
-      name: `broadcast-image-fight-card.${extension}`,
-      content_type: extension === 'png' ? 'image/png' : 'image/jpeg'
-    }), true);
-  }
-  assert.equal(isBroadcastImageAsset({ name: 'writer-image-private.png', content_type: 'image/png' }), false);
-  assert.equal(isBroadcastImageAsset({ name: 'broadcast-image-file.exe', content_type: 'image/png' }), false);
-});
 
 
 test('UFCStats fighter parser extracts live career metrics and recent form', () => {
