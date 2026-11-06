@@ -1119,3 +1119,20 @@ html[data-theme="dark"] .v3-member-empty a {
         font-size: clamp(2.05rem, 8.3vw, 2.55rem);
     }
 }
+
+/* Page-wide spacing audit: align three-column gutters and card rhythm. */
+@media (min-width: 781px) {
+    .v3-lead { padding-right: clamp(1rem, 1.6vw, 1.5rem); padding-left: clamp(1rem, 1.6vw, 1.5rem); }
+    .v3-left-rail { padding-right: clamp(.85rem, 1.25vw, 1.1rem); }
+    .v3-right-rail { padding-left: clamp(.85rem, 1.25vw, 1.1rem); }
+}
+.v3-front { padding-bottom: 1.2rem; }
+.v3-feature { padding-right: 1rem; padding-left: 1rem; }
+.v3-rail-story { padding-top: .8rem; padding-bottom: .95rem; }
+.v3-section-head { margin-bottom: .8rem; }
+@media (max-width: 780px) {
+    .v3-lead { padding: .2rem 0 1.15rem; }
+    .v3-left-rail { padding: .9rem 0; }
+    .v3-right-rail { padding: 1rem 0; }
+    .v3-feature, .v3-feature:first-child, .v3-feature:last-child { padding: .85rem 0; }
+}
