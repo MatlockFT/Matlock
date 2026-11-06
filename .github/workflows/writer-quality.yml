@@ -177,8 +177,6 @@ jobs:
           local_ux_css="$(sha256sum assets/writer-ux.css | awk '{print $1}')"
           local_splitflow_js="$(sha256sum assets/writer-splitflow.js | awk '{print $1}')"
           local_splitflow_css="$(sha256sum assets/writer-splitflow.css | awk '{print $1}')"
-          local_broadcast_control_js="$(sha256sum assets/broadcast-control.js | awk '{print $1}')"
-          local_broadcast_control_css="$(sha256sum assets/broadcast-control.css | awk '{print $1}')"
           ready=0
           for attempt in $(seq 1 48); do
             curl -fsSL "https://mmamatlock.com/assets/writer.js?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer.js || true
@@ -191,8 +189,6 @@ jobs:
             curl -fsSL "https://mmamatlock.com/assets/writer-ux.css?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer-ux.css || true
             curl -fsSL "https://mmamatlock.com/assets/writer-splitflow.js?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer-splitflow.js || true
             curl -fsSL "https://mmamatlock.com/assets/writer-splitflow.css?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer-splitflow.css || true
-            curl -fsSL "https://mmamatlock.com/assets/broadcast-control.js?release=${WRITER_SHA}-${attempt}" -o /tmp/live-broadcast-control.js || true
-            curl -fsSL "https://mmamatlock.com/assets/broadcast-control.css?release=${WRITER_SHA}-${attempt}" -o /tmp/live-broadcast-control.css || true
             live_js="$(sha256sum /tmp/live-writer.js 2>/dev/null | awk '{print $1}')"
             live_css="$(sha256sum /tmp/live-writer.css 2>/dev/null | awk '{print $1}')"
             live_shell_css="$(sha256sum /tmp/live-writer-shell.css 2>/dev/null | awk '{print $1}')"
@@ -203,18 +199,16 @@ jobs:
             live_ux_css="$(sha256sum /tmp/live-writer-ux.css 2>/dev/null | awk '{print $1}')"
             live_splitflow_js="$(sha256sum /tmp/live-writer-splitflow.js 2>/dev/null | awk '{print $1}')"
             live_splitflow_css="$(sha256sum /tmp/live-writer-splitflow.css 2>/dev/null | awk '{print $1}')"
-            live_broadcast_control_js="$(sha256sum /tmp/live-broadcast-control.js 2>/dev/null | awk '{print $1}')"
-            live_broadcast_control_css="$(sha256sum /tmp/live-broadcast-control.css 2>/dev/null | awk '{print $1}')"
-            if [ "$live_js" = "$local_js" ] && [ "$live_css" = "$local_css" ] && [ "$live_shell_css" = "$local_shell_css" ] && [ "$live_word_js" = "$local_word_js" ] && [ "$live_word_core_js" = "$local_word_core_js" ] && [ "$live_word_css" = "$local_word_css" ] && [ "$live_ux_js" = "$local_ux_js" ] && [ "$live_ux_css" = "$local_ux_css" ] && [ "$live_splitflow_js" = "$local_splitflow_js" ] && [ "$live_splitflow_css" = "$local_splitflow_css" ] && [ "$live_broadcast_control_js" = "$local_broadcast_control_js" ] && [ "$live_broadcast_control_css" = "$local_broadcast_control_css" ]; then
-              echo "Current Writer and Broadcast Control assets are live."
+            if [ "$live_js" = "$local_js" ] && [ "$live_css" = "$local_css" ] && [ "$live_shell_css" = "$local_shell_css" ] && [ "$live_word_js" = "$local_word_js" ] && [ "$live_word_core_js" = "$local_word_core_js" ] && [ "$live_word_css" = "$local_word_css" ] && [ "$live_ux_js" = "$local_ux_js" ] && [ "$live_ux_css" = "$local_ux_css" ] && [ "$live_splitflow_js" = "$local_splitflow_js" ] && [ "$live_splitflow_css" = "$local_splitflow_css" ]; then
+              echo "Current Writer assets are live."
               ready=1
               break
             fi
-            echo "Waiting for production Writer/Broadcast assets... attempt ${attempt}/48"
+            echo "Waiting for production Writer assets... attempt ${attempt}/48"
             sleep 10
           done
           if [ "$ready" != "1" ]; then
-            echo "Production did not reach the checked-out Writer/Broadcast release within 8 minutes."
+            echo "Production did not reach the checked-out Writer release within 8 minutes."
             exit 1
           fi
 
