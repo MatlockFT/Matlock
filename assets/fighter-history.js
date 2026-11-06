@@ -2,7 +2,10 @@
   const DATA_URL = '/assets/data/fighter-histories.json';
   const ROOT_SELECTORS = ['#article-content', '[data-preview-content]'];
   const enhanced = new WeakSet();
+  const DATA_CACHE_MS = 60 * 1000;
   let dataPromise = null;
+  let dataFetchedAt = 0;
+  let latestFighters = {};
   let activeTrigger = null;
   let closeTimer = 0;
   let panel = null;
@@ -36,15 +39,28 @@
     return index;
   }
 
+  // Refresh the large shared timeline file periodically. Do not pin the first
+  // response for the lifetime of an open Writer tab, since histories are edited
+  // on GitHub while the editor may remain open for hours.
   function loadData() {
-    if (!dataPromise) {
-      dataPromise = fetch(DATA_URL, { cache: 'no-store', headers: { Accept: 'application/json' } })
+    if (!dataPromise || Date.now() - dataFetchedAt >= DATA_CACHE_MS) {
+      dataFetchedAt = Date.now();
+      dataPromise = fetch(DATA_URL + '?updated=' + dataFetchedAt, {
+        cache: 'no-store',
+        headers: { Accept: 'application/json' }
+      })
         .then(response => {
           if (!response.ok) throw new Error('Fighter history data unavailable.');
           return response.json();
         })
-        .then(payload => payload?.fighters || {})
-        .catch(() => ({}));
+        .then(payload => {
+          if (!payload?.fighters || typeof payload.fighters !== 'object') {
+            throw new Error('Invalid fighter history data.');
+          }
+          latestFighters = payload.fighters;
+          return latestFighters;
+        })
+        .catch(() => latestFighters);
     }
     return dataPromise;
   }
@@ -231,12 +247,29 @@
   function openPanel(trigger, entry) {
     cancelClose();
     activeTrigger = trigger;
-    renderPanel(entry);
+    // Buttons created before a timeline update should show the newest loaded
+    // entry, not the older object originally captured by their event handlers.
+    const current = latestFighters[entry.name] || entry;
+    renderPanel(current);
     const previewFrame = trigger.closest('[data-preview-frame]');
     panel.classList.toggle('is-preview-dark', previewFrame?.dataset.previewTheme === 'dark');
     panel.hidden = false;
     trigger.setAttribute('aria-expanded', 'true');
     requestAnimationFrame(() => positionPanel(trigger));
+
+    // Refresh when the cache is due. Replace the panel only if the source data
+    // changed, so an ordinary mouse-over doesn't reset the selected milestone.
+    loadData().then(fighters => {
+      if (activeTrigger !== trigger || panel?.hidden) return;
+      const fresh = fighters[entry.name] || buildFighterIndex(fighters).get(fighterKey(entry.name));
+      if (!fresh) return;
+      const changed = fresh.record !== currentEntry?.record ||
+        JSON.stringify(orderedItems(fresh)) !== JSON.stringify(currentEntry?.items);
+      if (changed) {
+        renderPanel(fresh);
+        requestAnimationFrame(() => positionPanel(trigger));
+      }
+    });
   }
 
   function closePanel() {
