@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-05T19:01:11.891Z"
+      "checkedAt": "2026-11-06T00:04:04.232Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-05T19:01:54.964Z",
+      "checkedAt": "2026-11-06T00:04:46.078Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -104255,7 +104255,9 @@
       "booking": {
         "event": "Polymarket UFC 334",
         "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334"
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Samuel Sanches",
+        "opponentId": "samuel-sanches"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -141732,7 +141734,9 @@
       "booking": {
         "event": "Polymarket UFC 334",
         "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334"
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Melquizael Costa",
+        "opponentId": "melquizael-costa"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -143823,13 +143827,7 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": {
-        "event": "Polymarket UFC 334",
-        "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334",
-        "opponent": "Nazim Sadykhov",
-        "opponentId": "nazim-sadykhov"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -164273,7 +164271,7 @@
     {
       "id": "jose-henrique",
       "name": "Jose Henrique",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/jose-henrique",
       "aliases": [
         "jose-henrique"
@@ -164361,15 +164359,11 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": {
-        "event": "UFC Fight Night",
-        "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
-      },
+      "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-11-01T14:53:03.954Z"
+        "checkedAt": "2026-11-06T00:04:04.232Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/jose-henrique",
@@ -227908,7 +227902,9 @@
       "booking": {
         "event": "Polymarket UFC 334",
         "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334"
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Jared Gordon",
+        "opponentId": "jared-gordon"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -247939,13 +247935,7 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": {
-        "event": "Polymarket UFC 334",
-        "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334",
-        "opponent": "Jefferson Nascimento",
-        "opponentId": "jefferson-nascimento"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -291597,7 +291587,9 @@
       "booking": {
         "event": "Polymarket UFC 334",
         "date": "2026-11-14",
-        "source": "https://www.ufc.com/event/ufc-334"
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Evan Elder",
+        "opponentId": "evan-elder"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -362573,7 +362565,7 @@
   ],
   "coverage": {
     "profileFailures": 28,
-    "activeFighters": 1010,
+    "activeFighters": 1009,
     "participantHistoriesRequested": 355,
     "verifiedParticipantHistories": 355,
     "ufcStatsNameMisses": 1,
