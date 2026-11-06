@@ -433,20 +433,27 @@ test.describe('Article native sharing on mobile', () => {
       const body = document.querySelector('.post-body')?.getBoundingClientRect();
       const topics = document.querySelector('.post-topics')?.getBoundingClientRect();
       const share = document.querySelector('.post-share')?.getBoundingClientRect();
-      const rail = document.querySelector('.post-rail')?.getBoundingClientRect();
+      const railNode = document.querySelector('.post-rail');
+      const rail = railNode?.getBoundingClientRect();
       return {
         bodyBottom: body?.bottom || 0,
         topicsTop: topics?.top || 0,
         topicsBottom: topics?.bottom || 0,
         shareTop: share?.top || 0,
         shareBottom: share?.bottom || 0,
-        railTop: rail?.top || 0
+        railVisible: railNode ? getComputedStyle(railNode).display !== 'none' : false,
+        railTop: rail?.top || 0,
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
       };
     });
-
-    expect(order.topicsTop).toBeGreaterThanOrEqual(order.bodyBottom - 2);
-    expect(order.shareTop).toBeGreaterThanOrEqual(order.topicsBottom - 2);
-    expect(order.railTop).toBeGreaterThanOrEqual(order.shareBottom - 2);
+    expect(order.shareTop).toBeGreaterThanOrEqual(order.bodyBottom - 2);
+    expect(order.topicsTop).toBeGreaterThanOrEqual(order.shareBottom - 2);
+    if (order.railVisible) {
+      expect(order.railTop).toBeGreaterThanOrEqual(order.topicsBottom - 2);
+    }
+    expect(order.horizontalOverflow).toBeLessThanOrEqual(2);
+    await expect(page.locator('.article-toc-floating')).toBeHidden();
+    await expect(page.locator('.article-toc-inline')).toBeVisible();
 
     await page.locator('[data-native-share-top]').click();
 
