@@ -238,8 +238,9 @@ Delano is the more disciplined striker, using movement, combinations and kicks t
 </section>
 What can we say? Short notice fight, Bashi is understandably the favorite although, again, -500 is insane. 5 weeks ago Calderon fought five rounds in a title fight. That signals to me that this dude is durable and has conditioning. Is Bashi gonna wrestle this dude? I suppose he only needs to secure two rounds. I'm not exactly high on Austin Bashi but I'll pick him to win.
 
-
-
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Austin%20Bashi%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Austin Bashi</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Decision</span></span></div></aside>
+</section>
 ---
 
 ## Mantas Kondratavičius vs. Andre Petroski
