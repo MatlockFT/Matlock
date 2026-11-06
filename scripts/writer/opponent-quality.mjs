@@ -7,7 +7,8 @@ const validResults=new Set(['W','L','D']);
 
 function normalized(value) {
   return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-    .toLowerCase().replace(/['’]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+    .toLowerCase().replace(/['’]/g,'').replace(/\b(jr|sr|ii|iii|iv)\b/g,' ')
+    .replace(/[^a-z0-9]+/g,' ').trim();
 }
 
 function canonicalUrl(value) {
