@@ -50,6 +50,14 @@ export function reconcileProfileHistory(profileEntries = [], meetings = [], opti
   const discrepancies = [];
 
   for (const profile of profiles) {
+    // UFC.com sometimes prints a real opponent with the wrong date. A date-only
+    // fallback must never attach that explicitly named opponent to a different
+    // fighter just because their bouts share the erroneous date/result.
+    // Example: Tom Nolan's bio lists Moicano twice, once with Ziam's date.
+    const explicitOtherMeeting = meetings.some(meeting => {
+      const otherName = key(meeting.opponentName || '');
+      return otherName.length >= 6 && key(profile.text || '').includes(otherName);
+    });
     const candidates = [...unused].map(index => {
       const meeting = meetings[index];
       const opponent = opponentMatch(profile, meeting);
@@ -60,7 +68,7 @@ export function reconcileProfileHistory(profileEntries = [], meetings = [], opti
       if (opponent && resultOk && nearby) tier = 0;
       else if (opponent && resultOk) tier = 1;
       else if (opponent) tier = 2;
-      else if (nearby && resultOk) tier = 3;
+      else if (nearby && resultOk && !explicitOtherMeeting) tier = 3;
       return { index, meeting, opponent, resultOk, nearby, days, tier };
     }).filter(candidate => candidate.tier < 99)
       .sort((a, b) => a.tier - b.tier || a.days - b.days || String(a.meeting.sourceUrl).localeCompare(String(b.meeting.sourceUrl)));
