@@ -28,6 +28,13 @@ body[data-editorial-shell]:not(:has(.v3-home)) {
     color: var(--v3-ink);
 }
 
+/* Shared spacing tokens for public editorial pages. Utility interiors and
+   touch targets retain their own dimensions. */
+body[data-editorial-shell] {
+    --v3-page-inline: clamp(1.5rem, 2.3vw, 2rem);
+    --v3-page-bottom: clamp(2.8rem, 4.5vw, 4.5rem);
+}
+
 /* Editorial V3 pages own their internal measure; do not let the legacy
    1000px site container squeeze News, archives, cards, or article layouts. */
 body[data-editorial-shell]:has([data-globe-home]) .site-main {
@@ -981,7 +988,7 @@ body[data-editorial-shell]:not(:has(.v3-home)) .site-header {
 body[data-editorial-shell]:not(:has(.v3-home)) .v3-footer {
     position: relative;
     overflow: hidden;
-    margin-top: clamp(4rem, 8vw, 7rem);
+    margin-top: clamp(2.5rem, 4.5vw, 4rem);
     border-top: 1px solid var(--v3-rule) !important;
     background: var(--v3-paper) !important;
     color: var(--v3-ink) !important;
@@ -1006,9 +1013,9 @@ html[data-theme="dark"] body[data-editorial-shell]:not(:has(.v3-home)) .v3-foote
 body[data-editorial-shell]:not(:has(.v3-home)) .v3-footer-inner {
     position: relative;
     z-index: 1;
-    width: min(calc(100% - 2rem), 1380px);
+    width: min(calc(100% - var(--v3-page-inline)), 1380px);
     margin: 0 auto;
-    padding: 1.8rem 0 1.1rem;
+    padding: 1.5rem 0 1rem;
 }
 body[data-editorial-shell]:not(:has(.v3-home)) .v3-footer-top {
     display: flex;
@@ -1037,7 +1044,7 @@ body[data-editorial-shell]:not(:has(.v3-home)) .v3-footer-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: clamp(1.25rem, 3vw, 3rem);
-    padding: 1.35rem 0 1.55rem;
+    padding: 1.15rem 0 1.25rem;
 }
 body[data-editorial-shell]:not(:has(.v3-home)) .v3-footer-grid section {
     display: flex;
