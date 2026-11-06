@@ -1,5 +1,5 @@
 {
-  "version": 61,
+  "version": 62,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -441,14 +441,6 @@
           "detail": "After approximately 15 months without a fight, Evloev defeated unbeaten contender Lerone Murphy in London by majority decision (48-46, 48-46, 47-47). He lost one point for a low blow in round four but prevailed over five rounds, improving to 20-0 overall and 10-0 in the UFC.",
           "sourceLabel": "UFC official scorecards",
           "source": "https://www.ufc.com/news/ufc-london-official-scorecards-evloev-vs-murphy-fight-night"
-        },
-        {
-          "date": "Current camp (Oct. 2026)",
-          "label": "American Top Team remains listed training base",
-          "kind": "camp",
-          "detail": "Evloev's listed training team is American Top Team in Coconut Creek, Florida. He has also trained in Ingushetia and Thailand during his career; trips to Thailand should not be presented as a permanent gym switch. A specific camp relocation for UFC 333 has not been independently established.",
-          "sourceLabel": "UFC fighter profile",
-          "source": "https://www.ufc.com/athlete/movsar-evloev"
         },
         {
           "date": "Oct. 24, 2026",
@@ -1098,7 +1090,7 @@
         {
           "date": "Dec. 5, 2015",
           "label": "AMATEUR NO CONTEST · Andy Collier",
-          "kind": "milestone",
+          "kind": "nc",
           "detail": "His amateur bout with Andy Collier at British Challenge MMA 13 ended in a no contest. The accessible record does not establish a consistent explanation for the ruling, so no cause is assigned here.",
           "sourceLabel": "Sherdog amateur record",
           "source": "https://www.sherdog.com/fighter/Loneer-Kavanagh-213249"
@@ -1114,7 +1106,7 @@
         {
           "date": "Sep. 30, 2017",
           "label": "AMATEUR DRAW · Omar Sargent · split draw",
-          "kind": "milestone",
+          "kind": "draw",
           "detail": "Kavanagh drew with Omar Sargent at Rise of Champions 4 after three amateur rounds. The bout is recorded as a split draw.",
           "sourceLabel": "Sherdog amateur record",
           "source": "https://www.sherdog.com/fighter/Loneer-Kavanagh-213249"
@@ -1122,7 +1114,7 @@
         {
           "date": "Feb. 17, 2018",
           "label": "AMATEUR DRAW · Nik Bagley · split draw",
-          "kind": "milestone",
+          "kind": "draw",
           "detail": "Kavanagh fought Nik Bagley to a split draw at Rise of Champions 5, another three-round amateur MMA bout.",
           "sourceLabel": "Sherdog amateur record",
           "source": "https://www.sherdog.com/fighter/Loneer-Kavanagh-213249"
@@ -1278,14 +1270,6 @@
           "detail": "Royval submitted Kavanagh with a rear-naked choke at 3:40 of round three at UFC 329 in Las Vegas. This was Kavanagh's second professional loss and first professional submission defeat. The UFC highlight video and Sherdog record show 3:40, although the UFC athlete bio separately lists 3:39.",
           "sourceLabel": "UFC 329 official highlight",
           "source": "https://www.ufc.com/video/158294"
-        },
-        {
-          "date": "Oct. 2026 (current team affiliation)",
-          "label": "Still listed at Great Britain Top Team",
-          "kind": "camp",
-          "detail": "As of the UFC 333 booking, Kavanagh is listed as representing Great Britain Top Team, London. There is no verified evidence of a permanent gym switch or a documented new head coach for this fight, so no change of camp is asserted.",
-          "sourceLabel": "Sherdog fighter profile",
-          "source": "https://www.sherdog.com/fighter/Loneer-Kavanagh-213249"
         },
         {
           "date": "Oct. 24, 2026",
@@ -1605,14 +1589,6 @@
           "detail": "Temirov returned at UFC Abu Dhabi and stopped former flyweight title challenger Steve Erceg at 4:21 of round one. UFC's athlete history and Sherdog classify the finish as KO (punch), while UFC's highlight text calls it TKO. He earned another Performance of the Night award and improved to 20-3 overall, 3-0 in the UFC.",
           "sourceLabel": "UFC post-fight report and bonus coverage",
           "source": "https://www.ufc.com/news/bonus-coverage-ufc-abu-dhabi"
-        },
-        {
-          "date": "Oct. 2026 (listed team, exact 333 camp unconfirmed)",
-          "label": "Legion Fight Club / Muradov Legion Team affiliation",
-          "kind": "camp",
-          "detail": "Temirov remains listed with Legion Fight Club on the UFC's athlete page and Muradov Legion Team on Sherdog. Two names for the team should not be treated as a verified camp transfer. Testing in Phuket in 2025 establishes his presence there on those dates but not a permanent move of his fight camp to Thailand.",
-          "sourceLabel": "UFC athlete profile",
-          "source": "https://www.ufc.com/athlete/ramazan-temirov"
         },
         {
           "date": "Oct. 24, 2026",
@@ -2411,14 +2387,6 @@
           "detail": "At UFC Fight Night: Ankalaev vs. Guskov in Abu Dhabi, Kuniev stopped Tyrell Fortune with knees at 1:12 of round three, improving to 2-1 inside the UFC and 14-3-1 professionally (plus one NC). The bout earned Fight of the Night honors. A few secondary databases list 1:11; UFC and Sherdog record 1:12.",
           "sourceLabel": "UFC Abu Dhabi bonus report / official fighter results",
           "source": "https://www.ufc.com/news/bonus-coverage-ufc-abu-dhabi"
-        },
-        {
-          "date": "Oct. 2026 (current gym listing)",
-          "label": "Atletica Sports listed by UFC; Gorets listed elsewhere",
-          "kind": "camp",
-          "detail": "The UFC's updated English athlete page lists Atletica Sports, while Sherdog lists Gorets Fight Club and an older UFC-language profile lists American Top Team. Kuniev's initial MMA development at Gorets is directly reported by him. These different current listings do not establish when, whether, or why he changed primary teams; no unsupported training-switch date is assigned.",
-          "sourceLabel": "UFC athlete profile / Sherdog",
-          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
         },
         {
           "date": "Oct. 24, 2026",
@@ -3418,14 +3386,6 @@
           "source": "https://www.ufc.com/news/ufc-327-official-scorecards-prochazka-vs-ulberg-miami"
         },
         {
-          "date": "Oct. 2026 (listed camp, joining date uncertain)",
-          "label": "K Dojo Warrior Tribe still listed; no verified camp switch",
-          "kind": "camp",
-          "detail": "UFC and Sherdog continue to associate Murzakanov with K Dojo Warrior Tribe in New Jersey, with Murat Keshtov listed as a coach. No independently confirmed permanent move or new training base for UFC 333 has been established. This is a current affiliation, not a dated gym transfer.",
-          "sourceLabel": "Sherdog gym affiliation",
-          "source": "https://www.sherdog.com/fighter/Azamat-Murzakanov-60203"
-        },
-        {
           "date": "Oct. 24, 2026",
           "label": "UFC 333 · scheduled vs. Dominick Reyes",
           "kind": "upcoming",
@@ -3799,14 +3759,6 @@
           "detail": "Stony Brook officially inducted Reyes at its athletics Hall of Fame ceremony alongside four other honorees. This was for his defensive-back football career, not an MMA hall of fame induction.",
           "sourceLabel": "Stony Brook official ceremony recap",
           "source": "https://stonybrookathletics.com/news/2026/9/18/seawolves-united-stony-brook-athletics-celebrates-2026-hall-of-fame-class.aspx"
-        },
-        {
-          "date": "Oct. 2026 (current affiliations; gym listing differs)",
-          "label": "Cobra Kai UFC listing, Teixeira MMA Sherdog listing",
-          "kind": "camp",
-          "detail": "UFC lists Reyes's training base as Cobra Kai Victorville in California, while Sherdog currently displays Teixeira MMA & Fitness in Connecticut. His own 2024 interview confirmed both that he had trained with Teixeira and Pereira and that he returned to his old team. The directory mismatch alone is not evidence of another permanent 2026 camp move; a specific new UFC 333 camp is not independently established.",
-          "sourceLabel": "UFC athlete profile and MMA Fighting",
-          "source": "https://www.ufc.com/athlete/dominick-reyes"
         },
         {
           "date": "Oct. 24, 2026",
@@ -4312,14 +4264,6 @@
           "source": "https://www.mmafighting.com/ufc/498740/ufc-329-video-robert-whittaker-potentially-breaks-nikita-krylovs-jaw-in-light-heavyweight-debut"
         },
         {
-          "date": "Oct. 2026 (gym listings vary; transfer date not verified)",
-          "label": "Fight Club No1 and Raty Team listed training affiliations",
-          "kind": "camp",
-          "detail": "UFC's athlete profile lists Fight Club No1 in Moscow; Sherdog and other fighter registries currently list Raty Team, with Alexander Sidorin identified as a coach in recent records. Earlier UFC coverage documents temporary American Top Team and Thailand training. These directory entries alone do not establish a dated permanent camp switch or prove specific UFC 333 camp participants.",
-          "sourceLabel": "UFC and Sherdog gym listings",
-          "source": "https://www.ufc.com/athlete/nikita-krylov?page=5"
-        },
-        {
           "date": "Oct. 24, 2026",
           "label": "UFC 333 · scheduled vs. Abdul-Rakhman Yakhyaev",
           "kind": "upcoming",
@@ -4509,14 +4453,6 @@
           "detail": "Yakhyaev received a Performance of the Night award for his 0:08 first-round KO of Julius Walker in Azerbaijan. The bonus was for a completed UFC bout, which appears as an individual fight entry.",
           "sourceLabel": "Sherdog post-event awards report",
           "source": "https://www.sherdog.com/news/news/Four-Performance-of-the-Night-Bonuses-Handed-Out-at-UFC-Baku-201667"
-        },
-        {
-          "date": "Oct. 2026 (current listing, exact camp dates unreported)",
-          "label": "MMA Nürnberg remains listed affiliation",
-          "kind": "camp",
-          "detail": "The UFC lists MMA Nürnberg as Yakhyaev's gym, while its June 2026 reporting confirms training sessions under JZ Cavalcante in Florida. No primary source establishes a new permanent home gym or an injury-driven camp change for UFC 333, so one is not invented.",
-          "sourceLabel": "UFC athlete profile and report",
-          "source": "https://www.ufc.com/athlete/abdulrakhman-yakhyaev"
         },
         {
           "date": "Oct. 21, 2026",
@@ -4980,14 +4916,6 @@
           "detail": "Magomedov defeated Michal Oleksiejczuk by first-round guillotine at 3:25 and spoke to UFC afterward in Baku. The result was his fifth UFC victory. The fight itself appears in a separate entry.",
           "sourceLabel": "UFC Baku post-fight interview",
           "source": "https://www.ufc.com/video/157929"
-        },
-        {
-          "date": "Oct. 2026 (directory affiliation, current camp details unconfirmed)",
-          "label": "UFD Gym still listed; no confirmed permanent ATT move",
-          "kind": "camp",
-          "detail": "Sherdog, PFL and third-party gym directories continue to associate Magomedov with UFD Gym Düsseldorf. His 2024 American Top Team work is documented separately. No verified report identifies a permanent new head coach or sole training location for the October 2026 Rowston fight.",
-          "sourceLabel": "UFD Gym association listing",
-          "source": "https://next-fight.com/en/fighters/gym/ufd-gym"
         },
         {
           "date": "Oct. 24, 2026",
@@ -5876,14 +5804,6 @@
           "source": "https://middleeasy.com/mma-news/grant-dawson-nurullo-aliev-wrestling-ufc-333-interview/"
         },
         {
-          "date": "Oct. 2026 (current documented team)",
-          "label": "American Top Team remains his listed training base",
-          "kind": "camp",
-          "detail": "UFC and Sherdog both list Dawson with American Top Team in Coconut Creek, Florida. There is no credible documentation of a permanent 2026 departure from ATT or a new head coach specific to his Aliev fight, so no unsupported gym switch is asserted.",
-          "sourceLabel": "UFC athlete profile and Sherdog affiliation",
-          "source": "https://www.ufc.com/athlete/grant-dawson"
-        },
-        {
           "date": "Oct. 24, 2026",
           "label": "UFC 333 · scheduled lightweight bout vs. Nurullo Aliev",
           "kind": "upcoming",
@@ -6211,14 +6131,6 @@
           "source": "https://www.ufc.com/news/ufc-abu-dhabi-official-scorecards"
         },
         {
-          "date": "Oct. 2026 (current directory listings)",
-          "label": "Kaizen MMA / Kill Cliff FC affiliations",
-          "kind": "camp",
-          "detail": "Sherdog currently lists Aliev's team as Kaizen MMA / Kill Cliff FC. Separate gym listings name Nima Mazhari at Kaizen, but the available evidence does not establish that he is Aliev's current head coach or that Aliev permanently left his earlier Tajik, Thai and Florida training setups.",
-          "sourceLabel": "Sherdog athlete gym affiliations",
-          "source": "https://www.sherdog.com/fighter/Nurullo-Aliev-274869"
-        },
-        {
           "date": "Oct. 20, 2026",
           "label": "Fight-week interview ahead of Grant Dawson",
           "kind": "milestone",
@@ -6536,14 +6448,6 @@
           "detail": "Thicknesse appeared on the heavywgt MMA podcast for a 19:05 interview discussing the Asaf Chopurov matchup, working with Volkanovski, power-punching mechanics, improving performance late in fights, and his approach to Abu Dhabi. The episode also included discussion of Petr Yan's camp. These are the published interview topics, not proof of a permanent gym move.",
           "sourceLabel": "heavywgt MMA podcast, episode Oct. 10, 2026",
           "source": "https://www.buzzsprout.com/1765488/episodes/19934049-ufc-fighter-colby-thicknesse-on-his-fight-against-asaf-chopurov-at-ufc333-in-abu-dhabi"
-        },
-        {
-          "date": "Oct. 2026 (current documented team)",
-          "label": "Freestyle Fighting Gym remains listed primary team",
-          "kind": "camp",
-          "detail": "Sherdog and UFC continue to identify Thicknesse with the Freestyle Fighting Gym/Freestyle MMA team under Joe Lopez. His long-running work with Volkanovski is documented; no reliable source establishes a permanent 2026 departure or a new head coach for UFC 333.",
-          "sourceLabel": "UFC athlete profile and Sherdog affiliation",
-          "source": "https://www.ufc.com/athlete/colby-thicknesse"
         },
         {
           "date": "Oct. 24, 2026 (scheduled)",
@@ -6935,14 +6839,6 @@
           "detail": "UAE Warriors reported that Chopurov split training between Moscow, Baku and Phuket while mixing sambo, Muay Thai and Jeet Kune Do. This is a report of training experience, not evidence that he permanently switched teams or spent this entire interval at a single gym.",
           "sourceLabel": "UAE Warriors July 13, 2025 pre-fight profile",
           "source": "https://www.uaewarriors.com/4-destinies-1-night-the-fearsome-foursome-of-uae-warriors-61/"
-        },
-        {
-          "date": "2024–2026 (gym affiliations; exact dates unknown)",
-          "label": "Sambo 34 and Chingiz Allazov Team appear in gym listings",
-          "kind": "camp",
-          "detail": "Sherdog lists Chopurov with Sambo 34, while Tapology lists Chingiz Allazov Team and names Gasanali Gasanaliyev as head coach and Farid Talybov as another coach. These are competing or complementary directory affiliations, not documentary proof of a specific camp change. His work with Petr Yan is independently reported.",
-          "sourceLabel": "Sherdog and Tapology fighter directory listings",
-          "source": "https://www.tapology.com/fightcenter/fighters/198455-asef-chopurov"
         },
         {
           "date": "Jan. 17, 2025",
@@ -7400,14 +7296,6 @@
           "source": "https://www.sherdog.com/fighter/Jacob-Malkoun-204645"
         },
         {
-          "date": "Oct. 2026 (directory affiliation listings)",
-          "label": "Smeaton Grange and PMA Super Martial Arts team entries",
-          "kind": "camp",
-          "detail": "Tapology and ESPN identify Gracie Jiu-Jitsu Smeaton Grange; Sherdog lists PMA Super Martial Arts. Without dated statements establishing a transfer, these affiliations should not be turned into a claimed 2026 permanent gym switch. His Whittaker training partnership is well documented.",
-          "sourceLabel": "Sherdog and Tapology athlete listings",
-          "source": "https://www.sherdog.com/fighter/Jacob-Malkoun-204645"
-        },
-        {
           "date": "Oct. 21, 2026",
           "label": "Comments on Vagaev, back recovery and Whittaker sparring",
           "kind": "milestone",
@@ -7815,14 +7703,6 @@
           "source": "https://mma.metaratings.ru/news/vagaev-malkun-krepkii-boec-eto-khoroshaya-proverka-dlya-menya-659829/"
         },
         {
-          "date": "Oct. 2026 (current team listing)",
-          "label": "Akhmat Fight Club is still listed as his gym",
-          "kind": "camp",
-          "detail": "UFC and Sherdog list Akhmat Fight Club / Fight Club Akhmat in Grozny. Although he has a documented professional relationship with Khamzat Chimaev, there is no verified 2026 permanent transfer to a different gym or head coach.",
-          "sourceLabel": "UFC fighter team listing",
-          "source": "https://www.ufc.com/athlete/abubakar-vagaev"
-        },
-        {
           "date": "Oct. 24, 2026 (scheduled)",
           "label": "UFC 333 · middleweight vs. Jacob Malkoun",
           "kind": "upcoming",
@@ -8132,14 +8012,6 @@
           "detail": "Sherdog's UFC 333 preview described Oki as moving down to featherweight against Daniel Santos. Oki came in with two consecutive stoppage losses and remained 10-4 overall (2-3 in the UFC). Whether the smaller division changes his physical advantages or conditioning is prospective analysis, not a proven fact.",
           "sourceLabel": "Sherdog UFC 333 prelim preview, Oct. 21",
           "source": "https://www.sherdog.com/news/articles/7/Preview-UFC-333-prelims-203277"
-        },
-        {
-          "date": "Oct. 2026 (latest published team affiliations)",
-          "label": "Valon Team and Da Vinci Fighting still publicly listed",
-          "kind": "camp",
-          "detail": "The UFC's fighter questionnaire lists Valon Team and Sherdog additionally lists Da Vinci Fighting. No verified statement documents a permanent late-2026 coaching change or a new primary gym for UFC 333.",
-          "sourceLabel": "UFC athlete directory / Sherdog profile",
-          "source": "https://www.sherdog.com/fighter/Bolaji-Oki-276669"
         },
         {
           "date": "Oct. 24, 2026 (scheduled)",
@@ -8525,14 +8397,6 @@
           "source": "https://www.itatiaia.com.br/esportes/lutas/ufc/lutador-mineiro-diz-que-volkanovski-ja-superou-jose-aldo-no-ufc-e-o-melhor/"
         },
         {
-          "date": "Oct. 2026 (current team listing)",
-          "label": "Chute Boxe Diego Lima still his documented primary gym",
-          "kind": "camp",
-          "detail": "UFC and Sherdog continue to list Chute Boxe Diego Lima in São Paulo as Santos's team. His long-term association with Charles Oliveira remains documented. No reliable October 2026 evidence proves he has permanently transferred to another camp or changed head coaches.",
-          "sourceLabel": "UFC athlete profile and Sherdog association",
-          "source": "https://us.ufcespanol.com/athlete/daniel-santos"
-        },
-        {
           "date": "Oct. 24, 2026 (scheduled)",
           "label": "UFC 333 · featherweight vs. Bolaji Oki",
           "kind": "upcoming",
@@ -8898,14 +8762,6 @@
           "detail": "Steele was removed from the Aug. 22 Sacramento card and replaced by Stan Dorsainvil opposite Gauge Young. RotoWire labels the removal as an undisclosed injury but explicitly states the reasons for the withdrawal are unclear; no specific medical diagnosis, surgery or recovery timetable is verified.",
           "sourceLabel": "RotoWire Aug. 12, 2026 withdrawal update",
           "source": "https://www.rotowire.com/mma/player/kody-steele-2624"
-        },
-        {
-          "date": "Oct. 2026 (current roster directory)",
-          "label": "Syndicate MMA continues as listed training camp",
-          "kind": "camp",
-          "detail": "The UFC lists Steele as training at Syndicate MMA in Las Vegas and competing at lightweight. There is no verified late-2026 announcement of a permanent change of head coach or primary training base.",
-          "sourceLabel": "UFC athlete current roster biography",
-          "source": "https://www.ufc.com/athlete/kody-steele"
         },
         {
           "date": "Oct. 19–21, 2026",
@@ -9666,14 +9522,6 @@
           "source": "https://www.ufc.com.br/news/iasmin-lucindo-back-in-game-ufc-333"
         },
         {
-          "date": "Oct. 21, 2026 (latest team listing)",
-          "label": "Fight House / Renato Velame remains documented camp",
-          "kind": "camp",
-          "detail": "Sherdog lists Fight House, and Brazilian reporting documents head coach Renato Velame in Feira de Santana and a long-running working relationship with Virna Jandiroba. A specific new 2026 coach or permanent gym transfer has not been confirmed; Amanda Nunes's earlier mentorship was not a documented change of team.",
-          "sourceLabel": "Sherdog current team listing and Globo Esporte coaching report",
-          "source": "https://www.sherdog.com/fighter/Iasmin-Lucindo-264861"
-        },
-        {
           "date": "Oct. 24, 2026 (scheduled)",
           "label": "UFC 333 · women's strawweight vs. Nicolle Caliari",
           "kind": "upcoming",
@@ -10015,14 +9863,6 @@
           "source": "https://agfight.com/entrevistas/nicolle-caliari-revela-inspiracao-em-ronda-rousey-apos-vitoria-no-ufc-vegas-117/"
         },
         {
-          "date": "May–Oct. 2026 (no intervening MMA bout)",
-          "label": "Maintains Thai Brasil Floripa affiliation",
-          "kind": "camp",
-          "detail": "UFC and Sherdog list Thai Brasil Floripa, with Márcio Malko as a key coach. Caliari's 2023 move to Florianópolis is documented; no verified permanent 2026 return to Curitiba or new training team has been reported.",
-          "sourceLabel": "UFC current athlete profile and Sherdog team listing",
-          "source": "https://www.ufc.com/athlete/nicolle-caliari"
-        },
-        {
           "date": "Oct. 1, 2026 (booking reported)",
           "label": "Lucindo vs. Caliari scheduled for UFC 333",
           "kind": "milestone",
@@ -10037,14 +9877,6 @@
           "detail": "UFC's Brazilian fighter overview lists Caliari as born in Curitiba, 29 years old, a 9-4 professional record, and newly established at 115 pounds following her win over Bannon. This confirms her roster division and scheduled opponent, not the Oct. 24 result.",
           "sourceLabel": "UFC Brazil Oct. 17 UFC 333 fighters overview",
           "source": "https://www.ufc.com.br/news/conheca-lutadores-brasileiros-ufc-333"
-        },
-        {
-          "date": "Oct. 19, 2026",
-          "label": "UFC preview confirms Lucindo matchup as opening bout",
-          "kind": "milestone",
-          "detail": "The UFC's official fight-by-fight preview describes Caliari vs Iasmin Lucindo as the opening fight at UFC 333, an all-Brazilian women's strawweight pairing. The entire early preliminary segment begins at 10 a.m. Eastern / 9 a.m. Central / 6 p.m. Abu Dhabi local time; no independently fixed individual walkout time is published.",
-          "sourceLabel": "UFC official Oct. 19 fight-by-fight preview",
-          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-333-volkanovski-vs-evloev"
         },
         {
           "date": "Oct. 21, 2026",
@@ -10380,7 +10212,7 @@
         {
           "date": "Jul. 8, 2017",
           "label": "AMATEUR NO CONTEST · Pati (Ropati) Lemai",
-          "kind": "background",
+          "kind": "nc",
           "detail": "An accidental eye poke ended Nolan's Eternal MMA 26 fight with Lemai in the first round, producing a no contest; some sources list the opponent as Ropati Lemai.",
           "sourceLabel": "Sherdog amateur bout ledger",
           "source": "https://www.sherdog.com/fighter/Tom-Nolan-244655"
@@ -15393,14 +15225,6 @@
           "source": "https://sportnet.sme.sk/spravy/mma-lucia-szabova-prestup-oktagon-ufc-2026/"
         },
         {
-          "date": "October 2026",
-          "label": "Career statistics and cross-source record check",
-          "kind": "milestone",
-          "detail": "Standard professional MMA tally: 10–0, with three KO/TKO wins, four submissions and three decisions (70% finishing rate). OKTAGON, Tapology and Verdict also count two 2019 Challenge qualifiers, making their tally 12–0 with four KO/TKO wins, five submissions and three decisions (75% finishing rate). Verdict's opponent-history ledger gives individual opponents' pre-fight records; bouts under modified Underground rules, Muay Thai, kickboxing and grappling are excluded. She has no completed regular UFC bouts, so UFC significant-striking, takedown and submission-attempt averages are not yet available.",
-          "sourceLabel": "Sherdog · standard MMA results; Verdict · expanded records",
-          "source": "https://verdictmma.com/fighter/lucia-silent-killer-szabova"
-        },
-        {
           "date": "Oct. 31, 2026 (scheduled)",
           "label": "UFC FIGHT NIGHT · debut vs. Tainara Lisboa",
           "kind": "upcoming",
@@ -19244,7 +19068,7 @@
         {
           "date": "Oct. 2, 2021",
           "label": "NO CONTEST · Kyle Daukaus · UFC Fight Night 193",
-          "kind": "note",
+          "kind": "nc",
           "detail": "Fight with Kyle Daukaus ruled a no contest at UFC Fight Night 193, Round 1 at 3:43 after an accidental clash of heads. An accidental collision of heads precedes the stoppage; the result is recorded as a no contest. Career record after the bout: 21–7 (1 NC).",
           "sourceLabel": "UFC · official fight history",
           "source": "https://www.ufc.com/athlete/kevin-holland"
@@ -19646,7 +19470,7 @@
         {
           "date": "Nov. 12, 2016",
           "label": "DRAW · Tyron Woodley · UFC 205",
-          "kind": "note",
+          "kind": "draw",
           "detail": "Fought Tyron Woodley to a majority draw at UFC 205, five rounds (5:00 of Round 5). First UFC welterweight championship challenge at Madison Square Garden. An eventful fourth round helps define a close fight, which ends in a majority draw; Woodley retains the title. Professional MMA record afterward: 13–1–1.",
           "source": "https://www.ufc.com/athlete/stephen-thompson",
           "sourceLabel": "UFC · official fight history"
@@ -20274,7 +20098,7 @@
         {
           "date": "Mar. 21, 2015",
           "label": "NO CONTEST · Leandro Silva · UFC Fight Night 62: Maia vs. LaFlare",
-          "kind": "note",
+          "kind": "nc",
           "detail": "Faced Leandro Silva at UFC Fight Night 62: Maia vs. LaFlare. No contest (overturned stoppage), Round 2 (2:45). Referee initially awarded Silva a guillotine submission; Brazil's commission overturned the premature stoppage to a no contest on March 26, 2015. Professional record afterward: 15–6–0 (1 NC).",
           "source": "https://www.ufc.com/news/silva-dober-result-overturned-no-contest",
           "sourceLabel": "UFC · commission ruling"
@@ -21102,7 +20926,7 @@
         {
           "date": "Apr. 27, 2013",
           "label": "NO CONTEST · Pat Healy · UFC 159",
-          "kind": "note",
+          "kind": "nc",
           "detail": "Fought Pat Healy at UFC 159; No contest (commission-overturned submission result), Round 3 (4:02). Initially recorded as a submission defeat to Healy, but New Jersey regulators overturned the result after Healy tested positive for marijuana metabolites. Neither a win nor a loss is counted. Career record afterward: 22–4–0 (1 NC).",
           "source": "https://www.ufc.com/news/official-statement-ufc-159",
           "sourceLabel": "UFC · official athletic-commission ruling"
@@ -22374,7 +22198,7 @@
         {
           "date": "Mar. 24, 2023",
           "label": "AMATEUR NC · Cody Baker · Caged Aggression 35",
-          "kind": "note",
+          "kind": "nc",
           "detail": "His fight against Cody Baker at Caged Aggression 35: The Trilogy Night 2 was ruled a no contest after an accidental eye poke, Round 2 (1:36). The result is not an MMA win or loss.",
           "sourceLabel": "Sherdog · amateur fight history",
           "source": "https://www.sherdog.com/fighter/Donte-Johnson-414279"
@@ -23364,7 +23188,7 @@
         {
           "date": "Apr. 22, 2023",
           "label": "NO CONTEST · Bobby Green · UFC Fight Night 222: Pavlovich vs. Blaydes",
-          "kind": "note",
+          "kind": "nc",
           "detail": "Fought Bobby Green at UFC Fight Night 222: Pavlovich vs. Blaydes. No contest (accidental clash of heads), Round 1 (4:35). A clash of heads knocked Gordon down, followed by punches from Green. After video review, the original knockout ruling was changed to a no contest. Neither fighter received a win or loss. Professional MMA record after the bout: 19–6 (1 NC). UFC record: 7–5 (1 NC).",
           "sourceLabel": "UFC · official no contest ruling",
           "source": "https://www.ufc.com/news/ufc-fight-night-pavlovich-vs-blaydes-results-highlights-winner-interviews-ufc-vegas-71?language_content_entity=en"
@@ -24750,14 +24574,6 @@
           "sourceLabel": "UFC · athlete's full fight history"
         },
         {
-          "date": "Nov. 5, 2026",
-          "label": "Record discrepancy: UFC.com 13-1 versus 12-1 fight ledger",
-          "kind": "note",
-          "detail": "Her complete 13-fight professional history shows 12 wins and one loss (9-1 UFC): two KO/TKO, six submission and four decision wins. Sherdog, Tapology and FightMatrix agree. The UFC profile's 13-1 and seven submission wins are inconsistent with that ledger; do not invent an additional fight to match them.",
-          "source": "https://www.sherdog.com/fighter/Tatiana-Suarez-161107",
-          "sourceLabel": "Sherdog · complete professional and exhibition fight histories"
-        },
-        {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Virna Jandiroba · UFC Vegas 124",
           "kind": "upcoming",
@@ -25532,14 +25348,6 @@
           "sourceLabel": "MMA Junkie · April 2026 post-fight bonuses"
         },
         {
-          "date": "Nov. 5, 2026",
-          "label": "Record-source discrepancy: 18-8 versus Tapology's 16-8",
-          "kind": "note",
-          "detail": "The complete Sherdog professional ledger contains 26 fights (18 wins, eight losses), matching UFC.com and FightMatrix; 16 official UFC fights yield a 9-7 UFC record. Tapology currently reports 16-8 overall while also listing 9-7 UFC. Preserve the 18-8 total supported by the 26-fight ledger and flag the two-win discrepancy, rather than inventing or dropping fights.",
-          "source": "https://www.sherdog.com/fighter/Davey-Grant-30564",
-          "sourceLabel": "Sherdog · 26-fight professional record; compared with Tapology and UFC"
-        },
-        {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Elijah Smith · UFC Vegas 124",
           "kind": "upcoming",
@@ -25791,22 +25599,6 @@
           "sourceLabel": "AgentMMA · August 2026 initial fight announcement"
         },
         {
-          "date": "Nov. 5, 2026",
-          "label": "Injury and cancellation audit: none reliably verified",
-          "kind": "note",
-          "detail": "Review of the official UFC history, complete Sherdog fight ledger and contemporaneous profiles found no specific documented major injury surgery, extended injury layoff or canceled professional booking attributable to Smith through Nov. 5, 2026. This is a documentation limitation, not a claim that he has never had an injury or fight fall through.",
-          "source": "https://www.sherdog.com/fighter/Elijah-Smith-385324",
-          "sourceLabel": "Sherdog · pro/amateur fight ledger; checked against UFC biography"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Method classification note: early Fury FC finishes",
-          "kind": "note",
-          "detail": "For the Aug. 21, 2022 Roger Smith fight, Sherdog specifies TKO by corner stoppage after round two, whereas some fight databases abbreviate the result to KO. For the Sep. 1, 2023 Dimas Chapa submission, Sherdog specifies face crank while FightMatrix categorizes it as rear-naked choke. The chronology uses Sherdog's granular classifications and retains the competing labels here.",
-          "source": "https://www.fightmatrix.com/fighter-profile/Elijah%2520Smith/241981/",
-          "sourceLabel": "FightMatrix · alternative method labels, compared with Sherdog"
-        },
-        {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Davey Grant · UFC Vegas 124",
           "kind": "upcoming",
@@ -26034,14 +25826,6 @@
           "sourceLabel": "Tapology · complete professional MMA ledger"
         },
         {
-          "date": "Dec. 8, 2023",
-          "label": "Disputed AFC 29 calendar and stoppage-time listings",
-          "kind": "note",
-          "detail": "For the Alwin Kincai victory, Tapology and ESPN list Dec. 8, 2023 with a 0:58 first-round KO/TKO. Sherdog lists Dec. 9 and 0:48. The professional result and total 13-3 record agree; the timeline follows Tapology's fight date and time while preserving the discrepancy.",
-          "source": "https://www.sherdog.com/fighter/Seok-Hyeon-Ko-275977",
-          "sourceLabel": "Sherdog · AFC 29 listing; compared with Tapology and ESPN"
-        },
-        {
           "date": "Sep. 3, 2024",
           "label": "WIN · Igor Cavalcanti · Dana White's Contender Series 2024: Week 4",
           "kind": "win",
@@ -26192,22 +25976,6 @@
           "detail": "RotoWire, citing Marcel Dorff's reporting, announced Ko would face Wellington Turman in a three-round welterweight matchup at UFC Vegas 124. It was Ko's scheduled fourth official UFC appearance, and Turman's attempted return after nearly three years without a completed bout. The pairing remains upcoming on November 5.",
           "source": "https://www.rotowire.com/mma/player/seok-hyeon-ko-2598",
           "sourceLabel": "RotoWire · September 9 2026 Turman booking"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Injury, withdrawal and medical evidence reconciliation",
-          "kind": "note",
-          "detail": "Known canceled UFC bookings: Billy Ray Goff on May 31, 2025 because of US visa issues, followed by a rebooking versus Oban Elliott in Azerbaijan; Jacobe Smith on Feb. 21, 2026 due to Ko's severe rib injury, replaced by Josiah Harrell. Ko reported pain and rehab impact from the rib injury but no verified fracture, surgery or longer-term medical diagnosis. No other source-confirmed injury withdrawals found in reviewed public fighter records.",
-          "source": "https://www.ufc.com/news/updates-ufc-houston",
-          "sourceLabel": "UFC · February 13 2026 official injury withdrawal"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Record and career-path audit",
-          "kind": "note",
-          "detail": "16 completed professional MMA bouts: 13 wins (6 KO/TKO, 0 submission, 7 decisions) and 3 losses (2 KO/TKO, 1 decision). UFC Octagon record 2-1 across 3 completed bouts. Sept. 2024 DWCS victory counts in the 13-3 pro ledger but not UFC 2-1, and there is no documented Road to UFC tournament appearance. Major separate credentials: 2017 Irkutsk World Cup combat-sambo gold and Nov. 11 2017 Sochi world combat-sambo gold at 82 kg; AFC welterweight and middleweight championships, HEAT co-promotion. UFC's age 32 display is stale after Sep. 24, 2026: age is 33. Some databases disagree over the Wakimoto decision method (majority vs unanimous), Moon Ho Park KO time (0:51 vs 0:53), Han Seul Kim time (1:05 vs 1:06), and Alwin Kincai date/time (Dec. 8 at 0:58 vs Dec. 9 at 0:48). No extra bout created from these. Fighter's 2026 nickname preference 'Technical' differs from older profile label 'The Korean Tyson'.",
-          "source": "https://www.sherdog.com/fighter/Seok-Hyeon-Ko-275977",
-          "sourceLabel": "Sherdog · complete 16-fight professional record"
         },
         {
           "date": "Nov. 7, 2026",
@@ -26749,14 +26517,6 @@
           "sourceLabel": "AgentMMA · September 2026 preliminary booking report; UFC official card for division"
         },
         {
-          "date": "Nov. 5, 2026",
-          "label": "Fight-ledger and return-status audit",
-          "kind": "note",
-          "detail": "Rechecked all 26 completed professional contests against the Sherdog ledger: 18 wins (four KO/TKO, eight submissions, six decisions), eight losses (two KO/TKO, one submission, five decisions). Nine completed UFC bouts yield 3-6. His last completed fight was Dec. 2, 2023; as of Nov. 5, 2026, the gap is approximately 35 months. The canceled July 2026 Dulatov booking did not reset the layoff, and the Nov. 7 Seokhyeon Ko fight remains upcoming.",
-          "source": "https://www.sherdog.com/fighter/Wellington-Turman-157451",
-          "sourceLabel": "Sherdog · 26 professional bouts; UFC · November 7, 2026 official card"
-        },
-        {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Seokhyeon Ko · UFC Vegas 124",
           "kind": "upcoming",
@@ -26810,7 +26570,7 @@
         {
           "date": "Jul. 15, 2017",
           "label": "AMATEUR DRAW · Ty Gwerder · King of the Cage: Future Legends 37",
-          "kind": "amateur",
+          "kind": "draw",
           "detail": "Fought Ty Gwerder at King of the Cage: Future Legends 37 on Jul. 15, 2017 by majority draw (round 3, 3:00). Amateur record after bout: 2-0-1. Amateur result does not affect professional MMA or UFC records. The majority draw must be counted as a draw, not as a loss; UFC's official biography also lists his amateur record with one draw.",
           "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
           "sourceLabel": "Sherdog · full eight-fight amateur ledger"
@@ -27110,14 +26870,6 @@
           "detail": "The November 7 Elekana–Fernando 205-pound fight was reported in September. The pairing was subsequently included on the UFC's official Cortes-Acosta vs Walker event card. Elekana had not competed since the January 2026 Tafa submission after withdrawing from June's scheduled Baraniewski bout.",
           "source": "https://www.mmafighting.com/ufc/509674/rising-light-heavyweights-lucas-fernando-billy-elekana-booked-for-ufc-vegas-124-fight",
           "sourceLabel": "MMA Fighting · September 2026 bout announcement"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Record reconciliation and withdrawal audit",
-          "kind": "note",
-          "detail": "Verified twelve completed professional fights: 10 wins (three KO/TKO, three submissions, four decisions) and two losses (one submission, one decision). Four completed UFC fights total 3-1. The documented amateur ledger is 6-1-1 across eight bouts, including three amateur title fights. November 2024 Justin Sumter and June 2026 Iwo Baraniewski were canceled and do not count. UFC called the 2026 removal injury-related, but no diagnosis was disclosed; no medical explanation is verified for the 2019–21 or 2023–24 gaps.",
-          "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
-          "sourceLabel": "Sherdog · complete 12-pro and eight-amateur ledgers, cross-checked with UFC"
         },
         {
           "date": "Nov. 7, 2026",
@@ -27443,14 +27195,6 @@
           "sourceLabel": "LFA · May 2026 first-person promotion recap and unverified second-defense claim"
         },
         {
-          "date": "May 30, 2026",
-          "label": "LFA 234 stoppage-clock discrepancy: 1:28 versus 2:28",
-          "kind": "note",
-          "detail": "Both the May 29, 2026 LFA post-event official result and Sherdog's event page record round one at 1:28 for the leg-kick-and-punches finish over Leon Soares; some third-party sites report 2:28. Prefer the promotion's 1:28 when writing the timeline, noting the conflicting secondary listings. LFA's description of a 'second successful defense' is likewise inconsistent with the complete available 205-pound championship fight ledger. Neither inconsistency warrants fabricating a bout.",
-          "source": "https://www.lfa.com/fernando-and-nascimento-defend-their-titles-in-lfa-234/",
-          "sourceLabel": "LFA · official May 29, 2026 event result, cross-checked with Sherdog"
-        },
-        {
           "date": "July 2026",
           "label": "UFC signs reigning LFA light heavyweight titleholder",
           "kind": "milestone",
@@ -27475,36 +27219,12 @@
           "sourceLabel": "UFC · official early prelim recap and stoppage"
         },
         {
-          "date": "Aug. 16, 2026",
-          "label": "UFC publishes official Tobias finishing method and result",
-          "kind": "note",
-          "detail": "UFC's August 16 official scorecards list Lucas Fernando defeating Rafael Tobias by TKO (knee to the body) at 1:10 of round three. MMA Fighting's contemporary report describes a knee followed by further strikes, but the UFC results settle the official method as a body-knee TKO. This is a documentation/technical-label clarification for the same fight, not another finish.",
-          "source": "https://www.ufc.com/news/ufc-330-official-scorecards",
-          "sourceLabel": "UFC · Aug. 16, 2026 official result designation"
-        },
-        {
           "date": "Autumn 2026",
           "label": "Booked for second UFC fight against Billy Elekana",
           "kind": "booking",
           "detail": "MMA Fighting reported a November 7, 2026 UFC Vegas 124 light heavyweight booking against Billy Elekana. Fernando's pre-fight professional record was 14-3, with one official UFC victory. The matchup is the next scheduled fight, not a completed result.",
           "source": "https://www.mmafighting.com/ufc/509674/rising-light-heavyweights-lucas-fernando-billy-elekana-booked-for-ufc-vegas-124-fight",
           "sourceLabel": "MMA Fighting · autumn 2026 Elekana–Fernando matchup"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Career injury and withdrawal audit",
-          "kind": "note",
-          "detail": "No source-confirmed major surgery or medically attributed extended layoff was found in Fernando's official UFC athlete biography, LFA fight history or available reporting as of Nov. 5, 2026. There are unfilled intervals in the published fight ledger (2018–19, 2020–21) and a March 2024 João Paulo Silva matchup marked canceled before the completed May rematch, but the causes have not been established. Do not infer an injury from an inactive period or assign blame for the postponed LFA 179 pairing.",
-          "source": "https://www.tapology.com/fightcenter/fighters/135406-lucas-fernando",
-          "sourceLabel": "Tapology · cancellation ledger, cross-checked against LFA and UFC profiles"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Full professional record and title-history reconciliation",
-          "kind": "note",
-          "detail": "Reconciled all 17 completed professional bouts: 14 wins (eight KO/TKO, two submissions, four decisions) and three unanimous-decision losses. The Aug. 2023 Cesar Almeida DWCS defeat is a professional loss, not a UFC fight; the Aug. 2026 Rafael Tobias TKO is his only completed official UFC bout, giving 1-0 UFC. LFA confirms the March 2023 middleweight title, August 2025 vacant 205-pound title win and May 2026 Leon Soares defense. UFC's 'two-time LFA light heavyweight champion' phrasing and LFA's 'second defense' wording remain unresolved against the 17-fight ledger and should not produce an invented win.",
-          "source": "https://www.ufc.com/athlete/lucas-fernando",
-          "sourceLabel": "UFC · official career record and title questionnaire; reconciled with LFA event results"
         },
         {
           "date": "Nov. 7, 2026",
@@ -27812,22 +27532,6 @@
           "detail": "UFC schedules briefly showed Kondratavičius–Petroski on two different Saturdays. By Oct. 26 the Oct. 31 Moicano–Nolan listing was removed, and the bout remained set for Nov. 7. This was one rescheduled pairing, not two separate fights.",
           "source": "https://www.ufcalendar.com/blog/kondratavicius-petroski-moves-ufc-fight-night-moicano-nolan-to-bonfim-brady",
           "sourceLabel": "UFCalendar · October 2026 card-change tracking"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Injury and canceled-booking review",
-          "kind": "note",
-          "detail": "No verified major surgery, personally injury-attributed withdrawal, or injury-enforced prolonged absence was found in reviewed public UFC interviews and fight histories. Canceled bouts against Ale Joseph (June 2022) and Vlad Gutu (February and June 2023) lack verified causes. The 2022 TKO due to shoulder injury involved his opponent Ale Joseph. In 2026 Wes Schultz left the originally scheduled matchup; cause not confirmed.",
-          "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
-          "sourceLabel": "Tapology · MMA, kickboxing, grappling, and canceled booking history"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Reconcile records across rulesets and databases",
-          "kind": "note",
-          "detail": "Professional MMA ledger: 10 bouts, 9-1 (6 KO/TKO, 2 submission, 1 decision wins; one submission loss); official UFC 1-0; DWCS 1-0 separately. Sherdog/MMA Index document five amateur MMA bouts (4-1), while Tapology also lists Nov. 21, 2021 Danielius Grebliūnas amateur loss (4-2 if counted). Four documented 2014–16 kickboxing bouts show two wins, two draws; one documented 2025 grappling victory is separate. There is an event-date discrepancy for the 2021 Kveselys fight and an opponent-name discrepancy for 2024 CAGE 61; do not fabricate fights to reconcile.",
-          "source": "https://www.mmaindex.com/fighters/mantas-kondratavicius-3cc506f1",
-          "sourceLabel": "MMA Index · professional and amateur fight chronology"
         },
         {
           "date": "Nov. 7, 2026",
@@ -28310,22 +28014,6 @@
           "detail": "After Bekoev withdrew and Kondratavičius's original opponent Wes Schultz was removed, UFC arranged Petroski versus Kondratavičius. Event trackers briefly showed the bout on both October 31 and November 7 before the former listing was removed. The actual upcoming date is November 7.",
           "source": "https://www.ufcalendar.com/blog/kondratavicius-petroski-moves-ufc-fight-night-moicano-nolan-to-bonfim-brady",
           "sourceLabel": "UFCalendar · Oct. 2026 card reassignment chronology"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Injury and withdrawal audit; distinguish whose injuries",
-          "kind": "note",
-          "detail": "Confirmed Petroski injury withdrawal: May 6, 2023 Armen Petrosyan matchup, due to partial shoulder rotator-cuff tear. He reported rest and nonoperative treatment and avoided surgery. 2024 Malkoun defeat involved a hard head-to-hip collision in the fight but is not proof of diagnosed lasting injury. Separate changes due to other athletes: Alen Amedovski (2021), Marc-André Barriault (2023), Jacob Malkoun (2025), Azamat Bekoev (2026). No other verified Petroski injury-caused withdrawal or surgery identified through Nov. 5.",
-          "source": "https://www.inkl.com/news/ufc-middleweight-andre-petroski-provides-health-update-after-avoiding-rotator-cuff-surgery",
-          "sourceLabel": "MMA Junkie Radio via Inkl · July 2023 rotator-cuff report"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Reconciled MMA, TUF, amateur and grappling records",
-          "kind": "note",
-          "detail": "19 completed professional MMA bouts: 13-6 (4 KO/TKO wins, 4 submission wins, 5 decision wins; five TKO losses, one decision loss). UFC 8-5 in 13 official bouts; outside UFC 5-1 (Art of War 5-0, LFA 0-1). Amateur MMA 7-1 across eight documented bouts; TUF 29 exhibitions 1-1; seven Fury Pro Grappling matches 5-2. These are distinct rule sets and never combined. UFC athlete profile displayed 13-7 in one live rendering despite its fight ledger and Sherdog/FightMatrix supporting 13-6; do not invent a seventh loss.",
-          "source": "https://www.ufc.com/athlete/andre-petroski",
-          "sourceLabel": "UFC · numerical profile discrepancy as displayed Nov. 2026"
         },
         {
           "date": "Nov. 7, 2026",
@@ -29262,14 +28950,6 @@
           "sourceLabel": "UFC · Nov. 4, 2026 official event updates"
         },
         {
-          "date": "Nov. 5, 2026",
-          "label": "Career, record, canceled-bout and injury audit",
-          "kind": "note",
-          "detail": "Reconciled 16 completed professional fights: 14 wins (3 KO/TKO, 6 submissions, 5 decisions), two losses (both decisions). Official UFC record 1-2 in three completed fights; DWCS 1-0 counts as professional MMA but not UFC Octagon. Two individually documented amateur MMA wins (2-0) plus separate wrestling, Muay Thai and IBJJF grappling accomplishments. Documented Bashi injury withdrawal: Jamall Emmers Nov. 2025 (diagnosis unspecified). Opponent-related changes include Brennan (2026 ACL), Marshall (2025 injury), McMillen (2024 injury), Bandejas (2023 withdrawal) and others with no verified cause. Do not assign opponents' injuries to Bashi. Tapology's captured historical listing still showed 14-1 and omitted the July 2026 Delgado defeat; current Sherdog and UFC records support 14-2.",
-          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
-          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
-        },
-        {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Carlos Calderon · UFC Vegas 124",
           "kind": "upcoming",
@@ -29355,7 +29035,7 @@
         {
           "date": "Mar. 6, 2021",
           "label": "NO CONTEST · Jordan Plutin · Fury FC 44",
-          "kind": "note",
+          "kind": "nc",
           "detail": "Bout with Jordan Plutin ended in a no contest, round 2 at 0:30. The accidental groin strike resulted in an official no contest, not a win, loss, draw, or injury-related withdrawal. Professional record becomes 1-0 (1 NC).",
           "source": "https://www.sherdog.com/fighter/Carlos-Calderon-247279",
           "sourceLabel": "Sherdog · complete professional fight ledger"
@@ -29529,28 +29209,12 @@
           "sourceLabel": "4oz to Freedom · Oct. 11, 2026 interview"
         },
         {
-          "date": "Before Nov. 4, 2026 (future listing for Jan. 15, 2027)",
-          "label": "Earlier Fury FC 127 matchup listed against Dimitri Jioev",
-          "kind": "booking",
-          "detail": "FightMatrix retains a future Fury FC 127 featherweight pairing of Calderon with Dimitri Jioev for January 15, 2027. Because he subsequently accepted a UFC contract and a November 2026 bout, whether the regional booking formally remains active is unverified. This is a historical listing, not a confirmed current commitment.",
-          "source": "https://www.fightmatrix.com/upcoming-events/Fury-FC-127-Fury-Fighting-Championship-127%3A-Calderon-vs.-Jioev/115188/",
-          "sourceLabel": "FightMatrix · archived Jan. 15, 2027 Fury FC 127 listing"
-        },
-        {
           "date": "Nov. 4, 2026",
           "label": "UFC announces signing and Austin Bashi replacement booking",
           "kind": "booking",
           "detail": "UFC confirmed Calderon will replace Lucas Brennan against Austin Bashi for November 7. Brennan, not Calderon, withdrew after an ACL injury. Calderon accepted with approximately four days' notice and is making his first UFC appearance after losing on Contender Series in 2024.",
           "source": "https://www.ufc.com/news/updates-ufc-fight-night-cortes-acosta-vs-walker",
           "sourceLabel": "UFC · Nov. 4, 2026 official fight-card update"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Career ledger, injury and cancellation audit",
-          "kind": "note",
-          "detail": "Reconciled 16 professional bouts: 11 wins (two KO/TKO, six submissions, three decisions), four losses (two submissions, two decisions) and one no contest (accidental groin strike). Four documented amateur MMA wins are separate. The 2024 Alberto Montes defeat occurred on DWCS, not a sanctioned UFC Octagon contest: official UFC record is 0-0 entering Nov. 7, 2026. The known cancellations/changes involve Tony Toro, Cameron Graves, Dakota Hope, Ricky Romo and Brennan replacement for the UFC debut; only the Romo fight-week withdrawal is confirmed by Calderon himself. No verified personal injury layoff or Calderon injury withdrawal was found.",
-          "source": "https://www.sherdog.com/fighter/Carlos-Calderon-247279",
-          "sourceLabel": "Sherdog · complete professional/amateur ledger and verified booking cross-check"
         },
         {
           "date": "Nov. 7, 2026",
@@ -29924,22 +29588,6 @@
           "sourceLabel": "MMA Junkie · Sept. 25, 2026 Cachoeira–Milošević announcement"
         },
         {
-          "date": "Nov. 5, 2026",
-          "label": "Injury, surgery, sanctions and withdrawal reconciliation",
-          "kind": "note",
-          "detail": "Verified own injury and surgery: right ACL and meniscus tears suffered against Valentina Shevchenko on Feb. 3, 2018; surgery Feb. 16, with return March 2019. Another confirmed 2020 weight-cut incident involved a bathtub fall and hospital observation; chronic injury not established. Confirmed non-injury missed booking: 2017 Lauren Murphy visa problems, Nov. 2019 Ariane Lipski positive anti-doping test and four-month USADA sanction, Oct. 2020 Cortney Casey due weight-cut/head-fall, July 2021 Eubanks cancellation by Cachoeira with unspecified cause, Apr. 2023 Karine Silva after weight miss. Opponent-caused changes: Aug. 2022 Lipski weight-cut hospitalization and Jan. 2023 Eubanks weight issues. Avoid treating every canceled fight as a fighter injury.",
-          "source": "https://www.mmafighting.com/2019/3/15/18168965/injured-knee-money-lessons-priscila-cachoeira-ufc-loss-valentina-shevchenko-molly-mccann-london",
-          "sourceLabel": "MMA Fighting · 2019 interview on 2018 ACL recovery"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Record and archival discrepancies reconciled",
-          "kind": "note",
-          "detail": "Twenty-two completed pro MMA bouts: 13-9 overall, 5-9 UFC (14 UFC fights), eight pre-UFC wins from 2016–2017. Win methods: eight KO/TKO, zero submissions and five decisions; losses: one KO/TKO, five submissions and three decisions. Sherdog lists one completed amateur decision victory, Ana Costa Monteiro, separately. Known inconsistencies: debut opponent Cleudilene/Kakau Costa (same bout); Shana Dobson Feb. 22 U.S. time versus Feb. 23 New Zealand local; UFC 297 finish anaconda, not D'Arce; UFC record previously entered incorrectly as 5-8; 2019 USADA sample date Oct. 12 per official statement, not Oct. 19 in one secondary source.",
-          "source": "https://www.sherdog.com/fighter/Priscila-Cachoeira-227399",
-          "sourceLabel": "Sherdog · professional and amateur bout ledger"
-        },
-        {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Nina Milošević · UFC Vegas 124",
           "kind": "upcoming",
@@ -30292,22 +29940,6 @@
           "detail": "In a UFC interview published Nov. 4, Milošević described the home-country debut as meaningful and her November 7 main-card placement as motivation, while emphasizing that fight-night adaptation matters beyond prepared tactics. This is a pre-fight interview, not evidence of a completed Nov. 7 result.",
           "source": "https://www.ufc.com/news/nina-milosevic-practice-makes-perfect-ufc-vegas-124",
           "sourceLabel": "UFC · November 4 2026 interview"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Injury and booking audit",
-          "kind": "note",
-          "detail": "No verified major operation, sustained injury-enforced hiatus or personally injury-attributed withdrawal was located in reviewed UFC/IMMAF interviews, Sherdog histories and booking data. ONE canceled professional booking against Annie Thatcher (HEX Fight Series 33, Nov. 23, 2024) is recorded without a confirmed cause. Her 2023 IMMAF final was not contested because OPPONENT Josiane Oliveira lacked medical clearance, not because Milošević was injured. Absence of public reports is not proof she has never been injured.",
-          "source": "https://www.nextknockout.com/fighters/nina-nikolija-milosevic-349667",
-          "sourceLabel": "NextKnockout · November 2024 Annie Thatcher canceled booking ledger"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Reconcile amateur ledger, title walkover and pro methods",
-          "kind": "note",
-          "detail": "Professional MMA: ten completed bouts, nine wins (four KO/TKO, two rear-naked-choke submissions, three decisions) and one split-decision loss to Cecilie Bolander; UFC 1-0 (Hailey Cowan). Expanded amateur MMA: 12-1 in 13 completed bouts on Tapology-derived ledger; Sherdog lists 10 of these as wins and omits earlier Swedish bouts and the Millie Eriksson defeat. The February 18, 2023 second IMMAF world title was awarded after opponent was not cleared: it does NOT count as a completed fight or a 13th amateur win. There are two DIFFERENT Jessica Andersson meetings in 2020 and 2022. 2021 Worlds occurred Jan. 2022; 2022 Worlds occurred Feb. 2023.",
-          "source": "https://www.sherdog.com/fighter/Nina-Nikolija-Milosevic-399822",
-          "sourceLabel": "Sherdog · complete professional ledger and ten recorded IMMAF amateur fights"
         },
         {
           "date": "Nov. 7, 2026",
@@ -30672,22 +30304,6 @@
           "sourceLabel": "Sherdog · Nov. 4 2026 Parsons account of Sept. 2021 sparring KO"
         },
         {
-          "date": "Nov. 5, 2026",
-          "label": "Full professional, amateur and canceled-bout reconciliation",
-          "kind": "note",
-          "detail": "Twelve completed professional MMA fights produce 9-3: seven KO/TKO wins, ZERO submission wins and two decisions; three losses (two KO/TKO, one decision). Official UFC 1-0 from July 22, 2023; October 19, 2021 DWCS win is pro MMA but non-UFC. Sherdog documents four amateur MMA bouts (3-1) while UFC biography self-reports 4-1. NextKnockout duplicates a 2010 Alex Delgado result under Sept. 10 and Sept. 24, without sufficient evidence of two separate 16-second stoppages. The canceled Jeff Barney, Jeff Roman, Gil Guardado, Micheal Gillmore, Uroš Medić and Yusaku Kinoshita bookings are not wins or losses. UFC website still displays stale age 32; accurate birth-date-based age is 35.",
-          "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
-          "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Medical and withdrawal evidence review",
-          "kind": "note",
-          "detail": "His publicly documented injury-related issues include a self-reported Sept. 2021 Strickland head-kick knockout in sparring; a 2022 postponed debut following unspecified injuries; a Nov. 2023 Uroš Medić cancellation grouped under injuries in UFC's release; and recurring 2023–25 hip-flexor/groin symptoms. The Aug. 2024 Kinoshita withdrawal cause was not specifically established. Physical therapy, UFC Performance Institute strength work, gradual weight loss and better training-load management are reported. NO confirmed surgery, specific torn ligament or imaging diagnosis was verified. Do not classify every cancellation as caused by the same injury.",
-          "source": "https://sports.yahoo.com/articles/sluggernaut-jonny-parsons-wonders-slug-234031324.html",
-          "sourceLabel": "MMA Junkie via Yahoo · Oct. 15 2026 hip-flexor and groin injury interview"
-        },
-        {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · José Souza · UFC Vegas 124",
           "kind": "upcoming",
@@ -30762,14 +30378,6 @@
           "sourceLabel": "ge / Globo Combate · August 29, 2022 interview with José Henrique"
         },
         {
-          "date": "2019–2022 (amateur documentation review)",
-          "label": "No individually verified amateur MMA fight ledger",
-          "kind": "note",
-          "detail": "UFC bio confirms combat-sports training from childhood, but the complete Sherdog, MMA Index and reviewed Tapology professional pages do not provide reliable named amateur MMA bouts with dates and results. No amateur record or fictional opponent has been added. Distinguish early jiu-jitsu and Muay Thai experience from documented amateur MMA fights.",
-          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
-          "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
-        },
-        {
           "date": "Nov. 16, 2019",
           "label": "PRO WIN · Leonardo Andrade · Open Extreme Manaus",
           "kind": "win",
@@ -30808,14 +30416,6 @@
           "detail": "Beat Pedro Oliveira by three-round split decision at LFA 132: Gomes vs. Costa, his first professional decision win after four straight stoppage victories. Pro record advanced to 5-0, official UFC 0-0. Some calendar feeds show May 14 due to time-zone conversions; Sherdog event date May 13 is used.",
           "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
           "sourceLabel": "Sherdog · May 2022 LFA 132 result"
-        },
-        {
-          "date": "July 2022",
-          "label": "Professional boxing date incorrectly stated in UFC biography",
-          "kind": "note",
-          "detail": "His UFC questionnaire claims he won a professional boxing bout in July 2022, but Tapology records a boxing-rules victory over Leonardo Guimarães on July 2, 2023. The dated matchup occurred during his later UFC anti-doping suspension. The conflicting year is flagged instead of inventing a second boxing contest.",
-          "source": "https://www.tapology.com/fightcenter/fighters/289580-jose-henrique-canela",
-          "sourceLabel": "Tapology · fighter identity, 2023 boxing and 2026 canceled-booking listing"
         },
         {
           "date": "August 2022 (before Aug. 30 DWCS bout)",
@@ -30930,14 +30530,6 @@
           "sourceLabel": "USADA · official June 1 2023 nandrolone sanction"
         },
         {
-          "date": "2025",
-          "label": "No completed professional MMA fight documented",
-          "kind": "note",
-          "detail": "Sherdog and MMA Index list no completed professional MMA contests in calendar 2025. The absence follows his November 2024 Centurion FC bout and precedes his eventual 2026 UFC debut; a public injury-based explanation for the entire 2025 period was not independently verified.",
-          "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
-          "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
-        },
-        {
           "date": "Jan. 2026",
           "label": "Initial UFC debut booked against Eric Nolan for Feb. 7",
           "kind": "booking",
@@ -31016,22 +30608,6 @@
           "detail": "RotoWire reported Souza would fight Jonny Parsons at the November 7 Las Vegas card. The pairing pits Souza's 9-1 record (1-0 UFC) against Parsons's 9-3 record (1-0 UFC). It remains only a booking as of Nov. 5.",
           "source": "https://www.rotowire.com/mma/player/jose-henrique-souza-2744",
           "sourceLabel": "RotoWire · Jan–Aug 2026 debut delays and booking reports"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Injury, sanction and withdrawal review",
-          "kind": "note",
-          "detail": "The only specifically described knee injury is the January 2023 training-wrestling injury described by Souza in his May 2026 interview, which he said prompted a Deca-Durabolin injection. No verified knee surgery or precise ligament diagnosis was found. Canceled 2026 bouts: Eric Nolan withdrew (cause unspecified); Souza withdrew from Nikolay Veretennikov (cause unspecified); Charles Radtke pairing was removed (Tapology cites visa issues but RotoWire initially did not confirm cause). The two-year anti-doping penalty was for a documented prohibited-substance finding and missing declaration, NOT an injury exemption.",
-          "source": "https://www.mmafighting.com/ufc/490963/ufc-macau-newcomer-jose-souza-opens-up-on-difficulties-during-doping-suspension",
-          "sourceLabel": "MMA Fighting · May 30 2026 exclusive interview about injury, injection, suspension and continued career"
-        },
-        {
-          "date": "Nov. 5, 2026",
-          "label": "Resolve name, fight dates, boxing and UFC debut discrepancies",
-          "kind": "note",
-          "detail": "Professional MMA: ten completed bouts, 9-1 (six KO/TKO wins, zero submissions, three decisions; lone loss by TKO to Yusaku Kinoshita). UFC 1-0; DWCS defeat in August 2022 is professional but not UFC Octagon. Eight other MMA wins occurred outside UFC/DWCS. Boxing win vs Leonardo Guimarães was July 2, 2023 per Tapology, while UFC biography says July 2022; no duplicate bout established. CFC 24 stoppage clock 2:13 (not 2:30). MMA 2022 DWCS defeat was third-round TKO, contrary to a 2026 retrospective interview's 'decision loss' description. UFC profile shows a stale Apr. 4, 2026 'Octagon Debut' field despite the actual first completed UFC fight being May 30 against Ding Meng. No source-backed amateur MMA fight ledger located.",
-          "source": "https://www.mmaindex.com/fighters/jose-henrique-20a0e4cc",
-          "sourceLabel": "MMA Index · 10 professional bouts by date and ruleset"
         },
         {
           "date": "Nov. 7, 2026",
