@@ -1,5 +1,5 @@
 {
-  "version": 58,
+  "version": 59,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -28886,46 +28886,391 @@
       "division": "Featherweight",
       "items": [
         {
-          "date": "Jul 18, 2026",
-          "label": "LOSS · Jose Delgado · UFC Fight Night",
-          "kind": "loss",
-          "detail": "Lost to Jose Delgado at UFC Fight Night by Decision (Unanimous) in round 3.",
-          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
-          "sourceLabel": "Tapology fighter history"
+          "date": "Sept. 29, 2001",
+          "label": "Born in Michigan; grows up in West Bloomfield",
+          "kind": "milestone",
+          "detail": "Born September 29, 2001. Raised in West Bloomfield Township, Michigan, and later competed out of Warrior Way Martial Arts. Age on November 5, 2026: 25. Full name listed by Tapology is Austin Joseph Bashi.",
+          "source": "https://www.mmaindex.com/fighters/austin-bashi-d3f89fa6",
+          "sourceLabel": "MMA Index · professional results and UFC record cross-check"
         },
         {
-          "date": "Aug 2, 2025",
-          "label": "WIN · John Yannis · UFC Fight Night",
+          "date": "Around 2009–2010 (age eight)",
+          "label": "Begins jiu-jitsu and Muay Thai at Warrior Way Martial Arts",
+          "kind": "training",
+          "detail": "A cousin, Chris Abro, encouraged Bashi and his brother to try Warrior Way Martial Arts. Bashi says he began training around age eight; the gym became the central base of his combat-sports career. Approximate calendar years follow from his September 2001 birth; not a verified specific start date.",
+          "source": "https://www.chaldeannews.com/2024-content/2024/9/26/chaldean-contender",
+          "sourceLabel": "Chaldean News · September 2024 profile and early training"
+        },
+        {
+          "date": "Childhood–teenage years (exact dates unverified)",
+          "label": "Hundreds of grappling matches and extensive youth striking experience",
+          "kind": "training",
+          "detail": "In a January 2025 interview Bashi estimated 400–500 grappling matches and eight or nine kickboxing bouts before his professional UFC debut. These are approximate totals he reported, not individually verified professional MMA contests.",
+          "source": "https://sports.yahoo.com/ufcs-next-big-star-michigan-110451889.html",
+          "sourceLabel": "Detroit Free Press · January 2025 long-form training and wrestling profile"
+        },
+        {
+          "date": "High-school years (before 2020)",
+          "label": "Twice earns Michigan high-school All-State wrestling honors",
+          "kind": "milestone",
+          "detail": "Wrestled three high-school seasons for West Bloomfield and received All-State honors as a junior and senior. He developed his wrestling after already training in jiu-jitsu and Muay Thai. His UFC questionnaire separately cites two amateur Muay Thai national titles; exact tournament years remain unverified.",
+          "source": "https://sports.yahoo.com/ufcs-next-big-star-michigan-110451889.html",
+          "sourceLabel": "Detroit Free Press · January 2025 long-form training and wrestling profile"
+        },
+        {
+          "date": "Pre-UFC competition (title dates unverified)",
+          "label": "Two amateur Muay Thai national titles and Brazilian jiu-jitsu progression",
+          "kind": "milestone",
+          "detail": "UFC lists two-time amateur Muay Thai national champion, two-time All-State wrestler and black belt in Brazilian jiu-jitsu. Without event names or exact dates for the Muay Thai titles, they are grouped as a documented background credential rather than assigned a fabricated tournament result.",
+          "source": "https://www.ufc.com/athlete/austin-bashi",
+          "sourceLabel": "UFC · official athlete biography and Q&A"
+        },
+        {
+          "date": "Around 2019 (age 18)",
+          "label": "Transitions from grappling and striking tournaments into amateur MMA",
+          "kind": "milestone",
+          "detail": "Said he began mixed martial arts competition at 18 after years of jiu-jitsu, school wrestling and kickboxing. The subsequent Sherdog amateur MMA ledger identifies two bouts; other youth competitions are different rulesets and must not be counted as amateur MMA wins.",
+          "source": "https://sports.yahoo.com/ufcs-next-big-star-michigan-110451889.html",
+          "sourceLabel": "Detroit Free Press · January 2025 long-form training and wrestling profile"
+        },
+        {
+          "date": "Feb. 8, 2020",
+          "label": "AMATEUR WIN · Garrett Wooden · Lights Out Championship 7",
           "kind": "win",
-          "detail": "Defeated John Yannis at UFC Fight Night by Submission (Rear-Naked Choke) in round 1 at 3:39.",
-          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
-          "sourceLabel": "Tapology fighter history"
+          "detail": "Defeated Garrett Wooden by TKO (punches) at 2:19 of round one in amateur bantamweight MMA. Documented amateur record after bout: 1-0; excluded from his professional record.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · amateur results, methods and times"
         },
         {
-          "date": "Jan 11, 2025",
-          "label": "LOSS · Christian Rodriguez · UFC Fight Night",
-          "kind": "loss",
-          "detail": "Lost to Christian Rodriguez at UFC Fight Night by Decision (Unanimous) in round 3.",
-          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
-          "sourceLabel": "Tapology fighter history"
-        },
-        {
-          "date": "Sep 3, 2024",
-          "label": "WIN · Dorian Ramos · Dana White's Contender Series",
+          "date": "Mar. 7, 2020",
+          "label": "AMATEUR WIN · Anthony (Tony) Lichtenberger · Caged Thunder 11",
           "kind": "win",
-          "detail": "Defeated Dorian Ramos at Dana White's Contender Series by Submission (Rear-Naked Choke) in round 2 at 3:15.",
+          "detail": "Stopped Anthony Lichtenberger by TKO (punches) at 2:43 of round one. Tapology abbreviates the first name as Tony; records refer to one opponent and one bout. Documented amateur MMA record after bout: 2-0.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · amateur results, methods and times"
+        },
+        {
+          "date": "Aug. 15, 2020",
+          "label": "CANCELED · Alex Eliam · Showcase MMA 13 (amateur booking)",
+          "kind": "booking",
+          "detail": "Tapology lists a scheduled amateur bantamweight bout with Alex Eliam at Showcase MMA 13 as canceled. No reliable, fighter-specific cancellation explanation was established. This is not a third amateur win or loss.",
           "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
-          "sourceLabel": "Tapology fighter history"
+          "sourceLabel": "Tapology · canceled bouts, regional titles and event classifications"
+        },
+        {
+          "date": "2020 (before Nov. 11)",
+          "label": "Earns XFC professional opportunity after Michigan tryout",
+          "kind": "milestone",
+          "detail": "Bashi recalled that after his brief amateur MMA run he attended an Xtreme Fighting Championships tryout in Michigan and was offered a professional contract. This led to his first professional bout in November 2020 at age 19.",
+          "source": "https://www.chaldeannews.com/2024-content/2024/9/26/chaldean-contender",
+          "sourceLabel": "Chaldean News · September 2024 profile and early training"
+        },
+        {
+          "date": "Nov. 11, 2020",
+          "label": "PRO WIN · Enzo Perez · XFC 43",
+          "kind": "win",
+          "detail": "Professional MMA debut. Beat Enzo Perez by unanimous decision after three rounds (R3 5:00), opening his professional record at 1-0. Official UFC record 0-0.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "Mar. 27, 2021",
+          "label": "PRO WIN · Mason Iacobellis · XFC Young Guns 1",
+          "kind": "win",
+          "detail": "Submitted Mason Iacobellis by rear-naked choke at 2:56 of round three. Professional record 2-0; UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "May 28, 2021",
+          "label": "PRO WIN · Emanuel Pugh · XFC 44",
+          "kind": "win",
+          "detail": "Defeated Emanuel Pugh by unanimous decision, R3 5:00. Professional record 3-0; UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "Aug. 6, 2021",
+          "label": "PRO WIN · James Dunn · XFC 45",
+          "kind": "win",
+          "detail": "Won a three-round unanimous decision over James Dunn, R3 5:00, raising his professional MMA record to 4-0. UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "Dec. 10, 2021",
+          "label": "CANCELED · Reshal Malik · XFC Young Guns 4",
+          "kind": "booking",
+          "detail": "Tapology records a planned bantamweight pairing with Reshal Malik as canceled because Malik withdrew. Bashi fought Darnell White Jr. on the same show instead. The canceled Malik fight is not an additional professional win.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology · canceled bouts, regional titles and event classifications"
+        },
+        {
+          "date": "Dec. 10, 2021",
+          "label": "PRO WIN · Darnell White Jr. · XFC Young Guns 4",
+          "kind": "win",
+          "detail": "Stopped Darnell White Jr. by first-round TKO (punches / ground strikes) at 2:07. Professional record 5-0; UFC 0-0. This was his fifth professional XFC victory.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "Apr. 9, 2022",
+          "label": "PRO WIN · Erion Zekthi · Shamrock FC 337",
+          "kind": "win",
+          "detail": "Defeated Erion Zekthi by TKO (elbows and punches) at 3:28 of round two. Professional record 6-0, official UFC 0-0. Scheduled as a Shamrock FC bantamweight championship bout.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "Apr. 9, 2022",
+          "label": "Wins Shamrock FC bantamweight championship",
+          "kind": "milestone",
+          "detail": "The Erion Zekthi victory was contested for the Shamrock FC bantamweight championship. UFC also lists the title among Bashi's professional accomplishments. Same result as the preceding bout; not a seventh professional victory.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology · Shamrock FC and Lights Out championship-bout record"
+        },
+        {
+          "date": "June 25, 2022",
+          "label": "PRO WIN · Chris San Jose · Lights Out Championship 8",
+          "kind": "win",
+          "detail": "Won a three-round unanimous decision (R3 5:00) over Chris San Jose. Professional record 7-0; UFC 0-0. Recorded as a bantamweight main event.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "Aug. 12, 2022",
+          "label": "CANCELED · Thiago Belo · Anthony Pettis FC 2",
+          "kind": "booking",
+          "detail": "Tapology lists a canceled planned bantamweight pairing against Thiago Belo at Anthony Pettis FC 2. Public event listing does not establish who withdrew or why, so no injury explanation is assigned.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology · canceled bouts, regional titles and event classifications"
+        },
+        {
+          "date": "Nov. 12, 2022",
+          "label": "PRO WIN · Joseph (Joe) Penafiel · Lights Out Championship 9",
+          "kind": "win",
+          "detail": "Defeated Joseph Penafiel by unanimous decision in a five-round, 25-minute bantamweight title contest (R5 5:00). Professional record 8-0; UFC 0-0. Tapology shortens Joseph to Joe; same opponent.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "Nov. 12, 2022",
+          "label": "Captures vacant Lights Out bantamweight title",
+          "kind": "milestone",
+          "detail": "The Joseph Penafiel five-round victory earned the vacant Lights Out Championship bantamweight belt. The title is documented by the event fight ledger and UFC biography; it is one professional bout and one championship achievement.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology · Shamrock FC and Lights Out championship-bout record"
+        },
+        {
+          "date": "Apr. 23, 2023",
+          "label": "CANCELED · Diego Manzur · Anthony Pettis FC 4",
+          "kind": "booking",
+          "detail": "Tapology lists a canceled bantamweight booking against Diego Manzur at Anthony Pettis FC 4. No verified withdrawal cause. It does not change the 8-0 professional record before the later Felipe Vargas victory.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology · canceled bouts, regional titles and event classifications"
+        },
+        {
+          "date": "Apr. 29, 2023",
+          "label": "CANCELED · Andrew Whitney · Lights Out Championship 11",
+          "kind": "booking",
+          "detail": "An Andrew Whitney bout was listed for Lights Out Championship 11 but did not occur. The actual completed opponent on this date was Felipe Vargas. Cancellation responsibility and cause are not reliably specified.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology · canceled bouts, regional titles and event classifications"
+        },
+        {
+          "date": "Apr. 29, 2023",
+          "label": "PRO WIN · Felipe (Pipe) Vargas · Lights Out Championship 11",
+          "kind": "win",
+          "detail": "Submitted Felipe Vargas, also listed as Pipe Vargas, with a rear-naked choke at 3:06 of round two in the LOC 11 main event. Professional record 9-0; official UFC 0-0.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "June 20–24, 2023",
+          "label": "CANCELED · Ricky Bandejas · Lights Out Championship 12",
+          "kind": "booking",
+          "detail": "Former Bellator fighter Ricky Bandejas withdrew from a planned bantamweight championship matchup. Coverage dated June 22 says his management announced the withdrawal during fight week without disclosing a reason. Erik Vo replaced him. Bashi was not the fighter removed from the event.",
+          "source": "https://spectationsports.com/articles/austin-bashi-targets-a-perfect-ten",
+          "sourceLabel": "Spectation Sports · June 22, 2023 interview and Bandejas withdrawal"
+        },
+        {
+          "date": "June 24, 2023",
+          "label": "PRO WIN · Erik Vo · Lights Out Championship 12",
+          "kind": "win",
+          "detail": "With Ricky Bandejas out, submitted Erik Vo by rear-naked choke at 3:27 of round one. Professional record advanced to 10-0; official UFC 0-0. Listed as a Lights Out bantamweight championship bout.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "June 24, 2023",
+          "label": "Reaches 10-0; defends Lights Out bantamweight title",
+          "kind": "milestone",
+          "detail": "The replacement-opponent victory over Erik Vo marked Bashi's tenth straight professional win and a recorded Lights Out bantamweight championship defense. The title milestone is the same bout as the submission, not an extra win.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology · Shamrock FC and Lights Out championship-bout record"
+        },
+        {
+          "date": "Sept. 30, 2023",
+          "label": "PRO WIN · Askar Askar · Lights Out Championship 13",
+          "kind": "win",
+          "detail": "Defeated experienced opponent Askar Askar by second-round choke at 1:48 in a LOC bantamweight title bout. Sherdog calls the technique a rear-naked choke; Tapology specifies short choke. One submission finish, not two different matches. Professional record 11-0.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "Sept. 30, 2023",
+          "label": "Further Lights Out title defense; submission classification discrepancy",
+          "kind": "milestone",
+          "detail": "Faced Askar Askar in a five-round scheduled championship main event and submitted him in round two. The databases differ on whether the choke should be called a short choke or rear-naked choke; the outcome and timing are agreed. This is the same professional fight as the preceding entry.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology · Shamrock FC and Lights Out championship-bout record"
+        },
+        {
+          "date": "December 2023 (exact day unverified)",
+          "label": "Wins IBJJF World No-Gi Championship at adult brown-belt lightweight",
+          "kind": "milestone",
+          "detail": "The International Brazilian Jiu-Jitsu Federation's 2023 World No-Gi Championship official results list Austin Joseph Bashi of Warrior Way as first place in Male / Adult / Brown / Light (162.6 lb). This is a documented grappling world title, NOT another professional MMA bout or black-belt title.",
+          "source": "https://ibjjf.com/events/2131/results",
+          "sourceLabel": "IBJJF · 2023 World No-Gi Championship official results"
+        },
+        {
+          "date": "June 1, 2024",
+          "label": "CANCELED · Ago Huskić · Lights Out Championship 16",
+          "kind": "booking",
+          "detail": "Tapology lists an originally planned featherweight fight with Ago Huskić at Lights Out Championship 16 as canceled. The event's actual completed opponent was Zac Riley. No independently established reason for the original change.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology · canceled bouts, regional titles and event classifications"
+        },
+        {
+          "date": "June 1, 2024",
+          "label": "PRO WIN · Zac Riley · Lights Out Championship 16",
+          "kind": "win",
+          "detail": "Defeated Zac Riley by first-round TKO (punches) at 3:48 at Lights Out Championship 16, professional record 12-0 and still official UFC 0-0. Records sometimes retain the original Huskic event title, but Riley is the completed bout opponent.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "Before Sept. 3, 2024 (day unverified)",
+          "label": "CANCELED · Tommy McMillen · Contender Series 2024 Week 4",
+          "kind": "booking",
+          "detail": "Tommy McMillen was the originally listed DWCS opponent, but Tapology records McMillen's injury and a resulting cancellation. The UFC booked Dorian Ramos in his place. McMillen and Ramos were not two fights for Bashi on September 3.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology · canceled bouts, regional titles and event classifications"
+        },
+        {
+          "date": "Sept. 3, 2024",
+          "label": "PRO WIN · Dorian Ramos · DWCS Season 8 Week 4",
+          "kind": "win",
+          "detail": "Submitted Dorian Ramos by rear-naked choke at 3:15 of round two on Dana White's Contender Series. Improved professional MMA record to 13-0. DWCS is a professional bout but not an official UFC Octagon contest: UFC record remained 0-0.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "Sept. 3, 2024",
+          "label": "Awarded UFC contract after Contender Series submission",
+          "kind": "milestone",
+          "detail": "Following the Ramos second-round submission Bashi received a UFC contract. He entered the contract at 13-0 professionally and made his actual UFC Octagon debut four months later, not on Contender Series night.",
+          "source": "https://www.ufc.com/news/austin-bashi-no-time-to-waste-ufc-fight-night-dern-vs-ribas-2",
+          "sourceLabel": "UFC · January 2025 pre-debut interview"
+        },
+        {
+          "date": "Jan. 11, 2025",
+          "label": "PRO LOSS · Christian Rodriguez · UFC Vegas 101",
+          "kind": "loss",
+          "detail": "Made official UFC debut at UFC Fight Night: Dern vs. Ribas 2. Lost a three-round unanimous decision to Christian Rodriguez (29-28 on all three cards). First professional defeat, ending a 13-0 career opening run. Pro 13-1, official UFC 0-1.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "July 28, 2025",
+          "label": "CANCELED · Francis Marshall · UFC Fight Night: Taira vs. Park",
+          "kind": "booking",
+          "detail": "UFC announced Francis Marshall's removal from a scheduled August 2 featherweight fight with Bashi under its injuries update. Bashi remained available and ultimately faced short-notice replacement John Yannis on the same date. The canceled Marshall booking did not count as a competitive result.",
+          "source": "https://www.ufc.com/news/updates-ufc-fight-night-albazi-vs-taira",
+          "sourceLabel": "UFC · July 28, 2025 withdrawal announcement"
+        },
+        {
+          "date": "Aug. 2, 2025",
+          "label": "PRO WIN · John Yannis · UFC Fight Night: Taira vs. Park",
+          "kind": "win",
+          "detail": "Defeated late replacement John Yannis by rear-naked choke at 3:39 of round one to earn his first official UFC victory. Professional record 14-1; official UFC 1-1.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
+        },
+        {
+          "date": "Sept. 3, 2025",
+          "label": "Scheduled against Jamall Emmers for Nov. 8 UFC Vegas 111",
+          "kind": "booking",
+          "detail": "Reporting indicated Bashi was booked to meet veteran Jamall Emmers on November 8, 2025. This would have been Bashi's third official Octagon bout; the matchup was later canceled due to Bashi's injury.",
+          "source": "https://uk.sports.yahoo.com/news/ufc-fight-night-264-jamall-023210551.html",
+          "sourceLabel": "MMA Junkie · October 14, 2025 injury withdrawal report"
+        },
+        {
+          "date": "Oct. 13–14, 2025",
+          "label": "Injury withdrawal cancels Jamall Emmers matchup",
+          "kind": "injury",
+          "detail": "Bashi posted that an undisclosed injury would prevent him from fighting Emmers on November 8. MMA Junkie confirmed the withdrawal and reported Hyder Amil as Emmers' replacement. No diagnosis, surgery or exact injury onset was publicly confirmed; do not guess a torn ligament or specific body part.",
+          "source": "https://uk.sports.yahoo.com/news/ufc-fight-night-264-jamall-023210551.html",
+          "sourceLabel": "MMA Junkie · October 14, 2025 injury withdrawal report"
+        },
+        {
+          "date": "Nov. 8, 2025",
+          "label": "CANCELED · Jamall Emmers · UFC Vegas 111",
+          "kind": "booking",
+          "detail": "The original Bashi–Emmers contest did not occur. Hyder Amil fought Emmers instead after Bashi's injury withdrawal the preceding month. This event is not a loss or a UFC bout for Bashi.",
+          "source": "https://uk.sports.yahoo.com/news/ufc-fight-night-264-jamall-023210551.html",
+          "sourceLabel": "MMA Junkie · October 14, 2025 injury withdrawal report"
+        },
+        {
+          "date": "July 18, 2026",
+          "label": "PRO LOSS · Jose Miguel Delgado · UFC Oklahoma City",
+          "kind": "loss",
+          "detail": "Lost a unanimous decision to Jose Miguel Delgado after three rounds (30-27, 29-28, 29-28) at UFC Fight Night: Du Plessis vs. Usman. Professional record 14-2; official UFC 1-2. Delgado recorded a knockdown in round one. No official KO or submission occurred.",
+          "source": "https://www.ufc.com/news/ufc-oklahoma-city-official-scorecards",
+          "sourceLabel": "UFC · official July 2026 judges' scores"
+        },
+        {
+          "date": "Sept. 11, 2026",
+          "label": "Booked against Lucas Brennan for Nov. 7 UFC Vegas 124",
+          "kind": "booking",
+          "detail": "Reportedly paired with Lucas Brennan for a three-round featherweight fight in Las Vegas. The fight did not take place because Brennan subsequently tore his ACL and withdrew; this was not a Bashi withdrawal.",
+          "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+          "sourceLabel": "UFC · November 7, 2026 official fight card"
+        },
+        {
+          "date": "Late October 2026 (day unverified)",
+          "label": "Lucas Brennan tears ACL; November matchup canceled",
+          "kind": "booking",
+          "detail": "Brennan disclosed a torn anterior cruciate ligament that forced him from the November 7 Bashi fight. This injury belongs to opponent Lucas Brennan, not Austin Bashi. No result may be recorded for the original pairing.",
+          "source": "https://www.mmafighting.com/ufc/519393/ufc-vegas-124-adds-replacement-fighter-on-4-days-notice",
+          "sourceLabel": "MMA Fighting · Nov. 4, 2026 Brennan withdrawal and replacement"
+        },
+        {
+          "date": "Nov. 4, 2026",
+          "label": "Carlos Calderon accepts four-day replacement UFC debut",
+          "kind": "booking",
+          "detail": "UFC confirmed Calderon replaced injured Lucas Brennan to face Bashi on November 7. The incoming fighter was the Fury FC featherweight champion, taking his first official UFC fight on approximately four days' notice. Bashi stays 14-2 pro and 1-2 official UFC until the bout occurs.",
+          "source": "https://www.ufc.com/news/updates-ufc-fight-night-cortes-acosta-vs-walker",
+          "sourceLabel": "UFC · Nov. 4, 2026 official event updates"
+        },
+        {
+          "date": "Nov. 5, 2026",
+          "label": "Career, record, canceled-bout and injury audit",
+          "kind": "note",
+          "detail": "Reconciled 16 completed professional fights: 14 wins (3 KO/TKO, 6 submissions, 5 decisions), two losses (both decisions). Official UFC record 1-2 in three completed fights; DWCS 1-0 counts as professional MMA but not UFC Octagon. Two individually documented amateur MMA wins (2-0) plus separate wrestling, Muay Thai and IBJJF grappling accomplishments. Documented Bashi injury withdrawal: Jamall Emmers Nov. 2025 (diagnosis unspecified). Opponent-related changes include Brennan (2026 ACL), Marshall (2025 injury), McMillen (2024 injury), Bandejas (2023 withdrawal) and others with no verified cause. Do not assign opponents' injuries to Bashi. Tapology's captured historical listing still showed 14-1 and omitted the July 2026 Delgado defeat; current Sherdog and UFC records support 14-2.",
+          "source": "https://www.sherdog.com/fighter/Austin-Bashi-362871",
+          "sourceLabel": "Sherdog · complete professional and amateur MMA fight ledger"
         },
         {
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Carlos Calderon · UFC Vegas 124",
-          "kind": "milestone",
-          "detail": "Scheduled to fight Carlos Calderon at UFC Vegas 124 in Las Vegas. No result yet.",
+          "kind": "upcoming",
+          "detail": "Scheduled to fight Carlos Calderon in a three-round featherweight bout at Meta APEX in Las Vegas on UFC Fight Night: Cortes-Acosta vs. Walker. As of November 5, 2026 this contest is upcoming with NO result. Bashi enters 14-2 professional and 1-2 in official UFC competition; Calderon makes his UFC debut as a late replacement for the injured Lucas Brennan.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-          "sourceLabel": "Official UFC event"
+          "sourceLabel": "UFC · November 7, 2026 official fight card"
         }
-      ]
+      ],
+      "lastReviewed": "2026-11-05"
     },
     "Carlos Calderon": {
       "slug": "carlos-calderon",
