@@ -306,7 +306,8 @@ jobs:
             assets/broadcast-weather.js assets/broadcast-youtube.js \
             assets/broadcast-control.js assets/broadcast-control.css \
             assets/data/broadcast.json assets/data/fight-city-weather.json \
-            assets/uploads/broadcast.json \
+            assets/uploads/broadcast.json assets/uploads/broadcast \
+            _site/assets/uploads/broadcast \
             _site/broadcast/index.html _site/broadcast/control/index.html \
             _site/assets/broadcast.js _site/assets/broadcast.css; do
             if [ -e "$path" ]; then
