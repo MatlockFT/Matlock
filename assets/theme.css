@@ -16,9 +16,9 @@
     --theme-text-soft: #d0d0d0;
     --theme-muted: #929292;
 
-    --theme-accent: #ff4a54;
-    --theme-accent-soft: #ff8990;
-    --theme-accent-rgb: 255, 74, 84;
+    --theme-accent: #f08a24;
+    --theme-accent-soft: #ffb879;
+    --theme-accent-rgb: 240, 138, 36;
     --theme-success: #3ddd78;
 
     --theme-content-width: 1240px;
@@ -42,5 +42,13 @@
     --theme-shadow: 0 20px 60px rgba(0, 0, 0, 0.32);
     --theme-shadow-card: 0 15px 38px rgba(0, 0, 0, 0.28);
     --theme-nav-blur: 14px;
-    --theme-accent-wash: rgba(255, 74, 84, 0.1);
+    --theme-accent-wash: rgba(240, 138, 36, 0.1);
+}
+
+/* Shared components use the same accent as the editorial articles. */
+html[data-theme="light"] {
+    --theme-accent: #b85a00;
+    --theme-accent-soft: #c97926;
+    --theme-accent-rgb: 184, 90, 0;
+    --theme-accent-wash: rgba(184, 90, 0, .08);
 }
