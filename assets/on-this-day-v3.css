@@ -19,7 +19,7 @@
     grid-template-columns: minmax(0, 1fr) auto;
     gap: .85rem 1.5rem;
     align-items: end;
-    padding: .85rem 0 .9rem;
+    padding: .8rem 0 .8rem;
     border-top:1px solid var(--v3-rule);
     border-bottom: 1px solid var(--otd-v3-rule);
 }
