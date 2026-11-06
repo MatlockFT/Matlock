@@ -22,10 +22,70 @@
 }
 .members-locked-article h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); margin: 1.25rem 0 .65rem; }
 .members-locked-article p { max-width: 65ch; margin-bottom: 1.5rem; }
-.writer-members-toggle small { display: block; margin-left: 1.5rem; font-weight: 400; opacity: .76; line-height: 1.4; }
-
-.writer-members-toggle { grid-column: 1 / -1; }
-.writer-members-toggle input { margin-right: .45rem; }
+/* Writer checkbox: align with the compact article-details form rather than
+   inheriting full-width text-input and grid-label styles. */
+.writer-shell .writer-meta-core > .writer-members-toggle {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: .55rem;
+  min-width: 0;
+  margin: 0;
+  padding: .5rem .62rem;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 7px;
+  background: rgba(255,255,255,.018);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.writer-shell .writer-field.writer-members-toggle > input[type="checkbox"] {
+  appearance: auto;
+  -webkit-appearance: checkbox;
+  flex: 0 0 14px;
+  width: 14px;
+  max-width: 14px;
+  height: 14px;
+  min-height: 14px;
+  margin: 2px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  box-shadow: none;
+  accent-color: #e8e8e5;
+}
+.writer-shell .writer-field.writer-members-toggle > .writer-members-toggle-copy {
+  display: flex;
+  flex-direction: column;
+  gap: .14rem;
+  min-width: 0;
+  color: #adadae;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: normal;
+  text-transform: none;
+}
+.writer-shell .writer-members-toggle .writer-members-toggle-title {
+  color: #d8d8d5;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+}
+.writer-shell .writer-members-toggle .writer-members-toggle-copy small {
+  display: block;
+  float: none;
+  margin: 0;
+  color: #737375;
+  font-size: 9.5px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+}
+.writer-shell .writer-members-toggle:focus-within {
+  border-color: rgba(255,255,255,.3);
+}
 .writer-members-preview-banner {
   border: 1px solid currentColor;
   border-radius: 5px;
