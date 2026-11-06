@@ -1,40 +1,40 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-11-01T16:16:28.576Z",
+  "generatedAt": "2026-11-06T17:44:16.394Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
   "maxCases": 120,
-  "availableCases": 581,
+  "availableCases": 575,
   "sampledCases": 120,
   "historicalUniverseCoverage": {
-    "currentDatasetFighters": 1022,
+    "currentDatasetFighters": 1023,
     "historicalOnlyFighters": 2023,
-    "combinedCandidateUniverse": 3045,
-    "trackedFights": 8953,
-    "fightersWithTrackedHistory": 2764,
+    "combinedCandidateUniverse": 3046,
+    "trackedFights": 8965,
+    "fightersWithTrackedHistory": 2766,
     "unresolvedFightSides": 65,
     "sampledHistoricalOnlySubjects": 0,
     "sampledHistoricalOnlyActualOpponents": 0
   },
   "rankingSnapshotCoverage": {
     "archiveStart": "2026-09-10",
-    "archiveEnd": "2026-11-01",
-    "snapshotsAvailable": 46,
+    "archiveEnd": "2026-11-06",
+    "snapshotsAvailable": 48,
     "sampledCasesWithSnapshot": 1,
     "sampledCasesWithoutSnapshot": 119,
     "maxSnapshotAgeDays": 14
   },
   "temporalStateCoverage": {
     "archiveStart": "2026-09-15",
-    "archiveEnd": "2026-11-01",
-    "snapshotsAvailable": 38,
+    "archiveEnd": "2026-11-06",
+    "snapshotsAvailable": 39,
     "sampledCasesWithSnapshot": 1,
     "sampledCasesWithoutSnapshot": 119,
     "maxSnapshotAgeDays": 7
   },
   "bookingStateCoverage": {
-    "ledgerEntries": 168,
+    "ledgerEntries": 172,
     "ledgerEntriesWithoutUsableFirstSeen": 0,
     "ledgerFirstSeen": "2026-09-10T20:51:09.512Z"
   },
@@ -3358,7 +3358,7 @@
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Jose Henrique",
+          "opponent": "José Souza",
           "score": 95,
           "rankingScore": 95,
           "case": "rising-vs-rising"
@@ -3390,7 +3390,7 @@
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Jose Henrique",
+          "opponent": "José Souza",
           "score": 95,
           "rankingScore": 95,
           "case": "rising-vs-rising"
