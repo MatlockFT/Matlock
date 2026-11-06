@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { calculateOpponentQuality } from './opponent-quality.mjs';
+import { parseSherdogCareerProfile, parseUfcFightCareerProfile } from '../../_netlify-auth/netlify/functions/_writer-career-fallback.mjs';
 
 const fighter=(name,url,history=[])=>({
   name,sourceUrl:url,historyComplete:true,history
@@ -62,4 +63,21 @@ test('draws count half, no contests do not enter the form denominator',()=>{
   ];
   const draw=calculateOpponentQuality([row('2024-01-01','W','Opponent A',a)],new Map([['opponent a',fighter('Opponent A',a,all)]]));
   assert.equal(draw.score,50);
+});
+
+test('Sherdog history counts exclude amateur draws and validate the pro ledger',()=>{
+  const source='<h1>Mason Iacobellis</h1><p>Wins 1 KO / TKO 0 SUBMISSIONS 1 DECISIONS 0 Losses 0</p>'+
+    '<h2>FIGHT HISTORY - PRO</h2><table><tr><td>win</td><td>Demo Opponent</td><td>Jan / 02 / 2024</td><td>Submission</td><td>1</td><td>1:00</td></tr></table>'+
+    '<h2>FIGHT HISTORY - AMATEUR</h2><p>Draws 3</p>';
+  const profile=parseSherdogCareerProfile(source);
+  assert.equal(profile.record,'1-0-0');
+  assert.equal(profile.historyComplete,true);
+});
+
+test('UFCFight completeness remains independent of Sherdog record logic',()=>{
+  const source='<h2>Test Fighter</h2><p>W-L-D 1-0-0 WINS 1 KO / TKO 1 SUB 0 DECISIONS 0 LOSSES 0</p>'+
+    '<h2>Fight History</h2><table><tr><td>Jan / 02 / 2024</td><td>Opponent</td><td>W KO (Punches)</td></tr></table>';
+  const profile=parseUfcFightCareerProfile(source);
+  assert.equal(profile?.record,'1-0-0');
+  assert.equal(profile?.historyComplete,true);
 });
