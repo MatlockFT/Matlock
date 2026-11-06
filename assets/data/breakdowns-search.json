@@ -1,0 +1,19 @@
+---
+layout: null
+permalink: /assets/data/breakdowns-search.json
+sitemap: false
+---
+{% assign search_index_first = true %}
+[
+{% for post in site.posts %}
+    {% assign visibility = post.listing_visibility | default: "normal" %}
+    {% unless visibility == "hide-breakdowns" or visibility == "direct-only" %}
+        {% unless search_index_first %},{% endunless %}
+        {% assign search_index_first = false %}
+        {
+            "url": {{ post.url | jsonify }},
+            "text": {% if post.members_only %}""{% else %}{{ post.content | strip_html | normalize_whitespace | jsonify }}{% endif %}
+        }
+    {% endunless %}
+{% endfor %}
+]
