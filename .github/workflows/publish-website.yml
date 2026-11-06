@@ -1,8 +1,9 @@
 name: Publish MMA Matlock website
 
+# GitHub Pages' built-in deployment already publishes every main-branch push.
+# Keep this verified Jekyll build/deploy pipeline for manual recovery only;
+# running both automatically caused 'in progress deployment' failures.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -10,8 +11,7 @@ permissions:
   pages: write
   id-token: write
 
-# Keep the latest pending build when the Writer produces several quick commits.
-# Do not cancel a deployment after it has begun.
+# Manual fallback only. It must not race the native Pages build.
 concurrency:
   group: mma-matlock-pages
   cancel-in-progress: false
