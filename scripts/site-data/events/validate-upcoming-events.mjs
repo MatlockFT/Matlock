@@ -76,7 +76,7 @@ if(before?.events&&after?.events){
 
 let template='';try{template=await fs.readFile(templatePath,'utf8');}catch(error){failures.push(`Could not read ${templatePath}: ${error.message}`);}
 if(template){
-  if(!/site\.data\.upcoming_events\.events/.test(template))failures.push('Event Map bridge does not render unified event data.');
+  if(!/site\.data\.event_map_us/.test(template))failures.push('Event Map bridge does not render trusted event data.');
   if(/site\.data\.ufc_events|assign\s+pfl_|assign\s+sac\b|assign\s+sacr\b|assign\s+sacp\b/i.test(template))failures.push('Legacy hard-coded/old event data references remain in Event Map bridge.');
   const opens=(template.match(/\{%\s*(?:for|if|unless|case)\b/gi)||[]).length,closes=(template.match(/\{%\s*end(?:for|if|unless|case)\b/gi)||[]).length;
   if(opens!==closes)failures.push(`Event Map bridge Liquid blocks are unbalanced: ${opens} opens, ${closes} closes.`);
