@@ -1836,7 +1836,9 @@
       block,
       originalOrder: working.program.map(row => row.id)
     };
-    try { block.setPointerCapture(event.pointerId); } catch {}
+    // Keep capture on the stationary track: blocks move between siblings during
+    // sorting, and moving the captured block can fire pointercancel.
+    try { programTrack.setPointerCapture(event.pointerId); } catch {}
   }
 
   function programDragMove(event) {
@@ -1873,7 +1875,7 @@
     const drag = programDrag;
     if (!drag || drag.pointerId !== event.pointerId) return;
     programDrag = null;
-    try { drag.block.releasePointerCapture(event.pointerId); } catch {}
+    try { programTrack.releasePointerCapture(event.pointerId); } catch {}
     drag.block.classList.remove('is-dragging');
     drag.block.setAttribute('aria-grabbed', 'false');
     programTrack.classList.remove('is-reordering');
