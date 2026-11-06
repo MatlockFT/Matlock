@@ -1,5 +1,5 @@
 {
-  "version": 62,
+  "version": 63,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -1067,7 +1067,7 @@
           "date": "From 2007 onward (individual title dates unknown)",
           "label": "Earns multiple kickboxing titles",
           "kind": "milestone",
-          "detail": "The UFC describes Kavanagh as a five-time K-1 world champion and lists a black belt in kickboxing. It does not supply the five individual title dates or sanctioning bodies, so this timeline does not identify any particular year or assume these were professional titles.",
+          "detail": "The UFC describes Kavanagh as a five-time K-1 world champion and lists a black belt in kickboxing. It does not supply the five individual title dates or sanctioning bodies, and their exact dates and sanctioning bodies are not specified.",
           "sourceLabel": "UFC athlete Q&A",
           "source": "https://www.ufc.com/athlete/loneer-kavanagh"
         },
@@ -1594,7 +1594,7 @@
           "date": "Oct. 24, 2026",
           "label": "UFC 333 · scheduled flyweight bout vs. Lone'er Kavanagh",
           "kind": "upcoming",
-          "detail": "Temirov (20-3 professionally and 3-0 UFC) is scheduled to face Lone'er Kavanagh (10-2) at UFC 333 at Etihad Arena in Abu Dhabi. This is a future booking as of the October 21 timeline audit. Fight-specific cage-walk and start times have not been officially announced.",
+          "detail": "Temirov (20-3 professionally and 3-0 UFC) is scheduled to face Lone'er Kavanagh (10-2) at UFC 333 at Etihad Arena in Abu Dhabi. This was scheduled for October 24, 2026. Fight-specific cage-walk and start times have not been officially announced.",
           "sourceLabel": "UFC 333 event page",
           "source": "https://www.ufc.com/event/ufc-333"
         }
@@ -2073,7 +2073,7 @@
           "date": "2025 (individual competition dates not established)",
           "label": "Competes in Brazilian jiu-jitsu events between UFC fights",
           "kind": "milestone",
-          "detail": "Volkov said in an October 2025 interview that he had participated in gi jiu-jitsu competitions during the roughly ten months between his December 2024 Gane fight and October 2025 Almeida fight. No exact event results were included in the UFC account, so this timeline does not invent opponents or finishes.",
+          "detail": "Volkov said in an October 2025 interview that he had participated in gi jiu-jitsu competitions during the roughly ten months between his December 2024 Gane fight and October 2025 Almeida fight. No exact event results were included in the UFC account, so individual opponent names and finishes are not documented.",
           "sourceLabel": "UFC interview, Oct. 24, 2025",
           "source": "https://www.ufc.com/news/alexander-volkov-still-having-fun-ufc-321"
         },
@@ -2184,7 +2184,7 @@
           "date": "Aug. 29, 2015",
           "label": "LOSS · Justin Willis · two-round decision in Japan",
           "kind": "loss",
-          "detail": "At Inoki Genome Fight 4 in Tokyo, Kuniev lost to future UFC heavyweight Justin Willis. Sherdog lists a unanimous decision after two five-minute rounds, while some other databases call the decision a majority decision. The official detailed judges' scores were not established, so this timeline flags the discrepancy.",
+          "detail": "At Inoki Genome Fight 4 in Tokyo, Kuniev lost to future UFC heavyweight Justin Willis. Sherdog lists a unanimous decision after two five-minute rounds, while some other databases call the decision a majority decision. The official detailed judges' scores were not established, so the decision classification remains disputed.",
           "sourceLabel": "Sherdog professional record",
           "source": "https://www.sherdog.com/fighter/Rizvan-Kuniev-86319"
         },
@@ -2942,7 +2942,7 @@
           "date": "May–Dec. 2024",
           "label": "Wins €300,000 Tipsport Gamechanger lightweight tournament",
           "kind": "milestone",
-          "detail": "Keita defeated Agy Sardari, Predrag Bogdanovic, Mateusz Legierski and Ronald Paradeiser in the 2024 sixteen-man Tipsport Gamechanger tournament. The organizer advertised €300,000 for first place. Each fight is recorded separately in the timeline.",
+          "detail": "Keita defeated Agy Sardari, Predrag Bogdanovic, Mateusz Legierski and Ronald Paradeiser in the 2024 sixteen-man Tipsport Gamechanger tournament. The organizer advertised €300,000 for first place.",
           "sourceLabel": "Official Tipsport Gamechanger 2024 bracket",
           "source": "https://tipsportgamechanger.com/en/2024/"
         },
@@ -3229,7 +3229,7 @@
           "date": "Nov. 15, 2019",
           "label": "WIN · Mohammad Fakhreddine · KO (punches) · R1",
           "kind": "win",
-          "detail": "At BRAVE CF 29, KHK openweight tournament final, Murzakanov defeated Mohammad Fakhreddine by ko (punches) at 3:47 of round 1. The win made Murzakanov the inaugural KHK World Championship tournament winner, with an advertised $100,000 prize. BRAVE's own result page records the stoppage at 3:47 of round one, whereas Sherdog lists 3:37; the timeline uses the promoter's 3:47 and identifies the discrepancy. The Fakhreddine injury during the fight is described by the promoter as a possible contributing factor, not a separate medically verified diagnosis.",
+          "detail": "At BRAVE CF 29, KHK openweight tournament final, Murzakanov defeated Mohammad Fakhreddine by ko (punches) at 3:47 of round 1. The win made Murzakanov the inaugural KHK World Championship tournament winner, with an advertised $100,000 prize. BRAVE's own result page records the stoppage at 3:47 of round one, whereas Sherdog lists 3:37; the event promoter records 3:47. The Fakhreddine injury during the fight is described by the promoter as a possible contributing factor, not a separate medically verified diagnosis.",
           "sourceLabel": "BRAVE CF event and official results",
           "source": "https://www.bravecf.com/events/brave-cf-29"
         },
@@ -3333,7 +3333,7 @@
           "date": "Nov. 6, 2024",
           "label": "Nikita Krylov fight pulled from UFC 309",
           "kind": "milestone",
-          "detail": "Murzakanov withdrew from his scheduled November 16 UFC 309 fight with Nikita Krylov. MMA Fighting reported the cancellation November 6 without an official reason at that time. The withdrawal occurred shortly after his November 1 provisional suspension, but the report did not confirm causation; the timeline does not invent a separate injury.",
+          "detail": "Murzakanov withdrew from his scheduled November 16 UFC 309 fight with Nikita Krylov. MMA Fighting reported the cancellation November 6 without an official reason at that time. The withdrawal occurred shortly after his November 1 provisional suspension, but the report did not confirm causation; no separate injury was confirmed.",
           "sourceLabel": "MMA Fighting UFC 309 news",
           "source": "https://www.mmafighting.com/2024/11/6/24289940/azamat-murzakanov-out-of-ufc-309-fight-with-nikita-krylov"
         },
@@ -3516,7 +3516,7 @@
           "date": "Sep. 18, 2016",
           "label": "WIN · Tyler Smith · TKO (punches) · R1",
           "kind": "win",
-          "detail": "At King of the Cage: Martial Law, Reyes defeated Tyler Smith by tko (punches) at 1:35 of round 1. ",
+          "detail": "At King of the Cage: Martial Law, Reyes defeated Tyler Smith by tko (punches) at 1:35 of round 1.",
           "sourceLabel": "Sherdog official bout history",
           "source": "https://www.sherdog.com/fighter/Dominick-Reyes-145941"
         },
@@ -3819,7 +3819,7 @@
           "date": "Aug. 10, 2012",
           "label": "WIN · Denis Bogdanov · Submission (rear-naked choke) · R1",
           "kind": "win",
-          "detail": "At Cup of West Ukraine 2012, Krylov defeated Denis Bogdanov by submission (rear-naked choke) at 1:31 of round 1. ",
+          "detail": "At Cup of West Ukraine 2012, Krylov defeated Denis Bogdanov by submission (rear-naked choke) at 1:31 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -3827,7 +3827,7 @@
           "date": "Aug. 16, 2012",
           "label": "WIN · Alexey Artemenko · Submission (guillotine choke) · R1",
           "kind": "win",
-          "detail": "At Big Boys Fights, Krylov defeated Alexey Artemenko by submission (guillotine choke) at 2:20 of round 1. ",
+          "detail": "At Big Boys Fights, Krylov defeated Alexey Artemenko by submission (guillotine choke) at 2:20 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -3835,7 +3835,7 @@
           "date": "Aug. 18, 2012",
           "label": "WIN · Anatoliy Didenko · Submission (rear-naked choke) · R1",
           "kind": "win",
-          "detail": "At MMA Ukraine Cup 5, Krylov defeated Anatoliy Didenko by submission (rear-naked choke) at 2:08 of round 1. ",
+          "detail": "At MMA Ukraine Cup 5, Krylov defeated Anatoliy Didenko by submission (rear-naked choke) at 2:08 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -3843,7 +3843,7 @@
           "date": "Aug. 26, 2012",
           "label": "WIN · Svyatoslav Scherbakov · Submission (armbar) · R1",
           "kind": "win",
-          "detail": "At MMA Ukraine Cup 6, Krylov defeated Svyatoslav Scherbakov by submission (armbar) at 1:44 of round 1. ",
+          "detail": "At MMA Ukraine Cup 6, Krylov defeated Svyatoslav Scherbakov by submission (armbar) at 1:44 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -3851,7 +3851,7 @@
           "date": "Sep. 14, 2012",
           "label": "WIN · Alexey Stepanov · Submission (rear-naked choke) · R1",
           "kind": "win",
-          "detail": "At MMA Ukraine Cup 7, Krylov defeated Alexey Stepanov by submission (rear-naked choke) at 0:29 of round 1. ",
+          "detail": "At MMA Ukraine Cup 7, Krylov defeated Alexey Stepanov by submission (rear-naked choke) at 0:29 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -3859,7 +3859,7 @@
           "date": "Sep. 15, 2012",
           "label": "WIN · Anatoliy Didenko · Submission (Achilles lock) · R1",
           "kind": "win",
-          "detail": "At Oplot Challenge 4, Krylov defeated Anatoliy Didenko by submission (achilles lock) at 0:29 of round 1. ",
+          "detail": "At Oplot Challenge 4, Krylov defeated Anatoliy Didenko by submission (achilles lock) at 0:29 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -3867,7 +3867,7 @@
           "date": "Oct. 2, 2012",
           "label": "WIN · Viktor Smirnov · TKO (doctor stoppage) · R1",
           "kind": "win",
-          "detail": "At MMA Lion Cup, Krylov defeated Viktor Smirnov by tko (doctor stoppage) at 0:12 of round 1. ",
+          "detail": "At MMA Lion Cup, Krylov defeated Viktor Smirnov by tko (doctor stoppage) at 0:12 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -3875,7 +3875,7 @@
           "date": "Oct. 13, 2012",
           "label": "WIN · Igor Kukurudziak · Submission (kimura) · R1",
           "kind": "win",
-          "detail": "At Kolomyi Cup, Krylov defeated Igor Kukurudziak by submission (kimura) at 2:47 of round 1. ",
+          "detail": "At Kolomyi Cup, Krylov defeated Igor Kukurudziak by submission (kimura) at 2:47 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -3883,7 +3883,7 @@
           "date": "Oct. 20, 2012",
           "label": "WIN · Vladimir Gerasimchik · Submission (kimura) · R1",
           "kind": "win",
-          "detail": "At Oplot Challenge 7, Krylov defeated Vladimir Gerasimchik by submission (kimura) at 1:35 of round 1. ",
+          "detail": "At Oplot Challenge 7, Krylov defeated Vladimir Gerasimchik by submission (kimura) at 1:35 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -3891,7 +3891,7 @@
           "date": "Nov. 9, 2012",
           "label": "WIN · Valeriy Shcherbakov · Submission (Achilles lock) · R1",
           "kind": "win",
-          "detail": "At Igor Vovchanchyn Cup 2, Krylov defeated Valeriy Shcherbakov by submission (achilles lock) at 1:38 of round 1. ",
+          "detail": "At Igor Vovchanchyn Cup 2, Krylov defeated Valeriy Shcherbakov by submission (achilles lock) at 1:38 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -3963,7 +3963,7 @@
           "date": "Apr. 9, 2013",
           "label": "WIN · Gabriel Tampu · TKO (punches) · R1",
           "kind": "win",
-          "detail": "At M-1 Challenge 38, Krylov defeated Gabriel Tampu by tko (punches) at 4:27 of round 1. ",
+          "detail": "At M-1 Challenge 38, Krylov defeated Gabriel Tampu by tko (punches) at 4:27 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -4003,7 +4003,7 @@
           "date": "Jul. 19, 2014",
           "label": "WIN · Cody Donovan · TKO (punches) · R1",
           "kind": "win",
-          "detail": "At UFC Fight Night 46, Krylov defeated Cody Donovan by tko (punches) at 4:57 of round 1. ",
+          "detail": "At UFC Fight Night 46, Krylov defeated Cody Donovan by tko (punches) at 4:57 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -4019,7 +4019,7 @@
           "date": "Jan. 24, 2015",
           "label": "WIN · Stanislav Nedkov · Submission (guillotine choke) · R1",
           "kind": "win",
-          "detail": "At UFC on Fox 14, Krylov defeated Stanislav Nedkov by submission (guillotine choke) at 1:24 of round 1. ",
+          "detail": "At UFC on Fox 14, Krylov defeated Stanislav Nedkov by submission (guillotine choke) at 1:24 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -4027,7 +4027,7 @@
           "date": "Aug. 23, 2015",
           "label": "WIN · Marcos Rogério de Lima · Submission (rear-naked choke) · R1",
           "kind": "win",
-          "detail": "At UFC Fight Night 74, Krylov defeated Marcos Rogério de Lima by submission (rear-naked choke) at 2:29 of round 1. ",
+          "detail": "At UFC Fight Night 74, Krylov defeated Marcos Rogério de Lima by submission (rear-naked choke) at 2:29 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -4043,7 +4043,7 @@
           "date": "May 8, 2016",
           "label": "WIN · Francimar Barroso · Submission (rear-naked choke) · R2",
           "kind": "win",
-          "detail": "At UFC Fight Night 87, Krylov defeated Francimar Barroso by submission (rear-naked choke) at 3:11 of round 2. ",
+          "detail": "At UFC Fight Night 87, Krylov defeated Francimar Barroso by submission (rear-naked choke) at 3:11 of round 2.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -4075,7 +4075,7 @@
           "date": "Aug. 26, 2017",
           "label": "WIN · Maro Perak · TKO (punches) · R2",
           "kind": "win",
-          "detail": "At United Donbass Cup, Krylov defeated Maro Perak by tko (punches) at 0:36 of round 2. ",
+          "detail": "At United Donbass Cup, Krylov defeated Maro Perak by tko (punches) at 0:36 of round 2.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -4163,7 +4163,7 @@
           "date": "Feb. 27, 2021",
           "label": "LOSS · Magomed Ankalaev · Decision (unanimous)",
           "kind": "loss",
-          "detail": "At UFC Fight Night 186, Krylov lost to Magomed Ankalaev by decision (unanimous) after 3 five-minute rounds (final round clock 5:00). ",
+          "detail": "At UFC Fight Night 186, Krylov lost to Magomed Ankalaev by decision (unanimous) after 3 five-minute rounds (final round clock 5:00).",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -4171,7 +4171,7 @@
           "date": "Mar. 19, 2022",
           "label": "LOSS · Paul Craig · Submission (triangle choke) · R1",
           "kind": "loss",
-          "detail": "At UFC Fight Night 204, Krylov lost to Paul Craig by submission (triangle choke) at 3:57 of round 1. ",
+          "detail": "At UFC Fight Night 204, Krylov lost to Paul Craig by submission (triangle choke) at 3:57 of round 1.",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -4187,7 +4187,7 @@
           "date": "Oct. 22, 2022",
           "label": "WIN · Volkan Oezdemir · Decision (unanimous)",
           "kind": "win",
-          "detail": "At UFC 280, Krylov defeated Volkan Oezdemir by decision (unanimous) after 3 five-minute rounds (final round clock 5:00). ",
+          "detail": "At UFC 280, Krylov defeated Volkan Oezdemir by decision (unanimous) after 3 five-minute rounds (final round clock 5:00).",
           "sourceLabel": "Sherdog professional bout history",
           "source": "https://www.sherdog.com/fighter/Nikita-Krylov-110937"
         },
@@ -4267,7 +4267,7 @@
           "date": "Oct. 24, 2026",
           "label": "UFC 333 · scheduled vs. Abdul-Rakhman Yakhyaev",
           "kind": "upcoming",
-          "detail": "Krylov enters the scheduled light-heavyweight fight against undefeated Abdul-Rakhman Yakhyaev at Etihad Arena, Abu Dhabi with a 31-12 professional record and 12-10 UFC record. UFC 333 prelims start at noon Eastern / 11 a.m. Central / 8 p.m. Abu Dhabi local time; no exact individual walkout time is available. The booking is not a completed bout as of the October 21 audit.",
+          "detail": "Krylov enters the scheduled light-heavyweight fight against undefeated Abdul-Rakhman Yakhyaev at Etihad Arena, Abu Dhabi with a 31-12 professional record and 12-10 UFC record. UFC 333 prelims start at noon Eastern / 11 a.m. Central / 8 p.m. Abu Dhabi local time; no exact individual walkout time is available. The booking was announced ahead of October 24, 2026.",
           "sourceLabel": "Official UFC event page",
           "source": "https://www.ufc.com/event/ufc-333"
         }
@@ -4466,7 +4466,7 @@
           "date": "Oct. 24, 2026",
           "label": "UFC 333 · scheduled light heavyweight fight vs. Nikita Krylov",
           "kind": "upcoming",
-          "detail": "Yakhyaev (10-0 overall, 3-0 in UFC Octagon fights) is scheduled against Nikita Krylov at Etihad Arena in Abu Dhabi. UFC 333 prelims begin at noon US Eastern / 8:00 p.m. Abu Dhabi local time, but the individual fight's walkout time is not established. This is a scheduled bout, not a result as of the October 21 audit.",
+          "detail": "Yakhyaev (10-0 overall, 3-0 in UFC Octagon fights) is scheduled against Nikita Krylov at Etihad Arena in Abu Dhabi. UFC 333 prelims begin at noon US Eastern / 8:00 p.m. Abu Dhabi local time, but the individual fight's walkout time is not established. This was a scheduled October 24, 2026 bout.",
           "sourceLabel": "UFC official 333 fight preview",
           "source": "https://www.ufc.com/news/fight-fight-preview-ufc-333-volkanovski-vs-evloev"
         }
@@ -4577,7 +4577,7 @@
           "date": "Feb. 16, 2013",
           "label": "Wins German MMA Championship welterweight belt",
           "kind": "milestone",
-          "detail": "Magomedov captured the vacant GMC welterweight title by stopping Jessin Ayari in the first round at GMC 3. He subsequently lost a GMC title fight to Rafal Moks in July 2013; both individual fights appear elsewhere on this timeline.",
+          "detail": "Magomedov captured the vacant GMC welterweight title by stopping Jessin Ayari in the first round at GMC 3. He subsequently lost a GMC title fight to Rafal Moks in July 2013; the later title defeat is a separate documented contest.",
           "sourceLabel": "UFC fighter-reported titles and result",
           "source": "https://www.ufc.com/athlete/abus-magomedov"
         },
@@ -4921,7 +4921,7 @@
           "date": "Oct. 24, 2026",
           "label": "UFC 333 · scheduled middleweight bout vs. Cam Rowston",
           "kind": "upcoming",
-          "detail": "Magomedov (29-7-1 professional, 5-3 UFC) is scheduled to fight Cam Rowston (also listed as Cameron Rowston) at UFC 333 at Etihad Arena in Abu Dhabi. The event's early prelims start 10:00 a.m. Eastern, prelims at noon and main card at 2:00 p.m. Eastern; no confirmed individual walkout time or result is available as of the October 21 audit.",
+          "detail": "Magomedov (29-7-1 professional, 5-3 UFC) is scheduled to fight Cam Rowston (also listed as Cameron Rowston) at UFC 333 at Etihad Arena in Abu Dhabi. The event's early prelims start 10:00 a.m. Eastern, prelims at noon and main card at 2:00 p.m. Eastern; no individual walkout time was announced at the time of publication.",
           "sourceLabel": "UFC 333 official event page",
           "source": "https://www.ufc.com/event/ufc-333"
         }
@@ -5032,7 +5032,7 @@
           "date": "May 13, 2017",
           "label": "WIN · Jye Wyllie · TKO (method unspecified) · R1",
           "kind": "win",
-          "detail": "At BRACE 50, Rowston defeated Jye Wyllie by tko (method unspecified) in round 1 (finish clock unavailable). ",
+          "detail": "At BRACE 50, Rowston defeated Jye Wyllie by tko (method unspecified) in round 1 (finish clock unavailable).",
           "sourceLabel": "Sherdog professional fight history",
           "source": "https://www.sherdog.com/fighter/Cameron-Rowston-239381"
         },
@@ -5040,7 +5040,7 @@
           "date": "Oct. 28, 2017",
           "label": "WIN · Daniel Currie · TKO (strikes) · R1",
           "kind": "win",
-          "detail": "At BRACE 51, Rowston defeated Daniel Currie by tko (strikes) in round 1, at 0:38. ",
+          "detail": "At BRACE 51, Rowston defeated Daniel Currie by tko (strikes) in round 1, at 0:38.",
           "sourceLabel": "Sherdog professional fight history",
           "source": "https://www.sherdog.com/fighter/Cameron-Rowston-239381"
         },
@@ -5064,7 +5064,7 @@
           "date": "Sep. 6, 2019",
           "label": "WIN · Leo Diaz · Submission (rear-naked choke) · R1",
           "kind": "win",
-          "detail": "At Superfight MMA 13, Rowston defeated Leo Diaz by submission (rear-naked choke) in round 1, at 1:06. ",
+          "detail": "At Superfight MMA 13, Rowston defeated Leo Diaz by submission (rear-naked choke) in round 1, at 1:06.",
           "sourceLabel": "Sherdog professional fight history",
           "source": "https://www.sherdog.com/fighter/Cameron-Rowston-239381"
         },
@@ -5423,7 +5423,7 @@
           "date": "Dec. 5, 2014",
           "label": "WIN · Matt Williams · Submission (armbar) · R1",
           "kind": "win",
-          "detail": "At DCS 12, Dawson defeated Matt Williams by submission (armbar) at 2:29 of round 1. ",
+          "detail": "At DCS 12, Dawson defeated Matt Williams by submission (armbar) at 2:29 of round 1.",
           "sourceLabel": "Sherdog professional fight history",
           "source": "https://www.sherdog.com/fighter/Grant-Dawson-103525"
         },
@@ -5431,7 +5431,7 @@
           "date": "Mar. 7, 2015",
           "label": "WIN · Adam Rider · Submission (rear-naked choke) · R1",
           "kind": "win",
-          "detail": "At Shamrock FC: Heavy Artillery, Dawson defeated Adam Rider by submission (rear-naked choke) at 1:45 of round 1. ",
+          "detail": "At Shamrock FC: Heavy Artillery, Dawson defeated Adam Rider by submission (rear-naked choke) at 1:45 of round 1.",
           "sourceLabel": "Sherdog professional fight history",
           "source": "https://www.sherdog.com/fighter/Grant-Dawson-103525"
         },
@@ -5439,7 +5439,7 @@
           "date": "Apr. 4, 2015",
           "label": "WIN · James Smith · Submission (rear-naked choke) · R1",
           "kind": "win",
-          "detail": "At Victory FC 45, Dawson defeated James Smith by submission (rear-naked choke) at 2:30 of round 1. ",
+          "detail": "At Victory FC 45, Dawson defeated James Smith by submission (rear-naked choke) at 2:30 of round 1.",
           "sourceLabel": "Sherdog professional fight history",
           "source": "https://www.sherdog.com/fighter/Grant-Dawson-103525"
         },
@@ -5447,7 +5447,7 @@
           "date": "May 9, 2015",
           "label": "WIN · Chris McDaniel · Submission (rear-naked choke) · R1",
           "kind": "win",
-          "detail": "At RTP/ShoFight Branson Brawl, Dawson defeated Chris McDaniel by submission (rear-naked choke) at 4:07 of round 1. ",
+          "detail": "At RTP/ShoFight Branson Brawl, Dawson defeated Chris McDaniel by submission (rear-naked choke) at 4:07 of round 1.",
           "sourceLabel": "Sherdog professional fight history",
           "source": "https://www.sherdog.com/fighter/Grant-Dawson-103525"
         },
@@ -5479,7 +5479,7 @@
           "date": "Mar. 4, 2016",
           "label": "WIN · Robert Washington · TKO (punches) · R2",
           "kind": "win",
-          "detail": "At Titan FC 37, Dawson defeated Robert Washington by tko (punches) at 2:08 of round 2. ",
+          "detail": "At Titan FC 37, Dawson defeated Robert Washington by tko (punches) at 2:08 of round 2.",
           "sourceLabel": "Sherdog professional fight history",
           "source": "https://www.sherdog.com/fighter/Grant-Dawson-103525"
         },
@@ -5495,7 +5495,7 @@
           "date": "Jul. 16, 2016",
           "label": "WIN · Christian Camp · TKO (elbows and punches) · R2",
           "kind": "win",
-          "detail": "At Victory FC 52, Dawson defeated Christian Camp by tko (elbows and punches) at 1:43 of round 2. ",
+          "detail": "At Victory FC 52, Dawson defeated Christian Camp by tko (elbows and punches) at 1:43 of round 2.",
           "sourceLabel": "Sherdog professional fight history",
           "source": "https://www.sherdog.com/fighter/Grant-Dawson-103525"
         },
@@ -5703,7 +5703,7 @@
           "date": "Nov. 5, 2022",
           "label": "WIN · Mark Madsen · Submission (rear-naked choke) · R3",
           "kind": "win",
-          "detail": "At UFC Fight Night: Rodriguez vs. Lemos, Dawson defeated Mark Madsen by submission (rear-naked choke) at 2:05 of round 3. Dawson weighed 157.5 pounds, 1.5 over the 156-pound non-title lightweight limit, and the fight proceeded with a 30% purse penalty. UFC lists the submission at 2:04 while Sherdog lists 2:05 in round three; the timeline follows Sherdog's 2:05 and notes the discrepancy.",
+          "detail": "At UFC Fight Night: Rodriguez vs. Lemos, Dawson defeated Mark Madsen by submission (rear-naked choke) at 2:05 of round 3. Dawson weighed 157.5 pounds, 1.5 over the 156-pound non-title lightweight limit, and the fight proceeded with a 30% purse penalty. UFC lists the submission at 2:04 while Sherdog lists 2:05 in round three; UFC records 2:04 and Sherdog records 2:05.",
           "sourceLabel": "Sherdog professional fight history",
           "source": "https://www.sherdog.com/fighter/Grant-Dawson-103525"
         },
@@ -6492,7 +6492,7 @@
           "date": "Before July 2020 (exact camp date unknown)",
           "label": "Trains in Dagestan with Abdulmanap Nurmagomedov",
           "kind": "camp",
-          "detail": "Chopurov says he attended a training camp in Dagestan run by Abdulmanap Nurmagomedov, father and coach of Khabib. He has not provided a reliable calendar date for the camp; it necessarily predates Abdulmanap's death in July 2020. Do not describe Abdulmanap as his long-term head coach on the strength of a single camp.",
+          "detail": "Chopurov says he attended a training camp in Dagestan run by Abdulmanap Nurmagomedov, father and coach of Khabib. He has not provided a reliable calendar date for the camp; it necessarily predates Abdulmanap's death in July 2020.",
           "sourceLabel": "Sherdog report of fighter interview",
           "source": "https://www.sherdog.com/news/news/110-UFC-prospect-says-Khabib-Nurmagomedov-inspired-him-his-father-helped-shape-path-203218"
         },
@@ -7594,7 +7594,7 @@
           "date": "Dec. 16, 2022",
           "label": "LOSS · Vitaliy Slipenko · KO (elbow) · R2 0:20",
           "kind": "loss",
-          "detail": "At ACA 149, Vagaev lost to Vitaliy Slipenko by ko (elbow). Stoppage at 0:20 of round 2. Vitaliy Slipenko knocked him out with an elbow just 0:20 into ROUND TWO, taking the ACA welterweight belt. Earlier timeline incorrectly said a fifth-round KO.",
+          "detail": "At ACA 149, Vagaev lost to Vitaliy Slipenko by ko (elbow). Stoppage at 0:20 of round 2. Vitaliy Slipenko knocked him out with an elbow just 0:20 into ROUND TWO, taking the ACA welterweight belt.",
           "sourceLabel": "Sherdog professional record; promotion cross-check where available",
           "source": "https://www.sherdog.com/events/ACA-149-Vagaev-vs-Slipenko-95464"
         },
@@ -7602,7 +7602,7 @@
           "date": "Dec. 16, 2022",
           "label": "Loses ACA title to Slipenko by second-round elbow",
           "kind": "milestone",
-          "detail": "Vitaliy Slipenko knocked him out with an elbow just 0:20 into ROUND TWO, taking the ACA welterweight belt. Earlier timeline incorrectly said a fifth-round KO.",
+          "detail": "Vitaliy Slipenko knocked him out with an elbow just 0:20 into ROUND TWO, taking the ACA welterweight belt.",
           "sourceLabel": "Official event result / title chronology",
           "source": "https://www.sherdog.com/events/ACA-149-Vagaev-vs-Slipenko-95464"
         },
@@ -7698,7 +7698,7 @@
           "date": "Oct. 6, 2026",
           "label": "Reports mild cold and planned acclimation for UFC 333",
           "kind": "milestone",
-          "detail": "In another interview, Vagaev said he had a mild cold during training but felt recovered, with another hard week of sparring scheduled before flying to Abu Dhabi to acclimate. He identified Malkoun's pace, striking and grappling as important challenges. Do not interpret a self-reported brief illness as a medically confirmed long-term injury.",
+          "detail": "In another interview, Vagaev said he had a mild cold during training but felt recovered, with another hard week of sparring scheduled before flying to Abu Dhabi to acclimate. He identified Malkoun's pace, striking and grappling as important challenges.",
           "sourceLabel": "Exclusive Oct. 6 MMA.Metaratings interview",
           "source": "https://mma.metaratings.ru/news/vagaev-malkun-krepkii-boec-eto-khoroshaya-proverka-dlya-menya-659829/"
         },
@@ -7729,7 +7729,7 @@
           "date": "Nov. 15, 1995",
           "label": "Born in Jette, Brussels, Belgium",
           "kind": "background",
-          "detail": "UFC identifies Jette in Brussels as his place of birth. Oki represents Belgium and has described a family heritage connected to Nigeria and Zimbabwe; his 'Zulu Warrior' nickname refers to his Zimbabwean ancestry. Avoid inventing a precise ancestry percentage.",
+          "detail": "UFC identifies Jette in Brussels as his place of birth. Oki represents Belgium and has described a family heritage connected to Nigeria and Zimbabwe; his 'Zulu Warrior' nickname refers to his Zimbabwean ancestry.",
           "sourceLabel": "UFC athlete biography and September 2025 interview",
           "source": "https://www.ufc.com/athlete/bolaji-oki"
         },
@@ -7785,7 +7785,7 @@
           "date": "Mar. 17, 2018",
           "label": "LOSS · Sebastien Di Franco · Unanimous decision · R3 5:00",
           "kind": "loss",
-          "detail": "European Beatdown 3: Oki lost to Sebastien Di Franco by unanimous decision. The fight went the full 3 rounds; the 5:00 entry is the final bell, not a stoppage. His professional MMA debut was a unanimous-decision loss at a 159-pound catchweight, leaving him 0-1. Some earlier timelines incorrectly called the promotion Strength & Honor.",
+          "detail": "European Beatdown 3: Oki lost to Sebastien Di Franco by unanimous decision. The fight went the full 3 rounds; the 5:00 entry is the final bell, not a stoppage. His professional MMA debut was a unanimous-decision loss at a 159-pound catchweight, leaving him 0-1.",
           "sourceLabel": "Sherdog professional results; UFC for Octagon scorecards",
           "source": "https://www.sherdog.com/fighter/Bolaji-Oki-276669"
         },
@@ -8184,7 +8184,7 @@
           "date": "Mar. 28, 2020 (event canceled)",
           "label": "Brave CF 35 fight vs. Rany Saadeh canceled amid COVID restrictions",
           "kind": "milestone",
-          "detail": "Brave CF 35 was canceled during the onset of the COVID-19 pandemic, so the booked bout with Rany Saadeh was not fought. Do not assume this event alone explains the full 2019–2022 activity gap.",
+          "detail": "Brave CF 35 was canceled during the onset of the COVID-19 pandemic, so the booked bout with Rany Saadeh was not fought.",
           "sourceLabel": "Tapology BRAVE CF 35 canceled event record",
           "source": "https://www.tapology.com/fightcenter/fighters/65061-daniel-willycat"
         },
@@ -9237,7 +9237,7 @@
           "date": "Aug. 11, 2018",
           "label": "WIN · Ana Jeize Silva · TKO (method unspecified) · R2 3:47",
           "kind": "win",
-          "detail": "At Punch Fight in Mossoró, Lucindo defeated Ana Jeize Silva by tko (method unspecified). The recorded finish came at 3:47 of round 2. Second professional victory over Ana Jeize; Sherdog shows a second-round TKO at 3:47 while some summaries give first-round punches at 1:35. Don't assign a more precise finish than the indexed registry supports.",
+          "detail": "At Punch Fight in Mossoró, Lucindo defeated Ana Jeize Silva by tko (method unspecified). The recorded finish came at 3:47 of round 2. Second professional victory over Ana Jeize; Sherdog shows a second-round TKO at 3:47 while some summaries give first-round punches at 1:35.",
           "sourceLabel": "Sherdog bout registry cross-checked against UFC athlete profile",
           "source": "https://www.sherdog.com/fighter/Iasmin-Lucindo-264861"
         },
@@ -9381,7 +9381,7 @@
           "date": "Aug. 13, 2023 (award announced)",
           "label": "Collects $50,000 Performance of the Night bonus",
           "kind": "milestone",
-          "detail": "The UFC awarded Lucindo a $50,000 Performance of the Night bonus for submitting Polyana Viana by second-round arm triangle. Do not miscategorize it as a Fight of the Night award.",
+          "detail": "The UFC awarded Lucindo a $50,000 Performance of the Night bonus for submitting Polyana Viana by second-round arm triangle.",
           "sourceLabel": "UFC official award announcement, Aug. 13, 2023",
           "source": "https://www.ufc.com.br/news/iasmin-lucindo-fatura-bonus-performance-da-noite-ufc-vegas-78"
         },
@@ -11847,7 +11847,7 @@
           "date": "Apr. 29, 2023",
           "label": "WIN · Charles Johnson · third straight UFC win",
           "kind": "win",
-          "detail": "Used takedowns and extended control time to defeat Charles Johnson by unanimous decision over three rounds at UFC Fight Night: Song vs. Simón. This UFC victory was absent from the earlier timeline.",
+          "detail": "Used takedowns and extended control time to defeat Charles Johnson by unanimous decision over three rounds at UFC Fight Night: Song vs. Simón.",
           "sourceLabel": "UFC · official fight history; Sherdog record",
           "source": "https://www.ufc.com/athlete/cody-durden?language_content_entity=en"
         },
@@ -14061,7 +14061,7 @@
           "date": "2021 (approximately; exact title-end date unverified)",
           "label": "Road FC featherweight championship reign ends",
           "kind": "milestone",
-          "detail": "Road FC later awarded its vacant featherweight belt in September 2021. Championship histories describe Lee as having been stripped due to inactivity, but there is no verified contemporaneous announcement date in this timeline.",
+          "detail": "Road FC later awarded its vacant featherweight belt in September 2021. Championship histories describe Lee as having been stripped due to inactivity, but a contemporaneous title-vacancy announcement date could not be confirmed.",
           "sourceLabel": "ROAD FC · featherweight championship history",
           "source": "https://en.wikipedia.org/wiki/List_of_Road_FC_champions"
         },
@@ -15482,7 +15482,7 @@
           "date": "Aug. 2, 2018",
           "label": "WIN · Bobby Sullivan · MMA debut and TKO title",
           "kind": "win",
-          "detail": "Won his professional MMA debut by first-round submission at 1:42 at TKO Fight Night 1 in Montreal, claiming the vacant TKO heavyweight championship. Tapology lists the finish as a front choke. Professional MMA record: 1–0.",
+          "detail": "Won his professional MMA debut by first-round submission at 1:42 at TKO Fight Night 1 in Montreal, claiming the vacant TKO heavyweight championship. Tapology lists the finish as a front choke. 1–0.",
           "sourceLabel": "Tapology · TKO Fight Night 1 bout record",
           "source": "https://www.tapology.com/fightcenter/bouts/379733-tko-fight-night-1-ciryl-bon-gamin-gane-vs-bobby-bloody-sullivan"
         },
@@ -15490,7 +15490,7 @@
           "date": "Sep. 21, 2018",
           "label": "WIN · Adam Dyczka · first TKO title defense",
           "kind": "win",
-          "detail": "Defended the TKO heavyweight belt at TKO 44 in Québec City, stopping the previously unbeaten Adam Dyczka with punches at 4:57 of round two. Professional MMA record: 2–0.",
+          "detail": "Defended the TKO heavyweight belt at TKO 44 in Québec City, stopping the previously unbeaten Adam Dyczka with punches at 4:57 of round two. 2–0.",
           "sourceLabel": "Tapology · TKO 44 championship bout",
           "source": "https://www.tapology.com/fightcenter/bouts/381201-tko-44-adam-kung-fu-panda-dyczka-vs-ciryl-bon-gamin-gane"
         },
@@ -15498,7 +15498,7 @@
           "date": "May 24, 2019",
           "label": "WIN · Roggers Souza · second TKO title defense",
           "kind": "win",
-          "detail": "Stopped Roggers Souza with strikes at 4:26 of round one at TKO 48, retaining the heavyweight title. Gane finished all three of his regional MMA bouts before joining the UFC. Professional MMA record: 3–0.",
+          "detail": "Stopped Roggers Souza with strikes at 4:26 of round one at TKO 48, retaining the heavyweight title. Gane finished all three of his regional MMA bouts before joining the UFC. 3–0.",
           "sourceLabel": "Tapology · TKO 48 championship bout",
           "source": "https://www.tapology.com/fightcenter/bouts/421708-tko-48-roggers-the-tiger-souza-vs-cyril-bon-gamin-gane"
         },
@@ -15506,7 +15506,7 @@
           "date": "Aug. 10, 2019",
           "label": "WIN · Raphael Pessoa · UFC debut",
           "kind": "win",
-          "detail": "Submitted Raphael Pessoa with an arm-triangle choke at 4:12 of round one at UFC Fight Night: Shevchenko vs. Carmouche 2 in Montevideo, Uruguay. Professional MMA record: 4–0; UFC record: 1–0.",
+          "detail": "Submitted Raphael Pessoa with an arm-triangle choke at 4:12 of round one at UFC Fight Night: Shevchenko vs. Carmouche 2 in Montevideo, Uruguay. 4–0; UFC record: 1–0.",
           "sourceLabel": "UFCStats · official bout record",
           "source": "http://ufcstats.com/fight-details/1d8a86d37c7ef3d3"
         },
@@ -15514,7 +15514,7 @@
           "date": "Oct. 26, 2019",
           "label": "WIN · Don’Tale Mayes · heel-hook finish",
           "kind": "win",
-          "detail": "Submitted Don’Tale Mayes with a heel hook at 4:46 of round three at UFC Fight Night: Maia vs. Askren in Singapore. It was Gane’s second consecutive UFC submission win. Professional MMA record: 5–0; UFC record: 2–0.",
+          "detail": "Submitted Don’Tale Mayes with a heel hook at 4:46 of round three at UFC Fight Night: Maia vs. Askren in Singapore. It was Gane’s second consecutive UFC submission win. 5–0; UFC record: 2–0.",
           "sourceLabel": "UFCStats · official bout record",
           "source": "http://ufcstats.com/fight-details/41b75c9222c33cdf"
         },
@@ -15522,7 +15522,7 @@
           "date": "Dec. 21, 2019",
           "label": "WIN · Tanner Boser · first decision victory",
           "kind": "win",
-          "detail": "Defeated Tanner Boser by unanimous decision after three rounds at UFC Fight Night: Edgar vs. The Korean Zombie in Busan, South Korea. Closed his debut UFC year with three wins. Professional MMA record: 6–0; UFC record: 3–0.",
+          "detail": "Defeated Tanner Boser by unanimous decision after three rounds at UFC Fight Night: Edgar vs. The Korean Zombie in Busan, South Korea. Closed his debut UFC year with three wins. 6–0; UFC record: 3–0.",
           "sourceLabel": "UFCStats · official bout record",
           "source": "http://ufcstats.com/fight-details/3637e661b6854b49"
         },
@@ -15530,7 +15530,7 @@
           "date": "Dec. 12, 2020",
           "label": "WIN · Junior dos Santos · stops a former champion",
           "kind": "win",
-          "detail": "Stopped former UFC heavyweight champion Junior dos Santos at 2:34 of round two at UFC 256. UFCStats records the finish as a KO/TKO by elbow. Professional MMA record: 7–0; UFC record: 4–0.",
+          "detail": "Stopped former UFC heavyweight champion Junior dos Santos at 2:34 of round two at UFC 256. UFCStats records the finish as a KO/TKO by elbow. 7–0; UFC record: 4–0.",
           "sourceLabel": "UFCStats · official bout record",
           "source": "http://ufcstats.com/fight-details/fe3ff5b1d9135add"
         },
@@ -15538,7 +15538,7 @@
           "date": "Feb. 27, 2021",
           "label": "WIN · Jairzinho Rozenstruik · first UFC main event",
           "kind": "win",
-          "detail": "Won a five-round unanimous decision over Jairzinho Rozenstruik in his first UFC main event at UFC Fight Night: Rozenstruik vs. Gane. Professional MMA record: 8–0; UFC record: 5–0.",
+          "detail": "Won a five-round unanimous decision over Jairzinho Rozenstruik in his first UFC main event at UFC Fight Night: Rozenstruik vs. Gane. 8–0; UFC record: 5–0.",
           "sourceLabel": "UFCStats · official bout record",
           "source": "http://ufcstats.com/fight-details/4a704dae3091adaf"
         },
@@ -15546,7 +15546,7 @@
           "date": "Jun. 26, 2021",
           "label": "WIN · Alexander Volkov · five-round decision",
           "kind": "win",
-          "detail": "Defeated Alexander Volkov by unanimous decision over five rounds at UFC Fight Night: Gane vs. Volkov. This was their first meeting. Professional MMA record: 9–0; UFC record: 6–0.",
+          "detail": "Defeated Alexander Volkov by unanimous decision over five rounds at UFC Fight Night: Gane vs. Volkov. This was their first meeting. 9–0; UFC record: 6–0.",
           "sourceLabel": "UFCStats · official bout record",
           "source": "http://ufcstats.com/fight-details/78afed76d0e9a639"
         },
@@ -15554,7 +15554,7 @@
           "date": "Aug. 7, 2021",
           "label": "WIN · Derrick Lewis · first interim UFC title",
           "kind": "win",
-          "detail": "Stopped Derrick Lewis with strikes at 4:11 of round three at UFC 265 in Houston to win the interim UFC heavyweight championship. Gane became the first French fighter to win UFC gold. Professional MMA record: 10–0; UFC record: 7–0.",
+          "detail": "Stopped Derrick Lewis with strikes at 4:11 of round three at UFC 265 in Houston to win the interim UFC heavyweight championship. Gane became the first French fighter to win UFC gold. 10–0; UFC record: 7–0.",
           "sourceLabel": "UFC · first interim championship and career rise",
           "source": "https://www.ufc.com/news/ride-has-been-perfect-ciryl-gane-ufc-interim-heavyweight-france-ngannou"
         },
@@ -15562,7 +15562,7 @@
           "date": "Jan. 22, 2022",
           "label": "LOSS · Francis Ngannou · title unification",
           "kind": "loss",
-          "detail": "Lost a five-round unanimous decision to reigning heavyweight champion Francis Ngannou in the UFC 270 title-unification main event in Anaheim. It was Gane’s first professional MMA defeat. Professional MMA record: 10–1; UFC record: 7–1.",
+          "detail": "Lost a five-round unanimous decision to reigning heavyweight champion Francis Ngannou in the UFC 270 title-unification main event in Anaheim. It was Gane’s first professional MMA defeat. 10–1; UFC record: 7–1.",
           "sourceLabel": "UFCStats · official bout record",
           "source": "http://ufcstats.com/fight-details/e786542667fdecf0"
         },
@@ -15570,7 +15570,7 @@
           "date": "Sep. 3, 2022",
           "label": "WIN · Tai Tuivasa · headlines the first UFC Paris",
           "kind": "win",
-          "detail": "Stopped Tai Tuivasa with punches at 4:23 of round three in the main event of the UFC’s first event in Paris. Returned to winning form after the Ngannou loss. Professional MMA record: 11–1; UFC record: 8–1.",
+          "detail": "Stopped Tai Tuivasa with punches at 4:23 of round three in the main event of the UFC’s first event in Paris. Returned to winning form after the Ngannou loss. 11–1; UFC record: 8–1.",
           "sourceLabel": "UFCStats · official bout record",
           "source": "http://ufcstats.com/fight-details/810c9da07970c4a6"
         },
@@ -15578,7 +15578,7 @@
           "date": "Mar. 4, 2023",
           "label": "LOSS · Jon Jones · vacant heavyweight title",
           "kind": "loss",
-          "detail": "Submitted to a guillotine choke from Jon Jones at 2:04 of round one in the UFC 285 main event in Las Vegas. The vacant undisputed UFC heavyweight championship was at stake. Professional MMA record: 11–2; UFC record: 8–2.",
+          "detail": "Submitted to a guillotine choke from Jon Jones at 2:04 of round one in the UFC 285 main event in Las Vegas. The vacant undisputed UFC heavyweight championship was at stake. 11–2; UFC record: 8–2.",
           "sourceLabel": "UFCStats · official bout record",
           "source": "http://ufcstats.com/fight-details/636fd144716a3084"
         },
@@ -15586,7 +15586,7 @@
           "date": "Sep. 2, 2023",
           "label": "WIN · Serghei Spivac · Paris rebound",
           "kind": "win",
-          "detail": "Stopped Serghei Spivac with punches at 3:44 of round two in the UFC Fight Night main event in Paris. Professional MMA record: 12–2; UFC record: 9–2.",
+          "detail": "Stopped Serghei Spivac with punches at 3:44 of round two in the UFC Fight Night main event in Paris. 12–2; UFC record: 9–2.",
           "sourceLabel": "UFCStats · official bout record",
           "source": "http://ufcstats.com/fight-details/ea006bae605e2a6b"
         },
@@ -15594,7 +15594,7 @@
           "date": "Dec. 7, 2024",
           "label": "WIN · Alexander Volkov · split-decision rematch",
           "kind": "win",
-          "detail": "Defeated Alexander Volkov by split decision after three rounds at UFC 310 in Las Vegas. Gane’s second victory over Volkov brought his UFC win total to ten. Professional MMA record: 13–2; UFC record: 10–2.",
+          "detail": "Defeated Alexander Volkov by split decision after three rounds at UFC 310 in Las Vegas. Gane’s second victory over Volkov brought his UFC win total to ten. 13–2; UFC record: 10–2.",
           "sourceLabel": "UFCStats · official bout record",
           "source": "http://ufcstats.com/fight-details/f706508c52f337a6"
         },
@@ -15610,7 +15610,7 @@
           "date": "Jun. 14, 2026",
           "label": "WIN · Alex Pereira · regains interim UFC title",
           "kind": "win",
-          "detail": "Stopped Alex Pereira with punches at 1:27 of round two at UFC Freedom 250 at the White House in Washington, D.C. Won the interim UFC heavyweight championship for a second time. Professional MMA record: 14–2 with one no contest; UFC record: 11–2 with one no contest.",
+          "detail": "Stopped Alex Pereira with punches at 1:27 of round two at UFC Freedom 250 at the White House in Washington, D.C. Won the interim UFC heavyweight championship for a second time. 14–2 with one no contest; UFC record: 11–2 with one no contest.",
           "sourceLabel": "UFCStats · official bout record",
           "source": "http://ufcstats.com/fight-details/5727d5be8c373346"
         },
@@ -15693,7 +15693,7 @@
           "date": "Oct. 7, 2023",
           "label": "WIN · Spencer Smith · Bellator 300 pro debut",
           "kind": "win",
-          "detail": "Made his professional MMA debut at Bellator 300 and submitted Spencer Smith with an arm-triangle choke at 3:48 of round three. It was his first recorded professional fight. Professional MMA record: 1-0.",
+          "detail": "Made his professional MMA debut at Bellator 300 and submitted Spencer Smith with an arm-triangle choke at 3:48 of round three. It was his first recorded professional fight. 1-0.",
           "sourceLabel": "Verdict MMA · Josh Hokit fight history",
           "source": "https://verdictmma.com/fighter/josh-hokit"
         },
@@ -15701,7 +15701,7 @@
           "date": "Sep. 7, 2024",
           "label": "WIN · Sean Rose · Bellator Champions Series",
           "kind": "win",
-          "detail": "Submitted Sean Rose with an armbar at 4:58 of round one at Bellator Champions Series in San Diego. Both of Hokit's first two pro MMA wins came by submission. Professional MMA record: 2-0.",
+          "detail": "Submitted Sean Rose with an armbar at 4:58 of round one at Bellator Champions Series in San Diego. Both of Hokit's first two pro MMA wins came by submission. 2-0.",
           "sourceLabel": "Verdict MMA · Josh Hokit fight history",
           "source": "https://verdictmma.com/fighter/josh-hokit"
         },
@@ -15709,7 +15709,7 @@
           "date": "Jan. 10, 2025",
           "label": "WIN · John Lopez · LFA 199",
           "kind": "win",
-          "detail": "Stopped John Lopez with punches from back mount at 2:53 of round one at LFA 199. This was his first professional MMA victory by TKO. Professional MMA record: 3-0.",
+          "detail": "Stopped John Lopez with punches from back mount at 2:53 of round one at LFA 199. This was his first professional MMA victory by TKO. 3-0.",
           "sourceLabel": "Verdict MMA · Josh Hokit fight history",
           "source": "https://verdictmma.com/fighter/josh-hokit"
         },
@@ -15717,7 +15717,7 @@
           "date": "Mar. 6, 2025",
           "label": "WIN · Ezekiel Latu · LFA 203",
           "kind": "win",
-          "detail": "Submitted Ezekiel Latu with a rear-naked choke just 42 seconds into round one at LFA 203. He had now earned three submission wins in four professional bouts. Professional MMA record: 4-0.",
+          "detail": "Submitted Ezekiel Latu with a rear-naked choke just 42 seconds into round one at LFA 203. He had now earned three submission wins in four professional bouts. 4-0.",
           "sourceLabel": "Verdict MMA · Josh Hokit fight history",
           "source": "https://verdictmma.com/fighter/josh-hokit"
         },
@@ -15725,7 +15725,7 @@
           "date": "May 9, 2025",
           "label": "WIN · Eric Lunsford · LFA 208",
           "kind": "win",
-          "detail": "Stopped Eric Lunsford with punches from the crucifix position at 2:00 of round one at LFA 208. Hokit completed a three-fight run in LFA with three first-round finishes. Professional MMA record: 5-0.",
+          "detail": "Stopped Eric Lunsford with punches from the crucifix position at 2:00 of round one at LFA 208. Hokit completed a three-fight run in LFA with three first-round finishes. 5-0.",
           "sourceLabel": "Verdict MMA · Josh Hokit fight history",
           "source": "https://verdictmma.com/fighter/josh-hokit"
         },
@@ -15733,7 +15733,7 @@
           "date": "Aug. 19, 2025",
           "label": "WIN · Guilherme Uriel · Contender Series contract",
           "kind": "win",
-          "detail": "Stopped Guilherme Uriel with elbows at 1:06 of round two on Dana White's Contender Series, Season 9, Week 2. The victory earned Hokit a UFC contract. Professional MMA record: 6-0.",
+          "detail": "Stopped Guilherme Uriel with elbows at 1:06 of round two on Dana White's Contender Series, Season 9, Week 2. The victory earned Hokit a UFC contract. 6-0.",
           "sourceLabel": "Verdict MMA · DWCS result and UFC contract",
           "source": "https://verdictmma.com/fighter/josh-hokit"
         },
@@ -15741,7 +15741,7 @@
           "date": "Nov. 8, 2025",
           "label": "WIN · Max Gimenis · UFC debut",
           "kind": "win",
-          "detail": "Stopped Max Gimenis with a right hook and follow-up strikes at 0:56 of round one at UFC Fight Night: Bonfim vs. Brown. Hokit received a Performance of the Night bonus in his UFC debut. Professional MMA record: 7-0; UFC record: 1-0.",
+          "detail": "Stopped Max Gimenis with a right hook and follow-up strikes at 0:56 of round one at UFC Fight Night: Bonfim vs. Brown. Hokit received a Performance of the Night bonus in his UFC debut. 7-0; UFC record: 1-0.",
           "sourceLabel": "Verdict MMA · Josh Hokit fight history",
           "source": "https://verdictmma.com/fighter/josh-hokit"
         },
@@ -15749,7 +15749,7 @@
           "date": "Jan. 24, 2026",
           "label": "WIN · Denzel Freeman · UFC 324",
           "kind": "win",
-          "detail": "Freeman retired after the opening round, recorded as a TKO at 4:59 of round one at UFC 324. Hokit earned another Performance of the Night bonus. Professional MMA record: 8-0; UFC record: 2-0.",
+          "detail": "Freeman retired after the opening round, recorded as a TKO at 4:59 of round one at UFC 324. Hokit earned another Performance of the Night bonus. 8-0; UFC record: 2-0.",
           "sourceLabel": "Verdict MMA · Josh Hokit fight history",
           "source": "https://verdictmma.com/fighter/josh-hokit"
         },
@@ -15757,7 +15757,7 @@
           "date": "Apr. 11, 2026",
           "label": "WIN · Curtis Blaydes · UFC 327",
           "kind": "win",
-          "detail": "Defeated Curtis Blaydes by unanimous decision after three rounds at UFC 327. It was his first professional MMA fight to reach the scorecards and his first win over a long-established UFC heavyweight contender. The bout earned Fight of the Night honors, and Hokit also received a Performance of the Night bonus. Professional MMA record: 9-0; UFC record: 3-0.",
+          "detail": "Defeated Curtis Blaydes by unanimous decision after three rounds at UFC 327. It was his first professional MMA fight to reach the scorecards and his first win over a long-established UFC heavyweight contender. The bout earned Fight of the Night honors, and Hokit also received a Performance of the Night bonus. 9-0; UFC record: 3-0.",
           "sourceLabel": "Verdict MMA · result; UFC · post-fight bonuses",
           "source": "https://verdictmma.com/fighter/josh-hokit"
         },
@@ -15765,7 +15765,7 @@
           "date": "Jun. 14, 2026",
           "label": "WIN · Derrick Lewis · UFC Freedom 250",
           "kind": "win",
-          "detail": "Stopped Derrick Lewis with punches at 4:09 of round two at UFC Freedom 250 in Washington, D.C. The victory moved him to four straight UFC wins, three of them by stoppage, and set up his first heavyweight title opportunity. Professional MMA record: 10-0; UFC record: 4-0.",
+          "detail": "Stopped Derrick Lewis with punches at 4:09 of round two at UFC Freedom 250 in Washington, D.C. The victory moved him to four straight UFC wins, three of them by stoppage, and set up his first heavyweight title opportunity. 10-0; UFC record: 4-0.",
           "sourceLabel": "Verdict MMA · Josh Hokit fight history",
           "source": "https://verdictmma.com/fighter/josh-hokit"
         },
@@ -15896,7 +15896,7 @@
           "date": "Jun. 21, 2018",
           "label": "WIN · Brittney Elkin · PFL 2018 #2",
           "kind": "win",
-          "detail": "Defeated Brittney Elkin by armbar submission in round 1 at 3:18 at PFL 2018 #2. This was her professional MMA debut, a first-round submission that immediately showcased her ability to convert judo control into MMA finishing positions. Professional MMA record: 1-0. Her first MMA bout after a two-Olympic career in judo. Harrison closed distance, brought the fight to the ground and finished with an armbar. She was competing at 155 pounds, before PFL introduced a women's lightweight tournament in 2019.",
+          "detail": "Defeated Brittney Elkin by armbar submission in round 1 at 3:18 at PFL 2018 #2. This was her professional MMA debut, a first-round submission that immediately showcased her ability to convert judo control into MMA finishing positions. 1-0. Her first MMA bout after a two-Olympic career in judo. Harrison closed distance, brought the fight to the ground and finished with an armbar. She was competing at 155 pounds, before PFL introduced a women's lightweight tournament in 2019.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -15904,7 +15904,7 @@
           "date": "Aug. 16, 2018",
           "label": "WIN · Jozette Cotton · PFL 2018 #6",
           "kind": "win",
-          "detail": "Defeated Jozette Cotton by TKO (ground-and-pound) in round 3 at 1:24 at PFL 2018 #6. Her first professional stoppage by strikes came against Cotton, a more experienced opponent. Professional MMA record: 2-0. The third-round TKO showed her using top position and ground strikes rather than relying exclusively on submission holds. Her professional record moved to 2-0.",
+          "detail": "Defeated Jozette Cotton by TKO (ground-and-pound) in round 3 at 1:24 at PFL 2018 #6. Her first professional stoppage by strikes came against Cotton, a more experienced opponent. 2-0. The third-round TKO showed her using top position and ground strikes rather than relying exclusively on submission holds. Her professional record moved to 2-0.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -15912,7 +15912,7 @@
           "date": "Dec. 31, 2018",
           "label": "WIN · Moriel Charneski · PFL 2018 #11",
           "kind": "win",
-          "detail": "Defeated Moriel Charneski by TKO (ground-and-pound) in round 1 at 3:39 at PFL 2018 #11. Finished her debut professional year with three wins and three finishes. Professional MMA record: 3-0. A first-round ground-and-pound stoppage on the PFL 2018 championship card. Despite the event name, this was not a women's tournament title fight; PFL launched that women's 155-pound season in 2019.",
+          "detail": "Defeated Moriel Charneski by TKO (ground-and-pound) in round 1 at 3:39 at PFL 2018 #11. Finished her debut professional year with three wins and three finishes. 3-0. A first-round ground-and-pound stoppage on the PFL 2018 championship card. Despite the event name, this was not a women's tournament title fight; PFL launched that women's 155-pound season in 2019.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -15920,7 +15920,7 @@
           "date": "May 9, 2019",
           "label": "WIN · Larissa Pacheco · PFL 2019 #1",
           "kind": "win",
-          "detail": "Defeated Larissa Pacheco by unanimous decision in round 3 at 5:00 at PFL 2019 #1. Their first meeting went the full three rounds, a different test from Harrison's three finishes in 2018. Professional MMA record: 4-0. FIRST MEETING: A unanimous decision over Pacheco during the 2019 regular season, her first recorded professional MMA bout to reach the judges. Pacheco became a central opponent in her PFL story.",
+          "detail": "Defeated Larissa Pacheco by unanimous decision in round 3 at 5:00 at PFL 2019 #1. Their first meeting went the full three rounds, a different test from Harrison's three finishes in 2018. 4-0. FIRST MEETING: A unanimous decision over Pacheco during the 2019 regular season, her first recorded professional MMA bout to reach the judges. Pacheco became a central opponent in her PFL story.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -15928,7 +15928,7 @@
           "date": "Jul. 11, 2019",
           "label": "WIN · Morgan Frier · PFL 2019 #4",
           "kind": "win",
-          "detail": "Defeated Morgan Frier by keylock (americana) submission in round 1 at 3:35 at PFL 2019 #4. A first-round submission during the PFL regular season. Professional MMA record: 5-0. A first-round keylock submission in the 2019 regular season that put Harrison on track for a playoff berth. She continued building wins at lightweight rather than making the immediate jump to the UFC.",
+          "detail": "Defeated Morgan Frier by keylock (americana) submission in round 1 at 3:35 at PFL 2019 #4. A first-round submission during the PFL regular season. 5-0. A first-round keylock submission in the 2019 regular season that put Harrison on track for a playoff berth. She continued building wins at lightweight rather than making the immediate jump to the UFC.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -15936,7 +15936,7 @@
           "date": "Oct. 11, 2019",
           "label": "WIN · Bobbi-Jo Dalziel · PFL 2019 #7",
           "kind": "win",
-          "detail": "Defeated Bobbi-Jo Dalziel by armbar submission in round 1 at 3:32 at PFL 2019 #7. Advanced through the women's lightweight playoffs and into the championship final. Professional MMA record: 6-0. An armbar in the first round of the 2019 playoffs sent Harrison into the division's inaugural season final. This was a tournament semifinal, not the championship victory itself.",
+          "detail": "Defeated Bobbi-Jo Dalziel by armbar submission in round 1 at 3:32 at PFL 2019 #7. Advanced through the women's lightweight playoffs and into the championship final. 6-0. An armbar in the first round of the 2019 playoffs sent Harrison into the division's inaugural season final. This was a tournament semifinal, not the championship victory itself.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -15944,7 +15944,7 @@
           "date": "Dec. 31, 2019",
           "label": "WIN · Larissa Pacheco · PFL 2019 #10",
           "kind": "win",
-          "detail": "Defeated Larissa Pacheco by unanimous decision in round 5 at 5:00 at PFL 2019 #10. Won the 2019 PFL women's lightweight championship and its $1 million season prize by defeating Pacheco for the second time, this time over five rounds. Professional MMA record: 7-0. SECOND MEETING: This five-round unanimous decision secured the inaugural 2019 PFL women's lightweight championship and $1 million title prize. Harrison was now 2-0 against Pacheco.",
+          "detail": "Defeated Larissa Pacheco by unanimous decision in round 5 at 5:00 at PFL 2019 #10. Won the 2019 PFL women's lightweight championship and its $1 million season prize by defeating Pacheco for the second time, this time over five rounds. 7-0. SECOND MEETING: This five-round unanimous decision secured the inaugural 2019 PFL women's lightweight championship and $1 million title prize. Harrison was now 2-0 against Pacheco.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -15960,7 +15960,7 @@
           "date": "Nov. 20, 2020",
           "label": "WIN · Courtney King · Invicta FC 43",
           "kind": "win",
-          "detail": "Defeated Courtney King by TKO (punches) in round 2 at 4:48 at Invicta FC 43. Made her Invicta FC debut at featherweight (145 lb), a lighter weight than her PFL women's lightweight bouts. The contest became the Invicta 43 main event. Professional MMA record: 8-0. With the PFL's 2020 season canceled, Harrison took a one-off Invicta FC fight at 145 pounds against King. It was her first MMA bout below lightweight and the first time she fought outside PFL.",
+          "detail": "Defeated Courtney King by TKO (punches) in round 2 at 4:48 at Invicta FC 43. Made her Invicta FC debut at featherweight (145 lb), a lighter weight than her PFL women's lightweight bouts. The contest became the Invicta 43 main event. 8-0. With the PFL's 2020 season canceled, Harrison took a one-off Invicta FC fight at 145 pounds against King. It was her first MMA bout below lightweight and the first time she fought outside PFL.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -15968,7 +15968,7 @@
           "date": "May 6, 2021",
           "label": "WIN · Mariana Morais · PFL 2021 #3",
           "kind": "win",
-          "detail": "Defeated Mariana Morais by TKO (ground-and-pound) in round 1 at 1:23 at PFL 2021 #3. Returned to PFL competition after the canceled 2020 season and opened the 2021 campaign with a fast finish. Professional MMA record: 9-0. Harrison returned to the PFL league format in 2021, finishing Morais with strikes from top position early in the opening round. It was her first fight back in the league after the canceled 2020 season.",
+          "detail": "Defeated Mariana Morais by TKO (ground-and-pound) in round 1 at 1:23 at PFL 2021 #3. Returned to PFL competition after the canceled 2020 season and opened the 2021 campaign with a fast finish. 9-0. Harrison returned to the PFL league format in 2021, finishing Morais with strikes from top position early in the opening round. It was her first fight back in the league after the canceled 2020 season.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -15976,7 +15976,7 @@
           "date": "Jun. 25, 2021",
           "label": "WIN · Cindy Dandois · PFL 2021 #6",
           "kind": "win",
-          "detail": "Defeated Cindy Dandois by armbar submission in round 1 at 4:44 at PFL 2021 #6. Extended her unbeaten start to ten professional fights. Professional MMA record: 10-0. Finished the more experienced Dandois by first-round armbar in the 2021 regular season, reaching ten straight professional victories.",
+          "detail": "Defeated Cindy Dandois by armbar submission in round 1 at 4:44 at PFL 2021 #6. Extended her unbeaten start to ten professional fights. 10-0. Finished the more experienced Dandois by first-round armbar in the 2021 regular season, reaching ten straight professional victories.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -15984,7 +15984,7 @@
           "date": "Aug. 19, 2021",
           "label": "WIN · Genah Fabian · PFL 2021 #8",
           "kind": "win",
-          "detail": "Defeated Genah Fabian by TKO (ground-and-pound) in round 1 at 4:01 at PFL 2021 #8. Won a playoff semifinal with a first-round finish to reach another season final. Professional MMA record: 11-0. Stopped Fabian from top position in round one during the 2021 playoffs. The semifinal victory put her into her second PFL women's lightweight championship final.",
+          "detail": "Defeated Genah Fabian by TKO (ground-and-pound) in round 1 at 4:01 at PFL 2021 #8. Won a playoff semifinal with a first-round finish to reach another season final. 11-0. Stopped Fabian from top position in round one during the 2021 playoffs. The semifinal victory put her into her second PFL women's lightweight championship final.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -15992,7 +15992,7 @@
           "date": "Oct. 27, 2021",
           "label": "WIN · Taylor Guardado · PFL 2021 #10",
           "kind": "win",
-          "detail": "Defeated Taylor Guardado by armbar submission in round 2 at 4:00 at PFL 2021 #10. Won a second PFL women's lightweight season championship and another $1 million prize. Professional MMA record: 12-0. Won the 2021 PFL women's lightweight championship with a second-round armbar and claimed a second $1 million season prize.",
+          "detail": "Defeated Taylor Guardado by armbar submission in round 2 at 4:00 at PFL 2021 #10. Won a second PFL women's lightweight season championship and another $1 million prize. 12-0. Won the 2021 PFL women's lightweight championship with a second-round armbar and claimed a second $1 million season prize.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -16000,7 +16000,7 @@
           "date": "May 6, 2022",
           "label": "WIN · Marina Mokhnatkina · PFL 2022 #3",
           "kind": "win",
-          "detail": "Defeated Marina Mokhnatkina by unanimous decision in round 3 at 5:00 at PFL 2022 #3. Opened the 2022 PFL season with a three-round decision against the decorated sambo fighter. Professional MMA record: 13-0. A three-round unanimous decision over a decorated sambo practitioner. Mokhnatkina defended and attacked through grappling exchanges, but Harrison controlled enough of the fight to win all three judges' cards 30-27. This was the start of her 2022 PFL season.",
+          "detail": "Defeated Marina Mokhnatkina by unanimous decision in round 3 at 5:00 at PFL 2022 #3. Opened the 2022 PFL season with a three-round decision against the decorated sambo fighter. 13-0. A three-round unanimous decision over a decorated sambo practitioner. Mokhnatkina defended and attacked through grappling exchanges, but Harrison controlled enough of the fight to win all three judges' cards 30-27. This was the start of her 2022 PFL season.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -16008,7 +16008,7 @@
           "date": "Jul. 1, 2022",
           "label": "WIN · Kaitlin Young · PFL 2022 #6",
           "kind": "win",
-          "detail": "Defeated Kaitlin Young by TKO (punches from the back) in round 1 at 2:35 at PFL 2022 #6. Secured another regular-season win with strikes from a dominant position. Professional MMA record: 14-0. Stopped Young with punches from back control in the first round. It was her first stoppage in the 2022 regular season after going the distance with Mokhnatkina.",
+          "detail": "Defeated Kaitlin Young by TKO (punches from the back) in round 1 at 2:35 at PFL 2022 #6. Secured another regular-season win with strikes from a dominant position. 14-0. Stopped Young with punches from back control in the first round. It was her first stoppage in the 2022 regular season after going the distance with Mokhnatkina.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -16016,7 +16016,7 @@
           "date": "Aug. 20, 2022",
           "label": "WIN · Martina Jindrová · PFL 2022 #9",
           "kind": "win",
-          "detail": "Defeated Martina Jindrová by arm-triangle choke submission in round 1 at 3:17 at PFL 2022 #9. Earned her place in the 2022 women's lightweight championship final. Professional MMA record: 15-0.",
+          "detail": "Defeated Martina Jindrová by arm-triangle choke submission in round 1 at 3:17 at PFL 2022 #9. Earned her place in the 2022 women's lightweight championship final. 15-0.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -16024,7 +16024,7 @@
           "date": "Nov. 25, 2022",
           "label": "LOSS · Larissa Pacheco · PFL 2022 #10",
           "kind": "loss",
-          "detail": "Lost to Larissa Pacheco by unanimous decision in round 5 at 5:00 at PFL 2022 #10. Suffered the first defeat of her professional MMA career in the 2022 PFL women's lightweight championship final. Pacheco won their third meeting after losing the first two in 2019. Professional MMA record: 15-1. THIRD MEETING: Pacheco reversed the series trend after two 2019 defeats, damaging Harrison on the feet and continuing to attack when taken down. All three judges scored it 48-47; Harrison lost the 2022 championship and her 15-fight unbeaten streak ended. This was a genuine loss, not a title defense retained.",
+          "detail": "Lost to Larissa Pacheco by unanimous decision in round 5 at 5:00 at PFL 2022 #10. Suffered the first defeat of her professional MMA career in the 2022 PFL women's lightweight championship final. Pacheco won their third meeting after losing the first two in 2019. 15-1. THIRD MEETING: Pacheco reversed the series trend after two 2019 defeats, damaging Harrison on the feet and continuing to attack when taken down. All three judges scored it 48-47; Harrison lost the 2022 championship and her 15-fight unbeaten streak ended. This was a genuine loss, not a title defense retained.",
           "sourceLabel": "Verdict MMA · third fight; 2022 championship loss",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -16032,7 +16032,7 @@
           "date": "Nov. 24, 2023",
           "label": "WIN · Aspen Ladd · PFL 2023 #10",
           "kind": "win",
-          "detail": "Defeated Aspen Ladd by unanimous decision in round 3 at 5:00 at PFL 2023 #10. Returned after nearly a year away and defeated former UFC contender Aspen Ladd on the PFL championship card in a non-tournament bout. Professional MMA record: 16-1. After a year away following the Pacheco defeat, Harrison returned in a non-tournament bout against a former UFC bantamweight contender. She won all three rounds on the scorecards, and this proved to be her final fight under the PFL banner.",
+          "detail": "Defeated Aspen Ladd by unanimous decision in round 3 at 5:00 at PFL 2023 #10. Returned after nearly a year away and defeated former UFC contender Aspen Ladd on the PFL championship card in a non-tournament bout. 16-1. After a year away following the Pacheco defeat, Harrison returned in a non-tournament bout against a former UFC bantamweight contender. She won all three rounds on the scorecards, and this proved to be her final fight under the PFL banner.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -16048,7 +16048,7 @@
           "date": "Apr. 13, 2024",
           "label": "WIN · Holly Holm · UFC 300",
           "kind": "win",
-          "detail": "Defeated Holly Holm by rear-naked choke submission in round 2 at 1:47 at UFC 300. Made her UFC and bantamweight debuts on the UFC 300 main card in Las Vegas. UFC record: 1-0. Professional MMA record: 17-1. Made her UFC debut at bantamweight, having previously competed at 155 pounds in PFL and once at 145 in Invicta. In the second round, she took Holm down, established back control and finished with a rear-naked choke. It answered the immediate question of whether she could compete effectively at 135.",
+          "detail": "Defeated Holly Holm by rear-naked choke submission in round 2 at 1:47 at UFC 300. Made her UFC and bantamweight debuts on the UFC 300 main card in Las Vegas. UFC record: 1-0. 17-1. Made her UFC debut at bantamweight, having previously competed at 155 pounds in PFL and once at 145 in Invicta. In the second round, she took Holm down, established back control and finished with a rear-naked choke. It answered the immediate question of whether she could compete effectively at 135.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -16056,7 +16056,7 @@
           "date": "Oct. 5, 2024",
           "label": "WIN · Ketlen Vieira · UFC 307",
           "kind": "win",
-          "detail": "Defeated Ketlen Vieira by unanimous decision in round 3 at 5:00 at UFC 307. Beat an established contender across three rounds to strengthen her case for a women's bantamweight title shot. UFC record: 2-0. Professional MMA record: 18-1. Won 30-27, 30-27 and 29-28 against a well-established UFC bantamweight contender. Vieira's defensive grappling and striking made the second round difficult, opening Harrison up with strikes, before Harrison controlled the final round from top position. This was a more competitive test than her UFC debut.",
+          "detail": "Defeated Ketlen Vieira by unanimous decision in round 3 at 5:00 at UFC 307. Beat an established contender across three rounds to strengthen her case for a women's bantamweight title shot. UFC record: 2-0. 18-1. Won 30-27, 30-27 and 29-28 against a well-established UFC bantamweight contender. Vieira's defensive grappling and striking made the second round difficult, opening Harrison up with strikes, before Harrison controlled the final round from top position. This was a more competitive test than her UFC debut.",
           "sourceLabel": "Verdict MMA · dated professional bout record",
           "source": "https://verdictmma.com/fighter/kayla-harrison"
         },
@@ -16064,7 +16064,7 @@
           "date": "Jun. 7, 2025",
           "label": "WIN · Julianna Peña · UFC 316",
           "kind": "win",
-          "detail": "Defeated Julianna Peña by kimura submission in round 2 at 4:55 at UFC 316. Won the undisputed UFC women's bantamweight championship in Newark, New Jersey. Peña was deducted a point for illegal upkicks in the first round; Harrison earned a Performance of the Night bonus. UFC record: 3-0. Professional MMA record: 19-1. Captured the UFC women's bantamweight championship. Peña was penalized a point for illegal upkicks from guard in round one. Harrison took her down again in round two, threatened an arm triangle near the cage, then switched to a kimura for the finish at 4:55. It made Harrison an Olympic gold medalist and UFC champion.",
+          "detail": "Defeated Julianna Peña by kimura submission in round 2 at 4:55 at UFC 316. Won the undisputed UFC women's bantamweight championship in Newark, New Jersey. Peña was deducted a point for illegal upkicks in the first round; Harrison earned a Performance of the Night bonus. UFC record: 3-0. 19-1. Captured the UFC women's bantamweight championship. Peña was penalized a point for illegal upkicks from guard in round one. Harrison took her down again in round two, threatened an arm triangle near the cage, then switched to a kimura for the finish at 4:55. It made Harrison an Olympic gold medalist and UFC champion.",
           "sourceLabel": "Verdict MMA · result; UFC · championship recap",
           "source": "https://www.ufc.com/news/main-card-results-highlights-winner-interviews-ufc-316-dvalishvili-vs-omalley-2-newark"
         },
@@ -16998,7 +16998,7 @@
           "date": "Jun. 3, 2022",
           "label": "WIN · Anthony Valenzuela · LFA 133: Stack vs. Delano",
           "kind": "win",
-          "detail": "Defeated Anthony Valenzuela by TKO (punches) at 1:16 of round 1 at LFA 133: Stack vs. Delano. Made his professional debut with a first-round finish after two documented amateur victories. Professional record: 1-0.",
+          "detail": "Defeated Anthony Valenzuela by TKO (punches) at 1:16 of round 1 at LFA 133: Stack vs. Delano. Made his professional debut with a first-round finish after two documented amateur victories. 1-0.",
           "sourceLabel": "Sherdog · professional fight history",
           "source": "https://www.sherdog.com/fighter/Luis-Gurule-390304"
         },
@@ -17006,7 +17006,7 @@
           "date": "Sep. 9, 2022",
           "label": "WIN · Josiah Reyes · LFA 141: Talundžić vs. Brown",
           "kind": "win",
-          "detail": "Defeated Josiah Reyes by TKO (knee and punches) at 1:15 of round 1 at LFA 141: Talundžić vs. Brown. A second straight first-round stoppage in LFA; Gurule was already showing finishing ability rather than relying exclusively on his wrestling. Professional record: 2-0.",
+          "detail": "Defeated Josiah Reyes by TKO (knee and punches) at 1:15 of round 1 at LFA 141: Talundžić vs. Brown. A second straight first-round stoppage in LFA; Gurule was already showing finishing ability rather than relying exclusively on his wrestling. 2-0.",
           "sourceLabel": "Sherdog · professional fight history",
           "source": "https://www.sherdog.com/fighter/Luis-Gurule-390304"
         },
@@ -17014,7 +17014,7 @@
           "date": "Nov. 11, 2022",
           "label": "WIN · Jayson Scott · MCF 23: Salute to Veterans 2",
           "kind": "win",
-          "detail": "Defeated Jayson Scott by TKO (strikes) at 2:44 of round 1 at MCF 23: Salute to Veterans 2. Moved to 3-0 in the professional ranks with his third consecutive opening-round finish. Professional record: 3-0.",
+          "detail": "Defeated Jayson Scott by TKO (strikes) at 2:44 of round 1 at MCF 23: Salute to Veterans 2. Moved to 3-0 in the professional ranks with his third consecutive opening-round finish. 3-0.",
           "sourceLabel": "Sherdog · professional fight history",
           "source": "https://www.sherdog.com/fighter/Luis-Gurule-390304"
         },
@@ -17022,7 +17022,7 @@
           "date": "Dec. 9, 2022",
           "label": "WIN · Ryan Mondala · Colorado Combat Club 15",
           "kind": "win",
-          "detail": "Defeated Ryan Mondala by TKO (punches and elbows) at 3:28 of round 2 at Colorado Combat Club 15. Continued his four-fight finishing run, this time in the second round rather than the first. Professional record: 4-0.",
+          "detail": "Defeated Ryan Mondala by TKO (punches and elbows) at 3:28 of round 2 at Colorado Combat Club 15. Continued his four-fight finishing run, this time in the second round rather than the first. 4-0.",
           "sourceLabel": "Sherdog · professional fight history",
           "source": "https://www.sherdog.com/fighter/Luis-Gurule-390304"
         },
@@ -17038,7 +17038,7 @@
           "date": "May 7, 2023",
           "label": "WIN · Carlos Lozoya · Fury FC 79",
           "kind": "win",
-          "detail": "Defeated Carlos Lozoya by TKO (punches) at 0:41 of round 3 at Fury FC 79. Made his Fury FC debut and earned a third-round stoppage. This was the first of his professional fights to reach round three. Professional record: 5-0.",
+          "detail": "Defeated Carlos Lozoya by TKO (punches) at 0:41 of round 3 at Fury FC 79. Made his Fury FC debut and earned a third-round stoppage. This was the first of his professional fights to reach round three. 5-0.",
           "sourceLabel": "Sherdog · professional fight history",
           "source": "https://www.sherdog.com/fighter/Luis-Gurule-390304"
         },
@@ -17046,7 +17046,7 @@
           "date": "Aug. 27, 2023",
           "label": "WIN · Jonathan Davis · Fury FC 82: Moran vs. Trujillo",
           "kind": "win",
-          "detail": "Defeated Jonathan Davis by unanimous decision at 5:00 of round 3 at Fury FC 82: Moran vs. Trujillo. Went the full distance for the first time as a professional and won on all three judges' cards. The bout was contested at bantamweight. Professional record: 6-0.",
+          "detail": "Defeated Jonathan Davis by unanimous decision at 5:00 of round 3 at Fury FC 82: Moran vs. Trujillo. Went the full distance for the first time as a professional and won on all three judges' cards. The bout was contested at bantamweight. 6-0.",
           "sourceLabel": "Sherdog · professional fight history",
           "source": "https://www.sherdog.com/fighter/Luis-Gurule-390304"
         },
@@ -17054,7 +17054,7 @@
           "date": "Oct. 22, 2023",
           "label": "WIN · Gerardo Graniel · Fury Challenger Series 8",
           "kind": "win",
-          "detail": "Defeated Gerardo Graniel by unanimous decision at 5:00 of round 3 at Fury Challenger Series 8. Banked another three-round decision on the Fury regional circuit, demonstrating he could win over a full fight without an early finish. Professional record: 7-0.",
+          "detail": "Defeated Gerardo Graniel by unanimous decision at 5:00 of round 3 at Fury Challenger Series 8. Banked another three-round decision on the Fury regional circuit, demonstrating he could win over a full fight without an early finish. 7-0.",
           "sourceLabel": "Sherdog · professional fight history",
           "source": "https://www.sherdog.com/fighter/Luis-Gurule-390304"
         },
@@ -17070,7 +17070,7 @@
           "date": "Apr. 21, 2024",
           "label": "WIN · Alberto Trujillo · Fury FC 89: Richardson vs. Aswell",
           "kind": "win",
-          "detail": "Defeated Alberto Trujillo by unanimous decision at 5:00 of round 3 at Fury FC 89: Richardson vs. Aswell. Gurule later described this as his hardest fight to that point because Trujillo switched tactics and was shorter than him, making it difficult to land cleanly. It was his third consecutive decision win. Professional record: 8-0.",
+          "detail": "Defeated Alberto Trujillo by unanimous decision at 5:00 of round 3 at Fury FC 89: Richardson vs. Aswell. Gurule later described this as his hardest fight to that point because Trujillo switched tactics and was shorter than him, making it difficult to land cleanly. It was his third consecutive decision win. 8-0.",
           "sourceLabel": "Sherdog · professional fight history",
           "source": "https://www.sherdog.com/fighter/Luis-Gurule-390304"
         },
@@ -17086,7 +17086,7 @@
           "date": "Sep. 22, 2024",
           "label": "WIN · Jacob Silva · Fury FC 96: Silva vs. Gurule",
           "kind": "win",
-          "detail": "Defeated Jacob Silva by technical submission (arm-triangle choke) at 2:32 of round 4 at Fury FC 96: Silva vs. Gurule. Won the Fury FC flyweight championship in the main event in Houston. This was his first professional submission finish and the longest fight of his career to that point. Professional record: 9-0.",
+          "detail": "Defeated Jacob Silva by technical submission (arm-triangle choke) at 2:32 of round 4 at Fury FC 96: Silva vs. Gurule. Won the Fury FC flyweight championship in the main event in Houston. This was his first professional submission finish and the longest fight of his career to that point. 9-0.",
           "sourceLabel": "Sherdog · Fury FC 96 championship bout",
           "source": "https://www.sherdog.com/events/Fury-FC-96-Fury-Fighting-Championship-96-Silva-vs-Gurule-103535"
         },
@@ -17110,7 +17110,7 @@
           "date": "Oct. 15, 2024",
           "label": "WIN · Nick Piccininni · DWCS Season 8, Week 10",
           "kind": "win",
-          "detail": "Defeated Nick Piccininni by split decision (29-28, 29-28, 28-29) at 5:00 of round 3 at DWCS Season 8, Week 10. Despite repeated takedowns by Piccininni, Gurule repeatedly returned to his feet and landed enough offense to win two judges' cards. He earned a UFC contract at the conclusion of the final episode of the 2024 Contender Series season. Professional record: 10-0.",
+          "detail": "Defeated Nick Piccininni by split decision (29-28, 29-28, 28-29) at 5:00 of round 3 at DWCS Season 8, Week 10. Despite repeated takedowns by Piccininni, Gurule repeatedly returned to his feet and landed enough offense to win two judges' cards. He earned a UFC contract at the conclusion of the final episode of the 2024 Contender Series season. 10-0.",
           "sourceLabel": "UFC · Contender Series results and scorecards",
           "source": "https://www.ufc.com/news/week-10-results-scorecards-dana-whites-contender-series-season-8"
         },
@@ -17126,7 +17126,7 @@
           "date": "Apr. 5, 2025",
           "label": "LOSS · Ode' Osbourne · UFC Fight Night: Emmett vs. Murphy",
           "kind": "loss",
-          "detail": "Lost to Ode' Osbourne by TKO (punches) at 1:54 of round 2 at UFC Fight Night: Emmett vs. Murphy. Made his official UFC debut as the betting favorite against the more experienced Ode' Osbourne, but was stopped in the second round. It was his first professional loss and ended a 10-fight winning streak. Professional record: 10-1.",
+          "detail": "Lost to Ode' Osbourne by TKO (punches) at 1:54 of round 2 at UFC Fight Night: Emmett vs. Murphy. Made his official UFC debut as the betting favorite against the more experienced Ode' Osbourne, but was stopped in the second round. It was his first professional loss and ended a 10-fight winning streak. 10-1.",
           "sourceLabel": "UFC · April 5 official fight result",
           "source": "https://www.ufc.com/event/ufc-fight-night-april-05-2025"
         },
@@ -17134,7 +17134,7 @@
           "date": "Sep. 13, 2025",
           "label": "LOSS · Jesus Aguilar · Noche UFC: Lopes vs. Silva",
           "kind": "loss",
-          "detail": "Lost to Jesus Aguilar by unanimous decision (30-27, 29-28, 29-28) at 5:00 of round 3 at Noche UFC: Lopes vs. Silva. Lost a competitive three-round fight to Aguilar. The result was scored for Aguilar by all three judges, with two giving Gurule one round; it was not a split decision. Professional record: 10-2.",
+          "detail": "Lost to Jesus Aguilar by unanimous decision (30-27, 29-28, 29-28) at 5:00 of round 3 at Noche UFC: Lopes vs. Silva. Lost a competitive three-round fight to Aguilar. The result was scored for Aguilar by all three judges, with two giving Gurule one round; it was not a split decision. 10-2.",
           "sourceLabel": "UFC · Noche UFC official scorecards",
           "source": "https://www.ufc.com/news/official-judges-scorecards-noche-ufc-lopes-vs-silva"
         },
@@ -17142,7 +17142,7 @@
           "date": "Feb. 21, 2026",
           "label": "LOSS · Alden Coria · UFC Fight Night: Strickland vs. Hernandez",
           "kind": "loss",
-          "detail": "Lost to Alden Coria by unanimous decision at 5:00 of round 3 at UFC Fight Night: Strickland vs. Hernandez. Lost his third straight UFC fight by unanimous decision in Houston, Texas. His pro record stood at 10-3, and he was still looking for his first UFC victory. Professional record: 10-3.",
+          "detail": "Lost to Alden Coria by unanimous decision at 5:00 of round 3 at UFC Fight Night: Strickland vs. Hernandez. Lost his third straight UFC fight by unanimous decision in Houston, Texas. His pro record stood at 10-3, and he was still looking for his first UFC victory. 10-3.",
           "sourceLabel": "UFC · February 21 athlete fight-history result",
           "source": "https://www.ufc.com/athlete/luis-gurule"
         },
@@ -17150,7 +17150,7 @@
           "date": "May 16, 2026",
           "label": "WIN · Daniel Barez · UFC Fight Night: Allen vs. Costa",
           "kind": "win",
-          "detail": "Defeated Daniel Barez by unanimous decision (30-27 on all three cards) at 5:00 of round 3 at UFC Fight Night: Allen vs. Costa. Earned his first UFC victory after three consecutive defeats. All three judges awarded Gurule every round, 30-27, demonstrating a full-fight performance rather than another close decision. Professional record: 11-3.",
+          "detail": "Defeated Daniel Barez by unanimous decision (30-27 on all three cards) at 5:00 of round 3 at UFC Fight Night: Allen vs. Costa. Earned his first UFC victory after three consecutive defeats. All three judges awarded Gurule every round, 30-27, demonstrating a full-fight performance rather than another close decision. 11-3.",
           "sourceLabel": "UFC · May 16 official scorecards",
           "source": "https://www.ufc.com/index.php/news/ufc-fight-night-allen-vs-costa-official-scorecards-judges"
         },
@@ -17166,7 +17166,7 @@
           "date": "May 30, 2026",
           "label": "LOSS · Rei Tsuruya · UFC Fight Night: Song vs. Figueiredo",
           "kind": "loss",
-          "detail": "Lost to Rei Tsuruya by submission (recorded as a rear-naked choke on UFC's athlete page and a neck crank by Sherdog) at 3:19 of round one in the UFC Macau preliminary card. He stepped in on short notice after Jesus Aguilar withdrew, just 14 days after his victory over Daniel Barez. Tsuruya landed an early left hook, took top position, transitioned to the back and secured the finish. This was Gurule's fourth UFC loss. Professional record: 11-4; UFC record: 1-4.",
+          "detail": "Lost to Rei Tsuruya by submission (recorded as a rear-naked choke on UFC's athlete page and a neck crank by Sherdog) at 3:19 of round one in the UFC Macau preliminary card. He stepped in on short notice after Jesus Aguilar withdrew, just 14 days after his victory over Daniel Barez. Tsuruya landed an early left hook, took top position, transitioned to the back and secured the finish. This was Gurule's fourth UFC loss. 11-4; UFC record: 1-4.",
           "sourceLabel": "Sherdog · UFC Macau play-by-play and bout report",
           "source": "https://www.sherdog.com/news/news/Yadong-Song-taps-out-Deiveson-Figueiredo-with-secondround-guillotine-at-UFC-Macau-201366"
         },
@@ -17345,7 +17345,7 @@
           "date": "Dec. 16, 2022",
           "label": "WIN · Xhelal Lleshi · CFFC 116",
           "kind": "win",
-          "detail": "Defeated Xhelal Lleshi by split decision in round 3 at 5:00 at CFFC 116. Sherdog · CFFC 116 pro debut Professional record: His professional MMA debut was also his only win by judges' decision through October 2026. It is important not to describe every victory in his unbeaten run as a finish..",
+          "detail": "Defeated Xhelal Lleshi by split decision in round 3 at 5:00 at CFFC 116. Sherdog · CFFC 116 pro debut His professional MMA debut was also his only win by judges' decision through October 2026. It is important not to describe every victory in his unbeaten run as a finish.",
           "sourceLabel": "https://www.sherdog.com/fighter/Bilal-Hasan-400714",
           "source": "https://www.sherdog.com/fighter/Bilal-Hasan-400714"
         },
@@ -17361,7 +17361,7 @@
           "date": "Jul. 29, 2023",
           "label": "NC · Sonny Suranjin · COGA 75: MMA Summer Showdown",
           "kind": "nc",
-          "detail": "Faced Sonny Suranjin; official result: no contest in round 1 at 0:07 at COGA 75: MMA Summer Showdown. Sherdog · COGA 75 no-contest record Professional record: The scheduled fight ended after only seven seconds with no official winner. It is a separate professional no contest, not an eleventh victory or a defeat; records should read 10-0 with 1 NC..",
+          "detail": "Faced Sonny Suranjin; official result: no contest in round 1 at 0:07 at COGA 75: MMA Summer Showdown. Sherdog · COGA 75 no-contest record The scheduled fight ended after only seven seconds with no official winner. It is a separate professional no contest, not an eleventh victory or a defeat; records should read 10-0 with 1 NC.",
           "sourceLabel": "https://www.sherdog.com/fighter/Bilal-Hasan-400714",
           "source": "https://www.sherdog.com/fighter/Bilal-Hasan-400714"
         },
@@ -17369,7 +17369,7 @@
           "date": "Sep. 1, 2023",
           "label": "WIN · Orlando Ortega · CFFC 123",
           "kind": "win",
-          "detail": "Defeated Orlando Ortega by TKO (body kick and punches) in round 1 at 4:15 at CFFC 123. undefined Professional record: First professional stoppage and second official win. Hasan used body attacks to put the fight away inside the opening round..",
+          "detail": "Defeated Orlando Ortega by TKO (body kick and punches) in round 1 at 4:15 at CFFC 123. First professional stoppage and second official win. Hasan used body attacks to put the fight away inside the opening round.",
           "sourceLabel": "Sherdog · full professional fight history",
           "source": "https://www.sherdog.com/fighter/Bilal-Hasan-400714"
         },
@@ -17377,7 +17377,7 @@
           "date": "Feb. 9, 2024",
           "label": "WIN · Jacob Romano · CFFC 129",
           "kind": "win",
-          "detail": "Defeated Jacob Romano by KO (spinning wheel kick) in round 2 at 0:23 at CFFC 129. undefined Professional record: Scored a spectacular second-round knockout with a spinning wheel kick, one of the results that raised his visibility on the Cage Fury circuit. The UFC later specifically highlighted this finish in his athlete biography..",
+          "detail": "Defeated Jacob Romano by KO (spinning wheel kick) in round 2 at 0:23 at CFFC 129. Scored a spectacular second-round knockout with a spinning wheel kick, one of the results that raised his visibility on the Cage Fury circuit. The UFC later specifically highlighted this finish in his athlete biography.",
           "sourceLabel": "Sherdog · full professional fight history",
           "source": "https://www.sherdog.com/fighter/Bilal-Hasan-400714"
         },
@@ -17385,7 +17385,7 @@
           "date": "Jun. 14, 2024",
           "label": "WIN · Shamel Findley · CFFC 132",
           "kind": "win",
-          "detail": "Defeated Shamel Findley by KO (punches) in round 1 at 4:33 at CFFC 132. undefined Professional record: Another first-round finish, taking Hasan to 4-0 with a no contest ahead of a Cage Fury championship opportunity..",
+          "detail": "Defeated Shamel Findley by KO (punches) in round 1 at 4:33 at CFFC 132. Another first-round finish, taking Hasan to 4-0 with a no contest ahead of a Cage Fury championship opportunity.",
           "sourceLabel": "Sherdog · full professional fight history",
           "source": "https://www.sherdog.com/fighter/Bilal-Hasan-400714"
         },
@@ -17401,7 +17401,7 @@
           "date": "Sep. 27, 2024",
           "label": "WIN · Jose Leon · CFFC 136",
           "kind": "win",
-          "detail": "Defeated Jose Leon by rear-naked choke submission in round 2 at 2:16 at CFFC 136. CFFC · official title-winning result Professional record: Won the vacant CFFC flyweight championship in New Town, North Dakota. He took Leon's back during a scramble and secured the first submission victory of his professional career..",
+          "detail": "Defeated Jose Leon by rear-naked choke submission in round 2 at 2:16 at CFFC 136. CFFC · official title-winning result Won the vacant CFFC flyweight championship in New Town, North Dakota. He took Leon's back during a scramble and secured the first submission victory of his professional career.",
           "sourceLabel": "https://cffc.tv/news/2024/9/29/cffc-136-results-blayne-richards-bilal-hasan-score-submission-wins-to-claim-vacant-titles",
           "source": "https://www.sherdog.com/fighter/Bilal-Hasan-400714"
         },
@@ -17417,7 +17417,7 @@
           "date": "Feb. 1, 2025",
           "label": "WIN · Brian Hauser · CFFC 139",
           "kind": "win",
-          "detail": "Defeated Brian Hauser by KO/TKO (body punch) in round 2 at 2:11 at CFFC 139. CFFC · CFFC 139 official results Professional record: Made his first CFFC flyweight title defense in Philadelphia. Hauser attempted to use wrestling, but Hasan hurt him early, escaped his takedown attempts and ended the fight with a body shot..",
+          "detail": "Defeated Brian Hauser by KO/TKO (body punch) in round 2 at 2:11 at CFFC 139. CFFC · CFFC 139 official results Made his first CFFC flyweight title defense in Philadelphia. Hauser attempted to use wrestling, but Hasan hurt him early, escaped his takedown attempts and ended the fight with a body shot.",
           "sourceLabel": "https://cffc.tv/news/2025/2/2/cffc-139-results-bilal-hasan-retains-flyweight-title-with-vicious-body-shot-stays-undefeated",
           "source": "https://www.sherdog.com/fighter/Bilal-Hasan-400714"
         },
@@ -17425,7 +17425,7 @@
           "date": "Jun. 6, 2025",
           "label": "WIN · Jason Eastman · CFFC 143",
           "kind": "win",
-          "detail": "Defeated Jason Eastman by TKO (front kick to the body and punches) in round 4 at 1:46 at CFFC 143. CFFC · full championship bout recap Professional record: Second successful defense of the CFFC title. Eastman attacked with dangerous leg locks and grappling attempts, carrying the fight into round four before Hasan's sustained strikes forced the stoppage. This was his first fight into the fourth round..",
+          "detail": "Defeated Jason Eastman by TKO (front kick to the body and punches) in round 4 at 1:46 at CFFC 143. CFFC · full championship bout recap Second successful defense of the CFFC title. Eastman attacked with dangerous leg locks and grappling attempts, carrying the fight into round four before Hasan's sustained strikes forced the stoppage. This was his first fight into the fourth round.",
           "sourceLabel": "https://cffc.tv/news/2025/6/7/cffc-143-results-bilal-hasan-batters-jason-eastman-second-title-defense-chris-brown-claims-interim-middleweight-belt",
           "source": "https://www.sherdog.com/fighter/Bilal-Hasan-400714"
         },
@@ -17457,7 +17457,7 @@
           "date": "Dec. 20, 2025",
           "label": "WIN · Renaldy Manse · CFFC 149",
           "kind": "win",
-          "detail": "Defeated Renaldy Manse by TKO (body punch) in round 1 at 2:47 at CFFC 149. CFFC · official CFFC 149 results Professional record: Successfully defended his CFFC flyweight title for a third time against another unbeaten prospect, Manse, who also had Indonesian roots. The stoppage came by a body shot in the first round..",
+          "detail": "Defeated Renaldy Manse by TKO (body punch) in round 1 at 2:47 at CFFC 149. CFFC · official CFFC 149 results Successfully defended his CFFC flyweight title for a third time against another unbeaten prospect, Manse, who also had Indonesian roots. The stoppage came by a body shot in the first round.",
           "sourceLabel": "https://cffc.tv/news/2025/12/21/cffc-149-results-champs-ryan-cafaro-bilal-hasan-emily-martins-retain-belts-emphatic-finishes",
           "source": "https://www.sherdog.com/fighter/Bilal-Hasan-400714"
         },
@@ -17481,7 +17481,7 @@
           "date": "Aug. 11, 2026",
           "label": "WIN · Mridul Saikia · DWCS Season 10, Week 1",
           "kind": "win",
-          "detail": "Defeated Mridul Saikia by TKO (right hand and ground punches) in round 1 at 0:45 at DWCS Season 10, Week 1. UFC · official DWCS results and contract winners Professional record: Dropped Saikia with a counter right hand and finished with ground strikes in 45 seconds at the Meta APEX in Las Vegas. The first DWCS win of his career moved him to 9-0 with one no contest..",
+          "detail": "Defeated Mridul Saikia by TKO (right hand and ground punches) in round 1 at 0:45 at DWCS Season 10, Week 1. UFC · official DWCS results and contract winners Dropped Saikia with a counter right hand and finished with ground strikes in 45 seconds at the Meta APEX in Las Vegas. The first DWCS win of his career moved him to 9-0 with one no contest.",
           "sourceLabel": "https://www.ufc.com/news/welcome-ufc-dwcs-week-1-season-10",
           "source": "https://www.sherdog.com/fighter/Bilal-Hasan-400714"
         },
@@ -17505,7 +17505,7 @@
           "date": "Aug. 29, 2026",
           "label": "WIN · Nilson Rojas · UFC Shanghai: Nurmagomedov vs. Song",
           "kind": "win",
-          "detail": "Defeated Nilson Rojas by KO (right hand) in round 2 at 2:28 at UFC Shanghai: Nurmagomedov vs. Song. UFC · official Shanghai results and fight recap Professional record: Won his official UFC debut against the previously unbeaten Rojas. Rojas briefly disrupted Hasan with a push kick in round two, but Hasan recovered and knocked him out with a right hand; the fight opened the main card. UFC record: 1-0..",
+          "detail": "Defeated Nilson Rojas by KO (right hand) in round 2 at 2:28 at UFC Shanghai: Nurmagomedov vs. Song. UFC · official Shanghai results and fight recap Won his official UFC debut against the previously unbeaten Rojas. Rojas briefly disrupted Hasan with a push kick in round two, but Hasan recovered and knocked him out with a right hand; the fight opened the main card. UFC record: 1-0.",
           "sourceLabel": "https://www.ufc.com/news/ufc-shanghai-results-nurmagomedov-vs-song",
           "source": "https://www.sherdog.com/fighter/Bilal-Hasan-400714"
         },
@@ -18183,7 +18183,7 @@
           "date": "Jan. 22, 2021",
           "label": "WIN · Badreddine Diani · UAE Warriors 16: Arabia 1",
           "kind": "win",
-          "detail": "Defeated Badreddine Diani by unanimous decision at UAE Warriors 16: Arabia 1, round 3 (5:00). https://www.tapology.com/fightcenter/fighters/237485-yousri-belgaroui-baby-face-assassin Professional MMA record: Made his professional MMA debut after his high-level kickboxing career. His first bout went the full three rounds and was a decision, not a knockout..",
+          "detail": "Defeated Badreddine Diani by unanimous decision at UAE Warriors 16: Arabia 1, round 3 (5:00). Made his professional MMA debut after his high-level kickboxing career. His first bout went the full three rounds and was a decision, not a knockout.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "Tapology · pro MMA debut"
         },
@@ -18191,7 +18191,7 @@
           "date": "Mar. 19, 2021",
           "label": "WIN · Sallah-Eddine Dekhissi · UAE Warriors 17: Arabia 2",
           "kind": "win",
-          "detail": "Defeated Sallah-Eddine Dekhissi by TKO (head kick and follow-up strikes) at UAE Warriors 17: Arabia 2, round 1 (2:44). undefined Professional MMA record: Earned his first MMA stoppage. Tapology and Verdict both place the finish in round one; some other databases list round two, a discrepancy kept out of the career totals..",
+          "detail": "Defeated Sallah-Eddine Dekhissi by TKO (head kick and follow-up strikes) at UAE Warriors 17: Arabia 2, round 1 (2:44). Earned his first MMA stoppage. Tapology and Verdict both place the finish in round one; some other databases list round two, a discrepancy kept out of the career totals.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "https://verdictmma.com/fighter/yousri-the-boogeyman-belgaroui"
         },
@@ -18223,7 +18223,7 @@
           "date": "Feb. 25, 2022",
           "label": "LOSS · Ahmed Sami · UAE Warriors 25: Africa",
           "kind": "loss",
-          "detail": "Lost to Ahmed Sami by split decision at UAE Warriors 25: Africa, round 3 (5:00). undefined Professional MMA record: Suffered his first MMA defeat in a closely scored fight; he would meet Sami again for a regional light heavyweight championship in 2024..",
+          "detail": "Lost to Ahmed Sami by split decision at UAE Warriors 25: Africa, round 3 (5:00). Suffered his first MMA defeat in a closely scored fight; he would meet Sami again for a regional light heavyweight championship in 2024.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "https://verdictmma.com/fighter/yousri-the-boogeyman-belgaroui"
         },
@@ -18231,7 +18231,7 @@
           "date": "Mar. 25, 2022",
           "label": "WIN · Samir Zaidi · UAE Warriors 27: Africa 2",
           "kind": "win",
-          "detail": "Defeated Samir Zaidi by TKO (punches) at UAE Warriors 27: Africa 2, round 1 (4:32). undefined Professional MMA record: Rebounded from the split-decision loss to Sami with a first-round stoppage..",
+          "detail": "Defeated Samir Zaidi by TKO (punches) at UAE Warriors 27: Africa 2, round 1 (4:32). Rebounded from the split-decision loss to Sami with a first-round stoppage.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "https://verdictmma.com/fighter/yousri-the-boogeyman-belgaroui"
         },
@@ -18239,7 +18239,7 @@
           "date": "Jul. 3, 2022",
           "label": "LOSS · Mohamad Osseili · UAE Warriors 31: Arabia 8",
           "kind": "loss",
-          "detail": "Lost to Mohamad Osseili by unanimous decision at UAE Warriors 31: Arabia 8, round 3 (5:00). undefined Professional MMA record: Fell to 3-2 as an MMA professional. His first two MMA defeats came on the scorecards, not by a stoppage..",
+          "detail": "Lost to Mohamad Osseili by unanimous decision at UAE Warriors 31: Arabia 8, round 3 (5:00). Fell to 3-2 as an MMA professional. His first two MMA defeats came on the scorecards, not by a stoppage.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "https://verdictmma.com/fighter/yousri-the-boogeyman-belgaroui"
         },
@@ -18247,7 +18247,7 @@
           "date": "Feb. 5, 2023",
           "label": "WIN · Bogdan Kotlovyanov · Levels Fight League 7",
           "kind": "win",
-          "detail": "Defeated Bogdan Kotlovyanov by KO/TKO (body punch) at Levels Fight League 7, round 1 (1:15). https://www.tapology.com/fightcenter/fighters/237485-yousri-belgaroui-baby-face-assassin Professional MMA record: Won at approximately 198 pounds in a light heavyweight bout. Tapology and Verdict show the 1:15 stoppage; Sherdog lists 1:50, so the timeline follows the two agreeing sources..",
+          "detail": "Defeated Bogdan Kotlovyanov by KO/TKO (body punch) at Levels Fight League 7, round 1 (1:15). Won at approximately 198 pounds in a light heavyweight bout. Tapology and Verdict show the 1:15 stoppage; Sherdog lists 1:50, so the record follows the two agreeing sources.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "Tapology · LFL 7 result and finish time"
         },
@@ -18255,7 +18255,7 @@
           "date": "Feb. 24, 2023",
           "label": "WIN · Stefan Pretorius · UAE Warriors 35: Africa 4",
           "kind": "win",
-          "detail": "Defeated Stefan Pretorius by TKO (knee and punches) at UAE Warriors 35: Africa 4, round 2 (0:43). undefined Professional MMA record: Followed the LFL body-shot finish with another knockout victory three weeks later..",
+          "detail": "Defeated Stefan Pretorius by TKO (knee and punches) at UAE Warriors 35: Africa 4, round 2 (0:43). Followed the LFL body-shot finish with another knockout victory three weeks later.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "https://verdictmma.com/fighter/yousri-the-boogeyman-belgaroui"
         },
@@ -18263,7 +18263,7 @@
           "date": "Aug. 29, 2023",
           "label": "LOSS · Marco Tulio · DWCS Season 7, Week 4",
           "kind": "loss",
-          "detail": "Lost to Marco Tulio by unanimous decision at DWCS Season 7, Week 4, round 3 (5:00). undefined Professional MMA record: Lost his first Dana White's Contender Series appearance to Brazilian middleweight Marco Tulio. The defeat put him at 5-3 and meant he had not earned an UFC contract..",
+          "detail": "Lost to Marco Tulio by unanimous decision at DWCS Season 7, Week 4, round 3 (5:00). Lost his first Dana White's Contender Series appearance to Brazilian middleweight Marco Tulio. The defeat put him at 5-3 and meant he had not earned an UFC contract.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "https://verdictmma.com/fighter/yousri-the-boogeyman-belgaroui"
         },
@@ -18279,7 +18279,7 @@
           "date": "Oct. 29, 2023",
           "label": "WIN · Giorgi Kvelidze · Levels Fight League 10",
           "kind": "win",
-          "detail": "Defeated Giorgi Kvelidze by TKO (body knee and punches) at Levels Fight League 10, round 1 (4:59). undefined Professional MMA record: Returned to the Netherlands regional scene and stopped Kvelidze with one second remaining in the first round..",
+          "detail": "Defeated Giorgi Kvelidze by TKO (body knee and punches) at Levels Fight League 10, round 1 (4:59). Returned to the Netherlands regional scene and stopped Kvelidze with one second remaining in the first round.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "https://verdictmma.com/fighter/yousri-the-boogeyman-belgaroui"
         },
@@ -18287,7 +18287,7 @@
           "date": "Feb. 18, 2024",
           "label": "WIN · Ahmed Sami · Levels Fight League 11",
           "kind": "win",
-          "detail": "Defeated Ahmed Sami by unanimous decision at Levels Fight League 11, round 5 (5:00). undefined Professional MMA record: Avenged the 2022 split-decision defeat to Sami over five rounds and captured the vacant LFL light heavyweight championship, contested above his usual UFC middleweight class..",
+          "detail": "Defeated Ahmed Sami by unanimous decision at Levels Fight League 11, round 5 (5:00). Avenged the 2022 split-decision defeat to Sami over five rounds and captured the vacant LFL light heavyweight championship, contested above his usual UFC middleweight class.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "https://verdictmma.com/fighter/yousri-the-boogeyman-belgaroui"
         },
@@ -18311,7 +18311,7 @@
           "date": "Sep. 10, 2024",
           "label": "WIN · Taiga Iwasaki · DWCS Season 8, Week 5",
           "kind": "win",
-          "detail": "Defeated Taiga Iwasaki by TKO (punches) at DWCS Season 8, Week 5, round 3 (2:34). undefined Professional MMA record: Earned a stoppage in his second Contender Series appearance and improved to 8-3. UFC reporting confirms he did not receive a contract on the night, despite the win..",
+          "detail": "Defeated Taiga Iwasaki by TKO (punches) at DWCS Season 8, Week 5, round 3 (2:34). Earned a stoppage in his second Contender Series appearance and improved to 8-3. UFC reporting confirms he did not receive a contract on the night, despite the win.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "https://verdictmma.com/fighter/yousri-the-boogeyman-belgaroui"
         },
@@ -18335,7 +18335,7 @@
           "date": "Oct. 18, 2025",
           "label": "WIN · Azamat Bekoev · UFC Fight Night: de Ridder vs. Allen",
           "kind": "win",
-          "detail": "Defeated Azamat Bekoev by TKO (punches) at UFC Fight Night: de Ridder vs. Allen, round 3 (0:55). undefined Professional MMA record: Made his official UFC debut in Vancouver and stopped Bekoev less than a minute into round three after using long strikes and sustained pressure through the earlier rounds. UFC record: 1-0..",
+          "detail": "Defeated Azamat Bekoev by TKO (punches) at UFC Fight Night: de Ridder vs. Allen, round 3 (0:55). Made his official UFC debut in Vancouver and stopped Bekoev less than a minute into round three after using long strikes and sustained pressure through the earlier rounds. UFC record: 1-0.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "https://verdictmma.com/fighter/yousri-the-boogeyman-belgaroui"
         },
@@ -18351,7 +18351,7 @@
           "date": "Mar. 28, 2026",
           "label": "WIN · Mansur Abdul-Malik · UFC Fight Night: Adesanya vs. Pyfer",
           "kind": "win",
-          "detail": "Defeated Mansur Abdul-Malik by TKO (clinch knee) at UFC Fight Night: Adesanya vs. Pyfer, round 3 (3:39). undefined Professional MMA record: Stopped previously unbeaten Abdul-Malik late in round three in Seattle, earning his second consecutive UFC TKO. UFC record: 2-0..",
+          "detail": "Defeated Mansur Abdul-Malik by TKO (clinch knee) at UFC Fight Night: Adesanya vs. Pyfer, round 3 (3:39). Stopped previously unbeaten Abdul-Malik late in round three in Seattle, earning his second consecutive UFC TKO. UFC record: 2-0.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "https://verdictmma.com/fighter/yousri-the-boogeyman-belgaroui"
         },
@@ -18375,7 +18375,7 @@
           "date": "Sep. 12, 2026",
           "label": "WIN · Djorden Santos · Noche UFC: Silva vs. Delgado",
           "kind": "win",
-          "detail": "Defeated Djorden Santos by TKO (strikes) at Noche UFC: Silva vs. Delgado, round 1 (4:25). https://www.ufc.com/news/noche-ufc-official-scorecards-silva-vs-delgado Professional MMA record: Stopped Santos in the opening round in Glendale, Arizona, making it three TKO wins in three official UFC appearances. UFC record: 3-0..",
+          "detail": "Defeated Djorden Santos by TKO (strikes) at Noche UFC: Silva vs. Delgado, round 1 (4:25). Stopped Santos in the opening round in Glendale, Arizona, making it three TKO wins in three official UFC appearances. UFC record: 3-0.",
           "sourceLabel": "Verdict MMA · dated professional MMA results",
           "source": "UFC · official Noche UFC results"
         },
@@ -18490,7 +18490,7 @@
           "date": "Jun. 11, 2016",
           "label": "WIN · Rob Rivera · Alaska FC: Land of the Midnight Sun 3",
           "kind": "win",
-          "detail": "Defeated Rob Rivera by TKO (strikes) at Alaska FC: Land of the Midnight Sun 3, round 1 (time not reliably recorded). Made his professional MMA debut in Alaska. Databases differ by one day on the date (June 10 versus June 11), and do not report a reliable finish time; the timeline therefore leaves the time unspecified. This was a regional event, not an UFC appearance. Professional record after bout: 1–0.",
+          "detail": "Defeated Rob Rivera by TKO (strikes) at Alaska FC: Land of the Midnight Sun 3, round 1 (time not reliably recorded). Made his professional MMA debut in Alaska. Databases differ by one day on the date (June 10 versus June 11), and do not report a reliable finish time; the exact time remains unconfirmed. This was a regional event, not an UFC appearance. Professional record after bout: 1–0.",
           "sourceLabel": "Tapology · debut date and early professional record",
           "source": "https://www.tapology.com/fightcenter/fighters/175629-uros-medic"
         },
@@ -23755,7 +23755,7 @@
           "date": "May 2025",
           "label": "Gaziev withdraws; first short-notice Spivac booking",
           "kind": "milestone",
-          "detail": "Shamil Gaziev withdrew from a planned matchup with Serghei Spivac, and Cortes-Acosta took his place for UFC 316. The replacement booking led to the June 7 bout against Spivac. Do not describe Cortes-Acosta himself as withdrawing.",
+          "detail": "Shamil Gaziev withdrew from a planned matchup with Serghei Spivac, and Cortes-Acosta took his place for UFC 316. The replacement booking led to the June 7 bout against Spivac.",
           "source": "https://www.mmafighting.com/ufc/457532/waldo-cortes-acosta-steps-in-on-3-days-notice-to-save-ufc-qatar-heavyweight-bout",
           "sourceLabel": "MMA Fighting · history of Gaziev–Spivac changes"
         },
@@ -24345,7 +24345,7 @@
           "date": "Jul. 19, 2014",
           "label": "WIN · Tyra Parker · Gladiator Challenge: Night of the Champions",
           "kind": "win",
-          "detail": "Defeated Tyra Parker at Gladiator Challenge: Night of the Champions on Jul. 19, 2014 by unanimous decision (round 3, 5:00). Professional MMA record: 1-0; official UFC record: not yet debuted.",
+          "detail": "Defeated Tyra Parker at Gladiator Challenge: Night of the Champions on Jul. 19, 2014 by unanimous decision (round 3, 5:00). 1-0; official UFC record: not yet debuted.",
           "source": "https://www.sherdog.com/fighter/Tatiana-Suarez-161107",
           "sourceLabel": "Sherdog · complete professional and exhibition fight histories"
         },
@@ -24361,7 +24361,7 @@
           "date": "Apr. 11, 2015",
           "label": "WIN · Carolina Alvarez · Gladiator Challenge: California State Championship Series",
           "kind": "win",
-          "detail": "Defeated Carolina Alvarez at Gladiator Challenge: California State Championship Series on Apr. 11, 2015 by submission (armbar) (round 1, 2:01). Professional MMA record: 2-0; official UFC record: not yet debuted.",
+          "detail": "Defeated Carolina Alvarez at Gladiator Challenge: California State Championship Series on Apr. 11, 2015 by submission (armbar) (round 1, 2:01). 2-0; official UFC record: not yet debuted.",
           "source": "https://www.sherdog.com/fighter/Tatiana-Suarez-161107",
           "sourceLabel": "Sherdog · complete professional and exhibition fight histories"
         },
@@ -24369,7 +24369,7 @@
           "date": "Aug. 22, 2015",
           "label": "WIN · Arline Coban · Gladiator Challenge: California State Championship Series",
           "kind": "win",
-          "detail": "Defeated Arline Coban at Gladiator Challenge: California State Championship Series on Aug. 22, 2015 by TKO (punches) (round 2, 0:48). Professional MMA record: 3-0; official UFC record: not yet debuted. This was her third professional win and included a Gladiator Challenge championship distinction.",
+          "detail": "Defeated Arline Coban at Gladiator Challenge: California State Championship Series on Aug. 22, 2015 by TKO (punches) (round 2, 0:48). 3-0; official UFC record: not yet debuted. This was her third professional win and included a Gladiator Challenge championship distinction.",
           "source": "https://www.sherdog.com/fighter/Tatiana-Suarez-161107",
           "sourceLabel": "Sherdog · complete professional and exhibition fight histories"
         },
@@ -24401,7 +24401,7 @@
           "date": "Jul. 8, 2016",
           "label": "WIN · Amanda Cooper · The Ultimate Fighter 23 Finale",
           "kind": "win",
-          "detail": "Defeated Amanda Cooper at The Ultimate Fighter 23 Finale on Jul. 8, 2016 by submission (D'Arce choke) (round 1, 3:43). Professional MMA record: 4-0; official UFC record: 1-0. Won the live TUF 23 Finale and claimed the season's strawweight tournament title; the three previous taped-show bouts are classified as exhibitions, not professional fights.",
+          "detail": "Defeated Amanda Cooper at The Ultimate Fighter 23 Finale on Jul. 8, 2016 by submission (D'Arce choke) (round 1, 3:43). 4-0; official UFC record: 1-0. Won the live TUF 23 Finale and claimed the season's strawweight tournament title; the three previous taped-show bouts are classified as exhibitions, not professional fights.",
           "source": "https://www.ufc.com/athlete/tatiana-suarez",
           "sourceLabel": "UFC · athlete's full fight history"
         },
@@ -24417,7 +24417,7 @@
           "date": "Nov. 11, 2017",
           "label": "WIN · Viviane Pereira · UFC Fight Night: Poirier vs. Pettis",
           "kind": "win",
-          "detail": "Defeated Viviane Pereira at UFC Fight Night: Poirier vs. Pettis on Nov. 11, 2017 by unanimous decision (round 3, 5:00). Professional MMA record: 5-0; official UFC record: 2-0.",
+          "detail": "Defeated Viviane Pereira at UFC Fight Night: Poirier vs. Pettis on Nov. 11, 2017 by unanimous decision (round 3, 5:00). 5-0; official UFC record: 2-0.",
           "source": "https://www.ufc.com/athlete/tatiana-suarez",
           "sourceLabel": "UFC · athlete's full fight history"
         },
@@ -24425,7 +24425,7 @@
           "date": "May 19, 2018",
           "label": "WIN · Alexa Grasso · UFC Fight Night: Maia vs. Usman",
           "kind": "win",
-          "detail": "Defeated Alexa Grasso at UFC Fight Night: Maia vs. Usman on May 19, 2018 by submission (rear-naked choke) (round 1, 2:44). Professional MMA record: 6-0; official UFC record: 3-0. Suarez has said she trained through a back problem ahead of the Grasso bout.",
+          "detail": "Defeated Alexa Grasso at UFC Fight Night: Maia vs. Usman on May 19, 2018 by submission (rear-naked choke) (round 1, 2:44). 6-0; official UFC record: 3-0. Suarez has said she trained through a back problem ahead of the Grasso bout.",
           "source": "https://www.ufc.com/athlete/tatiana-suarez",
           "sourceLabel": "UFC · athlete's full fight history"
         },
@@ -24433,7 +24433,7 @@
           "date": "Sep. 8, 2018",
           "label": "WIN · Carla Esparza · UFC 228",
           "kind": "win",
-          "detail": "Defeated Carla Esparza at UFC 228 on Sep. 8, 2018 by TKO (punches) (round 3, 4:33). Professional MMA record: 7-0; official UFC record: 4-0.",
+          "detail": "Defeated Carla Esparza at UFC 228 on Sep. 8, 2018 by TKO (punches) (round 3, 4:33). 7-0; official UFC record: 4-0.",
           "source": "https://www.ufc.com/athlete/tatiana-suarez",
           "sourceLabel": "UFC · athlete's full fight history"
         },
@@ -24441,7 +24441,7 @@
           "date": "Jun. 8, 2019",
           "label": "WIN · Nina Nunes · UFC 238",
           "kind": "win",
-          "detail": "Defeated Nina Nunes at UFC 238 on Jun. 8, 2019 by unanimous decision (round 3, 5:00). Professional MMA record: 8-0; official UFC record: 5-0. Aggravated her prior cervical disc/neck injury before and during this fight; the issue led to a prolonged competition absence.",
+          "detail": "Defeated Nina Nunes at UFC 238 on Jun. 8, 2019 by unanimous decision (round 3, 5:00). 8-0; official UFC record: 5-0. Aggravated her prior cervical disc/neck injury before and during this fight; the issue led to a prolonged competition absence.",
           "source": "https://www.ufc.com/athlete/tatiana-suarez",
           "sourceLabel": "UFC · athlete's full fight history"
         },
@@ -24489,7 +24489,7 @@
           "date": "Feb. 25, 2023",
           "label": "WIN · Montana De La Rosa · UFC Fight Night: Muniz vs. Allen",
           "kind": "win",
-          "detail": "Defeated Montana De La Rosa at UFC Fight Night: Muniz vs. Allen on Feb. 25, 2023 by submission (guillotine choke) (round 2, 2:51). Professional MMA record: 9-0; official UFC record: 6-0. First fight in almost 44 months; she competed at flyweight after major knee reconstruction. Some databases misreport the stoppage as 4:15; UFC and contemporary round-by-round accounts agree on 2:51.",
+          "detail": "Defeated Montana De La Rosa at UFC Fight Night: Muniz vs. Allen on Feb. 25, 2023 by submission (guillotine choke) (round 2, 2:51). 9-0; official UFC record: 6-0. First fight in almost 44 months; she competed at flyweight after major knee reconstruction. Some databases misreport the stoppage as 4:15; UFC and contemporary round-by-round accounts agree on 2:51.",
           "source": "https://www.ufc.com/athlete/tatiana-suarez",
           "sourceLabel": "UFC · athlete's full fight history"
         },
@@ -24505,7 +24505,7 @@
           "date": "Aug. 5, 2023",
           "label": "WIN · Jessica Andrade · UFC Fight Night: Sandhagen vs. Font",
           "kind": "win",
-          "detail": "Defeated Jessica Andrade at UFC Fight Night: Sandhagen vs. Font on Aug. 5, 2023 by submission (guillotine choke) (round 2, 1:31). Professional MMA record: 10-0; official UFC record: 7-0. Andrade replaced Virna Jandiroba after Jandiroba sustained a knee injury.",
+          "detail": "Defeated Jessica Andrade at UFC Fight Night: Sandhagen vs. Font on Aug. 5, 2023 by submission (guillotine choke) (round 2, 1:31). 10-0; official UFC record: 7-0. Andrade replaced Virna Jandiroba after Jandiroba sustained a knee injury.",
           "source": "https://www.ufc.com/athlete/tatiana-suarez",
           "sourceLabel": "UFC · athlete's full fight history"
         },
@@ -24553,7 +24553,7 @@
           "date": "Feb. 8, 2025",
           "label": "LOSS · Zhang Weili · UFC 312",
           "kind": "loss",
-          "detail": "Lost to Zhang Weili at UFC 312 on Feb. 8, 2025 by unanimous decision (round 5, 5:00). Professional MMA record: 10-1; official UFC record: 7-1. First professional and UFC loss, in her first title challenge. Official scores: 49-46, 49-46, 49-45 for Zhang.",
+          "detail": "Lost to Zhang Weili at UFC 312 on Feb. 8, 2025 by unanimous decision (round 5, 5:00). 10-1; official UFC record: 7-1. First professional and UFC loss, in her first title challenge. Official scores: 49-46, 49-46, 49-45 for Zhang.",
           "source": "https://www.ufc.com/news/official-judges-scorecards-ufc-312-du-plessis-vs-strickland-2-sydney",
           "sourceLabel": "UFC · official UFC 312 scorecards"
         },
@@ -24561,7 +24561,7 @@
           "date": "Sep. 13, 2025",
           "label": "WIN · Amanda Lemos · Noche UFC: Lopes vs. Silva",
           "kind": "win",
-          "detail": "Defeated Amanda Lemos at Noche UFC: Lopes vs. Silva on Sep. 13, 2025 by unanimous decision (round 3, 5:00). Professional MMA record: 11-1; official UFC record: 8-1.",
+          "detail": "Defeated Amanda Lemos at Noche UFC: Lopes vs. Silva on Sep. 13, 2025 by unanimous decision (round 3, 5:00). 11-1; official UFC record: 8-1.",
           "source": "https://www.ufc.com/athlete/tatiana-suarez",
           "sourceLabel": "UFC · athlete's full fight history"
         },
@@ -24569,7 +24569,7 @@
           "date": "Apr. 11, 2026",
           "label": "WIN · Lupita Godinez · UFC 327",
           "kind": "win",
-          "detail": "Defeated Lupita Godinez at UFC 327 on Apr. 11, 2026 by submission (rear-naked choke) (round 2, 2:29). Professional MMA record: 12-1; official UFC record: 9-1. Returned to the win column after the UFC 312 title loss and moved to 12-1 overall.",
+          "detail": "Defeated Lupita Godinez at UFC 327 on Apr. 11, 2026 by submission (rear-naked choke) (round 2, 2:29). 12-1; official UFC record: 9-1. Returned to the win column after the UFC 312 title loss and moved to 12-1 overall.",
           "source": "https://www.ufc.com/athlete/tatiana-suarez",
           "sourceLabel": "UFC · athlete's full fight history"
         },
@@ -24620,7 +24620,7 @@
           "date": "Jun. 15, 2013",
           "label": "WIN · Joana Santana · PFL — Premier Fight League 10",
           "kind": "win",
-          "detail": "Defeated Joana Santana at PFL — Premier Fight League 10 on Jun. 15, 2013 by submission (rear-naked choke) (round 1, 0:41). Professional MMA record: 1-0.",
+          "detail": "Defeated Joana Santana at PFL — Premier Fight League 10 on Jun. 15, 2013 by submission (rear-naked choke) (round 1, 0:41). 1-0.",
           "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
           "sourceLabel": "Sherdog · professional fight ledger"
         },
@@ -24628,7 +24628,7 @@
           "date": "Dec. 21, 2013",
           "label": "WIN · Gina Brito Silva Santana · The Iron Fight 2.0 — MMA Tournament",
           "kind": "win",
-          "detail": "Defeated Gina Brito Silva Santana at The Iron Fight 2.0 — MMA Tournament on Dec. 21, 2013 by submission (rear-naked choke) (round 3; exact finish time unlisted). Professional MMA record: 2-0.",
+          "detail": "Defeated Gina Brito Silva Santana at The Iron Fight 2.0 — MMA Tournament on Dec. 21, 2013 by submission (rear-naked choke) (round 3; exact finish time unlisted). 2-0.",
           "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
           "sourceLabel": "Sherdog · professional fight ledger"
         },
@@ -24636,7 +24636,7 @@
           "date": "Nov. 15, 2014",
           "label": "WIN · Camila Lima · MMA Super Heroes 7",
           "kind": "win",
-          "detail": "Defeated Camila Lima at MMA Super Heroes 7 on Nov. 15, 2014 by submission (rear-naked choke) (round 2, 4:30). Professional MMA record: 3-0.",
+          "detail": "Defeated Camila Lima at MMA Super Heroes 7 on Nov. 15, 2014 by submission (rear-naked choke) (round 2, 4:30). 3-0.",
           "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
           "sourceLabel": "Sherdog · professional fight ledger"
         },
@@ -24644,7 +24644,7 @@
           "date": "May 16, 2015",
           "label": "WIN · Carla Ramos · Banzay Fight Championship 2",
           "kind": "win",
-          "detail": "Defeated Carla Ramos at Banzay Fight Championship 2 on May 16, 2015 by submission (triangle choke) (round 1, 1:50). Professional MMA record: 4-0.",
+          "detail": "Defeated Carla Ramos at Banzay Fight Championship 2 on May 16, 2015 by submission (triangle choke) (round 1, 1:50). 4-0.",
           "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
           "sourceLabel": "Sherdog · professional fight ledger"
         },
@@ -24652,7 +24652,7 @@
           "date": "Sep. 12, 2015",
           "label": "WIN · Cristiane Lima Silva · Velame Fight Combat 4",
           "kind": "win",
-          "detail": "Defeated Cristiane Lima Silva at Velame Fight Combat 4 on Sep. 12, 2015 by submission (rear-naked choke) (round 1, 2:53). Professional MMA record: 5-0.",
+          "detail": "Defeated Cristiane Lima Silva at Velame Fight Combat 4 on Sep. 12, 2015 by submission (rear-naked choke) (round 1, 2:53). 5-0.",
           "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
           "sourceLabel": "Sherdog · professional fight ledger"
         },
@@ -24660,7 +24660,7 @@
           "date": "Nov. 14, 2015",
           "label": "WIN · Aline Sattelmayer · The King of Arena Fight 2",
           "kind": "win",
-          "detail": "Defeated Aline Sattelmayer at The King of Arena Fight 2 on Nov. 14, 2015 by unanimous decision (round 3, 5:00). Professional MMA record: 6-0.",
+          "detail": "Defeated Aline Sattelmayer at The King of Arena Fight 2 on Nov. 14, 2015 by unanimous decision (round 3, 5:00). 6-0.",
           "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
           "sourceLabel": "Sherdog · professional fight ledger"
         },
@@ -24668,7 +24668,7 @@
           "date": "Apr. 9, 2016",
           "label": "WIN · Anne Karoline Nascimento · MNA MMA Circuit 2",
           "kind": "win",
-          "detail": "Defeated Anne Karoline Nascimento at MNA MMA Circuit 2 on Apr. 9, 2016 by submission (armbar) (round 2, 3:29). Professional MMA record: 7-0.",
+          "detail": "Defeated Anne Karoline Nascimento at MNA MMA Circuit 2 on Apr. 9, 2016 by submission (armbar) (round 2, 3:29). 7-0.",
           "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
           "sourceLabel": "Sherdog · professional fight ledger"
         },
@@ -24676,7 +24676,7 @@
           "date": "Jul. 30, 2016",
           "label": "WIN · Cristiane Lima Silva · Fight On MMA 3",
           "kind": "win",
-          "detail": "Defeated Cristiane Lima Silva at Fight On MMA 3 on Jul. 30, 2016 by submission (rear-naked choke) (round 1, 2:34). Professional MMA record: 8-0.",
+          "detail": "Defeated Cristiane Lima Silva at Fight On MMA 3 on Jul. 30, 2016 by submission (rear-naked choke) (round 1, 2:34). 8-0.",
           "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
           "sourceLabel": "Sherdog · professional fight ledger"
         },
@@ -24684,7 +24684,7 @@
           "date": "Nov. 4, 2016",
           "label": "WIN · Lisa Ellis · Fight 2 Night",
           "kind": "win",
-          "detail": "Defeated Lisa Ellis at Fight 2 Night on Nov. 4, 2016 by submission (rear-naked choke) (round 1, 2:21). Professional MMA record: 9-0.",
+          "detail": "Defeated Lisa Ellis at Fight 2 Night on Nov. 4, 2016 by submission (rear-naked choke) (round 1, 2:21). 9-0.",
           "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
           "sourceLabel": "Sherdog · professional fight ledger"
         },
@@ -24692,7 +24692,7 @@
           "date": "Nov. 26, 2016",
           "label": "WIN · Suiane Teixeira dos Santos · Imperium MMA Pro 12",
           "kind": "win",
-          "detail": "Defeated Suiane Teixeira dos Santos at Imperium MMA Pro 12 on Nov. 26, 2016 by submission (armbar) (round 1, 0:46). Professional MMA record: 10-0.",
+          "detail": "Defeated Suiane Teixeira dos Santos at Imperium MMA Pro 12 on Nov. 26, 2016 by submission (armbar) (round 1, 0:46). 10-0.",
           "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
           "sourceLabel": "Sherdog · professional fight ledger"
         },
@@ -24700,7 +24700,7 @@
           "date": "Apr. 28, 2017",
           "label": "WIN · Ericka Almeida · Fight 2 Night 2",
           "kind": "win",
-          "detail": "Defeated Ericka Almeida at Fight 2 Night 2 on Apr. 28, 2017 by split decision (round 3, 5:00). Professional MMA record: 11-0.",
+          "detail": "Defeated Ericka Almeida at Fight 2 Night 2 on Apr. 28, 2017 by split decision (round 3, 5:00). 11-0.",
           "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
           "sourceLabel": "Sherdog · professional fight ledger"
         },
@@ -24708,7 +24708,7 @@
           "date": "Dec. 8, 2017",
           "label": "WIN · Amy Montenegro · Invicta FC 26",
           "kind": "win",
-          "detail": "Defeated Amy Montenegro at Invicta FC 26 on Dec. 8, 2017 by submission (armbar) (round 1, 2:50). Professional MMA record: 12-0. Invicta debut after an 11-0 unbeaten Brazilian regional run; earned an Invicta performance bonus.",
+          "detail": "Defeated Amy Montenegro at Invicta FC 26 on Dec. 8, 2017 by submission (armbar) (round 1, 2:50). 12-0. Invicta debut after an 11-0 unbeaten Brazilian regional run; earned an Invicta performance bonus.",
           "source": "https://www.sherdog.com/fighter/Virna-Jandiroba-137557",
           "sourceLabel": "Sherdog · professional fight ledger"
         },
@@ -24724,7 +24724,7 @@
           "date": "Mar. 24, 2018",
           "label": "WIN · Mizuki Inoue · Invicta FC 28",
           "kind": "win",
-          "detail": "Defeated Mizuki Inoue at Invicta FC 28 on Mar. 24, 2018 by split decision (round 5, 5:00). Professional MMA record: 13-0. Won the vacant Invicta FC strawweight championship, 49-46, 46-49, 49-46. Original opponent Janaisa Morandin withdrew.",
+          "detail": "Defeated Mizuki Inoue at Invicta FC 28 on Mar. 24, 2018 by split decision (round 5, 5:00). 13-0. Won the vacant Invicta FC strawweight championship, 49-46, 46-49, 49-46. Original opponent Janaisa Morandin withdrew.",
           "source": "https://www.mmafighting.com/2018/3/2/17073230/mizuki-inoue-steps-in-for-janaisa-morandin-faces-virna-jandiroba-for-title-at-invicta-28",
           "sourceLabel": "MMA Fighting · Invicta 28 title opponent and result"
         },
@@ -24732,7 +24732,7 @@
           "date": "Sep. 1, 2018",
           "label": "WIN · Janaisa Morandin · Invicta FC 31",
           "kind": "win",
-          "detail": "Defeated Janaisa Morandin at Invicta FC 31 on Sep. 1, 2018 by submission (arm-triangle choke) (round 2, 2:23). Professional MMA record: 14-0. Successful first and only Invicta strawweight title defense; improved to 14-0 and earned an Invicta performance bonus.",
+          "detail": "Defeated Janaisa Morandin at Invicta FC 31 on Sep. 1, 2018 by submission (arm-triangle choke) (round 2, 2:23). 14-0. Successful first and only Invicta strawweight title defense; improved to 14-0 and earned an Invicta performance bonus.",
           "source": "https://www.mmafighting.com/2018/9/1/17807892/invicta-fc-31-results-jandiroba-vs-morandin",
           "sourceLabel": "MMA Fighting · Invicta 31 official results"
         },
@@ -24748,7 +24748,7 @@
           "date": "Apr. 27, 2019",
           "label": "LOSS · Carla Esparza · UFC Fight Night 150",
           "kind": "loss",
-          "detail": "Lost to Carla Esparza at UFC Fight Night 150 on Apr. 27, 2019 by unanimous decision (round 3, 5:00). Professional MMA record: 14-1; UFC record: 0-1. UFC debut after signing as an injury replacement for Lívia Renata Souza. First professional defeat.",
+          "detail": "Lost to Carla Esparza at UFC Fight Night 150 on Apr. 27, 2019 by unanimous decision (round 3, 5:00). 14-1; UFC record: 0-1. UFC debut after signing as an injury replacement for Lívia Renata Souza. First professional defeat.",
           "source": "https://www.ufc.com/athlete/virna-jandiroba",
           "sourceLabel": "UFC · official fight history"
         },
@@ -24764,7 +24764,7 @@
           "date": "Dec. 7, 2019",
           "label": "WIN · Mallory Martin · UFC on ESPN 7",
           "kind": "win",
-          "detail": "Defeated Mallory Martin at UFC on ESPN 7 on Dec. 7, 2019 by submission (rear-naked choke) (round 2, 1:16). Professional MMA record: 15-1; UFC record: 1-1. First UFC win, after planned opponents Cortney Casey and Lívia Renata Souza both exited the booking.",
+          "detail": "Defeated Mallory Martin at UFC on ESPN 7 on Dec. 7, 2019 by submission (rear-naked choke) (round 2, 1:16). 15-1; UFC record: 1-1. First UFC win, after planned opponents Cortney Casey and Lívia Renata Souza both exited the booking.",
           "source": "https://www.ufc.com/athlete/virna-jandiroba",
           "sourceLabel": "UFC · official fight history"
         },
@@ -24772,7 +24772,7 @@
           "date": "Aug. 15, 2020",
           "label": "WIN · Felice Herrig · UFC 252",
           "kind": "win",
-          "detail": "Defeated Felice Herrig at UFC 252 on Aug. 15, 2020 by submission (armbar) (round 1, 1:44). Professional MMA record: 16-1; UFC record: 2-1. Earned a UFC Performance of the Night bonus.",
+          "detail": "Defeated Felice Herrig at UFC 252 on Aug. 15, 2020 by submission (armbar) (round 1, 1:44). 16-1; UFC record: 2-1. Earned a UFC Performance of the Night bonus.",
           "source": "https://www.ufc.com/athlete/virna-jandiroba",
           "sourceLabel": "UFC · official fight history"
         },
@@ -24780,7 +24780,7 @@
           "date": "Dec. 12, 2020",
           "label": "LOSS · Mackenzie Dern · UFC 256",
           "kind": "loss",
-          "detail": "Lost to Mackenzie Dern at UFC 256 on Dec. 12, 2020 by unanimous decision (round 3, 5:00). Professional MMA record: 16-2; UFC record: 2-2.",
+          "detail": "Lost to Mackenzie Dern at UFC 256 on Dec. 12, 2020 by unanimous decision (round 3, 5:00). 16-2; UFC record: 2-2.",
           "source": "https://www.ufc.com/athlete/virna-jandiroba",
           "sourceLabel": "UFC · official fight history"
         },
@@ -24788,7 +24788,7 @@
           "date": "Jun. 19, 2021",
           "label": "WIN · Kanako Murata · UFC on ESPN 25",
           "kind": "win",
-          "detail": "Defeated Kanako Murata at UFC on ESPN 25 on Jun. 19, 2021 by TKO (opponent arm injury; doctor's stoppage) (round 2, 5:00). Professional MMA record: 17-2; UFC record: 3-2. The stoppage was caused by Murata's arm injury, following Jandiroba's armbar attempts; do not count as a submission win.",
+          "detail": "Defeated Kanako Murata at UFC on ESPN 25 on Jun. 19, 2021 by TKO (opponent arm injury; doctor's stoppage) (round 2, 5:00). 17-2; UFC record: 3-2. The stoppage was caused by Murata's arm injury, following Jandiroba's armbar attempts; do not count as a submission win.",
           "source": "https://www.ufc.com/athlete/virna-jandiroba",
           "sourceLabel": "UFC · official fight history"
         },
@@ -24796,7 +24796,7 @@
           "date": "Oct. 30, 2021",
           "label": "LOSS · Amanda Ribas · UFC 267",
           "kind": "loss",
-          "detail": "Lost to Amanda Ribas at UFC 267 on Oct. 30, 2021 by unanimous decision (round 3, 5:00). Professional MMA record: 17-3; UFC record: 3-3.",
+          "detail": "Lost to Amanda Ribas at UFC 267 on Oct. 30, 2021 by unanimous decision (round 3, 5:00). 17-3; UFC record: 3-3.",
           "source": "https://www.ufc.com/athlete/virna-jandiroba",
           "sourceLabel": "UFC · official fight history"
         },
@@ -24804,7 +24804,7 @@
           "date": "May 14, 2022",
           "label": "WIN · Angela Hill · UFC on ESPN 36",
           "kind": "win",
-          "detail": "Defeated Angela Hill at UFC on ESPN 36 on May 14, 2022 by unanimous decision (round 3, 5:00). Professional MMA record: 18-3; UFC record: 4-3.",
+          "detail": "Defeated Angela Hill at UFC on ESPN 36 on May 14, 2022 by unanimous decision (round 3, 5:00). 18-3; UFC record: 4-3.",
           "source": "https://www.ufc.com/athlete/virna-jandiroba",
           "sourceLabel": "UFC · official fight history"
         },
@@ -24820,7 +24820,7 @@
           "date": "May 6, 2023",
           "label": "WIN · Marina Rodriguez · UFC 288",
           "kind": "win",
-          "detail": "Defeated Marina Rodriguez at UFC 288 on May 6, 2023 by unanimous decision (round 3, 5:00). Professional MMA record: 19-3; UFC record: 5-3.",
+          "detail": "Defeated Marina Rodriguez at UFC 288 on May 6, 2023 by unanimous decision (round 3, 5:00). 19-3; UFC record: 5-3.",
           "source": "https://www.ufc.com/athlete/virna-jandiroba",
           "sourceLabel": "UFC · official fight history"
         },
@@ -24852,7 +24852,7 @@
           "date": "Mar. 30, 2024",
           "label": "WIN · Lupita Godinez · UFC on ESPN 54",
           "kind": "win",
-          "detail": "Defeated Lupita Godinez at UFC on ESPN 54 on Mar. 30, 2024 by unanimous decision (round 3, 5:00). Professional MMA record: 20-3; UFC record: 6-3. First bout since May 2023, following another knee injury and surgery; won after 10 months away.",
+          "detail": "Defeated Lupita Godinez at UFC on ESPN 54 on Mar. 30, 2024 by unanimous decision (round 3, 5:00). 20-3; UFC record: 6-3. First bout since May 2023, following another knee injury and surgery; won after 10 months away.",
           "source": "https://www.ufc.com/athlete/virna-jandiroba",
           "sourceLabel": "UFC · official fight history"
         },
@@ -24860,7 +24860,7 @@
           "date": "Jul. 20, 2024",
           "label": "WIN · Amanda Lemos · UFC on ESPN 60",
           "kind": "win",
-          "detail": "Defeated Amanda Lemos at UFC on ESPN 60 on Jul. 20, 2024 by submission (armbar) (round 2, 4:48). Professional MMA record: 21-3; UFC record: 7-3. First UFC main event; earned a UFC Performance of the Night bonus and advanced to a four-fight win streak.",
+          "detail": "Defeated Amanda Lemos at UFC on ESPN 60 on Jul. 20, 2024 by submission (armbar) (round 2, 4:48). 21-3; UFC record: 7-3. First UFC main event; earned a UFC Performance of the Night bonus and advanced to a four-fight win streak.",
           "source": "https://www.ufc.com/news/prelim-results-highlights-winner-interviews-ufc-fight-night-lemos-vs-jandiroba-vegas-94",
           "sourceLabel": "UFC · Lemos vs Jandiroba results"
         },
@@ -24892,7 +24892,7 @@
           "date": "Apr. 12, 2025",
           "label": "WIN · Yan Xiaonan · UFC 314",
           "kind": "win",
-          "detail": "Defeated Yan Xiaonan at UFC 314 on Apr. 12, 2025 by unanimous decision (round 3, 5:00). Professional MMA record: 22-3; UFC record: 8-3. Fifth consecutive UFC win, positioning her for a championship opportunity.",
+          "detail": "Defeated Yan Xiaonan at UFC 314 on Apr. 12, 2025 by unanimous decision (round 3, 5:00). 22-3; UFC record: 8-3. Fifth consecutive UFC win, positioning her for a championship opportunity.",
           "source": "https://www.ufc.com/athlete/virna-jandiroba",
           "sourceLabel": "UFC · official fight history"
         },
@@ -24908,7 +24908,7 @@
           "date": "Oct. 25, 2025",
           "label": "LOSS · Mackenzie Dern · UFC 321",
           "kind": "loss",
-          "detail": "Lost to Mackenzie Dern at UFC 321 on Oct. 25, 2025 by unanimous decision (round 5, 5:00). Professional MMA record: 22-4; UFC record: 8-4. First UFC title attempt, against Dern for the vacant strawweight championship after Zhang Weili moved to flyweight. Scores 48-47, 48-47, 49-46 for Dern. Ended five-fight win streak.",
+          "detail": "Lost to Mackenzie Dern at UFC 321 on Oct. 25, 2025 by unanimous decision (round 5, 5:00). 22-4; UFC record: 8-4. First UFC title attempt, against Dern for the vacant strawweight championship after Zhang Weili moved to flyweight. Scores 48-47, 48-47, 49-46 for Dern. Ended five-fight win streak.",
           "source": "https://www.mmafighting.com/ufc/451927/ufc-321-results-mackenzie-dern-claims-vacant-strawweight-title-with-decision-win-over-virna-jandiroba",
           "sourceLabel": "MMA Fighting · UFC 321 result and title scorecards"
         },
@@ -24916,7 +24916,7 @@
           "date": "Apr. 4, 2026",
           "label": "WIN · Tabatha Ricci · UFC Fight Night: Moicano vs. Duncan",
           "kind": "win",
-          "detail": "Defeated Tabatha Ricci at UFC Fight Night: Moicano vs. Duncan on Apr. 4, 2026 by unanimous decision (round 3, 5:00). Professional MMA record: 23-4; UFC record: 9-4. Rebounded from the Dern championship loss; official scores 30-27, 29-28, 29-28.",
+          "detail": "Defeated Tabatha Ricci at UFC Fight Night: Moicano vs. Duncan on Apr. 4, 2026 by unanimous decision (round 3, 5:00). 23-4; UFC record: 9-4. Rebounded from the Dern championship loss; official scores 30-27, 29-28, 29-28.",
           "source": "https://www.ufc.com/news/ufc-fight-night-moicano-vs-duncan-official-scorecards-judges",
           "sourceLabel": "UFC · April 2026 official scorecards"
         },
@@ -25351,7 +25351,7 @@
           "date": "Nov. 7, 2026",
           "label": "Upcoming · Elijah Smith · UFC Vegas 124",
           "kind": "upcoming",
-          "detail": "Scheduled to face Elijah Smith at UFC Vegas 124 on Nov. 7, 2026, at Meta APEX in Las Vegas. As of Nov. 5 no result has occurred. Professional MMA record: 18-8; UFC record: 9-7. Amateur, TUF exhibition and canceled bouts are excluded.",
+          "detail": "Scheduled to face Elijah Smith at UFC Vegas 124 on Nov. 7, 2026, at Meta APEX in Las Vegas. As of Nov. 5 no result has occurred. 18-8; UFC record: 9-7. Amateur, TUF exhibition and canceled bouts are excluded.",
           "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
           "sourceLabel": "UFC · official November 7, 2026 fight card"
         }
@@ -25821,7 +25821,7 @@
           "date": "Dec. 8, 2023",
           "label": "WIN · Alwin Kincai · AFC 29",
           "kind": "win",
-          "detail": "Defeated Alwin Kincai at AFC 29 on Dec. 8, 2023 by KO/TKO (punches) (round 1, 0:58). Professional MMA record after bout: 10-2. Last regional professional bout before Contender Series; Tapology and ESPN list Dec. 8 and 0:58, while Sherdog lists Dec. 9 and 0:48. The alternate database listing is disclosed separately.",
+          "detail": "Defeated Alwin Kincai at AFC 29 on Dec. 8, 2023 by KO/TKO (punches) (round 1, 0:58). Professional MMA record after bout: 10-2. Last regional professional bout before Contender Series; Tapology and ESPN list Dec. 8 and 0:58, while Sherdog lists Dec. 9 and 0:48.",
           "source": "https://www.tapology.com/fightcenter/fighters/175557-seok-hyun-ko",
           "sourceLabel": "Tapology · complete professional MMA ledger"
         },
@@ -26779,7 +26779,7 @@
           "date": "Jan. 18, 2025",
           "label": "LOSS · Bogdan Guskov · UFC 311: Makhachev vs. Moicano",
           "kind": "loss",
-          "detail": "Lost to Bogdan Guskov at UFC 311: Makhachev vs. Moicano on Jan. 18, 2025 by submission (guillotine choke), round 2 at 3:33. Professional record: 7-2; UFC record: 0-1. Elekana accepted on about eight days' notice as Johnny Walker's injury replacement and surprised Guskov with an early takedown, back control and body triangle for much of round one. Guskov escaped, nearly finished a choke near the bell, then increased the pressure as Elekana faded, scoring the guillotine after sustained second-round strikes.",
+          "detail": "Lost to Bogdan Guskov at UFC 311: Makhachev vs. Moicano on Jan. 18, 2025 by submission (guillotine choke), round 2 at 3:33. 7-2; UFC record: 0-1. Elekana accepted on about eight days' notice as Johnny Walker's injury replacement and surprised Guskov with an early takedown, back control and body triangle for much of round one. Guskov escaped, nearly finished a choke near the bell, then increased the pressure as Elekana faded, scoring the guillotine after sustained second-round strikes.",
           "source": "https://www.ufc.com/news/prelim-results-highlights-winner-interviews-ufc-311-makhachev-vs-moicano-los-angeles",
           "sourceLabel": "UFC · Jan. 2025 official UFC 311 finish and bout sequence"
         },
@@ -26795,7 +26795,7 @@
           "date": "Jul. 26, 2025",
           "label": "WIN · Ibo Aslan · UFC on ABC 9: Whittaker vs. de Ridder",
           "kind": "win",
-          "detail": "Defeated Ibo Aslan at UFC on ABC 9: Whittaker vs. de Ridder on Jul. 26, 2025 in Abu Dhabi by unanimous decision (30-27, 30-27, 29-28; round 3, 5:00). Professional record: 8-2; UFC record: 1-1. This was Elekana's first UFC victory after the short-notice Guskov loss and, as he later told UFC, his first bout outside the United States. The three judges differed only on round two.",
+          "detail": "Defeated Ibo Aslan at UFC on ABC 9: Whittaker vs. de Ridder on Jul. 26, 2025 in Abu Dhabi by unanimous decision (30-27, 30-27, 29-28; round 3, 5:00). 8-2; UFC record: 1-1. This was Elekana's first UFC victory after the short-notice Guskov loss and, as he later told UFC, his first bout outside the United States. The three judges differed only on round two.",
           "source": "https://mmadecisions.com/decision/15569/Billy-Elekana-vs-Ibo-Aslan",
           "sourceLabel": "MMA Decisions · official Aslan fight scorecards; UFC · Jan. 2026 overseas-bout interview"
         },
@@ -26811,7 +26811,7 @@
           "date": "Nov. 1, 2025",
           "label": "WIN · Kevin Christian · UFC Fight Night: Garcia vs. Onama",
           "kind": "win",
-          "detail": "Defeated Kevin Christian at UFC Fight Night: Garcia vs. Onama on Nov. 1, 2025 by TECHNICAL SUBMISSION (rear-naked choke), round 1 at 3:33. Professional record: 9-2; UFC record: 2-1. Elekana hurt Christian with a counter left hand, followed with ground strikes and attacked the back. Christian appeared to tap but referee Chris Tognoni missed the signal from his viewing angle; Christian lost consciousness before the referee stopped the bout. The official method is a technical submission, not a tap-out.",
+          "detail": "Defeated Kevin Christian at UFC Fight Night: Garcia vs. Onama on Nov. 1, 2025 by TECHNICAL SUBMISSION (rear-naked choke), round 1 at 3:33. 9-2; UFC record: 2-1. Elekana hurt Christian with a counter left hand, followed with ground strikes and attacked the back. Christian appeared to tap but referee Chris Tognoni missed the signal from his viewing angle; Christian lost consciousness before the referee stopped the bout. The official method is a technical submission, not a tap-out.",
           "source": "https://www.mmafighting.com/ufc/453016/ufc-vegas-110-video-billy-elekana-chokes-out-kevin-christian-after-referee-misses-tap-out",
           "sourceLabel": "MMA Fighting · Nov. 2025 missed tap, unconsciousness and official stoppage"
         },
@@ -26835,7 +26835,7 @@
           "date": "Jan. 31, 2026",
           "label": "WIN · Junior Tafa · UFC 325: Volkanovski vs. Lopes 2",
           "kind": "win",
-          "detail": "Defeated Junior Tafa at UFC 325: Volkanovski vs. Lopes 2 on Jan. 31, 2026 U.S. event date (Feb. 1 locally in Sydney) by submission (rear-naked choke), round 2 at 3:18. Professional record: 10-2; UFC record: 3-1. UFC's fight recap describes a dangerous first round before Elekana took Tafa down and secured a rapid second-round choke. Third straight UFC win and second straight rear-naked-choke finish. The two calendar dates reflect time zones, not separate fights.",
+          "detail": "Defeated Junior Tafa at UFC 325: Volkanovski vs. Lopes 2 on Jan. 31, 2026 U.S. event date (Feb. 1 locally in Sydney) by submission (rear-naked choke), round 2 at 3:18. 10-2; UFC record: 3-1. UFC's fight recap describes a dangerous first round before Elekana took Tafa down and secured a rapid second-round choke. Third straight UFC win and second straight rear-naked-choke finish. The two calendar dates reflect time zones, not separate fights.",
           "source": "https://www.ufc.com/news/ufc-325-results-volkanovski-vs-lopes-2-prelims-highlights-winners-interviews",
           "sourceLabel": "UFC · Feb. 1, 2026 official Sydney event recap"
         },
@@ -27206,7 +27206,7 @@
           "date": "Aug. 15, 2026",
           "label": "WIN · Rafael Tobias · UFC 330: Makhachev vs. Machado Garry",
           "kind": "win",
-          "detail": "Defeated Rafael Tobias at UFC 330: Makhachev vs. Machado Garry on Aug. 15, 2026 by TKO (knee to the body), round 3 at 1:10. Professional record: 14-3, official UFC record: 1-0. Returning to the UFC stage three years after a losing DWCS attempt, Fernando used jabs, punches and kicks at multiple levels, dropped Tobias with a jab in round two, then landed a body knee early in the third for a delayed-reaction stoppage. UFC's official scorecards classify the decisive strike as a knee to the body; it was his fifth consecutive professional win.",
+          "detail": "Defeated Rafael Tobias at UFC 330: Makhachev vs. Machado Garry on Aug. 15, 2026 by TKO (knee to the body), round 3 at 1:10. 14-3, official UFC record: 1-0. Returning to the UFC stage three years after a losing DWCS attempt, Fernando used jabs, punches and kicks at multiple levels, dropped Tobias with a jab in round two, then landed a body knee early in the third for a delayed-reaction stoppage. UFC's official scorecards classify the decisive strike as a knee to the body; it was his fifth consecutive professional win.",
           "source": "https://www.ufc.com/news/ufc-330-prelims-results",
           "sourceLabel": "UFC · Aug. 15, 2026 official detailed prelim results and finishing sequence"
         },
@@ -27393,7 +27393,7 @@
           "date": "June 25, 2022",
           "label": "Ale Joseph booking canceled at Ares FC 7",
           "kind": "booking",
-          "detail": "Tapology records a canceled middleweight pairing against Ale Joseph. The reason for cancellation is not established; the bout was later completed at Ares FC 8 in September. Do not classify a canceled booking as a fight.",
+          "detail": "Tapology records a canceled middleweight pairing against Ale Joseph. The reason for cancellation is not established; the bout was later completed at Ares FC 8 in September.",
           "source": "https://www.tapology.com/fightcenter/fighters/101215-mantas-kandratavicius",
           "sourceLabel": "Tapology · MMA, kickboxing, grappling, and canceled booking history"
         },
@@ -28817,7 +28817,7 @@
           "date": "Sept. 30, 2023",
           "label": "Lights Out title bout with Askar; weigh-in and belt eligibility caveat",
           "kind": "milestone",
-          "detail": "Tapology lists the Askar Askar matchup as a Lights Out bantamweight championship contest and shows Bashi at 138.6 lb for a scheduled 135-lb bout. Because this exceeds the normal non-title bantamweight allowance, the precise belt-retention eligibility is not independently established. Record the second-round submission and championship billing without asserting an undisputed successful title defense or a separate win.",
+          "detail": "Tapology lists the Askar Askar matchup as a Lights Out bantamweight championship contest and shows Bashi at 138.6 lb for a scheduled 135-lb bout. Because this exceeds the normal non-title bantamweight allowance, the precise belt-retention eligibility is not independently established.",
           "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
           "sourceLabel": "Tapology · Shamrock FC and Lights Out championship-bout record"
         },
@@ -28975,14 +28975,6 @@
           "detail": "Born February 10, 1996. Later affiliated with Havoc MMA and competed out of the Denver, Colorado, area. An exact birthplace or initial training date has not been independently established.",
           "source": "https://www.sherdog.com/fighter/Carlos-Calderon-247279",
           "sourceLabel": "Sherdog · date of birth and affiliation"
-        },
-        {
-          "date": "By 2017 (start date unknown)",
-          "label": "Builds regional MMA foundation in Colorado",
-          "kind": "training",
-          "detail": "His recorded amateur MMA bouts begin in 2017, and later listings show Havoc MMA/Elevation Fight Team in Colorado. No independently verified childhood wrestling, injury, or first-gym chronology was found; do not treat those details as confirmed.",
-          "source": "https://www.sherdog.com/fighter/Carlos-Calderon-247279",
-          "sourceLabel": "Sherdog · amateur record; Tapology · Colorado fighting base"
         },
         {
           "date": "Feb. 18, 2017",
@@ -29239,7 +29231,7 @@
           "date": "Aug. 19, 1988",
           "label": "Born in Rio de Janeiro, Brazil",
           "kind": "milestone",
-          "detail": "Priscila Cachoeira Gomes da Silva was born August 19, 1988. Rio de Janeiro is supported by UFC anti-doping and biography records; a third-party database incorrectly lists Bishkek as her birthplace. At the Nov. 5, 2026 audit she is 38 years old.",
+          "detail": "Priscila Cachoeira Gomes da Silva was born August 19, 1988. Rio de Janeiro is supported by UFC anti-doping and biography records; a third-party database incorrectly lists Bishkek as her birthplace. She was 38 on November 5, 2026.",
           "source": "https://www.ufc.ru/news/priscila-cachoeira-gomes-da-silva-accepts-sanction-violation-ufc-anti-doping-policy",
           "sourceLabel": "UFC/USADA · official December 2019 four-month sanction statement"
         },
@@ -29761,7 +29753,7 @@
           "date": "Feb. 18, 2023",
           "label": "Second IMMAF world title awarded without final bout",
           "kind": "milestone",
-          "detail": "Won the 2022 IMMAF World Championships women's bantamweight gold for Serbia in Belgrade when scheduled final opponent Josiane Oliveira was not medically cleared to compete. IMMAF confirms she did NOT fight the final that day, though she entered the arena and had her hand raised. Do not fabricate a victory via stoppage or decision over Oliveira. The title counts as her second world championship and Serbia's first IMMAF gold.",
+          "detail": "Won the 2022 IMMAF World Championships women's bantamweight gold for Serbia in Belgrade when scheduled final opponent Josiane Oliveira was not medically cleared to compete. IMMAF confirms she did NOT fight the final that day, though she entered the arena and had her hand raised. The title counts as her second world championship and Serbia's first IMMAF gold.",
           "source": "https://immaf.org/2023/02/18/ramazan-gitinov-and-sabrina-de-sousa-become-three-time-world-champions-on-final-day-of-2022-world-championships/",
           "sourceLabel": "IMMAF · February 2023 world final awarded without bout"
         },
@@ -30011,7 +30003,7 @@
           "date": "Sept. 24, 2010",
           "label": "AMATEUR WIN · Alex Delgado · Tuff-N-Uff",
           "kind": "win",
-          "detail": "Stopped Alex Delgado by TKO (punches) at 0:16 of round two at Tuff-N-Uff Future Stars of MMA. Sherdog dates the bout September 24; other aggregated databases also show a September 10 Alex Delgado entry with the same finish, likely a duplicated/date-disputed listing. Do not count two victories without separate official fight evidence. Amateur record 2-1 in documented ledger.",
+          "detail": "Stopped Alex Delgado by TKO (punches) at 0:16 of round two at Tuff-N-Uff Future Stars of MMA. Sherdog dates the bout September 24; other aggregated databases also show a September 10 Alex Delgado entry with the same finish, likely a duplicated/date-disputed listing. Amateur record 2-1 in documented ledger.",
           "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
           "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
         },
@@ -30099,7 +30091,7 @@
           "date": "Nov. 11, 2017",
           "label": "Captures Hawaii 185-pound regional championship",
           "kind": "milestone",
-          "detail": "Parsons's UFC questionnaire states he won the 185-pound championship at War on the Valley Isle on Maui, Hawaii. The documented professional ledger links the championship to his knockout of Eldon Sproat. Do not count this as a separate win.",
+          "detail": "Parsons's UFC questionnaire states he won the 185-pound championship at War on the Valley Isle on Maui, Hawaii. The documented professional ledger links the championship to his knockout of Eldon Sproat.",
           "source": "https://www.ufc.com/athlete/jonny-parsons",
           "sourceLabel": "UFC · official fighter questionnaire, martial arts background and results"
         },
@@ -30107,7 +30099,7 @@
           "date": "July 21, 2018",
           "label": "PRO LOSS · David Gladun · Dragon Fighting Championship",
           "kind": "loss",
-          "detail": "Lost by second-round TKO (punches) to David Gladun in Japan with referee Ryogaku Wada officiating. Sherdog reports 3:47 of round two; at least one fight aggregator gives 3:44. Use the Sherdog ledger's 3:47 while noting the small clock discrepancy. Professional record 3-2, UFC 0-0.",
+          "detail": "Lost by second-round TKO (punches) to David Gladun in Japan with referee Ryogaku Wada officiating. Sherdog reports 3:47 of round two; at least one fight aggregator gives 3:44. Professional record 3-2, UFC 0-0.",
           "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
           "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
         },
@@ -30155,7 +30147,7 @@
           "date": "June 11, 2021",
           "label": "PRO WIN · Ricardo Chavez · iKON Fighting Federation 7",
           "kind": "win",
-          "detail": "Knocked out Ricardo Chavez with a head kick at 3:26 of round two in the iKON Fighting Federation 7 co-main event. Previous abbreviated timeline called it a TKO, but Sherdog records a KO (head kick); preserve the method distinction. Pro record 7-3; UFC 0-0.",
+          "detail": "Knocked out Ricardo Chavez with a head kick at 3:26 of round two in the iKON Fighting Federation 7 co-main event. Sherdog classifies the stoppage as a KO (head kick). Pro record 7-3; UFC 0-0.",
           "source": "https://www.sherdog.com/fighter/Jonny-Parsons-65875",
           "sourceLabel": "Sherdog · complete 12-bout professional and four-bout amateur MMA ledgers"
         },
@@ -30235,7 +30227,7 @@
           "date": "Nov. 18, 2023",
           "label": "CANCELED · Uroš Medić · UFC Fight Night: Allen vs. Craig",
           "kind": "booking",
-          "detail": "UFC removed Parsons from his booked Nov. 18 welterweight fight against Uroš Medić and brought in Myktybek Orolbai, who made his UFC debut. The promotion's Nov. 16 changes statement grouped the replacement under 'due to injury,' although contemporaneous beat reporting did not specify a diagnosis. Do not invent an injury type or treat the cancellation as a completed fight.",
+          "detail": "UFC removed Parsons from his booked Nov. 18 welterweight fight against Uroš Medić and brought in Myktybek Orolbai, who made his UFC debut. The promotion's Nov. 16 changes statement grouped the replacement under 'due to injury,' although contemporaneous beat reporting did not specify a diagnosis.",
           "source": "https://www.ufc.com/news/updates-ufc-fight-night-allen-vs-craig",
           "sourceLabel": "UFC · Nov. 16 2023 Parsons removal and Orolbai replacement"
         },
@@ -30381,7 +30373,7 @@
           "date": "Nov. 16, 2019",
           "label": "PRO WIN · Leonardo Andrade · Open Extreme Manaus",
           "kind": "win",
-          "detail": "Professional MMA debut at Open Extreme Manaus. Defeated Leonardo Andrade by second-round TKO (opponent retirement) at 2:50. After fight record 1-0 pro, 0-0 official UFC. Do not confuse Leonardo Andrade (2019 MMA opponent) with Leonardo Guimarães (2023 boxing opponent).",
+          "detail": "Professional MMA debut at Open Extreme Manaus. Defeated Leonardo Andrade by second-round TKO (opponent retirement) at 2:50. After fight record 1-0 pro, 0-0 official UFC.",
           "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
           "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
         },
@@ -30517,7 +30509,7 @@
           "date": "Nov. 13, 2024",
           "label": "PRO WIN · Porfirio Alves Jr. · Centurion FC 24",
           "kind": "win",
-          "detail": "Stopped Porfirio Alves Jr. with a knee to the body followed by punches at 2:13 of round two at Centurion FC 24: Arcem. Earlier short timeline incorrectly gave the stoppage as 2:30; Sherdog and MMA Index support 2:13. Professional MMA record became 8-1, UFC 0-0.",
+          "detail": "Stopped Porfirio Alves Jr. with a knee to the body followed by punches at 2:13 of round two at Centurion FC 24: Arcem. Sherdog and MMA Index record the finish at 2:13. Professional MMA record became 8-1, UFC 0-0.",
           "source": "https://www.sherdog.com/fighter/Jose-Henrique-Souza-362437",
           "sourceLabel": "Sherdog · complete 10-bout professional MMA ledger"
         },
@@ -30565,7 +30557,7 @@
           "date": "Mar. 28–Apr. 4, 2026",
           "label": "CANCELED · Charles Radtke · April 4 UFC Fight Night",
           "kind": "booking",
-          "detail": "The Radtke pairing fell through. Tapology specifically lists 'Henrique Visa Issues' as the cause, while RotoWire initially reported the explanation was uncertain and said Radtke was reassigned against Francisco Prado. Record the visa attribution as Tapology's listing, not independently proven documentation; no UFC result occurred.",
+          "detail": "The Radtke pairing fell through. Tapology specifically lists 'Henrique Visa Issues' as the cause, while RotoWire initially reported the explanation was uncertain and said Radtke was reassigned against Francisco Prado.",
           "source": "https://www.tapology.com/fightcenter/fighters/289580-jose-henrique-canela",
           "sourceLabel": "Tapology · fighter identity, 2023 boxing and 2026 canceled-booking listing"
         },
