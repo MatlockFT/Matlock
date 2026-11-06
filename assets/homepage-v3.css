@@ -1909,7 +1909,7 @@ body:has([data-globe-home]) .site-live-strip {
 .v3-footer {
     position: relative;
     overflow: hidden;
-    margin-top: clamp(4rem, 8vw, 7rem);
+    margin-top: 0;
     border-top: 1px solid #a9a59e !important;
     background: var(--v3-paper) !important;
     color: var(--v3-ink) !important;
