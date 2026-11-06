@@ -2165,61 +2165,6 @@ body:has([data-globe-home]) .site-theme-toggle-knob {
 }
 
 
-/* =========================================================
-   MATLOCK FIGHT CHANNEL — HOMEPAGE BROADCAST SLOT
-   ========================================================= */
-
-.v3-broadcast-slot {
-    min-width: 0;
-    padding: .3rem 0 .95rem 1.3rem;
-    border-left: 1px solid var(--v3-rule);
-}
-
-.v3-broadcast-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: .8rem;
-    margin-bottom: .5rem;
-    padding-bottom: .45rem;
-    border-bottom: 2px solid var(--v3-rule-dark);
-}
-
-.v3-broadcast-head h2 {
-    margin: 0;
-    color: var(--v3-ink);
-    font: 800 .72rem/1 var(--v3-sans);
-    letter-spacing: .055em;
-    text-transform: uppercase;
-}
-
-.v3-broadcast-head a {
-    color: var(--v3-red);
-    font: 700 .58rem/1 var(--v3-sans);
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
-.v3-broadcast-head a:hover,
-.v3-broadcast-head a:focus-visible {
-    text-decoration: underline;
-    text-underline-offset: 2px;
-}
-
-.v3-broadcast-frame {
-    display: block;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border: 1px solid #151515;
-    background: #050506;
-    scrollbar-width: none;
-}
-
-.v3-broadcast-frame::-webkit-scrollbar {
-    display: none;
-}
-
 @media (min-width: 1051px) {
     .v3-left-rail {
         grid-column: 1;
@@ -2229,11 +2174,6 @@ body:has([data-globe-home]) .site-theme-toggle-knob {
     .v3-lead {
         grid-column: 2;
         grid-row: 1 / span 2;
-    }
-
-    .v3-broadcast-slot {
-        grid-column: 3;
-        grid-row: 1;
     }
 
     .v3-right-rail {
@@ -2247,25 +2187,7 @@ body:has([data-globe-home]) .site-theme-toggle-knob {
     }
 }
 
-@media (max-width: 1050px) {
-    .v3-broadcast-slot {
-        grid-column: 1 / -1;
-        width: min(100%, 420px);
-        margin: 1.2rem 0 .2rem;
-        padding: 0;
-        border-left: 0;
-    }
-}
-
 @media (max-width: 780px) {
-    .v3-broadcast-slot {
-        order: 2;
-        width: 100%;
-        margin: 0;
-        padding: 1.1rem 0 1.25rem;
-        border-bottom: 1px solid var(--v3-rule);
-    }
-
     .v3-left-rail {
         order: 3;
     }
@@ -2274,7 +2196,6 @@ body:has([data-globe-home]) .site-theme-toggle-knob {
         order: 4;
     }
 }
-
 
 /* =========================================================
    HOMEPAGE HEADLINE WIDTH + TRENDING HOVER REVEAL
@@ -2289,67 +2210,5 @@ body:has([data-globe-home]) .site-theme-toggle-knob {
 @media (max-width: 780px) {
     .v3-lead h1 {
         max-width: 100%;
-    }
-}
-
-
-/* Homepage broadcast: passive TV with only a small audio control. */
-.v3-broadcast-player {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    background: #050506;
-}
-
-.v3-broadcast-player .v3-broadcast-frame {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: auto;
-    pointer-events: none;
-    user-select: none;
-}
-
-.v3-broadcast-audio {
-    position: absolute;
-    right: .38rem;
-    bottom: .38rem;
-    z-index: 3;
-    display: grid;
-    width: 28px;
-    height: 28px;
-    padding: 0;
-    place-items: center;
-    border: 1px solid rgba(255,255,255,.28);
-    border-radius: 50%;
-    background: rgba(8,8,9,.62);
-    color: #fff;
-    box-shadow: 0 1px 5px rgba(0,0,0,.32);
-    cursor: pointer;
-    font: 400 13px/1 system-ui, sans-serif;
-    opacity: .72;
-    transition: opacity .15s ease, background-color .15s ease, border-color .15s ease;
-}
-
-.v3-broadcast-audio:hover,
-.v3-broadcast-audio:focus-visible,
-.v3-broadcast-audio[aria-pressed="true"] {
-    opacity: 1;
-    background: rgba(8,8,9,.82);
-    border-color: rgba(255,255,255,.55);
-}
-
-.v3-broadcast-audio:focus-visible {
-    outline: 2px solid var(--v3-red);
-    outline-offset: 2px;
-}
-
-@media (max-width: 780px) {
-    .v3-broadcast-audio {
-        right: .3rem;
-        bottom: .3rem;
-        width: 26px;
-        height: 26px;
-        font-size: 12px;
     }
 }

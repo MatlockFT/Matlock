@@ -563,26 +563,6 @@
       "publicContract": false
     },
     {
-      "id": "fight-channel-runtime-state",
-      "storage": "public-runtime",
-      "paths": [
-        "assets/data/broadcast.json"
-      ],
-      "lifecycle": "operational-state",
-      "owner": "broadcast",
-      "producers": [
-        "manual:archived-broadcast-state"
-      ],
-      "consumers": [
-        "broadcast.html",
-        "assets/broadcast.js",
-        "index.html"
-      ],
-      "safeToRegenerate": false,
-      "safeToDeleteFromRepository": false,
-      "publicContract": true
-    },
-    {
       "id": "writer-spellcheck-dictionary",
       "storage": "public-runtime",
       "paths": [
@@ -601,25 +581,6 @@
         "scripts/writer/writer-autocorrect-smoke.cjs"
       ],
       "safeToRegenerate": false,
-      "safeToDeleteFromRepository": false,
-      "publicContract": true
-    },
-    {
-      "id": "fight-city-forecast-runtime",
-      "storage": "public-runtime",
-      "paths": [
-        "assets/data/fight-city-weather.json"
-      ],
-      "lifecycle": "generated-public-runtime",
-      "owner": "broadcast",
-      "producers": [
-        "scripts/weather/build-fight-city-weather.mjs",
-        ".github/workflows/update-news-feed.yml"
-      ],
-      "consumers": [
-        "assets/broadcast-weather.js"
-      ],
-      "safeToRegenerate": true,
       "safeToDeleteFromRepository": false,
       "publicContract": true
     },

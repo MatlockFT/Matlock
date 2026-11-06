@@ -1,6 +1,6 @@
 # Writer video uploads
 
-The article Writer uses Cloudflare for GitHub sign-in, article saving, and authorizing video-upload sessions. Only article video uploads use Netlify. Broadcast Control and existing Cloudflare/R2 video URLs keep their current routes.
+The article Writer uses Cloudflare for GitHub sign-in, article saving, and authorizing video-upload sessions. Only article video uploads use Netlify. Existing Cloudflare/R2 article video URLs keep their current routes.
 
 ## Upload flow
 
