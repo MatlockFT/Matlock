@@ -378,6 +378,25 @@
       "publicContract": false
     },
     {
+      "id": "breakdowns-full-text-search-index",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/breakdowns-search.json"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "site",
+      "producers": [
+        "jekyll:site.posts"
+      ],
+      "consumers": [
+        "breakdowns.html",
+        "assets/breakdowns-search.js"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
       "id": "mma-news-runtime-fallback",
       "storage": "public-runtime",
       "paths": [
