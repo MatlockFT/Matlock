@@ -4,9 +4,9 @@
  */
 
 .event-map-page-v3 {
-    width: min(calc(100% - 2rem), 1480px);
+    width: min(calc(100% - var(--v3-page-inline)), 1480px);
     margin: 0 auto;
-    padding: .9rem 0 clamp(4rem, 7vw, 7rem);
+    padding: .8rem 0 var(--v3-page-bottom);
     background: var(--v3-paper);
     color: var(--v3-ink);
     font-family: var(--v3-sans);
