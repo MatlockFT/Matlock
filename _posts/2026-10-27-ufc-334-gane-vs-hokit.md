@@ -12,7 +12,7 @@ tags:
   - Kayla Harrison
   - Amanda Nunes
 show_toc: false
-published: false
+published: true
 pinned: false
 listing_visibility: normal
 spoiler_warning: false
