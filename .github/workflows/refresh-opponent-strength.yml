@@ -18,6 +18,8 @@ on:
     paths:
       - ".github/workflows/refresh-opponent-strength.yml"
       - "scripts/writer/refresh-opponent-strength.mjs"
+      - "scripts/writer/opponent-quality.mjs"
+      - "scripts/writer/opponent-quality.test.mjs"
       - "scripts/matchmaker/build-writer-fighters.mjs"
       - "_netlify-auth/netlify/functions/_writer-career-fallback.mjs"
 
@@ -48,8 +50,11 @@ jobs:
         with:
           node-version: "22.12.0"
 
-      - name: Validate refresh script
-        run: node --check scripts/writer/refresh-opponent-strength.mjs
+      - name: Validate opponent-quality engine
+        run: |
+          node --check scripts/writer/refresh-opponent-strength.mjs
+          node --check scripts/writer/opponent-quality.mjs
+          node --test scripts/writer/opponent-quality.test.mjs
 
       - name: Refresh full-career opponent strength
         env:
