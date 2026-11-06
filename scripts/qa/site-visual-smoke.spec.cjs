@@ -296,7 +296,10 @@ test.describe('Article fight navigation and spoiler picks', () => {
       };
     });
     expect(stickyGeometry.position).toBe('sticky');
-    expect(stickyGeometry.top).toBeGreaterThan(70);
+    // The compact header leaves a 63px sticky offset; allow any safe top >= 50px.
+    // Checks below still verify the TOC cannot overlap sharing or escape its rail.
+    expect(stickyGeometry.top).toBeGreaterThanOrEqual(50);
+    expect(stickyGeometry.top).toBeLessThan(150);
     expect(stickyGeometry.width).toBeGreaterThan(220);
     expect(Math.abs(stickyGeometry.left - stickyGeometry.railLeft)).toBeLessThan(3);
 

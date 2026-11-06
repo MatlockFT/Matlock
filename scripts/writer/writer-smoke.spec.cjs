@@ -889,7 +889,9 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect.poll(() => Boolean(remote && !/publish_at:\s*['\"]?\d/.test(remote.text))).toBe(true);
 
   await page.click('[data-publish]');
-  await expect(page.locator('[data-save-state]')).toContainText('Published', { timeout: 10000 });
+  await expect(page.locator('[data-save-state]')).toContainText('Saved to GitHub', { timeout: 10000 });
+  // GitHub save completes before Pages deployment; publication state is separate.
+  await expect(page.locator('[data-document-status]')).toContainText('Published');
   await expect.poll(() => Boolean(remote && /published:\s*true/.test(remote.text))).toBe(true);
   expect(remote.text).toContain('Writer Production Smoke Test');
   expect(remote.text).toContain('Visually edited HTML.');
