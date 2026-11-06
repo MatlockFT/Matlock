@@ -1,5 +1,5 @@
 {
-  "version": 50,
+  "version": 51,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -26811,33 +26811,33 @@
           "date": "Dec. 15, 2018",
           "label": "AMATEUR WIN · Bryan Battle · Tuff-N-Uff: Mayhem in Mesquite 16",
           "kind": "amateur",
-          "detail": "Defeated Bryan Battle at Tuff-N-Uff: Mayhem in Mesquite 16 on Dec. 15, 2018 by split decision (round 3, 3:00). Amateur record after bout: 5-0-1. Amateur result does not affect professional MMA or UFC records. Victory over a future UFC competitor and The Ultimate Fighter champion, while both were amateurs.",
-          "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
-          "sourceLabel": "Sherdog · full eight-fight amateur ledger"
+          "detail": "Defeated Bryan Battle at Tuff-N-Uff: Mayhem in Mesquite 16 on Dec. 15, 2018 by split decision (round 3, 3:00), improving his documented amateur record to 5-0-1. Sherdog explicitly lists the main event as a light heavyweight title fight, making it a documented amateur championship victory over a future UFC athlete and The Ultimate Fighter winner. This was not a professional fight.",
+          "source": "https://www.sherdog.com/events/TuffNUff-Mayhem-in-Mesquite-16-73107",
+          "sourceLabel": "Sherdog · Dec. 15, 2018 amateur championship event and result"
         },
         {
           "date": "Apr. 6, 2019",
           "label": "AMATEUR WIN · Sullivan Cauley · Tuff-N-Uff: Orleans Hotel",
           "kind": "amateur",
-          "detail": "Defeated Sullivan Cauley at Tuff-N-Uff: Orleans Hotel on Apr. 6, 2019 by unanimous decision (round 3, 3:00). Amateur record after bout: 6-0-1. Amateur result does not affect professional MMA or UFC records.",
-          "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
-          "sourceLabel": "Sherdog · full eight-fight amateur ledger"
+          "detail": "Defeated Sullivan Cauley at Tuff-N-Uff Fight Night: Orleans Hotel on Apr. 6, 2019 by unanimous decision (round 3, 3:00); documented amateur record rose to 6-0-1. Sherdog lists this as another light heavyweight title fight, following Elekana's December 2018 title victory over Bryan Battle. The source alone does not establish whether the Cauley contest defended the same belt or represented a second championship; Elekana separately reports two amateur titles.",
+          "source": "https://www.sherdog.com/events/TuffNUff-Fight-Night-Orleans-Hotel-75223",
+          "sourceLabel": "Sherdog · Apr. 6, 2019 light heavyweight title bout"
         },
         {
           "date": "Jun. 29, 2019",
           "label": "AMATEUR LOSS · Koby Jeffers · Tuff-N-Uff: World Amateur Championships",
           "kind": "amateur",
-          "detail": "Lost to Koby Jeffers at Tuff-N-Uff: World Amateur Championships on Jun. 29, 2019 by unanimous decision (round 3, 3:00). Amateur record after bout: 6-1-1. Amateur result does not affect professional MMA or UFC records. His last documented amateur fight; Tapology describes it as a light heavyweight amateur championship bout.",
-          "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
-          "sourceLabel": "Sherdog · full eight-fight amateur ledger"
+          "detail": "Lost to Koby Jeffers at Tuff-N-Uff: World Amateur Championships on Jun. 29, 2019 by unanimous decision (round 3, 3:00), finishing his documented amateur ledger 6-1-1. The title fight was held at Thomas & Mack Center in Las Vegas. Contemporary reporting calls Elekana the defending Tuff-N-Uff world amateur light heavyweight champion and describes Jeffers rallying late to win the decision, ending Elekana's title reign. This is not a professional defeat.",
+          "source": "https://www.sanpedrosun.com/sports/2019/07/05/belizean-born-mma-fighter-koby-jeffers-wins-light-heavyweight-title-in-las-vegas/",
+          "sourceLabel": "The San Pedro Sun · Jul. 5, 2019 contemporary title bout coverage"
         },
         {
           "date": "Jun. 30, 2019",
           "label": "Completes documented amateur competition at 6-1-1",
           "kind": "milestone",
-          "detail": "Eight amateur MMA bouts across 2017–2019 produced six wins, one loss and one draw. His UFC biography also credits two amateur championship belts but does not specify the names, dates or opponents for those title wins. Neither amateur belts nor bouts count toward the professional record.",
-          "source": "https://www.ufc.com/athlete/billy-elekana",
-          "sourceLabel": "UFC · amateur record and belts; compared with Sherdog"
+          "detail": "Eight amateur results across 2017–2019: six wins, one loss and one draw. Three late Tuff-N-Uff bouts were title contests: championship wins over Bryan Battle in December 2018 and Sullivan Cauley in April 2019, followed by the June 2019 championship loss to Koby Jeffers as defending champion. Elekana reports two amateur belts; the exact identity of each belt and whether both wins involved different belts are not independently established. Amateur bouts are separate from the 10-2 pro ledger.",
+          "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
+          "sourceLabel": "Sherdog · full amateur ledger, with title status checked against event pages"
         },
         {
           "date": "Before turning professional",
@@ -26846,6 +26846,14 @@
           "detail": "Elekana identifies construction as his employment before becoming a professional fighter, and says supporting his family and children motivated his decision to pursue MMA full-time. No exact dates of his construction employment are established; this is background rather than a specific job change.",
           "source": "https://www.ufc.com/athlete/billy-elekana",
           "sourceLabel": "UFC · athlete background questionnaire"
+        },
+        {
+          "date": "Jun. 2019–May 2021",
+          "label": "Nearly 23 months between last amateur bout and professional debut",
+          "kind": "layoff",
+          "detail": "The published MMA ledger shows no completed bout between the June 29, 2019 amateur title loss and the May 14, 2021 professional debut, a gap of about 22.5 months. No verified injury, suspension or specific explanation was found, so the gap should not be attributed to an undisclosed medical problem.",
+          "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
+          "sourceLabel": "Sherdog · final amateur and first professional fight dates"
         },
         {
           "date": "May 14, 2021",
@@ -26899,25 +26907,33 @@
           "date": "Mar. 10, 2023",
           "label": "WIN · Tristan Overvig · PFL Challenger Series 2023, Week 7",
           "kind": "win",
-          "detail": "Defeated Tristan Overvig at PFL Challenger Series 2023, Week 7 on Mar. 10, 2023 by unanimous decision (round 3, 5:00). Professional MMA record after bout: 5-1. First PFL appearance, at light heavyweight. All three judges scored the bout 30-27. An important step after his first professional loss.",
+          "detail": "Defeated Tristan Overvig at PFL Challenger Series 2023, Week 7 on Mar. 10, 2023 by unanimous decision (30-27 on all three judges' cards; round 3, 5:00). Professional record after bout: 5-1. This was Elekana's PFL debut and first documented professional light heavyweight fight following four completed middleweight appearances with Fierce FC and LFA and a July 2022 loss to Daniel Compton.",
           "source": "https://www.sherdog.com/news/news/PFL-Challenger-Series-7-PlaybyPlay-Results-Round-Scoring-189381",
-          "sourceLabel": "Sherdog · PFL Challenger Series official scorecards"
+          "sourceLabel": "Sherdog · March 2023 PFL round-by-round and scorecards"
         },
         {
           "date": "Mar. 10, 2023",
           "label": "PFL Challenger Series victory with 30-27 scorecards",
           "kind": "milestone",
-          "detail": "Elekana defeated Tristan Overvig 30-27 on all three official cards. Sherdog's round-by-round report described a jumping knee, ground-and-pound and sustained exchanges. This was not a UFC/DWCS bout or an additional entry in the professional ledger.",
+          "detail": "All three judges awarded Elekana every round of his win against Tristan Overvig. Sherdog's play-by-play describes varied striking and grappling offense, including a jumping knee and ground-and-pound. This was the start of his documented professional competition at light heavyweight rather than an earned UFC contract or a PFL season title.",
           "source": "https://www.sherdog.com/news/news/PFL-Challenger-Series-7-PlaybyPlay-Results-Round-Scoring-189381",
-          "sourceLabel": "Sherdog · PFL Challenger Series 2023 round-by-round and official scorecards"
+          "sourceLabel": "Sherdog · PFL Challenger Series official scores and play-by-play"
+        },
+        {
+          "date": "Mar. 10, 2023",
+          "label": "Moves from middleweight to professional light heavyweight competition",
+          "kind": "milestone",
+          "detail": "Elekana's previous completed pro appearances in 2021–22 were listed at middleweight (185 pounds); his March 2023 PFL Challenger Series win against Tristan Overvig was at light heavyweight (205 pounds). The subsequent Chuck Campbell, LXF and UFC fights remained at 205. No verified medical reason for the weight change is established. This is a weight-class transition, not another bout.",
+          "source": "https://www.ufcalendar.com/fighters/billy-elekana",
+          "sourceLabel": "UFCalendar · recorded division for each pro fight, cross-checked against Sherdog"
         },
         {
           "date": "Aug. 4, 2023",
           "label": "WIN · Chuck Campbell · PFL 7: 2023 Playoffs",
           "kind": "win",
-          "detail": "Defeated Chuck Campbell at PFL 7: 2023 Playoffs on Aug. 4, 2023 by split decision (round 3, 5:00). Professional MMA record after bout: 6-1. Second PFL appearance, competing on the PFL 2023 playoffs card at light heavyweight. Won a close split decision.",
-          "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
-          "sourceLabel": "Sherdog · verified professional fight ledger"
+          "detail": "Defeated Chuck Campbell at PFL 7: 2023 Playoffs in San Antonio on Aug. 4, 2023 by split decision (29-28, 29-28, 28-29; round 3, 5:00). Professional record after bout: 6-1. This was his second PFL light heavyweight appearance on a postseason card; it did not make him a tournament finalist or season champion.",
+          "source": "https://www.sherdog.com/events/Professional-Fighters-League-PFL-7-2023-Playoffs-98147",
+          "sourceLabel": "Sherdog · PFL 7 judges' split decision scorecards"
         },
         {
           "date": "Aug. 4, 2023",
@@ -26926,6 +26942,14 @@
           "detail": "Fought Chuck Campbell at PFL 7 in San Antonio and won a split decision. Elekana was not a 2023 season light heavyweight champion; participating on a PFL postseason card does not by itself signify advancing to a tournament final.",
           "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
           "sourceLabel": "Sherdog · professional fight history and PFL event"
+        },
+        {
+          "date": "Aug. 2023–Jul. 2024",
+          "label": "Approximately eleven months without a recorded completed fight",
+          "kind": "layoff",
+          "detail": "Elekana's next completed professional bout after his August 4, 2023 win over Chuck Campbell occurred at LXF 18 on July 27, 2024, nearly 12 months later. The gap is visible in the verified bout ledger, but no specific injury, surgery, suspension or withdrawal is confirmed as its cause.",
+          "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
+          "sourceLabel": "Sherdog · professional fight dates between PFL and LXF"
         },
         {
           "date": "Jul. 27, 2024",
@@ -26963,9 +26987,9 @@
           "date": "Jan. 18, 2025",
           "label": "LOSS · Bogdan Guskov · UFC 311: Makhachev vs. Moicano",
           "kind": "loss",
-          "detail": "Lost to Bogdan Guskov at UFC 311: Makhachev vs. Moicano on Jan. 18, 2025 by submission (guillotine choke) (round 2, 3:33). Professional MMA record after bout: 7-2. Official UFC record: 0-1. UFC debut on approximately eight days' notice, stepping in for injured Johnny Walker. Elekana entered 7-1 and lost the second-round guillotine to Guskov. No win should be assigned for the canceled Walker-Guskov fight.",
-          "source": "https://www.ufc.com/index.php/news/updates-ufc-311-makhachev-vs-tsarukyan-2",
-          "sourceLabel": "UFC · short-notice UFC 311 card update"
+          "detail": "Lost to Bogdan Guskov at UFC 311: Makhachev vs. Moicano on Jan. 18, 2025 by submission (guillotine choke), round 2 at 3:33. Professional record: 7-2; UFC record: 0-1. Elekana accepted on about eight days' notice as Johnny Walker's injury replacement and surprised Guskov with an early takedown, back control and body triangle for much of round one. Guskov escaped, nearly finished a choke near the bell, then increased the pressure as Elekana faded, scoring the guillotine after sustained second-round strikes.",
+          "source": "https://www.ufc.com/news/prelim-results-highlights-winner-interviews-ufc-311-makhachev-vs-moicano-los-angeles",
+          "sourceLabel": "UFC · Jan. 2025 official UFC 311 finish and bout sequence"
         },
         {
           "date": "Jan. 19, 2025",
@@ -26979,9 +27003,9 @@
           "date": "Jul. 26, 2025",
           "label": "WIN · Ibo Aslan · UFC on ABC 9: Whittaker vs. de Ridder",
           "kind": "win",
-          "detail": "Defeated Ibo Aslan at UFC on ABC 9: Whittaker vs. de Ridder on Jul. 26, 2025 by unanimous decision (round 3, 5:00). Professional MMA record after bout: 8-2. Official UFC record: 1-1. First official UFC victory; judges scored 30-27, 30-27 and 29-28. His first completed contest after the short-notice Guskov loss.",
+          "detail": "Defeated Ibo Aslan at UFC on ABC 9: Whittaker vs. de Ridder on Jul. 26, 2025 in Abu Dhabi by unanimous decision (30-27, 30-27, 29-28; round 3, 5:00). Professional record: 8-2; UFC record: 1-1. This was Elekana's first UFC victory after the short-notice Guskov loss and, as he later told UFC, his first bout outside the United States. The three judges differed only on round two.",
           "source": "https://mmadecisions.com/decision/15569/Billy-Elekana-vs-Ibo-Aslan",
-          "sourceLabel": "MMA Decisions · Ibo Aslan official judge scores"
+          "sourceLabel": "MMA Decisions · official Aslan fight scorecards; UFC · Jan. 2026 overseas-bout interview"
         },
         {
           "date": "Jul. 26, 2025",
@@ -26995,33 +27019,33 @@
           "date": "Nov. 1, 2025",
           "label": "WIN · Kevin Christian · UFC Fight Night: Garcia vs. Onama",
           "kind": "win",
-          "detail": "Defeated Kevin Christian at UFC Fight Night: Garcia vs. Onama on Nov. 1, 2025 by technical submission (rear-naked choke) (round 1, 3:33). Professional MMA record after bout: 9-2. Official UFC record: 2-1. Second consecutive UFC win. Sherdog classifies the finish as a technical submission by rear-naked choke; UFC broadly calls it a submission.",
-          "source": "https://www.ufc.com/athlete/billy-elekana",
-          "sourceLabel": "UFC · official fight history"
+          "detail": "Defeated Kevin Christian at UFC Fight Night: Garcia vs. Onama on Nov. 1, 2025 by TECHNICAL SUBMISSION (rear-naked choke), round 1 at 3:33. Professional record: 9-2; UFC record: 2-1. Elekana hurt Christian with a counter left hand, followed with ground strikes and attacked the back. Christian appeared to tap but referee Chris Tognoni missed the signal from his viewing angle; Christian lost consciousness before the referee stopped the bout. The official method is a technical submission, not a tap-out.",
+          "source": "https://www.mmafighting.com/ufc/453016/ufc-vegas-110-video-billy-elekana-chokes-out-kevin-christian-after-referee-misses-tap-out",
+          "sourceLabel": "MMA Fighting · Nov. 2025 missed tap, unconsciousness and official stoppage"
         },
         {
           "date": "Nov. 1, 2025",
           "label": "First UFC rear-naked-choke finish against Kevin Christian",
           "kind": "milestone",
-          "detail": "Completed the fight in round one at 3:33 and registered his first UFC finish. Sherdog labels it a technical submission and the UFC a submission, consistent with the same win; it is not a second fight or a second method in the record.",
-          "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
-          "sourceLabel": "Sherdog · detailed UFC fight method and time"
+          "detail": "The first UFC stoppage of Elekana's career also produced an unusual referee incident: Chris Tognoni failed to see Christian's apparent tap because his arm was obscured between the fighters. The fight ended only after Christian was unconscious, explaining why Sherdog, the Nevada commission and the UFC's detailed results classify it as a technical submission. This is context for the same win, not a separate result.",
+          "source": "https://www.mmafighting.com/ufc/453016/ufc-vegas-110-video-billy-elekana-chokes-out-kevin-christian-after-referee-misses-tap-out",
+          "sourceLabel": "MMA Fighting · original incident report and finish classification"
         },
         {
           "date": "Late January 2026",
           "label": "Discusses mother's memory ahead of UFC 325",
           "kind": "background",
-          "detail": "Ahead of facing Junior Tafa in Sydney, Elekana reflected on his mother's passing in January 2018 and said the U.S.-dated Jan. 31 card would coincide with her birthday, while Australia's Feb. 1 date was his son's birthday. He described fulfilling a promise to pursue fighting professionally. The anniversary belongs to his personal history, not a competitive result.",
-          "source": "https://www.ufc.com/index.php/news/billy-elekana-for-susie-always-ufc-325",
-          "sourceLabel": "UFC · January 30, 2026 interview"
+          "detail": "In a Jan. 30, 2026 interview Elekana explained that the UFC 325 booking coincided with his late mother's January 31 birthday (U.S. time) and his son's February 1 birthday in Sydney. The eighth anniversary of his mother's death from cancer had occurred only days earlier. He recalled her encouragement and said he was becoming more comfortable in the UFC after a hectic first year; no exact date of her death beyond late January 2018 has been verified.",
+          "source": "https://www.ufc.com/news/billy-elekana-for-susie-always-ufc-325",
+          "sourceLabel": "UFC · Jan. 30, 2026 firsthand family and UFC adaptation interview"
         },
         {
           "date": "Jan. 31, 2026",
           "label": "WIN · Junior Tafa · UFC 325: Volkanovski vs. Lopes 2",
           "kind": "win",
-          "detail": "Defeated Junior Tafa at UFC 325: Volkanovski vs. Lopes 2 on Jan. 31, 2026 by submission (rear-naked choke) (round 2, 3:18). Professional MMA record after bout: 10-2. Official UFC record: 3-1. Third straight UFC victory and second consecutive rear-naked-choke finish. UFC dates this Sydney event to Jan. 31 in U.S. listings; Australian local time rolled into Feb. 1.",
-          "source": "https://www.ufc.com/athlete/billy-elekana",
-          "sourceLabel": "UFC · official fight history"
+          "detail": "Defeated Junior Tafa at UFC 325: Volkanovski vs. Lopes 2 on Jan. 31, 2026 U.S. event date (Feb. 1 locally in Sydney) by submission (rear-naked choke), round 2 at 3:18. Professional record: 10-2; UFC record: 3-1. UFC's fight recap describes a dangerous first round before Elekana took Tafa down and secured a rapid second-round choke. Third straight UFC win and second straight rear-naked-choke finish. The two calendar dates reflect time zones, not separate fights.",
+          "source": "https://www.ufc.com/news/ufc-325-results-volkanovski-vs-lopes-2-prelims-highlights-winners-interviews",
+          "sourceLabel": "UFC · Feb. 1, 2026 official Sydney event recap"
         },
         {
           "date": "Jan. 31, 2026",
@@ -27059,9 +27083,9 @@
           "date": "Nov. 5, 2026",
           "label": "Record reconciliation and withdrawal audit",
           "kind": "note",
-          "detail": "Sherdog's full professional ledger contains 12 bouts: 10 wins (three KO/TKO, three submissions, four decisions) and two losses (one submission, one decision); the four UFC bouts yield 3-1. Eight amateur results yield 6-1-1. The canceled November 2024 Justin Sumter and June 2026 Iwo Baraniewski contests must not be included as wins, losses or no-contests. No additional verified major injury surgery or completed return bout is documented.",
+          "detail": "Verified twelve completed professional fights: 10 wins (three KO/TKO, three submissions, four decisions) and two losses (one submission, one decision). Four completed UFC fights total 3-1. The documented amateur ledger is 6-1-1 across eight bouts, including three amateur title fights. November 2024 Justin Sumter and June 2026 Iwo Baraniewski were canceled and do not count. UFC called the 2026 removal injury-related, but no diagnosis was disclosed; no medical explanation is verified for the 2019–21 or 2023–24 gaps.",
           "source": "https://www.sherdog.com/fighter/Billy-Elekana-250351",
-          "sourceLabel": "Sherdog · complete professional and amateur MMA ledgers; cross-checked with UFC"
+          "sourceLabel": "Sherdog · complete 12-pro and eight-amateur ledgers, cross-checked with UFC"
         },
         {
           "date": "Nov. 7, 2026",
@@ -30275,6 +30299,6 @@
     }
   },
   "updatedAt": "2026-11-05",
-  "notes": "Fourth-pass deep audit completed. Duplicate same-event notes merged; distinct same-year career events retained. Bia Mesquita timeline added. Donte Johnson timeline added. Cesar Almeida timeline added. Melquizael Costa timeline added; corrected May 2026 Arnold Allen result and move to lightweight. Jared Gordon's 31 professional bouts, CFFC championships and distinct career milestones added; same-fight notes merged. Evan Elder full professional history, amateur records and UFC 334 booking added; duplicate same-fight milestones merged. Samuel Sanches timeline added with complete 12-fight professional ledger; DWCS separated from UFC debut. Wellington Turman's 26 professional fights and four amateur bouts audited; return chronology and six dated or deliberately undated milestones expanded; disputed debut scoring and medical history clarified.",
+  "notes": "Fourth-pass deep audit completed. Duplicate same-event notes merged; distinct same-year career events retained. Bia Mesquita timeline added. Donte Johnson timeline added. Cesar Almeida timeline added. Melquizael Costa timeline added; corrected May 2026 Arnold Allen result and move to lightweight. Jared Gordon's 31 professional bouts, CFFC championships and distinct career milestones added; same-fight notes merged. Evan Elder full professional history, amateur records and UFC 334 booking added; duplicate same-fight milestones merged. Samuel Sanches timeline added with complete 12-fight professional ledger; DWCS separated from UFC debut. Wellington Turman's 26 professional fights and four amateur bouts audited; return chronology and six dated or deliberately undated milestones expanded; disputed debut scoring and medical history clarified. Billy Elekana's 12 professional bouts and eight amateur bouts cross-checked; Tuff-N-Uff title fights, PFL weight-class shift, 2025 refereeing issue, bout narratives and injury withdrawal documented.",
   "lastReviewed": "2026-11-05"
 }
