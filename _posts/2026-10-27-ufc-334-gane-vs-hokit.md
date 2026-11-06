@@ -23,7 +23,7 @@ editorial_notes: >-
   Bia Mesquita has a disqualification win; do not convert it into a decision win.
   Samuel Sanches's rate numbers are from one Contender Series appearance.
 image:
-  path: /assets/uploads/articles/2026/10/ufc-334-gane-vs-hokit/Hok3-mvrft6pm-9ae24fed.webp
+  path: /assets/uploads/articles/2026/10/ufc-334-gane-vs-hokit/UFC-334-Thumbnail-mw4t0chl-10c68956.webp
   alt: "UFC 334: Gane vs. Hokit"
   position: center center
 members_only: false
