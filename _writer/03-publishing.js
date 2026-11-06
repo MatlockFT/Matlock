@@ -273,10 +273,10 @@ async function saveArticle(mode = 'save', { skipConflict = false, automatic = fa
     updateLiveLink();
     updateDocumentStatus();
     const stamp = new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
-    setSaveState(newerEdits ? 'Unsaved changes • earlier revision saved' : automatic ? `Auto-saved • ${stamp}` : mode === 'publish' ? `Published • ${stamp}` : mode === 'schedule' ? `Scheduled • ${stamp}` : `Saved • ${stamp}`);
+    setSaveState(newerEdits ? 'Unsaved changes • earlier revision saved' : automatic ? `Auto-saved • ${stamp}` : mode === 'publish' ? `Saved to GitHub • ${stamp}` : mode === 'schedule' ? `Scheduled • ${stamp}` : `Saved • ${stamp}`);
     if (!newerEdits) setLocalStatus(`Saved to GitHub · ${stamp}`, 'github');
     if (!automatic) showToast(newerEdits ? 'Earlier revision saved. Your newer edits still need saving.' : mode === 'publish'
-      ? (fields.membersOnly?.checked ? 'Private article saved. Locked public listing is deploying.' : 'Published to GitHub. The public site is deploying now.')
+      ? (fields.membersOnly?.checked ? 'Private article saved. The locked listing will appear after the site deploys.' : 'Saved to GitHub. The public article will appear after GitHub Pages deploys successfully.')
       : mode === 'schedule'
         ? `Scheduled for ${formatDateTime(localInputToIso(savedSchedule))}. GitHub checks due posts about every 15 minutes.`
         : 'Saved to GitHub.');
