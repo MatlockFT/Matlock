@@ -187,7 +187,9 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
   await expect(sourceStatus).toContainText('checking live');
 
   await expect(firstRow.locator('[data-structured-a]')).toHaveValue('9.99');
-  await expect(sourceStatus).toContainText('LIVE UFCStats');
+  // A live stat refresh can succeed while a later booked fight remains missing
+  // from its dated sample. Keep the visible update-pending warning in that case.
+  await expect(sourceStatus).toContainText('Update pending');
   await expect(input).toHaveAttribute('data-source-mode', 'live');
 
   dialog.locator('[value="cancel"]').first().click();
