@@ -23,7 +23,7 @@ page_scripts:
 {% assign lead_post = homepage_posts.first %}
 {% assign side_posts = homepage_posts | slice: 1, 2 %}
 {% assign feature_posts = homepage_posts | slice: 3, 3 %}
-{% assign more_posts = homepage_posts | slice: 6, 5 %}
+{% assign more_posts = homepage_posts | slice: 6, 6 %}
 {% assign homepage_data_version = site.time | date: "%s" %}
 
 <div
@@ -213,6 +213,7 @@ page_scripts:
     <section class="v3-section v3-more" aria-labelledby="v3-more-title">
       <header class="v3-section-head">
         <h2 id="v3-more-title">More From Matlock</h2>
+        <a href="{{ '/breakdowns/' | relative_url }}">View all</a>
       </header>
 
       <div class="v3-more-list">
