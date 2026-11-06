@@ -257,6 +257,10 @@ What can we say? Short notice fight, Bashi is understandably the favorite althou
 </section>
 Middleweight slop. I'm not a fan of Petroski, he's coming off three losses, was knocked out by Cody Brundage. Mantas, taller, longer, younger. 
 
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Mantas%20Kondratavi%C4%8Dius%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Mantas Kondratavičius</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div></aside>
+</section>
+---
 
 ## Seokhyeon Ko vs. Wellington Turman
 
