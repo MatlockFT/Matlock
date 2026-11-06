@@ -16,7 +16,7 @@ const retiredSource = [
   'assets/upcoming-events-v3.css',
   'assets/upcoming-events-layout.css',
   'assets/upcoming-events-portrait-fixes.css',
-  'scripts/site-data/ufc/cache-picker-lcp-portrait.mjs',
+  ['scripts', 'site-data', 'ufc', 'cache-picker-lcp-portrait.mjs'].join('/'),
   '_data/picker_lcp_portrait.json'
 ];
 
