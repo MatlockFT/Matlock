@@ -4,15 +4,15 @@
  */
 
 .upcoming-events-page-v3 {
-    width: min(calc(100% - 2rem), 1380px);
+    width: min(calc(100% - var(--v3-page-inline)), 1380px);
     margin: 0 auto;
-    padding: .9rem 0 clamp(4rem, 7vw, 7rem);
+    padding: .8rem 0 var(--v3-page-bottom);
     color: var(--v3-ink);
     font-family: var(--v3-sans);
 }
 
 .upcoming-events-page-v3 .upcoming-events-header {
-    margin: 0 0 1.4rem;
+    margin: 0 0 1.1rem;
     padding: .85rem 0 .8rem;
     border-top: 3px solid var(--v3-ink);
     border-bottom: 1px solid var(--v3-rule);
@@ -39,7 +39,7 @@
 
 .upcoming-events-page-v3 .upcoming-events-list {
     display: grid;
-    gap: clamp(3.2rem, 6vw, 5.5rem);
+    gap: clamp(2.25rem, 4vw, 3.75rem);
 }
 
 /* Each event is an editorial section, not a floating card. */
@@ -63,7 +63,7 @@
 .upcoming-events-page-v3 .event-card-header {
     display: grid;
     grid-template-columns: minmax(0, 1.55fr) minmax(260px, .75fr);
-    gap: clamp(1.2rem, 3vw, 3rem);
+    gap: clamp(1.1rem, 2.2vw, 2.2rem);
     align-items: start;
     padding: .75rem 0 .9rem;
     border: 0;
@@ -564,7 +564,7 @@ html.v3-theme-transitioning .upcoming-events-page-v3 .fighter-name {
 
 @media (max-width: 620px) {
     .upcoming-events-page-v3 {
-        width: min(calc(100% - 1.4rem), 1380px);
+        width: min(calc(100% - var(--v3-page-inline)), 1380px);
     }
 
     .upcoming-events-page-v3 .upcoming-events-header h1 {
