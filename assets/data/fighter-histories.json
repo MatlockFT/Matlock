@@ -1,5 +1,5 @@
 {
-  "version": 59,
+  "version": 60,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -28943,6 +28943,14 @@
         },
         {
           "date": "Mar. 7, 2020",
+          "label": "CANCELED · Joshua Lorton · Caged Thunder 11 (amateur booking)",
+          "kind": "booking",
+          "detail": "Tapology lists an amateur bantamweight pairing with Joshua Lorton for Caged Thunder 11 as canceled. Bashi instead completed an amateur bout against Anthony Lichtenberger on the same date. No verified reason for the opponent change; Lorton is not another MMA fight result.",
+          "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
+          "sourceLabel": "Tapology · March 2020 amateur canceled-booking ledger"
+        },
+        {
+          "date": "Mar. 7, 2020",
           "label": "AMATEUR WIN · Anthony (Tony) Lichtenberger · Caged Thunder 11",
           "kind": "win",
           "detail": "Stopped Anthony Lichtenberger by TKO (punches) at 2:43 of round one. Tapology abbreviates the first name as Tony; records refer to one opponent and one bout. Documented amateur MMA record after bout: 2-0.",
@@ -29119,9 +29127,9 @@
         },
         {
           "date": "Sept. 30, 2023",
-          "label": "Further Lights Out title defense; submission classification discrepancy",
+          "label": "Lights Out title bout with Askar; weigh-in and belt eligibility caveat",
           "kind": "milestone",
-          "detail": "Faced Askar Askar in a five-round scheduled championship main event and submitted him in round two. The databases differ on whether the choke should be called a short choke or rear-naked choke; the outcome and timing are agreed. This is the same professional fight as the preceding entry.",
+          "detail": "Tapology lists the Askar Askar matchup as a Lights Out bantamweight championship contest and shows Bashi at 138.6 lb for a scheduled 135-lb bout. Because this exceeds the normal non-title bantamweight allowance, the precise belt-retention eligibility is not independently established. Record the second-round submission and championship billing without asserting an undisputed successful title defense or a separate win.",
           "source": "https://www.tapology.com/fightcenter/fighters/251547-austin-bashi",
           "sourceLabel": "Tapology · Shamrock FC and Lights Out championship-bout record"
         },
