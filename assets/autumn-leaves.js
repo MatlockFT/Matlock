@@ -169,9 +169,8 @@
     ctx.restore();
   }
 
-  function paint() {
+  function paint(floor) {
     ctx.clearRect(0, 0, width, height);
-    const floor = footer.getBoundingClientRect().bottom;
     // The pile is attached to the real document footer, not the viewport.
     if (floor > -25 && floor < height + 28) {
       for (const leaf of settled) {
@@ -210,7 +209,7 @@
         leaves.splice(i, 1);
       }
     }
-    paint();
+    paint(floor);
   }
 
   function onScroll() {
