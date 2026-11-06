@@ -268,39 +268,7 @@ layout: default
             </div>
         </div>
 
-        <footer class="post-footer">
-                {% if page.tags and page.tags.size > 0 %}
-                    <section
-                        class="post-topics"
-                        aria-labelledby="post-topics-title"
-                    >
-                        <h2 id="post-topics-title">
-                            Topics
-                        </h2>
-        
-                        <ul>
-                            {% for tag in page.tags %}
-                                <li>
-                                    {{ tag }}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </section>
-                {% endif %}
-        
-                <div class="post-archive-link">
-                    <p>
-                        Browse more original UFC and MMA breakdowns from MMA Matlock.
-                    </p>
-        
-                    <a
-                        class="primary-button"
-                        href="{{ '/breakdowns/' | relative_url }}"
-                    >
-                        View all breakdowns
-                    </a>
-                </div>
-            </footer>
+
         
         
 
@@ -412,6 +380,40 @@ layout: default
             </section>
         
         
+
+        <footer class="post-footer">
+                {% if page.tags and page.tags.size > 0 %}
+                    <section
+                        class="post-topics"
+                        aria-labelledby="post-topics-title"
+                    >
+                        <h2 id="post-topics-title">
+                            Topics
+                        </h2>
+        
+                        <ul>
+                            {% for tag in page.tags %}
+                                <li>
+                                    {{ tag }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </section>
+                {% endif %}
+        
+                <div class="post-archive-link">
+                    <p>
+                        Browse more original UFC and MMA breakdowns from MMA Matlock.
+                    </p>
+        
+                    <a
+                        class="primary-button"
+                        href="{{ '/breakdowns/' | relative_url }}"
+                    >
+                        View all breakdowns
+                    </a>
+                </div>
+            </footer>
 
         <aside class="post-rail" aria-label="More MMA reading">
             {% if page.show_toc %}
