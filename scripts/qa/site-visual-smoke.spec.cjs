@@ -284,19 +284,35 @@ test.describe('Article fight navigation and spoiler picks', () => {
 
     await page.evaluate(() => window.scrollTo(0, 2200));
     await page.waitForTimeout(180);
-    await expect(floatingToc).toHaveClass(/is-fixed/);
-    const fixedGeometry = await floatingToc.evaluate(node => {
+    const stickyGeometry = await floatingToc.evaluate(node => {
       const rect = node.getBoundingClientRect();
+      const rail = node.closest('.post-rail').getBoundingClientRect();
       return {
-        top: Math.round(rect.top),
         position: getComputedStyle(node).position,
-        left: Math.round(rect.left),
-        width: Math.round(rect.width)
+        top: Math.round(rect.top),
+        width: Math.round(rect.width),
+        railLeft: Math.round(rail.left),
+        left: Math.round(rect.left)
       };
     });
-    expect(fixedGeometry.position).toBe('fixed');
-    expect(fixedGeometry.top).toBeGreaterThan(70);
-    expect(fixedGeometry.width).toBeGreaterThan(220);
+    expect(stickyGeometry.position).toBe('sticky');
+    expect(stickyGeometry.top).toBeGreaterThan(70);
+    expect(stickyGeometry.width).toBeGreaterThan(220);
+    expect(Math.abs(stickyGeometry.left - stickyGeometry.railLeft)).toBeLessThan(3);
+
+    // Sticky contents must end with article text, not cover share buttons.
+    await page.locator('.post-share').scrollIntoViewIfNeeded();
+    await page.waitForTimeout(180);
+    const endmatter = await page.evaluate(() => ({
+      tocBottom: document.querySelector('.article-toc-floating').getBoundingClientRect().bottom,
+      shareTop: document.querySelector('.post-share').getBoundingClientRect().top,
+      railBottom: document.querySelector('.post-rail').getBoundingClientRect().bottom,
+      relatedWidth: document.querySelector('.related-breakdowns')?.getBoundingClientRect().width || 0,
+      bodyWidth: document.querySelector('.post-body').getBoundingClientRect().width
+    }));
+    expect(endmatter.tocBottom).toBeLessThanOrEqual(endmatter.shareTop + 2);
+    expect(endmatter.railBottom).toBeLessThanOrEqual(endmatter.shareTop + 2);
+    expect(endmatter.relatedWidth).toBeGreaterThan(endmatter.bodyWidth);
 
     const fightShell = page.locator('.fight-section-ambient').first();
     const fightSurface = await fightShell.evaluate(node => {
