@@ -1,5 +1,5 @@
 {
-  "version": 63,
+  "version": 64,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -7,8 +7,8 @@
       "slug": "alexander-volkanovski",
       "name": "Alexander Volkanovski",
       "subtitle": "Career chronology",
-      "record": "28-4",
-      "ufcRecord": "15-3-0",
+      "record": "29-4",
+      "ufcRecord": "16-3-0",
       "division": "Featherweight",
       "items": [
         {
@@ -221,25 +221,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled title defense vs. Movsar Evloev",
-          "kind": "upcoming",
-          "detail": "Volkanovski is scheduled to defend the featherweight championship against unbeaten Movsar Evloev at UFC 333 at Etihad Arena in Abu Dhabi. The UFC 333 main card is scheduled to begin at 2:00 p.m. US Eastern (10:00 p.m. Abu Dhabi local time); the exact main-event walkout time is not confirmed.",
-          "sourceLabel": "UFC 333 event page",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "label": "WIN · Movsar Evloev · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Movsar Evloev by TKO (strikes) at 4:54 of round 2 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. The bout was for the UFC featherweight championship; Volkanovski retained his title.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "youth wrestling, rugby-to-MMA transition, early professional bouts and titles, UFC debut, individual championship results, documented injuries/illness, gym history, current booking; dates and fight finish times checked against primary and MMA record sources"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Movsar Evloev": {
       "slug": "movsar-evloev",
       "name": "Movsar Evloev",
       "subtitle": "Career chronology",
-      "record": "20-0",
-      "ufcRecord": "10-0-0",
+      "record": "20-1",
+      "ufcRecord": "10-1-0",
       "division": "Featherweight",
       "items": [
         {
@@ -444,25 +445,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled title challenge vs. Alexander Volkanovski",
-          "kind": "upcoming",
-          "detail": "Evloev is scheduled to challenge UFC featherweight champion Alexander Volkanovski at Etihad Arena in Abu Dhabi. This would be his first UFC championship fight. UFC 333's main card begins at 2:00 p.m. Eastern / 10:00 p.m. Abu Dhabi time; Evloev's precise cage-walk time has not been announced.",
-          "sourceLabel": "Official UFC 333 event page",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "label": "LOSS · Alexander Volkanovski · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Alexander Volkanovski by TKO (strikes) at 4:54 of round 2 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. The bout was for the UFC featherweight championship; Volkanovski retained his title.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "greco-roman origins, education caveats, complete UFC bout sequence, M-1 championships and exact title-fight finish times, gym history, withdrawals, 2025 illness, 2026 return, and UFC 333 booking"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Petr Yan": {
       "slug": "petr-yan",
       "name": "Petr Yan",
       "subtitle": "Career chronology",
-      "record": "20-5",
-      "ufcRecord": "12-4-0",
+      "record": "21-5",
+      "ufcRecord": "13-4-0",
       "division": "Bantamweight",
       "items": [
         {
@@ -707,25 +709,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled bantamweight title defense vs. Merab Dvalishvili III",
-          "kind": "upcoming",
-          "detail": "Yan (20-5 overall, 12-4 UFC) is scheduled to defend the undisputed bantamweight championship in his third fight with Dvalishvili at UFC 333, Etihad Arena, Abu Dhabi. The series stands at 1-1. The UFC 333 main card is scheduled for 2:00 p.m. US Eastern / 10:00 p.m. Abu Dhabi local time; the exact co-main-event walkout time has not been announced.",
-          "sourceLabel": "UFC 333 event page",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "label": "WIN · Merab Dvalishvili · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Merab Dvalishvili by unanimous decision after 5 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 48-47, 48-47, 48-47. The bout was for the UFC bantamweight championship; Yan retained his title.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "boxing origins, debut, ACB championship, UFC fight history and finish times, judges scores, weigh-in caveats, Tiger Muay Thai camp history, 2024 knee/groin injuries, January 2026 lumbar surgery, UFC 333 booking"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Merab Dvalishvili": {
       "slug": "merab-dvalishvili",
       "name": "Merab Dvalishvili",
       "subtitle": "Career chronology",
-      "record": "21-5",
-      "ufcRecord": "14-3-0",
+      "record": "21-6",
+      "ufcRecord": "14-4-0",
       "division": "Bantamweight",
       "items": [
         {
@@ -1034,25 +1037,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled title challenge vs. Petr Yan III",
-          "kind": "upcoming",
-          "detail": "Dvalishvili is scheduled to face champion Petr Yan in their third bantamweight bout at Etihad Arena in Abu Dhabi, with the rivalry tied 1-1. The UFC 333 main card starts at 2:00 p.m. US Eastern / 10:00 p.m. Abu Dhabi local time; the precise co-main-event walkout has not been confirmed. His professional MMA record ahead of the fight is 21-5 (14-3 UFC).",
-          "sourceLabel": "UFC 333 event schedule",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "label": "LOSS · Petr Yan · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Petr Yan by unanimous decision after 5 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 48-47, 48-47, 48-47. The bout was for the UFC bantamweight championship; Yan retained his title.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "judo-sambo origins and education, complete fight dates and key round times, ROC title, sambo 2019 world silver, 2017–2025 UFC progression, documented injuries, all 2026 RAF wrestling results, training affiliations, Yan trilogy booking"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Lone'er Kavanagh": {
       "slug": "lone-er-kavanagh",
       "name": "Lone'er Kavanagh",
       "subtitle": "Career chronology",
-      "record": "10-2",
-      "ufcRecord": "3-2-0",
+      "record": "11-2",
+      "ufcRecord": "4-2-0",
       "division": "Flyweight",
       "items": [
         {
@@ -1273,25 +1277,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled vs. Ramazan Temirov",
-          "kind": "upcoming",
-          "detail": "Kavanagh (10-2 overall, 3-2 UFC) is scheduled to face Ramazan Temirov (also listed as Ramazonbek Temirov) at UFC 333 at Etihad Arena in Abu Dhabi. It is a scheduled flyweight bout, not a completed result. The event's main card is scheduled to start at 2 p.m. US Eastern / 10 p.m. Abu Dhabi time, but the exact walkout time for this fight has not been announced.",
-          "sourceLabel": "UFC 333 event page",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "label": "WIN · Ramazan Temirov · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Ramazan Temirov by TKO (strikes) at 4:28 of round 1 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "kickboxing origin and unverified title specificity, amateur fight timeline, pre-UFC studies and camp, complete 2019–2026 professional fight record with round times, 2023 cancellation, first main event, 2026 Royval stoppage and 333 booking"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Ramazan Temirov": {
       "slug": "ramazan-temirov",
       "name": "Ramazan Temirov",
       "subtitle": "Career chronology",
-      "record": "20-3",
-      "ufcRecord": "3-0-0",
+      "record": "20-4",
+      "ufcRecord": "3-1-0",
       "division": "Flyweight",
       "items": [
         {
@@ -1592,25 +1597,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled flyweight bout vs. Lone'er Kavanagh",
-          "kind": "upcoming",
-          "detail": "Temirov (20-3 professionally and 3-0 UFC) is scheduled to face Lone'er Kavanagh (10-2) at UFC 333 at Etihad Arena in Abu Dhabi. This was scheduled for October 24, 2026. Fight-specific cage-walk and start times have not been officially announced.",
-          "sourceLabel": "UFC 333 event page",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "label": "LOSS · Lone'er Kavanagh · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Lone'er Kavanagh by TKO (strikes) at 4:28 of round 1 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "fighter-reported amateur achievements and early training, all 23 bouts in Sherdog/UFC-consistent 20-3 record, finish times, RIZIN run, disputed regional fight dates, 2025 CSAD suspension and two sample dates, cancelled Almabayev fight, 2026 grappling draw, UFC return vs Erceg, camp naming, 333 booking"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Alexander Volkov": {
       "slug": "alexander-volkov",
       "name": "Alexander Volkov",
       "subtitle": "Career chronology",
-      "record": "40-11",
-      "ufcRecord": "14-5-0",
+      "record": "41-11",
+      "ufcRecord": "15-5-0",
       "division": "Heavyweight",
       "items": [
         {
@@ -2111,25 +2117,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled heavyweight bout vs. Rizvan Kuniev",
-          "kind": "upcoming",
-          "detail": "Volkov (40-11 overall, 14-5 UFC) is scheduled to face Rizvan Kuniev at Etihad Arena in Abu Dhabi on his 38th birthday. The UFC 333 main card is scheduled to begin at 2:00 p.m. Eastern / 10:00 p.m. Abu Dhabi local time; a separate walkout time for their fight has not been confirmed. No result is recorded yet.",
-          "sourceLabel": "UFC 333 official event page",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "label": "WIN · Rizvan Kuniev · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Rizvan Kuniev by unanimous decision after 3 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 29-28, 30-27, 30-27.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "all 51 recorded professional fight dates/methods/round-clock finishes, 2009 professional debut, Bellator 2012/2013 title and 2014 tournament, M-1 championship, UFC's complete 19-bout history, 2019 canceled Overeem fight and confirmed uncertainty, engineering education, martial arts background, Las Vegas relocation/Porrada camps, 2025 grappling activity, pending 333 booking"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Rizvan Kuniev": {
       "slug": "rizvan-kuniev",
       "name": "Rizvan Kuniev",
       "subtitle": "Career chronology",
-      "record": "14-3-1",
-      "ufcRecord": "2-1-0",
+      "record": "14-4-1",
+      "ufcRecord": "2-2-0",
       "division": "Heavyweight",
       "items": [
         {
@@ -2390,25 +2397,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled vs. Alexander Volkov",
-          "kind": "upcoming",
-          "detail": "Kuniev is scheduled to face Alexander Volkov at Etihad Arena in Abu Dhabi in a heavyweight matchup. His professional MMA record entering the event is 14-3-1 with one NC; his UFC record is 2-1. As of October 21, the fight is a booking, not a completed result, and a specific walkout time has not been verified.",
-          "sourceLabel": "UFC fighter booking / Sherdog UFC 333",
-          "source": "https://www.ufc.com/athlete/rizvan-kuniev"
+          "label": "LOSS · Alexander Volkov · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Alexander Volkov by unanimous decision after 3 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 29-28, 30-27, 30-27.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "sanda and Gorets origin; individually dated 14-3-1 (1 NC) professional bouts; reported and documented amateur championships; 2019 Eagle title and 2020/2022 defenses; 2021 and 2024 DWCS; overturned 2023 PFL Ferreira decision, full Nevada sanction; 2025 canceled UFC debut, 2025–2026 UFC results; team affiliation caveats; pending UFC 333 bout"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Aaron Pico": {
       "slug": "aaron-pico",
       "name": "Aaron Pico",
       "subtitle": "Career chronology",
-      "record": "14-5",
-      "ufcRecord": "1-1-0",
+      "record": "15-5",
+      "ufcRecord": "2-1-0",
       "division": "Featherweight",
       "items": [
         {
@@ -2741,25 +2749,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled featherweight bout vs. Losene Keita",
-          "kind": "upcoming",
-          "detail": "Pico (14-5 overall, 1-1 UFC) is scheduled to face Losene Keita at Etihad Arena in Abu Dhabi, UAE, in a featherweight contest. The UFC 333 main card begins at 2:00 p.m. U.S. Eastern / 10:00 p.m. Abu Dhabi time. The individual walkout time has not been confirmed and no fight result is recorded before the event.",
-          "sourceLabel": "UFC 333 published fight card",
-          "source": "https://www.ufc.com/news/how-watch-and-stream-ufc"
+          "label": "WIN · Losene Keita · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Losene Keita by TKO (strikes) at 1:14 of round 1 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "youth boxing and pankration, 2013 cadet world title, 2014 junior silver and Bellator signing, 2015 junior bronze, 2016 Olympic Trials, complete 19-bout Bellator/UFC record with round and fight times, 2019 Jackson-Wink move, shoulder injury and surgery, 2025 UFC transition, Morocco camps under Roberto Barreiro and wider coaching team, 2026 RAF wrestling win, UFC 333 opponent replacement"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Losene Keita": {
       "slug": "losene-keita",
       "name": "Losene Keita",
       "subtitle": "Career chronology",
-      "record": "17-2",
-      "ufcRecord": "1-1-0",
+      "record": "17-3",
+      "ufcRecord": "1-2-0",
       "division": "Featherweight",
       "items": [
         {
@@ -3060,25 +3069,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled featherweight bout vs. Aaron Pico",
-          "kind": "upcoming",
-          "detail": "Keita (17-2 professional, 1-1 UFC) is scheduled to fight Aaron Pico (14-5 professional, 1-1 UFC) at Etihad Arena in Abu Dhabi. The main card is scheduled to start at 2:00 p.m. US Eastern / 10:00 p.m. Abu Dhabi time; no individual walkout time or fight result is yet confirmed.",
-          "sourceLabel": "UFC athlete booking",
-          "source": "https://www.ufc.com/athlete/losene-keita"
+          "label": "LOSS · Aaron Pico · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Aaron Pico by TKO (strikes) at 1:14 of round 1 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "3 amateur MMA fights; all 19 professional bouts with exact dates and available finish times; WFL welterweight championship; OKTAGON interim/unified lightweight and featherweight title runs; 2023 Sanikidze foot injury; separate Muay Thai win; 2024 Tipsport Gamechanger victory; Aug 2025 UFC signing; Sept 2025 weight miss; 2026 UFC results and camp coaches; Pico UFC 333 booking"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Azamat Murzakanov": {
       "slug": "azamat-murzakanov",
       "name": "Azamat Murzakanov",
       "subtitle": "Career chronology",
-      "record": "16-1",
-      "ufcRecord": "6-1-0",
+      "record": "16-2",
+      "ufcRecord": "6-2-0",
       "division": "Light Heavyweight",
       "items": [
         {
@@ -3387,25 +3397,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled vs. Dominick Reyes",
-          "kind": "upcoming",
-          "detail": "Murzakanov (16-1 professional MMA, 6-1 UFC) is booked against former UFC title challenger Dominick Reyes at UFC 333 at Etihad Arena in Abu Dhabi. Their light-heavyweight fight appears on the prelims; the UFC 333 preliminary card is scheduled to start at noon U.S. Eastern (8:00 p.m. in Abu Dhabi), while the main card starts at 2:00 p.m. Eastern. No exact bout-specific cage-walk time has been announced and no result is recorded yet.",
-          "sourceLabel": "UFC 333 card and schedule",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "label": "LOSS · Dominick Reyes · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Dominick Reyes by KO (strikes) at 2:40 of round 1 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "all 17 professional bouts and methods, event-local dates/available finish clocks, hand-to-hand combat titles presented as self-reported, New Jersey K Dojo affiliation, 2017 withdrawn debut, September 2017 boldenone USADA timeline, 2019 BRAVE KHK double win and time discrepancy, 2021 DWCS and canceled bout series, two official UFC bonuses, 2023 pneumonia, October 2024 LGD-4033 supplement and 180-day CSAD sanction, 2026 first loss to Paulo Costa, scheduled 333 Reyes fight"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Dominick Reyes": {
       "slug": "dominick-reyes",
       "name": "Dominick Reyes",
       "subtitle": "Career chronology",
-      "record": "16-5",
-      "ufcRecord": "10-5-0",
+      "record": "17-5",
+      "ufcRecord": "11-5-0",
       "division": "Light Heavyweight",
       "items": [
         {
@@ -3762,25 +3773,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled vs. Azamat Murzakanov",
-          "kind": "upcoming",
-          "detail": "Reyes (16-5 professional MMA, 10-5 UFC) is scheduled to face Azamat Murzakanov (16-1) in a light heavyweight bout at Etihad Arena, Abu Dhabi. UFC coverage lists it as the featured preliminary bout. Prelims begin noon Eastern / 11 a.m. Central / 8 p.m. Abu Dhabi local time, but an exact individual cage-walk time has not been announced. The outcome is not known as of Oct. 21.",
-          "sourceLabel": "UFC 333 official event page",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "label": "WIN · Azamat Murzakanov · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Azamat Murzakanov by KO (strikes) at 2:40 of round 1 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "Stony Brook DB college career and Sep 2026 Hall of Fame, May 2013 MMA transition, all five documented amateur MMA fights, regional HFC title and grappling credentials, all 21 professional fights 16-5 with dates and finish times, 2017 Murzakanov replacement, Jones and Blachowicz title bouts, 2020–22 gym changes and Teixeira/Pereira visits, 2024 DVT vs PE distinction and two Ulberg cancellations, 2024–26 comeback results, gym-listing discrepancy, UFC 333 preliminary booking"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Nikita Krylov": {
       "slug": "nikita-krylov",
       "name": "Nikita Krylov",
       "subtitle": "Career chronology",
-      "record": "31-12",
-      "ufcRecord": "12-10-0",
+      "record": "31-13",
+      "ufcRecord": "12-11-0",
       "division": "Light Heavyweight",
       "items": [
         {
@@ -4265,25 +4277,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled vs. Abdul-Rakhman Yakhyaev",
-          "kind": "upcoming",
-          "detail": "Krylov enters the scheduled light-heavyweight fight against undefeated Abdul-Rakhman Yakhyaev at Etihad Arena, Abu Dhabi with a 31-12 professional record and 12-10 UFC record. UFC 333 prelims start at noon Eastern / 11 a.m. Central / 8 p.m. Abu Dhabi local time; no exact individual walkout time is available. The booking was announced ahead of October 24, 2026.",
-          "sourceLabel": "Official UFC event page",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "label": "LOSS · Abdul Rakhman Yakhyaev · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Abdul Rakhman Yakhyaev by TKO (knee) at 2:38 of round 1 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "early karate/submission background and 2013 ADCC Ukraine claim; one recorded amateur bout; all 43 professional MMA bouts and finish times; original heavyweight-to-LHW UFC shift; 2013 GFC one-night title; 2017–2018 UFC exit and Fight Nights Global championship; 2020 Thailand/ATT camp, varying 2026 affiliations; illness-related 2023 Spann cancellation, 2024 Murzakanov cancellation, 2023–25 layoff; July 2026 jaw injury with recovery caveat; pending Yakhyaev UFC 333 bout"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Abdul Rakhman Yakhyaev": {
       "slug": "abdul-rakhman-yakhyaev",
       "name": "Abdul Rakhman Yakhyaev",
       "subtitle": "Career chronology",
-      "record": "10-0",
-      "ufcRecord": "3-0-0",
+      "record": "11-0",
+      "ufcRecord": "4-0-0",
       "division": "Light Heavyweight",
       "items": [
         {
@@ -4464,25 +4477,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled light heavyweight fight vs. Nikita Krylov",
-          "kind": "upcoming",
-          "detail": "Yakhyaev (10-0 overall, 3-0 in UFC Octagon fights) is scheduled against Nikita Krylov at Etihad Arena in Abu Dhabi. UFC 333 prelims begin at noon US Eastern / 8:00 p.m. Abu Dhabi local time, but the individual fight's walkout time is not established. This was a scheduled October 24, 2026 bout.",
-          "sourceLabel": "UFC official 333 fight preview",
-          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-333-volkanovski-vs-evloev"
+          "label": "WIN · Nikita Krylov · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Nikita Krylov by TKO (knee) at 2:38 of round 1 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "all ten professional fights 10-0 and 3-0 UFC, ACA 2021/22 early bouts with finish-clock discrepancies, KhanFight 2023 and ARES FC 2024 titles, documented 2019 amateur loss, NAGA/combat-sambo credentials with uncertainty, education and prior plumbing work, canceled 2023 ONE booking with no claimed cause, DWCS contract, complete 2025/26 UFC stoppages, June 2026 bonus, Germany and Florida gym affiliations, October 21 UFC fight-week interview and October 24 Krylov booking"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Abus Magomedov": {
       "slug": "abus-magomedov",
       "name": "Abus Magomedov",
       "subtitle": "Career chronology",
-      "record": "29-7-1",
-      "ufcRecord": "5-3-0",
+      "record": "30-7-1",
+      "ufcRecord": "6-3-0",
       "division": "Middleweight",
       "items": [
         {
@@ -4919,25 +4933,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled middleweight bout vs. Cam Rowston",
-          "kind": "upcoming",
-          "detail": "Magomedov (29-7-1 professional, 5-3 UFC) is scheduled to fight Cam Rowston (also listed as Cameron Rowston) at UFC 333 at Etihad Arena in Abu Dhabi. The event's early prelims start 10:00 a.m. Eastern, prelims at noon and main card at 2:00 p.m. Eastern; no individual walkout time was announced at the time of publication.",
-          "sourceLabel": "UFC 333 official event page",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "label": "WIN · Cam Rowston · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Cam Rowston by submission (guillotine choke) at 1:44 of round 1 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "all 37 professional MMA results 29-7-1 with source-matched dates and documented round times, first career 2010 fight, 2013 GMC and Superior FC welterweight titles, 2017 Superior FC middleweight title, 2018 PFL regular season and two-fight playoff with majority draw, Dec 2018 championship loss, 2020 KSW bout, 2021–22 three UFC planned opponents with visa-related cancellation, all eight UFC fights through June 2026, UFD affiliation and 2024 American Top Team camp, current 333 Rowston booking"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Cam Rowston": {
       "slug": "cam-rowston",
       "name": "Cam Rowston",
       "subtitle": "Career chronology",
-      "record": "15-3",
-      "ufcRecord": "3-0-0",
+      "record": "15-4",
+      "ufcRecord": "3-1-0",
       "division": "Middleweight",
       "items": [
         {
@@ -5294,25 +5309,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled middleweight fight vs. Abus Magomedov",
-          "kind": "upcoming",
-          "detail": "Rowston (15-3 professional MMA, 3-0 UFC) is booked to face Abus Magomedov (29-7-1, 5-3 UFC) at Etihad Arena in Abu Dhabi on UFC 333's preliminary card. The prelims begin at noon US Eastern / 11 a.m. Central / 8 p.m. in Abu Dhabi, but an individual bout walkout time is not confirmed. No result is recorded as of October 21.",
-          "sourceLabel": "UFC official UFC 333 card",
-          "source": "https://www.ufc.com/news/how-watch-and-stream-ufc"
+          "label": "LOSS · Abus Magomedov · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Abus Magomedov by submission (guillotine choke) at 1:44 of round 1 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "all 18 professional MMA bouts 15-3, individual finish times with 2019 Torres-method discrepancy, 5 indexed amateur bouts (4-1), 2013 MMA training and Sydney-to-Auckland CKB move, degree and prior jobs, 2021 ADCC under-100 kg bronze distinct from undated reported absolute title, 2022 and by-May-2023 King in the Ring kickboxing tournaments, Shuriken 205 lb and Stealth 190 lb MMA titles, canceled DWCS bookings, Kunneman rib injury replacement, 2025 UFC contract and three UFC wins, CKB team dynamics as of 2026, upcoming Magomedov UFC 333 booking"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Grant Dawson": {
       "slug": "grant-dawson",
       "name": "Grant Dawson",
       "subtitle": "Career chronology",
-      "record": "24-3-1",
-      "ufcRecord": "12-2-1",
+      "record": "25-3-1",
+      "ufcRecord": "13-2-1",
       "division": "Lightweight",
       "items": [
         {
@@ -5805,25 +5821,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled lightweight bout vs. Nurullo Aliev",
-          "kind": "upcoming",
-          "detail": "Dawson (24-3-1 overall, 12-2-1 regular UFC) is scheduled to face undefeated Nurullo Aliev (12-0) at Etihad Arena in Abu Dhabi. Preliminary coverage begins at noon Eastern / 11 a.m. Central / 8 p.m. local Abu Dhabi time. No specific cage-walk time or bout result has been announced as of Oct. 21.",
-          "sourceLabel": "Sherdog Oct. 21, 2026 fight preview",
-          "source": "https://www.sherdog.com/news/articles/4/Preview-UFC-333-prelims-203277"
+          "label": "WIN · Nurullo Aliev · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Nurullo Aliev by unanimous decision after 3 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 29-27, 29-27, 29-27.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "28 professional MMA bouts 24-3-1 (including one 2015 double-fight night and 2017 DWCS), 8 indexed amateur wins vs outdated UFC 5-0 summary, early KCFA featherweight title with acquisition date unresolved, 2017–2018 dismissed USADA M3/Turinabol investigation with no final sanction, two verified UFC weight misses, 2020 150 lb catchweight vs later 155 lb move, 2021 Ricky Glenn majority draw, Feb 2022 Glory-to-ATT move, all 15 regular UFC fight results with available finish times, 2026 Rębecki victory and Aliev UFC 333 booking"
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Nurullo Aliev": {
       "slug": "nurullo-aliev",
       "name": "Nurullo Aliev",
       "subtitle": "Career chronology",
-      "record": "12-0",
-      "ufcRecord": "4-0-0",
+      "record": "12-1",
+      "ufcRecord": "4-1-0",
       "division": "Lightweight",
       "items": [
         {
@@ -6140,25 +6157,26 @@
         },
         {
           "date": "Oct. 24, 2026",
-          "label": "UFC 333 · scheduled vs. Grant Dawson",
-          "kind": "upcoming",
-          "detail": "Aliev (12-0 professional MMA; 4-0 UFC) is scheduled to meet Grant Dawson at lightweight in the UFC 333 preliminary card at Etihad Arena, Abu Dhabi. The prelims begin at noon U.S. Eastern / 11 a.m. Central / 8 p.m. Abu Dhabi time, with no independently confirmed individual cage-walk time or fight result as of Oct. 21.",
-          "sourceLabel": "UFC official UFC 333 card",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "label": "LOSS · Grant Dawson · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Grant Dawson by unanimous decision after 3 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 29-27, 29-27, 29-27.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 6,
         "verifiedThrough": "2026-10-21",
         "scope": "Re-audited all 12 dated pro bouts (2018–2026), 3 amateur wins, 2017 UWW Sochi cadet 75 kg title, regional cancellations, championship-lineage caveats, major UFC injury and recovery, 2023 biting deduction and official UFC scorecards through July 2026, verified UFC 333 booking; corrected first opponent name variations; all timeline items rearranged chronologically, undated events explicitly labeled."
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Colby Thicknesse": {
       "slug": "colby-thicknesse",
       "name": "Colby Thicknesse",
       "subtitle": "Career chronology",
-      "record": "9-1",
-      "ufcRecord": "2-1-0",
+      "record": "10-1",
+      "ufcRecord": "3-1-0",
       "division": "Bantamweight",
       "items": [
         {
@@ -6450,26 +6468,27 @@
           "source": "https://www.buzzsprout.com/1765488/episodes/19934049-ufc-fighter-colby-thicknesse-on-his-fight-against-asaf-chopurov-at-ufc333-in-abu-dhabi"
         },
         {
-          "date": "Oct. 24, 2026 (scheduled)",
-          "label": "UFC 333 · bantamweight vs. Asaf Chopurov",
-          "kind": "upcoming",
-          "detail": "Thicknesse (9-1 professional; 2-1 UFC) is scheduled to fight Asaf Chopurov (11-0) at Etihad Arena in Abu Dhabi. The early prelims are advertised to start at 10 a.m. Eastern / 9 a.m. Central / 6 p.m. Abu Dhabi time. That is a broadcast segment start, not a confirmed individual cage-walk time. No fight result exists as of Oct. 21, 2026.",
-          "sourceLabel": "UFC 333 official event and fight-by-fight preview",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "date": "Oct. 24, 2026",
+          "label": "WIN · Asaf Chopurov · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Asaf Chopurov by split decision after 3 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 29-28, 29-28, 28-29.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "Rebuilt chronological career from early wrestling and Freestyle/Volkanovski affiliation through eight indexed amateur bouts (7-1), March 2020 IMMAF featherweight gold with exact rounds/times, 9-1 full professional record with rounds and clocks, 2021-24 canceled bookings, BJJ black belt (2022), 2024 Hex bantamweight title, short-notice 2025 UFC debut and scorecards, September 2025 and May 2026 unanimous decisions, October 2026 podcast and Abu Dhabi UFC 333 booking. Unknown fight clock times not invented; local vs US date differences flagged; no speculative injury/anti-doping/weight misses."
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Asaf Chopurov": {
       "slug": "asaf-chopurov",
       "name": "Asaf Chopurov",
       "subtitle": "Career chronology",
-      "record": "11-0",
-      "ufcRecord": "0-0-0",
+      "record": "11-1",
+      "ufcRecord": "0-1-0",
       "division": "Bantamweight",
       "items": [
         {
@@ -6977,26 +6996,27 @@
           "source": "https://sports.yahoo.com/articles/top-prospect-asaf-chopurov-signs-232611269.html"
         },
         {
-          "date": "Oct. 24, 2026 (scheduled)",
-          "label": "UFC 333 · bantamweight debut vs. Colby Thicknesse",
-          "kind": "upcoming",
-          "detail": "Chopurov (11-0 professional, 0-0 UFC) is scheduled to face Colby Thicknesse (9-1 professional, 2-1 UFC) at Etihad Arena in Abu Dhabi on UFC 333. This is his scheduled UFC debut, and no bout result or individual walkout time exists as of Oct. 21, 2026. Early preliminary coverage is advertised for 10 a.m. Eastern / 9 a.m. Central / 6 p.m. Abu Dhabi time.",
-          "sourceLabel": "UFC event listing",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "date": "Oct. 24, 2026",
+          "label": "LOSS · Colby Thicknesse · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Colby Thicknesse by split decision after 3 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 29-28, 29-28, 28-29.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "Comprehensive dated rebuild: all 11 Sherdog professional bouts (11-0; 5 KO/TKO, 5 submissions, 1 decision) with rounds, methods and clocks; 35 individually indexed amateur wins and 1 loss including delayed 2021 IMMAF Junior World gold in Jan. 2022; full 2021–2025 amateur tournament history and 34-1 vs 35-1 discrepancy; first Khabib/Abdulmanap inspiration and Dagestan camp, Sambo 34/Chingiz Allazov multi-gym reports, Petr Yan sparring, canceled Tokarev/McLaren bookings, UAE Warriors bantamweight crown and two defenses, UFC signing and Oct. 24 scheduled debut. Sources include IMMAF, Sherdog, UAE Warriors, Tapology, UFC and MMA Junkie. Unknown dates/times explicitly qualified."
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Jacob Malkoun": {
       "slug": "jacob-malkoun",
       "name": "Jacob Malkoun",
       "subtitle": "Career chronology",
-      "record": "10-3",
-      "ufcRecord": "6-3-0",
+      "record": "10-4",
+      "ufcRecord": "6-4-0",
       "division": "Middleweight",
       "items": [
         {
@@ -7304,26 +7324,27 @@
           "source": "https://www.foxsports.com.au/ufc/ufc-2026-australias-jacob-malkoun-vs-abubakar-vagaev-at-ufc-333-preview-interview-latest-news/news-story/818fb961e533a58440a3b026774dca9f"
         },
         {
-          "date": "Oct. 24, 2026 (scheduled)",
-          "label": "UFC 333 · middleweight vs. Abubakar Vagaev",
-          "kind": "upcoming",
-          "detail": "Jacob Malkoun (10-3 MMA, 6-3 UFC) is scheduled against Abubakar Vagaev (25-4) at Etihad Arena, Abu Dhabi. Early prelim programming starts at 10 a.m. ET / 9 a.m. CT / 6 p.m. local, not a confirmed individual cage-walk time. No result exists as of Oct. 21.",
-          "sourceLabel": "UFC 333 official fight card",
-          "source": "https://www.ufc.com/event/ufc-333"
+          "date": "Oct. 24, 2026",
+          "label": "LOSS · Abubakar Vagaev · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Abubakar Vagaev by unanimous decision after 3 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 29-28, 29-28, 29-28.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "Rebuilt chronological record covering two dated amateur MMA wins; 13 complete pro MMA bouts with results and times (10-3), 2017 and 2019 documented boxing wins within reported 3-0 record; ADCC 2019 under-99kg Trials win and documented Worlds withdrawal; contested Van Dijck fight-round difference; Smeaton Grange / PMA team-listing distinctions; 2022 Dobson rescheduling, 2023 Khizriev/Bryczek replacements, Brundage DQ, 2024 Petroski TKO; 2024-2026 back injury, 2025 Vieira cancellation, 2026 Finney and Meerschaert scores, Meerschaert opponent-only weight miss, and Oct. 21 UFC 333 fight-week interview and booking. Undocumented surgery, doping, exact third boxing bout and gym switch not claimed. Chronological position of retrospective interviews, gym affiliations and layoff-end date normalized after initial commit."
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Abubakar Vagaev": {
       "slug": "abubakar-vagaev",
       "name": "Abubakar Vagaev",
       "subtitle": "Career chronology",
-      "record": "25-4",
-      "ufcRecord": "1-0-0",
+      "record": "26-4",
+      "ufcRecord": "2-0-0",
       "division": "Middleweight",
       "items": [
         {
@@ -7703,26 +7724,27 @@
           "source": "https://mma.metaratings.ru/news/vagaev-malkun-krepkii-boec-eto-khoroshaya-proverka-dlya-menya-659829/"
         },
         {
-          "date": "Oct. 24, 2026 (scheduled)",
-          "label": "UFC 333 · middleweight vs. Jacob Malkoun",
-          "kind": "upcoming",
-          "detail": "At Etihad Arena in Abu Dhabi, Vagaev (25-4, UFC 1-0) is booked against Malkoun (10-3, UFC 6-3) at middleweight. UFC 333 preliminary coverage begins at noon ET / 11 a.m. CT / 8 p.m. Abu Dhabi, not a confirmed cage-walk time. No result is available as of Oct. 21, 2026.",
-          "sourceLabel": "UFC fight-by-fight event preview",
-          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-333-volkanovski-vs-evloev"
+          "date": "Oct. 24, 2026",
+          "label": "WIN · Jacob Malkoun · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Jacob Malkoun by unanimous decision after 3 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 29-28, 29-28, 29-28.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "Full audit of all 29 professional MMA fights (25-4) with rounds/clocks from Sherdog and cross-checked promotion sources; 2017 WFCA Ushukov title, 2021 original ACA Abdulaev title, 2022 ACA Gadzhidaudov title defense, December 2022 second-round 0:20 Slipenko KO title loss, 2025 Tumenov recapture; canceled ACA bookings; 2026 signing with acknowledged Chimaev help; July 2026 UFC debut 29-28 x3, 171lb compliant weigh-in; fall 2026 middleweight move, October camp illness and acclimation statements; sources distinguish age-at-debut and 2014 submission method inconsistencies. No unverified amateur wins, doping, surgery, or permanent gym move."
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Bolaji Oki": {
       "slug": "bolaji-oki",
       "name": "Bolaji Oki",
       "subtitle": "Career chronology",
-      "record": "10-4",
-      "ufcRecord": "2-3-0",
+      "record": "10-5",
+      "ufcRecord": "2-4-0",
       "division": "Featherweight",
       "items": [
         {
@@ -8014,26 +8036,27 @@
           "source": "https://www.sherdog.com/news/articles/7/Preview-UFC-333-prelims-203277"
         },
         {
-          "date": "Oct. 24, 2026 (scheduled)",
-          "label": "UFC 333 · featherweight bout vs. Daniel Santos",
-          "kind": "upcoming",
-          "detail": "Oki (10-4 overall; 2-3 UFC) is scheduled to fight Daniel Santos (14-3) at featherweight on UFC 333 at Etihad Arena, Abu Dhabi. The early preliminary broadcast starts at 10 a.m. U.S. Eastern / 9 a.m. Central / 6 p.m. Abu Dhabi. That is not his individual walkout time. No bout result or official UFC 333 weigh-in is verified as of Oct. 21.",
-          "sourceLabel": "UFC official UFC 333 bout listings",
-          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-prelim-results"
+          "date": "Oct. 24, 2026",
+          "label": "LOSS · Daniel Santos · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Daniel Santos by unanimous decision after 3 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 29-28, 29-28, 29-28.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "Full dated rebuild including all 14 documented pro MMA bouts (10-4), UFC 2-3 and DWCS contract win, precise fight methods/round/clock including UFC-vs-Tapology discrepancy for Duncan's submission; indexed amateur MMA win and draw, separate historic Muay Thai result; 2018 professional debut at European Beatdown 3, 2019–2021 fight-history gap, canceled European and UFC bookings (2021, 2024, 2025), official injury withdrawal Jan. 2025, May 2025 opponent illness correction, Atomic vacant lightweight title won Oct. 2022 and Mar. 2023 defense vs disputed 'two-time champ' shorthand, dated Sept. 2025 Paris training with Imavov/Saint Denis/Gomis, 2026 featherweight cut announcement vs Santos and Oct. 24 event. No unfounded doping suspensions, surgery, permanent camp changes or successful 145lb weigh-in assertions."
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Daniel Santos": {
       "slug": "daniel-santos",
       "name": "Daniel Santos",
       "subtitle": "Career chronology",
-      "record": "14-3",
-      "ufcRecord": "4-2-0",
+      "record": "15-3",
+      "ufcRecord": "5-2-0",
       "division": "Featherweight",
       "items": [
         {
@@ -8397,26 +8420,27 @@
           "source": "https://www.itatiaia.com.br/esportes/lutas/ufc/lutador-mineiro-diz-que-volkanovski-ja-superou-jose-aldo-no-ufc-e-o-melhor/"
         },
         {
-          "date": "Oct. 24, 2026 (scheduled)",
-          "label": "UFC 333 · featherweight vs. Bolaji Oki",
-          "kind": "upcoming",
-          "detail": "Santos (14-3 overall, 4-2 UFC) is booked to face Bolaji Oki (10-4, 2-3 UFC) at Etihad Arena in Abu Dhabi at featherweight. The early prelims are scheduled for 10 a.m. U.S. Eastern / 9 a.m. Central / 6 p.m. Abu Dhabi local time. This is the segment's start, not a confirmed cage-walk time. No fight result or official UFC 333 weigh-in is known as of Oct. 21, 2026.",
-          "sourceLabel": "UFC official Oct. 19 UFC 333 fight preview",
-          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-333-volkanovski-vs-evloev"
+          "date": "Oct. 24, 2026",
+          "label": "WIN · Bolaji Oki · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Bolaji Oki by unanimous decision after 3 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 29-28, 29-28, 29-28.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "Reconstructed all 17 professional MMA fights 14-3, UFC 4-2, with dates, methods, rounds and verified clocks (2014 spinning-back-elbow time unavailable), UFC Castaneda first win and Fight of the Night, Johnny Munoz point deduction, May 2025 30-27 x3 Lee return and May 2026 Choi Fight of the Night; reported early amateur/Muay Thai background, Chute Boxe Diego Lima/Oliveira affiliation and team member Allan Nascimento death Aug 3 and Santos Oct 21 tribute; all key canceled matchups Oct 2021, 2023, 2024, Apr 2025 weight-cut medical cancellation and Sep 2025 Choi withdrawal; 2023–2025 layoff explained by firsthand April 4 2025 interview on injuries/overtraining/finances; 2025 UFC 320 153-lb catchweight after medical cut disruption vs reported official weighed 151/152.5, not mislabeled as missed revised weight; Sept 29 booking and Oct 24 2026 UFC 333 early prelim. UFC Oct 2026 Uberaba birthplace vs other outlets Uberlandia contradiction qualified; no unsupported drug bans, surgery dates, exact amateur record, Oct 2026 successful weigh-in or verified camp move."
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Kody Steele": {
       "slug": "kody-steele",
       "name": "Kody Steele",
       "subtitle": "Career chronology",
-      "record": "8-1",
-      "ufcRecord": "1-1-0",
+      "record": "9-1",
+      "ufcRecord": "2-1-0",
       "division": "Lightweight",
       "items": [
         {
@@ -8772,26 +8796,27 @@
           "source": "https://www.ufc.com/news/fight-fight-preview-ufc-333-volkanovski-vs-evloev"
         },
         {
-          "date": "Oct. 24, 2026 (scheduled)",
-          "label": "UFC 333 · lightweight bout vs. Noah Gugnon",
-          "kind": "upcoming",
-          "detail": "At Etihad Arena in Abu Dhabi, Kody Steele (8-1 overall; 1-1 UFC) is booked to fight Noah Gugnon (10-2) in the UFC 333 early prelims. The early preliminary broadcast begins at 10 a.m. ET / 9 a.m. CT / 6 p.m. Abu Dhabi time, not a verified individual cage-walk. No weigh-in result or fight outcome is established as of Oct. 21.",
-          "sourceLabel": "UFC official October 2026 card and broadcast schedule",
-          "source": "https://www.ufc.com/news/how-watch-and-stream-ufc"
+          "date": "Oct. 24, 2026",
+          "label": "WIN · Noah Gugnon · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Noah Gugnon by KO (strikes) at 3:54 of round 1 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "Rebuilt dated profile with all 9 professional bouts (8-1, four KO/TKO, two subs, two decisions) and clocks, two amateur KO/TKO wins plus 2021 Fury amateur welterweight title; 2008 wrestling and 2013 Texas BJJ switch under Rodrigo Cabral, 2017/2019 IBJJF No-Gi silver, Aug 18 2019 EBI Combat Jiu-Jitsu world 170lb title and Nathan Orchard final, Jan 2020 black belt, 2021 ADCC North American Trials third-place per official results (not a verified Trials silver), major grappling matches including Phil Rowe, 2022 Glory MMA training injury without speculative diagnosis, regional canceled bouts, mid-2024 Las Vegas Syndicate MMA move, Sep 10 DWCS Ottoni fight-night cancellation, Oct 8 Chasen Blair contract win, 2025 UFC 312 Rongzhu 30-27 x3 loss and Fight of the Night, 2025-26 layoff not medically overinterpreted, May 2026 inverted heel hook vs Dom Mar Fan, August 2026 Gauge Young cancellation with reason unknown, Oct 19–21 UFC 333 Gugnon booking. No unsupported doping, weight miss, surgery or unverified gym transfer."
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Noah Gugnon": {
       "slug": "noah-gugnon",
       "name": "Noah Gugnon",
       "subtitle": "Career chronology",
-      "record": "10-2",
-      "ufcRecord": "1-0-0",
+      "record": "10-3",
+      "ufcRecord": "1-1-0",
       "division": "Lightweight",
       "items": [
         {
@@ -9115,26 +9140,27 @@
           "source": "https://www.sherdog.com/news/articles/8/Preview-UFC-333-prelims-203277"
         },
         {
-          "date": "Oct. 24, 2026 (scheduled)",
-          "label": "UFC 333 · lightweight vs. Kody Steele",
-          "kind": "upcoming",
-          "detail": "Gugnon (10-2 professional; 1-0 UFC) is scheduled against Kody Steele (8-1; 1-1 UFC) at Etihad Arena in Abu Dhabi. UFC 333's early preliminary broadcast is scheduled for 10 a.m. Eastern / 9 a.m. Central / 6 p.m. Abu Dhabi time, which is NOT a confirmed individual cage walk. There is no official weigh-in or fight result as of Oct. 21, 2026.",
-          "sourceLabel": "UFC 333 official preview",
-          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-333-volkanovski-vs-evloev"
+          "date": "Oct. 24, 2026",
+          "label": "LOSS · Kody Steele · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Kody Steele by KO (strikes) at 3:54 of round 1 at UFC 333: Volkanovski vs. Evloev in Abu Dhabi.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "Fully rebuilt chronological profile with all 12 professional fights (10-2, 6 KO/TKO and 4 RNC wins) including round and stoppage clocks, one verified 2016 amateur MMA win (not claimed complete amateur record), dated regional cancellations from 2020 through Oct 2024, Bellator Ewen TKO and Vardanyan decision (Sherdog unanimous vs Tapology split discrepancy), move after Feb 2024 loss from Old Dog/Eddy Carda background to Lyon Ghost Arena under coach Fatah Menane, roster Bulgarian Top Team and Old Dog listings as distinct from confirmed training history, first ARES June 2025 KO followed by three first-round ARES finishes, April 2026 one-second stoppage discrepancy, June 2026 UFC signing, July 31 UFC Belgrade official compliant 155lb weigh-in, Aug 1 debut RNC at 1:21 with low kick mechanism, Aug 26 rejected Farès Ziam offer (not recorded as booked fight), Oct 6 and Oct 20–21 interviews, Oct 24 scheduled UFC 333 Kody Steele contest. No unverified doping, surgery, permanent gym move or claimed UFC 333 weigh-in."
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Iasmin Lucindo": {
       "slug": "iasmin-lucindo",
       "name": "Iasmin Lucindo",
       "subtitle": "Career chronology",
-      "record": "18-6",
-      "ufcRecord": "5-2-0",
+      "record": "19-6",
+      "ufcRecord": "6-2-0",
       "division": "Women's Strawweight",
       "items": [
         {
@@ -9522,25 +9548,26 @@
           "source": "https://www.ufc.com.br/news/iasmin-lucindo-back-in-game-ufc-333"
         },
         {
-          "date": "Oct. 24, 2026 (scheduled)",
-          "label": "UFC 333 · women's strawweight vs. Nicolle Caliari",
-          "kind": "upcoming",
-          "detail": "Lucindo (18-6 professional; 5-2 UFC) is scheduled to face Nicolle Caliari (9-4; 1-2 UFC) at Etihad Arena in Abu Dhabi. This is the advertised opening bout; early prelims start at 10 a.m. ET / 9 a.m. CT / 6 p.m. Abu Dhabi. No weigh-in or fight result is verified as of Oct. 21, 2026.",
-          "sourceLabel": "UFC official Oct. 19 event preview and Oct. 21 fighter interview",
-          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-333-volkanovski-vs-evloev"
+          "date": "Oct. 24, 2026",
+          "label": "WIN · Nicolle Caliari · UFC 333",
+          "kind": "win",
+          "detail": "Defeated Nicolle Caliari by unanimous decision after 3 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 30-27, 30-27, 30-27.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
         "pass": 5,
         "verifiedThrough": "2026-10-21",
         "scope": "Full 24-fight professional MMA record (18-6) sourced to Sherdog with rounds/clocks, noting contested 2017–18 regional records vs secondary databases; clarified requested MMA debut at 14 versus documented professional debut May 10, 2017 at age 15; early domestic-violence self-defense training, Marcos Maju/Cleiton Domingos roots, 2019 Layze Cerqueira victory resulting in documented switch to Renato Velame/Fight House as Virna Jandiroba sparring partner, 2021 SFH flyweight title, Apr 2022 debut in Austria and UFC signing, 2022 Jauregui UFC debut, 2023 opponent changes and September injury withdrawal, Polyana Viana arm-triangle and $50k POTN, 2024 Amanda Nunes camp mentorship (date of visit unknown), 2024 four-fight UFC win streak, Lemos judges scores, Hill judges scores; documented CSAD Sept 24 2025 mesterolone finding with no evidence of intentional doping but inability to prove contamination, Oct 2025 negative sample, Dec 2025 Robertson cancellation, Jan 27 2026 nine-month retroactive CSAD decision and Feb 18 Nevada matching sanction with $250 legal fee, expiration June 24, Oct 21 firsthand comeback interview and Oct 24 Caliari booking. No unsupported new suspension, undated gym transfer, surgery, or completed UFC 333 weigh-in. Final pass moved Aug. 13 POTN announcement after the Viana result, Amanda Nunes mentorship before UFC 301, and observed layoff to Oct. 21 for consistent chronology."
-      }
+      },
+      "lastReviewed": "2026-11-05"
     },
     "Nicolle Caliari": {
       "slug": "nicolle-caliari",
       "name": "Nicolle Caliari",
       "subtitle": "Career chronology",
-      "record": "9-4",
+      "record": "9-5",
       "items": [
         {
           "date": "Nov. 4, 1996",
@@ -9887,12 +9914,12 @@
           "source": "https://www.sherdog.com/fighter/Nicolle-Caliari-202195"
         },
         {
-          "date": "Oct. 24, 2026 (scheduled)",
-          "label": "UFC 333 · women's strawweight vs. Iasmin Lucindo",
-          "kind": "upcoming",
-          "detail": "Nicolle Caliari (9-4 overall, 1-2 UFC) is scheduled against Iasmin Lucindo (18-6 overall, 5-2 UFC) at Etihad Arena in Abu Dhabi on Saturday, Oct. 24. The UFC advertises it as the opening bout; early prelims begin at 10 a.m. ET / 9 a.m. CT / 6 p.m. UAE local. This is a segment start, not a confirmed personal cage-walk clock. No result is recorded as of Oct. 21.",
-          "sourceLabel": "UFC official event preview",
-          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-333-volkanovski-vs-evloev"
+          "date": "Oct. 24, 2026",
+          "label": "LOSS · Iasmin Lucindo · UFC 333",
+          "kind": "loss",
+          "detail": "Lost to Iasmin Lucindo by unanimous decision after 3 rounds at UFC 333: Volkanovski vs. Evloev in Abu Dhabi. Judges' scores: 30-27, 30-27, 30-27.",
+          "sourceLabel": "UFC · official Oct. 24 2026 results",
+          "source": "https://www.ufc.com/news/ufc-333-volkanovski-vs-evloev-official-scorecards"
         }
       ],
       "audit": {
@@ -9900,14 +9927,15 @@
         "verifiedThrough": "2026-10-21",
         "scope": "Full 13-bout professional chronology 9-4 with all dated matches, methods, rounds and verified clocks (2015 debut finish time unavailable), 5 KO/TKO and 4 submission wins, conflicting 2019 Hansen guillotine vs neck crank classification, 2023 Carolina Jimenez one-second clock difference, three documented near-two-year inactive spans not assigned fabricated injury diagnoses; karate age nine, youth titles without unverified medal dates, Muay Thai age 15 and BJJ credentials, unfinished law degree, women's Muay Thai teaching and gym administration through 2022, 2021 near-retirement, exact 2023 Curitiba-to-Florianopolis Thai Brasil relocation under Marcio Malko and Fight Music Show rebound, Sept 2024 DWCS armbar and UFC signing; Jan 2025 UFC debut split-decision loss to Ernesta Kareckaite (UFC Q&A typo says unanimous), post-fight scoring reaction, Jul 2025 Judice TKO; six-month body-composition restructuring and reported implant removal before May 14 2026; Jan 29 cancellation of March 28 Carol Foro fight with generic UFC injury statement but no diagnosis; May 15 2026 compliant 115.5-lb official weigh-in for first strawweight bout; May 16 first UFC victory Shauna Bannon R3 3:08, Ronda Rousey inspired harai goshi and May 18 interview; Oct 1 UFC 333 booking, Oct 17/19 UFC event confirmation, Oct 24 scheduled Lucindo fight without pre-emptive weigh-in/outcome. Team remains Thai Brasil Floripa, no verified doping suspension or permanent new coach."
       },
-      "ufcRecord": "1-2-0"
+      "ufcRecord": "1-3-0",
+      "lastReviewed": "2026-11-05"
     },
     "Renato Moicano": {
       "slug": "renato-moicano",
       "name": "Renato Moicano",
       "subtitle": "Career chronology · 29 recorded professional bouts",
-      "record": "21-7-1",
-      "ufcRecord": "13-7-0",
+      "record": "21-8-1",
+      "ufcRecord": "13-8-0",
       "division": "Lightweight",
       "items": [
         {
@@ -10159,22 +10187,22 @@
           "sourceLabel": "Official UFC event update"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Tom Nolan",
-          "kind": "upcoming",
-          "detail": "Booked opposite Australian lightweight Tom Nolan in the October 31 main event; result not yet known.",
-          "sourceLabel": "Official UFC October 31 fight card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "LOSS · Tom Nolan · UFC Vegas 123",
+          "kind": "loss",
+          "detail": "Lost to Tom Nolan by TKO (punches and elbows) at 1:28 of round 3 at UFC Fight Night: Moicano vs. Nolan in Las Vegas.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Tom Nolan": {
       "slug": "tom-nolan",
       "name": "Tom Nolan",
       "subtitle": "Career chronology · 12 professional bouts and 8 documented amateur bouts",
-      "record": "11-1-0",
-      "ufcRecord": "5-1-0",
+      "record": "12-1-0",
+      "ufcRecord": "6-1-0",
       "division": "Lightweight",
       "items": [
         {
@@ -10378,22 +10406,22 @@
           "sourceLabel": "Official September 14 UFC announcement"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "First UFC main event · scheduled vs. Renato Moicano",
-          "kind": "upcoming",
-          "detail": "Scheduled for his first UFC main event, a five-round lightweight bout against Renato Moicano at Meta APEX in Las Vegas. No result has occurred or been recorded as of October 26, 2026.",
-          "sourceLabel": "Official October 31 UFC event listing",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "WIN · Renato Moicano · UFC Vegas 123",
+          "kind": "win",
+          "detail": "Defeated Renato Moicano by TKO (punches and elbows) at 1:28 of round 3 at UFC Fight Night: Moicano vs. Nolan in Las Vegas.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Randy Brown": {
       "slug": "randy-brown",
       "name": "Randy Brown",
       "subtitle": "Career chronology · 28 professional fights and 6 amateur results",
-      "record": "20-8-0",
-      "ufcRecord": "14-8-0",
+      "record": "20-9-0",
+      "ufcRecord": "14-9-0",
       "division": "Welterweight",
       "items": [
         {
@@ -10693,22 +10721,22 @@
           "source": "https://uk.sports.yahoo.com/news/ufc-fight-night-292-gets-120231776.html"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Jacobe Smith",
-          "kind": "upcoming",
-          "detail": "Booked to face undefeated Jacobe Smith (13–0) in the co-main event at Meta APEX in Las Vegas. Brown enters at 20–8 overall and 14–8 in the UFC, having lost his previous two fights. As of October 26, the matchup has not taken place.",
-          "sourceLabel": "Official UFC October 31 fight card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "LOSS · Jacobe Smith · UFC Vegas 123",
+          "kind": "loss",
+          "detail": "Lost to Jacobe Smith by unanimous decision after 3 rounds at UFC Fight Night: Moicano vs. Nolan in Las Vegas. Judges' scores: 30-26, 30-26, 30-26.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Jacobe Smith": {
       "slug": "jacobe-smith",
       "name": "Jacobe Smith",
       "subtitle": "Career chronology · 13 professional bouts and collegiate wrestling milestones",
-      "record": "13-0-0",
-      "ufcRecord": "4-0-0",
+      "record": "14-0-0",
+      "ufcRecord": "5-0-0",
       "division": "Welterweight",
       "items": [
         {
@@ -10880,22 +10908,22 @@
           "source": "https://www.aol.com/articles/ufc-fight-night-292-gets-120231000.html"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Randy Brown",
-          "kind": "upcoming",
-          "detail": "Scheduled to meet Brown (20–8) in the welterweight co-main event at Meta APEX in Las Vegas. Smith enters unbeaten at 13–0 (4–0 UFC). No fight result is available as of October 26, 2026.",
-          "sourceLabel": "UFC · official October 31 fight card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "WIN · Randy Brown · UFC Vegas 123",
+          "kind": "win",
+          "detail": "Defeated Randy Brown by unanimous decision after 3 rounds at UFC Fight Night: Moicano vs. Nolan in Las Vegas. Judges' scores: 30-26, 30-26, 30-26.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Yana Santos": {
       "slug": "yana-santos",
       "name": "Yana Santos",
       "subtitle": "Career chronology · 26 professional bouts, including one no contest",
-      "record": "17-8-0",
-      "ufcRecord": "7-5-0",
+      "record": "17-9-0",
+      "ufcRecord": "7-6-0",
       "division": "Women's Bantamweight",
       "items": [
         {
@@ -11147,22 +11175,22 @@
           "source": "https://www.ufc.com/athlete/yana-santos"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Luana Santos",
-          "kind": "upcoming",
-          "detail": "Booked against Luana Santos in a bantamweight matchup.",
-          "sourceLabel": "Official UFC October 31 fight card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "LOSS · Luana Santos · UFC Vegas 123",
+          "kind": "loss",
+          "detail": "Lost to Luana Santos by unanimous decision after 3 rounds at UFC Fight Night: Moicano vs. Nolan in Las Vegas. Judges' scores: 29-28, 29-28, 29-28.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Luana Santos": {
       "slug": "luana-santos",
       "name": "Luana Santos",
       "subtitle": "Career chronology · 13 professional bouts and 3 amateur results",
-      "record": "11-2-0",
-      "ufcRecord": "6-1-0",
+      "record": "12-2-0",
+      "ufcRecord": "7-1-0",
       "division": "Women's Bantamweight",
       "items": [
         {
@@ -11318,22 +11346,22 @@
           "source": "https://www.ufc.com.br/news/ufc-fight-night-kape-vs-horiguchi-official-judges-scorecards"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Yana Santos",
-          "kind": "upcoming",
-          "detail": "Set to face former Invicta bantamweight champion Yana Santos at Meta APEX in Las Vegas. Luana enters 11–2 professionally and 6–1 inside the UFC, carrying three consecutive wins. No October 31 result exists as of October 26, 2026.",
-          "sourceLabel": "UFC · official October 31 fight card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "WIN · Yana Santos · UFC Vegas 123",
+          "kind": "win",
+          "detail": "Defeated Yana Santos by unanimous decision after 3 rounds at UFC Fight Night: Moicano vs. Nolan in Las Vegas. Judges' scores: 29-28, 29-28, 29-28.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Ode' Osbourne": {
       "name": "Ode' Osbourne",
       "slug": "ode-osbourne",
       "subtitle": "Career chronology · 24 professional bouts and 3 documented amateur results",
-      "record": "13-9-0",
-      "ufcRecord": "5-7-0",
+      "record": "13-10-0",
+      "ufcRecord": "5-8-0",
       "division": "Flyweight",
       "items": [
         {
@@ -11593,22 +11621,22 @@
           "source": "https://www.rotowire.com/mma/player/ode-osbourne-1926"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Cody Durden",
-          "kind": "upcoming",
-          "detail": "Booked against Cody Durden on the main card at Meta APEX in Las Vegas. Enters with a professional record of 13–9 and two no contests; his official UFC record is 5–7 with one no contest. No result exists as of October 26, 2026.",
-          "sourceLabel": "UFC · October 26, 2026 official card preview",
-          "source": "https://www.ufc.com/news/fight-fight-preview-ufc-fight-night-moicano-vs-nolan"
+          "date": "Oct. 31, 2026",
+          "label": "LOSS · Cody Durden · UFC Vegas 123",
+          "kind": "loss",
+          "detail": "Lost to Cody Durden by unanimous decision after 3 rounds at UFC Fight Night: Moicano vs. Nolan in Las Vegas. Judges' scores: 29-28, 29-28, 29-28.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Cody Durden": {
       "name": "Cody Durden",
       "slug": "cody-durden",
       "subtitle": "Career chronology · 30 professional MMA bouts, 6 documented amateur MMA bouts",
-      "record": "18-11-1",
-      "ufcRecord": "7-9-1",
+      "record": "19-11-1",
+      "ufcRecord": "8-9-1",
       "division": "Flyweight",
       "items": [
         {
@@ -11948,22 +11976,22 @@
           "source": "https://www.ufc.com/news/fight-fight-preview-ufc-fight-night-moicano-vs-nolan"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Ode' Osbourne",
-          "kind": "upcoming",
-          "detail": "Scheduled to face Ode' Osbourne in a flyweight bout at Meta APEX, Las Vegas. Durden enters at 18–11–1 overall and 7–9–1 UFC. The matchup has not occurred as of October 26, 2026.",
-          "sourceLabel": "UFC · official October 31 fight card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "WIN · Ode' Osbourne · UFC Vegas 123",
+          "kind": "win",
+          "detail": "Defeated Ode' Osbourne by unanimous decision after 3 rounds at UFC Fight Night: Moicano vs. Nolan in Las Vegas. Judges' scores: 29-28, 29-28, 29-28.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Zachary Reese": {
       "name": "Zachary Reese",
       "slug": "zachary-reese",
       "subtitle": "Career chronology · 15 professional bouts and 5 documented amateur fights",
-      "record": "10-4-0",
-      "ufcRecord": "4-4-0",
+      "record": "11-4-0",
+      "ufcRecord": "5-4-0",
       "division": "Middleweight",
       "items": [
         {
@@ -12159,22 +12187,22 @@
           "source": "https://www.aol.com/articles/ufc-books-mickey-gall-vs-012533000.html"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Mickey Gall",
-          "kind": "upcoming",
-          "detail": "Scheduled for a three-round middleweight bout at Meta APEX in Las Vegas. Reese enters 10–4 with one no contest overall, 4–4 with one no contest in the UFC. No result yet as of October 26, 2026.",
-          "sourceLabel": "Relevant event report / official record",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "WIN · Mickey Gall · UFC Vegas 123",
+          "kind": "win",
+          "detail": "Defeated Mickey Gall by unanimous decision after 3 rounds at UFC Fight Night: Moicano vs. Nolan in Las Vegas. Judges' scores: 29-27, 29-27, 29-27.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Mickey Gall": {
       "name": "Mickey Gall",
       "slug": "mickey-gall",
       "subtitle": "Career chronology · 14 professional bouts and 3 documented amateur results",
-      "record": "7-7-0",
-      "ufcRecord": "6-7-0",
+      "record": "7-8-0",
+      "ufcRecord": "6-8-0",
       "division": "Middleweight",
       "items": [
         {
@@ -12402,22 +12430,22 @@
           "source": "https://heavy.com/sports/ufc/medically-cleared-mickey-gall-ufc-halloween/"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Zachary Reese",
-          "kind": "upcoming",
-          "detail": "Booked against Zachary Reese (10–4) at middleweight at Meta APEX, Las Vegas. Gall enters with a 7–7 professional record (6–7 UFC), a four-fight losing streak, and no fights since November 2024. This remains upcoming as of October 26, 2026.",
-          "sourceLabel": "UFC · October 31 event fight card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "LOSS · Zachary Reese · UFC Vegas 123",
+          "kind": "loss",
+          "detail": "Lost to Zachary Reese by unanimous decision after 3 rounds at UFC Fight Night: Moicano vs. Nolan in Las Vegas. Judges' scores: 29-27, 29-27, 29-27.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Jean-Paul Lebosnoyani": {
       "name": "Jean-Paul Lebosnoyani",
       "slug": "jean-paul-lebosnoyani",
       "subtitle": "Career chronology · 13 professional bouts and 7 documented amateur results",
-      "record": "11-2-0",
-      "ufcRecord": "2-0-0",
+      "record": "12-2-0",
+      "ufcRecord": "3-0-0",
       "division": "Welterweight",
       "items": [
         {
@@ -12637,22 +12665,22 @@
           "source": "https://www.ufc.com/news/ufc-oklahoma-city-official-scorecards"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Farman Hasanov",
-          "kind": "upcoming",
-          "detail": "Booked against undefeated Azerbaijani prospect Farman Hasanov at Meta APEX in Las Vegas. Lebosnoyani enters 11–2 professionally and 2–0 in the UFC, with six straight wins since moving to welterweight. No October 31 bout result exists as of October 26, 2026.",
-          "sourceLabel": "UFC · official October 31 fight card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "WIN · Farman Hasanov · UFC Vegas 123",
+          "kind": "win",
+          "detail": "Defeated Farman Hasanov by TKO (doctor stoppage) at 2:11 of round 3 at UFC Fight Night: Moicano vs. Nolan in Las Vegas.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Farman Hasanov": {
       "name": "Farman Hasanov",
       "slug": "farman-hasanov",
       "subtitle": "Career chronology · 6 UFC-recognized professional wins (1 contested classification), 2 documented GAMMA amateur bouts",
-      "record": "6-0-0",
-      "ufcRecord": "1-0-0",
+      "record": "6-1-0",
+      "ufcRecord": "1-1-0",
       "division": "Welterweight",
       "items": [
         {
@@ -12792,22 +12820,22 @@
           "source": "https://www.rotowire.com/mma/player/farman-hasanov-2769"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Jean-Paul Lebosnoyani",
-          "kind": "upcoming",
-          "detail": "Scheduled to meet Lebosnoyani (11–2, 2–0 UFC) in a welterweight fight at Meta APEX in Las Vegas. The UFC lists Hasanov as 6–0 overall and 1–0 in the Octagon; Sherdog separately categorizes the 2022 Sariev victory as a professional exhibition and therefore lists five regular professional wins. No October 31 result exists as of October 26, 2026.",
-          "sourceLabel": "UFC · official October 31 card and fighter record",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "LOSS · Jean-Paul Lebosnoyani · UFC Vegas 123",
+          "kind": "loss",
+          "detail": "Lost to Jean-Paul Lebosnoyani by TKO (doctor stoppage) at 2:11 of round 3 at UFC Fight Night: Moicano vs. Nolan in Las Vegas.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Francis Marshall": {
       "name": "Francis Marshall",
       "slug": "francis-marshall",
       "subtitle": "Career chronology · 13 professional fights and 5 documented amateur victories",
-      "record": "10-3-0",
-      "ufcRecord": "4-3-0",
+      "record": "10-4-0",
+      "ufcRecord": "4-4-0",
       "division": "Featherweight",
       "items": [
         {
@@ -13003,22 +13031,22 @@
           "sourceLabel": "MMA Junkie · October 8, 2026 replacement report"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Dakota Hope",
-          "kind": "upcoming",
-          "detail": "Booked for a featherweight bout against Dakota Hope (11–2) at Meta APEX in Las Vegas. Marshall enters 10–3 professionally (4–3 UFC) and has won two straight fights. No result is recorded as of October 26, 2026.",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
-          "sourceLabel": "UFC · official October 31 fight card"
+          "date": "Oct. 31, 2026",
+          "label": "LOSS · Dakota Hope · UFC Vegas 123",
+          "kind": "loss",
+          "detail": "Lost to Dakota Hope by split decision after 3 rounds at UFC Fight Night: Moicano vs. Nolan in Las Vegas. Judges' scores: 29-28, 29-28, 28-29.",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards",
+          "sourceLabel": "UFC · official Oct. 31 2026 results"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Dakota Hope": {
       "name": "Dakota Hope",
       "slug": "dakota-hope",
       "subtitle": "Career chronology · 13 professional fights and 3 documented amateur wins",
-      "record": "11-2-0",
-      "ufcRecord": "0-1-0",
+      "record": "12-2-0",
+      "ufcRecord": "1-1-0",
       "division": "Featherweight",
       "items": [
         {
@@ -13198,22 +13226,22 @@
           "source": "https://heavy.com/sports/ufc/francis-marshall-new-opponent-ufc-halloween/"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Francis Marshall",
-          "kind": "upcoming",
-          "detail": "Booked to face Francis Marshall (10–3, 4–3 UFC) in a featherweight bout at Meta APEX in Las Vegas. Hope enters 11–2 professionally and 0–1 in the UFC, seeking his first Octagon win. No result exists as of October 26, 2026.",
-          "sourceLabel": "UFC · official October 31 fight card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "WIN · Francis Marshall · UFC Vegas 123",
+          "kind": "win",
+          "detail": "Defeated Francis Marshall by split decision after 3 rounds at UFC Fight Night: Moicano vs. Nolan in Las Vegas. Judges' scores: 29-28, 29-28, 28-29.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Rodrigo Sezinando": {
       "name": "Rodrigo Sezinando",
       "slug": "rodrigo-sezinando",
       "subtitle": "Career chronology · 10 documented professional bouts, 2 TUF exhibitions and regional titles",
-      "record": "9-2-0",
-      "ufcRecord": "0-1-0",
+      "record": "10-2-0",
+      "ufcRecord": "1-1-0",
       "division": "Welterweight",
       "items": [
         {
@@ -13337,22 +13365,22 @@
           "source": "https://www.ufc.com.br/athlete/rodrigo-sezinando"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · vs. Theodor Berggren",
-          "kind": "upcoming",
-          "detail": "Scheduled to meet Berggren at UFC Fight Night on October 31. UFC displays 9–2 with four knockouts, two submissions and three decisions; Sherdog documents eight wins and two losses (four knockouts, three submissions and one decision). There is no verified additional named bout. The disagreement in both total wins and method breakdown remains unresolved.",
-          "sourceLabel": "UFC athlete and Sherdog records",
-          "source": "https://www.ufc.com.br/athlete/rodrigo-sezinando"
+          "date": "Oct. 31, 2026",
+          "label": "WIN · Theodor Berggren · UFC Vegas 123",
+          "kind": "win",
+          "detail": "Defeated Theodor Berggren by TKO (doctor stoppage) at 5:00 of round 2 at UFC Fight Night: Moicano vs. Nolan in Las Vegas.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Theodor Berggren": {
       "name": "Theodor Berggren",
       "slug": "theodor-berggren",
       "subtitle": "Career chronology · 12 professional fights, 3 documented amateur bouts and UFC debut",
-      "record": "8-4-0",
-      "ufcRecord": "0-1-0",
+      "record": "8-5-0",
+      "ufcRecord": "0-2-0",
       "division": "Welterweight",
       "items": [
         {
@@ -13508,22 +13536,22 @@
           "source": "https://www.ufc.com/athlete/theodor-berggren"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · vs. Rodrigo Sezinando",
-          "kind": "upcoming",
-          "detail": "Scheduled to face Rodrigo Sezinando in Las Vegas. Both men are coming off losses to Daniil Donchenko. No result exists as of October 26, 2026.",
-          "sourceLabel": "UFC official athlete schedule",
-          "source": "https://www.ufc.com/athlete/theodor-berggren"
+          "date": "Oct. 31, 2026",
+          "label": "LOSS · Rodrigo Sezinando · UFC Vegas 123",
+          "kind": "loss",
+          "detail": "Lost to Rodrigo Sezinando by TKO (doctor stoppage) at 5:00 of round 2 at UFC Fight Night: Moicano vs. Nolan in Las Vegas.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Julian Erosa": {
       "name": "Julian Erosa",
       "slug": "julian-erosa",
       "subtitle": "Career chronology · 44 documented pro bouts (31–13 in Sherdog/Tapology), 4 TUF exhibitions, UFC-listed 31–14",
-      "record": "31-14-0",
-      "ufcRecord": "9-9-0",
+      "record": "32-14-0",
+      "ufcRecord": "10-9-0",
       "division": "Featherweight",
       "items": [
         {
@@ -13935,22 +13963,22 @@
           "source": "https://www.sherdog.com/fighter/Julian-Erosa-71442"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. JeongYeong Lee",
-          "kind": "upcoming",
-          "detail": "Booked to face JeongYeong Lee at UFC Fight Night in Las Vegas. UFC currently lists 31–14 overall; Sherdog and Tapology document 31–13 across 44 named professional bouts. UFC record is 9–9. The additional UFC-listed professional loss cannot be matched to a verified bout in those ledgers; no extra fight has been invented.",
-          "sourceLabel": "UFC · Oct. 31 event; Sherdog · full fight record",
-          "source": "https://www.ufc.com/athlete/julian-erosa"
+          "date": "Oct. 31, 2026",
+          "label": "WIN · JeongYeong Lee · UFC Vegas 123",
+          "kind": "win",
+          "detail": "Defeated JeongYeong Lee by KO (punches) at 1:31 of round 1 at UFC Fight Night: Moicano vs. Nolan in Las Vegas.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "JeongYeong Lee": {
       "name": "JeongYeong Lee",
       "slug": "jeongyeong-lee",
       "subtitle": "Career chronology · 14 professional fights, 2 documented amateur bouts and Road FC / Road to UFC titles",
-      "record": "11-3-0",
-      "ufcRecord": "2-2-0",
+      "record": "11-4-0",
+      "ufcRecord": "2-3-0",
       "division": "Featherweight",
       "items": [
         {
@@ -14146,22 +14174,22 @@
           "source": "https://sports.yahoo.com/articles/ufc-326-loses-bout-day-174906072.html"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · booked vs. Julian Erosa",
-          "kind": "upcoming",
-          "detail": "Scheduled to face veteran Julian Erosa in a featherweight bout at Meta APEX in Las Vegas. Enters with an 11–3 professional record and a 2–2 record in four UFC main-card/preliminary-card bouts, excluding the first two Road to UFC qualifying rounds. His March 2026 Bolaños bout was cancelled. No fight result exists as of October 26, 2026.",
-          "sourceLabel": "UFC · official October 31 event",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "LOSS · Julian Erosa · UFC Vegas 123",
+          "kind": "loss",
+          "detail": "Lost to Julian Erosa by KO (punches) at 1:31 of round 1 at UFC Fight Night: Moicano vs. Nolan in Las Vegas.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Nick Klein": {
       "name": "Nick Klein",
       "slug": "nick-klein",
       "subtitle": "Career chronology · 9 professional bouts, 8 amateur bouts and Caged Aggression title",
-      "record": "6-3-0",
-      "ufcRecord": "0-2-0",
+      "record": "6-4-0",
+      "ufcRecord": "0-3-0",
       "division": "Middleweight",
       "items": [
         {
@@ -14373,22 +14401,22 @@
           "source": "https://www.mmafighting.com/ufc/450468/donte-johnson-now-meets-sedriques-dumas-at-ufc-vegas-110"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · vs. Joseph Kropschot",
-          "kind": "upcoming",
-          "detail": "Scheduled to face Joseph Kropschot at Meta APEX in Las Vegas following an extended layoff since August 2025. Klein enters 6–3 professionally and 0–2 in the UFC; Kropschot is listed at 9–3 professionally. No result exists as of October 26, 2026.",
-          "sourceLabel": "Sherdog · August 2026 fight announcement",
-          "source": "https://www.sherdog.com/news/news/DWCS-winner-Joseph-Kropschot-lands-UFC-debut-just-weeks-after-earning-contract-202532"
+          "date": "Oct. 31, 2026",
+          "label": "LOSS · Joseph Kropschot · UFC Vegas 123",
+          "kind": "loss",
+          "detail": "Lost to Joseph Kropschot by submission (armbar) at 1:25 of round 2 at UFC Fight Night: Moicano vs. Nolan in Las Vegas.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Joseph Kropschot": {
       "name": "Joseph Kropschot",
       "slug": "joseph-kropschot",
       "subtitle": "Career chronology · 12 pro bouts (9–3), 5 amateur wins, LFA title and opponent records at fight time",
-      "record": "9-3-0",
-      "ufcRecord": "0-0-0",
+      "record": "10-3-0",
+      "ufcRecord": "1-0-0",
       "division": "Middleweight",
       "items": [
         {
@@ -14632,22 +14660,22 @@
           "source": "https://mma-island.com/exclusive-joe-kropschot-talks-dwcs-win-halloween-ufc-debut/"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · promotional debut vs. Nick Klein",
-          "kind": "upcoming",
-          "detail": "Booked to face Nick Klein (6–3, 0–2 in regular UFC bouts) in a middleweight bout at Meta APEX in Las Vegas. Kropschot enters 9–3 professionally, with five straight wins. His UFC athlete page displays 1–0 based on his DWCS victory, although this is scheduled to be his first regular UFC fight; no October 31 result exists as of October 26.",
-          "sourceLabel": "UFC · official October 31 fight card; Sherdog · booking confirmation",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "WIN · Nick Klein · UFC Vegas 123",
+          "kind": "win",
+          "detail": "Defeated Nick Klein by submission (armbar) at 1:25 of round 2 at UFC Fight Night: Moicano vs. Nolan in Las Vegas.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Talita Alencar": {
       "name": "Talita Alencar",
       "slug": "talita-alencar",
       "subtitle": "Career chronology · 10 professional MMA bouts, reported 1 amateur win, major BJJ titles and UFC stats",
-      "record": "8-1-1",
-      "ufcRecord": "4-1-0",
+      "record": "8-2-1",
+      "ufcRecord": "4-2-0",
       "division": "Women's Strawweight",
       "items": [
         {
@@ -14827,22 +14855,22 @@
           "source": "https://ufcstats.com/fighter-details/d35298b6df168456"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · vs. Piera Rodriguez",
-          "kind": "upcoming",
-          "detail": "Booked against Piera Rodriguez (12–2) in a women's strawweight bout at Meta APEX in Las Vegas. Enters 8–1–1, on a three-fight MMA winning streak. No result has occurred as of October 26, 2026.",
-          "sourceLabel": "UFC · official October 31 fight card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "LOSS · Piera Rodriguez · UFC Vegas 123",
+          "kind": "loss",
+          "detail": "Lost to Piera Rodriguez by unanimous decision after 3 rounds at UFC Fight Night: Moicano vs. Nolan in Las Vegas. Judges' scores: 30-27, 30-27, 30-27.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Piera Rodriguez": {
       "name": "Piera Rodriguez",
       "slug": "piera-rodriguez",
       "subtitle": "Career chronology · 14 professional fights, 1 documented amateur win, LFA title, UFC statistical records",
-      "record": "12-2-0",
-      "ufcRecord": "5-2-0",
+      "record": "13-2-0",
+      "ufcRecord": "6-2-0",
       "division": "Women's Strawweight",
       "items": [
         {
@@ -15006,22 +15034,22 @@
           "source": "https://statleaders.ufc.com/?fighter_status=1&weight_class=WSW"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Talita Alencar",
-          "kind": "upcoming",
-          "detail": "Booked against Talita Alencar (8–1–1, UFC 4–1) in a women's strawweight matchup at Meta APEX in Las Vegas. Entering on three consecutive unanimous/split decision wins; the match has not taken place as of October 26, 2026.",
-          "sourceLabel": "UFC · official October 31 card",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "WIN · Talita Alencar · UFC Vegas 123",
+          "kind": "win",
+          "detail": "Defeated Talita Alencar by unanimous decision after 3 rounds at UFC Fight Night: Moicano vs. Nolan in Las Vegas. Judges' scores: 30-27, 30-27, 30-27.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Lucia Szabova": {
       "name": "Lucia Szabova",
       "slug": "lucia-szabova",
       "subtitle": "Career chronology · 10 standard professional bouts (10–0), 2 OKTAGON Challenge qualifiers (12–0 promotional record), title history and opponent records",
-      "record": "12-0-0",
-      "ufcRecord": "0-0-0",
+      "record": "13-0-0",
+      "ufcRecord": "1-0-0",
       "division": "Women's Flyweight",
       "items": [
         {
@@ -15225,22 +15253,22 @@
           "source": "https://sportnet.sme.sk/spravy/mma-lucia-szabova-prestup-oktagon-ufc-2026/"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC FIGHT NIGHT · debut vs. Tainara Lisboa",
-          "kind": "upcoming",
-          "detail": "Booked for a women's flyweight contest with Tainara Lisboa (7–4, 2–2 in UFC) at Meta APEX in Las Vegas. The UFC's October 26 preview describes Szabová as 10–0 with seven finishes and identifies this as her UFC debut. No result exists as of October 26, 2026.",
-          "sourceLabel": "UFC · official Oct. 31 fight-by-fight preview",
-          "source": "https://jp.ufc.com/news/fight-fight-preview-ufc-fight-night-moicano-vs-nolan"
+          "date": "Oct. 31, 2026",
+          "label": "WIN · Tainara Lisboa · UFC Vegas 123",
+          "kind": "win",
+          "detail": "Defeated Tainara Lisboa by TKO (punches) at 3:20 of round 3 at UFC Fight Night: Moicano vs. Nolan in Las Vegas.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Tainara Lisboa": {
       "name": "Tainara Lisboa",
       "slug": "tainara-lisboa",
       "subtitle": "Career chronology · 11 pro MMA bouts (7–4), two Muay Thai world titles, verified opponent histories, knee surgery and UFC statistics",
-      "record": "7-4-0",
-      "ufcRecord": "2-2-0",
+      "record": "7-5-0",
+      "ufcRecord": "2-3-0",
       "division": "Women's Flyweight",
       "items": [
         {
@@ -15436,15 +15464,15 @@
           "source": "https://fightingdata.com/fighters/tainara-lisboa/"
         },
         {
-          "date": "Oct. 31, 2026 (scheduled)",
-          "label": "UFC Fight Night · scheduled vs. Lucia Szabova",
-          "kind": "upcoming",
-          "detail": "Set to face Lucia Szabova in a women's flyweight bout at Meta APEX in Las Vegas. Szabova holds the 10–0 UFC/Sherdog professional record or 12–0 OKTAGON/Tapology record including two 2019 qualifier wins. Lisboa enters on two UFC stoppage losses after knee surgery and is seeking her first flyweight UFC victory. No result exists as of October 26.",
-          "sourceLabel": "UFC · official event listing",
-          "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+          "date": "Oct. 31, 2026",
+          "label": "LOSS · Lucia Szabova · UFC Vegas 123",
+          "kind": "loss",
+          "detail": "Lost to Lucia Szabova by TKO (punches) at 3:20 of round 3 at UFC Fight Night: Moicano vs. Nolan in Las Vegas.",
+          "sourceLabel": "UFC · official Oct. 31 2026 results",
+          "source": "https://us.ufcespanol.com/news/ufc-fight-night-moicano-vs-nolan-official-scorecards"
         }
       ],
-      "lastReviewed": "2026-10-26"
+      "lastReviewed": "2026-11-05"
     },
     "Ciryl Gane": {
       "slug": "ciryl-gane",
