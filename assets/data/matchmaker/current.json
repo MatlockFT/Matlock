@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-06T06:27:36.734Z"
+      "checkedAt": "2026-11-06T14:31:01.472Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-06T06:28:03.997Z",
+      "checkedAt": "2026-11-06T14:31:25.725Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -160947,7 +160947,13 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "Acosta vs Walker",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Waldo Cortes Acosta",
+        "opponentId": "waldo-cortes-acosta"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -333573,7 +333579,13 @@
         "mirrorThrough": "2026-10-24",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "Acosta vs Walker",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Johnny Walker",
+        "opponentId": "johnny-walker"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
