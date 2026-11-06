@@ -197,6 +197,35 @@
         if (picksToggle && picksPanel && picksList && pickCards.length) {
             picksList.replaceChildren();
 
+            // Keep the source pick configuration intact; shorten labels only in this overview.
+            const compactPickMethod = (value) => {
+                const detail = String(value || '').replace(/\s+/g, ' ').trim();
+                const round = detail.match(/\b(?:round|r)\s*(\d+)\b/i);
+                let method = detail.replace(/\b(?:round|r)\s*\d+\b/ig, '').trim();
+                if (/^submission$/i.test(method)) method = 'SUB';
+                else if (/^split decision$/i.test(method)) method = 'SPLIT DEC';
+                else if (/^unanimous decision$/i.test(method)) method = 'UD';
+                else if (/^majority decision$/i.test(method)) method = 'MD';
+                else if (/^decision$/i.test(method)) method = 'DEC';
+                return [method, round ? 'R' + round[1] : ''].filter(Boolean).join(' · ');
+            };
+
+            const pickOpponent = (matchup, fighter) => {
+                const parts = String(matchup || '')
+                    .replace(/^(?:fight\s*\d+|main event|co-main event)\s*[:–-]\s*/i, '')
+                    .split(/\s+(?:vs\.?|versus)\s+/i);
+                if (parts.length !== 2) return matchup;
+                const normalize = (value) => String(value).normalize('NFKD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/[^a-z0-9]/gi, '').toLowerCase();
+                const selected = normalize(fighter);
+                const first = normalize(parts[0]);
+                const second = normalize(parts[1]);
+                if (selected === first) return 'vs ' + parts[1].trim();
+                if (selected === second) return 'vs ' + parts[0].trim();
+                return matchup;
+            };
+
             const entries = pickCards.map((card, index) => {
                 const config = readPickConfig(card);
                 const fighter = card.querySelector('.article-pick-card__fighter, .article-pick-card__main strong')?.textContent?.trim() || 'Pick ' + (index + 1);
@@ -228,6 +257,9 @@
 
                 return { card, fighter, detail, heading, matchup, result };
             });
+
+            const count = picksRoot.querySelector('[data-article-picks-count]');
+            if (count) count.textContent = entries.length + ' fights';
 
             const gradedEntries = entries.filter((entry) => entry.result?.status === 'correct' || entry.result?.status === 'incorrect');
             const correctCount = gradedEntries.filter((entry) => entry.result.status === 'correct').length;
@@ -295,7 +327,7 @@
 
                 const matchupLabel = document.createElement('span');
                 matchupLabel.className = 'article-picks-matchup';
-                matchupLabel.textContent = matchup;
+                matchupLabel.textContent = pickOpponent(matchup, fighter);
                 itemHead.append(matchupLabel);
 
                 if (result?.status) {
@@ -313,13 +345,6 @@
                 const pickLine = document.createElement('span');
                 pickLine.className = 'article-picks-selection';
 
-                if (hasResults) {
-                    const pickLabel = document.createElement('b');
-                    pickLabel.className = 'article-picks-line-label';
-                    pickLabel.textContent = 'Pick';
-                    pickLine.append(pickLabel);
-                }
-
                 const pickValue = document.createElement('span');
                 pickValue.className = 'article-picks-line-value';
 
@@ -329,12 +354,13 @@
 
                 if (detail) {
                     const method = document.createElement('span');
-                    method.textContent = detail;
+                    method.textContent = compactPickMethod(detail);
+                    method.title = detail;
                     pickValue.append(method);
                 }
 
                 pickLine.append(pickValue);
-                link.append(itemHead, pickLine);
+                link.append(pickLine, itemHead);
 
                 if (result?.result) {
                     const resultLine = document.createElement('span');
