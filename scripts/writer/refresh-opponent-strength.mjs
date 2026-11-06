@@ -588,19 +588,35 @@ const updatedMarkdown=markdown.replace(
       const fighter=config[side];
       const cached=existing.fighters[dataKey(fighter?.name)];
       if(!fighter||!cached||!strengthByName.has(normalize(fighter.name))) continue;
-      const recent=recentRows(cached.history);
-      fighter.recent=recent;
-      fighter.last5=lastFive(recent);
+      // Preserve manually reviewed recent form, Last 5 and career statistics.
+      // This refresh is responsible only for opponent-strength fields.
       fighter.opponentsRecord=cached.opponentStrength.record;
       fighter.opponentsPct=cached.opponentStrength.winPct+'%';
       touched=true;
     }
     if(!touched) return whole;
     changed++;
-    return buildTale(config);
+
+    const encodedConfig=encodeURIComponent(JSON.stringify(config));
+    const updated=whole.replace(
+      /data-writer-config="[^"]*"/,
+      'data-writer-config="'+encodedConfig+'"'
+    );
+    const tail=updated.match(/<\/div><\/div>\s*<\/section>$/)?.[0];
+    if(!tail) throw new Error('Unexpected Tale layout in '+POST_PATH);
+    const body=updated.slice(0,-tail.length);
+    const previous=body.indexOf('<div class="fc-opponents">');
+    const prefix=previous>=0?body.slice(0,previous):body;
+    const a=config.a||{},b=config.b||{};
+    const opponents=(a.opponentsRecord||b.opponentsRecord||a.opponentsPct||b.opponentsPct)
+      ? '<div class="fc-opponents"><div class="fc-opponent-stat"><strong>'+escapeHtml(a.opponentsRecord||'—')+
+        '</strong><span>'+escapeHtml(a.opponentsPct||'')+'</span></div><div class="fc-opponent-label">OPPONENTS COMBINED RECORD</div>'+
+        '<div class="fc-opponent-stat"><strong>'+escapeHtml(b.opponentsRecord||'—')+'</strong><span>'+
+        escapeHtml(b.opponentsPct||'')+'</span></div></div>'
+      : '';
+    return prefix+opponents+tail;
   }
 );
-if(changed!==configs.length) console.warn('WARNING: Updated '+changed+'/'+configs.length+' Tale blocks; incomplete fighters retain their previous data.');
 await fs.writeFile(POST_PATH,updatedMarkdown);
 
 console.log('Updated '+changed+' Tale blocks and '+strengthByName.size+'/'+targetNames.length+' fighter strength profiles.');
