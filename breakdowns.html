@@ -9,9 +9,10 @@ page_styles:
   - /assets/breakdowns.css
   - /assets/breakdowns-v3.css
 page_scripts:
+  - /assets/breakdowns-search.js
 ---
 
-<section class="archive-page archive-page-v3" data-globe-home data-editorial-v3>
+<section class="archive-page archive-page-v3" data-globe-home data-editorial-v3 data-archive-index-url="{{ '/assets/data/breakdowns-search.json' | relative_url }}">
     <header class="archive-header">
         <h1>Breakdowns</h1>
     </header>
@@ -52,7 +53,7 @@ page_scripts:
                 <span>Search articles</span>
                 <input
                     type="search"
-                    placeholder="Fighter, event, or topic"
+                    placeholder="Fighter, event, or any word"
                     autocomplete="off"
                     data-archive-search
                 >
@@ -104,7 +105,9 @@ page_scripts:
                 <article
                     class="article-card"
                     data-archive-card
-                    data-title="{{ post.title | downcase | escape }}"
+                    data-title="{{ post.title | escape }}"
+                    data-summary="{{ post.description | default: post.excerpt | strip_html | normalize_whitespace | escape }}"
+                    data-archive-key="{{ post.url | escape }}"
                     data-category="{{ post.category | downcase | escape }}"
                     data-year="{{ post.date | date: '%Y' }}"
                     data-tags="{{ post.tags | join: ' ' | downcase | escape }}"
@@ -191,56 +194,3 @@ page_scripts:
     {% endif %}
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const search = document.querySelector('[data-archive-search]');
-    const category = document.querySelector('[data-archive-category]');
-    const year = document.querySelector('[data-archive-year]');
-    const status = document.querySelector('[data-archive-status]');
-    const empty = document.querySelector('[data-archive-empty]');
-    const cards = Array.from(
-        document.querySelectorAll('[data-archive-card]')
-    );
-
-    if (!search || !category || !year || !status || !empty) {
-        return;
-    }
-
-    function filterArchive() {
-        const query = search.value.trim().toLowerCase();
-        const selectedCategory = category.value;
-        const selectedYear = year.value;
-        let visibleCount = 0;
-
-        cards.forEach(card => {
-            const searchableText = [
-                card.dataset.title,
-                card.dataset.tags,
-                card.dataset.category,
-                card.dataset.year
-            ].join(' ');
-
-            const matches =
-                (!query || searchableText.includes(query)) &&
-                (!selectedCategory ||
-                    card.dataset.category === selectedCategory) &&
-                (!selectedYear ||
-                    card.dataset.year === selectedYear);
-
-            card.hidden = !matches;
-
-            if (matches) {
-                visibleCount += 1;
-            }
-        });
-
-        const label = visibleCount === 1 ? 'article' : 'articles';
-        status.textContent = `Showing ${visibleCount} ${label}.`;
-        empty.hidden = visibleCount !== 0;
-    }
-
-    search.addEventListener('input', filterArchive);
-    category.addEventListener('change', filterArchive);
-    year.addEventListener('change', filterArchive);
-});
-</script>
