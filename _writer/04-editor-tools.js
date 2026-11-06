@@ -1261,6 +1261,13 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     setComparisonValue(rows,'Record Outside UFC',side,displayComparisonValue(fighter.recordOutsideUfc || subtractRecords(fighter.record,ufcRecord)));
     applyCareerComparisonValues(rows,side,fighter.career);
     const strength=fighter.opponentStrength;
+    // Keep the verified computed quality with its fighter; never infer it from the
+    // visible last-five opponent rows or carry it into a different selection.
+    if (strength?.quality?.complete) {
+      dialog.dataset['taleQuality'+side.toUpperCase()]=JSON.stringify(strength.quality);
+    } else {
+      delete dialog.dataset['taleQuality'+side.toUpperCase()];
+    }
     if (strength?.complete && strength.record && Number.isFinite(Number(strength.winPct))) {
       const recordInput=dialog.querySelector('[data-tale-opponents-record="' + side + '"]');
       const pctInput=dialog.querySelector('[data-tale-opponents-pct="' + side + '"]');
@@ -1464,6 +1471,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       delete input.dataset.sourceMode;
       delete input.dataset.bookingDate;
       if (type === 'tale') {
+        delete dialog.dataset['taleQuality'+side.toUpperCase()];
         const recordInput=dialog.querySelector('[data-tale-opponents-record="' + side + '"]');
         const pctInput=dialog.querySelector('[data-tale-opponents-pct="' + side + '"]');
         if (recordInput) {
@@ -1624,6 +1632,11 @@ function insertBlock(text, { preserveScroll = false } = {}) {
         '<div class="fc-opponent-stat"><strong>'+escapeHtml(b.opponentsRecord||'—')+'</strong><span>'+
         escapeHtml(b.opponentsPct||'')+'</span></div></div>'
       : '';
+    const qa=Number.isFinite(a.opponentQuality?.score) ? a.opponentQuality : null;
+    const qb=Number.isFinite(b.opponentQuality?.score) ? b.opponentQuality : null;
+    const quality=(qa||qb)
+      ? '<div class="fc-opponent-quality"><div class="fc-quality-value"><strong>'+escapeHtml(qa?qa.score.toFixed(1):'—')+'</strong><span>'+escapeHtml(qa?'Recent 6: '+qa.recent6.toFixed(1):'Awaiting verified history')+'</span></div><div class="fc-quality-label">OPPONENT QUALITY <small>FULL CAREER · /100</small></div><div class="fc-quality-value"><strong>'+escapeHtml(qb?qb.score.toFixed(1):'—')+'</strong><span>'+escapeHtml(qb?'Recent 6: '+qb.recent6.toFixed(1):'Awaiting verified history')+'</span></div></div>'
+      : '';
     const eventDate=String(config.eventDate||a.source?.bookingDate||b.source?.bookingDate||'').trim();
     const inner=
       '<div class="fight-compare-sleek" data-live-odds-matchup data-live-odds-fighter-a="'+escapeHtml(a.name||'')+
@@ -1632,7 +1645,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
           '<div class="fc-center-badge"><strong>MATCHUP</strong><i></i></div>'+
           fighterTopMarkup('right',b)+'</div>'+
         '<div class="fc-tale"><div class="fc-section-title"><span>Tale of the Tape</span></div>'+taleRows+'</div>'+
-        recent+opponents+
+        recent+opponents+quality+
       '</div></div>';
     return structuredSection('tale',config,inner);
   }
@@ -1878,6 +1891,8 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       const opponentsPctInput=dialog.querySelector('[data-tale-opponents-pct="'+side+'"]');
       opponentsRecordInput.value=fighter.opponentsRecord||'';
       opponentsPctInput.value=fighter.opponentsPct||'';
+      if(fighter.opponentQuality?.complete) dialog.dataset['taleQuality'+side.toUpperCase()]=JSON.stringify(fighter.opponentQuality);
+      else delete dialog.dataset['taleQuality'+side.toUpperCase()];
       delete opponentsRecordInput.dataset.autoOpponentValue;
       delete opponentsRecordInput.dataset.opponentStrengthRequest;
       delete opponentsPctInput.dataset.autoOpponentValue;
