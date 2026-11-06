@@ -21,7 +21,8 @@ requireText(core, '.tapDistance(12)', 'Map zoom must use a touch tap-distance th
 requireText(core, 'setTimeout(renderMarkers, 0)', 'Input-driven zoom end must not replace a marker before its native click commits.');
 requireText(core, '!desktopHover.matches || selectedEventId || selectedClusterKey', 'Touch focus must not masquerade as a committed mobile pin selection.');
 requireText(core, "detailPanel.dataset.hoverPreview", 'Core must own hover-preview state.');
-requireText(core, "pickerIdFor(event)", 'Core must resolve Event Map events to Fight Card Picker IDs.');
+// The standalone Fight Card Picker was retired. Event Map must remain independent.
+forbid(core, 'pickerIdFor(event)', 'Event Map must not depend on retired Fight Card Picker IDs.');
 requireText(core, "renderPoster(event)", 'Core must own poster rendering and stale-request protection.');
 forbid(enhancements, 'pressedPointerId', 'Enhancements must not install a second marker activation controller.');
 forbid(enhancements, "fetch(page.dataset.eventsUrl", 'Enhancements must not fetch the Event Map feed a second time.');
