@@ -3422,7 +3422,11 @@ async function saveArticle(mode = 'save', { skipConflict = false, automatic = fa
       await memberWriterFetch('', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ slug, title: fields.title.value.trim(),
-          body_markdown: privateBody, status: desiredPublished ? 'published' : 'draft' })
+          body_markdown: privateBody,
+          image_path: fields.imagePath.value.trim(),
+          image_alt: fields.imageAlt.value.trim(),
+          image_position: fields.imagePosition.value.trim(),
+          status: desiredPublished ? 'published' : 'draft' })
       });
     }
 
