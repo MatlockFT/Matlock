@@ -1625,6 +1625,51 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 }
 
 
+/* Matlock Opponent Quality — all career bouts, point-in-time ratings. */
+.fight-compare-sleek .fc-opponent-quality {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 220px minmax(0,1fr);
+  align-items: center;
+  border-top: 1px solid var(--line-strong);
+  background: rgba(255,255,255,.022);
+}
+.fight-compare-sleek .fc-quality-value {
+  padding: 18px 14px 20px;
+  text-align: center;
+}
+.fight-compare-sleek .fc-quality-value strong {
+  display: block;
+  font-size: 1.37rem;
+  font-weight: 850;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+.fight-compare-sleek .fc-quality-value span {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: .66rem;
+  letter-spacing: .02em;
+}
+.fight-compare-sleek .fc-quality-label {
+  padding: 12px 8px;
+  color: var(--muted);
+  text-align: center;
+  font-size: .63rem;
+  font-weight: 850;
+  line-height: 1.45;
+  letter-spacing: .12em;
+}
+.fight-compare-sleek .fc-quality-label small {
+  display: block;
+  margin-top: 3px;
+  font-size: .59rem;
+  letter-spacing: .06em;
+}
+@media (max-width: 760px) {
+  .fight-compare-sleek .fc-opponent-quality { min-width: 680px; }
+}
+
 /* =========================================================
    MOBILE
    ========================================================= */
