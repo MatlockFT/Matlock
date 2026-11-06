@@ -390,6 +390,7 @@ Object.values(fields).forEach(el => {
       recent:collectRecentRows(taleDialog.querySelector('[data-tale-form-list="'+side+'"]')),
       opponentsRecord:taleDialog.querySelector('[data-tale-opponents-record="'+side+'"]').value.trim(),
       opponentsPct:taleDialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value.trim(),
+      opponentQuality:JSON.parse(taleDialog.dataset['taleQuality'+side.toUpperCase()]||'null'),
       source:fighterSourceMeta(taleDialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]'))
     });
     const cfg={version:6,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
