@@ -2,8 +2,7 @@ import fs from 'node:fs/promises';
 
 const FILES = {
   major: '_data/upcoming_events.json',
-  regional: '_data/event_map_regional.json',
-  pickerRegional: '_data/upcoming_events_regional.json'
+  regional: '_data/event_map_regional.json'
 };
 
 const STATES = new Map(Object.entries({
@@ -130,12 +129,11 @@ function placeholderText(value) {
   return /^(?:tba|tbd|unknown|n\/?a|none|null|undefined|-+)$/i.test(clean(value));
 }
 
-const [majorDoc, regionalDoc, pickerRegionalDoc] = await Promise.all([
-  loadDoc(FILES.major), loadDoc(FILES.regional), loadDoc(FILES.pickerRegional)
+const [majorDoc, regionalDoc] = await Promise.all([
+  loadDoc(FILES.major), loadDoc(FILES.regional)
 ]);
 const major = majorDoc.events;
 const regional = regionalDoc.events;
-const pickerRegional = pickerRegionalDoc.events;
 const mapEvents = [...major, ...regional];
 
 const sourceKeys = new Set();
@@ -223,23 +221,6 @@ for (const [index, event] of mapEvents.entries()) {
   }
 }
 
-const mapRegionalById = new Map(regional.map(event => [clean(event.id), event]).filter(([id]) => id));
-for (const event of pickerRegional) {
-  const id = clean(event.id);
-  if (!id) {
-    failures.push('picker-regional: event is missing id.');
-    continue;
-  }
-  const mapped = mapRegionalById.get(id);
-  if (!mapped) {
-    failures.push(`picker-regional:${id}: appears in Fight Card Picker but is missing from Event Map regional data.`);
-    continue;
-  }
-  if (clean(mapped.date) !== clean(event.date)) failures.push(`picker-regional:${id}: date disagrees with Event Map regional data.`);
-  if (canonicalPromotion(mapped.promotion) !== canonicalPromotion(event.promotion)) failures.push(`picker-regional:${id}: promotion disagrees with Event Map regional data.`);
-  if (norm(mapped.title) !== norm(event.title)) warnings.push(`picker-regional:${id}: title differs from Event Map regional data.`);
-}
-
 console.log(
   `Event Map completeness: ${qualityCounts.missingCoordinates}/${mapEvents.length} without coordinates, ` +
   `${qualityCounts.missingPoster}/${mapEvents.length} without posters, ` +
@@ -256,4 +237,4 @@ if (failures.length) {
   failures.forEach(item => console.error(`- ${item}`));
   process.exit(1);
 }
-console.log(`Event Map quality passed: ${mapEvents.length} mapped events (${major.length} major + ${regional.length} regional), ${pickerRegional.length} curated regional picker events, ${sourceKeys.size} regional sources.`);
+console.log(`Event Map quality passed: ${mapEvents.length} mapped events (${major.length} major + ${regional.length} regional), ${sourceKeys.size} regional sources.`);
