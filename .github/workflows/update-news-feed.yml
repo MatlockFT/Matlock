@@ -12,7 +12,6 @@ on:
       - "scripts/news/build-news-feed.mjs"
       - "scripts/news/build-japan-mma-news.mjs"
       - "scripts/news/japan-mma-glossary.json"
-      - "scripts/weather/build-fight-city-weather.mjs"
       - "_data/upcoming_events.json"
       - "scripts/news/dedupe-news-headlines.mjs"
       - "scripts/news/check-news-data.mjs"
@@ -70,27 +69,6 @@ jobs:
           --output /tmp/japan-mma-news.json
           --previous-url https://raw.githubusercontent.com/${{ github.repository }}/live-news-data/japan-mma-news.json
 
-      - name: Reuse previous Fight City Forecast
-        run: >-
-          curl -fsSL
-          "https://raw.githubusercontent.com/${{ github.repository }}/live-news-data/fight-city-weather.json"
-          -o /tmp/fight-city-weather.previous.json
-          || true
-
-      - name: Build Fight City Forecast
-        shell: bash
-        run: |
-          set -euo pipefail
-          node --check scripts/weather/build-fight-city-weather.mjs
-          if ! node scripts/weather/build-fight-city-weather.mjs --output /tmp/fight-city-weather.json; then
-            if [ -s /tmp/fight-city-weather.previous.json ]; then
-              echo "Fight City weather refresh failed; preserving previous shared snapshot."
-              cp /tmp/fight-city-weather.previous.json /tmp/fight-city-weather.json
-            else
-              exit 1
-            fi
-          fi
-
       - name: Publish browser-friendly live snapshot
         run: |
           git config user.name "github-actions[bot]"
@@ -102,8 +80,7 @@ jobs:
           git rm -rf . >/dev/null 2>&1 || true
           cp /tmp/mma-news.json mma-news.json
           cp /tmp/japan-mma-news.json japan-mma-news.json
-          cp /tmp/fight-city-weather.json fight-city-weather.json
-          git add mma-news.json japan-mma-news.json fight-city-weather.json
+          git add mma-news.json japan-mma-news.json
           git commit -m "Refresh MMA news data"
           git push --force origin HEAD:live-news-data
 

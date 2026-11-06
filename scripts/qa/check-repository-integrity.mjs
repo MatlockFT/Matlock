@@ -12,9 +12,7 @@ const SAME_ORIGIN_VIDEO_COMPATIBILITY_EXCEPTIONS = new Set([
 ]);
 const ARTICLE_UPLOAD = /^assets\/uploads\/articles\/\d{4}\/(?:0[1-9]|1[0-2])\/[a-z0-9][a-z0-9-]*\/[^/]+\.(?:png|jpe?g|webp|gif|avif|svg)$/i;
 const RUNTIME_UPLOADS = new Set([
-  'assets/uploads/runtime/live-writer.json',
-  // Historical published player state retained for /broadcast/ playback.
-  'assets/uploads/broadcast.json'
+  'assets/uploads/runtime/live-writer.json'
 ]);
 
 const requiredFiles = [
