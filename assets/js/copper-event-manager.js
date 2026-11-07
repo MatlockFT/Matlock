@@ -150,19 +150,85 @@ function search(){
   list.append(b);
  }
 }
+const AUTO_CARD_KEY='copper47.auto-today.v1';
+function dateHere(){
+ const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+ const get=k=>parts.find(p=>p.type===k)?.value||'';
+ return get('year')+'-'+get('month')+'-'+get('day');
+}
+function prioritizeUfc(a,b){
+ const rank=e=>norm(e.promotion_key)==='ufc'||/^ufc(?:\s|$)/i.test(txt(e.promotion))?0:1;
+ return rank(a)-rank(b);
+}
+function findExistingCard(card){
+ const sourceId=txt(card.id),name=cardName(card),matches=readCard(card),first=matches[0]&&pair(matches[0].left,matches[0].right);
+ return data.events.find(e=>(sourceId&&e.sourceId===sourceId)||
+  (e.date===card.date&&(norm(e.name)===norm(name)||!!first&&e.fights.some(f=>pair(f.left,f.right)===first))));
+}
+function offerToday(){
+ const panel=$('todayCardPanel'),name=$('todayCardName'),status=$('todayCardStatus'),button=$('loadTodayCard');
+ if(!panel)return;
+ const date=dateHere();
+ const found=catalog.filter(c=>c.date===date).sort(prioritizeUfc)[0];
+ if(!found){
+  panel.classList.remove('hidden');
+  name.textContent='No scheduled card found for today';
+  status.textContent=catalog.length?'No matching event in the current published schedule. Search upcoming events or paste a card.':
+    'The event catalog could not be loaded. Check your connection or import a card manually.';
+  button.textContent='Search event cards';button.onclick=openModal;return;
+ }
+ panel.classList.remove('hidden');
+ const fights=readCard(found),existing=findExistingCard(found);
+ name.textContent=cardName(found)+' · '+found.date;
+ status.textContent=fights.length+' scheduled matchups from the site catalog'+
+   (existing?' · '+existing.fights.length+' already in the workspace':' · not yet in the workspace')+
+   ' · source card may change before the event.';
+ button.textContent=existing?'Open event':'Load today’s card';
+ button.onclick=()=>{if(existing){selectEvent(existing.id);return}importTodayCard(found,false)};
+}
+function importTodayCard(card,automatic){
+ try{
+  const existing=findExistingCard(card);
+  if(existing){if(!automatic)selectEvent(existing.id);return}
+  const bouts=readCard(card);
+  if(!bouts.length)throw Error('No scheduled bouts found.');
+  const target=makeEvent(cardName(card),card.date,card.id);
+  const added=addMatches(target,bouts);
+  if(!added)throw Error('No fights could be imported.');
+  data.selected=target.id;
+  if(!persist())throw Error('Local browser storage could not save the card.');
+  renderDashboard();offerToday();
+  toast(added+' bouts loaded for today. Verify the final card before scoring.');
+ }catch(error){toast('Today’s card was not imported: '+error.message)}
+}
+function maybeAutoLoadToday(){
+ const today=catalog.filter(c=>c.date===dateHere()).sort(prioritizeUfc)[0];
+ if(!today||findExistingCard(today))return;
+ if(localStorage.getItem(AUTO_CARD_KEY)==='false')return;
+ importTodayCard(today,true);
+}
 async function fetchCards(){
  if(busy)return;
- busy=true;$('lookupStatus').textContent='Looking up published event cards…';
- const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),12000);
+ busy=true;$('lookupStatus').textContent='Checking published event listings…';
+ const sources=['/assets/data/copper-card-catalog.json','/assets/data/upcoming-events-live.json'];
+ let failure='';
  try{
-  const r=await fetch('/assets/data/upcoming-events-live.json',{cache:'no-store',credentials:'same-origin',signal:ctrl.signal});
-  if(!r.ok)throw Error('HTTP '+r.status);
-  const payload=await r.json();
-  if(!Array.isArray(payload?.events))throw Error('Invalid schedule feed');
-  catalog=payload.events.filter(c=>readCard(c).length).slice(0,250);
-  busy=false;search();
- }catch(error){catalog=[];$('lookupResults').replaceChildren();$('lookupStatus').textContent='Schedule unavailable ('+error.message+'). Paste or upload a card instead.'}
- finally{busy=false;clearTimeout(timer)}
+  for(const source of sources){
+   const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),12000);
+   try{
+    const r=await fetch(source,{cache:'no-store',credentials:'same-origin',signal:ctrl.signal});
+    if(!r.ok)throw Error('HTTP '+r.status);
+    const payload=await r.json();
+    if(!Array.isArray(payload?.events))throw Error('Invalid schedule format');
+    catalog=payload.events.filter(c=>readCard(c).length).slice(0,250);
+    if(!catalog.length)throw Error('No events with scheduled fights');
+    busy=false;search();offerToday();maybeAutoLoadToday();return;
+   }catch(error){failure=error.message}finally{clearTimeout(timer)}
+  }
+  catalog=[];$('lookupResults').replaceChildren();
+  $('lookupStatus').textContent='Card lookup unavailable ('+failure+'). Use pasted matchups or file import.';
+  offerToday();
+ }finally{busy=false}
 }
 function openModal(){
  $('importEventOverlay').classList.remove('hidden');
@@ -224,8 +290,14 @@ $('refreshCards').onclick=fetchCards;
 $('pasteImport').onclick=importPasted;
 $('cardFile').onchange=readUpload;
 $('completeEvent').onclick=completeEvent;
+$('autoLoadCard').checked=localStorage.getItem(AUTO_CARD_KEY)!=='false';
+$('autoLoadCard').onchange=()=>{
+ localStorage.setItem(AUTO_CARD_KEY,$('autoLoadCard').checked?'true':'false');
+ if($('autoLoadCard').checked)maybeAutoLoadToday();
+};
 $('importEventOverlay').onclick=e=>{if(e.target===$('importEventOverlay'))closeModal()};
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('importEventOverlay').classList.contains('hidden')){e.preventDefault();e.stopImmediatePropagation();closeModal()}},true);
-window.copperEvents={render,readCard};
+window.copperEvents={render,readCard,offerToday};
 render();
+fetchCards();
 })();
