@@ -8,7 +8,7 @@ author: Matlock
 tags:
   - UFC Vegas 124
   - UFC results
-published: false
+published: true
 pinned: false
 listing_visibility: normal
 spoiler_warning: false
