@@ -94,3 +94,79 @@ test('paste csv or versus card into current event, skip duplicate matchup',async
  expect(stored.fights.map(f=>f.left)).toEqual(['Red One','Red Two','Red Three']);
  expect(stored.fights[1].rounds).toBe(5);
 });
+
+
+function seededFight(id,left,right,completed=false,reverse=false){
+ return {id,left,right,division:'Lightweight',rounds:3,duration:300,index:0,cornerLayout:'red-left',
+  status:completed?'complete':'ready',
+  roundData:[{elapsed:0,observations:[],score:completed?{winner:reverse?'b':'a',margin:9,deductions:[0,0],confirmedAt:'2026-10-31T18:00:00Z'}:null}],
+  result:completed?{type:'tko',winner:reverse?'b':'a',at:'2026-10-31T18:00:00Z'}:null,
+  legacyId:null};
+}
+async function seedConflict(page,divergent=false){
+ const original={id:'original-2026',name:'UFC Fight Night: Moicano vs. Nolan',date:'2026-10-31',
+  judge:'Matlock',fights:[seededFight('o-1','Renato Moicano','Tom Nolan',true),
+   seededFight('o-2','Zachary Reese','Mickey Gall',divergent)]};
+ const copy={id:'duplicate-2026',name:'UFC Fight Night: Moicano vs. Nolan (conflict copy)',date:'2026-10-31',
+  judge:'Matlock',fights:[seededFight('d-1','Renato Moicano','Tom Nolan',divergent,divergent),
+   seededFight('d-2','Zachary Reese','Mickey Gall',!divergent)]};
+ await page.evaluate(payload=>{
+  localStorage.setItem('copper47.auto-today.v1','false');
+  localStorage.setItem('copper47.workspace.v2',JSON.stringify(payload));
+ },{version:2,selected:'duplicate-2026',masterSheetId:null,events:[original,copy]});
+ await page.reload({waitUntil:'domcontentloaded'});
+}
+test('safe conflict copies consolidate automatically, retain unique results and create recoverable snapshot',async({page})=>{
+ await seedConflict(page,false);
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).events.length)).toBe(1);
+ const final=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')));
+ expect(final.events[0].id).toBe('original-2026');
+ expect(final.events[0].completedAt).toBeTruthy();
+ expect(final.events[0].fights).toHaveLength(2);
+ expect(final.events[0].fights.map(f=>!!f.result)).toEqual([true,true]);
+ expect(final.removedEvents['duplicate-2026']).toBeTruthy();
+ expect(final.selected).toBe('original-2026');
+ await expect(page.locator('.completed-events .event-item')).toHaveCount(1);
+ await expect(page.locator('#downloadRecovery')).toBeVisible();
+ await page.reload();
+ await expect(page.locator('.completed-events .event-item')).toHaveCount(1);
+ const count=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).events.length);
+ expect(count).toBe(1);
+});
+test('divergent confirmed scores demand operator selection and preserve both until reviewed',async({page})=>{
+ await seedConflict(page,true);
+ await expect(page.locator('#integrityIssues select')).toHaveCount(1);
+ const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')));
+ expect(before.events).toHaveLength(2);
+ await expect(page.locator('#resolveConflicts')).toBeDisabled();
+ await page.locator('#integrityIssues select').selectOption('original');
+ await expect(page.locator('#resolveConflicts')).toBeEnabled();
+ await page.click('#resolveConflicts');
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).events.length)).toBe(1);
+ const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).events);
+ expect(after[0].completedAt).toBeTruthy();
+ expect(after[0].fights[0].result.winner).toBe('a');
+ expect(after[0].fights[1].result).toBeTruthy();
+});
+test('today card auto-loads once with all available bouts and remains editable',async({page})=>{
+ const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',
+  year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+ const part=k=>parts.find(p=>p.type===k).value;
+ const today=part('year')+'-'+part('month')+'-'+part('day');
+ const payload={events:[{id:'ufc-today-test',promotion:'UFC Fight Night',promotion_key:'ufc',
+  title:'Testing Main Event',date:today,sections:[{kind:'main',bouts:[
+   {label:'Main Event',weight_class:'Heavyweight Bout',fighters:[{name:'Waldo Cortes Acosta'},{name:'Johnny Walker'}]},
+   {label:'',weight_class:'Featherweight Bout',fighters:[{name:'Austin Bashi'},{name:'Carlos Calderon'}]}
+  ]}]}]};
+ await page.route('**/assets/data/copper-card-catalog.json',r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify(payload)}));
+ await page.reload();
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).events.length)).toBe(1);
+ await expect(page.locator('.bout-row')).toHaveCount(2);
+ const stored=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).events[0]);
+ expect(stored.sourceId).toBe('ufc-today-test');
+ expect(stored.fights[0].rounds).toBe(5);
+ expect(stored.fights[1].rounds).toBe(3);
+ await page.reload();
+ await expect(page.locator('.bout-row')).toHaveCount(2);
+ expect((await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).events)).length).toBe(1);
+});
