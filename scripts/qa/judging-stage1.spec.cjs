@@ -1,3 +1,20 @@
+
+function enableCollapsedControls(page){
+ for(const method of ['click','fill','selectOption','check','uncheck','setInputFiles']){
+  const original=page[method].bind(page);
+  page[method]=async(selector,...args)=>{
+   if(typeof selector==='string'&&selector.startsWith('#')){
+    const target=page.locator(selector);
+    if(await target.count())await target.evaluate(el=>{
+     for(let p=el.parentElement;p;p=p.parentElement){
+      if(p.tagName==='DETAILS')p.open=true;
+     }
+    });
+   }
+   return original(selector,...args);
+  };
+ }
+}
 const { test, expect } = require('@playwright/test');
 const URL = 'http://127.0.0.1:4173/copper-orchard-47/';
 test.beforeEach(async ({ page }) => {
@@ -6,6 +23,7 @@ test.beforeEach(async ({ page }) => {
   page.on('dialog', async d => d.accept());
   await page.route('https://accounts.google.com/gsi/client',route=>route.fulfill({status:200,contentType:'application/javascript',body:''}));
   await page.goto(URL,{waitUntil:'domcontentloaded'});
+ enableCollapsedControls(page);
 });
 test.afterEach(async ({page}) => {
   expect(page.__scorecardErrors).toEqual([]);
@@ -1248,7 +1266,8 @@ async function connectWorkspaceGoogle(page) {
 test('Drive cloud sync restores all events and fights in a fresh browser, and propagates deletions',async({page})=>{
  const remote={file:null,version:0};
  await fakeWorkspaceDrive(page,remote);
- await expect(page.locator('#cloudPanel')).toBeVisible();
+ await page.locator('#settingsMenu').evaluate(el=>el.open=true);
+  await expect(page.locator('#cloudPanel')).toBeVisible();
  await page.click('#newEventBtn');
  await page.fill('#eventName','Cross-device event');
  await page.fill('#boutLeft','Red A');
@@ -1264,7 +1283,8 @@ test('Drive cloud sync restores all events and fights in a fresh browser, and pr
  await page.evaluate(()=>{window.persist=()=>true;localStorage.clear()});
  await page.reload();
  await expect(page.locator('#eventCount')).toHaveText('0');
- await expect(page.locator('#cloudPanel')).toBeVisible();
+ await page.locator('#settingsMenu').evaluate(el=>el.open=true);
+  await expect(page.locator('#cloudPanel')).toBeVisible();
  await connectWorkspaceGoogle(page);
  await expect(page.locator('#eventCount')).toHaveText('1');
  await expect(page.locator('.bout-row')).toHaveCount(1);
