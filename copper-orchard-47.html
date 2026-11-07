@@ -9,7 +9,7 @@ sitemap: false
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<title>Workspace</title>
+<title>Orchard</title>
 <style>
 :root{color-scheme:dark;--bg:#111214;--surface:#1c1d20;--panel:#222327;--edge:#35373c;--text:#f2f1ef;--muted:#a0a1a5;--blue:#83b3fb;--red:#f48588;--accent:#e9e7e3;--ok:#9bcab2;--warn:#e6b878}
 *{box-sizing:border-box}html,body{min-height:100%}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
@@ -179,31 +179,295 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  #dashTop #saveStatus{margin-right:auto}
  #todayCardPanel #todayCardStatus{display:none}
 }
+
+/* Orchard UI – a quieter interface with visible work and tucked-away setup. */
+:root{--bg:#101114;--surface:#18191c;--panel:#1b1c1f;--edge:#303238;--text:#f1eee8;--muted:#96979d;--accent:#d8c4a6;--blue:#83b2ed;--red:#e58b91;--ok:#9bc6aa;--warn:#e2b87d}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:13px;line-height:1.5}
+button,input,select,textarea{font-family:inherit}
+button{border-radius:8px;padding:9px 12px;background:#242529;border:1px solid #404147;color:#eeeae3;box-shadow:none;font-size:12px;font-weight:600;transition:background .15s,border-color .15s,transform .15s}
+button:hover:not(:disabled){background:#303137;border-color:#64666d}
+button:active:not(:disabled){transform:translateY(1px)}
+.primary,.primary:hover:not(:disabled){background:#e5ddd0;color:#19191a;border-color:#e5ddd0;box-shadow:none}
+.primary:hover:not(:disabled){background:#fff7e9;border-color:#fff7e9}
+.quiet{background:transparent;border-color:#393a40}
+.danger{color:#dca2a6;border-color:#674348}
+.muted{color:var(--muted)}
+.micro{font-size:10px;letter-spacing:.12em;color:#9b9da3}
+.pill{border-color:#34373a;background:transparent;color:#aeb8ae;letter-spacing:0;font-size:11px}
+.pill.saved:before{content:"";display:inline-block;width:6px;height:6px;background:#8fbca0;border-radius:100%;margin-right:6px;vertical-align:middle}
+h1,h2,h3{letter-spacing:-.035em}
+.top{min-height:66px;padding:13px max(24px,calc((100vw - 1400px)/2));background:#141518;border-bottom:1px solid #292b2e;flex-wrap:nowrap}
+.brand{display:flex;gap:11px;align-items:center;white-space:nowrap;font-size:15px;letter-spacing:-.02em}
+.brand strong{font-weight:690}
+.brand-mark{height:23px;width:23px;display:inline-block;border:1.5px solid #d9c6a9;border-radius:7px;position:relative;transform:rotate(-9deg)}
+.brand-mark:after{content:"";position:absolute;width:8px;height:8px;background:#d9c6a9;border-radius:2px;top:6px;left:6px}
+.top-right{flex-wrap:nowrap;gap:10px}
+.top-right #newEventBtn{white-space:nowrap}
+.top-right #newEventBtn span{font-size:16px;line-height:0;margin-left:7px}
+.top-right #importCardBtn{white-space:nowrap;border:0;background:transparent;color:#c1c0c0}
+.top-right #importCardBtn:hover{color:#fff;background:#25262a}
+.container{max-width:1400px;padding:24px 24px 88px}
+.workspace{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px}
+.panel{background:#191a1d;border:1px solid #2e3035;border-radius:12px;box-shadow:none}
+.sidebar{align-self:start;position:sticky;top:24px;background:transparent;border:0;border-right:1px solid #303137;border-radius:0;padding:8px 19px 14px 0;box-shadow:none;min-width:0}
+.sidebar .panel-title{margin:5px 0 15px;padding:0 10px}
+.sidebar h2{font-size:13px;font-weight:660;letter-spacing:-.015em}
+#eventCount{font-size:11px;color:#777980}
+.event-group-title{margin:18px 0 8px;padding:5px 10px;border:0;letter-spacing:.1em;color:#767a7f}
+.event-group-title:first-child{display:none}
+.event-group-empty{padding:14px 9px;color:#797b81}
+.event-item{border:1px solid transparent;border-radius:9px;margin:4px 0;padding:12px 14px;width:100%;background:transparent;display:block;text-align:left;min-height:68px;position:relative;box-shadow:none}
+.event-item:hover:not(:disabled){background:#212227;border-color:#303137}
+.event-item.current{background:#262524;border-color:#494037}
+.event-item.current:before{content:"";position:absolute;top:13px;bottom:13px;left:0;width:2px;background:#dac19c;border-radius:2px}
+.event-item strong{display:block;font-size:12px;font-weight:650;line-height:1.4;overflow-wrap:anywhere;max-width:100%}
+.event-item small{color:#8f9196;margin-top:5px;font-size:11px}
+.event-state{display:none}
+.completed-events{margin:14px 0 0}
+.completed-events>summary{border-top:1px solid #34353a;border-bottom:0;margin:0;padding:14px 10px 10px;letter-spacing:.08em;font-size:10px}
+.completed-events>.event-item{margin:2px 0;opacity:.75}
+#eventPane{min-width:0}
+#eventEditor{padding:28px 30px 25px}
+.event-head{display:flex;gap:20px;justify-content:space-between;align-items:flex-start;padding-bottom:25px;border-bottom:1px solid #323339}
+.event-heading{min-width:0;flex:1}
+.event-heading>.micro{font-size:10px;color:#b5a084}
+#selectedEventTitle{font-size:clamp(23px,3vw,33px);font-weight:700;line-height:1.14;letter-spacing:-.045em;margin:10px 0 11px;overflow-wrap:anywhere}
+.event-subline{display:flex;align-items:center;gap:11px;flex-wrap:wrap;color:#a2a3a7;font-size:12px}
+.event-progress{border:0;border-left:1px solid #44454a;padding:0 0 0 11px;margin:0;background:transparent;border-radius:0;color:#a2a3a7;font-size:12px}
+.event-actions{display:flex;gap:7px;align-items:center;flex:0 0 auto;margin-top:20px}
+.event-actions #completeEvent{border-color:#4e4e4d}
+.event-more,.bout-more,.score-tools{position:relative}
+.event-more>summary,.bout-more>summary{list-style:none;cursor:pointer;display:grid;place-items:center;height:34px;width:34px;border:1px solid #44454a;border-radius:8px;font-size:18px;line-height:1;color:#c0c1c4}
+.event-more>summary::-webkit-details-marker,.bout-more>summary::-webkit-details-marker{display:none}
+.event-more>summary:hover,.bout-more>summary:hover{background:#303136}
+.event-menu,.bout-menu,.score-tool-menu{position:absolute;z-index:6;right:0;top:calc(100% + 6px);min-width:153px;border:1px solid #494b50;border-radius:9px;padding:6px;background:#222327;box-shadow:0 16px 30px #0008}
+.event-menu button,.bout-menu button,.score-tool-menu button{display:block;text-align:left;width:100%;border:0;background:transparent;padding:9px 10px;box-shadow:none;white-space:nowrap}
+.event-menu button:hover,.bout-menu button:hover,.score-tool-menu button:hover{background:#35363b}
+.event-details{padding:13px 0 12px;border-bottom:1px solid #323339}
+.event-details>summary{cursor:pointer;list-style:none;font-size:11px;color:#aaacb1;font-weight:600;width:max-content;max-width:100%}
+.event-details>summary:before{content:"›";display:inline-block;margin-right:8px;font-size:17px;vertical-align:-2px}
+.event-details[open]>summary:before{transform:rotate(90deg)}
+.event-details>summary::-webkit-details-marker{display:none}
+.event-details .formgrid{margin:15px 0 5px}
+input,select,textarea{background:#111215;border:1px solid #44454c;border-radius:8px;padding:10px 11px;color:#eeeae7;min-height:39px}
+label{font-size:11px;font-weight:550;color:#a7a7ab}
+label input,label select,label textarea{margin-top:6px}
+input:focus,select:focus,textarea:focus{border-color:#bba787}
+.fights-section{padding-top:22px}
+.fights-section>.section-head{margin:0 0 12px}
+.fights-section h3{font-size:15px;font-weight:680}
+#bouts{border-top:1px solid #34353a}
+.bout-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:16px 2px;border-top:0;border-bottom:1px solid #34353a}
+.bout-row:hover{background:#ffffff02}
+.bout-copy{display:flex;gap:19px;align-items:center;min-width:0}
+.bout-index{color:#787a80;font-size:11px;letter-spacing:.05em;font-family:ui-monospace,monospace;min-width:19px}
+.bout-info{min-width:0}
+.bout-name{font-size:14px;font-weight:660;letter-spacing:-.02em;line-height:1.4}
+.bout-meta{font-size:11px;margin-top:5px;color:#98999f;line-height:1.4;text-transform:capitalize}
+.bout-actions{flex-wrap:nowrap}
+.bout-actions>.primary{background:#2b2b2e;color:#e6d6c0;border-color:#555047;box-shadow:none;min-width:73px}
+.bout-actions>.primary:hover{background:#3a3631;border-color:#9e8769}
+.bout-more>summary{height:32px;width:31px;font-size:17px}
+.bout-menu{min-width:120px}
+.entry-creator{margin-top:17px;overflow:visible}
+.entry-creator>summary{list-style:none;display:inline-flex;gap:9px;align-items:center;cursor:pointer;color:#d8c4a6;font-size:12px;font-weight:680;padding:8px 1px}
+.entry-creator>summary::-webkit-details-marker{display:none}
+.entry-creator>summary span{border:1px solid #695c4c;border-radius:5px;width:20px;height:20px;display:grid;place-items:center;font-size:15px;font-weight:400}
+.creator-body{margin-top:13px;padding:19px;border:1px solid #36383e;background:#151619;border-radius:10px}
+.creator-body .section{margin:0}
+.creator-body .section-head{margin-bottom:12px}
+.creator-body h3{font-size:13px}
+.creator-body .formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.creator-body .actions{justify-content:flex-end}
+.today-bar#todayCardPanel{padding:12px 17px;margin-bottom:17px;display:flex;gap:13px;align-items:center;background:#1e1e1f;border:1px solid #4a4035}
+#todayCardPanel .today-copy{min-width:0;flex:1}
+#todayCardPanel .today-kicker{display:block;font-size:9px;color:#d6b78d;margin-bottom:5px}
+#todayCardPanel .today-name{font-size:13px;font-weight:660;margin:0;line-height:1.4}
+#todayCardPanel #todayCardStatus{margin-top:2px;font-size:11px}
+#todayCardPanel #loadTodayCard{background:#34302b;color:#e6d5be;border:1px solid #655542}
+.empty.welcome{min-height:340px;border:1px dashed #393b40;background:linear-gradient(145deg,#1a1b1e,#151619);padding:70px 20px;text-align:center}
+.welcome-mark{display:grid;place-items:center;margin:0 auto 15px;border-radius:11px;border:1px solid #655745;color:#d8c4a6;width:37px;height:37px;font-size:21px}
+.welcome h2{font-size:22px;letter-spacing:-.04em}
+.welcome p{font-size:12px;color:#a4a5aa;margin:10px 0 20px}
+.welcome button{font-size:12px}
+.settings-menu{position:relative;z-index:30}
+.settings-trigger{width:35px;height:35px;border:1px solid #404247;border-radius:9px;background:transparent;color:#c3c5c9}
+.settings-trigger:hover,.settings-menu[open]>.settings-trigger{background:#303136;border-color:#77787e}
+.settings-popover{position:fixed;right:18px;top:76px;bottom:18px;width:min(430px,calc(100vw - 36px));max-height:none;overflow:auto;background:#1b1c1f;border:1px solid #45464b;border-radius:14px;box-shadow:0 28px 70px #000c;padding:23px;scrollbar-color:#45464b transparent}
+.settings-heading{display:flex;align-items:center;justify-content:space-between;border:0;padding:0;margin:0 0 19px}
+.settings-heading h2{font-size:20px;letter-spacing:-.04em}
+.settings-close{font-size:25px;line-height:1;border:0;background:transparent;padding:4px 8px;color:#aeb0b5}
+.settings-popover #cloudPanel{padding:0;margin:0!important;border:0;background:transparent;box-shadow:none}
+.settings-popover #cloudPanel .panel-title{margin:0 0 8px}
+.settings-popover #cloudPanel h2{font-size:13px}
+.settings-popover #cloudPanel .actions{margin-top:12px!important}
+.settings-popover #cloudPanel p{font-size:11px;line-height:1.5}
+.settings-popover #cloudPanel #cloudMessage{color:#aaacb3}
+.settings-popover #cloudPanel details{padding:9px 0}
+.settings-group{border-top:1px solid #34363b;padding:17px 0 0;margin-top:18px}
+.settings-group>summary{cursor:pointer;font-size:13px;font-weight:680;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.settings-group>summary::-webkit-details-marker{display:none}
+.settings-group>summary:after{content:"+";font-size:18px;color:#85878c;font-weight:400}
+.settings-group[open]>summary:after{content:"−"}
+.settings-inner{margin-top:16px}
+.settings-inner .section{margin-top:0}
+.settings-inner h2,.settings-inner h3{font-size:13px;margin-bottom:7px}
+.settings-inner p{font-size:11px;line-height:1.55}
+.settings-inner label{font-size:11px}
+.settings-inner button{font-size:11px}
+.settings-inner .actions{gap:7px}
+.settings-inner .section-head{margin-bottom:8px}
+.settings-inner .sheet-link{overflow-wrap:anywhere}
+.settings-file-actions{margin-bottom:15px}
+.pref-toggle{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:12px}
+.pref-toggle input{width:16px;min-height:16px;height:16px;margin:0;accent-color:#d8c4a6}
+#workbench{max-width:1320px;padding:0 24px 60px}
+.wb-top{padding:15px 0;border-bottom-color:#303238}
+.wb-head{margin:37px 0 25px;grid-template-columns:minmax(0,1fr) 170px minmax(0,1fr)}
+.corner-name{font-size:clamp(22px,3vw,39px);font-weight:720;line-height:1.1}
+.wb-head .micro.red,.wb-head .micro.blue{font-size:10px;font-weight:600;letter-spacing:.12em}
+.moment-count{font-size:18px;margin-top:12px}
+.clock{font-size:clamp(49px,6vw,76px);font-weight:730;letter-spacing:-.08em}
+.round-box .micro{color:#c6b6a1}
+.statusline{font-size:11px}
+.timeline{background:#191a1d;border:1px solid #34363b;box-shadow:none;padding:18px 20px;border-radius:12px}
+.timeline:before{display:none}
+.timeline canvas{height:185px;margin:9px 0 0}
+.timeline-title h2{font-size:15px}
+.tape-summary{margin-top:4px}
+.controls{display:flex;align-items:center;justify-content:center;gap:9px;margin:19px 0 8px}
+.controls button{min-height:40px}
+.controls #startBtn{min-width:130px}
+.controls #endBtn{background:#292b2d;border:1px solid #59544d}
+.controls #endBtn:hover{background:#383631}
+.controls #undoBtn{background:transparent}
+.score-tools>summary{list-style:none;cursor:pointer;border:1px solid #44464b;border-radius:8px;padding:10px 15px;font-size:12px;font-weight:650;min-height:40px;color:#c0c1c6}
+.score-tools>summary::-webkit-details-marker{display:none}
+.score-tools>summary:hover{background:#292a2e}
+.score-tool-menu{min-width:150px}
+.score-tool-menu #finishBtn{margin:0}
+.shortcuts{margin:2px 0 22px;text-align:center}
+.shortcuts>summary{list-style:none;color:#81838a;font-size:11px;cursor:pointer;padding:6px}
+.shortcuts>summary::-webkit-details-marker{display:none}
+.shortcuts>summary:hover{color:#b5b5b9}
+.shortcuts .hints{font-size:11px;margin:6px 0;color:#9da0a4}
+.footer-grid{gap:16px}
+.footer-grid .panel{padding:20px}
+.footer-grid .panel-title{margin-bottom:11px}
+.footer-grid h2{font-size:14px}
+.overlay{background:#07080bdc;backdrop-filter:blur(5px)}
+.modal{background:#1e1f22;border:1px solid #414348;border-radius:14px;box-shadow:0 25px 90px #000b}
+.modal h2{letter-spacing:-.035em}
+.winner{background:#25262b;border:1px solid #494b50;border-radius:9px}
+.winner.selected{border-color:#bfa783;background:#34312d}
+.margins button.selected{background:#e5ddd0;color:#1e1d1b;border-color:#e5ddd0}
+.suggestion{background:#292a2d;border-left:2px solid #bca784;color:#e3e0da}
+.notice{background:#28282a}
+.score-note{font-size:11px;color:#999ba0;padding:10px 0}
+.score-note>summary{cursor:pointer}
+.score-note p{margin-top:7px}
+input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #d1b78c;outline-offset:3px}
+@media(max-width:900px){.workspace{grid-template-columns:195px minmax(0,1fr);gap:20px}#eventEditor{padding:22px}.sidebar{padding-right:12px}}
+@media(max-width:750px){
+ .top{min-height:60px;padding:12px 16px}
+ .container,#workbench{padding-left:15px;padding-right:15px}
+ .workspace{display:block}
+ .sidebar{position:static;border:0;border-bottom:1px solid #303137;margin-bottom:17px;padding:0 0 14px;overflow:visible}
+ .sidebar .panel-title{margin-bottom:9px;padding-left:0}
+ #events{display:flex;gap:7px;overflow-x:auto;align-items:flex-start;padding-bottom:5px;scrollbar-width:thin}
+ #events>.event-item{flex:0 0 175px;min-height:65px;margin:0}
+ #events>.completed-events{flex:0 0 142px;margin:0;padding:0}
+ .completed-events>summary{border:1px solid #34363b;border-radius:8px;padding:14px 10px}
+ .completed-events>.event-item{min-width:160px}
+ .event-group-title,.event-group-empty{display:none}
+ #eventEditor{padding:20px 18px}
+ .event-head{padding-bottom:18px;gap:10px}
+ #selectedEventTitle{font-size:25px}
+ .event-actions{margin-top:11px}
+ .creator-body .formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .settings-popover{top:67px;right:9px;bottom:9px;width:min(430px,calc(100vw - 18px));padding:18px}
+ .wb-head{grid-template-columns:minmax(0,1fr) 112px minmax(0,1fr);gap:6px;margin:28px 0 20px}
+ .clock{font-size:43px}
+ .corner-name{font-size:clamp(17px,4vw,25px)}
+ .timeline canvas{height:165px}
+ .footer-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+ .brand strong{font-size:14px}
+ .brand-mark{height:20px;width:20px;border-radius:6px}
+ .brand-mark:after{top:5px;left:5px}
+ .top-right{gap:4px}
+ .top-right #saveStatus{display:none}
+ .top-right #importCardBtn{padding:7px 8px;font-size:11px}
+ .top-right #newEventBtn{padding:8px 10px;font-size:11px}
+ .top-right #newEventBtn span{margin-left:2px}
+ #selectedEventTitle{font-size:23px}
+ .event-head{flex-wrap:wrap}
+ .event-actions{margin-top:0}
+ .event-progress{border:0;padding:0}
+ .creator-body{padding:13px}
+ .creator-body .formgrid{grid-template-columns:1fr}
+ .bout-row{gap:6px}
+ .bout-copy{gap:9px}
+ .bout-index{font-size:10px;min-width:17px}
+ .bout-name{font-size:12px}
+ .bout-meta{font-size:10px}
+ .bout-actions{gap:5px}
+ .bout-actions>.primary{min-width:52px;padding:7px 8px}
+ .today-bar#todayCardPanel{padding:10px 12px}
+ #todayCardPanel #todayCardStatus{display:none}
+ .wb-head{grid-template-columns:minmax(0,1fr) 95px minmax(0,1fr)}
+ .clock{font-size:38px}
+ .moment-count{font-size:16px}
+ .timeline{padding:13px 11px}
+ .timeline canvas{height:145px}
+ .controls{gap:6px;justify-content:stretch;flex-wrap:wrap}
+ .controls #startBtn{flex:1;min-width:110px}
+ .controls #endBtn{flex:1;min-width:130px}
+ .controls #undoBtn,.controls .score-tools{flex:0 0 auto}
+ .score-tools>summary{padding:10px}
+}
+@media(prefers-reduced-motion:reduce){button{transition:none}html{scroll-behavior:auto}}
+
 </style>
 </head>
 <body>
 <header class="top" id="dashTop">
- <div><h1>Workspace</h1></div>
+ <div class="brand"><span class="brand-mark" aria-hidden="true"></span><strong>Orchard</strong></div>
  <div class="top-right">
-  <span id="saveStatus" class="pill saved">Local save ready</span>
-  <button id="importCardBtn" class="quiet">Import event / card</button>
-  <button id="newEventBtn" class="primary">+ New event</button>
+  <span id="saveStatus" class="pill saved" role="status">Saved</span>
+  <button id="importCardBtn" class="quiet small-btn">Import card</button>
+  <button id="newEventBtn" class="primary small-btn">New event <span aria-hidden="true">+</span></button>
   <details class="settings-menu" id="settingsMenu">
-   <summary class="settings-trigger" aria-label="Workspace settings" title="Workspace settings">⚙</summary>
-   <div class="settings-popover" role="region" aria-label="Workspace settings and Google connection">
-    <div class="settings-heading"><h2>Workspace settings</h2><div class="settings-backups"><button id="exportAll" class="quiet small-btn">Export backup</button><button id="importBtn" class="quiet small-btn">Import backup</button><button id="legacyBtn" class="quiet small-btn hidden">Import old sessions</button></div></div>
-<section class="panel" id="cloudPanel" style="margin-bottom:18px">
-   <div class="panel-title"><h2>Google Drive · Workspace sync</h2><span id="cloudStatus" class="micro">Not connected</span></div>
-   <p class="muted">Events and rounds save locally immediately. While Google is connected, the workspace syncs automatically when the event list is open. This browser-only connection expires and requires reconnecting; once published, Google should normally reuse previously approved access.</p>
-   <div class="actions" style="margin-top:13px"><button id="connectDrive">Connect Google</button><button id="cloudSyncNow" class="primary" disabled>Sync now</button><button id="disconnectDrive" class="quiet small-btn" disabled title="Revokes Google permission; you will need to approve access again later">Revoke access</button></div>
+   <summary class="settings-trigger" aria-label="Settings" title="Settings"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2" fill="#17191b"/><circle cx="15" cy="17" r="2" fill="#17191b"/></svg></summary>
+   <div class="settings-popover" role="region" aria-label="Settings">
+    <div class="settings-heading"><h2>Settings</h2><button id="settingsClose" class="settings-close" type="button" aria-label="Close settings">×</button></div>
+    <section class="panel" id="cloudPanel" style="margin-bottom:18px">
+   <div class="panel-title"><h2>Google Drive</h2><span id="cloudStatus" class="micro">Not connected</span></div>
+   <p class="muted">Connect to use your events across devices.</p>
+   <div class="actions" style="margin-top:13px"><button id="connectDrive">Connect Google</button><button id="cloudSyncNow" class="primary" disabled>Sync now</button><button id="disconnectDrive" class="quiet small-btn" disabled title="Revokes Google permission; you will need to approve access again later">Disconnect</button></div>
    <p id="cloudMessage" class="muted" role="status" style="margin-top:10px">Connect Google to load existing events or save this browser's events to Drive.</p>
-   <details style="margin-top:14px"><summary>Google sign-in setup</summary>
+   <details style="margin-top:14px"><summary>Connection setup</summary>
     <p class="muted" style="margin:9px 0">Keep your Google OAuth web client ID. Enable <strong>Google Drive API</strong> and <strong>Google Sheets API</strong>, and authorize <strong id="googleOrigin"></strong> as a JavaScript origin. To stop Google's Testing warning, open <a class="sheet-link" target="_blank" rel="noopener noreferrer" href="https://console.cloud.google.com/auth/audience">Google Auth Platform → Audience</a> and publish the app (verification may be required). This browser-only implementation does not store a client secret or refresh token. Seamless long-term access requires a secure server-side connection.</p>
     <label>Google OAuth web client ID<input id="clientId" maxlength="300" placeholder="…apps.googleusercontent.com" autocomplete="off"></label>
     <p style="margin-top:9px"><a class="sheet-link" target="_blank" rel="noopener noreferrer" href="https://developers.google.com/identity/oauth2/web/guides/use-token-model">Google OAuth setup</a></p>
    </details>
    </section>
-    <div class="settings-preference"><label class="today-toggle"><input type="checkbox" id="autoLoadCard" checked>Automatically add today’s published card</label></div>
+    <details class="settings-group"><summary>Spreadsheet</summary><div class="settings-inner"><div class="section"><div class="section-head"><h2>Spreadsheet</h2><span id="driveStatus" class="micro">Not connected</span></div>
+    <p class="muted">All events in one spreadsheet.</p>
+    <label style="display:flex;align-items:center;gap:8px;margin-top:12px;max-width:max-content;cursor:pointer"><input id="autoMasterArchive" type="checkbox" checked style="width:17px;height:17px;margin:0;accent-color:#ddd">Auto-sync master spreadsheet when connected</label>
+    <p id="autoMasterStatus" class="muted" style="font-size:12px;margin-top:7px" role="status">Checking archive status…</p>
+    <div class="actions" style="margin-top:13px"><button id="syncEvent" class="primary" disabled>Sync this event</button><button id="syncAllEvents" disabled>Sync all events</button><a id="sheetLink" class="sheet-link hidden" target="_blank" rel="noopener noreferrer">Open master spreadsheet ↗</a></div>
+    <p id="sheetMessage" class="muted" style="margin-top:10px">Connect a Google account and sync when ready.</p>
+    <details style="margin-top:16px"><summary>Google connection setup · Link existing master</summary>
+    <p class="muted" style="margin:9px 0">Use an existing spreadsheet link or ID.</p>
+    <div class="actions"><label style="flex:1;min-width:180px">Master spreadsheet URL or ID<input id="masterSheetInput" placeholder="https://docs.google.com/spreadsheets/d/…/edit" autocomplete="off"></label><button id="attachMaster" class="small-btn" style="align-self:end">Use this master</button></div>
+    <button id="unlinkSheet" class="quiet danger small-btn hidden" style="margin-top:9px">Unlink master (keep Google file)</button>
+
+    </details></div></div></details>
+    <details class="settings-group"><summary>Backups</summary><div class="settings-inner"><div class="actions settings-file-actions"><button id="exportAll" class="quiet small-btn">Export backup</button><button id="importBtn" class="quiet small-btn">Import backup</button><button id="legacyBtn" class="quiet small-btn hidden">Import old sessions</button></div><div class="section"><h3>Downloads</h3><p class="muted" style="margin-top:5px">Back up before clearing browser data.</p><div class="actions" style="margin-top:12px"><button id="exportCsv">Export rounds CSV</button><button id="downloadRecoveryLocal">Download recovery snapshot</button></div></div></div></details>
+    <details class="settings-group"><summary>Preferences</summary><div class="settings-inner"><label class="pref-toggle"><input type="checkbox" id="autoLoadCard" checked>Auto-add today’s card</label></div></details>
    </div>
   </details>
  </div>
@@ -212,23 +476,20 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  <div class="workspace">
   <aside class="panel sidebar"><div class="panel-title"><h2>Events</h2><span id="eventCount" class="micro"></span></div><div id="events"></div></aside>
   <div id="eventPane">
-   <section class="panel today-bar hidden" id="todayCardPanel" aria-label="Current scheduled event">
-     <span class="micro today-kicker">Today’s card</span>
-     <div class="today-copy"><div id="todayCardName" class="today-name">Checking event schedule…</div><p id="todayCardStatus" class="muted">Checking the latest saved fight card data.</p></div>
-     <button id="loadTodayCard" class="primary small-btn">Load today’s card</button>
-    </section>
+   <section class="panel today-bar hidden" id="todayCardPanel" aria-label="Today's card"><div class="today-copy"><span class="micro today-kicker">TODAY</span><div id="todayCardName" class="today-name">Loading…</div><p id="todayCardStatus" class="muted"></p></div><button id="loadTodayCard" class="quiet small-btn">Open</button></section>
    <section class="panel hidden" id="integrityPanel" aria-label="Resolve duplicate events">
      <div class="section-head"><h2>Event data integrity</h2><span class="micro">Recovery protected</span></div>
      <p id="integrityStatus" class="muted">Review duplicate scoring records.</p>
      <div id="integrityIssues"></div>
      <div class="actions" style="margin-top:12px"><button id="resolveConflicts" class="primary">Merge safe event records</button><button id="downloadRecovery" class="quiet hidden">Download pre-merge backup</button><button id="syncRecovered" class="quiet hidden">Reconnect Google / sync</button></div>
    </section>
-   <div id="emptyEvent" class="empty">Create an event to begin. All rounds and results stay together under that event.</div>
+   <div id="emptyEvent" class="empty welcome"><span class="welcome-mark" aria-hidden="true">+</span><h2>No event selected</h2><p>Select an event or create one.</p><button id="emptyNewEvent" class="primary">New event</button></div>
    <section class="panel hidden" id="eventEditor">
-    <div class="panel-title"><h2>Event setup</h2><div class="actions"><button id="completeEvent" class="primary small-btn">Mark event completed</button><button id="deleteEvent" class="danger small-btn">Delete event</button></div></div><div id="eventProgress" class="event-progress" role="status"></div>
-    <div class="formgrid"><label>Event name<input id="eventName" maxlength="180" placeholder="Event name"></label><label>Date<input id="eventDate" type="date"></label><label>Session<input id="eventJudge" maxlength="150" placeholder="Session label"></label></div>
-    <div class="section"><div class="section-head"><h2>Fight card</h2><span class="micro" id="boutCount">0 fights</span></div><div id="bouts"></div></div>
-    <div class="section"><div class="section-head"><h2>Add fight</h2></div><div class="formgrid">
+  <div class="event-head"><div class="event-heading"><span class="micro">EVENT</span><h2 id="selectedEventTitle">Event</h2><div class="event-subline"><span id="selectedEventDate">—</span><span id="eventProgress" class="event-progress" role="status"></span></div></div>
+   <div class="event-actions"><button id="completeEvent" class="quiet small-btn">Complete</button><details class="event-more"><summary aria-label="Event options" title="Event options">···</summary><div class="event-menu"><button id="deleteEvent" class="danger small-btn">Delete event</button></div></details></div></div>
+  <details id="eventDetails" class="event-details"><summary>Edit event details</summary><div class="formgrid"><label>Event name<input id="eventName" maxlength="180" placeholder="Event name"></label><label>Date<input id="eventDate" type="date"></label><label>Session<input id="eventJudge" maxlength="150" placeholder="Optional"></label></div></details>
+  <div class="fights-section"><div class="section-head"><h3>Fights</h3><span class="micro" id="boutCount">0 fights</span></div><div id="bouts"></div></div>
+  <details id="addFightDetails" class="entry-creator"><summary><span aria-hidden="true">+</span> Add fight</summary><div class="creator-body"><div class="section"><div class="section-head"><h3>New fight</h3></div><div class="formgrid">
     <label>Red corner<input id="boutLeft" maxlength="150" placeholder="Fighter A"></label>
     <label>Blue corner<input id="boutRight" maxlength="150" placeholder="Fighter B"></label>
     <label>Division<select id="boutDivision"><option value="">Select division</option><optgroup label="Men">
@@ -238,28 +499,15 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     <label id="customDivisionWrap" class="hidden">Custom division / catchweight<input id="boutCustomDivision" maxlength="100" placeholder="Catchweight 165 lb"></label>
     <label>Scheduled rounds<select id="boutRounds"><option value="3">3 rounds</option><option value="5">5 rounds</option></select></label>
     <label>Round length<select id="boutDuration"><option value="300">5 minutes</option><option value="180">3 minutes</option><option value="600">10 minutes</option></select></label>
-    </div><div class="actions" style="margin-top:14px"><button id="addBout" class="primary">Add fight</button></div></div>
-    <div class="section"><div class="section-head"><h2>Google Sheets · Master archive</h2><span id="driveStatus" class="micro">Not connected</span></div>
-    <p class="muted">One master spreadsheet for all events. Events, Fights, Rounds and Moments have their own tabs. Once linked, it updates automatically after the Drive workspace has synced and the editor is idle. Existing archived events are retained.</p>
-    <label style="display:flex;align-items:center;gap:8px;margin-top:12px;max-width:max-content;cursor:pointer"><input id="autoMasterArchive" type="checkbox" checked style="width:17px;height:17px;margin:0;accent-color:#ddd">Auto-sync master spreadsheet when connected</label>
-    <p id="autoMasterStatus" class="muted" style="font-size:12px;margin-top:7px" role="status">Checking archive status…</p>
-    <div class="actions" style="margin-top:13px"><button id="syncEvent" class="primary" disabled>Sync this event</button><button id="syncAllEvents" disabled>Sync all events</button><a id="sheetLink" class="sheet-link hidden" target="_blank" rel="noopener noreferrer">Open master spreadsheet ↗</a></div>
-    <p id="sheetMessage" class="muted" style="margin-top:10px">Connect a Google account and sync when ready.</p>
-    <details style="margin-top:16px"><summary>Google connection setup · Link existing master</summary>
-    <p class="muted" style="margin:9px 0">Already have a master spreadsheet from this tool? Paste its full Google Sheets URL or spreadsheet ID to connect it rather than creating a second one. Existing individual event spreadsheets are kept in Drive but are no longer updated.</p>
-    <div class="actions"><label style="flex:1;min-width:180px">Master spreadsheet URL or ID<input id="masterSheetInput" placeholder="https://docs.google.com/spreadsheets/d/…/edit" autocomplete="off"></label><button id="attachMaster" class="small-btn" style="align-self:end">Use this master</button></div>
-    <button id="unlinkSheet" class="quiet danger small-btn hidden" style="margin-top:9px">Unlink master (keep Google file)</button>
-
-    </details></div>
-    <div class="section"><h2>Local files</h2><p class="muted" style="margin-top:5px">Changes are saved locally and backed up to Drive when Google is connected. Google Sheets archives automatically when connected and the master is linked (or can be synced manually). Export a JSON backup regularly, especially before clearing browser data or changing devices. Previous Google Drive sessions can still be accessed through the <a href="/orchard-legacy-47/" rel="nofollow" style="color:#b9d5fa">earlier version</a>.</p><div class="actions" style="margin-top:12px"><button id="exportCsv">Export rounds CSV</button><button id="downloadRecoveryLocal">Download recovery snapshot</button></div></div>
-   </section>
+    </div><div class="actions" style="margin-top:14px"><button id="addBout" class="primary">Add fight</button></div></div></div></details>
+ </section>
   </div>
  </div>
 </main>
 <section id="workbench" class="hidden" aria-label="Live workspace">
  <div class="wb-top">
-   <div class="actions"><button id="backBtn" class="quiet">← Fight card</button><span class="micro" id="wbEvent"></span></div>
-   <div class="actions"><span id="wbSaved" class="pill saved">Saved locally</span><button id="fullscreenBtn" class="quiet small-btn">Full screen</button></div>
+   <div class="actions"><button id="backBtn" class="quiet small-btn">← Events</button><span class="micro" id="wbEvent"></span></div>
+   <div class="actions"><span id="wbSaved" class="pill saved">Saved locally</span><button id="fullscreenBtn" class="quiet small-btn">Expand</button></div>
  </div>
  <div class="wb-head">
   <div><div class="micro red">Red corner • ←</div><div class="corner-name" id="wbLeft">Fighter A</div><div class="moment-count red"><span id="wbMomentsA">0</span> <small>exchanges</small></div></div>
@@ -273,14 +521,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   <canvas id="graph" aria-label="Exchange winners over round time, with major impacts distinguished" role="img"></canvas>
   <div class="legend"><span class="red" id="graphRedName">RED</span><span class="graph-time">ELAPSED TIME →</span><span class="blue" id="graphBlueName">BLUE</span></div>
  </div>
- <div class="controls">
-  <button id="startBtn" class="primary">Start round</button>
-  <button id="undoBtn">Undo last</button>
-  <button id="resetBtn" class="quiet danger">Reset round</button>
-  <button id="endBtn">End round &amp; score</button>
-  <button id="finishBtn" class="quiet">Finish fight</button>
- </div>
- <p class="hints">← / → exchange winner &nbsp; • &nbsp; Shift + ← / → major impact &nbsp; • &nbsp; Space start/pause &nbsp; • &nbsp; Ctrl+Z undo &nbsp; • &nbsp; E end round</p>
+ <div class="controls"><button id="startBtn" class="primary">Start round</button><button id="endBtn">End round &amp; score</button><button id="undoBtn" class="quiet">Undo</button><details class="score-tools"><summary>More</summary><div class="score-tool-menu"><button id="resetBtn" class="quiet danger">Reset round</button><button id="finishBtn" class="quiet">Finish fight</button></div></details></div><details class="shortcuts"><summary>Keyboard shortcuts</summary><p class="hints">← / → winner · Shift + ← / → major impact · Space start / pause · Ctrl+Z undo · E end round</p></details>
  <div class="footer-grid">
   <section class="panel"><div class="panel-title"><h2>Round totals</h2><span id="wbTotal" class="totals mono">0 – 0</span></div><table class="score-rows"><thead><tr><th>Round</th><th id="scoreHeadRed">RED</th><th id="scoreHeadBlue">BLUE</th><th title="Red–Blue totals">Exchanges</th><th></th></tr></thead><tbody id="scoreBody"></tbody></table><div id="resultLabel" class="muted" style="margin-top:14px"></div><div id="officialResult" class="official-result hidden"></div></section>
   <section class="panel"><div class="panel-title"><h2>Exchange log</h2></div><div id="roundTabs" class="round-tabs"></div><div id="momentLog" class="log"></div></section>
@@ -303,7 +544,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 <div id="scoreOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="scoreTitle">
  <div class="modal">
   <div class="micro" id="scoreKicker">Round complete</div><h2 id="scoreTitle" style="margin-top:7px;font-size:22px">Assign round score</h2>
-  <p class="muted" style="margin-top:6px">Exchange totals provide an initial suggestion. Review and change it before confirming.</p>
+  <p class="muted" style="margin-top:6px">Review the suggested score.</p>
   <div class="winner-grid">
    <button class="winner" id="selectA"><span class="micro red">← Red corner</span><div id="chooseA" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure red"><span id="scoreMomentsA">0</span> <small>exchanges</small></span></button>
    <button class="winner right" id="selectB"><span class="micro blue">Blue corner →</span><div id="chooseB" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure blue"><span id="scoreMomentsB">0</span> <small>exchanges</small></span></button>
@@ -313,7 +554,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   <div class="margins"><button data-margin="9">10–9</button><button data-margin="8">10–8</button><button data-margin="7">10–7</button><button data-margin="10">10–10</button></div>
   <div class="deductions"><div class="deduction"><div class="micro red">Red deductions</div><div class="stepper"><button data-dside="0" data-delta="-1" aria-label="Remove red deduction">−</button><strong id="deductA" class="mono">0</strong><button data-dside="0" data-delta="1" aria-label="Add red deduction">+</button></div></div>
   <div class="deduction"><div class="micro blue">Blue deductions</div><div class="stepper"><button data-dside="1" data-delta="-1" aria-label="Remove blue deduction">−</button><strong id="deductB" class="mono">0</strong><button data-dside="1" data-delta="1" aria-label="Add blue deduction">+</button></div></div></div>
-  <div class="notice">Major impacts count more toward the suggested winner. A wider margin still requires your own assessment. Confirm the final totals manually.</div>
+  <details class="score-note"><summary>About suggestions</summary><p>Major impacts carry more weight in the suggestion. Final scores are yours to confirm.</p></details>
   <div id="draftScore" class="mono" style="font-size:24px;font-weight:800">—</div>
   <div class="modal-actions"><button id="resetFromScore" class="quiet danger">Reset &amp; restart round</button><button id="cancelScore" class="quiet">Back</button><button id="confirmScore" class="primary">Confirm score • Enter</button></div>
  </div>
@@ -455,19 +696,26 @@ function setVisible(id,yes){$(id).classList.toggle('hidden',!yes)}
 function selectEvent(id){pause();activeId=null;focusMode=false;data.selected=id;persist();renderDashboard()}
 function renderDashboard(){clearChartFlash();setVisible('dashboard',true);setVisible('dashTop',true);setVisible('workbench',false);setVisible('scoreOverlay',false);setVisible('finishOverlay',false);setVisible('editFightOverlay',false);focusMode=false;window.copperCloud?.dashboard();window.copperAutoArchive?.dashboard();
  const list=$('events');list.replaceChildren();$('eventCount').textContent=data.events.length;
- data.events.forEach(e=>{const b=el('button');b.className='event-item'+(e.id===data.selected?' current':'');b.append(el('strong',safeName(e.name,'Untitled event')),el('small',(e.date||'No date')+' · '+e.fights.length+' fights'));b.onclick=()=>selectEvent(e.id);list.append(b)});
+ data.events.forEach(e=>{const b=el('button');b.className='event-item'+(e.id===data.selected?' current':'');b.dataset.eventId=e.id;b.append(el('strong',safeName(e.name,'Untitled event')),el('small',(e.date||'No date')+' · '+e.fights.length+' fights'));b.onclick=()=>selectEvent(e.id);list.append(b)});
  $('legacyBtn').classList.toggle('hidden',!legacyAvailable());
  const e=event();setVisible('eventEditor',!!e);setVisible('emptyEvent',!e);updateDriveUI();if(!e){window.copperEvents?.render();return;}
  $('eventName').value=e.name;$('eventDate').value=e.date;$('eventJudge').value=e.judge;$('boutCount').textContent=e.fights.length+' fights';
+ $('selectedEventTitle').textContent=safeName(e.name,'Untitled event');
+ $('selectedEventDate').textContent=e.date?new Date(e.date+'T12:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}):'Date not set';
  const rows=$('bouts');rows.replaceChildren();
  if(!e.fights.length)rows.append(el('div','No fights added yet.','empty'));
- e.fights.forEach((f,i)=>{const row=el('div',undefined,'bout-row'),left=el('div'),right=el('div',undefined,'actions');
- left.append(el('div',safeName(f.left,'Fighter A')+' vs '+safeName(f.right,'Fighter B'),'bout-name'),el('div',(f.division||'Division not set')+' · '+f.rounds+' rounds · '+f.status.replace(/-/g,' ')+(filledJudgeCards(judgeCards(f))?' · Official cards '+filledJudgeCards(judgeCards(f))+'/3':''),'bout-meta'));
- const enter=el('button','Open','small-btn primary');enter.onclick=()=>openFight(f.id);right.append(enter);
- const up=el('button','↑','small-btn');up.title='Move fight earlier';up.disabled=i===0;up.onclick=()=>moveFight(i,-1);
- const down=el('button','↓','small-btn');down.title='Move fight later';down.disabled=i===e.fights.length-1;down.onclick=()=>moveFight(i,1);
- const del=el('button','Delete','small-btn danger');del.onclick=()=>{if(confirm('Delete this fight and its scores?')){e.fights.splice(i,1);persist();renderDashboard()}};
- const ed=el('button','Edit','small-btn');ed.onclick=()=>editFight(f);right.append(ed,up,down,del);row.append(left,right);rows.append(row)});
+ e.fights.forEach((f,i)=>{
+  const row=el('div',undefined,'bout-row'),left=el('div',undefined,'bout-copy'),right=el('div',undefined,'actions bout-actions'),info=el('div',undefined,'bout-info');
+  info.append(el('div',safeName(f.left,'Fighter A')+'  vs  '+safeName(f.right,'Fighter B'),'bout-name'),el('div',(f.division||'Division not set')+' · '+f.rounds+' rounds · '+f.status.replace(/-/g,' ')+(filledJudgeCards(judgeCards(f))?' · Official '+filledJudgeCards(judgeCards(f))+'/3':''),'bout-meta'));
+  left.append(el('span',String(i+1).padStart(2,'0'),'bout-index'),info);
+  const enter=el('button',f.result?'Review':'Open','small-btn primary');enter.onclick=()=>openFight(f.id);right.append(enter);
+  const more=el('details',undefined,'bout-more'),summary=el('summary','···'),menu=el('div',undefined,'bout-menu');summary.title='Fight options';summary.setAttribute('aria-label','Fight options');
+  const up=el('button','Move up','small-btn');up.disabled=i===0;up.onclick=()=>moveFight(i,-1);
+  const down=el('button','Move down','small-btn');down.disabled=i===e.fights.length-1;down.onclick=()=>moveFight(i,1);
+  const del=el('button','Delete','small-btn danger');del.onclick=()=>{if(confirm('Delete this fight and its scores?')){e.fights.splice(i,1);persist();renderDashboard()}};
+  const ed=el('button','Edit','small-btn');ed.onclick=()=>{more.open=false;editFight(f)};
+  menu.append(ed,up,down,del);more.append(summary,menu);right.append(more);row.append(left,right);rows.append(row)
+ });
  $('legacyBtn').classList.toggle('hidden',!legacyAvailable());window.copperEvents?.render();
 }
 function divisionPickerValue(selectId,wrapId,inputId,value){
@@ -1146,7 +1394,7 @@ function unlinkMasterSheet(){
  toast('Master unlinked. The Google file was not deleted.');
 }
 
-function newEvent(){pause();const e={id:uid(),name:'',date:new Date().toLocaleDateString('en-CA'),judge:'',fights:[]};data.events.push(e);data.selected=e.id;persist();renderDashboard();$('eventName').focus()}
+function newEvent(){pause();const e={id:uid(),name:'',date:new Date().toLocaleDateString('en-CA'),judge:'',fights:[]};data.events.push(e);data.selected=e.id;persist();renderDashboard();$('eventDetails').open=true;$('eventName').focus()}
 function addBout(){const e=event(),a=$('boutLeft').value.trim(),b=$('boutRight').value.trim();if(!a||!b){toast('Enter both fighter names.');return}
  const division=selectedDivision('boutDivision','boutCustomDivision');if(!division){toast('Select or enter a division.');return}
  const f=newFight(a,b,division.slice(0,100),$('boutRounds').value,$('boutDuration').value);e.fights.push(f);['boutLeft','boutRight','boutDivision','boutCustomDivision'].forEach(k=>$(k).value='');$('customDivisionWrap').classList.add('hidden');persist();renderDashboard();$('boutLeft').focus()}
@@ -1183,9 +1431,9 @@ function importLegacy(){const prior=[...(Array.isArray(readJSON(OLD_SAVES))?read
  if(Array.isArray(r.manual)&&r.manual.length===2){const a=+r.manual[0],b=+r.manual[1];if(a===10&&b===10)sc={winner:'draw',margin:10,deductions:Array.isArray(r.deductions)?r.deductions.slice(0,2):[0,0],confirmedAt:''};else if(a===10&&[7,8,9].includes(b))sc={winner:'a',margin:b,deductions:Array.isArray(r.deductions)?r.deductions.slice(0,2):[0,0],confirmedAt:''};else if(b===10&&[7,8,9].includes(a))sc={winner:'b',margin:a,deductions:Array.isArray(r.deductions)?r.deductions.slice(0,2):[0,0],confirmedAt:''}}
  return {elapsed:Math.max(0,Math.min(f.duration,+r.elapsed||0)),observations:ob,score:sc}});f.index=Math.min(f.roundData.length-1,+s.current||0);f.status='in-progress';e.fights.push(f);data.events.push(e);existing.add(s.id);count++}catch(err){continue}}
  if(count){data.selected=data.events[data.events.length-count].id;persist();renderDashboard()}toast(count+' old session(s) imported. Original data left unchanged. Previously automatic scores were not treated as confirmed.')}
-['eventName','eventDate','eventJudge'].forEach(id=>$(id).oninput=()=>{const e=event();if(!e)return;const key={eventName:'name',eventDate:'date',eventJudge:'judge'}[id];e[key]=$(id).value;persist();if(id==='eventName')renderEventListOnly()});
-function renderEventListOnly(){const e=event();const btn=[...$('events').children][data.events.indexOf(e)];if(btn)btn.querySelector('strong').textContent=safeName(e.name,'Untitled event')}
-$('newEventBtn').onclick=newEvent;$('addBout').onclick=addBout;
+['eventName','eventDate','eventJudge'].forEach(id=>$(id).oninput=()=>{const e=event();if(!e)return;const key={eventName:'name',eventDate:'date',eventJudge:'judge'}[id];e[key]=$(id).value;persist();if(id==='eventName'||id==='eventDate')renderEventListOnly()});
+function renderEventListOnly(){const e=event();if(!e)return;const btn=[...$('events').querySelectorAll('.event-item')].find(b=>b.dataset.eventId===e.id);if(btn){btn.querySelector('strong').textContent=safeName(e.name,'Untitled event');const sm=btn.querySelector('small');if(sm)sm.textContent=(e.date||'No date')+' · '+e.fights.length+' fights'}$('selectedEventTitle').textContent=safeName(e.name,'Untitled event');$('selectedEventDate').textContent=e.date?new Date(e.date+'T12:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}):'Date not set'}
+$('newEventBtn').onclick=newEvent;$('emptyNewEvent').onclick=newEvent;$('addBout').onclick=addBout;$('settingsClose').onclick=()=>$('settingsMenu').open=false;
 $('googleOrigin').textContent=location.origin;
 $('clientId').value=typeof readJSON(CLIENT_KEY)==='string'?readJSON(CLIENT_KEY):'';
 $('clientId').onchange=()=>{
