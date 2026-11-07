@@ -1105,17 +1105,17 @@ test('Master Sheets adds impact columns and safely upgrades older existing tab h
  const first=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs);
  expect(first.Moments[0].at(-1)).toBe('Exchange type');
  expect(first.Moments.slice(1).map(r=>r.at(-1))).toEqual(['Major impact','Exchange']);
- expect(first.Rounds[0].slice(-2)).toEqual(['Red major impacts','Blue major impacts']);
- expect(first.Rounds[1].slice(-2)).toEqual([1,0]);
+ expect(first.Rounds[0].slice(-5,-3)).toEqual(['Red major impacts','Blue major impacts']);
+ expect(first.Rounds[1].slice(-5,-3)).toEqual([1,0]);
  await page.evaluate(()=>{
   const tabs=window.__masterFiles['qa-spreadsheet-123'].tabs;
   tabs.Moments=tabs.Moments.map(row=>row.slice(0,-1));
-  tabs.Rounds=tabs.Rounds.map(row=>row.slice(0,-2));
+  tabs.Rounds=tabs.Rounds.map(row=>row.slice(0,-5));
  });
  await page.click('#syncEvent');await expect(page.locator('#syncEvent')).toBeEnabled();
  const migrated=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs);
  expect(migrated.Moments[0].at(-1)).toBe('Exchange type');
- expect(migrated.Rounds[0].at(-1)).toBe('Blue major impacts');
+ expect(migrated.Rounds[0].at(-1)).toBe('Control intervals');
  expect(migrated.Moments).toHaveLength(3);
 });
 
@@ -1130,9 +1130,9 @@ test('private workspace presents neutral copy in all major UI states and is excl
   });
   expect(text).not.toMatch(/\b(?:scorecard|judging|mma)\b/i);
  };
- await expect(page).toHaveTitle('Workspace');
+ await expect(page).toHaveTitle('Orchard');
  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content',/noindex/);
- await expect(page.locator('h1')).toHaveText('Workspace');
+ await expect(page.locator('.brand strong')).toHaveText('Orchard');
  await check();
  await page.click('#newEventBtn');await page.fill('#eventName','Private session');
  await page.fill('#boutLeft','Red contestant');await page.fill('#boutRight','Blue contestant');
@@ -1140,7 +1140,7 @@ test('private workspace presents neutral copy in all major UI states and is excl
  await expect(page.locator('label').filter({hasText:'Session'})).toHaveCount(1);
  await check();
  await page.locator('.bout-row .primary').click();
- await expect(page.locator('.footer-grid h2').first()).toHaveText('Round totals');
+ await expect(page.locator('.footer-grid h2').first()).toHaveText('Round scores');
  await check();
  await page.click('#startBtn');await page.keyboard.press('Shift+ArrowLeft');
  await page.click('#endBtn');await expect(page.locator('#scoreOverlay')).toBeVisible();
@@ -1455,4 +1455,113 @@ test('judging redesign keeps primary controls above chart and fits mobile',async
  await page.click('#endBtn');
  await expect(page.locator('#scoreOverlay')).toBeVisible();
  await expect(page.locator('#confirmScore')).toBeInViewport();
+});
+
+
+test('A/D toggle control, reverse sides and pause without recording phantom time',async({page})=>{
+ await setup(page);
+ await expect(page.locator('#controlRedBtn')).toBeDisabled();
+ await page.keyboard.press('a');
+ await page.click('#startBtn');
+ await page.keyboard.press('a');
+ await expect(page.locator('#controlRedBtn')).toHaveAttribute('aria-pressed','true');
+ await page.evaluate(()=>{const r=data.events[0].fights[0].roundData[0];r.elapsed=61;anchor=performance.now()});
+ await page.keyboard.press('d');
+ await expect(page.locator('#controlRedBtn')).toHaveAttribute('aria-pressed','false');
+ await expect(page.locator('#controlBlueBtn')).toHaveAttribute('aria-pressed','true');
+ await page.keyboard.press('Shift+ArrowLeft');
+ await page.evaluate(()=>{const r=data.events[0].fights[0].roundData[0];r.elapsed=124;anchor=performance.now()});
+ await page.keyboard.press('Space');
+ await expect(page.locator('#roundState')).toHaveText('Paused');
+ const frozen=await page.evaluate(()=>{
+  const r=data.events[0].fights[0].roundData[0];
+  return {elapsed:r.elapsed,totals:controlTotals(r,r.elapsed),count:r.observations.length};
+ });
+ await page.waitForTimeout(230);
+ const after=await page.evaluate(()=>{
+  const r=data.events[0].fights[0].roundData[0];
+  return {elapsed:r.elapsed,totals:controlTotals(r,r.elapsed),count:r.observations.length};
+ });
+ expect(after).toEqual(frozen);
+ expect(frozen.totals[0]).toBeGreaterThan(60);
+ expect(frozen.totals[0]).toBeLessThan(62);
+ expect(frozen.totals[1]).toBeGreaterThan(62);
+ expect(frozen.totals[1]).toBeLessThan(64);
+ expect(frozen.count).toBe(1);
+ await page.keyboard.press('Space');
+ await page.evaluate(()=>{const r=data.events[0].fights[0].roundData[0];r.elapsed=150;anchor=performance.now()});
+ await page.keyboard.press('d');
+ await expect(page.locator('#controlBlueBtn')).toHaveAttribute('aria-pressed','false');
+ const measured=await page.evaluate(()=>{
+  const r=data.events[0].fights[0].roundData[0];
+  return {times:controlTotals(r,r.elapsed),periods:r.control,exchanges:r.observations.length,suggested:suggestedRound(r).winner};
+ });
+ expect(measured.times[0]).toBeGreaterThan(60);
+ expect(measured.times[1]).toBeGreaterThan(88);
+ expect(measured.periods).toHaveLength(2);
+ expect(measured.periods.every(x=>Number.isFinite(x.end))).toBe(true);
+ expect(measured.exchanges).toBe(1);
+ expect(measured.suggested).toBe('a');
+ await page.click('#endBtn');
+ await expect(page.locator('#scoreControlSummary')).toContainText('Red 1:');
+ await expect(page.locator('#scoreControlSummary')).toContainText('Blue 1:');
+ await page.keyboard.press('Enter');
+ await page.reload();
+ await page.locator('.bout-row .primary').click();
+ const saved=await page.evaluate(()=>data.events[0].fights[0].roundData[0].control);
+ expect(saved).toHaveLength(2);
+ expect(saved[0].side).toBe('a');
+ expect(saved[1].side).toBe('b');
+ await expect(page.locator('#graph')).toHaveAttribute('aria-label',/control Red/);
+});
+
+test('Control alone cannot award exchanges or suggest a round winner',async({page})=>{
+ await setup(page);
+ await page.click('#startBtn');
+ await page.keyboard.press('a');
+ await page.evaluate(()=>{data.events[0].fights[0].roundData[0].elapsed=45;anchor=performance.now()});
+ await page.keyboard.press('a');
+ const result=await page.evaluate(()=>{
+  const r=data.events[0].fights[0].roundData[0];
+  return {exchangeCount:r.observations.length,control:controlTotals(r,r.elapsed),suggestion:suggestedRound(r)};
+ });
+ expect(result.exchangeCount).toBe(0);
+ expect(result.control[0]).toBeGreaterThan(44);
+ expect(result.control[1]).toBe(0);
+ expect(result.suggestion.winner).toBeNull();
+ await page.click('#endBtn');
+ await expect(page.locator('#suggestionText')).toContainText('No exchanges logged');
+ await expect(page.locator('#scoreControlSummary')).toContainText('Red 0:45');
+});
+
+test('Control intervals survive safe cloud merge and are archived per round',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);
+ await page.click('#startBtn');
+ await page.keyboard.press('a');
+ await page.evaluate(()=>{data.events[0].fights[0].roundData[0].elapsed=70;anchor=performance.now()});
+ await page.keyboard.press('a');
+ const merge=await page.evaluate(()=>{
+  const a=JSON.parse(JSON.stringify(data.events[0])),b=JSON.parse(JSON.stringify(a));
+  const r=b.fights[0].roundData[0];
+  r.control.push({side:'b',start:75,end:90});
+  const safe=window.copperIntegrity.combineCompatible(a,b);
+  const divergent=JSON.parse(JSON.stringify(b));
+  divergent.fights[0].roundData[0].control[0].side='b';
+  const conflict=window.copperIntegrity.combineCompatible(a,divergent);
+  return {merged:safe?.fights[0].roundData[0].control,divergentAccepted:!!conflict};
+ });
+ expect(merge.merged).toHaveLength(2);
+ expect(merge.divergentAccepted).toBe(false);
+ await page.click('#backBtn');
+ await connectQaGoogle(page);
+ await page.click('#syncEvent');
+ await expect(page.locator('#syncEvent')).toBeEnabled();
+ const archive=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs.Rounds);
+ expect(archive[0].slice(-3)).toEqual(['Red control (sec)','Blue control (sec)','Control intervals']);
+ expect(archive[1].at(-3)).toBeGreaterThan(69);
+ expect(archive[1].at(-2)).toBe(0);
+ const periods=JSON.parse(archive[1].at(-1));
+ expect(periods[0].side).toBe('a');
+ expect(periods[0].end).toBeGreaterThan(69);
 });
