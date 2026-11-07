@@ -1213,9 +1213,9 @@ function suggestedRound(r){
   evidence.combined[side]-evidence.combined[other]>=5;
  const margin=wide||sustained?8:9;
  const reason=baseNote+impactNote+controlNote+
-  (controlled?(evidence.closeness>=.6?' Control has more influence because the offense is close.':
+  (controlled?(total===0?' No effective exchanges were recorded, so control carries the recommendation.':evidence.closeness>=.6?' Control has more influence because the offense is close.':
     ' Clearer offense limits the control-time influence.'):'')+
-  ' Suggested '+(margin===8?'10–8':'10–9')+' for '+corner+'.'+
+  ' — suggested '+(margin===8?'10–8':'10–9')+' for '+corner+'.'+
   (margin===8?' Check impact, dominance and duration before keeping 10–8.':'');
  return {winner,margin,counts,impacts,evidence,reason};
 }
@@ -1228,10 +1228,10 @@ function openScore(index,edit){const f=fight(),r=f&&f.roundData[index];if(!r)ret
  $('scoreMomentsA').textContent=suggested.counts[0];$('scoreMomentsB').textContent=suggested.counts[1];
  $('suggestionText').textContent=(r.score?'Suggested score (your saved score stays selected): ':'')+suggested.reason;
  const ev=suggested.evidence,g=ev.groups;
- const topAndBottom=(i)=>g[i].holding+' on top / '+g[i].bottom+' from bottom';
+ const topAndBottom=(i)=>g[i].holding+' controlling / '+g[i].bottom+' controlled';
  const influence=(i)=>ev.controlInfluence[i].toFixed(1);
- $('scoreControlSummary').textContent='During control · Red '+topAndBottom(0)+' · Blue '+topAndBottom(1)+
-  '  |  Control influence: Red +'+influence(0)+', Blue +'+influence(1);
+ $('scoreControlSummary').textContent='Control · Red '+controlClock(ev.seconds[0])+' (+'+influence(0)+') · Blue '+controlClock(ev.seconds[1])+' (+'+influence(1)+')'+
+  ' | Exchanges during control · Red '+topAndBottom(0)+'; Blue '+topAndBottom(1);
  $('scoreKicker').textContent=edit?'Edit saved round':'Round '+(index+1)+' complete';
  $('scoreTitle').textContent='Score round '+(index+1);
  $('chooseA').textContent=safeName(f.left,'Fighter A');$('chooseB').textContent=safeName(f.right,'Fighter B');
