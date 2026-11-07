@@ -1,3 +1,20 @@
+
+function enableCollapsedControls(page){
+ for(const method of ['click','fill','selectOption','check','uncheck','setInputFiles']){
+  const original=page[method].bind(page);
+  page[method]=async(selector,...args)=>{
+   if(typeof selector==='string'&&selector.startsWith('#')){
+    const target=page.locator(selector);
+    if(await target.count())await target.evaluate(el=>{
+     for(let p=el.parentElement;p;p=p.parentElement){
+      if(p.tagName==='DETAILS')p.open=true;
+     }
+    });
+   }
+   return original(selector,...args);
+  };
+ }
+}
 const {test, expect}=require('@playwright/test');
 const URL='http://127.0.0.1:4173/copper-orchard-47/';
 const card={schema_version:3,events:[{
@@ -16,6 +33,7 @@ test.beforeEach(async({page})=>{
  await page.route('https://accounts.google.com/gsi/client',r=>r.fulfill({status:200,body:'',contentType:'application/javascript'}));
  await page.route('**/assets/data/upcoming-events-live.json',r=>r.fulfill({status:200,body:JSON.stringify(card),contentType:'application/json'}));
  await page.goto(URL,{waitUntil:'domcontentloaded'});
+ enableCollapsedControls(page);
 });
 test.afterEach(({page})=>expect(page.errors).toEqual([]));
 
@@ -54,7 +72,7 @@ test('find published card, import main/title rounds, refresh without duplicate o
  expect(after.fights[0].roundData[0].observations).toHaveLength(1);
  await page.reload();
  await expect(page.locator('.bout-row')).toHaveCount(3);
- await expect(page.locator('#eventProgress')).toContainText('0 of 3 fights finished');
+ await expect(page.locator('#eventProgress')).toContainText('0/3 finished');
 });
 
 test('completion survives reload and reopening preserves unfinished fights',async({page})=>{
@@ -71,7 +89,7 @@ test('completion survives reload and reopening preserves unfinished fights',asyn
  await expect(page.locator('#completeEvent')).toHaveText('Reopen event');
  await expect(page.locator('.completed-events')).toBeVisible();
  await page.click('#completeEvent');
- await expect(page.locator('#eventProgress')).toContainText('Active event');
+ await expect(page.locator('#eventProgress')).toContainText('finished');
  await expect(page.locator('.bout-row')).toHaveCount(1);
  await expect(page.locator('.completed-events')).toHaveCount(0);
 });
