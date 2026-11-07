@@ -6,6 +6,8 @@ on:
       - copper-orchard-47.html
       - assets/js/copper-cloud-sync.js
       - assets/js/copper-event-manager.js
+      - assets/js/copper-event-integrity.js
+      - assets/data/copper-card-catalog.json
       - scripts/qa/judging-event-import.spec.cjs
       - scripts/qa/judging-stage1.spec.cjs
       - .github/workflows/scorecard-stage1-qa.yml
@@ -14,6 +16,8 @@ on:
       - copper-orchard-47.html
       - assets/js/copper-cloud-sync.js
       - assets/js/copper-event-manager.js
+      - assets/js/copper-event-integrity.js
+      - assets/data/copper-card-catalog.json
       - scripts/qa/judging-event-import.spec.cjs
       - scripts/qa/judging-stage1.spec.cjs
       - .github/workflows/scorecard-stage1-qa.yml
@@ -38,6 +42,7 @@ jobs:
           mkdir -p .qa-local/copper-orchard-47 .qa-local/assets/js
           cp assets/js/copper-cloud-sync.js .qa-local/assets/js/copper-cloud-sync.js
           cp assets/js/copper-event-manager.js .qa-local/assets/js/copper-event-manager.js
+          cp assets/js/copper-event-integrity.js .qa-local/assets/js/copper-event-integrity.js
           sed '1,5d' copper-orchard-47.html > .qa-local/copper-orchard-47/index.html
       - name: End-to-end scoring tests
         run: |
