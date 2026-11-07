@@ -275,12 +275,13 @@ function render(){
  const e=event();
  $('completeEvent').classList.toggle('hidden',!e);
  $('eventProgress').classList.toggle('hidden',!e);
- if(!e)return;
+ if(!e){window.copperIntegrity?.refresh();return;}
  $('completeEvent').textContent=e.completedAt?'Reopen event':'Mark event completed';
  $('completeEvent').classList.toggle('primary',!e.completedAt);
  $('eventProgress').textContent=(e.completedAt?'Completed '+new Date(e.completedAt).toLocaleDateString():'Active event')
   +' · '+countDone(e)+' of '+e.fights.length+' fights finished'
   +(!e.completedAt&&e.fights.length&&countDone(e)===e.fights.length?' · Ready to close':'');
+ window.copperIntegrity?.refresh();
 }
 $('importCardBtn').onclick=openModal;
 $('closeImportEvent').onclick=closeModal;
