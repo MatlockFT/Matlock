@@ -160,11 +160,11 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
    </section>
    <section class="panel" id="cloudPanel" style="margin-bottom:18px">
    <div class="panel-title"><h2>Google Drive · Workspace sync</h2><span id="cloudStatus" class="micro">Not connected</span></div>
-   <p class="muted">Keep your events, fights, scores and official cards available across computers. Connect the same Google account on each device. Changes are saved locally and synced automatically while the event list is open.</p>
+   <p class="muted">Events and rounds save locally immediately. While Google is connected, the workspace syncs automatically when the event list is open. This browser-only connection expires and requires reconnecting; once published, Google should normally reuse previously approved access.</p>
    <div class="actions" style="margin-top:13px"><button id="connectDrive">Connect Google</button><button id="cloudSyncNow" class="primary" disabled>Sync now</button><button id="disconnectDrive" class="quiet small-btn" disabled>Disconnect</button></div>
    <p id="cloudMessage" class="muted" role="status" style="margin-top:10px">Connect Google to load existing events or save this browser's events to Drive.</p>
    <details style="margin-top:14px"><summary>Google sign-in setup</summary>
-    <p class="muted" style="margin:9px 0">Use your Google OAuth web client ID. Enable both <strong>Google Drive API</strong> and <strong>Google Sheets API</strong> in its Google Cloud project, authorize <strong id="googleOrigin"></strong> as a JavaScript origin and add your Google account as a test user if necessary. No client secret or token is stored.</p>
+    <p class="muted" style="margin:9px 0">Keep your Google OAuth web client ID. Enable <strong>Google Drive API</strong> and <strong>Google Sheets API</strong>, and authorize <strong id="googleOrigin"></strong> as a JavaScript origin. To stop Google's Testing warning, open <a class="sheet-link" target="_blank" rel="noopener noreferrer" href="https://console.cloud.google.com/auth/audience">Google Auth Platform → Audience</a> and publish the app (verification may be required). This browser-only implementation does not store a client secret or refresh token. Seamless long-term access requires a secure server-side connection.</p>
     <label>Google OAuth web client ID<input id="clientId" maxlength="300" placeholder="…apps.googleusercontent.com" autocomplete="off"></label>
     <p style="margin-top:9px"><a class="sheet-link" target="_blank" rel="noopener noreferrer" href="https://developers.google.com/identity/oauth2/web/guides/use-token-model">Google OAuth setup</a></p>
    </details>
@@ -876,13 +876,14 @@ function connectGoogle(){
   toast('Google sign-in has not loaded. Check network access or content blockers.');return
  }
  try{localStorage.setItem(CLIENT_KEY,JSON.stringify(clientId))}catch{}
- if(driveToken){try{google.accounts.oauth2.revoke(driveToken,()=>{})}catch{}}
- driveToken='';driveExpires=0;updateDriveUI();
+ // Renewing access must not revoke the existing Google grant.
+ // Only the explicit Disconnect action below revokes permissions.
+ const switchingAccount=driveReady();
  try{
   driveClient=google.accounts.oauth2.initTokenClient({
    client_id:clientId,scope:DRIVE_SCOPE,
    callback:r=>{
-    if(!r?.access_token||r.error){driveToken='';driveExpires=0;updateDriveUI();toast('Google connection failed: '+(r?.error||'Authorization declined'));return}
+    if(!r?.access_token||r.error){updateDriveUI();toast('Google connection failed: '+(r?.error||'Authorization declined'));return}
     if(typeof google.accounts.oauth2.hasGrantedAllScopes==='function'&&!google.accounts.oauth2.hasGrantedAllScopes(r,DRIVE_SCOPE)){
      toast('Google did not grant the requested file permission.');return
     }
@@ -891,7 +892,8 @@ function connectGoogle(){
    },
    error_callback:e=>{updateDriveUI();toast('Google sign-in was closed or blocked: '+(e?.type||'unknown'))}
   });
-  driveClient.requestAccessToken({prompt:'consent'});
+  // Reuse previous approval. Browser-only Google OAuth still requires a click when expired.
+  driveClient.requestAccessToken({prompt:switchingAccount?'select_account':''});
  }catch(err){toast('Google authorization failed: '+err.message)}
 }
 function disconnectGoogle(){
