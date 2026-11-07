@@ -123,6 +123,18 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .import-help{color:#acafb5;font-size:12px;margin:10px 0}.import-help code{font-size:11px;color:#ededee}
 .import-file-label{display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:underline;text-underline-offset:2px}.import-file-label input{display:none}
 @media(max-width:700px){.import-layout{grid-template-columns:1fr}.lookup-list,.import-preview{max-height:200px}.event-item{padding-right:88px}}
+
+#todayCardPanel,#integrityPanel{margin-bottom:18px}
+#todayCardPanel .today-name{font-size:16px;font-weight:700;overflow-wrap:anywhere;margin:7px 0 5px}
+#todayCardPanel p,#integrityPanel p{font-size:12px;line-height:1.6}
+#todayCardPanel .today-tools{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px}
+#todayCardPanel .today-toggle{display:flex;gap:8px;align-items:center;font-size:11px;cursor:pointer}
+#todayCardPanel .today-toggle input{width:17px;height:17px;margin:0;accent-color:#e8e7e3}
+#integrityPanel{border-color:#8d764c}
+#integrityPanel .integrity-issue{padding:12px;border:1px solid #55504a;border-radius:7px;margin-top:10px;background:#252423}
+#integrityPanel .integrity-issue strong{font-size:12px}
+#integrityPanel .integrity-issue p{font-size:11px;color:#bbbbba;margin:5px 0 9px}
+#integrityPanel .integrity-issue select{max-width:420px}
 </style>
 </head>
 <body>
@@ -134,6 +146,18 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  <div class="workspace">
   <aside class="panel sidebar"><div class="panel-title"><h2>Events</h2><span id="eventCount" class="micro"></span></div><div id="events"></div></aside>
   <div id="eventPane">
+   <section class="panel hidden" id="todayCardPanel" aria-label="Current scheduled event">
+     <div class="section-head"><h2>Today’s scheduled card</h2><span class="micro">Published schedule</span></div>
+     <div id="todayCardName" class="today-name">Checking event schedule…</div>
+     <p id="todayCardStatus" class="muted">Checking the latest saved fight card data.</p>
+     <div class="today-tools"><button id="loadTodayCard" class="primary">Load today’s card</button><label class="today-toggle"><input type="checkbox" id="autoLoadCard" checked>Auto-add today’s published card</label></div>
+   </section>
+   <section class="panel hidden" id="integrityPanel" aria-label="Resolve duplicate events">
+     <div class="section-head"><h2>Event data integrity</h2><span class="micro">Recovery protected</span></div>
+     <p id="integrityStatus" class="muted">Review duplicate scoring records.</p>
+     <div id="integrityIssues"></div>
+     <div class="actions" style="margin-top:12px"><button id="resolveConflicts" class="primary">Merge safe event records</button><button id="downloadRecovery" class="quiet hidden">Download pre-merge backup</button></div>
+   </section>
    <section class="panel" id="cloudPanel" style="margin-bottom:18px">
    <div class="panel-title"><h2>Google Drive · Workspace sync</h2><span id="cloudStatus" class="micro">Not connected</span></div>
    <p class="muted">Keep your events, fights, scores and official cards available across computers. Connect the same Google account on each device. Changes are saved locally and synced automatically while the event list is open.</p>
@@ -328,7 +352,7 @@ function clearChartFlash(){momentFlash=null;if(chartFrame){cancelAnimationFrame(
 
 const KEY='copper47.workspace.v2', OLD_CURRENT='copper47.current.v1', OLD_SAVES='copper47.sessions.v1';
 const uid=()=>crypto.randomUUID?crypto.randomUUID():'id-'+Date.now()+'-'+Math.random().toString(36).slice(2);
-const fresh=()=>({version:2,selected:null,events:[],masterSheetId:null});
+const fresh=()=>({version:2,selected:null,events:[],removedEvents:{},masterSheetId:null});
 const newRound=()=>({elapsed:0,observations:[],score:null});
 const newFight=(left,right,division,rounds,duration)=>({id:uid(),left,right,division,rounds:+rounds,duration:+duration,index:0,roundData:[newRound()],status:'ready',result:null,legacyId:null,cornerLayout:'red-left'});
 let data=fresh(),activeId=null,running=false,anchor=0,scoreIndex=null,scoreDraft=null,scoreWasLive=false,reviewIndex=0,focusMode=false,saveFailed=false,editingFightId=null;
@@ -1073,7 +1097,13 @@ function exportCSV(){pause();const rows=[['Event','Date','Session','Red fighter'
 function validate(input){if(!input||input.version!==2||!Array.isArray(input.events)||input.events.length>200)throw Error('Not a valid Stage 1 backup.');
  if(input.masterSheetId!=null&&(!/^[\w-]{15,250}$/.test(input.masterSheetId)))throw Error('Invalid master spreadsheet ID.');
  if(input.masterSyncedAt!=null&&typeof input.masterSyncedAt!=='string')throw Error('Invalid master sync date.');
- const ids=new Set();input.events.forEach(e=>{if(!e||typeof e.id!=='string'||ids.has(e.id)||!Array.isArray(e.fights)||e.fights.length>70)throw Error('Invalid event.');ids.add(e.id);if(e.sheetId!==undefined&&(!/^[\w-]+$/.test(e.sheetId)||e.sheetId.length>250))throw Error('Invalid linked spreadsheet ID.');for(const k of ['name','date','judge'])if(typeof e[k]!=='string'||e[k].length>1000)throw Error('Invalid event data.');
+  if(input.removedEvents!==undefined){
+   if(!input.removedEvents||Array.isArray(input.removedEvents)||typeof input.removedEvents!=='object'||Object.keys(input.removedEvents).length>1000)throw Error('Invalid removed events.');
+   for(const [id,date] of Object.entries(input.removedEvents))if(!id||id.length>150||typeof date!=='string'||date.length>80)throw Error('Invalid removed event record.');
+  }
+ const ids=new Set();input.events.forEach(e=>{if(!e||typeof e.id!=='string'||ids.has(e.id)||!Array.isArray(e.fights)||e.fights.length>70)throw Error('Invalid event.');ids.add(e.id);if(e.sheetId!==undefined&&(!/^[\w-]+$/.test(e.sheetId)||e.sheetId.length>250))throw Error('Invalid linked spreadsheet ID.');
+  if(e.completedAt!==undefined&&(typeof e.completedAt!=='string'||e.completedAt.length>80))throw Error('Invalid completion status.');
+  if(e.sourceId!==undefined&&(typeof e.sourceId!=='string'||e.sourceId.length>200))throw Error('Invalid event source.');for(const k of ['name','date','judge'])if(typeof e[k]!=='string'||e[k].length>1000)throw Error('Invalid event data.');
  e.fights.forEach(f=>{if(!f||typeof f.id!=='string'||ids.has(f.id)||!Array.isArray(f.roundData)||!Number.isInteger(f.index)||f.index<0||f.index>=f.roundData.length||f.roundData.length>5||![3,5].includes(f.rounds)||![180,300,600].includes(f.duration)||f.roundData.length>f.rounds)throw Error('Invalid fight.');
  ids.add(f.id);if(f.cornerLayout&&!['red-left','blue-left'].includes(f.cornerLayout))throw Error('Invalid corner layout.');
   if(f.officialJudges!==undefined&&(!Array.isArray(f.officialJudges)||f.officialJudges.length!==3||f.officialJudges.some(c=>c!==null&&(!c||!Number.isInteger(c.red)||!Number.isInteger(c.blue)||c.red<0||c.blue<0||c.red>60||c.blue>60))))throw Error('Invalid official judge scores.');
@@ -1105,7 +1135,7 @@ $('unlinkSheet').onclick=unlinkMasterSheet;$('attachMaster').onclick=attachMaste
 $('boutDivision').onchange=()=>toggleCustom('boutDivision','customDivisionWrap','boutCustomDivision');
 $('editDivision').onchange=()=>toggleCustom('editDivision','editCustomWrap','editCustomDivision');
 $('cancelEdit').onclick=closeEdit;$('saveEdit').onclick=saveEdit;
-$('deleteEvent').onclick=()=>{const e=event();if(e&&confirm('Delete this event and ALL its saved rounds? This cannot be undone.')){data.events=data.events.filter(x=>x.id!==e.id);data.selected=data.events[0]?.id||null;persist();renderDashboard()}};
+$('deleteEvent').onclick=()=>{const e=event();if(e&&confirm('Delete this event and ALL its saved rounds? This cannot be undone.')){data.removedEvents=data.removedEvents||{};data.removedEvents[e.id]=new Date().toISOString();data.events=data.events.filter(x=>x.id!==e.id);data.selected=data.events[0]?.id||null;persist();renderDashboard()}};
 $('exportAll').onclick=exportJSON;$('exportCsv').onclick=exportCSV;$('importBtn').onclick=()=>$('backupInput').click();
 $('backupInput').onchange=async()=>{try{const file=$('backupInput').files[0];if(!file)return;if(file.size>4500000)throw Error('Maximum backup size is 4.5 MB.');
  const obj=validate(JSON.parse(await file.text()));upgradeCornerLayout(obj);if(!confirm('Replace this browser workspace with the imported backup? Export your current data first.'))return;pause();window.copperCloud?.resetBaseline();data=obj;activeId=null;data.selected=data.events.some(e=>e.id===data.selected)?data.selected:(data.events[0]?.id||null);persist();renderDashboard();toast('Backup imported.');}catch(e){toast(e.message)}finally{$('backupInput').value=''}};
@@ -1146,5 +1176,5 @@ setInterval(()=>{if(focusMode)tick()},200);setInterval(()=>{if(running){currentR
 try{const saved=readJSON(KEY);if(saved){data=validate(saved);if(upgradeCornerLayout(data))persist()}}catch(e){toast('Saved workspace could not be read. Original browser data was not changed.')}
 if(!data.events.some(e=>e.id===data.selected))data.selected=data.events[0]?.id||null;
 renderDashboard();
-</script><script src="/assets/js/copper-cloud-sync.js"></script><script src="/assets/js/copper-event-manager.js"></script><script src="https://accounts.google.com/gsi/client" async defer></script>
+</script><script src="/assets/js/copper-cloud-sync.js"></script><script src="/assets/js/copper-event-manager.js"></script><script src="/assets/js/copper-event-integrity.js"></script><script src="https://accounts.google.com/gsi/client" async defer></script>
 </body></html>
