@@ -41,10 +41,25 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 - Priscila Cachoeira vs. Nina Milošević — *Pending*
 
 
-### Jose Delano vs. Murtazali Magomedov — *Pending*
+### Jose Delano vs. Murtazali Magomedov — *Murtazali Magomedov wins via Unanimous Decision (29-28 x3)*
 
-Round 1: 
+Round 1: Delano with better volume and striking on the feet. Magomedov with power, he capitalized on a slip. but 10-9 Delano.
 
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-fcae8754" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-174322-688.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+Round 2: Pretty intense second round as we pick up where we left off with the high volume striking of Delano. Landing great shots but Magomedov was able to knock a lot of time off the clock with a takedown. He didn't do much on the ground and Delano made the most of a minute or so left. He ate a big head kick but I really think Delano did better in this second round to just take it back. 20-18 Delano
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-e820a549" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-174314-186.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+Round 3: Similar to the second round with Delano landing on the feet often and consistently. Magomedov gets a takedown but cannot at all produce anything offensive and Delano makes it back to the feet. The major difference maker of this round is Magomedov almost finished Delano at the very end of the round. So if you wanted to score it a 10-8 you could because had there been 10 more seconds or less on the clock, the fight would've been over. So it could be 28-28. I'm scoring it 29-28 for Delano.
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-26561759" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-174214-662.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
 
 ---
 
