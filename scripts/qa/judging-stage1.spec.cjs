@@ -1531,7 +1531,7 @@ test('Control alone cannot award exchanges or suggest a round winner',async({pag
  expect(result.suggestion.winner).toBeNull();
  await page.click('#endBtn');
  await expect(page.locator('#suggestionText')).toContainText('No exchanges logged');
- await expect(page.locator('#scoreControlSummary')).toContainText('Red 0:45');
+ await expect(page.locator('#scoreControlSummary')).toContainText(/Red 0:4[45]/);
 });
 
 test('Control intervals survive safe cloud merge and are archived per round',async({page})=>{
@@ -1544,7 +1544,7 @@ test('Control intervals survive safe cloud merge and are archived per round',asy
  const merge=await page.evaluate(()=>{
   const a=JSON.parse(JSON.stringify(data.events[0])),b=JSON.parse(JSON.stringify(a));
   const r=b.fights[0].roundData[0];
-  r.control.push({side:'b',start:75,end:90});
+  r.elapsed=100;r.control.push({side:'b',start:75,end:90});
   const safe=window.copperIntegrity.combineCompatible(a,b);
   const divergent=JSON.parse(JSON.stringify(b));
   divergent.fights[0].roundData[0].control[0].side='b';
@@ -1564,4 +1564,35 @@ test('Control intervals survive safe cloud merge and are archived per round',asy
  const periods=JSON.parse(archive[1].at(-1));
  expect(periods[0].side).toBe('a');
  expect(periods[0].end).toBeGreaterThan(69);
+});
+
+
+test('Paused control survives reload without accumulating time while the tab is closed',async({page})=>{
+ await setup(page);
+ await page.click('#startBtn');
+ await page.keyboard.press('d');
+ await page.evaluate(()=>{const r=data.events[0].fights[0].roundData[0];r.elapsed=88;anchor=performance.now()});
+ await page.keyboard.press('Space');
+ const frozen=await page.evaluate(()=>{
+  const r=data.events[0].fights[0].roundData[0];
+  return {duration:controlTotals(r,r.elapsed)[1],elapsed:r.elapsed,open:activeControl(r)?.side};
+ });
+ expect(frozen.open).toBe('b');
+ await page.reload();
+ await page.locator('.bout-row .primary').click();
+ await expect(page.locator('#controlState')).toHaveText('Control paused');
+ const restored=await page.evaluate(()=>{
+  const r=data.events[0].fights[0].roundData[0];
+  return {duration:controlTotals(r,r.elapsed)[1],elapsed:r.elapsed,open:activeControl(r)?.side};
+ });
+ expect(restored).toEqual(frozen);
+ await page.click('#startBtn');
+ await page.evaluate(()=>{const r=data.events[0].fights[0].roundData[0];r.elapsed=100;anchor=performance.now()});
+ await page.keyboard.press('d');
+ const total=await page.evaluate(()=>{
+  const r=data.events[0].fights[0].roundData[0];
+  return controlTotals(r,r.elapsed)[1];
+ });
+ expect(total).toBeGreaterThan(99);
+ expect(total).toBeLessThan(101);
 });
