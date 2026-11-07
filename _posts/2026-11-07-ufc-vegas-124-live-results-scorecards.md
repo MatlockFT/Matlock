@@ -29,7 +29,6 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 - Waldo Cortes-Acosta vs. Johnny Walker — *Pending*
 - Tatiana Suarez vs. Virna Jandiroba — *Pending*
 - Davey Grant vs. Elijah Smith — *Pending*
-- Seokhyeon Ko vs. Wellington Turman — *Pending*
 - Billy Elekana vs. Lucas Fernando — *Pending*
 - Mantas Kondratavičius vs. Andre Petroski — *Pending*
 
@@ -42,6 +41,9 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 - Mitch Raposo vs. Marcos Degli — *Pending*
 - Gabriel Lorenco vs. Thomas Petersen — *Pending*
 - Priscila Cachoeira vs. Nina Milošević — *Pending*
+### Seokhyeon Ko vs. Wellington Turman — *Pending*
+
+Round 1: 
 
 ---
 
