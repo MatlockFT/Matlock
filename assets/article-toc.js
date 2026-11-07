@@ -150,6 +150,59 @@
         navigation.hidden = false;
     });
 
+    // Follow the article on wide screens, but clamp the rail navigation to the
+    // end of the article body so it never floats over sharing or the footer.
+    // Keep the CSS sticky behavior as a no-JavaScript fallback.
+    const floatingToc = document.querySelector('.post-page-v3 .article-toc-floating');
+    const tocRail = floatingToc?.closest('.post-rail');
+    if (floatingToc && tocRail) {
+        const wideScreen = window.matchMedia('(min-width: 1041px)');
+        let followFrame = 0;
+
+        const positionFloatingToc = () => {
+            const active = wideScreen.matches && !floatingToc.hidden;
+            if (!active) {
+                floatingToc.classList.remove('is-following');
+                floatingToc.style.transform = '';
+                return;
+            }
+
+            floatingToc.classList.add('is-following');
+            const railRect = tocRail.getBoundingClientRect();
+            const articleBottom = Math.min(
+                railRect.bottom,
+                article.getBoundingClientRect().bottom
+            );
+            const headerHeight = parseFloat(getComputedStyle(floatingToc)
+                .getPropertyValue('--v3-fixed-rail-height')) || 80;
+            const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+            const stickyOffset = headerHeight + rem;
+            const travel = Math.max(0, window.scrollY + stickyOffset - (railRect.top + window.scrollY));
+            const limit = Math.max(0, articleBottom - railRect.top - floatingToc.offsetHeight);
+            const offset = Math.round(Math.min(travel, limit));
+            floatingToc.style.transform = 'translate3d(0, ' + offset + 'px, 0)';
+        };
+
+        const queueFloatingToc = () => {
+            if (followFrame) return;
+            followFrame = window.requestAnimationFrame(() => {
+                followFrame = 0;
+                positionFloatingToc();
+            });
+        };
+
+        window.addEventListener('scroll', queueFloatingToc, { passive: true });
+        window.addEventListener('resize', queueFloatingToc);
+        wideScreen.addEventListener?.('change', queueFloatingToc);
+        if (typeof ResizeObserver === 'function') {
+            const observer = new ResizeObserver(queueFloatingToc);
+            observer.observe(tocRail);
+            observer.observe(floatingToc);
+            observer.observe(article);
+        }
+        queueFloatingToc();
+    }
+
     const picksRoot = document.querySelector('[data-article-picks]');
     const postFightResultsNode = article.querySelector('[data-post-fight-results]');
     let postFightResults = null;
