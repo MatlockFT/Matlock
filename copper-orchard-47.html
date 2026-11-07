@@ -156,7 +156,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
      <div class="section-head"><h2>Event data integrity</h2><span class="micro">Recovery protected</span></div>
      <p id="integrityStatus" class="muted">Review duplicate scoring records.</p>
      <div id="integrityIssues"></div>
-     <div class="actions" style="margin-top:12px"><button id="resolveConflicts" class="primary">Merge safe event records</button><button id="downloadRecovery" class="quiet hidden">Download pre-merge backup</button></div>
+     <div class="actions" style="margin-top:12px"><button id="resolveConflicts" class="primary">Merge safe event records</button><button id="downloadRecovery" class="quiet hidden">Download pre-merge backup</button><button id="syncRecovered" class="quiet hidden">Reconnect Google / sync</button></div>
    </section>
    <section class="panel" id="cloudPanel" style="margin-bottom:18px">
    <div class="panel-title"><h2>Google Drive · Workspace sync</h2><span id="cloudStatus" class="micro">Not connected</span></div>
@@ -195,7 +195,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     <button id="unlinkSheet" class="quiet danger small-btn hidden" style="margin-top:9px">Unlink master (keep Google file)</button>
 
     </details></div>
-    <div class="section"><h2>Local files</h2><p class="muted" style="margin-top:5px">Changes are saved locally and backed up to Drive when Google is connected. Google Sheets remains a separate, manually synced reporting archive. Export a JSON backup regularly, especially before clearing browser data or changing devices. Previous Google Drive sessions can still be accessed through the <a href="/orchard-legacy-47/" rel="nofollow" style="color:#b9d5fa">earlier version</a>.</p><div class="actions" style="margin-top:12px"><button id="exportCsv">Export rounds CSV</button></div></div>
+    <div class="section"><h2>Local files</h2><p class="muted" style="margin-top:5px">Changes are saved locally and backed up to Drive when Google is connected. Google Sheets remains a separate, manually synced reporting archive. Export a JSON backup regularly, especially before clearing browser data or changing devices. Previous Google Drive sessions can still be accessed through the <a href="/orchard-legacy-47/" rel="nofollow" style="color:#b9d5fa">earlier version</a>.</p><div class="actions" style="margin-top:12px"><button id="exportCsv">Export rounds CSV</button><button id="downloadRecoveryLocal">Download recovery snapshot</button></div></div>
    </section>
   </div>
  </div>
