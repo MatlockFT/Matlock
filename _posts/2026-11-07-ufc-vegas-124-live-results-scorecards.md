@@ -41,28 +41,39 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 - Mitch Raposo vs. Marcos Degli — *Pending*
 - Gabriel Lorenco vs. Thomas Petersen — *Pending*
 - Priscila Cachoeira vs. Nina Milošević — *Pending*
-### Seokhyeon Ko vs. Wellington Turman — *Pending*
+### Seokhyeon Ko vs. Wellington Turman — *Seokhyeon Wins via Unanimous Decision  (30-27 x3)*
 
 Round 1: Both are exchanging shots but it comes in on or two strikes each. Both throwing heavy and it is quite even though I do have Ko landing the better of the exchanges marginally. Ko with two takes downs and control time, some shots landed on the ground. 10-9 Ko.
 
-Round 2: More of the same though Ko was able to land more effective strikes on the feet overall. Turman also landed his best strike of the fight and followed with spinning back fist. Still, Ko takes the round with effective striking and grappling. Turman looks exhausted. 20-18 Ko
-
-<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-ba1ef202" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
-  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-162743-668.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-38f2e23a" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-164317-880.png" alt="ufc vegas 124 live results scoring" loading="lazy">
 </figure>
 
+Round 2: More of the same though Ko was able to land more effective strikes on the feet overall. Turman also landed his best strike of the fight and followed with spinning back fist. Still, Ko takes the round with effective striking and grappling. Turman looks exhausted. 20-18 Ko
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-690b431e" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-164307-756.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+Round 3: Ko comes out early with a takedown and controls Turman almost the entirety of the fight and landing shots. Turman ultimately had no offense or anything to offer this round and gets beaten and controlled pretty handily. 30-26
+
+<section class="article-html-visual">
+<figure class="article-inline-image article-inline-image--break article-inline-image--center article-inline-image--full" data-writer-media-id="media-97452db7" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-164210-110.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+</section>
 ---
 
-### Jonny Parsons vs. José Souza — José Souza wins VIA knockout in round 1 (right uppercut, left hook)
+### Jonny Parsons vs. José Souza — *José Souza wins VIA knockout in round 1 (right uppercut, left hook)*
 Round 1: Parsons best work of the fight was slipping the jab and landing leg kicks. He had trouble with the range because Souza is massive. He threw a lot of head kicks that missed the mark. Souza best work came from his jab and knees. He had Parsons worried about the kicks, too. Once Parsons committed to his strikes though it was lights out. 
 
-<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-270ae800" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+<figure class="article-inline-video article-inline-video--break article-inline-video--center article-inline-image--break article-inline-image--center" data-writer-media-id="media-97452db7" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
     <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-161250-340.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
-<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-dcb94f6e" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+<figure class="article-inline-image article-inline-image--break article-inline-image--center article-inline-video--break article-inline-video--center" data-writer-media-id="media-270ae800" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-161448-062.png" alt="ufc vegas 124 live results scoring" loading="lazy">
 </figure>
 
