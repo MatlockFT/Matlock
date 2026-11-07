@@ -230,21 +230,33 @@ $('resolveConflicts').onclick=async()=>{
 };
 $('downloadRecovery').onclick=exportRecovery;
 $('downloadRecoveryLocal').onclick=exportRecovery;
+let pendingArchiveSync=false;
+async function completeArchiveSync(){
+ if(!pendingArchiveSync||!driveReady())return;
+ const button=$('syncRecovered');button.disabled=true;button.textContent='Updating master archive…';
+ try{
+  if($('cloudStatus').textContent!=='Synced')throw Error('The workspace backup is not yet confirmed synced.');
+  await syncEvents(true);
+  if(!$('sheetMessage').textContent.startsWith('Master updated:'))throw Error('Master spreadsheet could not be verified. Workspace backup remains safe.');
+  pendingArchiveSync=false;
+  lastMerge='Workspace and master spreadsheet have been synced by the application. Recovery snapshot remains available.';
+  renderPanel();
+  toast('Workspace and master archive synced in Google Drive.');
+ }catch(error){toast('Archive sync incomplete: '+error.message)}
+ finally{button.disabled=false;button.textContent='Sync workspace + master'}
+}
 $('syncRecovered').onclick=async()=>{
+ pendingArchiveSync=true;
  if(!driveReady()){connectGoogle();return}
- const button=$('syncRecovered');button.disabled=true;button.textContent='Syncing Drive…';
+ const button=$('syncRecovered');button.disabled=true;button.textContent='Syncing workspace…';
  try{
   await window.copperCloud?.sync();
-  if($('cloudStatus').textContent!=='Synced')throw Error('Workspace was not confirmed synced. Check the Google Drive status.');
-  await syncEvents(true);
-  if(!$('sheetMessage').textContent.startsWith('Master updated:'))throw Error('Workspace backup synced, but the master spreadsheet is not confirmed updated.');
-  $('integrityStatus').textContent='Workspace and master spreadsheet confirmed synced in Google Drive. Recovery snapshot remains available.';
-  toast('Google Drive backup and master archive verified by the application.');
+  await completeArchiveSync();
  }catch(error){toast('Google sync incomplete: '+error.message)}
  finally{button.disabled=false;button.textContent='Sync workspace + master'}
 };
 window.copperIntegrity={combineCompatible:(a,b)=>{const result=mergeEvents(a,b);return result.issues.length?null:result.event},
- refresh:renderPanel,downloadRecovery:exportRecovery};
+ refresh:renderPanel,downloadRecovery:exportRecovery,afterWorkspaceSynced:completeArchiveSync};
 renderPanel();
 attemptKnownCleanup();
 })();
