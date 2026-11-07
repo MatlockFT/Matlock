@@ -295,10 +295,10 @@ test.describe('Article fight navigation and spoiler picks', () => {
         left: Math.round(rect.left)
       };
     });
-    expect(stickyGeometry.position).toBe('sticky');
-    // The compact header leaves a 63px sticky offset; allow any safe top >= 50px.
-    // Checks below still verify the TOC cannot overlap sharing or escape its rail.
+    expect(stickyGeometry.position).toBe('relative');
+    // The TOC follows the viewport, but is translated only inside its rail.
     expect(stickyGeometry.top).toBeGreaterThanOrEqual(50);
+    expect(stickyGeometry.top).toBeLessThan(180);
 
     expect(stickyGeometry.width).toBeGreaterThan(220);
     expect(Math.abs(stickyGeometry.left - stickyGeometry.railLeft)).toBeLessThan(3);
@@ -1035,7 +1035,25 @@ test.describe('Long fight-card article layout regression', () => {
       const toc = page.locator('.article-toc-floating');
       await expect(toc).toBeVisible({ timeout: 10000 });
       await expect(toc.locator('[data-article-toc-list] li')).toHaveCount(14);
-      expect(await toc.evaluate(el => getComputedStyle(el).position)).toBe('sticky');
+      await expect(toc).toHaveClass(/is-following/);
+      expect(await toc.evaluate(el => getComputedStyle(el).position)).toBe('relative');
+
+      // It stays alongside the story at different depths, not only at the top.
+      await page.evaluate(() => window.scrollTo(0, 2500));
+      await expect.poll(async () => toc.evaluate(el => Math.round(el.getBoundingClientRect().top)))
+        .toBeGreaterThan(50);
+      const firstFollowTop = await toc.evaluate(el => Math.round(el.getBoundingClientRect().top));
+      await page.evaluate(() => window.scrollTo(0, 4700));
+      await expect.poll(async () => toc.evaluate(el => Math.round(el.getBoundingClientRect().top)))
+        .toBeGreaterThan(50);
+      const nextFollowTop = await toc.evaluate(el => Math.round(el.getBoundingClientRect().top));
+      expect(Math.abs(firstFollowTop - nextFollowTop)).toBeLessThan(8);
+
+      const backToTop = page.locator('[data-article-back-to-top]');
+      await expect(backToTop).toBeVisible();
+      await backToTop.click();
+      await expect.poll(async () => page.evaluate(() => Math.round(window.scrollY)), { timeout: 4000 }).toBeLessThan(8);
+      await expect(backToTop).toBeHidden();
 
       await page.locator('.post-share').scrollIntoViewIfNeeded();
       const geometry = await page.evaluate(() => {
@@ -1043,6 +1061,7 @@ test.describe('Long fight-card article layout regression', () => {
         return {
           tocBottom: rect('.article-toc-floating').bottom,
           railBottom: rect('.post-rail').bottom,
+          articleBottom: rect('#article-content').bottom,
           shareTop: rect('.post-share').top,
           relatedWidth: rect('.related-breakdowns').width,
           articleWidth: rect('.post-body').width,
@@ -1051,6 +1070,7 @@ test.describe('Long fight-card article layout regression', () => {
       });
       expect(geometry.tocBottom).toBeLessThanOrEqual(geometry.shareTop + 2);
       expect(geometry.railBottom).toBeLessThanOrEqual(geometry.shareTop + 2);
+      expect(geometry.tocBottom).toBeLessThanOrEqual(geometry.articleBottom + 2);
       expect(geometry.relatedWidth).toBeGreaterThan(geometry.articleWidth);
       expect(geometry.overflow).toBeLessThanOrEqual(2);
     });
