@@ -978,7 +978,7 @@ function checkMasterPayloadSize(valuePayload){
 }
 async function syncMasterEvents(events){
  const selected=events.map(e=>JSON.parse(JSON.stringify(e)));
- const replaceIds=new Set(selected.map(e=>e.id));
+ const replaceIds=new Set([...selected.map(e=>e.id),...Object.keys(data.removedEvents||{})]);
  const additions=selected.map(masterRowsForEvent);
  const incomingCount=additions.reduce((n,x)=>n+x.Moments.length,0);
  if(incomingCount>50000)throw Error('Too many moments to sync at once. Export a JSON backup.');
