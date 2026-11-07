@@ -154,9 +154,11 @@ function renderPanel(){
   notice.textContent=lastMerge;
   $('resolveConflicts').classList.add('hidden');
   $('downloadRecovery').classList.remove('hidden');
+  $('syncRecovered').classList.remove('hidden');
   return;
  }
  if(!all.length){panel.classList.add('hidden');return}
+ $('syncRecovered').classList.add('hidden');
  panel.classList.remove('hidden');
  const {original,copy}=all[0],result=mergeEvents(original,copy,decisions);
  if(result.issues.some(x=>typeof x==='string')){
@@ -189,6 +191,7 @@ async function resolvePair(original,copy,choices={}){
  const result=mergeEvents(original,copy,choices);
  if(!result.event||result.issues.length)throw Error('Both versions have different fight data. Review each conflict before merging.');
  processing=true;
+ const prior=deep(data);
  try{
   await saveRecovery('Before merging '+original.name+' with '+copy.name);
   const merged=result.event;
@@ -202,7 +205,10 @@ async function resolvePair(original,copy,choices={}){
   data.removedEvents=data.removedEvents||{};
   data.removedEvents[copy.id]=new Date().toISOString();
   if(data.selected===copy.id)data.selected=original.id;
-  if(!persist())throw Error('Workspace could not save; recovery snapshot was created.');
+  if(!persist()){
+   data.events=prior.events;data.removedEvents=prior.removedEvents||{};data.selected=prior.selected;
+   throw Error('Workspace could not save; no original data was deleted. Recovery snapshot was created.');
+  }
   lastMerge='Merged '+copy.name+' into '+original.name+'. Removed duplicate locally and marked the original completed. Reconnect Google to synchronize this change.';
   renderDashboard();renderPanel();
   toast('Event merged, completed and preserved in local recovery backup.');
@@ -223,6 +229,20 @@ $('resolveConflicts').onclick=async()=>{
  try{await resolvePair(pair.original,pair.copy,decisions)}catch(error){toast('Merge failed: '+error.message)}
 };
 $('downloadRecovery').onclick=exportRecovery;
+$('downloadRecoveryLocal').onclick=exportRecovery;
+$('syncRecovered').onclick=async()=>{
+ if(!driveReady()){connectGoogle();return}
+ const button=$('syncRecovered');button.disabled=true;button.textContent='Syncing Drive…';
+ try{
+  await window.copperCloud?.sync();
+  if($('cloudStatus').textContent!=='Synced')throw Error('Workspace was not confirmed synced. Check the Google Drive status.');
+  await syncEvents(true);
+  if(!$('sheetMessage').textContent.startsWith('Master updated:'))throw Error('Workspace backup synced, but the master spreadsheet is not confirmed updated.');
+  $('integrityStatus').textContent='Workspace and master spreadsheet confirmed synced in Google Drive. Recovery snapshot remains available.';
+  toast('Google Drive backup and master archive verified by the application.');
+ }catch(error){toast('Google sync incomplete: '+error.message)}
+ finally{button.disabled=false;button.textContent='Sync workspace + master'}
+};
 window.copperIntegrity={combineCompatible:(a,b)=>{const result=mergeEvents(a,b);return result.issues.length?null:result.event},
  refresh:renderPanel,downloadRecovery:exportRecovery};
 renderPanel();
