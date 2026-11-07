@@ -227,6 +227,7 @@
           'Synced '+stamp+' · '+merged.workspace.events.length+' event(s) in Google Drive.');
         if(merged.conflicts)toast('Different edits found. A conflict copy was kept to protect your scores.');
         else if(manual)toast('All events are synced with Google Drive.');
+        window.copperAutoArchive?.cloudReady();
         return;
       }
       throw Error('Drive changed during sync. Try Sync now again; local records are safe.');
