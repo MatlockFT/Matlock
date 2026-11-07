@@ -1269,6 +1269,16 @@ function drawTapeLane(ctx,round,duration,rect,opts={}){
  }
  ctx.strokeStyle='rgba(234,234,234,.34)';ctx.lineWidth=1;
  ctx.beginPath();ctx.moveTo(x0,ym+.5);ctx.lineTo(x1,ym+.5);ctx.stroke();
+ // A thin separate lane shows control periods without making them exchanges.
+ const controlY=yb+(compact?3:4),controlHeight=compact?3:5;
+ ctx.fillStyle='rgba(255,255,255,.065)';ctx.fillRect(x0,controlY,span,controlHeight);
+ for(const c of controlEntries(round)){
+  const until=c.end===null?(opts.playhead??round.elapsed):c.end;
+  const start=Math.max(0,Math.min(duration,c.start)),end=Math.max(start,Math.min(duration,until));
+  if(end<=start)continue;
+  ctx.fillStyle=c.side==='a'?'rgba(229,139,145,.88)':'rgba(131,178,237,.88)';
+  ctx.fillRect(x0+span*start/duration,controlY,span*(end-start)/duration,controlHeight);
+ }
  const density=tapeDensity(round,duration);
  const peak=Math.max(1,...density[0],...density[1]);
  for(let side=0;side<2;side++){
@@ -1363,7 +1373,8 @@ function drawGraph(){
  const rd=f.roundData[reviewIndex]||currentRound(),counts=graphMode==='fight'?
  f.roundData.reduce((sum,r)=>{const n=momentTally(r);return [sum[0]+n[0],sum[1]+n[1]]},[0,0]):momentTally(rd);
  const majors=(graphMode==='fight'?f.roundData:[rd]).reduce((x,r)=>{const v=impactTally(r);return [x[0]+v[0],x[1]+v[1]]},[0,0]);
- c.setAttribute('aria-label',(graphMode==='fight'?'Fight summary':'Round '+(reviewIndex+1))+': '+counts[0]+' red exchanges, '+counts[1]+' blue exchanges, including '+majors[0]+' red major impacts and '+majors[1]+' blue major impacts, over '+clockText(f.duration));
+ const ctl=graphMode==='fight'?fightControlTotals(f):controlTotals(rd,rd===currentRound()?seconds():rd.elapsed);
+ c.setAttribute('aria-label',(graphMode==='fight'?'Fight summary':'Round '+(reviewIndex+1))+': '+counts[0]+' red exchanges, '+counts[1]+' blue exchanges, including '+majors[0]+' red major impacts and '+majors[1]+' blue major impacts, over '+clockText(f.duration)+'; control Red '+controlClock(ctl[0])+', Blue '+controlClock(ctl[1]));
  drawGraphFrame(ctx,f,{x:0,y:0,w,h},{
   mode:graphMode,roundIndex:reviewIndex,
   playhead:running?seconds():null,flash:momentFlash
@@ -1393,7 +1404,7 @@ function exportGraphCanvas(){
  ctx.fillText(eventTitle.slice(0,125),76,211);
  ctx.fillStyle='#1a1b1e';ctx.fillRect(65,246,1470,490);
  ctx.strokeStyle='#3e4145';ctx.strokeRect(65.5,246.5,1469,489);
- drawGraphFrame(ctx,f,{x:85,y:268,w:1430,h:430},{mode:graphMode,roundIndex:reviewIndex});
+ drawGraphFrame(ctx,f,{x:85,y:268,w:1430,h:430},{mode:graphMode,roundIndex:reviewIndex,playhead:running?seconds():null});
  const round=graphMode==='round'?(f.roundData[reviewIndex]||currentRound()):null;
  const score=round?.score?roundPoints(round.score):null;
  const counts=graphMode==='round'?momentTally(round):f.roundData.reduce((sum,r)=>{const v=momentTally(r);return [sum[0]+v[0],sum[1]+v[1]]},[0,0]);
@@ -1404,6 +1415,8 @@ function exportGraphCanvas(){
  ctx.textAlign='left';ctx.fillStyle='#9b9ea3';ctx.font='17px system-ui';
  ctx.fillText(score?'CONFIRMED ROUND SCORE   '+score[0]+' – '+score[1]:'EXCHANGE WINNERS  /  ELAPSED ROUND TIME',80,840);
  ctx.textAlign='right';ctx.fillText('MAJOR IMPACTS  /  RED '+impactTotals[0]+'   BLUE '+impactTotals[1],1518,840);
+ const ct=graphMode==='round'?controlTotals(round,round===currentRound()?seconds():round.elapsed):fightControlTotals(f);
+ ctx.textAlign='center';ctx.fillStyle='#aaa8a5';ctx.font='16px system-ui';ctx.fillText('CONTROL   RED '+controlClock(ct[0])+'   ·   BLUE '+controlClock(ct[1]),800,879);
  return c;
 }
 function graphFileName(){
