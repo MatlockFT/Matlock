@@ -553,6 +553,21 @@
     </footer>
     {% endif %}
 
+    <button
+        class="article-back-to-top"
+        type="button"
+        data-article-back-to-top
+        aria-label="Back to top"
+        title="Back to top"
+        hidden
+    >
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 19V5"></path>
+            <path d="M6.5 10.5 12 5l5.5 5.5"></path>
+        </svg>
+        <span>Top</span>
+    </button>
+
     <script src="{{ '/assets/site.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
     <script src="{{ '/assets/site-ticker-bootstrap.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
     <script src="{{ '/assets/editorial-v3-shell.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
