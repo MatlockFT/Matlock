@@ -302,7 +302,7 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-f62bddb9" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="/assets/article-media/rosas-jr-vs-barcelos-ufc-vegas-121-video-20260924-193315-968.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="/assets/article-media/rosas-jr-vs-barcelos-ufc-vegas-121-video-20260924-193315-968.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
@@ -413,7 +413,7 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
 </section>
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-17cc0f7f" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="/assets/article-media/rosas-jr-vs-barcelos-ufc-vegas-121-video-20260925-011655-703.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="/assets/article-media/rosas-jr-vs-barcelos-ufc-vegas-121-video-20260925-011655-703.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
