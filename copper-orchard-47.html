@@ -186,7 +186,9 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     <label>Round length<select id="boutDuration"><option value="300">5 minutes</option><option value="180">3 minutes</option><option value="600">10 minutes</option></select></label>
     </div><div class="actions" style="margin-top:14px"><button id="addBout" class="primary">Add fight</button></div></div>
     <div class="section"><div class="section-head"><h2>Google Sheets · Master archive</h2><span id="driveStatus" class="micro">Not connected</span></div>
-    <p class="muted">One master spreadsheet for all events. Events, Fights, Rounds and Moments have their own tabs. Sync an event or your entire workspace into the same archive; other archived events are retained.</p>
+    <p class="muted">One master spreadsheet for all events. Events, Fights, Rounds and Moments have their own tabs. Once linked, it updates automatically after the Drive workspace has synced and the editor is idle. Existing archived events are retained.</p>
+    <label style="display:flex;align-items:center;gap:8px;margin-top:12px;max-width:max-content;cursor:pointer"><input id="autoMasterArchive" type="checkbox" checked style="width:17px;height:17px;margin:0;accent-color:#ddd">Auto-sync master spreadsheet when connected</label>
+    <p id="autoMasterStatus" class="muted" style="font-size:12px;margin-top:7px" role="status">Checking archive status…</p>
     <div class="actions" style="margin-top:13px"><button id="syncEvent" class="primary" disabled>Sync this event</button><button id="syncAllEvents" disabled>Sync all events</button><a id="sheetLink" class="sheet-link hidden" target="_blank" rel="noopener noreferrer">Open master spreadsheet ↗</a></div>
     <p id="sheetMessage" class="muted" style="margin-top:10px">Connect a Google account and sync when ready.</p>
     <details style="margin-top:16px"><summary>Google connection setup · Link existing master</summary>
@@ -195,7 +197,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     <button id="unlinkSheet" class="quiet danger small-btn hidden" style="margin-top:9px">Unlink master (keep Google file)</button>
 
     </details></div>
-    <div class="section"><h2>Local files</h2><p class="muted" style="margin-top:5px">Changes are saved locally and backed up to Drive when Google is connected. Google Sheets remains a separate, manually synced reporting archive. Export a JSON backup regularly, especially before clearing browser data or changing devices. Previous Google Drive sessions can still be accessed through the <a href="/orchard-legacy-47/" rel="nofollow" style="color:#b9d5fa">earlier version</a>.</p><div class="actions" style="margin-top:12px"><button id="exportCsv">Export rounds CSV</button><button id="downloadRecoveryLocal">Download recovery snapshot</button></div></div>
+    <div class="section"><h2>Local files</h2><p class="muted" style="margin-top:5px">Changes are saved locally and backed up to Drive when Google is connected. Google Sheets archives automatically when connected and the master is linked (or can be synced manually). Export a JSON backup regularly, especially before clearing browser data or changing devices. Previous Google Drive sessions can still be accessed through the <a href="/orchard-legacy-47/" rel="nofollow" style="color:#b9d5fa">earlier version</a>.</p><div class="actions" style="margin-top:12px"><button id="exportCsv">Export rounds CSV</button><button id="downloadRecoveryLocal">Download recovery snapshot</button></div></div>
    </section>
   </div>
  </div>
@@ -361,7 +363,7 @@ const DRIVE_SCOPE='https://www.googleapis.com/auth/drive.file',CLIENT_KEY='coppe
 const DIVISIONS=['Flyweight','Bantamweight','Featherweight','Lightweight','Welterweight','Middleweight','Light Heavyweight','Heavyweight',"Women's Strawweight","Women's Flyweight","Women's Bantamweight","Women's Featherweight"];
 function readJSON(key){try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}}
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.add('hidden'),3600)}
-function persist(){try{localStorage.setItem(KEY,JSON.stringify(data));window.copperCloud?.changed();saveFailed=false;$('saveStatus').textContent='Saved locally';$('saveStatus').className='pill saved';$('wbSaved').textContent='Saved locally';$('wbSaved').className='pill saved';return true}catch(e){saveFailed=true;$('saveStatus').textContent='SAVE FAILED';$('saveStatus').className='pill warning';$('wbSaved').textContent='SAVE FAILED';$('wbSaved').className='pill warning';toast('Browser storage failed. Export a backup before closing.');return false}}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(data));window.copperCloud?.changed();window.copperAutoArchive?.changed();saveFailed=false;$('saveStatus').textContent='Saved locally';$('saveStatus').className='pill saved';$('wbSaved').textContent='Saved locally';$('wbSaved').className='pill saved';return true}catch(e){saveFailed=true;$('saveStatus').textContent='SAVE FAILED';$('saveStatus').className='pill warning';$('wbSaved').textContent='SAVE FAILED';$('wbSaved').className='pill warning';toast('Browser storage failed. Export a backup before closing.');return false}}
 function upgradeCornerLayout(workspace){
  // Older v2 fights used blue on the left and red on the right.
  // Change sides once while preserving each fighter's observations, scores and results.
@@ -397,7 +399,7 @@ function safeName(s,fallback){return (s||'').trim()||fallback}
 function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
 function setVisible(id,yes){$(id).classList.toggle('hidden',!yes)}
 function selectEvent(id){pause();activeId=null;focusMode=false;data.selected=id;persist();renderDashboard()}
-function renderDashboard(){clearChartFlash();setVisible('dashboard',true);setVisible('dashTop',true);setVisible('workbench',false);setVisible('scoreOverlay',false);setVisible('finishOverlay',false);setVisible('editFightOverlay',false);focusMode=false;window.copperCloud?.dashboard();
+function renderDashboard(){clearChartFlash();setVisible('dashboard',true);setVisible('dashTop',true);setVisible('workbench',false);setVisible('scoreOverlay',false);setVisible('finishOverlay',false);setVisible('editFightOverlay',false);focusMode=false;window.copperCloud?.dashboard();window.copperAutoArchive?.dashboard();
  const list=$('events');list.replaceChildren();$('eventCount').textContent=data.events.length;
  data.events.forEach(e=>{const b=el('button');b.className='event-item'+(e.id===data.selected?' current':'');b.append(el('strong',safeName(e.name,'Untitled event')),el('small',(e.date||'No date')+' · '+e.fights.length+' fights'));b.onclick=()=>selectEvent(e.id);list.append(b)});
  $('legacyBtn').classList.toggle('hidden',!legacyAvailable());
@@ -978,7 +980,7 @@ function checkMasterPayloadSize(valuePayload){
  const bytes=new TextEncoder().encode(JSON.stringify(valuePayload)).length;
  if(bytes>1900000)throw Error('Master sync exceeds Google\'s recommended 2 MB request size ('+(bytes/1000000).toFixed(2)+' MB). Existing archive was not overwritten. Export a JSON backup and reduce the data before syncing.');
 }
-async function syncMasterEvents(events){
+async function syncMasterEvents(events,automatic=false){
  const selected=events.map(e=>JSON.parse(JSON.stringify(e)));
  const replaceIds=new Set([...selected.map(e=>e.id),...Object.keys(data.removedEvents||{})]);
  const additions=selected.map(masterRowsForEvent);
@@ -1013,7 +1015,7 @@ async function syncMasterEvents(events){
   const remoteStamp=Date.parse(old[7]||''),localStamp=Date.parse(e.masterSyncedAt||'');
   const newer=(!Number.isFinite(localStamp)&&Number.isFinite(remoteStamp))
    ||(Number.isFinite(remoteStamp)&&Number.isFinite(localStamp)&&remoteStamp>localStamp+1000);
-  if(newer&&!confirm('The master has a newer copy of '+(e.name||'this event')+' (synced '+String(old[7]||'unknown')+'). Overwrite those archived scores with this browser\'s version? Cancel to preserve them and compare backups first.'))
+  if(newer&&(automatic||!confirm('The master has a newer copy of '+(e.name||'this event')+' (synced '+String(old[7]||'unknown')+'). Overwrite those archived scores with this browser\'s version? Cancel to preserve them and compare backups first.')))
    throw Error('Sync canceled to protect newer archived scores for '+(e.name||'this event')+'.');
  }
  for(const tab of MASTER_TABS){
@@ -1061,20 +1063,23 @@ async function syncMasterEvents(events){
   rounds:additions.reduce((n,x)=>n+x.Rounds.length,0),
   moments:incomingCount};
 }
-async function syncEvents(all){
- if(driveBusy)return;
- if(!driveReady()){toast('Connect Google again to sync.');updateDriveUI();return}
+async function syncEvents(all,automatic=false){
+ if(driveBusy)return false;
+ if(!driveReady()){if(!automatic)toast('Connect Google again to sync.');updateDriveUI();return false}
  const events=all?data.events.slice():[event()].filter(Boolean);
- if(!events.length){toast('Create an event first.');return}
+ if(!events.length){if(!automatic)toast('Create an event first.');return false}
  driveBusy=true;updateDriveUI();
  let message='';
  try{
-  const out=await syncMasterEvents(events);
+  const out=await syncMasterEvents(events,automatic);
   message='Master updated: '+out.events+' event'+(out.events===1?'':'s')+', '+out.fights+' fights, '+out.rounds+' rounds, '+out.moments+' moments synced. Other archived events preserved.';
-  toast('Master spreadsheet updated.');
+  window.copperAutoArchive?.markArchived();
+  if(!automatic)toast('Master spreadsheet updated.');
+  return true;
  }catch(err){
   message='Master sync failed: '+err.message+'. Local records are unchanged. If Google accepted an earlier write before the error, retry syncing to reconcile the archive.';
-  toast('Google sync failed: '+err.message);
+  if(!automatic)toast('Google sync failed: '+err.message);
+  return false;
  }finally{
   driveBusy=false;updateDriveUI();if(message)$('sheetMessage').textContent=message;
  }
@@ -1178,5 +1183,5 @@ setInterval(()=>{if(focusMode)tick()},200);setInterval(()=>{if(running){currentR
 try{const saved=readJSON(KEY);if(saved){data=validate(saved);if(upgradeCornerLayout(data))persist()}}catch(e){toast('Saved workspace could not be read. Original browser data was not changed.')}
 if(!data.events.some(e=>e.id===data.selected))data.selected=data.events[0]?.id||null;
 renderDashboard();
-</script><script src="/assets/js/copper-cloud-sync.js"></script><script src="/assets/js/copper-event-manager.js"></script><script src="/assets/js/copper-event-integrity.js"></script><script src="https://accounts.google.com/gsi/client" async defer></script>
+</script><script src="/assets/js/copper-cloud-sync.js"></script><script src="/assets/js/copper-event-manager.js"></script><script src="/assets/js/copper-event-integrity.js"></script><script src="/assets/js/copper-auto-archive.js"></script><script src="https://accounts.google.com/gsi/client" async defer></script>
 </body></html>
