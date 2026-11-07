@@ -36,13 +36,27 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 ## Prelims
 
 - Karine Silva vs. Gabriella Fernandes — *Pending*
-- Jonny Parsons vs. José Souza — *Pending*
 - Jose Delano vs. Murtazali Magomedov — *Pending*
 - Austin Bashi vs. Carlos Calderon — *Pending*
 - Keiichiro Nakamura vs. Ollie Schmid — *Pending*
 - Mitch Raposo vs. Marcos Degli — *Pending*
 - Gabriel Lorenco vs. Thomas Petersen — *Pending*
 - Priscila Cachoeira vs. Nina Milošević — *Pending*
+
+---
+
+### Jonny Parsons vs. José Souza — José Souza wins VIA knockout in round 1 (right uppercut, left hook)
+Round 1: Parsons best work of the fight was slipping the jab and landing leg kicks. He had trouble with the range because Souza is massive. He threw a lot of head kicks that missed the mark. Souza best work came from his jab and knees. He had Parsons worried about the kicks, too. Once Parsons committed to his strikes though it was lights out. 
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-270ae800" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-161250-340.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-dcb94f6e" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-161448-062.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
 
 ---
 
