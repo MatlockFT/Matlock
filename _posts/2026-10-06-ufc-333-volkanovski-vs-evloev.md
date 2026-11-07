@@ -332,13 +332,13 @@ There have been some interesting moments in his recent footage, too. Ribeiro lan
 <section class="article-html-visual">
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-931bdefc" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-002029-557.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-002029-557.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 </section>
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-931bdefc" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-001349-170.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-001349-170.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
@@ -346,7 +346,7 @@ He also leaned right into a head kick. Credit to him for trapping the kick, turn
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-fe65759a" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-000903-833.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-000903-833.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
@@ -361,7 +361,7 @@ Those knees are worth watching, too. Krylov will throw them while standing on on
 <section class="article-html-visual">
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-16605304" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-004337-789.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261019-004337-789.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 </section>
@@ -436,7 +436,7 @@ There's enough to like in Cam's striking, but I haven't seen enough to know how 
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-efa19a32" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261014-164844-937.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261014-164844-937.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
@@ -444,7 +444,7 @@ There's enough to like in Cam's striking, but I haven't seen enough to know how 
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-16605304" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261014-120836-275.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261014-120836-275.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
@@ -590,7 +590,7 @@ Any fighter who can fight off the back foot, counter effectively, and has even a
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-db61dd1d" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261008-172849-032.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261008-172849-032.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
@@ -602,7 +602,7 @@ In the clinch, she's capable of tying opponents up and using her strength to mai
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-c830d7e3" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261008-171920-834.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-333-volkanovski-vs-evloev-video-20261008-171920-834.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
