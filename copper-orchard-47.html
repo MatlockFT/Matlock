@@ -1136,19 +1136,88 @@ function momentTally(r){
  for(const o of r.observations)counts[o.side==='a'?0:1]++;
  return counts;
 }
+/* Round-score recommendation v2.
+ * Control is contextual evidence, not equivalent to an exchange.
+ * Top and bottom offense count separately; dominant control matters more
+ * when the recorded effective offense is close. No saved score is changed.
+ */
+function scoreRoundEvidence(r){
+ const groups=[
+  {holding:0,bottom:0,holdingImpacts:0,bottomImpacts:0},
+  {holding:0,bottom:0,holdingImpacts:0,bottomImpacts:0}
+ ];
+ const raw=[0,0],offense=[0,0],periods=controlEntries(r);
+ let segment=0;
+ for(const o of r.observations){
+  const fighter=o.side==='a'?0:1,impact=o.type==='impact',value=impact?2:1;
+  raw[fighter]+=value;offense[fighter]+=value;
+  // Each period covers [start,end). An event on a reversal belongs
+  // to the newly controlling fighter rather than the previous period.
+  while(segment<periods.length){
+   const p=periods[segment],until=p.end===null?r.elapsed:p.end;
+   if(until<=o.time){segment++;continue}
+   break;
+  }
+  const p=periods[segment];
+  if(!p||o.time<p.start||o.time>=(p.end===null?r.elapsed:p.end))continue;
+  const bucket=groups[fighter],holding=p.side===o.side;
+  if(holding){
+   bucket.holding++;
+   if(impact)bucket.holdingImpacts++;
+   // Effective offense by a fighter maintaining control adds evidence
+   // of productive grappling rather than merely positional time.
+   offense[fighter]+=impact?.5:.35;
+  }else{
+   bucket.bottom++;
+   if(impact)bucket.bottomImpacts++;
+   // A controlled fighter still receives full exchange credit, plus
+   // a modest contextual bonus for successful offense from underneath.
+   offense[fighter]+=impact?.35:.2;
+  }
+ }
+ const seconds=controlTotals(r,r.elapsed);
+ const totalOffense=raw[0]+raw[1],gap=Math.abs(offense[0]-offense[1]);
+ const closeness=Math.max(.12,1-gap/(3+totalOffense*.25));
+ const controlInfluence=seconds.map(t=>Math.min(3,t/60*.8)*closeness);
+ const combined=offense.map((v,i)=>v+controlInfluence[i]);
+ return {raw,offense,groups,seconds,closeness,controlInfluence,combined};
+}
 function suggestedRound(r){
- const [red,blue]=momentTally(r),[redImpact,blueImpact]=impactTally(r),total=red+blue;
- if(!total)return {winner:null,margin:9,counts:[red,blue],reason:'No exchanges logged. Select a score manually.'};
- const [weightedRed,weightedBlue]=weightedTally(r),allImpacts=redImpact+blueImpact;
- const winner=weightedRed===weightedBlue?'draw':weightedRed>weightedBlue?'a':'b';
- const extra=allImpacts?' Major impacts — Red: '+redImpact+', Blue: '+blueImpact+'.':'';
- if(winner==='draw')return {winner,margin:10,counts:[red,blue],reason:'Even weighted exchanges — 10–10 suggested. Review the round before confirming.'+extra};
- const leading=winner==='a'?red:blue,trailing=winner==='a'?blue:red;
- // 10–8 requires a wide raw-exchange advantage, not just one impact marker.
- // All recommendations remain editable by the judge.
- const wide=leading>=6&&leading-trailing>=5&&leading/total>=.8;
- const margin=wide?8:9,corner=winner==='a'?'Red':'Blue';
- return {winner,margin,counts:[red,blue],reason:corner+' '+red+'–'+blue+' exchanges — suggested '+(margin===8?'10–8':'10–9')+' for '+corner+'.'+extra+(wide?' Check impact, dominance and duration before keeping 10–8.':'')};
+ const counts=momentTally(r),impacts=impactTally(r),total=counts[0]+counts[1];
+ const evidence=scoreRoundEvidence(r),time=evidence.seconds;
+ const controlled=time[0]+time[1]>0;
+ if(!total&&!controlled){
+  return {winner:null,margin:9,counts,impacts,evidence,reason:'No exchanges or control logged. Select a score manually.'};
+ }
+ const difference=evidence.combined[0]-evidence.combined[1];
+ // Ignore tiny floating-point/context differences; don't invent a winner.
+ const winner=Math.abs(difference)<.15?'draw':difference>0?'a':'b';
+ const impactNote=impacts[0]+impacts[1]?' Major impacts — Red: '+impacts[0]+', Blue: '+impacts[1]+'.':'';
+ const baseNote=total?'Red '+counts[0]+'–'+counts[1]+' Blue exchanges.':'No exchanges logged.';
+ const controlNote=controlled?
+  ' Control: Red '+controlClock(time[0])+', Blue '+controlClock(time[1])+'.':
+  '';
+ if(winner==='draw'){
+  return {winner,margin:10,counts,impacts,evidence,
+   reason:baseNote+impactNote+controlNote+' Close overall evidence — 10–10 suggested. Review before confirming.'};
+ }
+ const side=winner==='a'?0:1,other=1-side,corner=side===0?'Red':'Blue';
+ // Keep the existing raw-exchange 10–8 threshold. Sustained offensive
+ // control can ALSO support 10–8, but control time alone cannot produce it.
+ const lead=counts[side],trail=counts[other];
+ const wide=lead>=6&&lead-trail>=5&&lead/Math.max(1,total)>=.8;
+ const sustained=lead>=5&&impacts[side]>=1&&
+  evidence.groups[side].holding>=3&&time[side]>=120&&
+  time[side]-time[other]>=75&&
+  evidence.offense[side]-evidence.offense[other]>=3&&
+  evidence.combined[side]-evidence.combined[other]>=5;
+ const margin=wide||sustained?8:9;
+ const reason=baseNote+impactNote+controlNote+
+  (controlled?(evidence.closeness>=.6?' Control has more influence because the offense is close.':
+    ' Clearer offense limits the control-time influence.'):'')+
+  ' Suggested '+(margin===8?'10–8':'10–9')+' for '+corner+'.'+
+  (margin===8?' Check impact, dominance and duration before keeping 10–8.':'');
+ return {winner,margin,counts,impacts,evidence,reason};
 }
 function endRound(){const f=fight(),r=currentRound();if(!f||f.result||r.score)return;
  if(f.duration-seconds()>20&&!confirm('The clock has time remaining. End and score this round?'))return;
@@ -1157,8 +1226,12 @@ function openScore(index,edit){const f=fight(),r=f&&f.roundData[index];if(!r)ret
  const suggested=suggestedRound(r);
  scoreDraft=r.score?{winner:r.score.winner,margin:r.score.margin,deductions:r.score.deductions.slice()}:{winner:suggested.winner,margin:suggested.margin,deductions:[0,0]};
  $('scoreMomentsA').textContent=suggested.counts[0];$('scoreMomentsB').textContent=suggested.counts[1];
- $('suggestionText').textContent=(r.score?'Exchange suggestion (saved score remains selected): ':'')+suggested.reason;
- const ctl=controlTotals(r,r.elapsed);$('scoreControlSummary').textContent='Control · Red '+controlClock(ctl[0])+' · Blue '+controlClock(ctl[1])+' · separate from score';
+ $('suggestionText').textContent=(r.score?'Suggested score (your saved score stays selected): ':'')+suggested.reason;
+ const ev=suggested.evidence,g=ev.groups;
+ const topAndBottom=(i)=>g[i].holding+' on top / '+g[i].bottom+' from bottom';
+ const influence=(i)=>ev.controlInfluence[i].toFixed(1);
+ $('scoreControlSummary').textContent='During control · Red '+topAndBottom(0)+' · Blue '+topAndBottom(1)+
+  '  |  Control influence: Red +'+influence(0)+', Blue +'+influence(1);
  $('scoreKicker').textContent=edit?'Edit saved round':'Round '+(index+1)+' complete';
  $('scoreTitle').textContent='Score round '+(index+1);
  $('chooseA').textContent=safeName(f.left,'Fighter A');$('chooseB').textContent=safeName(f.right,'Fighter B');
