@@ -661,6 +661,58 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
  #workbench .control-secondary button{flex:0 1 auto}
 }
 
+
+/* Control is tracked independently of effective exchanges. */
+#workbench .control-strip{
+ display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+ padding:12px 23px;border-top:1px solid #333438;
+ background:#191a1d;
+}
+#workbench .control-title{font-size:11px;font-weight:700;color:#d7d5d1;letter-spacing:.025em;white-space:nowrap}
+#workbench .control-title small{display:block;font-weight:500;font-size:10px;letter-spacing:0;color:#888a90}
+#workbench .control-buttons{display:flex;gap:7px;align-items:center}
+#workbench .control-toggle{
+ display:inline-flex;align-items:center;gap:9px;
+ min-height:37px;min-width:134px;
+ background:#232429;border:1px solid #45464b;border-radius:7px;
+ padding:7px 10px;color:#e2dfd8;font-size:11px;font-weight:660;
+}
+#workbench .control-toggle kbd{
+ display:grid;place-items:center;width:22px;height:22px;flex:0 0 22px;
+ border:1px solid #595a5f;border-radius:4px;
+ font:650 11px ui-monospace,Consolas,monospace;color:#c6c7c7;
+ background:#17181b;
+}
+#workbench .control-toggle .mono{margin-left:auto;font-size:13px;color:#eeeae4;font-variant-numeric:tabular-nums}
+#workbench .control-red.is-active{background:#34272b;border-color:#a36970}
+#workbench .control-blue.is-active{background:#252f3e;border-color:#668dbf}
+#workbench .control-red.is-active kbd{border-color:#d38b91;color:#f6afb5}
+#workbench .control-blue.is-active kbd{border-color:#80b0eb;color:#b7d6fa}
+#workbench .control-toggle:disabled{opacity:.45;cursor:not-allowed}
+#workbench .control-state{margin-left:auto;color:#8f9196;font-size:11px}
+#workbench .control-graph-note{color:#81838a;font-size:9px}
+#workbench .control-fight-summary{
+ margin:14px 0 0;padding:11px 0 0;
+ border-top:1px solid #303135;color:#aeafb3;font-size:11px;
+ font-variant-numeric:tabular-nums;
+}
+#scoreOverlay .score-control-summary{margin:-6px 0 15px;font-size:11px;color:#b4b5b9;font-variant-numeric:tabular-nums}
+@media(max-width:760px){
+ #workbench .control-strip{padding:11px 15px;gap:10px}
+ #workbench .control-state{margin-left:0}
+}
+@media(max-width:480px){
+ #workbench .control-strip{padding:10px 9px;gap:7px}
+ #workbench .control-title{width:100%;display:flex;justify-content:space-between;align-items:center}
+ #workbench .control-title small{font-size:9px}
+ #workbench .control-buttons{display:grid;grid-template-columns:1fr 1fr;width:100%;gap:6px}
+ #workbench .control-toggle{min-width:0;width:100%;gap:5px;padding:7px 6px}
+ #workbench .control-toggle kbd{height:19px;width:19px;flex-basis:19px;font-size:10px}
+ #workbench .control-toggle .mono{font-size:12px}
+ #workbench .control-state{font-size:10px}
+ #workbench .control-graph-note{display:none}
+}
+
 </style>
 </head>
 <body>
@@ -746,6 +798,14 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
    <div class="round-box"><div id="wbRound" class="micro">Round 1 of 3</div><div id="clock" class="clock mono">5:00</div><div id="roundState" class="statusline">Ready</div></div>
    <div class="wb-corner wb-corner-blue right"><div class="micro blue">Blue corner <span class="key-hint">→</span></div><div class="corner-name" id="wbRight">Fighter B</div><div class="moment-count blue"><span id="wbMomentsB">0</span><small>Exchanges</small></div></div>
   </div>
+  <div class="control-strip" role="group" aria-label="Control time">
+   <span class="control-title">Control <small>A / D to toggle</small></span>
+   <div class="control-buttons">
+    <button id="controlRedBtn" type="button" class="control-toggle control-red" aria-keyshortcuts="A" aria-pressed="false" title="A: start or stop red control"><kbd>A</kbd><span>Red</span><span id="controlRedTime" class="mono">0:00</span></button>
+    <button id="controlBlueBtn" type="button" class="control-toggle control-blue" aria-keyshortcuts="D" aria-pressed="false" title="D: start or stop blue control"><kbd>D</kbd><span>Blue</span><span id="controlBlueTime" class="mono">0:00</span></button>
+   </div>
+   <span id="controlState" class="control-state" aria-live="polite">No active control</span>
+  </div>
   <div class="controls">
    <div class="control-primary"><button id="startBtn" class="primary">Start round</button><button id="endBtn">End round &amp; score</button></div>
    <div class="control-secondary"><button id="undoBtn" class="quiet">Undo</button><button id="resetBtn" class="quiet danger">Reset round</button><button id="finishBtn" class="quiet">Finish fight</button></div>
@@ -758,14 +818,15 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
     <div class="actions tape-tools"><div class="graph-switch" role="group" aria-label="Graph view"><button id="graphRound" type="button" class="chosen small-btn" aria-pressed="true">Round</button><button id="graphFight" type="button" class="small-btn" aria-pressed="false">Fight</button></div><button id="copyGraph" type="button" class="small-btn quiet">Copy graph</button></div>
    </div>
    <canvas id="graph" aria-label="Exchange winners over round time, with major impacts distinguished" role="img"></canvas>
-   <div class="legend"><span class="red" id="graphRedName">RED</span><span class="graph-time">ELAPSED TIME →</span><span class="blue" id="graphBlueName">BLUE</span></div>
+   <div class="legend"><span class="red" id="graphRedName">RED</span><span class="graph-time">ELAPSED TIME → <span class="control-graph-note">· LOWER BAR = CONTROL</span></span><span class="blue" id="graphBlueName">BLUE</span></div>
   </div>
-  <details class="shortcuts"><summary>Keyboard shortcuts <span aria-hidden="true">⌄</span></summary><p class="hints">← / → exchange winner · Shift + ← / → major impact · Space start / pause · Ctrl+Z undo · E end round</p></details>
+  <details class="shortcuts"><summary>Keyboard shortcuts <span aria-hidden="true">⌄</span></summary><p class="hints">← / → exchange winner · Shift + ← / → major impact · A / D control · Space start / pause · Ctrl+Z undo · E end round</p></details>
  </div>
  <div class="footer-grid">
   <section class="panel totals-panel">
    <div class="panel-title"><h2>Round scores</h2><span id="wbTotal" class="totals mono">0 – 0</span></div>
    <table class="score-rows"><thead><tr><th>Rd</th><th id="scoreHeadRed">RED</th><th id="scoreHeadBlue">BLUE</th><th title="Red–Blue totals">Exchanges</th><th></th></tr></thead><tbody id="scoreBody"></tbody></table>
+   <div id="controlFightSummary" class="control-fight-summary">Control · Red 0:00 · Blue 0:00</div>
    <div id="resultLabel" class="muted" style="margin-top:14px"></div><div id="officialResult" class="official-result hidden"></div>
   </section>
   <section class="panel log-panel"><div class="panel-title"><h2>Exchange log</h2><div id="roundTabs" class="round-tabs"></div></div><div id="momentLog" class="log"></div></section>
@@ -794,6 +855,7 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
    <button class="winner right" id="selectB"><span class="micro blue">Blue corner →</span><div id="chooseB" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure blue"><span id="scoreMomentsB">0</span> <small>exchanges</small></span></button>
   </div>
   <div id="suggestionText" class="suggestion" aria-live="polite">No exchanges yet</div>
+   <div id="scoreControlSummary" class="score-control-summary">Control · Red 0:00 · Blue 0:00</div>
   <div class="micro score-margin-label">Round score</div>
   <div class="margins"><button data-margin="9">10–9</button><button data-margin="8">10–8</button><button data-margin="7">10–7</button><button data-margin="10">10–10</button></div>
   <div class="deductions"><div class="deduction"><div class="micro red">Red deductions</div><div class="stepper"><button data-dside="0" data-delta="-1" aria-label="Remove red deduction">−</button><strong id="deductA" class="mono">0</strong><button data-dside="0" data-delta="1" aria-label="Add red deduction">+</button></div></div>
