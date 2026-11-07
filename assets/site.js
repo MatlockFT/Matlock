@@ -582,7 +582,10 @@
                 Number(document.documentElement?.scrollTop) || 0,
                 Number(document.body?.scrollTop) || 0
             );
-            const visible = mobile.matches && scrollTop > Math.max(520, window.innerHeight * 0.8);
+            const revealAfter = mobile.matches
+                ? Math.max(520, window.innerHeight * 0.8)
+                : Math.max(720, window.innerHeight * 0.9);
+            const visible = scrollTop > revealAfter;
             button.hidden = !visible;
             button.classList.toggle("is-visible", visible);
         };
