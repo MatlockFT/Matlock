@@ -1102,3 +1102,20 @@ test.describe('Long fight-card article layout regression', () => {
   });
 });
 
+
+test.describe('Site-wide back to top on non-article pages', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('appears after scrolling on the breakdown archive and returns to top', async ({ page }) => {
+    await page.goto(targetUrl('/breakdowns/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('.archive-page')).toBeVisible({ timeout: 10000 });
+    const topButton = page.locator('[data-article-back-to-top]');
+    await expect(topButton).toHaveCount(1);
+    await expect(topButton).toBeHidden();
+    await page.evaluate(() => window.scrollTo(0, 1650));
+    await expect(topButton).toBeVisible();
+    await topButton.click();
+    await expect.poll(async () => page.evaluate(() => Math.round(window.scrollY)), { timeout: 4000 }).toBeLessThan(8);
+    await expect(topButton).toBeHidden();
+  });
+});
