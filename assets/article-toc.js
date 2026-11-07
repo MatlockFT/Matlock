@@ -202,7 +202,7 @@
                 const detail = String(value || '').replace(/\s+/g, ' ').trim();
                 const round = detail.match(/\b(?:round|r)\s*(\d+)\b/i);
                 let method = detail.replace(/\b(?:round|r)\s*\d+\b/ig, '').trim();
-                if (/^submission$/i.test(method)) method = 'SUB';
+                if (/^submission$/i.test(method)) method = 'SUBMISSION';
                 else if (/^split decision$/i.test(method)) method = 'SPLIT DEC';
                 else if (/^unanimous decision$/i.test(method)) method = 'UD';
                 else if (/^majority decision$/i.test(method)) method = 'MD';
@@ -229,8 +229,17 @@
             const entries = pickCards.map((card, index) => {
                 const config = readPickConfig(card);
                 const fighter = card.querySelector('.article-pick-card__fighter, .article-pick-card__main strong')?.textContent?.trim() || 'Pick ' + (index + 1);
+                // The card's method and round are sibling spans. Reading their combined
+                // textContent directly erases the separator ("KO/TKORound 1").
                 const detailNode = card.querySelector('.article-pick-card__result, .article-pick-card__main span');
-                const detail = detailNode?.textContent?.trim().replace(/\s+/g, ' ') || '';
+                const visibleDetailParts = [
+                    card.querySelector('.article-pick-card__method')?.textContent?.trim(),
+                    card.querySelector('.article-pick-card__round')?.textContent?.trim()
+                ].filter(Boolean);
+                const configuredDetailParts = [config.method, config.round]
+                    .map((part) => String(part || '').trim()).filter(Boolean);
+                const detail = (visibleDetailParts.length ? visibleDetailParts : configuredDetailParts).join(' ')
+                    || detailNode?.textContent?.trim().replace(/\s+/g, ' ') || '';
                 const heading = findFightHeading(card);
                 const matchup = String(config.matchup || '').trim() || heading?.textContent?.trim() || 'Fight ' + (index + 1);
 
