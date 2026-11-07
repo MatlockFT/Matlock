@@ -1363,3 +1363,47 @@ test('Google reconnection reuses consent and only revokes when explicitly discon
  result=await page.evaluate(()=>({revocations:window.__qaRevocations}));
  expect(result.revocations).toBe(1);
 });
+
+
+test('automatic master archive waits for Drive sync, updates changed event and skips duplicate writes',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);
+ await page.click('#backBtn');
+ await connectQaGoogle(page);
+ await expect(page.locator('#cloudStatus')).toHaveText('Synced');
+ await page.click('#syncAllEvents');
+ await expect(page.locator('#syncAllEvents')).toBeEnabled();
+ const before=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs.Events[1][1]);
+ expect(before).toBe('Test UFC card');
+ await page.fill('#eventName','Updated after Google Drive sync');
+ await expect.poll(()=>page.evaluate(()=>window.copperCloud.upToDate())).toBe(true);
+ await page.evaluate(()=>window.copperAutoArchive.flush());
+ await expect(page.locator('#autoMasterStatus')).toContainText('up to date');
+ const updated=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs.Events[1][1]);
+ expect(updated).toBe('Updated after Google Drive sync');
+ const writeCount=await page.evaluate(()=>window.__sheetRequests.filter(r=>r.path.endsWith('/values:batchUpdate')&&r.method==='POST').length);
+ await page.evaluate(()=>window.copperAutoArchive.flush());
+ const nextWriteCount=await page.evaluate(()=>window.__sheetRequests.filter(r=>r.path.endsWith('/values:batchUpdate')&&r.method==='POST').length);
+ expect(nextWriteCount).toBe(writeCount);
+});
+test('automatic master archive refuses silent overwrite of a newer remote event',async({page})=>{
+ await stubGoogleSheets(page);
+ await setup(page);
+ await page.click('#backBtn');
+ await connectQaGoogle(page);
+ await expect(page.locator('#cloudStatus')).toHaveText('Synced');
+ await page.click('#syncAllEvents');
+ await expect(page.locator('#syncAllEvents')).toBeEnabled();
+ await page.evaluate(()=>{
+   window.__masterFiles['qa-spreadsheet-123'].tabs.Events[1][7]='2099-01-01T00:00:00.000Z';
+ });
+ await page.fill('#eventName','Local stale edits');
+ await expect.poll(()=>page.evaluate(()=>window.copperCloud.upToDate())).toBe(true);
+ const writesBefore=await page.evaluate(()=>window.__sheetRequests.filter(r=>r.path.endsWith('/values:batchUpdate')&&r.method==='POST').length);
+ await page.evaluate(()=>window.copperAutoArchive.flush());
+ await expect(page.locator('#autoMasterStatus')).toContainText('needs attention');
+ const writesAfter=await page.evaluate(()=>window.__sheetRequests.filter(r=>r.path.endsWith('/values:batchUpdate')&&r.method==='POST').length);
+ expect(writesAfter).toBe(writesBefore);
+ const remote=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs.Events[1]);
+ expect(remote[1]).toBe('Test UFC card');
+});
