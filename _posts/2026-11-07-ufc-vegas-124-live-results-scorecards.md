@@ -45,6 +45,8 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 Round 1: Both are exchanging shots but it comes in on or two strikes each. Both throwing heavy and it is quite even though I do have Ko landing the better of the exchanges marginally. Ko with two takes downs and control time, some shots landed on the ground. 10-9 Ko.
 
+Round 2: More of the same though Ko was able to land more effective strikes on the feet overall. Turman also landed his best strike of the fight and followed with spinning back fist. Still, Ko takes the round with effective striking and grappling. Turman looks exhausted. 20-18 Ko
+
 <figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-ba1ef202" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-162743-668.png" alt="ufc vegas 124 live results scoring" loading="lazy">
 </figure>
