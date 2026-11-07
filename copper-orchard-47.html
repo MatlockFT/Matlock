@@ -105,12 +105,30 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 
 .impact-label{font-size:10px;font-weight:750;color:#f1d2a0;letter-spacing:.05em}
 @media print{body{color:#111;background:#ffffff}.top,.sidebar,.controls,.hints,.actions,.wb-top,.modal,.toast{display:none!important}.workspace,.footer-grid{display:block}.panel,.timeline{border-color:#ccc;background:#ffffff;margin-bottom:16px}#workbench{display:block!important}#dashboard{display:none!important}}
+
+.event-group-title,.completed-events>summary{margin:16px 0 6px;padding:10px 4px 7px;border-bottom:1px solid #393b40;font:650 11px/1.2 system-ui;letter-spacing:.11em;text-transform:uppercase;color:#bbbcc0}
+.event-group-title:first-child{margin-top:0}.event-group-empty{padding:13px 5px;font-size:12px;color:var(--muted)}
+.completed-events>summary{cursor:pointer}.completed-events{margin-top:9px}.event-item{position:relative;padding-right:92px}
+.event-state{position:absolute;right:7px;top:13px;font:600 10px/1.1 system-ui;color:#aaafb7}.event-state.is-done{color:#a7c9b2}
+.event-progress{padding:12px 13px;border:1px solid #45474c;border-radius:8px;background:#24262a;color:#d0d2d7;font-size:12px;margin-bottom:18px}
+.import-modal{max-width:860px;max-height:calc(100dvh - 30px);overflow-y:auto}
+.import-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:15px}
+.import-columns h3{margin:0 0 8px;font-size:14px}
+.lookup-list,.import-preview{border:1px solid #3b3d42;border-radius:8px;background:#17181b;overflow-y:auto;max-height:265px;padding:6px}
+.lookup-card{width:100%;text-align:left;display:flex;flex-direction:column;align-items:stretch;gap:3px;padding:10px;margin-bottom:4px;border-color:transparent;background:transparent;overflow-wrap:anywhere}
+.lookup-card.selected{background:#35383c;border-color:#84878b}.lookup-card strong{font-size:12px}.lookup-card span{color:#a7aab0;font-size:11px}
+.import-preview{padding:11px}.import-card-heading{font-weight:700;font-size:13px;margin:0 0 10px}
+.import-fight-line{padding:6px 0;border-bottom:1px solid #303238;font-size:12px;overflow-wrap:anywhere}.import-disclaimer{font-size:11px;margin-top:12px}
+.import-details{border-top:1px solid #42444a;margin-top:20px;padding-top:15px}.import-details>summary{font-weight:700}
+.import-help{color:#acafb5;font-size:12px;margin:10px 0}.import-help code{font-size:11px;color:#ededee}
+.import-file-label{display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:underline;text-underline-offset:2px}.import-file-label input{display:none}
+@media(max-width:700px){.import-layout{grid-template-columns:1fr}.lookup-list,.import-preview{max-height:200px}.event-item{padding-right:88px}}
 </style>
 </head>
 <body>
 <header class="top" id="dashTop">
  <div><h1>Workspace</h1></div>
- <div class="top-right"><span id="saveStatus" class="pill saved">Local save ready</span><button id="exportAll" class="quiet">Export backup</button><button id="importBtn" class="quiet">Import backup</button><button id="legacyBtn" class="quiet hidden">Import old sessions</button><button id="newEventBtn" class="primary">+ New event</button></div>
+ <div class="top-right"><span id="saveStatus" class="pill saved">Local save ready</span><button id="exportAll" class="quiet">Export backup</button><button id="importBtn" class="quiet">Import backup</button><button id="legacyBtn" class="quiet hidden">Import old sessions</button><button id="importCardBtn" class="quiet">Import event / card</button><button id="newEventBtn" class="primary">+ New event</button></div>
 </header>
 <main id="dashboard" class="container">
  <div class="workspace">
@@ -129,7 +147,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
    </section>
    <div id="emptyEvent" class="empty">Create an event to begin. All rounds and results stay together under that event.</div>
    <section class="panel hidden" id="eventEditor">
-    <div class="panel-title"><h2>Event setup</h2><button id="deleteEvent" class="danger small-btn">Delete event</button></div>
+    <div class="panel-title"><h2>Event setup</h2><div class="actions"><button id="completeEvent" class="primary small-btn">Mark event completed</button><button id="deleteEvent" class="danger small-btn">Delete event</button></div></div><div id="eventProgress" class="event-progress" role="status"></div>
     <div class="formgrid"><label>Event name<input id="eventName" maxlength="180" placeholder="Event name"></label><label>Date<input id="eventDate" type="date"></label><label>Session<input id="eventJudge" maxlength="150" placeholder="Session label"></label></div>
     <div class="section"><div class="section-head"><h2>Fight card</h2><span class="micro" id="boutCount">0 fights</span></div><div id="bouts"></div></div>
     <div class="section"><div class="section-head"><h2>Add fight</h2></div><div class="formgrid">
@@ -248,6 +266,36 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   <div class="modal-actions"><button id="cancelFinish" class="quiet">Cancel</button><button id="confirmFinish" class="primary">Complete fight</button></div>
  </div>
 </div>
+<div id="importEventOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="importEventTitle">
+ <div class="modal import-modal">
+  <div class="section-head"><div><div class="micro">Event loader</div><h2 id="importEventTitle" style="font-size:22px;margin-top:4px">Import an event</h2></div><button id="closeImportEvent" class="quiet small-btn" aria-label="Close importer">Close</button></div>
+  <p class="muted">Find a card published on the site, or paste a matchup list. Existing scores are never overwritten.</p>
+  <div class="import-layout">
+   <div class="import-columns">
+    <h3>Find published event</h3>
+    <label>Search event name or date<input id="lookupSearch" placeholder="UFC 334, RIZIN, 2026-11-14" autocomplete="off"></label>
+    <div class="actions" style="justify-content:space-between;margin:11px 0 7px"><span class="micro" id="lookupStatus" role="status">Search published fight cards</span><button type="button" class="small-btn quiet" id="refreshCards">Refresh</button></div>
+    <div id="lookupResults" class="lookup-list" aria-label="Matching event listings"></div>
+   </div>
+   <div class="import-columns">
+    <h3>Card preview</h3><div id="importPreview" class="import-preview"></div>
+    <button type="button" id="importSelectedEvent" class="primary" style="margin-top:10px;width:100%" disabled>Import this event</button>
+   </div>
+  </div>
+  <details id="pasteDetails" class="import-details">
+   <summary>Paste a card or upload CSV / TXT / JSON</summary>
+   <p class="import-help">One fight per line: <code>Fighter A vs Fighter B | Lightweight | 3</code>, or CSV columns: <code>Red,Blue,Division,Rounds,Minutes</code>. You can also use tab-separated columns.</p>
+   <div class="formgrid">
+    <label>Destination<select id="pasteDestination"><option value="new">Create new event</option></select></label>
+    <label>Event name (new events)<input id="pasteEventName" maxlength="180" placeholder="Event name"></label>
+    <label>Date (new events)<input id="pasteEventDate" type="date"></label>
+   </div>
+   <label style="margin-top:12px">Matchups<textarea id="pasteCard" rows="6" placeholder="Fighter A vs Fighter B | Lightweight | 3&#10;Fighter C vs Fighter D | Welterweight | 3"></textarea></label>
+   <div class="actions" style="margin-top:12px"><button id="pasteImport" class="primary">Import matchups</button><label class="import-file-label">Choose a file<input id="cardFile" type="file" accept=".csv,.txt,.json,text/plain,text/csv,application/json"></label></div>
+  </details>
+  <p class="muted" style="font-size:11px;margin-top:15px">Lookup uses the site's published schedule, not real-time official results. Confirm divisions, corners and round rules before scoring.</p>
+ </div>
+</div>
 <input id="backupInput" class="file" type="file" accept=".json,application/json">
 <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
 <script>
@@ -329,7 +377,7 @@ function renderDashboard(){clearChartFlash();setVisible('dashboard',true);setVis
  const list=$('events');list.replaceChildren();$('eventCount').textContent=data.events.length;
  data.events.forEach(e=>{const b=el('button');b.className='event-item'+(e.id===data.selected?' current':'');b.append(el('strong',safeName(e.name,'Untitled event')),el('small',(e.date||'No date')+' · '+e.fights.length+' fights'));b.onclick=()=>selectEvent(e.id);list.append(b)});
  $('legacyBtn').classList.toggle('hidden',!legacyAvailable());
- const e=event();setVisible('eventEditor',!!e);setVisible('emptyEvent',!e);updateDriveUI();if(!e)return;
+ const e=event();setVisible('eventEditor',!!e);setVisible('emptyEvent',!e);updateDriveUI();if(!e){window.copperEvents?.render();return;}
  $('eventName').value=e.name;$('eventDate').value=e.date;$('eventJudge').value=e.judge;$('boutCount').textContent=e.fights.length+' fights';
  const rows=$('bouts');rows.replaceChildren();
  if(!e.fights.length)rows.append(el('div','No fights added yet.','empty'));
@@ -340,7 +388,7 @@ function renderDashboard(){clearChartFlash();setVisible('dashboard',true);setVis
  const down=el('button','↓','small-btn');down.title='Move fight later';down.disabled=i===e.fights.length-1;down.onclick=()=>moveFight(i,1);
  const del=el('button','Delete','small-btn danger');del.onclick=()=>{if(confirm('Delete this fight and its scores?')){e.fights.splice(i,1);persist();renderDashboard()}};
  const ed=el('button','Edit','small-btn');ed.onclick=()=>editFight(f);right.append(ed,up,down,del);row.append(left,right);rows.append(row)});
- $('legacyBtn').classList.toggle('hidden',!legacyAvailable());
+ $('legacyBtn').classList.toggle('hidden',!legacyAvailable());window.copperEvents?.render();
 }
 function divisionPickerValue(selectId,wrapId,inputId,value){
  const v=(value||'').trim(),known=DIVISIONS.includes(v);
@@ -1098,5 +1146,5 @@ setInterval(()=>{if(focusMode)tick()},200);setInterval(()=>{if(running){currentR
 try{const saved=readJSON(KEY);if(saved){data=validate(saved);if(upgradeCornerLayout(data))persist()}}catch(e){toast('Saved workspace could not be read. Original browser data was not changed.')}
 if(!data.events.some(e=>e.id===data.selected))data.selected=data.events[0]?.id||null;
 renderDashboard();
-</script><script src="/assets/js/copper-cloud-sync.js"></script><script src="https://accounts.google.com/gsi/client" async defer></script>
+</script><script src="/assets/js/copper-cloud-sync.js"></script><script src="/assets/js/copper-event-manager.js"></script><script src="https://accounts.google.com/gsi/client" async defer></script>
 </body></html>
