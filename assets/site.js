@@ -351,31 +351,33 @@
         const figures = [...document.querySelectorAll(".post-body figure.article-inline-video")];
         if (!figures.length) return;
 
-        const touchVideo =
-            window.matchMedia("(hover: none)").matches ||
-            window.matchMedia("(pointer: coarse)").matches;
-
-        const tryPlay = (figure, video) => {
-            if (
-                systemReducedMotion.matches ||
-                figure.dataset.videoManualPause === "true" ||
-                !video
-            ) return;
-
-            video.play().catch(() => {
-                // A visible play state is preferable to a dead-looking black frame.
+        let activeVideo = null;
+        const isOnScreen = figure => {
+            const rect = figure.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0 &&
+                rect.bottom > 0 && rect.top < window.innerHeight;
+        };
+        const tryPlay = (figure, video, manual = false) => {
+            if (!video || !isOnScreen(figure) || document.hidden ||
+                figure.dataset.videoManualPause === "true" && !manual ||
+                systemReducedMotion.matches && !manual) return;
+            // Mobile Safari can suspend videos when several try to load at once.
+            // Allow only the on-screen clip to play, never every clip in a long article.
+            figures.forEach(other => {
+                if (other !== figure) other.querySelector("video")?.pause();
+            });
+            activeVideo = figure;
+            const promise = video.play();
+            if (promise?.catch) promise.catch(() => {
                 figure.classList.add("is-paused");
             });
         };
 
         const ensureLoaded = (figure, video) => {
-            if (!video) return;
-            if (touchVideo) video.preload = "auto";
-            if (video.networkState === HTMLMediaElement.NETWORK_EMPTY || video.readyState === 0) {
-                try {
-                    video.load();
-                } catch {}
-            }
+            if (!video || figure.dataset.videoLoadStarted === "true") return;
+            figure.dataset.videoLoadStarted = "true";
+            video.preload = "metadata";
+            try { video.load(); } catch {}
         };
 
         const visibilityObserver = "IntersectionObserver" in window
@@ -403,7 +405,7 @@
                     ensureLoaded(figure, video);
                     preloadObserver.unobserve(figure);
                 });
-            }, { rootMargin: "700px 0px", threshold: 0 })
+            }, { rootMargin: "160px 0px", threshold: 0 })
             : null;
 
         figures.forEach(figure => {
@@ -421,17 +423,17 @@
 
             video.controls = false;
             video.removeAttribute("controls");
-            video.autoplay = true;
+            video.autoplay = false;
+            video.removeAttribute("autoplay");
             video.loop = true;
             video.muted = true;
             video.defaultMuted = true;
             video.playsInline = true;
-            video.setAttribute("autoplay", "");
             video.setAttribute("loop", "");
             video.setAttribute("muted", "");
             video.setAttribute("playsinline", "");
             video.setAttribute("webkit-playsinline", "");
-            video.preload = touchVideo ? "auto" : "metadata";
+            video.preload = "none";
             video.tabIndex = 0;
             video.setAttribute("aria-keyshortcuts", "Space Enter M");
 
@@ -487,7 +489,7 @@
                 if (video.paused) {
                     if (manual) figure.dataset.videoManualPause = "false";
                     ensureLoaded(figure, video);
-                    tryPlay(figure, video);
+                    tryPlay(figure, video, manual);
                 } else {
                     if (manual) figure.dataset.videoManualPause = "true";
                     video.pause();
@@ -511,7 +513,7 @@
                 try {
                     video.load();
                 } catch {}
-                tryPlay(figure, video);
+                tryPlay(figure, video, true);
             });
 
             video.addEventListener("click", () => togglePlay());
@@ -520,15 +522,15 @@
             video.addEventListener("volumechange", sync);
             video.addEventListener("loadedmetadata", () => {
                 clearError();
-                if (touchVideo) tryPlay(figure, video);
+                if (activeVideo === figure && isOnScreen(figure)) tryPlay(figure, video);
             });
             video.addEventListener("loadeddata", () => {
                 clearError();
-                if (touchVideo) tryPlay(figure, video);
+                if (activeVideo === figure && isOnScreen(figure)) tryPlay(figure, video);
             });
             video.addEventListener("canplay", () => {
                 clearError();
-                if (touchVideo) tryPlay(figure, video);
+                if (activeVideo === figure && isOnScreen(figure)) tryPlay(figure, video);
             });
             video.addEventListener("error", showError);
             video.addEventListener("keydown", event => {
@@ -542,12 +544,10 @@
                 }
             });
 
-            if (systemReducedMotion.matches) {
-                figure.dataset.videoManualPause = "true";
-                video.pause();
-            } else {
-                figure.dataset.videoManualPause = "false";
-                if (touchVideo) ensureLoaded(figure, video);
+            figure.dataset.videoManualPause = systemReducedMotion.matches ? "true" : "false";
+            video.pause();
+            if (!visibilityObserver && isOnScreen(figure) && !systemReducedMotion.matches) {
+                ensureLoaded(figure, video);
                 tryPlay(figure, video);
             }
 
