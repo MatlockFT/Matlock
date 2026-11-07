@@ -36,12 +36,14 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 - Karine Silva vs. Gabriella Fernandes — *Pending*
 - Jose Delano vs. Murtazali Magomedov — *Pending*
-- Austin Bashi vs. Carlos Calderon — *Pending*
+
 - Keiichiro Nakamura vs. Ollie Schmid — *Pending*
 - Mitch Raposo vs. Marcos Degli — *Pending*
 - Gabriel Lorenco vs. Thomas Petersen — *Pending*
 
 ### Priscila Cachoeira vs. Nina Milošević — *Pending*
+
+### Austin Bashi vs. Carlos Calderon — *Pending*
 
 ### Mantas Kondratavičius vs. Andre Petroski — *Andre Petroski wins via round 2 TKO (ground and pound)*
 Round 1: Kondra comes out fast and heavy, both are swinging hard. Petroski trying to find success in the takedowns. Good work at end for Petroski and dynamic might change as Kondra threw a lot of heavy shots. Could be tired in the second. 10-9 Kondra.
