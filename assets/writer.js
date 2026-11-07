@@ -5569,7 +5569,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     return [
       '<figure class="' + classes + '" data-writer-media-id="' + mediaId + '" data-media-flow="' + flow + '" data-media-align="' + align + '" data-media-width="' + widthPercent + '" style="--media-width:' + widthPercent + '%;">',
       '  <div class="article-inline-video-stage">',
-      '    <video autoplay loop muted playsinline preload="metadata" src="' + escapeHtml(src) + '" aria-label="' + escapeHtml(label) + '"></video>',
+      '    <video loop muted playsinline preload="none" src="' + escapeHtml(src) + '" aria-label="' + escapeHtml(label) + '"></video>',
       '  </div>',
       cleanCaption ? '  <figcaption>' + escapeHtml(cleanCaption) + '</figcaption>' : '',
       '</figure>'
