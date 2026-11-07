@@ -170,20 +170,12 @@ function offerToday(){
  if(!panel)return;
  const date=dateHere();
  const found=catalog.filter(c=>c.date===date).sort(prioritizeUfc)[0];
- if(!found){
-  panel.classList.remove('hidden');
-  name.textContent='No scheduled card found for today';
-  status.textContent=catalog.length?'No matching event in the current published schedule. Search upcoming events or paste a card.':
-    'The event catalog could not be loaded. Check your connection or import a card manually.';
-  button.textContent='Search event cards';button.onclick=openModal;return;
- }
+ if(!found){panel.classList.add('hidden');return;}
  panel.classList.remove('hidden');
  const fights=readCard(found),existing=findExistingCard(found);
- name.textContent=cardName(found)+' · '+found.date;
- status.textContent=fights.length+' scheduled matchups from the site catalog'+
-   (existing?' · '+existing.fights.length+' already in the workspace':' · not yet in the workspace')+
-   ' · source card may change before the event.';
- button.textContent=existing?'Open event':'Load today’s card';
+ name.textContent=cardName(found);
+ status.textContent=fights.length+' fights'+(existing?' · In your events':' · Ready to add');
+ button.textContent=existing?'Open':'Add card';
  button.onclick=()=>{if(existing){selectEvent(existing.id);return}importTodayCard(found,false)};
 }
 function importTodayCard(card,automatic){
@@ -260,11 +252,11 @@ function render(){
   data.events.forEach((e,i)=>{
    const b=buttons[i],line=b.querySelector('small');
    if(line)line.textContent=(e.date||'No date')+' · '+countDone(e)+'/'+e.fights.length+' finished';
-   b.append(elem('span',e.completedAt?'Completed':'Active','event-state '+(e.completedAt?'is-done':'is-active')));
+   if(e.completedAt)b.append(elem('span','Done','event-state is-done'));
    (e.completedAt?finished:active).push(b);
   });
-  list.append(elem('div','Active · '+active.length,'event-group-title'));
-  if(active.length)list.append(...active);else list.append(elem('div','No active events','event-group-empty'));
+  if(active.length)list.append(...active);
+  else if(!finished.length)list.append(elem('div','No events yet','event-group-empty'));
   if(finished.length){
    const details=elem('details',undefined,'completed-events');
    details.open=data.events.some(e=>e.completedAt&&e.id===data.selected);
@@ -276,11 +268,9 @@ function render(){
  $('completeEvent').classList.toggle('hidden',!e);
  $('eventProgress').classList.toggle('hidden',!e);
  if(!e){window.copperIntegrity?.refresh();return;}
- $('completeEvent').textContent=e.completedAt?'Reopen event':'Mark event completed';
- $('completeEvent').classList.toggle('primary',!e.completedAt);
- $('eventProgress').textContent=(e.completedAt?'Completed '+new Date(e.completedAt).toLocaleDateString():'Active event')
-  +' · '+countDone(e)+' of '+e.fights.length+' fights finished'
-  +(!e.completedAt&&e.fights.length&&countDone(e)===e.fights.length?' · Ready to close':'');
+ $('completeEvent').textContent=e.completedAt?'Reopen':'Complete';
+ $('completeEvent').classList.remove('primary');
+ $('eventProgress').textContent=(e.completedAt?'Completed · ':'')+(e.fights.length?countDone(e)+'/'+e.fights.length+' finished':'No fights');
  window.copperIntegrity?.refresh();
 }
 $('importCardBtn').onclick=openModal;
