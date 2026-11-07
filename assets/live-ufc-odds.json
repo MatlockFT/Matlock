@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T13:29:40.404Z",
+  "generated_at": "2026-11-07T18:15:49.723Z",
   "source": "UFC.com + BestFightOdds",
   "events": [
     {
@@ -41,24 +41,10 @@
           "fighters": [
             {
               "name": "Davey Grant",
-              "moneyline": "+240"
-            },
-            {
-              "name": "Elijah Smith",
-              "moneyline": "-295"
-            }
-          ]
-        },
-        {
-          "source": "BestFightOdds",
-          "provider": "FanDuel",
-          "fighters": [
-            {
-              "name": "Billy Elekana",
               "moneyline": "+265"
             },
             {
-              "name": "Lucas Fernando",
+              "name": "Elijah Smith",
               "moneyline": "-330"
             }
           ]
@@ -68,12 +54,26 @@
           "provider": "FanDuel",
           "fighters": [
             {
+              "name": "Billy Elekana",
+              "moneyline": "+275"
+            },
+            {
+              "name": "Lucas Fernando",
+              "moneyline": "-340"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
               "name": "Priscila Cachoeira",
-              "moneyline": "+420"
+              "moneyline": "+430"
             },
             {
               "name": "Nina Milošević",
-              "moneyline": "-560"
+              "moneyline": "-590"
             }
           ]
         },
@@ -153,11 +153,11 @@
           "fighters": [
             {
               "name": "Austin Bashi",
-              "moneyline": "-550"
+              "moneyline": "-590"
             },
             {
               "name": "Carlos Calderon",
-              "moneyline": "+410"
+              "moneyline": "+440"
             }
           ]
         },
