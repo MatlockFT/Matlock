@@ -2950,41 +2950,53 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 }
 
 
-/* Mobile article back-to-top */
+/* Article back-to-top: compact, accessible, visible after scrolling on all sizes. */
 .article-back-to-top{
+  position:fixed;
+  right:1.3rem;
+  bottom:calc(1.3rem + env(safe-area-inset-bottom,0px));
+  z-index:80;
   display:none;
+  align-items:center;
+  justify-content:center;
+  gap:.4rem;
+  min-height:42px;
+  padding:.55rem .75rem;
+  border:1px solid var(--v3-rule);
+  border-radius:3px;
+  background:var(--v3-paper);
+  color:var(--v3-ink);
+  box-shadow:0 8px 25px rgba(0,0,0,.2);
+  font:800 .65rem/1 var(--v3-sans);
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.article-back-to-top.is-visible:not([hidden]){display:inline-flex}
+.article-back-to-top:hover{
+  border-color:var(--v3-red);
+  color:var(--v3-red);
+}
+.article-back-to-top:focus-visible{
+  outline:2px solid var(--v3-red);
+  outline-offset:3px;
+}
+.article-back-to-top svg{
+  width:15px;
+  height:15px;
+  fill:none;
+  stroke:var(--v3-red);
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 @media(max-width:760px){
   .article-back-to-top{
-    position:fixed;
     right:.8rem;
     bottom:calc(.8rem + env(safe-area-inset-bottom,0px));
-    z-index:80;
-    align-items:center;
-    gap:.34rem;
     min-height:38px;
     padding:.48rem .62rem;
-    border:1px solid var(--v3-ink);
-    border-radius:0;
-    background:var(--v3-paper);
-    color:var(--v3-ink);
-    box-shadow:0 6px 22px rgba(0,0,0,.14);
-    font:800 .5rem/1 var(--v3-sans);
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    cursor:pointer;
-  }
-  .article-back-to-top.is-visible:not([hidden]){
-    display:inline-flex;
-  }
-  .article-back-to-top svg{
-    width:14px;
-    height:14px;
-    fill:none;
-    stroke:var(--v3-red);
-    stroke-width:1.8;
-    stroke-linecap:round;
-    stroke-linejoin:round;
+    font-size:.56rem;
   }
 }
 
@@ -3493,6 +3505,12 @@ html[data-theme="light"] .post-page-v3 .fight-section-ambient{
     box-shadow:none;
     backdrop-filter:none;
     overflow:hidden;
+  }
+  /* JS translates only inside the article-height rail, never beyond it. */
+  .post-page-v3 .article-toc-floating.is-following{
+    position:relative;
+    top:0;
+    will-change:transform;
   }
   .post-page-v3 .article-toc-floating .article-toc-panel{
     max-height:calc(100vh - var(--v3-fixed-rail-height,80px) - 7rem);
