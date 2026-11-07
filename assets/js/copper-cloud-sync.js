@@ -240,7 +240,7 @@
   }
   window.copperCloud = {
     busy:()=>working,
-    connected:()=>{status('Connected','Loading and merging your Google Drive workspace…');sync(true);},
+    connected:async()=>{status('Connected','Loading and merging your Google Drive workspace…');await sync(true);window.copperIntegrity?.afterWorkspaceSynced?.();},
     disconnected:()=>{clearTimeout(pending);pending=null;status('Not connected','Local records remain on this computer. Connect Google to sync again.');},
     changed:()=>{if(applying)return;generation++;schedule();},
     dashboard:()=>{if(driveReady())schedule(1200);},
