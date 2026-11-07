@@ -12,6 +12,7 @@ test.beforeEach(async({page})=>{
  page.errors=[];
  page.on('pageerror',e=>page.errors.push(e.message));
  page.on('dialog',d=>d.accept());
+ await page.addInitScript(()=>{if(sessionStorage.getItem('__qaAllowAutoToday')!=='1')localStorage.setItem('copper47.auto-today.v1','false')});
  await page.route('https://accounts.google.com/gsi/client',r=>r.fulfill({status:200,body:'',contentType:'application/javascript'}));
  await page.route('**/assets/data/upcoming-events-live.json',r=>r.fulfill({status:200,body:JSON.stringify(card),contentType:'application/json'}));
  await page.goto(URL,{waitUntil:'domcontentloaded'});
@@ -159,6 +160,7 @@ test('today card auto-loads once with all available bouts and remains editable',
    {label:'',weight_class:'Featherweight Bout',fighters:[{name:'Austin Bashi'},{name:'Carlos Calderon'}]}
   ]}]}]};
  await page.route('**/assets/data/copper-card-catalog.json',r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify(payload)}));
+ await page.evaluate(()=>{sessionStorage.setItem('__qaAllowAutoToday','1');localStorage.setItem('copper47.auto-today.v1','true')});
  await page.reload();
  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).events.length)).toBe(1);
  await expect(page.locator('.bout-row')).toHaveCount(2);
