@@ -5,6 +5,7 @@ on:
     paths:
       - copper-orchard-47.html
       - assets/js/copper-cloud-sync.js
+      - assets/js/copper-auto-archive.js
       - assets/js/copper-event-manager.js
       - assets/js/copper-event-integrity.js
       - assets/data/copper-card-catalog.json
@@ -15,6 +16,7 @@ on:
     paths:
       - copper-orchard-47.html
       - assets/js/copper-cloud-sync.js
+      - assets/js/copper-auto-archive.js
       - assets/js/copper-event-manager.js
       - assets/js/copper-event-integrity.js
       - assets/data/copper-card-catalog.json
@@ -41,6 +43,7 @@ jobs:
         run: |
           mkdir -p .qa-local/copper-orchard-47 .qa-local/assets/js
           cp assets/js/copper-cloud-sync.js .qa-local/assets/js/copper-cloud-sync.js
+          cp assets/js/copper-auto-archive.js .qa-local/assets/js/copper-auto-archive.js
           cp assets/js/copper-event-manager.js .qa-local/assets/js/copper-event-manager.js
           cp assets/js/copper-event-integrity.js .qa-local/assets/js/copper-event-integrity.js
           sed '1,5d' copper-orchard-47.html > .qa-local/copper-orchard-47/index.html
