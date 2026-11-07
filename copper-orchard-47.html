@@ -956,7 +956,7 @@ function clearChartFlash(){momentFlash=null;if(chartFrame){cancelAnimationFrame(
 const KEY='copper47.workspace.v2', OLD_CURRENT='copper47.current.v1', OLD_SAVES='copper47.sessions.v1';
 const uid=()=>crypto.randomUUID?crypto.randomUUID():'id-'+Date.now()+'-'+Math.random().toString(36).slice(2);
 const fresh=()=>({version:2,selected:null,events:[],removedEvents:{},masterSheetId:null});
-const newRound=()=>({elapsed:0,observations:[],score:null});
+const newRound=()=>({elapsed:0,observations:[],control:[],score:null});
 const newFight=(left,right,division,rounds,duration)=>({id:uid(),left,right,division,rounds:+rounds,duration:+duration,index:0,roundData:[newRound()],status:'ready',result:null,legacyId:null,cornerLayout:'red-left'});
 let data=fresh(),activeId=null,running=false,anchor=0,scoreIndex=null,scoreDraft=null,scoreWasLive=false,reviewIndex=0,focusMode=false,saveFailed=false,editingFightId=null;
 let driveToken='',driveExpires=0,driveBusy=false,driveClient=null;
@@ -975,6 +975,7 @@ function upgradeCornerLayout(workspace){
   [f.left,f.right]=[f.right,f.left];
   f.roundData.forEach(r=>{
    r.observations.forEach(o=>o.side=o.side==='a'?'b':'a');
+   for(const c of r.control||[])c.side=c.side==='a'?'b':'a';
    if(r.score){
     if(r.score.winner==='a')r.score.winner='b';
     else if(r.score.winner==='b')r.score.winner='a';
@@ -995,6 +996,54 @@ function fight(){const e=event();return e&&e.fights.find(f=>f.id===activeId)}
 function currentRound(){const f=fight();return f&&f.roundData[f.index]}
 function seconds(){const f=fight(),r=currentRound();return f&&r?Math.min(f.duration,r.elapsed+(running?(performance.now()-anchor)/1000:0)):0}
 function pause(){if(!running)return;const r=currentRound();if(r)r.elapsed=seconds();running=false;persist()}
+
+/* Independent positional-control intervals, measured on the existing round clock. */
+function controlEntries(r){return Array.isArray(r?.control)?r.control:[]}
+function activeControl(r){const x=controlEntries(r).at(-1);return x&&x.end===null?x:null}
+function controlTotals(r,now=r?.elapsed||0){
+ const sums=[0,0];
+ for(const c of controlEntries(r)){
+  const until=c.end===null?now:c.end;
+  sums[c.side==='a'?0:1]+=Math.max(0,until-c.start);
+ }
+ return sums;
+}
+function controlClock(time){const s=Math.floor(Math.max(0,time));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+function closeControl(r,at){const active=activeControl(r);if(active)active.end=Math.max(active.start,at)}
+function toggleControl(side){
+ const f=fight(),r=currentRound();
+ if(!focusMode||!f||!r||!running||r.score||f.result)return;
+ const open=activeControl(r);
+ if((!open||open.side!==side)&&controlEntries(r).length>=2500){toast('Too many control periods in this round.');return}
+ const now=seconds();
+ // Persist clock position at input time; an immediate refresh cannot move the interval back.
+ r.elapsed=now;anchor=performance.now();
+ const at=Math.round(now*100)/100;
+ if(open)closeControl(r,at);
+ if(!open||open.side!==side){
+  if(!Array.isArray(r.control))r.control=[];
+  r.control.push({side,start:at,end:null});
+ }
+ persist();renderWorkbench();
+}
+function renderControl(){
+ const f=fight(),r=currentRound();if(!f||!r)return;
+ const open=activeControl(r),times=controlTotals(r,seconds()),allowed=running&&!r.score&&!f.result;
+ $('controlRedTime').textContent=controlClock(times[0]);
+ $('controlBlueTime').textContent=controlClock(times[1]);
+ for(const [id,side] of [['controlRedBtn','a'],['controlBlueBtn','b']]){
+  const btn=$(id),on=!!open&&open.side===side;
+  btn.disabled=!allowed;btn.classList.toggle('is-active',on);btn.setAttribute('aria-pressed',String(on));
+ }
+ $('controlState').textContent=open?(running?(open.side==='a'?'Red':'Blue')+' controlling':'Control paused'):'No active control';
+}
+function fightControlTotals(f){
+ return f.roundData.reduce((s,r)=>{
+  const t=controlTotals(r,r===currentRound()&&f===fight()?seconds():r.elapsed);
+  return [s[0]+t[0],s[1]+t[1]];
+ },[0,0]);
+}
+
 function clockText(sec){const s=Math.max(0,Math.ceil(sec));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
 function safeName(s,fallback){return (s||'').trim()||fallback}
 function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
@@ -1073,7 +1122,7 @@ function resetRound(){
  const n=f.index+1;
  if(!confirm('Reset round '+n+'? This clears its timer, exchanges and any confirmed score. Earlier rounds are not changed.'))return;
  pause();clearChartFlash();
- r.elapsed=0;r.observations=[];r.score=null;
+ r.elapsed=0;r.observations=[];r.control=[];r.score=null;
  f.status=f.roundData.some((rd,i)=>i<f.index&&rd.score)?'in-progress':'ready';
  reviewIndex=f.index;
  scoreDraft=null;scoreIndex=null;
@@ -1103,12 +1152,13 @@ function suggestedRound(r){
 }
 function endRound(){const f=fight(),r=currentRound();if(!f||f.result||r.score)return;
  if(f.duration-seconds()>20&&!confirm('The clock has time remaining. End and score this round?'))return;
- pause();openScore(f.index,false)}
+ pause();closeControl(r,r.elapsed);persist();openScore(f.index,false)}
 function openScore(index,edit){const f=fight(),r=f&&f.roundData[index];if(!r)return;scoreWasLive=running;pause();scoreIndex=index;
  const suggested=suggestedRound(r);
  scoreDraft=r.score?{winner:r.score.winner,margin:r.score.margin,deductions:r.score.deductions.slice()}:{winner:suggested.winner,margin:suggested.margin,deductions:[0,0]};
  $('scoreMomentsA').textContent=suggested.counts[0];$('scoreMomentsB').textContent=suggested.counts[1];
  $('suggestionText').textContent=(r.score?'Exchange suggestion (saved score remains selected): ':'')+suggested.reason;
+ const ctl=controlTotals(r,r.elapsed);$('scoreControlSummary').textContent='Control · Red '+controlClock(ctl[0])+' · Blue '+controlClock(ctl[1])+' · separate from score';
  $('scoreKicker').textContent=edit?'Edit saved round':'Round '+(index+1)+' complete';
  $('scoreTitle').textContent='Score round '+(index+1);
  $('chooseA').textContent=safeName(f.left,'Fighter A');$('chooseB').textContent=safeName(f.right,'Fighter B');
@@ -1139,9 +1189,10 @@ function cancelScore(){setVisible('scoreOverlay',false);scoreIndex=null;scoreDra
 function totals(f){return f.roundData.reduce((tot,r)=>{const p=roundPoints(r.score);if(p){tot[0]+=p[0];tot[1]+=p[1]}return tot},[0,0])}
 function tick(){if(!focusMode||!fight())return;
  if(running&&seconds()>=fight().duration){pause();renderWorkbench();toast('Clock reached zero. Confirm end of round.')}
- $('clock').textContent=clockText(fight().duration-seconds());if(running)drawGraph()}
+ $('clock').textContent=clockText(fight().duration-seconds());if(running){renderControl();drawGraph()}}
 function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=currentRound();
  $('workbench').classList.toggle('is-recording',running);
+ renderControl();
  $('wbEvent').textContent=safeName(e.name,'Event')+' · '+(f.division||'Fight');
  $('wbLeft').textContent=safeName(f.left,'Fighter A');$('wbRight').textContent=safeName(f.right,'Fighter B');
  const redSurname=shortFighterName(f.left,'Red'),blueSurname=shortFighterName(f.right,'Blue');
@@ -1168,6 +1219,7 @@ function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=cu
  const shownRounds=graphMode==='fight'?f.roundData:[f.roundData[reviewIndex]||r];const exchangeTotal=shownRounds.reduce((n,rd)=>n+rd.observations.length,0),impactTotal=shownRounds.reduce((n,rd)=>n+impactTally(rd)[0]+impactTally(rd)[1],0);
  $('observationsCount').textContent=exchangeTotal+' exchanges'+(impactTotal?' · '+impactTotal+' major':'');
  const t=totals(f);$('wbTotal').textContent=t[0]+' – '+t[1];
+ const ct=fightControlTotals(f);$('controlFightSummary').textContent='Control · Red '+controlClock(ct[0])+' · Blue '+controlClock(ct[1]);
  const body=$('scoreBody');body.replaceChildren();
  f.roundData.forEach((rd,i)=>{const tr=el('tr'),pts=roundPoints(rd.score);
  const [mr,mb]=momentTally(rd);
@@ -1439,6 +1491,7 @@ function finishFight(){const f=fight(),t=$('resultType').value,w=$('resultWinner
  if(!['decision','draw','no-contest','other'].includes(t)&&!w){toast('Select a winner for this stoppage.');return}
  if(f.result&&(f.result.type!==t||f.result.winner!==w)&&!confirm('Change your saved result? Official judges’ cards remain separate.'))return;
  const same=f.result&&f.result.type===t&&f.result.winner===w;
+ closeControl(currentRound(),currentRound().elapsed);
  f.result=same?f.result:{type:t,winner:w,at:new Date().toISOString()};
  f.officialJudges=cards;f.status='complete';setVisible('finishOverlay',false);persist();renderWorkbench();
  toast(same?'Result details saved.':'Fight completed.');
@@ -1762,6 +1815,7 @@ $('legacyBtn').onclick=importLegacy;$('backBtn').onclick=()=>{pause();if(documen
 $('fullscreenBtn').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('workbench').requestFullscreen()}catch(e){toast('Full screen unavailable.')}};
 $('graphRound').onclick=()=>setGraphMode('round');$('graphFight').onclick=()=>setGraphMode('fight');
 $('copyGraph').onclick=copyGraphImage;
+$('controlRedBtn').onclick=()=>toggleControl('a');$('controlBlueBtn').onclick=()=>toggleControl('b');
 $('startBtn').onclick=run;$('undoBtn').onclick=undo;$('resetBtn').onclick=resetRound;$('resetFromScore').onclick=resetRound;$('endBtn').onclick=endRound;$('finishBtn').onclick=resultDialog;
 $('selectA').onclick=()=>{scoreDraft.winner='a';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
 $('selectB').onclick=()=>{scoreDraft.winner='b';if(scoreDraft.margin===10)scoreDraft.margin=9;renderScoreModal()};
@@ -1785,8 +1839,8 @@ document.addEventListener('keydown',e=>{
  if(fm){if(e.key==='Escape'){e.preventDefault();setVisible('finishOverlay',false)}return}
  if(em){if(e.key==='Escape'){e.preventDefault();closeEdit()}return}
  if(!focusMode)return;if(e.target.closest('button'))e.target.blur();
- if(['ArrowLeft','ArrowRight',' ','e','E'].includes(e.key))e.preventDefault();
- if(e.key==='ArrowLeft')observe('a',e.shiftKey?'impact':'exchange');else if(e.key==='ArrowRight')observe('b',e.shiftKey?'impact':'exchange');else if(!e.shiftKey&&e.key===' ')run();else if(!e.shiftKey&&e.key.toLowerCase()==='e')endRound();
+ if(['ArrowLeft','ArrowRight',' ','e','E','a','A','d','D'].includes(e.key))e.preventDefault();
+ if(e.key==='ArrowLeft')observe('a',e.shiftKey?'impact':'exchange');else if(e.key==='ArrowRight')observe('b',e.shiftKey?'impact':'exchange');else if(!e.shiftKey&&e.key===' ')run();else if(!e.shiftKey&&e.key.toLowerCase()==='e')endRound();else if(!e.shiftKey&&e.key.toLowerCase()==='a')toggleControl('a');else if(!e.shiftKey&&e.key.toLowerCase()==='d')toggleControl('b');
 });
 window.addEventListener('resize',()=>{if(focusMode)drawGraph()});
 window.addEventListener('pagehide',()=>{pause();persist()});
