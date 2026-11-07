@@ -1073,7 +1073,7 @@ async function syncEvents(all,automatic=false){
  try{
   const out=await syncMasterEvents(events,automatic);
   message='Master updated: '+out.events+' event'+(out.events===1?'':'s')+', '+out.fights+' fights, '+out.rounds+' rounds, '+out.moments+' moments synced. Other archived events preserved.';
-  window.copperAutoArchive?.markArchived();
+  if(all)window.copperAutoArchive?.markArchived();
   if(!automatic)toast('Master spreadsheet updated.');
   return true;
  }catch(err){
