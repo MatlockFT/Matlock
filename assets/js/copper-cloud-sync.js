@@ -11,7 +11,7 @@
   const API = 'https://www.googleapis.com/drive/v3/files';
   const UPLOAD = 'https://www.googleapis.com/upload/drive/v3/files';
   const POLL_MS = 30000;
-  let working = false, applying = false, generation = 0, pending = null, fileId = '', lastOk = 0;
+  let working = false, applying = false, generation = 0, syncedGeneration = -1, pending = null, fileId = '', lastOk = 0;
   let baselineState = readJSON(META_KEY) || {fileId:'',signatures:{}};
   if (!baselineState || typeof baselineState !== 'object' ||
       !baselineState.signatures || typeof baselineState.signatures !== 'object') {
@@ -186,7 +186,7 @@
   function markSynced(id,events) {
     baselineState={fileId:id,signatures:fingerprints(events)};
     try{localStorage.setItem(META_KEY,JSON.stringify(baselineState))}catch{}
-    fileId=id;lastOk=Date.now();
+    fileId=id;lastOk=Date.now();syncedGeneration=generation;
   }
   async function sync(manual=false) {
     if(working)return;
@@ -241,12 +241,14 @@
   }
   window.copperCloud = {
     busy:()=>working,
+    upToDate:()=>driveReady() && !working && !!fileId && generation===syncedGeneration,
     connected:async()=>{status('Connected','Loading and merging your Google Drive workspace…');await sync(true);window.copperIntegrity?.afterWorkspaceSynced?.();},
     disconnected:()=>{clearTimeout(pending);pending=null;status('Not connected','Local records remain on this computer. Connect Google to sync again.');},
     changed:()=>{if(applying)return;generation++;schedule();},
     dashboard:()=>{if(driveReady())schedule(1200);},
     sync:()=>sync(true),
     resetBaseline:()=>{
+      syncedGeneration=-1;
       baselineState={fileId:baselineState.fileId,signatures:{}};
       try{localStorage.setItem(META_KEY,JSON.stringify(baselineState))}catch{}
     }
