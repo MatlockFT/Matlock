@@ -529,7 +529,7 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
 </section>
 <div id="editFightOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="editFightTitle">
  <div class="modal"><h2 id="editFightTitle">Edit fight</h2>
- <p class="muted" style="margin-top:6px">Editing names changes the labels attached to existing exchanges and scores. Keep each fighter assigned to the correct corner.</p>
+ <p class="muted" style="margin-top:6px">Existing scores stay with their assigned corner.</p>
  <div class="formgrid" style="margin-top:17px">
  <label>Red corner<input id="editRed" maxlength="150"></label>
  <label>Blue corner<input id="editBlue" maxlength="150"></label>
@@ -563,7 +563,7 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
  <div class="modal finish-modal">
   <div class="micro" id="finishKicker">Close fight</div>
   <h2 id="finishTitle" style="margin-top:7px;font-size:22px">Your result</h2>
-  <p class="muted" style="margin-top:6px">Your scores and the official totals are saved separately. Enter the official results when available.</p>
+  <p class="muted" style="margin-top:6px">Official scores can be added later.</p>
   <div class="finish-score">
    <div><span id="finishRedName" class="fighter-name red"></span><strong id="finishRedScore" class="mono">0</strong></div>
    <div><span id="finishBlueName" class="fighter-name blue"></span><strong id="finishBlueScore" class="mono">0</strong></div>
@@ -576,7 +576,7 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
   <div class="notice" id="finishHint">Confirm all rounds before completing a decision.</div>
   <section class="official-section" aria-labelledby="officialTitle">
    <h3 id="officialTitle">Official scores</h3>
-   <p class="muted" style="font-size:12px;margin-top:5px">Final points for each fighter. Leave both cells blank for judges whose scores are not yet available.</p>
+   <p class="muted" style="font-size:12px;margin-top:5px">Leave blank until available.</p>
    <table class="judge-table"><thead><tr><th>Judge</th><th id="officialRedHead" class="red">Red fighter</th><th id="officialBlueHead" class="blue">Blue fighter</th></tr></thead><tbody>
     <tr><td>Judge 1</td><td><input id="officialRed1" type="number" min="0" max="60" step="1" inputmode="numeric" aria-label="Judge 1 red fighter score" placeholder="—"></td><td><input id="officialBlue1" type="number" min="0" max="60" step="1" inputmode="numeric" aria-label="Judge 1 blue fighter score" placeholder="—"></td></tr>
     <tr><td>Judge 2</td><td><input id="officialRed2" type="number" min="0" max="60" step="1" inputmode="numeric" aria-label="Judge 2 red fighter score" placeholder="—"></td><td><input id="officialBlue2" type="number" min="0" max="60" step="1" inputmode="numeric" aria-label="Judge 2 blue fighter score" placeholder="—"></td></tr>
@@ -589,22 +589,22 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
 </div>
 <div id="importEventOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="importEventTitle">
  <div class="modal import-modal">
-  <div class="section-head"><div><div class="micro">Event loader</div><h2 id="importEventTitle" style="font-size:22px;margin-top:4px">Import an event</h2></div><button id="closeImportEvent" class="quiet small-btn" aria-label="Close importer">Close</button></div>
-  <p class="muted">Find a card published on the site, or paste a matchup list. Existing scores are never overwritten.</p>
+  <div class="section-head"><div><h2 id="importEventTitle" style="font-size:22px;margin-top:4px">Import card</h2></div><button id="closeImportEvent" class="quiet small-btn" aria-label="Close importer">Close</button></div>
+  <p class="muted">Choose a published card or paste matchups.</p>
   <div class="import-layout">
    <div class="import-columns">
-    <h3>Find published event</h3>
+    <h3>Find a card</h3>
     <label>Search event name or date<input id="lookupSearch" placeholder="UFC 334, RIZIN, 2026-11-14" autocomplete="off"></label>
     <div class="actions" style="justify-content:space-between;margin:11px 0 7px"><span class="micro" id="lookupStatus" role="status">Search published fight cards</span><button type="button" class="small-btn quiet" id="refreshCards">Refresh</button></div>
     <div id="lookupResults" class="lookup-list" aria-label="Matching event listings"></div>
    </div>
    <div class="import-columns">
-    <h3>Card preview</h3><div id="importPreview" class="import-preview"></div>
-    <button type="button" id="importSelectedEvent" class="primary" style="margin-top:10px;width:100%" disabled>Import this event</button>
+    <h3>Preview</h3><div id="importPreview" class="import-preview"></div>
+    <button type="button" id="importSelectedEvent" class="primary" style="margin-top:10px;width:100%" disabled>Add to events</button>
    </div>
   </div>
   <details id="pasteDetails" class="import-details">
-   <summary>Paste a card or upload CSV / TXT / JSON</summary>
+   <summary>Paste or upload</summary>
    <p class="import-help">One fight per line: <code>Fighter A vs Fighter B | Lightweight | 3</code>, or CSV columns: <code>Red,Blue,Division,Rounds,Minutes</code>. You can also use tab-separated columns.</p>
    <div class="formgrid">
     <label>Destination<select id="pasteDestination"><option value="new">Create new event</option></select></label>
