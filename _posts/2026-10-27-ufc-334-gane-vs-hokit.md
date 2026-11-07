@@ -46,7 +46,7 @@ Ciryl Gane defends the heavyweight title against unbeaten challenger Josh Hokit 
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-2d85c309" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-334-gane-vs-hokit-video-20261030-201311-598.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-334-gane-vs-hokit-video-20261030-201311-598.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
@@ -54,7 +54,7 @@ Ciryl Gane defends the heavyweight title against unbeaten challenger Josh Hokit 
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-68d3de3c" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-334-gane-vs-hokit-video-20261031-023257-531.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-10/ufc-334-gane-vs-hokit-video-20261031-023257-531.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
@@ -230,7 +230,7 @@ Give me Gane to get it done inside the distance.
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-41d2bd28" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-334-gane-vs-hokit-video-20261106-180333-639.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-334-gane-vs-hokit-video-20261106-180333-639.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
@@ -238,7 +238,7 @@ Give me Gane to get it done inside the distance.
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-1e0af85c" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
-    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-334-gane-vs-hokit-video-20261105-135637-023.mp4" aria-label="Article video"></video>
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-334-gane-vs-hokit-video-20261105-135637-023.mp4" aria-label="Article video"></video>
   </div>
 </figure>
 
