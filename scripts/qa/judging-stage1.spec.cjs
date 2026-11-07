@@ -780,7 +780,7 @@ test('charcoal colors and graph pixels update as moments are logged',async({page
  await setup(page);
  const bg=await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor);
  const root=await page.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--bg').trim());
- expect(root).toBe('#111214');
+ expect(root).toBe('#101114');
  const panel=await page.locator('.timeline').evaluate(el=>getComputedStyle(el).backgroundImage);
  expect(panel).toContain('gradient');
  const getCanvas=()=>page.locator('#graph').evaluate(el=>({
@@ -1426,4 +1426,33 @@ test('automatic master archive refuses silent overwrite of a newer remote event'
  expect(writesAfter).toBe(writesBefore);
  const remote=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs.Events[1]);
  expect(remote[1]).toBe('Test UFC card');
+});
+
+
+test('judging redesign keeps primary controls above chart and fits mobile',async({page})=>{
+ await page.setViewportSize({width:1366,height:768});
+ await setup(page);
+ await expect(page.locator('.judge-stage')).toBeVisible();
+ await expect(page.locator('.judge-stage #startBtn')).toBeVisible();
+ await expect(page.locator('.judge-stage #endBtn')).toBeVisible();
+ await expect(page.locator('.judge-stage #resetBtn')).toBeVisible();
+ await expect(page.locator('.judge-stage #finishBtn')).toBeVisible();
+ await expect(page.locator('.round-detail #graph')).toBeVisible();
+ const order=await page.evaluate(()=>{
+  const actions=document.querySelector('#startBtn').getBoundingClientRect();
+  const chart=document.querySelector('#graph').getBoundingClientRect();
+  return {controlsBeforeChart:actions.bottom<chart.top,overflow:document.documentElement.scrollWidth-innerWidth};
+ });
+ expect(order.controlsBeforeChart).toBe(true);
+ expect(order.overflow).toBeLessThanOrEqual(1);
+ await page.setViewportSize({width:390,height:844});
+ const mobile=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-innerWidth,clock:document.querySelector('#clock').getBoundingClientRect().width}));
+ expect(mobile.overflow).toBeLessThanOrEqual(1);
+ expect(mobile.clock).toBeGreaterThan(40);
+ await page.click('#startBtn');
+ await page.keyboard.press('ArrowLeft');
+ await expect(page.locator('#wbMomentsA')).toHaveText('1');
+ await page.click('#endBtn');
+ await expect(page.locator('#scoreOverlay')).toBeVisible();
+ await expect(page.locator('#confirmScore')).toBeInViewport();
 });
