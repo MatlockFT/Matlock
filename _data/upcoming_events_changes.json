@@ -1,7 +1,29 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-06T00:11:40.991Z",
+  "generated_at": "2026-11-07T13:32:05.578Z",
   "changes": [
+    {
+      "id": "2026-11-07T13:32:05.578Z|rizin-rizin-6-2026-12-31|bout_changed|1",
+      "at": "2026-11-07T13:32:05.578Z",
+      "type": "bout_changed",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "promotion": "RIZIN",
+      "event_title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "event_date": "2026-12-31",
+      "summary": "Chihiro Suzuki vs YAMAN changed to Chihiro Suzuki vs YA-MAN on 『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット.",
+      "details": {
+        "order": 3,
+        "section": "Fight Card",
+        "from": [
+          "Chihiro Suzuki",
+          "YAMAN"
+        ],
+        "to": [
+          "Chihiro Suzuki",
+          "YA-MAN"
+        ]
+      }
+    },
     {
       "id": "2026-11-06T00:11:40.991Z|ufc-334-2026-11-14-fight-card|title_changed|1",
       "at": "2026-11-06T00:11:40.991Z",
@@ -4528,21 +4550,6 @@
         "to_order": 13,
         "from_section": "Prelims",
         "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-18T11:41:25.881Z|ufc-fight-night-2026-11-07-fight-card|bout_added|6",
-      "at": "2026-10-18T11:41:25.881Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Karine Silva vs Gabriella Fernandes added to Bonfim vs Brady.",
-      "details": {
-        "order": 8,
-        "section": "Prelims",
-        "weight_class": "Women's Flyweight Bout"
       }
     }
   ]
