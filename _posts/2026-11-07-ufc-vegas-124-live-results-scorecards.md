@@ -55,6 +55,12 @@ Round 2: Pretty intense second round as we pick up where we left off with the hi
   <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-174314-186.png" alt="ufc vegas 124 live results scoring" loading="lazy">
 </figure>
 
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-f644a1c6" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-174348-805.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
+
 Round 3: Similar to the second round with Delano landing on the feet often and consistently. Magomedov gets a takedown but cannot at all produce anything offensive and Delano makes it back to the feet. The major difference maker of this round is Magomedov almost finished Delano at the very end of the round. So if you wanted to score it a 10-8 you could because had there been 10 more seconds or less on the clock, the fight would've been over. So it could be 28-28. I'm scoring it 29-28 for Delano.
 
 <figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-26561759" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
