@@ -506,25 +506,38 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
 </main>
 <section id="workbench" class="hidden" aria-label="Live workspace">
  <div class="wb-top">
-   <div class="actions"><button id="backBtn" class="quiet small-btn">← Events</button><span class="micro" id="wbEvent"></span></div>
-   <div class="actions"><span id="wbSaved" class="pill saved">Saved locally</span><button id="fullscreenBtn" class="quiet small-btn">Expand</button></div>
+  <div class="wb-nav"><button id="backBtn" class="quiet small-btn">← Events</button><span class="micro" id="wbEvent"></span></div>
+  <div class="wb-utility"><span id="wbSaved" class="pill saved" role="status">Saved locally</span><button id="fullscreenBtn" class="quiet small-btn">Expand ↗</button></div>
  </div>
- <div class="wb-head">
-  <div><div class="micro red">Red corner • ←</div><div class="corner-name" id="wbLeft">Fighter A</div><div class="moment-count red"><span id="wbMomentsA">0</span> <small>exchanges</small></div></div>
-  <div class="round-box"><div id="wbRound" class="micro">Round 1 of 3</div><div id="clock" class="clock mono">5:00</div><div id="roundState" class="statusline">Ready</div></div>
-  <div class="right"><div class="micro blue">Blue corner • →</div><div class="corner-name" id="wbRight">Fighter B</div><div class="moment-count blue"><span id="wbMomentsB">0</span> <small>exchanges</small></div></div>
+ <div class="judge-stage">
+  <div class="wb-head">
+   <div class="wb-corner wb-corner-red"><div class="micro red">Red corner <span class="key-hint">←</span></div><div class="corner-name" id="wbLeft">Fighter A</div><div class="moment-count red"><span id="wbMomentsA">0</span><small>Exchanges</small></div></div>
+   <div class="round-box"><div id="wbRound" class="micro">Round 1 of 3</div><div id="clock" class="clock mono">5:00</div><div id="roundState" class="statusline">Ready</div></div>
+   <div class="wb-corner wb-corner-blue right"><div class="micro blue">Blue corner <span class="key-hint">→</span></div><div class="corner-name" id="wbRight">Fighter B</div><div class="moment-count blue"><span id="wbMomentsB">0</span><small>Exchanges</small></div></div>
+  </div>
+  <div class="controls">
+   <div class="control-primary"><button id="startBtn" class="primary">Start round</button><button id="endBtn">End round &amp; score</button></div>
+   <div class="control-secondary"><button id="undoBtn" class="quiet">Undo</button><button id="resetBtn" class="quiet danger">Reset round</button><button id="finishBtn" class="quiet">Finish fight</button></div>
+  </div>
  </div>
- <div class="timeline">
-  <div class="timeline-title"><div class="tape-heading"><h2>Exchanges</h2></div>
-   <div class="actions tape-tools"><div class="graph-switch" role="group" aria-label="Graph view"><button id="graphRound" type="button" class="chosen small-btn" aria-pressed="true">Round</button><button id="graphFight" type="button" class="small-btn" aria-pressed="false">Fight</button></div><button id="copyGraph" type="button" class="small-btn">Copy graph</button></div></div>
-  <div class="tape-summary"><span id="momentLead" class="moment-tally"></span><span class="micro" id="observationsCount">0 exchanges</span></div>
-  <canvas id="graph" aria-label="Exchange winners over round time, with major impacts distinguished" role="img"></canvas>
-  <div class="legend"><span class="red" id="graphRedName">RED</span><span class="graph-time">ELAPSED TIME →</span><span class="blue" id="graphBlueName">BLUE</span></div>
+ <div class="round-detail">
+  <div class="timeline">
+   <div class="timeline-title">
+    <div class="tape-heading"><h2>Exchanges</h2><div class="tape-summary"><span id="momentLead" class="moment-tally"></span><span class="micro" id="observationsCount">0 exchanges</span></div></div>
+    <div class="actions tape-tools"><div class="graph-switch" role="group" aria-label="Graph view"><button id="graphRound" type="button" class="chosen small-btn" aria-pressed="true">Round</button><button id="graphFight" type="button" class="small-btn" aria-pressed="false">Fight</button></div><button id="copyGraph" type="button" class="small-btn quiet">Copy graph</button></div>
+   </div>
+   <canvas id="graph" aria-label="Exchange winners over round time, with major impacts distinguished" role="img"></canvas>
+   <div class="legend"><span class="red" id="graphRedName">RED</span><span class="graph-time">ELAPSED TIME →</span><span class="blue" id="graphBlueName">BLUE</span></div>
+  </div>
+  <details class="shortcuts"><summary>Keyboard shortcuts <span aria-hidden="true">⌄</span></summary><p class="hints">← / → exchange winner · Shift + ← / → major impact · Space start / pause · Ctrl+Z undo · E end round</p></details>
  </div>
- <div class="controls"><button id="startBtn" class="primary">Start round</button><button id="endBtn">End round &amp; score</button><button id="undoBtn" class="quiet">Undo</button><details class="score-tools"><summary>More</summary><div class="score-tool-menu"><button id="resetBtn" class="quiet danger">Reset round</button><button id="finishBtn" class="quiet">Finish fight</button></div></details></div><details class="shortcuts"><summary>Keyboard shortcuts</summary><p class="hints">← / → winner · Shift + ← / → major impact · Space start / pause · Ctrl+Z undo · E end round</p></details>
  <div class="footer-grid">
-  <section class="panel"><div class="panel-title"><h2>Round totals</h2><span id="wbTotal" class="totals mono">0 – 0</span></div><table class="score-rows"><thead><tr><th>Round</th><th id="scoreHeadRed">RED</th><th id="scoreHeadBlue">BLUE</th><th title="Red–Blue totals">Exchanges</th><th></th></tr></thead><tbody id="scoreBody"></tbody></table><div id="resultLabel" class="muted" style="margin-top:14px"></div><div id="officialResult" class="official-result hidden"></div></section>
-  <section class="panel"><div class="panel-title"><h2>Exchange log</h2></div><div id="roundTabs" class="round-tabs"></div><div id="momentLog" class="log"></div></section>
+  <section class="panel totals-panel">
+   <div class="panel-title"><h2>Round scores</h2><span id="wbTotal" class="totals mono">0 – 0</span></div>
+   <table class="score-rows"><thead><tr><th>Rd</th><th id="scoreHeadRed">RED</th><th id="scoreHeadBlue">BLUE</th><th title="Red–Blue totals">Exchanges</th><th></th></tr></thead><tbody id="scoreBody"></tbody></table>
+   <div id="resultLabel" class="muted" style="margin-top:14px"></div><div id="officialResult" class="official-result hidden"></div>
+  </section>
+  <section class="panel log-panel"><div class="panel-title"><h2>Exchange log</h2><div id="roundTabs" class="round-tabs"></div></div><div id="momentLog" class="log"></div></section>
  </div>
 </section>
 <div id="editFightOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="editFightTitle">
@@ -542,7 +555,7 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
  <div class="modal-actions"><button id="cancelEdit" class="quiet">Cancel</button><button id="saveEdit" class="primary">Save changes</button></div></div>
 </div>
 <div id="scoreOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="scoreTitle">
- <div class="modal">
+ <div class="modal score-modal">
   <div class="micro" id="scoreKicker">Round complete</div><h2 id="scoreTitle" style="margin-top:7px;font-size:22px">Assign round score</h2>
   <p class="muted" style="margin-top:6px">Review the suggested score.</p>
   <div class="winner-grid">
@@ -550,17 +563,17 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
    <button class="winner right" id="selectB"><span class="micro blue">Blue corner →</span><div id="chooseB" style="font-size:18px;font-weight:750;margin-top:8px"></div><span class="moment-figure blue"><span id="scoreMomentsB">0</span> <small>exchanges</small></span></button>
   </div>
   <div id="suggestionText" class="suggestion" aria-live="polite">No exchanges yet</div>
-  <div class="micro">Round margin</div>
+  <div class="micro score-margin-label">Round score</div>
   <div class="margins"><button data-margin="9">10–9</button><button data-margin="8">10–8</button><button data-margin="7">10–7</button><button data-margin="10">10–10</button></div>
   <div class="deductions"><div class="deduction"><div class="micro red">Red deductions</div><div class="stepper"><button data-dside="0" data-delta="-1" aria-label="Remove red deduction">−</button><strong id="deductA" class="mono">0</strong><button data-dside="0" data-delta="1" aria-label="Add red deduction">+</button></div></div>
   <div class="deduction"><div class="micro blue">Blue deductions</div><div class="stepper"><button data-dside="1" data-delta="-1" aria-label="Remove blue deduction">−</button><strong id="deductB" class="mono">0</strong><button data-dside="1" data-delta="1" aria-label="Add blue deduction">+</button></div></div></div>
   <details class="score-note"><summary>About suggestions</summary><p>Major impacts carry more weight in the suggestion. Final scores are yours to confirm.</p></details>
-  <div id="draftScore" class="mono" style="font-size:24px;font-weight:800">—</div>
+  <div class="score-preview"><span class="micro">Your score</span><div id="draftScore" class="mono">—</div></div>
   <div class="modal-actions"><button id="resetFromScore" class="quiet danger">Reset &amp; restart round</button><button id="cancelScore" class="quiet">Back</button><button id="confirmScore" class="primary">Confirm score • Enter</button></div>
  </div>
 </div>
 <div id="finishOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="finishTitle">
- <div class="modal finish-modal">
+ <div class="modal finish-modal judge-finish-modal">
   <div class="micro" id="finishKicker">Close fight</div>
   <h2 id="finishTitle" style="margin-top:7px;font-size:22px">Your result</h2>
   <p class="muted" style="margin-top:6px">Official scores can be added later.</p>
@@ -835,6 +848,7 @@ function tick(){if(!focusMode||!fight())return;
  if(running&&seconds()>=fight().duration){pause();renderWorkbench();toast('Clock reached zero. Confirm end of round.')}
  $('clock').textContent=clockText(fight().duration-seconds());if(running)drawGraph()}
 function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=currentRound();
+ $('workbench').classList.toggle('is-recording',running);
  $('wbEvent').textContent=safeName(e.name,'Event')+' · '+(f.division||'Fight');
  $('wbLeft').textContent=safeName(f.left,'Fighter A');$('wbRight').textContent=safeName(f.right,'Fighter B');
  const redSurname=shortFighterName(f.left,'Red'),blueSurname=shortFighterName(f.right,'Blue');
