@@ -1596,3 +1596,20 @@ test('Paused control survives reload without accumulating time while the tab is 
  expect(total).toBeGreaterThan(99);
  expect(total).toBeLessThan(101);
 });
+
+
+test('Control stops when the round clock reaches zero',async({page})=>{
+ await setup(page);
+ await page.click('#startBtn');
+ await page.keyboard.press('a');
+ await page.evaluate(()=>{data.events[0].fights[0].roundData[0].elapsed=300;anchor=performance.now()});
+ await expect(page.locator('#roundState')).toHaveText('Paused');
+ const control=await page.evaluate(()=>{
+  const r=data.events[0].fights[0].roundData[0];
+  return {end:r.control[0]?.end,time:controlTotals(r,r.elapsed)[0],active:activeControl(r)};
+ });
+ expect(control.end).toBe(300);
+ expect(control.time).toBeGreaterThan(299);
+ expect(control.active).toBeNull();
+ await expect(page.locator('#startBtn')).toBeDisabled();
+});
