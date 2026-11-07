@@ -233,7 +233,7 @@ I hate this fight and everything about it. In theory, Karine Silva should come o
 </section>
 Delano is the more disciplined striker, using movement, combinations and kicks to manage distance. The concern is whether his kicking game creates opportunities for Magomedov to wrestle. Magomedov has excellent offensive grappling and carries considerably more finishing danger. I very much like Delano's output and Magomedov's output is pretty good, too. I think this might a fucking banger of a fight. Give me Delano to rope Magomedov into a striking match, does damage, and that will outweigh the control time. Listen, people always say don't kick a wrestler but I think they're actually going to give Magomedov problems.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Jose%20Delano%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Jose%20Delano%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Murtazali%20Magomedov%20via%20unanimous%20decision%22%2C%22outcome%22%3A%22incorrect%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Jose Delano</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Decision</span></span></div></aside>
 </section>
 ---
