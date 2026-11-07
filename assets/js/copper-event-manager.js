@@ -112,7 +112,7 @@ async function readUpload(){
    const json=JSON.parse(raw),src=Array.isArray(json?.events)?json.events[0]:json;
    let matches=[];
    if(Array.isArray(src?.sections))matches=readCard(src);
-   else if(Array.isArray(src?.bouts))matches=src.bouts.map(b=>{
+   else if(Array.isArray(src?.bouts)||Array.isArray(src?.fights))matches=(src.bouts||src.fights).map(b=>{
     const fighters=b.fighters||[b.left||b.red,b.right||b.blue];
     return {left:txt(fighters[0]?.name||fighters[0]),right:txt(fighters[1]?.name||fighters[1]),
      division:txt(b.division||b.weight_class||'Unspecified division'),
