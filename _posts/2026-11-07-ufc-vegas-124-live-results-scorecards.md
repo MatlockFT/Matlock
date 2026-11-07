@@ -35,13 +35,18 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 ## Prelims
 
 - Karine Silva vs. Gabriella Fernandes — *Pending*
-- Jose Delano vs. Murtazali Magomedov — *Pending*
-
 - Keiichiro Nakamura vs. Ollie Schmid — *Pending*
 - Mitch Raposo vs. Marcos Degli — *Pending*
 - Gabriel Lorenco vs. Thomas Petersen — *Pending*
+- Priscila Cachoeira vs. Nina Milošević — *Pending*
 
-### Priscila Cachoeira vs. Nina Milošević — *Pending*
+
+### Jose Delano vs. Murtazali Magomedov — *Pending*
+
+Round 1: 
+
+
+---
 
 ### Austin Bashi vs. Carlos Calderon — *Austin Bashi via submission round 1 (Rear-naked choke)*
 
