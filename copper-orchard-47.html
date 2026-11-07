@@ -644,6 +644,23 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
 }
 @media(prefers-reduced-motion:reduce){#workbench *,#scoreOverlay *,#finishOverlay *{animation:none!important;transition:none!important}}
 
+
+/* Refinements for legacy layout rules and narrow-screen actions. */
+#workbench .wb-head>.wb-corner-blue{justify-self:stretch;width:100%}
+#workbench .wb-head>.wb-corner-red{justify-self:stretch;width:100%}
+#workbench .control-secondary button{flex:0 0 auto}
+#workbench .control-primary button{flex:0 0 auto}
+#workbench .round-box{width:100%}
+#workbench .controls #resetBtn:disabled{color:#817073}
+@media(max-width:760px){
+ #workbench .control-primary button{flex:1 1 0}
+ #workbench .control-secondary button{flex:0 1 auto}
+}
+@media(max-width:480px){
+ #workbench .controls .control-secondary{gap:3px;justify-content:space-between}
+ #workbench .control-secondary button{flex:0 1 auto}
+}
+
 </style>
 </head>
 <body>
