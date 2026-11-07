@@ -1326,3 +1326,40 @@ test('deleted events use tombstones and disappear from the workspace cloud backu
  expect(remote.removedEvents[deleted]).toBeTruthy();
  expect(remote.events.some(e=>e.id===deleted)).toBe(false);
 });
+
+
+test('Google reconnection reuses consent and only revokes when explicitly disconnected',async({page})=>{
+ await stubGoogleSheets(page);
+ await page.evaluate(()=>{
+  window.__qaAuthPrompts=[];
+  window.__qaRevocations=0;
+  const provider=window.google.accounts.oauth2;
+  const originalInit=provider.initTokenClient;
+  const originalRevoke=provider.revoke;
+  provider.initTokenClient=config=>{
+   const client=originalInit(config);
+   const originalRequest=client.requestAccessToken;
+   client.requestAccessToken=options=>{
+    window.__qaAuthPrompts.push(options?.prompt);
+    return originalRequest(options);
+   };
+   return client;
+  };
+  provider.revoke=(token,cb)=>{
+   window.__qaRevocations++;
+   return originalRevoke(token,cb);
+  };
+ });
+ await page.locator('#clientId').evaluate(el=>el.closest('details').open=true);
+ await page.fill('#clientId','qa-client.apps.googleusercontent.com');
+ await page.click('#connectDrive');
+ await expect(page.locator('#driveStatus')).toHaveText('Connected');
+ await page.click('#connectDrive');
+ await expect(page.locator('#driveStatus')).toHaveText('Connected');
+ let result=await page.evaluate(()=>({prompts:window.__qaAuthPrompts,revocations:window.__qaRevocations}));
+ expect(result.prompts).toEqual(['','select_account']);
+ expect(result.revocations).toBe(0);
+ await page.click('#disconnectDrive');
+ result=await page.evaluate(()=>({revocations:window.__qaRevocations}));
+ expect(result.revocations).toBe(1);
+});
