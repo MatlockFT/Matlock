@@ -1596,7 +1596,7 @@ async function googleSheetsRequest(path,body,method='POST'){
 }
 function buildSheetRows(e){
  const fights=[['Event','Event date','Judge','Fight #','Fight ID','Red corner','Blue corner','Division','Scheduled rounds','Round length (seconds)','Red points','Blue points','Red moments','Blue moments','Fight status','Result type','Winner','Last synced UTC','Official 1 red','Official 1 blue','Official 2 red','Official 2 blue','Official 3 red','Official 3 blue']];
- const rounds=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC','Red major impacts','Blue major impacts']];
+ const rounds=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC','Red major impacts','Blue major impacts','Red control (sec)','Blue control (sec)','Control intervals']];
  const moments=[['Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter','Exchange type']];
  e.fights.forEach((f,ix)=>{
   const t=totals(f),redTotal=f.roundData.reduce((n,r)=>n+momentTally(r)[0],0),blueTotal=f.roundData.reduce((n,r)=>n+momentTally(r)[1],0);
@@ -1606,7 +1606,7 @@ function buildSheetRows(e){
    const pts=roundPoints(r.score),suggest=suggestedRound(r),counts=momentTally(r);
    const suggestedPts=suggest.winner?roundPoints({winner:suggest.winner,margin:suggest.margin,deductions:[0,0]}):null;
    const win=suggest.winner==='a'?f.left:suggest.winner==='b'?f.right:suggest.winner==='draw'?'Even':'';
-   rounds.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,Math.round(r.elapsed*10)/10,f.duration,counts[0],counts[1],win,suggestedPts?suggestedPts.join('–'):'',pts?pts[0]:'',pts?pts[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',!!r.score,r.score?.confirmedAt||'',impactTally(r)[0],impactTally(r)[1]]);
+   rounds.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,Math.round(r.elapsed*10)/10,f.duration,counts[0],counts[1],win,suggestedPts?suggestedPts.join('–'):'',pts?pts[0]:'',pts?pts[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',!!r.score,r.score?.confirmedAt||'',impactTally(r)[0],impactTally(r)[1],...controlTotals(r,r.elapsed).map(x=>Math.round(x*100)/100),JSON.stringify(controlEntries(r))]);
    r.observations.forEach((o,k)=>moments.push([e.name,ix+1,f.id,f.left,f.right,f.division,i+1,k+1,o.time,clockText(f.duration-o.time),o.side==='a'?'Red':'Blue',o.side==='a'?f.left:f.right,o.type==='impact'?'Major impact':'Exchange']));
   });
  });
@@ -1617,7 +1617,7 @@ const MASTER_TABS=['Events','Fights','Rounds','Moments'];
 const MASTER_HEADERS={
  Events:['Event ID','Event','Date','Judge / session','Fights','Scored rounds','Total moments','Last synced UTC'],
  Fights:['Event ID','Event','Event date','Judge','Fight #','Fight ID','Red corner','Blue corner','Division','Scheduled rounds','Round length (seconds)','Red points','Blue points','Red moments','Blue moments','Fight status','Result type','Winner','Last synced UTC','Official 1 red','Official 1 blue','Official 2 red','Official 2 blue','Official 3 red','Official 3 blue'],
- Rounds:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC','Red major impacts','Blue major impacts'],
+ Rounds:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Elapsed seconds','Round duration (seconds)','Red moments','Blue moments','Suggested winner','Suggested score','Confirmed red','Confirmed blue','Red deductions','Blue deductions','Score confirmed','Confirmed at UTC','Red major impacts','Blue major impacts','Red control (sec)','Blue control (sec)','Control intervals'],
  Moments:['Event ID','Event','Fight #','Fight ID','Red corner','Blue corner','Division','Round','Moment #','Elapsed seconds','Clock remaining','Corner','Fighter','Exchange type']
 };
 function masterRowsForEvent(e){
@@ -1643,9 +1643,11 @@ async function readMasterRows(id){
   const existing=result.valueRanges[i].values||[];
   if(existing.length){
    const actual=existing[0],expected=MASTER_HEADERS[tab];
-   const legacy=tab==='Rounds'?expected.slice(0,-2):tab==='Moments'?expected.slice(0,-1):tab==='Fights'?expected.slice(0,-6):null;
+   const legacy=tab==='Rounds'?expected.slice(0,-3):tab==='Moments'?expected.slice(0,-1):tab==='Fights'?expected.slice(0,-6):null;
+    const earlierRounds=tab==='Rounds'?expected.slice(0,-5):null;
+    const legacyMatches=earlierRounds&&JSON.stringify(actual)===JSON.stringify(earlierRounds);
    const previous=tab==='Fights'?expected.map(x=>x.replace(/^Official ([123]) /,'Judge $1 ')):null;
-   if(JSON.stringify(actual)!==JSON.stringify(expected)&&JSON.stringify(actual)!==JSON.stringify(legacy)&&JSON.stringify(actual)!==JSON.stringify(previous))
+   if(JSON.stringify(actual)!==JSON.stringify(expected)&&JSON.stringify(actual)!==JSON.stringify(legacy)&&!legacyMatches&&JSON.stringify(actual)!==JSON.stringify(previous))
     throw Error(tab+' has different column headers. Use a compatible master file; no data was changed.');
   }
   out[tab]=existing;
@@ -1774,8 +1776,8 @@ function addBout(){const e=event(),a=$('boutLeft').value.trim(),b=$('boutRight')
 function download(content,name,type){const u=URL.createObjectURL(new Blob([content],{type})),a=el('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000)}
 function exportJSON(){pause();persist();download(JSON.stringify(data,null,2),'workspace-backup-'+new Date().toISOString().slice(0,10)+'.json','application/json')}
 function qcsv(v){let s=String(v==null?'':v);if(/^[\s]*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
-function exportCSV(){pause();const rows=[['Event','Date','Session','Red fighter','Blue fighter','Division','Round','Red points','Blue points','Red deductions','Blue deductions','Fight result','Official 1 red','Official 1 blue','Official 2 red','Official 2 blue','Official 3 red','Official 3 blue']];
- data.events.forEach(e=>e.fights.forEach(f=>f.roundData.forEach((r,i)=>{const p=roundPoints(r.score);rows.push([e.name,e.date,e.judge,f.left,f.right,f.division,i+1,p?p[0]:'',p?p[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',f.result?f.result.type:'',...judgeCards(f).flatMap(c=>[c?.red??'',c?.blue??''])])})));
+function exportCSV(){pause();const rows=[['Event','Date','Session','Red fighter','Blue fighter','Division','Round','Red points','Blue points','Red deductions','Blue deductions','Fight result','Official 1 red','Official 1 blue','Official 2 red','Official 2 blue','Official 3 red','Official 3 blue','Red control (sec)','Blue control (sec)','Control intervals']];
+ data.events.forEach(e=>e.fights.forEach(f=>f.roundData.forEach((r,i)=>{const p=roundPoints(r.score);rows.push([e.name,e.date,e.judge,f.left,f.right,f.division,i+1,p?p[0]:'',p?p[1]:'',r.score?r.score.deductions[0]:'',r.score?r.score.deductions[1]:'',f.result?f.result.type:'',...judgeCards(f).flatMap(c=>[c?.red??'',c?.blue??'']),...controlTotals(r,r.elapsed).map(x=>Math.round(x*100)/100),JSON.stringify(controlEntries(r))])})));
  download('\uFEFF'+rows.map(row=>row.map(qcsv).join(',')).join('\r\n'),'round-records.csv','text/csv')}
 function validate(input){if(!input||input.version!==2||!Array.isArray(input.events)||input.events.length>200)throw Error('Not a valid Stage 1 backup.');
  if(input.masterSheetId!=null&&(!/^[\w-]{15,250}$/.test(input.masterSheetId)))throw Error('Invalid master spreadsheet ID.');
@@ -1793,6 +1795,17 @@ function validate(input){if(!input||input.version!==2||!Array.isArray(input.even
   for(const k of ['left','right','division'])if(typeof f[k]!=='string'||f[k].length>1000)throw Error('Invalid fighter data.');
  f.roundData.forEach(r=>{if(!r||!Number.isFinite(r.elapsed)||r.elapsed<0||r.elapsed>f.duration||!Array.isArray(r.observations)||r.observations.length>15000)throw Error('Invalid round.');
  let prev=0;r.observations.forEach(o=>{if(!o||!['a','b'].includes(o.side)||!Number.isFinite(o.time)||o.time<prev||o.time>f.duration||(o.type!==undefined&&!['exchange','impact'].includes(o.type)))throw Error('Invalid exchange.');prev=o.time});
+  // Old backups have no control field; newer rounds use ordered, non-overlapping intervals.
+  if(r.control!==undefined){
+   if(!Array.isArray(r.control)||r.control.length>2500)throw Error('Invalid control periods.');
+   let priorEnd=0;
+   r.control.forEach((c,i)=>{
+    if(!c||!['a','b'].includes(c.side)||!Number.isFinite(c.start)||c.start<0||c.start>f.duration||c.start+0.011<priorEnd||
+      (c.end!==null&&(!Number.isFinite(c.end)||c.end<c.start||c.end>f.duration))||
+      (c.end===null&&i!==r.control.length-1))throw Error('Invalid control period.');
+    priorEnd=c.end===null?c.start:c.end;
+   });
+  }
  if(r.score){if(!['a','b','draw'].includes(r.score.winner)||![7,8,9,10].includes(r.score.margin)||!Array.isArray(r.score.deductions)||r.score.deductions.length!==2||r.score.deductions.some(n=>!Number.isInteger(n)||n<0||n>10))throw Error('Invalid score.');}});
  });});return input}
 function legacyAvailable(){return !!readJSON(OLD_CURRENT)||!!readJSON(OLD_SAVES)}
