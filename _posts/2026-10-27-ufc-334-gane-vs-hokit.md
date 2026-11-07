@@ -228,7 +228,11 @@ Give me Gane to get it done inside the distance.
 </section>
 **Kayla Harrison** is a two-time Olympic gold medalist in judo who has built her MMA career around physical strength, clinch work and dominant top control. She uses body locks, trips and throws to bring opponents to the ground, where she applies heavy pressure, advances position and attacks with ground-and-pound or submissions. Her striking is still developing and primarily serves to close distance and set up her grappling, where she is most dangerous.
 
-
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-41d2bd28" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-334-gane-vs-hokit-video-20261106-180333-639.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
 
 **Amanda Nunes** is a former two-division UFC champion and one of the most accomplished finishers in women's MMA history. She's an explosive, heavy-handed striker who builds much of her offense around a powerful right hand, sharp boxing combinations and low kicks. Although best known for her knockout power, Nunes is also a Brazilian jiu-jitsu black belt with strong wrestling, effective takedowns and punishing ground-and-pound. She can fight aggressively when she senses an opening, but she's equally capable of slowing things down, controlling position and winning rounds without relying on a finish.
 
@@ -385,6 +389,7 @@ Give me Gane to get it done inside the distance.
 <div class="fight-stats-sleek"><div class="fs-shell"><div class="fs-header"><div class="fs-fighter fs-fighter-left"><span class="fs-side-label">RED CORNER</span><strong>Evan Elder</strong></div><div class="fs-header-center"><strong>STATS</strong><i></i></div><div class="fs-fighter fs-fighter-right"><span class="fs-side-label">BLUE CORNER</span><strong>Samuel Sanches</strong></div></div><div class="fs-section"><div class="fs-section-title"><span>Striking</span></div><div class="fs-stat-row"><strong>5.66</strong><span>Significant Strikes / Minute</span><strong>5.95</strong></div><div class="fs-stat-row"><strong>4.94</strong><span>Sig. Strikes Absorbed / Minute</span><strong>0.00</strong></div><div class="fs-stat-row"><strong>50%</strong><span>Striking Accuracy</span><strong>75%</strong></div><div class="fs-stat-row"><strong>57%</strong><span>Striking Defense</span><strong>100%</strong></div></div><div class="fs-section fs-section-grappling"><div class="fs-section-title"><span>Grappling</span></div><div class="fs-stat-row"><strong>0.48</strong><span>Takedowns / 15 Minutes</span><strong>0.00</strong></div><div class="fs-stat-row"><strong>15%</strong><span>Takedown Accuracy</span><strong>0%</strong></div><div class="fs-stat-row"><strong>40%</strong><span>Takedown Defense</span><strong>100%</strong></div><div class="fs-stat-row"><strong>0.50</strong><span>Submission Attempts / 15</span><strong>0.00</strong></div></div></div></div>
 </section>
 ---
+
 ## Withdrawn bout previews
 
 ### Adrian Yanez vs. Juan Diaz — withdrawn
