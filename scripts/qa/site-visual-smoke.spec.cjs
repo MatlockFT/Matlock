@@ -162,7 +162,7 @@ for (const viewport of viewports) {
         const pageErrors = [];
         page.on('pageerror', error => pageErrors.push(error.message));
         await page.goto(targetUrl('/breakdowns/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
-        const href = await page.locator('.article-card a[href]').first().getAttribute('href');
+        const href = await page.locator('.article-card a[href^="/"]').first().getAttribute('href');
         expect(href).toBeTruthy();
         await page.goto(targetUrl(href), { waitUntil: 'domcontentloaded', timeout: 45000 });
         await page.evaluate(() => document.fonts?.ready).catch(() => {});
@@ -643,7 +643,7 @@ test.describe('V3 site rollout', () => {
 
   test('published articles use the V3 article shell', async ({ page }) => {
     await page.goto(targetUrl('/breakdowns/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
-    const href = await page.locator('.article-card a[href]').first().getAttribute('href');
+    const href = await page.locator('.article-card a[href^="/"]').first().getAttribute('href');
     expect(href).toBeTruthy();
     await page.goto(targetUrl(href), { waitUntil: 'domcontentloaded', timeout: 45000 });
     await expect(page.locator('.post-page-v3[data-editorial-v3]')).toBeVisible({ timeout: 30000 });
