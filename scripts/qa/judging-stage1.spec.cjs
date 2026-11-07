@@ -1295,3 +1295,34 @@ test('Drive sync keeps conflicting event edits as separate copies, including off
  expect(remote.file.workspace.events).toHaveLength(2);
  expect(new Set(remote.file.workspace.events.map(e=>e.id)).size).toBe(2);
 });
+
+
+test('deleted events use tombstones and disappear from the workspace cloud backup and master spreadsheet',async({page})=>{
+ await stubGoogleSheets(page);
+ await page.click('#newEventBtn');
+ await page.fill('#eventName','Archive Original Event');
+ await page.fill('#boutLeft','First Red');await page.fill('#boutRight','First Blue');
+ await page.selectOption('#boutDivision','Lightweight');await page.click('#addBout');
+ await page.click('#newEventBtn');
+ await page.fill('#eventName','Archive Duplicate Event');
+ await page.fill('#boutLeft','Second Red');await page.fill('#boutRight','Second Blue');
+ await page.selectOption('#boutDivision','Welterweight');await page.click('#addBout');
+ const deleted=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).selected);
+ await connectQaGoogle(page);
+ await expect(page.locator('#cloudStatus')).toHaveText('Synced');
+ await page.click('#syncAllEvents');
+ await expect(page.locator('#syncAllEvents')).toBeEnabled();
+ expect((await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs.Events)).length).toBe(3);
+ await page.click('#deleteEvent');
+ await page.click('#syncAllEvents');
+ await expect(page.locator('#syncAllEvents')).toBeEnabled();
+ const rows=await page.evaluate(()=>window.__masterFiles['qa-spreadsheet-123'].tabs);
+ for(const tab of ['Events','Fights','Rounds','Moments'])expect(rows[tab].slice(1).some(row=>row[0]===deleted)).toBe(false);
+ const local=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')));
+ expect(local.removedEvents[deleted]).toBeTruthy();
+ await page.click('#cloudSyncNow');
+ await expect(page.locator('#cloudStatus')).toHaveText('Synced');
+ const remote=await page.evaluate(()=>window.__qaCloudFile.workspace);
+ expect(remote.removedEvents[deleted]).toBeTruthy();
+ expect(remote.events.some(e=>e.id===deleted)).toBe(false);
+});
