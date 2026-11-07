@@ -43,9 +43,15 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 ### Priscila Cachoeira vs. Nina Milošević — *Pending*
 
-### Austin Bashi vs. Carlos Calderon — *Pending*
+### Austin Bashi vs. Carlos Calderon — *Austin Bashi via submission round 1 (Rear-naked choke)*
 
-Round 1: 
+Round 1: Calderon looking very confident. Comes out to center, lands some shots, might've even hurt Bashi for a second but Bashi takes him down, takes his back, locks in the rear-naked choke. 
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-d7ff26b7" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-170933-083.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
 
 ---
 
