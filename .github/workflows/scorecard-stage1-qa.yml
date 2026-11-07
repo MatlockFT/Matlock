@@ -5,6 +5,10 @@ on:
     paths:
       - copper-orchard-47.html
       - assets/js/copper-cloud-sync.js
+      - assets/js/copper-event-manager.js
+      - scripts/qa/judging-event-import.spec.cjs
+      - assets/js/copper-event-manager.js
+      - scripts/qa/judging-event-import.spec.cjs
       - scripts/qa/judging-stage1.spec.cjs
       - .github/workflows/scorecard-stage1-qa.yml
   pull_request:
@@ -33,9 +37,10 @@ jobs:
         run: |
           mkdir -p .qa-local/copper-orchard-47 .qa-local/assets/js
           cp assets/js/copper-cloud-sync.js .qa-local/assets/js/copper-cloud-sync.js
+          cp assets/js/copper-event-manager.js .qa-local/assets/js/copper-event-manager.js
           sed '1,5d' copper-orchard-47.html > .qa-local/copper-orchard-47/index.html
       - name: End-to-end scoring tests
         run: |
           python3 -m http.server 4173 --directory .qa-local >/tmp/scorecard-qa.log 2>&1 &
           sleep 2
-          npx playwright test scripts/qa/judging-stage1.spec.cjs --browser=chromium --reporter=line
+          npx playwright test scripts/qa/judging-stage1.spec.cjs scripts/qa/judging-event-import.spec.cjs --browser=chromium --reporter=line
