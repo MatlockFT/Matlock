@@ -169,7 +169,7 @@ function openModal(){
  $('pasteDestination').replaceChildren();
  const op=elem('option','Create new event');op.value='new';$('pasteDestination').append(op);
  if(event()){const op2=elem('option','Add to current: '+(event().name||'unnamed event'));op2.value='current';$('pasteDestination').append(op2)}
- selected=null;searchText='';$('lookupSearch').value='';preview();fetchCards();$('lookupSearch').focus();
+ selected=null;searchText='';$('lookupSearch').value='';$('pasteDetails').open=false;preview();fetchCards();$('lookupSearch').focus();
 }
 function closeModal(){$('importEventOverlay').classList.add('hidden')}
 function completeEvent(){
