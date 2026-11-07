@@ -22,7 +22,7 @@
     !focusMode && !running && !driveBusy && !archiveRunning &&
     $('dashboard') && !$('dashboard').classList.contains('hidden') &&
     document.visibilityState !== 'hidden' &&
-    $('cloudStatus').textContent === 'Synced';
+    $('cloudStatus').textContent === 'Synced' && !!window.copperCloud?.upToDate?.();
   // Ignore sync timestamps in the fingerprint, otherwise successful archive
   // writes would indefinitely schedule themselves again.
   function signature() {
@@ -50,7 +50,7 @@
     if (!enabled()) {status('Automatic spreadsheet archiving is off.');return}
     if (!data.masterSheetId) {status('First link or create a master spreadsheet with Sync all events.');return}
     if (!driveReady()) {status('Connect Google to resume automatic archive updates.');return}
-    if ($('cloudStatus').textContent !== 'Synced') {
+    if ($('cloudStatus').textContent !== 'Synced' || !window.copperCloud?.upToDate?.()) {
       status('Waiting for the editable workspace to finish syncing.');
       return;
     }
@@ -106,7 +106,8 @@
     cloudReady:()=>queue(15000),
     dashboard:()=>queue(15000),
     markArchived,
-    enabled
+    enabled,
+    flush:archiveIfReady
   };
   queue();
 })();
