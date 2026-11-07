@@ -45,6 +45,7 @@
   const same = (a,b) => JSON.stringify(a)===JSON.stringify(b);
   const localWorkspace = () => ({
     version:2,selected:null,events:data.events,
+    removedEvents:data.removedEvents||{},
     masterSheetId:data.masterSheetId||null,
     ...(data.masterSyncedAt?{masterSyncedAt:data.masterSyncedAt}:{})
   });
@@ -126,9 +127,11 @@
   function reconcile(local,remote,base) {
     const l=new Map(local.events.map(e=>[e.id,e]));
     const r=new Map(remote.events.map(e=>[e.id,e]));
+    const removals={...(remote.removedEvents||{}),...(local.removedEvents||{})};
     const events=[],seen=new Set([...r.keys(),...l.keys()]);
     let conflicts=0,selectedCopy=null;
     for(const id of seen) {
+      if(Object.prototype.hasOwnProperty.call(removals,id))continue;
       const le=l.get(id),re=r.get(id);
       const ls=le?signature(le):null,rs=re?signature(re):null;
       const before=Object.prototype.hasOwnProperty.call(base,id)?base[id]:undefined;
@@ -139,8 +142,12 @@
       } else if(!le||!re) {
         events.push(le||re);continue;
       }
-      // Both devices changed the same ID (or deletion conflicts with an edit).
-      // Keep the cloud record and preserve the independent local work as a copy.
+      // Combine independent edits to different bouts whenever safe.
+      if(le&&re){
+        const compatible=window.copperIntegrity?.combineCompatible?.(re,le);
+        if(compatible){events.push(compatible);continue;}
+      }
+      // Divergent confirmed round or result: preserve both copies for review.
       if(re)events.push(re);
       if(le){
         const copy=copyEvent(le);
@@ -152,6 +159,7 @@
     if(events.length>200)throw Error('Merge would exceed the 200-event limit. Export both copies before retrying.');
     const workspace={
       version:2,selected:null,events,
+      removedEvents:removals,
       masterSheetId:local.masterSheetId||remote.masterSheetId||null,
       ...(local.masterSyncedAt||remote.masterSyncedAt?
         {masterSyncedAt:local.masterSyncedAt||remote.masterSyncedAt}:{})
@@ -166,6 +174,7 @@
     applying=true;
     try {
       data.events=workspace.events;
+      data.removedEvents=workspace.removedEvents||{};
       data.masterSheetId=workspace.masterSheetId;
       if(workspace.masterSyncedAt)data.masterSyncedAt=workspace.masterSyncedAt;
       else delete data.masterSyncedAt;
