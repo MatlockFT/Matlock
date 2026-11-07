@@ -1,0 +1,13 @@
+---
+layout: null
+permalink: /assets/data/copper-card-catalog.json
+---
+{% assign major_cards = site.data.upcoming_events.events %}
+{% assign regional_cards = site.data.event_map_regional.events %}
+{% assign sumo_cards = site.data.sumo_events.events %}
+{% assign event_cards = major_cards | concat: regional_cards | concat: sumo_cards %}
+{
+  "schema_version": 1,
+  "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
+  "events": {{ event_cards | jsonify }}
+}
