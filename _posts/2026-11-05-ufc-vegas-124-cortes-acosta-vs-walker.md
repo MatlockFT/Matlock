@@ -290,7 +290,7 @@ Middleweight slop. I'm not a fan of Petroski, he's coming off three losses, was 
 </section>
 Tough loss but not a bad one against JPL by Ko. I think Ko was assigned some housekeeping work.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Seokhyeon%20Ko%22%2C%22method%22%3A%22Submission%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Seokhyeon%20Ko%22%2C%22method%22%3A%22Submission%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Seokhyeon%20Ko%20-%20Unanimous%20Decision%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Seokhyeon Ko</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Submission</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 2</span></span></div></aside>
 </section>
 ---
