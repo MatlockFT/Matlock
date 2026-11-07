@@ -27,6 +27,19 @@ function prefix(a,b){
   if(a[i].side!==b[i].side||a[i].time!==b[i].time||(a[i].type||'exchange')!==(b[i].type||'exchange'))return false;
  return true;
 }
+
+function mergeControlLogs(left,right){
+ const a=Array.isArray(left)?left:[],b=Array.isArray(right)?right:[];
+ for(let i=0;i<Math.min(a.length,b.length);i++){
+  const x=a[i],y=b[i];
+  if(x.side!==y.side||x.start!==y.start)return null;
+  if(x.end!==null&&y.end!==null&&x.end!==y.end)return null;
+ }
+ if(a.length!==b.length)return deep(a.length>b.length?a:b);
+ if(!a.length)return [];
+ return deep(a.at(-1).end===null&&b.at(-1).end!==null?b:a);
+}
+
 function mergeFights(one,two){
  if(!one||!two)return null;
  if(['left','right','division','rounds','duration'].some(k=>clean(one[k])!==clean(two[k])))return null;
@@ -42,7 +55,10 @@ function mergeFights(one,two){
   if(a.score&&b.score&&scoreKey(a.score)!==scoreKey(b.score))return null;
   const ao=a.observations||[],bo=b.observations||[];
   if(!prefix(ao,bo)&&!prefix(bo,ao))return null;
+  const controls=mergeControlLogs(a.control,b.control);
+  if(controls===null)return null;
   const combined=deep(ao.length>=bo.length?a:b);
+  combined.control=controls;
   combined.elapsed=Math.max(a.elapsed||0,b.elapsed||0);
   combined.score=deep(a.score||b.score||null);
   rounds.push(combined);
