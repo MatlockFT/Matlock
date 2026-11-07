@@ -135,6 +135,13 @@ page_scripts:
                       <img src="{{ member_image_src | relative_url }}"
                         {% if member_image_data.srcset %}srcset="{{ member_image_data.srcset }}" sizes="(min-width: 780px) 24vw, 100vw"{% endif %}
                         alt="{{ post.image.alt | default: post.title | escape }}" loading="lazy" decoding="async">
+                      <span class="v3-member-thumb-lock" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                          <rect x="5.5" y="10.5" width="13" height="10" rx="1.8"></rect>
+                          <path d="M8.5 10.5V7a3.5 3.5 0 0 1 7 0v3.5"></path>
+                          <circle cx="12" cy="15.3" r="1" fill="currentColor" stroke="none"></circle>
+                        </svg>
+                      </span>
                     </a>
                   {% endif %}
                   <a class="v3-member-title" href="https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}">{{ post.title | escape }}</a>
