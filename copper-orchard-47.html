@@ -1120,7 +1120,7 @@ function undo(){const r=currentRound(),f=fight();if(!f||f.result||!r||!r.observa
 function resetRound(){
  const f=fight(),r=currentRound();if(!f||!r||f.result)return;
  const n=f.index+1;
- if(!confirm('Reset round '+n+'? This clears its timer, exchanges and any confirmed score. Earlier rounds are not changed.'))return;
+ if(!confirm('Reset round '+n+'? This clears its timer, exchanges, control time and any confirmed score. Earlier rounds are not changed.'))return;
  pause();clearChartFlash();
  r.elapsed=0;r.observations=[];r.control=[];r.score=null;
  f.status=f.roundData.some((rd,i)=>i<f.index&&rd.score)?'in-progress':'ready';
@@ -1188,7 +1188,7 @@ function confirmScore(){if(!scoreDraft)return;const points=roundPoints(scoreDraf
 function cancelScore(){setVisible('scoreOverlay',false);scoreIndex=null;scoreDraft=null;renderWorkbench()}
 function totals(f){return f.roundData.reduce((tot,r)=>{const p=roundPoints(r.score);if(p){tot[0]+=p[0];tot[1]+=p[1]}return tot},[0,0])}
 function tick(){if(!focusMode||!fight())return;
- if(running&&seconds()>=fight().duration){pause();renderWorkbench();toast('Clock reached zero. Confirm end of round.')}
+ if(running&&seconds()>=fight().duration){const duration=fight().duration;pause();closeControl(currentRound(),duration);persist();renderWorkbench();toast('Clock reached zero. Confirm end of round.')}
  $('clock').textContent=clockText(fight().duration-seconds());if(running){renderControl();drawGraph()}}
 function renderWorkbench(){const f=fight(),e=event();if(!f||!e)return;const r=currentRound();
  $('workbench').classList.toggle('is-recording',running);
