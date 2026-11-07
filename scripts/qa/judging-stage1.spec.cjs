@@ -1515,7 +1515,7 @@ test('A/D toggle control, reverse sides and pause without recording phantom time
  await expect(page.locator('#graph')).toHaveAttribute('aria-label',/control Red/);
 });
 
-test('Control alone cannot award exchanges or suggest a round winner',async({page})=>{
+test('Control alone influences the suggestion without creating exchanges',async({page})=>{
  await setup(page);
  await page.click('#startBtn');
  await page.keyboard.press('a');
@@ -1528,9 +1528,11 @@ test('Control alone cannot award exchanges or suggest a round winner',async({pag
  expect(result.exchangeCount).toBe(0);
  expect(result.control[0]).toBeGreaterThan(44);
  expect(result.control[1]).toBe(0);
- expect(result.suggestion.winner).toBeNull();
+ expect(result.suggestion.winner).toBe('a');
+ expect(result.suggestion.margin).toBe(9);
  await page.click('#endBtn');
  await expect(page.locator('#suggestionText')).toContainText('No exchanges logged');
+ await expect(page.locator('#suggestionText')).toContainText('suggested 10–9 for Red');
  await expect(page.locator('#scoreControlSummary')).toContainText(/Red 0:4[45]/);
 });
 
@@ -1612,4 +1614,126 @@ test('Control stops when the round clock reaches zero',async({page})=>{
  expect(control.time).toBeGreaterThan(299);
  expect(control.active).toBeNull();
  await expect(page.locator('#startBtn')).toBeDisabled();
+});
+
+
+test('Control weighting is proportional to time and is stronger in close offense',async({page})=>{
+ await setup(page);
+ const verdicts=await page.evaluate(()=>{
+  const observe=(side,time,type='exchange')=>({side,time,type});
+  const make=(obs,control)=>({elapsed:300,observations:obs,control,score:null});
+  const passiveAgainstDamage=make([
+   observe('a',35,'impact'),observe('b',40),observe('a',65,'impact'),
+   observe('a',95),observe('a',145),observe('a',160),observe('a',180)
+  ],[{side:'b',start:0,end:240}]);
+  const closeOffense=make([
+   observe('a',30),observe('a',70),observe('a',120),
+   observe('b',150),observe('b',170)
+  ],[{side:'b',start:0,end:180}]);
+  const defenderDamage=make([
+   observe('a',40),observe('b',50),observe('a',100,'impact'),
+   observe('b',130),observe('a',190)
+  ],[{side:'b',start:0,end:220}]);
+  const controlOnly=make([],[{side:'b',start:0,end:270}]);
+  const zeroData=make([],[]);
+  const evaluate=r=>{
+   const s=suggestedRound(r);return {
+    winner:s.winner,margin:s.margin,
+    offence:s.evidence.offense,
+    control:s.evidence.controlInfluence,
+    buckets:s.evidence.groups,
+    reason:s.reason
+   };
+  };
+  return {
+   passive:evaluate(passiveAgainstDamage),
+   close:evaluate(closeOffense),
+   defender:evaluate(defenderDamage),
+   controlOnly:evaluate(controlOnly),
+   zero:evaluate(zeroData)
+  };
+ });
+ expect(verdicts.passive.winner).toBe('a');
+ expect(verdicts.close.winner).toBe('b');
+ expect(verdicts.defender.winner).toBe('a');
+ expect(verdicts.controlOnly.winner).toBe('b');
+ expect(verdicts.controlOnly.margin).toBe(9);
+ expect(verdicts.zero.winner).toBeNull();
+ expect(verdicts.passive.control[1]).toBeLessThan(verdicts.close.control[1]);
+ expect(verdicts.close.buckets[0].bottom).toBe(3);
+ expect(verdicts.close.buckets[1].holding).toBe(2);
+ expect(verdicts.close.reason).toContain('because the offense is close');
+});
+
+test('Top offense and bottom offense carry different contextual weights',async({page})=>{
+ await setup(page);
+ const samples=await page.evaluate(()=>{
+  const obs=[
+   {side:'a',time:25,type:'exchange'},
+   {side:'a',time:85,type:'impact'},
+   {side:'b',time:40,type:'exchange'},
+   {side:'b',time:105,type:'impact'}
+  ];
+  const redTop=scoreRoundEvidence({elapsed:120,control:[{side:'a',start:0,end:120}],observations:obs});
+  const blueTop=scoreRoundEvidence({elapsed:120,control:[{side:'b',start:0,end:120}],observations:obs});
+  const noControl=scoreRoundEvidence({elapsed:120,control:[],observations:obs});
+  const boundary=scoreRoundEvidence({elapsed:120,control:[{side:'a',start:0,end:40},{side:'b',start:40,end:120}],observations:obs});
+  return {redTop,blueTop,noControl,boundary};
+ });
+ expect(samples.redTop.groups[0].holding).toBe(2);
+ expect(samples.redTop.groups[1].bottom).toBe(2);
+ expect(samples.blueTop.groups[1].holding).toBe(2);
+ expect(samples.blueTop.groups[0].bottom).toBe(2);
+ expect(samples.redTop.offense[0]).toBeGreaterThan(samples.redTop.offense[1]);
+ expect(samples.blueTop.offense[1]).toBeGreaterThan(samples.blueTop.offense[0]);
+ expect(samples.noControl.offense).toEqual([3,3]);
+ expect(samples.boundary.groups[1].holding).toBe(2);
+ expect(samples.boundary.groups[0].holding).toBe(1);
+ expect(samples.boundary.groups[0].bottom).toBe(1);
+});
+
+test('Productive sustained top control can support 10–8; passive control cannot',async({page})=>{
+ await setup(page);
+ const scenarios=await page.evaluate(()=>{
+  const dominant={elapsed:300,control:[{side:'a',start:0,end:200}],observations:[
+   {side:'a',time:20,type:'impact'},
+   {side:'a',time:40,type:'impact'},
+   {side:'a',time:70,type:'exchange'},
+   {side:'a',time:100,type:'exchange'},
+   {side:'a',time:120,type:'exchange'},
+   {side:'b',time:250,type:'exchange'}
+  ]};
+  const passive={elapsed:300,control:[{side:'a',start:0,end:280}],observations:[]};
+  const short={elapsed:300,control:[{side:'a',start:0,end:40}],observations:dominant.observations};
+  return {dominant:suggestedRound(dominant),passive:suggestedRound(passive),short:suggestedRound(short)};
+ });
+ expect(scenarios.dominant.winner).toBe('a');
+ expect(scenarios.dominant.margin).toBe(8);
+ expect(scenarios.passive.winner).toBe('a');
+ expect(scenarios.passive.margin).toBe(9);
+ expect(scenarios.short.margin).toBe(9);
+});
+
+test('A judge override remains saved even when control favors the other fighter',async({page})=>{
+ await setup(page);
+ await page.click('#startBtn');
+ await page.keyboard.press('d');
+ await page.keyboard.press('ArrowLeft');
+ await page.keyboard.press('ArrowLeft');
+ await page.keyboard.press('ArrowRight');
+ await page.evaluate(()=>{const r=data.events[0].fights[0].roundData[0];r.elapsed=180;anchor=performance.now()});
+ await page.click('#endBtn');
+ await expect(page.locator('#suggestionText')).toContainText('suggested 10–9 for Blue');
+ await expect(page.locator('#selectB')).toHaveClass(/selected/);
+ await page.keyboard.press('ArrowLeft');
+ await expect(page.locator('#selectA')).toHaveClass(/selected/);
+ await page.keyboard.press('Enter');
+ await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
+ await page.locator('#scoreBody tr:first-child button').click();
+ await expect(page.locator('#selectA')).toHaveClass(/selected/);
+ await expect(page.locator('#suggestionText')).toContainText('your saved score stays selected');
+ await page.keyboard.press('Escape');
+ await page.reload();
+ await page.locator('.bout-row .primary').click();
+ await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
 });
