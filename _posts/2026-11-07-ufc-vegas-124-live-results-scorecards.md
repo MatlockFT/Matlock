@@ -46,6 +46,10 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 ### Mantas Kondratavičius vs. Andre Petroski — *Andre Petroski wins via round 2 TKO (ground and pound)*
 Round 1: Kondra comes out fast and heavy, both are swinging hard. Petroski trying to find success in the takedowns. Good work at end for Petroski and dynamic might change as Kondra threw a lot of heavy shots. Could be tired in the second. 10-9 Kondra.
 
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-1006e118" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-170032-359.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
 Round 2: They both exchange heavy on the feet with Kondra landing cleaner better shots. Petroski takes it down. Kondra is looking fatigued and Petroski is wasting no time creating openings and landing shots. He does this for most of the round and pours on heavy near the end. Kondra isn't getting out of it and the ref stops the fight. 
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-73c3d8a0" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
