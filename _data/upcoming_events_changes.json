@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-07T13:32:05.578Z",
+  "generated_at": "2026-11-08T07:36:55.900Z",
   "changes": [
+    {
+      "id": "2026-11-08T07:36:55.900Z|ufc-fight-night-2026-11-07-fight-card|event_removed|1",
+      "at": "2026-11-08T07:36:55.900Z",
+      "type": "event_removed",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Acosta vs Walker",
+      "event_date": "2026-11-07",
+      "summary": "UFC Fight Night Acosta vs Walker removed from Upcoming Events.",
+      "details": {
+        "bout_count": 14,
+        "venue": "Venue TBA",
+        "date": "2026-11-07"
+      }
+    },
     {
       "id": "2026-11-07T13:32:05.578Z|rizin-rizin-6-2026-12-31|bout_changed|1",
       "at": "2026-11-07T13:32:05.578Z",
@@ -4532,22 +4547,6 @@
       "details": {
         "from_order": 11,
         "to_order": 12,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-18T11:41:25.881Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|5",
-      "at": "2026-10-18T11:41:25.881Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Jonny Parsons vs José Souza moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 12,
-        "to_order": 13,
         "from_section": "Prelims",
         "to_section": "Prelims"
       }

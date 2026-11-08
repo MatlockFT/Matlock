@@ -5,23 +5,6 @@
   "mode": "read-only-watchdog",
   "coverage": [
     {
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "ufc",
-      "date": "2026-11-07",
-      "title": "Acosta vs Walker",
-      "status": "matched",
-      "verdict_event_id": "1957",
-      "verdict_url": "https://verdictmma.com/event/1957",
-      "verdict_date": "2026-11-07",
-      "local_fight_count": 14,
-      "verdict_fight_count": 14,
-      "local_main_count": 6,
-      "verdict_main_count": 6,
-      "local_prelim_count": 8,
-      "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 13
-    },
-    {
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
       "promotion": "rizin",
       "date": "2026-11-08",
@@ -67,9 +50,9 @@
       "local_fight_count": 9,
       "verdict_fight_count": 9,
       "local_main_count": 5,
-      "verdict_main_count": 6,
+      "verdict_main_count": 5,
       "local_prelim_count": 4,
-      "verdict_prelim_count": 3,
+      "verdict_prelim_count": 4,
       "confirmed_local_bouts": 9
     },
     {
@@ -267,25 +250,6 @@
       "verdict_main_count": 4,
       "local_prelim_count": 0,
       "verdict_prelim_count": 2
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "verdict_event_id": "1957",
-      "order": 14,
-      "fighters": [
-        "Jonny Parsons",
-        "José Souza"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-2026-11-21-fight-card",
-      "verdict_event_id": "1986",
-      "local_main_count": 5,
-      "verdict_main_count": 6,
-      "local_prelim_count": 4,
-      "verdict_prelim_count": 3
     }
   ]
 }

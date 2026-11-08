@@ -1,387 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-08T01:22:04.437Z",
+  "generated_at": "2026-11-08T07:36:24.711Z",
   "events": [
-    {
-      "id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion_key": "ufc",
-      "promotion": "UFC Fight Night",
-      "title": "Acosta vs Walker",
-      "date": "2026-11-07",
-      "date_label": "Saturday · November 7, 2026",
-      "starts_at": "",
-      "expires_at": "",
-      "venue": "Venue TBA",
-      "broadcast": "Paramount+ · UFC Fight Pass",
-      "official_url": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-      "updated_label": "November 7, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Main Card",
-          "time": "8:00 PM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Waldo Cortes Acosta",
-                  "initials": "WCA",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CORTES_ACOSTA_WALDO_L.png?itok=R3cDV3Y_",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-230"
-                },
-                {
-                  "name": "Johnny Walker",
-                  "initials": "JW",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/WALKER_JOHNNY_L_08-23.png?itok=cy7jdBoB",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+190"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Women's Strawweight Bout",
-              "fighters": [
-                {
-                  "name": "Tatiana Suarez",
-                  "initials": "TS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/SUAREZ_TATIANA_L_04-11.png?itok=hkAiQqtr",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-200"
-                },
-                {
-                  "name": "Virna Jandiroba",
-                  "initials": "VJ",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/JANDIROBA_VIRNA_L_04-04.png?itok=AL1UZCHe",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+168"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Davey Grant",
-                  "initials": "DG",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/GRANT_DAVEY_L_04-25.png?itok=eXuCU5Cp",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+285"
-                },
-                {
-                  "name": "Elijah Smith",
-                  "initials": "ES",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/SMITH_ELIJAH_L_03-14.png?itok=3MoxFy9W",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-350"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Light Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Billy Elekana",
-                  "initials": "BE",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/ELEKANA_BILLY_L_01-31.png?itok=l0IviRUv",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+275"
-                },
-                {
-                  "name": "Lucas Fernando",
-                  "initials": "LF",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/FERNANDO_LUCAS_R_08-15.png?itok=T9Ij6iMO",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-340"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Women's Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Priscila Cachoeira",
-                  "initials": "PC",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/CACHOEIRA_PRISCILA_L_06-06.png?itok=FFiYkCQu",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+380"
-                },
-                {
-                  "name": "Nina Milošević",
-                  "initials": "NM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/MILOSEVIC_NINA_L_08-01.png?itok=6zq_3wtV",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-500"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 6,
-              "label": "",
-              "weight_class": "Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Mitch Raposo",
-                  "initials": "MR",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-05/RAPOSO_MITCH_L_06-01.png?itok=fgzxnjZ5",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+198"
-                },
-                {
-                  "name": "Marcos Degli",
-                  "initials": "MD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/DEGLI_MARCOS_L_09-22.png?itok=Ltf-qarb",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-240"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            }
-          ]
-        },
-        {
-          "kind": "prelims",
-          "title": "Prelims",
-          "time": "5:00 PM ET",
-          "bouts": [
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Keiichiro Nakamura",
-                  "initials": "KN",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/NAKAMURA_KEIICHIRO_L_01-31.png?itok=-vL6J_TE",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-360"
-                },
-                {
-                  "name": "Ollie Schmid",
-                  "initials": "OS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/SCHMID_OLLIE_R_05-02.png?itok=yb6L6zTk",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+290"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 8,
-              "label": "",
-              "weight_class": "Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Gabriel Lorenço",
-                  "initials": "GL",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/LORENCO_GABRIEL_L_09-01.png?itok=NdbmVc1d",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+136"
-                },
-                {
-                  "name": "Thomas Petersen",
-                  "initials": "TP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/PETERSEN_THOMAS_L_05-03.png?itok=sYHO_Yst",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-158"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 9,
-              "label": "",
-              "weight_class": "Women's Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Karine Silva",
-                  "initials": "KS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/SILVA_KARINE_L_08-16.png?itok=6JdZdcEV",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-220"
-                },
-                {
-                  "name": "Gabriella Fernandes",
-                  "initials": "GF",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/FERNANDES_GABRIELLA_L_08-09.png?itok=sUYuxLOm",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+184"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 10,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Jose Delano",
-                  "initials": "JD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/DELANO_JOSE_L_04-04.png?itok=yx6OJq5I",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-118"
-                },
-                {
-                  "name": "Murtazali Magomedov",
-                  "initials": "MM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/MAGOMEDOV_MURTAZLI_R_06-20.png?itok=wXAJELZD",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+100"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 11,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Austin Bashi",
-                  "initials": "AB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/BASHI_AUSTIN_L_07-18.png?itok=ICEox51M",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-620"
-                },
-                {
-                  "name": "Carlos Calderon",
-                  "initials": "CC",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-11/CALDERON_CARLOS_R.png?itok=k8EF8zCQ",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+460"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 12,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Mantas Kondratavičius",
-                  "initials": "MK",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-320"
-                },
-                {
-                  "name": "Andre Petroski",
-                  "initials": "AP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+260"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 13,
-              "label": "",
-              "weight_class": "Welterweight Bout",
-              "fighters": [
-                {
-                  "name": "Seokhyeon Ko",
-                  "initials": "SK",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/KO_SEOKHYEON_L_06-21.png?itok=QRZ7e0tm",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-650"
-                },
-                {
-                  "name": "Wellington Turman",
-                  "initials": "WT",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-11/TURMAN_WELLINGTON_L_12-02.png?itok=icqJ0amp",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+480"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            },
-            {
-              "order": 14,
-              "label": "",
-              "weight_class": "Welterweight Bout",
-              "fighters": [
-                {
-                  "name": "Jonny Parsons",
-                  "initials": "JP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/PARSONS_JONNY_L_07-22.png?itok=r2aeVJ95",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "+164"
-                },
-                {
-                  "name": "José Souza",
-                  "initials": "JS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/SOUZA_JOSE_R_05-30.png?itok=-YP5UjdJ",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": "-196"
-                }
-              ],
-              "odds_source": "BestFightOdds",
-              "odds_provider": "FanDuel"
-            }
-          ]
-        }
-      ]
-    },
     {
       "id": "rizin-abc-presents-rizin-55-2026-11-08",
       "promotion_key": "rizin",
@@ -392,7 +12,7 @@
       "venue": "LaLa arena TOKYO-BAY",
       "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV",
       "official_url": "https://jp.rizinff.com/_ct/17852466",
-      "updated_label": "November 7, 2026",
+      "updated_label": "November 8, 2026",
       "sections": [
         {
           "kind": "main",
@@ -689,7 +309,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-334",
-      "updated_label": "November 7, 2026",
+      "updated_label": "November 8, 2026",
       "sections": [
         {
           "kind": "main",
@@ -707,7 +327,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/GANE_CIRYL_L_BELT_01-22.png?itok=6Dy6iwAT",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-260"
+                  "moneyline": "-245"
                 },
                 {
                   "name": "Josh Hokit",
@@ -715,7 +335,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/HOKIT_JOSH_L_06-14.png?itok=Es1_9BbW",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+196"
+                  "moneyline": "+186"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -1049,7 +669,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
-      "updated_label": "November 7, 2026",
+      "updated_label": "November 8, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1092,7 +712,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/STERLING_ALJAMAIN_L_04-25.png?itok=lJPFybAO",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-108"
                 },
                 {
                   "name": "Kevin Vallejos",
@@ -1100,9 +720,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/VALLEJOS_KEVIN_R_12-13.png?itok=-h2gdx6Y",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+104"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Polymarket"
             },
             {
               "order": 3,
@@ -1288,7 +910,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-335",
-      "updated_label": "November 7, 2026",
+      "updated_label": "November 8, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1428,7 +1050,7 @@
       "venue": "バンテリンドーム ナゴヤ",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17870447",
-      "updated_label": "November 7, 2026",
+      "updated_label": "November 8, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1662,7 +1284,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-336",
-      "updated_label": "November 7, 2026",
+      "updated_label": "November 8, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1735,7 +1357,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-february-06-2027",
-      "updated_label": "November 7, 2026",
+      "updated_label": "November 8, 2026",
       "sections": [
         {
           "kind": "main",
