@@ -1,0 +1,40 @@
+name: Mobile video streaming smoke
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "_netlify-auth/netlify/edge-functions/media-releases.js"
+      - "_netlify-auth/test/media-releases.test.mjs"
+      - "assets/site.js"
+      - ".github/workflows/mobile-video-stream-smoke.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-mobile-stream:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify real video byte-range delivery
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="https://mmamatlock-writer-auth.netlify.app/media/releases/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-220233-668.mp4"
+          status=""
+          for attempt in 1 2 3; do
+            status="$(curl -sSL --max-time 35 -H 'Range: bytes=0-1023' -o /tmp/video-clip.bin -D /tmp/video-headers.txt -w '%{http_code}' "$url" || true)"
+            if [[ "$status" == "206" ]]; then break; fi
+            echo "Attempt $attempt returned HTTP ${status:-none}"
+            cat /tmp/video-headers.txt || true
+            sleep 3
+          done
+          [[ "$status" == "206" ]] || { echo "::error::Streaming endpoint did not return HTTP 206"; exit 1; }
+          grep -qiE '^content-type:[[:space:]]*video/mp4' /tmp/video-headers.txt
+          grep -qiE '^content-range:[[:space:]]*bytes 0-1023/' /tmp/video-headers.txt
+          grep -qiE '^content-disposition:[[:space:]]*inline' /tmp/video-headers.txt
+          [[ "$(wc -c </tmp/video-clip.bin)" -eq 1024 ]]
+          [[ "$(dd if=/tmp/video-clip.bin bs=1 skip=4 count=4 2>/dev/null)" == 'ftyp' ]]
+          echo "HTTP 206, inline MP4, and byte-range playback contract verified."
