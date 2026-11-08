@@ -31,13 +31,15 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 - Davey Grant vs. Elijah Smith — *Pending*
 - Billy Elekana vs. Lucas Fernando — *Pending*
 
-
 ## Prelims
 
 - 
-- Mitch Raposo vs. Marcos Degli — *Pending*
 - Gabriel Lorenco vs. Thomas Petersen — *Pending*
 - Priscila Cachoeira vs. Nina Milošević — *Pending*
+
+
+### Mitch Raposo vs. Marcos Degli — *Pending*
+
 
 ### Keiichiro Nakamura vs. Ollie Schmid — *Ollie Schmid wins via unanimous decisions (29-28 x3)*
 
