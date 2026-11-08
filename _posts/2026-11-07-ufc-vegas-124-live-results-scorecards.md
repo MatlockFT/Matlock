@@ -31,7 +31,7 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 - Davey Grant vs. Elijah Smith — *Pending*
 
 
-### Billy Elekana vs. Lucas Fernando — *Pending*
+### Billy Elekana vs. Lucas Fernando — *Lucas Fernando wins via unanimous decision (29-28 x3)*
 
 Round 1: Not much from Billy. Lucas all offense and heavy, heavy strikes. A lot of knees to the body. 
 10-9 Fernando
