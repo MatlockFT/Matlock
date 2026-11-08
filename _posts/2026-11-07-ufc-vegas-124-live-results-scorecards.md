@@ -36,9 +36,20 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 - Gabriel Lorenco vs. Thomas Petersen — *Pending*
 
 
-### Priscila Cachoeira vs. Nina Milošević — *Pending*
+### Priscila Cachoeira vs. Nina Milošević — *Nina Milošević wins via round 2 TKO (ground and pound)*
+Round 1. Nina does a McGregor jumping switch kick, dives for a takedown, pitter patter punches Priscila for the entire round. Priscila did nothing but survive. 10-8 Nina
 
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-293c59f4" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-200004-077.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
 
+Round 2: Now they're exchanging. I'm reminded again why I'm not really high on Milsevic who is doing well but there is something about her game that just doesn't quit click. After several exchanges with Priscila, she takes her down, beats her up in mount, ref Herzog steps in to stop it.
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-af3b61bc" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-200528-502.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
 
 ---
 
