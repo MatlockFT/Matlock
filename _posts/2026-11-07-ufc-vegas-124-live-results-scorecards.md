@@ -35,11 +35,36 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 - 
 - Gabriel Lorenco vs. Thomas Petersen — *Pending*
-- Priscila Cachoeira vs. Nina Milošević — *Pending*
 
+
+### Priscila Cachoeira vs. Nina Milošević — *Pending*
+
+
+
+---
 
 ### Mitch Raposo vs. Marcos Degli — *Pending*
-Round 1: 
+
+Round 1: A close round but Raposo simply did more and landed more. Degli is obviously fast and landed some damaging, powerful strikes but it just wasn't enough on my card. 10-9 Raposo who worked the body quite nicely.
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-e1f813bb" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-194232-647.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+Round 2: Again, I think an excellent round from Raposo who really is putting in work to the body and doing well to be hard to read, landing in more volume and shots. Lets not forget Raposo also cut Degli in round 1 and its turned into a mouse in round 2. 20-18 Raposo
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-18dc2d3f" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-194223-361.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+Round 3: A much better round for Degli as he started that round with a high pace and volume, landing well. An unfortunate clash of heads opens up Raposo (someone noted it was an elbow but I haven't rewatched) but still, even by the end of this round, Raposo started putting it together. I have 30-27 Raposo
+Judges got it 29-28 Mitch Raposo
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-1ad49b82" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-194214-696.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+---
 
 ### Keiichiro Nakamura vs. Ollie Schmid — *Ollie Schmid wins via unanimous decisions (29-28 x3)*
 
