@@ -31,10 +31,9 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 - Davey Grant vs. Elijah Smith — *Pending*
 - Billy Elekana vs. Lucas Fernando — *Pending*
 
-## Prelims
 
-- Gabriel Lorenco vs. Thomas Petersen — *Pending*
 
+---
 
 ### Priscila Cachoeira vs. Nina Milošević — *Nina Milošević wins via round 2 TKO (ground and pound)*
 Round 1. Nina does a McGregor jumping switch kick, dives for a takedown, pitter patter punches Priscila for the entire round. Priscila did nothing but survive. 10-8 Nina
@@ -75,6 +74,8 @@ Judges got it 29-28 Mitch Raposo
 </figure>
 
 ---
+
+## Prelims
 
 ### Keiichiro Nakamura vs. Ollie Schmid — *Ollie Schmid wins via unanimous decisions (29-28 x3)*
 
