@@ -541,6 +541,20 @@ test.describe('Article native sharing on mobile', () => {
     const bytes = await response.body();
     expect(bytes.length).toBe(1024);
     expect(bytes.toString('ascii', 4, 8)).toBe('ftyp');
+
+    // A correct range response is not sufficient: WebKit must also decode
+    // the actual release-hosted article MP4, not only an old local test clip.
+    await video.scrollIntoViewIfNeeded();
+    await expect.poll(async () => video.evaluate(node => node.readyState >= 1 || !!node.error), {
+      timeout: 30000
+    }).toBeTruthy();
+    const playback = await video.evaluate(node => ({
+      error: node.error?.code || 0,
+      readyState: node.readyState
+    }));
+    expect(playback.error, 'mobile WebKit must decode the release MP4').toBe(0);
+    expect(playback.readyState).toBeGreaterThanOrEqual(1);
+    await expect(video.locator('xpath=ancestor::figure[1]').locator('.article-inline-video-fallback')).toBeHidden();
   });
 });
 
