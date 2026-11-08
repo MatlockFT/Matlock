@@ -84,7 +84,7 @@ Speaking of trust issues, I'm not sure how anyone can trust Suarez. I'm seeing -
 </section>
 We love a vet lesson around here, and Davey has handed out a few of them over the past several years. This might be a tough one, though, and I agree with the odds, which, at the time of writing, have Smith at -320. I'll hand it to Davey Grant for being tough, and hopefully he's on all the good UFC Performance Institute peppers, but I have to go with the young gun to get it done.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Elijah%20Smith%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Elijah%20Smith%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Elijah%20Smith%20wins%20via%201st%20round%20knockout%20(left%20hook%2C%20right%20hand%20on%20the%20ground%20follow%20up)%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Elijah Smith</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Decision</span></span></div></aside>
 </section>
 ---
