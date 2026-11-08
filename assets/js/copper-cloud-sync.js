@@ -55,6 +55,7 @@
       throw Error('The remote workspace has an unrecognized format; nothing was overwritten.');
     const w = validate(payload.workspace);
     upgradeCornerLayout(w);
+    correctSuarezVirnaRounds(w);
     return w;
   };
   const decodeError = async response => {
