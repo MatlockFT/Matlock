@@ -843,6 +843,7 @@ input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visi
 <optgroup label="Women"><option value="Women's Strawweight">Women's Strawweight — 115 lb</option><option value="Women's Flyweight">Women's Flyweight — 125 lb</option><option value="Women's Bantamweight">Women's Bantamweight — 135 lb</option><option value="Women's Featherweight">Women's Featherweight — 145 lb</option></optgroup>
 <option value="custom">Custom / catchweight / other promotion</option></select></label>
  <label id="editCustomWrap" class="hidden">Custom division / catchweight<input id="editCustomDivision" maxlength="100" placeholder="Catchweight 165 lb"></label>
+ <label>Scheduled rounds<select id="editRounds"><option value="3">3 rounds</option><option value="5">5 rounds</option></select></label>
  </div>
  <div class="modal-actions"><button id="cancelEdit" class="quiet">Cancel</button><button id="saveEdit" class="primary">Save changes</button></div></div>
 </div>
@@ -1090,7 +1091,40 @@ function editFight(f){
  editingFightId=f.id;
  $('editRed').value=f.left;$('editBlue').value=f.right;
  divisionPickerValue('editDivision','editCustomWrap','editCustomDivision',f.division);
+ $('editRounds').value=String(f.rounds);
  setVisible('editFightOverlay',true);$('editRed').focus();
+}
+function changeScheduledRounds(f,nextRounds){
+ if(![3,5].includes(nextRounds)||!Array.isArray(f.roundData)||!f.roundData.length)return false;
+ if(nextRounds===f.rounds)return true;
+ // Never discard real round activity. An automatically created, untouched round is safe to remove.
+ if(nextRounds<f.rounds){
+  if(f.roundData.slice(nextRounds).some(r=>!!r.score||r.elapsed>0||(r.observations||[]).length>0||(r.control||[]).length>0))return false;
+  f.roundData.length=Math.min(f.roundData.length,nextRounds);
+ }else if(f.result)return false;
+ f.rounds=nextRounds;
+ // If all existing rounds were already confirmed before expanding, open the next round.
+ if(nextRounds>f.roundData.length&&f.roundData.every(r=>!!r.score))f.roundData.push(newRound());
+ f.index=Math.min(f.index,f.roundData.length-1);
+ if(!f.result){
+  const confirmed=f.roundData.slice(0,nextRounds).filter(r=>!!r.score).length;
+  f.status=confirmed===nextRounds?'awaiting-result':(confirmed||f.status!=='ready'?'in-progress':'ready');
+ }
+ return true;
+}
+// Correct this specific saved three-round decision without changing its scores, exchanges or graph.
+function correctSuarezVirnaRounds(workspace){
+ let fixed=0;
+ for(const e of workspace.events||[])for(const f of e.fights||[]){
+  if(f.rounds!==5||f.result||f.roundData.length<3||!f.roundData.slice(0,3).every(r=>!!r.score))continue;
+  const names=[f.left,f.right].map(x=>String(x||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase());
+  const suarez=names.findIndex(x=>x.includes('suarez'));
+  const virna=names.findIndex(x=>x.includes('virna')||x.includes('jandiroba'));
+  if(suarez<0||virna<0||suarez===virna)continue;
+  const points=totals(f);
+  if(points[suarez]===30&&points[virna]===27&&changeScheduledRounds(f,3))fixed++;
+ }
+ return fixed;
 }
 function closeEdit(){editingFightId=null;setVisible('editFightOverlay',false)}
 function saveEdit(){
@@ -1099,6 +1133,10 @@ function saveEdit(){
  const a=$('editRed').value.trim(),b=$('editBlue').value.trim(),d=selectedDivision('editDivision','editCustomDivision');
  if(!a||!b||!d){toast('Both fighters and a division are required.');return}
  if((a!==f.left||b!==f.right)&&f.roundData.some(x=>x.observations.length||x.score)&&!confirm('Change corner names attached to existing moments and scores? Confirm that each fighter remains in the correct corner.'))return;
+ const nextRounds=Number($('editRounds').value);
+ if(!changeScheduledRounds(f,nextRounds)){
+  toast(nextRounds<f.rounds?'Cannot shorten: a later round contains activity or a score. No fight data was changed.':'Cannot change the scheduled rounds for this fight.');return;
+ }
  f.left=a;f.right=b;f.division=d.slice(0,100);
  persist();closeEdit();renderDashboard();
 }
@@ -1945,7 +1983,7 @@ window.addEventListener('resize',()=>{if(focusMode)drawGraph()});
 window.addEventListener('pagehide',()=>{pause();persist()});
 window.addEventListener('storage',e=>{if(e.key===KEY)toast('This workspace changed in another tab. Avoid recording in two tabs at once.');});
 setInterval(()=>{if(focusMode)tick()},200);setInterval(()=>{if(running){currentRound().elapsed=seconds();anchor=performance.now();persist()}},1500);
-try{const saved=readJSON(KEY);if(saved){data=validate(saved);if(upgradeCornerLayout(data))persist()}}catch(e){toast('Saved workspace could not be read. Original browser data was not changed.')}
+try{const saved=readJSON(KEY);if(saved){data=validate(saved);const upgraded=upgradeCornerLayout(data),corrected=correctSuarezVirnaRounds(data);if(upgraded||corrected)persist()}}catch(e){toast('Saved workspace could not be read. Original browser data was not changed.')}
 if(!data.events.some(e=>e.id===data.selected))data.selected=data.events[0]?.id||null;
 renderDashboard();
 </script><script src="/assets/js/copper-cloud-sync.js"></script><script src="/assets/js/copper-event-manager.js"></script><script src="/assets/js/copper-event-integrity.js"></script><script src="/assets/js/copper-auto-archive.js"></script><script src="https://accounts.google.com/gsi/client" async defer></script>
