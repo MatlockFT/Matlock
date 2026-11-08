@@ -52,6 +52,7 @@ Round 3: Both guys are tired. Waldo throwing heavy, Walker throwing kicks. Acost
   </div>
 </figure>
 
+Johnny Walker says fuck everyone who said he doesn't have a chin. 
 
 ---
 
