@@ -29,14 +29,33 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 - Waldo Cortes-Acosta vs. Johnny Walker — *Pending*
 - Tatiana Suarez vs. Virna Jandiroba — *Pending*
 - Davey Grant vs. Elijah Smith — *Pending*
-- Billy Elekana vs. Lucas Fernando — *Pending*
 
 
+### Billy Elekana vs. Lucas Fernando — *Pending*
+
+Round 1: Not much from Billy. Lucas all offense and heavy, heavy strikes. A lot of knees to the body. 
+10-9 Fernando
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-bd9e6af5" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-202544-013.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+Round 2: Fernando's pace slowed considerably. Still landing heavy but much of this fight took place in the clinch against the cage. 20-18 Fernando
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-d6722481" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-203118-601.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+Round 3: Fernando lands a couple good shots but then gets taken down. Billy lays on him up until the very end when he starts getting some ground and pound off. This fight started pretty good and then ended up a complete snoozefest. Horrible fight and not a good look for either fighter.
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-0e7ff7fc" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-203757-332.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
 
 ---
 
 ### Priscila Cachoeira vs. Nina Milošević — *Nina Milošević wins via round 2 TKO (ground and pound)*
-Round 1. Nina does a McGregor jumping switch kick, dives for a takedown, pitter patter punches Priscila for the entire round. Priscila did nothing but survive. 10-8 Nina
+Round 1: Nina does a McGregor jumping switch kick, dives for a takedown, pitter patter punches Priscila for the entire round. Priscila did nothing but survive. 10-8 Nina
 
 <figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-293c59f4" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-200004-077.png" alt="ufc vegas 124 live results scoring" loading="lazy">
