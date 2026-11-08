@@ -1737,3 +1737,91 @@ test('A judge override remains saved even when control favors the other fighter'
  await page.locator('.bout-row .primary').click();
  await expect(page.locator('#wbTotal')).toHaveText('10 – 9');
 });
+
+
+test('Suárez–Virna saved 30–27 decision migrates from five to three rounds without changing scoring or graph data',async({page})=>{
+ const reference=await page.evaluate(()=>{
+  const make=(i)=>({
+   elapsed:300,
+   observations:[{side:'a',time:20+i,type:'exchange'},{side:'b',time:50+i,type:'impact'},{side:'a',time:130+i,type:'exchange'}],
+   control:[{side:'a',start:145+i,end:165+i}],
+   score:{winner:'a',margin:9,deductions:[0,0],confirmedAt:'2026-11-08T03:20:00.000Z'}
+  });
+  const rounds=[make(0),make(1),make(2),{elapsed:0,observations:[],control:[],score:null}];
+  const savedRounds=JSON.stringify(rounds.slice(0,3));
+  const workspace={version:2,selected:'event-sv',events:[{
+   id:'event-sv',name:'UFC fight night',date:'2026-11-07',judge:'',
+   fights:[{id:'fight-sv',left:'Tatiana Suárez',right:'Virna Jandiroba',division:"Women's Strawweight",
+    rounds:5,duration:300,index:3,roundData:rounds,status:'in-progress',result:null,legacyId:null,cornerLayout:'red-left'}]
+  }]};
+  localStorage.setItem('copper47.workspace.v2',JSON.stringify(workspace));
+  return savedRounds;
+ });
+ await page.reload();
+ await page.locator('.bout-row .primary').click();
+ await expect(page.locator('#wbRound')).toHaveText('ROUND 3 OF 3');
+ await expect(page.locator('#wbTotal')).toHaveText('30 – 27');
+ await expect(page.locator('#finishBtn')).toHaveText('Finalize decision');
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).events[0].fights[0]);
+ expect(saved.rounds).toBe(3);
+ expect(saved.index).toBe(2);
+ expect(saved.status).toBe('awaiting-result');
+ expect(saved.roundData).toHaveLength(3);
+ expect(JSON.stringify(saved.roundData)).toBe(reference);
+ const canvas=await page.locator('#graph').evaluate(el=>el.toDataURL('image/png'));
+ expect(canvas.length).toBeGreaterThan(1000);
+ await page.click('#finishBtn');
+ await expect(page.locator('#resultType')).toHaveValue('decision');
+ await expect(page.locator('#resultWinner')).toHaveValue('a');
+ await page.click('#confirmFinish');
+ await expect(page.locator('#resultLabel')).toContainText('DECISION');
+ const finalized=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).events[0].fights[0]);
+ expect(finalized.rounds).toBe(3);
+ expect(finalized.result).toMatchObject({type:'decision',winner:'a'});
+ expect(JSON.stringify(finalized.roundData)).toBe(reference);
+});
+
+test('fight editor can shorten a different five-round fight after three scored rounds without touching scores',async({page})=>{
+ await page.evaluate(()=>{
+  const make=()=>({elapsed:200,observations:[{side:'a',time:20,type:'exchange'}],
+   control:[],score:{winner:'a',margin:9,deductions:[0,0],confirmedAt:'2026-11-08T03:20:00.000Z'}});
+  const rounds=[make(),make(),make(),{elapsed:0,observations:[],control:[],score:null}];
+  const w={version:2,selected:'e-edit',events:[{id:'e-edit',name:'Edit test',date:'2026-11-07',judge:'',
+   fights:[{id:'f-edit',left:'Red A',right:'Blue B',division:'Lightweight',rounds:5,duration:300,
+   index:3,roundData:rounds,status:'in-progress',result:null,legacyId:null,cornerLayout:'red-left'}]}]};
+  localStorage.setItem('copper47.workspace.v2',JSON.stringify(w));
+ });
+ await page.reload();
+ await page.locator('.bout-more summary').click();
+ await page.locator('.bout-menu button').filter({hasText:'Edit'}).click();
+ await page.selectOption('#editRounds','3');
+ await page.click('#saveEdit');
+ await expect(page.locator('.bout-meta')).toContainText('3 rounds');
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).events[0].fights[0]);
+ expect(saved.roundData).toHaveLength(3);
+ expect(saved.roundData.every(r=>r.score.winner==='a')).toBe(true);
+ expect(saved.status).toBe('awaiting-result');
+});
+
+test('reducing scheduled rounds refuses to delete fourth-round activity',async({page})=>{
+ await page.evaluate(()=>{
+  const make=()=>({elapsed:200,observations:[{side:'a',time:20,type:'exchange'}],
+   control:[],score:{winner:'a',margin:9,deductions:[0,0],confirmedAt:'2026-11-08T03:20:00.000Z'}});
+  const rounds=[make(),make(),make(),{elapsed:18,observations:[{side:'b',time:10,type:'impact'}],control:[],score:null}];
+  const w={version:2,selected:'e-keep',events:[{id:'e-keep',name:'Do not erase',date:'2026-11-07',judge:'',
+   fights:[{id:'f-keep',left:'Red A',right:'Blue B',division:'Lightweight',rounds:5,duration:300,
+   index:3,roundData:rounds,status:'in-progress',result:null,legacyId:null,cornerLayout:'red-left'}]}]};
+  localStorage.setItem('copper47.workspace.v2',JSON.stringify(w));
+ });
+ await page.reload();
+ await page.locator('.bout-more summary').click();
+ await page.locator('.bout-menu button').filter({hasText:'Edit'}).click();
+ await page.selectOption('#editRounds','3');
+ await page.click('#saveEdit');
+ await expect(page.locator('#toast')).toContainText('Cannot shorten');
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('copper47.workspace.v2')).events[0].fights[0]);
+ expect(saved.rounds).toBe(5);
+ expect(saved.roundData).toHaveLength(4);
+ expect(saved.roundData[3].elapsed).toBe(18);
+ expect(saved.roundData[3].observations).toHaveLength(1);
+});
