@@ -32,6 +32,10 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 Round 1: On the feet fairly even with Jandiroba landing kicks and trying for straight punches and Suarez jabbing to the body. A lot of control time for Suarez. 10-9 Suarez
 
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-155ccb4b" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-213844-351.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
 <section class="article-html-visual">
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-3e1e01f2" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
@@ -41,7 +45,7 @@ Round 1: On the feet fairly even with Jandiroba landing kicks and trying for str
 </section>
 Round 2: Very even on the feet again, Suarez a bit more aggression I suppose and she gets the takedown. She's working the body but the punches are virtually ineffective. Virna gets a kneebar at the very end but can't secure it. Suarez 20-18
 
-<figure class="article-inline-image article-inline-image--break article-inline-image--center article-inline-image--full article-inline-video--break article-inline-video--center" data-writer-media-id="media-3e1e01f2" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+<figure class="article-inline-image article-inline-video--break article-inline-video--center article-inline-image--break article-inline-image--center" data-writer-media-id="media-3e1e01f2" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-213238-731.png" alt="ufc vegas 124 live results scoring" loading="lazy">
 </figure>
 
