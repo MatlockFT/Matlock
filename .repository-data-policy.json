@@ -258,6 +258,24 @@
       "publicContract": true
     },
     {
+      "id": "judging-event-catalog",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/copper-card-catalog.json"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "events",
+      "producers": [
+        "jekyll:build-from-_data"
+      ],
+      "consumers": [
+        "assets/js/copper-event-manager.js"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
       "id": "fighter-birthday-seeds",
       "storage": "public-runtime",
       "paths": [
