@@ -26,7 +26,7 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 ## Main card
 
-### Waldo Cortes-Acosta vs. Johnny Walker — *Pending*
+### Waldo Cortes-Acosta vs. Johnny Walker — *Johnny Walker wins via TKO in round 2 (backhand, right hand follow up, ground and pound)*
 
 Round 1: Insane first round with Walker destroying Acosta's lead leg and landing some good strikes. Great movement. But he did get dropped. 10-9 Cortes-Acosta
 
@@ -53,6 +53,12 @@ Round 3: Both guys are tired. Waldo throwing heavy, Walker throwing kicks. Acost
 </figure>
 
 Johnny Walker says fuck everyone who said he doesn't have a chin. 
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-2e2ac0e1" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-220905-378.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
 
 ---
 
