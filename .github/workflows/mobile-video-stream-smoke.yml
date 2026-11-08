@@ -18,6 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - name: Check out website source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
       - name: Verify real video byte-range delivery
         shell: bash
         run: |
@@ -38,3 +46,13 @@ jobs:
           [[ "$(wc -c </tmp/video-clip.bin)" -eq 1024 ]]
           [[ "$(dd if=/tmp/video-clip.bin bs=1 skip=4 count=4 2>/dev/null)" == 'ftyp' ]]
           echo "HTTP 206, inline MP4, and byte-range playback contract verified."
+
+      - name: Install WebKit for mobile playback regression
+        run: |
+          npm install --no-save --no-package-lock @playwright/test@1.55.0
+          npx playwright install --with-deps webkit
+
+      - name: Verify recent release MP4 decodes on mobile WebKit
+        env:
+          SITE_BASE_URL: https://mmamatlock.com
+        run: npx playwright test scripts/qa/site-visual-smoke.spec.cjs --browser=webkit --grep "release-hosted clips" --reporter=line
