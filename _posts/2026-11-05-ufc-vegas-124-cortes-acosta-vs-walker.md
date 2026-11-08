@@ -103,7 +103,7 @@ We love a vet lesson around here, and Davey has handed out a few of them over th
 </section>
 I think Billy Elekana is in for a tough night. If Junior Tafa smacked him up, I think Fernando might just put him out. Is he tough? Sure. But I think Fernando dismantles him from the outside and when Billy tries to close distance, he'll get chewed up. I feel like Billy is going to get desperate looking for something in the early ongoings of the fight and gets put to sleep. 
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Lucas%20Fernando%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Lucas%20Fernando%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Lucas%20Fernando%20wins%20via%20unanimous%20decision%20(29-28%20x3)%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Lucas Fernando</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div></aside>
 </section>
 ---
