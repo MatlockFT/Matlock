@@ -520,6 +520,28 @@ test.describe('Article native sharing on mobile', () => {
 
     expect(pageErrors).toEqual([]);
   });
+
+  test('release-hosted clips get a Safari-readable partial MP4 response', async ({ page, request }) => {
+    await page.goto(targetUrl('/2026/11/07/ufc-vegas-124-live-results-scorecards.html'), {
+      waitUntil: 'domcontentloaded', timeout: 45000
+    });
+    const video = page.locator('.post-body figure.article-inline-video video').first();
+    await expect(video).toHaveCount(1);
+    const source = await video.getAttribute('src');
+    expect(source).toMatch(/^https:\/\/mmamatlock-writer-auth\.netlify\.app\/media\/releases\//);
+
+    const response = await request.get(source, {
+      headers: { Range: 'bytes=0-1023' },
+      timeout: 45000
+    });
+    expect(response.status(), 'mobile playback requires an HTTP 206 byte-range reply').toBe(206);
+    expect((response.headers()['content-type'] || '').split(';')[0]).toBe('video/mp4');
+    expect(response.headers()['content-range']).toMatch(/^bytes 0-1023\/\d+$/);
+    expect(response.headers()['content-disposition']).toBe('inline');
+    const bytes = await response.body();
+    expect(bytes.length).toBe(1024);
+    expect(bytes.toString('ascii', 4, 8)).toBe('ftyp');
+  });
 });
 
 
