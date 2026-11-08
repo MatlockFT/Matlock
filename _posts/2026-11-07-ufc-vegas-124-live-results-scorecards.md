@@ -43,7 +43,7 @@ Round 1. Nina does a McGregor jumping switch kick, dives for a takedown, pitter 
   <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-200004-077.png" alt="ufc vegas 124 live results scoring" loading="lazy">
 </figure>
 
-Round 2: Now they're exchanging. I'm reminded again why I'm not really high on Milsevic who is doing well but there is something about her game that just doesn't quit click. After several exchanges with Priscila, she takes her down, beats her up in mount, ref Herzog steps in to stop it.
+Round 2: Now they're exchanging. I'm reminded again why I'm not really high on Milsevic who is doing well but there is something about her game that just doesn't quite click. After several exchanges with Priscila, she takes her down, beats her up in mount, ref Herzog steps in to stop it.
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-af3b61bc" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
