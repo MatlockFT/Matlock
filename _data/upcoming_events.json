@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-08T07:36:24.711Z",
+  "generated_at": "2026-11-08T14:31:45.557Z",
   "events": [
     {
       "id": "rizin-abc-presents-rizin-55-2026-11-08",
@@ -459,7 +459,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/THOMPSON_STEPHEN_L_07-12.png?itok=T4Y2Tqct",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-130"
+                  "moneyline": "-140"
                 },
                 {
                   "name": "Charles Radtke",
@@ -467,7 +467,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/RADTKE_CHARLES_L_04-11.png?itok=rRI5kMVe",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+102"
+                  "moneyline": "+110"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -639,7 +639,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-04/ELDER_EVAN_L_04-26.png?itok=FqH6Jch-",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-120"
+                  "moneyline": "-130"
                 },
                 {
                   "name": "Samuel Sanches",
@@ -647,7 +647,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/SANCHES_SAMUEL_R_09-09.png?itok=RWqnGB4l",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+100"
+                  "moneyline": "+110"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -1102,6 +1102,27 @@
             {
               "order": 3,
               "label": "",
+              "weight_class": "71.0 kg",
+              "fighters": [
+                {
+                  "name": "Shinya Aoki",
+                  "initials": "SA",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2017/02/28/51550c31f4ed8dbc7e8483a50beaeb8ebe92e6eb.png",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Taisei Sakuraba",
+                  "initials": "TS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/20/8a1df27a23a086198b13653ce9785715c078e59f_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
               "weight_class": "66.0 kg",
               "fighters": [
                 {
@@ -1121,7 +1142,7 @@
               ]
             },
             {
-              "order": 4,
+              "order": 5,
               "label": "",
               "weight_class": "49.0 kg",
               "fighters": [
@@ -1142,7 +1163,7 @@
               ]
             },
             {
-              "order": 5,
+              "order": 6,
               "label": "",
               "weight_class": "120.0 kg",
               "fighters": [
@@ -1163,7 +1184,7 @@
               ]
             },
             {
-              "order": 6,
+              "order": 7,
               "label": "",
               "weight_class": "57.0 kg",
               "fighters": [
@@ -1184,7 +1205,7 @@
               ]
             },
             {
-              "order": 7,
+              "order": 8,
               "label": "",
               "weight_class": "57.0 kg",
               "fighters": [
@@ -1205,7 +1226,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 9,
               "label": "",
               "weight_class": "57.0 kg",
               "fighters": [
@@ -1226,7 +1247,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 10,
               "label": "",
               "weight_class": "59.0 kg",
               "fighters": [
@@ -1247,7 +1268,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "61.0 kg",
               "fighters": [
