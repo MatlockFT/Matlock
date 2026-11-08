@@ -2,7 +2,7 @@
 layout: post
 title: "UFC 334: Gane vs. Hokit"
 description: "UFC 334 fight breakdowns, fighter profiles and matchup stats for November 14 at Madison Square Garden, including updates on withdrawn bouts."
-date: 2026-10-27
+date: 2026-11-08
 category: Breakdown
 author: Matlock
 tags:
