@@ -33,7 +33,6 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 ## Prelims
 
-- 
 - Gabriel Lorenco vs. Thomas Petersen — *Pending*
 
 
@@ -43,7 +42,7 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 ---
 
-### Mitch Raposo vs. Marcos Degli — *Pending*
+### Mitch Raposo vs. Marcos Degli — *Mitch Raposo wins via unanimous decision (29-28 x3)*
 
 Round 1: A close round but Raposo simply did more and landed more. Degli is obviously fast and landed some damaging, powerful strikes but it just wasn't enough on my card. 10-9 Raposo who worked the body quite nicely.
 
