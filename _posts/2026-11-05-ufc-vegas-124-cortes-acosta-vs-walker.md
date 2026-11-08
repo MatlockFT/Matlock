@@ -147,7 +147,7 @@ Sorry, Priscila.
 </section>
 Raposo is tough and has some boxing skills. I could see this being competitive on the feet, but Degli looks to be the more well-rounded fighter. He's an inch taller, holds the reach advantage, and has faced a higher caliber of competition. This should be a good fight. Degli would be smart to push the action and break Raposo's decision streak, and I think he'll do just that. He seems like the kind of fighter who shines brighter when all eyes are on him.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Marcos%20Degli%22%2C%22method%22%3A%22Submission%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Marcos%20Degli%22%2C%22method%22%3A%22Submission%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Mitch%20Raposo%20wins%20via%20unanimous%20decisions%20(29-28%20x3)%22%2C%22outcome%22%3A%22incorrect%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Marcos Degli</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Submission</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div></aside>
 </section>
 ---
