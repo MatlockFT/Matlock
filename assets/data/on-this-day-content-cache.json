@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-11-01T16:20:21.474Z",
+  "updatedAt": "2026-11-08T16:17:52.026Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -15412,6 +15412,23 @@
       "sourceType": "event-title",
       "wikipediaTitle": "UFC Fight Night: Moicano vs. Nolan",
       "mainEvent": "Moicano vs. Nolan"
+    },
+    "ufc:2026-11-07:ufc-fight-night-cortes-acosta-vs-walker": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-11-08T16:17:51.473Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Cortes-Acosta vs. Walker",
+      "mainEvent": "Cortes-Acosta vs. Walker"
+    },
+    "pancrase:2026-11-08:pancrase-368": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-11-08T16:17:52.026Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2026/1108.html",
+      "mainEvent": "菊入正行 vs. 平信一"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 2,
   "strategyVersion": 1,
-  "updatedAt": "2026-10-04T14:58:19.702Z",
+  "updatedAt": "2026-11-08T16:17:52.026Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -1698,6 +1698,11 @@
     },
     "ナチン・サット": {
       "checkedAt": "2026-10-04T14:58:19.702Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "平信一": {
+      "checkedAt": "2026-11-08T16:17:52.026Z",
       "status": "unresolved",
       "error": "No Wikidata match"
     }
@@ -10192,6 +10197,28 @@
         "checkedAt": "2026-10-04T14:58:19.702Z",
         "status": "no-headliner-image"
       }
+    },
+    "pancrase:2026-11-08:pancrase-368": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-11-08T16:17:52.026Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2026/1108.html",
+        "rawNames": [
+          "菊入正行",
+          "平信一"
+        ],
+        "englishNames": [
+          "菊入正行",
+          "平信一"
+        ],
+        "mainEvent": "菊入正行 vs. 平信一"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-11-08T16:17:52.026Z",
+        "status": "no-headliner-image"
+      }
     }
   },
   "posters": {
@@ -12750,8 +12777,16 @@
       "sourceUrl": "https://www.pancrase.co.jp/data/result/2026/1004.html",
       "imageUrl": "https://www.pancrase.co.jp/data/result/2026/img/pancrase367.jpg",
       "imageAlt": "PANCRASE 367"
+    },
+    "pancrase:2026-11-08:pancrase-368": {
+      "strategyVersion": 3,
+      "checkedAt": "2026-11-08T16:19:40.273Z",
+      "status": "resolved",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2026/1108.html",
+      "imageUrl": "https://www.pancrase.co.jp/data/result/2026/img/pancrase368.jpg",
+      "imageAlt": "PANCRASE 368"
     }
   },
   "posterStrategyVersion": 3,
-  "posterUpdatedAt": "2026-10-04T14:59:54.745Z"
+  "posterUpdatedAt": "2026-11-08T16:19:40.273Z"
 }
