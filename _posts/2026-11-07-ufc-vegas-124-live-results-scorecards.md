@@ -27,7 +27,13 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 ## Main card
 
 - Waldo Cortes-Acosta vs. Johnny Walker — *Pending*
-- Tatiana Suarez vs. Virna Jandiroba — *Pending*
+
+### Tatiana Suarez vs. Virna Jandiroba — *Pending*
+
+Round 1: 
+
+
+---
 
 ### Davey Grant vs. Elijah Smith — *Elijah smith wins via knockout in round 1*
 
@@ -38,6 +44,8 @@ Round 1: Both meet in center and exchange kicks. They both trade punches, clip e
     <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-205514-422.mp4" aria-label="Article video"></video>
   </div>
 </figure>
+
+There is a lot to like about Alijah Smith who continues to have great performances, good on the microphone, a class act, and calls his shot. 
 
 ---
 
