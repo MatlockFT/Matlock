@@ -1205,7 +1205,7 @@ function suggestedRound(r){
  // Keep the existing raw-exchange 10–8 threshold. Sustained offensive
  // control can ALSO support 10–8, but control time alone cannot produce it.
  const lead=counts[side],trail=counts[other];
- const wide=lead>=6&&lead-trail>=5&&lead/Math.max(1,total)>=.8;
+ const wide=lead>=6&&lead-trail>=6&&lead/Math.max(1,total)>=.8;
  const sustained=lead>=5&&impacts[side]>=1&&
   evidence.groups[side].holding>=3&&time[side]>=120&&
   time[side]-time[other]>=75&&
