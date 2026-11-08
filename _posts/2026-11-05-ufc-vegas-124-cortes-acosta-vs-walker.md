@@ -46,7 +46,7 @@ Waldo Cortes-Acosta meets Johnny Walker in a short-notice heavyweight main event
 </section>
 I'll keep my reasoning short and sweet: Johnny Walker is just not someone I can trust to pick. I think Mr. Waldo laid out the reasoning pretty well. Walker's chin was already suspect at light heavyweight, and now he's moved up to heavyweight? It's gonna be bad. He did pick up a win in his heavyweight debut, but the farther he goes in this division, the more likely he is to get slept. I think it's only a matter of time, so I'll continue to fade him until it happens or Johnny Walker somehow becomes undeniable.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Waldo%20Cortes%20Acosta%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Waldo%20Cortes%20Acosta%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Johnny%20Walker%20via%20round%203%20TKO%22%2C%22outcome%22%3A%22incorrect%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Waldo Cortes Acosta</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div></aside>
 </section>
 ---
