@@ -13,7 +13,7 @@ tags:
   - Amanda Nunes
 show_toc: false
 published: true
-pinned: false
+pinned: true
 listing_visibility: normal
 spoiler_warning: false
 preserve_line_breaks: true
@@ -29,6 +29,8 @@ image:
   alt: "UFC 334: Gane vs. Hokit - That's a pretty nice thumbnail if I do say so myself"
   position: center center
 members_only: false
+news_feature: true
+news_feature_until: "2026-11-16T05:35:00.000Z"
 ---
 
 UFC 334: Gane vs. Hokit takes place Saturday, November 14, at Madison Square Garden in New York City. The early prelims begin at 5 p.m. ET, followed by the prelims at 7 p.m. ET and the main card at 9 p.m. ET. The card streams on Paramount+.
