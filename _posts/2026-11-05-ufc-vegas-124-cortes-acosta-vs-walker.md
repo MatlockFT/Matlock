@@ -174,7 +174,7 @@ It wouldn't blow my balls off if Ollie pulled off some shit Nakamura didn't see 
 
 Strange fight, but I'll roll with the southpaw counterstriker who has faced a higher caliber of competition. That said, I wouldn't be surprised in the slightest if Ollie pulled off the upset.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Keiichiro%20Nakamura%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Keiichiro%20Nakamura%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Ollie%20Schmid%20wins%20via%20unanimous%20decision%20(29-28%20x3)%22%2C%22outcome%22%3A%22incorrect%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Keiichiro Nakamura</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 2</span></span></div></aside>
 </section>
 ---
@@ -195,7 +195,7 @@ I'm showing blind support for my northern brethren, Thomas Petersen. He's got so
 
 As for me, I'm picking Petersen to survive and turn this into a grindy fight.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Thomas%20Petersen%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Thomas%20Petersen%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Thomas%20Petersen%20wins%20via%20TKO%20round%203%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Thomas Petersen</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Decision</span></span></div></aside>
 </section>
 ---
@@ -214,7 +214,7 @@ As for me, I'm picking Petersen to survive and turn this into a grindy fight.
 </section>
 I hate this fight and everything about it. In theory, Karine Silva should come out here and take Fernandes down and tap her out via rear naked choke in the first round. That's what I'm going with.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Karine%20Silva%22%2C%22method%22%3A%22Submission%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22RNC%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Karine%20Silva%22%2C%22method%22%3A%22Submission%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22RNC%22%2C%22officialResult%22%3A%22Karine%20Silva%20via%20unanimous%20decision%20(29-28%20x3)%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Karine Silva</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Submission</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 1</span></span></div><p class="article-pick-card__note">RNC</p></aside>
 </section>
 ---
