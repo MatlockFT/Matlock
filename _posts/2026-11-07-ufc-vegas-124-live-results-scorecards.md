@@ -44,9 +44,21 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 Round 1: Lorenco just went off, smashing Petersen but Petersen is so fucking tough this is insane. Aside from a takedown, one uppercut, and some control time - Petersen on crushed. 10-8 Lorenco
 
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-b8752d3e" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-183409-083.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
 Round 2: Lorenco is fucking exhausted and Petersen drops Lorenco. He secures top position but is unable to do much with it. Both gassed, Petersen barely getting the better of the exchanges on the feet. 19-18 Lorenco
 
-Round 3: Petersen lands some shots, closes distance takes Lorenco down. He is maintaining position and chipping away but with not much time left on the clock Petersen starts hammering away! INCREDIBLE! THE REF STOPS! MINNESOTA TOUGH! PETERSEN GETS IT DONE IN ROUND 3!
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-da98c0ab" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-183418-874.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+Round 3: Petersen lands some shots, closes distance takes Lorenco down. He is maintaining position and chipping away but with not much time left on the clock Petersen starts hammering away! INCREDIBLE! THE REF STOPS! MINNESOTA TOUGH! PETERSEN GETS IT DONE IN ROUND 3! Had it not been stopped, Petersen would've fought to a draw. 
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-4af5aa98" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-183442-817.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
 
 <figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-62881906" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-182655-324.png" alt="ufc vegas 124 live results scoring" loading="lazy">
