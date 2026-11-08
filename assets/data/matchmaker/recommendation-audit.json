@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-11-07T21:05:46.431Z",
+  "generatedAt": "2026-11-08T00:30:00.778Z",
   "engineVersion": 2,
   "subjects": 360,
-  "publishedRecommendations": 981,
+  "publishedRecommendations": 994,
   "recommendationSlots": {
-    "0": 30,
-    "1": 3,
-    "2": 3,
-    "3": 324
+    "0": 26,
+    "1": 2,
+    "2": 4,
+    "3": 328
   },
   "caseCounts": {
-    "rebound-pairing": 415,
-    "rising-vs-rising": 294,
-    "step-up-vs-rebound": 122,
-    "ranking-opportunity": 53,
+    "rebound-pairing": 419,
+    "rising-vs-rising": 301,
+    "step-up-vs-rebound": 119,
+    "ranking-opportunity": 56,
     "rankings-progression": 49,
-    "divisional-sorting": 25,
+    "divisional-sorting": 27,
     "title-case": 11,
-    "title-eliminator": 9,
-    "prospect-test": 3
+    "title-eliminator": 11,
+    "prospect-test": 1
   },
   "confidenceCounts": {
-    "high": 923,
-    "low": 32,
-    "medium": 26
+    "high": 937,
+    "low": 34,
+    "medium": 23
   },
   "averageRecentOpponentLinkCoverage": 0.9054,
-  "sameCardRecommendations": 51,
-  "sameCardRecommendationRatio": 0.052,
-  "asymmetricTopThreeRecommendations": 327,
-  "asymmetricTopThreeRatio": 0.3333,
-  "publicPublishedRecommendations": 955,
-  "publicAsymmetricTopThreeRecommendations": 242,
-  "publicAsymmetricTopThreeRatio": 0.2534,
-  "engineGenericDivisionalSortingRecommendations": 25,
+  "sameCardRecommendations": 47,
+  "sameCardRecommendationRatio": 0.0473,
+  "asymmetricTopThreeRecommendations": 326,
+  "asymmetricTopThreeRatio": 0.328,
+  "publicPublishedRecommendations": 966,
+  "publicAsymmetricTopThreeRecommendations": 237,
+  "publicAsymmetricTopThreeRatio": 0.2453,
+  "engineGenericDivisionalSortingRecommendations": 27,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -41,7 +41,7 @@
     "title": "UFC Fight Night: Moicano vs Nolan",
     "date": "2026-10-31",
     "subjects": 24,
-    "publicRecommendations": 72,
+    "publicRecommendations": 71,
     "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
@@ -50,7 +50,7 @@
       "title": "UFC Fight Night: Moicano vs Nolan",
       "date": "2026-10-31",
       "subjects": 24,
-      "publicRecommendations": 72,
+      "publicRecommendations": 71,
       "noClearMatchupSubjects": 0
     },
     {
@@ -74,7 +74,7 @@
       "title": "UFC Fight Night: Allen vs Duncan",
       "date": "2026-10-10",
       "subjects": 24,
-      "publicRecommendations": 59,
+      "publicRecommendations": 60,
       "noClearMatchupSubjects": 3
     },
     {
@@ -82,8 +82,8 @@
       "title": "UFC 332: Silva vs Wang",
       "date": "2026-10-03",
       "subjects": 28,
-      "publicRecommendations": 77,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 80,
+      "noClearMatchupSubjects": 1
     },
     {
       "id": "ufc-fight-night-september-26-2026",
@@ -106,8 +106,8 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 59,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 62,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-september-05-2026",
@@ -138,8 +138,8 @@
       "title": "UFC 330: Makhachev vs Machado Garry",
       "date": "2026-08-15",
       "subjects": 24,
-      "publicRecommendations": 56,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 60,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-august-08-2026",
@@ -154,8 +154,8 @@
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 69,
-      "noClearMatchupSubjects": 5
+      "publicRecommendations": 70,
+      "noClearMatchupSubjects": 4
     }
   ],
   "genericExamples": [
@@ -217,13 +217,6 @@
     },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Dariya Zheleznyakova",
-      "opponent": "Chelsea Chandler",
-      "score": 47,
-      "rationale": "Dariya Zheleznyakova and Chelsea Chandler occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Ernesta Kareckaite",
       "opponent": "Melissa Gatto",
       "score": 90,
@@ -253,16 +246,16 @@
     {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Melissa Gatto",
-      "opponent": "Jj Aldrich",
-      "score": 81,
-      "rationale": "Melissa Gatto and Jj Aldrich occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "opponent": "Gabriella Fernandes",
+      "score": 86,
+      "rationale": "Melissa Gatto and Gabriella Fernandes occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Melissa Gatto",
-      "opponent": "Juliana Miller",
-      "score": 83,
-      "rationale": "Melissa Gatto and Juliana Miller occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "opponent": "Jj Aldrich",
+      "score": 81,
+      "rationale": "Melissa Gatto and Jj Aldrich occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
@@ -298,6 +291,13 @@
       "opponent": "Melissa Gatto",
       "score": 81,
       "rationale": "Jj Aldrich and Melissa Gatto occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Hooker vs Parnasse",
+      "fighter": "Salahdine Parnasse",
+      "opponent": "Gabe Green",
+      "score": 46,
+      "rationale": "Salahdine Parnasse and Gabe Green occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
@@ -480,25 +480,25 @@
     {
       "event": "UFC Fight Night: Moicano vs Nolan",
       "fighter": "Cody Durden",
-      "opponent": "Rei Tsuruya",
-      "pairScore": 81,
+      "opponent": "Mitch Raposo",
+      "pairScore": 80,
       "case": "rising-vs-rising",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Tagir Ulanbekov",
-          "score": 96,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Steve Erceg",
-          "score": 94,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Andre Lima",
-          "score": 88,
+          "opponent": "Jose Ochoa",
+          "score": 91,
           "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Rei Tsuruya",
+          "score": 91,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Tagir Ulanbekov",
+          "score": 91,
+          "case": "ranking-opportunity"
         }
       ]
     },
@@ -555,6 +555,31 @@
     {
       "event": "UFC Fight Night: Moicano vs Nolan",
       "fighter": "Francis Marshall",
+      "opponent": "Kurtis Campbell",
+      "pairScore": 93,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Dakota Hope",
+          "score": 95,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Murtazali Magomedov",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Pavel Andrusca",
+          "score": 94,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Francis Marshall",
       "opponent": "Jack Jenkins",
       "pairScore": 92,
       "case": "rebound-pairing",
@@ -599,6 +624,31 @@
           "opponent": "Losene Keita",
           "score": 93,
           "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "fighter": "Dakota Hope",
+      "opponent": "Murtazali Magomedov",
+      "pairScore": 93,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Ezra Elliot",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Kurtis Campbell",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Rodrigo Vera",
+          "score": 94,
+          "case": "rising-vs-rising"
         }
       ]
     },
@@ -874,56 +924,6 @@
           "opponent": "Tereza Bleda",
           "score": 87,
           "case": "divisional-sorting"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Lucia Szabova",
-      "opponent": "Tereza Bleda",
-      "pairScore": 76,
-      "case": "divisional-sorting",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Anna Melisano",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Mackenzie Stiller",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Ernesta Kareckaite",
-          "score": 87,
-          "case": "divisional-sorting"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Lucia Szabova",
-      "opponent": "Jeisla Chaves",
-      "pairScore": 72,
-      "case": "divisional-sorting",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Tainara Lisboa",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Anna Melisano",
-          "score": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Mackenzie Stiller",
-          "score": 90,
-          "case": "rebound-pairing"
         }
       ]
     }
