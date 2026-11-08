@@ -34,11 +34,38 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 ## Prelims
 
-- Keiichiro Nakamura vs. Ollie Schmid — *Pending*
+- 
 - Mitch Raposo vs. Marcos Degli — *Pending*
 - Gabriel Lorenco vs. Thomas Petersen — *Pending*
 - Priscila Cachoeira vs. Nina Milošević — *Pending*
 
+### Keiichiro Nakamura vs. Ollie Schmid — *Ollie Schmid wins via unanimous decisions (29-28 x3)*
+
+Round 1: All contest at range almost throwing all kicks. Schmid at the more highlightable shots, if you will but Nakamura landed more volume. 10-9 Nakamura but I could see it 10-9 the other way.
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-c55de481" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-190446-254.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+Round 2. More of the same but Nakamura kicked Schmid right in the cock. Schmid had a much better round, more volume, more damaging strikes 19-19 Schmid. 
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-4361c5a2" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-190438-265.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-835e4341" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-190349-409.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
+
+Round 3: Nakamura comes out fast and strong. Landing at a high clip and doing damage. Now they are striking at range, a tempo that favors more Schmid. Schmid lands a low blow, ref stops it but then the ref corner says it wasn't a low blow, so action starts again right away. Nakamura pours it on and drops Schmid. Could be scored a 10-8 but for me 10-9. 29-28 Nakamura for me.
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-0ef8a113" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-190132-371.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+Judges disagree and give Schmid 29-28 (x3)
 
 ### Gabriel Lorenco vs. Thomas Petersen — *Thomas Petersen via TKO in round 3 (Ground and pound)*
 
@@ -58,10 +85,6 @@ Round 3: Petersen lands some shots, closes distance takes Lorenco down. He is ma
 
 <figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-4af5aa98" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-183442-817.png" alt="ufc vegas 124 live results scoring" loading="lazy">
-</figure>
-
-<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-62881906" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
-  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-182655-324.png" alt="ufc vegas 124 live results scoring" loading="lazy">
 </figure>
 
 ---
