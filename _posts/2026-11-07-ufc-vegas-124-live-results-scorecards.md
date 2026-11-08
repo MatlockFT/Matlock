@@ -42,7 +42,7 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 ### Gabriel Lorenco vs. Thomas Petersen — *Thomas Petersen via TKO in round 3 (Ground and pound)*
 
-Round 1: Lorenco just went off, smashing Petersen but Petersen is so fucking tough this is insane. Aside from a takedown, one uppercut, and some control time - Petersen on crushed. 10-8 Lorenco
+Round 1: Lorenco just went off, smashing Petersen but Petersen is so fucking tough this is insane. Aside from a takedown, one uppercut, and some control time - Petersen got crushed. 10-8 Lorenco
 
 <figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-b8752d3e" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-183409-083.png" alt="ufc vegas 124 live results scoring" loading="lazy">
