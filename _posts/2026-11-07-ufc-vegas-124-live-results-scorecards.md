@@ -28,8 +28,18 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 - Waldo Cortes-Acosta vs. Johnny Walker — *Pending*
 - Tatiana Suarez vs. Virna Jandiroba — *Pending*
-- Davey Grant vs. Elijah Smith — *Pending*
 
+### Davey Grant vs. Elijah Smith — *Elijah smith wins via knockout in round 1*
+
+Round 1: Both meet in center and exchange kicks. They both trade punches, clip each other but Davey took the worse shot. Elijah all over him and knocks him down and out. Davey's eyes are wide open, he's seeing visions of the Land of Wind and Ghosts. 
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-dc145e53" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-205514-422.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
+
+---
 
 ### Billy Elekana vs. Lucas Fernando — *Lucas Fernando wins via unanimous decision (29-28 x3)*
 
