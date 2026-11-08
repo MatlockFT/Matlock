@@ -34,12 +34,48 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 ## Prelims
 
-- Karine Silva vs. Gabriella Fernandes — *Pending*
 - Keiichiro Nakamura vs. Ollie Schmid — *Pending*
 - Mitch Raposo vs. Marcos Degli — *Pending*
 - Gabriel Lorenco vs. Thomas Petersen — *Pending*
 - Priscila Cachoeira vs. Nina Milošević — *Pending*
 
+
+### Gabriel Lorenco vs. Thomas Petersen — *Pending*
+
+Round 1: 
+
+---
+
+### Karine Silva vs. Gabriella Fernandes — *Karine Silva wins via unanimous decision (29-28 x3)*
+### 
+Round 1: Tremendously slow round where they just held each other against the cage. silva landed more strikes against the cage with no separation. 10-9 Silva
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-1a139bd7" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-180949-534.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+Round 2: Now both are at range landing kicks and trying to strike so far out of range. This is an all time shit fight. Now they're back against the cage doing the same thing they did in round 1. Silva landing better shots off the cage. 20-18 Silva
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-fe87bd50" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-180939-639.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+Round 3: Their striking at range is horrible but Silva landed better shots. It's so weird that all of Silva's best strikes come when she is being pressed against the cage. 30-27 Silva
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-5a606328" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-vegas-124-live-results-scorecards/ufc-vegas-124-live-results-scoring-pasted-20261107-180924-500.png" alt="ufc vegas 124 live results scoring" loading="lazy">
+</figure>
+
+
+An all time shit fight, easily forgettable. Silva screams at the bell when the fights over as if she just won via knockout and then cries when they call her name for the decision win. 
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-997e9896" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-181103-789.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
+
+---
 
 ### Jose Delano vs. Murtazali Magomedov — *Murtazali Magomedov wins via Unanimous Decision (29-28 x3)*
 
