@@ -26,7 +26,34 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 ## Main card
 
-- Waldo Cortes-Acosta vs. Johnny Walker — *Pending*
+### Waldo Cortes-Acosta vs. Johnny Walker — *Pending*
+
+Round 1: Insane first round with Walker destroying Acosta's lead leg and landing some good strikes. Great movement. But he did get dropped. 10-9 Cortes-Acosta
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-165a0aeb" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-220233-668.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
+
+Round 2: Walker, still targeting leg but he is slower, more tired. Story of this round is Waldo staying aggressive and getting a takedown. 20-18 Cortes-Acosta
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-c0786c9f" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-220049-465.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
+
+Round 3: Both guys are tired. Waldo throwing heavy, Walker throwing kicks. Acosta ties up, they're tired. Herzog separates, Waldo presses forward and Johnny just landed a spinning back elbow, could be a forearm or fist, and Waldo stumbles back! Johnny rushes FORWARD WITH A RIGHT HAND AND ACOSTA GOES DOWN, JOHNNY WITH GROUND AND POUND! HERZOG STOPS IT! 2:27 of the third round TKO victory for Johnny Walker!
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-9e1dcf15" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/ufc-vegas-124-live-results-scoring-video-20261107-220611-602.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
+
+
+---
 
 ### Tatiana Suarez vs. Virna Jandiroba — *Tatiana Suarez wins via unanimous decision (30-27 x2, 29-28)*
 
