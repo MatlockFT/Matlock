@@ -39,7 +39,7 @@ UFC Vegas 124 takes place November 7 in Las Vegas. Follow the results below as t
 
 
 ### Mitch Raposo vs. Marcos Degli — *Pending*
-
+Round 1: 
 
 ### Keiichiro Nakamura vs. Ollie Schmid — *Ollie Schmid wins via unanimous decisions (29-28 x3)*
 
