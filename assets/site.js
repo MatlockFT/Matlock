@@ -421,6 +421,18 @@
                 stage.appendChild(video);
             }
 
+            // On touch devices, route release-hosted clips through the streaming
+            // gateway, which preserves HTTP byte ranges and serves inline MP4.
+            // Keep the original URL for a one-time recovery if the gateway fails.
+            const releaseMatch = video.src.match(
+                /^https:\/\/github\.com\/MatlockFT\/Matlock\/releases\/download\/(writer-media-20\d{2}-\d{2})\/([a-z0-9._-]+\.mp4)(?:\?.*)?$/i
+            );
+            if (releaseMatch && window.matchMedia("(pointer: coarse)").matches) {
+                video.dataset.videoOriginalSrc = video.src;
+                video.dataset.videoProxyUrl =
+                    `https://mmamatlock-writer-auth.netlify.app/media/releases/${releaseMatch[1]}/${releaseMatch[2]}`;
+            }
+
             video.controls = false;
             video.removeAttribute("controls");
             video.autoplay = false;
@@ -510,9 +522,14 @@
                 event.stopPropagation();
                 clearError();
                 figure.dataset.videoManualPause = "false";
-                try {
-                    video.load();
-                } catch {}
+                // Retry the streaming endpoint first, then fall back to the
+                // original GitHub asset once if the endpoint is unavailable.
+                if (video.dataset.videoProxyUrl) {
+                    figure.dataset.videoProxyFallback = "false";
+                    video.src = video.dataset.videoProxyUrl;
+                }
+                figure.dataset.videoLoadStarted = "false";
+                ensureLoaded(figure, video);
                 tryPlay(figure, video, true);
             });
 
@@ -532,7 +549,20 @@
                 clearError();
                 if (activeVideo === figure && isOnScreen(figure)) tryPlay(figure, video);
             });
-            video.addEventListener("error", showError);
+            video.addEventListener("error", () => {
+                if (video.dataset.videoOriginalSrc &&
+                    figure.dataset.videoProxyFallback !== "true") {
+                    figure.dataset.videoProxyFallback = "true";
+                    figure.dataset.videoLoadStarted = "false";
+                    video.src = video.dataset.videoOriginalSrc;
+                    if (isOnScreen(figure)) {
+                        ensureLoaded(figure, video);
+                        tryPlay(figure, video);
+                    }
+                    return;
+                }
+                showError();
+            });
             video.addEventListener("keydown", event => {
                 if (event.key === " " || event.key === "Enter") {
                     event.preventDefault();
@@ -545,6 +575,7 @@
             });
 
             figure.dataset.videoManualPause = systemReducedMotion.matches ? "true" : "false";
+            if (video.dataset.videoProxyUrl) video.src = video.dataset.videoProxyUrl;
             video.pause();
             if (!visibilityObserver && isOnScreen(figure) && !systemReducedMotion.matches) {
                 ensureLoaded(figure, video);
