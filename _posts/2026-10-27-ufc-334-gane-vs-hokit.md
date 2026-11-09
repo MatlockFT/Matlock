@@ -179,13 +179,13 @@ And if Hokit can hold him down for extended periods and keep his own efforts on 
 
 Another thing to consider is that while Hokit has shown excellent conditioning over three rounds, we haven't seen him do this over five. Gane has that experience, and I don't think that's something we should overlook.
 
-I also wouldn't underestimate the Jackson-Wink camp and their ability to put together a really good game plan.
+Last, and probably most important factor of conditioning, is that Hokit is smaller and is not carrying muscle like Gane is. Hokit is most certainly a light-heavyweight or even middleweight fighter operating at heavyweight. He isn't carrying weight the same as these larger guys. I think he can go more rounds at a faster pace than Gane can and Hokit has proved it thus far. 
 
 So where do I land on this fight?
 
 I think Hokit has a good opportunity to win. If he can find his timing on the takedowns, work Gane against the cage with strikes, get him to the ground, and really put him through a grind, betting on his conditioning to outlast Gane's, then we might be in for another crazy fight.
 
-Even for Gane, if he gets tired, his entire game could collapse pretty quickly.
+Even for Gane who is super athletic, if he gets tired, his entire game could collapse pretty quickly.
 
 But the Curtis Blaydes fight gives me a lot of hesitation about picking Hokit.
 
@@ -195,20 +195,16 @@ I think if Gane is disciplined, sticks to a game plan, and is able to recover fr
 
 Well-timed jabs and leg kicks are going to be extremely effective for Gane, and from there, he can set up his more powerful shots.
 
-And that's really why I'm leaning toward a finish rather than a decision.
+I've flip flopped on this fight and I feel pretty comfortable with how this fight goes on both sides but I think at heavyweight I'm leaning towards the wrestler with conditioning.
 
-I think the accumulation of leg kicks, body kicks, and well-timed jabs could start slowing Hokit down, making his entries more predictable and forcing him to take bigger risks to get inside.
+I think Hokit might be able to wear Gane down through constant pressure and wrestling, Gane will get tired, and his defensive lapses that he has worked to tidy up will get exposed once again. 
 
-And as those entries become more desperate, the opportunities for Gane to land something significant are going to increase.
+We just have to see if Hokit can close the gap without getting decimated early in this fight. 
 
-Now, Hokit has shown an excellent chin, and I don't want to underestimate his ability to recover. But there's only so much punishment you can take, especially against someone with Gane's variety of attacks.
+Give me Josh Hokit by submission in round 2. 
 
-I'm excited for this one. It's a good heavyweight matchup, and I think we're going to learn a lot about both fighters.
-
-Give me Gane to get it done inside the distance.
-
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Ciryl%20Gane%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
-<aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Ciryl Gane</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 2</span></span></div></aside>
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Josh%20Hokit%22%2C%22method%22%3A%22Submission%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Josh Hokit</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Submission</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 2</span></span></div></aside>
 </section>
 ---
 
