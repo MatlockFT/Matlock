@@ -1,7 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-08T14:32:33.738Z",
+  "generated_at": "2026-11-09T20:41:17.805Z",
   "changes": [
+    {
+      "id": "2026-11-09T20:41:17.805Z|rizin-abc-presents-rizin-55-2026-11-08|event_removed|1",
+      "at": "2026-11-09T20:41:17.805Z",
+      "type": "event_removed",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "promotion": "RIZIN",
+      "event_title": "『abc presents RIZIN.55』",
+      "event_date": "2026-11-08",
+      "summary": "RIZIN 『abc presents RIZIN.55』 removed from Upcoming Events.",
+      "details": {
+        "bout_count": 13,
+        "venue": "LaLa arena TOKYO-BAY",
+        "date": "2026-11-08"
+      }
+    },
+    {
+      "id": "2026-11-09T20:41:17.805Z|ufc-2026-11-14-polymarket-ufc-334|title_changed|2",
+      "at": "2026-11-09T20:41:17.805Z",
+      "type": "title_changed",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "promotion": "UFC",
+      "event_title": "Polymarket UFC 334",
+      "event_date": "2026-11-14",
+      "summary": "UFC Polymarket UFC 334: title changed.",
+      "details": {
+        "from": "Gane vs Hokit",
+        "to": "Polymarket UFC 334"
+      }
+    },
     {
       "id": "2026-11-08T14:32:33.738Z|rizin-rizin-6-2026-12-31|bout_moved|1",
       "at": "2026-11-08T14:32:33.738Z",
@@ -4518,38 +4547,6 @@
       "details": {
         "from_order": 11,
         "to_order": 10,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T20:16:54.665Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|8",
-      "at": "2026-10-21T20:16:54.665Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Priscila Cachoeira vs Nina Milošević moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 12,
-        "to_order": 11,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T20:16:54.665Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|9",
-      "at": "2026-10-21T20:16:54.665Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Jonny Parsons vs José Souza moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 13,
-        "to_order": 12,
         "from_section": "Prelims",
         "to_section": "Prelims"
       }

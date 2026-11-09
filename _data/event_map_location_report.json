@@ -1,38 +1,30 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 7,
+    "major": 6,
     "regional": 87
   },
   "map_totals": {
     "mapped": 87,
-    "quarantined": 7
+    "quarantined": 6
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 87,
     "structured": 0,
-    "unresolved": 7
+    "unresolved": 6
   },
   "mapped_precision": {
     "city": 87
   },
-  "unresolved_count": 7,
+  "unresolved_count": 6,
   "unresolved": [
     {
-      "id": "rizin-abc-presents-rizin-55-2026-11-08",
-      "title": "『abc presents RIZIN.55』",
-      "date": "2026-11-08",
-      "promotion": "RIZIN",
-      "venue": "LaLa arena TOKYO-BAY",
-      "dataset": "major"
-    },
-    {
-      "id": "ufc-334-2026-11-14-fight-card",
-      "title": "Gane vs Hokit",
+      "id": "ufc-2026-11-14-polymarket-ufc-334",
+      "title": "Polymarket UFC 334",
       "date": "2026-11-14",
-      "promotion": "UFC 334",
+      "promotion": "UFC",
       "venue": "Venue TBA",
       "dataset": "major"
     },
@@ -81,21 +73,10 @@
   "suspicious": [],
   "quarantined": [
     {
-      "id": "rizin-abc-presents-rizin-55-2026-11-08",
-      "title": "『abc presents RIZIN.55』",
-      "date": "2026-11-08",
-      "promotion": "RIZIN",
-      "venue": "LaLa arena TOKYO-BAY",
-      "location": "",
-      "country": "",
-      "kind": "major",
-      "reason": "unresolved-us-location"
-    },
-    {
-      "id": "ufc-334-2026-11-14-fight-card",
-      "title": "Gane vs Hokit",
+      "id": "ufc-2026-11-14-polymarket-ufc-334",
+      "title": "Polymarket UFC 334",
       "date": "2026-11-14",
-      "promotion": "UFC 334",
+      "promotion": "UFC",
       "venue": "Venue TBA",
       "location": "",
       "country": "",
