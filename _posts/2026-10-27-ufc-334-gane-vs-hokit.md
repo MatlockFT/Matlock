@@ -147,7 +147,7 @@ Sometimes Josh has good timing on his takedowns, but he doesn't always get them.
 
 And Hokit isn't completely lost on the ground, either. He's got submission wins on his record, including an armbar, and he even attempted one against Derrick Lewis.
 
-But there's a difference between threatening takedowns, completing them, and actually keeping someone on the ground. I think that's an important distinction to make in this fight because we haven't really seen Hokit demonstrate that he can consistently take down and control someone at Gane's level.
+But there's a difference between threatening takedowns, completing them, and actually keeping someone on the ground. I think that's an important distinction to make in this fight because we haven't really seen Hokit demonstrate that he can consistently take down and control someone at the higher end of the UFC's heavyweight division... unless of course you think Derrick Lewis counts. 
 
 And the more difficult aspect of this fight to anticipate is how well Gane is going to fare off his back against Hokit.
 
@@ -163,9 +163,7 @@ So was that an issue with Gane's ability to escape, his decision-making, or both
 
 Gane is the larger man, and that could certainly help, but I don't think we should assume that because Hokit is smaller than some of Gane's previous opponents, he'll automatically have more difficulty controlling him.
 
-It's more about whether Hokit can actually complete his takedowns, secure good positions, and prevent Gane from working his way back to his feet.
-
-And at this point, I'm not sure Hokit can, or would even want to, keep Gane on the mat. He may be perfectly happy using the threat of takedowns to open up his striking and just make Gane work.
+It's more about whether Hokit can actually complete his takedowns, secure good positions, try and prevent Gane from working back to his feet but if and when he does, get him back down again.
 
 I think the bigger question is whose style is going to force the other fighter to work harder.
 
@@ -179,7 +177,7 @@ And if Hokit can hold him down for extended periods and keep his own efforts on 
 
 Another thing to consider is that while Hokit has shown excellent conditioning over three rounds, we haven't seen him do this over five. Gane has that experience, and I don't think that's something we should overlook.
 
-Last, and probably most important factor of conditioning, is that Hokit is smaller and is not carrying muscle like Gane is. Hokit is most certainly a light-heavyweight or even middleweight fighter operating at heavyweight. He isn't carrying weight the same as these larger guys. I think he can go more rounds at a faster pace than Gane can and Hokit has proved it thus far. 
+Last, and probably most important factor of conditioning, is that Hokit is smaller and is not carrying muscle like Gane is. Hokit is most certainly a light-heavyweight or even middleweight fighter operating at heavyweight. He isn't carrying weight the same as these larger guys. I think he can go more rounds at a faster pace than Gane can and Hokit has proved it thus far. Plus, Hokit is a wrestler... dare I say... he embraces the grind. 
 
 So where do I land on this fight?
 
