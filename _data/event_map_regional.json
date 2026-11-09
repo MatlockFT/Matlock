@@ -1146,6 +1146,21 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-mfl-61-michiana-fight-league-61-seasons-beatings-2026-12-05-south-bend",
+      "promotion": "MFL",
+      "promotion_key": "sherdog_discovery",
+      "title": "MFL 61: Michiana Fight League 61: Seasons Beatings",
+      "date": "2026-12-05",
+      "venue": "Century Center",
+      "location": "South Bend, IN",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/MFL-61-Michiana-Fight-League-61-Seasons-Beatings-115345",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "sherdog-nlc-51-new-line-cagefighting-51-2026-12-05-lexington",
       "promotion": "NLC",
       "promotion_key": "sherdog_discovery",
@@ -1413,6 +1428,27 @@
       "latitude": 41.9779,
       "longitude": -91.6656,
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1340/1793301389_xVpJC.jpg"
+    },
+    {
+      "id": "peak-pfc-56-tbd-vs-tbd-2027-01-23",
+      "promotion": "Peak Fighting",
+      "promotion_key": "peak",
+      "title": "PFC 56: TBD vs TBD",
+      "date": "2027-01-23",
+      "venue": "Comerica Center",
+      "location": "Frisco, TX",
+      "broadcast": "",
+      "official_url": "https://www.peakfighting.com/",
+      "regional": true,
+      "level": "pro-am",
+      "source_key": "peak",
+      "source_label": "Peak Fighting Championship",
+      "main_event": {
+        "fighters": [
+          "TBD",
+          "TBD"
+        ]
+      }
     },
     {
       "id": "nitro-shogun-challenger-series-4-2027-01-30",
