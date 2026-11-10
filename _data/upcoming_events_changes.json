@@ -1,7 +1,29 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-10T03:02:33.613Z",
+  "generated_at": "2026-11-10T18:40:31.376Z",
   "changes": [
+    {
+      "id": "2026-11-10T18:40:31.376Z|ufc-2026-11-14-polymarket-ufc-334|bout_changed|1",
+      "at": "2026-11-10T18:40:31.376Z",
+      "type": "bout_changed",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "promotion": "UFC",
+      "event_title": "Polymarket UFC 334",
+      "event_date": "2026-11-14",
+      "summary": "Adrian Yanez vs Juan Diaz changed to Alatengheili vs Juan Diaz on Polymarket UFC 334.",
+      "details": {
+        "order": 12,
+        "section": "Early Prelims",
+        "from": [
+          "Adrian Yanez",
+          "Juan Diaz"
+        ],
+        "to": [
+          "Alatengheili",
+          "Juan Diaz"
+        ]
+      }
+    },
     {
       "id": "2026-11-10T03:02:33.613Z|ufc-fight-night-2026-12-05-fight-card|event_added|1",
       "at": "2026-11-10T03:02:33.613Z",
@@ -4530,22 +4552,6 @@
       "details": {
         "from_order": 9,
         "to_order": 8,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T20:16:54.665Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|6",
-      "at": "2026-10-21T20:16:54.665Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Keiichiro Nakamura vs Ollie Schmid moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 10,
-        "to_order": 9,
         "from_section": "Prelims",
         "to_section": "Prelims"
       }

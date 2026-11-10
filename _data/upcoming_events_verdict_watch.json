@@ -19,7 +19,7 @@
       "verdict_main_count": 5,
       "local_prelim_count": 8,
       "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 13
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "ufc-fight-night-2026-11-21-fight-card",
@@ -203,6 +203,16 @@
       "fighters": [
         "Yutaro Muramoto",
         "Erson Yamamoto"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "verdict_event_id": "1970",
+      "order": 12,
+      "fighters": [
+        "Alatengheili",
+        "Juan Diaz"
       ]
     },
     {
