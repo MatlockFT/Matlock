@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-09T20:40:49.618Z",
+  "generated_at": "2026-11-10T03:00:18.832Z",
   "events": [
     {
       "id": "ufc-2026-11-14-polymarket-ufc-334",
@@ -32,7 +32,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/GANE_CIRYL_L_BELT_01-22.png?itok=6Dy6iwAT",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-245"
+                  "moneyline": "-230"
                 },
                 {
                   "name": "Josh Hokit",
@@ -40,7 +40,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/HOKIT_JOSH_L_06-14.png?itok=Es1_9BbW",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+186"
+                  "moneyline": "+176"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -239,7 +239,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/JOHNSON_DONTE_L_08-15.png?itok=kCrdzqZd",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-186"
+                  "moneyline": "-174"
                 },
                 {
                   "name": "Cesar Almeida",
@@ -247,7 +247,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/ALMEIDA_CESAR_L_12-13.png?itok=-zsz4wrx",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+144"
+                  "moneyline": "+136"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -593,6 +593,305 @@
                   "name": "Tahir Abdullayev",
                   "initials": "TA",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ABDULLAYEV_TAHIR_L_06-27.png?itok=OjpS2GZ7",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion_key": "ufc",
+      "promotion": "UFC Fight Night",
+      "title": "Adesanya vs Magomedov",
+      "date": "2026-12-05",
+      "date_label": "Saturday · December 5, 2026",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+      "updated_label": "November 9, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "1:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Israel Adesanya",
+                  "initials": "IA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/ADESANYA_ISRAEL_L_03-28.png?itok=RopFx9gx",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Shara Magomedov",
+                  "initials": "SM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/MAGOMEDOV_SHARA_L_06-27.png?itok=_iIAbX5t",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Ian Machado Garry",
+                  "initials": "IMG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-04/MACHADO_GARRY_IAN_L_04-26.png?itok=DVG8yebN",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Yaroslav Amosov",
+                  "initials": "YA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/AMOSOV_YAROSLAV_R_12-13.png?itok=ykKn1cKu",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Serghei Spivac",
+                  "initials": "SS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/SPIVAC_SERGHEI_L_08-22.png?itok=4Bn2kGKb",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Mario Pinto",
+                  "initials": "MP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/PINTO_MARIO_L_09-05.png?itok=yfqOVPAV",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Levan Chokheli",
+                  "initials": "LC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/CHOKHELI_LEVAN_R_06-20.png?itok=36IHyuqN",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Islam Dulatov",
+                  "initials": "ID",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/DULATOV_ISLAM_L_07-25.png?itok=b4r4oxs_",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Mairon Santos",
+                  "initials": "MS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/SANTOS_MAIRON_L_03-08.png?itok=P_ILc16F",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Akbar Abdullaev",
+                  "initials": "AA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/ABDULLAEV_AKBAR_R_09-15.png?itok=7e_lanQN",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Magomed Tuchalov",
+                  "initials": "MT",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/TUCHALOV_MAGOMED_L_07-25.png?itok=e_tKChrO",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Ion Cutelaba",
+                  "initials": "IC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/CUTELABA_ION_L_06-20.png?itok=UdDEIagu",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Bruno Silva",
+                  "initials": "BS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/SILVA_BRUNO_L_06-06.png?itok=l_D2GW69",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Jafel Filho",
+                  "initials": "JF",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/FILHO_JAFEL_L_04-25.png?itok=4f5tktve",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Uran Satybaldiev",
+                  "initials": "US",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/SATYBALDIEV_URAN_L_08-23.png?itok=PM2a7Hrg",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Ivan Gnizditskiy",
+                  "initials": "IG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Marco Tulio",
+                  "initials": "MT",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/12/TULIO_MARCO_L_01-11.png?itok=wTbKK65g",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "JunYong Park",
+                  "initials": "JP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-12/PARK_JUNYONG_L_12-09.png?itok=LeEvSHc5",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Pavel Andrusca",
+                  "initials": "PA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/ANDRUSCA_PAVEL_R_09-05.png?itok=RimQdJ8P",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Mahammadali Osmanli",
+                  "initials": "MO",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/OSMANLI_MAHAMMADALI_L_09-26.png?itok=mnIypG99",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Modestino Rodrigues",
+                  "initials": "MR",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/RODRIGUES_MODESTINO_R_09-01.png?itok=fgflF435",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Matthieu Duclos",
+                  "initials": "MD",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/DUCLOS_MATTHIEU_L_09-05.png?itok=0IUm7Yqy",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 12,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Abdul Hussein",
+                  "initials": "AH",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/HUSSEIN_ABDUL_R_07-25.png?itok=Qn6LzYa9",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Hecher Sosa",
+                  "initials": "HS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/SOSA_HECHER_R_03-14.png?itok=3lYzpHCZ",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""

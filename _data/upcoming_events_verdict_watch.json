@@ -39,6 +39,23 @@
       "confirmed_local_bouts": 9
     },
     {
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion": "ufc",
+      "date": "2026-12-05",
+      "title": "Adesanya vs Magomedov",
+      "status": "matched",
+      "verdict_event_id": "1998",
+      "verdict_url": "https://verdictmma.com/event/1998",
+      "verdict_date": "2026-12-05",
+      "local_fight_count": 12,
+      "verdict_fight_count": 12,
+      "local_main_count": 12,
+      "verdict_main_count": 6,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": 6,
+      "confirmed_local_bouts": 11
+    },
+    {
       "event_id": "ufc-335-2026-12-12-fight-card",
       "promotion": "ufc",
       "date": "2026-12-12",
@@ -212,6 +229,25 @@
       "verdict_main_count": 6,
       "local_prelim_count": 4,
       "verdict_prelim_count": 3
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "verdict_event_id": "1998",
+      "order": 10,
+      "fighters": [
+        "Pavel Andrusca",
+        "Mahammadali Osmanli"
+      ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "verdict_event_id": "1998",
+      "local_main_count": 12,
+      "verdict_main_count": 6,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": 6
     }
   ]
 }

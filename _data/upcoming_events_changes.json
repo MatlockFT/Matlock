@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-09T20:41:17.805Z",
+  "generated_at": "2026-11-10T03:02:33.613Z",
   "changes": [
+    {
+      "id": "2026-11-10T03:02:33.613Z|ufc-fight-night-2026-12-05-fight-card|event_added|1",
+      "at": "2026-11-10T03:02:33.613Z",
+      "type": "event_added",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Adesanya vs Magomedov",
+      "event_date": "2026-12-05",
+      "summary": "UFC Fight Night Adesanya vs Magomedov added to Upcoming Events.",
+      "details": {
+        "bout_count": 12,
+        "venue": "Venue TBA",
+        "date": "2026-12-05"
+      }
+    },
     {
       "id": "2026-11-09T20:41:17.805Z|rizin-abc-presents-rizin-55-2026-11-08|event_removed|1",
       "at": "2026-11-09T20:41:17.805Z",
@@ -4531,22 +4546,6 @@
       "details": {
         "from_order": 10,
         "to_order": 9,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T20:16:54.665Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|7",
-      "at": "2026-10-21T20:16:54.665Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Austin Bashi vs Lucas Brennan moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 11,
-        "to_order": 10,
         "from_section": "Prelims",
         "to_section": "Prelims"
       }

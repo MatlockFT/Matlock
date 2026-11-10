@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "source_major_generated_at": "2026-11-09T20:40:49.618Z",
+  "source_major_generated_at": "2026-11-10T03:00:18.832Z",
   "source_regional_updated_at": null,
-  "major_total": 6,
+  "major_total": 7,
   "major_mapped": 0,
   "regional_total": 89,
   "regional_mapped": 89,
-  "quarantined_count": 6,
+  "quarantined_count": 7,
   "quarantined": [
     {
       "id": "ufc-2026-11-14-polymarket-ufc-334",
@@ -23,6 +23,17 @@
       "id": "ufc-fight-night-2026-11-21-fight-card",
       "title": "Procházka vs Stirling",
       "date": "2026-11-21",
+      "promotion": "UFC Fight Night",
+      "venue": "Venue TBA",
+      "location": "",
+      "country": "",
+      "kind": "major",
+      "reason": "unresolved-us-location"
+    },
+    {
+      "id": "ufc-fight-night-2026-12-05-fight-card",
+      "title": "Adesanya vs Magomedov",
+      "date": "2026-12-05",
       "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
       "location": "",
