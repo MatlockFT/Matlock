@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-09T20:10:01.396Z"
+      "checkedAt": "2026-11-10T02:45:27.475Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-09T20:10:33.793Z",
+      "checkedAt": "2026-11-10T02:45:52.711Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -399,7 +399,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -2332,7 +2336,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Juan Diaz",
@@ -3994,7 +3998,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -18059,7 +18067,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Kayla Harrison",
@@ -34127,7 +34135,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Macy Chiasson",
@@ -34257,7 +34265,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Luis Gurule",
@@ -44436,7 +44444,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -46467,7 +46479,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Yousri Belgaroui",
@@ -51334,7 +51346,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Donte Johnson",
@@ -56420,7 +56432,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Stephen Thompson",
@@ -60755,7 +60767,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Drew Dober",
@@ -64018,7 +64030,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Josh Hokit",
@@ -91264,7 +91276,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Cesar Almeida",
@@ -94329,7 +94341,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Chris Duncan",
@@ -104292,7 +104304,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Samuel Sanches",
@@ -119237,7 +119249,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -121881,7 +121897,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -125421,7 +125441,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -125908,7 +125932,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -128424,7 +128452,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -128677,7 +128709,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -132723,7 +132759,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -141756,7 +141796,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Melquizael Costa",
@@ -151407,7 +151447,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Terrance McKinney",
@@ -167313,7 +167353,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Ciryl Gane",
@@ -169975,7 +170015,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Adrian Yanez",
@@ -173490,7 +173530,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -181693,7 +181737,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Amanda Nunes",
@@ -186273,7 +186317,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Uroš Medić",
@@ -198125,7 +198169,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -205000,7 +205048,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Bilal Hasan",
@@ -207256,7 +207304,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Bia Mesquita",
@@ -208286,7 +208334,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -208508,7 +208560,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -208794,7 +208850,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -215182,7 +215242,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -217178,7 +217242,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -223585,7 +223653,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -227879,7 +227951,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Jared Gordon",
@@ -239284,7 +239356,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -261726,7 +261802,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -291516,7 +291596,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Evan Elder",
@@ -298949,7 +299029,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -300999,7 +301083,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -305900,7 +305988,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Charles Radtke",
@@ -315199,7 +315287,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Jim Miller",
@@ -325223,7 +325311,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -325721,7 +325813,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Kevin Holland",
@@ -338179,7 +338271,11 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -339188,7 +339284,7 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "Gane vs Hokit",
+        "event": "Polymarket UFC 334",
         "date": "2026-11-14",
         "source": "https://www.ufc.com/event/ufc-334",
         "opponent": "Caio Borralho",
