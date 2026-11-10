@@ -1344,10 +1344,10 @@
       "longitude": -118.1598
     },
     {
-      "id": "lfa_official-lfa-248-las-vegas-nevada-2026-12-18",
+      "id": "lfa_official-lfa-248-costa-vs-hartshorn-2026-12-18",
       "promotion": "LFA",
       "promotion_key": "lfa_official",
-      "title": "LFA 248 – Las Vegas, Nevada",
+      "title": "LFA 248 – Costa vs. Hartshorn",
       "date": "2026-12-18",
       "venue": "Palms Casino Resort",
       "location": "Las Vegas, NV",
@@ -1359,7 +1359,13 @@
       "source_label": "Legacy Fighting Alliance",
       "latitude": 36.1699,
       "longitude": -115.1398,
-      "poster_url": "https://www.lfa.com/wp-content/uploads/2026/10/LFA-248-Announcement-Square-1.jpg"
+      "main_event": {
+        "fighters": [
+          "Costa",
+          "Hartshorn"
+        ]
+      },
+      "poster_url": "https://www.lfa.com/wp-content/uploads/2026/10/LFA-248-Standard-Poster-Web.png"
     },
     {
       "id": "nitro-wfc-200-ilani-12-19-2026-12-19",
