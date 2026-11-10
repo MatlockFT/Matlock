@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-10T02:45:27.475Z"
+      "checkedAt": "2026-11-10T10:28:58.096Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-10T02:45:52.711Z",
+      "checkedAt": "2026-11-10T10:29:26.680Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -400,9 +400,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Hecher Sosa",
+        "opponentId": "hecher-sosa"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -3999,9 +4001,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Mairon Santos",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -44445,9 +44449,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Jafel Filho",
+        "opponentId": "jafel-filho"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -119250,9 +119256,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Abdul Hussein",
+        "opponentId": "abdul-hussein"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -121898,9 +121906,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Yaroslav Amosov",
+        "opponentId": "yaroslav-amosov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -125442,9 +125452,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Magomed Tuchalov",
+        "opponentId": "magomed-tuchalov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -125933,9 +125945,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Levan Chokheli",
+        "opponentId": "levan-chokheli"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -128453,9 +128467,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Shara Magomedov",
+        "opponentId": "shara-magomedov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -128710,9 +128726,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Uran Satybaldiev",
+        "opponentId": "uran-satybaldiev"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -132760,9 +132778,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Bruno Silva",
+        "opponentId": "bruno-silva"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -173531,9 +173551,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Marco Tulio",
+        "opponentId": "marco-tulio"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -198170,9 +198192,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Islam Dulatov",
+        "opponentId": "islam-dulatov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -208335,9 +208359,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Ion Cutelaba",
+        "opponentId": "ion-cutelaba"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -208561,9 +208587,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Pavel Andrusca",
+        "opponentId": "pavel-andrusca"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -215243,9 +215271,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "JunYong Park",
+        "opponentId": "jun-yong-park"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -217243,9 +217273,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Serghei Spivac",
+        "opponentId": "serghei-spivac"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -239357,9 +239389,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Matthieu Duclos",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -261803,9 +261837,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Mahammadali Osmanli",
+        "opponentId": "mahammadali-osmanli"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -299030,9 +299066,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Mario Pinto",
+        "opponentId": "mario-pinto"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -301084,9 +301122,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Israel Adesanya",
+        "opponentId": "israel-adesanya"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -325312,9 +325352,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Ivan Gnizditskiy",
+        "opponentId": "ivan-gnizditskiy"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -338272,9 +338314,11 @@
         "officialThrough": "2026-10-31"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Adesanya vs Magomedov",
         "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Ian Machado Garry",
+        "opponentId": "ian-machado-garry"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
