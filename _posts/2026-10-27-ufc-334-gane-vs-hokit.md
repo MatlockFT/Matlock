@@ -85,13 +85,13 @@ Is this too much too soon for Josh, who only has ten professional MMA fights?
 
 Ciryl Gane himself won the interim heavyweight championship against Derrick Lewis in just his tenth professional MMA fight. So it's not like we haven't seen a fighter with relatively little experience get to this level, especially in this division.
 
-Josh  Hokit is the younger fighter at 28 years old, is 3 inches shorter than Gane, and at an 8" reach disadvantage. He's light on his feet, has good conditioning, and he can wrestle. He's shown to have a good chin or at the very least can recover well. 
+Josh Hokit is the younger fighter at 28 years old, is 3 inches shorter than Gane, and at an 8" reach disadvantage. He's light on his feet, has good conditioning, and he can wrestle. He's shown to have a good chin or at the very least can recover well. 
 
 At range, he tries to counter his opponent, slipping the jab, and counter with the right hand. This is most notable in the his fight with Curtis Blaydes. The fight often ends up against the cage as most fights tend to do, he'll try for the single or double leg to get his opponents to the mat. Once there, he secures position and tries for ground and pound or submissions. Otherwise, he'll throw the right hand repeatedly, keeping constant volume and pressure until his opponent wilts or fights back to which Hokit will either retreat or single collar tie and keep attacking.  
 
 When pressured, he does retreats in dramatic fashion and will often default to his wrestling to either get it to the ground or at the very least, create a scramble and then create distance and allow for some breathing room once they both reset. 
 
-Hokit is fearless with his relentless pace and pressure especially against much larger heavyweights. It's no surprise because Hokit is a major disadvantage when it comes to closing the distance. Though we've only really had one example of this against Curtis Blaydes, it's very evident Hokit is doing everything he can to make the fight as chaotic as possible, betting on his chin, and conditioning to close the gap and do damage. In doing so, he does take shots on the shit. 
+Hokit is fearless with his relentless pace and pressure especially against much larger heavyweights. It's no surprise because Hokit is a major disadvantage when it comes to closing the distance. Though we've only really had one example of this against Curtis Blaydes, it's very evident Hokit is doing everything he can to make the fight as chaotic as possible, betting on his chin, and conditioning to close the gap and do damage. In doing so, he does take shots on the chin. 
 
 Aside from his conditioning, pace, and toughness there is nothing I've seen from Josh Hokit that stands out as exceptional thus far. There were times he slipped Curtis Blayde's jab to land the right hand as mentioned earlier but that wasn't always the case. He kept his head on the centerline plenty of times and ate shots. 
 
