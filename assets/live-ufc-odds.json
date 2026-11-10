@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T02:59:02.163Z",
+  "generated_at": "2026-11-10T11:01:20.304Z",
   "source": "UFC.com + BestFightOdds",
   "events": [
     {
@@ -198,15 +198,50 @@
         },
         {
           "source": "BestFightOdds",
-          "provider": "Polymarket",
+          "provider": "BetWay",
           "fighters": [
             {
               "name": "Aljamain Sterling",
-              "moneyline": "+113"
+              "moneyline": "+100"
             },
             {
               "name": "Kevin Vallejos",
-              "moneyline": "-117"
+              "moneyline": "-125"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-fight-night-2026-12-05-fight-card",
+      "date": "2026-12-05",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+      "fights": [
+        {
+          "source": "BestFightOdds",
+          "provider": "BetWay",
+          "fighters": [
+            {
+              "name": "Israel Adesanya",
+              "moneyline": "-163"
+            },
+            {
+              "name": "Shara Magomedov",
+              "moneyline": "+130"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "BetWay",
+          "fighters": [
+            {
+              "name": "Ian Machado Garry",
+              "moneyline": "-175"
+            },
+            {
+              "name": "Yaroslav Amosov",
+              "moneyline": "+140"
             }
           ]
         }
@@ -312,6 +347,20 @@
             {
               "name": "Benoît Saint Denis",
               "moneyline": "+200"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "BetWay",
+          "fighters": [
+            {
+              "name": "Bogdan Guskov",
+              "moneyline": "+110"
+            },
+            {
+              "name": "Robert Whittaker",
+              "moneyline": "-138"
             }
           ]
         }
