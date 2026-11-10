@@ -195,15 +195,8 @@ Well-timed jabs and leg kicks are going to be extremely effective for Gane, and 
 
 I've flip flopped on this fight and I feel pretty comfortable with how this fight goes on both sides but I think at heavyweight I'm leaning towards the wrestler with conditioning.
 
-I think Hokit might be able to wear Gane down through constant pressure and wrestling, Gane will get tired, and his defensive lapses that he has worked to tidy up will get exposed once again. 
 
-We just have to see if Hokit can close the gap without getting decimated early in this fight. 
 
-Give me Josh Hokit by submission in round 3. 
-
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Josh%20Hokit%22%2C%22method%22%3A%22Submission%22%2C%22round%22%3A%22Round%203%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
-<aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Josh Hokit</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Submission</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 3</span></span></div></aside>
-</section>
 ---
 
 ## Kayla Harrison vs. Amanda Nunes
