@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-11T10:35:37.992Z"
+      "checkedAt": "2026-11-11T18:05:58.519Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-11T10:36:18.805Z",
+      "checkedAt": "2026-11-11T18:06:41.584Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -44442,13 +44442,7 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": {
-        "event": "Adesanya vs Magomedov",
-        "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
-        "opponent": "Jafel Filho",
-        "opponentId": "jafel-filho"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -132775,13 +132769,7 @@
         "mirrorThrough": "2026-10-31",
         "officialThrough": "2026-10-31"
       },
-      "booking": {
-        "event": "Adesanya vs Magomedov",
-        "date": "2026-12-05",
-        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
-        "opponent": "Bruno Silva",
-        "opponentId": "bruno-silva"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
