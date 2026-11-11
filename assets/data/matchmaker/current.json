@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-10T23:25:59.096Z"
+      "checkedAt": "2026-11-11T02:56:46.123Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-10T23:26:25.343Z",
+      "checkedAt": "2026-11-11T02:57:16.431Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -111665,7 +111665,7 @@
     {
       "id": "gerald-meerschaert",
       "name": "Gerald Meerschaert",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/gerald-meerschaert",
       "aliases": [
         "gerald-meerschaert"
@@ -112721,9 +112721,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-11-07T21:43:54.991Z"
+        "checkedAt": "2026-11-11T02:56:46.123Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/gerald-meerschaert",
@@ -362657,7 +362657,7 @@
   ],
   "coverage": {
     "profileFailures": 28,
-    "activeFighters": 1011,
+    "activeFighters": 1010,
     "participantHistoriesRequested": 355,
     "verifiedParticipantHistories": 355,
     "ufcStatsNameMisses": 1,
