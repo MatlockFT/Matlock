@@ -116,11 +116,11 @@
       "verdict_url": "https://verdictmma.com/event/1995",
       "verdict_date": "2027-02-06",
       "local_fight_count": 4,
-      "verdict_fight_count": null,
+      "verdict_fight_count": 8,
       "local_main_count": 4,
-      "verdict_main_count": null,
+      "verdict_main_count": 6,
       "local_prelim_count": 0,
-      "verdict_prelim_count": null,
+      "verdict_prelim_count": 2,
       "confirmed_local_bouts": 4
     }
   ],
@@ -258,6 +258,22 @@
       "verdict_main_count": 3,
       "local_prelim_count": 0,
       "verdict_prelim_count": 9
+    },
+    {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "verdict_event_id": "1995",
+      "local_fight_count": 4,
+      "verdict_fight_count": 8
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "verdict_event_id": "1995",
+      "local_main_count": 4,
+      "verdict_main_count": 6,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": 2
     }
   ]
 }
