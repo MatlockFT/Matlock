@@ -1,7 +1,21 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-10T18:40:31.376Z",
+  "generated_at": "2026-11-12T22:42:36.069Z",
   "changes": [
+    {
+      "id": "2026-11-12T22:42:36.069Z|ufc-2026-11-14-polymarket-ufc-334|bout_weight_changed|1",
+      "at": "2026-11-12T22:42:36.069Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "promotion": "UFC",
+      "event_title": "Polymarket UFC 334",
+      "event_date": "2026-11-14",
+      "summary": "Donte Johnson vs Cesar Almeida weight/class changed.",
+      "details": {
+        "from": "Middleweight Bout",
+        "to": "Catchweight Bout"
+      }
+    },
     {
       "id": "2026-11-10T18:40:31.376Z|ufc-2026-11-14-polymarket-ufc-334|bout_changed|1",
       "at": "2026-11-10T18:40:31.376Z",
@@ -4536,22 +4550,6 @@
       "details": {
         "from_order": 8,
         "to_order": 7,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T20:16:54.665Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|5",
-      "at": "2026-10-21T20:16:54.665Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Jose Delano vs Murtazali Magomedov moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 9,
-        "to_order": 8,
         "from_section": "Prelims",
         "to_section": "Prelims"
       }
