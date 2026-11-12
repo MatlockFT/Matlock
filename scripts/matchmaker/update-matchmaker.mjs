@@ -4,6 +4,7 @@ import { clean, key, slug, parseEvent, parseProfile, parseRankings, officialResu
 import { parseMirrorHistory } from './sources/ufcstats.mjs';
 import { validateData } from './validate.mjs';
 import { reconcileRoster } from './roster.mjs';
+import { buildCanonicalProfileRegistry } from './profile-aliases.mjs';
 import { reconcileBookings } from './bookings.mjs';
 const root = path.resolve('assets/data/matchmaker');
 const now = new Date(), checkedAt = now.toISOString(), today = checkedAt.slice(0, 10);
@@ -137,13 +138,15 @@ await mapLimit(recentUnfinished, 2, async event => {
 const completed = parsedEvents.filter(e => e?.completed && e.date <= today).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 6);
 if (completed.length < 2) throw new Error('Fewer than two verified completed events. Retaining previous data.');
 const images = await read('_data/fighter_portraits.json', {});
-const registry = roster.canonicalFighters.map(f => ({ id: slug(f.canonicalUrl), name: f.name, active: f.active === true, source: f.canonicalUrl, aliases: [...(f.profileAliases || []), ...(f.activeProfileUrls || [])].map(slug) }));
+const registry = buildCanonicalProfileRegistry(roster.canonicalFighters);
 const byAlias = new Map(registry.flatMap(f => [f.id, ...f.aliases].map(id => [id, f.id])));
 const resolve = id => byAlias.get(id) || id;
 for (const e of parsedEvents.filter(Boolean)) for (const b of e.bouts) for (const f of b.fighters) f.id = resolve(f.id);
 for (const r of rankings) r.id = resolve(r.id);
 const rankingChanges = Array.isArray(previous?.rankingsCurrent) ? diffRankings(previous.rankingsCurrent, rankings) : [];
 const retainedEvents = [...completed, ...(previous?.events || []).filter(e => !completed.some(c => c.id === e.id))].sort((a, b) => b.date.localeCompare(a.date));
+// Historic events can still contain a secondary UFC profile URL from an older snapshot.
+for (const event of retainedEvents) for (const bout of event.bouts) for (const fighter of bout.fighters) fighter.id = resolve(fighter.id);
 const participants = new Set(retainedEvents.flatMap(e => e.bouts.flatMap(b => b.fighters.map(f => f.id))));
 const eventNamesById = new Map();
 for (const e of retainedEvents) for (const b of e.bouts) for (const entry of b.fighters) {

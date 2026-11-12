@@ -1,6 +1,24 @@
 import assert from 'node:assert/strict';
 import { reconcileRoster } from './roster.mjs';
+import { buildCanonicalProfileRegistry } from './profile-aliases.mjs';
 import { profileStatus } from './sources/ufc.mjs';
+
+const olderNakamuraProfile = { canonicalUrl: 'https://www.ufc.com/athlete/keiichiro-nakamura', name: 'Keiichiro Nakamura', active: true };
+const newerNakamuraProfile = { canonicalUrl: 'https://www.ufc.com/athlete/keiichiro-nakamura-0', name: 'Keiichiro Nakamura', active: true };
+const otherAthlete = { canonicalUrl: 'https://www.ufc.com/athlete/ollie-schmid', name: 'Ollie Schmid', active: true };
+for (const pair of [[olderNakamuraProfile, newerNakamuraProfile], [newerNakamuraProfile, olderNakamuraProfile]]) {
+  const canonical = buildCanonicalProfileRegistry([...pair, otherAthlete]);
+  assert.equal(canonical.length, 2, 'UFC duplicate profiles must not create duplicate fighters');
+  const nakamura = canonical.find(fighter => fighter.id === 'keiichiro-nakamura');
+  assert(nakamura && nakamura.active);
+  assert.equal(nakamura.source, newerNakamuraProfile.canonicalUrl, 'Use the newer official profile for updates');
+  assert(nakamura.aliases.includes('keiichiro-nakamura-0'), 'Completed event links must resolve to the canonical fighter');
+  const ids = new Map(canonical.flatMap(fighter => [fighter.id, ...fighter.aliases].map(id => [id, fighter.id])));
+  assert.equal(ids.get('keiichiro-nakamura-0'), nakamura.id);
+}
+assert.throws(() => buildCanonicalProfileRegistry([olderNakamuraProfile, { ...newerNakamuraProfile, name: 'Unrelated Fighter' }]), /Conflicting UFC profile identity/);
+assert.throws(() => buildCanonicalProfileRegistry([olderNakamuraProfile, { ...otherAthlete, profileAliases: [olderNakamuraProfile.canonicalUrl] }]), /Conflicting UFC roster alias/);
+
 const now = Date.parse('2026-09-11T05:00:00Z');
 const roster = { checkedAt: new Date(now).toISOString(), canonicalFighters: Array.from({ length: 501 }, (_, i) => ({ canonicalUrl: `https://www.ufc.com/athlete/fighter-${i}`, active: true })) };
 roster.canonicalFighters[0].profileAliases = ['https://www.ufc.com/athlete/alias'];
