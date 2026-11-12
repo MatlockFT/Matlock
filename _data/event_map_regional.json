@@ -1326,6 +1326,51 @@
       "longitude": -94.4155
     },
     {
+      "id": "sherdog-fcff-rumble-at-the-roseland-136-2026-12-12-portland",
+      "promotion": "FCFF",
+      "promotion_key": "sherdog_discovery",
+      "title": "FCFF: Rumble at the Roseland 136",
+      "date": "2026-12-12",
+      "venue": "Roseland Theater",
+      "location": "Portland, OR",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/FCFF-Rumble-at-the-Roseland-136-114900",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-fierce-fc-55-fierce-fighting-championship-55-2026-12-12-salt-lake-city",
+      "promotion": "Fierce FC",
+      "promotion_key": "sherdog_discovery",
+      "title": "Fierce FC 55: Fierce Fighting Championship 55",
+      "date": "2026-12-12",
+      "venue": "Salt Lake Masonic Temple",
+      "location": "Salt Lake City, UT",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Fierce-FC-55-Fierce-Fighting-Championship-55-115304",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-fusion-fight-league-season-s-beatings-2026-12-12-great-falls",
+      "promotion": "Fusion Fight League",
+      "promotion_key": "sherdog_discovery",
+      "title": "Fusion Fight League: Season's Beatings",
+      "date": "2026-12-12",
+      "venue": "Pacific Steel & Recycling Arena",
+      "location": "Great Falls, MT",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Fusion-Fight-League-Seasons-Beatings-114817",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "nitro-ignite-fights-115-12-12-2026-12-12",
       "promotion": "IGNITE FC",
       "promotion_key": "nitro",
@@ -1339,6 +1384,13 @@
       "level": "regional",
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
+      "main_event": {
+        "fighters": [
+          "Fleck",
+          "Huff"
+        ]
+      },
+      "ticket_url": "https://www.nitrotickets.com/event/1287/ignite-fights-115-1212",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1287/e1ae5424c7b1ee59c283d9cc59f6410b.jpg"
     },
     {
@@ -1357,6 +1409,21 @@
       "source_label": "California Amateur Mixed Martial Arts Organization",
       "latitude": 34.0006,
       "longitude": -118.1598
+    },
+    {
+      "id": "sherdog-stormforged-fc-5-the-fight-before-christmas-2026-12-12-boonsboro",
+      "promotion": "StormForged FC",
+      "promotion_key": "sherdog_discovery",
+      "title": "StormForged FC 5: The Fight Before Christmas",
+      "date": "2026-12-12",
+      "venue": "The Hall",
+      "location": "Boonsboro, MD",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/StormForged-FC-5-The-Fight-Before-Christmas-115267",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
     },
     {
       "id": "lfa_official-lfa-248-costa-vs-hartshorn-2026-12-18",
