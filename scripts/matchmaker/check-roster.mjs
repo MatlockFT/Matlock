@@ -16,6 +16,7 @@ for (const pair of [[olderNakamuraProfile, newerNakamuraProfile], [newerNakamura
   const ids = new Map(canonical.flatMap(fighter => [fighter.id, ...fighter.aliases].map(id => [id, fighter.id])));
   assert.equal(ids.get('keiichiro-nakamura-0'), nakamura.id);
 }
+assert.equal(buildCanonicalProfileRegistry([olderNakamuraProfile, { ...newerNakamuraProfile, name: 'Nakamura Keiichiro' }]).length, 1, 'Verified UFC profile name-order changes must not split a fighter');
 assert.throws(() => buildCanonicalProfileRegistry([olderNakamuraProfile, { ...newerNakamuraProfile, name: 'Unrelated Fighter' }]), /Conflicting UFC profile identity/);
 assert.throws(() => buildCanonicalProfileRegistry([olderNakamuraProfile, { ...otherAthlete, profileAliases: [olderNakamuraProfile.canonicalUrl] }]), /Conflicting UFC roster alias/);
 

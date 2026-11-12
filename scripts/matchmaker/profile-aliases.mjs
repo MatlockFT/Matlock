@@ -24,7 +24,10 @@ export function buildCanonicalProfileRegistry(entries) {
       });
       continue;
     }
-    if (key(existing.name) !== key(fighter.name)) throw new Error(`Conflicting UFC profile identity for ${id}`);
+    const sameVerifiedNakamura = id === 'keiichiro-nakamura'
+      && (VERIFIED_PROFILE_ALIASES.get(originalId) === id || VERIFIED_PROFILE_ALIASES.get(slug(existing.source)) === id)
+      && key(existing.name).includes('nakamura') && key(fighter.name).includes('nakamura');
+    if (key(existing.name) !== key(fighter.name) && !sameVerifiedNakamura) throw new Error(`Conflicting UFC profile identity for ${id}: ${existing.name} / ${fighter.name}`);
     existing.active ||= fighter.active === true;
     existing.aliases = [...new Set([...existing.aliases, ...aliases].filter(alias => alias !== id))];
     // The secondary official URL contains the newer completed UFC event result.
