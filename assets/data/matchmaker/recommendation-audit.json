@@ -1,50 +1,58 @@
 {
-  "generatedAt": "2026-11-08T00:30:00.778Z",
+  "generatedAt": "2026-11-12T04:16:14.962Z",
   "engineVersion": 2,
-  "subjects": 360,
-  "publishedRecommendations": 994,
+  "subjects": 388,
+  "publishedRecommendations": 1051,
   "recommendationSlots": {
-    "0": 26,
+    "0": 35,
     "1": 2,
     "2": 4,
-    "3": 328
+    "3": 347
   },
   "caseCounts": {
-    "rebound-pairing": 419,
-    "rising-vs-rising": 301,
-    "step-up-vs-rebound": 119,
-    "ranking-opportunity": 56,
-    "rankings-progression": 49,
-    "divisional-sorting": 27,
-    "title-case": 11,
+    "rebound-pairing": 438,
+    "rising-vs-rising": 310,
+    "step-up-vs-rebound": 129,
+    "rankings-progression": 61,
+    "ranking-opportunity": 59,
+    "divisional-sorting": 28,
+    "title-case": 12,
     "title-eliminator": 11,
-    "prospect-test": 1
+    "prospect-test": 3
   },
   "confidenceCounts": {
-    "high": 937,
-    "low": 34,
-    "medium": 23
+    "high": 985,
+    "low": 38,
+    "medium": 28
   },
-  "averageRecentOpponentLinkCoverage": 0.9054,
-  "sameCardRecommendations": 47,
-  "sameCardRecommendationRatio": 0.0473,
-  "asymmetricTopThreeRecommendations": 326,
-  "asymmetricTopThreeRatio": 0.328,
-  "publicPublishedRecommendations": 966,
-  "publicAsymmetricTopThreeRecommendations": 237,
-  "publicAsymmetricTopThreeRatio": 0.2453,
-  "engineGenericDivisionalSortingRecommendations": 27,
+  "averageRecentOpponentLinkCoverage": 0.9044,
+  "sameCardRecommendations": 43,
+  "sameCardRecommendationRatio": 0.0409,
+  "asymmetricTopThreeRecommendations": 350,
+  "asymmetricTopThreeRatio": 0.333,
+  "publicPublishedRecommendations": 1022,
+  "publicAsymmetricTopThreeRecommendations": 275,
+  "publicAsymmetricTopThreeRatio": 0.2691,
+  "engineGenericDivisionalSortingRecommendations": 28,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
-    "id": "ufc-fight-night-october-31-2026",
-    "title": "UFC Fight Night: Moicano vs Nolan",
-    "date": "2026-10-31",
-    "subjects": 24,
-    "publicRecommendations": 71,
+    "id": "ufc-fight-night-november-07-2026",
+    "title": "UFC Fight Night: Cortes Acosta vs Walker",
+    "date": "2026-11-07",
+    "subjects": 28,
+    "publicRecommendations": 84,
     "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
+    {
+      "id": "ufc-fight-night-november-07-2026",
+      "title": "UFC Fight Night: Cortes Acosta vs Walker",
+      "date": "2026-11-07",
+      "subjects": 28,
+      "publicRecommendations": 84,
+      "noClearMatchupSubjects": 0
+    },
     {
       "id": "ufc-fight-night-october-31-2026",
       "title": "UFC Fight Night: Moicano vs Nolan",
@@ -58,7 +66,7 @@
       "title": "UFC 333: Volkanovski vs Evloev",
       "date": "2026-10-24",
       "subjects": 28,
-      "publicRecommendations": 75,
+      "publicRecommendations": 74,
       "noClearMatchupSubjects": 0
     },
     {
@@ -74,8 +82,8 @@
       "title": "UFC Fight Night: Allen vs Duncan",
       "date": "2026-10-10",
       "subjects": 24,
-      "publicRecommendations": 60,
-      "noClearMatchupSubjects": 3
+      "publicRecommendations": 56,
+      "noClearMatchupSubjects": 4
     },
     {
       "id": "ufc-332",
@@ -90,8 +98,8 @@
       "title": "UFC Fight Night: Rosas Jr. vs Barcelos",
       "date": "2026-09-26",
       "subjects": 24,
-      "publicRecommendations": 71,
-      "noClearMatchupSubjects": 0
+      "publicRecommendations": 62,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "cryptocom-ufc-331",
@@ -106,7 +114,7 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 62,
+      "publicRecommendations": 63,
       "noClearMatchupSubjects": 3
     },
     {
@@ -114,15 +122,15 @@
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 72,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 63,
+      "noClearMatchupSubjects": 7
     },
     {
       "id": "ufc-fight-night-august-29-2026",
       "title": "UFC Fight Night: Nurmagomedov vs Song",
       "date": "2026-08-29",
       "subjects": 26,
-      "publicRecommendations": 71,
+      "publicRecommendations": 70,
       "noClearMatchupSubjects": 2
     },
     {
@@ -130,16 +138,16 @@
       "title": "UFC Fight Night: Hernandez vs Rodrigues",
       "date": "2026-08-22",
       "subjects": 26,
-      "publicRecommendations": 75,
-      "noClearMatchupSubjects": 1
+      "publicRecommendations": 71,
+      "noClearMatchupSubjects": 2
     },
     {
       "id": "ufc-330",
       "title": "UFC 330: Makhachev vs Machado Garry",
       "date": "2026-08-15",
       "subjects": 24,
-      "publicRecommendations": 60,
-      "noClearMatchupSubjects": 3
+      "publicRecommendations": 57,
+      "noClearMatchupSubjects": 4
     },
     {
       "id": "ufc-fight-night-august-08-2026",
@@ -154,11 +162,32 @@
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 70,
+      "publicRecommendations": 72,
       "noClearMatchupSubjects": 4
     }
   ],
   "genericExamples": [
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Nina Milosevic",
+      "opponent": "Klaudia Sygula",
+      "score": 70,
+      "rationale": "Nina Milosevic and Klaudia Sygula occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Nina Milosevic",
+      "opponent": "Melissa Croden",
+      "score": 69,
+      "rationale": "Nina Milosevic and Melissa Croden occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Nina Milosevic",
+      "opponent": "Alice Pereira",
+      "score": 62,
+      "rationale": "Nina Milosevic and Alice Pereira occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
     {
       "event": "UFC Fight Night: Moicano vs Nolan",
       "fighter": "Rodrigo Sezinando",
@@ -197,13 +226,6 @@
     {
       "event": "UFC 333: Volkanovski vs Evloev",
       "fighter": "Alexander Volkov",
-      "opponent": "Vitor Petrino",
-      "score": 46,
-      "rationale": "Alexander Volkov and Vitor Petrino occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Alexander Volkov",
       "opponent": "Jon Jones",
       "score": 44,
       "rationale": "Alexander Volkov and Jon Jones occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
@@ -212,7 +234,7 @@
       "event": "UFC 333: Volkanovski vs Evloev",
       "fighter": "Dominick Reyes",
       "opponent": "Magomed Ankalaev",
-      "score": 62,
+      "score": 60,
       "rationale": "Dominick Reyes and Magomed Ankalaev occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
@@ -233,7 +255,7 @@
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Ernesta Kareckaite",
       "opponent": "Tereza Bleda",
-      "score": 87,
+      "score": 88,
       "rationale": "Ernesta Kareckaite and Tereza Bleda occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
@@ -247,7 +269,7 @@
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Melissa Gatto",
       "opponent": "Gabriella Fernandes",
-      "score": 86,
+      "score": 85,
       "rationale": "Melissa Gatto and Gabriella Fernandes occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
@@ -258,25 +280,18 @@
       "rationale": "Melissa Gatto and Jj Aldrich occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
-      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
-      "fighter": "Ailin Perez",
-      "opponent": "Yana Santos",
-      "score": 71,
-      "rationale": "Ailin Perez and Yana Santos occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
       "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Curtis Blaydes",
-      "opponent": "Serghei Spivac",
-      "score": 67,
-      "rationale": "Curtis Blaydes and Serghei Spivac occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "fighter": "Manon Fiorot",
+      "opponent": "Karine Silva",
+      "score": 71,
+      "rationale": "Manon Fiorot and Karine Silva occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Tim Elliott",
-      "opponent": "Alex Perez",
-      "score": 70,
-      "rationale": "Tim Elliott and Alex Perez occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "opponent": "Tagir Ulanbekov",
+      "score": 68,
+      "rationale": "Tim Elliott and Tagir Ulanbekov occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
@@ -291,639 +306,632 @@
       "opponent": "Melissa Gatto",
       "score": 81,
       "rationale": "Jj Aldrich and Melissa Gatto occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "fighter": "Salahdine Parnasse",
-      "opponent": "Gabe Green",
-      "score": 46,
-      "rationale": "Salahdine Parnasse and Gabe Green occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
   "asymmetricExamples": [
     {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Renato Moicano",
-      "opponent": "Grant Dawson",
-      "pairScore": 90,
-      "case": "ranking-opportunity",
-      "fighterRank": "Another option",
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Waldo Cortes Acosta",
+      "opponent": "Aleksandar Rakic",
+      "pairScore": 82,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Alexander Hernandez",
-          "score": 94,
-          "case": "rising-vs-rising"
+          "opponent": "Ante Delija",
+          "score": 88,
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Jalin Turner",
-          "score": 94,
-          "case": "rising-vs-rising"
+          "opponent": "Tyrell Fortune",
+          "score": 88,
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Jai Herbert",
-          "score": 92,
-          "case": "rising-vs-rising"
+          "opponent": "Derrick Lewis",
+          "score": 87,
+          "case": "step-up-vs-rebound"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Tom Nolan",
-      "opponent": "Esteban Ribovics",
-      "pairScore": 93,
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Johnny Walker",
+      "opponent": "Vitor Petrino",
+      "pairScore": 84,
       "case": "rankings-progression",
       "fighterRank": "Best match",
       "opponentTopThree": [
         {
-          "opponent": "Rongzhu",
+          "opponent": "Waldo Cortes Acosta",
+          "score": 88,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Rizvan Kuniev",
+          "score": 87,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Ante Delija",
+          "score": 85,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Tatiana Suarez",
+      "opponent": "Denise Gomes",
+      "pairScore": 83,
+      "case": "title-eliminator",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Virna Jandiroba",
+          "score": 86,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Fatima Kline",
+          "score": 85,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Gillian Robertson",
+          "score": 85,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Tatiana Suarez",
+      "opponent": "Fatima Kline",
+      "pairScore": 74,
+      "case": "rankings-progression",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Yan Xiaonan",
+          "score": 90,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Virna Jandiroba",
+          "score": 87,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Gillian Robertson",
+          "score": 87,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Virna Jandiroba",
+      "opponent": "Gillian Robertson",
+      "pairScore": 79,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Loopy Godinez",
           "score": 94,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Fatima Kline",
+          "score": 87,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Denise Gomes",
+          "score": 85,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Davey Grant",
+      "opponent": "Otari Tanzilovi",
+      "pairScore": 91,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Carlos Vera",
+          "score": 95,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Jai Herbert",
-          "score": 93,
+          "opponent": "Steven Koslow",
+          "score": 95,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Jalin Turner",
-          "score": 93,
+          "opponent": "Borislav Nikolic",
+          "score": 94,
           "case": "rising-vs-rising"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Randy Brown",
-      "opponent": "Jack Hermansson",
-      "pairScore": 89,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Davey Grant",
+      "opponent": "Carlos Vera",
+      "pairScore": 90,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Santiago Ponzinibbio",
+          "opponent": "Otari Tanzilovi",
+          "score": 95,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ethyn Ewing",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Steven Koslow",
+          "score": 94,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Davey Grant",
+      "opponent": "Said Nurmagomedov",
+      "pairScore": 90,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Kyler Phillips",
           "score": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Muslim Salikhov",
-          "score": 92,
+          "opponent": "Damon Blackshear",
+          "score": 91,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Gunnar Nelson",
+          "opponent": "John Castaneda",
           "score": 91,
           "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Randy Brown",
-      "opponent": "Geoff Neal",
-      "pairScore": 86,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Chris Curtis",
-          "score": 89,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Joel Alvarez",
-          "score": 88,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Jack Hermansson",
-          "score": 87,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Jacobe Smith",
-      "opponent": "Yaroslav Amosov",
-      "pairScore": 82,
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Elijah Smith",
+      "opponent": "Bryce Mitchell",
+      "pairScore": 88,
       "case": "rankings-progression",
-      "fighterRank": "Another option",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Shavkat Rakhmonov",
-          "score": 87,
+          "opponent": "Raoni Barcelos",
+          "score": 95,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Adrian Yanez",
+          "score": 93,
           "case": "rankings-progression"
         },
         {
-          "opponent": "Daniil Donchenko",
-          "score": 84,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Mike Malott",
-          "score": 79,
+          "opponent": "Montel Jackson",
+          "score": 93,
           "case": "rankings-progression"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Ode Osbourne",
-      "opponent": "Hyunsung Park",
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Elijah Smith",
+      "opponent": "Adrian Yanez",
       "pairScore": 87,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Bryce Mitchell",
+          "score": 93,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Montel Jackson",
+          "score": 91,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Raoni Barcelos",
+          "score": 91,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Billy Elekana",
+      "opponent": "Iwo Baraniewski",
+      "pairScore": 91,
       "case": "rebound-pairing",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Kevin Borjas",
+          "opponent": "Felipe Franco",
           "score": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Alden Coria",
-          "score": 92,
+          "opponent": "Rodolfo Bellato",
+          "score": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Edgar Chairez",
-          "score": 88,
+          "opponent": "Oumar Sy",
+          "score": 92,
           "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Ode Osbourne",
-      "opponent": "Kevin Borjas",
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Lucas Fernando",
+      "opponent": "Christian Edwards",
+      "pairScore": 88,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Muhammad Said",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Dustin Jacoby",
+          "score": 91,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Julius Walker",
+          "score": 89,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Priscila Cachoeira",
+      "opponent": "Melissa Croden",
       "pairScore": 87,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Melissa Mullins",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Josiane Nunes",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Klaudia Sygula",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Nina Milosevic",
+      "opponent": "Klaudia Sygula",
+      "pairScore": 70,
+      "case": "divisional-sorting",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Dariya Zheleznyakova",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Josiane Nunes",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Melissa Croden",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Nina Milosevic",
+      "opponent": "Melissa Croden",
+      "pairScore": 69,
+      "case": "divisional-sorting",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Melissa Mullins",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Josiane Nunes",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Klaudia Sygula",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Nina Milosevic",
+      "opponent": "Alice Pereira",
+      "pairScore": 62,
+      "case": "divisional-sorting",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Jacqueline Cavalcanti",
+          "score": 85,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Chelsea Chandler",
+          "score": 84,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Nora Cornolle",
+          "score": 83,
+          "case": "rankings-progression"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Mitch Raposo",
+      "opponent": "Tagir Ulanbekov",
+      "pairScore": 91,
+      "case": "ranking-opportunity",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Rei Tsuruya",
+          "score": 96,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Jose Ochoa",
+          "score": 93,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Nyamjargal Tumendemberel",
+          "score": 92,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Marcos Degli",
+      "opponent": "Alden Coria",
+      "pairScore": 89,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Hyunsung Park",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Alibi Idiris",
           "score": 92,
-          "case": "divisional-sorting"
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Edgar Chairez",
+          "opponent": "Namsrai Batbayar",
+          "score": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Eduardo Chapolin",
           "score": 89,
           "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Cody Durden",
-      "opponent": "Mitch Raposo",
-      "pairScore": 80,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Jose Ochoa",
-          "score": 91,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Rei Tsuruya",
-          "score": 91,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Tagir Ulanbekov",
-          "score": 91,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Yana Santos",
-      "opponent": "Michelle Montague",
-      "pairScore": 82,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Jacqueline Cavalcanti",
-          "score": 87,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Nora Cornolle",
-          "score": 87,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Karol Rosa",
-          "score": 82,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Jean Paul Lebosnoyani",
-      "opponent": "Ty Miller",
-      "pairScore": 82,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Eric Nolan",
-          "score": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Rodrigo Sezinando",
-          "score": 88,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Carlos Leal",
-          "score": 87,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Francis Marshall",
-      "opponent": "Kurtis Campbell",
-      "pairScore": 93,
-      "case": "step-up-vs-rebound",
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Keiichiro Nakamura",
+      "opponent": "Jose Delano",
+      "pairScore": 91,
+      "case": "rebound-pairing",
       "fighterRank": "Best match",
       "opponentTopThree": [
         {
-          "opponent": "Dakota Hope",
-          "score": 95,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Murtazali Magomedov",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Pavel Andrusca",
-          "score": 94,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Francis Marshall",
-      "opponent": "Jack Jenkins",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Jeongyeong Lee",
+          "opponent": "Damien Anderson",
           "score": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Morgan Charriere",
+          "opponent": "Jessie Rosas",
           "score": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "William Gomis",
+          "opponent": "Zhu Kangjie",
           "score": 93,
           "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Francis Marshall",
-      "opponent": "Jeongyeong Lee",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Bolaji Oki",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Jack Jenkins",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Losene Keita",
-          "score": 93,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Dakota Hope",
-      "opponent": "Murtazali Magomedov",
-      "pairScore": 93,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Ezra Elliot",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Kurtis Campbell",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Rodrigo Vera",
-          "score": 94,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Julian Erosa",
-      "opponent": "David Onama",
-      "pairScore": 92,
-      "case": "ranking-opportunity",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Sean Woodson",
-          "score": 96,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Bogdan Grad",
-          "score": 95,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Christian Rodriguez",
-          "score": 95,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Julian Erosa",
-      "opponent": "Miles Johns",
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Keiichiro Nakamura",
+      "opponent": "Carlos Calderon",
       "pairScore": 90,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "David Onama",
-          "score": 94,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Sean Woodson",
-          "score": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Christian Rodriguez",
-          "score": 92,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Jeongyeong Lee",
-      "opponent": "Losene Keita",
-      "pairScore": 93,
       "case": "rebound-pairing",
-      "fighterRank": "Another option",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
-        {
-          "opponent": "Hyder Amil",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
         {
           "opponent": "Javier Reyes",
           "score": 94,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Anthony Romero",
-          "score": 93,
+          "opponent": "Losene Keita",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Manolo Zecchini",
+          "score": 94,
           "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Zachary Reese",
-      "opponent": "Dustin Stoltzfus",
-      "pairScore": 93,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Ismail Naurdiev",
-          "score": 95,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Rodolfo Vieira",
-          "score": 95,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Tresean Gore",
-          "score": 95,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Mickey Gall",
-      "opponent": "Djorden Santos",
-      "pairScore": 87,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Andrey Pulyaev",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Julien Leblanc",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Mansur Abdul Malik",
-          "score": 93,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Mickey Gall",
-      "opponent": "Robert Bryczek",
-      "pairScore": 87,
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Keiichiro Nakamura",
+      "opponent": "Damien Anderson",
+      "pairScore": 90,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Andrey Pulyaev",
-          "score": 93,
+          "opponent": "Jessie Rosas",
+          "score": 95,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Julien Leblanc",
-          "score": 93,
+          "opponent": "Zhu Kangjie",
+          "score": 95,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Wes Schultz",
-          "score": 93,
+          "opponent": "Manolo Zecchini",
+          "score": 94,
           "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Joseph Kropschot",
-      "opponent": "Ateba Gautier",
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Gabriel Lorenco",
+      "opponent": "Guilherme Pat",
       "pairScore": 92,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Another option",
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
       "opponentTopThree": [
         {
-          "opponent": "Nick Galanti",
-          "score": 93,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Ryan Loder",
-          "score": 93,
+          "opponent": "Lucas Armand",
+          "score": 94,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Cam Rowston",
-          "score": 92,
+          "opponent": "Terrance Chatman",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Jhonata Diniz",
+          "score": 93,
           "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Talita Alencar",
-      "opponent": "Loma Lookboonmee",
-      "pairScore": 88,
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Gabriel Lorenco",
+      "opponent": "Lucas Armand",
+      "pairScore": 91,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Terrance Chatman",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Alexander Poppeck",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Guilherme Pat",
+          "score": 94,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Gabriel Lorenco",
+      "opponent": "Terrance Chatman",
+      "pairScore": 91,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Polyana Viana",
-          "score": 92,
+          "opponent": "Lucas Armand",
+          "score": 95,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Sam Hughes",
-          "score": 91,
+          "opponent": "Alexander Poppeck",
+          "score": 94,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Ketlen Souza",
-          "score": 88,
+          "opponent": "Guilherme Pat",
+          "score": 94,
           "case": "rebound-pairing"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Piera Rodriguez",
-      "opponent": "Angela Hill",
-      "pairScore": 81,
-      "case": "rankings-progression",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Jessica Andrade",
-          "score": 86,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Mizuki Inoue",
-          "score": 85,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Amanda Ribas",
-          "score": 83,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Piera Rodriguez",
-      "opponent": "Amanda Ribas",
-      "pairScore": 82,
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Thomas Petersen",
+      "opponent": "Ante Delija",
+      "pairScore": 88,
       "case": "ranking-opportunity",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Amanda Lemos",
-          "score": 93,
+          "opponent": "Valter Walker",
+          "score": 91,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Tyrell Fortune",
+          "score": 90,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Iasmin Lucindo",
-          "score": 85,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Mizuki Inoue",
-          "score": 84,
+          "opponent": "Aleksandar Rakic",
+          "score": 88,
           "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "fighter": "Lucia Szabova",
-      "opponent": "Ernesta Kareckaite",
-      "pairScore": 85,
-      "case": "divisional-sorting",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Melissa Gatto",
-          "score": 90,
-          "case": "divisional-sorting"
-        },
-        {
-          "opponent": "Jamey Lyn Horth",
-          "score": 89,
-          "case": "divisional-sorting"
-        },
-        {
-          "opponent": "Tereza Bleda",
-          "score": 87,
-          "case": "divisional-sorting"
         }
       ]
     }
