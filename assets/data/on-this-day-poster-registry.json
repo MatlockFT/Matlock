@@ -3850,7 +3850,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "Bellator 99 event poster",
-      "verifiedAt": "2026-11-12T17:45:01.579Z",
+      "verifiedAt": "2026-11-12T18:59:59.940Z",
       "manualVisualVerified": true
     },
     "2013-09-14::wsof5 arlovski vs kyle": {
@@ -3864,7 +3864,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF5: Arlovski vs. Kyle event poster",
-      "verifiedAt": "2026-11-12T17:45:01.579Z",
+      "verifiedAt": "2026-11-12T18:59:59.940Z",
       "manualVisualVerified": true
     },
     "2013-09-21::ufc 165 jones vs gustafsson": {
@@ -4086,7 +4086,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF13: Moraes vs. Bollinger event poster",
-      "verifiedAt": "2026-11-12T17:45:01.579Z",
+      "verifiedAt": "2026-11-12T18:59:59.940Z",
       "manualVisualVerified": true
     },
     "2014-09-20::ufc fight night hunt vs nelson": {
@@ -11737,9 +11737,36 @@
       "discovery": "tapology-search-unique-title-date",
       "transport": "tapology-via-public-reader-v1",
       "verifiedAt": "2026-11-10T18:42:28.034Z"
+    },
+    "2020-11-12::bellator 252": {
+      "key": "2020-11-12::bellator 252",
+      "status": "verified",
+      "sourceType": "tapology-event-poster",
+      "date": "2020-11-12",
+      "title": "Bellator 252",
+      "eventTitle": "Bellator 252: Pitbull vs. Carvalho",
+      "eventDate": "2020-11-12",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/72762-bellator-251-pitbull-vs-carvalho",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/72762-bellator-251-pitbull-vs-carvalho",
+      "originPosterUrl": "https://images.tapology.com/poster_images/72762/profile/121531736_10159602113749879_5234187850748061964_o.jpg?1602902932",
+      "posterUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2020-11-12-bellator-252-dc43a7236ed299fe.jpg",
+      "sha256": "dc43a7236ed299fe3f4fea9381953d0d609ee6bb8253b37dbe1ae5993eda8fca",
+      "width": 338,
+      "height": 423,
+      "bytes": 79728,
+      "format": "jpeg",
+      "alt": "Bellator 252 event poster",
+      "credit": "Tapology",
+      "confidence": 1,
+      "titleScore": 99,
+      "eventIdBound": true,
+      "discovery": "tapology-search-unique-title-date",
+      "transport": "tapology-via-public-reader-v1",
+      "verifiedAt": "2026-11-12T18:56:40.732Z"
     }
   },
-  "updatedAt": "2026-11-12T17:45:01.737Z",
+  "updatedAt": "2026-11-12T19:00:00.149Z",
   "policy": "One event-poster registry. Restore verified assignments first; new unresolved events resolve in source priority order: Tapology, Wikipedia/Wikimedia, official/archive/manual fallback.",
   "tapologyPolicy": "Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records."
 }
