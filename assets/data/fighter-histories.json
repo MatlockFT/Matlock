@@ -1,5 +1,5 @@
 {
-  "version": 68,
+  "version": 69,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -34600,6 +34600,632 @@
           "kind": "upcoming",
           "detail": "Announced Flyweight pairing against Corvan Allen at Microestadio Antonio Rotili in Buenos Aires. Future bout; no result exists yet.",
           "sourceLabel": "GFL · official announced card",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        }
+      ],
+      "lastReviewed": "2026-11-13"
+    },
+    "Corvan Allen": {
+      "slug": "corvan-allen",
+      "name": "Corvan Allen",
+      "subtitle": "Miami Monsters · GFL Showdown Argentina",
+      "record": "9-3",
+      "division": "Flyweight",
+      "items": [
+        {
+          "date": "Aug. 16, 2014",
+          "label": "AMATEUR · WIN · Adrian Del Villar",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Armored Wings: Mansion Fights 19 · TKO (punches) · Round 2, 1:41.",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Sep. 13, 2014",
+          "label": "AMATEUR · LOSS · Jacob Rosales",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. GetDown Fights 14 · Submission (armbar) · Round 1, 0:30.",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Oct. 11, 2014",
+          "label": "AMATEUR · LOSS · Jose Medina",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. California Fight League 1 · Submission (armbar) · Round 1, 1:18.",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Apr. 11, 2015",
+          "label": "WIN · Geovanni Araujo",
+          "kind": "win",
+          "detail": "Professional MMA bout. Gladiator Challenge: California State Championship Series · Submission (rear-naked choke) · Round 1, 1:21.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Nov. 12, 2021",
+          "label": "LOSS · Joseph Dorado",
+          "kind": "loss",
+          "detail": "Professional MMA bout. LFA 118 · Submission (rear-naked choke) · Round 3, 3:17.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Mar. 19, 2022",
+          "label": "LOSS · Johnny Robles",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Celtic Gladiator 31 · Submission (rear-naked choke) · Round 1, 1:17.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Dec. 17, 2022",
+          "label": "WIN · Lance Lee",
+          "kind": "win",
+          "detail": "Professional MMA bout. Gladiator Challenge: Season's Beatings · Unanimous decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Dec. 15, 2023",
+          "label": "WIN · Brandon Carrillo",
+          "kind": "win",
+          "detail": "Professional MMA bout. Cage Warriors 165 · TKO (elbows) · Round 2, 4:47.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Feb. 23, 2024",
+          "label": "WIN · Xavier Vines",
+          "kind": "win",
+          "detail": "Professional MMA bout. Cage Warriors 166 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Jun. 15, 2024",
+          "label": "WIN · Carlos Elizarraraz",
+          "kind": "win",
+          "detail": "Professional MMA bout. Lights Out Xtreme Fighting 17 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Sep. 13, 2024",
+          "label": "WIN · Roger Severson",
+          "kind": "win",
+          "detail": "Professional MMA bout. LFA 192 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Feb. 7, 2025",
+          "label": "LOSS · Royce Butler",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Lights Out Xtreme Fighting 22 · TKO (punches) · Round 3, 1:58.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Jul. 26, 2025",
+          "label": "WIN · Jose Alejandro Avalos",
+          "kind": "win",
+          "detail": "Professional MMA bout. LFA 213 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Jan. 9, 2026",
+          "label": "WIN · Chance Ikei",
+          "kind": "win",
+          "detail": "Professional MMA bout. 559 Fights 120 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Jul. 19, 2026",
+          "label": "WIN · Alvin Welch",
+          "kind": "win",
+          "detail": "Professional MMA bout. 559 Fights 125 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Corvan-Allen-195519"
+        },
+        {
+          "date": "Nov. 13, 2026",
+          "label": "GFL team roster announcement",
+          "kind": "milestone",
+          "detail": "Represents Miami Monsters in the announced December 18 GFL event. Sherdog currently lists Millennia MMA as a training association.",
+          "sourceLabel": "GFL inaugural card announcement",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        },
+        {
+          "date": "Dec. 18, 2026 (scheduled)",
+          "label": "GFL debut · scheduled vs. Nicolás Rodriguez",
+          "kind": "upcoming",
+          "detail": "Booked for the Flyweight bout representing Miami Monsters. Upcoming event only, with no result recorded as of Nov. 13, 2026.",
+          "sourceLabel": "GFL · November 9 announced card",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        }
+      ],
+      "lastReviewed": "2026-11-13"
+    },
+    "Nicole Artaza": {
+      "slug": "nicole-artaza",
+      "name": "Nicole Artaza",
+      "subtitle": "Buenos Aires Gauchos · GFL Showdown Argentina",
+      "record": "5-3",
+      "division": "Women's 110-pound bout",
+      "items": [
+        {
+          "date": "Oct. 19, 2019",
+          "label": "AMATEUR · WIN · Sofia Diaz",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Supreme Warriors 2 · Unanimous decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Dec. 5, 2020",
+          "label": "AMATEUR · NO CONTEST · Selene Chavez",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Supreme Warriors 3 · No contest (method unreported).",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Sep. 4, 2021",
+          "label": "AMATEUR · LOSS · Julieta Martinez",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Supreme Warriors 6 · Unanimous decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Apr. 16, 2022",
+          "label": "AMATEUR · WIN · Sabrina Padilla",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Supreme Warriors 8 · Submission (armbar) · Round 1, 2:22.",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "May 15, 2022",
+          "label": "AMATEUR · WIN · Sabrina Padilla",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Circuito de Eventos Pactados · Submission (armbar) · Round 1.",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "May 28, 2022",
+          "label": "AMATEUR · WIN · Florencia Manfre",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. CAM 10 · Unanimous decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Jun. 25, 2022",
+          "label": "AMATEUR · WIN · Lucia Apdelgarim",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. CAM 11 · Unanimous decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Mar. 11, 2023",
+          "label": "AMATEUR · LOSS · Tifani Gerez",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. SFH 10 · Submission (triangle choke) · Round 3, 2:52.",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Oct. 7, 2023",
+          "label": "LOSS · Katherinne Machuca",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Open Fight LATAM 6 · Submission (scarf-hold armlock) · Round 2, 2:56.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Apr. 20, 2024",
+          "label": "WIN · Lourdes Bruno",
+          "kind": "win",
+          "detail": "Professional MMA bout. Shinka Jitsu Fight Day 6 · Submission (rear-naked choke) · Round 1, 1:05.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "May 11, 2024",
+          "label": "WIN · Lourdes Bruno",
+          "kind": "win",
+          "detail": "Professional MMA bout. Argentina Fighting Championship 1 · Submission (rear-naked choke) · Round 1.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Dec. 14, 2024",
+          "label": "WIN · Rocio Samora",
+          "kind": "win",
+          "detail": "Professional MMA bout. Coliseo Fight Night 4 · Submission (armbar) · Round 1.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Jun. 26, 2025",
+          "label": "LOSS · Julia Pareja",
+          "kind": "loss",
+          "detail": "Professional MMA bout. FFC 92 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Oct. 12, 2025",
+          "label": "WIN · Julieta Gomez",
+          "kind": "win",
+          "detail": "Professional MMA bout. Supreme Warriors 17 · Submission · Round 1, 2:06.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Nov. 8, 2025",
+          "label": "WIN · Monica Cabrera",
+          "kind": "win",
+          "detail": "Professional MMA bout. CAM 34 · Submission (armbar) · Round 1, 1:10.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Nov. 30, 2025",
+          "label": "LOSS · Melissa Gomez",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Open Fight LATAM 15 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Nov. 13, 2026",
+          "label": "GFL team roster announcement",
+          "kind": "milestone",
+          "detail": "Represents Buenos Aires Gauchos in the announced December 18 GFL event. Sherdog currently lists Team Fenix as a training association.",
+          "sourceLabel": "GFL inaugural card announcement",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        },
+        {
+          "date": "Nov. 13, 2026",
+          "label": "Connections to other debut-card fighters",
+          "kind": "milestone",
+          "detail": "Artaza lost to Julia Pareja by unanimous decision at FFC 92 on June 26, 2025, and to Melissa Gomez by unanimous decision at Open Fight LATAM 15 on November 30, 2025. Both opponents are also announced on the GFL debut card, but neither is Artaza's December opponent.",
+          "sourceLabel": "Sherdog · official career results",
+          "source": "https://www.sherdog.com/fighter/Nicole-Artaza-348821"
+        },
+        {
+          "date": "Dec. 18, 2026 (scheduled)",
+          "label": "GFL debut · scheduled vs. Pamela Mara",
+          "kind": "upcoming",
+          "detail": "Booked for the Women's 110-pound bout bout representing Buenos Aires Gauchos. Upcoming event only, with no result recorded as of Nov. 13, 2026.",
+          "sourceLabel": "GFL · November 9 announced card",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        }
+      ],
+      "lastReviewed": "2026-11-13"
+    },
+    "Pamela Mara": {
+      "slug": "pamela-mara",
+      "name": "Pamela Mara",
+      "subtitle": "Miami Monsters · GFL Showdown Argentina",
+      "record": "7-4-1",
+      "division": "Women's 110-pound bout",
+      "items": [
+        {
+          "date": "Aug. 15, 2015",
+          "label": "LOSS · Bruna Ellen",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Max Fight 16 · TKO (doctor stoppage) · Round 1, 4:28.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "Mar. 19, 2016",
+          "label": "LOSS · Bianca Sattelmayer",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Real Fight 13 · Submission (armbar) · Round 1.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "Mar. 11, 2017",
+          "label": "DRAW · Bruna Brasil",
+          "kind": "milestone",
+          "detail": "Professional MMA bout. Maringa Fight Combat: Special Edition · Draw (decision) · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "Apr. 8, 2017",
+          "label": "WIN · Bruna Godoy",
+          "kind": "win",
+          "detail": "Professional MMA bout. Demolidor Fight MMA 9 · TKO (punches) · Round 2, 0:40.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "Jan. 24, 2018",
+          "label": "WIN · Evelyn Sass",
+          "kind": "win",
+          "detail": "Professional MMA bout. Batalha MMA 11 · TKO (punches) · Round 3, 3:11.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "Oct. 26, 2019",
+          "label": "WIN · Ana Carolina da Silva Nascimento",
+          "kind": "win",
+          "detail": "Professional MMA bout. SFT 17 · TKO (punches) · Round 3, 2:49.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "Feb. 29, 2020",
+          "label": "WIN · Jaqueline Jaensch",
+          "kind": "win",
+          "detail": "Professional MMA bout. SFT 21 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "Oct. 31, 2020",
+          "label": "WIN · Andreia Serafim Azevedo",
+          "kind": "win",
+          "detail": "Professional MMA bout. SFT 22 · Submission (guillotine choke) · Round 4, 1:55.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "Mar. 5, 2022",
+          "label": "WIN · Mixeli Daiane Almeida",
+          "kind": "win",
+          "detail": "Professional MMA bout. Fight Pro Championship 1 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "May 27, 2022",
+          "label": "LOSS · Andressa Romero",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Max Fight 24 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "Jul. 6, 2024",
+          "label": "LOSS · Edilania Silva",
+          "kind": "loss",
+          "detail": "Professional MMA bout. LFA 187 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "Oct. 25, 2025",
+          "label": "WIN · Nawira Ferreira",
+          "kind": "win",
+          "detail": "Professional MMA bout. SFT 58: Pink October 8 · Split decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "Nov. 13, 2026",
+          "label": "GFL team roster announcement",
+          "kind": "milestone",
+          "detail": "Represents Miami Monsters in the announced December 18 GFL event. Sherdog currently lists Evolution MMA as a training association.",
+          "sourceLabel": "GFL inaugural card announcement",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        },
+        {
+          "date": "Nov. 13, 2026",
+          "label": "Record note: 7-4-1",
+          "kind": "milestone",
+          "detail": "Sherdog records a March 11, 2017 draw with Bruna Brasil, giving Mara a 7-4-1 professional record. The GFL ticket page rounds this to 7-4; the draw is retained in the career timeline.",
+          "sourceLabel": "Sherdog · fight-by-fight career",
+          "source": "https://www.sherdog.com/fighter/Pamela-Mara-Assis-202845"
+        },
+        {
+          "date": "Dec. 18, 2026 (scheduled)",
+          "label": "GFL debut · scheduled vs. Nicole Artaza",
+          "kind": "upcoming",
+          "detail": "Booked for the Women's 110-pound bout bout representing Miami Monsters. Upcoming event only, with no result recorded as of Nov. 13, 2026.",
+          "sourceLabel": "GFL · November 9 announced card",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        }
+      ],
+      "lastReviewed": "2026-11-13"
+    },
+    "Julia Pareja": {
+      "slug": "julia-pareja",
+      "name": "Julia Pareja",
+      "subtitle": "Buenos Aires Gauchos · GFL Showdown Argentina",
+      "record": "5-2",
+      "division": "Women's atomweight",
+      "items": [
+        {
+          "date": "May 22, 2022",
+          "label": "WIN · Romina Castillo",
+          "kind": "win",
+          "detail": "Professional MMA bout. SFH 4 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Julia-Pareja-404778"
+        },
+        {
+          "date": "Aug. 7, 2022",
+          "label": "WIN · Loli Espinoza",
+          "kind": "win",
+          "detail": "Professional MMA bout. UFS 15 · Submission (armbar) · Round 1, 2:38.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Julia-Pareja-404778"
+        },
+        {
+          "date": "Sep. 17, 2022",
+          "label": "WIN · Oriana Fernandez",
+          "kind": "win",
+          "detail": "Professional MMA bout. CAM 13 · Submission (armbar) · Round 1, 3:14.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Julia-Pareja-404778"
+        },
+        {
+          "date": "Apr. 15, 2023",
+          "label": "LOSS · Fatima Juarez",
+          "kind": "loss",
+          "detail": "Professional MMA bout. CAM 18 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Julia-Pareja-404778"
+        },
+        {
+          "date": "Sep. 6, 2023",
+          "label": "WIN · Paola Garay",
+          "kind": "win",
+          "detail": "Professional MMA bout. FFC 65 · Submission (armbar) · Round 1, 3:20.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Julia-Pareja-404778"
+        },
+        {
+          "date": "Jun. 26, 2025",
+          "label": "WIN · Nicole Artaza",
+          "kind": "win",
+          "detail": "Professional MMA bout. FFC 92 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Julia-Pareja-404778"
+        },
+        {
+          "date": "Oct. 24, 2025",
+          "label": "LOSS · Isabella Araujo",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Shooto Brazil 133 · TKO (punches) · Round 1, 4:30.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Julia-Pareja-404778"
+        },
+        {
+          "date": "Nov. 13, 2026",
+          "label": "GFL team roster announcement",
+          "kind": "milestone",
+          "detail": "Represents Buenos Aires Gauchos in the announced December 18 GFL event. Sherdog currently lists Nova Uniao Argentina as a training association.",
+          "sourceLabel": "GFL inaugural card announcement",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        },
+        {
+          "date": "Dec. 18, 2026 (scheduled)",
+          "label": "GFL debut · scheduled vs. Melissa Gomez",
+          "kind": "upcoming",
+          "detail": "Booked for the Women's atomweight bout representing Buenos Aires Gauchos. Upcoming event only, with no result recorded as of Nov. 13, 2026.",
+          "sourceLabel": "GFL · November 9 announced card",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        }
+      ],
+      "lastReviewed": "2026-11-13"
+    },
+    "Melissa Gomez": {
+      "slug": "melissa-gomez",
+      "name": "Melissa Gomez",
+      "subtitle": "Miami Monsters · GFL Showdown Argentina",
+      "record": "6-2",
+      "division": "Women's atomweight",
+      "items": [
+        {
+          "date": "Mar. 12, 2016",
+          "label": "AMATEUR · LOSS · Evelyn Sass",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Master Fighters Championship 12 · Submission (rear-naked choke) · Round 3, 2:11.",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Melissa-Gomez-219405"
+        },
+        {
+          "date": "Nov. 12, 2016",
+          "label": "AMATEUR · LOSS · Jazmin Navarrete",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Guerra Campal 3 · Split decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight history",
+          "source": "https://www.sherdog.com/fighter/Melissa-Gomez-219405"
+        },
+        {
+          "date": "May 20, 2022",
+          "label": "WIN · Jharely Reyes",
+          "kind": "win",
+          "detail": "Professional MMA bout. Combate Global: Reyes vs. Gomez · Unanimous decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Melissa-Gomez-219405"
+        },
+        {
+          "date": "Aug. 12, 2022",
+          "label": "WIN · Elizabeth Mogollan",
+          "kind": "win",
+          "detail": "Professional MMA bout. Combate Global: Lopez vs. Rivarola · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Melissa-Gomez-219405"
+        },
+        {
+          "date": "Jun. 18, 2023",
+          "label": "WIN · Anna Somers",
+          "kind": "win",
+          "detail": "Professional MMA bout. Combate Global: Perez vs. Cannetti · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Melissa-Gomez-219405"
+        },
+        {
+          "date": "Aug. 19, 2023",
+          "label": "WIN · Katie Perez",
+          "kind": "win",
+          "detail": "Professional MMA bout. Combate Global: Castillo vs. Guzman · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Melissa-Gomez-219405"
+        },
+        {
+          "date": "Jun. 8, 2024",
+          "label": "LOSS · Ana Palacios",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Combate Global: Amaya vs. Jean-Francois · Submission (rear-naked choke) · Round 2, 4:39.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Melissa-Gomez-219405"
+        },
+        {
+          "date": "Jun. 19, 2025",
+          "label": "WIN · Kelly Staddon",
+          "kind": "win",
+          "detail": "Professional MMA bout. Combate Global: Combate Female 2 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Melissa-Gomez-219405"
+        },
+        {
+          "date": "Nov. 30, 2025",
+          "label": "WIN · Nicole Artaza",
+          "kind": "win",
+          "detail": "Professional MMA bout. Open Fight LATAM 15 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Melissa-Gomez-219405"
+        },
+        {
+          "date": "May 9, 2026",
+          "label": "LOSS · Janet Garcia",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Combate Global 99 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight history",
+          "source": "https://www.sherdog.com/fighter/Melissa-Gomez-219405"
+        },
+        {
+          "date": "Nov. 13, 2026",
+          "label": "GFL team roster announcement",
+          "kind": "milestone",
+          "detail": "Represents Miami Monsters in the announced December 18 GFL event. Sherdog currently lists Team Olea MMA as a training association.",
+          "sourceLabel": "GFL inaugural card announcement",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        },
+        {
+          "date": "Dec. 18, 2026 (scheduled)",
+          "label": "GFL debut · scheduled vs. Julia Pareja",
+          "kind": "upcoming",
+          "detail": "Booked for the Women's atomweight bout representing Miami Monsters. Upcoming event only, with no result recorded as of Nov. 13, 2026.",
+          "sourceLabel": "GFL · November 9 announced card",
           "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
         }
       ],
