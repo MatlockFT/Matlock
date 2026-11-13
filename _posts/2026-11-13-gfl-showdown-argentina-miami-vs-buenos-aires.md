@@ -78,7 +78,7 @@ The following pairings are arranged by weight, heaviest to lightest, **not in of
 
 ## Fighter comparisons
 
-The records below come from the GFL's released lineup. **Professional fights and win rates are calculated from those records.** Where reliable ages, heights, reaches, stances or recent form have not been verified, they have been left out instead of filled in by guesswork.
+The records below come from the GFL's released lineup. **Professional fights and win rates are calculated from those records.** Where reliable ages, heights, reaches, stances or recent form have not been verified, they have been left out instead of filled in by guesswork. **Select either fighter's name in the Career timelines line to open their dated fight history.**
 
 ## Dante Romero vs. Grant Neal
 
@@ -90,6 +90,8 @@ The records below come from the GFL's released lineup. **Professional fights and
 
 **Matchup notes:** Neal is the most established major-promotion veteran on the announced card, with 10 Bellator appearances. Romero has 17 professional bouts on the GFL's announced record. The difference in their career records makes this one of the more interesting comparisons, but the promotion has not officially designated a main event.
 
+**Career timelines:** **Dante Romero** · **Grant Neal**
+
 ## Matías Ponce vs. Omar Morales
 
 **165-pound bout · 165 lb · Announced matchup**
@@ -99,6 +101,8 @@ The records below come from the GFL's released lineup. **Professional fights and
 </section>
 
 **Matchup notes:** Morales competed eight times in the UFC and brings recognizable major-promotion experience to the Miami team. Ponce has 16 professional fights on the announced record. GFL's adjusted 165-pound limit is worth watching here, especially because the promotion's terminology for this class has varied between announcements.
+
+**Career timelines:** **Matías Ponce** · **Omar Morales**
 
 ## Franco Ríos vs. Ethan Burmingham
 
@@ -110,6 +114,8 @@ The records below come from the GFL's released lineup. **Professional fights and
 
 **Matchup notes:** Both fighters enter with undefeated announced professional records. Burmingham has three more professional wins on paper, while Ríos represents the home team. This is one of the few bouts where both sides have yet to take a recorded professional defeat.
 
+**Career timelines:** **Franco Ríos** · **Ethan Burmingham**
+
 ## Thomas Juárez vs. David Macias
 
 **Lightweight · 155 lb · Announced matchup**
@@ -119,6 +125,8 @@ The records below come from the GFL's released lineup. **Professional fights and
 </section>
 
 **Matchup notes:** Macias is one of four undefeated fighters on the announced card and brings a 6-0 record to Miami. Juárez represents Buenos Aires with seven professional appearances on his listed record. The pairing tests an unbeaten prospect against a fighter who has already experienced both wins and losses.
+
+**Career timelines:** **Thomas Juárez** · **David Macias**
 
 ## Eduardo Cajal vs. Jacob Diaz
 
@@ -130,6 +138,8 @@ The records below come from the GFL's released lineup. **Professional fights and
 
 **Matchup notes:** Cajal brings 14 professional bouts on his announced record, compared with eight for Diaz. The GFL announcement lists this pairing at 150 pounds, but the event's Passline listing shows 155. The opponents agree across the latest announcements; the contracted weight needs confirmation.
 
+**Career timelines:** **Eduardo Cajal** · **Jacob Diaz**
+
 ## Lionel Abojer vs. Dustin Lampros
 
 **Featherweight · 145 lb · Announced matchup**
@@ -139,6 +149,8 @@ The records below come from the GFL's released lineup. **Professional fights and
 </section>
 
 **Matchup notes:** Both fighters enter with double-digit professional wins. Lampros was announced as the final addition to the Miami roster on November 8. Their combined 29 professional bouts make this one of the card's more experienced pairings.
+
+**Career timelines:** **Lionel Abojer** · **Dustin Lampros**
 
 ## Ryan Martinez vs. Kody Cook
 
@@ -150,6 +162,8 @@ The records below come from the GFL's released lineup. **Professional fights and
 
 **Matchup notes:** Martinez's announced 9-1 record is the strongest win-loss mark among the Gauchos with at least 10 bouts. Cook is unbeaten in six professional fights, giving Miami another undefeated entrant in this team matchup.
 
+**Career timelines:** **Ryan Martinez** · **Kody Cook**
+
 ## Nicolás Rodriguez vs. Corvan Allen
 
 **Flyweight · 125 lb · Announced matchup**
@@ -159,6 +173,8 @@ The records below come from the GFL's released lineup. **Professional fights and
 </section>
 
 **Matchup notes:** The two flyweights have identical announced professional records: nine wins and three losses apiece. It is the most even statistical pairing on the card by record alone, although identical records say little about the caliber of their past opponents.
+
+**Career timelines:** **Nicolás Rodriguez** · **Corvan Allen**
 
 ## Nicole Artaza vs. Pamela Mara
 
@@ -170,6 +186,8 @@ The records below come from the GFL's released lineup. **Professional fights and
 
 **Matchup notes:** Artaza and Mara meet at a 110-pound limit, part of the revised women's weight structure for the debut. The widely circulated card gives Mara a 7-4-1 record, while the ticket listing shows 7-4. The draw is retained here provisionally until the record is verified.
 
+**Career timelines:** **Nicole Artaza** · **Pamela Mara**
+
 ## Julia Pareja vs. Melissa Gomez
 
 **Women&#39;s atomweight · 105 lb · Announced matchup**
@@ -179,6 +197,8 @@ The records below come from the GFL's released lineup. **Professional fights and
 </section>
 
 **Matchup notes:** The event's atomweight pairing is Pareja against Gomez at 105 pounds. Their announced records are separated by one victory, with each having two losses. Alongside Artaza–Mara, this bout gives the debut two women's fights.
+
+**Career timelines:** **Julia Pareja** · **Melissa Gomez**
 
 ## What still needs to be confirmed
 
