@@ -4329,3 +4329,15 @@ html[data-theme="dark"] .post-page-v3 .article-toc-floating a.is-active{
   }
   .post-page-v3 .related-breakdowns .section-header{flex-wrap:wrap}
 }
+
+/* GFL Showdown Argentina: shared styles for the Writer and published post. */
+.gfl-tale-visual .fc-portrait {position:relative;display:flex;justify-content:center;align-items:center;min-height:116px;}
+.gfl-tale-visual .gfl-tape-initials {z-index:2;position:relative;font-weight:850;letter-spacing:.055em;font-size:clamp(24px,3.6vw,40px);color:#d7af63;text-shadow:0 2px 14px rgba(0,0,0,.45);}
+.gfl-tale-visual .fc-fighter .fc-meta h2 {font-size:clamp(18px,2.6vw,27px);line-height:1.12;}
+.gfl-tale-visual .fc-division {letter-spacing:.065em;font-size:10px;}
+.gfl-tale-visual .fc-tale-row {font-variant-numeric:tabular-nums;}
+.gfl-tale-visual .fc-center-badge strong {font-size:11px;letter-spacing:.14em;}
+.gfl-tale-visual {margin:1.25rem 0 1.5rem;}
+.gfl-card-label {font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75;font-weight:650;}
+.gfl-source-note {font-size:.88rem;opacity:.75;}
+@media (max-width:640px) {.gfl-tale-visual .fc-portrait{min-height:76px}.gfl-tale-visual .gfl-tape-initials{font-size:24px}}
