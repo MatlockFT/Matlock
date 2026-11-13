@@ -1,5 +1,5 @@
 {
-  "version": 65,
+  "version": 66,
   "event": "Multiple UFC events",
   "eventDate": "2026-10-31",
   "fighters": {
@@ -32198,9 +32198,883 @@
           "sourceLabel": "UFC · official Nov. 7 2026 fight card"
         }
       ]
+    },
+    "Dante Romero": {
+      "slug": "dante-romero",
+      "name": "Dante Romero",
+      "subtitle": "Buenos Aires Gauchos · GFL Showdown Argentina",
+      "record": "9-8",
+      "division": "Middleweight",
+      "items": [
+        {
+          "date": "Apr. 4, 2015",
+          "label": "WIN · Claudio Penida",
+          "kind": "win",
+          "detail": "Professional MMA bout. MMA Junin · TKO (retirement) · Round 1, 4:43.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "May 17, 2015",
+          "label": "WIN · Kevin Fischer",
+          "kind": "win",
+          "detail": "Professional MMA bout. Punishers 5 · TKO (punches) · Round 1, 3:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Jul. 18, 2015",
+          "label": "LOSS · Octavio Jobet",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Espartaco MMA 1 · TKO (punches) · Round 1, 0:20.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Sep. 20, 2015",
+          "label": "WIN · Rodrigo Pezoli",
+          "kind": "win",
+          "detail": "Professional MMA bout. Ultimatum MMA · TKO (punches) · Round 3, 0:10.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Oct. 21, 2015",
+          "label": "LOSS · Kevin Fischer",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Espartaco MMA 2 · Split decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Dec. 16, 2017",
+          "label": "LOSS · Hernan Sosa",
+          "kind": "loss",
+          "detail": "Professional MMA bout. The One Real Combat · KO (punches) · Round 2, 3:30.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Jun. 3, 2018",
+          "label": "WIN · Jean Mejias",
+          "kind": "win",
+          "detail": "Professional MMA bout. Tigre Fight Combat 2 · Submission (rear-naked choke) · Round 2.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Nov. 16, 2019",
+          "label": "LOSS · Jesus Guzman",
+          "kind": "loss",
+          "detail": "Professional MMA bout. CAM: El Regreso · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Feb. 6, 2021",
+          "label": "LOSS · Cristian David Dominguez",
+          "kind": "loss",
+          "detail": "Professional MMA bout. CAM 1 · TKO · Round 1, 0:51.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Jul. 10, 2021",
+          "label": "WIN · Jesus Ru",
+          "kind": "win",
+          "detail": "Professional MMA bout. CAM 3 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Nov. 27, 2021",
+          "label": "WIN · Cesar Cardozo",
+          "kind": "win",
+          "detail": "Professional MMA bout. CAM 5 · Majority decision · Round 5, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Jul. 15, 2023",
+          "label": "WIN · Cesar Cardozo",
+          "kind": "win",
+          "detail": "Professional MMA bout. CAM 20 · KO · Round 2, 1:43.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Sep. 6, 2023",
+          "label": "LOSS · Oscar Ravello",
+          "kind": "loss",
+          "detail": "Professional MMA bout. FFC 65 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Aug. 1, 2024",
+          "label": "WIN · Cristiano Estela",
+          "kind": "win",
+          "detail": "Professional MMA bout. FFC 79 · KO (punches) · Round 2, 4:58.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Nov. 13, 2024",
+          "label": "LOSS · Oscar Ravello",
+          "kind": "loss",
+          "detail": "Professional MMA bout. FFC 84 · Split decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Jun. 26, 2025",
+          "label": "LOSS · James Llontop",
+          "kind": "loss",
+          "detail": "Professional MMA bout. FFC 92 · TKO (elbow and punches) · Round 2, 1:22.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Apr. 11, 2026",
+          "label": "WIN · Hector Paniagua",
+          "kind": "win",
+          "detail": "Professional MMA bout. Noche de Leyendas 3 · TKO (doctor stoppage) · Round 2, 4:25.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Dante-Romero-200571"
+        },
+        {
+          "date": "Nov. 13, 2026",
+          "label": "GFL roster and team assignment",
+          "kind": "milestone",
+          "detail": "Named to the Buenos Aires Gauchos for the announced December 18, 2026 GFL debut card. Sherdog lists training association: Inca MMA. Fight histories above reflect completed MMA bouts, separate from any future booking.",
+          "sourceLabel": "MMA Fighting · announced GFL card",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        },
+        {
+          "date": "Dec. 18, 2026 (scheduled)",
+          "label": "GFL debut · scheduled vs. Grant Neal",
+          "kind": "upcoming",
+          "detail": "Scheduled for the Middleweight bout representing the Buenos Aires Gauchos. The fight has not taken place as of November 13, 2026; no result is recorded.",
+          "sourceLabel": "GFL · November 9 announced matchup",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        }
+      ],
+      "lastReviewed": "2026-11-13"
+    },
+    "Grant Neal": {
+      "slug": "grant-neal",
+      "name": "Grant Neal",
+      "subtitle": "Miami Monsters · GFL Showdown Argentina",
+      "record": "12-3",
+      "division": "Middleweight",
+      "items": [
+        {
+          "date": "Mar. 24, 2017",
+          "label": "AMATEUR · WIN · Joseph Chacon",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Paramount MMA 7 · Submission · Round 1, 1:01.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Jun. 17, 2017",
+          "label": "AMATEUR · WIN · Kitaro Cade",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. SCL 59 · Unanimous decision · Round 5, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Nov. 18, 2017",
+          "label": "AMATEUR · WIN · Shawn Hudler",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. SCL · Submission · Round 1, 1:15.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Jun. 30, 2018",
+          "label": "AMATEUR · WIN · Erik Rolando Perez",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Tuff-N-Uff: Pack The Mack 5 · Unanimous decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Feb. 23, 2019",
+          "label": "WIN · Juan Molina",
+          "kind": "win",
+          "detail": "Professional MMA bout. SCL 72 · Submission (rear-naked choke) · Round 1, 0:46.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Nov. 8, 2019",
+          "label": "WIN · Jimmy Lugo",
+          "kind": "win",
+          "detail": "Professional MMA bout. Bellator 233 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Feb. 21, 2020",
+          "label": "WIN · Claude Wilcox",
+          "kind": "win",
+          "detail": "Professional MMA bout. Bellator 239 · TKO (punches) · Round 3, 3:37.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Aug. 7, 2020",
+          "label": "WIN · Hamza Salim",
+          "kind": "win",
+          "detail": "Professional MMA bout. Bellator 243 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Dec. 10, 2020",
+          "label": "WIN · Maurice Jackson",
+          "kind": "win",
+          "detail": "Professional MMA bout. Bellator 254 · Submission (rear-naked choke) · Round 2, 3:59.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "May 21, 2021",
+          "label": "WIN · Tyree Fortune",
+          "kind": "win",
+          "detail": "Professional MMA bout. Bellator 259 · Submission (rear-naked choke) · Round 1, 4:20.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Sep. 18, 2021",
+          "label": "LOSS · Alex Polizzi",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Bellator 266 · Split decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Apr. 22, 2022",
+          "label": "WIN · Christian Edwards",
+          "kind": "win",
+          "detail": "Professional MMA bout. Bellator 278 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Feb. 4, 2023",
+          "label": "WIN · Karl Albrektsson",
+          "kind": "win",
+          "detail": "Professional MMA bout. Bellator 290 · Split decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Oct. 7, 2023",
+          "label": "WIN · Romero Cotton",
+          "kind": "win",
+          "detail": "Professional MMA bout. Bellator 300 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Mar. 22, 2024",
+          "label": "LOSS · Luke Trainer",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Bellator Champions Series Belfast · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Aug. 15, 2025",
+          "label": "WIN · Nicholas Gay",
+          "kind": "win",
+          "detail": "Professional MMA bout. Colorado Combat Club 25 · Submission (rear-naked choke) · Round 1, 1:38.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Nov. 1, 2025",
+          "label": "LOSS · Renato Valente Alves",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Lights Out Xtreme Fighting 28 · Unanimous decision · Round 5, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Mar. 28, 2026",
+          "label": "WIN · Tommie Britton",
+          "kind": "win",
+          "detail": "Professional MMA bout. Colorado Combat Club 29 · TKO (punches) · Round 1, 3:27.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "May 16, 2026",
+          "label": "WIN · Ismail Israilov",
+          "kind": "win",
+          "detail": "Professional MMA bout. Ignite Fights 113 · Unanimous decision · Round 5, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Grant-Neal-250539"
+        },
+        {
+          "date": "Nov. 13, 2026",
+          "label": "GFL roster and team assignment",
+          "kind": "milestone",
+          "detail": "Named to the Miami Monsters for the announced December 18, 2026 GFL debut card. Sherdog lists training association: Genesis Training Academy. Fight histories above reflect completed MMA bouts, separate from any future booking.",
+          "sourceLabel": "MMA Fighting · announced GFL card",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        },
+        {
+          "date": "Dec. 18, 2026 (scheduled)",
+          "label": "GFL debut · scheduled vs. Dante Romero",
+          "kind": "upcoming",
+          "detail": "Scheduled for the Middleweight bout representing the Miami Monsters. The fight has not taken place as of November 13, 2026; no result is recorded.",
+          "sourceLabel": "GFL · November 9 announced matchup",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        }
+      ],
+      "lastReviewed": "2026-11-13"
+    },
+    "Matías Ponce": {
+      "slug": "matias-ponce",
+      "name": "Matías Ponce",
+      "subtitle": "Buenos Aires Gauchos · GFL Showdown Argentina",
+      "record": "12-5 (1 NC)",
+      "division": "165-pound bout",
+      "items": [
+        {
+          "date": "Oct. 28, 2018",
+          "label": "AMATEUR · WIN · Franco Pagano",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. West Fights MMA 1 · TKO (punches) · Round 1, 0:55.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Mar. 31, 2019",
+          "label": "AMATEUR · WIN · Nicolas Airala",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. UFS 4 · Submission (rear-naked choke) · Round 1, 2:03.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Apr. 28, 2019",
+          "label": "AMATEUR · WIN · Leonardo Pucci",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. West Fights MMA 2 · Submission · Round 1, 2:35.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Jun. 9, 2019",
+          "label": "AMATEUR · WIN · Juan Cruz Massera",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. UFS 6 · Unanimous decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Jul. 14, 2019",
+          "label": "AMATEUR · WIN · Martin Vita",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. West Fights MMA 3 · Submission · Round 1, 1:30.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Aug. 4, 2019",
+          "label": "AMATEUR · WIN · Juan Cruz Massera",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. UFS 7 · Unanimous decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Nov. 16, 2019",
+          "label": "AMATEUR · LOSS · Eduardo Cajal",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. CAM: El Regreso · Submission · Round 1, 1:12.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Apr. 4, 2021",
+          "label": "WIN · Ivan Arguello",
+          "kind": "win",
+          "detail": "Professional MMA bout. Global MMA: Leon Fighter League 22 · TKO (punches) · Round 2, 3:12.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Sep. 18, 2021",
+          "label": "LOSS · Luciano Ros",
+          "kind": "loss",
+          "detail": "Professional MMA bout. IDC · Submission (guillotine choke) · Round 1, 2:02.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Oct. 31, 2021",
+          "label": "WIN · Ivan Garcia",
+          "kind": "win",
+          "detail": "Professional MMA bout. UFS 12 · TKO (punches) · Round 1, 0:15.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Dec. 5, 2021",
+          "label": "LOSS · Kevin Vallejos",
+          "kind": "loss",
+          "detail": "Professional MMA bout. Cobra Fighter 1 · KO · Round 1, 0:39.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Apr. 21, 2022",
+          "label": "WIN · Ivan Arguello",
+          "kind": "win",
+          "detail": "Professional MMA bout. Global MMA: Leon Fighter League · TKO · Round 2, 2:21.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Jun. 12, 2022",
+          "label": "WIN · Juan Carlos Romero",
+          "kind": "win",
+          "detail": "Professional MMA bout. Cobra Fighter 3 · Submission (rear-naked choke) · Round 1, 4:59.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Aug. 7, 2022",
+          "label": "WIN · Cristian Dipp",
+          "kind": "win",
+          "detail": "Professional MMA bout. UFS 15 · TKO (punches) · Round 3, 1:04.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Sep. 22, 2022",
+          "label": "LOSS · Luis Pajuelo",
+          "kind": "loss",
+          "detail": "Professional MMA bout. FFC 53 · KO (punches) · Round 1, 3:48.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Sep. 23, 2023",
+          "label": "LOSS · Adrian Miranda",
+          "kind": "loss",
+          "detail": "Professional MMA bout. LATAMM 1 · Submission (guillotine choke) · Round 1, 1:24.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Sep. 21, 2024",
+          "label": "WIN · Abel Pastrana",
+          "kind": "win",
+          "detail": "Professional MMA bout. CAM 28 · Submission (rear-naked choke) · Round 1, 4:34.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Oct. 19, 2024",
+          "label": "WIN · Amilkar Salvatierra",
+          "kind": "win",
+          "detail": "Professional MMA bout. CAM 29 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Nov. 17, 2024",
+          "label": "WIN · Tomas Caceres",
+          "kind": "win",
+          "detail": "Professional MMA bout. Show Fight 100 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Mar. 15, 2025",
+          "label": "WIN · Cristian Dipp",
+          "kind": "win",
+          "detail": "Professional MMA bout. Blood & Glory Fight Night 2 · TKO (punches) · Round 3, 1:40.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Aug. 10, 2025",
+          "label": "WIN · Arion Ponce",
+          "kind": "win",
+          "detail": "Professional MMA bout. Cobra Fighter 14 · TKO · Round 1, 0:11.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Sep. 13, 2025",
+          "label": "WIN · Jorge Rodriguez",
+          "kind": "win",
+          "detail": "Professional MMA bout. CAM 33 · Submission (shoulder choke) · Round 2, 2:12.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Nov. 1, 2025",
+          "label": "WIN · Matias Perez",
+          "kind": "win",
+          "detail": "Professional MMA bout. XFC Young Guns 11-12 · Submission (anaconda choke) · Round 1, 0:25.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Apr. 5, 2026",
+          "label": "LOSS · Gian Maurente",
+          "kind": "loss",
+          "detail": "Professional MMA bout. SFH 28 · TKO (elbows and punches) · Round 1, 2:02.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Jun. 7, 2026",
+          "label": "NO CONTEST · Pablo Flores",
+          "kind": "milestone",
+          "detail": "Professional MMA bout. SFH 30 · No contest (accidental groin kick) · Round 2, 0:17.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Nov. 13, 2026",
+          "label": "GFL roster and team assignment",
+          "kind": "milestone",
+          "detail": "Named to the Buenos Aires Gauchos for the announced December 18, 2026 GFL debut card. Sherdog lists training association: Breakers MMA. Fight histories above reflect completed MMA bouts, separate from any future booking.",
+          "sourceLabel": "MMA Fighting · announced GFL card",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        },
+        {
+          "date": "Nov. 9, 2026",
+          "label": "Record differs from GFL announcement",
+          "kind": "milestone",
+          "detail": "Sherdog lists 12-5 with one no-contest, including a November 1, 2025 submission victory and June 7, 2026 no-contest. The November 9 GFL fight announcement uses 11-5. This discrepancy is preserved rather than silently resolved.",
+          "sourceLabel": "Sherdog · fight history",
+          "source": "https://www.sherdog.com/fighter/Matias-Ponce-384286"
+        },
+        {
+          "date": "Dec. 18, 2026 (scheduled)",
+          "label": "GFL debut · scheduled vs. Omar Morales",
+          "kind": "upcoming",
+          "detail": "Scheduled for the 165-pound bout bout representing the Buenos Aires Gauchos. The fight has not taken place as of November 13, 2026; no result is recorded.",
+          "sourceLabel": "GFL · November 9 announced matchup",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        }
+      ],
+      "lastReviewed": "2026-11-13"
+    },
+    "Omar Morales": {
+      "slug": "omar-morales",
+      "name": "Omar Morales",
+      "subtitle": "Miami Monsters · GFL Showdown Argentina",
+      "record": "11-4",
+      "division": "165-pound bout",
+      "items": [
+        {
+          "date": "Nov. 26, 2011",
+          "label": "WIN · Angel Brito",
+          "kind": "win",
+          "detail": "Professional MMA bout. GOV 2: Total Elimination Absolute · Submission · Round 1.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "Aug. 18, 2012",
+          "label": "WIN · Jesus Rodriguez",
+          "kind": "win",
+          "detail": "Professional MMA bout. Pugilatus MMA · Submission (armbar) · Round 1, 3:34.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "Oct. 27, 2012",
+          "label": "WIN · Wilmer Gonzalez",
+          "kind": "win",
+          "detail": "Professional MMA bout. Supremacia MMA 2 · Submission (guillotine choke) · Round 1, 1:54.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "Sep. 26, 2014",
+          "label": "WIN · Stefan Werleman",
+          "kind": "win",
+          "detail": "Professional MMA bout. Eye 4N Eye Fighting Championships · Submission (rear-naked choke) · Round 1, 0:49.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "May 29, 2015",
+          "label": "WIN · Danilo Padilha da Silva",
+          "kind": "win",
+          "detail": "Professional MMA bout. Fight Time 25 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "Feb. 20, 2016",
+          "label": "WIN · Jhan Zuniga",
+          "kind": "win",
+          "detail": "Professional MMA bout. The One Latin American Championship · Submission (rear-naked choke) · Round 1, 3:14.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "Aug. 17, 2018",
+          "label": "WIN · Troy Nawrocki",
+          "kind": "win",
+          "detail": "Professional MMA bout. Bellator 204 · KO (punches) · Round 1, 0:58.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "Aug. 6, 2019",
+          "label": "WIN · Harvey Park",
+          "kind": "win",
+          "detail": "Professional MMA bout. Dana White's Contender Series: Season 3 Week 7 · TKO (leg kicks and punches) · Round 2, 1:06.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "Dec. 21, 2019",
+          "label": "WIN · Dong Hyun Ma",
+          "kind": "win",
+          "detail": "Professional MMA bout. UFC Fight Night: Edgar vs. Korean Zombie · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "May 13, 2020",
+          "label": "WIN · Gabriel Benitez",
+          "kind": "win",
+          "detail": "Professional MMA bout. UFC Fight Night: Smith vs. Teixeira · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "Oct. 10, 2020",
+          "label": "LOSS · Giga Chikadze",
+          "kind": "loss",
+          "detail": "Professional MMA bout. UFC Fight Night: Moraes vs. Sandhagen · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "Mar. 27, 2021",
+          "label": "WIN · Shane Young",
+          "kind": "win",
+          "detail": "Professional MMA bout. UFC 260 · Unanimous decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "Sep. 25, 2021",
+          "label": "LOSS · Jonathan Pearce",
+          "kind": "loss",
+          "detail": "Professional MMA bout. UFC 266 · Submission (rear-naked choke) · Round 2, 3:31.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "May 21, 2022",
+          "label": "LOSS · Uroš Medić",
+          "kind": "loss",
+          "detail": "Professional MMA bout. UFC Fight Night: Holm vs. Vieira · TKO (punches) · Round 2, 3:05.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "Mar. 18, 2023",
+          "label": "LOSS · Chris Duncan",
+          "kind": "loss",
+          "detail": "Professional MMA bout. UFC 286 · Split decision · Round 3, 5:00.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Omar-Morales-120645"
+        },
+        {
+          "date": "Nov. 13, 2026",
+          "label": "GFL roster and team assignment",
+          "kind": "milestone",
+          "detail": "Named to the Miami Monsters for the announced December 18, 2026 GFL debut card. Sherdog lists training association: The Goat Shed Academy (Sherdog listing); formerly Sanford MMA. Fight histories above reflect completed MMA bouts, separate from any future booking.",
+          "sourceLabel": "MMA Fighting · announced GFL card",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        },
+        {
+          "date": "Dec. 18, 2026 (scheduled)",
+          "label": "GFL debut · scheduled vs. Matías Ponce",
+          "kind": "upcoming",
+          "detail": "Scheduled for the 165-pound bout bout representing the Miami Monsters. The fight has not taken place as of November 13, 2026; no result is recorded.",
+          "sourceLabel": "GFL · November 9 announced matchup",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        }
+      ],
+      "lastReviewed": "2026-11-13"
+    },
+    "Franco Ríos": {
+      "slug": "franco-rios",
+      "name": "Franco Ríos",
+      "subtitle": "Buenos Aires Gauchos · GFL Showdown Argentina",
+      "record": "4-0",
+      "division": "160-pound catchweight",
+      "items": [
+        {
+          "date": "Mar. 19, 2022",
+          "label": "AMATEUR · WIN · Emanuel Montalbetti",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Cobra Fighter 2 · Submission (rear-naked choke) · Round 2, 2:53.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Apr. 16, 2022",
+          "label": "AMATEUR · WIN · Franco Rizzone",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Supreme Warriors 8 · Split decision · Round 2, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "May 28, 2022",
+          "label": "AMATEUR · WIN · Facundo Coronel",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. CAM 10 · Submission · Round 2, 1:47.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Jun. 12, 2022",
+          "label": "AMATEUR · LOSS · Julian Perez",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Cobra Fighter 3 · Unanimous decision · Round 2, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Jun. 25, 2022",
+          "label": "AMATEUR · WIN · Agustin Buss",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. CAM 11 · KO · Round 2, 2:43.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Sep. 17, 2022",
+          "label": "AMATEUR · WIN · Julian Perez",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Supreme Warriors 9 · Submission (rear-naked choke) · Round 2, 1:52.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Oct. 15, 2022",
+          "label": "AMATEUR · LOSS · Jorge Rosales",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. SFH 6 · Split decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "May 20, 2023",
+          "label": "AMATEUR · WIN · Albano Sanchez",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. CAM 19 · Unanimous decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Sep. 23, 2023",
+          "label": "AMATEUR · LOSS · Ezequiel Cordoba",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. LATAMM 1 · Submission (armbar) · Round 1, 2:11.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Dec. 3, 2023",
+          "label": "AMATEUR · WIN · Fernando Alarcon",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Cobra Fighter 8 · Submission (armbar) · Round 1, 2:42.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Dec. 15, 2023",
+          "label": "AMATEUR · WIN · Fernando Alarcon",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. Dragon Fight Night · Submission (choke) · Round 1, 2:40.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Jul. 14, 2024",
+          "label": "AMATEUR · WIN · Damian Salinas",
+          "kind": "amateur",
+          "detail": "Amateur MMA bout. SFH 17 · Unanimous decision · Round 3, 3:00.",
+          "sourceLabel": "Sherdog · amateur fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Nov. 2, 2024",
+          "label": "WIN · Alon Seriall",
+          "kind": "win",
+          "detail": "Professional MMA bout. LATAMM 2 · Submission (rear-naked choke) · Round 2, 0:49.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "May 10, 2025",
+          "label": "WIN · Gabriel Vargas",
+          "kind": "win",
+          "detail": "Professional MMA bout. CAM 31 · TKO · Round 1, 4:52.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Jul. 12, 2025",
+          "label": "WIN · Luciano Duran",
+          "kind": "win",
+          "detail": "Professional MMA bout. CAM 32 · TKO (punches) · Round 3, 2:29.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Jun. 7, 2026",
+          "label": "WIN · Enoch Wilberforce",
+          "kind": "win",
+          "detail": "Professional MMA bout. SFH 30 · TKO (punches) · Round 3, 2:59.",
+          "sourceLabel": "Sherdog · professional fight ledger",
+          "source": "https://www.sherdog.com/fighter/Franco-Rios-404041"
+        },
+        {
+          "date": "Nov. 13, 2026",
+          "label": "GFL roster and team assignment",
+          "kind": "milestone",
+          "detail": "Named to the Buenos Aires Gauchos for the announced December 18, 2026 GFL debut card. Sherdog lists training association: Invictus MMA. Fight histories above reflect completed MMA bouts, separate from any future booking.",
+          "sourceLabel": "MMA Fighting · announced GFL card",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        },
+        {
+          "date": "Dec. 18, 2026 (scheduled)",
+          "label": "GFL debut · scheduled vs. Ethan Burmingham",
+          "kind": "upcoming",
+          "detail": "Scheduled for the 160-pound catchweight bout representing the Buenos Aires Gauchos. The fight has not taken place as of November 13, 2026; no result is recorded.",
+          "sourceLabel": "GFL · November 9 announced matchup",
+          "source": "https://www.mmafighting.com/gfl/520221/gfl-reveals-first-official-fight-card-for-dec-18"
+        }
+      ],
+      "lastReviewed": "2026-11-13"
     }
   },
   "updatedAt": "2026-11-05",
   "notes": "Fourth-pass deep audit completed. Duplicate same-event notes merged; distinct same-year career events retained. Bia Mesquita timeline added. Donte Johnson timeline added. Cesar Almeida timeline added. Melquizael Costa timeline added; corrected May 2026 Arnold Allen result and move to lightweight. Jared Gordon's 31 professional bouts, CFFC championships and distinct career milestones added; same-fight notes merged. Evan Elder full professional history, amateur records and UFC 334 booking added; duplicate same-fight milestones merged. Samuel Sanches timeline added with complete 12-fight professional ledger; DWCS separated from UFC debut. Wellington Turman's 26 professional fights and four amateur bouts audited; return chronology and six dated or deliberately undated milestones expanded; disputed debut scoring and medical history clarified. Billy Elekana's 12 professional bouts and eight amateur bouts cross-checked; Tuff-N-Uff title fights, PFL weight-class shift, 2025 refereeing issue, bout narratives and injury withdrawal documented. Stage 20: Lucas Fernando's 17 professional fights and documented amateur appearance re-audited; Ruas Vale Tudo training, LFA title history, 2022 contender nomination, unbeaten comeback and UFC 330 debut expanded; title defense inconsistencies left marked as unresolved.",
-  "lastReviewed": "2026-11-05"
+  "lastReviewed": "2026-11-13"
 }
