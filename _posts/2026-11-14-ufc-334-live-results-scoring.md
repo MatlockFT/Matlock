@@ -110,9 +110,27 @@ Round 1:
 
 ---
 
-### Evan Elder vs. Samuel Sanches
+### Evan Elder vs. Samuel Sanches (Evan Elder wins via unanimous decision 30-26 x3)
 
-Round 1:
+Round 1: Both trade jabs. Elder now closing and throwing bombs, left hook lands and rocks Sanches. Elder gets it to the ground. Back up, now separated, Elder looks tired.  Elder drops Sancehes at end of round. 10-9 Elder
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-1ffb3bbe" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261114-163407-195.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 2: Elder gets dropped with jab, more off balance I think but still solid. Story of this fight is Elder is landing in more volume and power but gets picked apart in between sprints. Takedown for Elder to close the round. 20-18 Elder
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-f961e334" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261114-163427-562.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 3: They trade jabs and Elder tries for takedown. Cut opened I think on top Elder's head. Sanches back to the feet but Elder is not letting go of this body lock and he pushes him across the octagon back to the fence. Elder is crashing into the clinch over and over. He's exhausted. Sanches is picking him apart at range but Elder gets taken down. In round 1, Sanches grabbed the fence and he just did it again when getting taken down. Ref takes point. They're slugging it out in the center of the octagon. Elder getting the better and another takeodwn. 
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-e375e5a4" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261114-163453-534.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+My card: Evan Elder 30-26
 
 ---
 
