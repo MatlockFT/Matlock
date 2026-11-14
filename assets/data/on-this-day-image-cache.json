@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-11-14T16:05:36.440Z",
+  "updatedAt": "2026-11-14T17:11:04.797Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -4383,9 +4383,23 @@
     "bellator:2013-11-15:bellator-108": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T06:47:25.018Z",
-      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 108"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-11-14T17:08:29.004Z",
+      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 108",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2013-11-15-bellator-108-952b2b1036851262.jpg",
+      "imageAlt": "Bellator 108 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/19913-bellator-107",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/19913-bellator-107",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "952b2b1036851262eed6fa5a29a48ad3f21879a8a36553ce0f0f549a18e9a592",
+      "posterRegistryKey": "2013-11-15::bellator 108"
     },
     "bellator:2014-11-15:bellator-131": {
       "strategyVersion": 6,
@@ -4446,9 +4460,23 @@
     "bellator:2012-11-16:bellator-81": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T06:47:25.018Z",
-      "wikipediaTitle": "Bellator Fighting Championships: Season Seven#Bellator 81"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-11-14T17:08:14.836Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Seven#Bellator 81",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2012-11-16-bellator-81-c2cd66d8f5d90cb2.jpg",
+      "imageAlt": "Bellator 81 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/15557-bellator-81",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/15557-bellator-81",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "c2cd66d8f5d90cb2ccf49851faa36f19606ff97b099b68c9f4d48795064a56ff",
+      "posterRegistryKey": "2012-11-16::bellator 81"
     },
     "bellator:2017-11-16:bellator-188": {
       "strategyVersion": 6,
