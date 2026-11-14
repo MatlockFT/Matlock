@@ -104,9 +104,27 @@ Round 1:
 
 ---
 
-### Alatengheili vs. Juan Diaz
+### Alatengheili vs. Juan Diaz (Juan Diaz wins via unanimous decision 30-27 x3)
 
-Round 1:
+Round 1: Alategheili could not find his range, most shots missed the mark. His takedowns weren't coming either. Juan Diaz essentially out boxes him to a 10-9 round. 10-9 Diaz
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-e9c19a3d" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261114-165221-499.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 2: Alategheili has absolutely nothing for Diaz. No adjustments except for maybe a jab at the very end but Diaz outboxed this dude completely and kept the fight where he wanted. No rocking Alategheili or significant damage but Alatengheili effectively had nothing. 10-8 Diaz.
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-8d033a16" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261114-170841-463.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 3: More of exactly the same of Diaz out striking and outboxing Alategheili. Alategheili landed one good shot near the end of the fight that seemed to rock Diaz momentarily but its way too little, way too late. 10-8 Diaz.
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-89a78f63" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261114-170859-602.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+My card: 30-25 Juan Diaz
 
 ---
 
