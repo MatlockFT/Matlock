@@ -98,9 +98,11 @@ Round 1:
 
 ---
 
-### Macy Chiasson vs. Bia Mesquita
+### Macy Chiasson vs. Bia Mesquita (Bia Mesquita wins via Submission (rear naked choke) in Round 1 (3:23)
 
-Round 1:
+Round 1: Chiasson circling on the outside, using good footwork and effective use of the dart. However, punches are paper and Mesquita with some power in her hands. They traded shots and Mesquita clearly landed the heavier shot. She got a body lock, slammed Chiasson to the mat, powerful elbows and punches on the ground, Chiasson trying to escape, gives up back, rear naked choke, tap. Very impressive victory for Bia Mesquita. 
+
+
 
 ---
 
