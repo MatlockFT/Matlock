@@ -35,27 +35,12 @@ UFC 334 takes place November 14 at Madison Square Garden in New York City. Follo
 
 Round 1:
 
-Round 2:
-
-Round 3:
-
-Round 4:
-
-Round 5:
-
 ---
 
 ### Kayla Harrison vs. Amanda Nunes
 
 Round 1:
 
-Round 2:
-
-Round 3:
-
-Round 4:
-
-Round 5:
 
 ---
 
@@ -63,9 +48,6 @@ Round 5:
 
 Round 1:
 
-Round 2:
-
-Round 3:
 
 ---
 
@@ -73,19 +55,12 @@ Round 3:
 
 Round 1:
 
-Round 2:
-
-Round 3:
 
 ---
 
 ### Bilal Hasan vs. Luis Gurule
 
 Round 1:
-
-Round 2:
-
-Round 3:
 
 ---
 
@@ -95,19 +70,11 @@ Round 3:
 
 Round 1:
 
-Round 2:
-
-Round 3:
-
 ---
 
 ### Drew Dober vs. Chris Duncan
 
 Round 1:
-
-Round 2:
-
-Round 3:
 
 ---
 
@@ -115,19 +82,11 @@ Round 3:
 
 Round 1:
 
-Round 2:
-
-Round 3:
-
 ---
 
 ### Donte Johnson vs. Cesar Almeida
 
 Round 1:
-
-Round 2:
-
-Round 3:
 
 ---
 
@@ -137,19 +96,11 @@ Round 3:
 
 Round 1:
 
-Round 2:
-
-Round 3:
-
 ---
 
 ### Macy Chiasson vs. Bia Mesquita
 
 Round 1:
-
-Round 2:
-
-Round 3:
 
 ---
 
@@ -157,19 +108,11 @@ Round 3:
 
 Round 1:
 
-Round 2:
-
-Round 3:
-
 ---
 
 ### Evan Elder vs. Samuel Sanches
 
 Round 1:
-
-Round 2:
-
-Round 3:
 
 ---
 
