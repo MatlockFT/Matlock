@@ -1,50 +1,58 @@
 {
-  "generatedAt": "2026-11-15T02:11:00.553Z",
+  "generatedAt": "2026-11-15T09:35:41.314Z",
   "engineVersion": 2,
-  "subjects": 388,
-  "publishedRecommendations": 1066,
+  "subjects": 412,
+  "publishedRecommendations": 1123,
   "recommendationSlots": {
-    "0": 30,
+    "0": 35,
     "1": 2,
     "2": 4,
-    "3": 352
+    "3": 371
   },
   "caseCounts": {
-    "rebound-pairing": 436,
-    "rising-vs-rising": 319,
-    "step-up-vs-rebound": 135,
-    "rankings-progression": 61,
-    "ranking-opportunity": 60,
-    "divisional-sorting": 26,
-    "title-case": 14,
+    "rebound-pairing": 472,
+    "rising-vs-rising": 315,
+    "step-up-vs-rebound": 145,
+    "rankings-progression": 62,
+    "ranking-opportunity": 55,
+    "divisional-sorting": 38,
+    "title-case": 17,
     "title-eliminator": 12,
-    "prospect-test": 3
+    "prospect-test": 7
   },
   "confidenceCounts": {
-    "high": 1005,
-    "low": 33,
-    "medium": 28
+    "high": 1049,
+    "low": 47,
+    "medium": 27
   },
-  "averageRecentOpponentLinkCoverage": 0.9044,
-  "sameCardRecommendations": 45,
-  "sameCardRecommendationRatio": 0.0422,
-  "asymmetricTopThreeRecommendations": 359,
-  "asymmetricTopThreeRatio": 0.3368,
-  "publicPublishedRecommendations": 1042,
-  "publicAsymmetricTopThreeRecommendations": 280,
-  "publicAsymmetricTopThreeRatio": 0.2687,
-  "engineGenericDivisionalSortingRecommendations": 26,
+  "averageRecentOpponentLinkCoverage": 0.904,
+  "sameCardRecommendations": 42,
+  "sameCardRecommendationRatio": 0.0374,
+  "asymmetricTopThreeRecommendations": 401,
+  "asymmetricTopThreeRatio": 0.3571,
+  "publicPublishedRecommendations": 1095,
+  "publicAsymmetricTopThreeRecommendations": 300,
+  "publicAsymmetricTopThreeRatio": 0.274,
+  "engineGenericDivisionalSortingRecommendations": 38,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
-    "id": "ufc-fight-night-november-07-2026",
-    "title": "UFC Fight Night: Cortes Acosta vs Walker",
-    "date": "2026-11-07",
-    "subjects": 28,
-    "publicRecommendations": 84,
+    "id": "ufc-334",
+    "title": "Polymarket UFC 334: Gane vs Hokit",
+    "date": "2026-11-14",
+    "subjects": 24,
+    "publicRecommendations": 67,
     "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
+    {
+      "id": "ufc-334",
+      "title": "Polymarket UFC 334: Gane vs Hokit",
+      "date": "2026-11-14",
+      "subjects": 24,
+      "publicRecommendations": 67,
+      "noClearMatchupSubjects": 0
+    },
     {
       "id": "ufc-fight-night-november-07-2026",
       "title": "UFC Fight Night: Cortes Acosta vs Walker",
@@ -90,8 +98,8 @@
       "title": "UFC 332: Silva vs Wang",
       "date": "2026-10-03",
       "subjects": 28,
-      "publicRecommendations": 80,
-      "noClearMatchupSubjects": 1
+      "publicRecommendations": 77,
+      "noClearMatchupSubjects": 2
     },
     {
       "id": "ufc-fight-night-september-26-2026",
@@ -114,16 +122,16 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 67,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 63,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-september-05-2026",
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 63,
-      "noClearMatchupSubjects": 7
+      "publicRecommendations": 64,
+      "noClearMatchupSubjects": 6
     },
     {
       "id": "ufc-fight-night-august-29-2026",
@@ -146,8 +154,8 @@
       "title": "UFC 330: Makhachev vs Machado Garry",
       "date": "2026-08-15",
       "subjects": 24,
-      "publicRecommendations": 60,
-      "noClearMatchupSubjects": 3
+      "publicRecommendations": 56,
+      "noClearMatchupSubjects": 5
     },
     {
       "id": "ufc-fight-night-august-08-2026",
@@ -162,11 +170,67 @@
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 75,
-      "noClearMatchupSubjects": 3
+      "publicRecommendations": 71,
+      "noClearMatchupSubjects": 4
     }
   ],
   "genericExamples": [
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Amanda Nunes",
+      "opponent": "Alice Pereira",
+      "score": 68,
+      "rationale": "Amanda Nunes and Alice Pereira occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Amanda Nunes",
+      "opponent": "Nora Cornolle",
+      "score": 63,
+      "rationale": "Amanda Nunes and Nora Cornolle occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Uros Medic",
+      "opponent": "Mike Malott",
+      "score": 83,
+      "rationale": "Uros Medic and Mike Malott occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Uros Medic",
+      "opponent": "Daniil Donchenko",
+      "score": 84,
+      "rationale": "Uros Medic and Daniil Donchenko occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Kevin Holland",
+      "opponent": "Neil Magny",
+      "score": 85,
+      "rationale": "Kevin Holland and Neil Magny occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Kevin Holland",
+      "opponent": "Sam Patterson",
+      "score": 79,
+      "rationale": "Kevin Holland and Sam Patterson occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Kevin Holland",
+      "opponent": "Carlos Leal",
+      "score": 79,
+      "rationale": "Kevin Holland and Carlos Leal occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Stephen Thompson",
+      "opponent": "Uros Medic",
+      "score": 79,
+      "rationale": "Stephen Thompson and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
     {
       "event": "UFC Fight Night: Cortes Acosta vs Walker",
       "fighter": "Nina Milosevic",
@@ -231,6 +295,13 @@
       "rationale": "Dominick Reyes and Magomed Ankalaev occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Mike Malott",
+      "opponent": "Uros Medic",
+      "score": 83,
+      "rationale": "Mike Malott and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
       "event": "UFC Fight Night: Allen vs Duncan",
       "fighter": "Ernesta Kareckaite",
       "opponent": "Melissa Gatto",
@@ -243,430 +314,42 @@
       "opponent": "Jamey Lyn Horth",
       "score": 89,
       "rationale": "Ernesta Kareckaite and Jamey Lyn Horth occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Ernesta Kareckaite",
-      "opponent": "Tereza Bleda",
-      "score": 88,
-      "rationale": "Ernesta Kareckaite and Tereza Bleda occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Melissa Gatto",
-      "opponent": "Ernesta Kareckaite",
-      "score": 90,
-      "rationale": "Melissa Gatto and Ernesta Kareckaite occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Melissa Gatto",
-      "opponent": "Gabriella Fernandes",
-      "score": 85,
-      "rationale": "Melissa Gatto and Gabriella Fernandes occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Melissa Gatto",
-      "opponent": "Jj Aldrich",
-      "score": 81,
-      "rationale": "Melissa Gatto and Jj Aldrich occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Manon Fiorot",
-      "opponent": "Karine Silva",
-      "score": 71,
-      "rationale": "Manon Fiorot and Karine Silva occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Tim Elliott",
-      "opponent": "Tagir Ulanbekov",
-      "score": 68,
-      "rationale": "Tim Elliott and Tagir Ulanbekov occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Jj Aldrich",
-      "opponent": "Ernesta Kareckaite",
-      "score": 82,
-      "rationale": "Jj Aldrich and Ernesta Kareckaite occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Jj Aldrich",
-      "opponent": "Melissa Gatto",
-      "score": 81,
-      "rationale": "Jj Aldrich and Melissa Gatto occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "fighter": "Salahdine Parnasse",
-      "opponent": "Evan Elder",
-      "score": 48,
-      "rationale": "Salahdine Parnasse and Evan Elder occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
   "asymmetricExamples": [
     {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Waldo Cortes Acosta",
-      "opponent": "Aleksandar Rakic",
-      "pairScore": 82,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Ante Delija",
-          "score": 88,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Tyrell Fortune",
-          "score": 88,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Derrick Lewis",
-          "score": 87,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Johnny Walker",
-      "opponent": "Vitor Petrino",
-      "pairScore": 84,
-      "case": "rankings-progression",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Waldo Cortes Acosta",
-          "score": 88,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Rizvan Kuniev",
-          "score": 87,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Ante Delija",
-          "score": 85,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Tatiana Suarez",
-      "opponent": "Denise Gomes",
-      "pairScore": 83,
-      "case": "title-eliminator",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Virna Jandiroba",
-          "score": 86,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Fatima Kline",
-          "score": 85,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Gillian Robertson",
-          "score": 85,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Tatiana Suarez",
-      "opponent": "Fatima Kline",
-      "pairScore": 74,
-      "case": "rankings-progression",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Yan Xiaonan",
-          "score": 90,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Virna Jandiroba",
-          "score": 87,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Gillian Robertson",
-          "score": 87,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Virna Jandiroba",
-      "opponent": "Gillian Robertson",
-      "pairScore": 79,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Loopy Godinez",
-          "score": 94,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Fatima Kline",
-          "score": 87,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Denise Gomes",
-          "score": 85,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Davey Grant",
-      "opponent": "Otari Tanzilovi",
-      "pairScore": 91,
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Amanda Nunes",
+      "opponent": "Chelsea Chandler",
+      "pairScore": 77,
       "case": "step-up-vs-rebound",
       "fighterRank": "Best match",
       "opponentTopThree": [
         {
-          "opponent": "Carlos Vera",
-          "score": 95,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Steven Koslow",
-          "score": 95,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Borislav Nikolic",
-          "score": 94,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Davey Grant",
-      "opponent": "Carlos Vera",
-      "pairScore": 90,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Otari Tanzilovi",
-          "score": 95,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Ethyn Ewing",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Steven Koslow",
-          "score": 94,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Davey Grant",
-      "opponent": "Said Nurmagomedov",
-      "pairScore": 90,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Kyler Phillips",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Damon Blackshear",
-          "score": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "John Castaneda",
-          "score": 91,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Elijah Smith",
-      "opponent": "Bryce Mitchell",
-      "pairScore": 88,
-      "case": "rankings-progression",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Raoni Barcelos",
-          "score": 95,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Adrian Yanez",
-          "score": 93,
+          "opponent": "Nora Cornolle",
+          "score": 88,
           "case": "rankings-progression"
         },
         {
-          "opponent": "Montel Jackson",
-          "score": 93,
+          "opponent": "Alice Pereira",
+          "score": 84,
           "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Billy Elekana",
-      "opponent": "Iwo Baraniewski",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Felipe Franco",
-          "score": 93,
-          "case": "rebound-pairing"
         },
         {
-          "opponent": "Rodolfo Bellato",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Oumar Sy",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Lucas Fernando",
-      "opponent": "Christian Edwards",
-      "pairScore": 88,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Muhammad Said",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Dustin Jacoby",
-          "score": 91,
+          "opponent": "Macy Chiasson",
+          "score": 82,
           "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Julius Walker",
-          "score": 89,
-          "case": "rising-vs-rising"
         }
       ]
     },
     {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Priscila Cachoeira",
-      "opponent": "Melissa Croden",
-      "pairScore": 87,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Melissa Mullins",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Josiane Nunes",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Klaudia Sygula",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Nina Milosevic",
-      "opponent": "Klaudia Sygula",
-      "pairScore": 70,
-      "case": "divisional-sorting",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Dariya Zheleznyakova",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Josiane Nunes",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Melissa Croden",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Nina Milosevic",
-      "opponent": "Melissa Croden",
-      "pairScore": 69,
-      "case": "divisional-sorting",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Melissa Mullins",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Josiane Nunes",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Klaudia Sygula",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Nina Milosevic",
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Amanda Nunes",
       "opponent": "Alice Pereira",
-      "pairScore": 62,
+      "pairScore": 68,
       "case": "divisional-sorting",
-      "fighterRank": "Another option",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
           "opponent": "Jacqueline Cavalcanti",
@@ -686,16 +369,166 @@
       ]
     },
     {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Mitch Raposo",
-      "opponent": "Tagir Ulanbekov",
-      "pairScore": 91,
-      "case": "ranking-opportunity",
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Amanda Nunes",
+      "opponent": "Nora Cornolle",
+      "pairScore": 63,
+      "case": "divisional-sorting",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Chelsea Chandler",
+          "score": 88,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Michelle Montague",
+          "score": 87,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Macy Chiasson",
+          "score": 84,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Yousri Belgaroui",
+      "opponent": "Donte Johnson",
+      "pairScore": 94,
+      "case": "rebound-pairing",
       "fighterRank": "Best match",
       "opponentTopThree": [
         {
+          "opponent": "Azamat Bekoev",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Ryan Loder",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Torrez Finney",
+          "score": 94,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Yousri Belgaroui",
+      "opponent": "Cam Rowston",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Nursulton Ruziboev",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Donte Johnson",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Ryan Loder",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Yousri Belgaroui",
+      "opponent": "Eric McConico",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Ryan Loder",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Ateba Gautier",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Mansur Abdul Malik",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Kevin Holland",
+      "opponent": "Sam Patterson",
+      "pairScore": 79,
+      "case": "divisional-sorting",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Jean Paul Lebosnoyani",
+          "score": 88,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jonathan Micallef",
+          "score": 87,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Nicolas Dalby",
+          "score": 86,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Kevin Holland",
+      "opponent": "Carlos Leal",
+      "pairScore": 79,
+      "case": "divisional-sorting",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Jean Paul Lebosnoyani",
+          "score": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Seokhyeon Ko",
+          "score": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jonathan Micallef",
+          "score": 89,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Luis Gurule",
+      "opponent": "Tagir Ulanbekov",
+      "pairScore": 90,
+      "case": "ranking-opportunity",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
           "opponent": "Rei Tsuruya",
-          "score": 96,
+          "score": 94,
           "case": "ranking-opportunity"
         },
         {
@@ -711,226 +544,401 @@
       ]
     },
     {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Marcos Degli",
-      "opponent": "Alden Coria",
-      "pairScore": 89,
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Luis Gurule",
+      "opponent": "Jose Ochoa",
+      "pairScore": 86,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Tagir Ulanbekov",
+          "score": 93,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Andre Lima",
+          "score": 87,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Rei Tsuruya",
+          "score": 87,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Stephen Thompson",
+      "opponent": "Nicolas Dalby",
+      "pairScore": 82,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Joaquin Buckley",
+          "score": 90,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Jeremiah Wells",
+          "score": 87,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Sam Patterson",
+          "score": 86,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Stephen Thompson",
+      "opponent": "Uros Medic",
+      "pairScore": 79,
+      "case": "divisional-sorting",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Mike Malott",
+          "score": 83,
+          "case": "divisional-sorting"
+        },
+        {
+          "opponent": "Daniil Donchenko",
+          "score": 84,
+          "case": "divisional-sorting"
+        },
+        {
+          "opponent": "Shavkat Rakhmonov",
+          "score": 82,
+          "case": "prospect-test"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Charles Radtke",
+      "opponent": "Myktybek Orolbai",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Themba Gorimbo",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Nikolay Veretennikov",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Rodrigo Sezinando",
+          "score": 94,
+          "case": "divisional-sorting"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Charles Radtke",
+      "opponent": "Joel Alvarez",
+      "pairScore": 92,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Hyunsung Park",
+          "opponent": "Muslim Salikhov",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Punahele Soriano",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Chris Curtis",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Drew Dober",
+      "opponent": "Mandel Nallo",
+      "pairScore": 89,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Cristian Perez Gonzalez",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Lance Gibson Jr.",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Manuel Torres",
+          "score": 94,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Drew Dober",
+      "opponent": "Fares Ziam",
+      "pairScore": 86,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Kyle Nelson",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Drakkar Klose",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Rafa Garcia",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Chris Duncan",
+      "opponent": "Esteban Ribovics",
+      "pairScore": 92,
+      "case": "rising-vs-rising",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Rongzhu",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jai Herbert",
+          "score": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jalin Turner",
+          "score": 93,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Chris Duncan",
+      "opponent": "Jai Herbert",
+      "pairScore": 90,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Esteban Ribovics",
+          "score": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Grant Dawson",
+          "score": 92,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Jalin Turner",
+          "score": 92,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Jim Miller",
+      "opponent": "Mandel Nallo",
+      "pairScore": 88,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Cristian Perez Gonzalez",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Lance Gibson Jr.",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Manuel Torres",
+          "score": 94,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Jim Miller",
+      "opponent": "Michael Johnson",
+      "pairScore": 83,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "King Green",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Drakkar Klose",
+          "score": 86,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Mason Jones",
+          "score": 86,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Donte Johnson",
+      "opponent": "Azamat Bekoev",
+      "pairScore": 94,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Julien Leblanc",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Torrez Finney",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Andrey Pulyaev",
+          "score": 94,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Cesar Almeida",
+      "opponent": "Dustin Stoltzfus",
+      "pairScore": 91,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Ismail Naurdiev",
+          "score": 95,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Tresean Gore",
+          "score": 95,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Andre Petroski",
+          "score": 94,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Cesar Almeida",
+      "opponent": "Robert Valentin Frey",
+      "pairScore": 91,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Baisangur Susurkaev",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Damian Pinas",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jackson McVey",
+          "score": 94,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Jared Gordon",
+      "opponent": "Kyle Nelson",
+      "pairScore": 91,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Fares Ziam",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Rafa Garcia",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Daniel Zellhuber",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Jared Gordon",
+      "opponent": "Drakkar Klose",
+      "pairScore": 89,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Fares Ziam",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Kyle Nelson",
           "score": 92,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Namsrai Batbayar",
-          "score": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Eduardo Chapolin",
-          "score": 89,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Keiichiro Nakamura",
-      "opponent": "Jose Delano",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Damien Anderson",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Jessie Rosas",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Zhu Kangjie",
-          "score": 93,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Keiichiro Nakamura",
-      "opponent": "Carlos Calderon",
-      "pairScore": 90,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Javier Reyes",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Losene Keita",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Manolo Zecchini",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Keiichiro Nakamura",
-      "opponent": "Damien Anderson",
-      "pairScore": 90,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Jessie Rosas",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Zhu Kangjie",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Manolo Zecchini",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Gabriel Lorenco",
-      "opponent": "Guilherme Pat",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Lucas Armand",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Terrance Chatman",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Jhonata Diniz",
-          "score": 93,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Gabriel Lorenco",
-      "opponent": "Lucas Armand",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Terrance Chatman",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Alexander Poppeck",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Guilherme Pat",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Gabriel Lorenco",
-      "opponent": "Terrance Chatman",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Lucas Armand",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Alexander Poppeck",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Guilherme Pat",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Thomas Petersen",
-      "opponent": "Ante Delija",
-      "pairScore": 88,
-      "case": "ranking-opportunity",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Valter Walker",
-          "score": 91,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Tyrell Fortune",
-          "score": 90,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Aleksandar Rakic",
-          "score": 88,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Jose Delano",
-      "opponent": "Damien Anderson",
-      "pairScore": 93,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Jessie Rosas",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Zhu Kangjie",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Manolo Zecchini",
-          "score": 94,
+          "opponent": "Mason Jones",
+          "score": 92,
           "case": "rebound-pairing"
         }
       ]
