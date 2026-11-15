@@ -34,6 +34,14 @@ UFC 334 takes place November 14 at Madison Square Garden in New York City. Follo
 ### Ciryl Gane vs. Josh Hokit
 
 Round 1:
+A ferocious pace set by Hokit who charges across the octagon for a takedown. Gane gets back up and the majority of this fight Gane circling and jabbing, throwing the occasional uppercut as Hokit relentlessly charges forward with his head on the centerline. Hokit does get some clean shots in there and DC, Rogan are screaming their brains out whenever he does. Hokit lifts Gane above his head and slams him to the ground near the end of the round. 10-9 Gane
+should be noted Gane did get an eye poke in there as he tried to frame off Hokit's face and create separation. 
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-10653a5a" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-160840-726.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 2: 
 
 ---
 
