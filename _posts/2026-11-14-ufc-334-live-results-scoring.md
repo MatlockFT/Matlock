@@ -21,7 +21,7 @@ editorial_notes: >-
   replaces Adrian Yanez; the Sadykhov–Nascimento bout is canceled and omitted.
   Current featured image reuses the UFC 334 preview artwork.
 image:
-  path: /assets/uploads/articles/2026/11/ufc-334-live-results-scoring/mqdefault_custom_2-1--mwgy00v1-d45c631c.jpg
+  path: /assets/uploads/articles/2026/11/ufc-334-live-results-scoring/GANE_PROMO-mwh2q4vo-ae184ccf.png
   alt: "UFC 334: Gane vs. Hokit"
   position: center center
 members_only: false
