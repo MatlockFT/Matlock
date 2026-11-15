@@ -108,6 +108,10 @@ Round 2: Gordon comes out fast, trying to close distance but Costa is hammering 
 
 Round 3: Gordon eats shots going in, but wrestles, gets Costa down. Gets back up and they're fighting at range. Gordon eating a lot of shots and they both are exhausted. Gordon failing some wrestling here. Gets him down near the end and Costa smartly ends the round going for a submission. That's a 10-9 Costa on my card but its going to be close. It comes down to how the judges score round 3.
 
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-c5fa6c46" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261114-180448-985.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
 My card 29-28 Costa.
 
 ---
