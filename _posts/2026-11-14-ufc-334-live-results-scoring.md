@@ -92,9 +92,23 @@ Round 1:
 
 ## Early prelims
 
-### Jared Gordon vs. Melquizael Costa
+### Jared Gordon vs. Melquizael Costa (Melquizael Costa wins via unanimous decisions 29-28 x3)
 
-Round 1:
+Round 1: Gordon came out looking confident but Costa sticking and moving and landing these POWERFUL head kick that are rendering Gordon completely defensive. He is struggling to close the gap. He pushes Costa against the cage at the end but they separate and Costa lands a turning side kick to the body that launches Gordon to the ground. 10-9 Costa
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-21f8e02c" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261114-175459-887.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 2: Gordon comes out fast, trying to close distance but Costa is hammering him moving backward, inside body kick lands, that was nasty. Gordon gets the takedown, stuck in a triangle but escapes. He takes Costa back, this is huge for him. Trying to sink in choke, he's got the hooks in - my bad, one hook in, he abandons it for punches, Costa moves, Gordon tries for back gain and Costa stands up, Gordon abandons the backpack. Gordon now working him against the cage, landing shots. Costa trip takedown, back to the cage, back to the mat. Savvy moves from Gordon who is showing his experience. He ends the Round on top landing shots. We got a fight! 10-9 Gordon. 
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-ee854acf" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261114-175507-879.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 3: Gordon eats shots going in, but wrestles, gets Costa down. Gets back up and they're fighting at range. Gordon eating a lot of shots and they both are exhausted. Gordon failing some wrestling here. Gets him down near the end and Costa smartly ends the round going for a submission. That's a 10-9 Costa on my card but its going to be close. It comes down to how the judges score round 3.
+
+My card 29-28 Costa.
 
 ---
 
