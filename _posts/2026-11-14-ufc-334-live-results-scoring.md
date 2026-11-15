@@ -86,7 +86,7 @@ Round 1:
 
 ### Donte Johnson vs. Cesar Almeida (Cesar Almeida wins via TKO round 1)
 
-Round 1: Donte Johnson comes out aggressive. Almeida very reserved and reading. Wow, Johnson looking very sloppy right now and his footwork is pretty bad. He's a bit nervous, I think. Almeida with a sharp right hand. Fans and judges are gonna fuck this fight because Johnson is throwing a whole lot and nothing is landing whereas Almeida is sharp and quiet with his counters. Donte just threw a superman punch with his chin in the air, he's gonna get domed. Yep. Donte dropped and its trying to survive. He's back to his feet and throwing leather with Almeida, terrible idea. Donte dropped again. Ref stops it. 
+Round 1: Donte Johnson comes out aggressive. Almeida very reserved and reading. Wow, Johnson looking very sloppy right now and his footwork is pretty bad. He's a bit nervous, I think. Almeida with a sharp right hand. Fans and judges are gonna fuck this fight because Johnson is throwing a whole lot and nothing is landing whereas Almeida is sharp and quiet with his counters. Donte just threw a superman punch with his chin in the air, he's gonna get domed. Yep. Donte dropped and is trying to survive. He's back to his feet and throwing leather with Almeida, terrible idea. Donte dropped again. Ref stops it. 
 
 
 
