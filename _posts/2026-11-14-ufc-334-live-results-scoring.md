@@ -78,9 +78,11 @@ Round 1:
 
 ---
 
-### Jim Miller vs. Terrance McKinney
+### Jim Miller vs. Terrance McKinney (Terrance McKinney wins via first round knockout 1:53)
 
-Round 1:
+Round 1: Of course, I want Miller to win this fight but the fight game has no feelings and the pick is McKinney. Jab working for McKinney and it's fucking up Miller, cut open on the eye. Good counter from Miller lands. McKinney staying in his face. He just dropped Miller, following up, fight over.
+
+
 
 ---
 
