@@ -73,6 +73,8 @@ An incredibly sloppy fight that essentially looked like Gane, despite being gass
   </div>
 </figure>
 
+My card: 49-46 Ganae and that is the only acceptable answer. 
+
 ---
 
 ### Kayla Harrison vs. Amanda Nunes
