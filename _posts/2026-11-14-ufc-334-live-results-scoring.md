@@ -60,7 +60,13 @@ Round 1:
 
 ### Bilal Hasan vs. Luis Gurule
 
-Round 1:
+Round 1: Bilal Hasan comes out doing what he does constantly attacking with kicks and punches and staying mobile. Laser focused is Gurule, slowly marching forward through the onslaught, he is clearly wanting to get this to the ground but he is betting on his toughness against Hasan's conditioning. 10-9 Hasan.
+
+Round 2 and 3: Hasan does well at range in round to but he does get taken down. 10-9 for Gurule in 2 & 3.
+
+
+I legit thought Luis Gurule was gonna get robbed in that fight. 
+29-28 Hasan; 29-28 Gurule; 29-28 Luis Gurule
 
 ---
 
