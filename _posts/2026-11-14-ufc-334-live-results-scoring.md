@@ -72,9 +72,15 @@ Round 1:
 
 ---
 
-### Drew Dober vs. Chris Duncan
+### Drew Dober vs. Chris Duncan (Chris Duncan wins via unanimous decision 30-27x2, 29-28)
 
-Round 1:
+Round 1: Heavy exchanges but Duncan getting the best of Dober with the open stance matchup, especially with these kicks. Duncan lands a laser beam pull counter that gets Dober's knees to give way. He keeps standing however. Great round for Duncan who may have broken his foot. 10-9 Duncan
+
+Round 2: Pure kickboxing round with Duncan having more volume, more impact, and the better exchanges. Dober with some good hits but he took the round off. 10-9 Duncan
+
+Round 3: Pace has slowed substantially. They're both bombing in exchanges and this is Dober's best round thus far. He rocks Duncan but Duncan does recover, gets it to the ground. Through pure volume and pace, and a takedown with control and elbows, Duncan wins this round on my cards, too. 10-9 Duncan.
+
+My score: 30-27 Duncan
 
 ---
 
