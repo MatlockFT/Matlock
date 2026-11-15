@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-11-09T20:02:17.824Z",
+  "updatedAt": "2026-11-15T16:34:09.180Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -15433,6 +15433,36 @@
     "rizin:2026-06-06:tony-laramie": {
       "strategyVersion": 1,
       "checkedAt": "2026-11-09T20:02:17.824Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "Canada"
+    },
+    "ufc:2026-11-14:ufc-334-gane-vs-hokit": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-11-15T16:34:09.180Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 334",
+      "mainEvent": "Gane vs. Hokit"
+    },
+    "pfl:2026-11-14:pfl-dubai-nemkov-vs-bilostenniy": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-11-15T16:34:09.180Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Dubai: Nemkov vs. Bilostenniy",
+      "mainEvent": "Nemkov vs. Bilostenniy"
+    },
+    "rizin:2026-11-08:rizin-55": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-11-15T16:34:09.180Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2026 in Rizin Fighting Federation"
+    },
+    "rizin:2026-11-08:tony-laramie": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-11-15T16:34:09.180Z",
       "status": "no-main-event",
       "sourceType": "wikipedia-structured",
       "wikipediaTitle": "Canada"
