@@ -1,7 +1,67 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-12T22:42:36.069Z",
+  "generated_at": "2026-11-15T07:58:07.683Z",
   "changes": [
+    {
+      "id": "2026-11-15T07:58:07.683Z|ufc-fight-night-2027-01-16-fight-card|event_added|1",
+      "at": "2026-11-15T07:58:07.683Z",
+      "type": "event_added",
+      "event_id": "ufc-fight-night-2027-01-16-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Rodriguez vs Garcia",
+      "event_date": "2027-01-16",
+      "summary": "UFC Fight Night Rodriguez vs Garcia added to Upcoming Events.",
+      "details": {
+        "bout_count": 3,
+        "venue": "Venue TBA",
+        "date": "2027-01-16"
+      }
+    },
+    {
+      "id": "2026-11-15T07:58:07.683Z|ufc-fight-night-2027-01-23-fight-card|event_added|2",
+      "at": "2026-11-15T07:58:07.683Z",
+      "type": "event_added",
+      "event_id": "ufc-fight-night-2027-01-23-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Bonfim vs Brady",
+      "event_date": "2027-01-23",
+      "summary": "UFC Fight Night Bonfim vs Brady added to Upcoming Events.",
+      "details": {
+        "bout_count": 1,
+        "venue": "Venue TBA",
+        "date": "2027-01-23"
+      }
+    },
+    {
+      "id": "2026-11-15T07:58:07.683Z|ufc-fight-night-2027-02-13-fight-card|event_added|3",
+      "at": "2026-11-15T07:58:07.683Z",
+      "type": "event_added",
+      "event_id": "ufc-fight-night-2027-02-13-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Pyfer vs Nickal",
+      "event_date": "2027-02-13",
+      "summary": "UFC Fight Night Pyfer vs Nickal added to Upcoming Events.",
+      "details": {
+        "bout_count": 1,
+        "venue": "Venue TBA",
+        "date": "2027-02-13"
+      }
+    },
+    {
+      "id": "2026-11-15T07:58:07.683Z|ufc-2026-11-14-polymarket-ufc-334|event_removed|4",
+      "at": "2026-11-15T07:58:07.683Z",
+      "type": "event_removed",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "promotion": "UFC",
+      "event_title": "Polymarket UFC 334",
+      "event_date": "2026-11-14",
+      "summary": "UFC Polymarket UFC 334 removed from Upcoming Events.",
+      "details": {
+        "bout_count": 13,
+        "venue": "Venue TBA",
+        "date": "2026-11-14"
+      }
+    },
     {
       "id": "2026-11-12T22:42:36.069Z|ufc-2026-11-14-polymarket-ufc-334|bout_weight_changed|1",
       "at": "2026-11-12T22:42:36.069Z",
@@ -4488,70 +4548,6 @@
         "order": 4,
         "section": "Main Card",
         "weight_class": "Welterweight Bout"
-      }
-    },
-    {
-      "id": "2026-10-21T20:16:54.665Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|1",
-      "at": "2026-10-21T20:16:54.665Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Billy Elekana vs Lucas Fernando moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 5,
-        "to_order": 4,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-10-21T20:16:54.665Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|2",
-      "at": "2026-10-21T20:16:54.665Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Mantas Kondratavičius vs Wes Schultz moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 6,
-        "to_order": 5,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-10-21T20:16:54.665Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|3",
-      "at": "2026-10-21T20:16:54.665Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Gabriel Lorenco vs Alvin Hines moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 7,
-        "to_order": 6,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T20:16:54.665Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|4",
-      "at": "2026-10-21T20:16:54.665Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Karine Silva vs Gabriella Fernandes moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 8,
-        "to_order": 7,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
       }
     }
   ]

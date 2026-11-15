@@ -5,23 +5,6 @@
   "mode": "read-only-watchdog",
   "coverage": [
     {
-      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
-      "promotion": "ufc",
-      "date": "2026-11-14",
-      "title": "Polymarket UFC 334",
-      "status": "matched",
-      "verdict_event_id": "1970",
-      "verdict_url": "https://verdictmma.com/event/1970",
-      "verdict_date": "2026-11-14",
-      "local_fight_count": 13,
-      "verdict_fight_count": 13,
-      "local_main_count": 5,
-      "verdict_main_count": 5,
-      "local_prelim_count": 8,
-      "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 12
-    },
-    {
       "event_id": "ufc-fight-night-2026-11-21-fight-card",
       "promotion": "ufc",
       "date": "2026-11-21",
@@ -87,7 +70,41 @@
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": 4
+      "confirmed_local_bouts": 3
+    },
+    {
+      "event_id": "ufc-fight-night-2027-01-16-fight-card",
+      "promotion": "ufc",
+      "date": "2027-01-16",
+      "title": "Rodriguez vs Garcia",
+      "status": "matched",
+      "verdict_event_id": "1994",
+      "verdict_url": "https://verdictmma.com/event/1994",
+      "verdict_date": "2027-01-16",
+      "local_fight_count": 3,
+      "verdict_fight_count": null,
+      "local_main_count": 3,
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
+      "confirmed_local_bouts": 3
+    },
+    {
+      "event_id": "ufc-fight-night-2027-01-23-fight-card",
+      "promotion": "ufc",
+      "date": "2027-01-23",
+      "title": "Bonfim vs Brady",
+      "status": "matched",
+      "verdict_event_id": "2001",
+      "verdict_url": "https://verdictmma.com/event/2001",
+      "verdict_date": "2027-01-23",
+      "local_fight_count": 1,
+      "verdict_fight_count": null,
+      "local_main_count": 1,
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
+      "confirmed_local_bouts": 1
     },
     {
       "event_id": "ufc-336-2027-01-30-fight-card",
@@ -122,6 +139,23 @@
       "local_prelim_count": 0,
       "verdict_prelim_count": 2,
       "confirmed_local_bouts": 4
+    },
+    {
+      "event_id": "ufc-fight-night-2027-02-13-fight-card",
+      "promotion": "ufc",
+      "date": "2027-02-13",
+      "title": "Pyfer vs Nickal",
+      "status": "matched",
+      "verdict_event_id": "2002",
+      "verdict_url": "https://verdictmma.com/event/2002",
+      "verdict_date": "2027-02-13",
+      "local_fight_count": 1,
+      "verdict_fight_count": null,
+      "local_main_count": 1,
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
+      "confirmed_local_bouts": 1
     }
   ],
   "discrepancies": [
@@ -169,6 +203,16 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-rizin-6-2026-12-31",
       "verdict_event_id": "1976",
+      "order": 4,
+      "fighters": [
+        "Chihiro Suzuki",
+        "YA-MAN"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
       "order": 6,
       "fighters": [
         "スダリオ剛",
@@ -193,16 +237,6 @@
       "fighters": [
         "Yutaro Muramoto",
         "Erson Yamamoto"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
-      "verdict_event_id": "1970",
-      "order": 12,
-      "fighters": [
-        "Alatengheili",
-        "Juan Diaz"
       ]
     },
     {

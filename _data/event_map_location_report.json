@@ -1,33 +1,25 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 7,
+    "major": 9,
     "regional": 70
   },
   "map_totals": {
     "mapped": 70,
-    "quarantined": 7
+    "quarantined": 9
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 70,
     "structured": 0,
-    "unresolved": 7
+    "unresolved": 9
   },
   "mapped_precision": {
     "city": 70
   },
-  "unresolved_count": 7,
+  "unresolved_count": 9,
   "unresolved": [
-    {
-      "id": "ufc-2026-11-14-polymarket-ufc-334",
-      "title": "Polymarket UFC 334",
-      "date": "2026-11-14",
-      "promotion": "UFC",
-      "venue": "Venue TBA",
-      "dataset": "major"
-    },
     {
       "id": "ufc-fight-night-2026-11-21-fight-card",
       "title": "Procházka vs Stirling",
@@ -61,6 +53,22 @@
       "dataset": "major"
     },
     {
+      "id": "ufc-fight-night-2027-01-16-fight-card",
+      "title": "Rodriguez vs Garcia",
+      "date": "2027-01-16",
+      "promotion": "UFC Fight Night",
+      "venue": "Venue TBA",
+      "dataset": "major"
+    },
+    {
+      "id": "ufc-fight-night-2027-01-23-fight-card",
+      "title": "Bonfim vs Brady",
+      "date": "2027-01-23",
+      "promotion": "UFC Fight Night",
+      "venue": "Venue TBA",
+      "dataset": "major"
+    },
+    {
       "id": "ufc-336-2027-01-30-fight-card",
       "title": "Van vs Kape",
       "date": "2027-01-30",
@@ -72,6 +80,14 @@
       "id": "ufc-fight-night-2027-02-06-fight-card",
       "title": "Salkilld vs Saint Denis",
       "date": "2027-02-06",
+      "promotion": "UFC Fight Night",
+      "venue": "Venue TBA",
+      "dataset": "major"
+    },
+    {
+      "id": "ufc-fight-night-2027-02-13-fight-card",
+      "title": "Pyfer vs Nickal",
+      "date": "2027-02-13",
       "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
       "dataset": "major"
@@ -81,17 +97,6 @@
   "suspicious": [],
   "quarantined": [
     {
-      "id": "ufc-2026-11-14-polymarket-ufc-334",
-      "title": "Polymarket UFC 334",
-      "date": "2026-11-14",
-      "promotion": "UFC",
-      "venue": "Venue TBA",
-      "location": "",
-      "country": "",
-      "kind": "major",
-      "reason": "unresolved-us-location"
-    },
-    {
       "id": "ufc-fight-night-2026-11-21-fight-card",
       "title": "Procházka vs Stirling",
       "date": "2026-11-21",
@@ -136,6 +141,28 @@
       "reason": "unresolved-us-location"
     },
     {
+      "id": "ufc-fight-night-2027-01-16-fight-card",
+      "title": "Rodriguez vs Garcia",
+      "date": "2027-01-16",
+      "promotion": "UFC Fight Night",
+      "venue": "Venue TBA",
+      "location": "",
+      "country": "",
+      "kind": "major",
+      "reason": "unresolved-us-location"
+    },
+    {
+      "id": "ufc-fight-night-2027-01-23-fight-card",
+      "title": "Bonfim vs Brady",
+      "date": "2027-01-23",
+      "promotion": "UFC Fight Night",
+      "venue": "Venue TBA",
+      "location": "",
+      "country": "",
+      "kind": "major",
+      "reason": "unresolved-us-location"
+    },
+    {
       "id": "ufc-336-2027-01-30-fight-card",
       "title": "Van vs Kape",
       "date": "2027-01-30",
@@ -150,6 +177,17 @@
       "id": "ufc-fight-night-2027-02-06-fight-card",
       "title": "Salkilld vs Saint Denis",
       "date": "2027-02-06",
+      "promotion": "UFC Fight Night",
+      "venue": "Venue TBA",
+      "location": "",
+      "country": "",
+      "kind": "major",
+      "reason": "unresolved-us-location"
+    },
+    {
+      "id": "ufc-fight-night-2027-02-13-fight-card",
+      "title": "Pyfer vs Nickal",
+      "date": "2027-02-13",
       "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
       "location": "",
