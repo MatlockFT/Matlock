@@ -65,7 +65,7 @@ Round 5: Hokit charges across the octagon for a takedown attempt which is thwart
   <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-174648-988.png" alt="ufc 334 live results scoring" loading="lazy">
 </figure>
 
-An incredibly sloppy fight that essentially looked like Gane, despite being gassed, outclassing Hokit in every facet of MMA. Gane could've benefited from a more dynamic game in the clinch and he certainly did not throw anywhere near the amount of kicks that he usually does. I think not kicking Hokit was Gane's biggest misstep in this fight. Sure, he may have been more vulnerable to takedowns or allowing Hokit to close distance but the pros would've heavily and easily outweighed the cons. The one kick to the leg I remember him throwing moved Hokit's entire body. Had he kept that up, Hokit barely would've been standing by round 5 as Hokit is always charging forward. 
+An incredibly sloppy fight that essentially looked like Gane, despite being gassed, outclassing Hokit in every facet of MMA. Gane could've benefited from a more dynamic game in the clinch and he certainly did not throw anywhere near the amount of kicks that he usually does. I think not kicking Hokit was Gane's biggest misstep in this fight. Sure, he may have been more vulnerable to takedowns or allowing Hokit to close distance but the pros would've heavily and easily outweighed the cons. The one kick to the leg I remember him throwing moved Hokit's entire body. Had he kept that up, Hokit barely would've been standing by round 5 as Hokit is always charging forward. This fight is further proof that heavyweight is in shambles. 
 
 ---
 
