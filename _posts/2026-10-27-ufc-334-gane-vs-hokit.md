@@ -143,7 +143,7 @@ For myself, I did contemplate picking Hokit several times, as I just never feel 
 
 **Ciryl Gane TKO in round 2.**
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Ciryl%20Gane%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Ciryl%20Gane%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Ciryl%20Gane%20-%20Decision%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Ciryl Gane</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">KO/TKO</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 2</span></span></div></aside>
 </section>
 ---
@@ -198,7 +198,7 @@ I see this fight going one of three ways. Amanda Nunes gets a knockout within th
 
 If both women were at their peak and actively fighting, I'd feel quite comfortable picking Amanda Nunes. But given the circumstances, I just don't have that same confidence in her. I think Harrison is going to find her way into the clinch, lean heavy on Nunes, make her work, and eventually tire her out enough to get the submission.
 
-<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Kayla%20Harrison%22%2C%22method%22%3A%22Submission%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22%22%2C%22outcome%22%3A%22%22%7D">
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Kayla%20Harrison%22%2C%22method%22%3A%22Submission%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%2C%22officialResult%22%3A%22Submission%20-%20Round%204%22%2C%22outcome%22%3A%22correct%22%7D">
 <aside class="article-pick-card article-pick-card--slim"><div class="article-pick-card__rule"><span>Matlock's Pick</span></div><div class="article-pick-card__centerline"><strong class="article-pick-card__fighter">Kayla Harrison</strong><span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result"><span class="article-pick-card__method">Submission</span><span class="article-pick-card__dot" aria-hidden="true"></span><span class="article-pick-card__round">Round 2</span></span></div></aside>
 </section>
 ---
