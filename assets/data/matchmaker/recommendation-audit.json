@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-11-14T22:46:21.734Z",
+  "generatedAt": "2026-11-15T02:11:00.553Z",
   "engineVersion": 2,
   "subjects": 388,
-  "publishedRecommendations": 1051,
+  "publishedRecommendations": 1066,
   "recommendationSlots": {
-    "0": 35,
+    "0": 30,
     "1": 2,
     "2": 4,
-    "3": 347
+    "3": 352
   },
   "caseCounts": {
-    "rebound-pairing": 438,
-    "rising-vs-rising": 310,
-    "step-up-vs-rebound": 129,
+    "rebound-pairing": 436,
+    "rising-vs-rising": 319,
+    "step-up-vs-rebound": 135,
     "rankings-progression": 61,
-    "ranking-opportunity": 59,
-    "divisional-sorting": 28,
-    "title-case": 12,
-    "title-eliminator": 11,
+    "ranking-opportunity": 60,
+    "divisional-sorting": 26,
+    "title-case": 14,
+    "title-eliminator": 12,
     "prospect-test": 3
   },
   "confidenceCounts": {
-    "high": 985,
-    "low": 38,
+    "high": 1005,
+    "low": 33,
     "medium": 28
   },
   "averageRecentOpponentLinkCoverage": 0.9044,
-  "sameCardRecommendations": 43,
-  "sameCardRecommendationRatio": 0.0409,
-  "asymmetricTopThreeRecommendations": 350,
-  "asymmetricTopThreeRatio": 0.333,
-  "publicPublishedRecommendations": 1022,
-  "publicAsymmetricTopThreeRecommendations": 275,
-  "publicAsymmetricTopThreeRatio": 0.2691,
-  "engineGenericDivisionalSortingRecommendations": 28,
+  "sameCardRecommendations": 45,
+  "sameCardRecommendationRatio": 0.0422,
+  "asymmetricTopThreeRecommendations": 359,
+  "asymmetricTopThreeRatio": 0.3368,
+  "publicPublishedRecommendations": 1042,
+  "publicAsymmetricTopThreeRecommendations": 280,
+  "publicAsymmetricTopThreeRatio": 0.2687,
+  "engineGenericDivisionalSortingRecommendations": 26,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -66,7 +66,7 @@
       "title": "UFC 333: Volkanovski vs Evloev",
       "date": "2026-10-24",
       "subjects": 28,
-      "publicRecommendations": 74,
+      "publicRecommendations": 75,
       "noClearMatchupSubjects": 0
     },
     {
@@ -82,7 +82,7 @@
       "title": "UFC Fight Night: Allen vs Duncan",
       "date": "2026-10-10",
       "subjects": 24,
-      "publicRecommendations": 56,
+      "publicRecommendations": 57,
       "noClearMatchupSubjects": 4
     },
     {
@@ -98,8 +98,8 @@
       "title": "UFC Fight Night: Rosas Jr. vs Barcelos",
       "date": "2026-09-26",
       "subjects": 24,
-      "publicRecommendations": 62,
-      "noClearMatchupSubjects": 3
+      "publicRecommendations": 66,
+      "noClearMatchupSubjects": 2
     },
     {
       "id": "cryptocom-ufc-331",
@@ -114,8 +114,8 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 63,
-      "noClearMatchupSubjects": 3
+      "publicRecommendations": 67,
+      "noClearMatchupSubjects": 2
     },
     {
       "id": "ufc-fight-night-september-05-2026",
@@ -130,15 +130,15 @@
       "title": "UFC Fight Night: Nurmagomedov vs Song",
       "date": "2026-08-29",
       "subjects": 26,
-      "publicRecommendations": 70,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 73,
+      "noClearMatchupSubjects": 1
     },
     {
       "id": "ufc-fight-night-august-22-2026",
       "title": "UFC Fight Night: Hernandez vs Rodrigues",
       "date": "2026-08-22",
       "subjects": 26,
-      "publicRecommendations": 71,
+      "publicRecommendations": 72,
       "noClearMatchupSubjects": 2
     },
     {
@@ -146,8 +146,8 @@
       "title": "UFC 330: Makhachev vs Machado Garry",
       "date": "2026-08-15",
       "subjects": 24,
-      "publicRecommendations": 57,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 60,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-august-08-2026",
@@ -162,8 +162,8 @@
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 72,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 75,
+      "noClearMatchupSubjects": 3
     }
   ],
   "genericExamples": [
@@ -222,13 +222,6 @@
       "opponent": "Youssef Zalal",
       "score": 46,
       "rationale": "Movsar Evloev and Youssef Zalal occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Alexander Volkov",
-      "opponent": "Jon Jones",
-      "score": 44,
-      "rationale": "Alexander Volkov and Jon Jones occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC 333: Volkanovski vs Evloev",
@@ -306,6 +299,13 @@
       "opponent": "Melissa Gatto",
       "score": 81,
       "rationale": "Jj Aldrich and Melissa Gatto occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Hooker vs Parnasse",
+      "fighter": "Salahdine Parnasse",
+      "opponent": "Evan Elder",
+      "score": 48,
+      "rationale": "Salahdine Parnasse and Evan Elder occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
@@ -516,7 +516,7 @@
       "opponent": "Bryce Mitchell",
       "pairScore": 88,
       "case": "rankings-progression",
-      "fighterRank": "Alternative",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Raoni Barcelos",
@@ -532,31 +532,6 @@
           "opponent": "Montel Jackson",
           "score": 93,
           "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "fighter": "Elijah Smith",
-      "opponent": "Adrian Yanez",
-      "pairScore": 87,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Bryce Mitchell",
-          "score": 93,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Montel Jackson",
-          "score": 91,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Raoni Barcelos",
-          "score": 91,
-          "case": "ranking-opportunity"
         }
       ]
     },
@@ -932,6 +907,31 @@
           "opponent": "Aleksandar Rakic",
           "score": 88,
           "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Jose Delano",
+      "opponent": "Damien Anderson",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Jessie Rosas",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Zhu Kangjie",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Manolo Zecchini",
+          "score": 94,
+          "case": "rebound-pairing"
         }
       ]
     }
