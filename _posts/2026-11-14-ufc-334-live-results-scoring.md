@@ -41,7 +41,31 @@ should be noted Gane did get an eye poke in there as he tried to frame off Hokit
   <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-160840-726.png" alt="ufc 334 live results scoring" loading="lazy">
 </figure>
 
-Round 2: 
+Round 2: More of the same in this fight as Hokit recklessly closes distance and Gane making Hokit pay for it with knees and jabs. They both spend quite a bit of time in the clinch, both hanging onto the single collar though Josh isn't really doing much damage from here. A couple heavier blows landed from Hokit and DC and Rogan again explode like they rocked Gane but I don't think it did. The punch lands clean for sure by the time it actually reaches Gane the punch appears to have lost a lot of its momentum and pop. Quite a few failed takedowns as Gane sprawled on Hokit, too. Certainly a closer round but pretty clear to me Gane landed more. 10-9 Gane
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-542989ab" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-162429-056.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 3: This is by far Hokit's best round as Gane is looking completely gassed. To be fair, they both look pretty tired but Hokit is moving forward and Gane is stepping back. The majority of this round takes place in the clinch with Hokit's most effective and clean landing shot is an elbow to the dome. It is almost exclusively the only strike he lands aside from foot stomps against the cage. Gane still landing jabs and crosses here and there but Hokit fought a good round eliminating the distance game as best he could. 10-9 Hokit.
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-ee380a6c" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-164259-023.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 4: Almost a repeat of round 3 as a majority of the fight takes place in a 50/50 position in the clinch, however, Gane found way more opportunities to land strikes this time around. Gane at range landed better shots and he also did in the clinch. Hokit spent much more time leaning on Gane and throwing foot stomps. Hokit's punches in the clinch almost don't even count as strikes as they are so ineffective and labored. Gane's are too but at least he's landing knees. Close round and I think some may see this round for Hokit just because of optics but I think its a pretty clear round for Gane. He landed in more volume at range and in the clinch so I don't think the aggression aspect or the control time come into play for Hokit. 10-9 Gane
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-be58deed" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-170901-917.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 5: Hokit charges across the octagon for a takedown attempt which is thwarted by Gane. He tries for another, again failed. Gane making him pay with shots in between. They spend more time in the clinch again to which Gane is landing the better shots. Hokit landed a couple of shots. I cannot overstate how ridiculously enthusiastic Rogan and DC are every time Hokit lands one clean punch. I understand the crowd cheering but if you had a blindfold on, you'd think Hokit was beating the shit out of Gane. It's quite the opposite in reality. Hokit has nothing for Gane in round 5. 10-9 Gane
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-a68b5268" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-174648-988.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+An incredibly sloppy fight that essentially looked like Gane, despite being gassed, outclassing Hokit in every facet of MMA. Gane could've benefited from a more dynamic game in the clinch and he certainly did not throw anywhere near the amount of kicks that he usually does. I think not kicking Hokit was Gane's biggest misstep in this fight. Sure, he may have been more vulnerable to takedowns or allowing Hokit to close distance but the pros would've heavily and easily outweighed the cons. The one kick to the leg I remember him throwing moved Hokit's entire body. Had he kept that up, Hokit barely would've been standing by round 5 as Hokit is always charging forward. 
 
 ---
 
