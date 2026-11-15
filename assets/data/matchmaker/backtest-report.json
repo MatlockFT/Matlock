@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-11-15T09:35:41.314Z",
+  "generatedAt": "2026-11-15T16:33:42.479Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
@@ -1170,62 +1170,63 @@
     },
     {
       "cutoff": "2026-06-20",
-      "targetDate": "2026-10-31",
+      "targetDate": "2026-11-14",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Luana Santos",
-      "fighterId": "luana-santos",
-      "actualOpponent": "Yana Santos",
-      "actualOpponentId": "yana-santos",
+      "fighter": "Bia Mesquita",
+      "fighterId": "bia-mesquita",
+      "actualOpponent": "Macy Chiasson",
+      "actualOpponentId": "macy-chiasson",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-top3-hit",
+      "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 3,
-      "publicRank": 3,
+      "engineRank": 24,
+      "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Ailin Perez",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Chelsea Chandler",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Joselyne Edwards",
-          "score": 90,
-          "rankingScore": 90,
+          "opponent": "Klaudia Sygula",
+          "score": 84,
+          "rankingScore": 83,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Yana Santos",
-          "score": 90,
-          "rankingScore": 90,
+          "opponent": "Michelle Montague",
+          "score": 80,
+          "rankingScore": 77,
           "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Ailin Perez",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Chelsea Chandler",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Joselyne Edwards",
-          "score": 90,
-          "rankingScore": 90,
+          "opponent": "Klaudia Sygula",
+          "score": 84,
+          "rankingScore": 83,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Yana Santos",
-          "score": 90,
-          "rankingScore": 90,
+          "opponent": "Michelle Montague",
+          "score": 80,
+          "rankingScore": 77,
           "case": "rising-vs-rising"
         }
-      ]
+      ],
+      "outlierReviewCandidate": true
     },
     {
       "cutoff": "2026-06-06",
@@ -1740,60 +1741,60 @@
       "excludedFromAccuracy": true
     },
     {
-      "cutoff": "2026-06-06",
-      "targetDate": "2026-10-17",
+      "cutoff": "2026-06-20",
+      "targetDate": "2026-10-31",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Chelsea Chandler",
-      "fighterId": "chelsea-chandler",
-      "actualOpponent": "Melissa Croden",
-      "actualOpponentId": "melissa-croden",
+      "fighter": "Luana Santos",
+      "fighterId": "luana-santos",
+      "actualOpponent": "Yana Santos",
+      "actualOpponentId": "yana-santos",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-near",
+      "classification": "engine-top3-hit",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 4,
-      "publicRank": null,
+      "engineRank": 3,
+      "publicRank": 3,
       "engineTopThree": [
         {
-          "opponent": "Julianna Pena",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "step-up-vs-rebound"
+          "opponent": "Ailin Perez",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Luana Santos",
+          "opponent": "Joselyne Edwards",
           "score": 90,
           "rankingScore": 90,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Ketlen Vieira",
-          "score": 89,
-          "rankingScore": 89,
+          "opponent": "Yana Santos",
+          "score": 90,
+          "rankingScore": 90,
           "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Julianna Pena",
-          "score": 94,
-          "rankingScore": 94,
-          "case": "step-up-vs-rebound"
+          "opponent": "Ailin Perez",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Luana Santos",
+          "opponent": "Joselyne Edwards",
           "score": 90,
           "rankingScore": 90,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Ketlen Vieira",
-          "score": 89,
-          "rankingScore": 89,
+          "opponent": "Yana Santos",
+          "score": 90,
+          "rankingScore": 90,
           "case": "rising-vs-rising"
         }
       ]
@@ -2312,20 +2313,62 @@
     },
     {
       "cutoff": "2026-06-06",
-      "targetDate": "2026-11-07",
+      "targetDate": "2026-10-17",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Priscila Cachoeira",
-      "fighterId": "priscila-cachoeira",
-      "actualOpponent": "Nina Milosevic",
-      "actualOpponentId": "nina-milosevic",
+      "fighter": "Chelsea Chandler",
+      "fighterId": "chelsea-chandler",
+      "actualOpponent": "Melissa Croden",
+      "actualOpponentId": "melissa-croden",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "future-newcomer-booking",
-      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
-      "excludedFromAccuracy": true
+      "classification": "engine-ranking-miss-near",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 4,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Julianna Pena",
+          "score": 94,
+          "rankingScore": 94,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Luana Santos",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ketlen Vieira",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Julianna Pena",
+          "score": 94,
+          "rankingScore": 94,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Luana Santos",
+          "score": 90,
+          "rankingScore": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ketlen Vieira",
+          "score": 89,
+          "rankingScore": 89,
+          "case": "rising-vs-rising"
+        }
+      ]
     },
     {
       "cutoff": "2026-04-18",
@@ -2758,64 +2801,21 @@
       "outlierReviewCandidate": true
     },
     {
-      "cutoff": "2026-04-25",
-      "targetDate": "2026-09-26",
+      "cutoff": "2026-06-06",
+      "targetDate": "2026-11-07",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Norma Dumont",
-      "fighterId": "norma-dumont",
-      "actualOpponent": "Ailin Perez",
-      "actualOpponentId": "ailin-perez",
+      "fighter": "Priscila Cachoeira",
+      "fighterId": "priscila-cachoeira",
+      "actualOpponent": "Nina Milosevic",
+      "actualOpponentId": "nina-milosevic",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-deep",
-      "targetEligible": true,
-      "targetReason": null,
-      "engineRank": 25,
-      "publicRank": null,
-      "engineTopThree": [
-        {
-          "opponent": "Luana Carolina",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Macy Chiasson",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Priscila Cachoeira",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Macy Chiasson",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Luana Carolina",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Priscila Cachoeira",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rebound-pairing"
-        }
-      ],
-      "outlierReviewCandidate": true
+      "classification": "future-newcomer-booking",
+      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
+      "excludedFromAccuracy": true
     },
     {
       "cutoff": "2026-04-18",
@@ -3289,14 +3289,14 @@
       "outlierReviewCandidate": true
     },
     {
-      "cutoff": "2026-04-18",
-      "targetDate": "2026-10-10",
+      "cutoff": "2026-04-25",
+      "targetDate": "2026-09-26",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Dariya Zheleznyakova",
-      "fighterId": "dariya-zheleznyakova",
-      "actualOpponent": "Alice Pereira",
-      "actualOpponentId": "alice-pereira",
+      "fighter": "Norma Dumont",
+      "fighterId": "norma-dumont",
+      "actualOpponent": "Ailin Perez",
+      "actualOpponentId": "ailin-perez",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -3304,45 +3304,45 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 16,
+      "engineRank": 25,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Nora Cornolle",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Luana Carolina",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Josiane Nunes",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Macy Chiasson",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Tainara Lisboa",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Priscila Cachoeira",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Nora Cornolle",
-          "score": 92,
-          "rankingScore": 92,
+          "opponent": "Macy Chiasson",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Josiane Nunes",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Luana Carolina",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Tainara Lisboa",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Priscila Cachoeira",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rebound-pairing"
         }
       ],
@@ -3738,13 +3738,13 @@
     },
     {
       "cutoff": "2026-04-18",
-      "targetDate": "2026-10-17",
+      "targetDate": "2026-10-10",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Melissa Croden",
-      "fighterId": "melissa-croden",
-      "actualOpponent": "Chelsea Chandler",
-      "actualOpponentId": "chelsea-chandler",
+      "fighter": "Dariya Zheleznyakova",
+      "fighterId": "dariya-zheleznyakova",
+      "actualOpponent": "Alice Pereira",
+      "actualOpponentId": "alice-pereira",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
@@ -3752,49 +3752,49 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 15,
+      "engineRank": 16,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Alice Pereira",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Nora Cornolle",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Bia Mesquita",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Josiane Nunes",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Michelle Montague",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Tainara Lisboa",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Alice Pereira",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Nora Cornolle",
+          "score": 92,
+          "rankingScore": 92,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Michelle Montague",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Josiane Nunes",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Bia Mesquita",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Tainara Lisboa",
+          "score": 91,
+          "rankingScore": 91,
+          "case": "rebound-pairing"
         }
       ],
-      "outlierReviewCandidate": false
+      "outlierReviewCandidate": true
     },
     {
       "cutoff": "2026-04-04",
@@ -4341,63 +4341,64 @@
       ]
     },
     {
-      "cutoff": "2026-04-04",
-      "targetDate": "2026-10-10",
+      "cutoff": "2026-04-18",
+      "targetDate": "2026-10-17",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Alice Pereira",
-      "fighterId": "alice-pereira",
-      "actualOpponent": "Dariya Zheleznyakova",
-      "actualOpponentId": "dariya-zheleznyakova",
+      "fighter": "Melissa Croden",
+      "fighterId": "melissa-croden",
+      "actualOpponent": "Chelsea Chandler",
+      "actualOpponentId": "chelsea-chandler",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-near",
+      "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 7,
+      "engineRank": 15,
       "publicRank": null,
       "engineTopThree": [
         {
-          "opponent": "Michelle Montague",
-          "score": 87,
-          "rankingScore": 87,
+          "opponent": "Alice Pereira",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Luana Carolina",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "step-up-vs-rebound"
+          "opponent": "Bia Mesquita",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Germaine de Randamie",
-          "score": 83,
-          "rankingScore": 80,
-          "case": "step-up-vs-rebound"
+          "opponent": "Michelle Montague",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
         }
       ],
       "publicTopThree": [
         {
-          "opponent": "Michelle Montague",
-          "score": 87,
-          "rankingScore": 87,
+          "opponent": "Alice Pereira",
+          "score": 88,
+          "rankingScore": 88,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Luana Carolina",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "step-up-vs-rebound"
+          "opponent": "Michelle Montague",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Germaine de Randamie",
-          "score": 83,
-          "rankingScore": 80,
-          "case": "step-up-vs-rebound"
+          "opponent": "Bia Mesquita",
+          "score": 88,
+          "rankingScore": 88,
+          "case": "rising-vs-rising"
         }
-      ]
+      ],
+      "outlierReviewCandidate": false
     },
     {
       "cutoff": "2026-03-28",
@@ -4909,20 +4910,62 @@
     },
     {
       "cutoff": "2026-04-04",
-      "targetDate": "2026-08-01",
+      "targetDate": "2026-10-10",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Hailey Cowan",
-      "fighterId": "hailey-cowan",
-      "actualOpponent": "Nina Milosevic",
-      "actualOpponentId": "nina-milosevic",
+      "fighter": "Alice Pereira",
+      "fighterId": "alice-pereira",
+      "actualOpponent": "Dariya Zheleznyakova",
+      "actualOpponentId": "dariya-zheleznyakova",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "future-newcomer-booking",
-      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
-      "excludedFromAccuracy": true
+      "classification": "engine-ranking-miss-near",
+      "targetEligible": true,
+      "targetReason": null,
+      "engineRank": 7,
+      "publicRank": null,
+      "engineTopThree": [
+        {
+          "opponent": "Michelle Montague",
+          "score": 87,
+          "rankingScore": 87,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Luana Carolina",
+          "score": 86,
+          "rankingScore": 86,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Germaine de Randamie",
+          "score": 83,
+          "rankingScore": 80,
+          "case": "step-up-vs-rebound"
+        }
+      ],
+      "publicTopThree": [
+        {
+          "opponent": "Michelle Montague",
+          "score": 87,
+          "rankingScore": 87,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Luana Carolina",
+          "score": 86,
+          "rankingScore": 86,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Germaine de Randamie",
+          "score": 83,
+          "rankingScore": 80,
+          "case": "step-up-vs-rebound"
+        }
+      ]
     },
     {
       "cutoff": "2026-03-28",
@@ -5439,64 +5482,21 @@
       "outlierReviewCandidate": true
     },
     {
-      "cutoff": "2026-03-14",
-      "targetDate": "2026-06-20",
+      "cutoff": "2026-04-04",
+      "targetDate": "2026-08-01",
       "division": "Women's Bantamweight",
       "targetDivision": "Women's Bantamweight",
-      "fighter": "Bia Mesquita",
-      "fighterId": "bia-mesquita",
-      "actualOpponent": "Melissa Mullins",
-      "actualOpponentId": "melissa-mullins",
+      "fighter": "Hailey Cowan",
+      "fighterId": "hailey-cowan",
+      "actualOpponent": "Nina Milosevic",
+      "actualOpponentId": "nina-milosevic",
       "subjectHistoricalOnly": false,
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "engine-ranking-miss-deep",
-      "targetEligible": true,
-      "targetReason": null,
-      "engineRank": 16,
-      "publicRank": null,
-      "engineTopThree": [
-        {
-          "opponent": "Dariya Zheleznyakova",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Klaudia Sygula",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Melissa Gatto",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "publicTopThree": [
-        {
-          "opponent": "Dariya Zheleznyakova",
-          "score": 89,
-          "rankingScore": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Klaudia Sygula",
-          "score": 88,
-          "rankingScore": 88,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Melissa Gatto",
-          "score": 86,
-          "rankingScore": 86,
-          "case": "rising-vs-rising"
-        }
-      ],
-      "outlierReviewCandidate": true
+      "classification": "future-newcomer-booking",
+      "reason": "actual-opponent-had-no-pre-cutoff-ufc-history",
+      "excludedFromAccuracy": true
     },
     {
       "cutoff": "2026-03-28",

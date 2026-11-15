@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-11-15T09:35:41.314Z",
+  "generatedAt": "2026-11-15T16:33:42.479Z",
   "engineVersion": 2,
-  "subjects": 412,
-  "publishedRecommendations": 1123,
+  "subjects": 414,
+  "publishedRecommendations": 1129,
   "recommendationSlots": {
     "0": 35,
     "1": 2,
     "2": 4,
-    "3": 371
+    "3": 373
   },
   "caseCounts": {
-    "rebound-pairing": 472,
+    "rebound-pairing": 473,
     "rising-vs-rising": 315,
-    "step-up-vs-rebound": 145,
-    "rankings-progression": 62,
+    "step-up-vs-rebound": 147,
+    "rankings-progression": 65,
     "ranking-opportunity": 55,
     "divisional-sorting": 38,
     "title-case": 17,
@@ -21,18 +21,18 @@
     "prospect-test": 7
   },
   "confidenceCounts": {
-    "high": 1049,
+    "high": 1055,
     "low": 47,
     "medium": 27
   },
-  "averageRecentOpponentLinkCoverage": 0.904,
+  "averageRecentOpponentLinkCoverage": 0.9029,
   "sameCardRecommendations": 42,
-  "sameCardRecommendationRatio": 0.0374,
-  "asymmetricTopThreeRecommendations": 401,
-  "asymmetricTopThreeRatio": 0.3571,
-  "publicPublishedRecommendations": 1095,
-  "publicAsymmetricTopThreeRecommendations": 300,
-  "publicAsymmetricTopThreeRatio": 0.274,
+  "sameCardRecommendationRatio": 0.0372,
+  "asymmetricTopThreeRecommendations": 402,
+  "asymmetricTopThreeRatio": 0.3561,
+  "publicPublishedRecommendations": 1101,
+  "publicAsymmetricTopThreeRecommendations": 303,
+  "publicAsymmetricTopThreeRatio": 0.2752,
   "engineGenericDivisionalSortingRecommendations": 38,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -40,8 +40,8 @@
     "id": "ufc-334",
     "title": "Polymarket UFC 334: Gane vs Hokit",
     "date": "2026-11-14",
-    "subjects": 24,
-    "publicRecommendations": 67,
+    "subjects": 26,
+    "publicRecommendations": 73,
     "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
@@ -49,8 +49,8 @@
       "id": "ufc-334",
       "title": "Polymarket UFC 334: Gane vs Hokit",
       "date": "2026-11-14",
-      "subjects": 24,
-      "publicRecommendations": 67,
+      "subjects": 26,
+      "publicRecommendations": 73,
       "noClearMatchupSubjects": 0
     },
     {
@@ -338,7 +338,7 @@
         },
         {
           "opponent": "Macy Chiasson",
-          "score": 82,
+          "score": 83,
           "case": "step-up-vs-rebound"
         }
       ]
@@ -382,14 +382,14 @@
           "case": "rankings-progression"
         },
         {
-          "opponent": "Michelle Montague",
+          "opponent": "Bia Mesquita",
           "score": 87,
           "case": "rankings-progression"
         },
         {
-          "opponent": "Macy Chiasson",
-          "score": 84,
-          "case": "step-up-vs-rebound"
+          "opponent": "Michelle Montague",
+          "score": 87,
+          "case": "rankings-progression"
         }
       ]
     },
