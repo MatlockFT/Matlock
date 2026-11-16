@@ -31,7 +31,7 @@ UFC 334 takes place November 14 at Madison Square Garden in New York City. Follo
 
 ## Main card
 
-### Ciryl Gane vs. Josh Hokit
+### Ciryl Gane vs. Josh Hokit (Ciryl Gane wins via unanimous decision)
 
 Round 1:
 A ferocious pace set by Hokit who charges across the octagon for a takedown. Gane gets back up and the majority of this round is Gane circling and jabbing, throwing the occasional uppercut as Hokit relentlessly charges forward with his head on the centerline. Hokit does get some clean shots in there and DC, Rogan are screaming their brains out whenever he does. Hokit lifts Gane above his head and slams him to the ground near the end of the round. 10-9 Gane.
@@ -77,7 +77,7 @@ My card: 49-46 Gane and that is the only acceptable answer.
 
 ---
 
-### Kayla Harrison vs. Amanda Nunes
+### Kayla Harrison vs. Amanda Nunes (Kayla Harrison wins via submission round 4 - rear naked choke)
 
 Round 1: Both meet in center and play the distance game which is tremendously bad idea for Harrison. Nunes launching shots from very far out of range but she's getting closer. She lands a few and  Harrison is getting desperate for these takedowns to which Amanda is defending well. Eventually, Kayla does get a throw, traps her in a headlock and an arm trapped, free to punch Nunes face which she does. Not much heat in these punches however and no visible damage despite being in such a dominate position. This was much needed for Kayla Harrison as she was surely losing the fight up to that point. 10-9 Harrison
 
@@ -112,7 +112,7 @@ Round 1:
 
 ---
 
-### Uroš Medić vs. Kevin Holland
+### Uroš Medić vs. Kevin Holland (Draw)
 
 Round 1: Kevin Holland is fighting very long. Mostly implementing a kicking game and keeping Medic at range. Medic having a hell of a time trying to find Holland and get through this reach. Medic tries to throw but gets countered with several uppercuts from Holland that drop Medic, sorta looked off balance to be fair but Holland tries to tie up a D'Arce (maybe an anaconda - I'm unsure). Medic survives though it looked grim for a bit. 10-9 Holland. 
 
@@ -136,7 +136,7 @@ Judges get it wrong with this one: 28-28; 29-27 (Medic); 28-28 which are some in
 
 ---
 
-### Bilal Hasan vs. Luis Gurule  (Luis Gurule wins via split decision
+### Bilal Hasan vs. Luis Gurule  (Luis Gurule wins via split decision)
 
 Round 1: Bilal Hasan comes out doing what he does constantly attacking with kicks and punches and staying mobile. Laser focused is Gurule, slowly marching forward through the onslaught, not letting Hasan operate at range. So he's cutting off the cage and trying to land his punches but with not much success. He does land one clean shot as Hasan was moving backward that knocked him down but I think he was really off balance because was right back up to his feet. 10-9 Hasan.
 
