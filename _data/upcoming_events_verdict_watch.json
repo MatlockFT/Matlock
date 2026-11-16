@@ -48,12 +48,12 @@
       "verdict_url": "https://verdictmma.com/event/1971",
       "verdict_date": "2026-12-12",
       "local_fight_count": 5,
-      "verdict_fight_count": 6,
+      "verdict_fight_count": 5,
       "local_main_count": 5,
-      "verdict_main_count": 4,
+      "verdict_main_count": 3,
       "local_prelim_count": 0,
       "verdict_prelim_count": 2,
-      "confirmed_local_bouts": 5
+      "confirmed_local_bouts": 4
     },
     {
       "event_id": "rizin-rizin-6-2026-12-31",
@@ -240,18 +240,21 @@
       ]
     },
     {
-      "type": "bout_count_mismatch",
+      "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-335-2026-12-12-fight-card",
       "verdict_event_id": "1971",
-      "local_fight_count": 5,
-      "verdict_fight_count": 6
+      "order": 5,
+      "fighters": [
+        "Joe Pyfer",
+        "Bo Nickal"
+      ]
     },
     {
       "type": "section_count_mismatch",
       "event_id": "ufc-335-2026-12-12-fight-card",
       "verdict_event_id": "1971",
       "local_main_count": 5,
-      "verdict_main_count": 4,
+      "verdict_main_count": 3,
       "local_prelim_count": 0,
       "verdict_prelim_count": 2
     },
