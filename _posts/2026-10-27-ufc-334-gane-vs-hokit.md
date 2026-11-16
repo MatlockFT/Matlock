@@ -38,15 +38,6 @@ Ciryl Gane defends the heavyweight title against unbeaten challenger Josh Hokit 
 
 ---
 
-### Bets I like:
-
-Josh Hokit +177
-Kevin Holland +135; Kevin Holland by KO/TKO or DQ +400; Kevin Holland by Sub +375
-Amanda Nunes +137
-Bilal Hasan vs Luis Gurule O 1.5 +145
-
----
-
 ## Ciryl Gane vs. Josh Hokit
 
 <div class="article-video-embed"><iframe src="https://www.youtube.com/embed/b1si90wW-wg" title="Main Event Breakdown" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>
