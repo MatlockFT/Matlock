@@ -107,10 +107,28 @@ This fight, despite some of the struggles on the feet, is the best Kayla Harriso
 
 ### Caio Borralho vs. Yousri Belgaroui
 
-Round 1:
+Round 1: At range, Caio is throwing very long jabs to the body, getting out of range while Belgaroui is throwing kicks that are completely out of range. Caio gets it to the ground and establishes significant control time and landing a couple shots on the ground. Back to the feet, Belgaroui doesn't have long to work but throws a heavy head kick. Blocked by Caio but it might've stung him a bit. Belgaroui pressures and lands a couple more punches. Too little, too late. 10-9 Caio Borralho
 
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-c8850b6c" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-214909-118.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
 
----
+Round 2: Caio doing little at the start of this round, just getting kicked and letting Belgaroui establish his game. Caio does land one good check left hook it looks like, which got Belgaroui backing up for a second, Caio closes distance and starts grappling. Some control time before they're back at range where Belgaroui is back to landing some shots but again, Caio finds some success of his own in striking. More control time for Caio up until the end. Actually a close round and as far as optics, I could see giving it to Borralho but can't forget how the round started. 10-9 Belgaroui
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-599f128b" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-215823-895.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+Round 3: Belgaroui doing good at range, landing his shots, Caio has some responses but not much so he tries for a takedown. Gets it. Not much done on the ground as Belgaroui works back to the feet. Belgaroui landing his shots again and a big knee that has Caio backing up. Caio lands a heavy counter as Belgaroui was about to put the pressure on. They're both good tho, couple more shots land for Belgaroui and he is taken down again. Not much done with it, Belgaroui back to his feet, Borralho keeping him against the cage and landing a couple of knees to the legs. This seems to be a clear round for Belgaroui. 10-9 Belgaroui
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-c1496128" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-222009-787.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+My card: 29-28 Belgaroui
+Judges: 30-27 x3 Caio Borralho
+
+Not too surprised by the judges scorecards as Caio had Belgaroui on the back foot often and having to work back to his feet though I didn't see much for threatening offense. Belgaroui had the head kicks and knees to the body whenever Caio closed for a takedown. That, to me, isn't indicative of offense that prevents meaningful counters. Immediate damage is priority over cumulative damage but it's damage nonetheless. I think if I spend less time focusing on the x's and o's and just ask who it felt like had the more effective offense as a whole, Caio Borralho would come to mind. Though, the statistics do back my live scoring where I felt Belgaroui had the more meaningful striking offense on the feet. Though I disagree with the cards, I understand the perspective. 
+--
 
 ### Uroš Medić vs. Kevin Holland (Draw)
 
