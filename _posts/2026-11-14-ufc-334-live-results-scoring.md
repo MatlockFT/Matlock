@@ -79,8 +79,13 @@ My card: 49-46 Ganae and that is the only acceptable answer.
 
 ### Kayla Harrison vs. Amanda Nunes
 
-Round 1:
+Round 1: Both meet in center and play the distance game which is tremendously bad idea for Harrison. Nunes launching shots from very far out of range but she's getting closer. She lands a few and  Harrison is getting desperate for these takedowns to which Amanda is defending well. Eventually, Kayla does get a throw, traps her in a headlock and an arm trapped, free to punch Nunes face which she does. Not much heat in these punches however and no visible damage despite being in such a dominate position. This was much needed for Kayla Harrison as she was surely losing the fight up to that point. 10-9 Harrison
 
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-5d26573c" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-184021-823.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 2: 
 
 ---
 
