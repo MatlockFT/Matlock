@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-11-16T19:50:41.701Z",
+  "updatedAt": "2026-11-16T21:06:14.109Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -4541,9 +4541,23 @@
     "pancrase:2019-11-17:pancrase-and-deep-osaka": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T06:47:25.018Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-11-16T21:03:06.893Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2019-11-17-pancrase-deep-osaka-628d7afd856170ab.jpg",
+      "imageAlt": "Pancrase & DEEP Osaka event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/64202-deep-pancrase-osaka",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/64202-deep-pancrase-osaka",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "628d7afd856170abaab0b3a6d7c047782bd755e884c06601d309ee9eb132ec15",
+      "posterRegistryKey": "2019-11-17::pancrase deep osaka"
     },
     "pancrase:2024-06-30:pancrase-344": {
       "strategyVersion": 6,
@@ -4562,9 +4576,23 @@
     "rizin:2024-11-17:rizin-landmark-10": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T06:47:25.018Z",
-      "wikipediaTitle": "2024 in Rizin Fighting Federation#Rizin Landmark 10"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-11-16T21:03:22.940Z",
+      "wikipediaTitle": "2024 in Rizin Fighting Federation#Rizin Landmark 10",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2024-11-17-rizin-landmark-10-8d827d2ff9637df9.jpg",
+      "imageAlt": "Rizin Landmark 10 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/118414-rizin-landmark-10-in-nagoya",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/118414-rizin-landmark-10-in-nagoya",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "8d827d2ff9637df9e90b6f09f62472e14908394a2df1136bb22129a3054900f4",
+      "posterRegistryKey": "2024-11-17::rizin landmark 10"
     },
     "bellator:2018-06-29:bellator-201": {
       "strategyVersion": 6,
@@ -13843,12 +13871,23 @@
     "ufc:2000-11-17:ufc-28-high-stakes": {
       "strategyVersion": 6,
       "status": "pageimage-kept",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T06:47:25.018Z",
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-11-16T21:03:38.825Z",
       "wikipediaTitle": "UFC 28",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/3b/UFC_28_High_Stakessdd.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "imageAlt": "UFC 28: High Stakes event image",
-      "imageCredit": "Wikipedia"
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2000-11-17-ufc-28-high-stakes-1450f98048c4177b.jpg",
+      "imageAlt": "UFC 28: High Stakes event poster",
+      "imageCredit": "Tapology",
+      "imageStatus": "resolved",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/ufc-28-high-stakes",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/ufc-28-high-stakes",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "1450f98048c4177b552495bd2ee0079804b24800a7b2eb8bc09aec7741fff0ab",
+      "posterRegistryKey": "2000-11-17::ufc 28 high stakes"
     },
     "ufc:2007-11-17:ufc-78-validation": {
       "strategyVersion": 6,
@@ -13923,12 +13962,23 @@
     "ufc:2023-11-18:ufc-fight-night-allen-vs-craig": {
       "strategyVersion": 6,
       "status": "pageimage-kept",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T06:47:25.018Z",
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-11-16T21:04:31.781Z",
       "wikipediaTitle": "UFC Fight Night: Allen vs. Craig",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/04/UFC_Fight_Night_232.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "imageAlt": "UFC Fight Night: Allen vs. Craig event image",
-      "imageCredit": "Wikipedia"
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2023-11-18-ufc-fight-night-allen-vs-craig-1396e62aeaa53013.jpg",
+      "imageAlt": "UFC Fight Night: Allen vs. Craig event poster",
+      "imageCredit": "Tapology",
+      "imageStatus": "resolved",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/101867-ufc-fight-night",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/101867-ufc-fight-night",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "1396e62aeaa530132c9b27d5d103e5bf72676012220a04ade2283629d4e16488",
+      "posterRegistryKey": "2023-11-18::ufc fight night allen vs craig"
     },
     "wec:2009-11-18:wec-44-brown-vs-aldo": {
       "strategyVersion": 6,
