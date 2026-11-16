@@ -73,7 +73,7 @@ An incredibly sloppy fight that essentially looked like Gane, despite being gass
   </div>
 </figure>
 
-My card: 49-46 Gane, and that is the only acceptable answer. I find that a lot of fans online scored the first three rounds for Hokit, and objectively, I can understand where they're coming from. "This is one of the closest title fights in UFC history according to the Verdict Scorecard."
+My card: 49-46 Gane. I find that a lot of fans online scored the first three rounds for Hokit, and objectively, I can understand where they're coming from. "This is one of the closest title fights in UFC history according to the Verdict Scorecard."
 
 <figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-1e711030" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-223927-329.png" alt="ufc 334 live results scoring" loading="lazy">
@@ -132,6 +132,7 @@ My card: 29-28 Belgaroui
 Judges: 30-27 x3, Caio Borralho
 
 Not too surprised by the judges' scorecards, as Caio often had Belgaroui on the back foot and working to get back to his feet, though I didn't see much threatening offense. Belgaroui had the head kicks and knees to the body whenever Caio closed for a takedown. That, to me, isn't indicative of offense that prevents meaningful counters. Immediate damage takes priority over cumulative damage, but it's damage nonetheless. I think if I spend less time focusing on the X's and O's and just ask who felt like they had the more effective offense as a whole, Caio Borralho would come to mind. Though the statistics do back my live scoring, where I felt Belgaroui had the more meaningful striking offense on the feet. I disagree with the cards, but I understand the perspective.
+
 ---
 
 ### Uroš Medić vs. Kevin Holland (Draw)
