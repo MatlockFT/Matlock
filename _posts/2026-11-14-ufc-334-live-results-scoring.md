@@ -121,12 +121,25 @@ Round 1:
 
 ### Bilal Hasan vs. Luis Gurule
 
-Round 1: Bilal Hasan comes out doing what he does constantly attacking with kicks and punches and staying mobile. Laser focused is Gurule, slowly marching forward through the onslaught, he is clearly wanting to get this to the ground but he is betting on his toughness against Hasan's conditioning. 10-9 Hasan.
+Round 1: Bilal Hasan comes out doing what he does constantly attacking with kicks and punches and staying mobile. Laser focused is Gurule, slowly marching forward through the onslaught, not letting Hasan operate at range. So he's cutting off the cage and trying to land his punches but with not much success. He does land one clean shot as Hasan was moving backward that knocked him down but I think he was really off balance because was right back up to his feet. 10-9 Hasan.
 
-Round 2 and 3: Hasan does well at range in round to but he does get taken down. 10-9 for Gurule in 2 & 3.
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-812b17cc" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-194843-051.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
 
+Round 2: Some more success from Bilal Hasan at range with Gurule doing minimal work on the feet. Gurule is inching forward and trying to land counters. He tries for a couple takedowns that fail and he is catching kicks now. He does eventually get a takedown and lands a good elbow. This is a close round and one could argue the most damaging blow came from Gurule on the mat. 10-9 Hasan
 
-I legit thought Luis Gurule was gonna get robbed in that fight. 
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-7654f432" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-195534-911.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 3: Hasan comes out fast, landing good shots. I think Hasan cut Gurule as they were headed to the mat. Gurule holds dominate top position with pitter patter ground and pound. 10-9 Gurule 
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-08b3611e" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-200737-011.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+My card 29-28 Hasan.
 29-28 Hasan; 29-28 Gurule; 29-28 Luis Gurule
 
 ---
