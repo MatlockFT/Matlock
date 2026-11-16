@@ -85,7 +85,23 @@ Round 1: Both meet in center and play the distance game which is tremendously ba
   <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-184021-823.png" alt="ufc 334 live results scoring" loading="lazy">
 </figure>
 
-Round 2: 
+Round 2: Harrison gets pieced up at range again but Kayla ties her up. They spend a significant amount of time against the cage with Amanda holding her there and even getting a takedown. Eventually, Kayla does another throw, an impressive one where Nunes lands hard on the mat. Harrison eventually secures crucifix once again and landing elbows. She maintains this position for the rest of the round. 10-9 Harrison
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-aeeab4a9" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-190118-694.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 3: At range, Nunes lands a couple shots, then end up on the cage, with Amanda holding position but I think Kayla might be hanging onto her neck, they stay here for awhile, Amanda gets another takedown. Amanda actually gets the back, threatens with the RNC but she eventually gets reversed and Kayla is on top. Kayla lands a sharp elbow that cuts Amanda and ends the round with ground and pound. 10-9 Harrison
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-f544b1a7" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-190112-392.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 4: Nunes looks gassed. Legs look heavy as she is not even nearly as light and agile with her footwork. She still threw a couple bombs though which Kayla takes on the chin. She tries to tie her up but to no avail. Nunes throws a front kick to the body and Kayla catches it, Nunes loses her balances and falls, crawling on her hands and knees as Kayla sprints forward, takes the back, secures a choke and Amanda taps. Fight over. 
+
+An incredibly curious game plan from Amanda who was more than happy to wrestle and grapple with Kayla Harrison which is quite baffling. The few times Nunes did throw, she landed. But overall, she looked slow and looked even worse in the 4th when she gassed out.
+
+This fight, despite some of the struggles on the feet, is the best Kayla Harrison has looked. She judo really came into play here and she had some of the best throws of her career. Her judo has always worked in MMA but never had that highlight reel level of trips and throws in the UFC like Ronda did. This fight she had a couple and they were critical to her success in this fight. Amanda had her moments, too but they ultimately ended with her not being in dominate position and subsequently gassed her out. 
 
 ---
 
