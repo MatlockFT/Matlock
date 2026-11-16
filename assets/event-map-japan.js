@@ -1,16 +1,16 @@
 (() => {
-    const section = document.querySelector('[data-sumo-event-map]');
+    const section = document.querySelector('[data-japan-event-map]');
     if (!section) return;
 
-    const svgNode = section.querySelector('[data-sumo-map-svg]');
-    const loading = section.querySelector('[data-sumo-map-loading]');
-    const detailTitle = section.querySelector('[data-sumo-detail-title]');
-    const detailDates = section.querySelector('[data-sumo-detail-dates]');
-    const detailVenue = section.querySelector('[data-sumo-detail-venue]');
-    const detailCity = section.querySelector('[data-sumo-detail-city]');
-    const detailSource = section.querySelector('[data-sumo-detail-source]');
-    const list = section.querySelector('[data-sumo-event-list]');
-    const empty = section.querySelector('[data-sumo-empty]');
+    const svgNode = section.querySelector('[data-japan-map-svg]');
+    const loading = section.querySelector('[data-japan-map-loading]');
+    const detailTitle = section.querySelector('[data-japan-detail-title]');
+    const detailDates = section.querySelector('[data-japan-detail-dates]');
+    const detailVenue = section.querySelector('[data-japan-detail-venue]');
+    const detailCity = section.querySelector('[data-japan-detail-city]');
+    const detailSource = section.querySelector('[data-japan-detail-source]');
+    const list = section.querySelector('[data-japan-event-list]');
+    const empty = section.querySelector('[data-japan-empty]');
     const rangeButtons = [...document.querySelectorAll('[data-event-map] [data-range]')];
     const eventsUrl = section.dataset.eventsUrl;
 
@@ -29,7 +29,12 @@
     const normalize = value => String(value || '').replace(/\s+/g, ' ').trim();
 
     function localDay(date = new Date()) {
-        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        // Event dates are announced in JST, not in the visitor's time zone.
+        const parts = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit'
+        }).formatToParts(date);
+        const get = type => Number(parts.find(part => part.type === type)?.value || 0);
+        return new Date(get('year'), get('month') - 1, get('day'));
     }
 
     function parseDay(value) {
@@ -94,7 +99,10 @@
 
     function renderDetail(event) {
         if (!event) {
-            detailTitle.textContent = 'No Grand Sumo tournament in this range';
+            detailTitle.textContent = 'No Japanese MMA events in this range';
+            selectedId = '';
+            renderPinSelection();
+            renderListSelection();
             detailDates.textContent = '';
             detailVenue.textContent = '';
             detailCity.textContent = '';
@@ -102,7 +110,7 @@
             return;
         }
         selectedId = event.id;
-        detailTitle.textContent = normalize(event.title) || 'Grand Sumo Tournament';
+        detailTitle.textContent = normalize(event.title) || 'Japanese MMA Event';
         detailDates.textContent = formatDateRange(event);
         detailVenue.textContent = normalize(event.venue);
         detailCity.textContent = locationLabel(event);
@@ -114,13 +122,13 @@
 
     function renderPinSelection() {
         if (!pinLayer) return;
-        pinLayer.selectAll('.event-map-sumo-pin')
+        pinLayer.selectAll('.event-map-japan-pin')
             .attr('data-selected', venue => String(venue.events.some(event => event.id === selectedId)));
     }
 
     function renderListSelection() {
-        list.querySelectorAll('[data-sumo-event-id]').forEach(button => {
-            button.dataset.selected = String(button.dataset.sumoEventId === selectedId);
+        list.querySelectorAll('[data-japan-event-id]').forEach(button => {
+            button.dataset.selected = String(button.dataset.japanEventId === selectedId);
         });
     }
 
@@ -132,15 +140,15 @@
     function renderPins() {
         pinLayer.selectAll('*').remove();
         const venues = groupedVenues(visibleEvents);
-        const groups = pinLayer.selectAll('g.event-map-sumo-pin')
+        const groups = pinLayer.selectAll('g.event-map-japan-pin')
             .data(venues, venue => venue.key)
             .join('g')
-            .attr('class', 'event-map-sumo-pin')
+            .attr('class', 'event-map-japan-pin')
             .attr('tabindex', 0)
             .attr('role', 'button')
             .attr('aria-label', venue => {
                 const first = venue.events[0];
-                return `${normalize(first.venue)}, ${venue.events.length} upcoming Grand Sumo tournament${venue.events.length === 1 ? '' : 's'}`;
+                return `${normalize(first.venue || first.city)}, ${venue.events.length} upcoming Japanese MMA event${venue.events.length === 1 ? '' : 's'}`;
             })
             .attr('transform', venue => {
                 const point = projection([venue.longitude, venue.latitude]);
@@ -149,19 +157,19 @@
             .attr('data-selected', venue => String(venue.events.some(event => event.id === selectedId)));
 
         groups.append('circle')
-            .attr('class', 'event-map-sumo-pin-halo')
+            .attr('class', 'event-map-japan-pin-halo')
             .attr('r', 16);
         groups.append('circle')
-            .attr('class', 'event-map-sumo-pin-core')
+            .attr('class', 'event-map-japan-pin-core')
             .attr('r', 7);
         groups.filter(venue => venue.events.length > 1)
             .append('text')
-            .attr('class', 'event-map-sumo-pin-count')
+            .attr('class', 'event-map-japan-pin-count')
             .attr('y', .5)
             .text(venue => venue.events.length);
         groups.append('title').text(venue => {
             const first = venue.events[0];
-            return `${normalize(first.venue)} · ${venue.events.length} upcoming tournament${venue.events.length === 1 ? '' : 's'}`;
+            return `${normalize(first.venue || first.city)} · ${venue.events.length} upcoming event${venue.events.length === 1 ? '' : 's'}`;
         });
 
         groups.on('click', (_, venue) => selectVenue(venue));
@@ -175,12 +183,12 @@
     function makeEventButton(event) {
         const button = document.createElement('button');
         button.type = 'button';
-        button.className = 'event-map-sumo-event';
-        button.dataset.sumoEventId = event.id;
+        button.className = 'event-map-japan-event';
+        button.dataset.japanEventId = event.id;
         button.dataset.selected = String(event.id === selectedId);
 
         const title = document.createElement('strong');
-        title.textContent = normalize(event.title) || 'Grand Sumo Tournament';
+        title.textContent = normalize(event.title) || 'Japanese MMA Event';
         const meta = document.createElement('span');
         meta.textContent = `${formatDateRange(event)} · ${normalize(event.city)}`;
         button.append(title, meta);
@@ -194,8 +202,8 @@
             empty.hidden = false;
             const next = allEvents[0];
             empty.textContent = next
-                ? `No tournament begins in this range. Next: ${formatDateRange(next)} in ${normalize(next.city)}.`
-                : 'No upcoming Grand Sumo tournaments are currently listed.';
+                ? `No events in this date range. Next: ${formatDateRange(next)} in ${normalize(next.city)}.`
+                : 'No upcoming Japanese MMA events are currently listed.';
             return;
         }
         empty.hidden = true;
@@ -209,7 +217,41 @@
         }
         renderPins();
         renderList();
-        renderDetail(visibleEvents.find(event => event.id === selectedId) || allEvents[0] || null);
+        renderDetail(visibleEvents.find(event => event.id === selectedId) || null);
+    }
+
+    // Major-event RIZIN records do not always include structured Japanese locations.
+    // Only geocode known Japanese venues; never mistake international RIZIN cards for Japan.
+    const knownJapanVenues = [
+        { pattern: /バンテリン|Vantelin|Nagoya Dome/i, city: 'Nagoya', latitude: 35.1815, longitude: 136.9066 },
+        { pattern: /LaLa arena TOKYO.BAY|ららアリーナ/i, city: 'Funabashi', latitude: 35.6947, longitude: 139.9826 },
+        { pattern: /さいたまスーパーアリーナ|Saitama Super Arena/i, city: 'Saitama', latitude: 35.8617, longitude: 139.6455 }
+    ];
+
+    function isJapanMmaEvent(event) {
+        if (!event || String(event.sport || '').toLowerCase() === 'sumo') return false;
+        const sport = String(event.sport || '').toLowerCase();
+        if (sport && sport !== 'mma' && sport !== 'mixed martial arts') return false;
+        const country = normalize(event.country || event.country_code);
+        if (country && !/^(japan|jp)$/i.test(country)) return false;
+        if (/^(japan|jp)$/i.test(country)) return true;
+        return event.promotion_key === 'rizin' &&
+            knownJapanVenues.some(place => place.pattern.test(normalize(event.venue)));
+    }
+
+    function enrichJapanEvent(event) {
+        const venue = knownJapanVenues.find(place => place.pattern.test(normalize(event.venue)));
+        // Unknown future venues may still be listed, but they get no invented map pin.
+        if (!venue) return event;
+        if (Number.isFinite(Number(event.latitude)) && Number.isFinite(Number(event.longitude))) return event;
+        return {
+            ...event,
+            city: normalize(event.city) || venue.city,
+            country: 'Japan',
+            latitude: venue.latitude,
+            longitude: venue.longitude,
+            map_location_precision: 'city-centroid'
+        };
     }
 
     async function init() {
@@ -237,13 +279,14 @@
             const svg = d3.select(svgNode);
             svg.append('path')
                 .datum(japan)
-                .attr('class', 'event-map-sumo-land')
+                .attr('class', 'event-map-japan-land')
                 .attr('d', path);
-            pinLayer = svg.append('g').attr('class', 'event-map-sumo-pins');
+            pinLayer = svg.append('g').attr('class', 'event-map-japan-pins');
 
             const today = localDay();
             allEvents = (Array.isArray(eventData?.events) ? eventData.events : [])
-                .filter(event => event?.promotion_key === 'sumo' || String(event?.sport || '').toLowerCase() === 'sumo')
+                .filter(isJapanMmaEvent)
+                .map(enrichJapanEvent)
                 .filter(event => {
                     const date = parseDay(event.date);
                     return date && date >= today;
@@ -255,8 +298,8 @@
             refreshRange();
             loading.hidden = true;
         } catch (error) {
-            loading.textContent = 'Grand Sumo map is temporarily unavailable.';
-            console.error('Grand Sumo event map failed to initialize', error);
+            loading.textContent = 'Japanese MMA map is temporarily unavailable.';
+            console.error('Japanese MMA event map failed to initialize', error);
         }
     }
 

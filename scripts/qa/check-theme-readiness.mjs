@@ -5,7 +5,7 @@ const protectedCss = [
   "assets/news.css",
   "assets/news-matlock.css",
   "assets/event-map.css",
-  "assets/event-map-sumo.css",
+  "assets/event-map-japan.css",
   "assets/media-kit.css",
   "assets/ufc-roster.css",
   "assets/gallery.css",
