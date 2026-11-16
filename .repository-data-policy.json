@@ -177,18 +177,18 @@
       "publicContract": false
     },
     {
-      "id": "sumo-event-build-data",
+      "id": "japan-mma-event-curated-data",
       "storage": "build-time",
       "paths": [
-        "_data/sumo_events.json"
+        "_data/japan_mma_events.json"
       ],
       "lifecycle": "curated-input",
       "owner": "events",
       "producers": [
-        "manual:curated-sumo-calendar"
+        "manual:verified-japan-mma-calendar"
       ],
       "consumers": [
-        "jekyll:event-surfaces"
+        "jekyll:japan-mma-event-map-and-ticker"
       ],
       "safeToRegenerate": false,
       "safeToDeleteFromRepository": false,
