@@ -73,9 +73,13 @@ An incredibly sloppy fight that essentially looked like Gane, despite being gass
   </div>
 </figure>
 
-My card: 49-46 Gane and that is the only acceptable answer. 
+My card: 49-46 Gane and that is the only acceptable answer. I find that a lot of fans online have scored the first three rounds for Hokit and objectively, I can understand where they are coming from. "This is one of the closest title fights in UFC history according to the Verdict Scorecard."
 
----
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-1e711030" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-223927-329.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+On the surface, Hokit is pressing forward, trying for takedowns, dictating where the fight is taking place, and throwing shots in the clinch. On damage, neither fighter had visibly damaging blows for the most part but Gane landed much more volume and also attacked the body more. Body shots are criminally undervalued in the UFC but they are cumulative nonetheless. Gane was easily the more effective striker of the two and just because he was backing off and circling doesn't mean he is ineffective as that is how he fights and how one fights Josh Hokit. He runs into punches. A judge can certainly appreciate Hokit's aggressiveness and fighting-area control but those only come into play if they cannot identify even a marginal advantage in effective striking or grappling. Hokit's takedowns were largely ineffective in this fight and though he did initiate the clinch, they both exchange strikes. Hokit favored punches to the head and Gane favored knees to the body. The knees to the body were definitely more effective and stronger than Hokit's very weak punches to the head. Hokit's best work was his elbows in the clinch which was evident in the only round I scored for him - round 3. If Hokit's forward pressure resulted in him not taking shots and landing his punches as he made it to the clinch - then sure, he'd have won the fight but he didn't. As we all pointed out prior to the fight, closing that distance was going to be a challenge. I think it is incredibly generous to score any round outside of round 3 for Josh Hokit. That is my opinion. 
 
 ### Kayla Harrison vs. Amanda Nunes (Kayla Harrison wins via submission round 4 - rear naked choke)
 
