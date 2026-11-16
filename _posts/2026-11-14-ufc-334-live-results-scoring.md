@@ -101,7 +101,7 @@ Round 4: Nunes looks gassed. Legs look heavy as she is not even nearly as light 
 
 An incredibly curious game plan from Amanda who was more than happy to wrestle and grapple with Kayla Harrison which is quite baffling. The few times Nunes did throw, she landed. But overall, she looked slow and looked even worse in the 4th when she gassed out.
 
-This fight, despite some of the struggles on the feet, is the best Kayla Harrison has looked. She judo really came into play here and she had some of the best throws of her career. Her judo has always worked in MMA but never had that highlight reel level of trips and throws in the UFC like Ronda did. This fight she had a couple and they were critical to her success in this fight. Amanda had her moments, too but they ultimately ended with her not being in dominate position and subsequently gassed her out. 
+This fight, despite some of the struggles on the feet, is the best Kayla Harrison has looked. Her judo really came into play here and she had some of the best throws of her career. Her judo has always worked in MMA but never had that highlight reel level of trips and throws in the UFC like Ronda did. This fight she had a couple and they were critical to her success in this fight. Amanda had her moments, too but they ultimately ended with her not being in dominate position and subsequently gassed her out. 
 
 ---
 
