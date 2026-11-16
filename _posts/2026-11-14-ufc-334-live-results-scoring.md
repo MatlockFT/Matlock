@@ -148,8 +148,7 @@ My card 29-28 Hasan.
 
 ### Stephen Thompson vs. Charles Radtke (Stephen Thompson wins via round 3 TKO)
 
-Story of this fight is Thompson loses first round most likely as Radtke closes distance to keep Thompson down. Thompson landed good shots throughout the fight and as Radtke gassed out, Thompson started beating the shit out of him until a hook kick ( I think) knocks down Radtke. Good. Fuck Radtke, an absolute fucking loser. 
-
+Story of this fight is Thompson loses first round most likely as Radtke closes distance to keep Thompson down. Thompson landed good shots throughout the fight and as Radtke gassed out, Thompson started beating the shit out of him until a hook kick ( I think) knocks down Radtke. Good.
 
 
 ---
