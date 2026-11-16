@@ -114,12 +114,29 @@ Round 1:
 
 ### Uroš Medić vs. Kevin Holland
 
-Round 1:
+Round 1: Kevin Holland is fighting very long. Mostly implementing a kicking game and keeping Medic at range. Medic having a hell of a time trying to find Holland and get through this reach. Medic tries to throw but gets countered with several uppercuts from Holland that drop Medic, sorta looked off balance to be fair but Holland tries to tie up a D'Arce (maybe an anaconda - I'm unsure). Medic survives though it looked grim for a bit. 10-9 Holland. 
 
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-d337dfcb" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-203921-798.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+
+Round 2: Both at range kicking again, Medic crashing in at times to land shots which is sort of working but not near enough because the volume just isn't there. Medic lands two low blows, the second of which Holland milks the full 5 minutes. Marc Goddard takes point from Medic. It's a razor close round this far. Back to Holland kicking which are kind of ineffective but they are the only thing happening. Holland tries for a takedown but Medic is back up, they end the round with Medic's back to the fence and Holland holding him there trying to land shoulder strikes. Close round but its a 10-9 for Holland, actually a 10-8 with the point deduction.
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-b80f64b3" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-205035-672.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
+Round 3: Kevin continues keeping Medic at range with front leg side kicks targeting Medic's body and leg. He is exclusively winning this fight on those strikes specifically. Everything else Holland attempts is embarrassingly bad as he keeps losing his footing. Medic found a couple opportunities to land heavy shots, one a head kick and other just hooks. Medic's best round by far. Strange fight. 10-9 Medic
+
+My card: 29-27 Holland
+Judges get it wrong with this one: 28-28; 29-27 (Medic); 28-28 which are some insane scores. I understand Holland didn't exactly look like a world beater when he exclusively used front leg side kicks that landed with little impact but it was all the fight could really be scored on in the first two rounds. Not to mention Holland held Medic in a submission for about 2 minutes in the first round. David Bruce's card is a head scratcher. 
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center" data-writer-media-id="media-a350b4a4" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <img src="/assets/uploads/articles/2026/11/ufc-334-live-results-scoring/ufc-334-live-results-scoring-pasted-20261115-212915-238.png" alt="ufc 334 live results scoring" loading="lazy">
+</figure>
 
 ---
 
-### Bilal Hasan vs. Luis Gurule
+### Bilal Hasan vs. Luis Gurule  (Luis Gurule wins via split decision
 
 Round 1: Bilal Hasan comes out doing what he does constantly attacking with kicks and punches and staying mobile. Laser focused is Gurule, slowly marching forward through the onslaught, not letting Hasan operate at range. So he's cutting off the cage and trying to land his punches but with not much success. He does land one clean shot as Hasan was moving backward that knocked him down but I think he was really off balance because was right back up to his feet. 10-9 Hasan.
 
