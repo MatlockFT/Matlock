@@ -29,7 +29,12 @@
     const normalize = value => String(value || '').replace(/\s+/g, ' ').trim();
 
     function localDay(date = new Date()) {
-        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        // Event dates are announced in JST, not in the visitor's time zone.
+        const parts = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit'
+        }).formatToParts(date);
+        const get = type => Number(parts.find(part => part.type === type)?.value || 0);
+        return new Date(get('year'), get('month') - 1, get('day'));
     }
 
     function parseDay(value) {
@@ -236,6 +241,7 @@
 
     function enrichJapanEvent(event) {
         const venue = knownJapanVenues.find(place => place.pattern.test(normalize(event.venue)));
+        // Unknown future venues may still be listed, but they get no invented map pin.
         if (!venue) return event;
         if (Number.isFinite(Number(event.latitude)) && Number.isFinite(Number(event.longitude))) return event;
         return {
