@@ -4,6 +4,7 @@ const core = await fs.readFile('assets/event-map-regions.js', 'utf8');
 const deferred = await fs.readFile('assets/event-map-deferred.js', 'utf8');
 const enhancements = await fs.readFile('assets/event-map-enhancements.js', 'utf8');
 const html = await fs.readFile('event-map.html', 'utf8');
+const regionStyles = await fs.readFile('assets/event-map-regions.css', 'utf8');
 const failures = [];
 const regionalFeed = await fs.readFile('assets/data/event-map-regions-live.json', 'utf8');
 const canadaData = JSON.parse(await fs.readFile('_data/canada_mma_events.json', 'utf8'));
@@ -48,6 +49,67 @@ requireText(core, 'function rebuildMap(', 'Regional map must rebuild geographic 
 requireText(core, 'function chooseRegion(', 'One engine must switch continents.');
 requireText(core, 'function chooseCountry(', 'One engine must switch country views.');
 requireText(core, "REGIONS[currentRegion].countries", 'Region/country filters must remain linked.');
+
+// Asia uses one map and five subregional views, not stacked national maps.
+requireText(html, 'data-asia-subregions', 'Asia must expose second-level navigation.');
+requireText(regionStyles, '.event-map-asia-subregions:not([hidden])',
+    'Asia tabs need responsive styling.');
+requireText(core, 'const ASIA_SUBREGIONS = {', 'Asia subregions must be defined centrally.');
+requireText(core, "asia: { name: 'Asia', countries: Object.values(ASIA_SUBREGIONS)",
+    'Asia country selection must include all subregions.');
+requireText(core, 'asia: Object.values(ASIA_SUBREGIONS).flatMap',
+    'Asia geography must come from all supported country IDs.');
+requireText(core, 'function chooseAsiaSubregion(next)', 'Subregion buttons must switch the map.');
+requireText(core, "params.set('subregion', currentAsiaSubregion)",
+    'Subregion selection must have a shareable URL.');
+requireText(core, "Object.hasOwn(ASIA_SUBREGIONS, params.get('subregion'))",
+    'Unknown Asia subregion URLs must be handled safely.');
+requireText(core, "ASIA_SUBREGIONS[currentAsiaSubregion].countries.includes(event.countrySlug)",
+    'Event listings must be filtered to the selected Asia subregion.');
+requireText(core, 'const [southwest, northeast] = subregion.bounds;',
+    'Asia must have local geographic frames instead of one continental view.');
+requireText(core, 'const fallbackWindow = focus',
+    'Tiny island countries must have fallback framing.');
+requireText(core, 'function activeCountrySlugs()', 'Country filter must match the subregion.');
+
+const expectedAsiaGroups = {
+  'east-asia': ['japan','south-korea','china','taiwan','mongolia','north-korea'],
+  'southeast-asia': ['thailand','vietnam','indonesia','philippines','singapore',
+    'malaysia','cambodia','myanmar','laos','brunei','timor-leste'],
+  'south-asia': ['india','pakistan','bangladesh','nepal','sri-lanka','bhutan',
+    'maldives','afghanistan'],
+  'central-asia': ['kazakhstan','uzbekistan','kyrgyzstan','tajikistan','turkmenistan'],
+  'west-asia': ['united-arab-emirates','bahrain','saudi-arabia','qatar','kuwait',
+    'oman','jordan','iran','iraq','lebanon','israel','yemen','syria','armenia',
+    'azerbaijan','georgia']
+};
+const asiaDefinitions = core.split('const ASIA_SUBREGIONS = {')[1]
+    ?.split('const ASIA_SMALL_COUNTRY_FOCUS')[0] || '';
+const seenAsianCountries = new Set();
+for (const [id, expected] of Object.entries(expectedAsiaGroups)) {
+  requireText(html, 'data-asia-subregion="' + id + '"', 'Missing Asia tab: ' + id);
+  const groupStart = asiaDefinitions.indexOf("'" + id + "': {");
+  const listStart = groupStart < 0 ? -1 : asiaDefinitions.indexOf('countries: [', groupStart);
+  const listEnd = listStart < 0 ? -1 : asiaDefinitions.indexOf(']', listStart);
+  const list = listEnd > listStart
+      ? asiaDefinitions.slice(listStart + 'countries: ['.length, listEnd) : '';
+  const actual = [...list.matchAll(/'([^']+)'/g)].map(match => match[1]);
+  if (actual.length !== expected.length || expected.some(slug => !actual.includes(slug))) {
+    failures.push('Asia country list is incomplete for ' + id);
+  }
+  for (const slug of actual) {
+    if (seenAsianCountries.has(slug)) failures.push('Duplicate country in Asia: ' + slug);
+    seenAsianCountries.add(slug);
+    if (!core.includes("'" + slug + "': { name:") && !core.includes(slug + ": { name:")) {
+      failures.push('Missing country metadata for ' + slug);
+    }
+  }
+}
+if (seenAsianCountries.size !== 46) failures.push('Asia must have 46 distinct country choices.');
+if ((html.match(/data-map-svg/g) || []).length !== 1) {
+  failures.push('Asia subregions must share the single existing SVG map.');
+}
+
 
 requireText(regionalFeed, 'site.data.europe_mma_events.events', 'Shared map feed must load European MMA events.');
 requireText(regionalFeed, 'concat: europe_events', 'European events must appear in combined event feed.');
