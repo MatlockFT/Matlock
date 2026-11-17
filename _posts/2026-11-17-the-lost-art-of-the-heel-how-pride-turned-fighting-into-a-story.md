@@ -3,7 +3,7 @@ layout: post
 title: "The Lost Art of the Heel: How PRIDE Turned Fighting Into a Story"
 description: "A look at the rivalries that defined PRIDE, from Sakuraba and the Gracies to Wanderlei Silva, Cro Cop and the UFC."
 date: 2026-11-17
-category: Breakdown
+category: History
 author: Matlock
 image: ""
 tags: []
