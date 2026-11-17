@@ -39,6 +39,25 @@ requireText(core, 'function chooseRegion(', 'One engine must switch continents.'
 requireText(core, 'function chooseCountry(', 'One engine must switch country views.');
 requireText(core, "REGIONS[currentRegion].countries", 'Region/country filters must remain linked.');
 
+// The Africa region must render the continent itself, not just countries
+// that currently have MMA event feeds. World Atlas uses ISO numeric IDs.
+const geoConfig = core.match(/const CONTINENT_GEO_IDS\s*=\s*\{([\s\S]*?)\n\s{4}\};/)?.[1] || '';
+const africaConfig = geoConfig.match(/africa:\s*\[([\s\S]*?)\]/)?.[1] || '';
+const africaCodes = [...africaConfig.matchAll(/'(\d{3})'/g)].map(match => match[1]);
+const expectedAfrica = [
+  '012','024','072','108','120','132','140','148','174','178','180',
+  '204','226','231','232','262','266','270','288','324','384','404',
+  '426','430','434','450','454','466','478','480','504','508','516',
+  '562','566','624','646','678','686','690','694','706','710','716',
+  '728','729','732','748','768','788','800','818','834','854','894'
+];
+if (africaCodes.length !== expectedAfrica.length
+    || new Set(africaCodes).size !== expectedAfrica.length
+    || expectedAfrica.some(code => !africaCodes.includes(code))) {
+  failures.push('Africa map must contain all 54 national boundaries and Western Sahara.');
+}
+
+
 
 if (failures.length) {
   console.error(`Event Map architecture check failed (${failures.length}):`);
