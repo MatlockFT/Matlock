@@ -10,6 +10,8 @@ const canadaData = JSON.parse(await fs.readFile('_data/canada_mma_events.json', 
 const southAmericaData = JSON.parse(await fs.readFile('_data/south_america_mma_events.json', 'utf8'));
 const africaData = JSON.parse(await fs.readFile('_data/africa_mma_events.json', 'utf8'));
 const oceaniaData = JSON.parse(await fs.readFile('_data/oceania_mma_events.json', 'utf8'));
+const europeData = JSON.parse(await fs.readFile('_data/europe_mma_events.json', 'utf8'));
+
 
 
 
@@ -46,6 +48,54 @@ requireText(core, 'function rebuildMap(', 'Regional map must rebuild geographic 
 requireText(core, 'function chooseRegion(', 'One engine must switch continents.');
 requireText(core, 'function chooseCountry(', 'One engine must switch country views.');
 requireText(core, "REGIONS[currentRegion].countries", 'Region/country filters must remain linked.');
+
+requireText(regionalFeed, 'site.data.europe_mma_events.events', 'Shared map feed must load European MMA events.');
+requireText(regionalFeed, 'concat: europe_events', 'European events must appear in combined event feed.');
+requireText(core, "currentRegion === 'europe'", 'Europe must use its own bounded geographic projection.');
+requireText(core, "coordinates: [[-25, 34], [45, 72]]", 'Europe viewport must frame Iceland through the Balkans and Western Russia.');
+requireText(core, ".clipExtent([[0, 0], [WIDTH, HEIGHT]])", 'Europe map must clip distant territories to the canvas.');
+
+const europeanOutline = core.match(/const CONTINENT_GEO_IDS\s*=\s*\{([\s\S]*?)\n\s{4}\};/)?.[1] || '';
+const europeanCodes = [...(europeanOutline.match(/europe:\s*\[([\s\S]*?)\]/)?.[1] || '')
+    .matchAll(/'(\d{3})'/g)].map(match => match[1]);
+const essentialEuropeanIso = [
+  '826','616','250','276','724','380','528','056','752','578','208',
+  '246','040','756','372','620','203','703','191','705','688','070',
+  '498','804','112','643','792','300','100','642','348','233','428',
+  '440','352','196','499','807'
+];
+if (new Set(europeanCodes).size < 40
+    || essentialEuropeanIso.some(code => !europeanCodes.includes(code))) {
+  failures.push('Europe regional map must render the Nordic, Baltic, Balkan, eastern and western countries.');
+}
+if (!Array.isArray(europeData.events) || europeData.events.length < 38) {
+  failures.push('Europe calendar must retain at least 38 scheduled MMA cards.');
+} else {
+  const ids = new Set();
+  const countries = new Set();
+  for (const event of europeData.events) {
+    if (!event.id || ids.has(event.id)) failures.push('European event IDs must be nonblank and unique.');
+    ids.add(event.id);
+    countries.add(event.country);
+    if (event.sport !== 'MMA' || !event.country || !event.title || !event.date
+        || !event.city || !event.venue || !event.promotion || !event.state) {
+      failures.push('European cards require a named MMA event, date, promotion, city, state and venue.');
+    }
+    if (!/^20\d{2}-\d{2}-\d{2}$/.test(event.date || '')) failures.push('Europe date must be ISO-formatted.');
+    if (!Number.isFinite(event.latitude) || !Number.isFinite(event.longitude)
+        || event.latitude < 34 || event.latitude > 73
+        || event.longitude < -26 || event.longitude > 45) {
+      failures.push('European map coordinates must fall within regional viewport.');
+    }
+    if (!String(event.official_url || '').startsWith('https://')) failures.push('European event needs a source link.');
+  }
+  if (countries.size < 12) failures.push('Europe should retain diverse national and regional MMA schedules.');
+  for (const name of ['United Kingdom','France','Poland','Germany','Czechia','Slovakia',
+      'Croatia','Sweden','Finland','Spain','Italy','Belgium','Netherlands']) {
+    if (!countries.has(name)) failures.push('Europe coverage should include ' + name + '.');
+  }
+}
+
 
 requireText(regionalFeed, 'site.data.oceania_mma_events.events', 'Oceania feed must read the curated calendar.');
 requireText(regionalFeed, 'concat: oceania_events', 'Oceania cards must be included in the shared global feed.');
