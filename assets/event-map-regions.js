@@ -207,6 +207,18 @@
         'central-asia': { name: 'Central Asia', countries: ['kazakhstan', 'uzbekistan', 'kyrgyzstan', 'tajikistan', 'turkmenistan'], bounds: [[45,34],[90,57]] },
         'west-asia': { name: 'West Asia', countries: ['united-arab-emirates', 'bahrain', 'saudi-arabia', 'qatar', 'kuwait', 'oman', 'jordan', 'iran', 'iraq', 'lebanon', 'israel', 'yemen', 'syria', 'armenia', 'azerbaijan', 'georgia'], bounds: [[32,10],[64,46]] }
     };
+    // Fallback focus points for small countries omitted from coarse world-atlas outlines.
+    // These are geographic orientation points, not event/venue pins.
+    const ASIA_SMALL_COUNTRY_FOCUS = {
+        taiwan: [121, 24], singapore: [103.82, 1.35], brunei: [114.7, 4.53],
+        'timor-leste': [125.73, -8.87], maldives: [73.22, 3.2],
+        bahrain: [50.55, 26.05], qatar: [51.18, 25.32], kuwait: [47.5, 29.3],
+        lebanon: [35.85, 33.8], bhutan: [90.44, 27.5],
+        nepal: [84.1, 28.39], 'sri-lanka': [80.77, 7.9],
+        armenia: [44.5, 40.2], georgia: [43.5, 42.1],
+        israel: [35.0, 31.5], 'united-arab-emirates': [54.37, 24.45]
+    };
+
     const REGIONS = {
         world: { name: 'World', countries: Object.keys(COUNTRIES) },
         'north-america': { name: 'North America', countries: ['united-states','mexico','canada'] },
@@ -1627,6 +1639,29 @@
             projection = d3.geoAlbersUsa().fitExtent([[24, 24], [WIDTH - 24, HEIGHT - 24]], {
                 type: 'FeatureCollection', features: usFeatures
             });
+        } else if (currentRegion === 'asia') {
+            const subregion = ASIA_SUBREGIONS[currentAsiaSubregion];
+            const ids = new Set(subregion.countries.map(slug => String(Number(COUNTRIES[slug].iso))));
+            // Always render geographic context for the active subregion,
+            // even if a selected tiny island is absent from the 110m atlas.
+            stateFeatures = worldFeatures.filter(feature => ids.has(String(Number(feature.id))));
+            const selectedIso = currentCountry === 'all' ? ''
+                : String(Number(COUNTRIES[currentCountry].iso));
+            const selectedFeatures = selectedIso
+                ? stateFeatures.filter(feature => String(Number(feature.id)) === selectedIso) : [];
+            const [southwest, northeast] = subregion.bounds;
+            const focus = ASIA_SMALL_COUNTRY_FOCUS[currentCountry];
+            const fallbackWindow = focus
+                ? [[focus[0] - 5, focus[1] - 4], [focus[0] + 5, focus[1] + 4]]
+                : [southwest, northeast];
+            const frame = currentCountry === 'all'
+                ? { type: 'MultiPoint', coordinates: [southwest, northeast] }
+                : selectedFeatures.length
+                    ? { type: 'FeatureCollection', features: selectedFeatures }
+                    : { type: 'MultiPoint', coordinates: fallbackWindow };
+            projection = d3.geoMercator()
+                .fitExtent([[24, 24], [WIDTH - 24, HEIGHT - 24]], frame)
+                .clipExtent([[0, 0], [WIDTH, HEIGHT]]);
         } else {
             stateFeatures = currentRegion === 'world' && currentCountry === 'all'
                 ? worldFeatures
