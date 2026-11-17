@@ -32,7 +32,7 @@ Three years later, the rivalry became the foundation of [PRIDE Fighting Champion
 </section>
 Their rematch the following year ended in another submission victory for Gracie.
 
-<figure class="article-inline-video article-inline-video--wrap article-inline-video--left" data-writer-media-id="media-8b0f623d" data-media-flow="wrap" data-media-align="left" data-media-width="50" style="--media-width: 50%;">
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-8b0f623d" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width: 100%;">
   <div class="article-inline-video-stage">
     <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/the-lost-art-of-the-heel-how-pride-turned-fighti-video-20261117-162856-631.mp4" aria-label="Article video"></video>
   </div>
