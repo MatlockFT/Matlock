@@ -99,6 +99,7 @@
         germany: { name: 'Germany', iso: '276', region: 'europe', aliases: ['de','germany'] },
         australia: { name: 'Australia', iso: '036', region: 'oceania', aliases: ['au','australia'] },
         'new-zealand': { name: 'New Zealand', iso: '554', region: 'oceania', aliases: ['nz','new zealand'] },
+        'papua-new-guinea': { name: 'Papua New Guinea', iso: '598', region: 'oceania', aliases: ['pg','png','papua new guinea'] },
         'south-africa': { name: 'South Africa', iso: '710', region: 'africa', aliases: ['za','south africa'] },
         kenya: { name: 'Kenya', iso: '404', region: 'africa', aliases: ['ke','kenya'] },
         rwanda: { name: 'Rwanda', iso: '646', region: 'africa', aliases: ['rw','rwanda'] },
@@ -120,7 +121,7 @@
         ] },
         asia: { name: 'Asia', countries: ['japan','south-korea','china'] },
         europe: { name: 'Europe', countries: ['united-kingdom','poland','france','germany'] },
-        oceania: { name: 'Oceania', countries: ['australia','new-zealand'] },
+        oceania: { name: 'Oceania', countries: ['australia','new-zealand','papua-new-guinea'] },
         africa: { name: 'Africa', countries: [
             'south-africa','kenya','rwanda','nigeria','uganda','ghana',
             'egypt','morocco','dr-congo','senegal','ivory-coast'
@@ -289,6 +290,13 @@
         if (event.countrySlug === 'canada') {
             return [event.city, event.stateName, 'Canada'].filter(Boolean).join(', ');
         }
+        if (COUNTRIES[event.countrySlug]?.region === 'oceania') {
+            const city = String(event.city || '').trim();
+            const division = String(event.stateName || '').trim();
+            const distinctDivision = division && division.toLocaleLowerCase() !== city.toLocaleLowerCase();
+            return [city, distinctDivision ? division : '', COUNTRIES[event.countrySlug].name]
+                .filter(Boolean).join(', ');
+        }
         if (COUNTRIES[event.countrySlug]?.region === 'africa') {
             const city = String(event.city || '').trim();
             const division = String(event.stateName || '').trim();
@@ -322,6 +330,7 @@
             'united-kingdom': 'Europe/London', poland: 'Europe/Warsaw',
             france: 'Europe/Paris', germany: 'Europe/Berlin',
             australia: 'Australia/Sydney', 'new-zealand': 'Pacific/Auckland',
+            'papua-new-guinea': 'Pacific/Port_Moresby',
             'south-africa': 'Africa/Johannesburg',
             kenya: 'Africa/Nairobi', rwanda: 'Africa/Kigali',
             nigeria: 'Africa/Lagos', uganda: 'Africa/Kampala',
@@ -345,9 +354,22 @@
             'Northwest Territories': 'America/Yellowknife',
             Nunavut: 'America/Iqaluit'
         };
+        // Australian states span multiple local calendar dates; do not apply Sydney time to Perth.
+        const australiaZones = {
+            'Western Australia': 'Australia/Perth',
+            'South Australia': 'Australia/Adelaide',
+            'Queensland': 'Australia/Brisbane',
+            'New South Wales': 'Australia/Sydney',
+            Victoria: 'Australia/Melbourne',
+            Tasmania: 'Australia/Hobart',
+            'Northern Territory': 'Australia/Darwin',
+            'Australian Capital Territory': 'Australia/Sydney'
+        };
         const zone = (event.countrySlug === 'canada'
             ? canadaZones[event.stateName] || zones.canada
-            : zones[event.countrySlug]) || 'UTC';
+            : event.countrySlug === 'australia'
+                ? australiaZones[event.stateName] || zones.australia
+                : zones[event.countrySlug]) || 'UTC';
         const parts = new Intl.DateTimeFormat('en-US', {
             timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit'
         }).formatToParts(new Date());
