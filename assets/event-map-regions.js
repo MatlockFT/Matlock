@@ -97,6 +97,48 @@
         poland: { name: 'Poland', iso: '616', region: 'europe', aliases: ['pl','poland'] },
         france: { name: 'France', iso: '250', region: 'europe', aliases: ['fr','france'] },
         germany: { name: 'Germany', iso: '276', region: 'europe', aliases: ['de','germany'] },
+        'czechia': { name: 'Czechia', iso: '203', region: 'europe', aliases: ["cz","czech republic"] },
+        'slovakia': { name: 'Slovakia', iso: '703', region: 'europe', aliases: ["sk"] },
+        'austria': { name: 'Austria', iso: '040', region: 'europe', aliases: ["at"] },
+        'netherlands': { name: 'Netherlands', iso: '528', region: 'europe', aliases: ["nl"] },
+        'belgium': { name: 'Belgium', iso: '056', region: 'europe', aliases: ["be"] },
+        'sweden': { name: 'Sweden', iso: '752', region: 'europe', aliases: ["se"] },
+        'finland': { name: 'Finland', iso: '246', region: 'europe', aliases: ["fi"] },
+        'norway': { name: 'Norway', iso: '578', region: 'europe', aliases: ["no"] },
+        'denmark': { name: 'Denmark', iso: '208', region: 'europe', aliases: ["dk"] },
+        'ireland': { name: 'Ireland', iso: '372', region: 'europe', aliases: ["ie"] },
+        'spain': { name: 'Spain', iso: '724', region: 'europe', aliases: ["es"] },
+        'portugal': { name: 'Portugal', iso: '620', region: 'europe', aliases: ["pt"] },
+        'italy': { name: 'Italy', iso: '380', region: 'europe', aliases: ["it"] },
+        'switzerland': { name: 'Switzerland', iso: '756', region: 'europe', aliases: ["ch"] },
+        'croatia': { name: 'Croatia', iso: '191', region: 'europe', aliases: ["hr"] },
+        'serbia': { name: 'Serbia', iso: '688', region: 'europe', aliases: ["rs"] },
+        'slovenia': { name: 'Slovenia', iso: '705', region: 'europe', aliases: ["si"] },
+        'bosnia': { name: 'Bosnia and Herzegovina', iso: '070', region: 'europe', aliases: ["ba","bosnia"] },
+        'montenegro': { name: 'Montenegro', iso: '499', region: 'europe', aliases: ["me"] },
+        'albania': { name: 'Albania', iso: '008', region: 'europe', aliases: ["al"] },
+        'north-macedonia': { name: 'North Macedonia', iso: '807', region: 'europe', aliases: ["mk","macedonia"] },
+        'greece': { name: 'Greece', iso: '300', region: 'europe', aliases: ["gr"] },
+        'bulgaria': { name: 'Bulgaria', iso: '100', region: 'europe', aliases: ["bg"] },
+        'romania': { name: 'Romania', iso: '642', region: 'europe', aliases: ["ro"] },
+        'hungary': { name: 'Hungary', iso: '348', region: 'europe', aliases: ["hu"] },
+        'estonia': { name: 'Estonia', iso: '233', region: 'europe', aliases: ["ee"] },
+        'latvia': { name: 'Latvia', iso: '428', region: 'europe', aliases: ["lv"] },
+        'lithuania': { name: 'Lithuania', iso: '440', region: 'europe', aliases: ["lt"] },
+        'ukraine': { name: 'Ukraine', iso: '804', region: 'europe', aliases: ["ua"] },
+        'belarus': { name: 'Belarus', iso: '112', region: 'europe', aliases: ["by"] },
+        'moldova': { name: 'Moldova', iso: '498', region: 'europe', aliases: ["md"] },
+        'iceland': { name: 'Iceland', iso: '352', region: 'europe', aliases: ["is"] },
+        'cyprus': { name: 'Cyprus', iso: '196', region: 'europe', aliases: ["cy"] },
+        'turkey': { name: 'Turkey', iso: '792', region: 'europe', aliases: ["tr","türkiye"] },
+        'russia': { name: 'Russia', iso: '643', region: 'europe', aliases: ["ru"] },
+        'luxembourg': { name: 'Luxembourg', iso: '442', region: 'europe', aliases: ["lu"] },
+        'malta': { name: 'Malta', iso: '470', region: 'europe', aliases: ["mt"] },
+        'andorra': { name: 'Andorra', iso: '020', region: 'europe', aliases: ["ad"] },
+        'monaco': { name: 'Monaco', iso: '492', region: 'europe', aliases: ["mc"] },
+        'liechtenstein': { name: 'Liechtenstein', iso: '438', region: 'europe', aliases: ["li"] },
+        'san-marino': { name: 'San Marino', iso: '674', region: 'europe', aliases: ["sm"] },
+        'kosovo': { name: 'Kosovo', iso: '383', region: 'europe', aliases: ["xk"] },
         australia: { name: 'Australia', iso: '036', region: 'oceania', aliases: ['au','australia'] },
         'new-zealand': { name: 'New Zealand', iso: '554', region: 'oceania', aliases: ['nz','new zealand'] },
         'papua-new-guinea': { name: 'Papua New Guinea', iso: '598', region: 'oceania', aliases: ['pg','png','papua new guinea'] },
@@ -120,7 +162,13 @@
             'paraguay','venezuela','guyana','suriname'
         ] },
         asia: { name: 'Asia', countries: ['japan','south-korea','china'] },
-        europe: { name: 'Europe', countries: ['united-kingdom','poland','france','germany'] },
+        europe: { name: 'Europe', countries: [
+            'united-kingdom','poland','france','germany','czechia','slovakia','austria','netherlands','belgium',
+            'sweden','finland','norway','denmark','ireland','spain','portugal','italy','switzerland','croatia',
+            'serbia','slovenia','bosnia','montenegro','albania','north-macedonia','greece','bulgaria','romania',
+            'hungary','estonia','latvia','lithuania','ukraine','belarus','moldova','iceland','cyprus','turkey',
+            'russia','luxembourg','malta','andorra','monaco','liechtenstein','san-marino','kosovo'
+        ] },
         oceania: { name: 'Oceania', countries: ['australia','new-zealand','papua-new-guinea'] },
         africa: { name: 'Africa', countries: [
             'south-africa','kenya','rwanda','nigeria','uganda','ghana',
@@ -131,7 +179,17 @@
         'north-america': ['840','484','124'],
         'south-america': ['076','032','152','170','604','218','068','600','858','862','328','740'],
         asia: ['392','410','156','356','360','458','608','764','704','702','158','496','398','417','586'],
-        europe: ['826','616','250','276','724','380','528','056','752','578','208','246','040','756','372','620','203'],
+        // Include the European mainland, Nordics, Baltics, Balkans, and eastern countries.
+        // Project using a fixed Europe viewport (below) so Iceland, Svalbard,
+        // overseas territories, and transcontinental Russia do not dictate the zoom.
+        europe: [
+            '826','616','250','276','203','703','040','528',
+            '056','752','246','578','208','372','724','620',
+            '380','756','191','688','705','070','499','008',
+            '807','300','100','642','348','233','428','440',
+            '804','112','498','352','196','792','643','442',
+            '470','020','492','438','674','383'
+        ],
         // Keep the editorial Oceania view focused on Australia, New Zealand
         // and Papua New Guinea. Fiji straddles the antimeridian and makes
         // Mercator.fitExtent stretch across the entire Pacific, shrinking the map.
@@ -297,6 +355,13 @@
             return [city, distinctDivision ? division : '', COUNTRIES[event.countrySlug].name]
                 .filter(Boolean).join(', ');
         }
+        if (COUNTRIES[event.countrySlug]?.region === 'europe') {
+            const city = String(event.city || '').trim();
+            const division = String(event.stateName || '').trim();
+            const distinctDivision = division && division.toLocaleLowerCase() !== city.toLocaleLowerCase();
+            return [city, distinctDivision ? division : '', COUNTRIES[event.countrySlug].name]
+                .filter(Boolean).join(', ');
+        }
         if (COUNTRIES[event.countrySlug]?.region === 'africa') {
             const city = String(event.city || '').trim();
             const division = String(event.stateName || '').trim();
@@ -329,6 +394,48 @@
             'south-korea': 'Asia/Seoul', china: 'Asia/Shanghai',
             'united-kingdom': 'Europe/London', poland: 'Europe/Warsaw',
             france: 'Europe/Paris', germany: 'Europe/Berlin',
+            'czechia': 'Europe/Prague',
+            'slovakia': 'Europe/Bratislava',
+            'austria': 'Europe/Vienna',
+            'netherlands': 'Europe/Amsterdam',
+            'belgium': 'Europe/Brussels',
+            'sweden': 'Europe/Stockholm',
+            'finland': 'Europe/Helsinki',
+            'norway': 'Europe/Oslo',
+            'denmark': 'Europe/Copenhagen',
+            'ireland': 'Europe/Dublin',
+            'spain': 'Europe/Madrid',
+            'portugal': 'Europe/Lisbon',
+            'italy': 'Europe/Rome',
+            'switzerland': 'Europe/Zurich',
+            'croatia': 'Europe/Zagreb',
+            'serbia': 'Europe/Belgrade',
+            'slovenia': 'Europe/Ljubljana',
+            'bosnia': 'Europe/Sarajevo',
+            'montenegro': 'Europe/Podgorica',
+            'albania': 'Europe/Tirane',
+            'north-macedonia': 'Europe/Skopje',
+            'greece': 'Europe/Athens',
+            'bulgaria': 'Europe/Sofia',
+            'romania': 'Europe/Bucharest',
+            'hungary': 'Europe/Budapest',
+            'estonia': 'Europe/Tallinn',
+            'latvia': 'Europe/Riga',
+            'lithuania': 'Europe/Vilnius',
+            'ukraine': 'Europe/Kyiv',
+            'belarus': 'Europe/Minsk',
+            'moldova': 'Europe/Chisinau',
+            'iceland': 'Atlantic/Reykjavik',
+            'cyprus': 'Asia/Nicosia',
+            'turkey': 'Europe/Istanbul',
+            'russia': 'Europe/Moscow',
+            'luxembourg': 'Europe/Luxembourg',
+            'malta': 'Europe/Malta',
+            'andorra': 'Europe/Andorra',
+            'monaco': 'Europe/Monaco',
+            'liechtenstein': 'Europe/Vaduz',
+            'san-marino': 'Europe/San_Marino',
+            'kosovo': 'Europe/Belgrade',
             australia: 'Australia/Sydney', 'new-zealand': 'Pacific/Auckland',
             'papua-new-guinea': 'Pacific/Port_Moresby',
             'south-africa': 'Africa/Johannesburg',
@@ -1415,9 +1522,18 @@
                     return CONTINENT_GEO_IDS[currentRegion]?.some(id => String(Number(id)) === iso);
                 });
             const geo = { type: 'FeatureCollection', features: stateFeatures };
-            projection = (currentRegion === 'world' && currentCountry === 'all'
-                ? d3.geoNaturalEarth1() : d3.geoMercator())
-                .fitExtent([[24, 24], [WIDTH - 24, HEIGHT - 24]], geo);
+            if (currentRegion === 'europe' && ['all', 'russia', 'turkey'].includes(currentCountry)) {
+                // Fixed editorial viewport: Iceland to western Russia, Mediterranean to Scandinavia.
+                // Never size the Europe map to Russia's Asian territory or remote islands.
+                const europeWindow = { type: 'MultiPoint', coordinates: [[-25, 34], [45, 72]] };
+                projection = d3.geoMercator()
+                    .fitExtent([[24, 24], [WIDTH - 24, HEIGHT - 24]], europeWindow)
+                    .clipExtent([[0, 0], [WIDTH, HEIGHT]]);
+            } else {
+                projection = (currentRegion === 'world' && currentCountry === 'all'
+                    ? d3.geoNaturalEarth1() : d3.geoMercator())
+                    .fitExtent([[24, 24], [WIDTH - 24, HEIGHT - 24]], geo);
+            }
         }
         geoPath = d3.geoPath(projection);
         stateLayer.selectAll('path')
