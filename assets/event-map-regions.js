@@ -109,7 +109,23 @@
         asia: ['392','410','156','356','360','458','608','764','704','702','158','496','398','417','586'],
         europe: ['826','616','250','276','724','380','528','056','752','578','208','246','040','756','372','620','203'],
         oceania: ['036','554','242','598','090'],
-        africa: ['710','566','404','818','504','012','024','120','288','686','800','834']
+        // Complete African land geography. Include all 54 sovereign states plus
+        // Western Sahara (732), which world-atlas draws as a separate area.
+        // A region must not omit countries simply because no events are listed there.
+        africa: [
+            // North Africa
+            '012','818','434','504','729','728','788','732',
+            // West Africa
+            '204','854','132','384','270','288','324','624',
+            '430','466','478','562','566','686','694','768',
+            // Central Africa
+            '024','120','140','148','178','180','226','266','678',
+            // East Africa
+            '108','174','262','232','231','404','450','454',
+            '480','508','646','690','706','834','800',
+            // Southern Africa
+            '072','748','426','516','710','894','716'
+        ]
     };
     const COUNTRY_ALIASES = new Map(Object.entries(COUNTRIES).flatMap(([slug, item]) =>
         item.aliases.map(alias => [alias.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(), slug])
