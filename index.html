@@ -116,47 +116,13 @@ page_scripts:
         </div>
       </article>
 
-      <aside class="v3-right-rail v3-member-rail" aria-labelledby="v3-members-title">
+      <aside class="v3-right-rail" aria-labelledby="v3-news-title">
         <div class="v3-rail-head">
-          <h2 id="v3-members-title">Members Only</h2>
+          <h2 id="v3-news-title">Latest MMA News</h2>
+          <a href="{{ '/news/' | relative_url }}">View all</a>
         </div>
-        <div class="v3-news-list v3-member-list">
-          {% assign member_story_count = 0 %}
-          {% for post in site.posts %}
-            {% assign member_visibility = post.listing_visibility | default: "normal" %}
-            {% if post.members_only and post.published != false %}
-              {% unless member_visibility == "hide-home" or member_visibility == "direct-only" %}
-                <article class="v3-news-item v3-member-story">
-                  {% assign member_image = post.image.path | default: post.image %}
-                  {% if member_image and member_story_count == 0 %}
-                    {% assign member_image_data = site.data.responsive_images[member_image] %}
-                    {% assign member_image_src = member_image_data.src | default: member_image %}
-                    <a class="v3-member-thumb" href="https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}" aria-label="Read {{ post.title | escape }}">
-                      <img src="{{ member_image_src | relative_url }}"
-                        {% if member_image_data.srcset %}srcset="{{ member_image_data.srcset }}" sizes="(min-width: 780px) 24vw, 100vw"{% endif %}
-                        alt="{{ post.image.alt | default: post.title | escape }}" loading="lazy" decoding="async">
-                      <span class="v3-member-thumb-lock" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                          <rect x="5.5" y="10.5" width="13" height="10" rx="1.8"></rect>
-                          <path d="M8.5 10.5V7a3.5 3.5 0 0 1 7 0v3.5"></path>
-                          <circle cx="12" cy="15.3" r="1" fill="currentColor" stroke="none"></circle>
-                        </svg>
-                      </span>
-                    </a>
-                  {% endif %}
-                  <a class="v3-member-title" href="https://members.mmamatlock.com/post/{{ post.members_slug | default: post.slug | escape }}">{{ post.title | escape }}</a>
-                  <span class="v3-news-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-                </article>
-                {% assign member_story_count = member_story_count | plus: 1 %}
-                {% if member_story_count >= 6 %}{% break %}{% endif %}
-              {% endunless %}
-            {% endif %}
-          {% endfor %}
-          {% if member_story_count == 0 %}
-            <div class="v3-member-coming-soon">
-              <p>Coming soon</p>
-            </div>
-          {% endif %}
+        <div class="v3-news-list" data-v3-news-list aria-live="polite">
+          <p class="v3-loading">Loading MMA news…</p>
         </div>
       </aside>
     </section>
