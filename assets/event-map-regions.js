@@ -605,7 +605,7 @@
 
     function applyUrlState() {
         const params = new URLSearchParams(window.location.search);
-        currentRange = normalizedRange(params.get('range') || 'week');
+        currentRange = normalizedRange(params.get('range') || (params.has('event') ? 'all' : 'week'));
         initialEventId = params.get('event') || '';
         currentRegion = REGIONS[params.get('region')] ? params.get('region') : 'north-america';
         currentCountry = params.has('country') ? params.get('country') : (currentRegion === 'north-america' ? 'united-states' : 'all');
