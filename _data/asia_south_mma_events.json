@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "subregion": "South Asia",
-  "source": "Curated from official promotion/federation announcements, ticketing, and verified fight-event records. Reviewed November 17, 2026.",
+  "source": "Curated from promoter/federation announcements, ticketing and local fight calendars. Expanded November 17, 2026; unconfirmed MMA-specific details are labeled.",
   "location_note": "Pins use approximate host-city coordinates, not venue entrances. Date/venue ambiguities are identified on affected events.",
   "events": [
     {
@@ -25,6 +25,28 @@
       "source_url": "https://yrlsports.org/",
       "source_label": "YRL MMA League",
       "date_note": "Tournament and semi-pro single fights take place November 22–24; this pin uses opening day."
+    },
+    {
+      "id": "asia-xtreme-fight-night-nepal-2026-12-05",
+      "promotion": "Xtreme Fight Night Nepal",
+      "promotion_key": "xfn-nepal",
+      "sport": "MMA",
+      "title": "Xtreme Fight Night: MMA and Muay Thai",
+      "date": "2026-12-05",
+      "venue": "LOD Nepal (Lord of the Drinks), Thamel",
+      "city": "Kathmandu",
+      "state": "Bagmati Province",
+      "country": "Nepal",
+      "location": "Kathmandu, Bagmati Province, Nepal",
+      "latitude": 27.7172,
+      "longitude": 85.324,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "unspecified",
+      "official_url": "https://katajaam.com/events/t9dw1XSOyErKdvrIWALw",
+      "source_url": "https://katajaam.com/events/t9dw1XSOyErKdvrIWALw",
+      "source_label": "Kata Jaam Kathmandu events calendar",
+      "date_note": "The local event calendar lists ten fights across MMA and Muay Thai. The individual MMA bouts and local organizer have not been independently verified; unrelated to the U.S.-based XFN promotion."
     },
     {
       "id": "asia-wds-fight-night-19-2026-12-12",
