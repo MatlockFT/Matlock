@@ -1,38 +1,38 @@
 {
-  "generatedAt": "2026-11-17T13:49:25.616Z",
+  "generatedAt": "2026-11-17T23:38:21.419Z",
   "engineVersion": 2,
   "subjects": 414,
-  "publishedRecommendations": 1123,
+  "publishedRecommendations": 1120,
   "recommendationSlots": {
-    "0": 37,
+    "0": 38,
     "1": 2,
     "2": 4,
-    "3": 371
+    "3": 370
   },
   "caseCounts": {
-    "rebound-pairing": 473,
-    "rising-vs-rising": 309,
-    "step-up-vs-rebound": 149,
-    "rankings-progression": 65,
-    "ranking-opportunity": 53,
+    "rebound-pairing": 474,
+    "rising-vs-rising": 307,
+    "step-up-vs-rebound": 154,
+    "rankings-progression": 60,
+    "ranking-opportunity": 54,
     "divisional-sorting": 38,
-    "title-case": 17,
-    "title-eliminator": 12,
-    "prospect-test": 7
+    "title-case": 15,
+    "title-eliminator": 13,
+    "prospect-test": 5
   },
   "confidenceCounts": {
-    "high": 1049,
-    "low": 46,
-    "medium": 28
+    "high": 1043,
+    "low": 48,
+    "medium": 29
   },
   "averageRecentOpponentLinkCoverage": 0.9029,
   "sameCardRecommendations": 43,
-  "sameCardRecommendationRatio": 0.0383,
-  "asymmetricTopThreeRecommendations": 399,
-  "asymmetricTopThreeRatio": 0.3553,
-  "publicPublishedRecommendations": 1095,
-  "publicAsymmetricTopThreeRecommendations": 303,
-  "publicAsymmetricTopThreeRatio": 0.2767,
+  "sameCardRecommendationRatio": 0.0384,
+  "asymmetricTopThreeRecommendations": 398,
+  "asymmetricTopThreeRatio": 0.3554,
+  "publicPublishedRecommendations": 1094,
+  "publicAsymmetricTopThreeRecommendations": 304,
+  "publicAsymmetricTopThreeRatio": 0.2779,
   "engineGenericDivisionalSortingRecommendations": 38,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -41,8 +41,8 @@
     "title": "Polymarket UFC 334: Gane vs Hokit",
     "date": "2026-11-14",
     "subjects": 26,
-    "publicRecommendations": 73,
-    "noClearMatchupSubjects": 0
+    "publicRecommendations": 72,
+    "noClearMatchupSubjects": 1
   },
   "eventPublicSummary": [
     {
@@ -50,8 +50,8 @@
       "title": "Polymarket UFC 334: Gane vs Hokit",
       "date": "2026-11-14",
       "subjects": 26,
-      "publicRecommendations": 73,
-      "noClearMatchupSubjects": 0
+      "publicRecommendations": 72,
+      "noClearMatchupSubjects": 1
     },
     {
       "id": "ufc-fight-night-november-07-2026",
@@ -66,7 +66,7 @@
       "title": "UFC Fight Night: Moicano vs Nolan",
       "date": "2026-10-31",
       "subjects": 24,
-      "publicRecommendations": 71,
+      "publicRecommendations": 72,
       "noClearMatchupSubjects": 0
     },
     {
@@ -74,7 +74,7 @@
       "title": "UFC 333: Volkanovski vs Evloev",
       "date": "2026-10-24",
       "subjects": 28,
-      "publicRecommendations": 75,
+      "publicRecommendations": 73,
       "noClearMatchupSubjects": 0
     },
     {
@@ -170,31 +170,24 @@
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 71,
+      "publicRecommendations": 72,
       "noClearMatchupSubjects": 4
     }
   ],
   "genericExamples": [
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Amanda Nunes",
-      "opponent": "Alice Pereira",
-      "score": 68,
-      "rationale": "Amanda Nunes and Alice Pereira occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Amanda Nunes",
-      "opponent": "Nora Cornolle",
-      "score": 63,
-      "rationale": "Amanda Nunes and Nora Cornolle occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "fighter": "Uros Medic",
+      "opponent": "Nicolas Dalby",
+      "score": 87,
+      "rationale": "Uros Medic and Nicolas Dalby occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Uros Medic",
-      "opponent": "Mike Malott",
-      "score": 83,
-      "rationale": "Uros Medic and Mike Malott occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "opponent": "Joaquin Buckley",
+      "score": 84,
+      "rationale": "Uros Medic and Joaquin Buckley occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
@@ -207,29 +200,22 @@
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Kevin Holland",
       "opponent": "Neil Magny",
-      "score": 85,
+      "score": 84,
       "rationale": "Kevin Holland and Neil Magny occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Kevin Holland",
-      "opponent": "Sam Patterson",
-      "score": 79,
-      "rationale": "Kevin Holland and Sam Patterson occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "opponent": "Uros Medic",
+      "score": 81,
+      "rationale": "Kevin Holland and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Kevin Holland",
-      "opponent": "Carlos Leal",
-      "score": 79,
-      "rationale": "Kevin Holland and Carlos Leal occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Stephen Thompson",
-      "opponent": "Uros Medic",
-      "score": 79,
-      "rationale": "Stephen Thompson and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "opponent": "Joaquin Buckley",
+      "score": 81,
+      "rationale": "Kevin Holland and Joaquin Buckley occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Cortes Acosta vs Walker",
@@ -296,10 +282,10 @@
     },
     {
       "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Mike Malott",
+      "fighter": "Joaquin Buckley",
       "opponent": "Uros Medic",
-      "score": 83,
-      "rationale": "Mike Malott and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "score": 84,
+      "rationale": "Joaquin Buckley and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
@@ -314,82 +300,146 @@
       "opponent": "Jamey Lyn Horth",
       "score": 89,
       "rationale": "Ernesta Kareckaite and Jamey Lyn Horth occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Ernesta Kareckaite",
+      "opponent": "Tereza Bleda",
+      "score": 88,
+      "rationale": "Ernesta Kareckaite and Tereza Bleda occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Melissa Gatto",
+      "opponent": "Ernesta Kareckaite",
+      "score": 90,
+      "rationale": "Melissa Gatto and Ernesta Kareckaite occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
   "asymmetricExamples": [
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Amanda Nunes",
-      "opponent": "Chelsea Chandler",
-      "pairScore": 77,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Nora Cornolle",
-          "score": 88,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Alice Pereira",
-          "score": 84,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Macy Chiasson",
-          "score": 83,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Amanda Nunes",
-      "opponent": "Alice Pereira",
-      "pairScore": 68,
-      "case": "divisional-sorting",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Jacqueline Cavalcanti",
-          "score": 85,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Chelsea Chandler",
-          "score": 84,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Nora Cornolle",
-          "score": 83,
-          "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Amanda Nunes",
-      "opponent": "Nora Cornolle",
-      "pairScore": 63,
-      "case": "divisional-sorting",
+      "fighter": "Josh Hokit",
+      "opponent": "Rizvan Kuniev",
+      "pairScore": 80,
+      "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Chelsea Chandler",
+          "opponent": "Vitor Petrino",
+          "score": 87,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Waldo Cortes Acosta",
+          "score": 85,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Johnny Walker",
+          "score": 83,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Kayla Harrison",
+      "opponent": "Joselyne Edwards",
+      "pairScore": 72,
+      "case": "title-case",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Julianna Pena",
+          "score": 84,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Amanda Nunes",
+          "score": 83,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Luana Santos",
+          "score": 79,
+          "case": "title-eliminator"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Kayla Harrison",
+      "opponent": "Luana Santos",
+      "pairScore": 71,
+      "case": "title-case",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Ailin Perez",
+          "score": 95,
+          "case": "title-eliminator"
+        },
+        {
+          "opponent": "Julianna Pena",
+          "score": 83,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Joselyne Edwards",
+          "score": 79,
+          "case": "title-eliminator"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Kayla Harrison",
+      "opponent": "Ailin Perez",
+      "pairScore": 76,
+      "case": "title-case",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Luana Santos",
+          "score": 95,
+          "case": "title-eliminator"
+        },
+        {
+          "opponent": "Yana Santos",
           "score": 88,
-          "case": "rankings-progression"
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Bia Mesquita",
-          "score": 87,
-          "case": "rankings-progression"
+          "opponent": "Julianna Pena",
+          "score": 82,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Amanda Nunes",
+      "opponent": "Luana Santos",
+      "pairScore": 78,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Ailin Perez",
+          "score": 95,
+          "case": "title-eliminator"
         },
         {
-          "opponent": "Michelle Montague",
-          "score": 87,
-          "case": "rankings-progression"
+          "opponent": "Julianna Pena",
+          "score": 83,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Joselyne Edwards",
+          "score": 79,
+          "case": "title-eliminator"
         }
       ]
     },
@@ -471,50 +521,50 @@
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Kevin Holland",
-      "opponent": "Sam Patterson",
-      "pairScore": 79,
+      "opponent": "Uros Medic",
+      "pairScore": 81,
       "case": "divisional-sorting",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Jean Paul Lebosnoyani",
-          "score": 88,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jonathan Micallef",
-          "score": 87,
-          "case": "rising-vs-rising"
-        },
-        {
           "opponent": "Nicolas Dalby",
-          "score": 86,
-          "case": "rising-vs-rising"
+          "score": 87,
+          "case": "divisional-sorting"
+        },
+        {
+          "opponent": "Joaquin Buckley",
+          "score": 84,
+          "case": "divisional-sorting"
+        },
+        {
+          "opponent": "Daniil Donchenko",
+          "score": 84,
+          "case": "divisional-sorting"
         }
       ]
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Kevin Holland",
-      "opponent": "Carlos Leal",
-      "pairScore": 79,
+      "opponent": "Joaquin Buckley",
+      "pairScore": 81,
       "case": "divisional-sorting",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Jean Paul Lebosnoyani",
+          "opponent": "Nicolas Dalby",
           "score": 90,
-          "case": "rising-vs-rising"
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Seokhyeon Ko",
-          "score": 90,
-          "case": "rising-vs-rising"
+          "opponent": "Neil Magny",
+          "score": 88,
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Jonathan Micallef",
-          "score": 89,
-          "case": "rising-vs-rising"
+          "opponent": "Uros Medic",
+          "score": 84,
+          "case": "divisional-sorting"
         }
       ]
     },
@@ -570,56 +620,6 @@
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Stephen Thompson",
-      "opponent": "Nicolas Dalby",
-      "pairScore": 82,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Joaquin Buckley",
-          "score": 90,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Jeremiah Wells",
-          "score": 87,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Sam Patterson",
-          "score": 86,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Stephen Thompson",
-      "opponent": "Uros Medic",
-      "pairScore": 79,
-      "case": "divisional-sorting",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Mike Malott",
-          "score": 83,
-          "case": "divisional-sorting"
-        },
-        {
-          "opponent": "Daniil Donchenko",
-          "score": 84,
-          "case": "divisional-sorting"
-        },
-        {
-          "opponent": "Shavkat Rakhmonov",
-          "score": 82,
-          "case": "prospect-test"
-        }
-      ]
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Charles Radtke",
       "opponent": "Myktybek Orolbai",
       "pairScore": 93,
@@ -640,31 +640,6 @@
           "opponent": "Rodrigo Sezinando",
           "score": 94,
           "case": "divisional-sorting"
-        }
-      ]
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Charles Radtke",
-      "opponent": "Joel Alvarez",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Muslim Salikhov",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Punahele Soriano",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Chris Curtis",
-          "score": 93,
-          "case": "rebound-pairing"
         }
       ]
     },
@@ -872,7 +847,7 @@
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Jared Gordon",
       "opponent": "Kyle Nelson",
-      "pairScore": 91,
+      "pairScore": 90,
       "case": "rebound-pairing",
       "fighterRank": "Best match",
       "opponentTopThree": [
@@ -896,23 +871,23 @@
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Jared Gordon",
-      "opponent": "Drakkar Klose",
-      "pairScore": 89,
+      "opponent": "Matt Frevola",
+      "pairScore": 87,
       "case": "rebound-pairing",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Fares Ziam",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Kyle Nelson",
+          "opponent": "Claudio Puelles",
           "score": 92,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Mason Jones",
+          "opponent": "Nate Landwehr",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Nikolas Motta",
           "score": 92,
           "case": "rebound-pairing"
         }
@@ -921,25 +896,50 @@
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Jared Gordon",
-      "opponent": "Fares Ziam",
-      "pairScore": 88,
+      "opponent": "Nate Landwehr",
+      "pairScore": 87,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Kyle Nelson",
-          "score": 94,
+          "opponent": "Matt Frevola",
+          "score": 92,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Drakkar Klose",
-          "score": 93,
+          "opponent": "Claudio Puelles",
+          "score": 91,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Rafa Garcia",
-          "score": 93,
+          "opponent": "Daniel Zellhuber",
+          "score": 90,
           "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Melquizael Costa",
+      "opponent": "David Onama",
+      "pairScore": 93,
+      "case": "ranking-opportunity",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Sean Woodson",
+          "score": 96,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Christian Rodriguez",
+          "score": 95,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Marcus McGhee",
+          "score": 95,
+          "case": "ranking-opportunity"
         }
       ]
     }

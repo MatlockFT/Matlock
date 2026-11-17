@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-11-17T13:49:25.616Z",
+  "generatedAt": "2026-11-17T23:38:21.419Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
@@ -20,7 +20,7 @@
   "rankingSnapshotCoverage": {
     "archiveStart": "2026-09-10",
     "archiveEnd": "2026-11-17",
-    "snapshotsAvailable": 57,
+    "snapshotsAvailable": 58,
     "sampledCasesWithSnapshot": 5,
     "sampledCasesWithoutSnapshot": 115,
     "maxSnapshotAgeDays": 14
@@ -34,7 +34,7 @@
     "maxSnapshotAgeDays": 7
   },
   "bookingStateCoverage": {
-    "ledgerEntries": 192,
+    "ledgerEntries": 194,
     "ledgerEntriesWithoutUsableFirstSeen": 0,
     "ledgerFirstSeen": "2026-09-10T20:51:09.512Z"
   },
