@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "subregion": "East Asia",
-  "source": "Curated from official promotion/federation announcements, ticketing, and verified fight-event records. Reviewed November 17, 2026.",
+  "source": "Curated upcoming Asian MMA events from promoter, federation and tournament documents. Expanded November 17, 2026; dates and venues checked against linked sources.",
   "location_note": "Pins use approximate host-city coordinates, not venue entrances. Date/venue ambiguities are identified on affected events.",
   "events": [
     {
@@ -45,6 +45,28 @@
       "official_url": "https://www.sherdog.com/events/Jue-Cheng-King-JCK-Fight-Night-126-115395",
       "source_url": "https://www.sherdog.com/events/Jue-Cheng-King-JCK-Fight-Night-126-115395",
       "source_label": "Sherdog / Jue Cheng King"
+    },
+    {
+      "id": "asia-ctmmaa-national-mma-championship-2026-11-29",
+      "promotion": "Chinese Taipei MMA Association",
+      "promotion_key": "ctmmaa",
+      "sport": "MMA",
+      "title": "CTMMAA National MMA Championship 2026",
+      "date": "2026-11-29",
+      "venue": "Taipei Gymnasium, 4th Floor",
+      "city": "Taipei",
+      "state": "Taipei",
+      "country": "Taiwan",
+      "location": "Taipei, Taipei, Taiwan",
+      "latitude": 25.033,
+      "longitude": 121.5654,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "amateur",
+      "official_url": "https://fights.tw/events/01M3NJV8ADG7NKJ1XVYTGVJSNT",
+      "source_url": "https://fights.tw/events/01M3NJV8ADG7NKJ1XVYTGVJSNT",
+      "source_label": "Fights.tw / Chinese Taipei MMA Association",
+      "date_note": "Taiwan's 115-year national mixed martial arts championship. The organizer is the Chinese Taipei MMA Association."
     },
     {
       "id": "asia-zfn-05-2026-12-19",

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "subregion": "Central Asia",
-  "source": "Curated from official promotion/federation announcements, ticketing, and verified fight-event records. Reviewed November 17, 2026.",
+  "source": "Curated upcoming Asian MMA events from promoter, federation and tournament documents. Expanded November 17, 2026; dates and venues checked against linked sources.",
   "location_note": "Pins use approximate host-city coordinates, not venue entrances. Date/venue ambiguities are identified on affected events.",
   "events": [
     {
@@ -69,6 +69,28 @@
       "date_note": "Organizer lists December 4; some third-party schedules show December 5."
     },
     {
+      "id": "asia-immaf-asian-championships-tajikistan-2026-12-06",
+      "promotion": "International Mixed Martial Arts Federation",
+      "promotion_key": "immaf",
+      "sport": "MMA",
+      "title": "2026 IMMAF Asian Championships",
+      "date": "2026-12-06",
+      "venue": "Venue not yet announced",
+      "city": "Dushanbe",
+      "state": "Dushanbe",
+      "country": "Tajikistan",
+      "location": "Dushanbe, Dushanbe, Tajikistan",
+      "latitude": 38.5598,
+      "longitude": 68.787,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "amateur",
+      "official_url": "https://immaf.smoothcomp.com/en/federation/146/events/upcoming",
+      "source_url": "https://immaf.smoothcomp.com/en/federation/146/events/upcoming",
+      "source_label": "IMMAF / Smoothcomp",
+      "date_note": "IMMAF's upcoming-event calendar gives December 6–10 in Dushanbe. This map pin marks the opening day; venue details have not yet been confirmed."
+    },
+    {
       "id": "asia-alash-pride-137-2026-12-06",
       "promotion": "Alash Pride",
       "promotion_key": "alash-pride",
@@ -110,6 +132,28 @@
       "source_url": "https://sportplustv.kz/ru/news/naiza-obieiavila-o-dvux-cempionskix-boiax-v-karagande",
       "source_label": "SPORT+ Kazakhstan / NAIZA",
       "date_note": "Organizer announcement confirms two championship matches on December 19 in Karaganda; venue not confirmed."
+    },
+    {
+      "id": "asia-octagon-94-tashkent-2026-12-19",
+      "promotion": "OCTAGON League",
+      "promotion_key": "octagon-league",
+      "sport": "MMA",
+      "title": "OCTAGON 94: Tashkent",
+      "date": "2026-12-19",
+      "venue": "Humo Arena",
+      "city": "Tashkent",
+      "state": "Tashkent",
+      "country": "Uzbekistan",
+      "location": "Tashkent, Tashkent, Uzbekistan",
+      "latitude": 41.2995,
+      "longitude": 69.2401,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://jangvaqti.com/en/article/octagon-94-tashkent-humo-arena-dekabr",
+      "source_url": "https://jangvaqti.com/en/article/octagon-94-tashkent-humo-arena-dekabr",
+      "source_label": "Jang Vaqti / OCTAGON",
+      "date_note": "The organizer's December 19 Humo Arena date was reported on November 11, 2026."
     },
     {
       "id": "asia-efc-global-65-2026-12-25",
