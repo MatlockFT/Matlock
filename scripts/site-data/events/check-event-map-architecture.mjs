@@ -5,6 +5,8 @@ const deferred = await fs.readFile('assets/event-map-deferred.js', 'utf8');
 const enhancements = await fs.readFile('assets/event-map-enhancements.js', 'utf8');
 const html = await fs.readFile('event-map.html', 'utf8');
 const failures = [];
+const regionalFeed = await fs.readFile('assets/data/event-map-regions-live.json', 'utf8');
+const canadaData = JSON.parse(await fs.readFile('_data/canada_mma_events.json', 'utf8'));
 
 function requireText(text, needle, message) {
   if (!text.includes(needle)) failures.push(message);
@@ -38,6 +40,38 @@ requireText(core, 'function rebuildMap(', 'Regional map must rebuild geographic 
 requireText(core, 'function chooseRegion(', 'One engine must switch continents.');
 requireText(core, 'function chooseCountry(', 'One engine must switch country views.');
 requireText(core, "REGIONS[currentRegion].countries", 'Region/country filters must remain linked.');
+requireText(regionalFeed, 'site.data.canada_mma_events.events', 'Regional feed must read the Canadian MMA calendar.');
+requireText(regionalFeed, 'concat: canada_events', 'Canadian events must be included in the shared map feed.');
+requireText(core, "canada: { name: 'Canada'", 'Country selection must support Canada.');
+requireText(core, "event.countrySlug === 'canada'", 'Canadian events should display their province.');
+requireText(core, "'British Columbia': 'America/Vancouver'", 'Canadian local-day filtering must respect Pacific time.');
+if (!Array.isArray(canadaData.events) || canadaData.events.length < 10) {
+  failures.push('Canada MMA map must have at least ten verified scheduled cards.');
+} else {
+  const ids = new Set();
+  for (const event of canadaData.events) {
+    if (!event.id || ids.has(event.id)) failures.push('Canadian event IDs must be present and unique.');
+    ids.add(event.id);
+    if (event.country !== 'Canada' || event.sport !== 'MMA') {
+      failures.push('Canadian calendar may only contain Canadian MMA events.');
+    }
+    if (!/^20\d{2}-\d{2}-\d{2}$/.test(event.date || '')) {
+      failures.push('Canadian MMA event must have a valid ISO date.');
+    }
+    if (!event.city || !event.state || !event.promotion || !event.venue) {
+      failures.push('Canadian events require a promotion, city, province and venue.');
+    }
+    if (typeof event.latitude !== 'number' || typeof event.longitude !== 'number'
+        || event.latitude < 41 || event.latitude > 84
+        || event.longitude < -142 || event.longitude > -52) {
+      failures.push('Canadian MMA event must have plausible city coordinates.');
+    }
+    if (!/^https:\/\//.test(event.source_url || '')) {
+      failures.push('Canadian MMA events must link to an event source.');
+    }
+  }
+}
+
 
 // The Africa region must render the continent itself, not just countries
 // that currently have MMA event feeds. World Atlas uses ISO numeric IDs.
