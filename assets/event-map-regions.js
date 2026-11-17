@@ -935,8 +935,8 @@
         const params = new URLSearchParams(window.location.search);
         currentRange = normalizedRange(params.get('range') || (params.has('event') ? 'all' : 'week'));
         initialEventId = params.get('event') || '';
-        currentRegion = REGIONS[params.get('region')] ? params.get('region') : 'north-america';
-        currentAsiaSubregion = ASIA_SUBREGIONS[params.get('subregion')]
+        currentRegion = Object.hasOwn(REGIONS, params.get('region')) ? params.get('region') : 'north-america';
+        currentAsiaSubregion = Object.hasOwn(ASIA_SUBREGIONS, params.get('subregion'))
             ? params.get('subregion') : 'east-asia';
         currentCountry = params.has('country') ? params.get('country')
             : (currentRegion === 'north-america' ? 'united-states' : 'all');
@@ -1642,7 +1642,7 @@
     }
 
     function chooseAsiaSubregion(next) {
-        if (currentRegion !== 'asia' || !ASIA_SUBREGIONS[next] || currentAsiaSubregion === next) return;
+        if (currentRegion !== 'asia' || !Object.hasOwn(ASIA_SUBREGIONS, next) || currentAsiaSubregion === next) return;
         currentAsiaSubregion = next;
         currentCountry = 'all';
         selectedEventId = '';
