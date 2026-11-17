@@ -214,7 +214,8 @@
         ]
     };
     const COUNTRY_ALIASES = new Map(Object.entries(COUNTRIES).flatMap(([slug, item]) =>
-        item.aliases.map(alias => [alias.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(), slug])
+        [...new Set([...item.aliases, item.name])].map(alias =>
+            [alias.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(), slug])
     ));
 
     const STATE_BY_FIPS = new Map();
