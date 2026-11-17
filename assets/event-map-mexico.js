@@ -6,6 +6,7 @@
     const loading = section.querySelector('[data-mexico-map-loading]');
     const detailTitle = section.querySelector('[data-mexico-detail-title]');
     const detailDates = section.querySelector('[data-mexico-detail-dates]');
+    const detailNote = section.querySelector('[data-mexico-detail-note]');
     const detailVenue = section.querySelector('[data-mexico-detail-venue]');
     const detailCity = section.querySelector('[data-mexico-detail-city]');
     const detailSource = section.querySelector('[data-mexico-detail-source]');
@@ -104,6 +105,8 @@
             renderPinSelection();
             renderListSelection();
             detailDates.textContent = '';
+            detailNote.hidden = true;
+            detailNote.textContent = '';
             detailVenue.textContent = '';
             detailCity.textContent = '';
             detailSource.hidden = true;
@@ -112,6 +115,8 @@
         selectedId = event.id;
         detailTitle.textContent = normalize(event.title) || 'Mexican MMA Event';
         detailDates.textContent = formatDateRange(event);
+        detailNote.textContent = normalize(event.date_note);
+        detailNote.hidden = !detailNote.textContent;
         detailVenue.textContent = normalize(event.venue);
         detailCity.textContent = locationLabel(event);
         detailSource.hidden = !event.official_url;
