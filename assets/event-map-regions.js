@@ -93,6 +93,49 @@
         japan: { name: 'Japan', iso: '392', region: 'asia', aliases: ['jp','japan'] },
         'south-korea': { name: 'South Korea', iso: '410', region: 'asia', aliases: ['kr','south korea','republic of korea'] },
         china: { name: 'China', iso: '156', region: 'asia', aliases: ['cn','china'] },
+        'taiwan': { name: 'Taiwan', iso: '158', region: 'asia', aliases: ['tw'] },
+        'mongolia': { name: 'Mongolia', iso: '496', region: 'asia', aliases: ['mn'] },
+        'north-korea': { name: 'North Korea', iso: '408', region: 'asia', aliases: ['kp'] },
+        'thailand': { name: 'Thailand', iso: '764', region: 'asia', aliases: ['th'] },
+        'vietnam': { name: 'Vietnam', iso: '704', region: 'asia', aliases: ['vn'] },
+        'indonesia': { name: 'Indonesia', iso: '360', region: 'asia', aliases: ['id'] },
+        'philippines': { name: 'Philippines', iso: '608', region: 'asia', aliases: ['ph'] },
+        'singapore': { name: 'Singapore', iso: '702', region: 'asia', aliases: ['sg'] },
+        'malaysia': { name: 'Malaysia', iso: '458', region: 'asia', aliases: ['my'] },
+        'cambodia': { name: 'Cambodia', iso: '116', region: 'asia', aliases: ['kh'] },
+        'myanmar': { name: 'Myanmar', iso: '104', region: 'asia', aliases: ['mm'] },
+        'laos': { name: 'Laos', iso: '418', region: 'asia', aliases: ['la'] },
+        'brunei': { name: 'Brunei', iso: '096', region: 'asia', aliases: ['bn'] },
+        'timor-leste': { name: 'Timor-Leste', iso: '626', region: 'asia', aliases: ['tl'] },
+        'india': { name: 'India', iso: '356', region: 'asia', aliases: ['in'] },
+        'pakistan': { name: 'Pakistan', iso: '586', region: 'asia', aliases: ['pk'] },
+        'bangladesh': { name: 'Bangladesh', iso: '050', region: 'asia', aliases: ['bd'] },
+        'nepal': { name: 'Nepal', iso: '524', region: 'asia', aliases: ['np'] },
+        'sri-lanka': { name: 'Sri Lanka', iso: '144', region: 'asia', aliases: ['lk'] },
+        'bhutan': { name: 'Bhutan', iso: '064', region: 'asia', aliases: ['bt'] },
+        'maldives': { name: 'Maldives', iso: '462', region: 'asia', aliases: ['mv'] },
+        'afghanistan': { name: 'Afghanistan', iso: '004', region: 'asia', aliases: ['af'] },
+        'kazakhstan': { name: 'Kazakhstan', iso: '398', region: 'asia', aliases: ['kz'] },
+        'uzbekistan': { name: 'Uzbekistan', iso: '860', region: 'asia', aliases: ['uz'] },
+        'kyrgyzstan': { name: 'Kyrgyzstan', iso: '417', region: 'asia', aliases: ['kg'] },
+        'tajikistan': { name: 'Tajikistan', iso: '762', region: 'asia', aliases: ['tj'] },
+        'turkmenistan': { name: 'Turkmenistan', iso: '795', region: 'asia', aliases: ['tm'] },
+        'united-arab-emirates': { name: 'United Arab Emirates', iso: '784', region: 'asia', aliases: ['ae'] },
+        'bahrain': { name: 'Bahrain', iso: '048', region: 'asia', aliases: ['bh'] },
+        'saudi-arabia': { name: 'Saudi Arabia', iso: '682', region: 'asia', aliases: ['sa'] },
+        'qatar': { name: 'Qatar', iso: '634', region: 'asia', aliases: ['qa'] },
+        'kuwait': { name: 'Kuwait', iso: '414', region: 'asia', aliases: ['kw'] },
+        'oman': { name: 'Oman', iso: '512', region: 'asia', aliases: ['om'] },
+        'jordan': { name: 'Jordan', iso: '400', region: 'asia', aliases: ['jo'] },
+        'iran': { name: 'Iran', iso: '364', region: 'asia', aliases: ['ir'] },
+        'iraq': { name: 'Iraq', iso: '368', region: 'asia', aliases: ['iq'] },
+        'lebanon': { name: 'Lebanon', iso: '422', region: 'asia', aliases: ['lb'] },
+        'israel': { name: 'Israel', iso: '376', region: 'asia', aliases: ['il'] },
+        'yemen': { name: 'Yemen', iso: '887', region: 'asia', aliases: ['ye'] },
+        'syria': { name: 'Syria', iso: '760', region: 'asia', aliases: ['sy'] },
+        'armenia': { name: 'Armenia', iso: '051', region: 'asia', aliases: ['am'] },
+        'azerbaijan': { name: 'Azerbaijan', iso: '031', region: 'asia', aliases: ['az'] },
+        'georgia': { name: 'Georgia', iso: '268', region: 'asia', aliases: ['ge'] },
         'united-kingdom': { name: 'United Kingdom', iso: '826', region: 'europe', aliases: ['gb','uk','united kingdom'] },
         poland: { name: 'Poland', iso: '616', region: 'europe', aliases: ['pl','poland'] },
         france: { name: 'France', iso: '250', region: 'europe', aliases: ['fr','france'] },
@@ -154,6 +197,14 @@
         senegal: { name: 'Senegal', iso: '686', region: 'africa', aliases: ['sn','senegal'] },
         'ivory-coast': { name: 'Ivory Coast', iso: '384', region: 'africa', aliases: ['ci','ivory coast','côte d’ivoire','cote d ivoire'] }
     };
+    // Asia is one map with five geographic navigation levels.
+    const ASIA_SUBREGIONS = {
+        'east-asia': { name: 'East Asia', countries: ['japan', 'south-korea', 'china', 'taiwan', 'mongolia', 'north-korea'], bounds: [[73,17],[151,56]] },
+        'southeast-asia': { name: 'Southeast Asia', countries: ['thailand', 'vietnam', 'indonesia', 'philippines', 'singapore', 'malaysia', 'cambodia', 'myanmar', 'laos', 'brunei', 'timor-leste'], bounds: [[90,-12],[143,24]] },
+        'south-asia': { name: 'South Asia', countries: ['india', 'pakistan', 'bangladesh', 'nepal', 'sri-lanka', 'bhutan', 'maldives', 'afghanistan'], bounds: [[60,-2],[100,40]] },
+        'central-asia': { name: 'Central Asia', countries: ['kazakhstan', 'uzbekistan', 'kyrgyzstan', 'tajikistan', 'turkmenistan'], bounds: [[45,34],[90,57]] },
+        'west-asia': { name: 'West Asia', countries: ['united-arab-emirates', 'bahrain', 'saudi-arabia', 'qatar', 'kuwait', 'oman', 'jordan', 'iran', 'iraq', 'lebanon', 'israel', 'yemen', 'syria', 'armenia', 'azerbaijan', 'georgia'], bounds: [[32,10],[64,46]] }
+    };
     const REGIONS = {
         world: { name: 'World', countries: Object.keys(COUNTRIES) },
         'north-america': { name: 'North America', countries: ['united-states','mexico','canada'] },
@@ -161,7 +212,7 @@
             'brazil','peru','argentina','chile','colombia','ecuador','bolivia','uruguay',
             'paraguay','venezuela','guyana','suriname'
         ] },
-        asia: { name: 'Asia', countries: ['japan','south-korea','china'] },
+        asia: { name: 'Asia', countries: Object.values(ASIA_SUBREGIONS).flatMap(group => group.countries) },
         europe: { name: 'Europe', countries: [
             'united-kingdom','poland','france','germany','czechia','slovakia','austria','netherlands','belgium',
             'sweden','finland','norway','denmark','ireland','spain','portugal','italy','switzerland','croatia',
@@ -178,7 +229,7 @@
     const CONTINENT_GEO_IDS = {
         'north-america': ['840','484','124'],
         'south-america': ['076','032','152','170','604','218','068','600','858','862','328','740'],
-        asia: ['392','410','156','356','360','458','608','764','704','702','158','496','398','417','586'],
+        asia: Object.values(ASIA_SUBREGIONS).flatMap(group => group.countries.map(slug => COUNTRIES[slug].iso)),
         // Include the European mainland, Nordics, Baltics, Balkans, and eastern countries.
         // Project using a fixed Europe viewport (below) so Iceland, Svalbard,
         // overseas territories, and transcontinental Russia do not dictate the zoom.
