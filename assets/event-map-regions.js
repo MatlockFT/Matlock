@@ -691,8 +691,13 @@
     function renderStateActivity() {
         if (!stateLayer) return;
         const activeStates = new Set(filteredEvents.map(event => event.stateCode));
+        const activeCountries = new Set(filteredEvents.map(event => String(Number(COUNTRIES[event.countrySlug]?.iso))));
         stateLayer.selectAll('.event-map-state')
-            .attr('data-has-events', feature => String(activeStates.has(STATE_BY_FIPS.get(String(feature.id)))));
+            .attr('data-has-events', feature => String(
+                currentCountry === 'united-states'
+                    ? activeStates.has(STATE_BY_FIPS.get(String(feature.id)))
+                    : activeCountries.has(String(Number(feature.id)))
+            ));
     }
 
     function displayOrder(events) {
@@ -943,7 +948,7 @@
         renderResultSelectedState();
         syncUrl({ mode: changed ? history : 'replace' });
         if (zoom) zoomToPoint(event.x, event.y, Math.max(currentTransform?.k || 1, 3.2));
-        if (scroll) scrollDetailOnMobile();
+        if (scroll) { setMobileView('map'); scrollDetailOnMobile(); }
     }
 
     function selectCluster(cluster, { scroll = true, history = 'push' } = {}) {
@@ -1230,8 +1235,108 @@
         );
     }
 
+    function updateRegionNavigation() {
+        regionButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.region === currentRegion)));
+        const options = [new Option('All countries', 'all')];
+        REGIONS[currentRegion].countries.forEach(slug => options.push(new Option(COUNTRIES[slug].name, slug)));
+        countryFilter.replaceChildren(...options);
+        countryFilter.value = currentCountry;
+        if (currentCountry === 'mexico') page.dataset.mexicoSelected = 'true';
+        else page.dataset.mexicoSelected = 'false';
+        svgNode.setAttribute('aria-label', 'Map of ' +
+            (currentCountry === 'all' ? REGIONS[currentRegion].name : COUNTRIES[currentCountry].name) +
+            ' showing upcoming MMA events');
+    }
+
+    function chooseCountry(next, { history = 'push' } = {}) {
+        if (next !== 'all' && !REGIONS[currentRegion].countries.includes(next)) return;
+        if (currentCountry === next) return;
+        currentCountry = next;
+        selectedEventId = '';
+        selectedClusterKey = '';
+        if (promotionFilter) promotionFilter.value = '';
+        rebuildMap({ resetZoom: true });
+        showEmptyDetail();
+        applyFilters({ sync: false });
+        syncUrl({ mode: history });
+    }
+
+    function chooseRegion(next) {
+        if (!REGIONS[next] || next === currentRegion) return;
+        currentRegion = next;
+        currentCountry = 'all';
+        selectedEventId = '';
+        selectedClusterKey = '';
+        if (promotionFilter) promotionFilter.value = '';
+        rebuildMap({ resetZoom: true });
+        showEmptyDetail();
+        applyFilters({ sync: false });
+        syncUrl({ mode: 'push' });
+    }
+
+    function setMobileView(next) {
+        if (next !== 'map' && next !== 'events') return;
+        page.dataset.mobileView = next;
+        mapViewButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mapView === next)));
+    }
+
+    function rebuildMap({ resetZoom = false } = {}) {
+        updateRegionNavigation();
+        const selectedUs = currentCountry === 'united-states';
+        if (selectedUs) {
+            stateFeatures = usFeatures;
+            projection = d3.geoAlbersUsa().fitExtent([[24, 24], [WIDTH - 24, HEIGHT - 24]], {
+                type: 'FeatureCollection', features: usFeatures
+            });
+        } else {
+            stateFeatures = currentRegion === 'world' && currentCountry === 'all'
+                ? worldFeatures
+                : worldFeatures.filter(feature => {
+                    const iso = String(Number(feature.id));
+                    if (currentCountry !== 'all') return iso === String(Number(COUNTRIES[currentCountry].iso));
+                    return CONTINENT_GEO_IDS[currentRegion]?.some(id => String(Number(id)) === iso);
+                });
+            const geo = { type: 'FeatureCollection', features: stateFeatures };
+            projection = (currentRegion === 'world' && currentCountry === 'all'
+                ? d3.geoNaturalEarth1() : d3.geoMercator())
+                .fitExtent([[24, 24], [WIDTH - 24, HEIGHT - 24]], geo);
+        }
+        geoPath = d3.geoPath(projection);
+        stateLayer.selectAll('path')
+            .data(stateFeatures, feature => String(feature.id))
+            .join('path')
+            .attr('class', 'event-map-state')
+            .attr('d', geoPath)
+            .attr('data-state', feature => selectedUs ? STATE_BY_FIPS.get(String(feature.id)) || '' : '')
+            .on('click', (event, feature) => {
+                event.stopPropagation();
+                if (selectedUs) {
+                    const code = STATE_BY_FIPS.get(String(feature.id));
+                    if (code) zoomToState(code);
+                    return;
+                }
+                const country = Object.keys(COUNTRIES).find(slug =>
+                    String(Number(COUNTRIES[slug].iso)) === String(Number(feature.id))
+                );
+                if (country && (currentRegion === 'world' || REGIONS[currentRegion].countries.includes(country)))
+                    chooseCountry(country);
+            });
+
+        allEvents = rawEvents.map(locateEvent).filter(Boolean).filter(isFuture)
+            .sort((a, b) => (a.calendarDay?.getTime() ?? Infinity) - (b.calendarDay?.getTime() ?? Infinity));
+        computeDistances();
+        populateCompatibilityFilters();
+        if (resetZoom) d3.select(svgNode).interrupt().call(zoomBehavior.transform, d3.zoomIdentity);
+    }
+
     function bindControls() {
         nearButton.addEventListener('click', activateNearMe);
+        regionButtons.forEach(button => button.addEventListener('click', () => chooseRegion(button.dataset.region)));
+        countryFilter.addEventListener('change', () => chooseCountry(countryFilter.value));
+        mapViewButtons.forEach(button => button.addEventListener('click', () => setMobileView(button.dataset.mapView)));
+        searchInput?.addEventListener('input', () => applyFilters());
+        promotionFilter?.addEventListener('change', () => applyFilters());
+        levelFilter?.addEventListener('change', () => applyFilters());
         rangeButtons.forEach(button => {
             button.addEventListener('click', () => {
                 currentRange = button.dataset.range;
@@ -1250,7 +1355,7 @@
             url.searchParams.set('event', event.mapId);
             const payload = {
                 title: normalizeText(event.title) || normalizeText(event.promotion) || 'MMA event',
-                text: `${dateLabel(event)} · ${placeLabel(event)}`,
+                text: dateLabel(event) + ' · ' + placeLabel(event),
                 url: url.toString()
             };
             try {
@@ -1269,11 +1374,15 @@
 
     async function init() {
         try {
-            const [d3Module, topoModule, us, eventData] = await Promise.all([
+            const [d3Module, topoModule, us, world, eventData] = await Promise.all([
                 import('https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm'),
                 import('https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/+esm'),
                 fetch('https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-10m.json').then(response => {
-                    if (!response.ok) throw new Error('Map boundary request failed');
+                    if (!response.ok) throw new Error('U.S. boundary request failed');
+                    return response.json();
+                }),
+                fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then(response => {
+                    if (!response.ok) throw new Error('World boundary request failed');
                     return response.json();
                 }),
                 fetch(eventsUrl, { cache: 'no-store' }).then(response => {
@@ -1285,21 +1394,21 @@
             d3 = d3Module;
             topojson = topoModule;
             eventOverrides = eventData?.event_overrides && typeof eventData.event_overrides === 'object'
-                ? eventData.event_overrides
-                : {};
-            stateFeatures = topojson.feature(us, us.objects.states).features;
+                ? eventData.event_overrides : {};
+            usFeatures = topojson.feature(us, us.objects.states).features;
             stateFeatureByCode = new Map(
-                stateFeatures.map(feature => [STATE_BY_FIPS.get(String(feature.id)), feature]).filter(([code]) => code)
+                usFeatures.map(feature => [STATE_BY_FIPS.get(String(feature.id)), feature]).filter(([code]) => code)
             );
-            const featureCollection = { type: 'FeatureCollection', features: stateFeatures };
-            projection = d3.geoAlbersUsa().fitExtent([[24, 24], [WIDTH - 24, HEIGHT - 24]], featureCollection);
-            geoPath = d3.geoPath(projection);
+            worldFeatures = topojson.feature(world, world.objects.countries).features;
+            rawEvents = [...new Map((Array.isArray(eventData?.events) ? eventData.events : [])
+                .filter(event => event && event.id)
+                .map(event => [String(event.id), event])).values()];
+            applyUrlState();
 
             const svg = d3.select(svgNode);
             root = svg.append('g').attr('class', 'event-map-root');
             stateLayer = root.append('g').attr('class', 'event-map-states');
             markerLayer = root.append('g').attr('class', 'event-map-markers');
-
             zoomBehavior = d3.zoom()
                 .scaleExtent([1, 8])
                 .translateExtent([[-80, -80], [WIDTH + 80, HEIGHT + 80]])
@@ -1309,44 +1418,27 @@
                     currentTransform = event.transform;
                     root.attr('transform', currentTransform);
                     markerLayer.selectAll('.event-map-pin-group')
-                        .attr('transform', cluster => `translate(${cluster.x},${cluster.y}) scale(${1 / currentTransform.k})`);
+                        .attr('transform', cluster => 'translate(' + cluster.x + ',' + cluster.y + ') scale(' + (1 / currentTransform.k) + ')');
                 })
                 .on('end', event => {
                     if (event.sourceEvent) setTimeout(renderMarkers, 0);
                     else renderMarkers();
                 });
-
-            stateLayer.selectAll('path')
-                .data(stateFeatures)
-                .join('path')
-                .attr('class', 'event-map-state')
-                .attr('d', geoPath)
-                .attr('data-state', feature => STATE_BY_FIPS.get(String(feature.id)) || '')
-                .on('click', (event, feature) => {
-                    event.stopPropagation();
-                    const code = STATE_BY_FIPS.get(String(feature.id));
-                    if (code) zoomToState(code);
-                });
-
             svg.call(zoomBehavior).on('dblclick.zoom', null);
             currentTransform = d3.zoomIdentity;
 
-            const rawEvents = Array.isArray(eventData?.events) ? eventData.events : [];
-            allEvents = rawEvents.map(locateEvent).filter(Boolean).filter(isFuture)
-                .sort((a, b) => (a.calendarDay?.getTime() ?? Infinity) - (b.calendarDay?.getTime() ?? Infinity));
-
-            populateCompatibilityFilters();
-            applyUrlState();
+            rebuildMap({ resetZoom: false });
+            const params = new URLSearchParams(window.location.search);
+            if (promotionFilter) promotionFilter.value = params.get('promotion') || '';
             bindControls();
             applyFilters({ sync: false });
 
             if (initialEventId) {
-                const initialEvent = filteredEvents.find(event => event.mapId === initialEventId)
-                    || allEvents.find(event => event.mapId === initialEventId);
+                const initialEvent = filteredEvents.find(event => event.mapId === initialEventId);
                 if (initialEvent) selectEvent(initialEvent, { zoom: true, scroll: false, history: 'replace' });
-            } else {
-                syncUrl({ mode: 'replace' });
-            }
+                else syncUrl({ mode: 'replace' });
+            } else syncUrl({ mode: 'replace' });
+            setMobileView('events');
             loading.hidden = true;
         } catch (error) {
             loading.textContent = 'Event Map is temporarily unavailable.';
