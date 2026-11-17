@@ -39,6 +39,7 @@ const data = JSON.parse(await fs.readFile(DATA_PATH, 'utf8'));
 let removedMajorDiscovery = 0;
 let removedPastTuff = 0;
 let repairedTuff = 0;
+let clearedDuplicateMatchups = 0;
 
 let events = (data.events || []).filter(event => {
   if (event.source_key !== 'sherdog_discovery') return true;
@@ -50,6 +51,14 @@ let events = (data.events || []).filter(event => {
 
 const repaired = [];
 for (const event of events) {
+  const fighters = Array.isArray(event.main_event?.fighters) ? event.main_event.fighters : [];
+  if (fighters.length >= 2 && clean(fighters[0]).toLowerCase() === clean(fighters[1]).toLowerCase()) {
+    // Event listings often use 'TBD vs TBD' before the matchup is announced.
+    // Do not publish two identical placeholders as confirmed participants.
+    delete event.main_event;
+    event.title = clean(event.title).replace(/:\s*TBD\s+vs\.?\s*TBD\b/i, '');
+    clearedDuplicateMatchups += 1;
+  }
   if (event.source_key !== 'tuff_n_uff' || !event.official_url) {
     repaired.push(event);
     continue;
@@ -93,4 +102,4 @@ data.events = repaired
 
 await fs.writeFile(DATA_PATH, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
 console.log(`Regional cleanup: removed ${removedMajorDiscovery} major-promotion discovery duplicate(s), removed ${removedPastTuff} past Tuff-N-Uff card(s), repaired ${repairedTuff} Tuff-N-Uff card(s).`);
-console.log(`Regional cleanup complete: ${data.events.length} event(s).`);
+console.log(`Regional cleanup complete: ${data.events.length} event(s); ${clearedDuplicateMatchups} duplicate placeholder matchup(s) cleared.`);
