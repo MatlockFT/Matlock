@@ -52,6 +52,7 @@ requireText(core, "REGIONS[currentRegion].countries", 'Region/country filters mu
 requireText(regionalFeed, 'site.data.europe_mma_events.events', 'Shared map feed must load European MMA events.');
 requireText(regionalFeed, 'concat: europe_events', 'European events must appear in combined event feed.');
 requireText(core, "currentRegion === 'europe'", 'Europe must use its own bounded geographic projection.');
+requireText(core, '[...item.aliases, item.name]', 'Country matching must accept full native country names, including Czechia, Poland and Slovakia.');
 requireText(core, "coordinates: [[-25, 34], [45, 72]]", 'Europe viewport must frame Iceland through the Balkans and Western Russia.');
 requireText(core, ".clipExtent([[0, 0], [WIDTH, HEIGHT]])", 'Europe map must clip distant territories to the canvas.');
 
