@@ -32,6 +32,11 @@ Three years later, the rivalry became the foundation of [PRIDE Fighting Champion
 </section>
 Their rematch the following year ended in another submission victory for Gracie.
 
+<figure class="article-inline-video article-inline-video--wrap article-inline-video--left" data-writer-media-id="media-8b0f623d" data-media-flow="wrap" data-media-align="left" data-media-width="50" style="--media-width: 50%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/the-lost-art-of-the-heel-how-pride-turned-fighti-video-20261117-162856-631.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
 
 A retrospective published in the Japanese magazine *Kamipro* examined PRIDE's early history through the familiar language of professional wrestling, particularly its use of babyfaces and heels. Takada represented the home side, while the Gracies were the foreign invaders whose dominance Japanese fans wanted to see challenged. The promotion could draw on years of professional wrestling history to establish that rivalry, even if the fighters themselves had no obligation to follow the expected storyline. The Gracies kept winning, Takada had failed twice, and Japanese wrestling fans were still looking for someone who could beat them.
 
