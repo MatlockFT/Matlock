@@ -349,29 +349,35 @@
     }
 
     function locateEvent(event, index) {
-        const location = parseLocation(event);
-        if (!location) return null;
-
-        const longitude = Number(event.longitude ?? event.lng);
-        const latitude = Number(event.latitude ?? event.lat);
+        const countrySlug = countryOf(event);
+        if (!countrySlug) return null;
+        const isUs = countrySlug === 'united-states';
+        const known = countrySlug === 'japan' ? knownJapanVenue(event) : null;
+        const location = isUs ? parseLocation(event) : {
+            city: normalizeText(event.city) || known?.city || '',
+            stateCode: '',
+            stateName: normalizeText(event.state)
+        };
+        if (!location || (!isUs && !location.city)) return null;
+        const longitude = Number(event.longitude ?? event.lng ?? known?.longitude);
+        const latitude = Number(event.latitude ?? event.lat ?? known?.latitude);
         const hasSourceCoordinates = Number.isFinite(longitude) && Number.isFinite(latitude);
-        const cityKey = `${location.city.toLowerCase()}|${location.stateCode}`;
-        const cityCoordinates = CITY_COORDS[cityKey];
+        const cityKey = location.city.toLowerCase() + '|' + location.stateCode;
+        const cityCoordinates = isUs ? CITY_COORDS[cityKey] : null;
         const coordinates = hasSourceCoordinates ? [longitude, latitude] : cityCoordinates;
         let point = coordinates ? projection(coordinates) : null;
         let precision = hasSourceCoordinates ? 'source' : 'city';
-
-        if (!point || !Number.isFinite(point[0]) || !Number.isFinite(point[1])) {
+        if ((!point || !Number.isFinite(point[0]) || !Number.isFinite(point[1])) && isUs) {
             point = stateCentroid(location.stateCode);
             precision = 'state';
         }
-        if (!point) return null;
-
+        if (!point || !Number.isFinite(point[0]) || !Number.isFinite(point[1])) return null;
         return {
             ...event,
-            mapId: event.id || `event-${index}`,
+            mapId: event.id || ('event-' + index),
             dateObject: eventDate(event),
             calendarDay: eventCalendarDay(event),
+            countrySlug,
             city: location.city,
             stateCode: location.stateCode,
             stateName: location.stateName,
@@ -380,8 +386,7 @@
             geoLongitude: coordinates ? coordinates[0] : null,
             geoLatitude: coordinates ? coordinates[1] : null,
             distanceMiles: null,
-            x: point[0],
-            y: point[1]
+            x: point[0], y: point[1]
         };
     }
 
@@ -530,18 +535,17 @@
     }
 
     function isFuture(event) {
+        if (event.date && /^20\d{2}-\d{2}-\d{2}$/.test(event.date)) return event.date >= eventToday(event);
         if (!event.calendarDay) return true;
         return event.calendarDay >= localDay();
     }
-
     function matchesRange(event) {
         if (currentRange === 'all') return true;
-        if (!event.calendarDay) return false;
-        const start = localDay();
+        if (!event.date || !/^20\d{2}-\d{2}-\d{2}$/.test(event.date)) return false;
         const span = currentRange === 'week' ? 7 : currentRange === '30' ? 30 : null;
         if (!span) return true;
-        const end = addCalendarDays(start, span);
-        return event.calendarDay >= start && event.calendarDay < end;
+        const today = eventToday(event);
+        return event.date >= today && event.date < dateOffset(today, span);
     }
 
     function haversineMiles(lat1, lon1, lat2, lon2) {
@@ -571,14 +575,18 @@
     }
 
     function populateCompatibilityFilters() {
-        const stateCodes = [...new Set(allEvents.map(event => event.stateCode))]
+        const previousPromotion = promotionFilter?.value || '';
+        const stateCodes = [...new Set(allEvents.map(event => event.stateCode).filter(code => STATES[code]))]
             .sort((a, b) => STATES[a][0].localeCompare(STATES[b][0]));
-        const promotions = [...new Set(allEvents.map(event => normalizeText(event.promotion)).filter(Boolean))]
+        const promotions = [...new Set(allEvents.filter(event =>
+            currentRegion === 'world' || COUNTRIES[event.countrySlug]?.region === currentRegion
+        ).map(event => normalizeText(event.promotion)).filter(Boolean))]
             .sort((a, b) => a.localeCompare(b));
         stateFilter?.replaceChildren(new Option('All states', ''));
         stateCodes.forEach(code => stateFilter?.append(new Option(STATES[code][0], code)));
         promotionFilter?.replaceChildren(new Option('All promotions', ''));
         promotions.forEach(name => promotionFilter?.append(new Option(name, name)));
+        if (promotionFilter && promotions.includes(previousPromotion)) promotionFilter.value = previousPromotion;
     }
 
     function normalizedRange(value) {
@@ -588,8 +596,18 @@
 
     function applyUrlState() {
         const params = new URLSearchParams(window.location.search);
-        currentRange = normalizedRange(params.get('range'));
+        currentRange = normalizedRange(params.get('range') || 'week');
         initialEventId = params.get('event') || '';
+        currentRegion = REGIONS[params.get('region')] ? params.get('region') : 'north-america';
+        currentCountry = params.has('country') ? params.get('country') : (currentRegion === 'north-america' ? 'united-states' : 'all');
+        if (currentCountry !== 'all' && !REGIONS[currentRegion].countries.includes(currentCountry)) currentCountry = 'all';
+        if (!params.has('region') && !params.has('country') && initialEventId) {
+            const raw = rawEvents.find(event => String(event.id) === initialEventId);
+            const country = raw && countryOf(raw);
+            if (country) { currentRegion = COUNTRIES[country].region; currentCountry = country; }
+        }
+        if (searchInput) searchInput.value = params.get('q') || '';
+        if (levelFilter) levelFilter.value = params.get('level') || '';
         rangeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.range === currentRange)));
     }
 
@@ -599,7 +617,9 @@
   eventMap: {
       range: currentRange,
       event: selectedEventId,
-      cluster: selectedClusterKey
+      cluster: selectedClusterKey,
+      region: currentRegion,
+      country: currentCountry
   }
         };
     }
@@ -607,14 +627,22 @@
     function syncUrl({ mode = 'replace' } = {}) {
         const url = new URL(window.location.href);
         const params = url.searchParams;
-        ['range', 'state', 'promotion', 'level', 'q', 'radius', 'event'].forEach(key => params.delete(key));
+        ['range', 'state', 'promotion', 'level', 'q', 'radius', 'event', 'region', 'country', 'view'].forEach(key => params.delete(key));
         if (currentRange !== 'all') params.set('range', currentRange);
+        if (currentRegion !== 'north-america') params.set('region', currentRegion);
+        const defaultCountry = currentRegion === 'north-america' ? 'united-states' : 'all';
+        if (currentCountry !== defaultCountry) params.set('country', currentCountry);
+        if (searchInput?.value.trim()) params.set('q', searchInput.value.trim());
+        if (promotionFilter?.value) params.set('promotion', promotionFilter.value);
+        if (levelFilter?.value) params.set('level', levelFilter.value);
         if (selectedEventId) params.set('event', selectedEventId);
         const target = `${url.pathname}${params.toString() ? `?${params}` : ''}${url.hash}`;
         const previous = window.history.state?.eventMap || {};
         const selectionChanged = previous.event !== selectedEventId
   || previous.cluster !== selectedClusterKey
-  || previous.range !== currentRange;
+  || previous.range !== currentRange
+  || previous.region !== currentRegion
+  || previous.country !== currentCountry;
         const state = eventMapHistoryState();
         if (mode === 'push' && selectionChanged) window.history.pushState(state, '', target);
         else window.history.replaceState(state, '', target);
@@ -633,11 +661,11 @@
     }
 
     function restoreHistorySelection() {
-        const params = new URLSearchParams(window.location.search);
-        currentRange = normalizedRange(params.get('range'));
-        selectedEventId = params.get('event') || '';
+        applyUrlState();
+        selectedEventId = initialEventId;
         selectedClusterKey = selectedEventId ? '' : String(window.history.state?.eventMap?.cluster || '');
-        rangeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.range === currentRange)));
+        rebuildMap({ resetZoom: true });
+        if (promotionFilter) promotionFilter.value = new URLSearchParams(window.location.search).get('promotion') || '';
         applyFilters({ sync: false });
 
         const event = selectedEventId
@@ -661,6 +689,7 @@
     }
 
     function renderStateActivity() {
+        if (!stateLayer) return;
         const activeStates = new Set(filteredEvents.map(event => event.stateCode));
         stateLayer.selectAll('.event-map-state')
             .attr('data-has-events', feature => String(activeStates.has(STATE_BY_FIPS.get(String(feature.id)))));
@@ -706,13 +735,26 @@
 
     function applyFilters({ sync = true } = {}) {
         currentRadius = Number(radiusFilter?.value) || DEFAULT_RADIUS;
+        const queryTerms = normalizeText(searchInput?.value).toLowerCase().split(/\s+/).filter(Boolean);
         filteredEvents = allEvents.filter(event => {
+            if (currentRegion !== 'world' && COUNTRIES[event.countrySlug]?.region !== currentRegion) return false;
+            if (currentCountry !== 'all' && event.countrySlug !== currentCountry) return false;
             if (!matchesRange(event)) return false;
+            if (promotionFilter?.value && event.promotion !== promotionFilter.value) return false;
+            if (levelFilter?.value && event.levelCategory !== levelFilter.value) return false;
+            if (queryTerms.length) {
+                const searchable = [event.title, event.promotion, event.city, event.venue, event.stateName,
+                    COUNTRIES[event.countrySlug]?.name].join(' ').toLowerCase();
+                if (!queryTerms.every(term => searchable.includes(term))) return false;
+            }
             if (nearMeActive && (!Number.isFinite(event.distanceMiles) || event.distanceMiles > currentRadius)) return false;
             return true;
         });
-
         if (eventCount) eventCount.textContent = String(filteredEvents.length);
+        if (regionSummary) {
+            const scope = currentCountry === 'all' ? REGIONS[currentRegion].name : COUNTRIES[currentCountry].name;
+            regionSummary.textContent = scope + ' · ' + filteredEvents.length + ' event' + (filteredEvents.length === 1 ? '' : 's');
+        }
         if (selectedEventId && !filteredEvents.some(event => event.mapId === selectedEventId)) {
             selectedEventId = '';
             selectedClusterKey = '';
@@ -784,7 +826,7 @@
         const endDay = addCalendarDays(day, 1);
         const end = `${endDay.getFullYear()}${String(endDay.getMonth() + 1).padStart(2, '0')}${String(endDay.getDate()).padStart(2, '0')}`;
         const summary = normalizeText(event.title) || normalizeText(event.promotion) || 'MMA event';
-        const location = [normalizeText(event.venue), event.city, event.stateCode].filter(Boolean).join(', ');
+        const location = [normalizeText(event.venue), placeLabel(event)].filter(Boolean).join(', ');
         const lines = [
             'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//MMA Matlock//Event Map//EN', 'BEGIN:VEVENT',
             `UID:${escapeIcs(event.mapId)}@mmamatlock.com`, `DTSTART;VALUE=DATE:${start}`, `DTEND;VALUE=DATE:${end}`,
@@ -819,7 +861,8 @@
         }
         renderPoster(event);
 
-        detailLocation.textContent = [event.city, event.stateCode].filter(Boolean).join(', ') || event.stateName;
+        detailLocation.textContent = placeLabel(event);
+        if (dateNote) { dateNote.textContent = normalizeText(event.date_note); dateNote.hidden = !dateNote.textContent; }
         if (Number.isFinite(event.distanceMiles)) {
   detailDistance.hidden = false;
   detailDistance.textContent = `${Math.round(event.distanceMiles)} mi away`;
@@ -827,17 +870,17 @@
   detailDistance.hidden = true;
   detailDistance.textContent = '';
         }
-        const precisionNote = event.locationPrecision === 'state' ? ' · approximate state placement' : '';
+        const precisionNote = '';
         detailVenue.textContent = `${normalizeText(event.venue) || 'Venue not yet listed'}${precisionNote}`;
         detailBroadcast.textContent = event.broadcast ? `Watch: ${normalizeText(event.broadcast)}` : `${levelLabel(event)} event`;
 
-        const sourceUrl = event.official_url || '';
+        const sourceUrl = event.official_url || event.source_url || '';
         const ticketUrl = event.ticket_url || ((event.source_key === 'nitro' || /nitrotickets\.com/i.test(sourceUrl)) ? sourceUrl : '');
         detailTickets.hidden = !ticketUrl;
         detailTickets.href = ticketUrl || '#';
         detailSource.hidden = !sourceUrl || sourceUrl === ticketUrl;
         detailSource.href = sourceUrl || '#';
-        detailSource.textContent = event.regional ? 'Official event page' : 'Event page';
+        detailSource.textContent = event.source_label && /sherdog|tapology|ticketmaster/i.test(event.source_label) ? 'Event source' : 'Event page';
         detailCalendar.href = calendarHref(event);
         detailCalendar.download = `${normalizeText(event.title || event.promotion || 'mma-event').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'mma-event'}.ics`;
 
@@ -1081,7 +1124,7 @@
         title.textContent = normalizeText(event.title) || normalizeText(event.promotion) || 'MMA event';
         const meta = document.createElement('span');
         meta.className = 'event-map-result-meta';
-        meta.textContent = `${normalizeText(event.promotion) || 'MMA'} · ${[event.city, event.stateCode].filter(Boolean).join(', ')} · ${levelLabel(event)}`;
+        meta.textContent = `${normalizeText(event.promotion) || 'MMA'} · ${placeLabel(event)} · ${levelLabel(event)}`;
         copy.append(title, meta);
         button.append(date, copy);
         if (Number.isFinite(event.distanceMiles)) {
@@ -1207,7 +1250,7 @@
             url.searchParams.set('event', event.mapId);
             const payload = {
                 title: normalizeText(event.title) || normalizeText(event.promotion) || 'MMA event',
-                text: `${dateLabel(event)} · ${[event.city, event.stateCode].filter(Boolean).join(', ')}`,
+                text: `${dateLabel(event)} · ${placeLabel(event)}`,
                 url: url.toString()
             };
             try {
