@@ -859,7 +859,9 @@
         const stateCodes = [...new Set(allEvents.map(event => event.stateCode).filter(code => STATES[code]))]
             .sort((a, b) => STATES[a][0].localeCompare(STATES[b][0]));
         const promotions = [...new Set(allEvents.filter(event =>
-            currentRegion === 'world' || COUNTRIES[event.countrySlug]?.region === currentRegion
+            (currentRegion === 'world' || COUNTRIES[event.countrySlug]?.region === currentRegion)
+            && (currentRegion !== 'asia'
+                || ASIA_SUBREGIONS[currentAsiaSubregion].countries.includes(event.countrySlug))
         ).map(event => normalizeText(event.promotion)).filter(Boolean))]
             .sort((a, b) => a.localeCompare(b));
         stateFilter?.replaceChildren(new Option('All states', ''));
@@ -1049,6 +1051,8 @@
         const queryTerms = normalizeText(searchInput?.value).toLowerCase().split(/\s+/).filter(Boolean);
         filteredEvents = allEvents.filter(event => {
             if (currentRegion !== 'world' && COUNTRIES[event.countrySlug]?.region !== currentRegion) return false;
+            if (currentRegion === 'asia'
+                && !ASIA_SUBREGIONS[currentAsiaSubregion].countries.includes(event.countrySlug)) return false;
             if (currentCountry !== 'all' && event.countrySlug !== currentCountry) return false;
             if (!matchesRange(event)) return false;
             if (promotionFilter?.value && event.promotion !== promotionFilter.value) return false;
@@ -1063,7 +1067,9 @@
         });
         if (eventCount) eventCount.textContent = String(filteredEvents.length);
         if (regionSummary) {
-            const scope = currentCountry === 'all' ? REGIONS[currentRegion].name : COUNTRIES[currentCountry].name;
+            const scope = currentCountry !== 'all' ? COUNTRIES[currentCountry].name
+                : currentRegion === 'asia' ? ASIA_SUBREGIONS[currentAsiaSubregion].name
+                : REGIONS[currentRegion].name;
             regionSummary.textContent = scope + ' · ' + filteredEvents.length + ' event' + (filteredEvents.length === 1 ? '' : 's');
         }
         if (selectedEventId && !filteredEvents.some(event => event.mapId === selectedEventId)) {
@@ -1541,21 +1547,34 @@
         );
     }
 
+    function activeCountrySlugs() {
+        return currentRegion === 'asia'
+            ? ASIA_SUBREGIONS[currentAsiaSubregion].countries
+            : REGIONS[currentRegion].countries;
+    }
+
     function updateRegionNavigation() {
-        regionButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.region === currentRegion)));
+        regionButtons.forEach(button =>
+            button.setAttribute('aria-pressed', String(button.dataset.region === currentRegion)));
+        if (asiaSubregionNav) asiaSubregionNav.hidden = currentRegion !== 'asia';
+        asiaSubregionButtons.forEach(button =>
+            button.setAttribute('aria-pressed', String(
+                currentRegion === 'asia' && button.dataset.asiaSubregion === currentAsiaSubregion)));
+        const countries = activeCountrySlugs();
         const options = [new Option('All countries', 'all')];
-        REGIONS[currentRegion].countries.forEach(slug => options.push(new Option(COUNTRIES[slug].name, slug)));
+        countries.forEach(slug => options.push(new Option(COUNTRIES[slug].name, slug)));
         countryFilter.replaceChildren(...options);
+        if (currentCountry !== 'all' && !countries.includes(currentCountry)) currentCountry = 'all';
         countryFilter.value = currentCountry;
-        if (currentCountry === 'mexico') page.dataset.mexicoSelected = 'true';
-        else page.dataset.mexicoSelected = 'false';
-        svgNode.setAttribute('aria-label', 'Map of ' +
-            (currentCountry === 'all' ? REGIONS[currentRegion].name : COUNTRIES[currentCountry].name) +
-            ' showing upcoming MMA events');
+        page.dataset.mexicoSelected = String(currentCountry === 'mexico');
+        const label = currentCountry !== 'all' ? COUNTRIES[currentCountry].name
+            : currentRegion === 'asia' ? ASIA_SUBREGIONS[currentAsiaSubregion].name
+            : REGIONS[currentRegion].name;
+        svgNode.setAttribute('aria-label', 'Map of ' + label + ' showing upcoming MMA events');
     }
 
     function chooseCountry(next, { history = 'push' } = {}) {
-        if (next !== 'all' && !REGIONS[currentRegion].countries.includes(next)) return;
+        if (next !== 'all' && !activeCountrySlugs().includes(next)) return;
         if (currentCountry === next) return;
         currentCountry = next;
         selectedEventId = '';
@@ -1567,9 +1586,23 @@
         syncUrl({ mode: history });
     }
 
+    function chooseAsiaSubregion(next) {
+        if (currentRegion !== 'asia' || !ASIA_SUBREGIONS[next] || currentAsiaSubregion === next) return;
+        currentAsiaSubregion = next;
+        currentCountry = 'all';
+        selectedEventId = '';
+        selectedClusterKey = '';
+        if (promotionFilter) promotionFilter.value = '';
+        rebuildMap({ resetZoom: true });
+        showEmptyDetail();
+        applyFilters({ sync: false });
+        syncUrl({ mode: 'push' });
+    }
+
     function chooseRegion(next) {
         if (!REGIONS[next] || next === currentRegion) return;
         currentRegion = next;
+        if (next === 'asia') currentAsiaSubregion = 'east-asia';
         currentCountry = 'all';
         selectedEventId = '';
         selectedClusterKey = '';
@@ -1633,7 +1666,7 @@
                 const country = Object.keys(COUNTRIES).find(slug =>
                     String(Number(COUNTRIES[slug].iso)) === String(Number(feature.id))
                 );
-                if (country && (currentRegion === 'world' || REGIONS[currentRegion].countries.includes(country)))
+                if (country && (currentRegion === 'world' || activeCountrySlugs().includes(country)))
                     chooseCountry(country);
             });
 
@@ -1647,6 +1680,8 @@
     function bindControls() {
         nearButton.addEventListener('click', activateNearMe);
         regionButtons.forEach(button => button.addEventListener('click', () => chooseRegion(button.dataset.region)));
+        asiaSubregionButtons.forEach(button =>
+            button.addEventListener('click', () => chooseAsiaSubregion(button.dataset.asiaSubregion)));
         countryFilter.addEventListener('change', () => chooseCountry(countryFilter.value));
         mapViewButtons.forEach(button => button.addEventListener('click', () => setMobileView(button.dataset.mapView)));
         searchInput?.addEventListener('input', () => applyFilters());
