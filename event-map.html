@@ -4,8 +4,6 @@ title: "MMA Event Map: Upcoming MMA Events Near You"
 description: "Browse upcoming MMA events by region and country, including promotions in the United States, Mexico and Japan."
 permalink: /event-map/
 v3_text_masthead: true
-page_styles:
-  - /assets/event-map-regions.css
 page_scripts:
   - /assets/event-map-regions.js
   - /assets/event-map-deferred.js
@@ -22,6 +20,7 @@ page_scripts:
 </script>
 
 <link rel="stylesheet" href="{{ '/assets/event-map-v3.css' | relative_url }}?v={{ site.asset_version }}" data-event-map-v3-final-style>
+<link rel="stylesheet" href="{{ '/assets/event-map-regions.css' | relative_url }}?v={{ site.asset_version }}">
 
 <section
     class="event-map-page event-map-page-v3"
