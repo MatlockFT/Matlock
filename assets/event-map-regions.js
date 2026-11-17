@@ -249,9 +249,18 @@
         return [event.city, suffix].filter(Boolean).join(', ');
     }
     function eventToday(event) {
-        const zone = event.countrySlug === 'japan' ? 'Asia/Tokyo'
-            : event.countrySlug === 'mexico' ? 'America/Mexico_City'
-            : 'America/Chicago';
+        const zones = {
+            japan: 'Asia/Tokyo', mexico: 'America/Mexico_City',
+            brazil: 'America/Sao_Paulo', argentina: 'America/Argentina/Buenos_Aires',
+            chile: 'America/Santiago', colombia: 'America/Bogota', peru: 'America/Lima',
+            canada: 'America/Toronto', 'united-states': 'America/Chicago',
+            'south-korea': 'Asia/Seoul', china: 'Asia/Shanghai',
+            'united-kingdom': 'Europe/London', poland: 'Europe/Warsaw',
+            france: 'Europe/Paris', germany: 'Europe/Berlin',
+            australia: 'Australia/Sydney', 'new-zealand': 'Pacific/Auckland',
+            'south-africa': 'Africa/Johannesburg'
+        };
+        const zone = zones[event.countrySlug] || 'UTC';
         const parts = new Intl.DateTimeFormat('en-US', {
             timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit'
         }).formatToParts(new Date());
@@ -1433,12 +1442,15 @@
             bindControls();
             applyFilters({ sync: false });
 
+            let openedEvent = false;
             if (initialEventId) {
                 const initialEvent = filteredEvents.find(event => event.mapId === initialEventId);
-                if (initialEvent) selectEvent(initialEvent, { zoom: true, scroll: false, history: 'replace' });
-                else syncUrl({ mode: 'replace' });
+                if (initialEvent) {
+                    selectEvent(initialEvent, { zoom: true, scroll: false, history: 'replace' });
+                    openedEvent = true;
+                } else syncUrl({ mode: 'replace' });
             } else syncUrl({ mode: 'replace' });
-            setMobileView('events');
+            setMobileView(openedEvent ? 'map' : 'events');
             loading.hidden = true;
         } catch (error) {
             loading.textContent = 'Event Map is temporarily unavailable.';
