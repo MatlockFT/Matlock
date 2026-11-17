@@ -1,17 +1,12 @@
 ---
 layout: default
 title: "MMA Event Map: Upcoming MMA Events Near You"
-description: "Explore upcoming MMA events across the United States, Mexico and Japan, including RIZIN, LUX, UWC, Budo Sento and regional promotions, with event details and sources."
+description: "Browse upcoming MMA events by region and country, including promotions in the United States, Mexico and Japan."
 permalink: /event-map/
 v3_text_masthead: true
-page_styles:
-  - /assets/event-map-japan.css
-  - /assets/event-map-mexico.css
 page_scripts:
-  - /assets/event-map-v2.js
+  - /assets/event-map-regions.js
   - /assets/event-map-deferred.js
-  - /assets/event-map-japan.js
-  - /assets/event-map-mexico.js
 ---
 
 <script>
@@ -25,13 +20,14 @@ page_scripts:
 </script>
 
 <link rel="stylesheet" href="{{ '/assets/event-map-v3.css' | relative_url }}?v={{ site.asset_version }}" data-event-map-v3-final-style>
+<link rel="stylesheet" href="{{ '/assets/event-map-regions.css' | relative_url }}?v={{ site.asset_version }}">
 
 <section
     class="event-map-page event-map-page-v3"
     data-globe-home
     data-editorial-v3
     data-event-map
-    data-events-url="{{ '/assets/data/event-map-live.json' | relative_url }}?v={{ site.asset_version }}"
+    data-events-url="{{ '/assets/data/event-map-regions-live.json' | relative_url }}?v={{ site.asset_version }}"
 >
     <header class="event-map-hero event-map-hero--compact">
         <div>
@@ -39,6 +35,26 @@ page_scripts:
             <h1>Event Map</h1>
         </div>
     </header>
+
+    <nav class="event-map-regions" aria-label="Map region" role="group">
+        <button type="button" data-region="world" aria-pressed="false">World</button>
+        <button type="button" data-region="north-america" aria-pressed="true">North America</button>
+        <button type="button" data-region="south-america" aria-pressed="false">South America</button>
+        <button type="button" data-region="asia" aria-pressed="false">Asia</button>
+        <button type="button" data-region="europe" aria-pressed="false">Europe</button>
+        <button type="button" data-region="oceania" aria-pressed="false">Oceania</button>
+        <button type="button" data-region="africa" aria-pressed="false">Africa</button>
+    </nav>
+    <div class="event-map-region-options">
+        <label class="event-map-control">
+            <span>Country</span>
+            <select data-country-filter aria-label="Filter map by country">
+                <option value="united-states">United States</option>
+            </select>
+        </label>
+        <span class="event-map-region-summary" data-map-region-summary aria-live="polite">United States</span>
+        <span class="event-map-event-counter" data-event-count aria-live="off" hidden></span>
+    </div>
 
     <div class="event-map-toolbar" aria-label="Event Map controls">
         <div class="event-map-range" role="group" aria-label="Date range">
@@ -51,10 +67,45 @@ page_scripts:
             <button type="button" class="event-map-near-button" data-near-me aria-pressed="false">Near me</button>
             <span class="event-map-near-status" data-near-status aria-live="polite"></span>
         </div>
+
     </div>
 
+    <div class="event-map-region-filters">
+        <label class="event-map-control event-map-control--search">
+            <span>Find an event</span>
+            <input type="search" data-event-search placeholder="Promotion, city or event" autocomplete="off" aria-label="Search MMA events">
+        </label>
+        <label class="event-map-control">
+            <span>Promotion</span>
+            <select data-promotion-filter aria-label="Filter by MMA promotion"><option value="">All promotions</option></select>
+        </label>
+        <label class="event-map-control">
+            <span>Event type</span>
+            <select data-level-filter aria-label="Filter by event type">
+                <option value="">All types</option>
+                <option value="professional">Pro</option>
+                <option value="pro-am">Pro / Am</option>
+                <option value="amateur">Amateur</option>
+                <option value="regional">Regional</option>
+            </select>
+        </label>
+    </div>
+    <div class="event-map-mobile-switch" role="group" aria-label="Mobile map display">
+        <button type="button" data-map-view="events" aria-pressed="true">Events</button>
+        <button type="button" data-map-view="map" aria-pressed="false">Map</button>
+    </div>
+    <details class="event-map-country-watch" data-mexico-watchlist>
+        <summary>Other Mexican MMA promotions</summary>
+        <div>
+            <a href="https://luxfightleague.com/" target="_blank" rel="noopener noreferrer">LUX Fight League</a>
+            <a href="https://peleasextremmas.com/" target="_blank" rel="noopener noreferrer">Peleas ExtreMMAs</a>
+            <a href="https://www.supremefightnight.com/event-list" target="_blank" rel="noopener noreferrer">Supreme Fight Night</a>
+            <a href="https://www.localgymsandfitness.com/MX/Morelia/1001171969756849/Xtreme-Spartans-League" target="_blank" rel="noopener noreferrer">Xtreme Spartans League</a>
+        </div>
+    </details>
+
     <div class="event-map-layout">
-        <section class="event-map-stage" aria-label="Interactive United States MMA event map">
+        <section class="event-map-stage" aria-label="Interactive regional MMA event map">
             <div class="event-map-loading" data-map-loading>
                 Loading event map…
             </div>
@@ -64,7 +115,7 @@ page_scripts:
                 data-map-svg
                 viewBox="0 0 960 600"
                 role="img"
-                aria-label="United States map with upcoming MMA event pins"
+                aria-label="Map of upcoming MMA events"
             ></svg>
 
             <div class="event-map-legend" aria-label="Map legend">
@@ -100,6 +151,7 @@ page_scripts:
                     <time data-detail-date></time>
                 </div>
                 <h2 data-detail-title></h2>
+                <p class="event-map-date-note" data-detail-date-note hidden></p>
 
                 <figure class="event-map-detail-poster" data-detail-poster-wrap data-poster-ready="false" hidden>
                     <img data-detail-poster loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="">
@@ -125,105 +177,6 @@ page_scripts:
         </aside>
     </div>
 
-    <section
-        class="event-map-japan"
-        data-japan-event-map
-        data-events-url="{{ '/assets/data/upcoming-events-live.json' | relative_url }}?v={{ site.asset_version }}"
-        aria-labelledby="event-map-japan-title"
-    >
-        <header class="event-map-japan-header">
-            <h2 id="event-map-japan-title">Japan MMA</h2>
-            <p>RIZIN · DEEP · Pancrase · Shooto · GRACHAN · Fighting NEXUS</p>
-        </header>
-
-        <div class="event-map-japan-layout">
-            <div class="event-map-japan-stage">
-                <div class="event-map-japan-loading" data-japan-map-loading>Loading Japan MMA map…</div>
-                <svg
-                    class="event-map-japan-svg"
-                    data-japan-map-svg
-                    viewBox="0 0 720 440"
-                    role="img"
-                    aria-label="Map of Japan showing approximate city locations of upcoming MMA events"
-                ></svg>
-            </div>
-
-            <aside class="event-map-japan-detail" aria-live="polite">
-                <div class="event-map-japan-detail-topline">
-                    <span>JAPAN MMA</span>
-                    <span>UPCOMING EVENTS</span>
-                </div>
-                <h3 data-japan-detail-title>Select an event</h3>
-                <p data-japan-detail-dates></p>
-                <p data-japan-detail-venue></p>
-                <p data-japan-detail-city></p>
-                <a
-                    class="event-map-japan-source"
-                    data-japan-detail-source
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    hidden
-                >Official event page</a>
-                <p class="event-map-japan-empty" data-japan-empty hidden></p>
-                <div class="event-map-japan-list" data-japan-event-list></div>
-            </aside>
-        </div>
-    </section>
-
-    <section
-        class="event-map-mexico"
-        data-mexico-event-map
-        data-events-url="{{ '/assets/data/mexico-mma-live.json' | relative_url }}?v={{ site.asset_version }}"
-        aria-labelledby="event-map-mexico-title"
-    >
-        <header class="event-map-mexico-header">
-            <h2 id="event-map-mexico-title">Mexico MMA</h2>
-            <p>UWC · Azteca Fight League · Budo Sento · Jasaji · LUX · Regional MMA</p>
-        </header>
-
-        <div class="event-map-mexico-layout">
-            <div class="event-map-mexico-stage">
-                <div class="event-map-mexico-loading" data-mexico-map-loading>Loading Mexico MMA map…</div>
-                <svg
-                    class="event-map-mexico-svg"
-                    data-mexico-map-svg
-                    viewBox="0 0 720 440"
-                    role="img"
-                    aria-label="Map of Mexico with upcoming MMA event pins at approximate city locations"
-                ></svg>
-            </div>
-            <aside class="event-map-mexico-detail" aria-live="polite">
-                <div class="event-map-mexico-detail-topline">
-                    <span>MEXICO MMA</span>
-                    <span>UPCOMING EVENTS</span>
-                </div>
-                <h3 data-mexico-detail-title>Select an event</h3>
-                <p data-mexico-detail-dates></p>
-                <p class="event-map-mexico-date-note" data-mexico-detail-note hidden></p>
-                <p data-mexico-detail-venue></p>
-                <p data-mexico-detail-city></p>
-                <a
-                    class="event-map-mexico-source"
-                    data-mexico-detail-source
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    hidden
-                >Event source</a>
-                <p class="event-map-mexico-empty" data-mexico-empty hidden></p>
-                <div class="event-map-mexico-list" data-mexico-event-list></div>
-            </aside>
-        </div>
-        <div class="event-map-mexico-watchlist">
-            <strong>Other Mexican MMA promotions to watch</strong>
-            <div class="event-map-mexico-watchlist-links">
-                <a href="https://luxfightleague.com/" target="_blank" rel="noopener noreferrer">LUX Fight League</a>
-                <a href="https://peleasextremmas.com/" target="_blank" rel="noopener noreferrer">Peleas ExtreMMAs · Hermosillo</a>
-                <a href="https://www.supremefightnight.com/event-list" target="_blank" rel="noopener noreferrer">Supreme Fight Night · Guadalajara / Chiapas</a>
-                <a href="https://www.localgymsandfitness.com/MX/Morelia/1001171969756849/Xtreme-Spartans-League" target="_blank" rel="noopener noreferrer">Xtreme Spartans League · Morelia (amateur / mixed rules)</a>
-            </div>
-        </div>
-    </section>
-
     <section class="event-map-results" aria-labelledby="event-map-results-title">
         <header>
             <div>
@@ -231,6 +184,6 @@ page_scripts:
             </div>
         </header>
         <div class="event-map-results-list" data-event-list></div>
-        <p class="event-map-results-empty" data-event-list-empty hidden>No events match this view.</p>
+        <p class="event-map-results-empty" data-event-list-empty hidden>No verified upcoming events match these filters.</p>
     </section>
 </section>

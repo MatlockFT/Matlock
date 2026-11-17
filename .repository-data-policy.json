@@ -195,6 +195,24 @@
       "publicContract": false
     },
     {
+      "id": "mexico-mma-event-curated-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/mexico_mma_events.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:verified-mexico-mma-calendar"
+      ],
+      "consumers": [
+        "jekyll:mexico-and-region-event-map"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
       "id": "upcoming-event-generated-build-data",
       "storage": "build-time",
       "paths": [
@@ -242,7 +260,9 @@
       "storage": "public-runtime",
       "paths": [
         "assets/data/event-map-live.json",
-        "assets/data/upcoming-events-live.json"
+        "assets/data/upcoming-events-live.json",
+        "assets/data/mexico-mma-live.json",
+        "assets/data/event-map-regions-live.json"
       ],
       "lifecycle": "generated-public-runtime",
       "owner": "events",
@@ -251,7 +271,8 @@
       ],
       "consumers": [
         "assets/site-ticker.js",
-        "browser:event-map-and-site-ticker"
+        "browser:event-map-and-site-ticker",
+        "browser:regional-event-map"
       ],
       "safeToRegenerate": true,
       "safeToDeleteFromRepository": false,

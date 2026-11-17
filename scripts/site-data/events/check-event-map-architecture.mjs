@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 
-const core = await fs.readFile('assets/event-map-v2.js', 'utf8');
+const core = await fs.readFile('assets/event-map-regions.js', 'utf8');
 const deferred = await fs.readFile('assets/event-map-deferred.js', 'utf8');
 const enhancements = await fs.readFile('assets/event-map-enhancements.js', 'utf8');
 const html = await fs.readFile('event-map.html', 'utf8');
@@ -28,10 +28,21 @@ forbid(enhancements, 'pressedPointerId', 'Enhancements must not install a second
 forbid(enhancements, "fetch(page.dataset.eventsUrl", 'Enhancements must not fetch the Event Map feed a second time.');
 forbid(deferred, 'event-map-detail.js', 'Retired duplicate detail controller must not be deferred.');
 forbid(html, '/assets/event-map-detail.js', 'Retired duplicate detail controller must not be loaded by the page.');
+requireText(html, '/assets/event-map-regions.js', 'Event Map must load the shared regional engine.');
+requireText(html, 'data-country-filter', 'Country filter must be available.');
+requireText(html, 'data-region="south-america"', 'South America must be a supported region.');
+requireText(html, 'data-map-view="events"', 'Mobile list/map switching must be available.');
+forbid(html, 'data-japan-event-map', 'Japan must not load as a second stacked map.');
+forbid(html, 'data-mexico-event-map', 'Mexico must not load as a third stacked map.');
+requireText(core, 'function rebuildMap(', 'Regional map must rebuild geographic projection.');
+requireText(core, 'function chooseRegion(', 'One engine must switch continents.');
+requireText(core, 'function chooseCountry(', 'One engine must switch country views.');
+requireText(core, "REGIONS[currentRegion].countries", 'Region/country filters must remain linked.');
+
 
 if (failures.length) {
   console.error(`Event Map architecture check failed (${failures.length}):`);
   failures.forEach(item => console.error(`- ${item}`));
   process.exit(1);
 }
-console.log('Event Map architecture check passed: one detail owner, history-safe selection, drag-safe pins, mobile repeat-selection behavior.');
+console.log('Event Map architecture check passed: one shared map, region/country history, drag-safe pins, mobile list switching.');
