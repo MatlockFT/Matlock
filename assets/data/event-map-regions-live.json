@@ -6,11 +6,12 @@ permalink: /assets/data/event-map-regions-live.json
 {% assign mexico_events = site.data.mexico_mma_events.events %}
 {% assign canada_events = site.data.canada_mma_events.events %}
 {% assign south_america_events = site.data.south_america_mma_events.events %}
+{% assign africa_events = site.data.africa_mma_events.events %}
 {% assign japan_events = site.data.japan_mma_events.events %}
 {% assign rizin_events = site.data.upcoming_events.events | where: "promotion_key", "rizin" %}
-{% assign international_events = us_events | concat: mexico_events | concat: canada_events | concat: south_america_events | concat: japan_events | concat: rizin_events %}
+{% assign international_events = us_events | concat: mexico_events | concat: canada_events | concat: south_america_events | concat: africa_events | concat: japan_events | concat: rizin_events %}
 {
-  "schema_version": 6,
+  "schema_version": 7,
   "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
   "event_overrides": {{ site.data.event_map_overrides | jsonify }},
   "events": {{ international_events | jsonify }}
