@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "subregion": "East Asia",
+  "source": "Curated from official promotion/federation announcements, ticketing, and verified fight-event records. Reviewed November 17, 2026.",
+  "location_note": "Pins use approximate host-city coordinates, not venue entrances. Date/venue ambiguities are identified on affected events.",
+  "events": [
+    {
+      "id": "asia-black-combat-17-2026-11-21",
+      "promotion": "BLACK COMBAT",
+      "promotion_key": "black-combat",
+      "sport": "MMA",
+      "title": "BLACK COMBAT 17: Vantablack",
+      "date": "2026-11-21",
+      "venue": "Gocheok Sky Dome",
+      "city": "Seoul",
+      "state": "Seoul",
+      "country": "South Korea",
+      "location": "Seoul, Seoul, South Korea",
+      "latitude": 37.5665,
+      "longitude": 126.978,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://mmma.co.kr/en/event/blackcombat-17",
+      "source_url": "https://mmma.co.kr/en/event/blackcombat-17",
+      "source_label": "MMA Korea / BLACK COMBAT"
+    },
+    {
+      "id": "asia-jck-fight-night-126-2026-11-21",
+      "promotion": "Jue Cheng King",
+      "promotion_key": "jck",
+      "sport": "MMA",
+      "title": "JCK Fight Night 126",
+      "date": "2026-11-21",
+      "venue": "JCK International Fighting Center",
+      "city": "Lüliang",
+      "state": "Shanxi",
+      "country": "China",
+      "location": "Lüliang, Shanxi, China",
+      "latitude": 37.518,
+      "longitude": 111.1443,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://www.sherdog.com/events/Jue-Cheng-King-JCK-Fight-Night-126-115395",
+      "source_url": "https://www.sherdog.com/events/Jue-Cheng-King-JCK-Fight-Night-126-115395",
+      "source_label": "Sherdog / Jue Cheng King"
+    },
+    {
+      "id": "asia-zfn-05-2026-12-19",
+      "promotion": "Z-Fight Night",
+      "promotion_key": "zfn",
+      "sport": "MMA",
+      "title": "ZFN 05",
+      "date": "2026-12-19",
+      "venue": "Inspire Arena",
+      "city": "Incheon",
+      "state": "Incheon",
+      "country": "South Korea",
+      "location": "Incheon, Incheon, South Korea",
+      "latitude": 37.4563,
+      "longitude": 126.7052,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://zfnofficial.com/84",
+      "source_url": "https://zfnofficial.com/84",
+      "source_label": "ZFN / MK Sports",
+      "broadcast": "UFC Fight Pass",
+      "date_note": "Latest coverage places the event at Inspire Arena; earlier reports cited a different Incheon venue.",
+      "main_event": {
+        "fighters": [
+          "In Soo Hwang",
+          "Michel Pereira"
+        ],
+        "weight_class": "Middleweight"
+      }
+    }
+  ]
+}
