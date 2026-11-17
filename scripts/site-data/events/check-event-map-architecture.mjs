@@ -49,7 +49,7 @@ for (const [slug, label] of [
   ['peru', 'Peru'], ['brazil', 'Brazil'], ['argentina', 'Argentina'], ['chile', 'Chile'],
   ['colombia', 'Colombia'], ['ecuador', 'Ecuador'], ['bolivia', 'Bolivia'], ['uruguay', 'Uruguay']
 ]) {
-  requireText(core, slug + ': { name: \\'' + label + '\\'', 'Country selector must include ' + label + '.');
+  requireText(core, `name: '${label}'`, 'Country selector must include ' + label + '.');
 }
 const southEvents = southAmericaData.events;
 if (!Array.isArray(southEvents) || southEvents.length < 20) {
