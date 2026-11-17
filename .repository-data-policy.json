@@ -195,6 +195,96 @@
       "publicContract": false
     },
     {
+      "id": "asia-east-mma-event-curated-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/asia_east_mma_events.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:verified-east-asian-mma-calendar"
+      ],
+      "consumers": [
+        "jekyll:regional-event-map"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "asia-southeast-mma-event-curated-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/asia_southeast_mma_events.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:verified-southeast-asian-mma-calendar"
+      ],
+      "consumers": [
+        "jekyll:regional-event-map"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "asia-south-mma-event-curated-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/asia_south_mma_events.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:verified-south-asian-mma-calendar"
+      ],
+      "consumers": [
+        "jekyll:regional-event-map"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "asia-central-mma-event-curated-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/asia_central_mma_events.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:verified-central-asian-mma-calendar"
+      ],
+      "consumers": [
+        "jekyll:regional-event-map"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "asia-west-mma-event-curated-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/asia_west_mma_events.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:verified-west-asian-mma-calendar"
+      ],
+      "consumers": [
+        "jekyll:regional-event-map"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
       "id": "mexico-mma-event-curated-data",
       "storage": "build-time",
       "paths": [
