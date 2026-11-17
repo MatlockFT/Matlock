@@ -24,7 +24,7 @@ In December 1994, Yoji Anjo arrived at Rickson Gracie's academy in California ac
 
 Three years later, the rivalry became the foundation of [PRIDE Fighting Championships](https://www.sherdog.com/organizations/Pride-Fighting-Championships-3). Its inaugural event, held at the Tokyo Dome on October 11, 1997, was built around a meeting between [Nobuhiko Takada](https://www.sherdog.com/fighter/Nobuhiko-Takada-293), UWFi's biggest star, and [Rickson Gracie](https://www.sherdog.com/fighter/Rickson-Gracie-292), who had won Japan's Vale Tudo tournaments in 1994 and 1995. Takada was the obvious representative of Japanese professional wrestling, although there was little in his legitimate fighting experience to suggest he would be competitive with Rickson. At [PRIDE 1](https://www.sherdog.com/events/Pride-FC-Pride-1-46), Gracie took him down, secured mount and finished him with an armbar at 4:47 of the opening round. Their rematch the following year ended in another submission victory for Gracie.
 
-<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-8b0f623d" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+<figure class="article-inline-video article-inline-video--wrap article-inline-video--left" data-writer-media-id="media-8b0f623d" data-media-flow="wrap" data-media-align="left" data-media-width="50" style="--media-width: 50%;">
   <div class="article-inline-video-stage">
     <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/the-lost-art-of-the-heel-how-pride-turned-fighti-video-20261117-161955-229.mp4" aria-label="Article video"></video>
   </div>
