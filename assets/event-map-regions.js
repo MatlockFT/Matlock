@@ -53,6 +53,8 @@
     const DEFAULT_RADIUS = 250;
     const eventsUrl = page.dataset.eventsUrl;
     const regionButtons = [...page.querySelectorAll('[data-region]')];
+    const asiaSubregionNav = page.querySelector('[data-asia-subregions]');
+    const asiaSubregionButtons = [...page.querySelectorAll('[data-asia-subregion]')];
     const countryFilter = page.querySelector('[data-country-filter]');
     const mapViewButtons = [...page.querySelectorAll('[data-map-view]')];
     const regionSummary = page.querySelector('[data-map-region-summary]');
@@ -361,6 +363,7 @@
     let allEvents = [];
     let currentRegion = 'north-america';
     let currentCountry = 'united-states';
+    let currentAsiaSubregion = 'east-asia';
     let filteredEvents = [];
     let eventOverrides = {};
     let currentRange = 'all';
@@ -876,16 +879,39 @@
         currentRange = normalizedRange(params.get('range') || (params.has('event') ? 'all' : 'week'));
         initialEventId = params.get('event') || '';
         currentRegion = REGIONS[params.get('region')] ? params.get('region') : 'north-america';
-        currentCountry = params.has('country') ? params.get('country') : (currentRegion === 'north-america' ? 'united-states' : 'all');
-        if (currentCountry !== 'all' && !REGIONS[currentRegion].countries.includes(currentCountry)) currentCountry = 'all';
+        currentAsiaSubregion = ASIA_SUBREGIONS[params.get('subregion')]
+            ? params.get('subregion') : 'east-asia';
+        currentCountry = params.has('country') ? params.get('country')
+            : (currentRegion === 'north-america' ? 'united-states' : 'all');
+
+        if (currentCountry !== 'all' && !REGIONS[currentRegion].countries.includes(currentCountry))
+            currentCountry = 'all';
+
         if (!params.has('region') && !params.has('country') && initialEventId) {
             const raw = rawEvents.find(event => String(event.id) === initialEventId);
             const country = raw && countryOf(raw);
-            if (country) { currentRegion = COUNTRIES[country].region; currentCountry = country; }
+            if (country) {
+                currentRegion = COUNTRIES[country].region;
+                currentCountry = country;
+            }
+        }
+        if (currentRegion === 'asia') {
+            const groupForCountry = Object.keys(ASIA_SUBREGIONS).find(id =>
+                ASIA_SUBREGIONS[id].countries.includes(currentCountry));
+            // A country-specific URL always opens the right Asian subregion.
+            if (groupForCountry) currentAsiaSubregion = groupForCountry;
+            else if (initialEventId && !params.has('subregion')) {
+                const raw = rawEvents.find(event => String(event.id) === initialEventId);
+                const country = raw && countryOf(raw);
+                const matchedGroup = Object.keys(ASIA_SUBREGIONS).find(id =>
+                    ASIA_SUBREGIONS[id].countries.includes(country));
+                if (matchedGroup) currentAsiaSubregion = matchedGroup;
+            }
         }
         if (searchInput) searchInput.value = params.get('q') || '';
         if (levelFilter) levelFilter.value = params.get('level') || '';
-        rangeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.range === currentRange)));
+        rangeButtons.forEach(button =>
+            button.setAttribute('aria-pressed', String(button.dataset.range === currentRange)));
     }
 
     function eventMapHistoryState() {
@@ -896,7 +922,8 @@
       event: selectedEventId,
       cluster: selectedClusterKey,
       region: currentRegion,
-      country: currentCountry
+      country: currentCountry,
+      subregion: currentRegion === 'asia' ? currentAsiaSubregion : ''
   }
         };
     }
@@ -904,9 +931,10 @@
     function syncUrl({ mode = 'replace' } = {}) {
         const url = new URL(window.location.href);
         const params = url.searchParams;
-        ['range', 'state', 'promotion', 'level', 'q', 'radius', 'event', 'region', 'country', 'view'].forEach(key => params.delete(key));
+        ['range', 'state', 'promotion', 'level', 'q', 'radius', 'event', 'region', 'country', 'subregion', 'view'].forEach(key => params.delete(key));
         if (currentRange !== 'all') params.set('range', currentRange);
         if (currentRegion !== 'north-america') params.set('region', currentRegion);
+        if (currentRegion === 'asia') params.set('subregion', currentAsiaSubregion);
         const defaultCountry = currentRegion === 'north-america' ? 'united-states' : 'all';
         if (currentCountry !== defaultCountry) params.set('country', currentCountry);
         if (searchInput?.value.trim()) params.set('q', searchInput.value.trim());
@@ -919,7 +947,8 @@
   || previous.cluster !== selectedClusterKey
   || previous.range !== currentRange
   || previous.region !== currentRegion
-  || previous.country !== currentCountry;
+  || previous.country !== currentCountry
+  || previous.subregion !== (currentRegion === 'asia' ? currentAsiaSubregion : '');
         const state = eventMapHistoryState();
         if (mode === 'push' && selectionChanged) window.history.pushState(state, '', target);
         else window.history.replaceState(state, '', target);
