@@ -1,0 +1,214 @@
+/* Mexican MMA / Mexico inset for the Event Map */
+
+.event-map-mexico {
+    margin-top: .9rem;
+    padding-top: .85rem;
+    border-top: 1px solid rgba(255,255,255,.12);
+}
+
+.event-map-mexico-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: .65rem;
+}
+
+.event-map-mexico-header h2 {
+    margin: 0;
+    color: #fff;
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: clamp(1.35rem, 3vw, 2.25rem);
+    line-height: 1;
+    letter-spacing: .02em;
+}
+
+.event-map-mexico-header p {
+    margin: 0;
+    color: #777;
+    font: 700 .58rem/1.35 "Courier New", monospace;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+.event-map-mexico-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+    gap: .75rem;
+}
+
+.event-map-mexico-stage,
+.event-map-mexico-detail {
+    border: 1px solid rgba(255,255,255,.12);
+    background: #0a0a0a;
+}
+
+.event-map-mexico-stage {
+    position: relative;
+    min-height: 360px;
+    overflow: hidden;
+}
+
+.event-map-mexico-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 360px;
+}
+
+.event-map-mexico-land {
+    fill: #171717;
+    stroke: rgba(255,255,255,.3);
+    stroke-width: 1.1;
+    vector-effect: non-scaling-stroke;
+}
+
+.event-map-mexico-pin {
+    cursor: pointer;
+    outline: none;
+}
+
+.event-map-mexico-pin-halo {
+    fill: var(--accent);
+    opacity: .16;
+}
+
+.event-map-mexico-pin-core {
+    fill: var(--accent);
+    stroke: #fff;
+    stroke-width: 1.4;
+}
+
+.event-map-mexico-pin-count {
+    fill: #fff;
+    font: 900 11px "Courier New", monospace;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    pointer-events: none;
+}
+
+.event-map-mexico-pin:hover .event-map-mexico-pin-halo,
+.event-map-mexico-pin:focus-visible .event-map-mexico-pin-halo,
+.event-map-mexico-pin[data-selected="true"] .event-map-mexico-pin-halo {
+    opacity: .34;
+}
+
+.event-map-mexico-loading {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+    color: #777;
+    font: 800 .65rem "Courier New", monospace;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.event-map-mexico-detail {
+    padding: .85rem;
+}
+
+.event-map-mexico-detail-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-bottom: .45rem;
+    color: #777;
+    font: 800 .58rem "Courier New", monospace;
+    text-transform: uppercase;
+}
+
+.event-map-mexico-detail h3 {
+    margin: 0 0 .45rem;
+    color: #fff;
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: clamp(1.15rem, 2.2vw, 1.65rem);
+    line-height: 1.05;
+}
+
+.event-map-mexico-detail p {
+    margin: .28rem 0;
+    color: #bdbdbd;
+    font: 700 .68rem/1.45 "Courier New", monospace;
+}
+
+.event-map-mexico-source {
+    display: inline-flex;
+    margin-top: .65rem;
+    padding: .5rem .6rem;
+    border: 1px solid rgba(255,255,255,.2);
+    color: #eee;
+    font: 800 .6rem "Courier New", monospace;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.event-map-mexico-source:hover,
+.event-map-mexico-source:focus-visible {
+    border-color: rgba(255,255,255,.55);
+    background: #f1f1f1;
+    color: #080808;
+}
+
+.event-map-mexico-list {
+    display: grid;
+    gap: .35rem;
+    max-height: 230px;
+    margin-top: .75rem;
+    overflow: auto;
+}
+
+.event-map-mexico-event {
+    display: grid;
+    gap: .12rem;
+    width: 100%;
+    padding: .55rem .6rem;
+    border: 1px solid rgba(255,255,255,.1);
+    background: #0d0d0d;
+    color: #ddd;
+    text-align: left;
+    cursor: pointer;
+}
+
+.event-map-mexico-event strong {
+    color: #fff;
+    font: 900 .66rem/1.25 "Courier New", monospace;
+    text-transform: uppercase;
+}
+
+.event-map-mexico-event span {
+    color: #777;
+    font: 700 .58rem/1.3 "Courier New", monospace;
+}
+
+.event-map-mexico-event:hover,
+.event-map-mexico-event:focus-visible,
+.event-map-mexico-event[data-selected="true"] {
+    border-color: rgba(255,255,255,.4);
+}
+
+.event-map-mexico-empty {
+    margin: 0;
+    color: #777;
+    font: 800 .65rem/1.4 "Courier New", monospace;
+    text-transform: uppercase;
+}
+
+@media (max-width: 820px) {
+    .event-map-mexico-header {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .event-map-mexico-header p {
+        text-align: left;
+    }
+
+    .event-map-mexico-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .event-map-mexico-stage,
+    .event-map-mexico-svg {
+        min-height: 320px;
+    }
+}
