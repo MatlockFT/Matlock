@@ -9,11 +9,16 @@ permalink: /assets/data/event-map-regions-live.json
 {% assign africa_events = site.data.africa_mma_events.events %}
 {% assign oceania_events = site.data.oceania_mma_events.events %}
 {% assign europe_events = site.data.europe_mma_events.events %}
+{% assign asia_east_events = site.data.asia_east_mma_events.events %}
+{% assign asia_southeast_events = site.data.asia_southeast_mma_events.events %}
+{% assign asia_south_events = site.data.asia_south_mma_events.events %}
+{% assign asia_central_events = site.data.asia_central_mma_events.events %}
+{% assign asia_west_events = site.data.asia_west_mma_events.events %}
 {% assign japan_events = site.data.japan_mma_events.events %}
 {% assign rizin_events = site.data.upcoming_events.events | where: "promotion_key", "rizin" %}
-{% assign international_events = us_events | concat: mexico_events | concat: canada_events | concat: south_america_events | concat: africa_events | concat: oceania_events | concat: europe_events | concat: japan_events | concat: rizin_events %}
+{% assign international_events = us_events | concat: mexico_events | concat: canada_events | concat: south_america_events | concat: africa_events | concat: oceania_events | concat: europe_events | concat: asia_east_events | concat: asia_southeast_events | concat: asia_south_events | concat: asia_central_events | concat: asia_west_events | concat: japan_events | concat: rizin_events %}
 {
-  "schema_version": 9,
+  "schema_version": 10,
   "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
   "event_overrides": {{ site.data.event_map_overrides | jsonify }},
   "events": {{ international_events | jsonify }}

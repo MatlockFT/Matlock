@@ -12,6 +12,11 @@ const southAmericaData = JSON.parse(await fs.readFile('_data/south_america_mma_e
 const africaData = JSON.parse(await fs.readFile('_data/africa_mma_events.json', 'utf8'));
 const oceaniaData = JSON.parse(await fs.readFile('_data/oceania_mma_events.json', 'utf8'));
 const europeData = JSON.parse(await fs.readFile('_data/europe_mma_events.json', 'utf8'));
+const asia_east_Data = JSON.parse(await fs.readFile('_data/asia_east_mma_events.json', 'utf8'));
+const asia_southeast_Data = JSON.parse(await fs.readFile('_data/asia_southeast_mma_events.json', 'utf8'));
+const asia_south_Data = JSON.parse(await fs.readFile('_data/asia_south_mma_events.json', 'utf8'));
+const asia_central_Data = JSON.parse(await fs.readFile('_data/asia_central_mma_events.json', 'utf8'));
+const asia_west_Data = JSON.parse(await fs.readFile('_data/asia_west_mma_events.json', 'utf8'));
 
 
 
@@ -71,6 +76,63 @@ requireText(core, 'const [southwest, northeast] = subregion.bounds;',
 requireText(core, 'const fallbackWindow = focus',
     'Tiny island countries must have fallback framing.');
 requireText(core, 'function activeCountrySlugs()', 'Country filter must match the subregion.');
+
+// Staged Asian calendars must use the one global feed without speculative country pins.
+const asiaCalendarSpecs = {
+  east: { group: 'east-asia', minimum: 3, countries: ['South Korea', 'China'] },
+  southeast: { group: 'southeast-asia', minimum: 6, countries: ['Thailand', 'Vietnam', 'Philippines', 'Singapore'] },
+  south: { group: 'south-asia', minimum: 3, countries: ['India'] },
+  central: { group: 'central-asia', minimum: 6, countries: ['Kazakhstan', 'Kyrgyzstan'] },
+  west: { group: 'west-asia', minimum: 3, countries: ['Qatar', 'Saudi Arabia', 'Azerbaijan'] }
+};
+const asiaCalendarDocuments = {
+  east: asia_east_Data, southeast: asia_southeast_Data,
+  south: asia_south_Data, central: asia_central_Data, west: asia_west_Data
+};
+const asianEventIds = new Set();
+for (const [key, spec] of Object.entries(asiaCalendarSpecs)) {
+  requireText(regionalFeed, 'site.data.asia_' + key + '_mma_events.events',
+    'The global map must read the ' + key + ' Asia calendar.');
+  requireText(regionalFeed, 'concat: asia_' + key + '_events',
+    'The global map must include the ' + key + ' Asia calendar.');
+  const events = asiaCalendarDocuments[key]?.events;
+  if (!Array.isArray(events) || events.length < spec.minimum) {
+    failures.push('Missing published upcoming MMA cards in ' + spec.group);
+    continue;
+  }
+  const coveredCountries = new Set();
+  for (const event of events) {
+    if (!event.id || asianEventIds.has(event.id)) {
+      failures.push('Asia event IDs must be unique across all five subregions.');
+    }
+    asianEventIds.add(event.id);
+    coveredCountries.add(event.country);
+    if (event.sport !== 'MMA' || !event.title || !event.promotion || !event.date
+        || !event.venue || !event.city || !event.country || !event.state) {
+      failures.push('Asia MMA event must have a date, promotion, city, country and venue.');
+    }
+    if (!/^20\d{2}-\d{2}-\d{2}$/.test(event.date || '')
+        || event.date < '2026-11-17') {
+      failures.push('Asia MMA calendar must contain only upcoming ISO-format dates.');
+    }
+    if (!Number.isFinite(event.latitude) || !Number.isFinite(event.longitude)
+        || event.latitude < -12 || event.latitude > 56
+        || event.longitude < 30 || event.longitude > 150) {
+      failures.push('Asia MMA pin coordinates must be in the Asian map bounds.');
+    }
+    if (!String(event.official_url || '').startsWith('https://')
+        || !String(event.source_url || '').startsWith('https://')) {
+      failures.push('Asia MMA cards must have source and event links.');
+    }
+  }
+  for (const country of spec.countries) {
+    if (!coveredCountries.has(country)) {
+      failures.push('Verified Asia card missing for ' + country + '.');
+    }
+  }
+}
+if (asianEventIds.size < 21) failures.push('Staged Asian calendars must retain 21 distinct event records.');
+
 
 const expectedAsiaGroups = {
   'east-asia': ['japan','south-korea','china','taiwan','mongolia','north-korea'],
