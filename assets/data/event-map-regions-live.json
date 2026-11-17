@@ -1,0 +1,15 @@
+---
+layout: null
+permalink: /assets/data/event-map-regions-live.json
+---
+{% assign us_events = site.data.event_map_us.events %}
+{% assign mexico_events = site.data.mexico_mma_events.events %}
+{% assign japan_events = site.data.japan_mma_events.events %}
+{% assign rizin_events = site.data.upcoming_events.events | where: "promotion_key", "rizin" %}
+{% assign international_events = us_events | concat: mexico_events | concat: japan_events | concat: rizin_events %}
+{
+  "schema_version": 4,
+  "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
+  "event_overrides": {{ site.data.event_map_overrides | jsonify }},
+  "events": {{ international_events | jsonify }}
+}
