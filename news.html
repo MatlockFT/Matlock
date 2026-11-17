@@ -35,7 +35,7 @@ page_fetch_preloads:
 
     {% for post in site.posts %}
         {% assign visibility = post.listing_visibility | default: "normal" %}
-        {% unless visibility == "direct-only" %}
+        {% unless post.members_only or visibility == "direct-only" %}
             {% if post.news_feature and post.news_feature_until %}
                 {% assign news_feature_image = post.image.path | default: post.image %}
                 {% assign news_feature_alt = post.image.alt | default: post.image_alt | default: post.title %}
