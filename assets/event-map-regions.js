@@ -52,6 +52,11 @@
     const SOON_MS = 7 * DAY_MS;
     const DEFAULT_RADIUS = 250;
     const eventsUrl = page.dataset.eventsUrl;
+    const regionButtons = [...page.querySelectorAll('[data-region]')];
+    const countryFilter = page.querySelector('[data-country-filter]');
+    const mapViewButtons = [...page.querySelectorAll('[data-map-view]')];
+    const regionSummary = page.querySelector('[data-map-region-summary]');
+    const dateNote = page.querySelector('[data-detail-date-note]');
 
     const STATES = {
         AL: ['Alabama', '01'], AK: ['Alaska', '02'], AZ: ['Arizona', '04'], AR: ['Arkansas', '05'],
@@ -68,6 +73,47 @@
         UT: ['Utah', '49'], VT: ['Vermont', '50'], VA: ['Virginia', '51'], WA: ['Washington', '53'],
         WV: ['West Virginia', '54'], WI: ['Wisconsin', '55'], WY: ['Wyoming', '56']
     };
+
+    const COUNTRIES = {
+        'united-states': { name: 'United States', iso: '840', region: 'north-america', aliases: ['us','usa','united states','united states of america'] },
+        mexico: { name: 'Mexico', iso: '484', region: 'north-america', aliases: ['mx','mexico','méxico'] },
+        canada: { name: 'Canada', iso: '124', region: 'north-america', aliases: ['ca','canada'] },
+        brazil: { name: 'Brazil', iso: '076', region: 'south-america', aliases: ['br','brazil','brasil'] },
+        argentina: { name: 'Argentina', iso: '032', region: 'south-america', aliases: ['ar','argentina'] },
+        chile: { name: 'Chile', iso: '152', region: 'south-america', aliases: ['cl','chile'] },
+        colombia: { name: 'Colombia', iso: '170', region: 'south-america', aliases: ['co','colombia'] },
+        peru: { name: 'Peru', iso: '604', region: 'south-america', aliases: ['pe','peru','perú'] },
+        japan: { name: 'Japan', iso: '392', region: 'asia', aliases: ['jp','japan'] },
+        'south-korea': { name: 'South Korea', iso: '410', region: 'asia', aliases: ['kr','south korea','republic of korea'] },
+        china: { name: 'China', iso: '156', region: 'asia', aliases: ['cn','china'] },
+        'united-kingdom': { name: 'United Kingdom', iso: '826', region: 'europe', aliases: ['gb','uk','united kingdom'] },
+        poland: { name: 'Poland', iso: '616', region: 'europe', aliases: ['pl','poland'] },
+        france: { name: 'France', iso: '250', region: 'europe', aliases: ['fr','france'] },
+        germany: { name: 'Germany', iso: '276', region: 'europe', aliases: ['de','germany'] },
+        australia: { name: 'Australia', iso: '036', region: 'oceania', aliases: ['au','australia'] },
+        'new-zealand': { name: 'New Zealand', iso: '554', region: 'oceania', aliases: ['nz','new zealand'] },
+        'south-africa': { name: 'South Africa', iso: '710', region: 'africa', aliases: ['za','south africa'] }
+    };
+    const REGIONS = {
+        world: { name: 'World', countries: Object.keys(COUNTRIES) },
+        'north-america': { name: 'North America', countries: ['united-states','mexico','canada'] },
+        'south-america': { name: 'South America', countries: ['brazil','argentina','chile','colombia','peru'] },
+        asia: { name: 'Asia', countries: ['japan','south-korea','china'] },
+        europe: { name: 'Europe', countries: ['united-kingdom','poland','france','germany'] },
+        oceania: { name: 'Oceania', countries: ['australia','new-zealand'] },
+        africa: { name: 'Africa', countries: ['south-africa'] }
+    };
+    const CONTINENT_GEO_IDS = {
+        'north-america': ['840','484','124'],
+        'south-america': ['076','032','152','170','604','218','068','600','858','862','328','740'],
+        asia: ['392','410','156','356','360','458','608','764','704','702','158','496','398','417','586'],
+        europe: ['826','616','250','276','724','380','528','056','752','578','208','246','040','756','372','620','203'],
+        oceania: ['036','554','242','598','090'],
+        africa: ['710','566','404','818','504','012','024','120','288','686','800','834']
+    };
+    const COUNTRY_ALIASES = new Map(Object.entries(COUNTRIES).flatMap(([slug, item]) =>
+        item.aliases.map(alias => [alias.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(), slug])
+    ));
 
     const STATE_BY_FIPS = new Map();
     Object.entries(STATES).forEach(([code, [, fips]]) => {
@@ -155,7 +201,12 @@
     let currentTransform;
     let stateFeatures = [];
     let stateFeatureByCode = new Map();
+    let worldFeatures = [];
+    let usFeatures = [];
+    let rawEvents = [];
     let allEvents = [];
+    let currentRegion = 'north-america';
+    let currentCountry = 'united-states';
     let filteredEvents = [];
     let eventOverrides = {};
     let currentRange = 'all';
@@ -173,6 +224,45 @@
     const coarsePointer = window.matchMedia('(pointer: coarse)');
     const normalizeText = value => String(value || '').replace(/\s+/g, ' ').trim();
     const clamp = (min, value, max) => Math.min(max, Math.max(min, value));
+
+    function canonicalCountry(value) {
+        const key = normalizeText(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        return COUNTRY_ALIASES.get(key) || '';
+    }
+    function knownJapanVenue(event) {
+        const venue = normalizeText(event.venue);
+        if (/バンテリン|Vantelin|Nagoya Dome/i.test(venue)) return { city: 'Nagoya', latitude: 35.1815, longitude: 136.9066 };
+        if (/LaLa arena TOKYO.BAY|ららアリーナ/i.test(venue)) return { city: 'Funabashi', latitude: 35.6947, longitude: 139.9826 };
+        if (/さいたまスーパーアリーナ|Saitama Super Arena/i.test(venue)) return { city: 'Saitama', latitude: 35.8617, longitude: 139.6455 };
+        return null;
+    }
+    function countryOf(event) {
+        const explicit = canonicalCountry(event.country || event.country_code || event.countryCode);
+        if (explicit) return explicit;
+        if (normalizeText(event.promotion_key).toLowerCase() === 'rizin' && knownJapanVenue(event)) return 'japan';
+        return '';
+    }
+    function placeLabel(event) {
+        const suffix = event.countrySlug === 'united-states' ? event.stateCode
+            : event.countrySlug === 'mexico' ? (event.stateName || 'Mexico')
+            : COUNTRIES[event.countrySlug]?.name || event.stateName;
+        return [event.city, suffix].filter(Boolean).join(', ');
+    }
+    function eventToday(event) {
+        const zone = event.countrySlug === 'japan' ? 'Asia/Tokyo'
+            : event.countrySlug === 'mexico' ? 'America/Mexico_City'
+            : 'America/Chicago';
+        const parts = new Intl.DateTimeFormat('en-US', {
+            timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit'
+        }).formatToParts(new Date());
+        const p = type => parts.find(part => part.type === type)?.value || '';
+        return p('year') + '-' + p('month') + '-' + p('day');
+    }
+    function dateOffset(iso, days) {
+        const day = new Date(iso + 'T12:00:00Z');
+        day.setUTCDate(day.getUTCDate() + days);
+        return day.toISOString().slice(0, 10);
+    }
 
     function localDay(date = new Date()) {
         return new Date(date.getFullYear(), date.getMonth(), date.getDate());
