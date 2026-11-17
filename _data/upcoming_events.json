@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-16T16:57:54.605Z",
+  "generated_at": "2026-11-17T00:47:15.052Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-11-21-fight-card",
@@ -164,7 +164,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-02/TOPURIA_ALEKSANDRE_R_02-08.png?itok=v-giNC1x",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-250"
+                  "moneyline": "-310"
                 },
                 {
                   "name": "Santiago Luna",
@@ -172,7 +172,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/LUNA_SANTIAGO_L_02-28.png?itok=zdTFJx55",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+190"
+                  "moneyline": "+230"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -214,7 +214,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/ALBAZI_AMIR_L_02-07.png?itok=eWJL3Orf",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+102"
+                  "moneyline": "-113"
                 },
                 {
                   "name": "Alessandro Costa",
@@ -222,7 +222,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/COSTA_ALESSANDRO_L_07-11.png?itok=okElYxK7",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-130"
+                  "moneyline": "-113"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -655,6 +655,29 @@
             {
               "order": 4,
               "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Kyler Phillips",
+                  "initials": "KP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/PHILLIPS_KYLER_L_04-18.png?itok=HIpTQwmE",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Ethyn Ewing",
+                  "initials": "EE",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/EWING_ETHYN_L_04-04.png?itok=AdTd6fQ0",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
               "weight_class": "Light Heavyweight Bout",
               "fighters": [
                 {
@@ -676,25 +699,25 @@
               ]
             },
             {
-              "order": 5,
+              "order": 6,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
                 {
-                  "name": "Joe Pyfer",
-                  "initials": "JP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-06/PYFER_JOE_L_06-29.png?itok=sM3GEwSu",
+                  "name": "Damian Pinas",
+                  "initials": "DP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/PINAS_DAMIAN_L_07-11.png?itok=y63owkBX",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-198"
+                  "moneyline": ""
                 },
                 {
-                  "name": "Bo Nickal",
-                  "initials": "BN",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/NICKAL_BO_L_06-14.png?itok=h1bBmnmS",
+                  "name": "Baisangur Susurkaev",
+                  "initials": "BS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/SUSURKAEV_BAISANGUR_L_05-09.png?itok=tUbfeTCb",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+164"
+                  "moneyline": ""
                 }
               ]
             }
@@ -1161,6 +1184,75 @@
               ],
               "odds_source": "BestFightOdds",
               "odds_provider": "FanDuel"
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Lance Gibson Jr.",
+                  "initials": "LGJ",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/GIBSON_JR_LANCE_R_12-13.png?itok=k-q6SrNE",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Michael Johnson",
+                  "initials": "MJ",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/JOHNSON_MICHAEL_L_01-24.png?itok=fCCyiIzI",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Serhiy Sidey",
+                  "initials": "SS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/SIDEY_SERHIY_L_11-02.png?itok=c_XKK2-I",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Louis Lee Scott",
+                  "initials": "LLS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/SCOTT_LOUIS_LEE_R_08-19.png?itok=LI80Ph-5",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Cam Nelson",
+                  "initials": "CN",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/NELSON_CAM_R_08-29.png?itok=Ab4vpdkS",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Sean Clancy Jr.",
+                  "initials": "SCJ",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/CLANCY_JR_SEAN_R_08-25.png?itok=GM-K67M3",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
             }
           ]
         }

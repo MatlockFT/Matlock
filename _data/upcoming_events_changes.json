@@ -1,7 +1,113 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-15T07:58:07.683Z",
+  "generated_at": "2026-11-17T00:48:50.679Z",
   "changes": [
+    {
+      "id": "2026-11-17T00:48:50.679Z|ufc-335-2026-12-12-fight-card|bout_moved|1",
+      "at": "2026-11-17T00:48:50.679Z",
+      "type": "bout_moved",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "Quentin Pasley vs Junior Tafa moved on Oliveira vs Lopes.",
+      "details": {
+        "from_order": 4,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-11-17T00:48:50.679Z|ufc-335-2026-12-12-fight-card|bout_added|2",
+      "at": "2026-11-17T00:48:50.679Z",
+      "type": "bout_added",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "Kyler Phillips vs Ethyn Ewing added to Oliveira vs Lopes.",
+      "details": {
+        "order": 4,
+        "section": "Main Card",
+        "weight_class": "Bantamweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-17T00:48:50.679Z|ufc-335-2026-12-12-fight-card|bout_added|3",
+      "at": "2026-11-17T00:48:50.679Z",
+      "type": "bout_added",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "Damian Pinas vs Baisangur Susurkaev added to Oliveira vs Lopes.",
+      "details": {
+        "order": 6,
+        "section": "Main Card",
+        "weight_class": "Middleweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-17T00:48:50.679Z|ufc-335-2026-12-12-fight-card|bout_removed|4",
+      "at": "2026-11-17T00:48:50.679Z",
+      "type": "bout_removed",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "Joe Pyfer vs Bo Nickal removed from Oliveira vs Lopes.",
+      "details": {
+        "order": 5,
+        "section": "Main Card",
+        "weight_class": "Middleweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-17T00:48:50.679Z|ufc-336-2027-01-30-fight-card|bout_added|5",
+      "at": "2026-11-17T00:48:50.679Z",
+      "type": "bout_added",
+      "event_id": "ufc-336-2027-01-30-fight-card",
+      "promotion": "UFC 336",
+      "event_title": "Van vs Kape",
+      "event_date": "2027-01-30",
+      "summary": "Lance Gibson Jr. vs Michael Johnson added to Van vs Kape.",
+      "details": {
+        "order": 3,
+        "section": "Main Card",
+        "weight_class": "Lightweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-17T00:48:50.679Z|ufc-336-2027-01-30-fight-card|bout_added|6",
+      "at": "2026-11-17T00:48:50.679Z",
+      "type": "bout_added",
+      "event_id": "ufc-336-2027-01-30-fight-card",
+      "promotion": "UFC 336",
+      "event_title": "Van vs Kape",
+      "event_date": "2027-01-30",
+      "summary": "Serhiy Sidey vs Louis Lee Scott added to Van vs Kape.",
+      "details": {
+        "order": 4,
+        "section": "Main Card",
+        "weight_class": "Bantamweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-17T00:48:50.679Z|ufc-336-2027-01-30-fight-card|bout_added|7",
+      "at": "2026-11-17T00:48:50.679Z",
+      "type": "bout_added",
+      "event_id": "ufc-336-2027-01-30-fight-card",
+      "promotion": "UFC 336",
+      "event_title": "Van vs Kape",
+      "event_date": "2027-01-30",
+      "summary": "Cam Nelson vs Sean Clancy Jr. added to Van vs Kape.",
+      "details": {
+        "order": 5,
+        "section": "Main Card",
+        "weight_class": "Welterweight Bout"
+      }
+    },
     {
       "id": "2026-11-15T07:58:07.683Z|ufc-fight-night-2027-01-16-fight-card|event_added|1",
       "at": "2026-11-15T07:58:07.683Z",
@@ -4437,117 +4543,6 @@
         "to_order": 7,
         "from_section": "Prelims",
         "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T23:29:13.877Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|4",
-      "at": "2026-10-21T23:29:13.877Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Karine Silva vs Gabriella Fernandes moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 7,
-        "to_order": 8,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T23:29:13.877Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|5",
-      "at": "2026-10-21T23:29:13.877Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Jose Delano vs Murtazali Magomedov moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 8,
-        "to_order": 9,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T23:29:13.877Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|6",
-      "at": "2026-10-21T23:29:13.877Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Keiichiro Nakamura vs Ollie Schmid moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 9,
-        "to_order": 10,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T23:29:13.877Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|7",
-      "at": "2026-10-21T23:29:13.877Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Austin Bashi vs Lucas Brennan moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 10,
-        "to_order": 11,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T23:29:13.877Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|8",
-      "at": "2026-10-21T23:29:13.877Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Priscila Cachoeira vs Nina Milošević moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 11,
-        "to_order": 12,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T23:29:13.877Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|9",
-      "at": "2026-10-21T23:29:13.877Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Jonny Parsons vs José Souza moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 12,
-        "to_order": 13,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-21T23:29:13.877Z|ufc-fight-night-2026-11-07-fight-card|bout_added|10",
-      "at": "2026-10-21T23:29:13.877Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Seokhyeon Ko vs Wellington Turman added to Bonfim vs Brady.",
-      "details": {
-        "order": 4,
-        "section": "Main Card",
-        "weight_class": "Welterweight Bout"
       }
     }
   ]
