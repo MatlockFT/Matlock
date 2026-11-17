@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "subregion": "West Asia",
+  "source": "Curated from official promotion/federation announcements, ticketing, and verified fight-event records. Reviewed November 17, 2026.",
+  "location_note": "Pins use approximate host-city coordinates, not venue entrances. Date/venue ambiguities are identified on affected events.",
+  "events": [
+    {
+      "id": "asia-ufc-qatar-2026-11-21",
+      "promotion": "UFC",
+      "promotion_key": "ufc",
+      "sport": "MMA",
+      "title": "UFC Fight Night: Procházka vs. Stirling",
+      "date": "2026-11-21",
+      "venue": "Ali Bin Hamad Al Attiyah Arena (ABHA Arena)",
+      "city": "Doha",
+      "state": "Doha",
+      "country": "Qatar",
+      "location": "Doha, Doha, Qatar",
+      "latitude": 25.2854,
+      "longitude": 51.531,
+      "map_location_precision": "city-centroid",
+      "regional": false,
+      "level": "professional",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+      "source_url": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+      "source_label": "UFC / Visit Qatar",
+      "main_event": {
+        "fighters": [
+          "Jiří Procházka",
+          "Navajo Stirling"
+        ],
+        "weight_class": "Light Heavyweight"
+      }
+    },
+    {
+      "id": "asia-uww-amateur-mma-worlds-baku-2026-11-27",
+      "promotion": "United World Wrestling",
+      "promotion_key": "uww",
+      "sport": "MMA",
+      "title": "2026 Amateur MMA World Championships",
+      "date": "2026-11-27",
+      "venue": "Sarhadchi Sports Center",
+      "city": "Baku",
+      "state": "Baku",
+      "country": "Azerbaijan",
+      "location": "Baku, Baku, Azerbaijan",
+      "latitude": 40.4093,
+      "longitude": 49.8671,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "amateur",
+      "official_url": "https://uww.org/articles/amateur-mma-and-pankration-world-championships-2026-entries-schedule-live-streaming",
+      "source_url": "https://uww.org/articles/amateur-mma-and-pankration-world-championships-2026-entries-schedule-live-streaming",
+      "source_label": "United World Wrestling",
+      "date_note": "Amateur MMA competition runs November 27–29; November 26 opens with pankration. The map uses the first MMA competition day."
+    },
+    {
+      "id": "asia-pfl-mena-12-2026-12-11",
+      "promotion": "Professional Fighters League",
+      "promotion_key": "pfl-mena",
+      "sport": "MMA",
+      "title": "PFL MENA 12: MMA's Most Wanted",
+      "date": "2026-12-11",
+      "venue": "Dhahran Expo",
+      "city": "Khobar",
+      "state": "Eastern Province",
+      "country": "Saudi Arabia",
+      "location": "Khobar, Eastern Province, Saudi Arabia",
+      "latitude": 26.2794,
+      "longitude": 50.2083,
+      "map_location_precision": "city-centroid",
+      "regional": false,
+      "level": "professional",
+      "official_url": "https://pflmma.com/mena-season/2026",
+      "source_url": "https://pflmma.com/mena-season/2026",
+      "source_label": "PFL",
+      "date_note": "PFL lists Dhahran Expo, Khobar. Some earlier schedule listings cite Riyadh."
+    }
+  ]
+}
