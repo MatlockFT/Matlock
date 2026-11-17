@@ -115,6 +115,17 @@ if (!Array.isArray(canadaData.events) || canadaData.events.length < 10) {
 // that currently have MMA event feeds. World Atlas uses ISO numeric IDs.
 const geoConfig = core.match(/const CONTINENT_GEO_IDS\s*=\s*\{([\s\S]*?)\n\s{4}\};/)?.[1] || '';
 const africaConfig = geoConfig.match(/africa:\s*\[([\s\S]*?)\]/)?.[1] || '';
+
+const oceaniaConfig = geoConfig.match(/oceania:\s*\[([\s\S]*?)\]/)?.[1] || '';
+const oceaniaCodes = [...oceaniaConfig.matchAll(/'(\d{3})'/g)].map(match => match[1]);
+// Keep this regional overview readable: distant Fiji/Solomons must not
+// extend the Mercator bounding box across the international date line.
+if (oceaniaCodes.length !== 3
+    || !['036','554','598'].every(code => oceaniaCodes.includes(code))
+    || ['242','090'].some(code => oceaniaCodes.includes(code))) {
+  failures.push('Oceania overview must remain focused on Australia, New Zealand and Papua New Guinea.');
+}
+
 const africaCodes = [...africaConfig.matchAll(/'(\d{3})'/g)].map(match => match[1]);
 const expectedAfrica = [
   '012','024','072','108','120','132','140','148','174','178','180',
