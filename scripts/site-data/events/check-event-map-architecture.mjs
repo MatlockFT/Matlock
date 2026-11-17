@@ -55,7 +55,7 @@ if (!Array.isArray(canadaData.events) || canadaData.events.length < 10) {
     if (event.country !== 'Canada' || event.sport !== 'MMA') {
       failures.push('Canadian calendar may only contain Canadian MMA events.');
     }
-    if (!/^20\\d{2}-\\d{2}-\\d{2}$/.test(event.date || '')) {
+    if (!/^20\d{2}-\d{2}-\d{2}$/.test(event.date || '')) {
       failures.push('Canadian MMA event must have a valid ISO date.');
     }
     if (!event.city || !event.state || !event.promotion || !event.venue) {
@@ -66,7 +66,7 @@ if (!Array.isArray(canadaData.events) || canadaData.events.length < 10) {
         || event.longitude < -142 || event.longitude > -52) {
       failures.push('Canadian MMA event must have plausible city coordinates.');
     }
-    if (!/^https:\\/\\//.test(event.source_url || '')) {
+    if (!/^https:\/\//.test(event.source_url || '')) {
       failures.push('Canadian MMA events must link to an event source.');
     }
   }
