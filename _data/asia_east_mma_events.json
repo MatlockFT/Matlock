@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "subregion": "East Asia",
-  "source": "Curated upcoming Asian MMA events from promoter, federation and tournament documents. Expanded November 17, 2026; dates and venues checked against linked sources.",
+  "source": "Curated upcoming East Asian MMA events. Expanded November 17, 2026; event details cite original or fight-calendar sources.",
   "location_note": "Pins use approximate host-city coordinates, not venue entrances. Date/venue ambiguities are identified on affected events.",
   "events": [
     {
@@ -67,6 +67,28 @@
       "source_url": "https://fights.tw/events/01M3NJV8ADG7NKJ1XVYTGVJSNT",
       "source_label": "Fights.tw / Chinese Taipei MMA Association",
       "date_note": "Taiwan's 115-year national mixed martial arts championship. The organizer is the Chinese Taipei MMA Association."
+    },
+    {
+      "id": "asia-beast-championship-25-2026-12-13",
+      "promotion": "Beast Championship",
+      "promotion_key": "beast-championship",
+      "sport": "MMA",
+      "title": "Beast Championship 25",
+      "date": "2026-12-13",
+      "venue": "Monster Sports Club",
+      "city": "Goyang",
+      "state": "Gyeonggi",
+      "country": "South Korea",
+      "location": "Goyang, Gyeonggi, South Korea",
+      "latitude": 37.6584,
+      "longitude": 126.832,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://www.sherdog.com/events",
+      "source_url": "https://www.sherdog.com/events",
+      "source_label": "Sherdog upcoming MMA events / Korean fight calendar",
+      "date_note": "The December 13 date and Goyang venue appear in Sherdog's upcoming professional MMA calendar and a Korean fight-calendar listing; an organizer-specific event page has not been found."
     },
     {
       "id": "asia-zfn-05-2026-12-19",
