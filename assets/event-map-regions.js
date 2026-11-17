@@ -83,6 +83,13 @@
         chile: { name: 'Chile', iso: '152', region: 'south-america', aliases: ['cl','chile'] },
         colombia: { name: 'Colombia', iso: '170', region: 'south-america', aliases: ['co','colombia'] },
         peru: { name: 'Peru', iso: '604', region: 'south-america', aliases: ['pe','peru','perú'] },
+        ecuador: { name: 'Ecuador', iso: '218', region: 'south-america', aliases: ['ec','ecuador'] },
+        bolivia: { name: 'Bolivia', iso: '068', region: 'south-america', aliases: ['bo','bolivia'] },
+        uruguay: { name: 'Uruguay', iso: '858', region: 'south-america', aliases: ['uy','uruguay'] },
+        paraguay: { name: 'Paraguay', iso: '600', region: 'south-america', aliases: ['py','paraguay'] },
+        venezuela: { name: 'Venezuela', iso: '862', region: 'south-america', aliases: ['ve','venezuela'] },
+        guyana: { name: 'Guyana', iso: '328', region: 'south-america', aliases: ['gy','guyana'] },
+        suriname: { name: 'Suriname', iso: '740', region: 'south-america', aliases: ['sr','suriname'] },
         japan: { name: 'Japan', iso: '392', region: 'asia', aliases: ['jp','japan'] },
         'south-korea': { name: 'South Korea', iso: '410', region: 'asia', aliases: ['kr','south korea','republic of korea'] },
         china: { name: 'China', iso: '156', region: 'asia', aliases: ['cn','china'] },
@@ -97,7 +104,10 @@
     const REGIONS = {
         world: { name: 'World', countries: Object.keys(COUNTRIES) },
         'north-america': { name: 'North America', countries: ['united-states','mexico','canada'] },
-        'south-america': { name: 'South America', countries: ['brazil','argentina','chile','colombia','peru'] },
+        'south-america': { name: 'South America', countries: [
+            'brazil','peru','argentina','chile','colombia','ecuador','bolivia','uruguay',
+            'paraguay','venezuela','guyana','suriname'
+        ] },
         asia: { name: 'Asia', countries: ['japan','south-korea','china'] },
         europe: { name: 'Europe', countries: ['united-kingdom','poland','france','germany'] },
         oceania: { name: 'Oceania', countries: ['australia','new-zealand'] },
@@ -262,6 +272,13 @@
         if (event.countrySlug === 'canada') {
             return [event.city, event.stateName, 'Canada'].filter(Boolean).join(', ');
         }
+        if (COUNTRIES[event.countrySlug]?.region === 'south-america') {
+            const place = String(event.city || '').trim();
+            const division = String(event.stateName || '').trim();
+            const distinctDivision = division && division.toLocaleLowerCase() !== place.toLocaleLowerCase();
+            return [place, distinctDivision ? division : '', COUNTRIES[event.countrySlug].name]
+                .filter(Boolean).join(', ');
+        }
         const suffix = event.countrySlug === 'united-states' ? event.stateCode
             : event.countrySlug === 'mexico' ? (event.stateName || 'Mexico')
             : COUNTRIES[event.countrySlug]?.name || event.stateName;
@@ -272,6 +289,10 @@
             japan: 'Asia/Tokyo', mexico: 'America/Mexico_City',
             brazil: 'America/Sao_Paulo', argentina: 'America/Argentina/Buenos_Aires',
             chile: 'America/Santiago', colombia: 'America/Bogota', peru: 'America/Lima',
+            ecuador: 'America/Guayaquil', bolivia: 'America/La_Paz',
+            uruguay: 'America/Montevideo', paraguay: 'America/Asuncion',
+            venezuela: 'America/Caracas', guyana: 'America/Guyana',
+            suriname: 'America/Paramaribo',
             canada: 'America/Toronto', 'united-states': 'America/Chicago',
             'south-korea': 'Asia/Seoul', china: 'Asia/Shanghai',
             'united-kingdom': 'Europe/London', poland: 'Europe/Warsaw',
