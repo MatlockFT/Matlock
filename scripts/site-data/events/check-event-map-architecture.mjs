@@ -8,6 +8,8 @@ const failures = [];
 const regionalFeed = await fs.readFile('assets/data/event-map-regions-live.json', 'utf8');
 const canadaData = JSON.parse(await fs.readFile('_data/canada_mma_events.json', 'utf8'));
 const southAmericaData = JSON.parse(await fs.readFile('_data/south_america_mma_events.json', 'utf8'));
+const africaData = JSON.parse(await fs.readFile('_data/africa_mma_events.json', 'utf8'));
+
 
 
 function requireText(text, needle, message) {
@@ -42,6 +44,38 @@ requireText(core, 'function rebuildMap(', 'Regional map must rebuild geographic 
 requireText(core, 'function chooseRegion(', 'One engine must switch continents.');
 requireText(core, 'function chooseCountry(', 'One engine must switch country views.');
 requireText(core, "REGIONS[currentRegion].countries", 'Region/country filters must remain linked.');
+
+requireText(regionalFeed, 'site.data.africa_mma_events.events', 'Africa Event Map feed must read its curated data.');
+requireText(regionalFeed, 'concat: africa_events', 'Africa Event Map must include curated cards in the worldwide feed.');
+const africaEvents = africaData.events;
+if (!Array.isArray(africaEvents) || africaEvents.length < 8) {
+  failures.push('Africa MMA calendar should retain at least eight reviewed cards.');
+} else {
+  const ids = new Set();
+  const nations = new Set();
+  for (const event of africaEvents) {
+    if (!event.id || ids.has(event.id)) failures.push('African MMA events must have unique IDs.');
+    ids.add(event.id);
+    nations.add(event.country);
+    if (event.sport !== 'MMA' || !event.title || !event.city || !event.country
+        || !event.date || !event.promotion || !event.venue) {
+      failures.push('Africa MMA event requires a named card, date, city, country, venue and promotion.');
+    }
+    if (!/^20\d{2}-\d{2}-\d{2}$/.test(event.date || '')) failures.push('Africa MMA date must be ISO-formatted.');
+    if (!Number.isFinite(event.latitude) || !Number.isFinite(event.longitude)
+        || event.latitude < -35 || event.latitude > 38 || event.longitude < -18 || event.longitude > 52) {
+      failures.push('Africa MMA pin must have plausible continent coordinates.');
+    }
+    if (!String(event.official_url || '').startsWith('https://')) failures.push('Africa MMA event needs a reliable source link.');
+  }
+  for (const country of ['South Africa','Kenya','Rwanda','Nigeria']) {
+    if (!nations.has(country)) failures.push('Africa event coverage must include ' + country);
+  }
+}
+for (const country of ['kenya','rwanda','nigeria']) {
+  requireText(core, country + ": { name:", 'Africa country filter must include ' + country);
+}
+
 
 requireText(regionalFeed, 'site.data.south_america_mma_events.events', 'Regional map must load South American MMA cards.');
 requireText(regionalFeed, 'concat: south_america_events', 'South American cards must appear in the shared event feed.');

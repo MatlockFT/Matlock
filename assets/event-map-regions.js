@@ -99,7 +99,17 @@
         germany: { name: 'Germany', iso: '276', region: 'europe', aliases: ['de','germany'] },
         australia: { name: 'Australia', iso: '036', region: 'oceania', aliases: ['au','australia'] },
         'new-zealand': { name: 'New Zealand', iso: '554', region: 'oceania', aliases: ['nz','new zealand'] },
-        'south-africa': { name: 'South Africa', iso: '710', region: 'africa', aliases: ['za','south africa'] }
+        'south-africa': { name: 'South Africa', iso: '710', region: 'africa', aliases: ['za','south africa'] },
+        kenya: { name: 'Kenya', iso: '404', region: 'africa', aliases: ['ke','kenya'] },
+        rwanda: { name: 'Rwanda', iso: '646', region: 'africa', aliases: ['rw','rwanda'] },
+        nigeria: { name: 'Nigeria', iso: '566', region: 'africa', aliases: ['ng','nigeria'] },
+        uganda: { name: 'Uganda', iso: '800', region: 'africa', aliases: ['ug','uganda'] },
+        ghana: { name: 'Ghana', iso: '288', region: 'africa', aliases: ['gh','ghana'] },
+        egypt: { name: 'Egypt', iso: '818', region: 'africa', aliases: ['eg','egypt'] },
+        morocco: { name: 'Morocco', iso: '504', region: 'africa', aliases: ['ma','morocco'] },
+        'dr-congo': { name: 'DR Congo', iso: '180', region: 'africa', aliases: ['cd','dr congo','democratic republic of the congo'] },
+        senegal: { name: 'Senegal', iso: '686', region: 'africa', aliases: ['sn','senegal'] },
+        'ivory-coast': { name: 'Ivory Coast', iso: '384', region: 'africa', aliases: ['ci','ivory coast','côte d’ivoire','cote d ivoire'] }
     };
     const REGIONS = {
         world: { name: 'World', countries: Object.keys(COUNTRIES) },
@@ -111,7 +121,10 @@
         asia: { name: 'Asia', countries: ['japan','south-korea','china'] },
         europe: { name: 'Europe', countries: ['united-kingdom','poland','france','germany'] },
         oceania: { name: 'Oceania', countries: ['australia','new-zealand'] },
-        africa: { name: 'Africa', countries: ['south-africa'] }
+        africa: { name: 'Africa', countries: [
+            'south-africa','kenya','rwanda','nigeria','uganda','ghana',
+            'egypt','morocco','dr-congo','senegal','ivory-coast'
+        ] }
     };
     const CONTINENT_GEO_IDS = {
         'north-america': ['840','484','124'],
@@ -276,6 +289,13 @@
         if (event.countrySlug === 'canada') {
             return [event.city, event.stateName, 'Canada'].filter(Boolean).join(', ');
         }
+        if (COUNTRIES[event.countrySlug]?.region === 'africa') {
+            const city = String(event.city || '').trim();
+            const division = String(event.stateName || '').trim();
+            const distinctDivision = division && division.toLocaleLowerCase() !== city.toLocaleLowerCase();
+            return [city, distinctDivision ? division : '', COUNTRIES[event.countrySlug].name]
+                .filter(Boolean).join(', ');
+        }
         if (COUNTRIES[event.countrySlug]?.region === 'south-america') {
             const place = String(event.city || '').trim();
             const division = String(event.stateName || '').trim();
@@ -302,7 +322,12 @@
             'united-kingdom': 'Europe/London', poland: 'Europe/Warsaw',
             france: 'Europe/Paris', germany: 'Europe/Berlin',
             australia: 'Australia/Sydney', 'new-zealand': 'Pacific/Auckland',
-            'south-africa': 'Africa/Johannesburg'
+            'south-africa': 'Africa/Johannesburg',
+            kenya: 'Africa/Nairobi', rwanda: 'Africa/Kigali',
+            nigeria: 'Africa/Lagos', uganda: 'Africa/Kampala',
+            ghana: 'Africa/Accra', egypt: 'Africa/Cairo',
+            morocco: 'Africa/Casablanca', 'dr-congo': 'Africa/Kinshasa',
+            senegal: 'Africa/Dakar', 'ivory-coast': 'Africa/Abidjan'
         };
         // Events follow the date of their own province, not Toronto's clock.
         const canadaZones = {
