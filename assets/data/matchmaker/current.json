@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-16T16:29:12.185Z"
+      "checkedAt": "2026-11-17T00:24:31.828Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-16T16:29:38.466Z",
+      "checkedAt": "2026-11-17T00:25:17.419Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -30439,7 +30439,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -35803,9 +35807,9 @@
         "officialThrough": "2026-11-14"
       },
       "booking": {
-        "event": "Oliveira vs Lopes",
-        "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335",
+        "event": "Pyfer vs Nickal",
+        "date": "2027-02-13",
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-13-2027",
         "opponent": "Joe Pyfer",
         "opponentId": "joe-pyfer"
       },
@@ -47506,7 +47510,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 336",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -74063,7 +74071,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -104171,7 +104183,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -157587,9 +157603,9 @@
         "officialThrough": "2026-11-14"
       },
       "booking": {
-        "event": "Oliveira vs Lopes",
-        "date": "2026-12-12",
-        "source": "https://www.ufc.com/event/ufc-335",
+        "event": "Pyfer vs Nickal",
+        "date": "2027-02-13",
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-13-2027",
         "opponent": "Bo Nickal",
         "opponentId": "bo-nickal"
       },
@@ -194622,7 +194638,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 335",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -195375,7 +195395,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 336",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -202034,7 +202058,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 336",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -231728,7 +231756,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 336",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -293979,7 +294011,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 336",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -299562,7 +299598,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 336",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
