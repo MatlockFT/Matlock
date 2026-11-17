@@ -7,7 +7,7 @@ sitemap: false
 [
 {% for post in site.posts %}
     {% assign visibility = post.listing_visibility | default: "normal" %}
-    {% unless visibility == "hide-breakdowns" or visibility == "direct-only" %}
+    {% unless post.members_only or visibility == "hide-breakdowns" or visibility == "direct-only" %}
         {% unless search_index_first %},{% endunless %}
         {% assign search_index_first = false %}
         {
