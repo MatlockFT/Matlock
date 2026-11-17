@@ -7,6 +7,8 @@ const html = await fs.readFile('event-map.html', 'utf8');
 const failures = [];
 const regionalFeed = await fs.readFile('assets/data/event-map-regions-live.json', 'utf8');
 const canadaData = JSON.parse(await fs.readFile('_data/canada_mma_events.json', 'utf8'));
+const southAmericaData = JSON.parse(await fs.readFile('_data/south_america_mma_events.json', 'utf8'));
+
 
 function requireText(text, needle, message) {
   if (!text.includes(needle)) failures.push(message);
@@ -40,6 +42,42 @@ requireText(core, 'function rebuildMap(', 'Regional map must rebuild geographic 
 requireText(core, 'function chooseRegion(', 'One engine must switch continents.');
 requireText(core, 'function chooseCountry(', 'One engine must switch country views.');
 requireText(core, "REGIONS[currentRegion].countries", 'Region/country filters must remain linked.');
+
+requireText(regionalFeed, 'site.data.south_america_mma_events.events', 'Regional map must load South American MMA cards.');
+requireText(regionalFeed, 'concat: south_america_events', 'South American cards must appear in the shared event feed.');
+for (const [slug, label] of [
+  ['peru', 'Peru'], ['brazil', 'Brazil'], ['argentina', 'Argentina'], ['chile', 'Chile'],
+  ['colombia', 'Colombia'], ['ecuador', 'Ecuador'], ['bolivia', 'Bolivia'], ['uruguay', 'Uruguay']
+]) {
+  requireText(core, slug + ': { name: \\'' + label + '\\'', 'Country selector must include ' + label + '.');
+}
+const southEvents = southAmericaData.events;
+if (!Array.isArray(southEvents) || southEvents.length < 20) {
+  failures.push('South American calendar must preserve at least 20 curated event records.');
+} else {
+  const ids = new Set();
+  const counts = {};
+  for (const event of southEvents) {
+    if (!event.id || ids.has(event.id)) failures.push('South American events require unique IDs.');
+    ids.add(event.id);
+    counts[event.country] = (counts[event.country] || 0) + 1;
+    if (event.sport !== 'MMA' || !event.country || !event.title || !event.date
+        || !event.city || !event.venue || !event.promotion) {
+      failures.push('South American event requires a dated MMA listing with a promotion and locality.');
+    }
+    if (typeof event.latitude !== 'number' || typeof event.longitude !== 'number'
+        || event.latitude < -56 || event.latitude > 13
+        || event.longitude < -82 || event.longitude > -34) {
+      failures.push('South American event coordinates must fall within South America.');
+    }
+    if (!String(event.source_url || '').startsWith('https://')) {
+      failures.push('South American events need a source link.');
+    }
+  }
+  if ((counts.Peru || 0) < 4) failures.push('Peruvian MMA coverage must retain Inka and other scheduled promotions.');
+  if ((counts.Brazil || 0) < 6) failures.push('Brazilian MMA coverage must retain multiple regional promotions.');
+}
+
 requireText(regionalFeed, 'site.data.canada_mma_events.events', 'Regional feed must read the Canadian MMA calendar.');
 requireText(regionalFeed, 'concat: canada_events', 'Canadian events must be included in the shared map feed.');
 requireText(core, "canada: { name: 'Canada'", 'Country selection must support Canada.');
