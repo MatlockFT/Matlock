@@ -1,15 +1,17 @@
 ---
 layout: default
 title: "MMA Event Map: Upcoming MMA Events Near You"
-description: "Explore upcoming MMA events across the United States and Japan, including RIZIN, DEEP, Pancrase, Shooto and regional promotions, with event details and sources."
+description: "Explore upcoming MMA events across the United States, Mexico and Japan, including RIZIN, LUX, UWC, Budo Sento and regional promotions, with event details and sources."
 permalink: /event-map/
 v3_text_masthead: true
 page_styles:
   - /assets/event-map-japan.css
+  - /assets/event-map-mexico.css
 page_scripts:
   - /assets/event-map-v2.js
   - /assets/event-map-deferred.js
   - /assets/event-map-japan.js
+  - /assets/event-map-mexico.js
 ---
 
 <script>
@@ -167,6 +169,51 @@ page_scripts:
             </aside>
         </div>
         <p class="event-map-japan-note">Map pins show approximate city locations, not exact venue entrances. Dates follow Japan's local calendar.</p>
+    </section>
+
+    <section
+        class="event-map-mexico"
+        data-mexico-event-map
+        data-events-url="{{ '/assets/data/mexico-mma-live.json' | relative_url }}?v={{ site.asset_version }}"
+        aria-labelledby="event-map-mexico-title"
+    >
+        <header class="event-map-mexico-header">
+            <h2 id="event-map-mexico-title">Mexico MMA</h2>
+            <p>UWC · Azteca Fight League · Budo Sento · Jasaji · LUX · Regional MMA</p>
+        </header>
+
+        <div class="event-map-mexico-layout">
+            <div class="event-map-mexico-stage">
+                <div class="event-map-mexico-loading" data-mexico-map-loading>Loading Mexico MMA map…</div>
+                <svg
+                    class="event-map-mexico-svg"
+                    data-mexico-map-svg
+                    viewBox="0 0 720 440"
+                    role="img"
+                    aria-label="Map of Mexico with upcoming MMA event pins at approximate city locations"
+                ></svg>
+            </div>
+            <aside class="event-map-mexico-detail" aria-live="polite">
+                <div class="event-map-mexico-detail-topline">
+                    <span>MEXICO MMA</span>
+                    <span>UPCOMING EVENTS</span>
+                </div>
+                <h3 data-mexico-detail-title>Select an event</h3>
+                <p data-mexico-detail-dates></p>
+                <p data-mexico-detail-venue></p>
+                <p data-mexico-detail-city></p>
+                <a
+                    class="event-map-mexico-source"
+                    data-mexico-detail-source
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    hidden
+                >Event source</a>
+                <p class="event-map-mexico-empty" data-mexico-empty hidden></p>
+                <div class="event-map-mexico-list" data-mexico-event-list></div>
+            </aside>
+        </div>
+        <p class="event-map-mexico-note">Pins represent approximate city locations, not venue entrances. Event dates follow Mexico's local calendar. Listings are checked against organizer, ticketing or MMA event sources.</p>
     </section>
 
     <section class="event-map-results" aria-labelledby="event-map-results-title">
