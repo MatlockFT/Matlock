@@ -231,6 +231,24 @@
       "publicContract": false
     },
     {
+      "id": "south-america-mma-event-curated-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/south_america_mma_events.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:verified-south-american-mma-calendar"
+      ],
+      "consumers": [
+        "jekyll:regional-event-map"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
       "id": "upcoming-event-generated-build-data",
       "storage": "build-time",
       "paths": [
