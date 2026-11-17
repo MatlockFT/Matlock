@@ -118,7 +118,11 @@
         'south-america': ['076','032','152','170','604','218','068','600','858','862','328','740'],
         asia: ['392','410','156','356','360','458','608','764','704','702','158','496','398','417','586'],
         europe: ['826','616','250','276','724','380','528','056','752','578','208','246','040','756','372','620','203'],
-        oceania: ['036','554','242','598','090'],
+        // Keep the editorial Oceania view focused on Australia, New Zealand
+        // and Papua New Guinea. Fiji straddles the antimeridian and makes
+        // Mercator.fitExtent stretch across the entire Pacific, shrinking the map.
+        // Omit remote island chains from this overview rather than fitting to them.
+        oceania: ['036','554','598'],
         // Complete African land geography. Include all 54 sovereign states plus
         // Western Sahara (732), which world-atlas draws as a separate area.
         // A region must not omit countries simply because no events are listed there.
