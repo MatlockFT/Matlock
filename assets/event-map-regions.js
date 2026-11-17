@@ -259,6 +259,9 @@
         return '';
     }
     function placeLabel(event) {
+        if (event.countrySlug === 'canada') {
+            return [event.city, event.stateName, 'Canada'].filter(Boolean).join(', ');
+        }
         const suffix = event.countrySlug === 'united-states' ? event.stateCode
             : event.countrySlug === 'mexico' ? (event.stateName || 'Mexico')
             : COUNTRIES[event.countrySlug]?.name || event.stateName;
@@ -276,7 +279,25 @@
             australia: 'Australia/Sydney', 'new-zealand': 'Pacific/Auckland',
             'south-africa': 'Africa/Johannesburg'
         };
-        const zone = zones[event.countrySlug] || 'UTC';
+        // Events follow the date of their own province, not Toronto's clock.
+        const canadaZones = {
+            'British Columbia': 'America/Vancouver',
+            Alberta: 'America/Edmonton',
+            Saskatchewan: 'America/Regina',
+            Manitoba: 'America/Winnipeg',
+            Ontario: 'America/Toronto',
+            Quebec: 'America/Toronto',
+            'New Brunswick': 'America/Moncton',
+            'Nova Scotia': 'America/Halifax',
+            'Prince Edward Island': 'America/Halifax',
+            'Newfoundland and Labrador': 'America/St_Johns',
+            Yukon: 'America/Whitehorse',
+            'Northwest Territories': 'America/Yellowknife',
+            Nunavut: 'America/Iqaluit'
+        };
+        const zone = (event.countrySlug === 'canada'
+            ? canadaZones[event.stateName] || zones.canada
+            : zones[event.countrySlug]) || 'UTC';
         const parts = new Intl.DateTimeFormat('en-US', {
             timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit'
         }).formatToParts(new Date());
