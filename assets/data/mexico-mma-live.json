@@ -1,0 +1,9 @@
+---
+layout: null
+permalink: /assets/data/mexico-mma-live.json
+---
+{
+  "schema_version": 1,
+  "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
+  "events": {{ site.data.mexico_mma_events.events | jsonify }}
+}
