@@ -117,8 +117,7 @@
 
   const renderNews = data => {
     const stories = newsStories(data);
-    // The homepage news sidebar is now a Jekyll-generated members-only rail.
-    // Keep the independently useful Trending rail fed by the live news source.
+    // Use the live MMA news feed for both the homepage sidebar and Trending.
     renderTrending(stories);
     if (!newsList) return;
     newsList.replaceChildren();
