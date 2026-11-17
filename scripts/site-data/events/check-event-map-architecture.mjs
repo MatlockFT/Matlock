@@ -9,6 +9,8 @@ const regionalFeed = await fs.readFile('assets/data/event-map-regions-live.json'
 const canadaData = JSON.parse(await fs.readFile('_data/canada_mma_events.json', 'utf8'));
 const southAmericaData = JSON.parse(await fs.readFile('_data/south_america_mma_events.json', 'utf8'));
 const africaData = JSON.parse(await fs.readFile('_data/africa_mma_events.json', 'utf8'));
+const oceaniaData = JSON.parse(await fs.readFile('_data/oceania_mma_events.json', 'utf8'));
+
 
 
 
@@ -44,6 +46,46 @@ requireText(core, 'function rebuildMap(', 'Regional map must rebuild geographic 
 requireText(core, 'function chooseRegion(', 'One engine must switch continents.');
 requireText(core, 'function chooseCountry(', 'One engine must switch country views.');
 requireText(core, "REGIONS[currentRegion].countries", 'Region/country filters must remain linked.');
+
+requireText(regionalFeed, 'site.data.oceania_mma_events.events', 'Oceania feed must read the curated calendar.');
+requireText(regionalFeed, 'concat: oceania_events', 'Oceania cards must be included in the shared global feed.');
+for (const label of ["'new-zealand'", "'papua-new-guinea'", 'australia']) {
+  requireText(core, label + ': { name:', 'Oceania country selector must include ' + label);
+}
+requireText(core, "'Western Australia': 'Australia/Perth'", 'Western Australian events must use Perth local time.');
+requireText(core, "'South Australia': 'Australia/Adelaide'", 'Adelaide events must use their own local time.');
+requireText(core, "'papua-new-guinea': 'Pacific/Port_Moresby'", 'Papua New Guinea date zone must be supported.');
+if (!Array.isArray(oceaniaData.events) || oceaniaData.events.length < 12) {
+  failures.push('Oceania MMA calendar must retain at least twelve verified future cards.');
+} else {
+  const ids = new Set();
+  const counts = { Australia: 0, 'New Zealand': 0 };
+  for (const event of oceaniaData.events) {
+    if (!event.id || ids.has(event.id)) failures.push('Oceania event IDs must be present and unique.');
+    ids.add(event.id);
+    if (!['Australia', 'New Zealand'].includes(event.country) || event.sport !== 'MMA'
+        || !event.date || !event.promotion || !event.title || !event.city || !event.venue || !event.state) {
+      failures.push('Oceania listings require an MMA event with a dated city and state.');
+    } else {
+      counts[event.country] += 1;
+    }
+    if (!/^20\d{2}-\d{2}-\d{2}$/.test(event.date || '')) {
+      failures.push('Oceania event dates must be in ISO YYYY-MM-DD format.');
+    }
+    if (!Number.isFinite(event.latitude) || !Number.isFinite(event.longitude)
+        || event.latitude < -49 || event.latitude > -9
+        || event.longitude < 110 || event.longitude > 180) {
+      failures.push('Oceania pin coordinates must be plausible.');
+    }
+    if (!String(event.official_url || '').startsWith('https://')) {
+      failures.push('Oceania events require a usable source URL.');
+    }
+  }
+  if (counts.Australia < 8 || counts['New Zealand'] < 3) {
+    failures.push('Oceania coverage must retain both Australian and New Zealand MMA scenes.');
+  }
+}
+
 
 requireText(regionalFeed, 'site.data.africa_mma_events.events', 'Africa Event Map feed must read its curated data.');
 requireText(regionalFeed, 'concat: africa_events', 'Africa Event Map must include curated cards in the worldwide feed.');
