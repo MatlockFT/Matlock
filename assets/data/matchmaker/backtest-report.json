@@ -1,11 +1,11 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-11-16T18:52:50.384Z",
+  "generatedAt": "2026-11-17T03:08:11.272Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
   "maxCases": 120,
-  "availableCases": 585,
+  "availableCases": 581,
   "sampledCases": 120,
   "historicalUniverseCoverage": {
     "currentDatasetFighters": 1022,
@@ -19,16 +19,16 @@
   },
   "rankingSnapshotCoverage": {
     "archiveStart": "2026-09-10",
-    "archiveEnd": "2026-11-16",
-    "snapshotsAvailable": 56,
+    "archiveEnd": "2026-11-17",
+    "snapshotsAvailable": 57,
     "sampledCasesWithSnapshot": 5,
     "sampledCasesWithoutSnapshot": 115,
     "maxSnapshotAgeDays": 14
   },
   "temporalStateCoverage": {
     "archiveStart": "2026-09-15",
-    "archiveEnd": "2026-11-16",
-    "snapshotsAvailable": 46,
+    "archiveEnd": "2026-11-17",
+    "snapshotsAvailable": 47,
     "sampledCasesWithSnapshot": 3,
     "sampledCasesWithoutSnapshot": 117,
     "maxSnapshotAgeDays": 7

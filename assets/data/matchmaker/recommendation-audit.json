@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-11-16T18:52:50.384Z",
+  "generatedAt": "2026-11-17T03:08:11.272Z",
   "engineVersion": 2,
   "subjects": 414,
-  "publishedRecommendations": 1129,
+  "publishedRecommendations": 1123,
   "recommendationSlots": {
-    "0": 35,
+    "0": 37,
     "1": 2,
     "2": 4,
-    "3": 373
+    "3": 371
   },
   "caseCounts": {
-    "rebound-pairing": 475,
-    "rising-vs-rising": 315,
-    "step-up-vs-rebound": 147,
+    "rebound-pairing": 473,
+    "rising-vs-rising": 309,
+    "step-up-vs-rebound": 149,
     "rankings-progression": 65,
     "ranking-opportunity": 53,
     "divisional-sorting": 38,
@@ -21,18 +21,18 @@
     "prospect-test": 7
   },
   "confidenceCounts": {
-    "high": 1055,
-    "low": 47,
-    "medium": 27
+    "high": 1049,
+    "low": 46,
+    "medium": 28
   },
   "averageRecentOpponentLinkCoverage": 0.9029,
-  "sameCardRecommendations": 42,
-  "sameCardRecommendationRatio": 0.0372,
-  "asymmetricTopThreeRecommendations": 404,
-  "asymmetricTopThreeRatio": 0.3578,
-  "publicPublishedRecommendations": 1101,
-  "publicAsymmetricTopThreeRecommendations": 306,
-  "publicAsymmetricTopThreeRatio": 0.2779,
+  "sameCardRecommendations": 43,
+  "sameCardRecommendationRatio": 0.0383,
+  "asymmetricTopThreeRecommendations": 399,
+  "asymmetricTopThreeRatio": 0.3553,
+  "publicPublishedRecommendations": 1095,
+  "publicAsymmetricTopThreeRecommendations": 303,
+  "publicAsymmetricTopThreeRatio": 0.2767,
   "engineGenericDivisionalSortingRecommendations": 38,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -98,8 +98,8 @@
       "title": "UFC 332: Silva vs Wang",
       "date": "2026-10-03",
       "subjects": 28,
-      "publicRecommendations": 77,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 74,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-september-26-2026",
@@ -138,8 +138,8 @@
       "title": "UFC Fight Night: Nurmagomedov vs Song",
       "date": "2026-08-29",
       "subjects": 26,
-      "publicRecommendations": 73,
-      "noClearMatchupSubjects": 1
+      "publicRecommendations": 70,
+      "noClearMatchupSubjects": 2
     },
     {
       "id": "ufc-fight-night-august-22-2026",
@@ -284,14 +284,14 @@
       "event": "UFC 333: Volkanovski vs Evloev",
       "fighter": "Movsar Evloev",
       "opponent": "Youssef Zalal",
-      "score": 46,
+      "score": 47,
       "rationale": "Movsar Evloev and Youssef Zalal occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC 333: Volkanovski vs Evloev",
       "fighter": "Dominick Reyes",
       "opponent": "Magomed Ankalaev",
-      "score": 60,
+      "score": 61,
       "rationale": "Dominick Reyes and Magomed Ankalaev occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
@@ -437,7 +437,7 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Ryan Loder",
+          "opponent": "Eric McConico",
           "score": 93,
           "case": "rebound-pairing"
         }
@@ -462,7 +462,7 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Mansur Abdul Malik",
+          "opponent": "Cam Rowston",
           "score": 93,
           "case": "rebound-pairing"
         }
@@ -682,13 +682,13 @@
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Lance Gibson Jr.",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
           "opponent": "Manuel Torres",
           "score": 94,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Rafa Garcia",
+          "score": 92,
           "case": "step-up-vs-rebound"
         }
       ]
@@ -782,13 +782,13 @@
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Lance Gibson Jr.",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
           "opponent": "Manuel Torres",
           "score": 94,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Rafa Garcia",
+          "score": 92,
           "case": "step-up-vs-rebound"
         }
       ]
@@ -796,24 +796,24 @@
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Jim Miller",
-      "opponent": "Michael Johnson",
-      "pairScore": 83,
+      "opponent": "Fares Ziam",
+      "pairScore": 85,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "King Green",
-          "score": 93,
+          "opponent": "Kyle Nelson",
+          "score": 94,
           "case": "rebound-pairing"
         },
         {
           "opponent": "Drakkar Klose",
-          "score": 86,
+          "score": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Mason Jones",
-          "score": 86,
+          "opponent": "Rafa Garcia",
+          "score": 93,
           "case": "rebound-pairing"
         }
       ]
@@ -870,31 +870,6 @@
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Cesar Almeida",
-      "opponent": "Robert Valentin Frey",
-      "pairScore": 91,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Baisangur Susurkaev",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Damian Pinas",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jackson McVey",
-          "score": 94,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Jared Gordon",
       "opponent": "Kyle Nelson",
       "pairScore": 91,
@@ -939,6 +914,31 @@
         {
           "opponent": "Mason Jones",
           "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Jared Gordon",
+      "opponent": "Fares Ziam",
+      "pairScore": 88,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Kyle Nelson",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Drakkar Klose",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Rafa Garcia",
+          "score": 93,
           "case": "rebound-pairing"
         }
       ]
