@@ -213,6 +213,24 @@
       "publicContract": false
     },
     {
+      "id": "canada-mma-event-curated-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/canada_mma_events.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:verified-canada-mma-calendar"
+      ],
+      "consumers": [
+        "jekyll:regional-event-map"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
       "id": "upcoming-event-generated-build-data",
       "storage": "build-time",
       "paths": [
