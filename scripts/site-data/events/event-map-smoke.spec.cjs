@@ -188,3 +188,52 @@ test.describe('Event Map mobile interaction chain', () => {
     expect(pageErrors).toEqual([]);
   });
 });
+
+
+test.describe('North America regional map navigation', () => {
+  test.use({ viewport: { width: 1280, height: 900 } });
+
+  test('Central America and Caribbean tabs filter real MMA pins and survive direct links', async ({ page }) => {
+    const start = new URL(BASE);
+    start.searchParams.set('region', 'north-america');
+    start.searchParams.set('subregion', 'central-america');
+    start.searchParams.set('range', 'all');
+    const errors = await ready(page, start.toString());
+
+    const central = page.locator('[data-north-america-subregion="central-america"]');
+    const caribbean = page.locator('[data-north-america-subregion="caribbean"]');
+    const mainland = page.locator('[data-north-america-subregion="mainland"]');
+    const country = page.locator('[data-country-filter]');
+
+    await expect(central).toBeVisible();
+    await expect(central).toHaveAttribute('aria-pressed', 'true');
+    await expect(country.locator('option[value="costa-rica"]')).toHaveCount(1);
+    await expect(page.locator('.event-map-result')).toHaveCount(1);
+    await expect(page.locator('.event-map-result').first()).toContainText('TNX 1226');
+
+    await caribbean.click();
+    await expect(caribbean).toHaveAttribute('aria-pressed', 'true');
+    await expect(country.locator('option[value="trinidad-and-tobago"]')).toHaveCount(1);
+    await expect(country.locator('option[value="sint-maarten"]')).toHaveCount(1);
+    await expect(page.locator('.event-map-result')).toHaveCount(3);
+    expect(new URL(page.url()).searchParams.get('subregion')).toBe('caribbean');
+
+    await country.selectOption('sint-maarten');
+    await expect(page.locator('.event-map-result')).toHaveCount(1);
+    await expect(page.locator('.event-map-result')).toContainText('HyperStrike');
+    expect(new URL(page.url()).searchParams.get('country')).toBe('sint-maarten');
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await expect(page.locator('[data-map-loading]')).toBeHidden({ timeout: 30000 });
+    await expect(caribbean).toHaveAttribute('aria-pressed', 'true');
+    await expect(country).toHaveValue('sint-maarten');
+    await expect(page.locator('.event-map-result')).toHaveCount(1);
+
+    await mainland.click();
+    await expect(mainland).toHaveAttribute('aria-pressed', 'true');
+    await expect(country.locator('option[value="united-states"]')).toHaveCount(1);
+    await expect(country.locator('option[value="costa-rica"]')).toHaveCount(0);
+    await expectNoHorizontalOverflow(page);
+    expect(errors).toEqual([]);
+  });
+});
