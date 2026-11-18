@@ -448,7 +448,7 @@ function removeUnknownMainEvent(event) {
   if (!Array.isArray(fighters)) return event;
   const names = fighters.map(value => typeof value === 'string' ? value.trim()
     : typeof value?.name === 'string' ? value.name.trim() : '');
-  const unknown = name => /^(?:tbd|tba|unknown|not announced|n\\/?a)$/i.test(name);
+  const unknown = name => ['tbd','tba','unknown','not announced','n/a','na'].includes(name.toLowerCase());
   if (names.length >= 2 && names.every(unknown)) {
     const { main_event: _ignored, ...rest } = event;
     return rest;
