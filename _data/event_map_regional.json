@@ -1119,6 +1119,36 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-ccc-35-colorado-combat-club-35-2026-12-18-westminster",
+      "promotion": "CCC",
+      "promotion_key": "sherdog_discovery",
+      "title": "CCC 35: Colorado Combat Club 35",
+      "date": "2026-12-18",
+      "venue": "Rodeo Convention Center",
+      "location": "Westminster, CO",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/CCC-35-Colorado-Combat-Club-35-115269",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-fsf-front-street-fights-37-2026-12-18-boise",
+      "promotion": "FSF",
+      "promotion_key": "sherdog_discovery",
+      "title": "FSF: Front Street Fights 37",
+      "date": "2026-12-18",
+      "venue": "Idaho Central Arena",
+      "location": "Boise, ID",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/FSF-Front-Street-Fights-37-114116",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "lfa_official-lfa-248-costa-vs-hartshorn-2026-12-18",
       "promotion": "LFA",
       "promotion_key": "lfa_official",
@@ -1158,7 +1188,7 @@
       "source_label": "Nitro Tickets",
       "latitude": 41.5868,
       "longitude": -93.625,
-      "poster_url": "https://www.nitrotickets.com/storage/advertimage/1353/1794936821_recompose-this-brutal-ascendancy.jpg"
+      "poster_url": "https://www.nitrotickets.com/storage/advertimage/1353/1794972814_recompose-this-tall-vertical__1_.jpg"
     },
     {
       "id": "nitro-wfc-200-ilani-12-19-2026-12-19",
@@ -1232,7 +1262,7 @@
       "id": "peak-pfc-56-tbd-vs-tbd-2027-01-23",
       "promotion": "Peak Fighting",
       "promotion_key": "peak",
-      "title": "PFC 56",
+      "title": "PFC 56: TBD vs TBD",
       "date": "2027-01-23",
       "venue": "Fifth Third Arena",
       "location": "Frisco, TX",
@@ -1241,7 +1271,13 @@
       "regional": true,
       "level": "pro-am",
       "source_key": "peak",
-      "source_label": "Peak Fighting Championship"
+      "source_label": "Peak Fighting Championship",
+      "main_event": {
+        "fighters": [
+          "TBD",
+          "TBD"
+        ]
+      }
     },
     {
       "id": "nitro-shogun-challenger-series-4-2027-01-30",
