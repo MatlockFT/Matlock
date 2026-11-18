@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source": "Official Japanese MMA promotion schedules and event pages, including mixed-discipline ONE Championship cards with confirmed MMA bouts; curated November 17, 2026.",
+  "source": "Official Japanese MMA promotion schedules and event pages. Expanded November 17, 2026 to include announced early-2027 GRACHAN dates; tentative schedules labeled per event.",
   "location_note": "Coordinates are approximate city-center pins, not venue entrances.",
   "events": [
     {
@@ -246,6 +246,27 @@
       "source_url": "https://www.deep2001.com/deep-tokyo-impact-2026-6th-round/"
     },
     {
+      "id": "japan-pfc-43-stones-rookies-2026-12-20",
+      "promotion": "Pound 4 Pound Fighting Championship",
+      "promotion_key": "pfc-japan",
+      "sport": "MMA",
+      "title": "PFC.43 / STONES & ROOKIES",
+      "date": "2026-12-20",
+      "venue": "POD ARENA",
+      "city": "Sapporo",
+      "country": "Japan",
+      "location": "Sapporo, Hokkaido, Japan",
+      "latitude": 43.0618,
+      "longitude": 141.3545,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "unspecified",
+      "official_url": "https://www.p4pfc.com/en/post/2026-12-20-pfc-43-stones%EF%BC%86rookies/",
+      "source_url": "https://www.p4pfc.com/en/",
+      "source_label": "PFC official event announcement",
+      "date_note": "PFC confirms December 20 at POD ARENA, Sapporo. Part 1 consists of professional fights and Part 2 of amateur bouts; bout lineup was not announced when listed."
+    },
+    {
       "id": "nexus-46-2026-12-20",
       "promotion": "Fighting NEXUS",
       "promotion_key": "fighting-nexus",
@@ -344,6 +365,48 @@
       "official_url": "https://www.deep2001.com/deep-osaka-impact-2026-7th-round/",
       "source_label": "DEEP",
       "source_url": "https://www.deep2001.com/deep-osaka-impact-2026-7th-round/"
+    },
+    {
+      "id": "japan-grachan-2027-osaka-2027-02-14",
+      "promotion": "GRACHAN",
+      "promotion_key": "grachan",
+      "sport": "MMA",
+      "title": "GRACHAN 2027: Osaka (scheduled)",
+      "date": "2027-02-14",
+      "venue": "176BOX",
+      "city": "Osaka",
+      "country": "Japan",
+      "location": "Osaka, Japan",
+      "latitude": 34.6937,
+      "longitude": 135.5023,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://grachan.jp/news/2027schedule/",
+      "source_url": "https://grachan.jp/news/2027schedule/",
+      "source_label": "GRACHAN official 2027 venue calendar",
+      "date_note": "Organizer lists Sunday, February 14 at Osaka's 176BOX on its planned 2027 calendar. Event number, fight card and ticket information are not yet announced; date and venue may change."
+    },
+    {
+      "id": "japan-grachan-2027-tokyo-2027-03-14",
+      "promotion": "GRACHAN",
+      "promotion_key": "grachan",
+      "sport": "MMA",
+      "title": "GRACHAN 2027: Tokyo (scheduled)",
+      "date": "2027-03-14",
+      "venue": "Ota City Industrial Plaza PiO",
+      "city": "Tokyo",
+      "country": "Japan",
+      "location": "Tokyo, Japan",
+      "latitude": 35.6895,
+      "longitude": 139.6917,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://grachan.jp/news/2027schedule/",
+      "source_url": "https://grachan.jp/news/2027schedule/",
+      "source_label": "GRACHAN official 2027 venue calendar",
+      "date_note": "Organizer lists Sunday, March 14 at Tokyo's Ota City Industrial Plaza PiO on its planned 2027 calendar. Event number, fights and tickets remain unannounced; date and venue may change."
     }
   ]
 }
