@@ -272,8 +272,8 @@ if (new Set(europeanCodes).size < 40
     || essentialEuropeanIso.some(code => !europeanCodes.includes(code))) {
   failures.push('Europe regional map must render the Nordic, Baltic, Balkan, eastern and western countries.');
 }
-if (!Array.isArray(europeData.events) || europeData.events.length < 38) {
-  failures.push('Europe calendar must retain at least 38 scheduled MMA cards.');
+if (!Array.isArray(europeData.events) || europeData.events.length < 50) {
+  failures.push('Europe calendar must retain at least 50 scheduled MMA cards.');
 } else {
   const ids = new Set();
   const countries = new Set();
@@ -291,11 +291,14 @@ if (!Array.isArray(europeData.events) || europeData.events.length < 38) {
         || event.longitude < -26 || event.longitude > 45) {
       failures.push('European map coordinates must fall within regional viewport.');
     }
-    if (!String(event.official_url || '').startsWith('https://')) failures.push('European event needs a source link.');
+    if (!String(event.official_url || '').startsWith('https://') || !String(event.source_url || '').startsWith('https://'))
+      failures.push('European event needs source and organizer-or-calendar links.');
+    if (event.country === 'Ireland' && /Newry|Belfast/i.test(event.city || '')) failures.push('Northern Ireland venues must be under the United Kingdom.');
   }
-  if (countries.size < 12) failures.push('Europe should retain diverse national and regional MMA schedules.');
+  if (countries.size < 20) failures.push('Europe should retain twenty national and regional MMA calendars.');
   for (const name of ['United Kingdom','France','Poland','Germany','Czechia','Slovakia',
-      'Croatia','Sweden','Finland','Spain','Italy','Belgium','Netherlands']) {
+      'Croatia','Sweden','Finland','Spain','Italy','Belgium','Netherlands',
+      'Ireland','Greece','Bulgaria','Serbia','Romania','Slovenia']) {
     if (!countries.has(name)) failures.push('Europe coverage should include ' + name + '.');
   }
 }
