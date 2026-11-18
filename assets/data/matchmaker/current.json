@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-18T00:00:40.683Z"
+      "checkedAt": "2026-11-18T07:07:28.000Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-18T00:01:23.080Z",
+      "checkedAt": "2026-11-18T07:08:01.076Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -14045,9 +14045,11 @@
         "officialThrough": "2026-11-14"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Diyar Nurgozhay",
+        "opponentId": "diyar-nurgozhay"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -89781,9 +89783,11 @@
         "officialThrough": "2026-11-14"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Alik Lorenz",
+        "opponentId": "alik-lorenz"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -90191,9 +90195,11 @@
         "officialThrough": "2026-11-14"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Nikolas Motta",
+        "opponentId": "nikolas-motta"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -254519,9 +254525,11 @@
         "officialThrough": "2026-11-14"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Dom Mar Fan",
+        "opponentId": "dom-mar-fan"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
