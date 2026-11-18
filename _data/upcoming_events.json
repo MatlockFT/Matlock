@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-18T16:45:20.668Z",
+  "generated_at": "2026-11-18T23:11:50.530Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-11-21-fight-card",
@@ -214,7 +214,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/ALBAZI_AMIR_L_02-07.png?itok=eWJL3Orf",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-120"
+                  "moneyline": "-118"
                 },
                 {
                   "name": "Alessandro Costa",
@@ -222,7 +222,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/COSTA_ALESSANDRO_L_07-11.png?itok=okElYxK7",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-106"
+                  "moneyline": "-108"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -735,29 +735,6 @@
             {
               "order": 5,
               "label": "",
-              "weight_class": "Light Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Quentin Pasley",
-                  "initials": "QP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/PASLEY_QUENTEN_L_09-08.png?itok=IrJsCNSN",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Junior Tafa",
-                  "initials": "JT",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/TAFA_JUNIOR_L_05-02.png?itok=dLi9Oyuv",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 6,
-              "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
                 {
@@ -772,6 +749,36 @@
                   "name": "Baisangur Susurkaev",
                   "initials": "BS",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/SUSURKAEV_BAISANGUR_L_05-09.png?itok=tUbfeTCb",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "early",
+          "title": "Early Prelims",
+          "time": "5:00 PM ET",
+          "bouts": [
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Quentin Pasley",
+                  "initials": "QP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/PASLEY_QUENTEN_L_09-08.png?itok=IrJsCNSN",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Junior Tafa",
+                  "initials": "JT",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/TAFA_JUNIOR_L_05-02.png?itok=dLi9Oyuv",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -1144,7 +1151,7 @@
         {
           "kind": "main",
           "title": "Main Card",
-          "time": "5:00 PM ET",
+          "time": "8:00 PM ET",
           "bouts": [
             {
               "order": 1,
@@ -1157,7 +1164,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/BONFIM_GABRIEL_L_11-08.png?itok=FGdOTced",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-130"
                 },
                 {
                   "name": "Sean Brady",
@@ -1165,7 +1172,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/BRADY_SEAN_L_05-09.png?itok=lfpHN5PX",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+110"
                 }
               ]
             }
