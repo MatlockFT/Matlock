@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "subregion": "Southeast Asia",
-  "source": "Curated upcoming Asian MMA events from promoter, federation and tournament documents. Expanded November 17, 2026; dates and venues checked against linked sources.",
+  "source": "Curated upcoming Southeast Asian MMA cards from organizer notices, ticketing and fight-event calendars. Updated November 17, 2026; mixed-discipline event rules and location ambiguities noted per event.",
   "location_note": "Pins use approximate host-city coordinates, not venue entrances. Date/venue ambiguities are identified on affected events.",
   "events": [
     {
@@ -49,6 +49,28 @@
       "date_note": "Mixed-discipline card, predominantly Muay Thai; the official lineup includes a bantamweight MMA bout."
     },
     {
+      "id": "asia-cyborg-fight-night-3-leganes-2026-11-21",
+      "promotion": "Cyborg Fight Night",
+      "promotion_key": "cyborg-fight-night",
+      "sport": "MMA",
+      "title": "Cyborg Fight Night 3",
+      "date": "2026-11-21",
+      "venue": "Rosada Complex / Cagamutan Norte",
+      "city": "Leganes",
+      "state": "Iloilo",
+      "country": "Philippines",
+      "location": "Leganes, Iloilo, Philippines",
+      "latitude": 10.79,
+      "longitude": 122.589,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "unspecified",
+      "official_url": "https://happeningnext.com/event/cyborg-fight-night-3-eid3a0e9n3nf5",
+      "source_url": "https://happeningnext.com/event/cyborg-fight-night-3-eid3a0e9n3nf5",
+      "source_label": "Cyborg's Gym Iloilo event notice / Sherdog calendar",
+      "date_note": "Organizer-syndicated notice confirms November 21, 7 p.m. in Cagamutan Norte, Leganes, and a 65kg MMA bout (Hemor vs. Boyles). Sherdog lists Rosada Complex and Obedencio vs. Casipe in its event listing. Specific main event and venue room should be checked with promoter."
+    },
+    {
       "id": "asia-lion-championship-37-2026-11-21",
       "promotion": "LION Championship",
       "promotion_key": "lion-championship",
@@ -68,6 +90,28 @@
       "official_url": "https://www.sherdog.com/organizations/Lion-Championship-17785",
       "source_url": "https://www.sherdog.com/organizations/Lion-Championship-17785",
       "source_label": "Sherdog / LION Championship"
+    },
+    {
+      "id": "asia-philippine-combat-championship-13-2026-11-21",
+      "promotion": "Philippine Combat Championship",
+      "promotion_key": "pcc",
+      "sport": "MMA",
+      "title": "PCC 13: Cervantes vs. Labang",
+      "date": "2026-11-21",
+      "venue": "International Baptist College",
+      "city": "Mandaluyong",
+      "state": "Metro Manila",
+      "country": "Philippines",
+      "location": "Mandaluyong, Metro Manila, Philippines",
+      "latitude": 14.5794,
+      "longitude": 121.0359,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "unspecified",
+      "official_url": "https://www.facebook.com/61571481400526/posts/-pcc-13-the-final-date-is-set-its-official-the-final-date-for-philippine-combat-/122181465416716046/",
+      "source_url": "https://www.hammernutrition.ph/pages/event/philippine-combat-championship-13-2026-11-21",
+      "source_label": "PCC announcement / Hammer Nutrition Philippines calendar",
+      "date_note": "The November 21 card mixes MMA, K-1 and boxing; MMA matchups are advertised. Organizer's material disagrees on whether the event room is on the fifth or sixth floor, and earlier fighter announcements differ. Venue and date are supported; verify final room and bout order with PCC."
     },
     {
       "id": "asia-zeus-road-to-olympus-5-2026-11-29",
