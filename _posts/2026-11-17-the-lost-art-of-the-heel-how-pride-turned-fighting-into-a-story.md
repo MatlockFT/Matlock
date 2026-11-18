@@ -6,7 +6,8 @@ date: 2026-11-17
 category: History
 author: Matlock
 image: ""
-tags: []
+tags:
+  - "[]"
 show_toc: false
 pinned: false
 members_only: false
@@ -67,6 +68,12 @@ The rivalry reached its peak on May 1, 2000, when Sakuraba met [Royce Gracie at 
 </figure>
 
 Sakuraba defeated Renzo and Ryan Gracie before the end of 2000, although a meeting with Rickson never materialized. His popularity had grown beyond the novelty of a professional wrestler succeeding in MMA. He had become the central figure in a rivalry that PRIDE could revisit with every new Gracie opponent, drawing on the history of previous encounters to build anticipation for the next. **The promotion's storytelling was particularly effective because audiences already understood what was at stake, even when the participants weren't competing for a championship.**
+
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-6c8c372b" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/the-lost-art-of-the-heel-how-pride-turned-fighti-video-20261117-231828-625.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
 
 ## When the Villains Became Heroes
 
