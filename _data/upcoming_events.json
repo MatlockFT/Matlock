@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-17T17:52:58.551Z",
+  "generated_at": "2026-11-18T00:16:39.224Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-11-21-fight-card",
@@ -245,6 +245,56 @@
                   "name": "Tahir Abdullayev",
                   "initials": "TA",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ABDULLAYEV_TAHIR_L_06-27.png?itok=OjpS2GZ7",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+200"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Nikolas Motta",
+                  "initials": "NM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-01/MOTTA_NIKOLAS_L_01-13.png?itok=j7dTiOfC",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "+124"
+                },
+                {
+                  "name": "Dom Mar Fan",
+                  "initials": "DMF",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/MAR_FAN_DOM_R_01-31.png?itok=X_iT6-pY",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-160"
+                }
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Diyar Nurgozhay",
+                  "initials": "DN",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/NURGOZHAY_DIYAR_L_08-08.png?itok=2XaiCsxp",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": "-265"
+                },
+                {
+                  "name": "Alik Lorenz",
+                  "initials": "AL",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/LORENZ_ALIK_L_08-18.png?itok=d0cY5m7y",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": "+200"

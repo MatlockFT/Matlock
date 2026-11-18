@@ -1,7 +1,37 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-17T00:48:50.679Z",
+  "generated_at": "2026-11-18T00:17:31.437Z",
   "changes": [
+    {
+      "id": "2026-11-18T00:17:31.437Z|ufc-fight-night-2026-11-21-fight-card|bout_added|1",
+      "at": "2026-11-18T00:17:31.437Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-11-21-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Procházka vs Stirling",
+      "event_date": "2026-11-21",
+      "summary": "Nikolas Motta vs Dom Mar Fan added to Procházka vs Stirling.",
+      "details": {
+        "order": 10,
+        "section": "Prelims",
+        "weight_class": "Lightweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-18T00:17:31.437Z|ufc-fight-night-2026-11-21-fight-card|bout_added|2",
+      "at": "2026-11-18T00:17:31.437Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-11-21-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Procházka vs Stirling",
+      "event_date": "2026-11-21",
+      "summary": "Diyar Nurgozhay vs Alik Lorenz added to Procházka vs Stirling.",
+      "details": {
+        "order": 11,
+        "section": "Prelims",
+        "weight_class": "Light Heavyweight Bout"
+      }
+    },
     {
       "id": "2026-11-17T00:48:50.679Z|ufc-335-2026-12-12-fight-card|bout_moved|1",
       "at": "2026-11-17T00:48:50.679Z",
@@ -4511,38 +4541,6 @@
         "to_order": 5,
         "from_section": "Main Card",
         "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-10-21T23:29:13.877Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|2",
-      "at": "2026-10-21T23:29:13.877Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Mantas Kondratavičius vs Wes Schultz moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 5,
-        "to_order": 6,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-10-21T23:29:13.877Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|3",
-      "at": "2026-10-21T23:29:13.877Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Gabriel Lorenco vs Alvin Hines moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 6,
-        "to_order": 7,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
       }
     }
   ]
