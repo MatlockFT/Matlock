@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-17T17:49:07.641Z"
+      "checkedAt": "2026-11-18T00:00:40.683Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-17T17:50:01.903Z",
+      "checkedAt": "2026-11-18T00:01:23.080Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -14044,7 +14044,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -89776,7 +89780,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -90182,7 +90190,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -254506,7 +254518,11 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
