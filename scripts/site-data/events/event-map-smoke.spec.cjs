@@ -141,23 +141,28 @@ test.describe('Event Map mobile interaction chain', () => {
     const count = await singles.count();
     expect(count).toBeGreaterThan(0);
 
-    const before = await page.evaluate(() => window.scrollY);
+    // Playwright may naturally scroll a later pin into view. Measure only
+    // movement caused by selecting a visible pin, not prior browser positioning.
+    await singles.nth(0).scrollIntoViewIfNeeded();
+    const beforeFirst = await page.evaluate(() => window.scrollY);
     await singles.nth(0).tap();
     await expect(page.locator('[data-event-detail-card]')).toBeVisible();
     const firstTitle = await title(page);
     const afterFirst = await page.evaluate(() => window.scrollY);
-    expect(Math.abs(afterFirst - before)).toBeLessThan(100);
+    expect(Math.abs(afterFirst - beforeFirst)).toBeLessThan(100);
 
     const historyTitles = [firstTitle];
     const taps = Math.min(count, 3);
     for (let index = 1; index < taps; index += 1) {
+      await singles.nth(index).scrollIntoViewIfNeeded();
+      const beforeTap = await page.evaluate(() => window.scrollY);
       await singles.nth(index).tap();
       const currentTitle = await title(page);
       expect(currentTitle).not.toBe('');
       expect(currentTitle).not.toBe(historyTitles.at(-1));
       historyTitles.push(currentTitle);
       const afterTap = await page.evaluate(() => window.scrollY);
-      expect(Math.abs(afterTap - before)).toBeLessThan(130);
+      expect(Math.abs(afterTap - beforeTap)).toBeLessThan(130);
     }
 
     for (let index = historyTitles.length - 2; index >= 0; index -= 1) {
