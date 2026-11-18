@@ -83,7 +83,7 @@ const asiaCalendarSpecs = {
   southeast: { group: 'southeast-asia', minimum: 9, countries: ['Thailand', 'Vietnam', 'Philippines', 'Singapore', 'Indonesia'] },
   south: { group: 'south-asia', minimum: 5, countries: ['India', 'Nepal'] },
   central: { group: 'central-asia', minimum: 8, countries: ['Kazakhstan', 'Kyrgyzstan', 'Tajikistan', 'Uzbekistan'] },
-  west: { group: 'west-asia', minimum: 16, countries: ['Qatar', 'Saudi Arabia', 'Azerbaijan', 'United Arab Emirates', 'Armenia', 'Georgia', 'Jordan', 'Israel', 'Kuwait', 'Iraq'] }
+  west: { group: 'west-asia', minimum: 17, countries: ['Qatar', 'Saudi Arabia', 'Azerbaijan', 'United Arab Emirates', 'Armenia', 'Georgia', 'Jordan', 'Israel', 'Kuwait', 'Iraq'] }
 };
 const asiaCalendarDocuments = {
   east: asia_east_Data, southeast: asia_southeast_Data,
@@ -131,7 +131,31 @@ for (const [key, spec] of Object.entries(asiaCalendarSpecs)) {
     }
   }
 }
-if (asianEventIds.size < 45) failures.push('Asian calendars must retain 45 distinct source-linked event records.');
+if (asianEventIds.size < 46) failures.push('Asian calendars must retain 46 distinct source-linked event records.');
+// Japan is maintained in its own curated feed and must not silently lose scheduled MMA cards.
+const japanData = JSON.parse(await fs.readFile('_data/japan_mma_events.json', 'utf8'));
+requireText(regionalFeed, 'site.data.japan_mma_events.events', 'The Event Map must include the Japan calendar.');
+const japanEvents = japanData?.events;
+if (!Array.isArray(japanEvents) || japanEvents.length < 20) {
+  failures.push('Japan MMA calendar must retain at least 20 announced fight events.');
+} else {
+  for (const event of japanEvents) {
+    if (!event.id || asianEventIds.has(event.id)) {
+      failures.push('Japan event IDs must be unique against the Asia subregional feeds.');
+    }
+    asianEventIds.add(event.id);
+    if (event.sport !== 'MMA' || !event.title || !event.promotion || !event.date || !event.venue || !event.city || event.country !== 'Japan') {
+      failures.push('Every Japan event must specify an MMA promotion, date, city, venue, and Japan country.');
+    }
+    if (!/^20\d{2}-\d{2}-\d{2}$/.test(event.date || '') || event.date < '2026-11-17') {
+      failures.push('Japan MMA events require an upcoming YYYY-MM-DD date.');
+    }
+    if (!String(event.source_url || '').startsWith('https://') || !String(event.official_url || '').startsWith('https://')) {
+      failures.push('Japan events must retain secure source and organizer URLs.');
+    }
+  }
+}
+
 
 
 const expectedAsiaGroups = {

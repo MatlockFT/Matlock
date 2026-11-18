@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "subregion": "West Asia",
-  "source": "Curated upcoming Asian MMA events from organizer, federation, ticketing and event-calendar sources. Expanded November 17, 2026; discipline, arena and date ambiguities are noted per event.",
+  "source": "Curated upcoming Asian MMA events from organizer, federation, ticketing and independent calendars. Updated November 17, 2026; venue/date ambiguities noted per event.",
   "location_note": "Pins use approximate host-city coordinates, not venue entrances. Date/venue ambiguities are identified on affected events.",
   "events": [
     {
@@ -53,6 +53,35 @@
         ],
         "weight_class": "Light Heavyweight"
       }
+    },
+    {
+      "id": "asia-bwp-1-dubai-2026-11-27",
+      "promotion": "Bullwaves Promotion",
+      "promotion_key": "bullwaves-promotion",
+      "sport": "MMA",
+      "title": "BWP 1: Mitchell vs. Junio",
+      "date": "2026-11-27",
+      "venue": "Meydan Hotel",
+      "city": "Dubai",
+      "state": "Dubai Emirate",
+      "country": "United Arab Emirates",
+      "location": "Dubai, Dubai Emirate, United Arab Emirates",
+      "latitude": 25.2048,
+      "longitude": 55.2708,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://www.bullwavespromotion.com/mma-fight-night-dubai",
+      "source_url": "https://tickets.virginmegastore.me/ae/event/35972/sports/bwp-1",
+      "source_label": "Bullwaves Promotion / Virgin Megastore Tickets",
+      "main_event": {
+        "fighters": [
+          "John Mitchell",
+          "Rander Junio"
+        ],
+        "weight_class": "Lightweight"
+      },
+      "date_note": "The promoter lists 12 professional MMA bouts at Meydan Hotel on November 27, including Mitchell vs. Junio. Tickets are offered through Virgin Megastore. Pin is the Dubai city center, not the hotel entrance."
     },
     {
       "id": "asia-mfe-59-yerevan-2026-11-27",
