@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "subregion": "East Asia",
-  "source": "Curated upcoming East Asian MMA cards using promotion or MMA-event calendar sources. Updated November 17, 2026; uncertain organizer details are noted.",
+  "source": "Curated upcoming East Asian MMA cards using promoter announcements, specialist MMA reporting and fight-event calendars. Updated November 17, 2026; unclear details are noted per event.",
   "location_note": "Pins use approximate host-city coordinates, not venue entrances. Date/venue ambiguities are identified on affected events.",
   "events": [
     {
@@ -24,6 +24,28 @@
       "official_url": "https://mmma.co.kr/en/event/blackcombat-17",
       "source_url": "https://mmma.co.kr/en/event/blackcombat-17",
       "source_label": "MMA Korea / BLACK COMBAT"
+    },
+    {
+      "id": "asia-happy-elephant-mma14-chengdu-2026-11-21",
+      "promotion": "Happy Elephant MMA Champions' League",
+      "promotion_key": "happy-elephant",
+      "sport": "MMA",
+      "title": "Happy Elephant MMA Champions' League 14",
+      "date": "2026-11-21",
+      "venue": "Huaxi LIVE 528M Space",
+      "city": "Chengdu",
+      "state": "Sichuan",
+      "country": "China",
+      "location": "Chengdu, Sichuan, China",
+      "latitude": 30.5728,
+      "longitude": 104.0668,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://mmaplanet.jp/241435",
+      "source_url": "https://mmaplanet.jp/241435",
+      "source_label": "MMAPLANET / Japanese athlete announcement",
+      "date_note": "MMAPLANET's October 20 report confirms the November 21 Chengdu venue and strawweight MMA pairing SARAMI vs. Hailai Wushamo. The promotion's official event page was not located; source is specialist MMA journalism."
     },
     {
       "id": "asia-jck-fight-night-126-2026-11-21",
