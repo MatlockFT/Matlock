@@ -55,7 +55,7 @@ jobs:
         run: npm run build:history-share
 
       - name: Upload rendered preview
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: otd-share-preview
           path: .otd-share-preview/*.jpg
