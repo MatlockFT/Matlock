@@ -55,6 +55,8 @@
     const regionButtons = [...page.querySelectorAll('[data-region]')];
     const asiaSubregionNav = page.querySelector('[data-asia-subregions]');
     const asiaSubregionButtons = [...page.querySelectorAll('[data-asia-subregion]')];
+    const northAmericaSubregionNav = page.querySelector('[data-north-america-subregions]');
+    const northAmericaSubregionButtons = [...page.querySelectorAll('[data-north-america-subregion]')];
     const countryFilter = page.querySelector('[data-country-filter]');
     const mapViewButtons = [...page.querySelectorAll('[data-map-view]')];
     const regionSummary = page.querySelector('[data-map-region-summary]');
@@ -80,6 +82,38 @@
         'united-states': { name: 'United States', iso: '840', region: 'north-america', aliases: ['us','usa','united states','united states of america'] },
         mexico: { name: 'Mexico', iso: '484', region: 'north-america', aliases: ['mx','mexico','méxico'] },
         canada: { name: 'Canada', iso: '124', region: 'north-america', aliases: ['ca','canada'] },
+        'belize': { name: "Belize", iso: '084', region: 'north-america', aliases: ["bz"] },
+        'guatemala': { name: "Guatemala", iso: '320', region: 'north-america', aliases: ["gt"] },
+        'el-salvador': { name: "El Salvador", iso: '222', region: 'north-america', aliases: ["sv"] },
+        'honduras': { name: "Honduras", iso: '340', region: 'north-america', aliases: ["hn"] },
+        'nicaragua': { name: "Nicaragua", iso: '558', region: 'north-america', aliases: ["ni"] },
+        'costa-rica': { name: "Costa Rica", iso: '188', region: 'north-america', aliases: ["cr"] },
+        'panama': { name: "Panama", iso: '591', region: 'north-america', aliases: ["pa"] },
+        'cuba': { name: "Cuba", iso: '192', region: 'north-america', aliases: ["cu"] },
+        'jamaica': { name: "Jamaica", iso: '388', region: 'north-america', aliases: ["jm"] },
+        'haiti': { name: "Haiti", iso: '332', region: 'north-america', aliases: ["ht"] },
+        'dominican-republic': { name: "Dominican Republic", iso: '214', region: 'north-america', aliases: ["do","republica dominicana"] },
+        'bahamas': { name: "Bahamas", iso: '044', region: 'north-america', aliases: ["bs","the bahamas"] },
+        'trinidad-and-tobago': { name: "Trinidad and Tobago", iso: '780', region: 'north-america', aliases: ["tt","trinidad & tobago"] },
+        'barbados': { name: "Barbados", iso: '052', region: 'north-america', aliases: ["bb"] },
+        'antigua-and-barbuda': { name: "Antigua and Barbuda", iso: '028', region: 'north-america', aliases: ["ag"] },
+        'saint-kitts-and-nevis': { name: "Saint Kitts and Nevis", iso: '659', region: 'north-america', aliases: ["kn","st kitts and nevis"] },
+        'dominica': { name: "Dominica", iso: '212', region: 'north-america', aliases: ["dm"] },
+        'saint-lucia': { name: "Saint Lucia", iso: '662', region: 'north-america', aliases: ["lc","st lucia"] },
+        'saint-vincent-and-the-grenadines': { name: "Saint Vincent and the Grenadines", iso: '670', region: 'north-america', aliases: ["vc","st vincent and the grenadines"] },
+        'grenada': { name: "Grenada", iso: '308', region: 'north-america', aliases: ["gd"] },
+        'aruba': { name: "Aruba", iso: '533', region: 'north-america', aliases: ["aw"] },
+        'curacao': { name: "Curaçao", iso: '531', region: 'north-america', aliases: ["cw","curacao"] },
+        'sint-maarten': { name: "Sint Maarten", iso: '534', region: 'north-america', aliases: ["sx","st maarten","sint maarten (dutch part)"] },
+        'saint-martin': { name: "Saint Martin", iso: '663', region: 'north-america', aliases: ["mf","saint martin (french part)"] },
+        'puerto-rico': { name: "Puerto Rico (US)", iso: '630', region: 'north-america', aliases: ["pr","puerto rico"] },
+        'guadeloupe': { name: "Guadeloupe", iso: '312', region: 'north-america', aliases: ["gp"] },
+        'martinique': { name: "Martinique", iso: '474', region: 'north-america', aliases: ["mq"] },
+        'cayman-islands': { name: "Cayman Islands", iso: '136', region: 'north-america', aliases: ["ky"] },
+        'turks-and-caicos': { name: "Turks and Caicos Islands", iso: '796', region: 'north-america', aliases: ["tc","turks and caicos"] },
+        'us-virgin-islands': { name: "US Virgin Islands", iso: '850', region: 'north-america', aliases: ["vi","u.s. virgin islands"] },
+        'british-virgin-islands': { name: "British Virgin Islands", iso: '092', region: 'north-america', aliases: ["vg"] },
+        'bonaire': { name: "Bonaire, Sint Eustatius and Saba", iso: '535', region: 'north-america', aliases: ["bq","caribbean netherlands"] },
         brazil: { name: 'Brazil', iso: '076', region: 'south-america', aliases: ['br','brazil','brasil'] },
         argentina: { name: 'Argentina', iso: '032', region: 'south-america', aliases: ['ar','argentina'] },
         chile: { name: 'Chile', iso: '152', region: 'south-america', aliases: ['cl','chile'] },
@@ -199,6 +233,47 @@
         senegal: { name: 'Senegal', iso: '686', region: 'africa', aliases: ['sn','senegal'] },
         'ivory-coast': { name: 'Ivory Coast', iso: '384', region: 'africa', aliases: ['ci','ivory coast','côte d’ivoire','cote d ivoire'] }
     };
+    // North America stays one SVG map; subregional tabs change its geographic focus.
+    const NORTH_AMERICA_SUBREGIONS = {
+        mainland: { name: 'US / Canada / Mexico', countries: ['united-states', 'canada', 'mexico'], bounds: [[-168, 14], [-52, 73]] },
+        'central-america': { name: 'Central America', countries: ["belize","guatemala","el-salvador","honduras","nicaragua","costa-rica","panama"], bounds: [[-93, 6], [-77, 19]] },
+        caribbean: { name: 'Caribbean', countries: ["cuba","jamaica","haiti","dominican-republic","bahamas","trinidad-and-tobago","barbados","antigua-and-barbuda","saint-kitts-and-nevis","dominica","saint-lucia","saint-vincent-and-the-grenadines","grenada","aruba","curacao","sint-maarten","saint-martin","puerto-rico","guadeloupe","martinique","cayman-islands","turks-and-caicos","us-virgin-islands","british-virgin-islands","bonaire"], bounds: [[-87, 9], [-58, 29]] }
+    };
+    // Coordinates frame small islands absent from low-resolution atlas geometry, never event pins.
+    const NORTH_AMERICA_SMALL_COUNTRY_FOCUS = {
+        'belize': [-88.5, 17.19],
+        'guatemala': [-90.5, 15.7],
+        'el-salvador': [-88.89, 13.79],
+        'honduras': [-86.55, 14.9],
+        'nicaragua': [-85.2, 12.85],
+        'costa-rica': [-84.1, 9.7],
+        'panama': [-80.1, 8.55],
+        'cuba': [-79.5, 22],
+        'jamaica': [-77.3, 18.1],
+        'haiti': [-72.3, 19],
+        'dominican-republic': [-70.2, 19],
+        'bahamas': [-77.4, 24.2],
+        'trinidad-and-tobago': [-61.25, 10.55],
+        'barbados': [-59.55, 13.19],
+        'antigua-and-barbuda': [-61.8, 17.07],
+        'saint-kitts-and-nevis': [-62.73, 17.34],
+        'dominica': [-61.37, 15.4],
+        'saint-lucia': [-60.99, 13.91],
+        'saint-vincent-and-the-grenadines': [-61.2, 13.2],
+        'grenada': [-61.68, 12.1],
+        'aruba': [-69.97, 12.51],
+        'curacao': [-68.99, 12.17],
+        'sint-maarten': [-63.05, 18.04],
+        'saint-martin': [-63.07, 18.09],
+        'puerto-rico': [-66.1, 18.2],
+        'guadeloupe': [-61.55, 16.24],
+        'martinique': [-61.03, 14.64],
+        'cayman-islands': [-81.25, 19.32],
+        'turks-and-caicos': [-71.75, 21.75],
+        'us-virgin-islands': [-64.8, 18.34],
+        'british-virgin-islands': [-64.56, 18.43],
+        'bonaire': [-68.28, 12.18],
+    };
     // Asia is one map with five geographic navigation levels.
     const ASIA_SUBREGIONS = {
         'east-asia': { name: 'East Asia', countries: ['japan', 'south-korea', 'china', 'taiwan', 'mongolia', 'north-korea'], bounds: [[73,17],[151,56]] },
@@ -221,7 +296,7 @@
 
     const REGIONS = {
         world: { name: 'World', countries: Object.keys(COUNTRIES) },
-        'north-america': { name: 'North America', countries: ['united-states','mexico','canada'] },
+        'north-america': { name: 'North America', countries: Object.values(NORTH_AMERICA_SUBREGIONS).flatMap(group => group.countries) },
         'south-america': { name: 'South America', countries: [
             'brazil','peru','argentina','chile','colombia','ecuador','bolivia','uruguay',
             'paraguay','venezuela','guyana','suriname'
@@ -241,7 +316,7 @@
         ] }
     };
     const CONTINENT_GEO_IDS = {
-        'north-america': ['840','484','124'],
+        'north-america': Object.values(NORTH_AMERICA_SUBREGIONS).flatMap(group => group.countries.map(slug => COUNTRIES[slug].iso)),
         'south-america': ['076','032','152','170','604','218','068','600','858','862','328','740'],
         asia: Object.values(ASIA_SUBREGIONS).flatMap(group => group.countries.map(slug => COUNTRIES[slug].iso)),
         // Include the European mainland, Nordics, Baltics, Balkans, and eastern countries.
@@ -376,6 +451,7 @@
     let currentRegion = 'north-america';
     let currentCountry = 'united-states';
     let currentAsiaSubregion = 'east-asia';
+    let currentNorthAmericaSubregion = 'mainland';
     let filteredEvents = [];
     let eventOverrides = {};
     let currentRange = 'all';
@@ -457,6 +533,21 @@
             uruguay: 'America/Montevideo', paraguay: 'America/Asuncion',
             venezuela: 'America/Caracas', guyana: 'America/Guyana',
             suriname: 'America/Paramaribo',
+            'belize': 'America/Belize', guatemala: 'America/Guatemala',
+            'el-salvador': 'America/El_Salvador', honduras: 'America/Tegucigalpa',
+            nicaragua: 'America/Managua', 'costa-rica': 'America/Costa_Rica', panama: 'America/Panama',
+            cuba: 'America/Havana', jamaica: 'America/Jamaica', haiti: 'America/Port-au-Prince',
+            'dominican-republic': 'America/Santo_Domingo', bahamas: 'America/Nassau',
+            'trinidad-and-tobago': 'America/Port_of_Spain', barbados: 'America/Barbados',
+            'antigua-and-barbuda': 'America/Antigua', 'saint-kitts-and-nevis': 'America/St_Kitts',
+            dominica: 'America/Dominica', 'saint-lucia': 'America/St_Lucia',
+            'saint-vincent-and-the-grenadines': 'America/St_Vincent', grenada: 'America/Grenada',
+            aruba: 'America/Aruba', curacao: 'America/Curacao',
+            'sint-maarten': 'America/Lower_Princes', 'saint-martin': 'America/Marigot',
+            'puerto-rico': 'America/Puerto_Rico', guadeloupe: 'America/Guadeloupe',
+            martinique: 'America/Martinique', 'cayman-islands': 'America/Cayman',
+            'turks-and-caicos': 'America/Grand_Turk', 'us-virgin-islands': 'America/St_Thomas',
+            'british-virgin-islands': 'America/Tortola', bonaire: 'America/Kralendijk',
             canada: 'America/Toronto', 'united-states': 'America/Chicago',
             'south-korea': 'Asia/Seoul', china: 'Asia/Shanghai',
             'taiwan': 'Asia/Taipei',
@@ -938,8 +1029,11 @@
         currentRegion = Object.hasOwn(REGIONS, params.get('region')) ? params.get('region') : 'north-america';
         currentAsiaSubregion = Object.hasOwn(ASIA_SUBREGIONS, params.get('subregion'))
             ? params.get('subregion') : 'east-asia';
+        currentNorthAmericaSubregion = Object.hasOwn(NORTH_AMERICA_SUBREGIONS, params.get('subregion'))
+            ? params.get('subregion') : 'mainland';
         currentCountry = params.has('country') ? params.get('country')
-            : (currentRegion === 'north-america' ? 'united-states' : 'all');
+            : (currentRegion === 'north-america' && currentNorthAmericaSubregion === 'mainland'
+                ? 'united-states' : 'all');
 
         if (currentCountry !== 'all' && !REGIONS[currentRegion].countries.includes(currentCountry))
             currentCountry = 'all';
@@ -950,6 +1044,18 @@
             if (country) {
                 currentRegion = COUNTRIES[country].region;
                 currentCountry = country;
+            }
+        }
+        if (currentRegion === 'north-america') {
+            const groupForCountry = Object.keys(NORTH_AMERICA_SUBREGIONS).find(id =>
+                NORTH_AMERICA_SUBREGIONS[id].countries.includes(currentCountry));
+            if (groupForCountry) currentNorthAmericaSubregion = groupForCountry;
+            else if (initialEventId && !params.has('subregion')) {
+                const raw = rawEvents.find(event => String(event.id) === initialEventId);
+                const country = raw && countryOf(raw);
+                const matchedGroup = Object.keys(NORTH_AMERICA_SUBREGIONS).find(id =>
+                    NORTH_AMERICA_SUBREGIONS[id].countries.includes(country));
+                if (matchedGroup) currentNorthAmericaSubregion = matchedGroup;
             }
         }
         if (currentRegion === 'asia') {
@@ -980,7 +1086,8 @@
       cluster: selectedClusterKey,
       region: currentRegion,
       country: currentCountry,
-      subregion: currentRegion === 'asia' ? currentAsiaSubregion : ''
+      subregion: currentRegion === 'asia' ? currentAsiaSubregion
+          : currentRegion === 'north-america' ? currentNorthAmericaSubregion : ''
   }
         };
     }
@@ -990,9 +1097,12 @@
         const params = url.searchParams;
         ['range', 'state', 'promotion', 'level', 'q', 'radius', 'event', 'region', 'country', 'subregion', 'view'].forEach(key => params.delete(key));
         if (currentRange !== 'all') params.set('range', currentRange);
-        if (currentRegion !== 'north-america') params.set('region', currentRegion);
+        if (currentRegion !== 'north-america' || currentNorthAmericaSubregion !== 'mainland') params.set('region', currentRegion);
         if (currentRegion === 'asia') params.set('subregion', currentAsiaSubregion);
-        const defaultCountry = currentRegion === 'north-america' ? 'united-states' : 'all';
+        if (currentRegion === 'north-america' && currentNorthAmericaSubregion !== 'mainland')
+            params.set('subregion', currentNorthAmericaSubregion);
+        const defaultCountry = currentRegion === 'north-america' && currentNorthAmericaSubregion === 'mainland'
+            ? 'united-states' : 'all';
         if (currentCountry !== defaultCountry) params.set('country', currentCountry);
         if (searchInput?.value.trim()) params.set('q', searchInput.value.trim());
         if (promotionFilter?.value) params.set('promotion', promotionFilter.value);
@@ -1005,7 +1115,8 @@
   || previous.range !== currentRange
   || previous.region !== currentRegion
   || previous.country !== currentCountry
-  || previous.subregion !== (currentRegion === 'asia' ? currentAsiaSubregion : '');
+  || previous.subregion !== (currentRegion === 'asia' ? currentAsiaSubregion
+      : currentRegion === 'north-america' ? currentNorthAmericaSubregion : '');
         const state = eventMapHistoryState();
         if (mode === 'push' && selectionChanged) window.history.pushState(state, '', target);
         else window.history.replaceState(state, '', target);
@@ -1108,6 +1219,8 @@
             if (currentRegion !== 'world' && COUNTRIES[event.countrySlug]?.region !== currentRegion) return false;
             if (currentRegion === 'asia'
                 && !ASIA_SUBREGIONS[currentAsiaSubregion].countries.includes(event.countrySlug)) return false;
+            if (currentRegion === 'north-america'
+                && !NORTH_AMERICA_SUBREGIONS[currentNorthAmericaSubregion].countries.includes(event.countrySlug)) return false;
             if (currentCountry !== 'all' && event.countrySlug !== currentCountry) return false;
             if (!matchesRange(event)) return false;
             if (promotionFilter?.value && event.promotion !== promotionFilter.value) return false;
@@ -1124,6 +1237,7 @@
         if (regionSummary) {
             const scope = currentCountry !== 'all' ? COUNTRIES[currentCountry].name
                 : currentRegion === 'asia' ? ASIA_SUBREGIONS[currentAsiaSubregion].name
+                : currentRegion === 'north-america' ? NORTH_AMERICA_SUBREGIONS[currentNorthAmericaSubregion].name
                 : REGIONS[currentRegion].name;
             regionSummary.textContent = scope + ' · ' + filteredEvents.length + ' event' + (filteredEvents.length === 1 ? '' : 's');
         }
@@ -1605,13 +1719,19 @@
     function activeCountrySlugs() {
         return currentRegion === 'asia'
             ? ASIA_SUBREGIONS[currentAsiaSubregion].countries
-            : REGIONS[currentRegion].countries;
+            : currentRegion === 'north-america'
+                ? NORTH_AMERICA_SUBREGIONS[currentNorthAmericaSubregion].countries
+                : REGIONS[currentRegion].countries;
     }
 
     function updateRegionNavigation() {
         regionButtons.forEach(button =>
             button.setAttribute('aria-pressed', String(button.dataset.region === currentRegion)));
         if (asiaSubregionNav) asiaSubregionNav.hidden = currentRegion !== 'asia';
+        if (northAmericaSubregionNav) northAmericaSubregionNav.hidden = currentRegion !== 'north-america';
+        northAmericaSubregionButtons.forEach(button =>
+            button.setAttribute('aria-pressed', String(
+                currentRegion === 'north-america' && button.dataset.northAmericaSubregion === currentNorthAmericaSubregion)));
         asiaSubregionButtons.forEach(button =>
             button.setAttribute('aria-pressed', String(
                 currentRegion === 'asia' && button.dataset.asiaSubregion === currentAsiaSubregion)));
@@ -1624,6 +1744,7 @@
         page.dataset.mexicoSelected = String(currentCountry === 'mexico');
         const label = currentCountry !== 'all' ? COUNTRIES[currentCountry].name
             : currentRegion === 'asia' ? ASIA_SUBREGIONS[currentAsiaSubregion].name
+            : currentRegion === 'north-america' ? NORTH_AMERICA_SUBREGIONS[currentNorthAmericaSubregion].name
             : REGIONS[currentRegion].name;
         svgNode.setAttribute('aria-label', 'Map of ' + label + ' showing upcoming MMA events');
     }
@@ -1639,6 +1760,20 @@
         showEmptyDetail();
         applyFilters({ sync: false });
         syncUrl({ mode: history });
+    }
+
+    function chooseNorthAmericaSubregion(next) {
+        if (currentRegion !== 'north-america' || !Object.hasOwn(NORTH_AMERICA_SUBREGIONS, next)
+            || currentNorthAmericaSubregion === next) return;
+        currentNorthAmericaSubregion = next;
+        currentCountry = 'all';
+        selectedEventId = '';
+        selectedClusterKey = '';
+        if (promotionFilter) promotionFilter.value = '';
+        rebuildMap({ resetZoom: true });
+        showEmptyDetail();
+        applyFilters({ sync: false });
+        syncUrl({ mode: 'push' });
     }
 
     function chooseAsiaSubregion(next) {
@@ -1658,6 +1793,7 @@
         if (!REGIONS[next] || next === currentRegion) return;
         currentRegion = next;
         if (next === 'asia') currentAsiaSubregion = 'east-asia';
+        if (next === 'north-america') currentNorthAmericaSubregion = 'mainland';
         currentCountry = 'all';
         selectedEventId = '';
         selectedClusterKey = '';
@@ -1682,6 +1818,26 @@
             projection = d3.geoAlbersUsa().fitExtent([[24, 24], [WIDTH - 24, HEIGHT - 24]], {
                 type: 'FeatureCollection', features: usFeatures
             });
+        } else if (currentRegion === 'north-america' && currentNorthAmericaSubregion !== 'mainland') {
+            const subregion = NORTH_AMERICA_SUBREGIONS[currentNorthAmericaSubregion];
+            const ids = new Set(subregion.countries.map(slug => String(Number(COUNTRIES[slug].iso))));
+            stateFeatures = worldFeatures.filter(feature => ids.has(String(Number(feature.id))));
+            const selectedIso = currentCountry === 'all' ? '' : String(Number(COUNTRIES[currentCountry].iso));
+            const selectedFeatures = selectedIso
+                ? stateFeatures.filter(feature => String(Number(feature.id)) === selectedIso) : [];
+            const [southwest, northeast] = subregion.bounds;
+            const focus = NORTH_AMERICA_SMALL_COUNTRY_FOCUS[currentCountry];
+            const fallbackWindow = focus
+                ? [[focus[0] - 3, focus[1] - 3], [focus[0] + 3, focus[1] + 3]]
+                : [southwest, northeast];
+            const frame = currentCountry === 'all'
+                ? { type: 'MultiPoint', coordinates: [southwest, northeast] }
+                : selectedFeatures.length
+                    ? { type: 'FeatureCollection', features: selectedFeatures }
+                    : { type: 'MultiPoint', coordinates: fallbackWindow };
+            projection = d3.geoMercator()
+                .fitExtent([[24, 24], [WIDTH - 24, HEIGHT - 24]], frame)
+                .clipExtent([[0, 0], [WIDTH, HEIGHT]]);
         } else if (currentRegion === 'asia') {
             const subregion = ASIA_SUBREGIONS[currentAsiaSubregion];
             const ids = new Set(subregion.countries.map(slug => String(Number(COUNTRIES[slug].iso))));
@@ -1711,7 +1867,10 @@
                 : worldFeatures.filter(feature => {
                     const iso = String(Number(feature.id));
                     if (currentCountry !== 'all') return iso === String(Number(COUNTRIES[currentCountry].iso));
-                    return CONTINENT_GEO_IDS[currentRegion]?.some(id => String(Number(id)) === iso);
+                    const ids = currentRegion === 'north-america'
+                        ? NORTH_AMERICA_SUBREGIONS[currentNorthAmericaSubregion].countries.map(slug => COUNTRIES[slug].iso)
+                        : CONTINENT_GEO_IDS[currentRegion];
+                    return ids?.some(id => String(Number(id)) === iso);
                 });
             const geo = { type: 'FeatureCollection', features: stateFeatures };
             if (currentRegion === 'europe' && ['all', 'russia', 'turkey'].includes(currentCountry)) {
@@ -1760,6 +1919,8 @@
         regionButtons.forEach(button => button.addEventListener('click', () => chooseRegion(button.dataset.region)));
         asiaSubregionButtons.forEach(button =>
             button.addEventListener('click', () => chooseAsiaSubregion(button.dataset.asiaSubregion)));
+        northAmericaSubregionButtons.forEach(button =>
+            button.addEventListener('click', () => chooseNorthAmericaSubregion(button.dataset.northAmericaSubregion)));
         countryFilter.addEventListener('change', () => chooseCountry(countryFilter.value));
         mapViewButtons.forEach(button => button.addEventListener('click', () => setMobileView(button.dataset.mapView)));
         searchInput?.addEventListener('input', () => applyFilters());

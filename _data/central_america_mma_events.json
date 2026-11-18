@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "subregion": "Central America",
+  "source": "Upcoming MMA events verified against organizer and ticket pages November 17, 2026.",
+  "location_note": "Pins use approximate host-city coordinates. Only MMA events with confirmed dates and host cities receive pins.",
+  "events": [
+    {
+      "id": "central-america-tnx-1226-2026-12-12",
+      "promotion": "Tough N Xtreme",
+      "promotion_key": "tnx",
+      "sport": "MMA",
+      "title": "TNX 1226: Sagman vs. Ruano",
+      "date": "2026-12-12",
+      "venue": "Palacio de los Deportes",
+      "city": "Heredia",
+      "state": "Heredia",
+      "country": "Costa Rica",
+      "location": "Heredia, Heredia, Costa Rica",
+      "latitude": 9.9981,
+      "longitude": -84.1165,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://tnxmma.com/",
+      "source_url": "https://tnxmma.com/",
+      "source_label": "Tough N Xtreme official schedule / QRTICKS",
+      "verification_status": "confirmed",
+      "last_verified": "2026-11-17",
+      "date_note": "TNX and its ticket seller confirm December 12, 2026 at Palacio de los Deportes, Heredia. Doors 3:00 p.m., fights 4:00 p.m. local time. City-center marker, not venue entrance.",
+      "main_event": {
+        "fighters": [
+          "Gabe Sagman",
+          "Perica Ruano"
+        ],
+        "weight_class": "Bantamweight"
+      }
+    }
+  ]
+}
