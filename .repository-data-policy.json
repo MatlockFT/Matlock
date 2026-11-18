@@ -321,6 +321,42 @@
       "publicContract": false
     },
     {
+      "id": "central-america-mma-event-curated-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/central_america_mma_events.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:verified-central-america-mma-calendar"
+      ],
+      "consumers": [
+        "jekyll:regional-event-map"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "caribbean-mma-event-curated-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/caribbean_mma_events.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:verified-caribbean-mma-calendar"
+      ],
+      "consumers": [
+        "jekyll:regional-event-map"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
       "id": "south-america-mma-event-curated-data",
       "storage": "build-time",
       "paths": [
