@@ -79,8 +79,8 @@ requireText(core, 'function activeCountrySlugs()', 'Country filter must match th
 
 // Staged Asian calendars must use the one global feed without speculative country pins.
 const asiaCalendarSpecs = {
-  east: { group: 'east-asia', minimum: 6, countries: ['South Korea', 'China', 'Taiwan'] },
-  southeast: { group: 'southeast-asia', minimum: 7, countries: ['Thailand', 'Vietnam', 'Philippines', 'Singapore', 'Indonesia'] },
+  east: { group: 'east-asia', minimum: 7, countries: ['South Korea', 'China', 'Taiwan'] },
+  southeast: { group: 'southeast-asia', minimum: 9, countries: ['Thailand', 'Vietnam', 'Philippines', 'Singapore', 'Indonesia'] },
   south: { group: 'south-asia', minimum: 5, countries: ['India', 'Nepal'] },
   central: { group: 'central-asia', minimum: 8, countries: ['Kazakhstan', 'Kyrgyzstan', 'Tajikistan', 'Uzbekistan'] },
   west: { group: 'west-asia', minimum: 16, countries: ['Qatar', 'Saudi Arabia', 'Azerbaijan', 'United Arab Emirates', 'Armenia', 'Georgia', 'Jordan', 'Israel', 'Kuwait', 'Iraq'] }
@@ -131,7 +131,7 @@ for (const [key, spec] of Object.entries(asiaCalendarSpecs)) {
     }
   }
 }
-if (asianEventIds.size < 42) failures.push('Asian calendars must retain 42 distinct source-linked event records.');
+if (asianEventIds.size < 45) failures.push('Asian calendars must retain 45 distinct source-linked event records.');
 
 
 const expectedAsiaGroups = {
