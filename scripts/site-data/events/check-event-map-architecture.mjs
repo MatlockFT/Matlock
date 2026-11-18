@@ -79,11 +79,11 @@ requireText(core, 'function activeCountrySlugs()', 'Country filter must match th
 
 // Staged Asian calendars must use the one global feed without speculative country pins.
 const asiaCalendarSpecs = {
-  east: { group: 'east-asia', minimum: 5, countries: ['South Korea', 'China', 'Taiwan'] },
+  east: { group: 'east-asia', minimum: 6, countries: ['South Korea', 'China', 'Taiwan'] },
   southeast: { group: 'southeast-asia', minimum: 7, countries: ['Thailand', 'Vietnam', 'Philippines', 'Singapore', 'Indonesia'] },
-  south: { group: 'south-asia', minimum: 4, countries: ['India', 'Nepal'] },
+  south: { group: 'south-asia', minimum: 5, countries: ['India', 'Nepal'] },
   central: { group: 'central-asia', minimum: 8, countries: ['Kazakhstan', 'Kyrgyzstan', 'Tajikistan', 'Uzbekistan'] },
-  west: { group: 'west-asia', minimum: 14, countries: ['Qatar', 'Saudi Arabia', 'Azerbaijan', 'United Arab Emirates', 'Armenia', 'Georgia', 'Jordan', 'Israel'] }
+  west: { group: 'west-asia', minimum: 16, countries: ['Qatar', 'Saudi Arabia', 'Azerbaijan', 'United Arab Emirates', 'Armenia', 'Georgia', 'Jordan', 'Israel', 'Kuwait', 'Iraq'] }
 };
 const asiaCalendarDocuments = {
   east: asia_east_Data, southeast: asia_southeast_Data,
@@ -131,7 +131,7 @@ for (const [key, spec] of Object.entries(asiaCalendarSpecs)) {
     }
   }
 }
-if (asianEventIds.size < 38) failures.push('Asian calendars must retain 38 distinct source-linked event records.');
+if (asianEventIds.size < 42) failures.push('Asian calendars must retain 42 distinct source-linked event records.');
 
 
 const expectedAsiaGroups = {
