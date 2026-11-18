@@ -147,7 +147,7 @@ if (!Array.isArray(japanEvents) || japanEvents.length < 20) {
     if (event.sport !== 'MMA' || !event.title || !event.promotion || !event.date || !event.venue || !event.city || event.country !== 'Japan') {
       failures.push('Every Japan event must specify an MMA promotion, date, city, venue, and Japan country.');
     }
-    if (!/^20\\d{2}-\\d{2}-\\d{2}$/.test(event.date || '') || event.date < '2026-11-17') {
+    if (!/^20\d{2}-\d{2}-\d{2}$/.test(event.date || '') || event.date < '2026-11-17') {
       failures.push('Japan MMA events require an upcoming YYYY-MM-DD date.');
     }
     if (!String(event.source_url || '').startsWith('https://') || !String(event.official_url || '').startsWith('https://')) {
