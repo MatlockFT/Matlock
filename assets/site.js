@@ -457,6 +457,18 @@
             `;
             stage.appendChild(controls);
 
+            const seek = document.createElement("input");
+            seek.type = "range";
+            seek.className = "article-inline-video-seek";
+            seek.setAttribute("aria-label", "Seek through video");
+            seek.setAttribute("aria-valuetext", "Timeline unavailable");
+            seek.min = "0";
+            seek.max = "1000";
+            seek.step = "1";
+            seek.value = "0";
+            seek.disabled = true;
+            stage.appendChild(seek);
+
             const fallback = document.createElement("div");
             fallback.className = "article-inline-video-fallback";
             fallback.hidden = true;
@@ -485,6 +497,38 @@
                 if (openLink) openLink.href = video.currentSrc || video.src;
             };
 
+            let isSeeking = false;
+            const formatVideoTime = seconds => {
+                const total = Math.floor(Math.max(0, Number(seconds) || 0));
+                return Math.floor(total / 60) + ":" + String(total % 60).padStart(2, "0");
+            };
+            const updateSeek = () => {
+                const duration = video.duration;
+                const canSeek = Number.isFinite(duration) && duration > 0;
+                seek.disabled = !canSeek;
+                const fraction = canSeek
+                    ? Math.min(1, Math.max(0, isSeeking ? Number(seek.value) / 1000 : (video.currentTime || 0) / duration))
+                    : 0;
+                seek.value = String(Math.round(fraction * 1000));
+                seek.style.setProperty("--video-seek-progress", (fraction * 100) + "%");
+                seek.setAttribute("aria-valuetext", canSeek
+                    ? formatVideoTime(fraction * duration) + " of " + formatVideoTime(duration)
+                    : "Timeline unavailable");
+            };
+            const endSeeking = () => { isSeeking = false; updateSeek(); };
+            seek.addEventListener("pointerdown", () => { isSeeking = true; });
+            seek.addEventListener("pointerup", endSeeking);
+            seek.addEventListener("pointercancel", endSeeking);
+            seek.addEventListener("blur", endSeeking);
+            seek.addEventListener("input", event => {
+                event.stopPropagation();
+                const duration = video.duration;
+                if (!Number.isFinite(duration) || duration <= 0) return;
+                try { video.currentTime = duration * Math.min(1, Math.max(0, Number(seek.value) / 1000)); } catch {}
+                updateSeek();
+            });
+            seek.addEventListener("click", event => event.stopPropagation());
+
             const sync = () => {
                 const paused = video.paused;
                 figure.classList.toggle("is-paused", paused);
@@ -495,6 +539,7 @@
                 soundButton.innerHTML = articleVideoIcon(video.muted ? "muted" : "sound");
                 soundButton.setAttribute("aria-label", video.muted ? "Turn sound on" : "Mute video");
                 soundButton.title = video.muted ? "Sound on" : "Mute";
+                updateSeek();
             };
 
             const togglePlay = (manual = true) => {
@@ -534,6 +579,9 @@
             });
 
             video.addEventListener("click", () => togglePlay());
+            ["timeupdate", "loadedmetadata", "durationchange", "seeked", "emptied"].forEach(name => {
+                video.addEventListener(name, updateSeek);
+            });
             video.addEventListener("play", sync);
             video.addEventListener("pause", sync);
             video.addEventListener("volumechange", sync);
