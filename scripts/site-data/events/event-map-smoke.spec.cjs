@@ -7,7 +7,8 @@ async function ready(page, url = BASE) {
   page.on('pageerror', error => pageErrors.push(error.message));
   await page.goto(url, { waitUntil: 'domcontentloaded' });
   await expect(page.locator('[data-map-loading]')).toBeHidden({ timeout: 30000 });
-  await expect(page.locator('.event-map-pin-group').first()).toBeVisible({ timeout: 30000 });
+  // Mobile opens in Events view; its SVG pins exist but stay hidden until Map is selected.
+  await expect(page.locator('.event-map-pin-group').first()).toHaveCount(1, { timeout: 30000 });
   return pageErrors;
 }
 
@@ -134,6 +135,8 @@ test.describe('Event Map mobile interaction chain', () => {
 
   test('repeated pin taps, history, zoom, controls and clusters remain touch-safe', async ({ page }) => {
     const pageErrors = await ready(page);
+    await page.locator('[data-map-view="map"]').tap();
+    await expect(page.locator('.event-map-pin-group').first()).toBeVisible();
     const singles = page.locator('.event-map-pin-group:not(.event-map-cluster)');
     const count = await singles.count();
     expect(count).toBeGreaterThan(0);
@@ -222,6 +225,7 @@ test.describe('North America regional map navigation', () => {
     await expect(page.locator('.event-map-result')).toHaveCount(1);
     await expect(page.locator('.event-map-result')).toContainText('HyperStrike');
     expect(new URL(page.url()).searchParams.get('country')).toBe('sint-maarten');
+    expect(new URL(page.url()).searchParams.get('range')).toBe('all');
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await expect(page.locator('[data-map-loading]')).toBeHidden({ timeout: 30000 });
