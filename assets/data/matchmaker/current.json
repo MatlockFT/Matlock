@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-18T16:29:18.007Z"
+      "checkedAt": "2026-11-18T23:01:48.523Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-18T16:30:10.693Z",
+      "checkedAt": "2026-11-18T23:02:28.116Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -334515,7 +334515,7 @@
     {
       "id": "wellington-turman",
       "name": "Wellington Turman",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/wellington-turman",
       "aliases": [],
       "profileStatus": "Active",
@@ -334933,9 +334933,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-11-18T16:29:18.007Z"
+        "checkedAt": "2026-11-18T23:01:48.523Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/wellington-turman",
@@ -366314,7 +366314,7 @@
   ],
   "coverage": {
     "profileFailures": 28,
-    "activeFighters": 1007,
+    "activeFighters": 1006,
     "participantHistoriesRequested": 400,
     "verifiedParticipantHistories": 400,
     "ufcStatsNameMisses": 1,
