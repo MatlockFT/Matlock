@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "subregion": "West Asia",
-  "source": "Curated upcoming Asian MMA events from organizer, federation, ticketing and event-calendar sources. Expanded November 17, 2026; date conflicts and mixed disciplines noted per event.",
+  "source": "Curated upcoming Asian MMA events from organizer, federation, ticketing and event-calendar sources. Expanded November 17, 2026; discipline, arena and date ambiguities are noted per event.",
   "location_note": "Pins use approximate host-city coordinates, not venue entrances. Date/venue ambiguities are identified on affected events.",
   "events": [
     {
@@ -143,6 +143,28 @@
       "date_note": "The promotion confirms November 28. FightBook MMA reports Al Ain as host city; arena and fight card have not been announced."
     },
     {
+      "id": "asia-ufc-gym-kuwait-amateur-mma-2026-11-28",
+      "promotion": "UFC GYM Kuwait",
+      "promotion_key": "ufc-gym-kuwait",
+      "sport": "MMA",
+      "title": "UFC GYM Fight Night: Amateur MMA & Jiu-Jitsu",
+      "date": "2026-11-28",
+      "venue": "UFC GYM, Assima Mall",
+      "city": "Kuwait City",
+      "state": "Al Asimah",
+      "country": "Kuwait",
+      "location": "Kuwait City, Al Asimah, Kuwait",
+      "latitude": 29.3759,
+      "longitude": 47.9774,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "amateur",
+      "official_url": "https://smoothcomp.com/en/event/36208",
+      "source_url": "https://bjjtournaments.net/tournament/832515",
+      "source_label": "UFC GYM event registration / Smoothcomp mirror",
+      "date_note": "Registration specifies senior and youth MMA brackets under IMMAF amateur rules, plus separate Gi/No-Gi submission-only BJJ divisions. Tournament begins 10:00 AM local time; city-center pin."
+    },
+    {
       "id": "asia-pfc-13-yerevan-2026-11-29",
       "promotion": "Patriots Martial Association",
       "promotion_key": "pfc-armenia",
@@ -251,6 +273,28 @@
       "source_url": "https://pflmma.com/mena-season/2026",
       "source_label": "PFL",
       "date_note": "PFL lists Dhahran Expo, Khobar. Some earlier schedule listings cite Riyadh."
+    },
+    {
+      "id": "asia-zagros-fighter-series-01-erbil-2026-12-25",
+      "promotion": "Zagros Fighter Series",
+      "promotion_key": "zfs",
+      "sport": "MMA",
+      "title": "Zagros Fighter Series 01",
+      "date": "2026-12-25",
+      "venue": "Venue not yet disclosed by promoter",
+      "city": "Erbil",
+      "state": "Erbil Governorate",
+      "country": "Iraq",
+      "location": "Erbil, Erbil Governorate, Iraq",
+      "latitude": 36.1911,
+      "longitude": 44.0092,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://zfs-mma.com/",
+      "source_url": "https://zfs-mma.com/",
+      "source_label": "Zagros Fighter Series official website",
+      "date_note": "Promoter-announced inaugural MMA card in Erbil on December 25, with seven bouts currently described on its website. Some fighters are listed as amateurs or semi-professionals, so professional/amateur status may vary by bout. Exact arena remains unconfirmed."
     },
     {
       "id": "asia-united-league-mma-second-tour-2027-01-08",

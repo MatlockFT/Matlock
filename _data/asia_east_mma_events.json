@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "subregion": "East Asia",
-  "source": "Curated upcoming East Asian MMA events. Expanded November 17, 2026; event details cite original or fight-calendar sources.",
+  "source": "Curated upcoming East Asian MMA cards using promotion or MMA-event calendar sources. Updated November 17, 2026; uncertain organizer details are noted.",
   "location_note": "Pins use approximate host-city coordinates, not venue entrances. Date/venue ambiguities are identified on affected events.",
   "events": [
     {
@@ -45,6 +45,28 @@
       "official_url": "https://www.sherdog.com/events/Jue-Cheng-King-JCK-Fight-Night-126-115395",
       "source_url": "https://www.sherdog.com/events/Jue-Cheng-King-JCK-Fight-Night-126-115395",
       "source_label": "Sherdog / Jue Cheng King"
+    },
+    {
+      "id": "asia-cun-mma-village-mma-22-2026-11-27",
+      "promotion": "Cun MMA",
+      "promotion_key": "cun-mma",
+      "sport": "MMA",
+      "title": "Cun MMA: Village MMA 22",
+      "date": "2026-11-27",
+      "venue": "Anshun Olympic Sports Center",
+      "city": "Anshun",
+      "state": "Guizhou",
+      "country": "China",
+      "location": "Anshun, Guizhou, China",
+      "latitude": 26.2456,
+      "longitude": 105.9476,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://www.sherdog.com/events/upcoming",
+      "source_url": "https://www.sherdog.com/events/upcoming",
+      "source_label": "Sherdog upcoming MMA events / GROGGY Korean fight calendar",
+      "date_note": "Sherdog and GROGGY list the November 27 card in Anshun, Guizhou. An organizer-specific event page has not been verified; venue pin uses Anshun city center."
     },
     {
       "id": "asia-ctmmaa-national-mma-championship-2026-11-29",
