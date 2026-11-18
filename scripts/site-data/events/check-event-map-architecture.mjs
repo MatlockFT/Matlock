@@ -77,7 +77,7 @@ for (const [group, expected] of Object.entries(expectedNorthAmerica)) {
   const start = northDefinitions.indexOf(group === 'mainland' ? 'mainland: {' : "'" + group + "': {");
   const listStart = start < 0 ? -1 : northDefinitions.indexOf('countries: [', start);
   const end = listStart < 0 ? -1 : northDefinitions.indexOf(']', listStart);
-  const entries = end < 0 ? [] : [...northDefinitions.slice(listStart, end).matchAll(/'([^']+)'/g)].map(x => x[1]);
+  const entries = end < 0 ? [] : [...northDefinitions.slice(listStart, end).matchAll(/['"]([^'"]+)['"]/g)].map(x => x[1]);
   if (entries.length !== expected.length || expected.some(slug => !entries.includes(slug))) failures.push('Missing North America countries in ' + group);
   for (const slug of expected) {
     if (!core.includes("'" + slug + "': { name:")) failures.push('Missing country metadata: ' + slug);
