@@ -5,6 +5,8 @@ permalink: /assets/data/event-map-regions-live.json
 {% assign us_events = site.data.event_map_us.events %}
 {% assign mexico_events = site.data.mexico_mma_events.events %}
 {% assign canada_events = site.data.canada_mma_events.events %}
+{% assign central_america_events = site.data.central_america_mma_events.events %}
+{% assign caribbean_events = site.data.caribbean_mma_events.events %}
 {% assign south_america_events = site.data.south_america_mma_events.events %}
 {% assign africa_events = site.data.africa_mma_events.events %}
 {% assign oceania_events = site.data.oceania_mma_events.events %}
@@ -16,7 +18,7 @@ permalink: /assets/data/event-map-regions-live.json
 {% assign asia_west_events = site.data.asia_west_mma_events.events %}
 {% assign japan_events = site.data.japan_mma_events.events %}
 {% assign rizin_events = site.data.upcoming_events.events | where: "promotion_key", "rizin" %}
-{% assign international_events = us_events | concat: mexico_events | concat: canada_events | concat: south_america_events | concat: africa_events | concat: oceania_events | concat: europe_events | concat: asia_east_events | concat: asia_southeast_events | concat: asia_south_events | concat: asia_central_events | concat: asia_west_events | concat: japan_events | concat: rizin_events %}
+{% assign international_events = us_events | concat: mexico_events | concat: canada_events | concat: central_america_events | concat: caribbean_events | concat: south_america_events | concat: africa_events | concat: oceania_events | concat: europe_events | concat: asia_east_events | concat: asia_southeast_events | concat: asia_south_events | concat: asia_central_events | concat: asia_west_events | concat: japan_events | concat: rizin_events %}
 {
   "schema_version": 10,
   "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
