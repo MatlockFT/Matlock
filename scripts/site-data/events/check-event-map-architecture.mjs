@@ -74,7 +74,8 @@ const northDefinitions = core.split('const NORTH_AMERICA_SUBREGIONS = {')[1]
   ?.split('const NORTH_AMERICA_SMALL_COUNTRY_FOCUS')[0] || '';
 for (const [group, expected] of Object.entries(expectedNorthAmerica)) {
   requireText(html, 'data-north-america-subregion="' + group + '"', 'Missing North America tab ' + group);
-  const start = northDefinitions.indexOf(group === 'mainland' ? 'mainland: {' : "'" + group + "': {");
+  const quoted = northDefinitions.indexOf("'" + group + "': {");
+  const start = quoted >= 0 ? quoted : northDefinitions.indexOf(group + ': {');
   const listStart = start < 0 ? -1 : northDefinitions.indexOf('countries: [', start);
   const end = listStart < 0 ? -1 : northDefinitions.indexOf(']', listStart);
   const entries = end < 0 ? [] : [...northDefinitions.slice(listStart, end).matchAll(/['"]([^'"]+)['"]/g)].map(x => x[1]);
