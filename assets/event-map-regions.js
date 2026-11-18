@@ -1096,7 +1096,8 @@
         const url = new URL(window.location.href);
         const params = url.searchParams;
         ['range', 'state', 'promotion', 'level', 'q', 'radius', 'event', 'region', 'country', 'subregion', 'view'].forEach(key => params.delete(key));
-        if (currentRange !== 'all') params.set('range', currentRange);
+        // The URL's implicit range is 'week'; preserve explicit All Upcoming on reload.
+        if (currentRange !== 'week') params.set('range', currentRange);
         if (currentRegion !== 'north-america' || currentNorthAmericaSubregion !== 'mainland') params.set('region', currentRegion);
         if (currentRegion === 'asia') params.set('subregion', currentAsiaSubregion);
         if (currentRegion === 'north-america' && currentNorthAmericaSubregion !== 'mainland')
