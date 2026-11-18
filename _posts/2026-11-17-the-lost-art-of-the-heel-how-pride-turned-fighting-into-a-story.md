@@ -66,7 +66,7 @@ The rivalry reached its peak on May 1, 2000, when Sakuraba met [Royce Gracie at 
   </div>
 </figure>
 
-Sakuraba defeated Renzo and Ryan Gracie before the end of 2000, although a meeting with Rickson never materialized. His popularity had grown beyond the novelty of a professional wrestler succeeding in MMA. He had become the central figure in a rivalry that PRIDE could revisit with every new Gracie opponent, drawing on the history of previous encounters to build anticipation for the next. The promotion's storytelling was particularly effective because audiences already understood what was at stake, even when the participants weren't competing for a championship.
+Sakuraba defeated Renzo and Ryan Gracie before the end of 2000, although a meeting with Rickson never materialized. His popularity had grown beyond the novelty of a professional wrestler succeeding in MMA. He had become the central figure in a rivalry that PRIDE could revisit with every new Gracie opponent, drawing on the history of previous encounters to build anticipation for the next. **The promotion's storytelling was particularly effective because audiences already understood what was at stake, even when the participants weren't competing for a championship.**
 
 ## When the Villains Became Heroes
 
