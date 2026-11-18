@@ -8,6 +8,8 @@ const regionStyles = await fs.readFile('assets/event-map-regions.css', 'utf8');
 const failures = [];
 const regionalFeed = await fs.readFile('assets/data/event-map-regions-live.json', 'utf8');
 const canadaData = JSON.parse(await fs.readFile('_data/canada_mma_events.json', 'utf8'));
+const centralAmericaData = JSON.parse(await fs.readFile('_data/central_america_mma_events.json', 'utf8'));
+const caribbeanData = JSON.parse(await fs.readFile('_data/caribbean_mma_events.json', 'utf8'));
 const southAmericaData = JSON.parse(await fs.readFile('_data/south_america_mma_events.json', 'utf8'));
 const africaData = JSON.parse(await fs.readFile('_data/africa_mma_events.json', 'utf8'));
 const oceaniaData = JSON.parse(await fs.readFile('_data/oceania_mma_events.json', 'utf8'));
@@ -54,6 +56,57 @@ requireText(core, 'function rebuildMap(', 'Regional map must rebuild geographic 
 requireText(core, 'function chooseRegion(', 'One engine must switch continents.');
 requireText(core, 'function chooseCountry(', 'One engine must switch country views.');
 requireText(core, "REGIONS[currentRegion].countries", 'Region/country filters must remain linked.');
+
+// North America's three map tabs reuse one map, with country selectors and shareable URLs.
+requireText(html, 'data-north-america-subregions', 'North America must have second-level navigation.');
+requireText(regionStyles, '.event-map-north-america-subregions:not([hidden])', 'North America tabs must have responsive styles.');
+requireText(core, 'const NORTH_AMERICA_SUBREGIONS = {', 'North America groups must be centrally defined.');
+requireText(core, "Object.values(NORTH_AMERICA_SUBREGIONS).flatMap", 'North America must include Central America and the Caribbean.');
+requireText(core, 'function chooseNorthAmericaSubregion(next)', 'North America tabs must switch the same map.');
+requireText(core, "params.set('subregion', currentNorthAmericaSubregion)", 'North America subregion must have a shareable URL.');
+requireText(core, 'NORTH_AMERICA_SMALL_COUNTRY_FOCUS', 'Tiny Caribbean islands require manual geographic framing.');
+const expectedNorthAmerica = {
+  mainland: ['united-states','canada','mexico'],
+  'central-america': ["belize","guatemala","el-salvador","honduras","nicaragua","costa-rica","panama"],
+  caribbean: ["cuba","jamaica","haiti","dominican-republic","bahamas","trinidad-and-tobago","barbados","antigua-and-barbuda","saint-kitts-and-nevis","dominica","saint-lucia","saint-vincent-and-the-grenadines","grenada","aruba","curacao","sint-maarten","saint-martin","puerto-rico","guadeloupe","martinique","cayman-islands","turks-and-caicos","us-virgin-islands","british-virgin-islands","bonaire"]
+};
+const northDefinitions = core.split('const NORTH_AMERICA_SUBREGIONS = {')[1]
+  ?.split('const NORTH_AMERICA_SMALL_COUNTRY_FOCUS')[0] || '';
+for (const [group, expected] of Object.entries(expectedNorthAmerica)) {
+  requireText(html, 'data-north-america-subregion="' + group + '"', 'Missing North America tab ' + group);
+  const start = northDefinitions.indexOf(group === 'mainland' ? 'mainland: {' : "'" + group + "': {");
+  const listStart = start < 0 ? -1 : northDefinitions.indexOf('countries: [', start);
+  const end = listStart < 0 ? -1 : northDefinitions.indexOf(']', listStart);
+  const entries = end < 0 ? [] : [...northDefinitions.slice(listStart, end).matchAll(/'([^']+)'/g)].map(x => x[1]);
+  if (entries.length !== expected.length || expected.some(slug => !entries.includes(slug))) failures.push('Missing North America countries in ' + group);
+  for (const slug of expected) {
+    if (!core.includes("'" + slug + "': { name:")) failures.push('Missing country metadata: ' + slug);
+  }
+}
+const regionalNorthAmerica = [centralAmericaData, caribbeanData];
+for (const [idx, doc] of regionalNorthAmerica.entries()) {
+  const key = idx ? 'caribbean' : 'central_america';
+  requireText(regionalFeed, 'site.data.' + key + '_mma_events.events', 'Missing ' + key + ' MMA feed from Event Map.');
+  requireText(regionalFeed, 'concat: ' + key + '_events', 'Missing ' + key + ' MMA events in global map output.');
+  if (!Array.isArray(doc?.events) || doc.events.length < (idx ? 3 : 1)) failures.push('Too few verified ' + key + ' MMA events.');
+}
+const northIds = new Set();
+const validNorthCountries = new Set([...expectedNorthAmerica['central-america'], ...expectedNorthAmerica.caribbean]);
+for (const doc of regionalNorthAmerica) {
+  for (const event of doc?.events || []) {
+    if (!event.id || northIds.has(event.id)) failures.push('Central America/Caribbean IDs must be unique.');
+    northIds.add(event.id);
+    const slugByName = {"Belize":"belize","Guatemala":"guatemala","El Salvador":"el-salvador","Honduras":"honduras","Nicaragua":"nicaragua","Costa Rica":"costa-rica","Panama":"panama","Cuba":"cuba","Jamaica":"jamaica","Haiti":"haiti","Dominican Republic":"dominican-republic","Bahamas":"bahamas","Trinidad and Tobago":"trinidad-and-tobago","Barbados":"barbados","Antigua and Barbuda":"antigua-and-barbuda","Saint Kitts and Nevis":"saint-kitts-and-nevis","Dominica":"dominica","Saint Lucia":"saint-lucia","Saint Vincent and the Grenadines":"saint-vincent-and-the-grenadines","Grenada":"grenada","Aruba":"aruba","Curaçao":"curacao","Sint Maarten":"sint-maarten","Saint Martin":"saint-martin","Puerto Rico (US)":"puerto-rico","Guadeloupe":"guadeloupe","Martinique":"martinique","Cayman Islands":"cayman-islands","Turks and Caicos Islands":"turks-and-caicos","US Virgin Islands":"us-virgin-islands","British Virgin Islands":"british-virgin-islands","Bonaire, Sint Eustatius and Saba":"bonaire"};
+    if (!validNorthCountries.has(slugByName[event.country])) failures.push('Unregistered Central America/Caribbean country: ' + event.country);
+    if (event.sport !== 'MMA' || !event.title || !event.promotion || !event.venue || !event.city || !event.country) failures.push('Incomplete Central America/Caribbean MMA event.');
+    if (!/^20\d{2}-\d{2}-\d{2}$/.test(event.date || '') || event.date < '2026-11-17') failures.push('Invalid North America event date.');
+    if (!Number.isFinite(event.latitude) || !Number.isFinite(event.longitude)
+        || event.latitude < 6 || event.latitude > 30 || event.longitude < -94 || event.longitude > -58) failures.push('North America event pin out of regional bounds.');
+    if (!String(event.official_url || '').startsWith('https://') || !String(event.source_url || '').startsWith('https://')) failures.push('Central America/Caribbean events must link to sources.');
+    if (event.verification_status !== 'confirmed' || !/^20\d{2}-\d{2}-\d{2}$/.test(event.last_verified || '')) failures.push('Central America/Caribbean entries require verification dates.');
+  }
+}
+if (northIds.size < 4) failures.push('Keep at least four sourced Central America/Caribbean MMA events.');
 
 // Asia uses one map and five subregional views, not stacked national maps.
 requireText(html, 'data-asia-subregions', 'Asia must expose second-level navigation.');
