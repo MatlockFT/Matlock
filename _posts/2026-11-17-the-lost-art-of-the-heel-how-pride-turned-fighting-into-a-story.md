@@ -60,6 +60,12 @@ Sakuraba's success soon made him one of PRIDE's main attractions, and in Novembe
 
 The rivalry reached its peak on May 1, 2000, when Sakuraba met [Royce Gracie at the PRIDE Grand Prix Finals](https://www.sherdog.com/events/Pride-FC-Pride-Grand-Prix-2000-Finals-55). Royce's camp again demanded special rules, including unlimited 15-minute rounds and no judges. PRIDE publicized those negotiations, which the *Kamipro* writer later identified as an important part of the fight's appeal. Royce's insistence on special treatment made him the heel, while Sakuraba's willingness to accept the conditions further endeared him to Japanese audiences. After six rounds and 90 minutes of fighting, Royce's corner finally stopped the contest. Sakuraba then returned to face the much larger Igor Vovchanchyn later that evening, withdrawing after the opening round.
 
+<figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-7e3943ff" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
+  <div class="article-inline-video-stage">
+    <video loop muted playsinline preload="none" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-11/the-lost-art-of-the-heel-how-pride-turned-fighti-video-20261117-223242-626.mp4" aria-label="Article video"></video>
+  </div>
+</figure>
+
 Sakuraba defeated Renzo and Ryan Gracie before the end of 2000, although a meeting with Rickson never materialized. His popularity had grown beyond the novelty of a professional wrestler succeeding in MMA. He had become the central figure in a rivalry that PRIDE could revisit with every new Gracie opponent, drawing on the history of previous encounters to build anticipation for the next. The promotion's storytelling was particularly effective because audiences already understood what was at stake, even when the participants weren't competing for a championship.
 
 ## When the Villains Became Heroes
