@@ -80,7 +80,8 @@ for (const [group, expected] of Object.entries(expectedNorthAmerica)) {
   const entries = end < 0 ? [] : [...northDefinitions.slice(listStart, end).matchAll(/['"]([^'"]+)['"]/g)].map(x => x[1]);
   if (entries.length !== expected.length || expected.some(slug => !entries.includes(slug))) failures.push('Missing North America countries in ' + group);
   for (const slug of expected) {
-    if (!core.includes("'" + slug + "': { name:")) failures.push('Missing country metadata: ' + slug);
+    if (!core.includes("'" + slug + "': { name:") && !core.includes(slug + ": { name:"))
+      failures.push('Missing country metadata: ' + slug);
   }
 }
 const regionalNorthAmerica = [centralAmericaData, caribbeanData];
