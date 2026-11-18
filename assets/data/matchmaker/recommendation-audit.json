@@ -1,38 +1,38 @@
 {
-  "generatedAt": "2026-11-17T23:38:21.419Z",
+  "generatedAt": "2026-11-18T07:54:36.163Z",
   "engineVersion": 2,
   "subjects": 414,
-  "publishedRecommendations": 1120,
+  "publishedRecommendations": 1117,
   "recommendationSlots": {
-    "0": 38,
+    "0": 39,
     "1": 2,
     "2": 4,
-    "3": 370
+    "3": 369
   },
   "caseCounts": {
-    "rebound-pairing": 474,
-    "rising-vs-rising": 307,
+    "rebound-pairing": 473,
+    "rising-vs-rising": 303,
     "step-up-vs-rebound": 154,
     "rankings-progression": 60,
-    "ranking-opportunity": 54,
+    "ranking-opportunity": 55,
     "divisional-sorting": 38,
     "title-case": 15,
     "title-eliminator": 13,
-    "prospect-test": 5
+    "prospect-test": 6
   },
   "confidenceCounts": {
-    "high": 1043,
+    "high": 1040,
     "low": 48,
     "medium": 29
   },
   "averageRecentOpponentLinkCoverage": 0.9029,
   "sameCardRecommendations": 43,
-  "sameCardRecommendationRatio": 0.0384,
-  "asymmetricTopThreeRecommendations": 398,
-  "asymmetricTopThreeRatio": 0.3554,
-  "publicPublishedRecommendations": 1094,
-  "publicAsymmetricTopThreeRecommendations": 304,
-  "publicAsymmetricTopThreeRatio": 0.2779,
+  "sameCardRecommendationRatio": 0.0385,
+  "asymmetricTopThreeRecommendations": 396,
+  "asymmetricTopThreeRatio": 0.3545,
+  "publicPublishedRecommendations": 1091,
+  "publicAsymmetricTopThreeRecommendations": 302,
+  "publicAsymmetricTopThreeRatio": 0.2768,
   "engineGenericDivisionalSortingRecommendations": 38,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -162,8 +162,8 @@
       "title": "UFC Fight Night: Gamrot vs Salkilld",
       "date": "2026-08-08",
       "subjects": 24,
-      "publicRecommendations": 60,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 57,
+      "noClearMatchupSubjects": 5
     },
     {
       "id": "ufc-fight-night-august-01-2026",
@@ -671,25 +671,25 @@
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Drew Dober",
-      "opponent": "Fares Ziam",
-      "pairScore": 86,
+      "opponent": "Mason Jones",
+      "pairScore": 85,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Kyle Nelson",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
           "opponent": "Drakkar Klose",
-          "score": 93,
+          "score": 92,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Rafa Garcia",
-          "score": 93,
+          "opponent": "Fares Ziam",
+          "score": 91,
           "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Mandel Nallo",
+          "score": 91,
+          "case": "prospect-test"
         }
       ]
     },
@@ -887,8 +887,8 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Nikolas Motta",
-          "score": 92,
+          "opponent": "Daniel Zellhuber",
+          "score": 91,
           "case": "rebound-pairing"
         }
       ]
