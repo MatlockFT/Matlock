@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-18T07:44:03.475Z",
+  "generated_at": "2026-11-18T16:45:20.668Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-11-21-fight-card",
@@ -32,7 +32,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/PROCHAZKA_JIRI_L_04-11.png?itok=kzDQfMFd",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+130"
+                  "moneyline": "+132"
                 },
                 {
                   "name": "Navajo Stirling",
@@ -40,7 +40,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/STIRLING_NAVAJO_L_03-28.png?itok=BVUQTbQ5",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-166"
+                  "moneyline": "-170"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -82,7 +82,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/HOOKER_DAN_L_09-05.png?itok=cLfQlP6e",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-188"
+                  "moneyline": "-194"
                 },
                 {
                   "name": "Brian Ortega",
@@ -90,7 +90,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/ORTEGA_BRIAN_L_08-23.png?itok=OQf_S2Es",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+146"
+                  "moneyline": "+150"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -107,7 +107,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/HORIGUCHI_KYOJI_R_11-22.png?itok=Dn6SxnwP",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-200"
+                  "moneyline": "-215"
                 },
                 {
                   "name": "Asu Almabayev",
@@ -115,7 +115,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ALMABAYEV_ASU_L_06-27.png?itok=Y0SjNrdV",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+154"
+                  "moneyline": "+164"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -164,7 +164,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-02/TOPURIA_ALEKSANDRE_R_02-08.png?itok=v-giNC1x",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-310"
+                  "moneyline": "-295"
                 },
                 {
                   "name": "Santiago Luna",
@@ -172,7 +172,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/LUNA_SANTIAGO_L_02-28.png?itok=zdTFJx55",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+230"
+                  "moneyline": "+220"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -189,7 +189,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/GAZIEV_SHAMIL_L_05-02.png?itok=VAF3kcSW",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-205"
+                  "moneyline": "-215"
                 },
                 {
                   "name": "Tallison Teixeira",
@@ -197,7 +197,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/TEIXEIRA_TALLISON_R_07-12.png?itok=vtmFVu5M",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+158"
+                  "moneyline": "+164"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -467,7 +467,14 @@
                   "moneyline": ""
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "10:00 AM ET",
+          "bouts": [
             {
               "order": 7,
               "label": "",
