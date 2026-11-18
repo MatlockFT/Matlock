@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "subregion": "South Asia",
-  "source": "Curated from promoter/federation announcements, ticketing and local fight calendars. Expanded November 17, 2026; unconfirmed MMA-specific details are labeled.",
+  "source": "Curated upcoming MMA events from promoters, federation announcements, ticketing and MMA calendars. Expanded November 17, 2026; discrepancies are noted per event.",
   "location_note": "Pins use approximate host-city coordinates, not venue entrances. Date/venue ambiguities are identified on affected events.",
   "events": [
     {
@@ -68,6 +68,28 @@
       "official_url": "https://www.district.in/events/warriors-dream-series-fight-night-19-dec12-2026-buy-tickets",
       "source_url": "https://www.district.in/events/warriors-dream-series-fight-night-19-dec12-2026-buy-tickets",
       "source_label": "District / Warriors Dream Series"
+    },
+    {
+      "id": "asia-aturto-4-3-flyweight-finale-2026-12-19",
+      "promotion": "ATURTO MMA",
+      "promotion_key": "aturto",
+      "sport": "MMA",
+      "title": "ATURTO 4.3: Flyweight Grand Prix Finale",
+      "date": "2026-12-19",
+      "venue": "Sango Arena (Sherdog-listed)",
+      "city": "Itanagar",
+      "state": "Arunachal Pradesh",
+      "country": "India",
+      "location": "Itanagar, Arunachal Pradesh, India",
+      "latitude": 27.0844,
+      "longitude": 93.6053,
+      "map_location_precision": "city-centroid",
+      "regional": true,
+      "level": "professional",
+      "official_url": "https://aturto.com/grand-prix/",
+      "source_url": "https://aturto.com/",
+      "source_label": "ATURTO official site / Grand Prix bracket",
+      "date_note": "Official promotion site confirms December 19 in Itanagar and a flyweight final between Limasunep Imchen and Amit Maurya. Sherdog lists Sango Arena as venue. Location is pinned to city center."
     },
     {
       "id": "asia-efa-mma-season-2-2026-12-25",
