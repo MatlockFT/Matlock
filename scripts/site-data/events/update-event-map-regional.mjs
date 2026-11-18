@@ -441,7 +441,23 @@ for (const source of SOURCES) {
 }
 
 const majorKeys = new Set((majors.events || []).map(majorFingerprint));
+// Unknown matchups are not real fighters. Do not retain two repeated TBD placeholders
+// as a published main event when a promoter's card is not yet announced.
+function removeUnknownMainEvent(event) {
+  const fighters = event?.main_event?.fighters;
+  if (!Array.isArray(fighters)) return event;
+  const names = fighters.map(value => typeof value === 'string' ? value.trim()
+    : typeof value?.name === 'string' ? value.name.trim() : '');
+  const unknown = name => ['tbd','tba','unknown','not announced','n/a','na'].includes(name.toLowerCase());
+  if (names.length >= 2 && names.every(unknown)) {
+    const { main_event: _ignored, ...rest } = event;
+    return rest;
+  }
+  return event;
+}
+
 const nextEvents = dedupe(collected)
+  .map(removeUnknownMainEvent)
   .filter(event => !majorKeys.has(majorFingerprint(event)))
   .sort((a, b) => a.date.localeCompare(b.date) || a.promotion.localeCompare(b.promotion) || a.title.localeCompare(b.title));
 
