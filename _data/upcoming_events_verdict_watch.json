@@ -13,13 +13,13 @@
       "verdict_event_id": "1986",
       "verdict_url": "https://verdictmma.com/event/1986",
       "verdict_date": "2026-11-21",
-      "local_fight_count": 11,
-      "verdict_fight_count": 11,
+      "local_fight_count": 12,
+      "verdict_fight_count": 12,
       "local_main_count": 5,
       "verdict_main_count": 5,
-      "local_prelim_count": 6,
-      "verdict_prelim_count": 6,
-      "confirmed_local_bouts": 11
+      "local_prelim_count": 7,
+      "verdict_prelim_count": 7,
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "ufc-fight-night-2026-12-05-fight-card",
@@ -81,9 +81,9 @@
       "verdict_event_id": "1994",
       "verdict_url": "https://verdictmma.com/event/1994",
       "verdict_date": "2027-01-16",
-      "local_fight_count": 3,
+      "local_fight_count": 13,
       "verdict_fight_count": null,
-      "local_main_count": 3,
+      "local_main_count": 13,
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
@@ -132,9 +132,9 @@
       "verdict_event_id": "1995",
       "verdict_url": "https://verdictmma.com/event/1995",
       "verdict_date": "2027-02-06",
-      "local_fight_count": 4,
+      "local_fight_count": 5,
       "verdict_fight_count": 8,
-      "local_main_count": 4,
+      "local_main_count": 5,
       "verdict_main_count": 6,
       "local_prelim_count": 0,
       "verdict_prelim_count": 2,
@@ -316,17 +316,127 @@
       ]
     },
     {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-01-16-fight-card",
+      "verdict_event_id": "1994",
+      "order": 10,
+      "fighters": [
+        "Magomed Zaynukov",
+        "Piero Guaylupo"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-01-16-fight-card",
+      "verdict_event_id": "1994",
+      "order": 11,
+      "fighters": [
+        "John Garza",
+        "Toshiomi Kazama"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-01-16-fight-card",
+      "verdict_event_id": "1994",
+      "order": 12,
+      "fighters": [
+        "Steven Asplund",
+        "Gokhan Saricam"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-01-16-fight-card",
+      "verdict_event_id": "1994",
+      "order": 13,
+      "fighters": [
+        "Sam Hughes",
+        "Karolina Kowalkiewicz"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-01-16-fight-card",
+      "verdict_event_id": "1994",
+      "order": 3,
+      "fighters": [
+        "Geoff Neal",
+        "Chris Curtis"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-01-16-fight-card",
+      "verdict_event_id": "1994",
+      "order": 5,
+      "fighters": [
+        "Ryan Spann",
+        "Louie Sutherland"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-01-16-fight-card",
+      "verdict_event_id": "1994",
+      "order": 6,
+      "fighters": [
+        "Kennedy Nzechukwu",
+        "Elisha Ellison"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-01-16-fight-card",
+      "verdict_event_id": "1994",
+      "order": 7,
+      "fighters": [
+        "Gilbert Urbina",
+        "Robert Valentin"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-01-16-fight-card",
+      "verdict_event_id": "1994",
+      "order": 8,
+      "fighters": [
+        "Alden Coria",
+        "Michael Aljarouj"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-01-16-fight-card",
+      "verdict_event_id": "1994",
+      "order": 9,
+      "fighters": [
+        "Diego Ferreira",
+        "MarQuel Mederos"
+      ]
+    },
+    {
       "type": "bout_count_mismatch",
       "event_id": "ufc-fight-night-2027-02-06-fight-card",
       "verdict_event_id": "1995",
-      "local_fight_count": 4,
+      "local_fight_count": 5,
       "verdict_fight_count": 8
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "verdict_event_id": "1995",
+      "order": 3,
+      "fighters": [
+        "Jonathan Micallef",
+        "Sam Patterson"
+      ]
     },
     {
       "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2027-02-06-fight-card",
       "verdict_event_id": "1995",
-      "local_main_count": 4,
+      "local_main_count": 5,
       "verdict_main_count": 6,
       "local_prelim_count": 0,
       "verdict_prelim_count": 2
