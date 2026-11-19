@@ -1252,7 +1252,7 @@
 
     function applyFilters({ sync = true } = {}) {
         currentRadius = Number(radiusFilter?.value) || DEFAULT_RADIUS;
-        const queryTerms = normalizeText(searchInput?.value).toLowerCase().split(/\\s+/).filter(Boolean);
+        const queryTerms = normalizeText(searchInput?.value).toLowerCase().split(/\s+/).filter(Boolean);
         filteredEvents = allEvents.filter(event => withinMapSelection(event) && matchesEventFacets(event, queryTerms));
         // The ledger is independent of the map viewport unless explicitly scoped to the map.
         listEvents = currentListScope === 'map'
