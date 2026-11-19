@@ -7,6 +7,7 @@ const html = await fs.readFile('event-map.html', 'utf8');
 const regionStyles = await fs.readFile('assets/event-map-regions.css', 'utf8');
 const failures = [];
 const regionalFeed = await fs.readFile('assets/data/event-map-regions-live.json', 'utf8');
+const tickerScript = await fs.readFile('assets/site-ticker.js', 'utf8');
 const canadaData = JSON.parse(await fs.readFile('_data/canada_mma_events.json', 'utf8'));
 const centralAmericaData = JSON.parse(await fs.readFile('_data/central_america_mma_events.json', 'utf8'));
 const caribbeanData = JSON.parse(await fs.readFile('_data/caribbean_mma_events.json', 'utf8'));
@@ -30,6 +31,28 @@ function requireText(text, needle, message) {
 function forbid(text, needle, message) {
   if (text.includes(needle)) failures.push(message);
 }
+
+
+// Date filters must remain functional, and the ledger must cover every promotion
+// even when a country is not currently visible or a venue is not mapped.
+for (const [range, label] of [
+  ['today', 'Today'], ['week', 'This week'], ['next-week', 'Next week'],
+  ['30', '30 days'], ['all', 'All upcoming']
+]) {
+  requireText(html, 'data-range="' + range + '"', 'Missing date range control: ' + label);
+}
+requireText(core, "currentRange === 'today'", 'Today must use the event-local date.');
+requireText(core, "currentRange === 'next-week'", 'Next week must have its own calendar range.');
+requireText(html, 'data-event-list-scope="all"', 'The worldwide event ledger must be available.');
+requireText(html, 'data-event-list-scope="map"', 'The ledger must offer an explicit map-only scope.');
+requireText(core, "listedEvents = rawEvents.map", 'The ledger must retain location-TBA events.');
+requireText(core, "listEvents = currentListScope === 'map'", 'The ledger must be independent of the map viewport by default.');
+requireText(core, "displayOrder(listEvents)", 'The ledger must render its own complete filtered dataset.');
+requireText(regionalFeed, 'site.data.upcoming_events.events', 'The shared feed must include UFC, PFL and other major events.');
+requireText(regionalFeed, 'concat: major_events', 'Major events without map coordinates must remain in the worldwide ledger.');
+requireText(tickerScript, 'const EVENTS_URL = "/assets/data/event-map-regions-live.json"', 'The site ticker must use the same complete worldwide event feed.');
+requireText(tickerScript, 'const candidates = dedupeTickerEvents(raw);', 'The ticker must consider all events rather than stopping at an arbitrary cap.');
+forbid(tickerScript, 'MAX_TICKER_EVENTS', 'The ticker must not impose an arbitrary event-count cutoff.');
 
 requireText(core, "window.addEventListener('popstate', restoreHistorySelection)", 'Core must restore event selection on browser back/forward.');
 requireText(core, "window.history.pushState", 'Committed Event Map selections must create history entries.');
