@@ -70,7 +70,9 @@ page_scripts:
 
     <div class="event-map-toolbar" aria-label="Event Map controls">
         <div class="event-map-range" role="group" aria-label="Date range">
+            <button type="button" data-range="today" aria-pressed="false">Today</button>
             <button type="button" data-range="week" aria-pressed="true">This week</button>
+            <button type="button" data-range="next-week" aria-pressed="false">Next week</button>
             <button type="button" data-range="30">30 days</button>
             <button type="button" data-range="all">All upcoming</button>
         </div>
@@ -192,7 +194,11 @@ page_scripts:
     <section class="event-map-results" aria-labelledby="event-map-results-title">
         <header>
             <div>
-                <h2 id="event-map-results-title">Upcoming events</h2>
+                <h2 id="event-map-results-title">Upcoming events <span class="event-map-results-total" data-results-count aria-live="polite"></span></h2>
+            </div>
+            <div class="event-map-list-scope" role="group" aria-label="Upcoming events locations">
+                <button type="button" data-event-list-scope="all" aria-pressed="true">Worldwide</button>
+                <button type="button" data-event-list-scope="map" aria-pressed="false">On map</button>
             </div>
         </header>
         <div class="event-map-results-list" data-event-list></div>

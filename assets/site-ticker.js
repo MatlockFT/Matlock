@@ -4,7 +4,8 @@
     const navigation = document.querySelector(".site-navigation");
     if (!navigation) return;
 
-    const EVENTS_URL = "/assets/data/upcoming-events-live.json";
+    // The map feed combines worldwide regional schedules and major promotions.
+    const EVENTS_URL = "/assets/data/event-map-regions-live.json";
     const NEWS_REMOTE_URL = "https://api.github.com/repos/MatlockFT/Matlock/releases/tags/mma-news-data";
     const NEWS_FALLBACK_URL = "/assets/data/mma-news.json";
     const NEWS_REFRESH_MS = 5 * 60 * 1000;
@@ -12,7 +13,6 @@
     const COUNTDOWN_TICK_MS = 1000;
     const FIGHT_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
     const DEFAULT_EVENT_LENGTH_MS = 6 * 60 * 60 * 1000;
-    const MAX_TICKER_EVENTS = 64;
     const deviceReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const zoneFormatters = new Map();
 
@@ -153,7 +153,9 @@
             let hour = Number(match[1]);
             const minute = Number(match[2] || 0);
             const meridiem = (match[3] || "").toUpperCase();
-            const zoneToken = (match[4] || "ET").toUpperCase();
+            // An unqualified regional start time must not be treated as US Eastern.
+            if (!match[4]) continue;
+            const zoneToken = match[4].toUpperCase();
 
             if (!Number.isFinite(hour) || !Number.isFinite(minute) || hour > 23 || minute > 59) continue;
             if (meridiem === "PM" && hour < 12) hour += 12;
@@ -193,10 +195,14 @@
             };
         }
 
-        const fallback = safeDate(`${event.date}T12:00:00Z`);
+        // A date without a published start time stays on the ticker all day.
+        // Never manufacture a noon UTC start or display a precise countdown.
+        const parts = /^\d{4}-\d{2}-\d{2}$/.test(String(event.date || ""))
+            ? event.date.split("-").map(Number) : null;
+        const fallback = parts ? new Date(parts[0], parts[1] - 1, parts[2]) : null;
         return {
             start: fallback,
-            end: fallback ? new Date(fallback.getTime() + DEFAULT_EVENT_LENGTH_MS) : null,
+            end: fallback ? new Date(parts[0], parts[1] - 1, parts[2] + 1) : null,
             precise: false
         };
     }
@@ -233,6 +239,15 @@
 
         const start = timing.start.getTime();
         const end = timing.end?.getTime() || start + DEFAULT_EVENT_LENGTH_MS;
+
+        if (!timing.precise) {
+            const day = timing.start;
+            const localNow = new Date(now);
+            const startDay = Date.UTC(day.getFullYear(), day.getMonth(), day.getDate());
+            const currentDay = Date.UTC(localNow.getFullYear(), localNow.getMonth(), localNow.getDate());
+            const days = Math.round((startDay - currentDay) / 86400000);
+            return { text: days <= 0 ? "TODAY" : days === 1 ? "TOMORROW" : `${days}D`, live: false };
+        }
 
         if (now >= start && now < end && timing.precise) {
             return { text: "LIVE NOW", live: true };
@@ -283,11 +298,10 @@
                 .toLowerCase();
             const date = String(event?.date || "").trim();
             const number = tickerEventNumber(event);
-            const identity = number && source && date
-                ? `${source}|${date}|#${number}`
-                : event?.id
-                    ? `id:${event.id}`
-                    : `fallback:${source}|${date}|${String(event?.title || "").trim().toLowerCase()}`;
+            // Never collapse distinct cards just because their names share a number.
+            const identity = event?.id
+                ? `id:${String(event.id).trim()}`
+                : `fallback:${source}|${date}|${String(event?.title || "").trim().toLowerCase()}`;
 
             const previous = byIdentity.get(identity);
             if (!previous || tickerEventRichness(event) > tickerEventRichness(previous)) {
@@ -300,15 +314,9 @@
 
     function normalizedEvents(data) {
         const now = Date.now();
-        const roughCutoff = now - DEFAULT_EVENT_LENGTH_MS;
         const raw = Array.isArray(data?.events) ? data.events : [];
-        const candidates = dedupeTickerEvents(raw)
-            .filter(event => {
-                const rough = safeDate(event.starts_at || (event.date ? `${event.date}T23:59:59Z` : ""));
-                return !rough || rough.getTime() > roughCutoff;
-            })
-            .sort((a, b) => String(a.starts_at || a.date || "9999").localeCompare(String(b.starts_at || b.date || "9999")))
-            .slice(0, MAX_TICKER_EVENTS);
+        // No promotion whitelist or fixed 64-event cut-off: consider every event.
+        const candidates = dedupeTickerEvents(raw);
 
         return candidates
             .map(event => ({ event, timing: eventTiming(event) }))

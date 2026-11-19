@@ -252,3 +252,38 @@
     .event-map-page-v3 .event-map-near-controls { width: 100%; }
     .event-map-page-v3 .event-map-control { min-width: 0; }
 }
+
+/* The ledger defaults to all events, independent of the map's geographic viewport. */
+.event-map-page-v3 .event-map-results-total {
+    font: 750 .68rem/1.5 var(--v3-sans);
+    color: var(--v3-muted);
+    white-space: nowrap;
+}
+.event-map-page-v3 .event-map-list-scope {
+    display: flex;
+    flex-wrap: nowrap;
+    border: 1px solid var(--v3-rule);
+    flex-shrink: 0;
+}
+.event-map-page-v3 .event-map-list-scope button {
+    border: 0;
+    background: transparent;
+    color: var(--v3-ink);
+    cursor: pointer;
+    padding: .47rem .65rem;
+    font: 800 .62rem/1.2 var(--v3-sans);
+}
+.event-map-page-v3 .event-map-list-scope button + button { border-left: 1px solid var(--v3-rule); }
+.event-map-page-v3 .event-map-list-scope button[aria-pressed="true"] {
+    background: var(--v3-ink);
+    color: var(--v3-paper);
+}
+.event-map-page-v3 .event-map-list-scope button:focus-visible {
+    outline: 2px solid var(--v3-ink);
+    outline-offset: 2px;
+}
+@media (max-width: 600px) {
+    .event-map-page-v3 .event-map-results > header { align-items: start; flex-wrap: wrap; }
+    .event-map-page-v3 .event-map-list-scope { width: 100%; }
+    .event-map-page-v3 .event-map-list-scope button { flex: 1; min-height: 40px; }
+}

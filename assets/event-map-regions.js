@@ -10,6 +10,7 @@
     const levelFilter = page.querySelector('[data-level-filter]');
     const searchInput = page.querySelector('[data-event-search]');
     const rangeButtons = [...page.querySelectorAll('[data-range]')];
+    const listScopeButtons = [...page.querySelectorAll('[data-event-list-scope]')];
     const resetButton = page.querySelector('[data-map-reset]');
     const nearButton = page.querySelector('[data-near-me]');
     const radiusFilter = page.querySelector('[data-radius-filter]');
@@ -448,6 +449,9 @@
     let usFeatures = [];
     let rawEvents = [];
     let allEvents = [];
+    let listedEvents = [];
+    let listEvents = [];
+    let currentListScope = 'all';
     let currentRegion = 'north-america';
     let currentCountry = 'united-states';
     let currentAsiaSubregion = 'east-asia';
@@ -965,13 +969,22 @@
         if (!event.calendarDay) return true;
         return event.calendarDay >= localDay();
     }
+    function weekStart(iso) {
+        const day = new Date(iso + 'T12:00:00Z');
+        day.setUTCDate(day.getUTCDate() - ((day.getUTCDay() + 6) % 7));
+        return day.toISOString().slice(0, 10);
+    }
     function matchesRange(event) {
         if (currentRange === 'all') return true;
         if (!event.date || !/^20\d{2}-\d{2}-\d{2}$/.test(event.date)) return false;
-        const span = currentRange === 'week' ? 7 : currentRange === '30' ? 30 : null;
-        if (!span) return true;
         const today = eventToday(event);
-        return event.date >= today && event.date < dateOffset(today, span);
+        if (currentRange === 'today') return event.date === today;
+        if (currentRange === '30') return event.date >= today && event.date < dateOffset(today, 30);
+        const startOfWeek = weekStart(today);
+        if (currentRange === 'week') return event.date >= today && event.date < dateOffset(startOfWeek, 7);
+        if (currentRange === 'next-week')
+            return event.date >= dateOffset(startOfWeek, 7) && event.date < dateOffset(startOfWeek, 14);
+        return true;
     }
 
     function haversineMiles(lat1, lon1, lat2, lon2) {
@@ -1004,11 +1017,7 @@
         const previousPromotion = promotionFilter?.value || '';
         const stateCodes = [...new Set(allEvents.map(event => event.stateCode).filter(code => STATES[code]))]
             .sort((a, b) => STATES[a][0].localeCompare(STATES[b][0]));
-        const promotions = [...new Set(allEvents.filter(event =>
-            (currentRegion === 'world' || COUNTRIES[event.countrySlug]?.region === currentRegion)
-            && (currentRegion !== 'asia'
-                || ASIA_SUBREGIONS[currentAsiaSubregion].countries.includes(event.countrySlug))
-        ).map(event => normalizeText(event.promotion)).filter(Boolean))]
+        const promotions = [...new Set(listedEvents.map(event => normalizeText(event.promotion)).filter(Boolean))]
             .sort((a, b) => a.localeCompare(b));
         stateFilter?.replaceChildren(new Option('All states', ''));
         stateCodes.forEach(code => stateFilter?.append(new Option(STATES[code][0], code)));
@@ -1019,12 +1028,13 @@
 
     function normalizedRange(value) {
         if (value === 'weekend') return 'week';
-        return ['week', '30', 'all'].includes(value) ? value : 'all';
+        return ['today', 'week', 'next-week', '30', 'all'].includes(value) ? value : 'all';
     }
 
     function applyUrlState() {
         const params = new URLSearchParams(window.location.search);
         currentRange = normalizedRange(params.get('range') || (params.has('event') ? 'all' : 'week'));
+        currentListScope = params.get('list') === 'map' ? 'map' : 'all';
         initialEventId = params.get('event') || '';
         currentRegion = Object.hasOwn(REGIONS, params.get('region')) ? params.get('region') : 'north-america';
         currentAsiaSubregion = Object.hasOwn(ASIA_SUBREGIONS, params.get('subregion'))
@@ -1075,6 +1085,8 @@
         if (levelFilter) levelFilter.value = params.get('level') || '';
         rangeButtons.forEach(button =>
             button.setAttribute('aria-pressed', String(button.dataset.range === currentRange)));
+        listScopeButtons.forEach(button =>
+            button.setAttribute('aria-pressed', String(button.dataset.eventListScope === currentListScope)));
     }
 
     function eventMapHistoryState() {
@@ -1095,9 +1107,10 @@
     function syncUrl({ mode = 'replace' } = {}) {
         const url = new URL(window.location.href);
         const params = url.searchParams;
-        ['range', 'state', 'promotion', 'level', 'q', 'radius', 'event', 'region', 'country', 'subregion', 'view'].forEach(key => params.delete(key));
+        ['range', 'list', 'state', 'promotion', 'level', 'q', 'radius', 'event', 'region', 'country', 'subregion', 'view'].forEach(key => params.delete(key));
         // The URL's implicit range is 'week'; preserve explicit All Upcoming on reload.
         if (currentRange !== 'week') params.set('range', currentRange);
+        if (currentListScope === 'map') params.set('list', 'map');
         if (currentRegion !== 'north-america' || currentNorthAmericaSubregion !== 'mainland') params.set('region', currentRegion);
         if (currentRegion === 'asia') params.set('subregion', currentAsiaSubregion);
         if (currentRegion === 'north-america' && currentNorthAmericaSubregion !== 'mainland')
@@ -1145,6 +1158,7 @@
 
         const event = selectedEventId
   ? filteredEvents.find(item => item.mapId === selectedEventId)
+      || listEvents.find(item => item.mapId === selectedEventId)
   : null;
         if (event) {
   renderEventDetail(event);
@@ -1213,27 +1227,37 @@
         }
     }
 
+    function matchesEventFacets(event, queryTerms) {
+        if (!matchesRange(event)) return false;
+        if (promotionFilter?.value && event.promotion !== promotionFilter.value) return false;
+        if (levelFilter?.value && event.levelCategory !== levelFilter.value) return false;
+        if (queryTerms.length) {
+            const searchable = [event.title, event.promotion, event.city, event.venue, event.stateName,
+                COUNTRIES[event.countrySlug]?.name].join(' ').toLowerCase();
+            if (!queryTerms.every(term => searchable.includes(term))) return false;
+        }
+        return true;
+    }
+
+    function withinMapSelection(event) {
+        if (currentRegion !== 'world' && COUNTRIES[event.countrySlug]?.region !== currentRegion) return false;
+        if (currentRegion === 'asia'
+            && !ASIA_SUBREGIONS[currentAsiaSubregion].countries.includes(event.countrySlug)) return false;
+        if (currentRegion === 'north-america'
+            && !NORTH_AMERICA_SUBREGIONS[currentNorthAmericaSubregion].countries.includes(event.countrySlug)) return false;
+        if (currentCountry !== 'all' && event.countrySlug !== currentCountry) return false;
+        if (nearMeActive && (!Number.isFinite(event.distanceMiles) || event.distanceMiles > currentRadius)) return false;
+        return true;
+    }
+
     function applyFilters({ sync = true } = {}) {
         currentRadius = Number(radiusFilter?.value) || DEFAULT_RADIUS;
         const queryTerms = normalizeText(searchInput?.value).toLowerCase().split(/\s+/).filter(Boolean);
-        filteredEvents = allEvents.filter(event => {
-            if (currentRegion !== 'world' && COUNTRIES[event.countrySlug]?.region !== currentRegion) return false;
-            if (currentRegion === 'asia'
-                && !ASIA_SUBREGIONS[currentAsiaSubregion].countries.includes(event.countrySlug)) return false;
-            if (currentRegion === 'north-america'
-                && !NORTH_AMERICA_SUBREGIONS[currentNorthAmericaSubregion].countries.includes(event.countrySlug)) return false;
-            if (currentCountry !== 'all' && event.countrySlug !== currentCountry) return false;
-            if (!matchesRange(event)) return false;
-            if (promotionFilter?.value && event.promotion !== promotionFilter.value) return false;
-            if (levelFilter?.value && event.levelCategory !== levelFilter.value) return false;
-            if (queryTerms.length) {
-                const searchable = [event.title, event.promotion, event.city, event.venue, event.stateName,
-                    COUNTRIES[event.countrySlug]?.name].join(' ').toLowerCase();
-                if (!queryTerms.every(term => searchable.includes(term))) return false;
-            }
-            if (nearMeActive && (!Number.isFinite(event.distanceMiles) || event.distanceMiles > currentRadius)) return false;
-            return true;
-        });
+        filteredEvents = allEvents.filter(event => withinMapSelection(event) && matchesEventFacets(event, queryTerms));
+        // The ledger is independent of the map viewport unless explicitly scoped to the map.
+        listEvents = currentListScope === 'map'
+            ? filteredEvents
+            : listedEvents.filter(event => matchesEventFacets(event, queryTerms));
         if (eventCount) eventCount.textContent = String(filteredEvents.length);
         if (regionSummary) {
             const scope = currentCountry !== 'all' ? COUNTRIES[currentCountry].name
@@ -1242,7 +1266,7 @@
                 : REGIONS[currentRegion].name;
             regionSummary.textContent = scope + ' · ' + filteredEvents.length + ' event' + (filteredEvents.length === 1 ? '' : 's');
         }
-        if (selectedEventId && !filteredEvents.some(event => event.mapId === selectedEventId)) {
+        if (selectedEventId && !listEvents.some(event => event.mapId === selectedEventId)) {
             selectedEventId = '';
             selectedClusterKey = '';
             showEmptyDetail();
@@ -1348,7 +1372,7 @@
         }
         renderPoster(event);
 
-        detailLocation.textContent = placeLabel(event);
+        detailLocation.textContent = placeLabel(event) || 'Location TBA';
         if (dateNote) { dateNote.textContent = normalizeText(event.date_note); dateNote.hidden = !dateNote.textContent; }
         if (Number.isFinite(event.distanceMiles)) {
   detailDistance.hidden = false;
@@ -1595,6 +1619,37 @@
   });
     }
 
+    function selectResultEvent(event) {
+        const visible = filteredEvents.find(item => item.mapId === event.mapId);
+        if (visible) return selectEvent(visible, { zoom: true });
+
+        // A worldwide result can be outside the map's current continent/country.
+        // Navigate to its country, then select the reprojected map point.
+        const region = COUNTRIES[event.countrySlug]?.region;
+        if (region) {
+            currentRegion = region;
+            if (region === 'asia') {
+                currentAsiaSubregion = Object.keys(ASIA_SUBREGIONS).find(id =>
+                    ASIA_SUBREGIONS[id].countries.includes(event.countrySlug)) || 'east-asia';
+            }
+            if (region === 'north-america') {
+                currentNorthAmericaSubregion = Object.keys(NORTH_AMERICA_SUBREGIONS).find(id =>
+                    NORTH_AMERICA_SUBREGIONS[id].countries.includes(event.countrySlug)) || 'mainland';
+            }
+            currentCountry = event.countrySlug;
+            nearMeActive = false;
+            nearButton.setAttribute('aria-pressed', 'false');
+            if (nearStatus) nearStatus.textContent = '';
+            rebuildMap({ resetZoom: true });
+            applyFilters({ sync: false });
+            const located = filteredEvents.find(item => item.mapId === event.mapId);
+            if (located) return selectEvent(located, { zoom: true });
+        }
+
+        // A legitimate event with no confirmed location still has useful details.
+        return selectEvent(event, { zoom: false });
+    }
+
     function makeResultButton(event) {
         const button = document.createElement('button');
         button.type = 'button';
@@ -1611,7 +1666,7 @@
         title.textContent = normalizeText(event.title) || normalizeText(event.promotion) || 'MMA event';
         const meta = document.createElement('span');
         meta.className = 'event-map-result-meta';
-        meta.textContent = `${normalizeText(event.promotion) || 'MMA'} · ${placeLabel(event)} · ${levelLabel(event)}`;
+        meta.textContent = `${normalizeText(event.promotion) || 'MMA'} · ${placeLabel(event) || 'Location TBA'} · ${levelLabel(event)}`;
         copy.append(title, meta);
         button.append(date, copy);
         if (Number.isFinite(event.distanceMiles)) {
@@ -1620,13 +1675,13 @@
             distance.textContent = `${Math.round(event.distanceMiles)} mi`;
             button.append(distance);
         }
-        button.addEventListener('click', () => selectEvent(event, { zoom: true }));
+        button.addEventListener('click', () => selectResultEvent(event));
         return button;
     }
 
     function renderResults() {
-        const ordered = displayOrder(filteredEvents);
-        if (resultsCount) resultsCount.textContent = String(ordered.length);
+        const ordered = displayOrder(listEvents);
+        if (resultsCount) resultsCount.textContent = `(${ordered.length})`;
         eventList.replaceChildren();
         eventListEmpty.hidden = ordered.length !== 0;
         if (!ordered.length) return;
@@ -1908,8 +1963,21 @@
                     chooseCountry(country);
             });
 
-        allEvents = rawEvents.map(locateEvent).filter(Boolean).filter(isFuture)
+        listedEvents = rawEvents.map((event, index) => locateEvent(event, index) || {
+            ...event,
+            mapId: event.id || ('event-' + index),
+            dateObject: eventDate(event),
+            calendarDay: eventCalendarDay(event),
+            countrySlug: countryOf(event),
+            city: normalizeText(event.city),
+            stateCode: normalizeText(event.state_code || event.state),
+            stateName: normalizeText(event.state),
+            levelCategory: levelCategory(event),
+            distanceMiles: null,
+            x: null, y: null
+        }).filter(isFuture)
             .sort((a, b) => (a.calendarDay?.getTime() ?? Infinity) - (b.calendarDay?.getTime() ?? Infinity));
+        allEvents = listedEvents.filter(event => Number.isFinite(event.x) && Number.isFinite(event.y));
         computeDistances();
         populateCompatibilityFilters();
         if (resetZoom) d3.select(svgNode).interrupt().call(zoomBehavior.transform, d3.zoomIdentity);
@@ -1935,6 +2003,11 @@
                 if (nearMeActive) zoomToEvents(filteredEvents);
             });
         });
+        listScopeButtons.forEach(button => button.addEventListener('click', () => {
+            currentListScope = button.dataset.eventListScope === 'map' ? 'map' : 'all';
+            listScopeButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+            applyFilters();
+        }));
         resetButton?.addEventListener('click', resetMap);
         zoomInButton.addEventListener('click', () => d3.select(svgNode).transition().duration(180).call(zoomBehavior.scaleBy, 1.5));
         zoomOutButton.addEventListener('click', () => d3.select(svgNode).transition().duration(180).call(zoomBehavior.scaleBy, 1 / 1.5));
@@ -2025,9 +2098,9 @@
 
             let openedEvent = false;
             if (initialEventId) {
-                const initialEvent = filteredEvents.find(event => event.mapId === initialEventId);
+                const initialEvent = listEvents.find(event => event.mapId === initialEventId);
                 if (initialEvent) {
-                    selectEvent(initialEvent, { zoom: true, scroll: false, history: 'replace' });
+                    selectResultEvent(initialEvent);
                     openedEvent = true;
                 } else syncUrl({ mode: 'replace' });
             } else syncUrl({ mode: 'replace' });
