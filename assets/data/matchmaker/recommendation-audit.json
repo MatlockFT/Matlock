@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-11-19T13:51:55.872Z",
+  "generatedAt": "2026-11-19T23:13:06.057Z",
   "engineVersion": 2,
   "subjects": 414,
-  "publishedRecommendations": 1108,
+  "publishedRecommendations": 1078,
   "recommendationSlots": {
-    "0": 42,
+    "0": 52,
     "1": 2,
     "2": 4,
-    "3": 366
+    "3": 356
   },
   "caseCounts": {
-    "rebound-pairing": 469,
-    "rising-vs-rising": 300,
+    "rebound-pairing": 455,
+    "rising-vs-rising": 284,
     "step-up-vs-rebound": 151,
     "rankings-progression": 61,
-    "ranking-opportunity": 54,
-    "divisional-sorting": 38,
+    "ranking-opportunity": 53,
+    "divisional-sorting": 39,
     "title-case": 15,
     "title-eliminator": 14,
     "prospect-test": 6
   },
   "confidenceCounts": {
-    "high": 1031,
-    "low": 48,
-    "medium": 29
+    "high": 996,
+    "low": 49,
+    "medium": 33
   },
   "averageRecentOpponentLinkCoverage": 0.9029,
-  "sameCardRecommendations": 44,
-  "sameCardRecommendationRatio": 0.0397,
-  "asymmetricTopThreeRecommendations": 390,
-  "asymmetricTopThreeRatio": 0.352,
-  "publicPublishedRecommendations": 1082,
-  "publicAsymmetricTopThreeRecommendations": 295,
-  "publicAsymmetricTopThreeRatio": 0.2726,
-  "engineGenericDivisionalSortingRecommendations": 38,
+  "sameCardRecommendations": 46,
+  "sameCardRecommendationRatio": 0.0427,
+  "asymmetricTopThreeRecommendations": 391,
+  "asymmetricTopThreeRatio": 0.3627,
+  "publicPublishedRecommendations": 1051,
+  "publicAsymmetricTopThreeRecommendations": 290,
+  "publicAsymmetricTopThreeRatio": 0.2759,
+  "engineGenericDivisionalSortingRecommendations": 39,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -41,7 +41,7 @@
     "title": "Polymarket UFC 334: Gane vs Hokit",
     "date": "2026-11-14",
     "subjects": 26,
-    "publicRecommendations": 72,
+    "publicRecommendations": 71,
     "noClearMatchupSubjects": 1
   },
   "eventPublicSummary": [
@@ -50,7 +50,7 @@
       "title": "Polymarket UFC 334: Gane vs Hokit",
       "date": "2026-11-14",
       "subjects": 26,
-      "publicRecommendations": 72,
+      "publicRecommendations": 71,
       "noClearMatchupSubjects": 1
     },
     {
@@ -98,8 +98,8 @@
       "title": "UFC 332: Silva vs Wang",
       "date": "2026-10-03",
       "subjects": 28,
-      "publicRecommendations": 74,
-      "noClearMatchupSubjects": 3
+      "publicRecommendations": 71,
+      "noClearMatchupSubjects": 4
     },
     {
       "id": "ufc-fight-night-september-26-2026",
@@ -130,8 +130,8 @@
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 64,
-      "noClearMatchupSubjects": 6
+      "publicRecommendations": 58,
+      "noClearMatchupSubjects": 8
     },
     {
       "id": "ufc-fight-night-august-29-2026",
@@ -146,8 +146,8 @@
       "title": "UFC Fight Night: Hernandez vs Rodrigues",
       "date": "2026-08-22",
       "subjects": 26,
-      "publicRecommendations": 72,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 66,
+      "noClearMatchupSubjects": 4
     },
     {
       "id": "ufc-330",
@@ -162,16 +162,16 @@
       "title": "UFC Fight Night: Gamrot vs Salkilld",
       "date": "2026-08-08",
       "subjects": 24,
-      "publicRecommendations": 57,
-      "noClearMatchupSubjects": 5
+      "publicRecommendations": 48,
+      "noClearMatchupSubjects": 8
     },
     {
       "id": "ufc-fight-night-august-01-2026",
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 72,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 66,
+      "noClearMatchupSubjects": 6
     }
   ],
   "genericExamples": [
@@ -845,6 +845,31 @@
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Cesar Almeida",
+      "opponent": "Rodolfo Vieira",
+      "pairScore": 91,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Dustin Stoltzfus",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Marc Andre Barriault",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ismail Naurdiev",
+          "score": 93,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Jared Gordon",
       "opponent": "Kyle Nelson",
       "pairScore": 90,
@@ -915,31 +940,6 @@
           "opponent": "Daniel Zellhuber",
           "score": 90,
           "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Melquizael Costa",
-      "opponent": "David Onama",
-      "pairScore": 93,
-      "case": "ranking-opportunity",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Sean Woodson",
-          "score": 96,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Christian Rodriguez",
-          "score": 95,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Marcus McGhee",
-          "score": 95,
-          "case": "ranking-opportunity"
         }
       ]
     }
