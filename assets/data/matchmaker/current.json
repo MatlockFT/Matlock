@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-18T23:01:48.523Z"
+      "checkedAt": "2026-11-19T04:04:47.244Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-18T23:02:28.116Z",
+      "checkedAt": "2026-11-19T04:05:16.276Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -156235,7 +156235,7 @@
     {
       "id": "joe-lauzon",
       "name": "Joe Lauzon",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/joe-lauzon",
       "aliases": [],
       "profileStatus": "Active",
@@ -157267,9 +157267,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-11-18T23:01:48.523Z"
+        "checkedAt": "2026-11-19T04:04:47.244Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/joe-lauzon",
@@ -288459,7 +288459,7 @@
     {
       "id": "ryan-hall",
       "name": "Ryan Hall",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/ryan-hall",
       "aliases": [],
       "profileStatus": "Active",
@@ -288729,9 +288729,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-11-18T23:01:48.523Z"
+        "checkedAt": "2026-11-19T04:04:47.244Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/ryan-hall",
@@ -366314,7 +366314,7 @@
   ],
   "coverage": {
     "profileFailures": 28,
-    "activeFighters": 1004,
+    "activeFighters": 1002,
     "participantHistoriesRequested": 400,
     "verifiedParticipantHistories": 400,
     "ufcStatsNameMisses": 1,
