@@ -1,38 +1,38 @@
 {
-  "generatedAt": "2026-11-18T17:31:30.687Z",
+  "generatedAt": "2026-11-19T01:59:13.241Z",
   "engineVersion": 2,
   "subjects": 414,
-  "publishedRecommendations": 1117,
+  "publishedRecommendations": 1108,
   "recommendationSlots": {
-    "0": 39,
+    "0": 42,
     "1": 2,
     "2": 4,
-    "3": 369
+    "3": 366
   },
   "caseCounts": {
-    "rebound-pairing": 473,
-    "rising-vs-rising": 303,
-    "step-up-vs-rebound": 154,
-    "rankings-progression": 60,
-    "ranking-opportunity": 55,
+    "rebound-pairing": 469,
+    "rising-vs-rising": 300,
+    "step-up-vs-rebound": 151,
+    "rankings-progression": 61,
+    "ranking-opportunity": 54,
     "divisional-sorting": 38,
     "title-case": 15,
-    "title-eliminator": 13,
+    "title-eliminator": 14,
     "prospect-test": 6
   },
   "confidenceCounts": {
-    "high": 1040,
+    "high": 1031,
     "low": 48,
     "medium": 29
   },
   "averageRecentOpponentLinkCoverage": 0.9029,
-  "sameCardRecommendations": 43,
-  "sameCardRecommendationRatio": 0.0385,
-  "asymmetricTopThreeRecommendations": 396,
-  "asymmetricTopThreeRatio": 0.3545,
-  "publicPublishedRecommendations": 1091,
-  "publicAsymmetricTopThreeRecommendations": 302,
-  "publicAsymmetricTopThreeRatio": 0.2768,
+  "sameCardRecommendations": 44,
+  "sameCardRecommendationRatio": 0.0397,
+  "asymmetricTopThreeRecommendations": 390,
+  "asymmetricTopThreeRatio": 0.352,
+  "publicPublishedRecommendations": 1082,
+  "publicAsymmetricTopThreeRecommendations": 295,
+  "publicAsymmetricTopThreeRatio": 0.2726,
   "engineGenericDivisionalSortingRecommendations": 38,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -58,16 +58,16 @@
       "title": "UFC Fight Night: Cortes Acosta vs Walker",
       "date": "2026-11-07",
       "subjects": 28,
-      "publicRecommendations": 84,
-      "noClearMatchupSubjects": 0
+      "publicRecommendations": 78,
+      "noClearMatchupSubjects": 2
     },
     {
       "id": "ufc-fight-night-october-31-2026",
       "title": "UFC Fight Night: Moicano vs Nolan",
       "date": "2026-10-31",
       "subjects": 24,
-      "publicRecommendations": 72,
-      "noClearMatchupSubjects": 0
+      "publicRecommendations": 69,
+      "noClearMatchupSubjects": 1
     },
     {
       "id": "ufc-333",
@@ -413,7 +413,7 @@
         },
         {
           "opponent": "Julianna Pena",
-          "score": 82,
+          "score": 83,
           "case": "step-up-vs-rebound"
         }
       ]
