@@ -82,12 +82,12 @@
       "verdict_url": "https://verdictmma.com/event/1994",
       "verdict_date": "2027-01-16",
       "local_fight_count": 13,
-      "verdict_fight_count": null,
+      "verdict_fight_count": 13,
       "local_main_count": 13,
-      "verdict_main_count": null,
+      "verdict_main_count": 5,
       "local_prelim_count": 0,
-      "verdict_prelim_count": null,
-      "confirmed_local_bouts": 3
+      "verdict_prelim_count": 8,
+      "confirmed_local_bouts": 13
     },
     {
       "event_id": "ufc-fight-night-2027-01-23-fight-card",
@@ -316,104 +316,13 @@
       ]
     },
     {
-      "type": "local_bout_not_found_on_verdict",
+      "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2027-01-16-fight-card",
       "verdict_event_id": "1994",
-      "order": 10,
-      "fighters": [
-        "Magomed Zaynukov",
-        "Piero Guaylupo"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2027-01-16-fight-card",
-      "verdict_event_id": "1994",
-      "order": 11,
-      "fighters": [
-        "John Garza",
-        "Toshiomi Kazama"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2027-01-16-fight-card",
-      "verdict_event_id": "1994",
-      "order": 12,
-      "fighters": [
-        "Steven Asplund",
-        "Gokhan Saricam"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2027-01-16-fight-card",
-      "verdict_event_id": "1994",
-      "order": 13,
-      "fighters": [
-        "Sam Hughes",
-        "Karolina Kowalkiewicz"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2027-01-16-fight-card",
-      "verdict_event_id": "1994",
-      "order": 3,
-      "fighters": [
-        "Geoff Neal",
-        "Chris Curtis"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2027-01-16-fight-card",
-      "verdict_event_id": "1994",
-      "order": 5,
-      "fighters": [
-        "Ryan Spann",
-        "Louie Sutherland"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2027-01-16-fight-card",
-      "verdict_event_id": "1994",
-      "order": 6,
-      "fighters": [
-        "Kennedy Nzechukwu",
-        "Elisha Ellison"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2027-01-16-fight-card",
-      "verdict_event_id": "1994",
-      "order": 7,
-      "fighters": [
-        "Gilbert Urbina",
-        "Robert Valentin"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2027-01-16-fight-card",
-      "verdict_event_id": "1994",
-      "order": 8,
-      "fighters": [
-        "Alden Coria",
-        "Michael Aljarouj"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2027-01-16-fight-card",
-      "verdict_event_id": "1994",
-      "order": 9,
-      "fighters": [
-        "Diego Ferreira",
-        "MarQuel Mederos"
-      ]
+      "local_main_count": 13,
+      "verdict_main_count": 5,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": 8
     },
     {
       "type": "bout_count_mismatch",
