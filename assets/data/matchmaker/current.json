@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-20T10:34:18.212Z"
+      "checkedAt": "2026-11-21T00:19:46.668Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-20T18:50:44.859Z",
+      "checkedAt": "2026-11-21T00:21:21.640Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -59377,7 +59377,13 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "Rodriguez vs Garcia",
+        "date": "2027-01-16",
+        "source": "https://www.ufc.com/event/ufc-fight-night-january-16-2027",
+        "opponent": "Ignacio Bahamondes",
+        "opponentId": "ignacio-bahamondes"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -92104,7 +92110,7 @@
     {
       "id": "douglas-silva-de-andrade",
       "name": "Douglas Silva De Andrade",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/douglas-silva-de-andrade",
       "aliases": [],
       "profileStatus": "Active",
@@ -92674,9 +92680,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-11-20T10:34:18.212Z"
+        "checkedAt": "2026-11-21T00:19:46.668Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/douglas-silva-de-andrade",
@@ -113356,7 +113362,7 @@
     {
       "id": "giga-chikadze",
       "name": "Giga Chikadze",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/giga-chikadze",
       "aliases": [],
       "profileStatus": "Active",
@@ -113888,9 +113894,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-11-20T10:34:18.212Z"
+        "checkedAt": "2026-11-21T00:19:46.668Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/giga-chikadze",
@@ -114338,7 +114344,13 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "Rodriguez vs Garcia",
+        "date": "2027-01-16",
+        "source": "https://www.ufc.com/event/ufc-fight-night-january-16-2027",
+        "opponent": "Robert Valentin",
+        "opponentId": null
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -153860,7 +153872,13 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "Salkilld vs Saint Denis",
+        "date": "2027-02-06",
+        "source": "https://www.ufc.com/event/ufc-fight-night-february-06-2027",
+        "opponent": "Kaan Ofli",
+        "opponentId": "kaan-ofli"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -290782,7 +290800,13 @@
         "mirrorThrough": "2026-11-14",
         "officialThrough": "2026-11-14"
       },
-      "booking": null,
+      "booking": {
+        "event": "Rodriguez vs Garcia",
+        "date": "2027-01-16",
+        "source": "https://www.ufc.com/event/ufc-fight-night-january-16-2027",
+        "opponent": "Karolina Kowalkiewicz",
+        "opponentId": "karolina-kowalkiewicz"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -334821,7 +334845,7 @@
     {
       "id": "william-gomis",
       "name": "William Gomis",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/william-gomis",
       "aliases": [],
       "profileStatus": "Active",
@@ -335133,9 +335157,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-11-20T10:34:18.212Z"
+        "checkedAt": "2026-11-21T00:19:46.668Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/william-gomis",
@@ -366085,7 +366109,7 @@
   ],
   "coverage": {
     "profileFailures": 28,
-    "activeFighters": 1005,
+    "activeFighters": 1002,
     "participantHistoriesRequested": 400,
     "verifiedParticipantHistories": 400,
     "ufcStatsNameMisses": 1,
