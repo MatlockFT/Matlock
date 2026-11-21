@@ -48,12 +48,12 @@
       "verdict_url": "https://verdictmma.com/event/1971",
       "verdict_date": "2026-12-12",
       "local_fight_count": 6,
-      "verdict_fight_count": 4,
+      "verdict_fight_count": 6,
       "local_main_count": 5,
-      "verdict_main_count": 3,
+      "verdict_main_count": 5,
       "local_prelim_count": 1,
       "verdict_prelim_count": 1,
-      "confirmed_local_bouts": 4
+      "confirmed_local_bouts": 6
     },
     {
       "event_id": "rizin-rizin-6-2026-12-31",
@@ -238,42 +238,6 @@
         "Yutaro Muramoto",
         "Erson Yamamoto"
       ]
-    },
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "verdict_event_id": "1971",
-      "local_fight_count": 6,
-      "verdict_fight_count": 4
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "verdict_event_id": "1971",
-      "order": 4,
-      "fighters": [
-        "Kyler Phillips",
-        "Ethyn Ewing"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "verdict_event_id": "1971",
-      "order": 5,
-      "fighters": [
-        "Damian Pinas",
-        "Baisangur Susurkaev"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "verdict_event_id": "1971",
-      "local_main_count": 5,
-      "verdict_main_count": 3,
-      "local_prelim_count": 1,
-      "verdict_prelim_count": 1
     },
     {
       "type": "local_bout_not_found_on_verdict",
