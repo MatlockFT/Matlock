@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-11-20T17:14:38.203Z",
+  "generatedAt": "2026-11-21T01:43:08.199Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
@@ -8,8 +8,8 @@
   "availableCases": 581,
   "sampledCases": 120,
   "historicalUniverseCoverage": {
-    "currentDatasetFighters": 1023,
-    "historicalOnlyFighters": 2024,
+    "currentDatasetFighters": 1021,
+    "historicalOnlyFighters": 2026,
     "combinedCandidateUniverse": 3047,
     "trackedFights": 8992,
     "fightersWithTrackedHistory": 2771,
@@ -19,16 +19,16 @@
   },
   "rankingSnapshotCoverage": {
     "archiveStart": "2026-09-10",
-    "archiveEnd": "2026-11-20",
-    "snapshotsAvailable": 61,
+    "archiveEnd": "2026-11-21",
+    "snapshotsAvailable": 62,
     "sampledCasesWithSnapshot": 5,
     "sampledCasesWithoutSnapshot": 115,
     "maxSnapshotAgeDays": 14
   },
   "temporalStateCoverage": {
     "archiveStart": "2026-09-15",
-    "archiveEnd": "2026-11-20",
-    "snapshotsAvailable": 50,
+    "archiveEnd": "2026-11-21",
+    "snapshotsAvailable": 51,
     "sampledCasesWithSnapshot": 3,
     "sampledCasesWithoutSnapshot": 117,
     "maxSnapshotAgeDays": 7
@@ -2490,13 +2490,13 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Morgan Charriere",
+          "opponent": "William Gomis",
           "score": 89,
           "rankingScore": 89,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Muhammad Naimov",
+          "opponent": "Morgan Charriere",
           "score": 89,
           "rankingScore": 89,
           "case": "rebound-pairing"
@@ -2510,13 +2510,13 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Morgan Charriere",
+          "opponent": "William Gomis",
           "score": 89,
           "rankingScore": 89,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Muhammad Naimov",
+          "opponent": "Morgan Charriere",
           "score": 89,
           "rankingScore": 89,
           "case": "rebound-pairing"
@@ -3483,13 +3483,13 @@
       ],
       "publicTopThree": [
         {
-          "opponent": "Dennis Buzukja",
+          "opponent": "Hyder Amil",
           "score": 91,
           "rankingScore": 91,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Hyder Amil",
+          "opponent": "Dennis Buzukja",
           "score": 91,
           "rankingScore": 91,
           "case": "rebound-pairing"
@@ -3990,7 +3990,7 @@
       "classification": "engine-ranking-miss-near",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 7,
+      "engineRank": 6,
       "publicRank": null,
       "engineTopThree": [
         {
@@ -4006,7 +4006,7 @@
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Javier Reyes",
+          "opponent": "Lerryan Douglas",
           "score": 94,
           "rankingScore": 94,
           "case": "rising-vs-rising"
@@ -4026,7 +4026,7 @@
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Javier Reyes",
+          "opponent": "Lerryan Douglas",
           "score": 94,
           "rankingScore": 94,
           "case": "rising-vs-rising"
@@ -5119,7 +5119,7 @@
       "classification": "engine-ranking-miss-deep",
       "targetEligible": true,
       "targetReason": null,
-      "engineRank": 33,
+      "engineRank": 31,
       "publicRank": null,
       "engineTopThree": [
         {
@@ -5129,15 +5129,15 @@
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Arnold Allen",
+          "opponent": "Dooho Choi",
           "score": 91,
           "rankingScore": 91,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Dooho Choi",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Arnold Allen",
+          "score": 90,
+          "rankingScore": 90,
           "case": "rising-vs-rising"
         }
       ],
@@ -5149,15 +5149,15 @@
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Arnold Allen",
+          "opponent": "Dooho Choi",
           "score": 91,
           "rankingScore": 91,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Dooho Choi",
-          "score": 91,
-          "rankingScore": 91,
+          "opponent": "Arnold Allen",
+          "score": 90,
+          "rankingScore": 90,
           "case": "rising-vs-rising"
         }
       ],

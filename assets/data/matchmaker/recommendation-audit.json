@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-11-20T17:14:38.203Z",
+  "generatedAt": "2026-11-21T01:43:08.199Z",
   "engineVersion": 2,
   "subjects": 414,
-  "publishedRecommendations": 1078,
+  "publishedRecommendations": 1075,
   "recommendationSlots": {
-    "0": 52,
+    "0": 53,
     "1": 2,
     "2": 4,
-    "3": 356
+    "3": 355
   },
   "caseCounts": {
-    "rebound-pairing": 455,
-    "rising-vs-rising": 284,
-    "step-up-vs-rebound": 151,
-    "rankings-progression": 61,
+    "rebound-pairing": 451,
+    "rising-vs-rising": 286,
+    "step-up-vs-rebound": 152,
+    "rankings-progression": 59,
     "ranking-opportunity": 53,
     "divisional-sorting": 39,
     "title-case": 15,
@@ -21,18 +21,18 @@
     "prospect-test": 6
   },
   "confidenceCounts": {
-    "high": 996,
+    "high": 993,
     "low": 49,
     "medium": 33
   },
-  "averageRecentOpponentLinkCoverage": 0.9029,
-  "sameCardRecommendations": 46,
-  "sameCardRecommendationRatio": 0.0427,
-  "asymmetricTopThreeRecommendations": 391,
-  "asymmetricTopThreeRatio": 0.3627,
-  "publicPublishedRecommendations": 1051,
-  "publicAsymmetricTopThreeRecommendations": 290,
-  "publicAsymmetricTopThreeRatio": 0.2759,
+  "averageRecentOpponentLinkCoverage": 0.9022,
+  "sameCardRecommendations": 47,
+  "sameCardRecommendationRatio": 0.0437,
+  "asymmetricTopThreeRecommendations": 388,
+  "asymmetricTopThreeRatio": 0.3609,
+  "publicPublishedRecommendations": 1048,
+  "publicAsymmetricTopThreeRecommendations": 287,
+  "publicAsymmetricTopThreeRatio": 0.2739,
   "engineGenericDivisionalSortingRecommendations": 39,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -114,8 +114,8 @@
       "title": "Crypto.com UFC 331: Van vs Pantoja 2",
       "date": "2026-09-19",
       "subjects": 24,
-      "publicRecommendations": 61,
-      "noClearMatchupSubjects": 3
+      "publicRecommendations": 58,
+      "noClearMatchupSubjects": 4
     },
     {
       "id": "ufc-fight-night-september-12-2026",
