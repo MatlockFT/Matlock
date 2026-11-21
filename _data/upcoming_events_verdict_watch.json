@@ -64,9 +64,9 @@
       "verdict_event_id": "1976",
       "verdict_url": "https://verdictmma.com/event/1976",
       "verdict_date": "2026-12-31",
-      "local_fight_count": 11,
+      "local_fight_count": 17,
       "verdict_fight_count": null,
-      "local_main_count": 11,
+      "local_main_count": 17,
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
@@ -116,12 +116,12 @@
       "verdict_url": "https://verdictmma.com/event/1993",
       "verdict_date": "2027-01-30",
       "local_fight_count": 5,
-      "verdict_fight_count": null,
+      "verdict_fight_count": 5,
       "local_main_count": 5,
-      "verdict_main_count": null,
+      "verdict_main_count": 2,
       "local_prelim_count": 0,
-      "verdict_prelim_count": null,
-      "confirmed_local_bouts": 2
+      "verdict_prelim_count": 3,
+      "confirmed_local_bouts": 5
     },
     {
       "event_id": "ufc-fight-night-2027-02-06-fight-card",
@@ -133,12 +133,12 @@
       "verdict_url": "https://verdictmma.com/event/1995",
       "verdict_date": "2027-02-06",
       "local_fight_count": 5,
-      "verdict_fight_count": 8,
+      "verdict_fight_count": 9,
       "local_main_count": 5,
       "verdict_main_count": 6,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 2,
-      "confirmed_local_bouts": 4
+      "verdict_prelim_count": 3,
+      "confirmed_local_bouts": 5
     },
     {
       "event_id": "ufc-fight-night-2027-02-13-fight-card",
@@ -165,7 +165,7 @@
       "verdict_event_id": "1976",
       "order": 1,
       "fighters": [
-        "Razhabali Shaidulloev",
+        "RIZINフェザー級タイトルマッチ／ラジャブアリ・シェイドゥラエフ",
         "Kyoma Akimoto"
       ]
     },
@@ -173,7 +173,27 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-rizin-6-2026-12-31",
       "verdict_event_id": "1976",
-      "order": 10,
+      "order": 11,
+      "fighters": [
+        "Hinotori",
+        "Tatsuki Shinotsuka"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 12,
+      "fighters": [
+        "Yutaro Muramoto",
+        "Erson Yamamoto"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 13,
       "fighters": [
         "Daichi Tomizawa",
         "Don't mind Kawabata"
@@ -183,7 +203,37 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-rizin-6-2026-12-31",
       "verdict_event_id": "1976",
-      "order": 11,
+      "order": 14,
+      "fighters": [
+        "アラン“ヒロ”ヤマニハ",
+        "Arihito Yamamoto"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 15,
+      "fighters": [
+        "Soul Hamaguchi",
+        "Daisuke Kobayashi"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 16,
+      "fighters": [
+        "Masashi Inada",
+        "Kosuke Kindaichi"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 17,
       "fighters": [
         "Christian Akira Matsuo",
         "Sora Kaneko"
@@ -205,6 +255,16 @@
       "verdict_event_id": "1976",
       "order": 4,
       "fighters": [
+        "RIZINバンタム級タイトルマッチ／ダニー・サバテロ",
+        "Yrysbek Tilenov"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
+      "order": 5,
+      "fighters": [
         "Chihiro Suzuki",
         "YA-MAN"
       ]
@@ -213,10 +273,10 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-rizin-6-2026-12-31",
       "verdict_event_id": "1976",
-      "order": 6,
+      "order": 7,
       "fighters": [
-        "スダリオ剛",
-        "King Edokpolo"
+        "Kleber Koike",
+        "Hyuma Yasui"
       ]
     },
     {
@@ -225,8 +285,8 @@
       "verdict_event_id": "1976",
       "order": 8,
       "fighters": [
-        "Hinotori",
-        "Tatsuki Shinotsuka"
+        "Jose Torres",
+        "Enzo Massami Iamazato"
       ]
     },
     {
@@ -235,39 +295,18 @@
       "verdict_event_id": "1976",
       "order": 9,
       "fighters": [
-        "Yutaro Muramoto",
-        "Erson Yamamoto"
+        "スダリオ剛",
+        "King Edokpolo"
       ]
     },
     {
-      "type": "local_bout_not_found_on_verdict",
+      "type": "section_count_mismatch",
       "event_id": "ufc-336-2027-01-30-fight-card",
       "verdict_event_id": "1993",
-      "order": 3,
-      "fighters": [
-        "Lance Gibson Jr.",
-        "Michael Johnson"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-336-2027-01-30-fight-card",
-      "verdict_event_id": "1993",
-      "order": 4,
-      "fighters": [
-        "Serhiy Sidey",
-        "Louis Lee Scott"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-336-2027-01-30-fight-card",
-      "verdict_event_id": "1993",
-      "order": 5,
-      "fighters": [
-        "Cam Nelson",
-        "Sean Clancy Jr."
-      ]
+      "local_main_count": 5,
+      "verdict_main_count": 2,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": 3
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -293,17 +332,7 @@
       "event_id": "ufc-fight-night-2027-02-06-fight-card",
       "verdict_event_id": "1995",
       "local_fight_count": 5,
-      "verdict_fight_count": 8
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2027-02-06-fight-card",
-      "verdict_event_id": "1995",
-      "order": 3,
-      "fighters": [
-        "Jonathan Micallef",
-        "Sam Patterson"
-      ]
+      "verdict_fight_count": 9
     },
     {
       "type": "section_count_mismatch",
@@ -312,7 +341,7 @@
       "local_main_count": 5,
       "verdict_main_count": 6,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 2
+      "verdict_prelim_count": 3
     }
   ]
 }
