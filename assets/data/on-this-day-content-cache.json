@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-11-15T16:34:09.180Z",
+  "updatedAt": "2026-11-22T17:22:52.777Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -15466,6 +15466,14 @@
       "status": "no-main-event",
       "sourceType": "wikipedia-structured",
       "wikipediaTitle": "Canada"
+    },
+    "ufc:2026-11-21:ufc-fight-night-prochazka-vs-stirling": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-11-22T17:22:52.777Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Procházka vs. Stirling",
+      "mainEvent": "Procházka vs. Stirling"
     }
   }
 }
