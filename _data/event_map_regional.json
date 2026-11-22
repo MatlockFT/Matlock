@@ -149,21 +149,6 @@
       "source_label": "Sherdog regional discovery"
     },
     {
-      "id": "sherdog-afc-179-alaska-fighting-championship-179-2026-11-28-anchorage",
-      "promotion": "AFC",
-      "promotion_key": "sherdog_discovery",
-      "title": "AFC 179: Alaska Fighting Championship 179",
-      "date": "2026-11-28",
-      "venue": "Sullivan Arena",
-      "location": "Anchorage, AK",
-      "broadcast": "",
-      "official_url": "https://www.sherdog.com/events/AFC-179-Alaska-Fighting-Championship-179-115438",
-      "regional": true,
-      "level": "regional",
-      "source_key": "sherdog_discovery",
-      "source_label": "Sherdog regional discovery"
-    },
-    {
       "id": "sherdog-air-capital-combat-4-live-at-the-the-cotillion-2026-11-28-wichita",
       "promotion": "Air Capital Combat",
       "promotion_key": "sherdog_discovery",
@@ -608,13 +593,6 @@
       "level": "regional",
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
-      "main_event": {
-        "fighters": [
-          "Fleck",
-          "Huff"
-        ]
-      },
-      "ticket_url": "https://www.nitrotickets.com/event/1287/ignite-fights-115-1212",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1287/e1ae5424c7b1ee59c283d9cc59f6410b.jpg"
     },
     {
@@ -731,7 +709,10 @@
       "regional": true,
       "level": "regional",
       "source_key": "sherdog_discovery",
-      "source_label": "Sherdog regional discovery"
+      "source_label": "Sherdog regional discovery",
+      "ticket_url": "https://www.nitrotickets.com/event/1353/brutaal-ascendancy-championship",
+      "latitude": 41.5868,
+      "longitude": -93.625
     },
     {
       "id": "sherdog-cffc-163-cage-fury-fighting-championships-163-2026-12-19-atlantic-city",
@@ -811,7 +792,6 @@
       "level": "regional",
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
-      "ticket_url": "https://www.nitrotickets.com/event/1298/wfc-200-ilani-1219",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1298/1789187666_XaQrT.jpg"
     },
     {
