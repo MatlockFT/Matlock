@@ -5,23 +5,6 @@
   "mode": "read-only-watchdog",
   "coverage": [
     {
-      "event_id": "ufc-fight-night-2026-11-21-fight-card",
-      "promotion": "ufc",
-      "date": "2026-11-21",
-      "title": "Procházka vs Stirling",
-      "status": "matched",
-      "verdict_event_id": "1986",
-      "verdict_url": "https://verdictmma.com/event/1986",
-      "verdict_date": "2026-11-21",
-      "local_fight_count": 12,
-      "verdict_fight_count": 12,
-      "local_main_count": 5,
-      "verdict_main_count": 5,
-      "local_prelim_count": 7,
-      "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 12
-    },
-    {
       "event_id": "ufc-fight-night-2026-12-05-fight-card",
       "promotion": "ufc",
       "date": "2026-12-05",
@@ -31,11 +14,11 @@
       "verdict_url": "https://verdictmma.com/event/1998",
       "verdict_date": "2026-12-05",
       "local_fight_count": 12,
-      "verdict_fight_count": 12,
+      "verdict_fight_count": 13,
       "local_main_count": 6,
       "verdict_main_count": 6,
       "local_prelim_count": 6,
-      "verdict_prelim_count": 6,
+      "verdict_prelim_count": 7,
       "confirmed_local_bouts": 11
     },
     {
@@ -70,7 +53,7 @@
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": 3
+      "confirmed_local_bouts": 2
     },
     {
       "event_id": "ufc-fight-night-2027-01-16-fight-card",
@@ -273,6 +256,16 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-rizin-6-2026-12-31",
       "verdict_event_id": "1976",
+      "order": 6,
+      "fighters": [
+        "RIZIN女子スーパーアトム級タイトルマッチ／大島沙緒里",
+        "Natasha Kuziutina"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "verdict_event_id": "1976",
       "order": 7,
       "fighters": [
         "Kleber Koike",
@@ -309,6 +302,13 @@
       "verdict_prelim_count": 3
     },
     {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "verdict_event_id": "1998",
+      "local_fight_count": 12,
+      "verdict_fight_count": 13
+    },
+    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-12-05-fight-card",
       "verdict_event_id": "1998",
@@ -317,6 +317,15 @@
         "Pavel Andrusca",
         "Mahammadali Osmanli"
       ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "verdict_event_id": "1998",
+      "local_main_count": 6,
+      "verdict_main_count": 6,
+      "local_prelim_count": 6,
+      "verdict_prelim_count": 7
     },
     {
       "type": "section_count_mismatch",

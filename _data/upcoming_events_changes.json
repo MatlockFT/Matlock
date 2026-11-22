@@ -1,7 +1,44 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-21T07:32:18.762Z",
+  "generated_at": "2026-11-22T01:16:30.919Z",
   "changes": [
+    {
+      "id": "2026-11-22T01:16:30.919Z|ufc-fight-night-2026-11-21-fight-card|event_removed|1",
+      "at": "2026-11-22T01:16:30.919Z",
+      "type": "event_removed",
+      "event_id": "ufc-fight-night-2026-11-21-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Procházka vs Stirling",
+      "event_date": "2026-11-21",
+      "summary": "UFC Fight Night Procházka vs Stirling removed from Upcoming Events.",
+      "details": {
+        "bout_count": 12,
+        "venue": "Venue TBA",
+        "date": "2026-11-21"
+      }
+    },
+    {
+      "id": "2026-11-22T01:16:30.919Z|rizin-rizin-6-2026-12-31|bout_changed|2",
+      "at": "2026-11-22T01:16:30.919Z",
+      "type": "bout_changed",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "promotion": "RIZIN",
+      "event_title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "event_date": "2026-12-31",
+      "summary": "Saori Oshima vs Natasha Kuziutina changed to RIZIN女子スーパーアトム級タイトルマッチ／大島沙緒里 vs Natasha Kuziutina on 『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット.",
+      "details": {
+        "order": 6,
+        "section": "Fight Card",
+        "from": [
+          "Saori Oshima",
+          "Natasha Kuziutina"
+        ],
+        "to": [
+          "RIZIN女子スーパーアトム級タイトルマッチ／大島沙緒里",
+          "Natasha Kuziutina"
+        ]
+      }
+    },
     {
       "id": "2026-11-21T07:32:18.762Z|rizin-rizin-6-2026-12-31|bout_moved|1",
       "at": "2026-11-21T07:32:18.762Z",
@@ -4505,34 +4542,6 @@
         "to_order": 12,
         "from_section": "Main Card",
         "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-26T21:43:10.992Z|ufc-336-2027-01-30-fight-card|bout_weight_changed|1",
-      "at": "2026-10-26T21:43:10.992Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-336-2027-01-30-fight-card",
-      "promotion": "UFC 336",
-      "event_title": "Van vs Kape",
-      "event_date": "2027-01-30",
-      "summary": "Joshua Van vs Manel Kape weight/class changed.",
-      "details": {
-        "from": "Weight class TBA",
-        "to": "Flyweight Title Bout"
-      }
-    },
-    {
-      "id": "2026-10-26T21:43:10.992Z|ufc-336-2027-01-30-fight-card|bout_weight_changed|2",
-      "at": "2026-10-26T21:43:10.992Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-336-2027-01-30-fight-card",
-      "promotion": "UFC 336",
-      "event_title": "Van vs Kape",
-      "event_date": "2027-01-30",
-      "summary": "Carlos Prates vs Michael Morales weight/class changed.",
-      "details": {
-        "from": "Weight class TBA",
-        "to": "Welterweight Interim Title Bout"
       }
     }
   ]
