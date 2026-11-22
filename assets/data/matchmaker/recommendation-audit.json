@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-11-22T16:24:03.761Z",
+  "generatedAt": "2026-11-22T21:58:16.315Z",
   "engineVersion": 2,
   "subjects": 414,
-  "publishedRecommendations": 1089,
+  "publishedRecommendations": 1088,
   "recommendationSlots": {
     "0": 49,
-    "1": 1,
-    "2": 4,
+    "1": 2,
+    "2": 3,
     "3": 360
   },
   "caseCounts": {
-    "rebound-pairing": 456,
-    "rising-vs-rising": 290,
-    "step-up-vs-rebound": 151,
-    "rankings-progression": 65,
-    "ranking-opportunity": 54,
-    "divisional-sorting": 37,
-    "title-case": 16,
-    "title-eliminator": 15,
-    "prospect-test": 5
+    "rebound-pairing": 452,
+    "rising-vs-rising": 291,
+    "step-up-vs-rebound": 162,
+    "rankings-progression": 63,
+    "ranking-opportunity": 49,
+    "divisional-sorting": 38,
+    "title-case": 15,
+    "title-eliminator": 14,
+    "prospect-test": 4
   },
   "confidenceCounts": {
-    "high": 1016,
-    "low": 45,
+    "high": 1014,
+    "low": 46,
     "medium": 28
   },
-  "averageRecentOpponentLinkCoverage": 0.9022,
-  "sameCardRecommendations": 48,
-  "sameCardRecommendationRatio": 0.0441,
-  "asymmetricTopThreeRecommendations": 390,
-  "asymmetricTopThreeRatio": 0.3581,
-  "publicPublishedRecommendations": 1068,
-  "publicAsymmetricTopThreeRecommendations": 300,
-  "publicAsymmetricTopThreeRatio": 0.2809,
-  "engineGenericDivisionalSortingRecommendations": 37,
+  "averageRecentOpponentLinkCoverage": 0.9029,
+  "sameCardRecommendations": 49,
+  "sameCardRecommendationRatio": 0.045,
+  "asymmetricTopThreeRecommendations": 382,
+  "asymmetricTopThreeRatio": 0.3511,
+  "publicPublishedRecommendations": 1069,
+  "publicAsymmetricTopThreeRecommendations": 295,
+  "publicAsymmetricTopThreeRatio": 0.276,
+  "engineGenericDivisionalSortingRecommendations": 38,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -130,7 +130,7 @@
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 60,
+      "publicRecommendations": 61,
       "noClearMatchupSubjects": 7
     },
     {
@@ -199,15 +199,8 @@
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Kevin Holland",
-      "opponent": "Jake Matthews",
-      "score": 87,
-      "rationale": "Kevin Holland and Jake Matthews occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Kevin Holland",
       "opponent": "Neil Magny",
-      "score": 84,
+      "score": 86,
       "rationale": "Kevin Holland and Neil Magny occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
@@ -216,6 +209,13 @@
       "opponent": "Uros Medic",
       "score": 81,
       "rationale": "Kevin Holland and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Kevin Holland",
+      "opponent": "Joaquin Buckley",
+      "score": 81,
+      "rationale": "Kevin Holland and Joaquin Buckley occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Cortes Acosta vs Walker",
@@ -270,7 +270,7 @@
       "event": "UFC 333: Volkanovski vs Evloev",
       "fighter": "Movsar Evloev",
       "opponent": "Kevin Vallejos",
-      "score": 50,
+      "score": 54,
       "rationale": "Movsar Evloev and Kevin Vallejos occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
@@ -279,6 +279,13 @@
       "opponent": "Youssef Zalal",
       "score": 47,
       "rationale": "Movsar Evloev and Youssef Zalal occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Joaquin Buckley",
+      "opponent": "Uros Medic",
+      "score": 84,
+      "rationale": "Joaquin Buckley and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
@@ -307,13 +314,6 @@
       "opponent": "Ernesta Kareckaite",
       "score": 90,
       "rationale": "Melissa Gatto and Ernesta Kareckaite occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "fighter": "Melissa Gatto",
-      "opponent": "Gabriella Fernandes",
-      "score": 85,
-      "rationale": "Melissa Gatto and Gabriella Fernandes occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
@@ -333,7 +333,7 @@
         },
         {
           "opponent": "Waldo Cortes Acosta",
-          "score": 85,
+          "score": 84,
           "case": "rebound-pairing"
         },
         {
@@ -495,36 +495,11 @@
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Uros Medic",
-      "opponent": "Joaquin Buckley",
-      "pairScore": 84,
-      "case": "divisional-sorting",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Jake Matthews",
-          "score": 91,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Nicolas Dalby",
-          "score": 89,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Neil Magny",
-          "score": 88,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Kevin Holland",
       "opponent": "Uros Medic",
       "pairScore": 81,
       "case": "divisional-sorting",
-      "fighterRank": "Another option",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
           "opponent": "Nicolas Dalby",
@@ -538,6 +513,31 @@
         },
         {
           "opponent": "Daniil Donchenko",
+          "score": 84,
+          "case": "divisional-sorting"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Kevin Holland",
+      "opponent": "Joaquin Buckley",
+      "pairScore": 81,
+      "case": "divisional-sorting",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Nicolas Dalby",
+          "score": 89,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Neil Magny",
+          "score": 87,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Uros Medic",
           "score": 84,
           "case": "divisional-sorting"
         }
@@ -637,33 +637,33 @@
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Rafa Garcia",
-          "score": 92,
-          "case": "step-up-vs-rebound"
+          "opponent": "Dom Mar Fan",
+          "score": 93,
+          "case": "rising-vs-rising"
         }
       ]
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Drew Dober",
-      "opponent": "Fares Ziam",
+      "opponent": "Nikolas Motta",
       "pairScore": 86,
       "case": "rebound-pairing",
-      "fighterRank": "Another option",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Kyle Nelson",
+          "opponent": "Mason Jones",
           "score": 94,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Drakkar Klose",
-          "score": 93,
+          "opponent": "Daniel Zellhuber",
+          "score": 92,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Rafa Garcia",
-          "score": 93,
+          "opponent": "Drakkar Klose",
+          "score": 91,
           "case": "rebound-pairing"
         }
       ]
@@ -737,9 +737,9 @@
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Rafa Garcia",
-          "score": 92,
-          "case": "step-up-vs-rebound"
+          "opponent": "Dom Mar Fan",
+          "score": 93,
+          "case": "rising-vs-rising"
         }
       ]
     },
@@ -887,8 +887,8 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Nikolas Motta",
-          "score": 92,
+          "opponent": "Daniel Zellhuber",
+          "score": 91,
           "case": "rebound-pairing"
         }
       ]
