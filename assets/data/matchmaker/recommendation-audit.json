@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-11-21T20:55:46.067Z",
+  "generatedAt": "2026-11-22T01:08:36.386Z",
   "engineVersion": 2,
   "subjects": 414,
-  "publishedRecommendations": 1075,
+  "publishedRecommendations": 1089,
   "recommendationSlots": {
-    "0": 53,
-    "1": 2,
+    "0": 49,
+    "1": 1,
     "2": 4,
-    "3": 355
+    "3": 360
   },
   "caseCounts": {
-    "rebound-pairing": 451,
-    "rising-vs-rising": 286,
-    "step-up-vs-rebound": 152,
-    "rankings-progression": 59,
-    "ranking-opportunity": 53,
-    "divisional-sorting": 39,
-    "title-case": 15,
-    "title-eliminator": 14,
-    "prospect-test": 6
+    "rebound-pairing": 456,
+    "rising-vs-rising": 290,
+    "step-up-vs-rebound": 151,
+    "rankings-progression": 65,
+    "ranking-opportunity": 54,
+    "divisional-sorting": 37,
+    "title-case": 16,
+    "title-eliminator": 15,
+    "prospect-test": 5
   },
   "confidenceCounts": {
-    "high": 993,
-    "low": 49,
-    "medium": 33
+    "high": 1016,
+    "low": 45,
+    "medium": 28
   },
   "averageRecentOpponentLinkCoverage": 0.9022,
-  "sameCardRecommendations": 47,
-  "sameCardRecommendationRatio": 0.0437,
-  "asymmetricTopThreeRecommendations": 388,
-  "asymmetricTopThreeRatio": 0.3609,
-  "publicPublishedRecommendations": 1048,
-  "publicAsymmetricTopThreeRecommendations": 287,
-  "publicAsymmetricTopThreeRatio": 0.2739,
-  "engineGenericDivisionalSortingRecommendations": 39,
+  "sameCardRecommendations": 48,
+  "sameCardRecommendationRatio": 0.0441,
+  "asymmetricTopThreeRecommendations": 390,
+  "asymmetricTopThreeRatio": 0.3581,
+  "publicPublishedRecommendations": 1068,
+  "publicAsymmetricTopThreeRecommendations": 300,
+  "publicAsymmetricTopThreeRatio": 0.2809,
+  "engineGenericDivisionalSortingRecommendations": 37,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -74,7 +74,7 @@
       "title": "UFC 333: Volkanovski vs Evloev",
       "date": "2026-10-24",
       "subjects": 28,
-      "publicRecommendations": 73,
+      "publicRecommendations": 76,
       "noClearMatchupSubjects": 0
     },
     {
@@ -90,7 +90,7 @@
       "title": "UFC Fight Night: Allen vs Duncan",
       "date": "2026-10-10",
       "subjects": 24,
-      "publicRecommendations": 57,
+      "publicRecommendations": 58,
       "noClearMatchupSubjects": 4
     },
     {
@@ -114,7 +114,7 @@
       "title": "Crypto.com UFC 331: Van vs Pantoja 2",
       "date": "2026-09-19",
       "subjects": 24,
-      "publicRecommendations": 58,
+      "publicRecommendations": 59,
       "noClearMatchupSubjects": 4
     },
     {
@@ -122,7 +122,7 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 63,
+      "publicRecommendations": 66,
       "noClearMatchupSubjects": 3
     },
     {
@@ -130,15 +130,15 @@
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 58,
-      "noClearMatchupSubjects": 8
+      "publicRecommendations": 60,
+      "noClearMatchupSubjects": 7
     },
     {
       "id": "ufc-fight-night-august-29-2026",
       "title": "UFC Fight Night: Nurmagomedov vs Song",
       "date": "2026-08-29",
       "subjects": 26,
-      "publicRecommendations": 70,
+      "publicRecommendations": 71,
       "noClearMatchupSubjects": 2
     },
     {
@@ -146,8 +146,8 @@
       "title": "UFC Fight Night: Hernandez vs Rodrigues",
       "date": "2026-08-22",
       "subjects": 26,
-      "publicRecommendations": 66,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 69,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-330",
@@ -162,16 +162,16 @@
       "title": "UFC Fight Night: Gamrot vs Salkilld",
       "date": "2026-08-08",
       "subjects": 24,
-      "publicRecommendations": 48,
-      "noClearMatchupSubjects": 8
+      "publicRecommendations": 51,
+      "noClearMatchupSubjects": 7
     },
     {
       "id": "ufc-fight-night-august-01-2026",
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 66,
-      "noClearMatchupSubjects": 6
+      "publicRecommendations": 69,
+      "noClearMatchupSubjects": 5
     }
   ],
   "genericExamples": [
@@ -199,6 +199,13 @@
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Kevin Holland",
+      "opponent": "Jake Matthews",
+      "score": 87,
+      "rationale": "Kevin Holland and Jake Matthews occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Kevin Holland",
       "opponent": "Neil Magny",
       "score": 84,
       "rationale": "Kevin Holland and Neil Magny occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
@@ -209,13 +216,6 @@
       "opponent": "Uros Medic",
       "score": 81,
       "rationale": "Kevin Holland and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Kevin Holland",
-      "opponent": "Joaquin Buckley",
-      "score": 81,
-      "rationale": "Kevin Holland and Joaquin Buckley occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Cortes Acosta vs Walker",
@@ -269,23 +269,16 @@
     {
       "event": "UFC 333: Volkanovski vs Evloev",
       "fighter": "Movsar Evloev",
-      "opponent": "Youssef Zalal",
-      "score": 47,
-      "rationale": "Movsar Evloev and Youssef Zalal occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "opponent": "Kevin Vallejos",
+      "score": 50,
+      "rationale": "Movsar Evloev and Kevin Vallejos occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Dominick Reyes",
-      "opponent": "Magomed Ankalaev",
-      "score": 61,
-      "rationale": "Dominick Reyes and Magomed Ankalaev occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Joaquin Buckley",
-      "opponent": "Uros Medic",
-      "score": 84,
-      "rationale": "Joaquin Buckley and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "fighter": "Movsar Evloev",
+      "opponent": "Youssef Zalal",
+      "score": 47,
+      "rationale": "Movsar Evloev and Youssef Zalal occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
@@ -314,6 +307,13 @@
       "opponent": "Ernesta Kareckaite",
       "score": 90,
       "rationale": "Melissa Gatto and Ernesta Kareckaite occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Melissa Gatto",
+      "opponent": "Gabriella Fernandes",
+      "score": 85,
+      "rationale": "Melissa Gatto and Gabriella Fernandes occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
@@ -446,31 +446,6 @@
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Yousri Belgaroui",
-      "opponent": "Donte Johnson",
-      "pairScore": 94,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Azamat Bekoev",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Ryan Loder",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Torrez Finney",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Yousri Belgaroui",
       "opponent": "Cam Rowston",
       "pairScore": 93,
       "case": "rebound-pairing",
@@ -503,7 +478,7 @@
       "opponentTopThree": [
         {
           "opponent": "Ryan Loder",
-          "score": 95,
+          "score": 94,
           "case": "rebound-pairing"
         },
         {
@@ -520,11 +495,36 @@
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Uros Medic",
+      "opponent": "Joaquin Buckley",
+      "pairScore": 84,
+      "case": "divisional-sorting",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Jake Matthews",
+          "score": 91,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Nicolas Dalby",
+          "score": 89,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Neil Magny",
+          "score": 88,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Kevin Holland",
       "opponent": "Uros Medic",
       "pairScore": 81,
       "case": "divisional-sorting",
-      "fighterRank": "Alternative",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Nicolas Dalby",
@@ -545,34 +545,9 @@
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Kevin Holland",
-      "opponent": "Joaquin Buckley",
-      "pairScore": 81,
-      "case": "divisional-sorting",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Nicolas Dalby",
-          "score": 90,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Neil Magny",
-          "score": 88,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Uros Medic",
-          "score": 84,
-          "case": "divisional-sorting"
-        }
-      ]
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Luis Gurule",
       "opponent": "Tagir Ulanbekov",
-      "pairScore": 90,
+      "pairScore": 89,
       "case": "ranking-opportunity",
       "fighterRank": "Alternative",
       "opponentTopThree": [
@@ -671,25 +646,25 @@
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Drew Dober",
-      "opponent": "Mason Jones",
-      "pairScore": 85,
+      "opponent": "Fares Ziam",
+      "pairScore": 86,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
+          "opponent": "Kyle Nelson",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
           "opponent": "Drakkar Klose",
-          "score": 92,
+          "score": 93,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Fares Ziam",
-          "score": 91,
+          "opponent": "Rafa Garcia",
+          "score": 93,
           "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Mandel Nallo",
-          "score": 91,
-          "case": "prospect-test"
         }
       ]
     },
@@ -912,8 +887,8 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Daniel Zellhuber",
-          "score": 91,
+          "opponent": "Nikolas Motta",
+          "score": 92,
           "case": "rebound-pairing"
         }
       ]
@@ -940,6 +915,31 @@
           "opponent": "Daniel Zellhuber",
           "score": 90,
           "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Melquizael Costa",
+      "opponent": "David Onama",
+      "pairScore": 93,
+      "case": "ranking-opportunity",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Sean Woodson",
+          "score": 96,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Christian Rodriguez",
+          "score": 95,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Marcus McGhee",
+          "score": 95,
+          "case": "ranking-opportunity"
         }
       ]
     }
