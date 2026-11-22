@@ -1,7 +1,35 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-22T08:14:03.046Z",
+  "generated_at": "2026-11-22T16:29:46.575Z",
   "changes": [
+    {
+      "id": "2026-11-22T16:29:46.575Z|ufc-335-2026-12-12-fight-card|bout_weight_changed|1",
+      "at": "2026-11-22T16:29:46.575Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "Alex Pereira vs Sergei Pavlovich weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Heavyweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-22T16:29:46.575Z|ufc-335-2026-12-12-fight-card|bout_weight_changed|2",
+      "at": "2026-11-22T16:29:46.575Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-335-2026-12-12-fight-card",
+      "promotion": "UFC 335",
+      "event_title": "Oliveira vs Lopes",
+      "event_date": "2026-12-12",
+      "summary": "Damian Pinas vs Baisangur Susurkaev weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Middleweight Bout"
+      }
+    },
     {
       "id": "2026-11-22T08:14:03.046Z|ufc-335-2026-12-12-fight-card|bout_weight_changed|1",
       "at": "2026-11-22T08:14:03.046Z",
@@ -4474,44 +4502,6 @@
         "order": 9,
         "section": "Prelims",
         "weight_class": "Flyweight Bout"
-      }
-    },
-    {
-      "id": "2026-10-27T22:27:10.022Z|ufc-2026-11-14-polymarket-ufc-334|bout_changed|7",
-      "at": "2026-10-27T22:27:10.022Z",
-      "type": "bout_changed",
-      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
-      "promotion": "UFC",
-      "event_title": "Polymarket UFC 334",
-      "event_date": "2026-11-14",
-      "summary": "Donte Johnson vs Baisangur Susurkaev changed to Donte Johnson vs Cesar Almeida on Polymarket UFC 334.",
-      "details": {
-        "order": 9,
-        "section": "Prelims",
-        "from": [
-          "Donte Johnson",
-          "Baisangur Susurkaev"
-        ],
-        "to": [
-          "Donte Johnson",
-          "Cesar Almeida"
-        ]
-      }
-    },
-    {
-      "id": "2026-10-27T06:14:28.820Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|1",
-      "at": "2026-10-27T06:14:28.820Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Moicano vs Nolan",
-      "event_date": "2026-10-31",
-      "summary": "Ode' Osbourne vs Cody Durden moved on Moicano vs Nolan.",
-      "details": {
-        "from_order": 4,
-        "to_order": 3,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
       }
     }
   ]

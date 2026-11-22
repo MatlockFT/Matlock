@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-22T08:13:41.672Z",
+  "generated_at": "2026-11-22T16:28:34.057Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-12-05-fight-card",
@@ -82,7 +82,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/SPIVAC_SERGHEI_L_08-22.png?itok=4Bn2kGKb",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+170"
                 },
                 {
                   "name": "Mario Pinto",
@@ -90,9 +90,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/PINTO_MARIO_L_09-05.png?itok=yfqOVPAV",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-178"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Polymarket"
             },
             {
               "order": 4,
@@ -105,7 +107,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/CHOKHELI_LEVAN_R_06-20.png?itok=36IHyuqN",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+376"
                 },
                 {
                   "name": "Islam Dulatov",
@@ -113,9 +115,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/DULATOV_ISLAM_L_07-25.png?itok=b4r4oxs_",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-376"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Polymarket"
             },
             {
               "order": 5,
@@ -151,7 +155,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/TUCHALOV_MAGOMED_L_07-25.png?itok=e_tKChrO",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+144"
                 },
                 {
                   "name": "Ion Cutelaba",
@@ -159,9 +163,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/CUTELABA_ION_L_06-20.png?itok=UdDEIagu",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-144"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Polymarket"
             }
           ]
         },
@@ -181,7 +187,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/SILVA_BRUNO_L_06-06.png?itok=l_D2GW69",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+133"
                 },
                 {
                   "name": "Jafel Filho",
@@ -189,9 +195,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/FILHO_JAFEL_L_04-25.png?itok=4f5tktve",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-138"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Polymarket"
             },
             {
               "order": 8,
@@ -296,7 +304,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/HUSSEIN_ABDUL_R_07-25.png?itok=Qn6LzYa9",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+113"
                 },
                 {
                   "name": "Hecher Sosa",
@@ -304,9 +312,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/SOSA_HECHER_R_03-14.png?itok=3lYzpHCZ",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-117"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Polymarket"
             }
           ]
         }
@@ -359,7 +369,7 @@
             {
               "order": 2,
               "label": "Co-Main Event",
-              "weight_class": "Weight class TBA",
+              "weight_class": "Heavyweight Bout",
               "fighters": [
                 {
                   "name": "Alex Pereira",
@@ -430,7 +440,7 @@
             {
               "order": 5,
               "label": "",
-              "weight_class": "Weight class TBA",
+              "weight_class": "Middleweight Bout",
               "fighters": [
                 {
                   "name": "Damian Pinas",
