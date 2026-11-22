@@ -99,11 +99,11 @@
       "verdict_url": "https://verdictmma.com/event/1993",
       "verdict_date": "2027-01-30",
       "local_fight_count": 5,
-      "verdict_fight_count": 5,
+      "verdict_fight_count": 6,
       "local_main_count": 5,
       "verdict_main_count": 2,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 3,
+      "verdict_prelim_count": 4,
       "confirmed_local_bouts": 5
     },
     {
@@ -293,13 +293,20 @@
       ]
     },
     {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-336-2027-01-30-fight-card",
+      "verdict_event_id": "1993",
+      "local_fight_count": 5,
+      "verdict_fight_count": 6
+    },
+    {
       "type": "section_count_mismatch",
       "event_id": "ufc-336-2027-01-30-fight-card",
       "verdict_event_id": "1993",
       "local_main_count": 5,
       "verdict_main_count": 2,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 3
+      "verdict_prelim_count": 4
     },
     {
       "type": "bout_count_mismatch",
