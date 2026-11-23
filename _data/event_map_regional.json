@@ -149,6 +149,21 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-afc-179-alaska-fighting-championship-179-2026-11-28-anchorage",
+      "promotion": "AFC",
+      "promotion_key": "sherdog_discovery",
+      "title": "AFC 179: Alaska Fighting Championship 179",
+      "date": "2026-11-28",
+      "venue": "Sullivan Arena",
+      "location": "Anchorage, AK",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/AFC-179-Alaska-Fighting-Championship-179-115438",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "sherdog-air-capital-combat-4-live-at-the-the-cotillion-2026-11-28-wichita",
       "promotion": "Air Capital Combat",
       "promotion_key": "sherdog_discovery",
@@ -370,6 +385,21 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-motor-city-mma-fight-night-5-2026-12-05-port-huron",
+      "promotion": "Motor City MMA",
+      "promotion_key": "sherdog_discovery",
+      "title": "Motor City MMA: Fight Night 5",
+      "date": "2026-12-05",
+      "venue": "Bean Dock",
+      "location": "Port Huron, MI",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Motor-City-MMA-Fight-Night-5-115494",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "sherdog-nlc-51-new-line-cagefighting-51-2026-12-05-lexington",
       "promotion": "NLC",
       "promotion_key": "sherdog_discovery",
@@ -503,6 +533,21 @@
       "longitude": -95.3698
     },
     {
+      "id": "sherdog-fcoc-fight-club-oc-2026-12-10-costa-mesa",
+      "promotion": "FCOC",
+      "promotion_key": "sherdog_discovery",
+      "title": "FCOC: Fight Club OC",
+      "date": "2026-12-10",
+      "venue": "The Hangar",
+      "location": "Costa Mesa, CA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/FCOC-Fight-Club-OC-115496",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "sherdog-gfc-13-gamebred-bareknuckle-mma-13-2026-12-11-miami",
       "promotion": "GFC",
       "promotion_key": "sherdog_discovery",
@@ -512,6 +557,21 @@
       "location": "Miami, FL",
       "broadcast": "",
       "official_url": "https://www.sherdog.com/events/GFC-13-Gamebred-BareKnuckle-MMA-13-115299",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-aow-50-art-of-war-cage-fighting-50-2026-12-12-king-of-prussia",
+      "promotion": "AOW",
+      "promotion_key": "sherdog_discovery",
+      "title": "AOW 50: Art of War Cage Fighting 50",
+      "date": "2026-12-12",
+      "venue": "Valley Forge Casino Resort",
+      "location": "King of Prussia, PA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/AOW-50-Art-of-War-Cage-Fighting-50-115506",
       "regional": true,
       "level": "regional",
       "source_key": "sherdog_discovery",
@@ -593,7 +653,50 @@
       "level": "regional",
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
+      "main_event": {
+        "fighters": [
+          "Fleck",
+          "Huff"
+        ]
+      },
+      "ticket_url": "https://www.nitrotickets.com/event/1287/ignite-fights-115-1212",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1287/e1ae5424c7b1ee59c283d9cc59f6410b.jpg"
+    },
+    {
+      "id": "sherdog-ludus-fight-league-2-wilson-vs-simmons-2026-12-12-topeka",
+      "promotion": "Ludus Fight League",
+      "promotion_key": "sherdog_discovery",
+      "title": "Ludus Fight League 2: Wilson vs. Simmons",
+      "date": "2026-12-12",
+      "venue": "Exhibition Hall",
+      "location": "Topeka, KS",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Ludus-Fight-League-2-Wilson-vs-Simmons-115498",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "main_event": {
+        "fighters": [
+          "Wilson",
+          "Simmons"
+        ]
+      }
+    },
+    {
+      "id": "sherdog-real-deal-championships-rdc-29-2026-12-12-springdale",
+      "promotion": "Real Deal Championships",
+      "promotion_key": "sherdog_discovery",
+      "title": "Real Deal Championships: RDC 29",
+      "date": "2026-12-12",
+      "venue": "Northwest Arkansas Convention Center",
+      "location": "Springdale, AR",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Real-Deal-Championships-RDC-29-115509",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
     },
     {
       "id": "camomma-ssp-mma-2026-12-12",
@@ -628,6 +731,21 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-violence-fight-league-vfl-8-winter-season-2026-12-12-lincoln",
+      "promotion": "Violence Fight League",
+      "promotion_key": "sherdog_discovery",
+      "title": "Violence Fight League: VFL 8: Winter Season",
+      "date": "2026-12-12",
+      "venue": "The Complex",
+      "location": "Lincoln, NE",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Violence-Fight-League-VFL-8-Winter-Season-115510",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "sherdog-anthony-pettis-fc-27-milwaukee-fight-night-12-2026-12-13-milwaukee",
       "promotion": "Anthony Pettis FC",
       "promotion_key": "sherdog_discovery",
@@ -641,6 +759,23 @@
       "level": "regional",
       "source_key": "sherdog_discovery",
       "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-borroka-promotions-borroka-presents-xfc-55-2026-12-17-las-vegas",
+      "promotion": "Borroka Promotions",
+      "promotion_key": "sherdog_discovery",
+      "title": "Borroka Promotions: Borroka Presents XFC 55",
+      "date": "2026-12-17",
+      "venue": "Sam’s Town Live",
+      "location": "Las Vegas, NV",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Borroka-Promotions-Borroka-Presents-XFC-55-115514",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "latitude": 36.1699,
+      "longitude": -115.1398
     },
     {
       "id": "sherdog-ccc-35-colorado-combat-club-35-2026-12-18-westminster",
@@ -709,10 +844,7 @@
       "regional": true,
       "level": "regional",
       "source_key": "sherdog_discovery",
-      "source_label": "Sherdog regional discovery",
-      "ticket_url": "https://www.nitrotickets.com/event/1353/brutaal-ascendancy-championship",
-      "latitude": 41.5868,
-      "longitude": -93.625
+      "source_label": "Sherdog regional discovery"
     },
     {
       "id": "sherdog-cffc-163-cage-fury-fighting-championships-163-2026-12-19-atlantic-city",
@@ -792,6 +924,7 @@
       "level": "regional",
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
+      "ticket_url": "https://www.nitrotickets.com/event/1298/wfc-200-ilani-1219",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1298/1789187666_XaQrT.jpg"
     },
     {
