@@ -1,7 +1,189 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-23T11:16:50.445Z",
+  "generated_at": "2026-11-23T22:46:38.006Z",
   "changes": [
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-fight-night-2027-01-23-fight-card|title_changed|1",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "title_changed",
+      "event_id": "ufc-fight-night-2027-01-23-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Brady vs Bonfim",
+      "event_date": "2027-01-23",
+      "summary": "UFC Fight Night Brady vs Bonfim: title changed.",
+      "details": {
+        "from": "Bonfim vs Brady",
+        "to": "Brady vs Bonfim"
+      }
+    },
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-fight-night-2027-01-23-fight-card|bout_weight_changed|2",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2027-01-23-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Brady vs Bonfim",
+      "event_date": "2027-01-23",
+      "summary": "Sean Brady vs Gabriel Bonfim weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Welterweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-336-2027-01-30-fight-card|bout_weight_changed|3",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-336-2027-01-30-fight-card",
+      "promotion": "UFC 336",
+      "event_title": "Van vs Kape",
+      "event_date": "2027-01-30",
+      "summary": "Joshua Van vs Manel Kape weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Flyweight Title Bout"
+      }
+    },
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-336-2027-01-30-fight-card|bout_weight_changed|4",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-336-2027-01-30-fight-card",
+      "promotion": "UFC 336",
+      "event_title": "Van vs Kape",
+      "event_date": "2027-01-30",
+      "summary": "Carlos Prates vs Michael Morales weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Welterweight Interim Title Bout"
+      }
+    },
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-336-2027-01-30-fight-card|bout_weight_changed|5",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-336-2027-01-30-fight-card",
+      "promotion": "UFC 336",
+      "event_title": "Van vs Kape",
+      "event_date": "2027-01-30",
+      "summary": "Lance Gibson Jr. vs Michael Johnson weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Lightweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-336-2027-01-30-fight-card|bout_weight_changed|6",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-336-2027-01-30-fight-card",
+      "promotion": "UFC 336",
+      "event_title": "Van vs Kape",
+      "event_date": "2027-01-30",
+      "summary": "Serhiy Sidey vs Louis Lee Scott weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Bantamweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-336-2027-01-30-fight-card|bout_weight_changed|7",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-336-2027-01-30-fight-card",
+      "promotion": "UFC 336",
+      "event_title": "Van vs Kape",
+      "event_date": "2027-01-30",
+      "summary": "Cam Nelson vs Sean Clancy Jr. weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Welterweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-fight-night-2027-02-06-fight-card|bout_weight_changed|8",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Salkilld vs Saint Denis",
+      "event_date": "2027-02-06",
+      "summary": "Quillan Salkilld vs Benoît Saint Denis weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Lightweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-fight-night-2027-02-06-fight-card|bout_weight_changed|9",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Salkilld vs Saint Denis",
+      "event_date": "2027-02-06",
+      "summary": "Bogdan Guskov vs Robert Whittaker weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Light Heavyweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-fight-night-2027-02-06-fight-card|bout_weight_changed|10",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Salkilld vs Saint Denis",
+      "event_date": "2027-02-06",
+      "summary": "Jonathan Micallef vs Sam Patterson weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Welterweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-fight-night-2027-02-06-fight-card|bout_weight_changed|11",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Salkilld vs Saint Denis",
+      "event_date": "2027-02-06",
+      "summary": "Marwan Rahiki vs JooSang Yoo weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Featherweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-fight-night-2027-02-06-fight-card|bout_weight_changed|12",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Salkilld vs Saint Denis",
+      "event_date": "2027-02-06",
+      "summary": "Kaan Ofli vs Joanderson Brito weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Featherweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-23T22:46:38.006Z|ufc-fight-night-2027-02-13-fight-card|bout_weight_changed|13",
+      "at": "2026-11-23T22:46:38.006Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2027-02-13-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Pyfer vs Nickal",
+      "event_date": "2027-02-13",
+      "summary": "Joe Pyfer vs Bo Nickal weight/class changed.",
+      "details": {
+        "from": "Weight class TBA",
+        "to": "Middleweight Bout"
+      }
+    },
     {
       "id": "2026-11-23T11:16:50.445Z|ufc-335-2026-12-12-fight-card|bout_weight_changed|1",
       "at": "2026-11-23T11:16:50.445Z",
@@ -4308,199 +4490,6 @@
       "details": {
         "from": "Lightweight Bout",
         "to": "Poids légers"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-335-2026-12-12-fight-card|bout_weight_changed|63",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "promotion": "UFC 335",
-      "event_title": "Oliveira vs Lopes",
-      "event_date": "2026-12-12",
-      "summary": "Sergei Pavlovich vs Alex Pereira weight/class changed.",
-      "details": {
-        "from": "Heavyweight Bout",
-        "to": "Poids lourds"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-335-2026-12-12-fight-card|bout_weight_changed|64",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "promotion": "UFC 335",
-      "event_title": "Oliveira vs Lopes",
-      "event_date": "2026-12-12",
-      "summary": "Brandon Moreno vs Charles Johnson weight/class changed.",
-      "details": {
-        "from": "Flyweight Bout",
-        "to": "Poids mouche"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-335-2026-12-12-fight-card|bout_weight_changed|65",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "promotion": "UFC 335",
-      "event_title": "Oliveira vs Lopes",
-      "event_date": "2026-12-12",
-      "summary": "Quentin Pasley vs Junior Tafa weight/class changed.",
-      "details": {
-        "from": "Light Heavyweight Bout",
-        "to": "Poids mi-lourds"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-335-2026-12-12-fight-card|bout_weight_changed|66",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "promotion": "UFC 335",
-      "event_title": "Oliveira vs Lopes",
-      "event_date": "2026-12-12",
-      "summary": "Joe Pyfer vs Bo Nickal weight/class changed.",
-      "details": {
-        "from": "Middleweight Bout",
-        "to": "Poids moyens"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-336-2027-01-30-fight-card|broadcast_changed|67",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "broadcast_changed",
-      "event_id": "ufc-336-2027-01-30-fight-card",
-      "promotion": "UFC 336",
-      "event_title": "Van vs Kape",
-      "event_date": "2027-01-30",
-      "summary": "UFC 336 Van vs Kape: broadcast changed.",
-      "details": {
-        "from": "Paramount+ · UFC Fight Pass",
-        "to": "UFC Fight Pass"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-336-2027-01-30-fight-card|start_time_changed|68",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "start_time_changed",
-      "event_id": "ufc-336-2027-01-30-fight-card",
-      "promotion": "UFC 336",
-      "event_title": "Van vs Kape",
-      "event_date": "2027-01-30",
-      "summary": "UFC 336 Van vs Kape: Main Card start time changed.",
-      "details": {
-        "section": "Main Card",
-        "from": "9:00 PM ET",
-        "to": "Time TBA"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-336-2027-01-30-fight-card|bout_weight_changed|69",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-336-2027-01-30-fight-card",
-      "promotion": "UFC 336",
-      "event_title": "Van vs Kape",
-      "event_date": "2027-01-30",
-      "summary": "Joshua Van vs Manel Kape weight/class changed.",
-      "details": {
-        "from": "Flyweight Title Bout",
-        "to": "Poids mouche Combat de championnat"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-336-2027-01-30-fight-card|bout_weight_changed|70",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-336-2027-01-30-fight-card",
-      "promotion": "UFC 336",
-      "event_title": "Van vs Kape",
-      "event_date": "2027-01-30",
-      "summary": "Carlos Prates vs Michael Morales weight/class changed.",
-      "details": {
-        "from": "Welterweight Interim Title Bout",
-        "to": "Poids mi-moyens Combat de championnat intérimaire"
-      }
-    },
-    {
-      "id": "2026-10-27T22:27:10.022Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|1",
-      "at": "2026-10-27T22:27:10.022Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Jose Delano vs Murtazali Magomedov moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 9,
-        "to_order": 10,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-27T22:27:10.022Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|2",
-      "at": "2026-10-27T22:27:10.022Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Keiichiro Nakamura vs Ollie Schmid moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 10,
-        "to_order": 11,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-27T22:27:10.022Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|3",
-      "at": "2026-10-27T22:27:10.022Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Austin Bashi vs Lucas Brennan moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 11,
-        "to_order": 12,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-27T22:27:10.022Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|4",
-      "at": "2026-10-27T22:27:10.022Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Priscila Cachoeira vs Nina Milošević moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 12,
-        "to_order": 13,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-10-27T22:27:10.022Z|ufc-fight-night-2026-11-07-fight-card|bout_moved|5",
-      "at": "2026-10-27T22:27:10.022Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Jonny Parsons vs José Souza moved on Bonfim vs Brady.",
-      "details": {
-        "from_order": 13,
-        "to_order": 14,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
       }
     }
   ]
