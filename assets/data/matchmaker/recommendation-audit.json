@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-11-24T04:57:38.065Z",
+  "generatedAt": "2026-11-24T19:41:02.716Z",
   "engineVersion": 2,
   "subjects": 438,
-  "publishedRecommendations": 1160,
+  "publishedRecommendations": 1154,
   "recommendationSlots": {
-    "0": 49,
+    "0": 51,
     "1": 2,
     "2": 3,
-    "3": 384
+    "3": 382
   },
   "caseCounts": {
     "rebound-pairing": 472,
-    "rising-vs-rising": 307,
+    "rising-vs-rising": 301,
     "step-up-vs-rebound": 186,
     "rankings-progression": 70,
     "ranking-opportunity": 53,
@@ -21,18 +21,18 @@
     "prospect-test": 4
   },
   "confidenceCounts": {
-    "high": 1083,
+    "high": 1077,
     "low": 48,
     "medium": 29
   },
   "averageRecentOpponentLinkCoverage": 0.9038,
   "sameCardRecommendations": 50,
-  "sameCardRecommendationRatio": 0.0431,
+  "sameCardRecommendationRatio": 0.0433,
   "asymmetricTopThreeRecommendations": 402,
-  "asymmetricTopThreeRatio": 0.3466,
-  "publicPublishedRecommendations": 1141,
-  "publicAsymmetricTopThreeRecommendations": 316,
-  "publicAsymmetricTopThreeRatio": 0.277,
+  "asymmetricTopThreeRatio": 0.3484,
+  "publicPublishedRecommendations": 1135,
+  "publicAsymmetricTopThreeRecommendations": 317,
+  "publicAsymmetricTopThreeRatio": 0.2793,
   "engineGenericDivisionalSortingRecommendations": 39,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -114,8 +114,8 @@
       "title": "UFC Fight Night: Rosas Jr. vs Barcelos",
       "date": "2026-09-26",
       "subjects": 24,
-      "publicRecommendations": 66,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 63,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "cryptocom-ufc-331",
@@ -178,8 +178,8 @@
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 69,
-      "noClearMatchupSubjects": 5
+      "publicRecommendations": 66,
+      "noClearMatchupSubjects": 6
     }
   ],
   "genericExamples": [
