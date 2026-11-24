@@ -3850,7 +3850,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "Bellator 99 event poster",
-      "verifiedAt": "2026-11-24T20:20:54.926Z",
+      "verifiedAt": "2026-11-24T21:15:20.379Z",
       "manualVisualVerified": true
     },
     "2013-09-14::wsof5 arlovski vs kyle": {
@@ -3864,7 +3864,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF5: Arlovski vs. Kyle event poster",
-      "verifiedAt": "2026-11-24T20:20:54.926Z",
+      "verifiedAt": "2026-11-24T21:15:20.379Z",
       "manualVisualVerified": true
     },
     "2013-09-21::ufc 165 jones vs gustafsson": {
@@ -4086,7 +4086,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF13: Moraes vs. Bollinger event poster",
-      "verifiedAt": "2026-11-24T20:20:54.926Z",
+      "verifiedAt": "2026-11-24T21:15:20.379Z",
       "manualVisualVerified": true
     },
     "2014-09-20::ufc fight night hunt vs nelson": {
@@ -12578,9 +12578,36 @@
       "discovery": "tapology-search-unique-title-date",
       "transport": "tapology-via-public-reader-v1",
       "verifiedAt": "2026-11-21T17:59:31.750Z"
+    },
+    "2017-11-25::ufc fight night bisping vs gastelum": {
+      "key": "2017-11-25::ufc fight night bisping vs gastelum",
+      "status": "verified",
+      "sourceType": "tapology-event-poster",
+      "date": "2017-11-25",
+      "title": "UFC Fight Night: Bisping vs. Gastelum",
+      "eventTitle": "UFC Fight Night 122: Bisping vs. Gastelum",
+      "eventDate": "2017-11-25",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/47252-ufc-fight-night",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/47252-ufc-fight-night",
+      "originPosterUrl": "https://images.tapology.com/poster_images/47252/profile/UFC_Fight_Night_Shanghai_Bisping_vs._Gastelum_Poster.jpg?1511561202",
+      "posterUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2017-11-25-ufc-fight-night-bisping-vs-gastelum-e35178692bdae4f4.jpg",
+      "sha256": "e35178692bdae4f481f0b91f9d6123adc3d69b1424e1750be3386d5d0e261755",
+      "width": 338,
+      "height": 488,
+      "bytes": 29697,
+      "format": "jpeg",
+      "alt": "UFC Fight Night: Bisping vs. Gastelum event poster",
+      "credit": "Tapology",
+      "confidence": 1,
+      "titleScore": 86,
+      "eventIdBound": true,
+      "discovery": "tapology-search-unique-title-date",
+      "transport": "tapology-via-public-reader-v1",
+      "verifiedAt": "2026-11-24T21:12:07.632Z"
     }
   },
-  "updatedAt": "2026-11-24T20:20:55.098Z",
+  "updatedAt": "2026-11-24T21:15:20.617Z",
   "policy": "One event-poster registry. Restore verified assignments first; new unresolved events resolve in source priority order: Tapology, Wikipedia/Wikimedia, official/archive/manual fallback.",
   "tapologyPolicy": "Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records."
 }
