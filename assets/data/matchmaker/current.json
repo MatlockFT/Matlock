@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-23T23:57:00.120Z"
+      "checkedAt": "2026-11-24T09:23:57.291Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-23T23:57:33.562Z",
+      "checkedAt": "2026-11-24T09:24:34.018Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -101742,7 +101742,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Adesanya vs Magomedov",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Mateusz Rębecki",
+        "opponentId": "mateusz-rebecki"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -109490,7 +109496,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Adesanya vs Magomedov",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Luke Riley",
+        "opponentId": "luke-riley"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -205185,7 +205197,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Adesanya vs Magomedov",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Gabriel Santos",
+        "opponentId": "gabriel-santos"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -222024,7 +222042,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Adesanya vs Magomedov",
+        "date": "2026-12-05",
+        "source": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
+        "opponent": "Elves Brener",
+        "opponentId": "elves-brener"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
