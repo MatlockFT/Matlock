@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-24T06:32:06.682Z",
+  "generated_at": "2026-11-24T18:15:42.239Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-12-05-fight-card",
@@ -82,7 +82,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/CHOKHELI_LEVAN_R_06-20.png?itok=36IHyuqN",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+186"
+                  "moneyline": "+172"
                 },
                 {
                   "name": "Islam Dulatov",
@@ -90,7 +90,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/DULATOV_ISLAM_L_07-25.png?itok=b4r4oxs_",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-245"
+                  "moneyline": "-225"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -189,7 +189,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/RILEY_LUKE_L_07-11.png?itok=9z-sLv0w",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-150"
+                  "moneyline": "-160"
                 },
                 {
                   "name": "Gabriel Santos",
@@ -197,11 +197,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/SANTOS_GABRIEL_L_09-07.png?itok=W6SRM8iV",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+120"
+                  "moneyline": "+124"
                 }
               ],
               "odds_source": "BestFightOdds",
-              "odds_provider": "Caesars"
+              "odds_provider": "FanDuel"
             },
             {
               "order": 8,
@@ -239,7 +239,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/SATYBALDIEV_URAN_L_08-23.png?itok=PM2a7Hrg",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+102"
+                  "moneyline": "-113"
                 },
                 {
                   "name": "Ivan Gnizditskiy",
@@ -247,7 +247,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-130"
+                  "moneyline": "-113"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -314,7 +314,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/RODRIGUES_MODESTINO_R_09-01.png?itok=fgflF435",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+126"
+                  "moneyline": "+122"
                 },
                 {
                   "name": "Matthieu Duclos",
@@ -322,7 +322,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/DUCLOS_MATTHIEU_L_09-05.png?itok=0IUm7Yqy",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-162"
+                  "moneyline": "-156"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -339,7 +339,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/HUSSEIN_ABDUL_R_07-25.png?itok=Qn6LzYa9",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-178"
+                  "moneyline": "-156"
                 },
                 {
                   "name": "Hecher Sosa",
@@ -347,7 +347,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/SOSA_HECHER_R_03-14.png?itok=3lYzpHCZ",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+138"
+                  "moneyline": "+122"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -364,7 +364,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/REBECKI_MATEUSZ_L_08-01.png?itok=OcAV8a48",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+122"
+                  "moneyline": "-156"
                 },
                 {
                   "name": "Elves Brener",
@@ -372,11 +372,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/BRENNER_ELVES_L_08-02.png?itok=mY8muzRL",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-122"
+                  "moneyline": "+122"
                 }
               ],
               "odds_source": "BestFightOdds",
-              "odds_provider": "Polymarket"
+              "odds_provider": "FanDuel"
             }
           ]
         }
@@ -477,29 +477,6 @@
             {
               "order": 4,
               "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Kyler Phillips",
-                  "initials": "KP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/PHILLIPS_KYLER_L_04-18.png?itok=HIpTQwmE",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                },
-                {
-                  "name": "Ethyn Ewing",
-                  "initials": "EE",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/EWING_ETHYN_L_04-04.png?itok=AdTd6fQ0",
-                  "image_source": "ufc",
-                  "image_framing": "safe",
-                  "moneyline": ""
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
                 {
@@ -519,6 +496,29 @@
                   "moneyline": ""
                 }
               ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Kyler Phillips",
+                  "initials": "KP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/PHILLIPS_KYLER_L_04-18.png?itok=HIpTQwmE",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Ethyn Ewing",
+                  "initials": "EE",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/EWING_ETHYN_L_04-04.png?itok=AdTd6fQ0",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
             }
           ]
         },
@@ -529,6 +529,29 @@
           "bouts": [
             {
               "order": 6,
+              "label": "",
+              "weight_class": "Women's Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Jacqueline Cavalcanti",
+                  "initials": "JC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/5/CAVALCANTI_JACQUELINE_L_08-24.png?itok=NQZ5w4CU",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Michelle Montague",
+                  "initials": "MM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/MONTAGUE_MICHELLE_L_09-27.png?itok=hREMtg7j",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 7,
               "label": "",
               "weight_class": "Light Heavyweight Bout",
               "fighters": [
@@ -544,6 +567,29 @@
                   "name": "Junior Tafa",
                   "initials": "JT",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/TAFA_JUNIOR_L_05-02.png?itok=dLi9Oyuv",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Roque Conceicao",
+                  "initials": "RC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-10/CONCEICAO_ROQUE_L.png?itok=uQ7JhFFY",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Nilson Rojas",
+                  "initials": "NR",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/ROJAS_NILSON_R_08-29.png?itok=MeHt3N0f",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
@@ -1396,6 +1442,75 @@
             {
               "order": 4,
               "label": "",
+              "weight_class": "Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Tanner Boser",
+                  "initials": "TB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BOSER_TANNER_L_04-18.png?itok=_lraVPHf",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "José Montanha",
+                  "initials": "JM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/MONTANHA_JOSE_R_08-08.png?itok=0ZSiaJnB",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Marc-Andre Barriault",
+                  "initials": "MB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/BARRIAULT_MARC-ANDRE_L_05-10.png?itok=kJq5jhiN",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Tresean Gore",
+                  "initials": "TG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-04/GORE_TRESEAN_L_04-12.png?itok=JeztGuNv",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Gable Steveson",
+                  "initials": "GS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/STEVESON_GABLE_L_07-11.png?itok=wI4aCMq-",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Terrance Chatman",
+                  "initials": "TC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/CHATMAN_TERRANCE_R_08-22.png?itok=j31v5o4v",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
                 {
@@ -1417,7 +1532,7 @@
               ]
             },
             {
-              "order": 5,
+              "order": 8,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -1433,6 +1548,29 @@
                   "name": "Sean Clancy Jr.",
                   "initials": "SCJ",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/CLANCY_JR_SEAN_R_08-25.png?itok=GM-K67M3",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Julien Leblanc",
+                  "initials": "JL",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/LEBLANC_JULIEN_L_04-18.png?itok=zBIsz0dB",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Vlasto Čepo",
+                  "initials": "VČ",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CEPO_VLASTO_L_08-01.png?itok=p6CalzUd",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""
