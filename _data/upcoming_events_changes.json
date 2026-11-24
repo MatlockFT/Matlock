@@ -1,7 +1,165 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-23T22:46:38.006Z",
+  "generated_at": "2026-11-24T06:32:33.440Z",
   "changes": [
+    {
+      "id": "2026-11-24T06:32:33.440Z|ufc-fight-night-2026-12-05-fight-card|bout_moved|1",
+      "at": "2026-11-24T06:32:33.440Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Adesanya vs Magomedov",
+      "event_date": "2026-12-05",
+      "summary": "Levan Chokheli vs Islam Dulatov moved on Adesanya vs Magomedov.",
+      "details": {
+        "from_order": 4,
+        "to_order": 3,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-11-24T06:32:33.440Z|ufc-fight-night-2026-12-05-fight-card|bout_moved|2",
+      "at": "2026-11-24T06:32:33.440Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Adesanya vs Magomedov",
+      "event_date": "2026-12-05",
+      "summary": "Serghei Spivac vs Mario Pinto moved on Adesanya vs Magomedov.",
+      "details": {
+        "from_order": 3,
+        "to_order": 4,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-11-24T06:32:33.440Z|ufc-fight-night-2026-12-05-fight-card|bout_moved|3",
+      "at": "2026-11-24T06:32:33.440Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Adesanya vs Magomedov",
+      "event_date": "2026-12-05",
+      "summary": "Bruno Silva vs Jafel Filho moved on Adesanya vs Magomedov.",
+      "details": {
+        "from_order": 7,
+        "to_order": 8,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-11-24T06:32:33.440Z|ufc-fight-night-2026-12-05-fight-card|bout_moved|4",
+      "at": "2026-11-24T06:32:33.440Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Adesanya vs Magomedov",
+      "event_date": "2026-12-05",
+      "summary": "Uran Satybaldiev vs Ivan Gnizditskiy moved on Adesanya vs Magomedov.",
+      "details": {
+        "from_order": 8,
+        "to_order": 9,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-11-24T06:32:33.440Z|ufc-fight-night-2026-12-05-fight-card|bout_moved|5",
+      "at": "2026-11-24T06:32:33.440Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Adesanya vs Magomedov",
+      "event_date": "2026-12-05",
+      "summary": "Marco Tulio vs JunYong Park moved on Adesanya vs Magomedov.",
+      "details": {
+        "from_order": 9,
+        "to_order": 10,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-11-24T06:32:33.440Z|ufc-fight-night-2026-12-05-fight-card|bout_moved|6",
+      "at": "2026-11-24T06:32:33.440Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Adesanya vs Magomedov",
+      "event_date": "2026-12-05",
+      "summary": "Pavel Andrusca vs Mahammadali Osmanli moved on Adesanya vs Magomedov.",
+      "details": {
+        "from_order": 10,
+        "to_order": 11,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-11-24T06:32:33.440Z|ufc-fight-night-2026-12-05-fight-card|bout_moved|7",
+      "at": "2026-11-24T06:32:33.440Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Adesanya vs Magomedov",
+      "event_date": "2026-12-05",
+      "summary": "Modestino Rodrigues vs Matthieu Duclos moved on Adesanya vs Magomedov.",
+      "details": {
+        "from_order": 11,
+        "to_order": 12,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-11-24T06:32:33.440Z|ufc-fight-night-2026-12-05-fight-card|bout_moved|8",
+      "at": "2026-11-24T06:32:33.440Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Adesanya vs Magomedov",
+      "event_date": "2026-12-05",
+      "summary": "Abdul Hussein vs Hecher Sosa moved on Adesanya vs Magomedov.",
+      "details": {
+        "from_order": 12,
+        "to_order": 13,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-11-24T06:32:33.440Z|ufc-fight-night-2026-12-05-fight-card|bout_added|9",
+      "at": "2026-11-24T06:32:33.440Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Adesanya vs Magomedov",
+      "event_date": "2026-12-05",
+      "summary": "Luke Riley vs Gabriel Santos added to Adesanya vs Magomedov.",
+      "details": {
+        "order": 7,
+        "section": "Prelims",
+        "weight_class": "Featherweight Bout"
+      }
+    },
+    {
+      "id": "2026-11-24T06:32:33.440Z|ufc-fight-night-2026-12-05-fight-card|bout_added|10",
+      "at": "2026-11-24T06:32:33.440Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-12-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Adesanya vs Magomedov",
+      "event_date": "2026-12-05",
+      "summary": "Mateusz Rębecki vs Elves Brener added to Adesanya vs Magomedov.",
+      "details": {
+        "order": 14,
+        "section": "Prelims",
+        "weight_class": "Lightweight Bout"
+      }
+    },
     {
       "id": "2026-11-23T22:46:38.006Z|ufc-fight-night-2027-01-23-fight-card|title_changed|1",
       "at": "2026-11-23T22:46:38.006Z",
@@ -4349,147 +4507,6 @@
       "details": {
         "from": "Featherweight Bout",
         "to": "Poids plume"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-21-fight-card|bout_weight_changed|53",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-21-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Procházka vs Stirling",
-      "event_date": "2026-11-21",
-      "summary": "Dan Hooker vs Brian Ortega weight/class changed.",
-      "details": {
-        "from": "Lightweight Bout",
-        "to": "Poids légers"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-21-fight-card|bout_weight_changed|54",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-21-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Procházka vs Stirling",
-      "event_date": "2026-11-21",
-      "summary": "Jared Cannonier vs Ikram Aliskerov weight/class changed.",
-      "details": {
-        "from": "Middleweight Bout",
-        "to": "Poids moyens"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-21-fight-card|bout_weight_changed|55",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-21-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Procházka vs Stirling",
-      "event_date": "2026-11-21",
-      "summary": "Shamil Gaziev vs Tallison Teixeira weight/class changed.",
-      "details": {
-        "from": "Heavyweight Bout",
-        "to": "Poids lourds"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-21-fight-card|bout_weight_changed|56",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-21-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Procházka vs Stirling",
-      "event_date": "2026-11-21",
-      "summary": "Jake Matthews vs Tahir Abdullayev weight/class changed.",
-      "details": {
-        "from": "Welterweight Bout",
-        "to": "Poids mi-moyens"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-21-fight-card|bout_weight_changed|57",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-21-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Procházka vs Stirling",
-      "event_date": "2026-11-21",
-      "summary": "Aleksandre Topuria vs Santiago Luna weight/class changed.",
-      "details": {
-        "from": "Bantamweight Bout",
-        "to": "Poids coq"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-21-fight-card|bout_weight_changed|58",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-21-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Procházka vs Stirling",
-      "event_date": "2026-11-21",
-      "summary": "Asu Almabayev vs Kyoji Horiguchi weight/class changed.",
-      "details": {
-        "from": "Flyweight Bout",
-        "to": "Poids mouche"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-21-fight-card|bout_weight_changed|59",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-21-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Procházka vs Stirling",
-      "event_date": "2026-11-21",
-      "summary": "Amir Albazi vs Alessandro Costa weight/class changed.",
-      "details": {
-        "from": "Flyweight Bout",
-        "to": "Poids mouche"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-335-2026-12-12-fight-card|broadcast_changed|60",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "broadcast_changed",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "promotion": "UFC 335",
-      "event_title": "Oliveira vs Lopes",
-      "event_date": "2026-12-12",
-      "summary": "UFC 335 Oliveira vs Lopes: broadcast changed.",
-      "details": {
-        "from": "Paramount+ · UFC Fight Pass",
-        "to": "UFC Fight Pass"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-335-2026-12-12-fight-card|start_time_changed|61",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "start_time_changed",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "promotion": "UFC 335",
-      "event_title": "Oliveira vs Lopes",
-      "event_date": "2026-12-12",
-      "summary": "UFC 335 Oliveira vs Lopes: Main Card start time changed.",
-      "details": {
-        "section": "Main Card",
-        "from": "9:00 PM ET",
-        "to": "Time TBA"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-335-2026-12-12-fight-card|bout_weight_changed|62",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-335-2026-12-12-fight-card",
-      "promotion": "UFC 335",
-      "event_title": "Oliveira vs Lopes",
-      "event_date": "2026-12-12",
-      "summary": "Charles Oliveira vs Diego Lopes weight/class changed.",
-      "details": {
-        "from": "Lightweight Bout",
-        "to": "Poids légers"
       }
     }
   ]

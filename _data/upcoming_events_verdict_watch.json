@@ -13,13 +13,13 @@
       "verdict_event_id": "1998",
       "verdict_url": "https://verdictmma.com/event/1998",
       "verdict_date": "2026-12-05",
-      "local_fight_count": 12,
-      "verdict_fight_count": 13,
+      "local_fight_count": 14,
+      "verdict_fight_count": 14,
       "local_main_count": 6,
       "verdict_main_count": 7,
-      "local_prelim_count": 6,
-      "verdict_prelim_count": 6,
-      "confirmed_local_bouts": 11
+      "local_prelim_count": 8,
+      "verdict_prelim_count": 7,
+      "confirmed_local_bouts": 13
     },
     {
       "event_id": "ufc-335-2026-12-12-fight-card",
@@ -99,11 +99,11 @@
       "verdict_url": "https://verdictmma.com/event/1993",
       "verdict_date": "2027-01-30",
       "local_fight_count": 5,
-      "verdict_fight_count": 6,
+      "verdict_fight_count": 9,
       "local_main_count": 5,
       "verdict_main_count": 2,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 4,
+      "verdict_prelim_count": 7,
       "confirmed_local_bouts": 5
     },
     {
@@ -297,7 +297,7 @@
       "event_id": "ufc-336-2027-01-30-fight-card",
       "verdict_event_id": "1993",
       "local_fight_count": 5,
-      "verdict_fight_count": 6
+      "verdict_fight_count": 9
     },
     {
       "type": "section_count_mismatch",
@@ -306,20 +306,13 @@
       "local_main_count": 5,
       "verdict_main_count": 2,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 4
-    },
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-12-05-fight-card",
-      "verdict_event_id": "1998",
-      "local_fight_count": 12,
-      "verdict_fight_count": 13
+      "verdict_prelim_count": 7
     },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-12-05-fight-card",
       "verdict_event_id": "1998",
-      "order": 10,
+      "order": 11,
       "fighters": [
         "Pavel Andrusca",
         "Mahammadali Osmanli"
@@ -331,8 +324,8 @@
       "verdict_event_id": "1998",
       "local_main_count": 6,
       "verdict_main_count": 7,
-      "local_prelim_count": 6,
-      "verdict_prelim_count": 6
+      "local_prelim_count": 8,
+      "verdict_prelim_count": 7
     },
     {
       "type": "section_count_mismatch",

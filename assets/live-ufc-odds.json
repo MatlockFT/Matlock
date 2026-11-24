@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T22:44:49.946Z",
+  "generated_at": "2026-11-24T06:31:01.472Z",
   "source": "UFC.com + BestFightOdds",
   "events": [
     {
@@ -40,12 +40,12 @@
           "provider": "FanDuel",
           "fighters": [
             {
-              "name": "Serghei Spivac",
-              "moneyline": "+260"
+              "name": "Levan Chokheli",
+              "moneyline": "+186"
             },
             {
-              "name": "Mario Pinto",
-              "moneyline": "-360"
+              "name": "Islam Dulatov",
+              "moneyline": "-245"
             }
           ]
         },
@@ -54,12 +54,12 @@
           "provider": "FanDuel",
           "fighters": [
             {
-              "name": "Levan Chokheli",
-              "moneyline": "+186"
+              "name": "Serghei Spivac",
+              "moneyline": "+260"
             },
             {
-              "name": "Islam Dulatov",
-              "moneyline": "-245"
+              "name": "Mario Pinto",
+              "moneyline": "-360"
             }
           ]
         },
@@ -93,6 +93,20 @@
         },
         {
           "source": "BestFightOdds",
+          "provider": "Caesars",
+          "fighters": [
+            {
+              "name": "Luke Riley",
+              "moneyline": "-150"
+            },
+            {
+              "name": "Gabriel Santos",
+              "moneyline": "+120"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
           "provider": "FanDuel",
           "fighters": [
             {
@@ -111,11 +125,11 @@
           "fighters": [
             {
               "name": "Uran Satybaldiev",
-              "moneyline": "+118"
+              "moneyline": "+102"
             },
             {
               "name": "Ivan Gnizditskiy",
-              "moneyline": "-150"
+              "moneyline": "-130"
             }
           ]
         },
@@ -172,6 +186,20 @@
             {
               "name": "Hecher Sosa",
               "moneyline": "+138"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "Polymarket",
+          "fighters": [
+            {
+              "name": "Mateusz Rębecki",
+              "moneyline": "+122"
+            },
+            {
+              "name": "Elves Brener",
+              "moneyline": "-122"
             }
           ]
         }
