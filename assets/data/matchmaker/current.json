@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-11-24T09:23:57.291Z"
+      "checkedAt": "2026-11-24T20:18:20.225Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-11-24T09:24:34.018Z",
+      "checkedAt": "2026-11-24T20:19:04.620Z",
       "curatedOverrides": 0
     },
     "history": {
@@ -108774,7 +108774,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Van vs Kape",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336",
+        "opponent": "Terrance Chatman",
+        "opponentId": "terrance-chatman"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -132376,7 +132382,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Michelle Montague",
+        "opponentId": "michelle-montague"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -164060,7 +164072,11 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC 336",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -172009,7 +172025,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Van vs Kape",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336",
+        "opponent": "Vlasto Čepo",
+        "opponentId": "vlasto-cepo"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -212231,7 +212253,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Van vs Kape",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336",
+        "opponent": "Tresean Gore",
+        "opponentId": "tresean-gore"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -233129,7 +233157,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Jacqueline Cavalcanti",
+        "opponentId": "jacqueline-cavalcanti"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -254899,7 +254933,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Roque Conceicao",
+        "opponentId": "roque-conceicao"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -287147,7 +287187,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Oliveira vs Lopes",
+        "date": "2026-12-12",
+        "source": "https://www.ufc.com/event/ufc-335",
+        "opponent": "Nilson Rojas",
+        "opponentId": "nilson-rojas"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -313440,7 +313486,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Van vs Kape",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336",
+        "opponent": "José Montanha",
+        "opponentId": null
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -314887,7 +314939,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Van vs Kape",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336",
+        "opponent": "Gable Steveson",
+        "opponentId": "gable-steveson"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -323400,7 +323458,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Van vs Kape",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336",
+        "opponent": "Marc-Andre Barriault",
+        "opponentId": "marc-andre-barriault"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -332509,7 +332573,13 @@
         "mirrorThrough": "2026-11-21",
         "officialThrough": "2026-11-21"
       },
-      "booking": null,
+      "booking": {
+        "event": "Van vs Kape",
+        "date": "2027-01-30",
+        "source": "https://www.ufc.com/event/ufc-336",
+        "opponent": "Julien Leblanc",
+        "opponentId": "julien-leblanc"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
