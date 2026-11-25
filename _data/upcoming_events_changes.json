@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-24T18:16:28.350Z",
+  "generated_at": "2026-11-25T02:39:08.972Z",
   "changes": [
+    {
+      "id": "2026-11-25T02:39:08.972Z|ufc-fight-night-2027-02-06-fight-card|start_time_changed|1",
+      "at": "2026-11-25T02:39:08.972Z",
+      "type": "start_time_changed",
+      "event_id": "ufc-fight-night-2027-02-06-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Salkilld vs Saint Denis",
+      "event_date": "2027-02-06",
+      "summary": "UFC Fight Night Salkilld vs Saint Denis: Main Card start time changed.",
+      "details": {
+        "section": "Main Card",
+        "from": "5:00 PM ET",
+        "to": "8:00 PM ET"
+      }
+    },
     {
       "id": "2026-11-24T18:16:28.350Z|ufc-335-2026-12-12-fight-card|bout_moved|1",
       "at": "2026-11-24T18:16:28.350Z",
@@ -4508,20 +4523,6 @@
       "details": {
         "from": "Welterweight Bout",
         "to": "Poids mi-moyens"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-2026-11-14-polymarket-ufc-334|bout_weight_changed|41",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
-      "promotion": "UFC",
-      "event_title": "Polymarket UFC 334",
-      "event_date": "2026-11-14",
-      "summary": "Bilal Hasan vs Luis Gurule weight/class changed.",
-      "details": {
-        "from": "Flyweight Bout",
-        "to": "Poids mouche"
       }
     }
   ]
