@@ -1,7 +1,73 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-25T02:39:08.972Z",
+  "generated_at": "2026-11-25T11:45:22.505Z",
   "changes": [
+    {
+      "id": "2026-11-25T11:45:22.505Z|rizin-rizin-6-2026-12-31|bout_changed|1",
+      "at": "2026-11-25T11:45:22.505Z",
+      "type": "bout_changed",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "promotion": "RIZIN",
+      "event_title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "event_date": "2026-12-31",
+      "summary": "Soul Hamaguchi vs Daisuke Kobayashi changed to 狼煙三番勝負 其の弍／濱口奏琉 vs Daisuke Kobayashi on 『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット.",
+      "details": {
+        "order": 15,
+        "section": "Fight Card",
+        "from": [
+          "Soul Hamaguchi",
+          "Daisuke Kobayashi"
+        ],
+        "to": [
+          "狼煙三番勝負 其の弍／濱口奏琉",
+          "Daisuke Kobayashi"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-25T11:45:22.505Z|rizin-rizin-6-2026-12-31|bout_changed|2",
+      "at": "2026-11-25T11:45:22.505Z",
+      "type": "bout_changed",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "promotion": "RIZIN",
+      "event_title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "event_date": "2026-12-31",
+      "summary": "Masashi Inada vs Kosuke Kindaichi changed to 狼煙三番勝負 其の壱／稲田将 vs Kosuke Kindaichi on 『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット.",
+      "details": {
+        "order": 16,
+        "section": "Fight Card",
+        "from": [
+          "Masashi Inada",
+          "Kosuke Kindaichi"
+        ],
+        "to": [
+          "狼煙三番勝負 其の壱／稲田将",
+          "Kosuke Kindaichi"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-25T11:45:22.505Z|rizin-rizin-6-2026-12-31|bout_changed|3",
+      "at": "2026-11-25T11:45:22.505Z",
+      "type": "bout_changed",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "promotion": "RIZIN",
+      "event_title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "event_date": "2026-12-31",
+      "summary": "Christian Akira Matsuo vs Sora Kaneko changed to DELiGHTWORKS presents RIZIN甲子園 2026 決勝戦／松尾クリスチャンアキラ vs Sora Kaneko on 『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット.",
+      "details": {
+        "order": 17,
+        "section": "Fight Card",
+        "from": [
+          "Christian Akira Matsuo",
+          "Sora Kaneko"
+        ],
+        "to": [
+          "DELiGHTWORKS presents RIZIN甲子園 2026 決勝戦／松尾クリスチャンアキラ",
+          "Sora Kaneko"
+        ]
+      }
+    },
     {
       "id": "2026-11-25T02:39:08.972Z|ufc-fight-night-2027-02-06-fight-card|start_time_changed|1",
       "at": "2026-11-25T02:39:08.972Z",
@@ -4481,48 +4547,6 @@
       "details": {
         "from": "Heavyweight Title Bout",
         "to": "Poids lourds Combat de championnat"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-2026-11-14-polymarket-ufc-334|bout_weight_changed|38",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
-      "promotion": "UFC",
-      "event_title": "Polymarket UFC 334",
-      "event_date": "2026-11-14",
-      "summary": "Kayla Harrison vs Amanda Nunes weight/class changed.",
-      "details": {
-        "from": "Women's Bantamweight Title Bout",
-        "to": "Poids coq féminins Combat de championnat"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-2026-11-14-polymarket-ufc-334|bout_weight_changed|39",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
-      "promotion": "UFC",
-      "event_title": "Polymarket UFC 334",
-      "event_date": "2026-11-14",
-      "summary": "Caio Borralho vs Yousri Belgaroui weight/class changed.",
-      "details": {
-        "from": "Middleweight Bout",
-        "to": "Poids moyens"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-2026-11-14-polymarket-ufc-334|bout_weight_changed|40",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
-      "promotion": "UFC",
-      "event_title": "Polymarket UFC 334",
-      "event_date": "2026-11-14",
-      "summary": "Uroš Medić vs Kevin Holland weight/class changed.",
-      "details": {
-        "from": "Welterweight Bout",
-        "to": "Poids mi-moyens"
       }
     }
   ]
