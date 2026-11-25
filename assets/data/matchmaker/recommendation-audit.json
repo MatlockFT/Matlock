@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-11-24T19:41:02.716Z",
+  "generatedAt": "2026-11-25T03:43:25.243Z",
   "engineVersion": 2,
   "subjects": 438,
-  "publishedRecommendations": 1154,
+  "publishedRecommendations": 1129,
   "recommendationSlots": {
-    "0": 51,
-    "1": 2,
+    "0": 60,
+    "1": 1,
     "2": 3,
-    "3": 382
+    "3": 374
   },
   "caseCounts": {
-    "rebound-pairing": 472,
-    "rising-vs-rising": 301,
-    "step-up-vs-rebound": 186,
-    "rankings-progression": 70,
-    "ranking-opportunity": 53,
-    "divisional-sorting": 39,
-    "title-case": 15,
-    "title-eliminator": 14,
-    "prospect-test": 4
+    "rebound-pairing": 457,
+    "rising-vs-rising": 292,
+    "step-up-vs-rebound": 188,
+    "rankings-progression": 61,
+    "ranking-opportunity": 54,
+    "divisional-sorting": 33,
+    "title-case": 19,
+    "title-eliminator": 18,
+    "prospect-test": 7
   },
   "confidenceCounts": {
-    "high": 1077,
-    "low": 48,
-    "medium": 29
+    "high": 1053,
+    "low": 42,
+    "medium": 34
   },
   "averageRecentOpponentLinkCoverage": 0.9038,
-  "sameCardRecommendations": 50,
-  "sameCardRecommendationRatio": 0.0433,
-  "asymmetricTopThreeRecommendations": 402,
-  "asymmetricTopThreeRatio": 0.3484,
-  "publicPublishedRecommendations": 1135,
-  "publicAsymmetricTopThreeRecommendations": 317,
-  "publicAsymmetricTopThreeRatio": 0.2793,
-  "engineGenericDivisionalSortingRecommendations": 39,
+  "sameCardRecommendations": 43,
+  "sameCardRecommendationRatio": 0.0381,
+  "asymmetricTopThreeRecommendations": 385,
+  "asymmetricTopThreeRatio": 0.341,
+  "publicPublishedRecommendations": 1108,
+  "publicAsymmetricTopThreeRecommendations": 292,
+  "publicAsymmetricTopThreeRatio": 0.2635,
+  "engineGenericDivisionalSortingRecommendations": 33,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -41,7 +41,7 @@
     "title": "UFC Fight Night: Prochazka vs Stirling",
     "date": "2026-11-21",
     "subjects": 24,
-    "publicRecommendations": 72,
+    "publicRecommendations": 71,
     "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
@@ -50,7 +50,7 @@
       "title": "UFC Fight Night: Prochazka vs Stirling",
       "date": "2026-11-21",
       "subjects": 24,
-      "publicRecommendations": 72,
+      "publicRecommendations": 71,
       "noClearMatchupSubjects": 0
     },
     {
@@ -82,7 +82,7 @@
       "title": "UFC 333: Volkanovski vs Evloev",
       "date": "2026-10-24",
       "subjects": 28,
-      "publicRecommendations": 76,
+      "publicRecommendations": 79,
       "noClearMatchupSubjects": 0
     },
     {
@@ -90,8 +90,8 @@
       "title": "UFC Fight Night: Buckley vs Malott",
       "date": "2026-10-17",
       "subjects": 26,
-      "publicRecommendations": 78,
-      "noClearMatchupSubjects": 0
+      "publicRecommendations": 69,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-october-10-2026",
@@ -122,8 +122,8 @@
       "title": "Crypto.com UFC 331: Van vs Pantoja 2",
       "date": "2026-09-19",
       "subjects": 24,
-      "publicRecommendations": 59,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 55,
+      "noClearMatchupSubjects": 5
     },
     {
       "id": "ufc-fight-night-september-12-2026",
@@ -146,40 +146,40 @@
       "title": "UFC Fight Night: Nurmagomedov vs Song",
       "date": "2026-08-29",
       "subjects": 26,
-      "publicRecommendations": 71,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 68,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-august-22-2026",
       "title": "UFC Fight Night: Hernandez vs Rodrigues",
       "date": "2026-08-22",
       "subjects": 26,
-      "publicRecommendations": 69,
-      "noClearMatchupSubjects": 3
+      "publicRecommendations": 66,
+      "noClearMatchupSubjects": 4
     },
     {
       "id": "ufc-330",
       "title": "UFC 330: Makhachev vs Machado Garry",
       "date": "2026-08-15",
       "subjects": 24,
-      "publicRecommendations": 56,
-      "noClearMatchupSubjects": 5
+      "publicRecommendations": 54,
+      "noClearMatchupSubjects": 6
     },
     {
       "id": "ufc-fight-night-august-08-2026",
       "title": "UFC Fight Night: Gamrot vs Salkilld",
       "date": "2026-08-08",
       "subjects": 24,
-      "publicRecommendations": 51,
-      "noClearMatchupSubjects": 7
+      "publicRecommendations": 48,
+      "noClearMatchupSubjects": 8
     },
     {
       "id": "ufc-fight-night-august-01-2026",
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 66,
-      "noClearMatchupSubjects": 6
+      "publicRecommendations": 61,
+      "noClearMatchupSubjects": 7
     }
   ],
   "genericExamples": [
@@ -193,23 +193,16 @@
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Uros Medic",
-      "opponent": "Nicolas Dalby",
-      "score": 87,
-      "rationale": "Uros Medic and Nicolas Dalby occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Uros Medic",
-      "opponent": "Joaquin Buckley",
-      "score": 84,
-      "rationale": "Uros Medic and Joaquin Buckley occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Uros Medic",
       "opponent": "Daniil Donchenko",
       "score": 84,
       "rationale": "Uros Medic and Daniil Donchenko occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Uros Medic",
+      "opponent": "Mike Malott",
+      "score": 82,
+      "rationale": "Uros Medic and Mike Malott occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
@@ -217,13 +210,6 @@
       "opponent": "Neil Magny",
       "score": 86,
       "rationale": "Kevin Holland and Neil Magny occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Kevin Holland",
-      "opponent": "Uros Medic",
-      "score": 81,
-      "rationale": "Kevin Holland and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
@@ -282,25 +268,11 @@
       "rationale": "Lucia Szabova and Jeisla Chaves occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Movsar Evloev",
-      "opponent": "Kevin Vallejos",
-      "score": 54,
-      "rationale": "Movsar Evloev and Kevin Vallejos occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC 333: Volkanovski vs Evloev",
-      "fighter": "Movsar Evloev",
-      "opponent": "Youssef Zalal",
-      "score": 47,
-      "rationale": "Movsar Evloev and Youssef Zalal occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
       "event": "UFC Fight Night: Buckley vs Malott",
-      "fighter": "Joaquin Buckley",
+      "fighter": "Mike Malott",
       "opponent": "Uros Medic",
-      "score": 84,
-      "rationale": "Joaquin Buckley and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+      "score": 82,
+      "rationale": "Mike Malott and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
@@ -322,6 +294,34 @@
       "opponent": "Tereza Bleda",
       "score": 88,
       "rationale": "Ernesta Kareckaite and Tereza Bleda occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Melissa Gatto",
+      "opponent": "Ernesta Kareckaite",
+      "score": 90,
+      "rationale": "Melissa Gatto and Ernesta Kareckaite occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Melissa Gatto",
+      "opponent": "Gabriella Fernandes",
+      "score": 85,
+      "rationale": "Melissa Gatto and Gabriella Fernandes occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Allen vs Duncan",
+      "fighter": "Melissa Gatto",
+      "opponent": "Jj Aldrich",
+      "score": 81,
+      "rationale": "Melissa Gatto and Jj Aldrich occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Rinya Nakamura",
+      "opponent": "Santiago Luna",
+      "score": 93,
+      "rationale": "Rinya Nakamura and Santiago Luna occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
@@ -329,25 +329,25 @@
     {
       "event": "UFC Fight Night: Prochazka vs Stirling",
       "fighter": "Navajo Stirling",
-      "opponent": "Dominick Reyes",
-      "pairScore": 80,
-      "case": "rankings-progression",
+      "opponent": "Khalil Rountree Jr.",
+      "pairScore": 69,
+      "case": "step-up-vs-rebound",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Paulo Costa",
-          "score": 92,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Khalil Rountree Jr.",
           "score": 86,
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Jiri Prochazka",
-          "score": 87,
+          "opponent": "Dominick Reyes",
+          "score": 85,
           "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Magomed Ankalaev",
+          "score": 73,
+          "case": "divisional-sorting"
         }
       ]
     },
@@ -380,7 +380,7 @@
       "event": "UFC Fight Night: Prochazka vs Stirling",
       "fighter": "Brian Ortega",
       "opponent": "Nasrat Haqparast",
-      "pairScore": 89,
+      "pairScore": 90,
       "case": "rebound-pairing",
       "fighterRank": "Best match",
       "opponentTopThree": [
@@ -404,35 +404,10 @@
     {
       "event": "UFC Fight Night: Prochazka vs Stirling",
       "fighter": "Brian Ortega",
-      "opponent": "Billy Quarantillo",
-      "pairScore": 88,
+      "opponent": "Ludovit Klein",
+      "pairScore": 89,
       "case": "rebound-pairing",
       "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Claudio Puelles",
-          "score": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Kyle Nelson",
-          "score": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Tamia Hasohitsuku",
-          "score": 91,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "UFC Fight Night: Prochazka vs Stirling",
-      "fighter": "Brian Ortega",
-      "opponent": "Ludovit Klein",
-      "pairScore": 88,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Nasrat Haqparast",
@@ -453,50 +428,50 @@
     },
     {
       "event": "UFC Fight Night: Prochazka vs Stirling",
-      "fighter": "Jared Cannonier",
-      "opponent": "Roman Kopylov",
-      "pairScore": 87,
-      "case": "ranking-opportunity",
-      "fighterRank": "Alternative",
+      "fighter": "Brian Ortega",
+      "opponent": "Billy Quarantillo",
+      "pairScore": 88,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Edmen Shahbazyan",
-          "score": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Ikram Aliskerov",
+          "opponent": "Claudio Puelles",
           "score": 91,
-          "case": "rankings-progression"
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Ismail Naurdiev",
-          "score": 89,
-          "case": "rising-vs-rising"
+          "opponent": "Kyle Nelson",
+          "score": 91,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Sodiq Yusuff",
+          "score": 91,
+          "case": "rebound-pairing"
         }
       ]
     },
     {
       "event": "UFC Fight Night: Prochazka vs Stirling",
       "fighter": "Jared Cannonier",
-      "opponent": "Marc Andre Barriault",
-      "pairScore": 87,
+      "opponent": "Cody Brundage",
+      "pairScore": 84,
       "case": "ranking-opportunity",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Cody Brundage",
+          "opponent": "Dustin Stoltzfus",
           "score": 94,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Rodolfo Vieira",
-          "score": 94,
+          "opponent": "Ismail Naurdiev",
+          "score": 89,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Andre Petroski",
-          "score": 93,
+          "opponent": "Cesar Almeida",
+          "score": 87,
           "case": "rising-vs-rising"
         }
       ]
@@ -590,13 +565,13 @@
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Jose Montanha Da Silva",
+          "opponent": "Sean Sharaf",
           "score": 91,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Sean Sharaf",
-          "score": 91,
+          "opponent": "Robelis Despaigne",
+          "score": 90,
           "case": "rising-vs-rising"
         }
       ]
@@ -660,17 +635,17 @@
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
+          "opponent": "Muslim Salikhov",
+          "score": 92,
+          "case": "rebound-pairing"
+        },
+        {
           "opponent": "Santiago Ponzinibbio",
           "score": 92,
           "case": "rebound-pairing"
         },
         {
           "opponent": "Gunnar Nelson",
-          "score": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Muslim Salikhov",
           "score": 91,
           "case": "rebound-pairing"
         }
@@ -840,12 +815,12 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Rodolfo Bellato",
-          "score": 93,
+          "opponent": "Oumar Sy",
+          "score": 92,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Oumar Sy",
+          "opponent": "Rodolfo Bellato",
           "score": 92,
           "case": "rebound-pairing"
         }
@@ -895,8 +870,8 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Johnny Walker",
-          "score": 83,
+          "opponent": "Valter Walker",
+          "score": 84,
           "case": "step-up-vs-rebound"
         }
       ]
@@ -940,14 +915,39 @@
           "case": "title-eliminator"
         },
         {
+          "opponent": "Bia Mesquita",
+          "score": 84,
+          "case": "rankings-progression"
+        },
+        {
           "opponent": "Julianna Pena",
-          "score": 83,
+          "score": 84,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "Polymarket UFC 334: Gane vs Hokit",
+      "fighter": "Kayla Harrison",
+      "opponent": "Ailin Perez",
+      "pairScore": 76,
+      "case": "title-case",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Luana Santos",
+          "score": 95,
+          "case": "title-eliminator"
+        },
+        {
+          "opponent": "Yana Santos",
+          "score": 88,
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Joselyne Edwards",
-          "score": 79,
-          "case": "title-eliminator"
+          "opponent": "Julianna Pena",
+          "score": 83,
+          "case": "step-up-vs-rebound"
         }
       ]
     }

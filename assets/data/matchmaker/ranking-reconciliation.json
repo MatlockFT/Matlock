@@ -1,34 +1,86 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-17T23:38:21.419Z",
-  "previousGeneratedAt": "2026-11-17T13:49:25.616Z",
+  "generatedAt": "2026-11-25T03:43:25.243Z",
+  "previousGeneratedAt": "2026-11-24T19:41:02.716Z",
   "rankingChanges": [
     {
-      "id": "david-onama",
-      "name": "David Onama",
-      "division": "Featherweight",
+      "id": "marcus-mcghee",
+      "name": "Marcus McGhee",
+      "division": "Bantamweight",
       "before": {
-        "rank": 15,
+        "rank": 13,
         "interim": false
       },
       "after": {
-        "rank": 14,
+        "rank": 12,
         "interim": false
       }
     },
     {
-      "id": "melquizael-costa",
-      "name": "Melquizael Costa",
+      "id": "aljamain-sterling",
+      "name": "Aljamain Sterling",
       "division": "Featherweight",
       "before": {
-        "rank": 12,
+        "rank": 4,
+        "interim": false
+      },
+      "after": {
+        "rank": 6,
+        "interim": false
+      }
+    },
+    {
+      "id": "arnold-allen",
+      "name": "Arnold Allen",
+      "division": "Featherweight",
+      "before": {
+        "rank": 6,
+        "interim": false
+      },
+      "after": {
+        "rank": 7,
+        "interim": false
+      }
+    },
+    {
+      "id": "brian-ortega",
+      "name": "Brian Ortega",
+      "division": "Featherweight",
+      "before": {
+        "rank": 13,
         "interim": false
       },
       "after": null
     },
     {
-      "id": "pat-sabatini",
-      "name": "Pat Sabatini",
+      "id": "diego-lopes",
+      "name": "Diego Lopes",
+      "division": "Featherweight",
+      "before": {
+        "rank": 2,
+        "interim": false
+      },
+      "after": {
+        "rank": 1,
+        "interim": false
+      }
+    },
+    {
+      "id": "jean-silva",
+      "name": "Jean Silva",
+      "division": "Featherweight",
+      "before": {
+        "rank": 5,
+        "interim": false
+      },
+      "after": {
+        "rank": 4,
+        "interim": false
+      }
+    },
+    {
+      "id": "josh-emmett",
+      "name": "Josh Emmett",
       "division": "Featherweight",
       "before": null,
       "after": {
@@ -37,11 +89,154 @@
       }
     },
     {
-      "id": "patricio-freire",
-      "name": "Patricio Pitbull",
+      "id": "kevin-vallejos",
+      "name": "Kevin Vallejos",
       "division": "Featherweight",
       "before": {
-        "rank": 14,
+        "rank": 9,
+        "interim": false
+      },
+      "after": {
+        "rank": 5,
+        "interim": false
+      }
+    },
+    {
+      "id": "pat-sabatini",
+      "name": "Pat Sabatini",
+      "division": "Featherweight",
+      "before": {
+        "rank": 15,
+        "interim": false
+      },
+      "after": {
+        "rank": 13,
+        "interim": false
+      }
+    },
+    {
+      "id": "yair-rodriguez",
+      "name": "Yair Rodriguez",
+      "division": "Featherweight",
+      "before": {
+        "rank": 7,
+        "interim": false
+      },
+      "after": {
+        "rank": 8,
+        "interim": false
+      }
+    },
+    {
+      "id": "youssef-zalal",
+      "name": "Youssef Zalal",
+      "division": "Featherweight",
+      "before": {
+        "rank": 8,
+        "interim": false
+      },
+      "after": {
+        "rank": 9,
+        "interim": false
+      }
+    },
+    {
+      "id": "manel-kape",
+      "name": "Manel Kape",
+      "division": "Flyweight",
+      "before": {
+        "rank": 2,
+        "interim": false
+      },
+      "after": {
+        "rank": 1,
+        "interim": false
+      }
+    },
+    {
+      "id": "alex-pereira",
+      "name": "Alex Pereira",
+      "division": "Light Heavyweight",
+      "before": {
+        "rank": 3,
+        "interim": false
+      },
+      "after": {
+        "rank": 4,
+        "interim": false
+      }
+    },
+    {
+      "id": "dominick-reyes",
+      "name": "Dominick Reyes",
+      "division": "Light Heavyweight",
+      "before": {
+        "rank": 7,
+        "interim": false
+      },
+      "after": {
+        "rank": 6,
+        "interim": false
+      }
+    },
+    {
+      "id": "jiri-prochazka",
+      "name": "Jiří Procházka",
+      "division": "Light Heavyweight",
+      "before": {
+        "rank": 2,
+        "interim": false
+      },
+      "after": {
+        "rank": 3,
+        "interim": false
+      }
+    },
+    {
+      "id": "khalil-rountree-jr",
+      "name": "Khalil Rountree Jr.",
+      "division": "Light Heavyweight",
+      "before": {
+        "rank": 4,
+        "interim": false
+      },
+      "after": {
+        "rank": 5,
+        "interim": false
+      }
+    },
+    {
+      "id": "navajo-stirling",
+      "name": "Navajo Stirling",
+      "division": "Light Heavyweight",
+      "before": {
+        "rank": 5,
+        "interim": false
+      },
+      "after": {
+        "rank": 2,
+        "interim": false
+      }
+    },
+    {
+      "id": "paulo-costa",
+      "name": "Paulo Costa",
+      "division": "Light Heavyweight",
+      "before": {
+        "rank": 6,
+        "interim": false
+      },
+      "after": {
+        "rank": 7,
+        "interim": false
+      }
+    },
+    {
+      "id": "abus-magomedov",
+      "name": "Abus Magomedov",
+      "division": "Middleweight",
+      "before": {
+        "rank": 11,
         "interim": false
       },
       "after": {
@@ -50,37 +245,37 @@
       }
     },
     {
-      "id": "johnny-walker",
-      "name": "Johnny Walker",
-      "division": "Heavyweight",
-      "before": {
-        "rank": 7,
-        "interim": false
-      },
-      "after": {
-        "rank": 6,
-        "interim": false
-      }
-    },
-    {
-      "id": "rizvan-kuniev",
-      "name": "Rizvan Kuniev",
-      "division": "Heavyweight",
-      "before": {
-        "rank": 6,
-        "interim": false
-      },
-      "after": {
-        "rank": 7,
-        "interim": false
-      }
-    },
-    {
-      "id": "daniel-rodriguez",
-      "name": "Daniel Rodriguez",
-      "division": "Welterweight",
+      "id": "bo-nickal",
+      "name": "Bo Nickal",
+      "division": "Middleweight",
       "before": {
         "rank": 14,
+        "interim": false
+      },
+      "after": {
+        "rank": 13,
+        "interim": false
+      }
+    },
+    {
+      "id": "ikram-aliskerov",
+      "name": "Ikram Aliskerov",
+      "division": "Middleweight",
+      "before": {
+        "rank": 13,
+        "interim": false
+      },
+      "after": {
+        "rank": 11,
+        "interim": false
+      }
+    },
+    {
+      "id": "jared-cannonier",
+      "name": "Jared Cannonier",
+      "division": "Middleweight",
+      "before": {
+        "rank": 12,
         "interim": false
       },
       "after": {
@@ -89,9 +284,9 @@
       }
     },
     {
-      "id": "kevin-holland",
-      "name": "Kevin Holland",
-      "division": "Welterweight",
+      "id": "shara-magomedov",
+      "name": "Shara Magomedov",
+      "division": "Middleweight",
       "before": {
         "rank": 15,
         "interim": false
@@ -106,11 +301,11 @@
       "name": "Uroš Medić",
       "division": "Welterweight",
       "before": {
-        "rank": 11,
+        "rank": 12,
         "interim": false
       },
       "after": {
-        "rank": 12,
+        "rank": 11,
         "interim": false
       }
     },
@@ -119,34 +314,11 @@
       "name": "Yaroslav Amosov",
       "division": "Welterweight",
       "before": {
-        "rank": 12,
-        "interim": false
-      },
-      "after": {
         "rank": 11,
         "interim": false
-      }
-    },
-    {
-      "id": "ailin-perez",
-      "name": "Ailin Perez",
-      "division": "Women's Bantamweight",
-      "before": {
-        "rank": 3,
-        "interim": false
       },
       "after": {
-        "rank": 4,
-        "interim": false
-      }
-    },
-    {
-      "id": "amanda-nunes",
-      "name": "Amanda Nunes",
-      "division": "Women's Bantamweight",
-      "before": null,
-      "after": {
-        "rank": 1,
+        "rank": 12,
         "interim": false
       }
     },
@@ -155,7 +327,20 @@
       "name": "Bia Mesquita",
       "division": "Women's Bantamweight",
       "before": {
-        "rank": 11,
+        "rank": 8,
+        "interim": false
+      },
+      "after": {
+        "rank": 7,
+        "interim": false
+      }
+    },
+    {
+      "id": "raquel-pennington",
+      "name": "Raquel Pennington",
+      "division": "Women's Bantamweight",
+      "before": {
+        "rank": 7,
         "interim": false
       },
       "after": {
@@ -164,134 +349,614 @@
       }
     },
     {
-      "id": "jacqueline-cavalcanti",
-      "name": "Jacqueline Cavalcanti",
-      "division": "Women's Bantamweight",
+      "id": "alexia-thainara",
+      "name": "Alexia Thainara",
+      "division": "Women's Strawweight",
       "before": {
+        "rank": 9,
+        "interim": false
+      },
+      "after": {
         "rank": 8,
         "interim": false
-      },
-      "after": {
-        "rank": 9,
-        "interim": false
       }
     },
     {
-      "id": "joselyne-edwards",
-      "name": "Joselyne Edwards",
-      "division": "Women's Bantamweight",
+      "id": "amanda-lemos",
+      "name": "Amanda Lemos",
+      "division": "Women's Strawweight",
       "before": {
-        "rank": 1,
-        "interim": false
-      },
-      "after": {
-        "rank": 2,
-        "interim": false
-      }
-    },
-    {
-      "id": "julianna-pena",
-      "name": "Julianna Peña",
-      "division": "Women's Bantamweight",
-      "before": {
-        "rank": 1,
-        "interim": false
-      },
-      "after": {
-        "rank": 2,
-        "interim": false
-      }
-    },
-    {
-      "id": "karol-rosa",
-      "name": "Karol Rosa",
-      "division": "Women's Bantamweight",
-      "before": {
-        "rank": 9,
-        "interim": false
-      },
-      "after": {
-        "rank": 10,
-        "interim": false
-      }
-    },
-    {
-      "id": "macy-chiasson",
-      "name": "Macy Chiasson",
-      "division": "Women's Bantamweight",
-      "before": {
-        "rank": 10,
-        "interim": false
-      },
-      "after": {
-        "rank": 12,
-        "interim": false
-      }
-    },
-    {
-      "id": "michelle-montague",
-      "name": "Michelle Montague",
-      "division": "Women's Bantamweight",
-      "before": {
-        "rank": 12,
-        "interim": false
-      },
-      "after": {
         "rank": 11,
         "interim": false
+      },
+      "after": {
+        "rank": 10,
+        "interim": false
       }
     },
     {
-      "id": "norma-dumont",
-      "name": "Norma Dumont",
-      "division": "Women's Bantamweight",
+      "id": "amanda-ribas",
+      "name": "Amanda Ribas",
+      "division": "Women's Strawweight",
+      "before": {
+        "rank": 13,
+        "interim": false
+      },
+      "after": {
+        "rank": 12,
+        "interim": false
+      }
+    },
+    {
+      "id": "angela-hill",
+      "name": "Angela Hill",
+      "division": "Women's Strawweight",
+      "before": {
+        "rank": 15,
+        "interim": false
+      },
+      "after": {
+        "rank": 14,
+        "interim": false
+      }
+    },
+    {
+      "id": "denise-gomes",
+      "name": "Denise Gomes",
+      "division": "Women's Strawweight",
       "before": {
         "rank": 4,
         "interim": false
       },
+      "after": {
+        "rank": 3,
+        "interim": false
+      }
+    },
+    {
+      "id": "fatima-kline",
+      "name": "Fatima Kline",
+      "division": "Women's Strawweight",
+      "before": {
+        "rank": 6,
+        "interim": false
+      },
+      "after": {
+        "rank": 5,
+        "interim": false
+      }
+    },
+    {
+      "id": "gillian-robertson",
+      "name": "Gillian Robertson",
+      "division": "Women's Strawweight",
+      "before": {
+        "rank": 5,
+        "interim": false
+      },
+      "after": {
+        "rank": 4,
+        "interim": false
+      }
+    },
+    {
+      "id": "jessica-andrade",
+      "name": "Jéssica Andrade",
+      "division": "Women's Strawweight",
+      "before": {
+        "rank": 12,
+        "interim": false
+      },
+      "after": {
+        "rank": 11,
+        "interim": false
+      }
+    },
+    {
+      "id": "loopy-godinez",
+      "name": "Loopy Godinez",
+      "division": "Women's Strawweight",
+      "before": {
+        "rank": 8,
+        "interim": false
+      },
+      "after": {
+        "rank": 7,
+        "interim": false
+      }
+    },
+    {
+      "id": "mizuki-inoue",
+      "name": "Mizuki",
+      "division": "Women's Strawweight",
+      "before": null,
+      "after": {
+        "rank": 15,
+        "interim": false
+      }
+    },
+    {
+      "id": "piera-rodriguez",
+      "name": "Piera Rodriguez",
+      "division": "Women's Strawweight",
+      "before": {
+        "rank": 14,
+        "interim": false
+      },
+      "after": {
+        "rank": 13,
+        "interim": false
+      }
+    },
+    {
+      "id": "tabatha-ricci",
+      "name": "Tabatha Ricci",
+      "division": "Women's Strawweight",
+      "before": {
+        "rank": 10,
+        "interim": false
+      },
+      "after": {
+        "rank": 9,
+        "interim": false
+      }
+    },
+    {
+      "id": "virna-jandiroba",
+      "name": "Virna Jandiroba",
+      "division": "Women's Strawweight",
+      "before": {
+        "rank": 3,
+        "interim": false
+      },
       "after": null
+    },
+    {
+      "id": "yan-xiaonan",
+      "name": "Yan Xiaonan",
+      "division": "Women's Strawweight",
+      "before": {
+        "rank": 7,
+        "interim": false
+      },
+      "after": {
+        "rank": 6,
+        "interim": false
+      }
     }
   ],
-  "rankingChangeCount": 20,
+  "rankingChangeCount": 41,
   "recommendationChanges": [
     {
-      "eventId": "ufc-334",
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "eventDate": "2026-11-14",
-      "fighterId": "amanda-nunes",
-      "fighter": "Amanda Nunes",
-      "fighterRankBefore": "Unranked",
-      "fighterRankAfter": "#1",
+      "eventId": "ufc-fight-night-november-21-2026",
+      "event": "UFC Fight Night: Prochazka vs Stirling",
+      "eventDate": "2026-11-21",
+      "fighterId": "aljamain-sterling",
+      "fighter": "Aljamain Sterling",
+      "fighterRankBefore": "#4",
+      "fighterRankAfter": "#6",
       "before": [
         {
-          "id": "chelsea-chandler",
-          "name": "Chelsea Chandler",
-          "rank": "#15",
+          "id": "arnold-allen",
+          "name": "Arnold Allen",
+          "rank": "#6",
           "case": "step-up-vs-rebound",
-          "score": 77
+          "score": 89
+        },
+        {
+          "id": "jean-silva",
+          "name": "Jean Silva",
+          "rank": "#5",
+          "case": "step-up-vs-rebound",
+          "score": 88
+        },
+        {
+          "id": "lerone-murphy",
+          "name": "Lerone Murphy",
+          "rank": "#3",
+          "case": "rebound-pairing",
+          "score": 85
         }
       ],
       "after": [
         {
-          "id": "julianna-pena",
-          "name": "Julianna Pena",
-          "rank": "#2",
+          "id": "arnold-allen",
+          "name": "Arnold Allen",
+          "rank": "#7",
+          "case": "step-up-vs-rebound",
+          "score": 90
+        },
+        {
+          "id": "aaron-pico",
+          "name": "Aaron Pico",
+          "rank": "#11",
+          "case": "step-up-vs-rebound",
+          "score": 89
+        },
+        {
+          "id": "patricio-freire",
+          "name": "Patricio Freire",
+          "rank": "#12",
+          "case": "step-up-vs-rebound",
+          "score": 81
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-november-21-2026",
+      "event": "UFC Fight Night: Prochazka vs Stirling",
+      "eventDate": "2026-11-21",
+      "fighterId": "asu-almabayev",
+      "fighter": "Asu Almabayev",
+      "fighterRankBefore": "#7",
+      "fighterRankAfter": "#7",
+      "before": [
+        {
+          "id": "amir-albazi",
+          "name": "Amir Albazi",
+          "rank": "#9",
+          "case": "step-up-vs-rebound",
+          "score": 99
+        },
+        {
+          "id": "su-mudaerji",
+          "name": "Sumudaerji",
+          "rank": "#12",
+          "case": "step-up-vs-rebound",
+          "score": 90
+        },
+        {
+          "id": "loneer-kavanagh",
+          "name": "Loneer Kavanagh",
+          "rank": "#6",
+          "case": "step-up-vs-rebound",
+          "score": 90
+        }
+      ],
+      "after": [
+        {
+          "id": "amir-albazi",
+          "name": "Amir Albazi",
+          "rank": "#9",
+          "case": "step-up-vs-rebound",
+          "score": 99
+        },
+        {
+          "id": "loneer-kavanagh",
+          "name": "Loneer Kavanagh",
+          "rank": "#6",
+          "case": "step-up-vs-rebound",
+          "score": 91
+        },
+        {
+          "id": "su-mudaerji",
+          "name": "Sumudaerji",
+          "rank": "#12",
+          "case": "step-up-vs-rebound",
+          "score": 90
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-november-21-2026",
+      "event": "UFC Fight Night: Prochazka vs Stirling",
+      "eventDate": "2026-11-21",
+      "fighterId": "brian-ortega",
+      "fighter": "Brian Ortega",
+      "fighterRankBefore": "Unranked",
+      "fighterRankAfter": "Unranked",
+      "before": [
+        {
+          "id": "nasrat-haqparast",
+          "name": "Nasrat Haqparast",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 89
+        },
+        {
+          "id": "michael-chandler",
+          "name": "Michael Chandler",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 87
+        },
+        {
+          "id": "ludovit-klein",
+          "name": "Ludovit Klein",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 88
+        }
+      ],
+      "after": [
+        {
+          "id": "nasrat-haqparast",
+          "name": "Nasrat Haqparast",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 90
+        },
+        {
+          "id": "ludovit-klein",
+          "name": "Ludovit Klein",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 89
+        },
+        {
+          "id": "michael-chandler",
+          "name": "Michael Chandler",
+          "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 86
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-november-21-2026",
+      "event": "UFC Fight Night: Prochazka vs Stirling",
+      "eventDate": "2026-11-21",
+      "fighterId": "ikram-aliskerov",
+      "fighter": "Ikram Aliskerov",
+      "fighterRankBefore": "#13",
+      "fighterRankAfter": "#11",
+      "before": [
+        {
+          "id": "christian-leroy-duncan",
+          "name": "Christian Leroy Duncan",
+          "rank": "#10",
+          "case": "step-up-vs-rebound",
+          "score": 94
         },
         {
-          "id": "joselyne-edwards",
-          "name": "Joselyne Edwards",
-          "rank": "#2",
-          "case": "step-up-vs-rebound",
-          "score": 83
+          "id": "roman-kopylov",
+          "name": "Roman Kopylov",
+          "rank": "Unranked",
+          "case": "rankings-progression",
+          "score": 91
         },
         {
-          "id": "luana-santos",
-          "name": "Luana Santos",
-          "rank": "#5",
+          "id": "abus-magomedov",
+          "name": "Abus Magomedov",
+          "rank": "#11",
+          "case": "rankings-progression",
+          "score": 90
+        }
+      ],
+      "after": [
+        {
+          "id": "christian-leroy-duncan",
+          "name": "Christian Leroy Duncan",
+          "rank": "#10",
           "case": "step-up-vs-rebound",
-          "score": 78
+          "score": 94
+        },
+        {
+          "id": "abus-magomedov",
+          "name": "Abus Magomedov",
+          "rank": "#12",
+          "case": "rankings-progression",
+          "score": 93
+        },
+        {
+          "id": "anthony-hernandez",
+          "name": "Anthony Hernandez",
+          "rank": "#8",
+          "case": "step-up-vs-rebound",
+          "score": 86
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-november-21-2026",
+      "event": "UFC Fight Night: Prochazka vs Stirling",
+      "eventDate": "2026-11-21",
+      "fighterId": "jared-cannonier",
+      "fighter": "Jared Cannonier",
+      "fighterRankBefore": "#12",
+      "fighterRankAfter": "#15",
+      "before": [
+        {
+          "id": "edmen-shahbazyan",
+          "name": "Edmen Shahbazyan",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
+          "score": 91
+        },
+        {
+          "id": "roman-kopylov",
+          "name": "Roman Kopylov",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
+          "score": 87
+        },
+        {
+          "id": "cody-brundage",
+          "name": "Cody Brundage",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
+          "score": 85
+        }
+      ],
+      "after": [
+        {
+          "id": "kamaru-usman",
+          "name": "Kamaru Usman",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 90
+        },
+        {
+          "id": "edmen-shahbazyan",
+          "name": "Edmen Shahbazyan",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
+          "score": 90
+        },
+        {
+          "id": "cody-brundage",
+          "name": "Cody Brundage",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
+          "score": 84
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-november-21-2026",
+      "event": "UFC Fight Night: Prochazka vs Stirling",
+      "eventDate": "2026-11-21",
+      "fighterId": "jiri-prochazka",
+      "fighter": "Jiri Prochazka",
+      "fighterRankBefore": "#2",
+      "fighterRankAfter": "#3",
+      "before": [
+        {
+          "id": "paulo-costa",
+          "name": "Paulo Costa",
+          "rank": "#6",
+          "case": "step-up-vs-rebound",
+          "score": 96
+        },
+        {
+          "id": "magomed-ankalaev",
+          "name": "Magomed Ankalaev",
+          "rank": "#1",
+          "case": "step-up-vs-rebound",
+          "score": 89
+        },
+        {
+          "id": "dominick-reyes",
+          "name": "Dominick Reyes",
+          "rank": "#7",
+          "case": "step-up-vs-rebound",
+          "score": 87
+        }
+      ],
+      "after": [
+        {
+          "id": "paulo-costa",
+          "name": "Paulo Costa",
+          "rank": "#7",
+          "case": "step-up-vs-rebound",
+          "score": 97
+        },
+        {
+          "id": "dominick-reyes",
+          "name": "Dominick Reyes",
+          "rank": "#6",
+          "case": "step-up-vs-rebound",
+          "score": 93
+        },
+        {
+          "id": "magomed-ankalaev",
+          "name": "Magomed Ankalaev",
+          "rank": "#1",
+          "case": "step-up-vs-rebound",
+          "score": 82
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-november-21-2026",
+      "event": "UFC Fight Night: Prochazka vs Stirling",
+      "eventDate": "2026-11-21",
+      "fighterId": "kevin-vallejos",
+      "fighter": "Kevin Vallejos",
+      "fighterRankBefore": "#9",
+      "fighterRankAfter": "#5",
+      "before": [
+        {
+          "id": "aaron-pico",
+          "name": "Aaron Pico",
+          "rank": "#11",
+          "case": "rankings-progression",
+          "score": 90
+        },
+        {
+          "id": "youssef-zalal",
+          "name": "Youssef Zalal",
+          "rank": "#8",
+          "case": "step-up-vs-rebound",
+          "score": 88
+        },
+        {
+          "id": "patricio-freire",
+          "name": "Patricio Freire",
+          "rank": "#12",
+          "case": "rankings-progression",
+          "score": 82
+        }
+      ],
+      "after": [
+        {
+          "id": "lerone-murphy",
+          "name": "Lerone Murphy",
+          "rank": "#3",
+          "case": "step-up-vs-rebound",
+          "score": 94
+        },
+        {
+          "id": "jean-silva",
+          "name": "Jean Silva",
+          "rank": "#4",
+          "case": "title-eliminator",
+          "score": 93
+        },
+        {
+          "id": "movsar-evloev",
+          "name": "Movsar Evloev",
+          "rank": "#1",
+          "case": "step-up-vs-rebound",
+          "score": 85
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-november-21-2026",
+      "event": "UFC Fight Night: Prochazka vs Stirling",
+      "eventDate": "2026-11-21",
+      "fighterId": "navajo-stirling",
+      "fighter": "Navajo Stirling",
+      "fighterRankBefore": "#5",
+      "fighterRankAfter": "#2",
+      "before": [
+        {
+          "id": "paulo-costa",
+          "name": "Paulo Costa",
+          "rank": "#6",
+          "case": "rankings-progression",
+          "score": 87
+        },
+        {
+          "id": "khalil-rountree-jr",
+          "name": "Khalil Rountree Jr.",
+          "rank": "#4",
+          "case": "step-up-vs-rebound",
+          "score": 85
+        },
+        {
+          "id": "carlos-ulberg",
+          "name": "Carlos Ulberg",
+          "rank": "Champion",
+          "case": "title-case",
+          "score": 75
+        }
+      ],
+      "after": [
+        {
+          "id": "magomed-ankalaev",
+          "name": "Magomed Ankalaev",
+          "rank": "#1",
+          "case": "title-eliminator",
+          "score": 90
+        },
+        {
+          "id": "carlos-ulberg",
+          "name": "Carlos Ulberg",
+          "rank": "Champion",
+          "case": "title-case",
+          "score": 79
         }
       ]
     },
@@ -301,155 +966,52 @@
       "eventDate": "2026-11-14",
       "fighterId": "bia-mesquita",
       "fighter": "Bia Mesquita",
-      "fighterRankBefore": "#11",
-      "fighterRankAfter": "#8",
+      "fighterRankBefore": "#8",
+      "fighterRankAfter": "#7",
       "before": [
-        {
-          "id": "jacqueline-cavalcanti",
-          "name": "Jacqueline Cavalcanti",
-          "rank": "#8",
-          "case": "step-up-vs-rebound",
-          "score": 90
-        },
-        {
-          "id": "michelle-montague",
-          "name": "Michelle Montague",
-          "rank": "#12",
-          "case": "rankings-progression",
-          "score": 88
-        },
         {
           "id": "yana-santos",
           "name": "Yana Santos",
           "rank": "#6",
           "case": "step-up-vs-rebound",
           "score": 87
-        }
-      ],
-      "after": [
+        },
         {
-          "id": "jacqueline-cavalcanti",
-          "name": "Jacqueline Cavalcanti",
-          "rank": "#9",
+          "id": "karol-rosa",
+          "name": "Karol Rosa",
+          "rank": "#10",
           "case": "step-up-vs-rebound",
-          "score": 90
-        },
-        {
-          "id": "yana-santos",
-          "name": "Yana Santos",
-          "rank": "#6",
-          "case": "step-up-vs-rebound",
-          "score": 87
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-334",
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "eventDate": "2026-11-14",
-      "fighterId": "jared-gordon",
-      "fighter": "Jared Gordon",
-      "fighterRankBefore": "Unranked",
-      "fighterRankAfter": "Unranked",
-      "before": [
-        {
-          "id": "kyle-nelson",
-          "name": "Kyle Nelson",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 91
-        },
-        {
-          "id": "drakkar-klose",
-          "name": "Drakkar Klose",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 89
-        },
-        {
-          "id": "fares-ziam",
-          "name": "Fares Ziam",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 88
-        }
-      ],
-      "after": [
-        {
-          "id": "kyle-nelson",
-          "name": "Kyle Nelson",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 90
-        },
-        {
-          "id": "matt-frevola",
-          "name": "Matt Frevola",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 87
-        },
-        {
-          "id": "nate-landwehr",
-          "name": "Nate Landwehr",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 87
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-334",
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "eventDate": "2026-11-14",
-      "fighterId": "kayla-harrison",
-      "fighter": "Kayla Harrison",
-      "fighterRankBefore": "Champion",
-      "fighterRankAfter": "Champion",
-      "before": [
-        {
-          "id": "joselyne-edwards",
-          "name": "Joselyne Edwards",
-          "rank": "#1",
-          "case": "title-case",
-          "score": 86
-        },
-        {
-          "id": "ailin-perez",
-          "name": "Ailin Perez",
-          "rank": "#3",
-          "case": "title-case",
-          "score": 85
+          "score": 77
         },
         {
           "id": "luana-santos",
           "name": "Luana Santos",
           "rank": "#5",
-          "case": "title-case",
+          "case": "rankings-progression",
           "score": 77
         }
       ],
       "after": [
+        {
+          "id": "yana-santos",
+          "name": "Yana Santos",
+          "rank": "#6",
+          "case": "step-up-vs-rebound",
+          "score": 87
+        },
+        {
+          "id": "luana-santos",
+          "name": "Luana Santos",
+          "rank": "#5",
+          "case": "rankings-progression",
+          "score": 84
+        },
         {
           "id": "ailin-perez",
           "name": "Ailin Perez",
           "rank": "#4",
-          "case": "title-case",
-          "score": 76
-        },
-        {
-          "id": "joselyne-edwards",
-          "name": "Joselyne Edwards",
-          "rank": "#2",
-          "case": "title-case",
-          "score": 72
-        },
-        {
-          "id": "luana-santos",
-          "name": "Luana Santos",
-          "rank": "#5",
-          "case": "title-case",
-          "score": 71
+          "case": "rankings-progression",
+          "score": 78
         }
       ]
     },
@@ -457,54 +1019,54 @@
       "eventId": "ufc-334",
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "eventDate": "2026-11-14",
-      "fighterId": "kevin-holland",
-      "fighter": "Kevin Holland",
-      "fighterRankBefore": "#15",
-      "fighterRankAfter": "#14",
+      "fighterId": "charles-radtke",
+      "fighter": "Charles Radtke",
+      "fighterRankBefore": "Unranked",
+      "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "jean-paul-lebosnoyani",
-          "name": "Jean Paul Lebosnoyani",
+          "id": "rodrigo-sezinando",
+          "name": "Rodrigo Sezinando",
           "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 78
+          "case": "step-up-vs-rebound",
+          "score": 95
         },
         {
-          "id": "jonathan-micallef",
-          "name": "Jonathan Micallef",
+          "id": "myktybek-orolbai",
+          "name": "Myktybek Orolbai",
           "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 76
+          "case": "rebound-pairing",
+          "score": 93
         },
         {
-          "id": "jacobe-smith",
-          "name": "Jacobe Smith",
+          "id": "nikolay-veretennikov",
+          "name": "Nikolay Veretennikov",
           "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 70
+          "case": "rebound-pairing",
+          "score": 92
         }
       ],
       "after": [
         {
-          "id": "jean-paul-lebosnoyani",
-          "name": "Jean Paul Lebosnoyani",
+          "id": "rodrigo-sezinando",
+          "name": "Rodrigo Sezinando",
           "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 79
+          "case": "step-up-vs-rebound",
+          "score": 95
         },
         {
-          "id": "jacobe-smith",
-          "name": "Jacobe Smith",
+          "id": "myktybek-orolbai",
+          "name": "Myktybek Orolbai",
           "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 78
+          "case": "rebound-pairing",
+          "score": 93
         },
         {
-          "id": "jonathan-micallef",
-          "name": "Jonathan Micallef",
+          "id": "joel-alvarez",
+          "name": "Joel Alvarez",
           "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 77
+          "case": "rebound-pairing",
+          "score": 92
         }
       ]
     },
@@ -514,39 +1076,32 @@
       "eventDate": "2026-11-14",
       "fighterId": "melquizael-costa",
       "fighter": "Melquizael Costa",
-      "fighterRankBefore": "#12",
+      "fighterRankBefore": "Unranked",
       "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "youssef-zalal",
-          "name": "Youssef Zalal",
-          "rank": "#8",
-          "case": "step-up-vs-rebound",
-          "score": 95
-        },
-        {
-          "id": "pat-sabatini",
-          "name": "Pat Sabatini",
+          "id": "marcus-mcghee",
+          "name": "Marcus McGhee",
           "rank": "Unranked",
-          "case": "rankings-progression",
-          "score": 93
+          "case": "rising-vs-rising",
+          "score": 92
         },
-        {
-          "id": "aaron-pico",
-          "name": "Aaron Pico",
-          "rank": "#11",
-          "case": "rankings-progression",
-          "score": 87
-        }
-      ],
-      "after": [
         {
           "id": "pat-sabatini",
           "name": "Pat Sabatini",
           "rank": "#15",
           "case": "rankings-progression",
-          "score": 93
+          "score": 91
         },
+        {
+          "id": "david-onama",
+          "name": "David Onama",
+          "rank": "#14",
+          "case": "ranking-opportunity",
+          "score": 93
+        }
+      ],
+      "after": [
         {
           "id": "marcus-mcghee",
           "name": "Marcus McGhee",
@@ -560,6 +1115,13 @@
           "rank": "#14",
           "case": "ranking-opportunity",
           "score": 93
+        },
+        {
+          "id": "vinicius-oliveira",
+          "name": "Vinicius Oliveira",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 91
         }
       ]
     },
@@ -569,25 +1131,9 @@
       "eventDate": "2026-11-14",
       "fighterId": "uros-medic",
       "fighter": "Uros Medic",
-      "fighterRankBefore": "#11",
-      "fighterRankAfter": "#12",
+      "fighterRankBefore": "#12",
+      "fighterRankAfter": "#11",
       "before": [
-        {
-          "id": "shavkat-rakhmonov",
-          "name": "Shavkat Rakhmonov",
-          "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 82
-        },
-        {
-          "id": "jacobe-smith",
-          "name": "Jacobe Smith",
-          "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 84
-        }
-      ],
-      "after": [
         {
           "id": "shavkat-rakhmonov",
           "name": "Shavkat Rakhmonov",
@@ -609,60 +1155,21 @@
           "case": "prospect-test",
           "score": 72
         }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-november-07-2026",
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "eventDate": "2026-11-07",
-      "fighterId": "johnny-walker",
-      "fighter": "Johnny Walker",
-      "fighterRankBefore": "#7",
-      "fighterRankAfter": "#6",
-      "before": [
+      ],
+      "after": [
         {
-          "id": "josh-hokit",
-          "name": "Josh Hokit",
-          "rank": "#4",
-          "case": "step-up-vs-rebound",
-          "score": 89
+          "id": "shavkat-rakhmonov",
+          "name": "Shavkat Rakhmonov",
+          "rank": "Unranked",
+          "case": "prospect-test",
+          "score": 82
         },
         {
-          "id": "vitor-petrino",
-          "name": "Vitor Petrino",
-          "rank": "#9",
-          "case": "rankings-progression",
+          "id": "jacobe-smith",
+          "name": "Jacobe Smith",
+          "rank": "Unranked",
+          "case": "prospect-test",
           "score": 84
-        },
-        {
-          "id": "rizvan-kuniev",
-          "name": "Rizvan Kuniev",
-          "rank": "#6",
-          "case": "step-up-vs-rebound",
-          "score": 83
-        }
-      ],
-      "after": [
-        {
-          "id": "josh-hokit",
-          "name": "Josh Hokit",
-          "rank": "#4",
-          "case": "step-up-vs-rebound",
-          "score": 89
-        },
-        {
-          "id": "rizvan-kuniev",
-          "name": "Rizvan Kuniev",
-          "rank": "#7",
-          "case": "step-up-vs-rebound",
-          "score": 83
-        },
-        {
-          "id": "curtis-blaydes",
-          "name": "Curtis Blaydes",
-          "rank": "#5",
-          "case": "rankings-progression",
-          "score": 82
         }
       ]
     },
@@ -670,219 +1177,109 @@
       "eventId": "ufc-fight-night-november-07-2026",
       "event": "UFC Fight Night: Cortes Acosta vs Walker",
       "eventDate": "2026-11-07",
-      "fighterId": "nina-milosevic",
-      "fighter": "Nina Milosevic",
+      "fighterId": "billy-elekana",
+      "fighter": "Billy Elekana",
       "fighterRankBefore": "Unranked",
       "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "chelsea-chandler",
-          "name": "Chelsea Chandler",
-          "rank": "#15",
-          "case": "rankings-progression",
-          "score": 59
-        },
-        {
-          "id": "josiane-nunes",
-          "name": "Josiane Nunes",
-          "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 54
-        },
-        {
-          "id": "jacqueline-cavalcanti",
-          "name": "Jacqueline Cavalcanti",
-          "rank": "#8",
-          "case": "ranking-opportunity",
-          "score": 50
-        }
-      ],
-      "after": [
-        {
-          "id": "chelsea-chandler",
-          "name": "Chelsea Chandler",
-          "rank": "#15",
-          "case": "rankings-progression",
-          "score": 59
-        },
-        {
-          "id": "josiane-nunes",
-          "name": "Josiane Nunes",
-          "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 54
-        },
-        {
-          "id": "macy-chiasson",
-          "name": "Macy Chiasson",
-          "rank": "#12",
-          "case": "ranking-opportunity",
-          "score": 51
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-november-07-2026",
-      "event": "UFC Fight Night: Cortes Acosta vs Walker",
-      "eventDate": "2026-11-07",
-      "fighterId": "waldo-cortes-acosta",
-      "fighter": "Waldo Cortes Acosta",
-      "fighterRankBefore": "#8",
-      "fighterRankAfter": "#8",
-      "before": [
-        {
-          "id": "vitor-petrino",
-          "name": "Vitor Petrino",
-          "rank": "#9",
-          "case": "step-up-vs-rebound",
-          "score": 88
-        },
-        {
-          "id": "aleksandar-rakic",
-          "name": "Aleksandar Rakic",
-          "rank": "#15",
-          "case": "step-up-vs-rebound",
-          "score": 82
-        },
-        {
-          "id": "rizvan-kuniev",
-          "name": "Rizvan Kuniev",
-          "rank": "#6",
-          "case": "rebound-pairing",
-          "score": 80
-        }
-      ],
-      "after": [
-        {
-          "id": "vitor-petrino",
-          "name": "Vitor Petrino",
-          "rank": "#9",
-          "case": "step-up-vs-rebound",
-          "score": 88
-        },
-        {
-          "id": "rizvan-kuniev",
-          "name": "Rizvan Kuniev",
-          "rank": "#7",
-          "case": "rebound-pairing",
-          "score": 85
-        },
-        {
-          "id": "aleksandar-rakic",
-          "name": "Aleksandar Rakic",
-          "rank": "#15",
-          "case": "step-up-vs-rebound",
-          "score": 82
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-october-31-2026",
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "eventDate": "2026-10-31",
-      "fighterId": "jeongyeong-lee",
-      "fighter": "Jeongyeong Lee",
-      "fighterRankBefore": "Unranked",
-      "fighterRankAfter": "Unranked",
-      "before": [
-        {
-          "id": "jack-jenkins",
-          "name": "Jack Jenkins",
+          "id": "felipe-franco",
+          "name": "Felipe Franco",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 93
         },
         {
-          "id": "bolaji-oki",
-          "name": "Bolaji Oki",
+          "id": "sedriques-dumas",
+          "name": "Sedriques Dumas",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 93
-        },
-        {
-          "id": "william-gomis",
-          "name": "William Gomis",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 93
-        }
-      ],
-      "after": [
-        {
-          "id": "bolaji-oki",
-          "name": "Bolaji Oki",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 93
-        },
-        {
-          "id": "jack-jenkins",
-          "name": "Jack Jenkins",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 93
-        },
-        {
-          "id": "william-gomis",
-          "name": "William Gomis",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 93
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-october-31-2026",
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "eventDate": "2026-10-31",
-      "fighterId": "julian-erosa",
-      "fighter": "Julian Erosa",
-      "fighterRankBefore": "Unranked",
-      "fighterRankAfter": "Unranked",
-      "before": [
-        {
-          "id": "andre-fili",
-          "name": "Andre Fili",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 90
-        },
-        {
-          "id": "david-onama",
-          "name": "David Onama",
-          "rank": "#15",
-          "case": "ranking-opportunity",
-          "score": 92
-        },
-        {
-          "id": "miles-johns",
-          "name": "Miles Johns",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 90
-        }
-      ],
-      "after": [
-        {
-          "id": "miles-johns",
-          "name": "Miles Johns",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
           "score": 91
         },
         {
-          "id": "andre-fili",
-          "name": "Andre Fili",
+          "id": "rodolfo-bellato",
+          "name": "Rodolfo Bellato",
           "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 89
+          "case": "rebound-pairing",
+          "score": 91
+        }
+      ],
+      "after": [
+        {
+          "id": "felipe-franco",
+          "name": "Felipe Franco",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 93
         },
         {
-          "id": "david-onama",
-          "name": "David Onama",
-          "rank": "#14",
-          "case": "ranking-opportunity",
+          "id": "sedriques-dumas",
+          "name": "Sedriques Dumas",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 91
+        },
+        {
+          "id": "iwo-baraniewski",
+          "name": "Iwo Baraniewski",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 91
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-november-07-2026",
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "eventDate": "2026-11-07",
+      "fighterId": "tatiana-suarez",
+      "fighter": "Tatiana Suarez",
+      "fighterRankBefore": "#2",
+      "fighterRankAfter": "#2",
+      "before": [
+        {
+          "id": "mackenzie-dern",
+          "name": "Mackenzie Dern",
+          "rank": "Champion",
+          "case": "title-case",
+          "score": 85
+        },
+        {
+          "id": "denise-gomes",
+          "name": "Denise Gomes",
+          "rank": "#4",
+          "case": "title-eliminator",
+          "score": 83
+        },
+        {
+          "id": "fatima-kline",
+          "name": "Fatima Kline",
+          "rank": "#6",
+          "case": "rankings-progression",
+          "score": 74
+        }
+      ],
+      "after": [
+        {
+          "id": "denise-gomes",
+          "name": "Denise Gomes",
+          "rank": "#3",
+          "case": "title-eliminator",
           "score": 92
+        },
+        {
+          "id": "mackenzie-dern",
+          "name": "Mackenzie Dern",
+          "rank": "Champion",
+          "case": "title-case",
+          "score": 83
+        },
+        {
+          "id": "gillian-robertson",
+          "name": "Gillian Robertson",
+          "rank": "#4",
+          "case": "step-up-vs-rebound",
+          "score": 82
         }
       ]
     },
@@ -896,22 +1293,6 @@
       "fighterRankAfter": "#5",
       "before": [
         {
-          "id": "julianna-pena",
-          "name": "Julianna Pena",
-          "rank": "#1",
-          "case": "step-up-vs-rebound",
-          "score": 92
-        },
-        {
-          "id": "ailin-perez",
-          "name": "Ailin Perez",
-          "rank": "#3",
-          "case": "title-eliminator",
-          "score": 85
-        }
-      ],
-      "after": [
-        {
           "id": "ailin-perez",
           "name": "Ailin Perez",
           "rank": "#4",
@@ -932,115 +1313,83 @@
           "case": "title-eliminator",
           "score": 79
         }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-october-31-2026",
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "eventDate": "2026-10-31",
-      "fighterId": "randy-brown",
-      "fighter": "Randy Brown",
-      "fighterRankBefore": "Unranked",
-      "fighterRankAfter": "Unranked",
-      "before": [
-        {
-          "id": "santiago-ponzinibbio",
-          "name": "Santiago Ponzinibbio",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 89
-        },
-        {
-          "id": "jack-hermansson",
-          "name": "Jack Hermansson",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 89
-        },
-        {
-          "id": "geoff-neal",
-          "name": "Geoff Neal",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 86
-        }
-      ],
-      "after": [
-        {
-          "id": "jack-hermansson",
-          "name": "Jack Hermansson",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 89
-        },
-        {
-          "id": "santiago-ponzinibbio",
-          "name": "Santiago Ponzinibbio",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 88
-        },
-        {
-          "id": "geoff-neal",
-          "name": "Geoff Neal",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 87
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-october-31-2026",
-      "event": "UFC Fight Night: Moicano vs Nolan",
-      "eventDate": "2026-10-31",
-      "fighterId": "yana-santos",
-      "fighter": "Yana Santos",
-      "fighterRankBefore": "#6",
-      "fighterRankAfter": "#6",
-      "before": [
-        {
-          "id": "bia-mesquita",
-          "name": "Bia Mesquita",
-          "rank": "#11",
-          "case": "step-up-vs-rebound",
-          "score": 87
-        },
-        {
-          "id": "nora-cornolle",
-          "name": "Nora Cornolle",
-          "rank": "#13",
-          "case": "step-up-vs-rebound",
-          "score": 80
-        },
-        {
-          "id": "karol-rosa",
-          "name": "Karol Rosa",
-          "rank": "#9",
-          "case": "rebound-pairing",
-          "score": 80
-        }
       ],
       "after": [
         {
           "id": "ailin-perez",
           "name": "Ailin Perez",
           "rank": "#4",
-          "case": "step-up-vs-rebound",
-          "score": 88
+          "case": "title-eliminator",
+          "score": 95
         },
         {
           "id": "bia-mesquita",
           "name": "Bia Mesquita",
-          "rank": "#8",
-          "case": "step-up-vs-rebound",
-          "score": 87
+          "rank": "#7",
+          "case": "rankings-progression",
+          "score": 84
         },
         {
-          "id": "michelle-montague",
-          "name": "Michelle Montague",
-          "rank": "#11",
+          "id": "julianna-pena",
+          "name": "Julianna Pena",
+          "rank": "#2",
           "case": "step-up-vs-rebound",
-          "score": 81
+          "score": 84
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-october-31-2026",
+      "event": "UFC Fight Night: Moicano vs Nolan",
+      "eventDate": "2026-10-31",
+      "fighterId": "piera-rodriguez",
+      "fighter": "Piera Rodriguez",
+      "fighterRankBefore": "#14",
+      "fighterRankAfter": "#13",
+      "before": [
+        {
+          "id": "iasmin-lucindo",
+          "name": "Iasmin Lucindo",
+          "rank": "Unranked",
+          "case": "rankings-progression",
+          "score": 92
+        },
+        {
+          "id": "amanda-ribas",
+          "name": "Amanda Ribas",
+          "rank": "#13",
+          "case": "step-up-vs-rebound",
+          "score": 82
+        },
+        {
+          "id": "angela-hill",
+          "name": "Angela Hill",
+          "rank": "#15",
+          "case": "rankings-progression",
+          "score": 80
+        }
+      ],
+      "after": [
+        {
+          "id": "iasmin-lucindo",
+          "name": "Iasmin Lucindo",
+          "rank": "Unranked",
+          "case": "rankings-progression",
+          "score": 91
+        },
+        {
+          "id": "tabatha-ricci",
+          "name": "Tabatha Ricci",
+          "rank": "#9",
+          "case": "step-up-vs-rebound",
+          "score": 85
+        },
+        {
+          "id": "mizuki-inoue",
+          "name": "Mizuki Inoue",
+          "rank": "#15",
+          "case": "rankings-progression",
+          "score": 84
         }
       ]
     },
@@ -1054,34 +1403,41 @@
       "fighterRankAfter": "#11",
       "before": [
         {
+          "id": "kevin-vallejos",
+          "name": "Kevin Vallejos",
+          "rank": "#9",
+          "case": "rankings-progression",
+          "score": 90
+        },
+        {
           "id": "youssef-zalal",
           "name": "Youssef Zalal",
           "rank": "#8",
           "case": "step-up-vs-rebound",
           "score": 88
-        },
-        {
-          "id": "melquizael-costa",
-          "name": "Melquizael Costa",
-          "rank": "#12",
-          "case": "rankings-progression",
-          "score": 87
-        },
-        {
-          "id": "pat-sabatini",
-          "name": "Pat Sabatini",
-          "rank": "Unranked",
-          "case": "rankings-progression",
-          "score": 80
         }
       ],
       "after": [
         {
           "id": "youssef-zalal",
           "name": "Youssef Zalal",
-          "rank": "#8",
+          "rank": "#9",
           "case": "step-up-vs-rebound",
-          "score": 88
+          "score": 90
+        },
+        {
+          "id": "aljamain-sterling",
+          "name": "Aljamain Sterling",
+          "rank": "#6",
+          "case": "step-up-vs-rebound",
+          "score": 89
+        },
+        {
+          "id": "pat-sabatini",
+          "name": "Pat Sabatini",
+          "rank": "#13",
+          "case": "rankings-progression",
+          "score": 81
         }
       ]
     },
@@ -1089,109 +1445,342 @@
       "eventId": "ufc-333",
       "event": "UFC 333: Volkanovski vs Evloev",
       "eventDate": "2026-10-24",
-      "fighterId": "rizvan-kuniev",
-      "fighter": "Rizvan Kuniev",
-      "fighterRankBefore": "#6",
-      "fighterRankAfter": "#7",
+      "fighterId": "abus-magomedov",
+      "fighter": "Abus Magomedov",
+      "fighterRankBefore": "#11",
+      "fighterRankAfter": "#12",
       "before": [
         {
-          "id": "josh-hokit",
-          "name": "Josh Hokit",
+          "id": "christian-leroy-duncan",
+          "name": "Christian Leroy Duncan",
+          "rank": "#10",
+          "case": "step-up-vs-rebound",
+          "score": 95
+        },
+        {
+          "id": "ikram-aliskerov",
+          "name": "Ikram Aliskerov",
+          "rank": "#13",
+          "case": "rankings-progression",
+          "score": 90
+        },
+        {
+          "id": "anthony-hernandez",
+          "name": "Anthony Hernandez",
+          "rank": "#8",
+          "case": "step-up-vs-rebound",
+          "score": 86
+        }
+      ],
+      "after": [
+        {
+          "id": "christian-leroy-duncan",
+          "name": "Christian Leroy Duncan",
+          "rank": "#10",
+          "case": "step-up-vs-rebound",
+          "score": 96
+        },
+        {
+          "id": "ikram-aliskerov",
+          "name": "Ikram Aliskerov",
+          "rank": "#11",
+          "case": "rankings-progression",
+          "score": 93
+        },
+        {
+          "id": "roman-kopylov",
+          "name": "Roman Kopylov",
+          "rank": "Unranked",
+          "case": "rankings-progression",
+          "score": 87
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-333",
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "eventDate": "2026-10-24",
+      "fighterId": "alexander-volkanovski",
+      "fighter": "Alexander Volkanovski",
+      "fighterRankBefore": "Champion",
+      "fighterRankAfter": "Champion",
+      "before": [
+        {
+          "id": "jean-silva",
+          "name": "Jean Silva",
+          "rank": "#5",
+          "case": "title-case",
+          "score": 64
+        }
+      ],
+      "after": [
+        {
+          "id": "jean-silva",
+          "name": "Jean Silva",
           "rank": "#4",
-          "case": "rebound-pairing",
-          "score": 87
+          "case": "title-case",
+          "score": 69
         },
         {
-          "id": "vitor-petrino",
-          "name": "Vitor Petrino",
-          "rank": "#9",
+          "id": "kevin-vallejos",
+          "name": "Kevin Vallejos",
+          "rank": "#5",
+          "case": "title-case",
+          "score": 66
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-333",
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "eventDate": "2026-10-24",
+      "fighterId": "dominick-reyes",
+      "fighter": "Dominick Reyes",
+      "fighterRankBefore": "#7",
+      "fighterRankAfter": "#6",
+      "before": [
+        {
+          "id": "paulo-costa",
+          "name": "Paulo Costa",
+          "rank": "#6",
+          "case": "rankings-progression",
+          "score": 92
+        },
+        {
+          "id": "khalil-rountree-jr",
+          "name": "Khalil Rountree Jr.",
+          "rank": "#4",
+          "case": "step-up-vs-rebound",
+          "score": 86
+        },
+        {
+          "id": "jiri-prochazka",
+          "name": "Jiri Prochazka",
+          "rank": "#2",
           "case": "step-up-vs-rebound",
           "score": 87
+        }
+      ],
+      "after": [
+        {
+          "id": "jiri-prochazka",
+          "name": "Jiri Prochazka",
+          "rank": "#3",
+          "case": "step-up-vs-rebound",
+          "score": 93
         },
         {
-          "id": "johnny-walker",
-          "name": "Johnny Walker",
+          "id": "paulo-costa",
+          "name": "Paulo Costa",
           "rank": "#7",
+          "case": "rankings-progression",
+          "score": 92
+        },
+        {
+          "id": "khalil-rountree-jr",
+          "name": "Khalil Rountree Jr.",
+          "rank": "#5",
           "case": "step-up-vs-rebound",
+          "score": 85
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-333",
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "eventDate": "2026-10-24",
+      "fighterId": "iasmin-lucindo",
+      "fighter": "Iasmin Lucindo",
+      "fighterRankBefore": "Unranked",
+      "fighterRankAfter": "Unranked",
+      "before": [
+        {
+          "id": "piera-rodriguez",
+          "name": "Piera Rodriguez",
+          "rank": "#14",
+          "case": "rankings-progression",
+          "score": 92
+        },
+        {
+          "id": "amanda-ribas",
+          "name": "Amanda Ribas",
+          "rank": "#13",
+          "case": "ranking-opportunity",
+          "score": 86
+        },
+        {
+          "id": "mizuki-inoue",
+          "name": "Mizuki Inoue",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
           "score": 83
         }
       ],
       "after": [
         {
-          "id": "vitor-petrino",
-          "name": "Vitor Petrino",
-          "rank": "#9",
-          "case": "step-up-vs-rebound",
-          "score": 87
+          "id": "mizuki-inoue",
+          "name": "Mizuki Inoue",
+          "rank": "#15",
+          "case": "rankings-progression",
+          "score": 91
         },
         {
-          "id": "waldo-cortes-acosta",
-          "name": "Waldo Cortes Acosta",
-          "rank": "#8",
-          "case": "rebound-pairing",
-          "score": 85
+          "id": "piera-rodriguez",
+          "name": "Piera Rodriguez",
+          "rank": "#13",
+          "case": "rankings-progression",
+          "score": 91
         },
         {
-          "id": "johnny-walker",
-          "name": "Johnny Walker",
-          "rank": "#6",
-          "case": "step-up-vs-rebound",
-          "score": 83
+          "id": "amanda-ribas",
+          "name": "Amanda Ribas",
+          "rank": "#12",
+          "case": "ranking-opportunity",
+          "score": 86
         }
       ]
     },
     {
-      "eventId": "ufc-fight-night-october-17-2026",
-      "event": "UFC Fight Night: Buckley vs Malott",
-      "eventDate": "2026-10-17",
-      "fighterId": "chelsea-chandler",
-      "fighter": "Chelsea Chandler",
+      "eventId": "ufc-333",
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "eventDate": "2026-10-24",
+      "fighterId": "movsar-evloev",
+      "fighter": "Movsar Evloev",
+      "fighterRankBefore": "#1",
+      "fighterRankAfter": "#1",
+      "before": [
+        {
+          "id": "jean-silva",
+          "name": "Jean Silva",
+          "rank": "#5",
+          "case": "step-up-vs-rebound",
+          "score": 87
+        }
+      ],
+      "after": [
+        {
+          "id": "jean-silva",
+          "name": "Jean Silva",
+          "rank": "#4",
+          "case": "step-up-vs-rebound",
+          "score": 87
+        },
+        {
+          "id": "kevin-vallejos",
+          "name": "Kevin Vallejos",
+          "rank": "#5",
+          "case": "step-up-vs-rebound",
+          "score": 85
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-333",
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "eventDate": "2026-10-24",
+      "fighterId": "nicolle-caliari",
+      "fighter": "Nicolle Caliari",
+      "fighterRankBefore": "Unranked",
+      "fighterRankAfter": "Unranked",
+      "before": [
+        {
+          "id": "marina-spasic",
+          "name": "Marina Spasic",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 94
+        },
+        {
+          "id": "xiong-jingnan",
+          "name": "Xiong Jingnan",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 93
+        },
+        {
+          "id": "talita-alencar",
+          "name": "Talita Alencar",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 92
+        }
+      ],
+      "after": [
+        {
+          "id": "marina-spasic",
+          "name": "Marina Spasic",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 94
+        },
+        {
+          "id": "talita-alencar",
+          "name": "Talita Alencar",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 92
+        },
+        {
+          "id": "xiong-jingnan",
+          "name": "Xiong Jingnan",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 92
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-333",
+      "event": "UFC 333: Volkanovski vs Evloev",
+      "eventDate": "2026-10-24",
+      "fighterId": "nikita-krylov",
+      "fighter": "Nikita Krylov",
       "fighterRankBefore": "#15",
       "fighterRankAfter": "#15",
       "before": [
         {
-          "id": "nora-cornolle",
-          "name": "Nora Cornolle",
-          "rank": "#13",
-          "case": "rankings-progression",
-          "score": 88
-        },
-        {
-          "id": "alice-pereira",
-          "name": "Alice Pereira",
+          "id": "reinier-de-ridder",
+          "name": "Reinier De Ridder",
           "rank": "#14",
-          "case": "rankings-progression",
-          "score": 84
+          "case": "step-up-vs-rebound",
+          "score": 90
         },
         {
-          "id": "macy-chiasson",
-          "name": "Macy Chiasson",
-          "rank": "#10",
-          "case": "step-up-vs-rebound",
+          "id": "julius-walker",
+          "name": "Julius Walker",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
+          "score": 83
+        },
+        {
+          "id": "brendson-ribeiro",
+          "name": "Brendson Ribeiro",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
           "score": 83
         }
       ],
       "after": [
         {
-          "id": "nora-cornolle",
-          "name": "Nora Cornolle",
-          "rank": "#13",
-          "case": "rankings-progression",
-          "score": 89
+          "id": "reinier-de-ridder",
+          "name": "Reinier De Ridder",
+          "rank": "#14",
+          "case": "step-up-vs-rebound",
+          "score": 90
         },
         {
-          "id": "karol-rosa",
-          "name": "Karol Rosa",
-          "rank": "#10",
-          "case": "step-up-vs-rebound",
-          "score": 87
+          "id": "brendson-ribeiro",
+          "name": "Brendson Ribeiro",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
+          "score": 83
         },
         {
-          "id": "jacqueline-cavalcanti",
-          "name": "Jacqueline Cavalcanti",
-          "rank": "#9",
-          "case": "step-up-vs-rebound",
-          "score": 85
+          "id": "julius-walker",
+          "name": "Julius Walker",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
+          "score": 83
         }
       ]
     },
@@ -1199,164 +1788,54 @@
       "eventId": "ufc-fight-night-october-17-2026",
       "event": "UFC Fight Night: Buckley vs Malott",
       "eventDate": "2026-10-17",
-      "fighterId": "melissa-croden",
-      "fighter": "Melissa Croden",
+      "fighterId": "kyle-daukaus",
+      "fighter": "Kyle Daukaus",
       "fighterRankBefore": "Unranked",
       "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "melissa-mullins",
-          "name": "Melissa Mullins",
+          "id": "brunno-ferreira",
+          "name": "Brunno Ferreira",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 94
+          "score": 91
         },
         {
-          "id": "klaudia-sygula",
-          "name": "Klaudia Sygula",
+          "id": "dusko-todorovic",
+          "name": "Dusko Todorovic",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 92
+          "score": 91
         },
         {
-          "id": "josiane-nunes",
-          "name": "Josiane Nunes",
+          "id": "jacob-malkoun",
+          "name": "Jacob Malkoun",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 92
+          "score": 91
         }
       ],
       "after": [
         {
-          "id": "melissa-mullins",
-          "name": "Melissa Mullins",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 94
-        },
-        {
-          "id": "josiane-nunes",
-          "name": "Josiane Nunes",
+          "id": "dusko-todorovic",
+          "name": "Dusko Todorovic",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 92
         },
         {
-          "id": "klaudia-sygula",
-          "name": "Klaudia Sygula",
+          "id": "brunno-ferreira",
+          "name": "Brunno Ferreira",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 92
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-october-10-2026",
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "eventDate": "2026-10-10",
-      "fighterId": "andre-fili",
-      "fighter": "Andre Fili",
-      "fighterRankBefore": "Unranked",
-      "fighterRankAfter": "Unranked",
-      "before": [
-        {
-          "id": "julian-erosa",
-          "name": "Julian Erosa",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 90
+          "score": 91
         },
         {
-          "id": "patricio-freire",
-          "name": "Patricio Freire",
-          "rank": "#14",
-          "case": "rankings-progression",
-          "score": 85
-        },
-        {
-          "id": "marcus-mcghee",
-          "name": "Marcus McGhee",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 87
-        }
-      ],
-      "after": [
-        {
-          "id": "julian-erosa",
-          "name": "Julian Erosa",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 89
-        },
-        {
-          "id": "marcus-mcghee",
-          "name": "Marcus McGhee",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 87
-        },
-        {
-          "id": "david-onama",
-          "name": "David Onama",
-          "rank": "#14",
-          "case": "ranking-opportunity",
-          "score": 88
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-october-10-2026",
-      "event": "UFC Fight Night: Allen vs Duncan",
-      "eventDate": "2026-10-10",
-      "fighterId": "dariya-zheleznyakova",
-      "fighter": "Dariya Zheleznyakova",
-      "fighterRankBefore": "Unranked",
-      "fighterRankAfter": "Unranked",
-      "before": [
-        {
-          "id": "klaudia-sygula",
-          "name": "Klaudia Sygula",
+          "id": "jacob-malkoun",
+          "name": "Jacob Malkoun",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 92
-        },
-        {
-          "id": "josiane-nunes",
-          "name": "Josiane Nunes",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 92
-        },
-        {
-          "id": "priscila-cachoeira",
-          "name": "Priscila Cachoeira",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 89
-        }
-      ],
-      "after": [
-        {
-          "id": "josiane-nunes",
-          "name": "Josiane Nunes",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 92
-        },
-        {
-          "id": "klaudia-sygula",
-          "name": "Klaudia Sygula",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 92
-        },
-        {
-          "id": "priscila-cachoeira",
-          "name": "Priscila Cachoeira",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 89
+          "score": 91
         }
       ]
     },
@@ -1364,54 +1843,54 @@
       "eventId": "ufc-332",
       "event": "UFC 332: Silva vs Wang",
       "eventDate": "2026-10-03",
-      "fighterId": "johnny-walker",
-      "fighter": "Johnny Walker",
-      "fighterRankBefore": "#7",
-      "fighterRankAfter": "#6",
+      "fighterId": "deiveson-figueiredo",
+      "fighter": "Deiveson Figueiredo",
+      "fighterRankBefore": "#12",
+      "fighterRankAfter": "#12",
       "before": [
         {
-          "id": "josh-hokit",
-          "name": "Josh Hokit",
-          "rank": "#4",
-          "case": "step-up-vs-rebound",
-          "score": 89
+          "id": "kai-asakura",
+          "name": "Kai Asakura",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
+          "score": 82
         },
         {
-          "id": "vitor-petrino",
-          "name": "Vitor Petrino",
-          "rank": "#9",
-          "case": "rankings-progression",
-          "score": 84
-        },
-        {
-          "id": "rizvan-kuniev",
-          "name": "Rizvan Kuniev",
-          "rank": "#6",
+          "id": "bryce-mitchell",
+          "name": "Bryce Mitchell",
+          "rank": "#15",
           "case": "step-up-vs-rebound",
           "score": 83
+        },
+        {
+          "id": "jean-matsumoto",
+          "name": "Jean Matsumoto",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
+          "score": 78
         }
       ],
       "after": [
         {
-          "id": "josh-hokit",
-          "name": "Josh Hokit",
-          "rank": "#4",
+          "id": "bryce-mitchell",
+          "name": "Bryce Mitchell",
+          "rank": "#15",
           "case": "step-up-vs-rebound",
-          "score": 89
+          "score": 85
         },
         {
-          "id": "rizvan-kuniev",
-          "name": "Rizvan Kuniev",
-          "rank": "#7",
-          "case": "step-up-vs-rebound",
-          "score": 83
-        },
-        {
-          "id": "curtis-blaydes",
-          "name": "Curtis Blaydes",
-          "rank": "#5",
-          "case": "rankings-progression",
+          "id": "kai-asakura",
+          "name": "Kai Asakura",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
           "score": 82
+        },
+        {
+          "id": "brady-hiestand",
+          "name": "Brady Hiestand",
+          "rank": "Unranked",
+          "case": "ranking-opportunity",
+          "score": 77
         }
       ]
     },
@@ -1424,6 +1903,29 @@
       "fighterRankBefore": "Unranked",
       "fighterRankAfter": "Unranked",
       "before": [
+        {
+          "id": "muslim-salikhov",
+          "name": "Muslim Salikhov",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 92
+        },
+        {
+          "id": "punahele-soriano",
+          "name": "Punahele Soriano",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 92
+        },
+        {
+          "id": "joel-alvarez",
+          "name": "Joel Alvarez",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 91
+        }
+      ],
+      "after": [
         {
           "id": "joel-alvarez",
           "name": "Joel Alvarez",
@@ -1439,33 +1941,10 @@
           "score": 92
         },
         {
-          "id": "chris-curtis",
-          "name": "Chris Curtis",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 91
-        }
-      ],
-      "after": [
-        {
           "id": "punahele-soriano",
           "name": "Punahele Soriano",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 92
-        },
-        {
-          "id": "muslim-salikhov",
-          "name": "Muslim Salikhov",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 92
-        },
-        {
-          "id": "chris-curtis",
-          "name": "Chris Curtis",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
           "score": 91
         }
       ]
@@ -1474,54 +1953,54 @@
       "eventId": "ufc-332",
       "event": "UFC 332: Silva vs Wang",
       "eventDate": "2026-10-03",
-      "fighterId": "marcus-mcghee",
-      "fighter": "Marcus McGhee",
+      "fighterId": "rafael-dos-anjos",
+      "fighter": "Rafael Dos Anjos",
       "fighterRankBefore": "Unranked",
       "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "christian-rodriguez",
-          "name": "Christian Rodriguez",
+          "id": "claudio-puelles",
+          "name": "Claudio Puelles",
           "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 95
+          "case": "rebound-pairing",
+          "score": 84
         },
         {
-          "id": "david-onama",
-          "name": "David Onama",
-          "rank": "#15",
-          "case": "ranking-opportunity",
-          "score": 95
+          "id": "anshul-jubli",
+          "name": "Anshul Jubli",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 76
         },
         {
-          "id": "patricio-freire",
-          "name": "Patricio Freire",
-          "rank": "#14",
-          "case": "rankings-progression",
-          "score": 94
+          "id": "brian-ortega",
+          "name": "Brian Ortega",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 76
         }
       ],
       "after": [
         {
-          "id": "christian-rodriguez",
-          "name": "Christian Rodriguez",
+          "id": "claudio-puelles",
+          "name": "Claudio Puelles",
           "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 95
+          "case": "rebound-pairing",
+          "score": 84
         },
         {
-          "id": "david-onama",
-          "name": "David Onama",
-          "rank": "#14",
-          "case": "ranking-opportunity",
-          "score": 95
+          "id": "brian-ortega",
+          "name": "Brian Ortega",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 77
         },
         {
-          "id": "pat-sabatini",
-          "name": "Pat Sabatini",
-          "rank": "#15",
-          "case": "rankings-progression",
-          "score": 93
+          "id": "anshul-jubli",
+          "name": "Anshul Jubli",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 76
         }
       ]
     },
@@ -1529,109 +2008,54 @@
       "eventId": "ufc-332",
       "event": "UFC 332: Silva vs Wang",
       "eventDate": "2026-10-03",
-      "fighterId": "mick-parkin",
-      "fighter": "Mick Parkin",
+      "fighterId": "roman-kopylov",
+      "fighter": "Roman Kopylov",
       "fighterRankBefore": "Unranked",
       "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "jhonata-diniz",
-          "name": "Jhonata Diniz",
+          "id": "edmen-shahbazyan",
+          "name": "Edmen Shahbazyan",
           "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 89
-        },
-        {
-          "id": "marcus-buchecha",
-          "name": "Marcus Buchecha",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 87
-        },
-        {
-          "id": "max-gimenis",
-          "name": "Max Gimenis",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 83
-        }
-      ],
-      "after": [
-        {
-          "id": "jhonata-diniz",
-          "name": "Jhonata Diniz",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 88
-        },
-        {
-          "id": "max-gimenis",
-          "name": "Max Gimenis",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 83
-        },
-        {
-          "id": "marcus-buchecha",
-          "name": "Marcus Buchecha",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 86
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-september-26-2026",
-      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
-      "eventDate": "2026-09-26",
-      "fighterId": "ailin-perez",
-      "fighter": "Ailin Perez",
-      "fighterRankBefore": "#3",
-      "fighterRankAfter": "#4",
-      "before": [
-        {
-          "id": "julianna-pena",
-          "name": "Julianna Pena",
-          "rank": "#1",
-          "case": "step-up-vs-rebound",
+          "case": "rising-vs-rising",
           "score": 92
         },
         {
-          "id": "kayla-harrison",
-          "name": "Kayla Harrison",
-          "rank": "Champion",
-          "case": "title-case",
-          "score": 85
+          "id": "ikram-aliskerov",
+          "name": "Ikram Aliskerov",
+          "rank": "#13",
+          "case": "rankings-progression",
+          "score": 91
         },
         {
-          "id": "luana-santos",
-          "name": "Luana Santos",
-          "rank": "#5",
-          "case": "title-eliminator",
-          "score": 85
+          "id": "ismail-naurdiev",
+          "name": "Ismail Naurdiev",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 89
         }
       ],
       "after": [
         {
-          "id": "luana-santos",
-          "name": "Luana Santos",
-          "rank": "#5",
-          "case": "title-eliminator",
-          "score": 95
+          "id": "edmen-shahbazyan",
+          "name": "Edmen Shahbazyan",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 92
         },
         {
-          "id": "yana-santos",
-          "name": "Yana Santos",
-          "rank": "#6",
-          "case": "step-up-vs-rebound",
-          "score": 88
+          "id": "ismail-naurdiev",
+          "name": "Ismail Naurdiev",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 89
         },
         {
-          "id": "julianna-pena",
-          "name": "Julianna Pena",
-          "rank": "#2",
-          "case": "step-up-vs-rebound",
-          "score": 82
+          "id": "abus-magomedov",
+          "name": "Abus Magomedov",
+          "rank": "#12",
+          "case": "rankings-progression",
+          "score": 87
         }
       ]
     },
@@ -1659,8 +2083,8 @@
           "score": 93
         },
         {
-          "id": "zhang-mingyang",
-          "name": "Zhang Mingyang",
+          "id": "billy-elekana",
+          "name": "Billy Elekana",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 91
@@ -1672,18 +2096,18 @@
           "name": "Oumar Sy",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 93
+          "score": 94
         },
         {
           "id": "iwo-baraniewski",
           "name": "Iwo Baraniewski",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 93
+          "score": 92
         },
         {
-          "id": "billy-elekana",
-          "name": "Billy Elekana",
+          "id": "zhang-mingyang",
+          "name": "Zhang Mingyang",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 91
@@ -1707,15 +2131,15 @@
           "score": 91
         },
         {
-          "id": "iwo-baraniewski",
-          "name": "Iwo Baraniewski",
+          "id": "rodolfo-bellato",
+          "name": "Rodolfo Bellato",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 90
         },
         {
-          "id": "rodolfo-bellato",
-          "name": "Rodolfo Bellato",
+          "id": "iwo-baraniewski",
+          "name": "Iwo Baraniewski",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 90
@@ -1730,18 +2154,183 @@
           "score": 91
         },
         {
-          "id": "rodolfo-bellato",
-          "name": "Rodolfo Bellato",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 90
-        },
-        {
           "id": "iwo-baraniewski",
           "name": "Iwo Baraniewski",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 90
+        },
+        {
+          "id": "rodolfo-bellato",
+          "name": "Rodolfo Bellato",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 89
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-september-26-2026",
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "eventDate": "2026-09-26",
+      "fighterId": "vanessa-demopoulos",
+      "fighter": "Vanessa Demopoulos",
+      "fighterRankBefore": "Unranked",
+      "fighterRankAfter": "Unranked",
+      "before": [
+        {
+          "id": "shauna-bannon",
+          "name": "Shauna Bannon",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 91
+        },
+        {
+          "id": "polyana-viana",
+          "name": "Polyana Viana",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 88
+        },
+        {
+          "id": "nicolle-caliari",
+          "name": "Nicolle Caliari",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 88
+        }
+      ],
+      "after": [
+        {
+          "id": "shauna-bannon",
+          "name": "Shauna Bannon",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 91
+        },
+        {
+          "id": "nicolle-caliari",
+          "name": "Nicolle Caliari",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 88
+        },
+        {
+          "id": "polyana-viana",
+          "name": "Polyana Viana",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 87
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-september-26-2026",
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "eventDate": "2026-09-26",
+      "fighterId": "yazmin-jauregui",
+      "fighter": "Yazmin Jauregui",
+      "fighterRankBefore": "Unranked",
+      "fighterRankAfter": "Unranked",
+      "before": [
+        {
+          "id": "mizuki-inoue",
+          "name": "Mizuki Inoue",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 93
+        },
+        {
+          "id": "jaqueline-amorim",
+          "name": "Jaqueline Amorim",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 93
+        },
+        {
+          "id": "julia-polastri",
+          "name": "Julia Polastri",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 93
+        }
+      ],
+      "after": [
+        {
+          "id": "jaqueline-amorim",
+          "name": "Jaqueline Amorim",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 93
+        },
+        {
+          "id": "julia-polastri",
+          "name": "Julia Polastri",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 93
+        },
+        {
+          "id": "stephanie-bruna-luciano",
+          "name": "Stephanie Bruna Luciano",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 89
+        }
+      ]
+    },
+    {
+      "eventId": "cryptocom-ufc-331",
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "eventDate": "2026-09-19",
+      "fighterId": "brunno-ferreira",
+      "fighter": "Brunno Ferreira",
+      "fighterRankBefore": "Unranked",
+      "fighterRankAfter": "Unranked",
+      "before": [
+        {
+          "id": "kyle-daukaus",
+          "name": "Kyle Daukaus",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 91
+        },
+        {
+          "id": "cam-rowston",
+          "name": "Cam Rowston",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 89
+        },
+        {
+          "id": "eric-mcconico",
+          "name": "Eric McConico",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 89
+        }
+      ],
+      "after": [
+        {
+          "id": "kyle-daukaus",
+          "name": "Kyle Daukaus",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 91
+        },
+        {
+          "id": "michal-oleksiejczuk",
+          "name": "Michal Oleksiejczuk",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 87
+        },
+        {
+          "id": "dusko-todorovic",
+          "name": "Dusko Todorovic",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 87
         }
       ]
     },
@@ -1755,40 +2344,17 @@
       "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "douglas-silva-de-andrade",
-          "name": "Douglas Silva De Andrade",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 92
-        },
-        {
           "id": "jordan-leavitt",
           "name": "Jordan Leavitt",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 91
+          "score": 92
         },
         {
           "id": "kurtis-campbell",
           "name": "Kurtis Campbell",
           "rank": "Unranked",
           "case": "step-up-vs-rebound",
-          "score": 92
-        }
-      ],
-      "after": [
-        {
-          "id": "jordan-leavitt",
-          "name": "Jordan Leavitt",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 92
-        },
-        {
-          "id": "douglas-silva-de-andrade",
-          "name": "Douglas Silva De Andrade",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
           "score": 91
         },
         {
@@ -1798,60 +2364,83 @@
           "case": "rebound-pairing",
           "score": 90
         }
+      ],
+      "after": [
+        {
+          "id": "jordan-leavitt",
+          "name": "Jordan Leavitt",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 92
+        },
+        {
+          "id": "jose-miguel-delgado",
+          "name": "Jose Miguel Delgado",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 90
+        },
+        {
+          "id": "kurtis-campbell",
+          "name": "Kurtis Campbell",
+          "rank": "Unranked",
+          "case": "step-up-vs-rebound",
+          "score": 91
+        }
       ]
     },
     {
       "eventId": "cryptocom-ufc-331",
       "event": "Crypto.com UFC 331: Van vs Pantoja 2",
       "eventDate": "2026-09-19",
-      "fighterId": "michael-aswell-jr",
-      "fighter": "Michael Aswell Jr.",
+      "fighterId": "iwo-baraniewski",
+      "fighter": "Iwo Baraniewski",
       "fighterRankBefore": "Unranked",
       "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "david-onama",
-          "name": "David Onama",
-          "rank": "#15",
-          "case": "ranking-opportunity",
-          "score": 95
+          "id": "rodolfo-bellato",
+          "name": "Rodolfo Bellato",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 93
         },
         {
-          "id": "austin-bashi",
-          "name": "Austin Bashi",
+          "id": "felipe-franco",
+          "name": "Felipe Franco",
           "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 94
+          "case": "rebound-pairing",
+          "score": 93
         },
         {
-          "id": "bogdan-grad",
-          "name": "Bogdan Grad",
+          "id": "oumar-sy",
+          "name": "Oumar Sy",
           "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 94
+          "case": "rebound-pairing",
+          "score": 92
         }
       ],
       "after": [
         {
-          "id": "bogdan-grad",
-          "name": "Bogdan Grad",
+          "id": "felipe-franco",
+          "name": "Felipe Franco",
           "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 94
+          "case": "rebound-pairing",
+          "score": 93
         },
         {
-          "id": "david-onama",
-          "name": "David Onama",
-          "rank": "#14",
-          "case": "ranking-opportunity",
-          "score": 95
+          "id": "oumar-sy",
+          "name": "Oumar Sy",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 92
         },
         {
-          "id": "austin-bashi",
-          "name": "Austin Bashi",
+          "id": "rodolfo-bellato",
+          "name": "Rodolfo Bellato",
           "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 94
+          "case": "rebound-pairing",
+          "score": 92
         }
       ]
     },
@@ -1861,32 +2450,9 @@
       "eventDate": "2026-09-19",
       "fighterId": "patricio-freire",
       "fighter": "Patricio Freire",
-      "fighterRankBefore": "#14",
+      "fighterRankBefore": "#12",
       "fighterRankAfter": "#12",
       "before": [
-        {
-          "id": "marcus-mcghee",
-          "name": "Marcus McGhee",
-          "rank": "Unranked",
-          "case": "rankings-progression",
-          "score": 94
-        },
-        {
-          "id": "david-onama",
-          "name": "David Onama",
-          "rank": "#15",
-          "case": "step-up-vs-rebound",
-          "score": 90
-        },
-        {
-          "id": "vinicius-oliveira",
-          "name": "Vinicius Oliveira",
-          "rank": "Unranked",
-          "case": "rankings-progression",
-          "score": 89
-        }
-      ],
-      "after": [
         {
           "id": "youssef-zalal",
           "name": "Youssef Zalal",
@@ -1895,73 +2461,41 @@
           "score": 90
         },
         {
+          "id": "kevin-vallejos",
+          "name": "Kevin Vallejos",
+          "rank": "#9",
+          "case": "rankings-progression",
+          "score": 82
+        },
+        {
           "id": "marcus-mcghee",
           "name": "Marcus McGhee",
           "rank": "Unranked",
           "case": "rankings-progression",
           "score": 83
-        },
-        {
-          "id": "david-onama",
-          "name": "David Onama",
-          "rank": "#14",
-          "case": "step-up-vs-rebound",
-          "score": 84
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-september-12-2026",
-      "event": "Noche UFC: Silva vs Delgado",
-      "eventDate": "2026-09-12",
-      "fighterId": "curtis-blaydes",
-      "fighter": "Curtis Blaydes",
-      "fighterRankBefore": "#5",
-      "fighterRankAfter": "#5",
-      "before": [
-        {
-          "id": "alexander-volkov",
-          "name": "Alexander Volkov",
-          "rank": "#2",
-          "case": "title-eliminator",
-          "score": 82
-        },
-        {
-          "id": "ciryl-gane",
-          "name": "Ciryl Gane",
-          "rank": "Champion",
-          "case": "title-case",
-          "score": 78
-        },
-        {
-          "id": "johnny-walker",
-          "name": "Johnny Walker",
-          "rank": "#7",
-          "case": "rankings-progression",
-          "score": 77
         }
       ],
       "after": [
         {
-          "id": "alexander-volkov",
-          "name": "Alexander Volkov",
-          "rank": "#2",
-          "case": "title-eliminator",
-          "score": 82
+          "id": "youssef-zalal",
+          "name": "Youssef Zalal",
+          "rank": "#9",
+          "case": "step-up-vs-rebound",
+          "score": 92
         },
         {
-          "id": "johnny-walker",
-          "name": "Johnny Walker",
-          "rank": "#6",
+          "id": "pat-sabatini",
+          "name": "Pat Sabatini",
+          "rank": "#13",
           "case": "rankings-progression",
-          "score": 82
+          "score": 87
         },
         {
-          "id": "ciryl-gane",
-          "name": "Ciryl Gane",
-          "rank": "Champion",
-          "case": "title-case",
-          "score": 78
+          "id": "aljamain-sterling",
+          "name": "Aljamain Sterling",
+          "rank": "#6",
+          "case": "step-up-vs-rebound",
+          "score": 81
         }
       ]
     },
@@ -1979,36 +2513,6 @@
           "name": "Josh Emmett",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 90
-        },
-        {
-          "id": "giga-chikadze",
-          "name": "Giga Chikadze",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 89
-        },
-        {
-          "id": "jordan-leavitt",
-          "name": "Jordan Leavitt",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 81
-        }
-      ],
-      "after": [
-        {
-          "id": "giga-chikadze",
-          "name": "Giga Chikadze",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 89
-        },
-        {
-          "id": "josh-emmett",
-          "name": "Josh Emmett",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
           "score": 89
         },
         {
@@ -2017,6 +2521,91 @@
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 82
+        },
+        {
+          "id": "jose-miguel-delgado",
+          "name": "Jose Miguel Delgado",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 83
+        }
+      ],
+      "after": [
+        {
+          "id": "jordan-leavitt",
+          "name": "Jordan Leavitt",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 82
+        },
+        {
+          "id": "jose-miguel-delgado",
+          "name": "Jose Miguel Delgado",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 83
+        },
+        {
+          "id": "melsik-baghdasaryan",
+          "name": "Melsik Baghdasaryan",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 81
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-september-12-2026",
+      "event": "Noche UFC: Silva vs Delgado",
+      "eventDate": "2026-09-12",
+      "fighterId": "jean-silva",
+      "fighter": "Jean Silva",
+      "fighterRankBefore": "#5",
+      "fighterRankAfter": "#4",
+      "before": [
+        {
+          "id": "lerone-murphy",
+          "name": "Lerone Murphy",
+          "rank": "#3",
+          "case": "step-up-vs-rebound",
+          "score": 99
+        },
+        {
+          "id": "aljamain-sterling",
+          "name": "Aljamain Sterling",
+          "rank": "#4",
+          "case": "step-up-vs-rebound",
+          "score": 88
+        },
+        {
+          "id": "movsar-evloev",
+          "name": "Movsar Evloev",
+          "rank": "#1",
+          "case": "step-up-vs-rebound",
+          "score": 87
+        }
+      ],
+      "after": [
+        {
+          "id": "lerone-murphy",
+          "name": "Lerone Murphy",
+          "rank": "#3",
+          "case": "step-up-vs-rebound",
+          "score": 97
+        },
+        {
+          "id": "kevin-vallejos",
+          "name": "Kevin Vallejos",
+          "rank": "#5",
+          "case": "title-eliminator",
+          "score": 93
+        },
+        {
+          "id": "movsar-evloev",
+          "name": "Movsar Evloev",
+          "rank": "#1",
+          "case": "step-up-vs-rebound",
+          "score": 87
         }
       ]
     },
@@ -2057,21 +2646,21 @@
           "name": "Jordan Leavitt",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 91
+          "score": 90
         },
         {
           "id": "shane-collins",
           "name": "Shane Collins",
           "rank": "Unranked",
           "case": "prospect-test",
-          "score": 91
+          "score": 90
         },
         {
-          "id": "melsik-baghdasaryan",
-          "name": "Melsik Baghdasaryan",
+          "id": "chepe-mariscal",
+          "name": "Chepe Mariscal",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 91
+          "score": 90
         }
       ]
     },
@@ -2099,11 +2688,11 @@
           "score": 94
         },
         {
-          "id": "chris-curtis",
-          "name": "Chris Curtis",
+          "id": "gunnar-nelson",
+          "name": "Gunnar Nelson",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 93
+          "score": 92
         }
       ],
       "after": [
@@ -2122,8 +2711,8 @@
           "score": 94
         },
         {
-          "id": "gunnar-nelson",
-          "name": "Gunnar Nelson",
+          "id": "jack-hermansson",
+          "name": "Jack Hermansson",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 92
@@ -2131,251 +2720,416 @@
       ]
     },
     {
-      "eventId": "ufc-fight-night-september-12-2026",
-      "event": "Noche UFC: Silva vs Delgado",
-      "eventDate": "2026-09-12",
-      "fighterId": "waldo-cortes-acosta",
-      "fighter": "Waldo Cortes Acosta",
-      "fighterRankBefore": "#8",
-      "fighterRankAfter": "#8",
+      "eventId": "ufc-fight-night-august-29-2026",
+      "event": "UFC Fight Night: Nurmagomedov vs Song",
+      "eventDate": "2026-08-29",
+      "fighterId": "denise-gomes",
+      "fighter": "Denise Gomes",
+      "fighterRankBefore": "#4",
+      "fighterRankAfter": "#3",
       "before": [
         {
-          "id": "vitor-petrino",
-          "name": "Vitor Petrino",
-          "rank": "#9",
-          "case": "step-up-vs-rebound",
-          "score": 88
-        },
-        {
-          "id": "aleksandar-rakic",
-          "name": "Aleksandar Rakic",
-          "rank": "#15",
-          "case": "step-up-vs-rebound",
-          "score": 82
-        },
-        {
-          "id": "rizvan-kuniev",
-          "name": "Rizvan Kuniev",
+          "id": "fatima-kline",
+          "name": "Fatima Kline",
           "rank": "#6",
-          "case": "rebound-pairing",
-          "score": 80
+          "case": "rankings-progression",
+          "score": 85
+        },
+        {
+          "id": "tatiana-suarez",
+          "name": "Tatiana Suarez",
+          "rank": "#2",
+          "case": "title-eliminator",
+          "score": 83
+        },
+        {
+          "id": "gillian-robertson",
+          "name": "Gillian Robertson",
+          "rank": "#5",
+          "case": "step-up-vs-rebound",
+          "score": 85
         }
       ],
       "after": [
         {
-          "id": "vitor-petrino",
-          "name": "Vitor Petrino",
+          "id": "tatiana-suarez",
+          "name": "Tatiana Suarez",
+          "rank": "#2",
+          "case": "title-eliminator",
+          "score": 92
+        },
+        {
+          "id": "fatima-kline",
+          "name": "Fatima Kline",
+          "rank": "#5",
+          "case": "title-eliminator",
+          "score": 85
+        },
+        {
+          "id": "gillian-robertson",
+          "name": "Gillian Robertson",
+          "rank": "#4",
+          "case": "step-up-vs-rebound",
+          "score": 85
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-august-29-2026",
+      "event": "UFC Fight Night: Nurmagomedov vs Song",
+      "eventDate": "2026-08-29",
+      "fighterId": "sean-woodson",
+      "fighter": "Sean Woodson",
+      "fighterRankBefore": "Unranked",
+      "fighterRankAfter": "Unranked",
+      "before": [
+        {
+          "id": "david-onama",
+          "name": "David Onama",
+          "rank": "#14",
+          "case": "ranking-opportunity",
+          "score": 96
+        },
+        {
+          "id": "miles-johns",
+          "name": "Miles Johns",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 92
+        },
+        {
+          "id": "daniel-santos",
+          "name": "Daniel Santos",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 91
+        }
+      ],
+      "after": [
+        {
+          "id": "david-onama",
+          "name": "David Onama",
+          "rank": "#14",
+          "case": "ranking-opportunity",
+          "score": 96
+        },
+        {
+          "id": "miles-johns",
+          "name": "Miles Johns",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 92
+        },
+        {
+          "id": "christian-rodriguez",
+          "name": "Christian Rodriguez",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 91
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-august-29-2026",
+      "event": "UFC Fight Night: Nurmagomedov vs Song",
+      "eventDate": "2026-08-29",
+      "fighterId": "xiong-jingnan",
+      "fighter": "Xiong Jingnan",
+      "fighterRankBefore": "Unranked",
+      "fighterRankAfter": "Unranked",
+      "before": [
+        {
+          "id": "marina-spasic",
+          "name": "Marina Spasic",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 94
+        },
+        {
+          "id": "nicolle-caliari",
+          "name": "Nicolle Caliari",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 93
+        },
+        {
+          "id": "montserrat-conejo",
+          "name": "Montserrat Conejo",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 92
+        }
+      ],
+      "after": [
+        {
+          "id": "marina-spasic",
+          "name": "Marina Spasic",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 94
+        },
+        {
+          "id": "montserrat-conejo",
+          "name": "Montserrat Conejo",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 92
+        },
+        {
+          "id": "nicolle-caliari",
+          "name": "Nicolle Caliari",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 92
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-fight-night-august-29-2026",
+      "event": "UFC Fight Night: Nurmagomedov vs Song",
+      "eventDate": "2026-08-29",
+      "fighterId": "yan-xiaonan",
+      "fighter": "Yan Xiaonan",
+      "fighterRankBefore": "#7",
+      "fighterRankAfter": "#6",
+      "before": [
+        {
+          "id": "loopy-godinez",
+          "name": "Loopy Godinez",
+          "rank": "#8",
+          "case": "step-up-vs-rebound",
+          "score": 97
+        },
+        {
+          "id": "fatima-kline",
+          "name": "Fatima Kline",
+          "rank": "#6",
+          "case": "step-up-vs-rebound",
+          "score": 90
+        },
+        {
+          "id": "alexia-thainara",
+          "name": "Alexia Thainara",
           "rank": "#9",
           "case": "step-up-vs-rebound",
-          "score": 88
-        },
+          "score": 85
+        }
+      ],
+      "after": [
         {
-          "id": "rizvan-kuniev",
-          "name": "Rizvan Kuniev",
+          "id": "loopy-godinez",
+          "name": "Loopy Godinez",
           "rank": "#7",
-          "case": "rebound-pairing",
-          "score": 85
+          "case": "step-up-vs-rebound",
+          "score": 95
         },
         {
-          "id": "aleksandar-rakic",
-          "name": "Aleksandar Rakic",
-          "rank": "#15",
+          "id": "alexia-thainara",
+          "name": "Alexia Thainara",
+          "rank": "#8",
           "case": "step-up-vs-rebound",
-          "score": 82
+          "score": 88
+        },
+        {
+          "id": "fatima-kline",
+          "name": "Fatima Kline",
+          "rank": "#5",
+          "case": "step-up-vs-rebound",
+          "score": 87
         }
       ]
     },
     {
-      "eventId": "ufc-fight-night-september-05-2026",
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "eventDate": "2026-09-05",
-      "fighterId": "morgan-charriere",
-      "fighter": "Morgan Charriere",
+      "eventId": "ufc-fight-night-august-22-2026",
+      "event": "UFC Fight Night: Hernandez vs Rodrigues",
+      "eventDate": "2026-08-22",
+      "fighterId": "jamall-emmers",
+      "fighter": "Jamall Emmers",
       "fighterRankBefore": "Unranked",
       "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "william-gomis",
-          "name": "William Gomis",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 94
-        },
-        {
-          "id": "hyder-amil",
-          "name": "Hyder Amil",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 94
-        },
-        {
-          "id": "jack-jenkins",
-          "name": "Jack Jenkins",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 93
-        }
-      ],
-      "after": [
-        {
-          "id": "jack-jenkins",
-          "name": "Jack Jenkins",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 94
-        },
-        {
-          "id": "william-gomis",
-          "name": "William Gomis",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 94
-        },
-        {
-          "id": "hyder-amil",
-          "name": "Hyder Amil",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 93
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-september-05-2026",
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "eventDate": "2026-09-05",
-      "fighterId": "nathaniel-wood",
-      "fighter": "Nathaniel Wood",
-      "fighterRankBefore": "Unranked",
-      "fighterRankAfter": "Unranked",
-      "before": [
-        {
-          "id": "douglas-silva-de-andrade",
-          "name": "Douglas Silva De Andrade",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 92
-        },
-        {
-          "id": "ollie-schmid",
-          "name": "Ollie Schmid",
-          "rank": "Unranked",
-          "case": "step-up-vs-rebound",
-          "score": 89
-        },
-        {
-          "id": "dooho-choi",
-          "name": "Dooho Choi",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 88
-        }
-      ],
-      "after": [
-        {
-          "id": "douglas-silva-de-andrade",
-          "name": "Douglas Silva De Andrade",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 92
-        },
-        {
-          "id": "ollie-schmid",
-          "name": "Ollie Schmid",
-          "rank": "Unranked",
-          "case": "step-up-vs-rebound",
-          "score": 89
-        },
-        {
-          "id": "william-gomis",
-          "name": "William Gomis",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 88
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-september-05-2026",
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "eventDate": "2026-09-05",
-      "fighterId": "nora-cornolle",
-      "fighter": "Nora Cornolle",
-      "fighterRankBefore": "#13",
-      "fighterRankAfter": "#13",
-      "before": [
-        {
-          "id": "chelsea-chandler",
-          "name": "Chelsea Chandler",
-          "rank": "#15",
-          "case": "rankings-progression",
-          "score": 88
-        },
-        {
-          "id": "bia-mesquita",
-          "name": "Bia Mesquita",
-          "rank": "#11",
-          "case": "rankings-progression",
-          "score": 87
-        },
-        {
-          "id": "michelle-montague",
-          "name": "Michelle Montague",
-          "rank": "#12",
-          "case": "rankings-progression",
-          "score": 87
-        }
-      ],
-      "after": [
-        {
-          "id": "chelsea-chandler",
-          "name": "Chelsea Chandler",
-          "rank": "#15",
-          "case": "rankings-progression",
-          "score": 89
-        },
-        {
-          "id": "macy-chiasson",
-          "name": "Macy Chiasson",
-          "rank": "#12",
-          "case": "step-up-vs-rebound",
-          "score": 85
-        },
-        {
-          "id": "alice-pereira",
-          "name": "Alice Pereira",
+          "id": "david-onama",
+          "name": "David Onama",
           "rank": "#14",
+          "case": "ranking-opportunity",
+          "score": 93
+        },
+        {
+          "id": "marcus-mcghee",
+          "name": "Marcus McGhee",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 89
+        },
+        {
+          "id": "sean-woodson",
+          "name": "Sean Woodson",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 86
+        }
+      ],
+      "after": [
+        {
+          "id": "david-onama",
+          "name": "David Onama",
+          "rank": "#14",
+          "case": "ranking-opportunity",
+          "score": 93
+        },
+        {
+          "id": "marcus-mcghee",
+          "name": "Marcus McGhee",
+          "rank": "Unranked",
+          "case": "rising-vs-rising",
+          "score": 89
+        },
+        {
+          "id": "pat-sabatini",
+          "name": "Pat Sabatini",
+          "rank": "#13",
           "case": "rankings-progression",
-          "score": 83
+          "score": 87
         }
       ]
     },
     {
-      "eventId": "ufc-fight-night-september-05-2026",
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "eventDate": "2026-09-05",
-      "fighterId": "punahele-soriano",
-      "fighter": "Punahele Soriano",
+      "eventId": "ufc-fight-night-august-22-2026",
+      "event": "UFC Fight Night: Hernandez vs Rodrigues",
+      "eventDate": "2026-08-22",
+      "fighterId": "roman-dolidze",
+      "fighter": "Roman Dolidze",
       "fighterRankBefore": "Unranked",
       "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "joel-alvarez",
-          "name": "Joel Alvarez",
+          "id": "dustin-jacoby",
+          "name": "Dustin Jacoby",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 87
+        },
+        {
+          "id": "zhang-mingyang",
+          "name": "Zhang Mingyang",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 88
+        },
+        {
+          "id": "oumar-sy",
+          "name": "Oumar Sy",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 87
+        }
+      ],
+      "after": [
+        {
+          "id": "dustin-jacoby",
+          "name": "Dustin Jacoby",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 87
+        },
+        {
+          "id": "zhang-mingyang",
+          "name": "Zhang Mingyang",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 88
+        },
+        {
+          "id": "sedriques-dumas",
+          "name": "Sedriques Dumas",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 86
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-330",
+      "event": "UFC 330: Makhachev vs Machado Garry",
+      "eventDate": "2026-08-15",
+      "fighterId": "eric-mcconico",
+      "fighter": "Eric McConico",
+      "fighterRankBefore": "Unranked",
+      "fighterRankAfter": "Unranked",
+      "before": [
+        {
+          "id": "ryan-loder",
+          "name": "Ryan Loder",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 94
         },
+        {
+          "id": "ateba-gautier",
+          "name": "Ateba Gautier",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 93
+        },
+        {
+          "id": "cam-rowston",
+          "name": "Cam Rowston",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 93
+        }
+      ],
+      "after": [
+        {
+          "id": "ryan-loder",
+          "name": "Ryan Loder",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 94
+        },
+        {
+          "id": "ateba-gautier",
+          "name": "Ateba Gautier",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 93
+        },
+        {
+          "id": "mansur-abdul-malik",
+          "name": "Mansur Abdul Malik",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 93
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-330",
+      "event": "UFC 330: Makhachev vs Machado Garry",
+      "eventDate": "2026-08-15",
+      "fighterId": "joel-alvarez",
+      "fighter": "Joel Alvarez",
+      "fighterRankBefore": "Unranked",
+      "fighterRankAfter": "Unranked",
+      "before": [
         {
           "id": "muslim-salikhov",
           "name": "Muslim Salikhov",
           "rank": "Unranked",
           "case": "rebound-pairing",
+          "score": 95
+        },
+        {
+          "id": "punahele-soriano",
+          "name": "Punahele Soriano",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
           "score": 94
         },
         {
-          "id": "chris-curtis",
-          "name": "Chris Curtis",
+          "id": "themba-gorimbo",
+          "name": "Themba Gorimbo",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 92
@@ -2383,15 +3137,15 @@
       ],
       "after": [
         {
-          "id": "joel-alvarez",
-          "name": "Joel Alvarez",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 94
-        },
-        {
           "id": "muslim-salikhov",
           "name": "Muslim Salikhov",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 95
+        },
+        {
+          "id": "punahele-soriano",
+          "name": "Punahele Soriano",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 94
@@ -2406,31 +3160,79 @@
       ]
     },
     {
-      "eventId": "ufc-fight-night-august-29-2026",
-      "event": "UFC Fight Night: Nurmagomedov vs Song",
-      "eventDate": "2026-08-29",
-      "fighterId": "jack-jenkins",
-      "fighter": "Jack Jenkins",
+      "eventId": "ufc-330",
+      "event": "UFC 330: Makhachev vs Machado Garry",
+      "eventDate": "2026-08-15",
+      "fighterId": "mackenzie-dern",
+      "fighter": "Mackenzie Dern",
+      "fighterRankBefore": "Champion",
+      "fighterRankAfter": "Champion",
+      "before": [
+        {
+          "id": "tatiana-suarez",
+          "name": "Tatiana Suarez",
+          "rank": "#2",
+          "case": "title-case",
+          "score": 85
+        },
+        {
+          "id": "denise-gomes",
+          "name": "Denise Gomes",
+          "rank": "#4",
+          "case": "title-case",
+          "score": 75
+        }
+      ],
+      "after": [
+        {
+          "id": "tatiana-suarez",
+          "name": "Tatiana Suarez",
+          "rank": "#2",
+          "case": "title-case",
+          "score": 83
+        },
+        {
+          "id": "denise-gomes",
+          "name": "Denise Gomes",
+          "rank": "#3",
+          "case": "title-case",
+          "score": 79
+        },
+        {
+          "id": "fatima-kline",
+          "name": "Fatima Kline",
+          "rank": "#5",
+          "case": "title-case",
+          "score": 74
+        }
+      ]
+    },
+    {
+      "eventId": "ufc-330",
+      "event": "UFC 330: Makhachev vs Machado Garry",
+      "eventDate": "2026-08-15",
+      "fighterId": "mansur-abdul-malik",
+      "fighter": "Mansur Abdul Malik",
       "fighterRankBefore": "Unranked",
       "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "jeongyeong-lee",
-          "name": "Jeongyeong Lee",
+          "id": "ateba-gautier",
+          "name": "Ateba Gautier",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 93
         },
         {
-          "id": "william-gomis",
-          "name": "William Gomis",
+          "id": "eric-mcconico",
+          "name": "Eric McConico",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 93
         },
         {
-          "id": "morgan-charriere",
-          "name": "Morgan Charriere",
+          "id": "azamat-bekoev",
+          "name": "Azamat Bekoev",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 93
@@ -2438,22 +3240,22 @@
       ],
       "after": [
         {
-          "id": "morgan-charriere",
-          "name": "Morgan Charriere",
+          "id": "ateba-gautier",
+          "name": "Ateba Gautier",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 94
+          "score": 93
         },
         {
-          "id": "william-gomis",
-          "name": "William Gomis",
+          "id": "eric-mcconico",
+          "name": "Eric McConico",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 94
+          "score": 93
         },
         {
-          "id": "jeongyeong-lee",
-          "name": "Jeongyeong Lee",
+          "id": "robert-bryczek",
+          "name": "Robert Bryczek",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 93
@@ -2461,102 +3263,79 @@
       ]
     },
     {
-      "eventId": "ufc-fight-night-august-22-2026",
-      "event": "UFC Fight Night: Hernandez vs Rodrigues",
-      "eventDate": "2026-08-22",
-      "fighterId": "jamall-emmers",
-      "fighter": "Jamall Emmers",
-      "fighterRankBefore": "Unranked",
-      "fighterRankAfter": "Unranked",
+      "eventId": "ufc-fight-night-august-08-2026",
+      "event": "UFC Fight Night: Gamrot vs Salkilld",
+      "eventDate": "2026-08-08",
+      "fighterId": "amanda-lemos",
+      "fighter": "Amanda Lemos",
+      "fighterRankBefore": "#11",
+      "fighterRankAfter": "#10",
       "before": [
         {
-          "id": "pat-sabatini",
-          "name": "Pat Sabatini",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 89
+          "id": "tabatha-ricci",
+          "name": "Tabatha Ricci",
+          "rank": "#10",
+          "case": "rebound-pairing",
+          "score": 92
         },
         {
-          "id": "marcus-mcghee",
-          "name": "Marcus McGhee",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 89
+          "id": "amanda-ribas",
+          "name": "Amanda Ribas",
+          "rank": "#13",
+          "case": "rebound-pairing",
+          "score": 88
         },
         {
-          "id": "sean-woodson",
-          "name": "Sean Woodson",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 86
+          "id": "angela-hill",
+          "name": "Angela Hill",
+          "rank": "#15",
+          "case": "step-up-vs-rebound",
+          "score": 81
         }
       ],
       "after": [
         {
-          "id": "david-onama",
-          "name": "David Onama",
+          "id": "amanda-ribas",
+          "name": "Amanda Ribas",
+          "rank": "#12",
+          "case": "rebound-pairing",
+          "score": 90
+        },
+        {
+          "id": "tabatha-ricci",
+          "name": "Tabatha Ricci",
+          "rank": "#9",
+          "case": "rebound-pairing",
+          "score": 90
+        },
+        {
+          "id": "angela-hill",
+          "name": "Angela Hill",
           "rank": "#14",
-          "case": "ranking-opportunity",
-          "score": 93
-        },
-        {
-          "id": "marcus-mcghee",
-          "name": "Marcus McGhee",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 89
-        },
-        {
-          "id": "sean-woodson",
-          "name": "Sean Woodson",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 86
+          "case": "step-up-vs-rebound",
+          "score": 84
         }
       ]
     },
     {
-      "eventId": "ufc-fight-night-august-22-2026",
-      "event": "UFC Fight Night: Hernandez vs Rodrigues",
-      "eventDate": "2026-08-22",
-      "fighterId": "nasrat-haqparast",
-      "fighter": "Nasrat Haqparast",
+      "eventId": "ufc-fight-night-august-08-2026",
+      "event": "UFC Fight Night: Gamrot vs Salkilld",
+      "eventDate": "2026-08-08",
+      "fighterId": "billy-quarantillo",
+      "fighter": "Billy Quarantillo",
       "fighterRankBefore": "Unranked",
       "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "ludovit-klein",
-          "name": "Ludovit Klein",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 93
-        },
-        {
-          "id": "rafa-garcia",
-          "name": "Rafa Garcia",
+          "id": "tamia-hasohitsuku",
+          "name": "Tamia Hasohitsuku",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 91
         },
         {
-          "id": "billy-quarantillo",
-          "name": "Billy Quarantillo",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 90
-        }
-      ],
-      "after": [
-        {
-          "id": "ludovit-klein",
-          "name": "Ludovit Klein",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 93
-        },
-        {
-          "id": "rafa-garcia",
-          "name": "Rafa Garcia",
+          "id": "claudio-puelles",
+          "name": "Claudio Puelles",
           "rank": "Unranked",
           "case": "rebound-pairing",
           "score": 91
@@ -2568,114 +3347,27 @@
           "case": "rebound-pairing",
           "score": 91
         }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-august-22-2026",
-      "event": "UFC Fight Night: Hernandez vs Rodrigues",
-      "eventDate": "2026-08-22",
-      "fighterId": "roman-dolidze",
-      "fighter": "Roman Dolidze",
-      "fighterRankBefore": "Unranked",
-      "fighterRankAfter": "Unranked",
-      "before": [
-        {
-          "id": "zhang-mingyang",
-          "name": "Zhang Mingyang",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 89
-        },
-        {
-          "id": "dustin-jacoby",
-          "name": "Dustin Jacoby",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 87
-        },
-        {
-          "id": "oumar-sy",
-          "name": "Oumar Sy",
-          "rank": "Unranked",
-          "case": "rebound-pairing",
-          "score": 87
-        }
       ],
       "after": [
         {
-          "id": "dustin-jacoby",
-          "name": "Dustin Jacoby",
+          "id": "tamia-hasohitsuku",
+          "name": "Tamia Hasohitsuku",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 87
+          "score": 91
         },
         {
-          "id": "zhang-mingyang",
-          "name": "Zhang Mingyang",
+          "id": "sodiq-yusuff",
+          "name": "Sodiq Yusuff",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 88
+          "score": 91
         },
         {
-          "id": "oumar-sy",
-          "name": "Oumar Sy",
+          "id": "claudio-puelles",
+          "name": "Claudio Puelles",
           "rank": "Unranked",
           "case": "rebound-pairing",
-          "score": 87
-        }
-      ]
-    },
-    {
-      "eventId": "ufc-fight-night-august-08-2026",
-      "event": "UFC Fight Night: Gamrot vs Salkilld",
-      "eventDate": "2026-08-08",
-      "fighterId": "yadier-del-valle",
-      "fighter": "Yadier Del Valle",
-      "fighterRankBefore": "Unranked",
-      "fighterRankAfter": "Unranked",
-      "before": [
-        {
-          "id": "bogdan-grad",
-          "name": "Bogdan Grad",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 93
-        },
-        {
-          "id": "michael-aswell-jr",
-          "name": "Michael Aswell Jr.",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 92
-        },
-        {
-          "id": "david-onama",
-          "name": "David Onama",
-          "rank": "#15",
-          "case": "ranking-opportunity",
-          "score": 93
-        }
-      ],
-      "after": [
-        {
-          "id": "bogdan-grad",
-          "name": "Bogdan Grad",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 93
-        },
-        {
-          "id": "michael-aswell-jr",
-          "name": "Michael Aswell Jr.",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 92
-        },
-        {
-          "id": "tommy-mcmillen",
-          "name": "Tommy McMillen",
-          "rank": "Unranked",
-          "case": "rising-vs-rising",
           "score": 91
         }
       ]
@@ -2684,54 +3376,54 @@
       "eventId": "ufc-fight-night-august-01-2026",
       "event": "UFC Fight Night: Medic vs Rodriguez",
       "eventDate": "2026-08-01",
-      "fighterId": "bogdan-grad",
-      "fighter": "Bogdan Grad",
+      "fighterId": "dusko-todorovic",
+      "fighter": "Dusko Todorovic",
       "fighterRankBefore": "Unranked",
       "fighterRankAfter": "Unranked",
       "before": [
         {
-          "id": "david-onama",
-          "name": "David Onama",
-          "rank": "#15",
-          "case": "ranking-opportunity",
-          "score": 95
+          "id": "kyle-daukaus",
+          "name": "Kyle Daukaus",
+          "rank": "Unranked",
+          "case": "rebound-pairing",
+          "score": 91
         },
         {
-          "id": "michael-aswell-jr",
-          "name": "Michael Aswell Jr.",
+          "id": "nursulton-ruziboev",
+          "name": "Nursulton Ruziboev",
           "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 94
+          "case": "rebound-pairing",
+          "score": 90
         },
         {
-          "id": "yadier-del-valle",
-          "name": "Yadier Del Valle",
+          "id": "michal-oleksiejczuk",
+          "name": "Michal Oleksiejczuk",
           "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 93
+          "case": "rebound-pairing",
+          "score": 88
         }
       ],
       "after": [
         {
-          "id": "michael-aswell-jr",
-          "name": "Michael Aswell Jr.",
+          "id": "kyle-daukaus",
+          "name": "Kyle Daukaus",
           "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 94
+          "case": "rebound-pairing",
+          "score": 92
         },
         {
-          "id": "yadier-del-valle",
-          "name": "Yadier Del Valle",
+          "id": "nursulton-ruziboev",
+          "name": "Nursulton Ruziboev",
           "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 93
+          "case": "rebound-pairing",
+          "score": 90
         },
         {
-          "id": "austin-bashi",
-          "name": "Austin Bashi",
+          "id": "jacob-malkoun",
+          "name": "Jacob Malkoun",
           "rank": "Unranked",
-          "case": "rising-vs-rising",
-          "score": 93
+          "case": "rebound-pairing",
+          "score": 89
         }
       ]
     },
@@ -2739,54 +3431,47 @@
       "eventId": "ufc-fight-night-august-01-2026",
       "event": "UFC Fight Night: Medic vs Rodriguez",
       "eventDate": "2026-08-01",
-      "fighterId": "nina-milosevic",
-      "fighter": "Nina Milosevic",
-      "fighterRankBefore": "Unranked",
-      "fighterRankAfter": "Unranked",
+      "fighterId": "navajo-stirling",
+      "fighter": "Navajo Stirling",
+      "fighterRankBefore": "#5",
+      "fighterRankAfter": "#2",
       "before": [
         {
-          "id": "chelsea-chandler",
-          "name": "Chelsea Chandler",
-          "rank": "#15",
+          "id": "paulo-costa",
+          "name": "Paulo Costa",
+          "rank": "#6",
           "case": "rankings-progression",
-          "score": 59
+          "score": 87
         },
         {
-          "id": "josiane-nunes",
-          "name": "Josiane Nunes",
-          "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 54
+          "id": "khalil-rountree-jr",
+          "name": "Khalil Rountree Jr.",
+          "rank": "#4",
+          "case": "step-up-vs-rebound",
+          "score": 85
         },
         {
-          "id": "jacqueline-cavalcanti",
-          "name": "Jacqueline Cavalcanti",
-          "rank": "#8",
-          "case": "ranking-opportunity",
-          "score": 50
+          "id": "carlos-ulberg",
+          "name": "Carlos Ulberg",
+          "rank": "Champion",
+          "case": "title-case",
+          "score": 75
         }
       ],
       "after": [
         {
-          "id": "chelsea-chandler",
-          "name": "Chelsea Chandler",
-          "rank": "#15",
-          "case": "rankings-progression",
-          "score": 59
+          "id": "magomed-ankalaev",
+          "name": "Magomed Ankalaev",
+          "rank": "#1",
+          "case": "title-eliminator",
+          "score": 90
         },
         {
-          "id": "josiane-nunes",
-          "name": "Josiane Nunes",
-          "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 54
-        },
-        {
-          "id": "macy-chiasson",
-          "name": "Macy Chiasson",
-          "rank": "#12",
-          "case": "ranking-opportunity",
-          "score": 51
+          "id": "carlos-ulberg",
+          "name": "Carlos Ulberg",
+          "rank": "Champion",
+          "case": "title-case",
+          "score": 79
         }
       ]
     },
@@ -2796,25 +3481,9 @@
       "eventDate": "2026-08-01",
       "fighterId": "uros-medic",
       "fighter": "Uros Medic",
-      "fighterRankBefore": "#11",
-      "fighterRankAfter": "#12",
+      "fighterRankBefore": "#12",
+      "fighterRankAfter": "#11",
       "before": [
-        {
-          "id": "shavkat-rakhmonov",
-          "name": "Shavkat Rakhmonov",
-          "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 82
-        },
-        {
-          "id": "jacobe-smith",
-          "name": "Jacobe Smith",
-          "rank": "Unranked",
-          "case": "prospect-test",
-          "score": 84
-        }
-      ],
-      "after": [
         {
           "id": "shavkat-rakhmonov",
           "name": "Shavkat Rakhmonov",
@@ -2836,348 +3505,437 @@
           "case": "prospect-test",
           "score": 72
         }
+      ],
+      "after": [
+        {
+          "id": "shavkat-rakhmonov",
+          "name": "Shavkat Rakhmonov",
+          "rank": "Unranked",
+          "case": "prospect-test",
+          "score": 82
+        },
+        {
+          "id": "jacobe-smith",
+          "name": "Jacobe Smith",
+          "rank": "Unranked",
+          "case": "prospect-test",
+          "score": 84
+        }
       ]
     }
   ],
-  "recommendationChangeCount": 48,
+  "recommendationChangeCount": 56,
   "latestEvent": {
-    "id": "ufc-334",
-    "title": "Polymarket UFC 334: Gane vs Hokit",
-    "date": "2026-11-14",
+    "id": "ufc-fight-night-november-21-2026",
+    "title": "UFC Fight Night: Prochazka vs Stirling",
+    "date": "2026-11-21",
     "changedFighters": [
       {
-        "fighterId": "amanda-nunes",
-        "fighter": "Amanda Nunes",
-        "fighterRankBefore": "Unranked",
-        "fighterRankAfter": "#1",
+        "fighterId": "aljamain-sterling",
+        "fighter": "Aljamain Sterling",
+        "fighterRankBefore": "#4",
+        "fighterRankAfter": "#6",
         "before": [
           {
-            "id": "chelsea-chandler",
-            "name": "Chelsea Chandler",
-            "rank": "#15",
-            "case": "step-up-vs-rebound",
-            "score": 77
-          }
-        ],
-        "after": [
-          {
-            "id": "julianna-pena",
-            "name": "Julianna Pena",
-            "rank": "#2",
-            "case": "rebound-pairing",
-            "score": 86
-          },
-          {
-            "id": "joselyne-edwards",
-            "name": "Joselyne Edwards",
-            "rank": "#2",
-            "case": "step-up-vs-rebound",
-            "score": 83
-          },
-          {
-            "id": "luana-santos",
-            "name": "Luana Santos",
-            "rank": "#5",
-            "case": "step-up-vs-rebound",
-            "score": 78
-          }
-        ]
-      },
-      {
-        "fighterId": "bia-mesquita",
-        "fighter": "Bia Mesquita",
-        "fighterRankBefore": "#11",
-        "fighterRankAfter": "#8",
-        "before": [
-          {
-            "id": "jacqueline-cavalcanti",
-            "name": "Jacqueline Cavalcanti",
-            "rank": "#8",
-            "case": "step-up-vs-rebound",
-            "score": 90
-          },
-          {
-            "id": "michelle-montague",
-            "name": "Michelle Montague",
-            "rank": "#12",
-            "case": "rankings-progression",
-            "score": 88
-          },
-          {
-            "id": "yana-santos",
-            "name": "Yana Santos",
+            "id": "arnold-allen",
+            "name": "Arnold Allen",
             "rank": "#6",
             "case": "step-up-vs-rebound",
-            "score": 87
-          }
-        ],
-        "after": [
-          {
-            "id": "jacqueline-cavalcanti",
-            "name": "Jacqueline Cavalcanti",
-            "rank": "#9",
-            "case": "step-up-vs-rebound",
-            "score": 90
-          },
-          {
-            "id": "yana-santos",
-            "name": "Yana Santos",
-            "rank": "#6",
-            "case": "step-up-vs-rebound",
-            "score": 87
-          }
-        ]
-      },
-      {
-        "fighterId": "jared-gordon",
-        "fighter": "Jared Gordon",
-        "fighterRankBefore": "Unranked",
-        "fighterRankAfter": "Unranked",
-        "before": [
-          {
-            "id": "kyle-nelson",
-            "name": "Kyle Nelson",
-            "rank": "Unranked",
-            "case": "rebound-pairing",
-            "score": 91
-          },
-          {
-            "id": "drakkar-klose",
-            "name": "Drakkar Klose",
-            "rank": "Unranked",
-            "case": "rebound-pairing",
             "score": 89
           },
           {
-            "id": "fares-ziam",
-            "name": "Fares Ziam",
-            "rank": "Unranked",
-            "case": "rebound-pairing",
-            "score": 88
-          }
-        ],
-        "after": [
-          {
-            "id": "kyle-nelson",
-            "name": "Kyle Nelson",
-            "rank": "Unranked",
-            "case": "rebound-pairing",
-            "score": 90
-          },
-          {
-            "id": "matt-frevola",
-            "name": "Matt Frevola",
-            "rank": "Unranked",
-            "case": "rebound-pairing",
-            "score": 87
-          },
-          {
-            "id": "nate-landwehr",
-            "name": "Nate Landwehr",
-            "rank": "Unranked",
-            "case": "rebound-pairing",
-            "score": 87
-          }
-        ]
-      },
-      {
-        "fighterId": "kayla-harrison",
-        "fighter": "Kayla Harrison",
-        "fighterRankBefore": "Champion",
-        "fighterRankAfter": "Champion",
-        "before": [
-          {
-            "id": "joselyne-edwards",
-            "name": "Joselyne Edwards",
-            "rank": "#1",
-            "case": "title-case",
-            "score": 86
-          },
-          {
-            "id": "ailin-perez",
-            "name": "Ailin Perez",
-            "rank": "#3",
-            "case": "title-case",
-            "score": 85
-          },
-          {
-            "id": "luana-santos",
-            "name": "Luana Santos",
+            "id": "jean-silva",
+            "name": "Jean Silva",
             "rank": "#5",
-            "case": "title-case",
-            "score": 77
-          }
-        ],
-        "after": [
-          {
-            "id": "ailin-perez",
-            "name": "Ailin Perez",
-            "rank": "#4",
-            "case": "title-case",
-            "score": 76
-          },
-          {
-            "id": "joselyne-edwards",
-            "name": "Joselyne Edwards",
-            "rank": "#2",
-            "case": "title-case",
-            "score": 72
-          },
-          {
-            "id": "luana-santos",
-            "name": "Luana Santos",
-            "rank": "#5",
-            "case": "title-case",
-            "score": 71
-          }
-        ]
-      },
-      {
-        "fighterId": "kevin-holland",
-        "fighter": "Kevin Holland",
-        "fighterRankBefore": "#15",
-        "fighterRankAfter": "#14",
-        "before": [
-          {
-            "id": "jean-paul-lebosnoyani",
-            "name": "Jean Paul Lebosnoyani",
-            "rank": "Unranked",
-            "case": "prospect-test",
-            "score": 78
-          },
-          {
-            "id": "jonathan-micallef",
-            "name": "Jonathan Micallef",
-            "rank": "Unranked",
-            "case": "prospect-test",
-            "score": 76
-          },
-          {
-            "id": "jacobe-smith",
-            "name": "Jacobe Smith",
-            "rank": "Unranked",
-            "case": "prospect-test",
-            "score": 70
-          }
-        ],
-        "after": [
-          {
-            "id": "jean-paul-lebosnoyani",
-            "name": "Jean Paul Lebosnoyani",
-            "rank": "Unranked",
-            "case": "prospect-test",
-            "score": 79
-          },
-          {
-            "id": "jacobe-smith",
-            "name": "Jacobe Smith",
-            "rank": "Unranked",
-            "case": "prospect-test",
-            "score": 78
-          },
-          {
-            "id": "jonathan-micallef",
-            "name": "Jonathan Micallef",
-            "rank": "Unranked",
-            "case": "prospect-test",
-            "score": 77
-          }
-        ]
-      },
-      {
-        "fighterId": "melquizael-costa",
-        "fighter": "Melquizael Costa",
-        "fighterRankBefore": "#12",
-        "fighterRankAfter": "Unranked",
-        "before": [
-          {
-            "id": "youssef-zalal",
-            "name": "Youssef Zalal",
-            "rank": "#8",
             "case": "step-up-vs-rebound",
-            "score": 95
+            "score": 88
           },
           {
-            "id": "pat-sabatini",
-            "name": "Pat Sabatini",
-            "rank": "Unranked",
-            "case": "rankings-progression",
-            "score": 93
+            "id": "lerone-murphy",
+            "name": "Lerone Murphy",
+            "rank": "#3",
+            "case": "rebound-pairing",
+            "score": 85
+          }
+        ],
+        "after": [
+          {
+            "id": "arnold-allen",
+            "name": "Arnold Allen",
+            "rank": "#7",
+            "case": "step-up-vs-rebound",
+            "score": 90
           },
           {
             "id": "aaron-pico",
             "name": "Aaron Pico",
             "rank": "#11",
+            "case": "step-up-vs-rebound",
+            "score": 89
+          },
+          {
+            "id": "patricio-freire",
+            "name": "Patricio Freire",
+            "rank": "#12",
+            "case": "step-up-vs-rebound",
+            "score": 81
+          }
+        ]
+      },
+      {
+        "fighterId": "asu-almabayev",
+        "fighter": "Asu Almabayev",
+        "fighterRankBefore": "#7",
+        "fighterRankAfter": "#7",
+        "before": [
+          {
+            "id": "amir-albazi",
+            "name": "Amir Albazi",
+            "rank": "#9",
+            "case": "step-up-vs-rebound",
+            "score": 99
+          },
+          {
+            "id": "su-mudaerji",
+            "name": "Sumudaerji",
+            "rank": "#12",
+            "case": "step-up-vs-rebound",
+            "score": 90
+          },
+          {
+            "id": "loneer-kavanagh",
+            "name": "Loneer Kavanagh",
+            "rank": "#6",
+            "case": "step-up-vs-rebound",
+            "score": 90
+          }
+        ],
+        "after": [
+          {
+            "id": "amir-albazi",
+            "name": "Amir Albazi",
+            "rank": "#9",
+            "case": "step-up-vs-rebound",
+            "score": 99
+          },
+          {
+            "id": "loneer-kavanagh",
+            "name": "Loneer Kavanagh",
+            "rank": "#6",
+            "case": "step-up-vs-rebound",
+            "score": 91
+          },
+          {
+            "id": "su-mudaerji",
+            "name": "Sumudaerji",
+            "rank": "#12",
+            "case": "step-up-vs-rebound",
+            "score": 90
+          }
+        ]
+      },
+      {
+        "fighterId": "brian-ortega",
+        "fighter": "Brian Ortega",
+        "fighterRankBefore": "Unranked",
+        "fighterRankAfter": "Unranked",
+        "before": [
+          {
+            "id": "nasrat-haqparast",
+            "name": "Nasrat Haqparast",
+            "rank": "Unranked",
+            "case": "rebound-pairing",
+            "score": 89
+          },
+          {
+            "id": "michael-chandler",
+            "name": "Michael Chandler",
+            "rank": "Unranked",
+            "case": "rebound-pairing",
+            "score": 87
+          },
+          {
+            "id": "ludovit-klein",
+            "name": "Ludovit Klein",
+            "rank": "Unranked",
+            "case": "rebound-pairing",
+            "score": 88
+          }
+        ],
+        "after": [
+          {
+            "id": "nasrat-haqparast",
+            "name": "Nasrat Haqparast",
+            "rank": "Unranked",
+            "case": "rebound-pairing",
+            "score": 90
+          },
+          {
+            "id": "ludovit-klein",
+            "name": "Ludovit Klein",
+            "rank": "Unranked",
+            "case": "rebound-pairing",
+            "score": 89
+          },
+          {
+            "id": "michael-chandler",
+            "name": "Michael Chandler",
+            "rank": "Unranked",
+            "case": "rebound-pairing",
+            "score": 86
+          }
+        ]
+      },
+      {
+        "fighterId": "ikram-aliskerov",
+        "fighter": "Ikram Aliskerov",
+        "fighterRankBefore": "#13",
+        "fighterRankAfter": "#11",
+        "before": [
+          {
+            "id": "christian-leroy-duncan",
+            "name": "Christian Leroy Duncan",
+            "rank": "#10",
+            "case": "step-up-vs-rebound",
+            "score": 94
+          },
+          {
+            "id": "roman-kopylov",
+            "name": "Roman Kopylov",
+            "rank": "Unranked",
             "case": "rankings-progression",
+            "score": 91
+          },
+          {
+            "id": "abus-magomedov",
+            "name": "Abus Magomedov",
+            "rank": "#11",
+            "case": "rankings-progression",
+            "score": 90
+          }
+        ],
+        "after": [
+          {
+            "id": "christian-leroy-duncan",
+            "name": "Christian Leroy Duncan",
+            "rank": "#10",
+            "case": "step-up-vs-rebound",
+            "score": 94
+          },
+          {
+            "id": "abus-magomedov",
+            "name": "Abus Magomedov",
+            "rank": "#12",
+            "case": "rankings-progression",
+            "score": 93
+          },
+          {
+            "id": "anthony-hernandez",
+            "name": "Anthony Hernandez",
+            "rank": "#8",
+            "case": "step-up-vs-rebound",
+            "score": 86
+          }
+        ]
+      },
+      {
+        "fighterId": "jared-cannonier",
+        "fighter": "Jared Cannonier",
+        "fighterRankBefore": "#12",
+        "fighterRankAfter": "#15",
+        "before": [
+          {
+            "id": "edmen-shahbazyan",
+            "name": "Edmen Shahbazyan",
+            "rank": "Unranked",
+            "case": "ranking-opportunity",
+            "score": 91
+          },
+          {
+            "id": "roman-kopylov",
+            "name": "Roman Kopylov",
+            "rank": "Unranked",
+            "case": "ranking-opportunity",
+            "score": 87
+          },
+          {
+            "id": "cody-brundage",
+            "name": "Cody Brundage",
+            "rank": "Unranked",
+            "case": "ranking-opportunity",
+            "score": 85
+          }
+        ],
+        "after": [
+          {
+            "id": "kamaru-usman",
+            "name": "Kamaru Usman",
+            "rank": "Unranked",
+            "case": "rebound-pairing",
+            "score": 90
+          },
+          {
+            "id": "edmen-shahbazyan",
+            "name": "Edmen Shahbazyan",
+            "rank": "Unranked",
+            "case": "ranking-opportunity",
+            "score": 90
+          },
+          {
+            "id": "cody-brundage",
+            "name": "Cody Brundage",
+            "rank": "Unranked",
+            "case": "ranking-opportunity",
+            "score": 84
+          }
+        ]
+      },
+      {
+        "fighterId": "jiri-prochazka",
+        "fighter": "Jiri Prochazka",
+        "fighterRankBefore": "#2",
+        "fighterRankAfter": "#3",
+        "before": [
+          {
+            "id": "paulo-costa",
+            "name": "Paulo Costa",
+            "rank": "#6",
+            "case": "step-up-vs-rebound",
+            "score": 96
+          },
+          {
+            "id": "magomed-ankalaev",
+            "name": "Magomed Ankalaev",
+            "rank": "#1",
+            "case": "step-up-vs-rebound",
+            "score": 89
+          },
+          {
+            "id": "dominick-reyes",
+            "name": "Dominick Reyes",
+            "rank": "#7",
+            "case": "step-up-vs-rebound",
             "score": 87
           }
         ],
         "after": [
           {
-            "id": "pat-sabatini",
-            "name": "Pat Sabatini",
-            "rank": "#15",
-            "case": "rankings-progression",
+            "id": "paulo-costa",
+            "name": "Paulo Costa",
+            "rank": "#7",
+            "case": "step-up-vs-rebound",
+            "score": 97
+          },
+          {
+            "id": "dominick-reyes",
+            "name": "Dominick Reyes",
+            "rank": "#6",
+            "case": "step-up-vs-rebound",
             "score": 93
           },
           {
-            "id": "marcus-mcghee",
-            "name": "Marcus McGhee",
-            "rank": "Unranked",
-            "case": "rising-vs-rising",
-            "score": 92
-          },
-          {
-            "id": "david-onama",
-            "name": "David Onama",
-            "rank": "#14",
-            "case": "ranking-opportunity",
-            "score": 93
+            "id": "magomed-ankalaev",
+            "name": "Magomed Ankalaev",
+            "rank": "#1",
+            "case": "step-up-vs-rebound",
+            "score": 82
           }
         ]
       },
       {
-        "fighterId": "uros-medic",
-        "fighter": "Uros Medic",
-        "fighterRankBefore": "#11",
-        "fighterRankAfter": "#12",
+        "fighterId": "kevin-vallejos",
+        "fighter": "Kevin Vallejos",
+        "fighterRankBefore": "#9",
+        "fighterRankAfter": "#5",
         "before": [
           {
-            "id": "shavkat-rakhmonov",
-            "name": "Shavkat Rakhmonov",
-            "rank": "Unranked",
-            "case": "prospect-test",
-            "score": 82
+            "id": "aaron-pico",
+            "name": "Aaron Pico",
+            "rank": "#11",
+            "case": "rankings-progression",
+            "score": 90
           },
           {
-            "id": "jacobe-smith",
-            "name": "Jacobe Smith",
-            "rank": "Unranked",
-            "case": "prospect-test",
-            "score": 84
+            "id": "youssef-zalal",
+            "name": "Youssef Zalal",
+            "rank": "#8",
+            "case": "step-up-vs-rebound",
+            "score": 88
+          },
+          {
+            "id": "patricio-freire",
+            "name": "Patricio Freire",
+            "rank": "#12",
+            "case": "rankings-progression",
+            "score": 82
           }
         ],
         "after": [
           {
-            "id": "shavkat-rakhmonov",
-            "name": "Shavkat Rakhmonov",
-            "rank": "Unranked",
-            "case": "prospect-test",
-            "score": 82
+            "id": "lerone-murphy",
+            "name": "Lerone Murphy",
+            "rank": "#3",
+            "case": "step-up-vs-rebound",
+            "score": 94
           },
           {
-            "id": "jacobe-smith",
-            "name": "Jacobe Smith",
-            "rank": "Unranked",
-            "case": "prospect-test",
-            "score": 84
+            "id": "jean-silva",
+            "name": "Jean Silva",
+            "rank": "#4",
+            "case": "title-eliminator",
+            "score": 93
           },
           {
-            "id": "jean-paul-lebosnoyani",
-            "name": "Jean Paul Lebosnoyani",
-            "rank": "Unranked",
-            "case": "prospect-test",
-            "score": 72
+            "id": "movsar-evloev",
+            "name": "Movsar Evloev",
+            "rank": "#1",
+            "case": "step-up-vs-rebound",
+            "score": 85
+          }
+        ]
+      },
+      {
+        "fighterId": "navajo-stirling",
+        "fighter": "Navajo Stirling",
+        "fighterRankBefore": "#5",
+        "fighterRankAfter": "#2",
+        "before": [
+          {
+            "id": "paulo-costa",
+            "name": "Paulo Costa",
+            "rank": "#6",
+            "case": "rankings-progression",
+            "score": 87
+          },
+          {
+            "id": "khalil-rountree-jr",
+            "name": "Khalil Rountree Jr.",
+            "rank": "#4",
+            "case": "step-up-vs-rebound",
+            "score": 85
+          },
+          {
+            "id": "carlos-ulberg",
+            "name": "Carlos Ulberg",
+            "rank": "Champion",
+            "case": "title-case",
+            "score": 75
+          }
+        ],
+        "after": [
+          {
+            "id": "magomed-ankalaev",
+            "name": "Magomed Ankalaev",
+            "rank": "#1",
+            "case": "title-eliminator",
+            "score": 90
+          },
+          {
+            "id": "carlos-ulberg",
+            "name": "Carlos Ulberg",
+            "rank": "Champion",
+            "case": "title-case",
+            "score": 79
           }
         ]
       }
