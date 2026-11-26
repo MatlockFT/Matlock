@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-11-25T14:54:26.785Z",
+  "generatedAt": "2026-11-26T00:38:54.047Z",
   "engineVersion": 2,
   "subjects": 438,
-  "publishedRecommendations": 1129,
+  "publishedRecommendations": 1105,
   "recommendationSlots": {
-    "0": 60,
+    "0": 68,
     "1": 1,
     "2": 3,
-    "3": 374
+    "3": 366
   },
   "caseCounts": {
-    "rebound-pairing": 457,
-    "rising-vs-rising": 292,
-    "step-up-vs-rebound": 188,
-    "rankings-progression": 61,
-    "ranking-opportunity": 54,
-    "divisional-sorting": 33,
+    "rebound-pairing": 447,
+    "rising-vs-rising": 280,
+    "step-up-vs-rebound": 187,
+    "rankings-progression": 60,
+    "ranking-opportunity": 51,
+    "divisional-sorting": 31,
     "title-case": 19,
     "title-eliminator": 18,
-    "prospect-test": 7
+    "prospect-test": 12
   },
   "confidenceCounts": {
-    "high": 1053,
-    "low": 42,
-    "medium": 34
+    "high": 1028,
+    "low": 41,
+    "medium": 36
   },
   "averageRecentOpponentLinkCoverage": 0.9038,
-  "sameCardRecommendations": 43,
-  "sameCardRecommendationRatio": 0.0381,
-  "asymmetricTopThreeRecommendations": 385,
-  "asymmetricTopThreeRatio": 0.341,
-  "publicPublishedRecommendations": 1108,
-  "publicAsymmetricTopThreeRecommendations": 292,
-  "publicAsymmetricTopThreeRatio": 0.2635,
-  "engineGenericDivisionalSortingRecommendations": 33,
+  "sameCardRecommendations": 42,
+  "sameCardRecommendationRatio": 0.038,
+  "asymmetricTopThreeRecommendations": 364,
+  "asymmetricTopThreeRatio": 0.3294,
+  "publicPublishedRecommendations": 1081,
+  "publicAsymmetricTopThreeRecommendations": 282,
+  "publicAsymmetricTopThreeRatio": 0.2609,
+  "engineGenericDivisionalSortingRecommendations": 31,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -66,7 +66,7 @@
       "title": "UFC Fight Night: Cortes Acosta vs Walker",
       "date": "2026-11-07",
       "subjects": 28,
-      "publicRecommendations": 78,
+      "publicRecommendations": 77,
       "noClearMatchupSubjects": 2
     },
     {
@@ -74,15 +74,15 @@
       "title": "UFC Fight Night: Moicano vs Nolan",
       "date": "2026-10-31",
       "subjects": 24,
-      "publicRecommendations": 69,
-      "noClearMatchupSubjects": 1
+      "publicRecommendations": 66,
+      "noClearMatchupSubjects": 2
     },
     {
       "id": "ufc-333",
       "title": "UFC 333: Volkanovski vs Evloev",
       "date": "2026-10-24",
       "subjects": 28,
-      "publicRecommendations": 79,
+      "publicRecommendations": 78,
       "noClearMatchupSubjects": 0
     },
     {
@@ -138,8 +138,8 @@
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 61,
-      "noClearMatchupSubjects": 7
+      "publicRecommendations": 58,
+      "noClearMatchupSubjects": 8
     },
     {
       "id": "ufc-fight-night-august-29-2026",
@@ -154,32 +154,32 @@
       "title": "UFC Fight Night: Hernandez vs Rodrigues",
       "date": "2026-08-22",
       "subjects": 26,
-      "publicRecommendations": 66,
-      "noClearMatchupSubjects": 4
+      "publicRecommendations": 62,
+      "noClearMatchupSubjects": 5
     },
     {
       "id": "ufc-330",
       "title": "UFC 330: Makhachev vs Machado Garry",
       "date": "2026-08-15",
       "subjects": 24,
-      "publicRecommendations": 54,
-      "noClearMatchupSubjects": 6
+      "publicRecommendations": 48,
+      "noClearMatchupSubjects": 8
     },
     {
       "id": "ufc-fight-night-august-08-2026",
       "title": "UFC Fight Night: Gamrot vs Salkilld",
       "date": "2026-08-08",
       "subjects": 24,
-      "publicRecommendations": 48,
-      "noClearMatchupSubjects": 8
+      "publicRecommendations": 42,
+      "noClearMatchupSubjects": 10
     },
     {
       "id": "ufc-fight-night-august-01-2026",
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 61,
-      "noClearMatchupSubjects": 7
+      "publicRecommendations": 58,
+      "noClearMatchupSubjects": 8
     }
   ],
   "genericExamples": [
@@ -193,13 +193,6 @@
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Uros Medic",
-      "opponent": "Daniil Donchenko",
-      "score": 84,
-      "rationale": "Uros Medic and Daniil Donchenko occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Uros Medic",
       "opponent": "Mike Malott",
       "score": 82,
       "rationale": "Uros Medic and Mike Malott occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
@@ -207,16 +200,16 @@
     {
       "event": "Polymarket UFC 334: Gane vs Hokit",
       "fighter": "Kevin Holland",
-      "opponent": "Neil Magny",
-      "score": 86,
-      "rationale": "Kevin Holland and Neil Magny occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Polymarket UFC 334: Gane vs Hokit",
-      "fighter": "Kevin Holland",
       "opponent": "Joaquin Buckley",
       "score": 81,
       "rationale": "Kevin Holland and Joaquin Buckley occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Cortes Acosta vs Walker",
+      "fighter": "Priscila Cachoeira",
+      "opponent": "Macy Chiasson",
+      "score": 39,
+      "rationale": "Priscila Cachoeira and Macy Chiasson occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Cortes Acosta vs Walker",
@@ -269,10 +262,24 @@
     },
     {
       "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Joaquin Buckley",
+      "opponent": "Kevin Holland",
+      "score": 81,
+      "rationale": "Joaquin Buckley and Kevin Holland occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
       "fighter": "Mike Malott",
       "opponent": "Uros Medic",
       "score": 82,
       "rationale": "Mike Malott and Uros Medic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Buckley vs Malott",
+      "fighter": "Nick Galanti",
+      "opponent": "Ryan Loder",
+      "score": 87,
+      "rationale": "Nick Galanti and Ryan Loder occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Allen vs Duncan",
@@ -315,13 +322,6 @@
       "opponent": "Jj Aldrich",
       "score": 81,
       "rationale": "Melissa Gatto and Jj Aldrich occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
-      "fighter": "Rinya Nakamura",
-      "opponent": "Santiago Luna",
-      "score": 93,
-      "rationale": "Rinya Nakamura and Santiago Luna occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     }
   ],
   "publicGenericExamples": [],
@@ -466,7 +466,7 @@
         },
         {
           "opponent": "Ismail Naurdiev",
-          "score": 89,
+          "score": 90,
           "case": "rising-vs-rising"
         },
         {
