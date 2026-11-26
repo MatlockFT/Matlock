@@ -1,7 +1,73 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-25T20:45:53.245Z",
+  "generated_at": "2026-11-26T12:55:16.071Z",
   "changes": [
+    {
+      "id": "2026-11-26T12:55:16.071Z|rizin-rizin-6-2026-12-31|bout_changed|1",
+      "at": "2026-11-26T12:55:16.071Z",
+      "type": "bout_changed",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "promotion": "RIZIN",
+      "event_title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "event_date": "2026-12-31",
+      "summary": "Kleber Koike vs Hyuma Yasui changed to 下剋上マッチ2／クレベル・コイケ vs Hyuma Yasui on 『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット.",
+      "details": {
+        "order": 7,
+        "section": "Fight Card",
+        "from": [
+          "Kleber Koike",
+          "Hyuma Yasui"
+        ],
+        "to": [
+          "下剋上マッチ2／クレベル・コイケ",
+          "Hyuma Yasui"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-26T12:55:16.071Z|rizin-rizin-6-2026-12-31|bout_changed|2",
+      "at": "2026-11-26T12:55:16.071Z",
+      "type": "bout_changed",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "promotion": "RIZIN",
+      "event_title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "event_date": "2026-12-31",
+      "summary": "Jose Torres vs Enzo Massami Iamazato changed to 下剋上マッチ1／ホセ・トーレス vs Enzo Massami Iamazato on 『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット.",
+      "details": {
+        "order": 8,
+        "section": "Fight Card",
+        "from": [
+          "Jose Torres",
+          "Enzo Massami Iamazato"
+        ],
+        "to": [
+          "下剋上マッチ1／ホセ・トーレス",
+          "Enzo Massami Iamazato"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-26T12:55:16.071Z|rizin-rizin-6-2026-12-31|bout_changed|3",
+      "at": "2026-11-26T12:55:16.071Z",
+      "type": "bout_changed",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "promotion": "RIZIN",
+      "event_title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "event_date": "2026-12-31",
+      "summary": "スダリオ剛 vs King Edokpolo changed to RIZIN ヘビー級GP JAPANトーナメント決勝／スダリオ剛 vs King Edokpolo on 『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット.",
+      "details": {
+        "order": 9,
+        "section": "Fight Card",
+        "from": [
+          "スダリオ剛",
+          "King Edokpolo"
+        ],
+        "to": [
+          "RIZIN ヘビー級GP JAPANトーナメント決勝／スダリオ剛",
+          "King Edokpolo"
+        ]
+      }
+    },
     {
       "id": "2026-11-25T20:45:53.245Z|ufc-fight-night-2027-01-23-fight-card|bout_added|1",
       "at": "2026-11-25T20:45:53.245Z",
@@ -4512,48 +4578,6 @@
       "details": {
         "from": "Middleweight Bout",
         "to": "Poids moyens"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-07-fight-card|bout_weight_changed|25",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Gabriel Lorenco vs Alvin Hines weight/class changed.",
-      "details": {
-        "from": "Heavyweight Bout",
-        "to": "Poids lourds"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-07-fight-card|bout_weight_changed|26",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Karine Silva vs Gabriella Fernandes weight/class changed.",
-      "details": {
-        "from": "Women's Flyweight Bout",
-        "to": "Poids mouche féminins"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-07-fight-card|bout_weight_changed|27",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Mitch Raposo vs Marcos Degli weight/class changed.",
-      "details": {
-        "from": "Flyweight Bout",
-        "to": "Poids mouche"
       }
     }
   ]
