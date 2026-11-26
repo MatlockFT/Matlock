@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-11-26T19:15:56.397Z",
+  "updatedAt": "2026-11-26T20:14:26.149Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -5172,9 +5172,23 @@
     "rizin:2021-11-28:rizin-trigger-1": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T07:15:25.254Z",
-      "wikipediaTitle": "2021 in Rizin Fighting Federation#Rizin Trigger 1"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-11-26T20:12:01.025Z",
+      "wikipediaTitle": "2021 in Rizin Fighting Federation#Rizin Trigger 1",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2021-11-28-rizin-trigger-1-4d75bd50e98e72d3.jpg",
+      "imageAlt": "Rizin Trigger 1 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/83666-rizin-trigger-1st",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/83666-rizin-trigger-1st",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "4d75bd50e98e72d357954c6906dfa033dc9c31cf82b81156f29802250dd3bfa9",
+      "posterRegistryKey": "2021-11-28::rizin trigger 1"
     },
     "pancrase:1997-06-18:pancrase-alive-6": {
       "strategyVersion": 6,
@@ -14793,12 +14807,23 @@
     "ufc:2015-11-28:ufc-fight-night-henderson-vs-masvidal": {
       "strategyVersion": 6,
       "status": "pageimage-kept",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T07:15:25.254Z",
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-11-26T20:12:45.406Z",
       "wikipediaTitle": "UFC Fight Night: Henderson vs. Masvidal",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/41/UFC_Seoul_2015_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "imageAlt": "UFC Fight Night: Henderson vs. Masvidal event image",
-      "imageCredit": "Wikipedia"
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2015-11-28-ufc-fight-night-henderson-vs-masvidal-06f5f22ac4ae723c.jpg",
+      "imageAlt": "UFC Fight Night: Henderson vs. Masvidal event poster",
+      "imageCredit": "Tapology",
+      "imageStatus": "resolved",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/32865-ufc-fight-night-83",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/32865-ufc-fight-night-83",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "06f5f22ac4ae723c3a05d9e6cb97b44ccca5356b0c2d9eaa469c4996420be9f9",
+      "posterRegistryKey": "2015-11-28::ufc fight night henderson vs masvidal"
     },
     "ufc:2020-11-28:ufc-on-espn-smith-vs-clark": {
       "strategyVersion": 6,
