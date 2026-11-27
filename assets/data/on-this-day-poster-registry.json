@@ -3850,7 +3850,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "Bellator 99 event poster",
-      "verifiedAt": "2026-11-27T19:11:32.611Z",
+      "verifiedAt": "2026-11-27T20:01:27.981Z",
       "manualVisualVerified": true
     },
     "2013-09-14::wsof5 arlovski vs kyle": {
@@ -3864,7 +3864,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF5: Arlovski vs. Kyle event poster",
-      "verifiedAt": "2026-11-27T19:11:32.611Z",
+      "verifiedAt": "2026-11-27T20:01:27.981Z",
       "manualVisualVerified": true
     },
     "2013-09-21::ufc 165 jones vs gustafsson": {
@@ -4086,7 +4086,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF13: Moraes vs. Bollinger event poster",
-      "verifiedAt": "2026-11-27T19:11:32.611Z",
+      "verifiedAt": "2026-11-27T20:01:27.981Z",
       "manualVisualVerified": true
     },
     "2014-09-20::ufc fight night hunt vs nelson": {
@@ -12783,9 +12783,23 @@
       "discovery": "tapology-search-unique-title-date",
       "transport": "tapology-via-public-reader-v1",
       "verifiedAt": "2026-11-26T20:12:45.406Z"
+    },
+    "2007-11-28::pancrase rising 9": {
+      "key": "2007-11-28::pancrase rising 9",
+      "status": "verified-unavailable",
+      "date": "2007-11-28",
+      "title": "Pancrase: Rising 9",
+      "eventTitle": "Pancrase 183: Rising 9",
+      "eventDate": "2007-11-28",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/1448-pancrase-183-rising-9",
+      "titleScore": 86,
+      "transport": "tapology-via-public-reader-v1",
+      "checkedAt": "2026-11-27T19:58:08.030Z",
+      "reason": "The exact Tapology event page was verified by title and date but exposes no event poster."
     }
   },
-  "updatedAt": "2026-11-27T19:11:32.830Z",
+  "updatedAt": "2026-11-27T20:01:28.231Z",
   "policy": "One event-poster registry. Restore verified assignments first; new unresolved events resolve in source priority order: Tapology, Wikipedia/Wikimedia, official/archive/manual fallback.",
   "tapologyPolicy": "Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records."
 }
