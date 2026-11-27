@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-27T14:04:18.476Z",
+  "generated_at": "2026-11-27T22:40:40.900Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-12-05-fight-card",
@@ -1331,7 +1331,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/BRADY_SEAN_L_05-09.png?itok=lfpHN5PX",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-130"
+                  "moneyline": "+120"
                 },
                 {
                   "name": "Gabriel Bonfim",
@@ -1339,9 +1339,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/BONFIM_GABRIEL_L_11-08.png?itok=FGdOTced",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+110"
+                  "moneyline": "-150"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "Caesars"
             },
             {
               "order": 2,
