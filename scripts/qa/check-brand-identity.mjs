@@ -33,8 +33,14 @@ function inspect(path) {
 
 for (const root of roots) inspect(root);
 
+const favicon = readFileSync('favicon.ico');
+const previousFaviconPath = readFileSync('assets/favicon.ico');
+if (favicon.length < 6 || favicon.readUInt32LE(0) !== 0x00010000 || !favicon.equals(previousFaviconPath)) {
+    failures.push('The root and legacy favicon URLs must both serve the same Windows icon file.');
+}
+
 if (failures.length) {
-    console.error('Retired MMA Matlock identity references found:');
+    console.error('MMA Matlock brand identity check failed:');
     for (const failure of failures) console.error(`- ${failure}`);
     process.exit(1);
 }

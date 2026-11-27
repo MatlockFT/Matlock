@@ -134,17 +134,7 @@
 
     <link rel="stylesheet" href="{{ '/assets/members-locked.css' | relative_url }}?v={{ site.asset_version }}">
 
-    <link
-        rel="icon"
-        type="image/svg+xml"
-        href="{{ '/assets/favicon-matlock-v2.svg' | relative_url }}"
-    >
-
-    <link
-        rel="alternate icon"
-        type="image/x-icon"
-        href="{{ '/assets/favicon.ico' | relative_url }}"
-    >
+    {% include site-icons.html %}
 
     {% unless use_editorial_shell %}
         <link
