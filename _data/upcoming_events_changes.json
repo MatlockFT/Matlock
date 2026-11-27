@@ -1,7 +1,55 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-26T12:55:16.071Z",
+  "generated_at": "2026-11-27T14:05:04.693Z",
   "changes": [
+    {
+      "id": "2026-11-27T14:05:04.693Z|rizin-rizin-6-2026-12-31|bout_moved|1",
+      "at": "2026-11-27T14:05:04.693Z",
+      "type": "bout_moved",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "promotion": "RIZIN",
+      "event_title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "event_date": "2026-12-31",
+      "summary": "RIZIN ヘビー級GP JAPANトーナメント決勝／スダリオ剛 vs King Edokpolo moved on 『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット.",
+      "details": {
+        "from_order": 9,
+        "to_order": 7,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-11-27T14:05:04.693Z|rizin-rizin-6-2026-12-31|bout_moved|2",
+      "at": "2026-11-27T14:05:04.693Z",
+      "type": "bout_moved",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "promotion": "RIZIN",
+      "event_title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "event_date": "2026-12-31",
+      "summary": "下剋上マッチ2／クレベル・コイケ vs Hyuma Yasui moved on 『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット.",
+      "details": {
+        "from_order": 7,
+        "to_order": 8,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-11-27T14:05:04.693Z|rizin-rizin-6-2026-12-31|bout_moved|3",
+      "at": "2026-11-27T14:05:04.693Z",
+      "type": "bout_moved",
+      "event_id": "rizin-rizin-6-2026-12-31",
+      "promotion": "RIZIN",
+      "event_title": "『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット",
+      "event_date": "2026-12-31",
+      "summary": "下剋上マッチ1／ホセ・トーレス vs Enzo Massami Iamazato moved on 『超RIZIN.6 師走の尾張名古屋下剋上祭り』大会概要／チケット.",
+      "details": {
+        "from_order": 8,
+        "to_order": 9,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
     {
       "id": "2026-11-26T12:55:16.071Z|rizin-rizin-6-2026-12-31|bout_changed|1",
       "at": "2026-11-26T12:55:16.071Z",
@@ -4536,48 +4584,6 @@
       "details": {
         "from": "Bantamweight Bout",
         "to": "Poids coq"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-07-fight-card|bout_weight_changed|22",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Seokhyeon Ko vs Wellington Turman weight/class changed.",
-      "details": {
-        "from": "Welterweight Bout",
-        "to": "Poids mi-moyens"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-07-fight-card|bout_weight_changed|23",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Billy Elekana vs Lucas Fernando weight/class changed.",
-      "details": {
-        "from": "Light Heavyweight Bout",
-        "to": "Poids mi-lourds"
-      }
-    },
-    {
-      "id": "2026-10-28T01:41:37.878Z|ufc-fight-night-2026-11-07-fight-card|bout_weight_changed|24",
-      "at": "2026-10-28T01:41:37.878Z",
-      "type": "bout_weight_changed",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "Mantas Kondratavičius vs Andre Petroski weight/class changed.",
-      "details": {
-        "from": "Middleweight Bout",
-        "to": "Poids moyens"
       }
     }
   ]

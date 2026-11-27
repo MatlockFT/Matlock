@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-27T04:21:06.060Z",
+  "generated_at": "2026-11-27T14:04:18.476Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-12-05-fight-card",
@@ -14,7 +14,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-december-05-2026",
-      "updated_label": "November 26, 2026",
+      "updated_label": "November 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -394,7 +394,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-335",
-      "updated_label": "November 26, 2026",
+      "updated_label": "November 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -610,7 +610,7 @@
       "venue": "バンテリンドーム ナゴヤ",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17870447",
-      "updated_label": "November 26, 2026",
+      "updated_label": "November 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -746,6 +746,27 @@
             {
               "order": 7,
               "label": "",
+              "weight_class": "120.0 kg",
+              "fighters": [
+                {
+                  "name": "RIZIN ヘビー級GP JAPANトーナメント決勝／スダリオ剛",
+                  "initials": "RヘJ",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "King Edokpolo",
+                  "initials": "KE",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/16/5fcbb7810e5e392bd0ffd3f8d166d6ef170a59c4_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
               "weight_class": "66.0 kg",
               "fighters": [
                 {
@@ -765,7 +786,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 9,
               "label": "",
               "weight_class": "57.0 kg",
               "fighters": [
@@ -780,27 +801,6 @@
                   "name": "Enzo Massami Iamazato",
                   "initials": "EMI",
                   "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/11/20/8d915892b245e2a84a9e1f21a22b90df0582952a_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 9,
-              "label": "",
-              "weight_class": "120.0 kg",
-              "fighters": [
-                {
-                  "name": "RIZIN ヘビー級GP JAPANトーナメント決勝／スダリオ剛",
-                  "initials": "RヘJ",
-                  "image": "",
-                  "image_source": "",
-                  "image_framing": ""
-                },
-                {
-                  "name": "King Edokpolo",
-                  "initials": "KE",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/16/5fcbb7810e5e392bd0ffd3f8d166d6ef170a59c4_large.jpg",
                   "image_source": "rizin",
                   "image_framing": "safe"
                 }
@@ -991,7 +991,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-january-16-2027",
-      "updated_label": "November 26, 2026",
+      "updated_label": "November 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1313,7 +1313,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-january-23-2027",
-      "updated_label": "November 26, 2026",
+      "updated_label": "November 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1589,7 +1589,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-336",
-      "updated_label": "November 26, 2026",
+      "updated_label": "November 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1823,7 +1823,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-february-06-2027",
-      "updated_label": "November 26, 2026",
+      "updated_label": "November 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1965,7 +1965,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-february-13-2027",
-      "updated_label": "November 26, 2026",
+      "updated_label": "November 27, 2026",
       "sections": [
         {
           "kind": "main",
